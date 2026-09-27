@@ -47,8 +47,11 @@ export async function ensureCompetitionSeason(store, { comp, year }) {
     await syncRows(store, { table: 'soccer_season_external_ids', key: ['provider', 'external_id'], compare: ['season_id'], rows: [{ provider: P, external_id: sExt, season_id: seasonId, method: rows.length ? 'reviewed' : 'founding', evidence: `competition ${comp.slug} season label ${label}`, capture_id: null }] });
   }
   const stageId = childId('stage', seasonId, comp.comp_type === 'league' ? 'regular-season' : 'espn-all');
-  await syncRows(store, { table: 'soccer_stages', key: ['id'], rows: [{ id: stageId, season_id: seasonId, name: comp.comp_type === 'league' ? 'Regular Season' : 'All rounds (ESPN)', stage_type: comp.comp_type === 'league' ? 'league' : 'group', stage_order: 1 }] });
-  return { compId, seasonId, stageId };
+  const stages = [{ id: stageId, season_id: seasonId, name: comp.comp_type === 'league' ? 'Regular Season' : 'All rounds (ESPN)', stage_type: comp.comp_type === 'league' ? 'league' : 'group', stage_order: 1 }];
+  const playoffStageId = comp.espn?.stage_by_type ? childId('stage', seasonId, 'playoffs') : null;
+  if (playoffStageId) stages.push({ id: playoffStageId, season_id: seasonId, name: 'Playoffs', stage_type: 'playoff', stage_order: 2 });
+  await syncRows(store, { table: 'soccer_stages', key: ['id'], rows: stages });
+  return { compId, seasonId, stageId, playoffStageId };
 }
 
 // Team identity for the season's ESPN fixtures.
@@ -109,11 +112,12 @@ export async function resolveEspnTeams(store, { comp, year, cursor, client }) {
 // Fixtures -> canonical matches. Attach to an existing canonical match (same
 // season, same home/away) instead of creating a duplicate; found only when none.
 export async function upsertEspnFixtures(store, { comp, year, cursor, teamMap, now = Date.now() }) {
-  const { compId, seasonId, stageId } = await ensureCompetitionSeason(store, { comp, year });
+  const { compId, seasonId, stageId, playoffStageId } = await ensureCompetitionSeason(store, { comp, year });
+  const stageFor = f => (playoffStageId && cursor.types?.[f.stype]?.role === 'playoff' ? playoffStageId : stageId);
   const ids = Object.keys(cursor.fixtures).filter(id => teamMap.has(cursor.fixtures[id].h) && teamMap.has(cursor.fixtures[id].a));
   const known = await resolveMany(store, 'match', P, ids);
-  const canon = await store.select('soccer_matches', { columns: ['id', 'home_team_id', 'away_team_id', 'result_provider'], eq: { season_id: seasonId } });
-  const byPair = new Map(canon.map(m => [`${m.home_team_id}|${m.away_team_id}`, m]));
+  const canon = await store.select('soccer_matches', { columns: ['id', 'home_team_id', 'away_team_id', 'result_provider', 'stage_id'], eq: { season_id: seasonId } });
+  const byPair = new Map(canon.map(m => [`${m.home_team_id}|${m.away_team_id}|${m.stage_id}`, m]));
   const venueIds = [...new Set(ids.map(id => cursor.fixtures[id].v?.external_id).filter(Boolean))];
   const venueMap = await resolveMany(store, 'venue', P, venueIds);
   const newVenues = [];
@@ -129,17 +133,20 @@ export async function upsertEspnFixtures(store, { comp, year, cursor, teamMap, n
     const f = cursor.fixtures[id];
     const home = teamMap.get(f.h); const away = teamMap.get(f.a);
     if (known.has(id)) continue;
-    const existing = byPair.get(`${home}|${away}`);
+    const existing = byPair.get(`${home}|${away}|${stageFor(f)}`) || (playoffStageId ? null : canon.find(m => m.home_team_id === home && m.away_team_id === away && m.result_provider !== P));
+    if (existing && existing.result_provider === P) {
+      // Same pairing already founded by ESPN from a DIFFERENT event: never merge two events into one match.
+      pairConflicts += 1; continue;
+    }
     if (existing) {
       attached += 1;
       xw.push({ provider: P, external_id: id, match_id: existing.id, method: existing.result_provider === P ? 'founding' : 'fixture_graph', evidence: `espn event ${id} = canonical fixture (season, home, away)`, capture_id: f.cap });
       continue;
     }
-    if (comp.comp_type !== 'league' && canon.some(m => m.home_team_id === home && m.away_team_id === away)) { pairConflicts += 1; continue; }
     const mid = mintId('match', P, id);
     founded += 1;
-    byPair.set(`${home}|${away}`, { id: mid, result_provider: P });
-    inserts.push({ id: mid, competition_id: compId, season_id: seasonId, stage_id: stageId, matchday: null, round_label: null, kickoff_at: f.d, venue_id: f.v?.external_id ? venueMap.get(f.v.external_id) || null : null, home_team_id: home, away_team_id: away, status: Date.parse(f.d) > now ? 'scheduled' : 'unknown', home_score: null, away_score: null, home_score_ht: null, away_score_ht: null, home_score_et: null, away_score_et: null, home_pens: null, away_pens: null, duration: null, winner_team_id: null, result_provider: P });
+    byPair.set(`${home}|${away}|${stageFor(f)}`, { id: mid, result_provider: P });
+    inserts.push({ id: mid, competition_id: compId, season_id: seasonId, stage_id: stageFor(f), matchday: null, round_label: null, kickoff_at: f.d, venue_id: f.v?.external_id ? venueMap.get(f.v.external_id) || null : null, home_team_id: home, away_team_id: away, status: Date.parse(f.d) > now ? 'scheduled' : 'unknown', home_score: null, away_score: null, home_score_ht: null, away_score_ht: null, home_score_et: null, away_score_et: null, home_pens: null, away_pens: null, duration: null, winner_team_id: null, result_provider: P });
     xw.push({ provider: P, external_id: id, match_id: mid, method: 'founding', evidence: `espn event ${id}`, capture_id: f.cap });
   }
   // A cup/tournament can legitimately repeat a pairing (two legs are home/away

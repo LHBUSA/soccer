@@ -58,6 +58,8 @@ if (argv.includes('--replay')) {
   };
 }
 const registry = JSON.parse(readFileSync('data/registry/competitions.json', 'utf8'));
+// --enable a,b: enable ESPN lanes IN MEMORY for a proof run (the registry file is untouched).
+for (const slug of (arg('--enable', '') || '').split(',').filter(Boolean)) { const c = registry.competitions.find(x => x.slug === slug); if (c?.espn) c.espn.enabled = true; }
 const reviewed = JSON.parse(readFileSync('data/registry/team-crosswalk-reviewed.json', 'utf8'));
 const areas = JSON.parse(readFileSync('data/registry/areas.json', 'utf8'));
 const storage = await fsStorage('.raw');

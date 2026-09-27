@@ -39,6 +39,16 @@ export function seasonLabel(year, format) {
   return format === 'split' ? `${year}/${String(year + 1).slice(2)}` : String(year);
 }
 
+// Season-type role for competitions that model stages by ESPN type (MLS):
+// Regular Season -> league stage; playoff rounds -> playoff stage (never in the
+// table); All-Star / Combined / anything unrecognised -> excluded entirely.
+export function seasonTypeRole(name) {
+  const n = String(name || '');
+  if (/^Regular Season$/i.test(n)) return 'league';
+  if (/playoff|final|cup/i.test(n) && !/all-star/i.test(n)) return 'playoff';
+  return 'excluded';
+}
+
 export function refsOf(listJson) {
   if (!listJson || !Array.isArray(listJson.items)) throw new EspnShapeError('list without items');
   return { ids: listJson.items.map(i => refId(i.$ref, 'events')).filter(Boolean), pageCount: listJson.pageCount || 1, count: listJson.count ?? listJson.items.length };

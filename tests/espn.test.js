@@ -70,3 +70,12 @@ test('fixture subset proof: needs appearances, injectivity and exact fixture rep
   const wrong = proveTeamsByFixtureSubset(canon, [...prov, { date: '2026-08-22', home: '9', away: '8' }]);
   assert.equal(wrong.valid, false); assert.equal(wrong.mapping.size, 0);
 });
+
+test('season-type roles: MLS regular season is the league, playoffs separate, All-Star excluded', () => {
+  assert.equal(espn.seasonTypeRole('Regular Season'), 'league');
+  assert.equal(espn.seasonTypeRole('Eastern Conference Playoffs - Wild Card'), 'playoff');
+  assert.equal(espn.seasonTypeRole('MLS Cup'), 'playoff');
+  assert.equal(espn.seasonTypeRole('All-Star Game'), 'excluded');
+  assert.equal(espn.seasonTypeRole('Combined'), 'excluded');
+  assert.equal(espn.seasonTypeRole(undefined), 'excluded');
+});

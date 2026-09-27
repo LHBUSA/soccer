@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026-09-27.3",
+  "registry_version": "2026-09-27.4",
   "note": "Reviewed canonical metadata for competitions and the provider ids proven to denote them. Provider ids here are crosswalks, not identity.",
   "competitions": [
     {
@@ -280,7 +280,8 @@
         "league": "usa.1",
         "id": "770",
         "enabled": false,
-        "may_found": true
+        "may_found": true,
+        "stage_by_type": true
       },
       "external_ids": [
         {

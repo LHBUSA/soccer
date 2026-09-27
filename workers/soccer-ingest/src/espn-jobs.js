@@ -70,7 +70,16 @@ export async function runEspnLane(lane, { store, storage, registry, areas = { ar
     // 2. event index (all season types: tournaments have several)
     if (!cursor.index || cursor.index_day !== today) {
       const { json: types } = await client.get(espn.urls.seasonTypes(league, year));
-      const typeIds = (types.items || []).map(i => espn.refId(i.$ref, 'types')).filter(Boolean);
+      let typeIds = (types.items || []).map(i => espn.refId(i.$ref, 'types')).filter(Boolean);
+      if (comp.espn.stage_by_type) {
+        // Classify every type by its name; only league + playoff events are indexed.
+        cursor.types = {};
+        for (const t of typeIds) {
+          const { json: tj } = await client.get(`${espn.CORE}/${league}/seasons/${year}/types/${t}`);
+          cursor.types[t] = { name: tj.name || null, role: espn.seasonTypeRole(tj.name) };
+        }
+        typeIds = typeIds.filter(t => cursor.types[t].role !== 'excluded');
+      }
       const ids = [];
       for (const t of typeIds) {
         let page = 1; let pages = 1;
