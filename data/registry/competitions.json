@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026-09-27.2",
+  "registry_version": "2026-09-27.3",
   "note": "Reviewed canonical metadata for competitions and the provider ids proven to denote them. Provider ids here are crosswalks, not identity.",
   "competitions": [
     {
@@ -34,7 +34,9 @@
       "season_format": "split",
       "espn": {
         "league": "ger.1",
-        "id": "720"
+        "id": "720",
+        "enabled": true,
+        "may_found": false
       }
     },
     {
@@ -62,7 +64,9 @@
       "season_format": "split",
       "espn": {
         "league": "eng.1",
-        "id": "700"
+        "id": "700",
+        "enabled": true,
+        "may_found": true
       }
     },
     {
@@ -90,7 +94,9 @@
       "season_format": "split",
       "espn": {
         "league": "esp.1",
-        "id": "740"
+        "id": "740",
+        "enabled": false,
+        "may_found": true
       }
     },
     {
@@ -118,7 +124,9 @@
       "season_format": "split",
       "espn": {
         "league": "ita.1",
-        "id": "730"
+        "id": "730",
+        "enabled": false,
+        "may_found": true
       }
     },
     {
@@ -146,7 +154,9 @@
       "season_format": "split",
       "espn": {
         "league": "fra.1",
-        "id": "710"
+        "id": "710",
+        "enabled": false,
+        "may_found": true
       }
     },
     {
@@ -174,7 +184,9 @@
       "season_format": "calendar",
       "espn": {
         "league": "fifa.world",
-        "id": "606"
+        "id": "606",
+        "enabled": false,
+        "may_found": true
       }
     },
     {
@@ -202,7 +214,9 @@
       "season_format": "calendar",
       "espn": {
         "league": "uefa.euro",
-        "id": "781"
+        "id": "781",
+        "enabled": false,
+        "may_found": true
       }
     },
     {
@@ -216,7 +230,9 @@
       "season_format": "split",
       "espn": {
         "league": "uefa.champions",
-        "id": "775"
+        "id": "775",
+        "enabled": true,
+        "may_found": true
       },
       "external_ids": [
         {
@@ -238,7 +254,9 @@
       "season_format": "split",
       "espn": {
         "league": "uefa.europa",
-        "id": "776"
+        "id": "776",
+        "enabled": false,
+        "may_found": true
       },
       "external_ids": [
         {
@@ -260,7 +278,9 @@
       "season_format": "calendar",
       "espn": {
         "league": "usa.1",
-        "id": "770"
+        "id": "770",
+        "enabled": false,
+        "may_found": true
       },
       "external_ids": [
         {

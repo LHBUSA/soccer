@@ -173,3 +173,32 @@ test('api routes serve an envelope and hide internals (PGlite)', async () => {
   assert.deepEqual(comps.data.map(c => c.slug), ['bundesliga']);
   await store.close();
 });
+
+test('ESPN never founds a competition another provider owns, and disabled lanes do nothing', async () => {
+  const { runEspnLane } = await import('../workers/soccer-ingest/src/espn-jobs.js');
+  const store = await openPglite(); await applyMigrations(store);
+  const reg = { competitions: [
+    { slug: 'bundesliga', name: 'Bundesliga', comp_type: 'league', gender: 'men', country_code: 'DEU', tier: 1, season_format: 'split', espn: { league: 'ger.1', id: '720', enabled: true, may_found: false }, external_ids: [{ provider: 'wyscout', external_id: '426', method: 'founding', evidence: 't' }] },
+    { slug: 'mls', name: 'MLS', comp_type: 'league', gender: 'men', country_code: 'USA', tier: 1, season_format: 'calendar', espn: { league: 'usa.1', id: '770', enabled: false, may_found: true }, external_ids: [{ provider: 'espn', external_id: 'usa.1', method: 'founding', evidence: 't' }] },
+  ] };
+  const calls = [];
+  const fetcher = async url => {
+    calls.push(url);
+    let body = {};
+    if (/leagues\/ger\.1$/.test(url)) body = { season: { $ref: 'http://x/leagues/ger.1/seasons/2026' } };
+    else if (url.endsWith('/types')) body = { items: [{ $ref: 'http://x/seasons/2026/types/1' }] };
+    else if (url.includes('/events?')) body = { items: [{ $ref: 'http://x/events/1' }, { $ref: 'http://x/events/2' }], pageCount: 1, count: 2 };
+    else if (/events\/\d+$/.test(url)) { const id = url.split('/').pop(); body = { id, date: '2026-09-20T13:30Z', season: { $ref: 'http://x/seasons/2026' }, competitions: [{ competitors: [{ id: id === '1' ? '132' : '134', homeAway: 'home' }, { id: id === '1' ? '134' : '132', homeAway: 'away' }] }] }; }
+    return { status: 200, contentType: 'application/json', bytes: new TextEncoder().encode(JSON.stringify(body)) };
+  };
+  const mem = new Map();
+  const storage = { async head(k) { return mem.has(k); }, async put(k, b) { mem.set(k, b); }, async get(k) { return mem.get(k) || null; } };
+  const out = await runEspnLane({ name: 'espn_bundesliga', competition: 'bundesliga' }, { store, storage, registry: reg, state: emptyLaneState('x'), fetcher, budget: 20 });
+  assert.equal(out.results[0].team_identity.waiting_for_owner_fixture_graph, true);
+  assert.equal(await store.count('soccer_teams'), 0);
+  assert.equal(await store.count('soccer_matches'), 0);
+  calls.length = 0;
+  const off = await runEspnLane({ name: 'espn_mls', competition: 'mls' }, { store, storage, registry: reg, state: emptyLaneState('x'), fetcher, budget: 20 });
+  assert.match(off.skipped, /not enabled/); assert.equal(calls.length, 0);
+  await store.close();
+});

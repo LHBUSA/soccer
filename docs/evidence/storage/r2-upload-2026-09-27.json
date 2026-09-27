@@ -1,0 +1,996 @@
+{
+  "started_at": "2026-09-27T16:03:31.326Z",
+  "target": "https://soccer-ingest.sales-fd3.workers.dev",
+  "objects": [
+    {
+      "key": "soccer-source/openligadb/sha256/02/02f502ed2623598529c801031c3fefd28312c6b4699c55d29414eabcf44d6e51",
+      "bytes": 563321,
+      "local_sha256": "02f502ed2623598529c801031c3fefd28312c6b4699c55d29414eabcf44d6e51",
+      "status": 201,
+      "remote_sha256": "02f502ed2623598529c801031c3fefd28312c6b4699c55d29414eabcf44d6e51",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/06/06bb193248f7419cdf8952d9849a2cb813003095b4f060a8994303e07217f6cf",
+      "bytes": 559023,
+      "local_sha256": "06bb193248f7419cdf8952d9849a2cb813003095b4f060a8994303e07217f6cf",
+      "status": 201,
+      "remote_sha256": "06bb193248f7419cdf8952d9849a2cb813003095b4f060a8994303e07217f6cf",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/21/21ec527ed6acb7b0bf6835541e2cf35e036748443cd95e51e2731eb6c6fd7c7a",
+      "bytes": 572116,
+      "local_sha256": "21ec527ed6acb7b0bf6835541e2cf35e036748443cd95e51e2731eb6c6fd7c7a",
+      "status": 201,
+      "remote_sha256": "21ec527ed6acb7b0bf6835541e2cf35e036748443cd95e51e2731eb6c6fd7c7a",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/3c/3c6ac1a5d43d8ca4ac620d7891ece7f8c935125e6020dfa7912394d94c2c2f49",
+      "bytes": 340620,
+      "local_sha256": "3c6ac1a5d43d8ca4ac620d7891ece7f8c935125e6020dfa7912394d94c2c2f49",
+      "status": 201,
+      "remote_sha256": "3c6ac1a5d43d8ca4ac620d7891ece7f8c935125e6020dfa7912394d94c2c2f49",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/3f/3f6d9137af24a32e1ce31aadbbef73e3bcbe734cfba6e4c250dd3ed16854df56",
+      "bytes": 316571,
+      "local_sha256": "3f6d9137af24a32e1ce31aadbbef73e3bcbe734cfba6e4c250dd3ed16854df56",
+      "status": 201,
+      "remote_sha256": "3f6d9137af24a32e1ce31aadbbef73e3bcbe734cfba6e4c250dd3ed16854df56",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/3f/3fcc8f13c1e7cdb6d788781f48a182d4d2ff06bb7474d3943b062d6f8718e0a6",
+      "bytes": 266270,
+      "local_sha256": "3fcc8f13c1e7cdb6d788781f48a182d4d2ff06bb7474d3943b062d6f8718e0a6",
+      "status": 201,
+      "remote_sha256": "3fcc8f13c1e7cdb6d788781f48a182d4d2ff06bb7474d3943b062d6f8718e0a6",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/4a/4a3f904ea55e3504d675090ce32d9b6fe4b47c34a098ece95372646c6545db17",
+      "bytes": 561745,
+      "local_sha256": "4a3f904ea55e3504d675090ce32d9b6fe4b47c34a098ece95372646c6545db17",
+      "status": 201,
+      "remote_sha256": "4a3f904ea55e3504d675090ce32d9b6fe4b47c34a098ece95372646c6545db17",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/53/537a3870466fd67d9b3feba40e0cf3b57a4788918f3532b5c43e1764927c1d37",
+      "bytes": 11581,
+      "local_sha256": "537a3870466fd67d9b3feba40e0cf3b57a4788918f3532b5c43e1764927c1d37",
+      "status": 201,
+      "remote_sha256": "537a3870466fd67d9b3feba40e0cf3b57a4788918f3532b5c43e1764927c1d37",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/5d/5d037fddddc25d43988dbe264fff328c3ce8e853fd023ce8175496c1422a9e34",
+      "bytes": 573040,
+      "local_sha256": "5d037fddddc25d43988dbe264fff328c3ce8e853fd023ce8175496c1422a9e34",
+      "status": 201,
+      "remote_sha256": "5d037fddddc25d43988dbe264fff328c3ce8e853fd023ce8175496c1422a9e34",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/79/79502d155affd4e0a2532a8c5fed0be0678b0b49426cd32a1a8889eef8bb2ded",
+      "bytes": 315636,
+      "local_sha256": "79502d155affd4e0a2532a8c5fed0be0678b0b49426cd32a1a8889eef8bb2ded",
+      "status": 201,
+      "remote_sha256": "79502d155affd4e0a2532a8c5fed0be0678b0b49426cd32a1a8889eef8bb2ded",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/84/84a99c9a2c2b27fb0f641d79085e6e7e92afad8ce979f38b08f7bd9009435a38",
+      "bytes": 566056,
+      "local_sha256": "84a99c9a2c2b27fb0f641d79085e6e7e92afad8ce979f38b08f7bd9009435a38",
+      "status": 201,
+      "remote_sha256": "84a99c9a2c2b27fb0f641d79085e6e7e92afad8ce979f38b08f7bd9009435a38",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/9c/9c7d1f78c9c3e69626b2812a464a8af55546915f1abdef5a0f6d9d5f99896d4b",
+      "bytes": 310926,
+      "local_sha256": "9c7d1f78c9c3e69626b2812a464a8af55546915f1abdef5a0f6d9d5f99896d4b",
+      "status": 201,
+      "remote_sha256": "9c7d1f78c9c3e69626b2812a464a8af55546915f1abdef5a0f6d9d5f99896d4b",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/a0/a007ad90e5de012311ce73cbbe5e315c0c8c70d7c3bbed7f5a31715170332a5e",
+      "bytes": 568648,
+      "local_sha256": "a007ad90e5de012311ce73cbbe5e315c0c8c70d7c3bbed7f5a31715170332a5e",
+      "status": 201,
+      "remote_sha256": "a007ad90e5de012311ce73cbbe5e315c0c8c70d7c3bbed7f5a31715170332a5e",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/bf/bfbe3d522c29f23af151d066de7effc45cc23967c4af24427c20c136d0077cff",
+      "bytes": 313677,
+      "local_sha256": "bfbe3d522c29f23af151d066de7effc45cc23967c4af24427c20c136d0077cff",
+      "status": 201,
+      "remote_sha256": "bfbe3d522c29f23af151d066de7effc45cc23967c4af24427c20c136d0077cff",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/c3/c3c6112de7d072bf97135ca45be85b2c988bc0616c5e9a74998bdcec31ca9df9",
+      "bytes": 579934,
+      "local_sha256": "c3c6112de7d072bf97135ca45be85b2c988bc0616c5e9a74998bdcec31ca9df9",
+      "status": 201,
+      "remote_sha256": "c3c6112de7d072bf97135ca45be85b2c988bc0616c5e9a74998bdcec31ca9df9",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/c4/c499b35b9daf24ad8970f8e6b90d43c564d9879686850cf5459f205f1b62d673",
+      "bytes": 555956,
+      "local_sha256": "c499b35b9daf24ad8970f8e6b90d43c564d9879686850cf5459f205f1b62d673",
+      "status": 201,
+      "remote_sha256": "c499b35b9daf24ad8970f8e6b90d43c564d9879686850cf5459f205f1b62d673",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/c6/c628ba395f77b4c711c80d0a7da4c13ae21b22b2a67e4461f8428a39f33b23c0",
+      "bytes": 587715,
+      "local_sha256": "c628ba395f77b4c711c80d0a7da4c13ae21b22b2a67e4461f8428a39f33b23c0",
+      "status": 201,
+      "remote_sha256": "c628ba395f77b4c711c80d0a7da4c13ae21b22b2a67e4461f8428a39f33b23c0",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/d5/d514b06877ac33f9e168746ebd96899b3e76c138ea61d8232712647f33ebbfbd",
+      "bytes": 574922,
+      "local_sha256": "d514b06877ac33f9e168746ebd96899b3e76c138ea61d8232712647f33ebbfbd",
+      "status": 201,
+      "remote_sha256": "d514b06877ac33f9e168746ebd96899b3e76c138ea61d8232712647f33ebbfbd",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/d5/d5d75750dbc2cd64b4196097a683ccfdf39036b6bae464ff96bc5212d9a1cc47",
+      "bytes": 577636,
+      "local_sha256": "d5d75750dbc2cd64b4196097a683ccfdf39036b6bae464ff96bc5212d9a1cc47",
+      "status": 201,
+      "remote_sha256": "d5d75750dbc2cd64b4196097a683ccfdf39036b6bae464ff96bc5212d9a1cc47",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/d6/d690e65a794fbafe2789d28929e7f5e162aca404f3fa2c0cc240eb4715d40a6d",
+      "bytes": 521633,
+      "local_sha256": "d690e65a794fbafe2789d28929e7f5e162aca404f3fa2c0cc240eb4715d40a6d",
+      "status": 201,
+      "remote_sha256": "d690e65a794fbafe2789d28929e7f5e162aca404f3fa2c0cc240eb4715d40a6d",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/dc/dc45ef9af19929b772fb2ae2e3cb9f3fe86493c2b107f3a4e2586931c4a37662",
+      "bytes": 547757,
+      "local_sha256": "dc45ef9af19929b772fb2ae2e3cb9f3fe86493c2b107f3a4e2586931c4a37662",
+      "status": 201,
+      "remote_sha256": "dc45ef9af19929b772fb2ae2e3cb9f3fe86493c2b107f3a4e2586931c4a37662",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/f1/f14106207999553902565c78b5cf532e74c7790590d5a059488e5652f89c313b",
+      "bytes": 592141,
+      "local_sha256": "f14106207999553902565c78b5cf532e74c7790590d5a059488e5652f89c313b",
+      "status": 201,
+      "remote_sha256": "f14106207999553902565c78b5cf532e74c7790590d5a059488e5652f89c313b",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/f4/f458ec10905021323619f6a47da1970b23c9b2dc31314acf71fcb56ea6fa0fcb",
+      "bytes": 288943,
+      "local_sha256": "f458ec10905021323619f6a47da1970b23c9b2dc31314acf71fcb56ea6fa0fcb",
+      "status": 201,
+      "remote_sha256": "f458ec10905021323619f6a47da1970b23c9b2dc31314acf71fcb56ea6fa0fcb",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/fc/fc269cc5b3aba0e1e8771848900b6b43ed3c801d3bf8f7a10c259bdd4973131e",
+      "bytes": 565184,
+      "local_sha256": "fc269cc5b3aba0e1e8771848900b6b43ed3c801d3bf8f7a10c259bdd4973131e",
+      "status": 201,
+      "remote_sha256": "fc269cc5b3aba0e1e8771848900b6b43ed3c801d3bf8f7a10c259bdd4973131e",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/sha256/ff/ff4225bc3c66af5648e67081e1d1ba925158f89213ba4294b5be8cf44da9a25c",
+      "bytes": 545651,
+      "local_sha256": "ff4225bc3c66af5648e67081e1d1ba925158f89213ba4294b5be8cf44da9a25c",
+      "status": 201,
+      "remote_sha256": "ff4225bc3c66af5648e67081e1d1ba925158f89213ba4294b5be8cf44da9a25c",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/wyscout_figshare/sha256/27/27fcc0dab9b0fbcdf9d4101813ec47810feb832ad0426a27d6cef7c1210ae636",
+      "bytes": 70664,
+      "local_sha256": "27fcc0dab9b0fbcdf9d4101813ec47810feb832ad0426a27d6cef7c1210ae636",
+      "status": 201,
+      "remote_sha256": "27fcc0dab9b0fbcdf9d4101813ec47810feb832ad0426a27d6cef7c1210ae636",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/wyscout_figshare/sha256/39/39a738d2bc97638502e1ead01d661b54c623d6d6b37f77de3846f9a94db7a3a1",
+      "bytes": 1209,
+      "local_sha256": "39a738d2bc97638502e1ead01d661b54c623d6d6b37f77de3846f9a94db7a3a1",
+      "status": 201,
+      "remote_sha256": "39a738d2bc97638502e1ead01d661b54c623d6d6b37f77de3846f9a94db7a3a1",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/wyscout_figshare/sha256/61/616014a2cae374c32ab92b550a8452a8d4a345bf7b3ed513f5677355140d5752",
+      "bytes": 196709,
+      "local_sha256": "616014a2cae374c32ab92b550a8452a8d4a345bf7b3ed513f5677355140d5752",
+      "status": 201,
+      "remote_sha256": "616014a2cae374c32ab92b550a8452a8d4a345bf7b3ed513f5677355140d5752",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/wyscout_figshare/sha256/87/877a111cb1005b73df5645e9338bd74fb4b496bace2fbc545a72abb3b73efa2e",
+      "bytes": 1737347,
+      "local_sha256": "877a111cb1005b73df5645e9338bd74fb4b496bace2fbc545a72abb3b73efa2e",
+      "status": 201,
+      "remote_sha256": "877a111cb1005b73df5645e9338bd74fb4b496bace2fbc545a72abb3b73efa2e",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/wyscout_figshare/sha256/87/877e015b716ffdeea18f04418e3f24fed307ed03c37ff305cabe1f47c4822a45",
+      "bytes": 77323413,
+      "local_sha256": "877e015b716ffdeea18f04418e3f24fed307ed03c37ff305cabe1f47c4822a45",
+      "status": 201,
+      "remote_sha256": "877e015b716ffdeea18f04418e3f24fed307ed03c37ff305cabe1f47c4822a45",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/wyscout_figshare/sha256/9f/9f7a4a3b3d92c0be33f40613ad6e6eb4316c3b9771ec74c61a22c9b8ece23a4d",
+      "bytes": 27404,
+      "local_sha256": "9f7a4a3b3d92c0be33f40613ad6e6eb4316c3b9771ec74c61a22c9b8ece23a4d",
+      "status": 201,
+      "remote_sha256": "9f7a4a3b3d92c0be33f40613ad6e6eb4316c3b9771ec74c61a22c9b8ece23a4d",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/wyscout_figshare/sha256/c8/c8f92bb7533e5c127e043cee764c991b5c25b4f5e70a65be931baae0b1765ce9",
+      "bytes": 645097,
+      "local_sha256": "c8f92bb7533e5c127e043cee764c991b5c25b4f5e70a65be931baae0b1765ce9",
+      "status": 201,
+      "remote_sha256": "c8f92bb7533e5c127e043cee764c991b5c25b4f5e70a65be931baae0b1765ce9",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/wyscout_figshare/sha256/ce/ce7bafb341b36ab4c6093bf1c09c967e9cea10d4223724a1fc679086e5d16842",
+      "bytes": 1001,
+      "local_sha256": "ce7bafb341b36ab4c6093bf1c09c967e9cea10d4223724a1fc679086e5d16842",
+      "status": 201,
+      "remote_sha256": "ce7bafb341b36ab4c6093bf1c09c967e9cea10d4223724a1fc679086e5d16842",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/wyscout_figshare/sha256/e0/e0bc1bd8ff6ea5339586fdfc3e8e9b285a4a18f1ae2f5868ccc9ec9cecc8a922",
+      "bytes": 1754,
+      "local_sha256": "e0bc1bd8ff6ea5339586fdfc3e8e9b285a4a18f1ae2f5868ccc9ec9cecc8a922",
+      "status": 201,
+      "remote_sha256": "e0bc1bd8ff6ea5339586fdfc3e8e9b285a4a18f1ae2f5868ccc9ec9cecc8a922",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/01916f06f2aacfcf41c118ff.json",
+      "bytes": 611,
+      "local_sha256": "d430583cea28d876933e9955031559a7689a7fc021e46c758d02992c15081079",
+      "status": 201,
+      "remote_sha256": "d430583cea28d876933e9955031559a7689a7fc021e46c758d02992c15081079",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/0460f68a8986443abd1b64db.json",
+      "bytes": 611,
+      "local_sha256": "098ecaefc520d8f7dabe319221431804bb9797c3842f553bcd99b1c1b7d8cc55",
+      "status": 201,
+      "remote_sha256": "098ecaefc520d8f7dabe319221431804bb9797c3842f553bcd99b1c1b7d8cc55",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/0612a9f2a3eb252239d8ca25.json",
+      "bytes": 611,
+      "local_sha256": "e0f230ca6cf456816849a234e1ebadbbbc130f60072ef80abdd3001e1d6e24d4",
+      "status": 201,
+      "remote_sha256": "e0f230ca6cf456816849a234e1ebadbbbc130f60072ef80abdd3001e1d6e24d4",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/0d19ac1df0681e6f252a6b8e.json",
+      "bytes": 611,
+      "local_sha256": "dc8ae86b4e10122590e9056daf82a81bd9a9635589bc32049fa58397865e1348",
+      "status": 201,
+      "remote_sha256": "dc8ae86b4e10122590e9056daf82a81bd9a9635589bc32049fa58397865e1348",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/0d8c7d9ce8cbf431d608b261.json",
+      "bytes": 611,
+      "local_sha256": "1b469967d5be4b50419779b6b71deaac50b32477fb00b644d6819c1225bd226b",
+      "status": 201,
+      "remote_sha256": "1b469967d5be4b50419779b6b71deaac50b32477fb00b644d6819c1225bd226b",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/0df1b391c6ce479302aec935.json",
+      "bytes": 611,
+      "local_sha256": "10dc3436e0d4f5c73cdd2b4205d2d56cf6f12f79fd582c9faebad5ec2fca755f",
+      "status": 201,
+      "remote_sha256": "10dc3436e0d4f5c73cdd2b4205d2d56cf6f12f79fd582c9faebad5ec2fca755f",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/0eb0598a18dd3e07786b82f6.json",
+      "bytes": 611,
+      "local_sha256": "9d7d326728922297492db75d9be5ce99aa823d1c0e7aa2486024616a23b5e971",
+      "status": 201,
+      "remote_sha256": "9d7d326728922297492db75d9be5ce99aa823d1c0e7aa2486024616a23b5e971",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/13cd707598e52499410de669.json",
+      "bytes": 611,
+      "local_sha256": "d427a1f0ba6d83582279b504a4011ebf17f2a8b9ded539a95d2ad7e87f4ff42a",
+      "status": 201,
+      "remote_sha256": "d427a1f0ba6d83582279b504a4011ebf17f2a8b9ded539a95d2ad7e87f4ff42a",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/152bb65a2457eeb2ede1be0f.json",
+      "bytes": 611,
+      "local_sha256": "358b4943fa09ee192370bf624a0d76feeb3ea7936fe2cd74a79d8eb14799f5de",
+      "status": 201,
+      "remote_sha256": "358b4943fa09ee192370bf624a0d76feeb3ea7936fe2cd74a79d8eb14799f5de",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/15c4a8c369118bf04755abcc.json",
+      "bytes": 611,
+      "local_sha256": "90a242f95eb4010b896cc4d7bc8ed7eff4a1d97439d70d1aad3c9aebdf474a32",
+      "status": 201,
+      "remote_sha256": "90a242f95eb4010b896cc4d7bc8ed7eff4a1d97439d70d1aad3c9aebdf474a32",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/1bd949c83b6b79ed548158d0.json",
+      "bytes": 611,
+      "local_sha256": "11461bbe6a69f028c48811e0c5d22decd7623ee9dde8364441076e5950651d67",
+      "status": 201,
+      "remote_sha256": "11461bbe6a69f028c48811e0c5d22decd7623ee9dde8364441076e5950651d67",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/1c2e8b2268b7650a36da7c73.json",
+      "bytes": 611,
+      "local_sha256": "8136174ccb905d2b4138378fd4afed4ede98e91bc35e5bdda53bc637a5f22aaa",
+      "status": 201,
+      "remote_sha256": "8136174ccb905d2b4138378fd4afed4ede98e91bc35e5bdda53bc637a5f22aaa",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/22d0849ccf66a5273df5f355.json",
+      "bytes": 611,
+      "local_sha256": "9ee289b9ed4e2058bad719b144806cf8ac5ade783829aa49f507af76c3c4b3a5",
+      "status": 201,
+      "remote_sha256": "9ee289b9ed4e2058bad719b144806cf8ac5ade783829aa49f507af76c3c4b3a5",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/23854dba01e69cb3c78a3285.json",
+      "bytes": 611,
+      "local_sha256": "74c5d6d72fd484929aa0ea366b603ae77aafa796b21e32bef2e19222a94359e0",
+      "status": 201,
+      "remote_sha256": "74c5d6d72fd484929aa0ea366b603ae77aafa796b21e32bef2e19222a94359e0",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/2b63c91efdcb96fdf552539b.json",
+      "bytes": 611,
+      "local_sha256": "696b8e350db1d8816b4938cb7d5f9788d1eb23f59aaa078f21f491a341da0d04",
+      "status": 201,
+      "remote_sha256": "696b8e350db1d8816b4938cb7d5f9788d1eb23f59aaa078f21f491a341da0d04",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/2cd097807d1e8b511cc52fe0.json",
+      "bytes": 611,
+      "local_sha256": "0f9e7378f1ddb00e8d30a1a9b57c11a999cffc3f1bde9c4c15f015960ce69642",
+      "status": 201,
+      "remote_sha256": "0f9e7378f1ddb00e8d30a1a9b57c11a999cffc3f1bde9c4c15f015960ce69642",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/2dcfb83dcc44480214288934.json",
+      "bytes": 611,
+      "local_sha256": "a4b5a05c21492f0cdde398d3eec0b60e5b2aa3e06015c0b4863a4666c3b8dce9",
+      "status": 201,
+      "remote_sha256": "a4b5a05c21492f0cdde398d3eec0b60e5b2aa3e06015c0b4863a4666c3b8dce9",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/32eb59befdbdbb030340d2e1.json",
+      "bytes": 611,
+      "local_sha256": "1606c8bf32251206d67af4d4741a243124cbf0aea5bb6648db10c65be706be29",
+      "status": 201,
+      "remote_sha256": "1606c8bf32251206d67af4d4741a243124cbf0aea5bb6648db10c65be706be29",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/356d3bd0abf4ed1c941d198c.json",
+      "bytes": 611,
+      "local_sha256": "222af7657e46883f918d8755e1f0f52c32e57f8e4d160ebcaccd6e15946e2a30",
+      "status": 201,
+      "remote_sha256": "222af7657e46883f918d8755e1f0f52c32e57f8e4d160ebcaccd6e15946e2a30",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/38fbf1b8e03489c035e8630f.json",
+      "bytes": 611,
+      "local_sha256": "0f9b442a25f2998aa71481e0bb1f3e5007449d03a3675f9b3b9f58df0d652ee2",
+      "status": 201,
+      "remote_sha256": "0f9b442a25f2998aa71481e0bb1f3e5007449d03a3675f9b3b9f58df0d652ee2",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/3a2c42e64972dfda9eed968a.json",
+      "bytes": 611,
+      "local_sha256": "18a9591ed94de1eb44dc60f89a74aaf161ec777f099ea0a0a8028e96502c0a5e",
+      "status": 201,
+      "remote_sha256": "18a9591ed94de1eb44dc60f89a74aaf161ec777f099ea0a0a8028e96502c0a5e",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/40ac5fe6e5115854932110fd.json",
+      "bytes": 611,
+      "local_sha256": "ebd92135a8b339e98ac747c259fe84b75fb4988b67206513fe90afa94b37f45d",
+      "status": 201,
+      "remote_sha256": "ebd92135a8b339e98ac747c259fe84b75fb4988b67206513fe90afa94b37f45d",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/49438897019aeaa583932169.json",
+      "bytes": 611,
+      "local_sha256": "cb95e7248667c772fb01713fb8894084c44e3f3ce2ba4ff1cc0a5346e1d25f69",
+      "status": 201,
+      "remote_sha256": "cb95e7248667c772fb01713fb8894084c44e3f3ce2ba4ff1cc0a5346e1d25f69",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/4ac040aa5cb6a70f5fb3ed8a.json",
+      "bytes": 611,
+      "local_sha256": "eb6fac6622f22b316debddcfb4d3723d5aeebb49e27627ecba07b94a961ec2ce",
+      "status": 201,
+      "remote_sha256": "eb6fac6622f22b316debddcfb4d3723d5aeebb49e27627ecba07b94a961ec2ce",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/4c41a1d46da17bbdb032c481.json",
+      "bytes": 611,
+      "local_sha256": "174bb63924ae87e775582022871d5be779698ab95b8ace24789d42de87b9c07e",
+      "status": 201,
+      "remote_sha256": "174bb63924ae87e775582022871d5be779698ab95b8ace24789d42de87b9c07e",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/56097dddeaa6072154f6682c.json",
+      "bytes": 611,
+      "local_sha256": "ca84af1d974a255f4a49e6c7e1351193b5694bd1b5fc64a0303916e911138058",
+      "status": 201,
+      "remote_sha256": "ca84af1d974a255f4a49e6c7e1351193b5694bd1b5fc64a0303916e911138058",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/56a80f45ccd3fc6249714402.json",
+      "bytes": 611,
+      "local_sha256": "e82564140df93f0e555d4494efde9c20f7b1a510138c1b917e69957ce8eea16d",
+      "status": 201,
+      "remote_sha256": "e82564140df93f0e555d4494efde9c20f7b1a510138c1b917e69957ce8eea16d",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/59ba5af7ab7e028b8edc1446.json",
+      "bytes": 611,
+      "local_sha256": "e1bcc72db6e83062abedafa8f3b2610188d8f42dc056115e3a23c02ca5c0cc65",
+      "status": 201,
+      "remote_sha256": "e1bcc72db6e83062abedafa8f3b2610188d8f42dc056115e3a23c02ca5c0cc65",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/59efbe5c6c5c811ef7ce6790.json",
+      "bytes": 611,
+      "local_sha256": "6c6db073098b058802dd946bb907e949f1e35bb9eadcfd19f1731233b5531cf1",
+      "status": 201,
+      "remote_sha256": "6c6db073098b058802dd946bb907e949f1e35bb9eadcfd19f1731233b5531cf1",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/5d4b2d0f375b097dc8d3d493.json",
+      "bytes": 611,
+      "local_sha256": "56fa4034f40ec72f2e0cd1a6cde1f60e444723a1841d95989bbf350521646577",
+      "status": 201,
+      "remote_sha256": "56fa4034f40ec72f2e0cd1a6cde1f60e444723a1841d95989bbf350521646577",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/5e50c984aefb8358f8868b05.json",
+      "bytes": 611,
+      "local_sha256": "dce5c45b3e0f2d8c884aaf6807ffe1f5735b394dbffd794c31da5cd58ad071d5",
+      "status": 201,
+      "remote_sha256": "dce5c45b3e0f2d8c884aaf6807ffe1f5735b394dbffd794c31da5cd58ad071d5",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/5ebfee69ab0b5d59045729a2.json",
+      "bytes": 611,
+      "local_sha256": "37a5769bd52b83617f2932137c176fa0d588b943853a6fc7941e3474b3139432",
+      "status": 201,
+      "remote_sha256": "37a5769bd52b83617f2932137c176fa0d588b943853a6fc7941e3474b3139432",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/6e4bbc358f66503c08ffa3c4.json",
+      "bytes": 611,
+      "local_sha256": "0e550bcdc2251fa58678ff151a703f8dc767a9e276fdf1488da4a343dcb4f3b0",
+      "status": 201,
+      "remote_sha256": "0e550bcdc2251fa58678ff151a703f8dc767a9e276fdf1488da4a343dcb4f3b0",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/7113a93c7cea2697fbc925c0.json",
+      "bytes": 611,
+      "local_sha256": "b58911ab62e88eba2c208ef55baa459143477c20e98871215044285fb0c76801",
+      "status": 201,
+      "remote_sha256": "b58911ab62e88eba2c208ef55baa459143477c20e98871215044285fb0c76801",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/750516e99c329e1f0c9b2cc1.json",
+      "bytes": 611,
+      "local_sha256": "59a300b4318b44426f72fc0020b3240b79798b1f4a0a59bcc682e6ed9f425561",
+      "status": 201,
+      "remote_sha256": "59a300b4318b44426f72fc0020b3240b79798b1f4a0a59bcc682e6ed9f425561",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/75c413c334ec79d1c7a905c7.json",
+      "bytes": 611,
+      "local_sha256": "3154953fea64a9ecfb85bd22b41d5900c31ffb2d7815b7853e5a3d8f357c546d",
+      "status": 201,
+      "remote_sha256": "3154953fea64a9ecfb85bd22b41d5900c31ffb2d7815b7853e5a3d8f357c546d",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/7a0126c1cac70e1edd3156a6.json",
+      "bytes": 611,
+      "local_sha256": "f09f731c4d28d25cb46614ea69c9e8f62d54a1376114b929b6366b970b86de78",
+      "status": 201,
+      "remote_sha256": "f09f731c4d28d25cb46614ea69c9e8f62d54a1376114b929b6366b970b86de78",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/7c5a3286f17b48def5479dac.json",
+      "bytes": 611,
+      "local_sha256": "e26ba2647ec7e814bd0e4dd72cfdd2ca9d0af8947f57d53a6b187f3eb580e58e",
+      "status": 201,
+      "remote_sha256": "e26ba2647ec7e814bd0e4dd72cfdd2ca9d0af8947f57d53a6b187f3eb580e58e",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/7f3b1b010002bfbd732babe2.json",
+      "bytes": 611,
+      "local_sha256": "cbb2495aece1ba24b79c4aaa9c1c3d3dd2720c156346afc264fab1f3f9f0f6ae",
+      "status": 201,
+      "remote_sha256": "cbb2495aece1ba24b79c4aaa9c1c3d3dd2720c156346afc264fab1f3f9f0f6ae",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/8191c4e269bb90a9679c879f.json",
+      "bytes": 611,
+      "local_sha256": "29428cf9b08b1352478a52a9fa6a688b0fba96764cd9d885164b1798679a0688",
+      "status": 201,
+      "remote_sha256": "29428cf9b08b1352478a52a9fa6a688b0fba96764cd9d885164b1798679a0688",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/88eb14d97f2fe6443799af69.json",
+      "bytes": 611,
+      "local_sha256": "730f859aba0bfb379896cf198f3eb882013b4862f12960b008f37325883518a3",
+      "status": 201,
+      "remote_sha256": "730f859aba0bfb379896cf198f3eb882013b4862f12960b008f37325883518a3",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/8d9fdc1b0e31dcfbf9cbbca7.json",
+      "bytes": 611,
+      "local_sha256": "df75e9614b3671ec8533b020253941f7fb9b89db36a07a2b7af4a94779d11761",
+      "status": 201,
+      "remote_sha256": "df75e9614b3671ec8533b020253941f7fb9b89db36a07a2b7af4a94779d11761",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/8e787b2fc5da504b0db2acc8.json",
+      "bytes": 611,
+      "local_sha256": "0e6b71340f4edf02ca514038d9654300d6fc8ec90e96f15821ed3c8ded361ce6",
+      "status": 201,
+      "remote_sha256": "0e6b71340f4edf02ca514038d9654300d6fc8ec90e96f15821ed3c8ded361ce6",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/91cf445b823715087f0681c9.json",
+      "bytes": 610,
+      "local_sha256": "16c575c931564fe0ee8fc65d54793fc92fb87250ef89430708a2c3e25ec0f587",
+      "status": 201,
+      "remote_sha256": "16c575c931564fe0ee8fc65d54793fc92fb87250ef89430708a2c3e25ec0f587",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/9440fb92937fbce745bdd8be.json",
+      "bytes": 611,
+      "local_sha256": "a0a26e933c0f4b57030f85453e7477c1b9df1390b2943a51316505cc9d08a866",
+      "status": 201,
+      "remote_sha256": "a0a26e933c0f4b57030f85453e7477c1b9df1390b2943a51316505cc9d08a866",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/96844e96509b0e19aa0954ce.json",
+      "bytes": 611,
+      "local_sha256": "0134776ff83d96e99481e41874a5ee455ac913fdc186b214255a3b3aebdfc42f",
+      "status": 201,
+      "remote_sha256": "0134776ff83d96e99481e41874a5ee455ac913fdc186b214255a3b3aebdfc42f",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/9726f32f5d873f7c35266619.json",
+      "bytes": 611,
+      "local_sha256": "87b010aaca9452a87c272d7cec6af011801ee4c0915778eab505bdc6775c4976",
+      "status": 201,
+      "remote_sha256": "87b010aaca9452a87c272d7cec6af011801ee4c0915778eab505bdc6775c4976",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/9cd222bd20bd8e1409b51c73.json",
+      "bytes": 611,
+      "local_sha256": "1afd38fa823db3b41d322558b092617ae37f0252afc45d67f72cd9f678ca616a",
+      "status": 201,
+      "remote_sha256": "1afd38fa823db3b41d322558b092617ae37f0252afc45d67f72cd9f678ca616a",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/a3019e9cc75a2f62f0a784e6.json",
+      "bytes": 611,
+      "local_sha256": "f9090036cb618a9bd416cdb873a65d3cdd1bae086c969f7cc2036d94e75d8a98",
+      "status": 201,
+      "remote_sha256": "f9090036cb618a9bd416cdb873a65d3cdd1bae086c969f7cc2036d94e75d8a98",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/a384a9734187b59ef6a96233.json",
+      "bytes": 611,
+      "local_sha256": "3cdc5eb50d01e0b039b8b5fb3bf2500c15946d5100f6caaa48466f201694d204",
+      "status": 201,
+      "remote_sha256": "3cdc5eb50d01e0b039b8b5fb3bf2500c15946d5100f6caaa48466f201694d204",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/a6192ed231886faa679af798.json",
+      "bytes": 611,
+      "local_sha256": "fc0e8f490f187794e037c8f3913dcf1ee40bf1e2d7a9e4d6f6ed69e2fd6b5012",
+      "status": 201,
+      "remote_sha256": "fc0e8f490f187794e037c8f3913dcf1ee40bf1e2d7a9e4d6f6ed69e2fd6b5012",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/ab50a80be2b341b94cfe94bd.json",
+      "bytes": 611,
+      "local_sha256": "d3160475dd4f7740a0eef2aea00228230304a58c621ed0006ca833718119657f",
+      "status": 201,
+      "remote_sha256": "d3160475dd4f7740a0eef2aea00228230304a58c621ed0006ca833718119657f",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/af6065a67a6457a092ecd189.json",
+      "bytes": 611,
+      "local_sha256": "a21b5c162bb4b9b974da24e4ce1dc3ad91a4b62ef75cadfe2bbf9666f49d64f6",
+      "status": 201,
+      "remote_sha256": "a21b5c162bb4b9b974da24e4ce1dc3ad91a4b62ef75cadfe2bbf9666f49d64f6",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/b7663ca225a040785dd4f227.json",
+      "bytes": 611,
+      "local_sha256": "6e930236921d9d6071545d1515b93cc86fce24033cad38d9776c0566bfdfe762",
+      "status": 201,
+      "remote_sha256": "6e930236921d9d6071545d1515b93cc86fce24033cad38d9776c0566bfdfe762",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/b7866116b30bd2ddcc11d5be.json",
+      "bytes": 611,
+      "local_sha256": "13bfb11b63ded58ce3ad3112c97951d27556a1fb26cdc3e57a5cf79d11d671e1",
+      "status": 201,
+      "remote_sha256": "13bfb11b63ded58ce3ad3112c97951d27556a1fb26cdc3e57a5cf79d11d671e1",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/bb7b4d046abc0126c5464351.json",
+      "bytes": 611,
+      "local_sha256": "019d6fa6c83962ff46f0088d54101f05ec53e4556c4623a96ed7488eda7eb933",
+      "status": 201,
+      "remote_sha256": "019d6fa6c83962ff46f0088d54101f05ec53e4556c4623a96ed7488eda7eb933",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/bd01a7c83c0f0abe7bfa32bf.json",
+      "bytes": 611,
+      "local_sha256": "619c527a0ab241b468c89be573a3a68bfda178f2204968eb87be9e12fa30b6d6",
+      "status": 201,
+      "remote_sha256": "619c527a0ab241b468c89be573a3a68bfda178f2204968eb87be9e12fa30b6d6",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/bd093b35f8683d4357de1e56.json",
+      "bytes": 611,
+      "local_sha256": "209ae759177b156c75945c0f9dae71cc80e9995bcd6cb390270c111f7e5fd8cb",
+      "status": 201,
+      "remote_sha256": "209ae759177b156c75945c0f9dae71cc80e9995bcd6cb390270c111f7e5fd8cb",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/c024a44da57921d2e8b67fee.json",
+      "bytes": 611,
+      "local_sha256": "fceb4c9917262b55345ef213bf504483544887948ed13ab1fb8ee50a3e1e15ac",
+      "status": 201,
+      "remote_sha256": "fceb4c9917262b55345ef213bf504483544887948ed13ab1fb8ee50a3e1e15ac",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/c22905cc2571cbbed83a2812.json",
+      "bytes": 611,
+      "local_sha256": "258d41deb489ed5072d85f574d36aa61200d66622119b207df9189268b140e59",
+      "status": 201,
+      "remote_sha256": "258d41deb489ed5072d85f574d36aa61200d66622119b207df9189268b140e59",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/ca7715331096922570364705.json",
+      "bytes": 611,
+      "local_sha256": "45cce39de7bd77e5690ebd42e8a5947ce7dee361d5b21a5b5feaa710280c7746",
+      "status": 201,
+      "remote_sha256": "45cce39de7bd77e5690ebd42e8a5947ce7dee361d5b21a5b5feaa710280c7746",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/d10a6f5f58422152078c002d.json",
+      "bytes": 611,
+      "local_sha256": "ca85fd3c5aedeafc2538ae28a69c012ff2e9e67eba195db4de415660dde59d00",
+      "status": 201,
+      "remote_sha256": "ca85fd3c5aedeafc2538ae28a69c012ff2e9e67eba195db4de415660dde59d00",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/d93c16c6319ffc45fdfa38d9.json",
+      "bytes": 611,
+      "local_sha256": "6dc60c54c4acbca153331a17a1e283f3b8609f07c14d97f32d7d418b6a565ea6",
+      "status": 201,
+      "remote_sha256": "6dc60c54c4acbca153331a17a1e283f3b8609f07c14d97f32d7d418b6a565ea6",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/d9496cc9f905b22db3704f30.json",
+      "bytes": 610,
+      "local_sha256": "3213597d0824bf5fe474e3a8bddc35f2d9779c5f40040887b6cedc1301512033",
+      "status": 201,
+      "remote_sha256": "3213597d0824bf5fe474e3a8bddc35f2d9779c5f40040887b6cedc1301512033",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/e547c0d19072b13991c2c4ce.json",
+      "bytes": 611,
+      "local_sha256": "5b913c5fbb89a790e8835fd81452b8fdb6cba81dbd67388fcc0261e220668dad",
+      "status": 201,
+      "remote_sha256": "5b913c5fbb89a790e8835fd81452b8fdb6cba81dbd67388fcc0261e220668dad",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/openligadb/captures/2026-09-27/ed9aa7697a1f1655071a9c48.json",
+      "bytes": 611,
+      "local_sha256": "eb0ddf186f1f749e42151f8a662add9ce9de8e8e653f32d30c19f0e939e79f71",
+      "status": 201,
+      "remote_sha256": "eb0ddf186f1f749e42151f8a662add9ce9de8e8e653f32d30c19f0e939e79f71",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/wyscout_figshare/captures/2026-09-27/0d2364218d5caeba55bba747.json",
+      "bytes": 725,
+      "local_sha256": "700cdfca506b2c34020c82cb1c8c1688fbd3a7de21b39dc59bb7d3824105a92b",
+      "status": 201,
+      "remote_sha256": "700cdfca506b2c34020c82cb1c8c1688fbd3a7de21b39dc59bb7d3824105a92b",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/wyscout_figshare/captures/2026-09-27/18d3ca4afede6c3f01e86dad.json",
+      "bytes": 729,
+      "local_sha256": "1ed06e4b0a364fcac7c10bd5a65071401f9e065f03ed9ec5732dc21c598db022",
+      "status": 201,
+      "remote_sha256": "1ed06e4b0a364fcac7c10bd5a65071401f9e065f03ed9ec5732dc21c598db022",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/wyscout_figshare/captures/2026-09-27/400a0e60773f30427b4fcdf1.json",
+      "bytes": 729,
+      "local_sha256": "8f14c09f205aea68d8dff1573cf8687f722c34d3fd629981a40a19606f0a865a",
+      "status": 201,
+      "remote_sha256": "8f14c09f205aea68d8dff1573cf8687f722c34d3fd629981a40a19606f0a865a",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/wyscout_figshare/captures/2026-09-27/597bad8e32b1c435623c2279.json",
+      "bytes": 733,
+      "local_sha256": "b69a42a50d549037eeac9467010a23c9bb15ce1e3c86243a4e0d1760c524d69b",
+      "status": 201,
+      "remote_sha256": "b69a42a50d549037eeac9467010a23c9bb15ce1e3c86243a4e0d1760c524d69b",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/wyscout_figshare/captures/2026-09-27/67c0ac335df0fa1f75a363b8.json",
+      "bytes": 731,
+      "local_sha256": "c0ed09dbf5d53457daf23a7219d7a9af582f4438847924c7a80d2f47006faae4",
+      "status": 201,
+      "remote_sha256": "c0ed09dbf5d53457daf23a7219d7a9af582f4438847924c7a80d2f47006faae4",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/wyscout_figshare/captures/2026-09-27/725b192b9b3fd2809fa0cc29.json",
+      "bytes": 730,
+      "local_sha256": "c02261dff16e24530e4200c4a029fa9497a835637b9d1241e7a7d156187619b9",
+      "status": 201,
+      "remote_sha256": "c02261dff16e24530e4200c4a029fa9497a835637b9d1241e7a7d156187619b9",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/wyscout_figshare/captures/2026-09-27/af428d6c7eabfe302322393f.json",
+      "bytes": 726,
+      "local_sha256": "81cc26f172e115f0548159d26786e8d35c79164b1201404b54d47cfa0f7b6fec",
+      "status": 201,
+      "remote_sha256": "81cc26f172e115f0548159d26786e8d35c79164b1201404b54d47cfa0f7b6fec",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/wyscout_figshare/captures/2026-09-27/f2c9e4bf02cd059dd9f636b5.json",
+      "bytes": 732,
+      "local_sha256": "3965a4bc55c9be8f147b2ebb18dba3d08f84cd894b6ed239ea2dc6d55bcd4d7a",
+      "status": 201,
+      "remote_sha256": "3965a4bc55c9be8f147b2ebb18dba3d08f84cd894b6ed239ea2dc6d55bcd4d7a",
+      "result": "written",
+      "ok": true
+    },
+    {
+      "key": "soccer-source/wyscout_figshare/captures/2026-09-27/f61b9471d290d132ac77795e.json",
+      "bytes": 739,
+      "local_sha256": "b7d04236124213f6ec76480238ae87919bf1b843d94b88eef39a73a5ee727b44",
+      "status": 201,
+      "remote_sha256": "b7d04236124213f6ec76480238ae87919bf1b843d94b88eef39a73a5ee727b44",
+      "result": "written",
+      "ok": true
+    }
+  ],
+  "finished_at": "2026-09-27T16:04:36.546Z",
+  "summary": {
+    "objects": 109,
+    "ok": 109,
+    "bad": 0,
+    "written": 109,
+    "existed": 0,
+    "bytes": 91828198
+  }
+}

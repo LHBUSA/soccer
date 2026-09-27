@@ -74,6 +74,11 @@ export async function resolveEspnTeams(store, { comp, year, cursor, client }) {
       xw.push({ provider: P, external_id: t, team_id: ct, method: 'fixture_graph', evidence: `espn ${comp.espn.league} ${year}: ${proof.provider_fixtures} fixtures, subset proof (>=3 appearances, injective, all fixtures reproduced)`, capture_id: null });
     }
     for (const u of proof.unresolved) await queueIdentity(store, { entity_type: 'team', provider: P, external_id: u.provider_team, reason: 'fixture_subset_ambiguous', candidate_ids: u.candidates });
+  } else if (comp.espn?.may_found === false) {
+    // Another provider owns this competition's fixture graph but has not written
+    // this season yet: wait. ESPN never founds here (owner precedence rule).
+    summary.waiting_for_owner_fixture_graph = true;
+    return { teamMap, summary };
   } else {
     // No other source for this season: ESPN founds teams from their stable ids.
     const existing = await store.select('soccer_teams', { columns: ['id', 'name', 'official_name', 'short_name'] });

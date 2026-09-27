@@ -51,6 +51,7 @@ export function espnClient({ storage, store, fetcher = politeFetch, budget = DEF
 export async function runEspnLane(lane, { store, storage, registry, areas = { areas: {}, aliases: {} }, state, now = Date.now(), fetcher = politeFetch, budget = DEFAULT_BUDGET, force = false }) {
   const comp = registry.competitions.find(c => c.slug === lane.competition);
   if (!comp?.espn) throw new Error(`registry has no ESPN id for ${lane.competition}`);
+  if (comp.espn.enabled === false) return { skipped: `espn lane for ${comp.slug} not enabled (registry espn.enabled=false)` };
   const league = comp.espn.league;
   const client = espnClient({ storage, store, fetcher, budget, registry, areas });
   const today = new Date(now).toISOString().slice(0, 10);
@@ -90,6 +91,7 @@ export async function runEspnLane(lane, { store, storage, registry, areas = { ar
   }
   try {
     await client.flush();
+    if (comp.espn.enabled === false) { stats.skipped = 'competition not enabled in registry'; return { observed: 0, changed: 0, captureId: null, cursor, parserVersion: espn.ESPN_PARSER_VERSION, results: [stats], requests: client.used }; }
     // 4. teams + fixtures -> canonical (only fixtures whose teams are resolved)
     const teamRes = await resolveEspnTeams(store, { comp, year: cursor.season_year, cursor, client });
     stats.team_identity = teamRes.summary;
