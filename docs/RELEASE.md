@@ -8,8 +8,8 @@
 | R2 `soccer-source` | created 2026-09-27 (ENAM). 109 Wyscout/OpenLigaDB captures uploaded, all sha256-verified; ESPN captures written by the Worker | — |
 | KV `SOCCER_STATE` | `3e665f75414849578249f5aed979b868` | — |
 | soccer-ingest | `2beb903b-f3d8-4f95-8eda-e2e411fd074a` (https://soccer-ingest.sales-fd3.workers.dev, cron */5) | `998c92ad-2070-44a1-a20e-de736b8343f1` |
-| soccer-api | `162e3a57-d1c4-411d-a047-3a92f6ee7e2f` (https://soccer-api.sales-fd3.workers.dev) | `9b62221c-52cc-47e2-9ddd-a64e03a45d13` |
-| soccer.propbetedge.ai | NOT attached. The frontend and an indexable newsroom are held until API certification. | — |
+| soccer-api | `61d9558b-acd1-4269-b24a-29c494945add` (https://soccer-api.sales-fd3.workers.dev) | `162e3a57-d1c4-411d-a047-3a92f6ee7e2f` |
+| soccer.propbetedge.ai (Vercel `soccer`, prj_3UgFIxhnlVcLmhnnNDc1WoHOtXGn) | web app `dpl_J3fPjcYaZE1BDYBt1E58Xb5cAYTg` (commit 84dbd4c). The newsroom has no published articles and /news is noindex | previous READY deployment |
 
 **ESPN lanes:**
 - Enabled: `bundesliga`, `premier-league`, `uefa-champions-league`.
@@ -90,3 +90,6 @@ The public frontend and an indexable newsroom stay off until the production data
 | 2026-09-27 16:30–18:00 | data | production backfill certified (0-write re-passes); ESPN fill Bundesliga/EPL/UCL via the Worker (R2 captures) | — | — |
 | 2026-09-27 18:05 | soccer-ingest | close proven queue entries | 2beb903b | 998c92ad |
 | 2026-09-27 18:05 | soccer-api | stats basis stated in semantics | 162e3a57 | 9b62221c |
+| 2026-09-27 18:16 | soccer-api | additive: match competition, from/to/order, /v1/coverage | 61d9558b | 162e3a57 |
+| 2026-09-27 18:42 | web (Vercel) | soccer web app + /api/soccer proxy; production browser QA 140/140 | dpl_ESxQyNubVGawygQ9N3nAgXg27yw2 | dpl_BVJqacbK6cLQ7WZtnJa4mLHFqwKQ |
+| 2026-09-27 18:47 | web (Vercel) | real 404s for unknown paths | dpl_J3fPjcYaZE1BDYBt1E58Xb5cAYTg | dpl_ESxQyNubVGawygQ9N3nAgXg27yw2 |

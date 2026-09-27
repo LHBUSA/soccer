@@ -1,6 +1,6 @@
 {
   "base": "https://soccer.propbetedge.ai",
-  "at": "2026-09-27T18:45:39.477Z",
+  "at": "2026-09-27T18:50:04.179Z",
   "widths": [
     320,
     360,
@@ -38,37 +38,37 @@
   "exposure": [
     {
       "path": "/workers/soccer-ingest/src/index.js",
-      "status": 200,
+      "status": 404,
       "leaked": false
     },
     {
       "path": "/supabase/migrations/20260927000100_soccer_core.sql",
-      "status": 200,
+      "status": 404,
       "leaked": false
     },
     {
       "path": "/package.json",
-      "status": 200,
+      "status": 404,
       "leaked": false
     },
     {
       "path": "/tests/core.test.js",
-      "status": 200,
+      "status": 404,
       "leaked": false
     },
     {
       "path": "/scripts/guard-truth.mjs",
-      "status": 200,
+      "status": 404,
       "leaked": false
     },
     {
       "path": "/docs/RELEASE.md",
-      "status": 200,
+      "status": 404,
       "leaked": false
     },
     {
       "path": "/data/registry/competitions.json",
-      "status": 200,
+      "status": 404,
       "leaked": false
     },
     {
@@ -78,12 +78,12 @@
     },
     {
       "path": "/.env",
-      "status": 200,
+      "status": 404,
       "leaked": false
     },
     {
       "path": "/vercel.json",
-      "status": 200,
+      "status": 404,
       "leaked": false
     }
   ],
@@ -117,7 +117,7 @@
     {
       "route": "/",
       "width": 320,
-      "status": 200,
+      "status": 304,
       "overflow": 0,
       "marks": 0,
       "console_errors": 0,
@@ -229,7 +229,7 @@
     {
       "route": "/competitions",
       "width": 320,
-      "status": 200,
+      "status": 304,
       "overflow": 0,
       "marks": 0,
       "console_errors": 0,
@@ -341,7 +341,7 @@
     {
       "route": "/competitions/bundesliga",
       "width": 320,
-      "status": 200,
+      "status": 304,
       "overflow": 0,
       "marks": 0,
       "console_errors": 0,
@@ -453,7 +453,7 @@
     {
       "route": "/competitions/premier-league",
       "width": 320,
-      "status": 200,
+      "status": 304,
       "overflow": 0,
       "marks": 0,
       "console_errors": 0,
@@ -565,7 +565,7 @@
     {
       "route": "/competitions/uefa-champions-league",
       "width": 320,
-      "status": 200,
+      "status": 304,
       "overflow": 0,
       "marks": 0,
       "console_errors": 0,
@@ -677,7 +677,7 @@
     {
       "route": "/matches",
       "width": 320,
-      "status": 200,
+      "status": 304,
       "overflow": 0,
       "marks": 0,
       "console_errors": 0,
@@ -789,7 +789,7 @@
     {
       "route": "/matches?view=upcoming",
       "width": 320,
-      "status": 200,
+      "status": 304,
       "overflow": 0,
       "marks": 0,
       "console_errors": 0,
@@ -901,7 +901,7 @@
     {
       "route": "/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
       "width": 320,
-      "status": 200,
+      "status": 304,
       "overflow": 0,
       "marks": 80,
       "console_errors": 0,
@@ -1013,7 +1013,7 @@
     {
       "route": "/matches/df69bc8e-7143-5f4a-888e-afccbd2a90a3",
       "width": 320,
-      "status": 200,
+      "status": 304,
       "overflow": 0,
       "marks": 88,
       "console_errors": 0,
@@ -1125,7 +1125,7 @@
     {
       "route": "/matches/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a",
       "width": 320,
-      "status": 200,
+      "status": 304,
       "overflow": 0,
       "marks": 44,
       "console_errors": 0,
@@ -1237,7 +1237,7 @@
     {
       "route": "/teams/fulham",
       "width": 320,
-      "status": 200,
+      "status": 304,
       "overflow": 0,
       "marks": 0,
       "console_errors": 0,
@@ -1349,7 +1349,7 @@
     {
       "route": "/teams/bayern-munchen",
       "width": 320,
-      "status": 200,
+      "status": 304,
       "overflow": 0,
       "marks": 0,
       "console_errors": 0,
@@ -1461,7 +1461,7 @@
     {
       "route": "/players/shea-charles",
       "width": 320,
-      "status": 200,
+      "status": 304,
       "overflow": 0,
       "marks": 0,
       "console_errors": 0,
@@ -1573,7 +1573,7 @@
     {
       "route": "/players/robert-lewandowski",
       "width": 320,
-      "status": 200,
+      "status": 304,
       "overflow": 0,
       "marks": 0,
       "console_errors": 0,
@@ -1685,7 +1685,7 @@
     {
       "route": "/tables",
       "width": 320,
-      "status": 200,
+      "status": 304,
       "overflow": 0,
       "marks": 0,
       "console_errors": 0,
@@ -1797,7 +1797,7 @@
     {
       "route": "/tables?competition=premier-league",
       "width": 320,
-      "status": 200,
+      "status": 304,
       "overflow": 0,
       "marks": 0,
       "console_errors": 0,
@@ -1909,7 +1909,7 @@
     {
       "route": "/tables?competition=uefa-champions-league",
       "width": 320,
-      "status": 200,
+      "status": 304,
       "overflow": 0,
       "marks": 0,
       "console_errors": 0,
@@ -2021,7 +2021,7 @@
     {
       "route": "/news",
       "width": 320,
-      "status": 200,
+      "status": 304,
       "overflow": 0,
       "marks": 0,
       "console_errors": 0,
@@ -2133,7 +2133,7 @@
     {
       "route": "/sources",
       "width": 320,
-      "status": 200,
+      "status": 304,
       "overflow": 0,
       "marks": 0,
       "console_errors": 0,
@@ -2245,7 +2245,7 @@
     {
       "route": "/this-route-does-not-exist",
       "width": 320,
-      "status": 200,
+      "status": 304,
       "overflow": 0,
       "marks": 0,
       "console_errors": 0,

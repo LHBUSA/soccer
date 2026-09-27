@@ -108,6 +108,7 @@ for (const p of ['/workers/soccer-ingest/src/index.js', '/supabase/migrations/20
   const r = await fetch(BASE + p); const t = await r.text();
   const leaked = /create table|export default|"scripts"|import |registry_version|\$schema|node:test/.test(t) && !t.includes('<div id="app">');
   exposure.push({ path: p, status: r.status, leaked });
+  if (r.status !== 404) fail('exposure', `${p} returned ${r.status}, want 404`);
   if (leaked) fail('exposure', `${p} served source content`);
 }
 const proxyChecks = [];
