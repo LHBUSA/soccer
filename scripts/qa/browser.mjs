@@ -21,6 +21,7 @@ const uclMatch = (await getJson('matches?competition=uefa-champions-league&statu
 const wyMatch = (await getJson('matches?competition=bundesliga&season=2017/18&status=finished&limit=1')).data[0];
 const espnDetail = (await getJson(`matches/${espnMatch.id}`)).data;
 const playerSlug = espnDetail.lineups?.home?.starters?.find(Boolean)?.slug;
+const story = ((await getJson('news?limit=1')).data || [])[0];
 
 const ROUTES = [
   { path: '/', expect: ['SOCCER INTELLIGENCE', 'One canonical field', 'MLS', 'BUNDESLIGA', 'PREMIER LEAGUE', 'CHAMPIONS LEAGUE'], name: 'home' },
@@ -42,7 +43,11 @@ const ROUTES = [
   { path: '/tables', expect: ['TABLES', 'Pts'], name: 'tables' },
   { path: '/tables?competition=premier-league', expect: ['Premier League', 'Pts'], name: 'tables-epl' },
   { path: '/tables?competition=uefa-champions-league', expect: ['Champions League'], name: 'tables-ucl' },
-  { path: '/news', expect: ['PROPBETEDGE SOCCER NEWSROOM', 'Evidence-backed soccer reporting is coming online.'], name: 'news' },
+  ...(story ? [
+    { path: '/news', expect: ['PROPBETEDGE SOCCER NEWSROOM', 'Soccer news', story.headline], name: 'news' },
+    { path: `/news/${story.desk}`, expect: ['news', story.headline], name: 'news-desk' },
+    { path: `/news/${story.desk}/${story.slug}`, expect: [story.headline, 'EVIDENCE AND METHOD', 'Evidence packet'], name: 'article' },
+  ] : [{ path: '/news', expect: ['PROPBETEDGE SOCCER NEWSROOM', 'Evidence-backed soccer reporting is coming online.'], name: 'news' }]),
   { path: '/sources', expect: ['Where every fact comes from'], name: 'sources' },
   { path: '/this-route-does-not-exist', expect: ['Off the pitch'], name: 'notfound' },
 ];
@@ -71,6 +76,8 @@ try {
       if (res.status() >= 400 && route.name !== 'notfound') fail(tag, `HTTP ${res.status()}`);
       if (missing.length) fail(tag, `missing text: ${missing.join(' | ')}`);
       if (info.overflow > 1) fail(tag, `horizontal overflow ${info.overflow}px`);
+      // The 404 route's own document is a real 404 (SEO): that single resource error is expected.
+      if (route.name === 'notfound') { const i = consoleErrors.findIndex(e => /status of 404/.test(e)); if (i >= 0) consoleErrors.splice(i, 1); }
       if (consoleErrors.length) fail(tag, `console errors: ${consoleErrors.slice(0, 3).join(' || ')}`);
       if (failed.length) fail(tag, `failed requests: ${failed.slice(0, 3).join(' || ')}`);
       if (info.errorState) fail(tag, 'error state rendered');

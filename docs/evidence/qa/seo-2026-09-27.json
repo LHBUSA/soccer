@@ -1,13 +1,13 @@
 {
   "base": "https://soccer.propbetedge.ai",
-  "at": "2026-09-27T19:40:20.665Z",
+  "at": "2026-09-27T22:05:10.664Z",
   "pages": [
     {
       "key": "homepage",
       "path": "/",
       "status": 200,
       "title": "PropBetEdge Soccer Intelligence — Every match. Every event. One canonical field.",
-      "description": "Soccer intelligence from the PropBetEdge canonical graph: Bundesliga, Premier League and Champions League results, tables, lineups and event maps with visible…",
+      "description": "Soccer intelligence from the PropBetEdge canonical graph: MLS, Premier League, Champions League and Bundesliga results, tables, lineups, event maps and…",
       "canonical": "https://soccer.propbetedge.ai/",
       "robots": "index, follow, max-image-preview:large",
       "og_image": "https://soccer.propbetedge.ai/og/site/home.png",
@@ -20,7 +20,7 @@
       "key": "competition-epl",
       "path": "/competitions/premier-league",
       "status": 200,
-      "title": "Premier League — Table, Results &amp; Fixtures | PropBetEdge Soccer",
+      "title": "Premier League — Table, Results & Fixtures | PropBetEdge Soccer",
       "description": "Premier League 2026/27: table, results and fixtures — 1 stored season, 380 canonical matches on the PropBetEdge soccer graph.",
       "canonical": "https://soccer.propbetedge.ai/competitions/premier-league",
       "robots": "index, follow, max-image-preview:large",
@@ -34,7 +34,7 @@
       "key": "competition-bundesliga",
       "path": "/competitions/bundesliga",
       "status": 200,
-      "title": "Bundesliga — Table, Results &amp; Fixtures | PropBetEdge Soccer",
+      "title": "Bundesliga — Table, Results & Fixtures | PropBetEdge Soccer",
       "description": "Bundesliga 2026/27: table, results and fixtures — 23 stored seasons, 7,040 canonical matches on the PropBetEdge soccer graph.",
       "canonical": "https://soccer.propbetedge.ai/competitions/bundesliga",
       "robots": "index, follow, max-image-preview:large",
@@ -45,10 +45,24 @@
       ]
     },
     {
+      "key": "competition-mls",
+      "path": "/competitions/mls",
+      "status": 200,
+      "title": "MLS — Table, Results & Fixtures | PropBetEdge Soccer",
+      "description": "MLS 2026: table, results and fixtures — 1 stored season, 510 canonical matches on the PropBetEdge soccer graph.",
+      "canonical": "https://soccer.propbetedge.ai/competitions/mls",
+      "robots": "index, follow, max-image-preview:large",
+      "og_image": "https://soccer.propbetedge.ai/og/competition/mls.png",
+      "jsonld": [
+        "BreadcrumbList",
+        "SportsOrganization"
+      ]
+    },
+    {
       "key": "competition-ucl",
       "path": "/competitions/uefa-champions-league",
       "status": 200,
-      "title": "UEFA Champions League — Results &amp; Fixtures | PropBetEdge Soccer",
+      "title": "UEFA Champions League — Results & Fixtures | PropBetEdge Soccer",
       "description": "UEFA Champions League 2026/27: results and fixtures — 1 stored season, 144 canonical matches on the PropBetEdge soccer graph.",
       "canonical": "https://soccer.propbetedge.ai/competitions/uefa-champions-league",
       "robots": "index, follow, max-image-preview:large",
@@ -119,7 +133,7 @@
       "path": "/players/robert-lewandowski",
       "status": 200,
       "title": "Robert Lewandowski — Player Intelligence | PropBetEdge Soccer",
-      "description": "Robert Lewandowski — forward, born 21 August 1988. Player Intelligence from the PropBetEdge canonical soccer graph: event-derived statistics for 2017/18.",
+      "description": "Robert Lewandowski — forward, born 21 August 1988. Player Intelligence from the PropBetEdge canonical soccer graph: event-derived statistics for 2026, 2017/18.",
       "canonical": "https://soccer.propbetedge.ai/players/robert-lewandowski",
       "robots": "index, follow, max-image-preview:large",
       "og_image": "https://soccer.propbetedge.ai/og/player/robert-lewandowski.png",
@@ -132,7 +146,7 @@
       "key": "sources",
       "path": "/sources",
       "status": 200,
-      "title": "Sources &amp; Method — PropBetEdge Soccer Intelligence",
+      "title": "Sources & Method — PropBetEdge Soccer Intelligence",
       "description": "Where every PropBetEdge Soccer fact comes from: sources, attribution, identity rules, event-map semantics and how missing data is shown.",
       "canonical": "https://soccer.propbetedge.ai/sources",
       "robots": "index, follow, max-image-preview:large",
@@ -158,14 +172,65 @@
       "key": "news",
       "path": "/news",
       "status": 200,
-      "title": "Soccer Newsroom — PropBetEdge Soccer",
-      "description": "Evidence-backed soccer reporting from the PropBetEdge canonical graph is coming online.",
+      "title": "Soccer News — Evidence-Backed Reporting | PropBetEdge Soccer",
+      "description": "soccer news from the PropBetEdge canonical graph: Austin FC make it 8 MLS matches unbeaten; Sporting Kansas City win 2-0 at Houston Dynamo FC. Every figure traces…",
       "canonical": "https://soccer.propbetedge.ai/news",
-      "robots": "noindex, follow",
+      "robots": "index, follow, max-image-preview:large",
       "og_image": "https://soccer.propbetedge.ai/og/site/home.png",
       "jsonld": [
+        "BreadcrumbList",
+        "ItemList"
+      ]
+    },
+    {
+      "key": "news-desk",
+      "path": "/news/mls",
+      "status": 200,
+      "title": "MLS Soccer News — Evidence-Backed Reporting | PropBetEdge Soccer",
+      "description": "MLS soccer news from the PropBetEdge canonical graph: Sporting Kansas City win 2-0 at Houston Dynamo FC; André Luiz has scored in 3 straight MLS appearances. Every…",
+      "canonical": "https://soccer.propbetedge.ai/news/mls",
+      "robots": "index, follow, max-image-preview:large",
+      "og_image": "https://soccer.propbetedge.ai/og/site/home.png",
+      "jsonld": [
+        "BreadcrumbList",
+        "ItemList"
+      ]
+    },
+    {
+      "key": "article",
+      "path": "/news/mls/seattle-sounders-fc-7-league-matches-unbeaten-2026-09-27-640861",
+      "status": 200,
+      "title": "Seattle Sounders FC make it 7 MLS matches unbeaten | PropBetEdge Soccer",
+      "description": "MLS 2026. 2 won, 5 drawn, 0 lost; goals 12-8 across the run.",
+      "canonical": "https://soccer.propbetedge.ai/news/mls/seattle-sounders-fc-7-league-matches-unbeaten-2026-09-27-640861",
+      "robots": "index, follow, max-image-preview:large",
+      "og_image": "https://soccer.propbetedge.ai/og/site/home.png",
+      "jsonld": [
+        "NewsArticle",
         "BreadcrumbList"
       ]
+    },
+    {
+      "key": "article-wrong-desk",
+      "path": "/news/premier-league/seattle-sounders-fc-7-league-matches-unbeaten-2026-09-27-640861",
+      "status": 404,
+      "title": "Not found — PropBetEdge Soccer",
+      "description": "This article is not in the PropBetEdge canonical soccer graph.",
+      "canonical": null,
+      "robots": "noindex, follow",
+      "og_image": null,
+      "jsonld": []
+    },
+    {
+      "key": "article-missing",
+      "path": "/news/mls/no-such-story-xyz",
+      "status": 404,
+      "title": "Not found — PropBetEdge Soccer",
+      "description": "This article is not in the PropBetEdge canonical soccer graph.",
+      "canonical": null,
+      "robots": "noindex, follow",
+      "og_image": null,
+      "jsonld": []
     },
     {
       "key": "missing-match",
@@ -224,6 +289,10 @@
     }
   ],
   "sitemaps": {
+    "news": {
+      "status": 200,
+      "urls": 37
+    },
     "static": {
       "status": 200,
       "urls": 5,
@@ -231,23 +300,23 @@
     },
     "competitions": {
       "status": 200,
-      "urls": 3,
-      "with_lastmod": 3
+      "urls": 4,
+      "with_lastmod": 4
     },
     "matches": {
       "status": 200,
-      "urls": 7564,
-      "with_lastmod": 7564
+      "urls": 8074,
+      "with_lastmod": 8074
     },
     "teams": {
       "status": 200,
-      "urls": 85,
-      "with_lastmod": 85
+      "urls": 115,
+      "with_lastmod": 115
     },
     "players": {
       "status": 200,
-      "urls": 1976,
-      "with_lastmod": 1976
+      "urls": 2932,
+      "with_lastmod": 2932
     }
   },
   "robots_ok": true,
@@ -274,7 +343,7 @@
       "type": "image/png",
       "width": 1200,
       "height": 630,
-      "bytes": 57052
+      "bytes": 57874
     },
     {
       "path": "/og/competition/premier-league.png",
@@ -327,9 +396,6 @@
       "status": 405
     }
   ],
-  "failures": [
-    "competition-bundesliga: title \"Bundesliga — Table, Results &amp; Fixtures | PropBetEdge Soccer\"",
-    "security: /api/og.js -> 200"
-  ],
-  "pass": false
+  "failures": [],
+  "pass": true
 }

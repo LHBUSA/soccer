@@ -1,0 +1,79 @@
+{
+  "version": "media-wikimedia/1.0.0",
+  "policy_version": "2026-09-27.1",
+  "started_at": "2026-09-27T20:26:35.855Z",
+  "players": {
+    "espn_linked": 300,
+    "wikidata_items": 126,
+    "verdicts": {
+      "no_wikidata_item_for_espn_id": 174,
+      "ok": 116,
+      "several_images": 5,
+      "no_image": 5
+    }
+  },
+  "teams": {},
+  "files": {},
+  "rows": {
+    "player:approved": 116
+  },
+  "licenses": {
+    "approved:CC BY-SA 3.0 at": 3,
+    "approved:CC BY-SA 4.0": 67,
+    "approved:CC0": 5,
+    "approved:Public domain": 2,
+    "approved:CC BY-SA 3.0": 17,
+    "approved:CC BY-SA 2.0": 4,
+    "approved:CC BY 3.0": 4,
+    "approved:CC BY 2.0": 7,
+    "approved:CC BY 4.0": 7
+  },
+  "samples": [
+    {
+      "entity": "3febec9f-c803-5481-b63c-0667b54d15d6",
+      "file": "https://commons.wikimedia.org/wiki/File:20150331_2026_AUT_BIH_2177_Edin_D%C5%BEeko_(cropped).jpg",
+      "license": "CC BY-SA 3.0 at",
+      "author": "Ailura",
+      "status": "approved",
+      "notes": "media-rights/1.0.0"
+    },
+    {
+      "entity": "efdfce96-4a2b-5ba8-9d73-81dabbdfd8db",
+      "file": "https://commons.wikimedia.org/wiki/File:Ivan_Perisic_Croatia_v_Portugal_2_July_2026-033.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Bryan Berlin",
+      "status": "approved",
+      "notes": "media-rights/1.0.0 Commons: personality rights apply (editorial identification of the person only)."
+    },
+    {
+      "entity": "b0bc489b-9958-5638-91f9-08481eca5132",
+      "file": "https://commons.wikimedia.org/wiki/File:Lewis_Hall_24052026_(2).jpg",
+      "license": "CC0",
+      "author": "Timmy96",
+      "status": "approved",
+      "notes": "media-rights/1.0.0"
+    },
+    {
+      "entity": "24d8431e-de90-574c-becf-9e7ad6a7add3",
+      "file": "https://commons.wikimedia.org/wiki/File:Robert_S%C3%A1nchez_FIFA_Club_World_Cup_final_extraction.jpg",
+      "license": "Public domain",
+      "author": "The White House",
+      "status": "approved",
+      "notes": "media-rights/1.0.0"
+    },
+    {
+      "entity": "dab2fbe0-7f0b-5b26-b27d-084cc8ed25bf",
+      "file": "https://commons.wikimedia.org/wiki/File:2022_Sven_Ulreich_(cropped).jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Steffen Prößdorf",
+      "status": "approved",
+      "notes": "media-rights/1.0.0 Commons: personality rights apply (editorial identification of the person only)."
+    }
+  ],
+  "rows_after_cache": {
+    "player:approved": 116
+  },
+  "cached": 0,
+  "finished_at": "2026-09-27T20:26:41.568Z",
+  "elapsed_s": 6
+}
