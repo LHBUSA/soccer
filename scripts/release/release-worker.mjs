@@ -17,6 +17,8 @@ const opt = k => { const i = rest.indexOf(k); return i >= 0 ? rest[i + 1] : null
 const DRY = rest.includes('--dry');
 if (!['soccer-api', 'soccer-ingest', 'soccer-news'].includes(worker)) throw new Error('worker: soccer-api | soccer-ingest | soccer-news');
 const canaryPath = opt('--canary') || '/health';
+// Git Bash rewrites '/v1/...' arguments into Windows paths unless MSYS_NO_PATHCONV=1 is set.
+if (!/^\/[A-Za-z0-9/_.?=&%-]*$/.test(canaryPath)) throw new Error(`canary path is not a URL path: ${canaryPath} (run with MSYS_NO_PATHCONV=1)`);
 const ROOT = process.cwd();
 const sh = (cmd, cwd = ROOT) => execSync(cmd, { cwd, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], env: { ...process.env, NODE_OPTIONS: '--require D:/Workers/exfat-readlink.cjs' } });
 const log = (...a) => console.log('[release]', ...a);
