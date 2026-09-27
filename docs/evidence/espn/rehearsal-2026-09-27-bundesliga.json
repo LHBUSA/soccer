@@ -1,0 +1,239 @@
+{
+  "generated_at": "2026-09-27T14:31:23.139Z",
+  "mode": "local-rehearsal",
+  "competitions": [
+    "bundesliga"
+  ],
+  "requests_used": 1107,
+  "lanes": {
+    "bundesliga": {
+      "runs": [
+        {
+          "requests": 150,
+          "fixtures_new": 147,
+          "detailed": 0,
+          "team_identity": {
+            "espn_teams": 18,
+            "resolved_before": 0,
+            "fixture_subset_proof": {
+              "valid": true,
+              "mapped": 18,
+              "unresolved": 0,
+              "thin": 0,
+              "collisions": 0,
+              "unmatched": 0
+            },
+            "team_crosswalk": {
+              "inserted": 18,
+              "updated": 0,
+              "unchanged": 0
+            },
+            "resolved_after": 18
+          },
+          "fixtures": {
+            "attached": 147,
+            "founded": 0
+          },
+          "exhausted": "discovery"
+        },
+        {
+          "requests": 150,
+          "fixtures_new": 150,
+          "detailed": 0,
+          "team_identity": {
+            "espn_teams": 18,
+            "resolved_before": 18
+          },
+          "fixtures": {
+            "attached": 150,
+            "founded": 0
+          },
+          "exhausted": "discovery"
+        },
+        {
+          "requests": 150,
+          "fixtures_new": 9,
+          "detailed": 2,
+          "team_identity": {
+            "espn_teams": 18,
+            "resolved_before": 18
+          },
+          "fixtures": {
+            "attached": 9,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 146,
+          "fixtures_new": 0,
+          "detailed": 3,
+          "team_identity": {
+            "espn_teams": 18,
+            "resolved_before": 18
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "bridge": {
+            "scorer_ids_seen": 18,
+            "crosswalked": 16,
+            "conflicts": 0,
+            "goal_events_resolved": 30,
+            "written": {
+              "inserted": 16,
+              "updated": 0,
+              "unchanged": 0
+            }
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 147,
+          "fixtures_new": 0,
+          "detailed": 3,
+          "team_identity": {
+            "espn_teams": 18,
+            "resolved_before": 18
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "bridge": {
+            "scorer_ids_seen": 26,
+            "crosswalked": 6,
+            "conflicts": 0,
+            "goal_events_resolved": 12,
+            "written": {
+              "inserted": 6,
+              "updated": 0,
+              "unchanged": 0
+            }
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 150,
+          "fixtures_new": 0,
+          "detailed": 8,
+          "team_identity": {
+            "espn_teams": 18,
+            "resolved_before": 18
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 145,
+          "fixtures_new": 0,
+          "detailed": 13,
+          "team_identity": {
+            "espn_teams": 18,
+            "resolved_before": 18
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "bridge": {
+            "scorer_ids_seen": 75,
+            "crosswalked": 47,
+            "conflicts": 0,
+            "goal_events_resolved": 72,
+            "written": {
+              "inserted": 47,
+              "updated": 0,
+              "unchanged": 0
+            }
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 69,
+          "fixtures_new": 0,
+          "detailed": 7,
+          "team_identity": {
+            "espn_teams": 18,
+            "resolved_before": 18
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "bridge": {
+            "scorer_ids_seen": 89,
+            "crosswalked": 13,
+            "conflicts": 0,
+            "goal_events_resolved": 13,
+            "written": {
+              "inserted": 13,
+              "updated": 0,
+              "unchanged": 0
+            }
+          },
+          "exhausted": null
+        },
+        {
+          "requests": 0,
+          "fixtures_new": 0,
+          "detailed": 0,
+          "team_identity": {
+            "espn_teams": 18,
+            "resolved_before": 18
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": null
+        }
+      ],
+      "cursor_summary": {
+        "season_year": 2026,
+        "index": 306,
+        "fixtures": 306,
+        "detailed": 36
+      }
+    }
+  },
+  "metrics": {
+    "bundesliga": {
+      "season": "2026/27",
+      "canonical_matches": 306,
+      "finished": 36,
+      "espn_linked_matches": 306,
+      "espn_linked_by_method": {
+        "fixture_graph": 306
+      },
+      "duplicate_matches_prevented": 306,
+      "teams": 18,
+      "espn_team_links_by_method": {
+        "fixture_graph": 18
+      },
+      "matches_with_espn_lineups": 36,
+      "lineups_with_formation": 72,
+      "matches_with_espn_team_stats": 36,
+      "matches_with_espn_plays": 36,
+      "espn_events": 53826,
+      "espn_events_with_coordinates": 52111,
+      "cross_source_finished_compared": 36,
+      "cross_source_score_disagreements": []
+    }
+  },
+  "identity": {
+    "espn_players_founded": 418,
+    "espn_teams_founded": 0,
+    "espn_teams_proven_fixture_graph": 18,
+    "openligadb_scorers_bridged_via_espn": 82,
+    "queue_open_by_reason": {
+      "player/openligadb/scorer_without_canonical_identity": 7,
+      "player/espn/athlete_without_dob_or_name": 4
+    }
+  },
+  "elapsed_s": 798
+}

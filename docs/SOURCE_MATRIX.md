@@ -104,7 +104,7 @@ _Generated from `data/source-registry/sources.json` (registry 2026-09-27.1) by `
 | FotMob (`fotmob`) | aggregator | proprietary | **RESTRICTS_AUTOMATED_ACCESS** | no | 2 file(s) |
 | WhoScored (Opta) (`whoscored`) | aggregator | proprietary | **BLOCKED_BY_ACCESS_CONTROL** | no | 2 file(s) |
 | Transfermarkt (`transfermarkt`) | aggregator | proprietary | **UNVERIFIED** | no | 1 file(s) |
-| ESPN soccer (site + core API) (`espn_soccer`) | aggregator | Disney Terms of Use | **RESTRICTS_COMMERCIAL_USE** | no | 2 file(s) |
+| ESPN Core API (sports.core.api.espn.com) — soccer (`espn_soccer`) | aggregator | Disney Terms of Use | **RESTRICTS_COMMERCIAL_USE** | no | 4 file(s) |
 | Premier League (premierleague.com / Pulselive API) (`premier_league`) | official | proprietary | **RESTRICTS_COMMERCIAL_USE** | no | 3 file(s) |
 | UEFA (uefa.com / match.uefa.com API) (`uefa`) | official | proprietary | **RESTRICTS_AUTOMATED_ACCESS** | no | 3 file(s) |
 | LALIGA (laliga.com) (`laliga`) | official | proprietary | **RESTRICTS_COMMERCIAL_USE** | no | 2 file(s) |
@@ -118,38 +118,38 @@ _Generated from `data/source-registry/sources.json` (registry 2026-09-27.1) by `
 
 Y provided · P partial · N not provided · ? not verified
 
-| Capability | `wyscout_figshare` | `openligadb` | `openfootball` | `wikidata` | `wikimedia_commons` | `statsbomb_open` | `skillcorner_open` | `football_data_co_uk` |
-|---|---|---|---|---|---|---|---|---|
-| schedule (sched) | Y | Y | Y | N | N | Y | N | Y |
-| results (res) | Y | Y | Y | N | N | Y | P | Y |
-| competition_structure (struct) | P | P | P | P | N | Y | N | N |
-| teams (teams) | Y | Y | P | P | N | Y | P | P |
-| player_identity (p-id) | Y | P | N | Y | N | Y | P | N |
-| rosters (roster) | P | N | N | N | N | P | P | N |
-| managers (mgr) | Y | N | N | P | N | Y | N | N |
-| venues (venue) | P | P | P | P | N | Y | N | N |
-| starting_xi (XI) | Y | N | ? | N | N | Y | P | N |
-| bench (bench) | Y | N | ? | N | N | Y | N | N |
-| formation (form) | N | N | N | N | N | Y | N | N |
-| substitutions (subs) | Y | N | ? | N | N | Y | N | N |
-| goals (goals) | Y | Y | P | N | N | Y | N | P |
-| cards (cards) | Y | N | N | N | N | Y | N | P |
-| fouls (fouls) | Y | N | N | N | N | Y | N | P |
-| shots (shots) | Y | N | N | N | N | Y | N | P |
-| passes (pass) | Y | N | N | N | N | Y | N | N |
-| carries (carry) | N | N | N | N | N | Y | N | N |
-| duels (duel) | Y | N | N | N | N | Y | N | N |
-| tackles (tackl) | P | N | N | N | N | Y | N | N |
-| interceptions (int) | P | N | N | N | N | Y | N | N |
-| recoveries (recov) | N | N | N | N | N | Y | N | N |
-| corners (crnr) | Y | N | N | N | N | Y | N | P |
-| free_kicks (FK) | Y | N | N | N | N | Y | N | N |
-| goalkeeper_actions (GK) | P | N | N | N | N | Y | N | N |
-| event_coordinates (xy) | Y | N | N | N | N | Y | N | N |
-| event_sequence (seq) | Y | N | N | N | N | Y | N | N |
-| live (live) | N | ? | N | N | N | N | N | N |
-| historical_depth (hist) | P | Y | Y | Y | N | P | N | Y |
-| stable_ids (ids) | Y | P | N | Y | Y | Y | P | N |
+| Capability | `wyscout_figshare` | `openligadb` | `openfootball` | `wikidata` | `wikimedia_commons` | `statsbomb_open` | `skillcorner_open` | `football_data_co_uk` | `espn_soccer` |
+|---|---|---|---|---|---|---|---|---|---|
+| schedule (sched) | Y | Y | Y | N | N | Y | N | Y | Y |
+| results (res) | Y | Y | Y | N | N | Y | P | Y | Y |
+| competition_structure (struct) | P | P | P | P | N | Y | N | N | P |
+| teams (teams) | Y | Y | P | P | N | Y | P | P | Y |
+| player_identity (p-id) | Y | P | N | Y | N | Y | P | N | Y |
+| rosters (roster) | P | N | N | N | N | P | P | N | Y |
+| managers (mgr) | Y | N | N | P | N | Y | N | N | P |
+| venues (venue) | P | P | P | P | N | Y | N | N | Y |
+| starting_xi (XI) | Y | N | ? | N | N | Y | P | N | Y |
+| bench (bench) | Y | N | ? | N | N | Y | N | N | Y |
+| formation (form) | N | N | N | N | N | Y | N | N | Y |
+| substitutions (subs) | Y | N | ? | N | N | Y | N | N | Y |
+| goals (goals) | Y | Y | P | N | N | Y | N | P | Y |
+| cards (cards) | Y | N | N | N | N | Y | N | P | Y |
+| fouls (fouls) | Y | N | N | N | N | Y | N | P | Y |
+| shots (shots) | Y | N | N | N | N | Y | N | P | Y |
+| passes (pass) | Y | N | N | N | N | Y | N | N | P |
+| carries (carry) | N | N | N | N | N | Y | N | N | N |
+| duels (duel) | Y | N | N | N | N | Y | N | N | Y |
+| tackles (tackl) | P | N | N | N | N | Y | N | N | Y |
+| interceptions (int) | P | N | N | N | N | Y | N | N | Y |
+| recoveries (recov) | N | N | N | N | N | Y | N | N | ? |
+| corners (crnr) | Y | N | N | N | N | Y | N | P | Y |
+| free_kicks (FK) | Y | N | N | N | N | Y | N | N | P |
+| goalkeeper_actions (GK) | P | N | N | N | N | Y | N | N | Y |
+| event_coordinates (xy) | Y | N | N | N | N | Y | N | N | Y |
+| event_sequence (seq) | Y | N | N | N | N | Y | N | N | Y |
+| live (live) | N | ? | N | N | N | N | N | N | ? |
+| historical_depth (hist) | P | Y | Y | Y | N | P | N | Y | Y |
+| stable_ids (ids) | Y | P | N | Y | Y | Y | P | N | Y |
 
 ### Terms and access, verbatim
 
@@ -289,13 +289,13 @@ robots allows generic crawlers; terms not reviewed. Only its ids are relevant, a
 
 Evidence: `docs/evidence/source-audit/2026-09-27/transfermarkt__robots.json`
 
-**ESPN soccer (site + core API)** — RESTRICTS_COMMERCIAL_USE. Access: site.api: Akamai 403; core API: open. Robots: n/a (API).
+**ESPN Core API (sports.core.api.espn.com) — soccer** — RESTRICTS_COMMERCIAL_USE. Access: site.api: Akamai 403; core API: open. Robots: n/a (API).
 
 > use the Disney Products for any commercial or business-related use (prohibited); compiling ... any collection of data, data set or database (prohibited)
 
-site.api scoreboard 403 (Akamai); core API 200. Disney terms forbid automated extraction, database building and commercial use (network-wide rights flag). Not used for soccer unless the owner extends the tennis/NBA ESPN decision to soccer in writing.
+Core API: 308/308 discovery requests 200 (docs/evidence/espn-soccer-discovery-latest.json). site.api scoreboard 403 (Akamai) — never touched. Coordinates verified: 0-100 team-relative, attacking x=100, y=0 attacking right (docs/evidence/espn-soccer-coordinates.json). Precedence: official/open proven sources > ESPN; ESPN attaches ids, records its own result observation, founds only where no other source exists.
 
-Evidence: `docs/evidence/source-audit/2026-09-27/espn_soccer__scoreboard.json`, `docs/evidence/source-audit/2026-09-27/espn_soccer__core_events.json`
+Evidence: `docs/evidence/source-audit/2026-09-27/espn_soccer__scoreboard.json`, `docs/evidence/source-audit/2026-09-27/espn_soccer__core_events.json`, `docs/evidence/espn-soccer-discovery-latest.json`, `docs/evidence/espn-soccer-coordinates.json`
 
 **Premier League (premierleague.com / Pulselive API)** — RESTRICTS_COMMERCIAL_USE. Access: Pulselive API: ECONNRESET. Robots: Allows paths; blocks query-parameter variants.
 

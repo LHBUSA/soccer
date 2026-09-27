@@ -46,6 +46,8 @@ for (const s of reg.sources) {
     if (!canary || !existsSync(canary)) fail(`registry: ${s.key} is production_ready without a canary file`);
     else if (JSON.parse(readFileSync(canary, 'utf8')).pass !== true) fail(`registry: ${s.key} canary is not passing`);
   }
+  if (s.use_status && !['OWNER_APPROVED_SECONDARY', 'RESEARCH_ONLY', 'NOT_USED'].includes(s.use_status)) fail(`registry: ${s.key} unknown use_status ${s.use_status}`);
+  if (s.use_status === 'OWNER_APPROVED_SECONDARY' && !/owner decision \d{4}-\d{2}-\d{2}/i.test(s.use_note || '')) fail(`registry: ${s.key} owner-approved use needs a dated owner decision in use_note`);
   if (/PURCHASE|SUBSCRIBE|BUY/i.test(JSON.stringify(s.production_note || ''))) fail(`registry: ${s.key} mentions a purchase path; paid data needs explicit owner approval`);
 }
 

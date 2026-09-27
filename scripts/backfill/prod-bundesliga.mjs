@@ -113,3 +113,8 @@ mkdirSync('docs/evidence/proof', { recursive: true });
 const file = `docs/evidence/proof/${args.has('--local') ? 'rehearsal' : 'production'}-certification-${new Date().toISOString().slice(0, 10)}.json`;
 writeFileSync(file, JSON.stringify({ generated_at: new Date().toISOString(), target, store_requests: store.requests, elapsed_s: Math.round((Date.now() - t0) / 1000), run1, run2_writes: run2 && { wyscout: run2.wyscout?.writes, seasons: Object.fromEntries(Object.entries(run2.seasons).map(([k, v]) => [k, v.writes])) }, certification: cert }, null, 2) + '\n');
 log('certification written', file, JSON.stringify(cert.verdict));
+if (args.has('--local') && args.has('--dump')) {
+  const dump = await store.db.dumpDataDir('gzip');
+  writeFileSync('.proof/rehearsal.pgdata.tar.gz', Buffer.from(await dump.arrayBuffer()));
+  log('snapshot .proof/rehearsal.pgdata.tar.gz');
+}

@@ -179,7 +179,7 @@ export async function ingestOpenLigaSeason(store, { registry, league, season, st
     }
   }
   summary.matches_skipped_unresolved_team = skipped;
-  summary.matches_written = await syncRows(store, { table: 'soccer_matches', key: ['id'], rows: matchRows, provider: P, captureId: rec.capture_id });
+  summary.matches_written = await syncRows(store, { table: 'soccer_matches', key: ['id'], rows: matchRows, provider: P, captureId: rec.capture_id, touch: true });
   summary.match_crosswalk = await syncRows(store, { table: 'soccer_match_external_ids', key: ['provider', 'external_id'], compare: ['match_id'], rows: xw });
   summary.source_results = await syncRows(store, { table: 'soccer_match_source_results', key: ['match_id', 'provider'], compare: ['status', 'home_score', 'away_score', 'home_score_ht', 'away_score_ht'], rows: results, provider: P, captureId: rec.capture_id });
 

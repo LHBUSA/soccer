@@ -14,8 +14,9 @@
 //     every changed field is logged to soccer_source_changes;
 //   * identical rows are left alone (a re-run writes nothing).
 export async function syncRows(store, {
-  table, key, rows, compare = null, provider = null, captureId = null, entityIdCol = null, chunk = 1000,
+  table, key, rows, compare = null, provider = null, captureId = null, entityIdCol = null, chunk = 1000, touch = false,
 }) {
+  // touch: stamp updated_at on rows that actually changed (never compared, so re-runs stay no-ops).
   const stats = { inserted: 0, updated: 0, unchanged: 0 };
   if (!rows.length) return stats;
   const cols = Object.keys(rows[0]);
@@ -45,7 +46,11 @@ export async function syncRows(store, {
       }
     }
     if (toInsert.length) { await store.insert(table, toInsert); stats.inserted += toInsert.length; }
-    if (toUpdate.length) { await store.upsert(table, toUpdate, key); stats.updated += toUpdate.length; }
+    if (toUpdate.length) {
+      const stamp = new Date().toISOString();
+      await store.upsert(table, touch ? toUpdate.map(r => ({ ...r, updated_at: stamp })) : toUpdate, key);
+      stats.updated += toUpdate.length;
+    }
     if (changes.length) await store.insert('soccer_source_changes', changes);
   }
   return stats;

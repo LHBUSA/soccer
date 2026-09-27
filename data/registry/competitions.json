@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026-09-27.1",
+  "registry_version": "2026-09-27.2",
   "note": "Reviewed canonical metadata for competitions and the provider ids proven to denote them. Provider ids here are crosswalks, not identity.",
   "competitions": [
     {
@@ -22,9 +22,20 @@
           "external_id": "bl1",
           "method": "reviewed",
           "evidence": "OpenLigaDB league shortcut bl1 = '1. Fußball-Bundesliga'; 2017 season fixture graph matches Wyscout 426 season 181137 (see docs/evidence/proof/bundesliga-2017-18.json)"
+        },
+        {
+          "provider": "espn",
+          "external_id": "ger.1",
+          "method": "reviewed",
+          "evidence": "ESPN Core league listing + league detail (docs/evidence/espn-soccer-discovery-latest.json): ger.1 id 720"
         }
       ],
-      "regular_rounds": 34
+      "regular_rounds": 34,
+      "season_format": "split",
+      "espn": {
+        "league": "ger.1",
+        "id": "720"
+      }
     },
     {
       "slug": "premier-league",
@@ -40,8 +51,19 @@
           "external_id": "364",
           "method": "founding",
           "evidence": "Wyscout wyId 364 'English first division'"
+        },
+        {
+          "provider": "espn",
+          "external_id": "eng.1",
+          "method": "reviewed",
+          "evidence": "ESPN Core league listing + league detail (docs/evidence/espn-soccer-discovery-latest.json): eng.1 id 700"
         }
-      ]
+      ],
+      "season_format": "split",
+      "espn": {
+        "league": "eng.1",
+        "id": "700"
+      }
     },
     {
       "slug": "la-liga",
@@ -57,8 +79,19 @@
           "external_id": "795",
           "method": "founding",
           "evidence": "Wyscout wyId 795 'Spanish first division'"
+        },
+        {
+          "provider": "espn",
+          "external_id": "esp.1",
+          "method": "reviewed",
+          "evidence": "ESPN Core league listing + league detail (docs/evidence/espn-soccer-discovery-latest.json): esp.1 id 740"
         }
-      ]
+      ],
+      "season_format": "split",
+      "espn": {
+        "league": "esp.1",
+        "id": "740"
+      }
     },
     {
       "slug": "serie-a",
@@ -74,8 +107,19 @@
           "external_id": "524",
           "method": "founding",
           "evidence": "Wyscout wyId 524 'Italian first division'"
+        },
+        {
+          "provider": "espn",
+          "external_id": "ita.1",
+          "method": "reviewed",
+          "evidence": "ESPN Core league listing + league detail (docs/evidence/espn-soccer-discovery-latest.json): ita.1 id 730"
         }
-      ]
+      ],
+      "season_format": "split",
+      "espn": {
+        "league": "ita.1",
+        "id": "730"
+      }
     },
     {
       "slug": "ligue-1",
@@ -91,8 +135,19 @@
           "external_id": "412",
           "method": "founding",
           "evidence": "Wyscout wyId 412 'French first division'"
+        },
+        {
+          "provider": "espn",
+          "external_id": "fra.1",
+          "method": "reviewed",
+          "evidence": "ESPN Core league listing + league detail (docs/evidence/espn-soccer-discovery-latest.json): fra.1 id 710"
         }
-      ]
+      ],
+      "season_format": "split",
+      "espn": {
+        "league": "fra.1",
+        "id": "710"
+      }
     },
     {
       "slug": "fifa-world-cup",
@@ -108,8 +163,19 @@
           "external_id": "28",
           "method": "founding",
           "evidence": "Wyscout wyId 28 'World Cup'"
+        },
+        {
+          "provider": "espn",
+          "external_id": "fifa.world",
+          "method": "reviewed",
+          "evidence": "ESPN Core league listing + league detail (docs/evidence/espn-soccer-discovery-latest.json): fifa.world id 606"
         }
-      ]
+      ],
+      "season_format": "calendar",
+      "espn": {
+        "league": "fifa.world",
+        "id": "606"
+      }
     },
     {
       "slug": "uefa-european-championship",
@@ -125,6 +191,83 @@
           "external_id": "102",
           "method": "founding",
           "evidence": "Wyscout wyId 102 'European Championship'"
+        },
+        {
+          "provider": "espn",
+          "external_id": "uefa.euro",
+          "method": "reviewed",
+          "evidence": "ESPN Core league listing + league detail (docs/evidence/espn-soccer-discovery-latest.json): uefa.euro id 781"
+        }
+      ],
+      "season_format": "calendar",
+      "espn": {
+        "league": "uefa.euro",
+        "id": "781"
+      }
+    },
+    {
+      "slug": "uefa-champions-league",
+      "name": "UEFA Champions League",
+      "comp_type": "club_tournament",
+      "gender": "men",
+      "country_code": null,
+      "tier": null,
+      "desk": "champions-league",
+      "season_format": "split",
+      "espn": {
+        "league": "uefa.champions",
+        "id": "775"
+      },
+      "external_ids": [
+        {
+          "provider": "espn",
+          "external_id": "uefa.champions",
+          "method": "founding",
+          "evidence": "ESPN Core league listing + league detail (docs/evidence/espn-soccer-discovery-latest.json): uefa.champions id 775"
+        }
+      ]
+    },
+    {
+      "slug": "uefa-europa-league",
+      "name": "UEFA Europa League",
+      "comp_type": "club_tournament",
+      "gender": "men",
+      "country_code": null,
+      "tier": null,
+      "desk": "international",
+      "season_format": "split",
+      "espn": {
+        "league": "uefa.europa",
+        "id": "776"
+      },
+      "external_ids": [
+        {
+          "provider": "espn",
+          "external_id": "uefa.europa",
+          "method": "founding",
+          "evidence": "ESPN Core league listing + league detail (docs/evidence/espn-soccer-discovery-latest.json): uefa.europa id 776"
+        }
+      ]
+    },
+    {
+      "slug": "mls",
+      "name": "MLS",
+      "comp_type": "league",
+      "gender": "men",
+      "country_code": "USA",
+      "tier": 1,
+      "desk": "mls",
+      "season_format": "calendar",
+      "espn": {
+        "league": "usa.1",
+        "id": "770"
+      },
+      "external_ids": [
+        {
+          "provider": "espn",
+          "external_id": "usa.1",
+          "method": "founding",
+          "evidence": "ESPN Core league listing + league detail (docs/evidence/espn-soccer-discovery-latest.json): usa.1 id 770"
         }
       ]
     }

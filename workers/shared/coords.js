@@ -24,6 +24,9 @@ export const COORDINATE_SYSTEMS = Object.freeze({
   statsbomb_yd_v1: { xMax: 120, yMax: 80, teamRelative: true, yDownIsRight: true },
   // Opta-style: 0..100 team-relative with y 0 = RIGHT touchline (y grows to the left).
   opta_pct_v1: { xMax: 100, yMax: 100, teamRelative: true, yDownIsRight: false },
+  // ESPN Core plays (fieldPositionX/Y): 0..100 team-relative, attacking toward
+  // x=100, y=0 = attacking team's RIGHT (verified: docs/evidence/espn-soccer-coordinates.json).
+  espn_pct_v1: { xMax: 100, yMax: 100, teamRelative: true, yDownIsRight: false },
 });
 
 const round = (v, dp = 2) => (v === null || v === undefined ? null : Math.round(v * 10 ** dp) / 10 ** dp);

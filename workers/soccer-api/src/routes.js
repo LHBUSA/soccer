@@ -117,10 +117,14 @@ export async function match(store, id) {
   // Key events only (goals, cards, shots) — never the full ledger.
   const keyEvents = await store.select('soccer_match_events', {
     columns: ['sequence', 'period', 'minute', 'team_id', 'player_id', 'event_type', 'subtype', 'outcome', 'is_goal', 'is_own_goal', 'card', 'set_piece', 'body_part', 'x_m', 'y_m', 'source_family', 'qualifiers'],
-    eq: { match_id: id }, in: { event_type: ['shot', 'goal', 'foul'] }, order: 'sequence.asc',
+    eq: { match_id: id }, in: { event_type: ['shot', 'goal', 'foul', 'card'] }, order: 'sequence.asc',
   });
   const own = await store.select('soccer_match_events', { columns: ['sequence', 'period', 'minute', 'team_id', 'player_id', 'event_type', 'is_own_goal', 'card', 'source_family', 'qualifiers', 'x_m', 'y_m', 'is_goal', 'outcome', 'subtype', 'set_piece', 'body_part'], eq: { match_id: id, is_own_goal: true } });
-  const evs = [...keyEvents.filter(e => e.event_type !== 'foul' || e.card), ...own.filter(o => !keyEvents.some(k => k.sequence === o.sequence && k.source_family === o.source_family))].sort((a, b) => a.sequence - b.sequence);
+  const all = [...keyEvents.filter(e => (e.event_type !== 'foul' || e.card)), ...own.filter(o => !keyEvents.some(k => k.sequence === o.sequence && k.source_family === o.source_family))];
+  // One event family per match, richest first, so a goal never appears twice.
+  const FAMILY_PRIORITY = ['wyscout_figshare', 'espn', 'openligadb'];
+  const family = FAMILY_PRIORITY.find(f => all.some(e => e.source_family === f)) || null;
+  const evs = all.filter(e => e.source_family === family).sort((a, b) => a.sequence - b.sequence);
   const playerIds = [...new Set(evs.map(e => e.player_id).filter(Boolean))];
 
   const lineups = await store.select('soccer_lineups', { columns: ['id', 'team_id', 'formation', 'manager_id'], eq: { match_id: id } });
@@ -162,12 +166,13 @@ export async function match(store, id) {
     ...shapeMatch(m, teams), competition: comp, season: season?.label, venue,
     timeline, shots, stats: stats.length ? statsOut : null, lineups: lineups.length ? lineupOut : null,
     substitutions: subs.map(s => ({ minute: s.minute, team: side(s.team_id), in: person(s.player_in_id), out: person(s.player_out_id) })),
+    event_source: family,
     coordinates: hasLedger ? { system: '105x68 m, match frame: home attacks toward x=105', note: 'Event locations, not player tracking.' } : null,
   }, {
     source: 'pbe', source_updated_at: maxTs(m.updated_at, sources.map(s => s.observed_at)),
     semantics: 'Canonical match assembled by PropBetEdge. Counts are derived from the event ledger (pbe-counts); shot locations on the 105x68 canonical pitch.',
     coverage: notes.length ? COVERAGE.PARTIAL : COVERAGE.OK, coverage_notes: notes,
-    attribution: [...new Set([...sources.map(s => s.provider), ...(hasLedger ? ['wyscout'] : [])])],
+    attribution: [...new Set([...sources.map(s => s.provider), ...(family === 'wyscout_figshare' ? ['wyscout'] : family ? [family] : [])])],
   });
 }
 

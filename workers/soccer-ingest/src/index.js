@@ -13,6 +13,7 @@ import { storeFromEnv } from '../../shared/postgrest.js';
 import { LANE as OLDB_CURRENT, runOpenLigaCurrent } from './openligadb-current.js';
 import { failureState, inBackoff, readLane, successState, writeLane } from './state.js';
 import { ESPN_LANES, runEspnLane } from './espn-jobs.js';
+import { espnLiveCanary, espnStoreCanary } from './canary.js';
 
 export const VERSION = 'soccer-ingest/1.0.0';
 
@@ -111,6 +112,15 @@ export default {
     if (url.pathname === '/v1/admin/raw') {
       if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);
       return json(...await adminRaw(req, env, url.searchParams.get('key')));
+    }
+    if (url.pathname === '/v1/canary/espn') {
+      if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);
+      const live = await espnLiveCanary();
+      const store = storeFromEnv(env);
+      const storePart = store ? await espnStoreCanary(store) : { pass: false, checks: [{ name: 'store_configured', pass: false }] };
+      const result = { pass: live.pass && storePart.pass, live, store: storePart };
+      if (env.SOCCER_STATE) await env.SOCCER_STATE.put('canary:espn', JSON.stringify(result));
+      return json(result, result.pass ? 200 : 503);
     }
     if (url.pathname === '/v1/runs' && req.method === 'POST') {
       if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);
