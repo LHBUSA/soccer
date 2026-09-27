@@ -43,8 +43,20 @@ const version = (up.match(/Worker Version ID: ([0-9a-f-]{36})/) || [])[1];
 const preview = (up.match(/Version Preview URL: (\S+)/) || [])[1];
 if (!version) throw new Error(`upload did not report a version id:\n${up.slice(-600)}`);
 log('uploaded', version, preview || '(no preview url)');
-const canary = async base => { try { const r = await fetch(base.replace(/\/$/, '') + canaryPath); return { status: r.status, ok: r.status < 300 || (canaryPath === '/health' && r.status === 503) }; } catch (e) { return { status: 0, ok: false, error: String(e.message) }; } };
-// soccer-news /health is 503 until its first run after a fresh deploy: treated as alive, not failed.
+// Up to 4 attempts, 6 s apart (a fresh preview hostname takes seconds to resolve).
+// Only soccer-news may answer /health with 503 (it is 503 until its first run).
+const canary = async base => {
+  let last = null;
+  for (let i = 0; i < 4; i++) {
+    try {
+      const r = await fetch(base.replace(/\/$/, '') + canaryPath);
+      last = { status: r.status, ok: r.status < 300 || (worker === 'soccer-news' && canaryPath === '/health' && r.status === 503), attempts: i + 1 };
+      if (last.ok) return last;
+    } catch (e) { last = { status: 0, ok: false, error: String(e.message), attempts: i + 1 }; }
+    await new Promise(res => setTimeout(res, 6000));
+  }
+  return last;
+};
 const pre = preview ? await canary(preview) : { status: null, ok: true, skipped: 'no preview url' };
 if (!pre.ok) throw new Error(`preview canary failed: ${JSON.stringify(pre)} (version ${version} NOT promoted; production unchanged at ${previous})`);
 

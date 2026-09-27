@@ -118,7 +118,9 @@ export default {
     const url = new URL(req.url);
     if (url.pathname === '/health') {
       const lanes = await Promise.all(Object.keys(LANES).map(n => readLane(env.SOCCER_STATE, n)));
-      const priorityOk = lanes.filter(l => PRIORITY.includes(l.lane)).every(l => l.health === 'ok');
+      // The OpenLigaDB lane must be ok; the live lane only counts once it has failed
+      // (with no match in the live window it legitimately never runs).
+      const priorityOk = lanes.filter(l => PRIORITY.includes(l.lane)).every(l => l.health === 'ok' || (l.lane === LIVE_LANE && !l.consecutive_failures));
       return json({ ok: priorityOk, version: VERSION, lanes: lanes.map(({ last_error, ...l }) => ({ ...l, last_error: last_error ? 'present' : null })) }, priorityOk ? 200 : 503);
     }
     if (url.pathname === '/v1/admin/raw') {
