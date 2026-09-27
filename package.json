@@ -12,7 +12,10 @@
     "guard": "node scripts/guard-truth.mjs",
     "check": "npm run guard && npm test",
     "audit:sources": "node scripts/evidence/source-audit.mjs",
-    "proof": "node scripts/backfill/proof-bundesliga-2017.mjs"
+    "proof": "node scripts/backfill/proof-bundesliga-2017.mjs",
+    "matrix": "node scripts/matrix.mjs",
+    "coverage:openligadb": "node scripts/coverage/openligadb-depth.mjs",
+    "proof:article": "node scripts/news/proof-article.mjs"
   },
   "devDependencies": {
     "@electric-sql/pglite": "^0.5.8",

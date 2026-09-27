@@ -11,7 +11,7 @@
 //
 // Stable ids: matchID, team.teamId, goal.goalID, goal.goalGetterID.
 
-export const OPENLIGA_PARSER_VERSION = 'openligadb/1.0.0';
+export const OPENLIGA_PARSER_VERSION = 'openligadb/1.1.0';
 export const ATTRIBUTION = 'Fixtures/results: OpenLigaDB (openligadb.de), ODbL';
 
 export function matchdataUrl(league, season) {
@@ -31,8 +31,10 @@ export function parseMatchdata(json) {
     for (const k of REQUIRED) if (!(k in m)) throw new ShapeDriftError(`match missing ${k}`);
     if (!m.team1?.teamId || !m.team2?.teamId) throw new ShapeDriftError(`match ${m.matchID} missing team ids`);
     const results = m.matchResults || [];
-    const final = results.find(r => r.resultTypeID === 2) || null;
-    const half = results.find(r => r.resultTypeID === 1) || null;
+    // Final score: resultTypeID 2 in current seasons; older seasons (2004-07)
+    // carry it as resultTypeID 0 named "Endergebnis".
+    const final = results.find(r => r.resultTypeID === 2) || results.find(r => r.resultName === 'Endergebnis') || null;
+    const half = results.find(r => r.resultTypeID === 1) || results.find(r => r.resultName === 'Halbzeit') || null;
     let prev1 = 0;
     let prev2 = 0;
     const goals = [...(m.goals || [])].sort((a, b) => (a.scoreTeam1 + a.scoreTeam2) - (b.scoreTeam1 + b.scoreTeam2) || a.goalID - b.goalID).map((g, i) => {
@@ -42,6 +44,9 @@ export function parseMatchdata(json) {
       prev1 = g.scoreTeam1; prev2 = g.scoreTeam2;
       return {
         external_id: String(g.goalID), order: i + 1, minute: Number.isFinite(g.matchMinute) ? g.matchMinute : null,
+        // A row that does not advance the running score (e.g. "0-0" entries left
+        // behind by disallowed goals) is not a goal and is never written as one.
+        advances: side !== null,
         side, scorer_external_id: g.goalGetterID ? String(g.goalGetterID) : null, scorer_name: g.goalGetterName || null,
         is_penalty: !!g.isPenalty, is_own_goal: !!g.isOwnGoal, is_overtime: !!g.isOvertime,
         score1: g.scoreTeam1, score2: g.scoreTeam2, raw: g,

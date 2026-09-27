@@ -104,3 +104,14 @@ test('fixture graph proves team identity without names, and refuses when ambiguo
   const bad = prov.map((f, i) => (i === 4 ? { ...f, home: f.away, away: f.home } : f));
   assert.equal(proveTeamsByFixtureGraph(canon, bad).proven, false);
 });
+
+test('openligadb phantom goal rows never count, and pre-2008 final scores are read', () => {
+  const m = olMatch(2, 40, 7, '2017-09-01', [[1, 1, 1, 0]]);
+  m.goals.unshift({ goalID: 99, scoreTeam1: 0, scoreTeam2: 0, matchMinute: null, goalGetterID: null, goalGetterName: null, isPenalty: false, isOwnGoal: false, isOvertime: false });
+  const [p] = parseMatchdata([m]);
+  assert.deepEqual(p.goals.map(g => g.advances), [false, true]);
+  const old = olMatch(3, 1, 2, '2005-08-05');
+  old.matchResults = [{ resultTypeID: 0, resultName: 'Endergebnis', pointsTeam1: 3, pointsTeam2: 0 }];
+  const [q] = parseMatchdata([old]);
+  assert.deepEqual([q.score1, q.score2], [3, 0]);
+});

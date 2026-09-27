@@ -1,0 +1,53 @@
+{
+  "captured_at": "2026-09-27T13:29:05.611500+00:00",
+  "sources": [
+    {
+      "key": "statsbomb_open",
+      "url": "https://raw.githubusercontent.com/statsbomb/open-data/master/LICENSE.pdf",
+      "http_status": 200,
+      "sha256": "a5462e69aeb71a39268b760b110c5c2190a2e0cee3015ba976f66bd71f6c2bb4",
+      "bytes": 165130,
+      "extraction": "pypdf text, whitespace collapsed",
+      "clauses": {
+        "purpose": "StatsBomb have made this data freely available and accessible to encourage and facilitate research and the shared analytical understanding of the game of Football. This is aimed to be a research tool, and is intended to be used as such. Any analysis or conclusions that are created as a result of using this data, may be shared publicly but are not necessarily the opinions or analytical insights of StatsBomb.",
+        "1.1": "1.1. Subject to the terms of this Agreement, StatsBomb will provide the User with access to the Service to be used for analysis, research and to facilitate the shared ideas & understanding of the data",
+        "1.4": "1.4. The User is required to accredit any publication of analysis formed from StatsBomb Data with the StatsBomb brand logo.",
+        "7": "7. Intellectual Property Rights The User acknowledges and agrees that all data provided through the Service, is the property of StatsBomb. The User shall, except as expressly permitted herein, shall not modify, translate, transfer, distribute, license, sell or otherwise exploit for any purposes whatsoever any data, content or third party submissions or other proprietary rights not owned by the User: (i) without the express prior written consent of StatsBomb, and (ii) in any way that violates any third party right.",
+        "version": "StatsBomb Data: User Agreement Standard Terms - last updated 8 September 2023\u0000"
+      },
+      "github": {
+        "repo": "statsbomb/open-data",
+        "http_status": 404,
+        "spdx_id": null,
+        "license_file": null
+      }
+    },
+    {
+      "key": "openfootball",
+      "github": {
+        "repo": "openfootball/football.json",
+        "http_status": 200,
+        "spdx_id": "CC0-1.0",
+        "license_file": "https://github.com/openfootball/football.json/blob/master/LICENSE.md"
+      }
+    },
+    {
+      "key": "skillcorner_open",
+      "github": {
+        "repo": "SkillCorner/opendata",
+        "http_status": 200,
+        "spdx_id": "MIT",
+        "license_file": "https://github.com/SkillCorner/opendata/blob/master/LICENSE"
+      }
+    },
+    {
+      "key": "metrica_sample",
+      "github": {
+        "repo": "metrica-sports/sample-data",
+        "http_status": 404,
+        "spdx_id": null,
+        "license_file": null
+      }
+    }
+  ]
+}

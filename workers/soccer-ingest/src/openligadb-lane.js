@@ -208,7 +208,9 @@ export async function ingestOpenLigaSeason(store, { registry, league, season, st
   for (const m of matches) {
     const matchId = matchMap.get(m.external_id);
     if (!matchId || richer.has(matchId)) continue;
-    for (const g of m.goals) {
+    let order = 0;
+    for (const g of m.goals.filter(x => x.advances)) {
+      order += 1;
       const benefiting = g.side === 'team1' ? m.team1.external_id : g.side === 'team2' ? m.team2.external_id : null;
       const benefitingTeam = benefiting ? teamMap.get(benefiting) : null;
       const otherTeam = benefiting ? teamMap.get(benefiting === m.team1.external_id ? m.team2.external_id : m.team1.external_id) : null;
@@ -219,7 +221,7 @@ export async function ingestOpenLigaSeason(store, { registry, league, season, st
       }
       const period = g.is_overtime ? 'E1' : g.minute !== null && g.minute <= 45 ? '1H' : '2H';
       goalRows.push({
-        id: mintId('event', P, g.external_id), match_id: matchId, sequence: g.order, period, clock_seconds: null, minute: g.minute,
+        id: mintId('event', P, g.external_id), match_id: matchId, sequence: order, period, clock_seconds: null, minute: g.minute,
         team_id: g.is_own_goal ? otherTeam : benefitingTeam, player_id: pid, event_type: 'goal', subtype: g.is_penalty ? 'penalty' : g.is_own_goal ? 'own_goal' : 'goal',
         outcome: 'goal', body_part: null, under_pressure: null, set_piece: g.is_penalty ? 'penalty' : null, is_goal: !g.is_own_goal, is_own_goal: g.is_own_goal, card: null,
         qualifiers: { source_player: g.scorer_external_id ? { provider: P, id: g.scorer_external_id, name: g.scorer_name } : null, running_score: `${g.score1}-${g.score2}` },
