@@ -204,3 +204,21 @@ test('ESPN never founds a competition another provider owns, and disabled lanes 
   assert.match(off.skipped, /not enabled/); assert.equal(calls.length, 0);
   await store.close();
 });
+
+test('api: matches carry competition; from/to/order; coverage aggregate is honest', async () => {
+  const store = await openPglite(); await applyMigrations(store);
+  const f = fakeUpstream({ changes: {}, matches: [olm(1, 1, 10, 20, '2026-09-20T13:30:00', true, 3, 0, []), olm(2, 2, 30, 40, '2026-10-20T13:30:00', false, null, null, [])] });
+  await runOpenLigaCurrent({ store, storage: f.storage, registry: REG, state: emptyLaneState('x'), now: Date.parse('2026-09-27T00:00:00Z'), fetcher: f.fetcher });
+  const all = await R.matches(store, { competition: 'bundesliga' });
+  assert.deepEqual(all.data[0].competition, { slug: 'bundesliga', name: 'Bundesliga' });
+  const upcoming = await R.matches(store, { competition: 'bundesliga', from: '2026-09-27', order: 'asc' });
+  assert.deepEqual(upcoming.data.map(m => m.status), ['scheduled']);
+  const recent = await R.matches(store, { competition: 'bundesliga', to: '2026-09-27', status: 'finished' });
+  assert.equal(recent.data.length, 1);
+  const bad = await R.matches(store, { competition: 'bundesliga', from: 'drop table' });
+  assert.equal(bad.data.length, 2); // invalid dates are ignored, never interpolated
+  const cov = await R.coverage(store);
+  assert.deepEqual(cov.data.totals, { canonical_matches: 2, finished_matches: 1, events: 0, events_with_coordinates: 0, coordinate_backed_matches: 0, matches_with_lineups: 0 });
+  assert.equal(cov.data.competitions[0].slug, 'bundesliga');
+  await store.close();
+});

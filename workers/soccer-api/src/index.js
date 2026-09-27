@@ -13,6 +13,7 @@ const LANES = [{ lane: 'openligadb_bl1_current', priority: true }];
 const ROUTES = [
   [/^\/v1\/health$/, async (s, _m, _q, env) => R.health(s, { lanes: await Promise.all(LANES.map(async l => ({ ...l, ...((env.SOCCER_STATE && await env.SOCCER_STATE.get(`lane:${l.lane}`, 'json')) || {}) }))) }), 0],
   [/^\/v1\/competitions$/, s => R.competitions(s), 300],
+  [/^\/v1\/coverage$/, s => R.coverage(s), 3600],
   [/^\/v1\/competitions\/([a-z0-9-]+)$/, (s, m) => R.competition(s, m[1]), 300],
   [/^\/v1\/matches$/, (s, _m, q) => R.matches(s, q), 60],
   [/^\/v1\/matches\/([0-9a-f-]{36})$/, (s, m) => R.match(s, m[1]), 60],

@@ -24,10 +24,17 @@ async function teamsById(store, ids) {
   return out;
 }
 
-function shapeMatch(m, teams) {
+async function compsById(store, ids) {
+  const u = [...new Set(ids.filter(Boolean))];
+  if (!u.length) return new Map();
+  return new Map((await store.select('soccer_competitions', { columns: ['id', 'slug', 'name'], in: { id: u } })).map(c => [c.id, { slug: c.slug, name: c.name }]));
+}
+
+function shapeMatch(m, teams, comps = null) {
   const t = id => { const x = teams.get(id); return x ? { id: x.id, slug: x.slug, name: x.name, short_name: x.short_name } : { id }; };
   return {
     id: m.id, matchday: m.matchday, round: m.round_label, kickoff_at: m.kickoff_at, status: m.status,
+    ...(comps && comps.get(m.competition_id) ? { competition: comps.get(m.competition_id) } : {}),
     home: t(m.home_team_id), away: t(m.away_team_id),
     score: m.home_score === null ? null : { home: m.home_score, away: m.away_score, home_ht: m.home_score_ht, away_ht: m.away_score_ht },
     result_source: m.result_provider,
@@ -87,18 +94,22 @@ export async function matches(store, q) {
     opts.eq.season_id = s.id; delete opts.eq.competition_id;
   }
   if (q.status) opts.eq.status = q.status;
+  if (q.order === 'asc') opts.order = 'kickoff_at.asc';
+  const iso = v => (/^\d{4}-\d{2}-\d{2}(T[\d:.]+Z)?$/.test(String(v || '')) ? v : null);
+  if (iso(q.from)) opts.gte = { kickoff_at: q.from.length === 10 ? `${q.from}T00:00:00Z` : q.from };
+  if (iso(q.to)) opts.lte = { kickoff_at: q.to.length === 10 ? `${q.to}T23:59:59Z` : q.to };
   if (q.date) { opts.gte = { kickoff_at: `${q.date}T00:00:00Z` }; opts.lte = { kickoff_at: `${q.date}T23:59:59Z` }; opts.order = 'kickoff_at.asc'; }
   if (q.team) {
     const [t] = await store.select('soccer_teams', { columns: ['id'], eq: { slug: q.team }, limit: 1 });
     if (!t) throw new NotFound(`team ${q.team}`);
     const [h, a] = await Promise.all([store.select('soccer_matches', { ...opts, eq: { ...opts.eq, home_team_id: t.id } }), store.select('soccer_matches', { ...opts, eq: { ...opts.eq, away_team_id: t.id } })]);
     const rows = [...h, ...a].sort((x, y) => (opts.order === 'kickoff_at.asc' ? 1 : -1) * (Date.parse(x.kickoff_at) - Date.parse(y.kickoff_at))).slice(0, opts.limit);
-    const teams = await teamsById(store, rows.flatMap(r => [r.home_team_id, r.away_team_id]));
-    return E(rows.map(r => shapeMatch(r, teams)), { source: 'pbe', semantics: 'Canonical matches (max 100 per page).', source_updated_at: maxTs(rows.map(r => r.updated_at)), attribution: [...new Set(rows.map(r => r.result_provider))] });
+    const [teams, comps] = await Promise.all([teamsById(store, rows.flatMap(r => [r.home_team_id, r.away_team_id])), compsById(store, rows.map(r => r.competition_id))]);
+    return E(rows.map(r => shapeMatch(r, teams, comps)), { source: 'pbe', semantics: 'Canonical matches (max 100 per page).', source_updated_at: maxTs(rows.map(r => r.updated_at)), attribution: [...new Set(rows.map(r => r.result_provider))] });
   }
   const rows = await store.select('soccer_matches', opts);
-  const teams = await teamsById(store, rows.flatMap(r => [r.home_team_id, r.away_team_id]));
-  return E(rows.map(r => shapeMatch(r, teams)), { source: 'pbe', semantics: 'Canonical matches (max 100 per page).', source_updated_at: maxTs(rows.map(r => r.updated_at)), attribution: [...new Set(rows.map(r => r.result_provider))], coverage: rows.length ? COVERAGE.OK : COVERAGE.PARTIAL });
+  const [teams, comps] = await Promise.all([teamsById(store, rows.flatMap(r => [r.home_team_id, r.away_team_id])), compsById(store, rows.map(r => r.competition_id))]);
+  return E(rows.map(r => shapeMatch(r, teams, comps)), { source: 'pbe', semantics: 'Canonical matches (max 100 per page).', source_updated_at: maxTs(rows.map(r => r.updated_at)), attribution: [...new Set(rows.map(r => r.result_provider))], coverage: rows.length ? COVERAGE.OK : COVERAGE.PARTIAL });
 }
 
 export async function match(store, id) {
@@ -191,7 +202,8 @@ export async function team(store, slug) {
   const next = all.filter(x => x.status === 'scheduled').sort((x, y) => Date.parse(x.kickoff_at) - Date.parse(y.kickoff_at)).slice(0, 5);
   const teams = await teamsById(store, [...recent, ...next].flatMap(r => [r.home_team_id, r.away_team_id]));
   const form = recent.slice(0, 5).map(x => { const gf = x.home_team_id === t.id ? x.home_score : x.away_score; const ga = x.home_team_id === t.id ? x.away_score : x.home_score; return gf > ga ? 'W' : gf < ga ? 'L' : 'D'; });
-  return E({ id: t.id, slug: t.slug, name: t.name, official_name: t.official_name, type: t.team_type, country_code: t.country_code, city: t.city, form, recent: recent.map(r => shapeMatch(r, teams)), upcoming: next.map(r => shapeMatch(r, teams)) }, {
+  const comps = await compsById(store, [...recent, ...next].map(r => r.competition_id));
+  return E({ id: t.id, slug: t.slug, name: t.name, official_name: t.official_name, type: t.team_type, country_code: t.country_code, city: t.city, form, recent: recent.map(r => shapeMatch(r, teams, comps)), upcoming: next.map(r => shapeMatch(r, teams, comps)) }, {
     source: 'pbe', semantics: 'Canonical team; form = last 5 finished canonical matches (W/D/L), newest first.', source_updated_at: maxTs(t.updated_at, recent.map(r => r.updated_at)),
     attribution: [...new Set(all.map(r => r.result_provider))],
   });
@@ -259,4 +271,33 @@ export async function article(store, slug) {
   const [a] = await store.select('soccer_articles', { columns: ['slug', 'desk', 'story_class', 'headline', 'dek', 'body', 'entities', 'published_at', 'updated_at', 'packet_hash', 'composer', 'gate_version'], eq: { slug, status: 'published' }, limit: 1 });
   if (!a) throw new NotFound(`article ${slug}`);
   return E(a, { source: 'pbe', semantics: 'Published article; packet_hash identifies the frozen evidence packet behind every figure.', source_updated_at: a.updated_at });
+}
+
+// Data depth: honest aggregates computed from the canonical store (read-only).
+export async function coverage(store) {
+  const comps = await store.select('soccer_competitions', { columns: ['id', 'slug', 'name'] });
+  const [matchesTotal, finishedTotal, eventsTotal, eventsXY] = await Promise.all([
+    store.count('soccer_matches'), store.count('soccer_matches', { eq: { status: 'finished' } }),
+    store.count('soccer_match_events'), store.count('soccer_match_events', { neq: { source_coordinate_system: 'none' } }),
+  ]);
+  // Matches with at least one located shot = coordinate-backed event ledger.
+  const shots = await store.select('soccer_match_events', { columns: ['match_id'], eq: { event_type: 'shot' }, gte: { x_m: 0 }, order: 'match_id.asc' });
+  const shotMatches = [...new Set(shots.map(r => r.match_id))];
+  const lineups = await store.select('soccer_lineups', { columns: ['match_id'], order: 'match_id.asc' });
+  const lineupMatches = [...new Set(lineups.map(r => r.match_id))];
+  const compOf = new Map();
+  for (const part of chunkArr([...new Set([...shotMatches, ...lineupMatches])], 150)) for (const m of await store.select('soccer_matches', { columns: ['id', 'competition_id'], in: { id: part } })) compOf.set(m.id, m.competition_id);
+  const per = [];
+  for (const c of comps) {
+    const [n, fin] = await Promise.all([store.count('soccer_matches', { eq: { competition_id: c.id } }), store.count('soccer_matches', { eq: { competition_id: c.id, status: 'finished' } })]);
+    if (!n) continue;
+    per.push({ slug: c.slug, name: c.name, matches: n, finished: fin, coordinate_backed_matches: shotMatches.filter(id => compOf.get(id) === c.id).length, matches_with_lineups: lineupMatches.filter(id => compOf.get(id) === c.id).length });
+  }
+  return E({
+    totals: { canonical_matches: matchesTotal, finished_matches: finishedTotal, events: eventsTotal, events_with_coordinates: eventsXY, coordinate_backed_matches: shotMatches.length, matches_with_lineups: lineupMatches.length },
+    competitions: per,
+  }, {
+    source: 'pbe', semantics: 'Counts computed live from the PropBetEdge canonical soccer graph. Coordinate-backed = at least one shot with an event location on the 105x68 pitch (event locations, not tracking). Lineups = a sourced lineup exists for the match.',
+    source_updated_at: new Date().toISOString(),
+  });
 }
