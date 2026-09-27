@@ -12,7 +12,7 @@ workers_dev = true
 crons = ["7,37 * * * *"]
 
 [vars]
-NEWS_ENABLED = "off"
+NEWS_ENABLED = "on"
 NEWS_LLM = "off"
 UCL_LEAGUE_PHASE_END = "2027-02-01T00:00:00Z"
 
