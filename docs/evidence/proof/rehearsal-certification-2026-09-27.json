@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-27T14:35:17.028Z",
+  "generated_at": "2026-09-27T15:54:34.744Z",
   "target": "pglite (local rehearsal)",
-  "elapsed_s": 171,
+  "elapsed_s": 109,
   "run1": {
     "label": "run1",
     "seasons": {
@@ -1270,7 +1270,7 @@
         ]
       },
       "2026": {
-        "capture_id": "15c4a8c369118bf04755abcc",
+        "capture_id": "7c5a3286f17b48def5479dac",
         "sha256": "f458ec10905021323619f6a47da1970b23c9b2dc31314acf71fcb56ea6fa0fcb",
         "matches": 306,
         "finished": 36,

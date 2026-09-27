@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-09-27T15:11:31.976Z",
+  "generated_at": "2026-09-27T15:57:37.173Z",
   "mode": "local-rehearsal",
   "competitions": [
     "bundesliga",
     "premier-league",
     "uefa-champions-league"
   ],
-  "requests_used": 3549,
+  "requests_used": 3727,
   "lanes": {
     "bundesliga": {
       "runs": [
@@ -67,9 +67,9 @@
           "exhausted": "details"
         },
         {
-          "requests": 141,
+          "requests": 150,
           "fixtures_new": 0,
-          "detailed": 3,
+          "detailed": 2,
           "team_identity": {
             "espn_teams": 18,
             "resolved_before": 18
@@ -77,47 +77,39 @@
           "fixtures": {
             "attached": 0,
             "founded": 0
-          },
-          "bridge": {
-            "scorer_ids_seen": 18,
-            "crosswalked": 15,
-            "conflicts": 0,
-            "goal_events_resolved": 28,
-            "written": {
-              "inserted": 15,
-              "updated": 0,
-              "unchanged": 0
-            }
-          },
-          "exhausted": "details"
-        },
-        {
-          "requests": 147,
-          "fixtures_new": 0,
-          "detailed": 3,
-          "team_identity": {
-            "espn_teams": 18,
-            "resolved_before": 18
-          },
-          "fixtures": {
-            "attached": 0,
-            "founded": 0
-          },
-          "bridge": {
-            "scorer_ids_seen": 26,
-            "crosswalked": 4,
-            "conflicts": 0,
-            "goal_events_resolved": 8,
-            "written": {
-              "inserted": 4,
-              "updated": 0,
-              "unchanged": 0
-            }
           },
           "exhausted": "details"
         },
         {
           "requests": 150,
+          "fixtures_new": 0,
+          "detailed": 2,
+          "team_identity": {
+            "espn_teams": 18,
+            "resolved_before": 18
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 150,
+          "fixtures_new": 0,
+          "detailed": 2,
+          "team_identity": {
+            "espn_teams": 18,
+            "resolved_before": 18
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 148,
           "fixtures_new": 0,
           "detailed": 8,
           "team_identity": {
@@ -128,10 +120,21 @@
             "attached": 0,
             "founded": 0
           },
+          "bridge": {
+            "scorer_ids_seen": 47,
+            "crosswalked": 40,
+            "conflicts": 0,
+            "goal_events_resolved": 66,
+            "written": {
+              "inserted": 40,
+              "updated": 0,
+              "unchanged": 0
+            }
+          },
           "exhausted": "details"
         },
         {
-          "requests": 145,
+          "requests": 148,
           "fixtures_new": 0,
           "detailed": 13,
           "team_identity": {
@@ -144,11 +147,11 @@
           },
           "bridge": {
             "scorer_ids_seen": 74,
-            "crosswalked": 43,
+            "crosswalked": 23,
             "conflicts": 0,
-            "goal_events_resolved": 63,
+            "goal_events_resolved": 38,
             "written": {
-              "inserted": 43,
+              "inserted": 23,
               "updated": 0,
               "unchanged": 0
             }
@@ -156,7 +159,7 @@
           "exhausted": "details"
         },
         {
-          "requests": 69,
+          "requests": 70,
           "fixtures_new": 0,
           "detailed": 7,
           "team_identity": {
@@ -252,20 +255,6 @@
           "exhausted": "details"
         },
         {
-          "requests": 145,
-          "fixtures_new": 0,
-          "detailed": 3,
-          "team_identity": {
-            "espn_teams": 20,
-            "resolved_before": 20
-          },
-          "fixtures": {
-            "attached": 0,
-            "founded": 0
-          },
-          "exhausted": "details"
-        },
-        {
           "requests": 147,
           "fixtures_new": 0,
           "detailed": 3,
@@ -280,7 +269,21 @@
           "exhausted": "details"
         },
         {
-          "requests": 150,
+          "requests": 148,
+          "fixtures_new": 0,
+          "detailed": 3,
+          "team_identity": {
+            "espn_teams": 20,
+            "resolved_before": 20
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 141,
           "fixtures_new": 0,
           "detailed": 8,
           "team_identity": {
@@ -296,7 +299,7 @@
         {
           "requests": 150,
           "fixtures_new": 0,
-          "detailed": 12,
+          "detailed": 11,
           "team_identity": {
             "espn_teams": 20,
             "resolved_before": 20
@@ -322,9 +325,9 @@
           "exhausted": "details"
         },
         {
-          "requests": 74,
+          "requests": 83,
           "fixtures_new": 0,
-          "detailed": 7,
+          "detailed": 8,
           "team_identity": {
             "espn_teams": 20,
             "resolved_before": 20
@@ -366,7 +369,7 @@
           "exhausted": "discovery"
         },
         {
-          "requests": 145,
+          "requests": 149,
           "fixtures_new": 2,
           "detailed": 3,
           "team_identity": {
@@ -387,7 +390,7 @@
           "exhausted": "details"
         },
         {
-          "requests": 150,
+          "requests": 146,
           "fixtures_new": 0,
           "detailed": 3,
           "team_identity": {
@@ -443,9 +446,23 @@
           "exhausted": "details"
         },
         {
-          "requests": 148,
+          "requests": 150,
           "fixtures_new": 0,
-          "detailed": 4,
+          "detailed": 3,
+          "team_identity": {
+            "espn_teams": 36,
+            "resolved_before": 36
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 9,
+          "fixtures_new": 0,
+          "detailed": 1,
           "team_identity": {
             "espn_teams": 36,
             "resolved_before": 36
@@ -552,20 +569,21 @@
     "espn_players_founded": 1441,
     "espn_teams_founded": 47,
     "espn_teams_proven_fixture_graph": 18,
-    "openligadb_scorers_bridged_via_espn": 73,
+    "openligadb_scorers_bridged_via_espn": 74,
     "queue_open_by_reason": {
       "player/wyscout/referenced_but_absent_from_players_json": 2,
       "player/openligadb/event_alignment_conflict": 10,
       "player/openligadb/event_alignment_no_unique_candidate": 3,
-      "player/openligadb/scorer_without_canonical_identity": 1900,
-      "player/espn/dob_and_name_match_existing_player": 79,
+      "player/openligadb/scorer_without_canonical_identity": 1899,
+      "player/espn/contradiction_nationality": 12,
+      "player/espn/no_overlapping_club_corroboration": 8,
       "player/espn/athlete_without_dob_or_name": 13
     }
   },
   "store_canary": {
     "version": "espn-canary/1.0.0",
     "part": "store",
-    "at": "2026-09-27T15:11:32.005Z",
+    "at": "2026-09-27T15:57:37.197Z",
     "pass": true,
     "checks": [
       {
@@ -580,7 +598,7 @@
         "name": "soccer_player_external_ids:one_espn_id_per_canonical",
         "pass": true,
         "detail": {
-          "espn_ids": 1441,
+          "espn_ids": 1500,
           "duplicates": 0
         }
       },
@@ -607,9 +625,158 @@
       }
     ]
   },
-  "replay": {
-    "hits": 1102,
-    "live_fetches": 2447
+  "corroboration": {
+    "name_dob_candidates_total": 79,
+    "auto_resolved": 59,
+    "still_queued": 8,
+    "conflicting": 12,
+    "queued_by_reason": {
+      "contradiction_nationality": 12,
+      "no_overlapping_club_corroboration": 8
+    },
+    "contradiction_kinds": {
+      "nationality": 12
+    },
+    "unverifiable_window_reasons": {
+      "espn_club_not_in_canonical_graph": 8
+    },
+    "merged_evidence": {
+      "corroborating_windows_by_season": {
+        "2017/18": 59
+      },
+      "nationality_compared": 59,
+      "movers_2017_club_differs_from_current_club": 40
+    },
+    "samples": {
+      "merged": [
+        {
+          "name": "Manuel Neuer",
+          "dob": "1986-03-27",
+          "windows": [
+            {
+              "season": "2017/18",
+              "competition": "bundesliga",
+              "canonical_team": "9c2ce181-7bf4-55cf-b770-949389bb8797",
+              "espn_team": "132",
+              "canonical_appearances": 3
+            }
+          ]
+        },
+        {
+          "name": "Konrad Laimer",
+          "dob": "1997-05-27",
+          "windows": [
+            {
+              "season": "2017/18",
+              "competition": "bundesliga",
+              "canonical_team": "08e2b4f3-a5fe-58b3-a7a4-7d410e3f7b78",
+              "espn_team": "11420",
+              "canonical_appearances": 28
+            }
+          ]
+        },
+        {
+          "name": "Joshua Kimmich",
+          "dob": "1995-02-08",
+          "windows": [
+            {
+              "season": "2017/18",
+              "competition": "bundesliga",
+              "canonical_team": "9c2ce181-7bf4-55cf-b770-949389bb8797",
+              "espn_team": "132",
+              "canonical_appearances": 33
+            }
+          ]
+        },
+        {
+          "name": "Josha Vagnoman",
+          "dob": "2000-12-11",
+          "windows": [
+            {
+              "season": "2017/18",
+              "competition": "bundesliga",
+              "canonical_team": "c4975e20-1bb8-565f-ad0b-22316762e1a0",
+              "espn_team": "127",
+              "canonical_appearances": 3
+            }
+          ]
+        },
+        {
+          "name": "Jonas Hofmann",
+          "dob": "1992-07-14",
+          "windows": [
+            {
+              "season": "2017/18",
+              "competition": "bundesliga",
+              "canonical_team": "775d711e-7530-5d32-89e1-40900407af76",
+              "espn_team": "268",
+              "canonical_appearances": 24
+            }
+          ]
+        }
+      ],
+      "conflicting": [
+        {
+          "name": "Danny da Costa",
+          "reason": "contradiction_nationality",
+          "contradictions": [
+            {
+              "espn": "Germany",
+              "kind": "nationality",
+              "canonical": "Angola"
+            }
+          ]
+        },
+        {
+          "name": "Serge Gnabry",
+          "reason": "contradiction_nationality",
+          "contradictions": [
+            {
+              "espn": "Germany",
+              "kind": "nationality",
+              "canonical": "Côte d'Ivoire"
+            }
+          ]
+        },
+        {
+          "name": "Yussuf Poulsen",
+          "reason": "contradiction_nationality",
+          "contradictions": [
+            {
+              "espn": "Denmark",
+              "kind": "nationality",
+              "canonical": "Tanzania"
+            }
+          ]
+        },
+        {
+          "name": "Jonathan Tah",
+          "reason": "contradiction_nationality",
+          "contradictions": [
+            {
+              "espn": "Germany",
+              "kind": "nationality",
+              "canonical": "Côte d'Ivoire"
+            }
+          ]
+        },
+        {
+          "name": "Mijat Gacinovic",
+          "reason": "contradiction_nationality",
+          "contradictions": [
+            {
+              "espn": "Serbia",
+              "kind": "nationality",
+              "canonical": "Bosnia-Herzegovina"
+            }
+          ]
+        }
+      ]
+    }
   },
-  "elapsed_s": 2135
+  "replay": {
+    "hits": 3633,
+    "live_fetches": 94
+  },
+  "elapsed_s": 160
 }

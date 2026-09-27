@@ -1,5 +1,5 @@
 # Apply soccer migrations to the SPORTS project, one file at a time, UNMODIFIED.
-# Owner approval required (granted 2026-09-27 for 0100/0200/0300).
+# Owner approval required (granted 2026-09-27 for 0100/0200/0300, and 0400 attribute_corroborated).
 #   pwsh scripts/db/apply-migrations.ps1 20260927000100_soccer_core.sql 20260927000200_soccer_events.sql ...
 param([Parameter(ValueFromRemainingArguments = $true)][string[]]$Files)
 $ErrorActionPreference = "Stop"
@@ -11,7 +11,7 @@ foreach ($f in $Files) {
   $path = Join-Path $root "supabase\migrations\$f"
   $sha = (Get-FileHash -Algorithm SHA256 $path).Hash.ToLower()
   "APPLY $f sha256=$sha"
-  $out = pwsh -NoProfile -File $runner -Query (Get-Content -Raw $path)
+  $out = pwsh -NoProfile -File "$PSScriptRoot\run_sql_file.ps1" -File $path
   $out
   if ("$out" -match "FAILED") { throw "apply failed at $f" }
 }

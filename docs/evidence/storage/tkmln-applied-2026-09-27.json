@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-09-27T15:57:03.7713135Z",
+  "tables_rls": "{\n  \"tables\": 31,\n  \"rls\": 31\n}",
+  "policies": "{\n  \"policies\": 0\n}",
+  "metric_status": "{\n  \"status\": \"design\",\n  \"n\": 10\n}",
+  "trigger_probe": "FAILED -> \n{\n  \"message\": \"Failed to run sql query: ERROR:  P0001: TRIGGER_PROBE blocked=t\\nCONTEXT:  PL/pgSQL function inline_code_block line 10 at RAISE\\n\"\n}",
+  "fingerprint_before": "ae61aa44803aa9767d6bc93b21e7faec",
+  "fingerprint_after": "{\n  \"fingerprint\": \"ae61aa44803aa9767d6bc93b21e7faec\",\n  \"objects\": 1499\n}",
+  "probe_residue": "{\n  \"probe_rows_left\": 0\n}"
+}
