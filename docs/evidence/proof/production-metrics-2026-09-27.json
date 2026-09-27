@@ -1,0 +1,284 @@
+{
+  "generated_at": "2026-09-27T18:01:02.523Z",
+  "target": "tkmlnhmylqnttmnsnief",
+  "row_counts": {
+    "soccer_competitions": 3,
+    "soccer_seasons": 25,
+    "soccer_stages": 26,
+    "soccer_teams": 85,
+    "soccer_players": 1976,
+    "soccer_managers": 30,
+    "soccer_venues": 82,
+    "soccer_matches": 7564,
+    "soccer_lineups": 820,
+    "soccer_lineup_players": 15145,
+    "soccer_substitutions": 2678,
+    "soccer_match_events": 685883,
+    "soccer_team_match_stats": 12912,
+    "soccer_player_match_stats": 74583,
+    "soccer_team_external_ids": 122,
+    "soccer_player_external_ids": 2394,
+    "soccer_match_external_ids": 8176,
+    "soccer_match_source_results": 7450,
+    "soccer_source_captures": 3919,
+    "soccer_identity_queue": 2034,
+    "soccer_source_changes": 477,
+    "soccer_competitions_list": [
+      "bundesliga",
+      "premier-league",
+      "uefa-champions-league"
+    ]
+  },
+  "competitions": {
+    "bundesliga": {
+      "seasons": 23,
+      "current_season": "2026/27",
+      "current_matches": 306,
+      "current_finished": 36,
+      "historical_matches": 6734,
+      "result_owner": {
+        "openligadb": 306
+      },
+      "espn_linked_matches": 306,
+      "espn_link_method": {
+        "fixture_graph": 306
+      },
+      "duplicate_matches_prevented": 306,
+      "matches_with_espn_lineups": 36,
+      "lineups_with_formation": 72,
+      "matches_with_espn_team_stats": 36,
+      "espn_events": 53826,
+      "espn_events_with_coordinates": 52111,
+      "cross_source_finished_compared": 36,
+      "cross_source_disagreements": []
+    },
+    "premier-league": {
+      "seasons": 1,
+      "current_season": "2026/27",
+      "current_matches": 380,
+      "current_finished": 50,
+      "historical_matches": 0,
+      "result_owner": {
+        "espn": 380
+      },
+      "espn_linked_matches": 380,
+      "espn_link_method": {
+        "founding": 380
+      },
+      "duplicate_matches_prevented": 0,
+      "matches_with_espn_lineups": 50,
+      "lineups_with_formation": 100,
+      "matches_with_espn_team_stats": 50,
+      "espn_events": 71092,
+      "espn_events_with_coordinates": 68825,
+      "cross_source_finished_compared": 0,
+      "cross_source_disagreements": []
+    },
+    "uefa-champions-league": {
+      "seasons": 1,
+      "current_season": "2026/27",
+      "current_matches": 144,
+      "current_finished": 18,
+      "historical_matches": 0,
+      "result_owner": {
+        "espn": 144
+      },
+      "espn_linked_matches": 144,
+      "espn_link_method": {
+        "founding": 144
+      },
+      "duplicate_matches_prevented": 0,
+      "matches_with_espn_lineups": 18,
+      "lineups_with_formation": 36,
+      "matches_with_espn_team_stats": 18,
+      "espn_events": 26819,
+      "espn_events_with_coordinates": 25968,
+      "cross_source_finished_compared": 0,
+      "cross_source_disagreements": []
+    }
+  },
+  "identity": {
+    "queue_open_total": 1960,
+    "queue_open_by_reason": {
+      "player/espn/athlete_without_dob_or_name": 13,
+      "player/espn/contradiction_nationality": 12,
+      "player/espn/no_overlapping_club_corroboration": 8,
+      "player/openligadb/event_alignment_conflict": 10,
+      "player/openligadb/event_alignment_no_unique_candidate": 3,
+      "player/openligadb/scorer_without_canonical_identity": 1899,
+      "player/wyscout/referenced_but_absent_from_players_json": 2,
+      "team/espn/fixture_subset_ambiguous": 13
+    },
+    "queue_resolved": 74,
+    "crosswalk_methods": {
+      "soccer_team_external_ids": {
+        "espn/fixture_graph": 18,
+        "espn/founding": 47,
+        "openligadb/fixture_graph": 18,
+        "openligadb/founding": 20,
+        "openligadb/reviewed": 1,
+        "wyscout/founding": 18
+      },
+      "soccer_player_external_ids": {
+        "espn/attribute_corroborated": 59,
+        "espn/founding": 1441,
+        "openligadb/event_alignment": 359,
+        "wyscout/founding": 535
+      },
+      "soccer_match_external_ids": {
+        "espn/fixture_graph": 306,
+        "espn/founding": 524,
+        "openligadb/fixture_graph": 306,
+        "openligadb/founding": 6734,
+        "wyscout/founding": 306
+      }
+    },
+    "attribute_corroborated": {
+      "name_dob_candidates": 79,
+      "auto_resolved": 59,
+      "still_queued": 8,
+      "conflicting": 12,
+      "queued_by_reason": {
+        "contradiction_nationality": 12,
+        "no_overlapping_club_corroboration": 8
+      },
+      "contradiction_kinds": {
+        "nationality": 12
+      },
+      "unverifiable_window_reasons": {
+        "espn_club_not_in_canonical_graph": 8
+      },
+      "corroborating_windows_by_season": {
+        "2017/18": 59
+      },
+      "nationality_compared_on_merges": 59,
+      "movers_2017_club_differs_from_current_club": 40,
+      "conflicting_players": [
+        {
+          "espn_id": "235662",
+          "name": "Alexander Isak",
+          "reason": "contradiction_nationality"
+        },
+        {
+          "espn_id": "220711",
+          "name": "Benjamin Henrichs",
+          "reason": "contradiction_nationality"
+        },
+        {
+          "espn_id": "154603",
+          "name": "Danny da Costa",
+          "reason": "contradiction_nationality"
+        },
+        {
+          "espn_id": "188052",
+          "name": "Jonathan Tah",
+          "reason": "contradiction_nationality"
+        },
+        {
+          "espn_id": "250543",
+          "name": "Kevin Danso",
+          "reason": "contradiction_nationality"
+        },
+        {
+          "espn_id": "214562",
+          "name": "Manuel Akanji",
+          "reason": "contradiction_nationality"
+        },
+        {
+          "espn_id": "192943",
+          "name": "Mijat Gacinovic",
+          "reason": "contradiction_nationality"
+        },
+        {
+          "espn_id": "210818",
+          "name": "Nadiem Amiri",
+          "reason": "contradiction_nationality"
+        },
+        {
+          "espn_id": "259878",
+          "name": "Nikolas Nartey",
+          "reason": "contradiction_nationality"
+        },
+        {
+          "espn_id": "258963",
+          "name": "Ridle Baku",
+          "reason": "contradiction_nationality"
+        },
+        {
+          "espn_id": "178980",
+          "name": "Serge Gnabry",
+          "reason": "contradiction_nationality"
+        },
+        {
+          "espn_id": "182245",
+          "name": "Yussuf Poulsen",
+          "reason": "contradiction_nationality"
+        }
+      ]
+    }
+  },
+  "hoffenheim": [
+    {
+      "provider": "openligadb",
+      "external_id": "123",
+      "team_id": "6c4c8c4a-fc58-5a85-9b62-a1e98bbf8fb9",
+      "method": "reviewed",
+      "evidence": "openligadb id 175 ('TSG Hoffenheim') is proven by the 2017/18 fixture graph against Wyscout team 'Hoffenheim' (official name 'TSG 1899 Hoffenheim'). | openligadb id 123 ('TSG 1899 Hoffenheim') appears in bl1 only in 2011 and 2013; id 175 appears in every bl1 season 2008-2026 EXCEPT 2011 and 2013. Th",
+      "same_canonical_team": true
+    },
+    {
+      "provider": "openligadb",
+      "external_id": "175",
+      "team_id": "6c4c8c4a-fc58-5a85-9b62-a1e98bbf8fb9",
+      "method": "fixture_graph",
+      "evidence": "bl1 2017: 306/306 fixtures reproduced",
+      "same_canonical_team": true
+    }
+  ],
+  "store_canary": {
+    "version": "espn-canary/1.0.0",
+    "part": "store",
+    "at": "2026-09-27T18:01:03.246Z",
+    "pass": true,
+    "checks": [
+      {
+        "name": "soccer_team_external_ids:one_espn_id_per_canonical",
+        "pass": true,
+        "detail": {
+          "espn_ids": 65,
+          "duplicates": 0
+        }
+      },
+      {
+        "name": "soccer_player_external_ids:one_espn_id_per_canonical",
+        "pass": true,
+        "detail": {
+          "espn_ids": 1500,
+          "duplicates": 0
+        }
+      },
+      {
+        "name": "soccer_match_external_ids:one_espn_id_per_canonical",
+        "pass": true,
+        "detail": {
+          "espn_ids": 830,
+          "duplicates": 0
+        }
+      },
+      {
+        "name": "source_results:espn_observations_recorded",
+        "pass": true,
+        "detail": 104
+      },
+      {
+        "name": "precedence:espn_never_owns_attached_matches",
+        "pass": true,
+        "detail": {
+          "attached_to_other_owner": 306,
+          "taken_over": 0
+        }
+      }
+    ]
+  },
+  "store_requests": 122
+}

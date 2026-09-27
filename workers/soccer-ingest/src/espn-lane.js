@@ -100,6 +100,8 @@ export async function resolveEspnTeams(store, { comp, year, cursor, client }) {
     summary.teams_founded = found.length;
   }
   summary.team_crosswalk = await syncRows(store, { table: 'soccer_team_external_ids', key: ['provider', 'external_id'], compare: ['team_id'], rows: xw });
+  // An earlier, thinner run may have queued a team as ambiguous; close it now that it is proven.
+  for (const x of xw) await resolveQueued(store, { entity_type: 'team', provider: P, external_id: x.external_id, resolution: { method: x.method, team_id: x.team_id } });
   summary.resolved_after = teamMap.size;
   return { teamMap, summary };
 }

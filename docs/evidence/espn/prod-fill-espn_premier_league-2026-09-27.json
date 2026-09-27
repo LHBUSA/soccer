@@ -1,0 +1,489 @@
+{
+  "lane": "espn_premier_league",
+  "base": "https://soccer-ingest.sales-fd3.workers.dev",
+  "runs": [
+    {
+      "run": 1,
+      "http": 200,
+      "ms": 43595,
+      "requests": 60,
+      "fixtures_new": 57,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "run": 2,
+      "http": 200,
+      "ms": 42628,
+      "requests": 60,
+      "fixtures_new": 59,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "run": 3,
+      "http": 200,
+      "ms": 42809,
+      "requests": 60,
+      "fixtures_new": 59,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "run": 4,
+      "http": 200,
+      "ms": 42997,
+      "requests": 60,
+      "fixtures_new": 59,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "run": 5,
+      "http": 200,
+      "ms": 42577,
+      "requests": 60,
+      "fixtures_new": 59,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "run": 6,
+      "http": 200,
+      "ms": 42898,
+      "requests": 60,
+      "fixtures_new": 59,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "run": 7,
+      "http": 200,
+      "ms": 44039,
+      "requests": 60,
+      "fixtures_new": 28,
+      "detailed": 0,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 0,
+        "teams_founded": 20,
+        "team_crosswalk": {
+          "inserted": 20,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "resolved_after": 20
+      },
+      "athletes": {}
+    },
+    {
+      "run": 8,
+      "http": 200,
+      "ms": 46496,
+      "requests": 60,
+      "fixtures_new": 0,
+      "detailed": 1,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "athletes": {
+        "in_rosters": 40,
+        "founded": 38,
+        "corroborated": 1,
+        "queued": 0
+      }
+    },
+    {
+      "run": 9,
+      "http": 200,
+      "ms": 48260,
+      "requests": 60,
+      "fixtures_new": 0,
+      "detailed": 1,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "athletes": {
+        "in_rosters": 40,
+        "founded": 40,
+        "corroborated": 0,
+        "queued": 0
+      }
+    },
+    {
+      "run": 10,
+      "http": 200,
+      "ms": 39629,
+      "requests": 51,
+      "fixtures_new": 0,
+      "detailed": 1,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "athletes": {
+        "in_rosters": 40,
+        "founded": 39,
+        "corroborated": 1,
+        "queued": 0
+      }
+    },
+    {
+      "run": 11,
+      "http": 200,
+      "ms": 45451,
+      "requests": 60,
+      "fixtures_new": 0,
+      "detailed": 1,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "athletes": {
+        "in_rosters": 40,
+        "founded": 40,
+        "corroborated": 0,
+        "queued": 0
+      }
+    },
+    {
+      "run": 12,
+      "http": 200,
+      "ms": 46034,
+      "requests": 60,
+      "fixtures_new": 0,
+      "detailed": 1,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "athletes": {
+        "in_rosters": 40,
+        "founded": 38,
+        "corroborated": 1,
+        "queued": 0
+      }
+    },
+    {
+      "run": 13,
+      "http": 200,
+      "ms": 45637,
+      "requests": 60,
+      "fixtures_new": 0,
+      "detailed": 1,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "athletes": {
+        "in_rosters": 40,
+        "founded": 38,
+        "corroborated": 0,
+        "queued": 1
+      }
+    },
+    {
+      "run": 14,
+      "http": 200,
+      "ms": 44954,
+      "requests": 60,
+      "fixtures_new": 0,
+      "detailed": 1,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "athletes": {
+        "in_rosters": 40,
+        "founded": 40,
+        "corroborated": 0,
+        "queued": 0
+      }
+    },
+    {
+      "run": 15,
+      "http": 200,
+      "ms": 45502,
+      "requests": 60,
+      "fixtures_new": 0,
+      "detailed": 1,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "athletes": {
+        "in_rosters": 40,
+        "founded": 40,
+        "corroborated": 0,
+        "queued": 0
+      }
+    },
+    {
+      "run": 16,
+      "http": 200,
+      "ms": 38690,
+      "requests": 51,
+      "fixtures_new": 0,
+      "detailed": 1,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "athletes": {
+        "in_rosters": 40,
+        "founded": 39,
+        "corroborated": 0,
+        "queued": 1
+      }
+    },
+    {
+      "run": 17,
+      "http": 200,
+      "ms": 39561,
+      "requests": 51,
+      "fixtures_new": 0,
+      "detailed": 1,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "athletes": {
+        "in_rosters": 40,
+        "founded": 39,
+        "corroborated": 1,
+        "queued": 0
+      }
+    },
+    {
+      "run": 18,
+      "http": 200,
+      "ms": 49033,
+      "requests": 54,
+      "fixtures_new": 0,
+      "detailed": 4,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "athletes": {
+        "in_rosters": 160,
+        "founded": 17,
+        "corroborated": 0,
+        "queued": 1
+      }
+    },
+    {
+      "run": 19,
+      "http": 200,
+      "ms": 50669,
+      "requests": 56,
+      "fixtures_new": 0,
+      "detailed": 4,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "athletes": {
+        "in_rosters": 160,
+        "founded": 19,
+        "corroborated": 0,
+        "queued": 0
+      }
+    },
+    {
+      "run": 20,
+      "http": 200,
+      "ms": 54543,
+      "requests": 60,
+      "fixtures_new": 0,
+      "detailed": 5,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "athletes": {
+        "in_rosters": 200,
+        "founded": 14,
+        "corroborated": 0,
+        "queued": 1
+      }
+    },
+    {
+      "run": 21,
+      "http": 200,
+      "ms": 54392,
+      "requests": 60,
+      "fixtures_new": 0,
+      "detailed": 4,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "athletes": {
+        "in_rosters": 160,
+        "founded": 11,
+        "corroborated": 1,
+        "queued": 1
+      }
+    },
+    {
+      "run": 22,
+      "http": 200,
+      "ms": 46951,
+      "requests": 52,
+      "fixtures_new": 0,
+      "detailed": 5,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "athletes": {
+        "in_rosters": 200,
+        "founded": 6,
+        "corroborated": 0,
+        "queued": 1
+      }
+    },
+    {
+      "run": 23,
+      "http": 200,
+      "ms": 48423,
+      "requests": 51,
+      "fixtures_new": 0,
+      "detailed": 5,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "athletes": {
+        "in_rosters": 200,
+        "founded": 5,
+        "corroborated": 0,
+        "queued": 1
+      }
+    },
+    {
+      "run": 24,
+      "http": 200,
+      "ms": 51025,
+      "requests": 57,
+      "fixtures_new": 0,
+      "detailed": 5,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "athletes": {
+        "in_rosters": 200,
+        "founded": 11,
+        "corroborated": 0,
+        "queued": 0
+      }
+    },
+    {
+      "run": 25,
+      "http": 200,
+      "ms": 72639,
+      "requests": 53,
+      "fixtures_new": 0,
+      "detailed": 5,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "athletes": {
+        "in_rosters": 200,
+        "founded": 7,
+        "corroborated": 0,
+        "queued": 1
+      }
+    },
+    {
+      "run": 26,
+      "http": 200,
+      "ms": 54420,
+      "requests": 32,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "exhausted": null,
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "athletes": {
+        "in_rosters": 120,
+        "founded": 4,
+        "corroborated": 0,
+        "queued": 1
+      }
+    },
+    {
+      "run": 27,
+      "http": 200,
+      "ms": 1575,
+      "requests": 1,
+      "fixtures_new": 0,
+      "detailed": 0,
+      "exhausted": null,
+      "error": null,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "athletes": {}
+    }
+  ]
+}

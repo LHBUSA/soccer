@@ -1,0 +1,607 @@
+{
+  "lane": "espn_bundesliga",
+  "base": "https://soccer-ingest.sales-fd3.workers.dev",
+  "runs": [
+    {
+      "run": 1,
+      "http": 200,
+      "ms": 44886,
+      "requests": 60,
+      "fixtures_new": 57,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 0,
+        "fixture_subset_proof": {
+          "valid": true,
+          "mapped": 5,
+          "unresolved": 13,
+          "thin": 0,
+          "collisions": 0,
+          "unmatched": 0
+        },
+        "team_crosswalk": {
+          "inserted": 5,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "resolved_after": 5
+      },
+      "athletes": {}
+    },
+    {
+      "run": 2,
+      "http": 200,
+      "ms": 43381,
+      "requests": 60,
+      "fixtures_new": 59,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 5,
+        "fixture_subset_proof": {
+          "valid": true,
+          "mapped": 12,
+          "unresolved": 6,
+          "thin": 0,
+          "collisions": 0,
+          "unmatched": 0
+        },
+        "team_crosswalk": {
+          "inserted": 7,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "resolved_after": 12
+      },
+      "athletes": {}
+    },
+    {
+      "run": 3,
+      "http": 200,
+      "ms": 42872,
+      "requests": 60,
+      "fixtures_new": 59,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 12,
+        "fixture_subset_proof": {
+          "valid": true,
+          "mapped": 18,
+          "unresolved": 0,
+          "thin": 0,
+          "collisions": 0,
+          "unmatched": 0
+        },
+        "team_crosswalk": {
+          "inserted": 6,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "resolved_after": 18
+      },
+      "athletes": {}
+    },
+    {
+      "run": 4,
+      "http": 200,
+      "ms": 42726,
+      "requests": 60,
+      "fixtures_new": 59,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "athletes": {}
+    },
+    {
+      "run": 5,
+      "http": 200,
+      "ms": 42759,
+      "requests": 60,
+      "fixtures_new": 59,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "athletes": {}
+    },
+    {
+      "run": 6,
+      "http": 200,
+      "ms": 43129,
+      "requests": 60,
+      "fixtures_new": 13,
+      "detailed": 0,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "athletes": {}
+    },
+    {
+      "run": 7,
+      "http": 200,
+      "ms": 40426,
+      "requests": 52,
+      "fixtures_new": 0,
+      "detailed": 1,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "athletes": {
+        "in_rosters": 40,
+        "founded": 34,
+        "corroborated": 4,
+        "queued": 2
+      },
+      "bridge": {
+        "scorer_ids_seen": 5,
+        "crosswalked": 5,
+        "conflicts": 0,
+        "goal_events_resolved": 9,
+        "written": {
+          "inserted": 5,
+          "updated": 0,
+          "unchanged": 0
+        }
+      }
+    },
+    {
+      "run": 8,
+      "http": 200,
+      "ms": 39286,
+      "requests": 51,
+      "fixtures_new": 0,
+      "detailed": 1,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "athletes": {
+        "in_rosters": 40,
+        "founded": 39,
+        "corroborated": 1,
+        "queued": 0
+      },
+      "bridge": {
+        "scorer_ids_seen": 10,
+        "crosswalked": 3,
+        "conflicts": 0,
+        "goal_events_resolved": 7,
+        "written": {
+          "inserted": 3,
+          "updated": 0,
+          "unchanged": 0
+        }
+      }
+    },
+    {
+      "run": 9,
+      "http": 200,
+      "ms": 42417,
+      "requests": 55,
+      "fixtures_new": 0,
+      "detailed": 1,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "athletes": {
+        "in_rosters": 40,
+        "founded": 34,
+        "corroborated": 4,
+        "queued": 2
+      },
+      "bridge": {
+        "scorer_ids_seen": 14,
+        "crosswalked": 4,
+        "conflicts": 0,
+        "goal_events_resolved": 6,
+        "written": {
+          "inserted": 4,
+          "updated": 0,
+          "unchanged": 0
+        }
+      }
+    },
+    {
+      "run": 10,
+      "http": 200,
+      "ms": 41509,
+      "requests": 55,
+      "fixtures_new": 0,
+      "detailed": 1,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "athletes": {
+        "in_rosters": 40,
+        "founded": 35,
+        "corroborated": 5,
+        "queued": 0
+      },
+      "bridge": {
+        "scorer_ids_seen": 18,
+        "crosswalked": 4,
+        "conflicts": 0,
+        "goal_events_resolved": 8,
+        "written": {
+          "inserted": 4,
+          "updated": 0,
+          "unchanged": 0
+        }
+      }
+    },
+    {
+      "run": 11,
+      "http": 200,
+      "ms": 42519,
+      "requests": 56,
+      "fixtures_new": 0,
+      "detailed": 1,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "athletes": {
+        "in_rosters": 40,
+        "founded": 32,
+        "corroborated": 4,
+        "queued": 4
+      },
+      "bridge": {
+        "scorer_ids_seen": 18,
+        "crosswalked": 0,
+        "conflicts": 0,
+        "goal_events_resolved": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      }
+    },
+    {
+      "run": 12,
+      "http": 200,
+      "ms": 42733,
+      "requests": 56,
+      "fixtures_new": 0,
+      "detailed": 1,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "athletes": {
+        "in_rosters": 40,
+        "founded": 34,
+        "corroborated": 4,
+        "queued": 2
+      },
+      "bridge": {
+        "scorer_ids_seen": 21,
+        "crosswalked": 2,
+        "conflicts": 0,
+        "goal_events_resolved": 3,
+        "written": {
+          "inserted": 2,
+          "updated": 0,
+          "unchanged": 0
+        }
+      }
+    },
+    {
+      "run": 13,
+      "http": 200,
+      "ms": 42781,
+      "requests": 57,
+      "fixtures_new": 0,
+      "detailed": 1,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "athletes": {
+        "in_rosters": 40,
+        "founded": 33,
+        "corroborated": 4,
+        "queued": 3
+      },
+      "bridge": {
+        "scorer_ids_seen": 23,
+        "crosswalked": 0,
+        "conflicts": 0,
+        "goal_events_resolved": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      }
+    },
+    {
+      "run": 14,
+      "http": 200,
+      "ms": 45823,
+      "requests": 60,
+      "fixtures_new": 0,
+      "detailed": 1,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "athletes": {
+        "in_rosters": 40,
+        "founded": 29,
+        "corroborated": 9,
+        "queued": 2
+      },
+      "bridge": {
+        "scorer_ids_seen": 26,
+        "crosswalked": 2,
+        "conflicts": 0,
+        "goal_events_resolved": 5,
+        "written": {
+          "inserted": 2,
+          "updated": 0,
+          "unchanged": 0
+        }
+      }
+    },
+    {
+      "run": 15,
+      "http": 200,
+      "ms": 41764,
+      "requests": 54,
+      "fixtures_new": 0,
+      "detailed": 1,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "athletes": {
+        "in_rosters": 40,
+        "founded": 36,
+        "corroborated": 4,
+        "queued": 0
+      },
+      "bridge": {
+        "scorer_ids_seen": 29,
+        "crosswalked": 3,
+        "conflicts": 0,
+        "goal_events_resolved": 5,
+        "written": {
+          "inserted": 3,
+          "updated": 0,
+          "unchanged": 0
+        }
+      }
+    },
+    {
+      "run": 16,
+      "http": 200,
+      "ms": 49055,
+      "requests": 59,
+      "fixtures_new": 0,
+      "detailed": 4,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "athletes": {
+        "in_rosters": 160,
+        "founded": 16,
+        "corroborated": 2,
+        "queued": 8
+      },
+      "bridge": {
+        "scorer_ids_seen": 41,
+        "crosswalked": 11,
+        "conflicts": 0,
+        "goal_events_resolved": 16,
+        "written": {
+          "inserted": 11,
+          "updated": 0,
+          "unchanged": 0
+        }
+      }
+    },
+    {
+      "run": 17,
+      "http": 200,
+      "ms": 45364,
+      "requests": 54,
+      "fixtures_new": 0,
+      "detailed": 4,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "athletes": {
+        "in_rosters": 160,
+        "founded": 13,
+        "corroborated": 1,
+        "queued": 8
+      },
+      "bridge": {
+        "scorer_ids_seen": 51,
+        "crosswalked": 10,
+        "conflicts": 0,
+        "goal_events_resolved": 15,
+        "written": {
+          "inserted": 10,
+          "updated": 0,
+          "unchanged": 0
+        }
+      }
+    },
+    {
+      "run": 18,
+      "http": 200,
+      "ms": 46669,
+      "requests": 55,
+      "fixtures_new": 0,
+      "detailed": 5,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "athletes": {
+        "in_rosters": 200,
+        "founded": 9,
+        "corroborated": 0,
+        "queued": 4
+      },
+      "bridge": {
+        "scorer_ids_seen": 61,
+        "crosswalked": 10,
+        "conflicts": 0,
+        "goal_events_resolved": 17,
+        "written": {
+          "inserted": 10,
+          "updated": 0,
+          "unchanged": 0
+        }
+      }
+    },
+    {
+      "run": 19,
+      "http": 200,
+      "ms": 51551,
+      "requests": 60,
+      "fixtures_new": 0,
+      "detailed": 5,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "athletes": {
+        "in_rosters": 200,
+        "founded": 10,
+        "corroborated": 0,
+        "queued": 14
+      },
+      "bridge": {
+        "scorer_ids_seen": 70,
+        "crosswalked": 6,
+        "conflicts": 0,
+        "goal_events_resolved": 10,
+        "written": {
+          "inserted": 6,
+          "updated": 0,
+          "unchanged": 0
+        }
+      }
+    },
+    {
+      "run": 20,
+      "http": 200,
+      "ms": 50539,
+      "requests": 60,
+      "fixtures_new": 0,
+      "detailed": 5,
+      "exhausted": "details",
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "athletes": {
+        "in_rosters": 200,
+        "founded": 4,
+        "corroborated": 0,
+        "queued": 12
+      }
+    },
+    {
+      "run": 21,
+      "http": 200,
+      "ms": 33936,
+      "requests": 39,
+      "fixtures_new": 0,
+      "detailed": 4,
+      "exhausted": null,
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "athletes": {
+        "in_rosters": 160,
+        "founded": 2,
+        "corroborated": 0,
+        "queued": 6
+      },
+      "bridge": {
+        "scorer_ids_seen": 88,
+        "crosswalked": 14,
+        "conflicts": 0,
+        "goal_events_resolved": 14,
+        "written": {
+          "inserted": 14,
+          "updated": 0,
+          "unchanged": 0
+        }
+      }
+    },
+    {
+      "run": 22,
+      "http": 200,
+      "ms": 1068,
+      "requests": 1,
+      "fixtures_new": 0,
+      "detailed": 0,
+      "exhausted": null,
+      "error": null,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "athletes": {}
+    }
+  ]
+}

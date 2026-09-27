@@ -1,12 +1,12 @@
 {
   "base": "https://soccer-api.sales-fd3.workers.dev",
-  "at": "2026-09-27T17:03:36.295Z",
+  "at": "2026-09-27T18:02:02.751Z",
   "results": [
     {
       "path": "/v1/health",
       "status": 200,
-      "cold_ms": 148,
-      "warm_ms": 82,
+      "cold_ms": 136,
+      "warm_ms": 70,
       "warm_cache": null,
       "coverage": "ok",
       "envelope": true
@@ -14,8 +14,8 @@
     {
       "path": "/v1/competitions",
       "status": 200,
-      "cold_ms": 162,
-      "warm_ms": 50,
+      "cold_ms": 300,
+      "warm_ms": 44,
       "warm_cache": "HIT",
       "coverage": "ok",
       "envelope": true
@@ -23,8 +23,8 @@
     {
       "path": "/v1/competitions/bundesliga",
       "status": 200,
-      "cold_ms": 1082,
-      "warm_ms": 47,
+      "cold_ms": 301,
+      "warm_ms": 38,
       "warm_cache": "HIT",
       "coverage": "ok",
       "envelope": true
@@ -32,8 +32,8 @@
     {
       "path": "/v1/matches?competition=bundesliga&limit=20",
       "status": 200,
-      "cold_ms": 164,
-      "warm_ms": 47,
+      "cold_ms": 136,
+      "warm_ms": 44,
       "warm_cache": "HIT",
       "coverage": "ok",
       "envelope": true
@@ -41,8 +41,8 @@
     {
       "path": "/v1/table?competition=bundesliga",
       "status": 200,
-      "cold_ms": 238,
-      "warm_ms": 39,
+      "cold_ms": 207,
+      "warm_ms": 40,
       "warm_cache": "HIT",
       "coverage": "ok",
       "envelope": true
@@ -50,8 +50,8 @@
     {
       "path": "/v1/table?competition=bundesliga&season=2017/18",
       "status": 200,
-      "cold_ms": 234,
-      "warm_ms": 36,
+      "cold_ms": 241,
+      "warm_ms": 37,
       "warm_cache": "HIT",
       "coverage": "ok",
       "envelope": true
@@ -59,8 +59,8 @@
     {
       "path": "/v1/teams/bayern-munchen",
       "status": 200,
-      "cold_ms": 188,
-      "warm_ms": 36,
+      "cold_ms": 147,
+      "warm_ms": 40,
       "warm_cache": "HIT",
       "coverage": "ok",
       "envelope": true
@@ -68,8 +68,8 @@
     {
       "path": "/v1/players/robert-lewandowski",
       "status": 200,
-      "cold_ms": 262,
-      "warm_ms": 36,
+      "cold_ms": 257,
+      "warm_ms": 37,
       "warm_cache": "HIT",
       "coverage": "partial",
       "envelope": true
@@ -77,8 +77,8 @@
     {
       "path": "/v1/news",
       "status": 200,
-      "cold_ms": 87,
-      "warm_ms": 41,
+      "cold_ms": 69,
+      "warm_ms": 39,
       "warm_cache": "HIT",
       "coverage": "unavailable",
       "envelope": true
@@ -86,8 +86,8 @@
     {
       "path": "/v1/matches/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a",
       "status": 200,
-      "cold_ms": 811,
-      "warm_ms": 34,
+      "cold_ms": 370,
+      "warm_ms": 40,
       "warm_cache": "HIT",
       "coverage": "ok",
       "envelope": true

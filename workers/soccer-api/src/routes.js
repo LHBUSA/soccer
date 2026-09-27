@@ -150,8 +150,9 @@ export async function match(store, id) {
     return { minute: e.minute, team: side(e.team_id), player: person(e.player_id), outcome: e.outcome, x: mf.x, y: mf.y };
   });
   const stats = await store.select('soccer_team_match_stats', { columns: ['team_id', 'stat_key', 'value', 'basis', 'derivation_version'], eq: { match_id: id } });
-  const statsOut = { home: {}, away: {}, derivation: stats[0]?.derivation_version || null };
-  for (const s of stats) if (side(s.team_id)) statsOut[side(s.team_id)][s.stat_key] = Number(s.value);
+  const statsBasis = stats.some(x => x.basis === 'derived') ? 'derived' : stats.length ? 'source' : null;
+  const statsOut = { home: {}, away: {}, basis: statsBasis, derivation: stats.find(x => x.basis === 'derived')?.derivation_version || null, provider: statsBasis === 'source' ? family : null };
+  for (const s of stats) if (side(s.team_id) && s.basis === statsBasis) statsOut[side(s.team_id)][s.stat_key] = Number(s.value);
 
   const lineupOut = Object.fromEntries(lineups.map(l => [side(l.team_id), {
     manager: mgrs.get(l.manager_id) ? { slug: mgrs.get(l.manager_id).slug, name: mgrs.get(l.manager_id).display_name } : null,
@@ -172,7 +173,7 @@ export async function match(store, id) {
     coordinates: hasLedger ? { system: '105x68 m, match frame: home attacks toward x=105', note: 'Event locations, not player tracking.' } : null,
   }, {
     source: 'pbe', source_updated_at: maxTs(m.updated_at, sources.map(s => s.observed_at)),
-    semantics: 'Canonical match assembled by PropBetEdge. Counts are derived from the event ledger (pbe-counts); shot locations on the 105x68 canonical pitch.',
+    semantics: `Canonical match assembled by PropBetEdge. ${statsBasis === 'derived' ? 'Team counts are derived by PropBetEdge from the event ledger (pbe-counts).' : statsBasis === 'source' ? `Team statistics are source facts supplied by ${family === 'espn' ? 'ESPN (secondary source)' : family}, not PropBetEdge metrics.` : 'No team statistics available.'} Shot locations on the 105x68 canonical pitch; provider xG, where present, is labelled with its provider and is not PBE xG.`,
     coverage: notes.length ? COVERAGE.PARTIAL : COVERAGE.OK, coverage_notes: notes,
     attribution: [...new Set([...sources.map(s => s.provider), ...(family === 'wyscout_figshare' ? ['wyscout'] : family ? [family] : [])])],
   });

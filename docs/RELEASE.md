@@ -1,21 +1,20 @@
 # Release
 
-## Current production
-
-**Nothing is deployed yet.** The owner approved the production foundation on
-2026-09-27: migrations, R2, soccer-ingest, soccer-api and the Bundesliga backfill.
-
-This session's automation stopped at the first production action. Its permission
-classifier blocked applying the migrations and classified it as a production
-deploy. Every step below is therefore scripted and rehearsed, but has not been run.
+## Current production (2026-09-27)
 
 | Surface | Version | Rollback |
 |---|---|---|
-| Supabase SPORTS (`soccer_*`) | not applied. Rollback-only proof passed; unmodified files ready | — (fix forward) |
-| R2 `soccer-source` | not created | — |
-| soccer-ingest | code ready (`workers/soccer-ingest`), not deployed | — |
-| soccer-api | code ready (`workers/soccer-api`), not deployed | — |
-| soccer.propbetedge.ai | not attached; frontend waits for API certification | — |
+| Supabase SPORTS `tkmlnhmylqnttmnsnief` | migrations 0100, 0200, 0300, 0400 applied (sha256 in `docs/evidence/storage/tkmln-applied-2026-09-27.json`; apply log `.proof/apply.out`) | fix forward |
+| R2 `soccer-source` | created 2026-09-27 (ENAM). 109 Wyscout/OpenLigaDB captures uploaded, all sha256-verified; ESPN captures written by the Worker | — |
+| KV `SOCCER_STATE` | `3e665f75414849578249f5aed979b868` | — |
+| soccer-ingest | `998c92ad-2070-44a1-a20e-de736b8343f1` (https://soccer-ingest.sales-fd3.workers.dev, cron */5) | `5dc0164f-ba4c-4add-95f4-eb5d7f5c44b1` |
+| soccer-api | `9b62221c-52cc-47e2-9ddd-a64e03a45d13` (https://soccer-api.sales-fd3.workers.dev) | `07f9902b-7f86-464c-96a1-496da32c5158` |
+| soccer.propbetedge.ai | NOT attached. The frontend and an indexable newsroom are held until API certification. | — |
+
+**ESPN lanes:**
+- Enabled: `bundesliga`, `premier-league`, `uefa-champions-league`.
+- Everything else is disabled in the registry (`espn.enabled`), to be expanded competition by competition through the canary and identity gates.
+- The Bundesliga has `espn.may_found=false`: ESPN attaches there and never founds.
 
 ## Production foundation runbook (owner-approved 2026-09-27)
 
@@ -79,4 +78,12 @@ The public frontend and an indexable newsroom stay off until the production data
 
 | Date (UTC) | Surface | Change | Version | Rollback |
 |---|---|---|---|---|
-| — | — | — | — | — |
+| 2026-09-27 15:56 | Supabase SPORTS | migrations 0100–0400 applied; post-apply proof passed | — | fix forward |
+| 2026-09-27 15:57 | R2 / KV | soccer-source, SOCCER_STATE created | — | — |
+| 2026-09-27 16:01 | soccer-ingest | first deploy, then secrets | 2aeb3ff1 → 4cce2680 | — |
+| 2026-09-27 16:02 | soccer-api | first deploy, then secrets | 9ab0df6f → f7cd4b51 | — |
+| 2026-09-27 16:03 | soccer-ingest | all lanes paused via KV backoff (cron live before backfill) | — | — |
+| 2026-09-27 16:06 | soccer-ingest | lane guards (ESPN may_found / enabled) | 5dc0164f | 4cce2680 |
+| 2026-09-27 16:25 | soccer-ingest | ordered paging fix; admin budget | 998c92ad | 5dc0164f |
+| 2026-09-27 16:26 | soccer-api | ordered paging fix | 07f9902b | f7cd4b51 |
+| 2026-09-27 17:05 | soccer-api | parallel route queries | 9b62221c | 07f9902b |
