@@ -29,7 +29,20 @@ export default async function middleware(request) {
     status = 503;
   }
 
-  const upstream = await fetch(request);
+  // Fetch the built SPA shell explicitly and request an identity-encoded body.
+  // Self-fetching the routed request can receive a compressed response that the
+  // Node middleware runtime attempts to decompress a second time, which surfaced
+  // in production as ERR__ERROR_FORMAT_RESERVED / Z_DATA_ERROR and turned every
+  // page into a 500. /index.html bypasses this middleware via the file-extension
+  // guard above, and the identity header avoids content-encoding ambiguity.
+  const shellUrl = new URL('/index.html', request.url);
+  const shellHeaders = new Headers(request.headers);
+  shellHeaders.set('accept-encoding', 'identity');
+  const upstream = await fetch(new Request(shellUrl, {
+    method: 'GET',
+    headers: shellHeaders,
+    redirect: 'manual',
+  }));
   if (!(upstream.headers.get('content-type') || '').includes('text/html')) return upstream;
   const html = injectMeta(await upstream.text(), meta);
   const headers = new Headers(upstream.headers);
