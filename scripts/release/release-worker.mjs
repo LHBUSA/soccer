@@ -8,7 +8,7 @@
 // 5. promotes EXACTLY that version to 100%
 // 6. verifies the live deployment is that version (never "deployed" because upload worked)
 // 7. canaries production, appends the ledger row, and prints the rollback command
-import { execSync } from 'node:child_process';
+import { execSync, spawnSync } from 'node:child_process';
 import { appendFileSync, mkdirSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -45,19 +45,18 @@ const version = (up.match(/Worker Version ID: ([0-9a-f-]{36})/) || [])[1];
 const preview = (up.match(/Version Preview URL: (\S+)/) || [])[1];
 if (!version) throw new Error(`upload did not report a version id:\n${up.slice(-600)}`);
 log('uploaded', version, preview || '(no preview url)');
-// Up to 8 attempts, 8 s apart (a fresh preview hostname can take ~30 s to resolve).
-// Only soccer-news may answer /health with 503 (it is 503 until its first run).
+// Up to 15 attempts, 15 s apart: a freshly uploaded version's preview hostname can take
+// a few minutes to become reachable. Only soccer-news may answer /health with 503
+// (it is 503 until its first run). curl in a fresh process; its exit code is recorded.
 const canary = async base => {
   let last = null;
-  for (let i = 0; i < 8; i++) {
-    // A fresh curl process per attempt: in-process fetch kept failing on new preview
-    // hostnames that a new process resolved instantly.
-    try {
-      const status = Number(execSync(`curl -s -o /dev/null -w "%{http_code}" --max-time 45 "${base.replace(/\/$/, '')}${canaryPath}"`, { encoding: 'utf8', shell: 'bash' }).trim());
-      last = { status, ok: (status >= 200 && status < 300) || (worker === 'soccer-news' && canaryPath === '/health' && status === 503), attempts: i + 1 };
-      if (last.ok) return last;
-    } catch (e) { last = { status: 0, ok: false, error: String(e.message).slice(0, 200), attempts: i + 1 }; }
-    await new Promise(res => setTimeout(res, 8000));
+  for (let i = 0; i < 15; i++) {
+    const url = `${base.replace(/\/$/, '')}${canaryPath}`;
+    const r = spawnSync('curl', ['-s', '-o', '/dev/null', '-w', '%{http_code}', '--max-time', '45', url], { encoding: 'utf8' });
+    const status = Number(r.stdout.trim()) || 0;
+    last = { status, curl_exit: r.status, ok: (status >= 200 && status < 300) || (worker === 'soccer-news' && canaryPath === '/health' && status === 503), attempts: i + 1 };
+    if (last.ok) return last;
+    await new Promise(res => setTimeout(res, 15000));
   }
   return last;
 };
