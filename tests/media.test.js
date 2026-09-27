@@ -46,3 +46,11 @@ test('media rows carry provenance; only approved can be primary later', () => {
   assert.equal(r.rights_status, 'approved'); assert.equal(r.source, 'wikimedia_commons'); assert.equal(r.source_url, 'https://commons.wikimedia.org/wiki/File:X.jpg');
   assert.equal(r.match_evidence.method, 'wikidata_espn_fc_player_id'); assert.equal(r.is_primary, undefined);
 });
+
+test('crests: a third-party CC licence on a club emblem is never approved; Commons public domain is', () => {
+  const cc0 = classifyCommons(meta({ LicenseShortName: 'CC0', License: 'cc0', LicenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0', Artist: 'Some uploader' }), { mediaType: 'crest' });
+  assert.equal(cc0.rights_status, 'review_required'); assert.match(cc0.rights_notes, /club owns the emblem/);
+  assert.equal(classifyCommons(meta({ LicenseShortName: 'CC BY-SA 4.0', License: 'cc-by-sa-4.0', LicenseUrl: 'https://c', Artist: 'U' }), { mediaType: 'crest' }).rights_status, 'review_required');
+  assert.equal(classifyCommons(meta({ LicenseShortName: 'Public domain', License: 'pd', Artist: 'FC Example' }), { mediaType: 'crest' }).rights_status, 'approved');
+  assert.equal(classifyCommons(meta({ LicenseShortName: 'CC0', License: 'cc0', LicenseUrl: 'https://c', Artist: 'U' }), { mediaType: 'portrait' }).rights_status, 'approved'); // portraits unaffected
+});

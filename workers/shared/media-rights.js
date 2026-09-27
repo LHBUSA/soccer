@@ -41,6 +41,12 @@ export function classifyCommons(meta, { mediaType = 'portrait', fileUrl = null, 
   // CC licences require attribution: without a known author we do not publish.
   if (status === 'approved' && isCc && !author) { status = 'review_required'; notes.push('Author not stated in file metadata.'); }
   if (status === 'approved' && isCc && !licenseUrl) { status = 'review_required'; notes.push('Licence URL not stated in file metadata.'); }
+  // A club emblem belongs to the club: a third party cannot licence it (CC0 / CC BY on a
+  // user "update" of a crest is licence-washing). Crests pass only when Commons treats the
+  // file itself as public domain (e.g. text logo / below the threshold of originality).
+  if (status === 'approved' && mediaType === 'crest' && !/^pd/.test(code) && !/public domain/i.test(short)) {
+    status = 'review_required'; notes.push('Crest under a third-party licence: the club owns the emblem, so the licence cannot be verified.');
+  }
   if (status === 'approved' && mediaType === 'crest' && restrictions.includes('trademarked') && policy.crest_trademark === 'review') {
     status = 'review_required'; notes.push('Owner policy: trademarked crests need review.');
   }
