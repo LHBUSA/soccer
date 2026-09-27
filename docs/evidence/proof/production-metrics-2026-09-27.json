@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-27T18:01:02.523Z",
+  "generated_at": "2026-09-27T18:03:56.213Z",
   "target": "tkmlnhmylqnttmnsnief",
   "row_counts": {
     "soccer_competitions": 3,
@@ -98,7 +98,7 @@
     }
   },
   "identity": {
-    "queue_open_total": 1960,
+    "queue_open_total": 1947,
     "queue_open_by_reason": {
       "player/espn/athlete_without_dob_or_name": 13,
       "player/espn/contradiction_nationality": 12,
@@ -106,10 +106,9 @@
       "player/openligadb/event_alignment_conflict": 10,
       "player/openligadb/event_alignment_no_unique_candidate": 3,
       "player/openligadb/scorer_without_canonical_identity": 1899,
-      "player/wyscout/referenced_but_absent_from_players_json": 2,
-      "team/espn/fixture_subset_ambiguous": 13
+      "player/wyscout/referenced_but_absent_from_players_json": 2
     },
-    "queue_resolved": 74,
+    "queue_resolved": 87,
     "crosswalk_methods": {
       "soccer_team_external_ids": {
         "espn/fixture_graph": 18,
@@ -238,7 +237,7 @@
   "store_canary": {
     "version": "espn-canary/1.0.0",
     "part": "store",
-    "at": "2026-09-27T18:01:03.246Z",
+    "at": "2026-09-27T18:03:56.916Z",
     "pass": true,
     "checks": [
       {

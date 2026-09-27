@@ -7,8 +7,8 @@
 | Supabase SPORTS `tkmlnhmylqnttmnsnief` | migrations 0100, 0200, 0300, 0400 applied (sha256 in `docs/evidence/storage/tkmln-applied-2026-09-27.json`; apply log `.proof/apply.out`) | fix forward |
 | R2 `soccer-source` | created 2026-09-27 (ENAM). 109 Wyscout/OpenLigaDB captures uploaded, all sha256-verified; ESPN captures written by the Worker | — |
 | KV `SOCCER_STATE` | `3e665f75414849578249f5aed979b868` | — |
-| soccer-ingest | `998c92ad-2070-44a1-a20e-de736b8343f1` (https://soccer-ingest.sales-fd3.workers.dev, cron */5) | `5dc0164f-ba4c-4add-95f4-eb5d7f5c44b1` |
-| soccer-api | `9b62221c-52cc-47e2-9ddd-a64e03a45d13` (https://soccer-api.sales-fd3.workers.dev) | `07f9902b-7f86-464c-96a1-496da32c5158` |
+| soccer-ingest | `2beb903b-f3d8-4f95-8eda-e2e411fd074a` (https://soccer-ingest.sales-fd3.workers.dev, cron */5) | `998c92ad-2070-44a1-a20e-de736b8343f1` |
+| soccer-api | `162e3a57-d1c4-411d-a047-3a92f6ee7e2f` (https://soccer-api.sales-fd3.workers.dev) | `9b62221c-52cc-47e2-9ddd-a64e03a45d13` |
 | soccer.propbetedge.ai | NOT attached. The frontend and an indexable newsroom are held until API certification. | — |
 
 **ESPN lanes:**
@@ -87,3 +87,6 @@ The public frontend and an indexable newsroom stay off until the production data
 | 2026-09-27 16:25 | soccer-ingest | ordered paging fix; admin budget | 998c92ad | 5dc0164f |
 | 2026-09-27 16:26 | soccer-api | ordered paging fix | 07f9902b | f7cd4b51 |
 | 2026-09-27 17:05 | soccer-api | parallel route queries | 9b62221c | 07f9902b |
+| 2026-09-27 16:30–18:00 | data | production backfill certified (0-write re-passes); ESPN fill Bundesliga/EPL/UCL via the Worker (R2 captures) | — | — |
+| 2026-09-27 18:05 | soccer-ingest | close proven queue entries | 2beb903b | 998c92ad |
+| 2026-09-27 18:05 | soccer-api | stats basis stated in semantics | 162e3a57 | 9b62221c |
