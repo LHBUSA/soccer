@@ -37,7 +37,8 @@
         "id": "720",
         "enabled": true,
         "may_found": false
-      }
+      },
+      "expected_teams": 18
     },
     {
       "slug": "premier-league",
@@ -67,7 +68,8 @@
         "id": "700",
         "enabled": true,
         "may_found": true
-      }
+      },
+      "expected_teams": 20
     },
     {
       "slug": "la-liga",
@@ -246,7 +248,8 @@
           "method": "founding",
           "evidence": "ESPN Core league listing + league detail (docs/evidence/espn-soccer-discovery-latest.json): uefa.champions id 775"
         }
-      ]
+      ],
+      "expected_teams": 36
     },
     {
       "slug": "uefa-europa-league",
@@ -299,7 +302,8 @@
           "method": "founding",
           "evidence": "ESPN Core league listing + league detail (docs/evidence/espn-soccer-discovery-latest.json): usa.1 id 770"
         }
-      ]
+      ],
+      "expected_teams": 30
     }
   ]
 }

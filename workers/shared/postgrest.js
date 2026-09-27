@@ -28,7 +28,7 @@ const enc = v => {
   return /[,()"\\:\s]/.test(s) ? `"${s.replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"` : s;
 };
 
-export function buildQuery({ columns = '*', eq = {}, neq = {}, in: inn = {}, is = {}, gte = {}, lte = {}, order, limit, offset } = {}) {
+export function buildQuery({ columns = '*', eq = {}, neq = {}, in: inn = {}, is = {}, gte = {}, lte = {}, cs = {}, order, limit, offset } = {}) {
   const p = [`select=${encodeURIComponent(Array.isArray(columns) ? columns.join(',') : columns)}`];
   for (const [k, v] of Object.entries(eq)) p.push(`${k}=eq.${encodeURIComponent(v)}`);
   for (const [k, v] of Object.entries(neq)) p.push(`${k}=neq.${encodeURIComponent(v)}`);
@@ -36,6 +36,8 @@ export function buildQuery({ columns = '*', eq = {}, neq = {}, in: inn = {}, is 
   for (const [k, v] of Object.entries(lte)) p.push(`${k}=lte.${encodeURIComponent(v)}`);
   for (const [k, v] of Object.entries(inn)) p.push(`${k}=in.(${v.map(x => encodeURIComponent(enc(x))).join(',')})`);
   for (const [k, v] of Object.entries(is)) p.push(`${k}=is.${v === null ? 'null' : v ? 'true' : 'false'}`);
+  // array contains (uuid[] / text[] columns): col=cs.{a,b}
+  for (const [k, v] of Object.entries(cs)) p.push(`${k}=cs.${encodeURIComponent(`{${v.join(',')}}`)}`);
   if (order) p.push(`order=${order}`);
   if (limit !== undefined) p.push(`limit=${limit}`);
   if (offset) p.push(`offset=${offset}`);

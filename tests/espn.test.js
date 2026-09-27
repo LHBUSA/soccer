@@ -163,3 +163,32 @@ test('standings lane: conference membership + provider standings; a group with a
   assert.throws(() => parseStandingsEntry({ records: [] }));
   await store.close();
 });
+
+test('live lane: updates status/score of ESPN-owned matches in the live window only', async () => {
+  const { openPglite, applyMigrations } = await import('../workers/soccer-ingest/src/store-pglite.js');
+  const { runEspnLive } = await import('../workers/soccer-ingest/src/espn-live.js');
+  const store = await openPglite(); await applyMigrations(store);
+  const id = n => `00000000-0000-5000-8000-0000000e00${n}`;
+  await store.insert('soccer_competitions', [{ id: id(10), slug: 'mls', name: 'MLS', comp_type: 'league' }]);
+  await store.insert('soccer_seasons', [{ id: id(11), competition_id: id(10), label: '2026' }]);
+  await store.insert('soccer_teams', [{ id: id(12), slug: 'a', name: 'A', team_type: 'club', founding_provider: 'espn', founding_external_id: '1' }, { id: id(13), slug: 'b', name: 'B', team_type: 'club', founding_provider: 'espn', founding_external_id: '2' }]);
+  await store.insert('soccer_team_external_ids', [{ provider: 'espn', external_id: '1', team_id: id(12), method: 'founding', evidence: 't' }, { provider: 'espn', external_id: '2', team_id: id(13), method: 'founding', evidence: 't' }]);
+  const now = Date.parse('2026-09-27T23:40:00Z');
+  await store.insert('soccer_matches', [
+    { id: id(20), competition_id: id(10), season_id: id(11), kickoff_at: '2026-09-27T23:00:00Z', home_team_id: id(12), away_team_id: id(13), status: 'scheduled', result_provider: 'espn' },
+    { id: id(21), competition_id: id(10), season_id: id(11), kickoff_at: '2026-09-20T23:00:00Z', home_team_id: id(13), away_team_id: id(12), status: 'scheduled', result_provider: 'espn' }, // outside window
+  ]);
+  await store.insert('soccer_match_external_ids', [{ provider: 'espn', external_id: '777', match_id: id(20), method: 'founding', evidence: 't' }]);
+  const calls = [];
+  const fetcher = async url => { calls.push(url); const b = url.endsWith('/status') ? { type: { state: 'in' }, displayClock: "40'" } : url.includes('/competitors/1/score') ? { value: 1 } : { value: 0 }; return { status: 200, contentType: 'application/json', bytes: new TextEncoder().encode(JSON.stringify(b)) }; };
+  const mem = new Map(); const storage = { async head(k) { return mem.has(k); }, async put(k, b) { mem.set(k, b); }, async get(k) { return mem.get(k) || null; } };
+  const reg = { competitions: [{ slug: 'mls', espn: { league: 'usa.1', enabled: true } }] };
+  const out = await runEspnLive({ store, storage, registry: reg, now, fetcher });
+  assert.equal(out.results.length, 1); assert.equal(out.results[0].status, 'live'); assert.equal(out.results[0].score, '1-0');
+  const [m] = await store.select('soccer_matches', { columns: ['status', 'home_score', 'away_score'], eq: { id: id(20) } });
+  assert.deepEqual([m.status, m.home_score, m.away_score], ['live', 1, 0]);
+  const [old] = await store.select('soccer_matches', { columns: ['status'], eq: { id: id(21) } });
+  assert.equal(old.status, 'scheduled'); // never touched outside the window
+  assert.ok(calls.every(u => u.includes('/events/777/')));
+  await store.close();
+});

@@ -18,7 +18,7 @@ export async function openPglite({ dataDir, sportsProjectStubs = true } = {}) {
 const q = s => `"${s.replace(/"/g, '')}"`;
 
 export function pgliteStore(db) {
-  const where = ({ eq = {}, neq = {}, in: inn = {}, is = {}, gte = {}, lte = {} } = {}, params) => {
+  const where = ({ eq = {}, neq = {}, in: inn = {}, is = {}, gte = {}, lte = {}, cs = {} } = {}, params) => {
     const w = [];
     for (const [k, v] of Object.entries(gte)) { params.push(v); w.push(`${q(k)} >= $${params.length}`); }
     for (const [k, v] of Object.entries(lte)) { params.push(v); w.push(`${q(k)} <= $${params.length}`); }
@@ -26,6 +26,7 @@ export function pgliteStore(db) {
     for (const [k, v] of Object.entries(neq)) { params.push(v); w.push(`${q(k)}::text is distinct from $${params.length}::text`); }
     for (const [k, v] of Object.entries(inn)) { params.push(v.map(String)); w.push(`${q(k)}::text = any($${params.length}::text[])`); }
     for (const [k, v] of Object.entries(is)) w.push(`${q(k)} is ${v === null ? 'null' : v ? 'true' : 'false'}`);
+    for (const [k, v] of Object.entries(cs)) { params.push(v.map(String)); w.push(`${q(k)}::text[] @> $${params.length}::text[]`); }
     return w.length ? ` where ${w.join(' and ')}` : '';
   };
   return {

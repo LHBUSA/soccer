@@ -16,6 +16,7 @@ import { failureState, inBackoff, readLane, successState, writeLane } from './st
 import { ESPN_LANES, runEspnLane } from './espn-jobs.js';
 import { espnLiveCanary, espnStoreCanary } from './canary.js';
 import { STANDINGS_LANE, runEspnStandings } from './espn-standings.js';
+import { LIVE_LANE, runEspnLive } from './espn-live.js';
 
 export const VERSION = 'soccer-ingest/1.0.0';
 
@@ -23,10 +24,11 @@ const LANES = {
   [OLDB_CURRENT]: ctx => runOpenLigaCurrent(ctx),
   ...Object.fromEntries(ESPN_LANES.map(l => [l.name, ctx => runEspnLane(l, ctx)])),
   [STANDINGS_LANE]: ctx => runEspnStandings(ctx),
+  [LIVE_LANE]: ctx => runEspnLive(ctx),
 };
 // Priority lane runs every tick; ESPN lanes rotate one per tick (one source can
 // never monopolise ticks).
-const PRIORITY = [OLDB_CURRENT];
+const PRIORITY = [OLDB_CURRENT, LIVE_LANE];
 // Only ENABLED competitions rotate (disabled lanes used to burn ticks); the standings
 // lane joins the rotation and throttles itself to hourly.
 const ENABLED = new Set(registry.competitions.filter(c => c.espn?.enabled).map(c => c.slug));
