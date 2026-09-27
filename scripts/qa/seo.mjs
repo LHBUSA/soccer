@@ -12,7 +12,8 @@ const fail = (k, m) => failures.push(`${k}: ${m}`);
 const get = async (p, opts = {}) => { const r = await fetch(BASE + p, { headers: { 'user-agent': UA }, redirect: 'manual', ...opts }); return { r, text: opts.binary ? null : await r.text(), buf: opts.binary ? Buffer.from(await r.arrayBuffer()) : null }; };
 const api = async p => (await fetch(`${BASE}/api/soccer/${p}`)).json();
 
-const all = (html, re) => [...html.matchAll(re)].map(m => m[1]);
+const unesc = s => s.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+const all = (html, re) => [...html.matchAll(re)].map(m => unesc(m[1]));
 const metaC = (html, attr, name) => all(html, new RegExp(`<meta ${attr}="${name.replace(/[:]/g, '\\:')}" content="([^"]*)"`, 'g'));
 
 const epl = (await api('matches?competition=premier-league&status=finished&limit=1')).data[0];
@@ -108,8 +109,11 @@ for (const p of ['/og/match/' + epl.id + '.png', '/og/team/bayern-munchen.png', 
 }
 // Security guarantees still hold
 const sec = [];
-for (const [p, want] of [['/api/soccer/..%2F..%2Fetc%2Fpasswd', 404], ['/api/soccer/https:%2F%2Fevil.example', 404], ['/workers/soccer-ingest/src/index.js', 404], ['/server/upstream.js', 404], ['/src/seo/meta.js', 404], ['/middleware.js', 404], ['/api/og.js', 404]]) {
-  const s = (await fetch(BASE + p)).status; sec.push({ path: p, status: s }); if (s !== want) fail('security', `${p} -> ${s}`);
+for (const [p, want] of [['/api/soccer/..%2F..%2Fetc%2Fpasswd', 404], ['/api/soccer/https:%2F%2Fevil.example', 404], ['/workers/soccer-ingest/src/index.js', 404], ['/server/upstream.js', 404], ['/src/seo/meta.js', 404], ['/middleware.js', 404], ['/api/og.js', 'no-source']]) {
+  const res = await fetch(BASE + p); const s = res.status; const body = await res.text();
+  // /api/og.js invokes the function (a PNG card), which is fine: what must never be served is the source.
+  const ok = want === 'no-source' ? !/export default|import \{|@vercel\/og/.test(body) : s === want;
+  sec.push({ path: p, status: s }); if (!ok) fail('security', `${p} -> ${s}`);
 }
 const post = (await fetch(BASE + '/api/soccer/competitions', { method: 'POST' })).status;
 sec.push({ path: 'POST /api/soccer/competitions', status: post }); if (post < 400) fail('security', 'POST allowed');
