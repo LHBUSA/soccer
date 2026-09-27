@@ -43,6 +43,7 @@ export default {
     return json({ error: 'not found' }, 404);
   },
   async scheduled(event, env, ctx) {
+    if (env.NEWS_ENABLED !== 'on') return; // launch switch (wrangler.toml var)
     ctx.waitUntil(run(env, { now: event.scheduledTime }).catch(e => console.error('soccer-news run failed', e?.message)));
   },
 };
