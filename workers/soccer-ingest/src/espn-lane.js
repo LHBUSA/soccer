@@ -312,7 +312,12 @@ export async function ingestEspnMatch(store, { comp, league, year, eventId, fixt
   // Team statistics (source facts)
   const statRows = [];
   for (const side of ['h', 'a']) {
-    const { json } = await client.get(`${base}/competitors/${fixture[side]}/statistics`);
+    let json;
+    try { ({ json } = await client.get(`${base}/competitors/${fixture[side]}/statistics`)); } catch (err) {
+      if (!(err instanceof espn.EspnShapeError)) throw err;
+      summary.stats_unavailable = [...(summary.stats_unavailable || []), side === 'h' ? 'home' : 'away'];
+      continue; // statistics unavailable for this side: shown as missing, never zero
+    }
     for (const [k, v] of Object.entries(espn.parseTeamStats(json))) statRows.push({ match_id: matchId, team_id: side === 'h' ? home : away, stat_key: k, value: v, basis: 'source', provider: P, derivation_version: null });
   }
   await client.flush();
@@ -321,8 +326,13 @@ export async function ingestEspnMatch(store, { comp, league, year, eventId, fixt
   // Plays -> ledger, unless a richer ledger (Wyscout) already covers the match.
   const richer = await store.select('soccer_match_external_ids', { columns: ['provider'], eq: { match_id: matchId, provider: 'wyscout' }, limit: 1 });
   if (!richer.length) {
-    const items = []; let capId = null; let page = 1; let pages = 1;
-    do { const { json, capture } = await client.get(espn.urls.plays(league, eventId, page)); capId = capId || capture.capture_id; items.push(...(json.items || [])); pages = json.pageCount || 1; page += 1; } while (page <= pages);
+    let items = []; let capId = null; let page = 1; let pages = 1;
+    try {
+      do { const { json, capture } = await client.get(espn.urls.plays(league, eventId, page)); capId = capId || capture.capture_id; items.push(...(json.items || [])); pages = json.pageCount || 1; page += 1; } while (page <= pages);
+    } catch (err) {
+      if (!(err instanceof espn.EspnShapeError)) throw err;
+      items = []; summary.plays_unavailable = true; // never write a partial ledger
+    }
     await client.flush();
     const { events, unmapped } = espn.parsePlays(items, { eventId });
     const participantIds = [...new Set(events.map(e => e.player_external_id).filter(Boolean))];
