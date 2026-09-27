@@ -222,3 +222,15 @@ test('api: matches carry competition; from/to/order; coverage aggregate is hones
   assert.equal(cov.data.competitions[0].slug, 'bundesliga');
   await store.close();
 });
+
+test('api: sitemap feed lists canonical keys with genuine updated_at only', async () => {
+  const store = await openPglite(); await applyMigrations(store);
+  const f = fakeUpstream({ changes: {}, matches: [olm(1, 1, 10, 20, '2026-09-20T13:30:00', true, 3, 0, [])] });
+  await runOpenLigaCurrent({ store, storage: f.storage, registry: REG, state: emptyLaneState('x'), now: Date.parse('2026-09-27T00:00:00Z'), fetcher: f.fetcher });
+  const m = await R.sitemap(store, 'matches');
+  assert.equal(m.data.length, 1); assert.ok(m.data[0].key.length === 36 && m.data[0].updated_at);
+  const t = await R.sitemap(store, 'teams');
+  assert.deepEqual(t.data.map(x => x.key).sort(), ['club-10', 'club-20']);
+  await assert.rejects(R.sitemap(store, 'secrets'), /not found/);
+  await store.close();
+});

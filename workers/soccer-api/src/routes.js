@@ -301,3 +301,19 @@ export async function coverage(store) {
     source_updated_at: new Date().toISOString(),
   });
 }
+
+// Sitemap feed: every canonical URL key with its genuine updated_at (read-only).
+// matches: finished + scheduled only (unknown/postponed pages are not indexed).
+export async function sitemap(store, kind) {
+  const K = {
+    competitions: ['soccer_competitions', ['slug', 'updated_at'], {}, 'slug.asc'],
+    teams: ['soccer_teams', ['slug', 'updated_at'], { eq: { status: 'active' } }, 'slug.asc'],
+    players: ['soccer_players', ['slug', 'updated_at'], { eq: { status: 'active' } }, 'slug.asc'],
+    matches: ['soccer_matches', ['id', 'status', 'updated_at'], { in: { status: ['finished', 'scheduled'] } }, 'id.asc'],
+  }[kind];
+  if (!K) throw new NotFound(`sitemap ${kind}`);
+  const [table, columns, filter, order] = K;
+  const rows = await store.select(table, { columns, ...filter, order });
+  const out = rows.map(r => ({ key: r.slug || r.id, updated_at: r.updated_at || null, ...(r.status ? { status: r.status } : {}) }));
+  return E(out, { source: 'pbe', semantics: `Canonical ${kind} URL keys for sitemaps; updated_at is the canonical row's last update.`, source_updated_at: maxTs(out.map(r => r.updated_at)) });
+}
