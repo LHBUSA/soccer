@@ -301,8 +301,8 @@ async function playerObserved(store, p) {
   const starterOf = new Map(lps.map(x => [x.lineup_id, x.is_starter]));
   const subIns = new Set((await store.select('soccer_substitutions', { columns: ['match_id'], eq: { player_in_id: p.id }, order: 'match_id.asc' })).map(x => x.match_id));
   const [goalsRaw, shotsRaw, located] = await Promise.all([
-    store.select('soccer_match_events', { columns: ['match_id', 'source_family', 'sequence'], eq: { player_id: p.id, is_goal: true }, order: 'match_id.asc,sequence.asc' }),
-    store.select('soccer_match_events', { columns: ['match_id', 'source_family', 'sequence', 'minute', 'outcome', 'x_m', 'y_m'], eq: { player_id: p.id, event_type: 'shot' }, order: 'match_id.asc,sequence.asc' }),
+    store.select('soccer_match_events', { columns: ['match_id', 'source_family', 'sequence', 'team_id'], eq: { player_id: p.id, is_goal: true }, order: 'match_id.asc,sequence.asc' }),
+    store.select('soccer_match_events', { columns: ['match_id', 'source_family', 'sequence', 'team_id', 'minute', 'outcome', 'x_m', 'y_m'], eq: { player_id: p.id, event_type: 'shot' }, order: 'match_id.asc,sequence.asc' }),
     store.count('soccer_match_events', { eq: { player_id: p.id }, neq: { source_coordinate_system: 'none' } }),
   ]);
   const goals = perMatchBestFamily(goalsRaw); const shots = perMatchBestFamily(shotsRaw);
@@ -320,15 +320,23 @@ async function playerObserved(store, p) {
   for (const id of matchIds) {
     const m = byId.get(id); if (!m) continue;
     const l = lineupByMatch.get(id);
-    const key = `${m.competition_id}|${m.season_id}|${l?.team_id || ''}`;
-    const r = rows.get(key) || { competition: comps.get(m.competition_id) || null, season: seasons.get(m.season_id) || null, team: l && teams.get(l.team_id) ? { slug: teams.get(l.team_id).slug, name: teams.get(l.team_id).name } : null, appearances: 0, starts: 0, goals: 0, shots: 0 };
-    const started = l ? starterOf.get(l.id) === true : false;
-    if (started) r.starts += 1;
-    if (started || subIns.has(id)) r.appearances += 1;
+    const teamId = l?.team_id || goals.find(g => g.match_id === id)?.team_id || shots.find(x => x.match_id === id)?.team_id || null;
+    const key = `${m.competition_id}|${m.season_id}|${teamId || ''}`;
+    // appearances/starts stay null unless a sourced lineup names the player: no lineup is "not recorded", never 0.
+    const r = rows.get(key) || { competition: comps.get(m.competition_id) || null, season: seasons.get(m.season_id) || null, team: teamId && teams.get(teamId) ? { slug: teams.get(teamId).slug, name: teams.get(teamId).name } : null, appearances: null, starts: null, goals: 0, shots: 0, shots_recorded: false };
+    if (l) {
+      const started = starterOf.get(l.id) === true;
+      r.starts = (r.starts || 0) + (started ? 1 : 0);
+      r.appearances = (r.appearances || 0) + (started || subIns.has(id) ? 1 : 0);
+    }
     r.goals += count(goals, id); r.shots += count(shots, id);
+    if (lineupByMatch.has(id) || shotsRaw.some(x => x.match_id === id)) r.shots_recorded = true;
     rows.set(key, r);
   }
-  const totals = [...rows.values()].reduce((t, r) => ({ appearances: t.appearances + r.appearances, starts: t.starts + r.starts, goals: t.goals + r.goals, shots: t.shots + r.shots }), { appearances: 0, starts: 0, goals: 0, shots: 0 });
+  // Shots are only a count where the match has a shot-level source; otherwise null.
+  for (const r of rows.values()) { if (!r.shots_recorded) r.shots = null; delete r.shots_recorded; }
+  const sum = k => { const v = [...rows.values()].map(r => r[k]).filter(x => x !== null); return v.length ? v.reduce((a, b) => a + b, 0) : null; };
+  const totals = { appearances: sum('appearances'), starts: sum('starts'), goals: sum('goals'), shots: sum('shots') };
   const recent = ms.filter(m => lineupByMatch.has(m.id) && m.status === 'finished').sort((a, b) => Date.parse(b.kickoff_at) - Date.parse(a.kickoff_at)).slice(0, 10)
     .map(m => ({ ...shapeMatch(m, teams, comps), started: starterOf.get(lineupByMatch.get(m.id).id) === true, came_on: subIns.has(m.id), goals: count(goals, m.id), shots: count(shots, m.id) }));
   return {
