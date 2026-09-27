@@ -39,11 +39,15 @@ export async function runLane(env, name, { force = false, now = Date.now(), budg
   if (!fn) throw new Error(`unknown lane ${name}`);
   let state = await readLane(env.SOCCER_STATE, name);
   if (!force && inBackoff(state, now)) return { lane: name, skipped: 'backoff', backoff_until: state.backoff_until };
+  // The lane decides cadence from the PREVIOUS attempt; a cadence skip is not an
+  // attempt and leaves the state untouched (stamping it first made every poll
+  // outside a live window skip forever).
+  const prev = state;
   state = { ...state, last_attempt_at: new Date(now).toISOString() };
   try {
-    const ctx = { ...context(env), state, now, force, ...(budget ? { budget } : {}) };
+    const ctx = { ...context(env), state: prev, now, force, ...(budget ? { budget } : {}) };
     const out = await fn(ctx);
-    if (out?.skipped) { await writeLane(env.SOCCER_STATE, state); return { lane: name, ...out }; }
+    if (out?.skipped) return { lane: name, ...out };
     state = successState(state, { now, observed: out.observed, changed: out.changed, captureId: out.captureId, parserVersion: out.parserVersion, cursor: out.cursor, changedValue: out.changedValue || null });
     await writeLane(env.SOCCER_STATE, state);
     return { lane: name, observed: out.observed, changed: out.changed, capture_id: out.captureId, requests: out.requests, results: out.results };

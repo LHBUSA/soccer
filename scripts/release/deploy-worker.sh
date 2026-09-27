@@ -2,7 +2,8 @@
 # Deploy one Worker from a clean git archive of PUSHED main (never from a dirty tree).
 #   scripts/release/deploy-worker.sh soccer-ingest|soccer-api [first|upload|deploy]
 # first  -> initial creation of the Worker (versions upload needs an existing Worker)
-# upload -> prints the version id + preview URL; check /health there, then run with deploy.
+# upload -> prints the version id + preview URL; check /health there, then:
+# deploy <version-id> -> promotes exactly that version to 100% (no interactive picker).
 set -euo pipefail
 W="$1"; MODE="${2:-upload}"
 cd "$(dirname "$0")/../.."
@@ -19,5 +20,6 @@ if [ "$MODE" = "first" ]; then
 elif [ "$MODE" = "upload" ]; then
   npx wrangler versions upload --message "soccer $(basename "$OUT")"
 else
-  npx wrangler versions deploy --yes
+  [ -n "${3:-}" ] || { echo "deploy needs the version id printed by upload"; exit 1; }
+  npx wrangler versions deploy "$3@100%" --yes --message "soccer $(basename "$OUT")"
 fi
