@@ -612,7 +612,7 @@ import { DNA_VERSION, MIN_MINUTES, loadSeasonData, teamDna, playerProfiles, TEAM
 const asOfOf = q => (/^\d{4}-\d{2}-\d{2}$/.test(String(q.as_of || '')) ? `${q.as_of}T00:00:00Z` : new Date().toISOString());
 const metricList = (p, metrics) => metrics.map(([k, lower]) => ({ key: k, value: p[k] ?? null, percentile: p.percentiles?.[k] ?? null, lower_is_better: lower }));
 
-export async function teamDnaRoute(store, slug, q) {
+export async function teamDnaRoute(store, slug, q, env = null) {
   const [t] = await store.select('soccer_teams', { columns: ['id', 'slug', 'name'], eq: { slug, status: 'active' }, limit: 1 });
   if (!t) throw new NotFound(`team ${slug}`);
   const asOf = asOfOf(q);
@@ -624,8 +624,8 @@ export async function teamDnaRoute(store, slug, q) {
   if (!pick) return E({ team: { slug: t.slug, name: t.name }, as_of: asOf, profile: null }, { source: 'pbe', semantics: 'No finished matches before as_of.', coverage: COVERAGE.UNAVAILABLE });
   const [c] = await store.select('soccer_competitions', { columns: ['slug', 'name'], eq: { id: pick.competition_id }, limit: 1 });
   const [s] = await store.select('soccer_seasons', { columns: ['label'], eq: { id: pick.season_id }, limit: 1 });
-  const D = await loadSeasonData(store, pick.season_id, asOf);
-  const all = teamDna(D); const p = all.get(t.id);
+  const { profiles: all, latest } = await seasonProfiles(store, env, pick.season_id, asOf, 'team'); const p = all.get(t.id);
+  const D = { matches: latest ? [{ kickoff_at: latest }] : [] };
   return E({
     team: { slug: t.slug, name: t.name }, competition: c, season: s?.label, as_of: asOf, dna_version: DNA_VERSION, teams_compared: all.size,
     matches: p?.matches ?? 0, form: p?.form || [], comeback_wins: p?.comeback_wins ?? null, conceded_first: p?.conceded_first ?? null, stats_matches: p?.stats_matches ?? 0,
@@ -637,7 +637,7 @@ export async function teamDnaRoute(store, slug, q) {
   });
 }
 
-export async function playerDnaRoute(store, slug, q) {
+export async function playerDnaRoute(store, slug, q, env = null) {
   const [p] = await store.select('soccer_players', { columns: ['id', 'slug', 'display_name'], eq: { slug, status: 'active' }, limit: 1 });
   if (!p) throw new NotFound(`player ${slug}`);
   const asOf = asOfOf(q);
@@ -649,8 +649,7 @@ export async function playerDnaRoute(store, slug, q) {
   for (const sm of seasons) {
     const [c] = await store.select('soccer_competitions', { columns: ['slug', 'name'], eq: { id: sm.competition_id }, limit: 1 });
     const [s] = await store.select('soccer_seasons', { columns: ['label'], eq: { id: sm.season_id }, limit: 1 });
-    const D = await loadSeasonData(store, sm.season_id, asOf);
-    const all = await playerProfiles(store, D);
+    const { profiles: all } = await seasonProfiles(store, env, sm.season_id, asOf, 'player');
     const me = all.get(p.id); if (!me) continue;
     out.push({ competition: c, season: s?.label, players_compared: [...all.values()].filter(x => x.minutes_nominal >= MIN_MINUTES).length, eligible_for_percentiles: me.minutes_nominal >= MIN_MINUTES,
       appearances: me.appearances, starts: me.starts, sub_appearances: me.sub_appearances, subbed_off: me.subbed_off, minutes_nominal: me.minutes_nominal,
@@ -715,4 +714,39 @@ export async function dataHealth(store, env) {
     standings_lane: standings ? { last_success_at: standings.last_success_at, health: standings.health } : null,
     news_worker: news ? { last_run_at: news.at, llm: news.llm, by_competition: Object.fromEntries(Object.entries(news.competitions || {}).map(([k, v]) => [k, { candidates: v.candidates, new: v.new, published: v.published, held: v.held }])) } : null,
   }, { source: 'pbe', semantics: 'Production data health computed live from the canonical graph and lane state. Result gaps and optional-component gaps (lineup, stats, play-by-play) are separate: a failed optional component never marks the result or the lane dead.', source_updated_at: new Date(now).toISOString() });
+}
+
+// Season-level DNA cache (KV). The key is the DATA CUTOFF (the last finished match that
+// kicked off before as_of), so any two as_of dates between the same matches share one
+// entry and the profile stays time-safe. Current seasons: 6 h TTL (late lineups, retried
+// components, corrections); historical seasons: 30 days.
+export async function seasonProfiles(store, env, seasonId, asOf, kind) {
+  const [last] = await store.select('soccer_matches', { columns: ['kickoff_at'], eq: { season_id: seasonId, status: 'finished' }, lte: { kickoff_at: asOf }, order: 'kickoff_at.desc', limit: 2 })
+    .then(rows => rows.filter(r => Date.parse(r.kickoff_at) < Date.parse(asOf)));
+  const cutoff = last ? new Date(last.kickoff_at).toISOString() : 'none';
+  const key = `dna:${DNA_VERSION}:${kind}:${seasonId}:${cutoff}`;
+  const kv = env?.SOCCER_STATE;
+  if (kv) { const hit = await kv.get(key, 'json').catch(() => null); if (hit) return { profiles: new Map(hit.profiles), cutoff, cached: true, latest: hit.latest }; }
+  const D = await loadSeasonData(store, seasonId, asOf);
+  const profiles = kind === 'team' ? teamDna(D) : await playerProfiles(store, D);
+  const latest = D.matches.length ? D.matches[D.matches.length - 1].kickoff_at : null;
+  const recent = latest && Date.now() - Date.parse(latest) < 30 * 86400e3;
+  if (kv) await kv.put(key, JSON.stringify({ profiles: [...profiles.entries()], latest }), { expirationTtl: recent ? 6 * 3600 : 30 * 86400 }).catch(() => {});
+  return { profiles, cutoff, cached: false, latest };
+}
+
+// Warm the DNA cache for the latest season of each product competition (soccer-api cron).
+export async function warmDna(store, env) {
+  const out = [];
+  const asOf = new Date().toISOString();
+  for (const slug of ['mls', 'premier-league', 'uefa-champions-league', 'bundesliga']) {
+    const [c] = await store.select('soccer_competitions', { columns: ['id'], eq: { slug }, limit: 1 }); if (!c) continue;
+    const s = (await seasonsOf(store, c.id))[0]; if (!s) continue;
+    for (const kind of ['team', 'player']) { const t0 = Date.now(); const r = await seasonProfiles(store, env, s.id, asOf, kind); out.push({ slug, season: s.label, kind, cached: r.cached, ms: Date.now() - t0, size: r.profiles.size }); }
+  }
+  // The Wyscout 2017/18 Bundesliga season (event-dense; the only lineup season for many players).
+  const [bl] = await store.select('soccer_competitions', { columns: ['id'], eq: { slug: 'bundesliga' }, limit: 1 });
+  const wy = bl ? (await seasonsOf(store, bl.id)).find(x => x.label === '2017/18') : null;
+  if (wy) { const t0 = Date.now(); const r = await seasonProfiles(store, env, wy.id, asOf, 'player'); out.push({ slug: 'bundesliga', season: '2017/18', kind: 'player', cached: r.cached, ms: Date.now() - t0, size: r.profiles.size }); }
+  return out;
 }

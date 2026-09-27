@@ -18,6 +18,7 @@ const byRule = {};
 try {
   for (const path of PAGES) for (const width of [390, 1440]) {
     const page = await browser.newPage();
+    await page.setBypassCSP(true); // production CSP blocks the injected axe script (as it should)
     await page.setViewport({ width, height: 900 });
     await page.goto(BASE + path, { waitUntil: 'networkidle0', timeout: 90000 }).catch(() => {});
     await page.waitForFunction(() => !document.querySelector('.state.loading'), { timeout: 60000 }).catch(() => {});

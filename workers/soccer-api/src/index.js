@@ -21,8 +21,8 @@ const ROUTES = [
   [/^\/v1\/matches$/, (s, _m, q) => R.matches(s, q), 60],
   [/^\/v1\/matches\/([0-9a-f-]{36})$/, (s, m) => R.match(s, m[1]), 60],
   [/^\/v1\/teams\/([a-z0-9-]+)$/, (s, m) => R.team(s, m[1]), 120],
-  [/^\/v1\/teams\/([a-z0-9-]+)\/dna$/, (s, m, q) => R.teamDnaRoute(s, m[1], q), 3600],
-  [/^\/v1\/players\/([a-z0-9-]+)\/dna$/, (s, m, q) => R.playerDnaRoute(s, m[1], q), 3600],
+  [/^\/v1\/teams\/([a-z0-9-]+)\/dna$/, (s, m, q, env) => R.teamDnaRoute(s, m[1], q, env), 3600],
+  [/^\/v1\/players\/([a-z0-9-]+)\/dna$/, (s, m, q, env) => R.playerDnaRoute(s, m[1], q, env), 3600],
   [/^\/v1\/players\/([a-z0-9-]+)$/, (s, m) => R.player(s, m[1]), 600],
   [/^\/v1\/table$/, (s, _m, q) => R.table(s, q), 60],
   [/^\/v1\/news$/, (s, _m, q) => R.news(s, q), 60],
@@ -74,5 +74,10 @@ export default {
       console.error('soccer-api', url.pathname, err.message);
       return respond({ error: 'upstream error' }, 502, 0, origin);
     }
+  },
+  // Warm the DNA cache every 6 hours so visitors never pay the cold computation.
+  async scheduled(event, env, ctx) {
+    const store = storeFromEnv(env);
+    if (store) ctx.waitUntil(R.warmDna(store, env).then(r => console.log('dna warm', JSON.stringify(r))).catch(e => console.error('dna warm failed', e?.message)));
   },
 };

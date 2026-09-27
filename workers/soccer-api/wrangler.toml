@@ -6,6 +6,9 @@ compatibility_date = "2026-09-01"
 compatibility_flags = ["nodejs_compat"]
 workers_dev = true
 
+[triggers]
+crons = ["20 */6 * * *"]
+
 [[kv_namespaces]]
 binding = "SOCCER_STATE"
 id = "3e665f75414849578249f5aed979b868"
