@@ -1,0 +1,26 @@
+# soccer-news — newsroom runtime: detect -> frozen packet -> compose -> gates -> publish/hold.
+# Deploy: docs/RELEASE.md (scripts/release/deploy-worker.sh soccer-news first|upload|deploy <id>).
+# Secrets (wrangler secret put): SOCCER_MODEL_SUPABASE_URL, SOCCER_MODEL_SUPABASE_SERVICE_ROLE_KEY, NEWS_ADMIN_TOKEN
+# Optional editorial pass (off unless both are set): NEWS_LLM=on (var), ANTHROPIC_API_KEY (secret).
+name = "soccer-news"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+[triggers]
+crons = ["7,37 * * * *"]
+
+[vars]
+NEWS_LLM = "off"
+UCL_LEAGUE_PHASE_END = "2027-02-01T00:00:00Z"
+
+[[kv_namespaces]]
+binding = "SOCCER_STATE"
+id = "3e665f75414849578249f5aed979b868"
+
+[limits]
+cpu_ms = 60000
+
+[observability]
+enabled = true
