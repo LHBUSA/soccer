@@ -253,3 +253,15 @@ test('api: sitemap feed lists canonical keys with genuine updated_at only', asyn
   await assert.rejects(R.sitemap(store, 'secrets'), /not found/);
   await store.close();
 });
+
+test('group tables publish only when provider standings equal our canonical results', async () => {
+  const { verifyGroupStandings } = R;
+  const computed = new Map([['a', { played: 2, won: 2, drawn: 0, lost: 0, gf: 5, ga: 1, points: 6 }], ['b', { played: 2, won: 0, drawn: 0, lost: 2, gf: 1, ga: 5, points: 0 }]]);
+  const src = [{ team_id: 'a', rank: 1, played: 2, won: 2, drawn: 0, lost: 0, goals_for: 5, goals_against: 1, points: 6, deductions: null }, { team_id: 'b', rank: 2, played: 2, won: 0, drawn: 0, lost: 2, goals_for: 1, goals_against: 5, points: 0, deductions: null }];
+  assert.equal(verifyGroupStandings(src, computed).verified, true);
+  const off = verifyGroupStandings([{ ...src[0], goals_for: 6 }, src[1]], computed);
+  assert.equal(off.verified, false); assert.deepEqual(off.mismatches[0], { team_id: 'a', field: 'goals_for', source: 6, computed: 5 });
+  assert.equal(verifyGroupStandings([{ ...src[0], points: 3, deductions: 3 }, src[1]], computed).verified, true); // provider applied a 3-point deduction
+  assert.equal(verifyGroupStandings([src[0], { ...src[1], rank: 1 }], computed).verified, false); // duplicate rank
+  assert.equal(verifyGroupStandings([], computed).verified, false);
+});

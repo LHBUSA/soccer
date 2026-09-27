@@ -44,8 +44,8 @@ export function seasonLabel(year, format) {
 // table); All-Star / Combined / anything unrecognised -> excluded entirely.
 export function seasonTypeRole(name) {
   const n = String(name || '');
-  if (/^Regular Season$/i.test(n)) return 'league';
-  if (/playoff|final|cup/i.test(n) && !/all-star/i.test(n)) return 'playoff';
+  if (/^(Regular Season|League Phase)$/i.test(n)) return 'league';
+  if (/playoff|final|cup|knockout|round of \d+/i.test(n) && !/all-star/i.test(n)) return 'playoff';
   return 'excluded';
 }
 

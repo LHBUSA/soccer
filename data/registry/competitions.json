@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026-09-27.5",
+  "registry_version": "2026-09-28.1",
   "note": "Reviewed canonical metadata for competitions and the provider ids proven to denote them. Provider ids here are crosswalks, not identity.",
   "competitions": [
     {
@@ -232,7 +232,12 @@
         "league": "uefa.champions",
         "id": "775",
         "enabled": true,
-        "may_found": true
+        "may_found": true,
+        "stage_by_type": true,
+        "standings": {
+          "group_type": "league_phase",
+          "season_type": 1
+        }
       },
       "external_ids": [
         {
@@ -281,7 +286,11 @@
         "id": "770",
         "enabled": true,
         "may_found": true,
-        "stage_by_type": true
+        "stage_by_type": true,
+        "standings": {
+          "group_type": "conference",
+          "season_type": 1
+        }
       },
       "external_ids": [
         {

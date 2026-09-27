@@ -401,6 +401,31 @@ export async function player(store, slug) {
   });
 }
 
+// Season groups for a season: MLS conferences, UCL league phase (from the standings lane).
+async function seasonGroups(store, seasonId) {
+  return store.select('soccer_season_groups', { columns: ['id', 'group_key', 'name', 'abbreviation', 'group_type', 'updated_at'], eq: { season_id: seasonId }, order: 'group_key.asc' });
+}
+
+// Verified group table. The provider (ESPN) supplies membership, official rank (its
+// application of the competition's tie-breakers) and zone notes; PropBetEdge publishes
+// the table ONLY if every team's P W D L GF GA PTS equals the table recomputed from our
+// own canonical results. Any disagreement -> no rows, mismatches listed.
+export const COUNT_KEYS = [['played', 'played'], ['won', 'won'], ['drawn', 'drawn'], ['lost', 'lost'], ['goals_for', 'gf'], ['goals_against', 'ga'], ['points', 'points']];
+export function verifyGroupStandings(source, computedById) {
+  const mismatches = [];
+  for (const s of source) {
+    const c = computedById.get(s.team_id) || { played: 0, won: 0, drawn: 0, lost: 0, gf: 0, ga: 0, points: 0 };
+    const pointsWant = s.points === null ? null : s.points + (s.deductions || 0); // deductions are applied by the provider, not in results
+    for (const [sk, ck] of COUNT_KEYS) {
+      const want = sk === 'points' ? pointsWant : s[sk];
+      if (want === null || want === undefined || Number(want) !== Number(c[ck])) mismatches.push({ team_id: s.team_id, field: sk, source: want ?? null, computed: c[ck] });
+    }
+  }
+  const ranks = source.map(s => s.rank);
+  if (ranks.some(r => !Number.isInteger(r)) || new Set(ranks).size !== ranks.length) mismatches.push({ field: 'rank', source: 'missing or duplicate provider ranks' });
+  return { verified: source.length > 0 && mismatches.length === 0, mismatches };
+}
+
 export async function table(store, q) {
   const c = await competitionBySlug(store, q.competition || 'bundesliga');
   const seasons = await seasonsOf(store, c.id);
@@ -410,13 +435,43 @@ export async function table(store, q) {
   const played = leagueStages.length ? await store.select('soccer_matches', { columns: ['id', 'home_team_id', 'away_team_id', 'home_score', 'away_score', 'kickoff_at', 'updated_at', 'result_provider'], eq: { season_id: season.id, status: 'finished' }, in: { stage_id: leagueStages } }) : [];
   const valid = played.filter(x => x.home_score !== null && x.away_score !== null);
   const tb = tiebreakOf(c.slug);
-  const rows = computeTable(valid, { tiebreak: tb });
-  const teams = await teamsById(store, rows.map(r => r.team_id));
+  const computed = computeTable(valid, { tiebreak: tb });
+  const groups = await seasonGroups(store, season.id);
+  const leaguePhase = groups.find(g => g.group_type === 'league_phase');
+  const groupKey = leaguePhase ? leaguePhase.group_key : (q.group && q.group !== 'overall' ? q.group : null);
+  const groupList = groups.map(g => ({ key: g.group_key, name: g.name, type: g.group_type }));
+  const shapeTeam = t => ({ slug: t?.slug, name: t?.name, short_name: t?.short_name, ...(t?.crest ? { crest: t.crest } : {}) });
+
+  if (groupKey) {
+    const g = groups.find(x => x.group_key === groupKey);
+    if (!g) throw new NotFound(`group ${groupKey}`);
+    const source = (await store.select('soccer_source_standings', { columns: ['team_id', 'rank', 'played', 'won', 'drawn', 'lost', 'goals_for', 'goals_against', 'goal_difference', 'points', 'deductions', 'note', 'note_rank', 'observed_at'], eq: { group_id: g.id, provider: 'espn' } }))
+      .sort((a, b) => (a.rank ?? 999) - (b.rank ?? 999));
+    const byId = new Map(computed.map(r => [r.team_id, r]));
+    const check = verifyGroupStandings(source, byId);
+    const teams = await teamsById(store, source.map(s => s.team_id));
+    const rows = check.verified ? source.map(s => { const r = byId.get(s.team_id); return {
+      position: s.rank, team: shapeTeam(teams.get(s.team_id)), played: r.played, won: r.won, drawn: r.drawn, lost: r.lost, points: r.points - (s.deductions || 0), goals_for: r.gf, goals_against: r.ga, goal_difference: r.gd, form: r.form,
+      ...(s.deductions ? { deductions: s.deductions } : {}), zone: s.note ? { label: s.note, rank: s.note_rank } : null,
+    }; }) : [];
+    const kind = g.group_type === 'league_phase' ? 'league phase' : 'conference';
+    return E({
+      competition: c.slug, season: season.label, group: { key: g.group_key, name: g.name, type: g.group_type }, groups: groupList, view: g.group_key,
+      matches_counted: valid.length, tiebreak: `official ${c.slug === 'mls' ? 'MLS' : 'UEFA'} order as published by the provider`, rows,
+      verification: { verified: check.verified, provider: 'espn', teams: source.length, mismatches: check.mismatches.slice(0, 20), provider_observed_at: maxTs(source.map(s => s.observed_at)) },
+    }, {
+      source: 'pbe', semantics: `${g.name}: ${kind} membership, position (the competition's official tie-breakers as applied by the provider) and zone notes come from ESPN's published standings (secondary source); every played/won/drawn/lost/goals/points figure is verified against the table PropBetEdge computes from its own canonical results before anything is shown.${check.verified ? '' : ' Verification failed, so no table is shown.'}`,
+      source_updated_at: maxTs([...valid.map(x => x.updated_at), ...source.map(s => s.observed_at)]), attribution: [...new Set([...valid.map(x => x.result_provider), 'Standings: ESPN (secondary source)'])],
+      coverage: check.verified ? COVERAGE.OK : COVERAGE.UNAVAILABLE,
+      coverage_notes: check.verified ? [] : [source.length ? `Published standings disagree with canonical results for ${new Set(check.mismatches.map(m => m.team_id).filter(Boolean)).size} team(s); the table is withheld until they agree.` : 'No published standings stored for this group yet.'],
+    });
+  }
+  const teams = await teamsById(store, computed.map(r => r.team_id));
   return E({
-    competition: c.slug, season: season.label, matches_counted: valid.length, tiebreak: TIEBREAKS[tb],
-    rows: rows.map((r, i) => ({ position: i + 1, team: { slug: teams.get(r.team_id)?.slug, name: teams.get(r.team_id)?.name, short_name: teams.get(r.team_id)?.short_name, ...(teams.get(r.team_id)?.crest ? { crest: teams.get(r.team_id).crest } : {}) }, played: r.played, won: r.won, drawn: r.drawn, lost: r.lost, points: r.points, goals_for: r.gf, goals_against: r.ga, goal_difference: r.gd, form: r.form })),
+    competition: c.slug, season: season.label, groups: groupList, view: 'overall', matches_counted: valid.length, tiebreak: TIEBREAKS[tb],
+    rows: computed.map((r, i) => ({ position: i + 1, team: shapeTeam(teams.get(r.team_id)), played: r.played, won: r.won, drawn: r.drawn, lost: r.lost, points: r.points, goals_for: r.gf, goals_against: r.ga, goal_difference: r.gd, form: r.form })),
   }, {
-    source: 'pbe', semantics: `Table computed by PropBetEdge from canonical finished league-stage results (play-offs excluded). Order: ${TIEBREAKS[tb]} (head-to-head and deductions not applied). Form = last five counted results, newest first.${tb === 'mls' ? ' MLS: single overall table across both conferences (conference standings are not stored).' : ''}`,
+    source: 'pbe', semantics: `Table computed by PropBetEdge from canonical finished league-stage results (play-offs excluded). Order: ${TIEBREAKS[tb]} (head-to-head and deductions not applied). Form = last five counted results, newest first.${tb === 'mls' ? ` MLS: overall table across both conferences${groupList.length ? '; conference tables are available' : ''}.` : ''}`,
     source_updated_at: maxTs(valid.map(x => x.updated_at)), attribution: [...new Set(valid.map(x => x.result_provider))],
     coverage: valid.length ? COVERAGE.OK : COVERAGE.UNAVAILABLE,
   });

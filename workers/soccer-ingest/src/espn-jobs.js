@@ -17,7 +17,7 @@ import { archiveCapture } from '../../shared/archive.js';
 import { politeFetch } from '../../shared/http.js';
 import * as espn from '../../providers/espn.js';
 import { captureRow } from './openligadb-lane.js';
-import { alignOpenLigaScorersToEspn, ensureCompetitionSeason, ingestEspnMatch, resolveEspnTeams, upsertEspnFixtures } from './espn-lane.js';
+import { alignOpenLigaScorersToEspn, ensureCompetitionSeason, ingestEspnMatch, resolveEspnTeams, retryEnrichment, upsertEspnFixtures } from './espn-lane.js';
 
 export const ESPN_COMPETITIONS = ['bundesliga', 'premier-league', 'uefa-champions-league', 'uefa-europa-league', 'la-liga', 'serie-a', 'ligue-1', 'mls'];
 export const ESPN_LANES = ESPN_COMPETITIONS.map(slug => ({ name: `espn_${slug.replace(/-/g, '_')}`, competition: slug }));
@@ -117,6 +117,8 @@ export async function runEspnLane(lane, { store, storage, registry, areas = { ar
       stats.match_results.push(r.summary);
       if (r.final) { cursor.done[id] = 1; stats.matches_detailed += 1; }
     }
+    // Spare budget retries optional components (lineups/stats/plays) that failed earlier.
+    if (client.budget - client.used >= 20) stats.enrichment_retry = await retryEnrichment(store, { comp, league, year: cursor.season_year, cursor, teamMap: teamRes.teamMap, client, now });
     // Where OpenLigaDB also covers the season, bridge its queued scorer ids.
     if (stats.matches_detailed && comp.external_ids.some(x => x.provider === 'openligadb')) {
       const { seasonId } = await ensureCompetitionSeason(store, { comp, year: cursor.season_year });

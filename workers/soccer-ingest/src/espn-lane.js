@@ -47,9 +47,12 @@ export async function ensureCompetitionSeason(store, { comp, year }) {
     await syncRows(store, { table: 'soccer_season_external_ids', key: ['provider', 'external_id'], compare: ['season_id'], rows: [{ provider: P, external_id: sExt, season_id: seasonId, method: rows.length ? 'reviewed' : 'founding', evidence: `competition ${comp.slug} season label ${label}`, capture_id: null }] });
   }
   const stageId = childId('stage', seasonId, comp.comp_type === 'league' ? 'regular-season' : 'espn-all');
-  const stages = [{ id: stageId, season_id: seasonId, name: comp.comp_type === 'league' ? 'Regular Season' : 'All rounds (ESPN)', stage_type: comp.comp_type === 'league' ? 'league' : 'group', stage_order: 1 }];
+  // A cup that stages by ESPN season type (UCL: "League Phase" then knockout rounds)
+  // keeps its stage id but its first stage IS a league phase; knockouts go to the playoff stage.
+  const leaguePhase = comp.comp_type !== 'league' && comp.espn?.stage_by_type;
+  const stages = [{ id: stageId, season_id: seasonId, name: comp.comp_type === 'league' ? 'Regular Season' : leaguePhase ? 'League phase' : 'All rounds (ESPN)', stage_type: comp.comp_type === 'league' || leaguePhase ? 'league' : 'group', stage_order: 1 }];
   const playoffStageId = comp.espn?.stage_by_type ? childId('stage', seasonId, 'playoffs') : null;
-  if (playoffStageId) stages.push({ id: playoffStageId, season_id: seasonId, name: 'Playoffs', stage_type: 'playoff', stage_order: 2 });
+  if (playoffStageId) stages.push({ id: playoffStageId, season_id: seasonId, name: leaguePhase ? 'Knockout rounds' : 'Playoffs', stage_type: 'playoff', stage_order: 2 });
   await syncRows(store, { table: 'soccer_stages', key: ['id'], rows: stages });
   return { compId, seasonId, stageId, playoffStageId };
 }
@@ -238,119 +241,195 @@ export async function reevaluateQueuedEspnAthletes(store, { client, registry, ar
   return out;
 }
 
-export async function ingestEspnMatch(store, { comp, league, year, eventId, fixture, teamMap, client, now = Date.now() }) {
+// Match detail, split into COMPONENTS so an optional component can fail, be marked
+// unavailable in soccer_match_enrichment and be retried alone:
+//   result (status + scores; always first and never undone by a later component)
+//   lineups (per side), stats (per side), plays.
+// `only` (Set of 'lineups' | 'stats' | 'plays') re-runs just those components for a
+// match already known to be finished (enrichment retry); the result is not refetched.
+export async function ingestEspnMatch(store, { comp, league, year, eventId, fixture, teamMap, client, now = Date.now(), only = null }) {
   const base = `${espn.CORE}/${league}/events/${eventId}/competitions/${eventId}`;
   const summary = { event: eventId };
   let changed = 0;
   const count = s => { changed += (s?.inserted || 0) + (s?.updated || 0); return s; };
+  const want = c => !only || only.has(c);
+  const outcomes = {}; // component -> { status, error?, detail? }
   const [xw] = await store.select('soccer_match_external_ids', { columns: ['match_id'], eq: { provider: P, external_id: eventId }, limit: 1 });
   if (!xw) return { final: false, changed, summary: { ...summary, skipped: 'no canonical match yet' } };
   const matchId = xw.match_id;
-  const [match] = await store.select('soccer_matches', { columns: ['id', 'competition_id', 'season_id', 'stage_id', 'matchday', 'round_label', 'venue_id', 'home_team_id', 'away_team_id', 'result_provider'], eq: { id: matchId }, limit: 1 });
-  const { json: stJson, capture: stCap } = await client.get(`${base}/status`);
-  const status = espn.parseStatus(stJson);
-  summary.status = status;
-  if (status === 'scheduled' || status === 'live' || status === 'unknown') { await client.flush(); return { final: false, changed, summary }; }
-  const scores = {};
-  if (status === 'finished') for (const side of ['h', 'a']) { const { json } = await client.get(`${base}/competitors/${fixture[side]}/score`); scores[side] = Number.isFinite(Number(json.value)) ? Number(json.value) : null; }
-  await client.flush();
+  const [match] = await store.select('soccer_matches', { columns: ['id', 'competition_id', 'season_id', 'stage_id', 'matchday', 'round_label', 'venue_id', 'home_team_id', 'away_team_id', 'result_provider', 'status'], eq: { id: matchId }, limit: 1 });
   const home = teamMap.get(fixture.h); const away = teamMap.get(fixture.a);
-  const owned = match.result_provider === P;
-  if (owned) {
-    count(await syncRows(store, { table: 'soccer_matches', key: ['id'], provider: P, captureId: stCap.capture_id, touch: true, rows: [{ ...match, kickoff_at: fixture.d, status, home_score: scores.h ?? null, away_score: scores.a ?? null, home_score_ht: null, away_score_ht: null, home_score_et: null, away_score_et: null, home_pens: null, away_pens: null, duration: status === 'finished' ? 'regular' : null, winner_team_id: status === 'finished' && scores.h !== scores.a ? (scores.h > scores.a ? home : away) : null, result_provider: P }] }));
-  }
-  count(await syncRows(store, { table: 'soccer_match_source_results', key: ['match_id', 'provider'], compare: ['status', 'home_score', 'away_score'], provider: P, captureId: stCap.capture_id, rows: [{ match_id: matchId, provider: P, status, home_score: scores.h ?? null, away_score: scores.a ?? null, home_score_ht: null, away_score_ht: null, capture_id: stCap.capture_id, observed_at: stCap.captured_at }] }));
-  if (status !== 'finished') return { final: true, changed, summary };
-
-  // Rosters -> athletes, lineups, substitutions (where no other provider supplied them)
-  const rosters = {};
-  for (const side of ['h', 'a']) {
-    let capture = null;
-    try {
-      const res = await client.get(`${base}/competitors/${fixture[side]}/roster`);
-      capture = res.capture;
-      rosters[side] = { ...espn.parseRoster(res.json), capture_id: capture.capture_id };
-    } catch (err) {
-      if (!(err instanceof espn.EspnShapeError)) throw err;
-      // No usable roster for this side (missing entries or a non-JSON page): the lineup is
-      // unavailable (never invented); the match goes on.
-      rosters[side] = { entries: [], formation: null, capture_id: capture?.capture_id || null, unavailable: true };
-      summary.lineups_unavailable = [...(summary.lineups_unavailable || []), side === 'h' ? 'home' : 'away'];
+  if (!only) {
+    const { json: stJson, capture: stCap } = await client.get(`${base}/status`);
+    const status = espn.parseStatus(stJson);
+    summary.status = status;
+    if (status === 'scheduled' || status === 'live' || status === 'unknown') { await client.flush(); return { final: false, changed, summary }; }
+    const scores = {};
+    if (status === 'finished') for (const side of ['h', 'a']) { const { json } = await client.get(`${base}/competitors/${fixture[side]}/score`); scores[side] = Number.isFinite(Number(json.value)) ? Number(json.value) : null; }
+    await client.flush();
+    const owned = match.result_provider === P;
+    if (owned) {
+      count(await syncRows(store, { table: 'soccer_matches', key: ['id'], provider: P, captureId: stCap.capture_id, touch: true, rows: [{ ...match, kickoff_at: fixture.d, status, home_score: scores.h ?? null, away_score: scores.a ?? null, home_score_ht: null, away_score_ht: null, home_score_et: null, away_score_et: null, home_pens: null, away_pens: null, duration: status === 'finished' ? 'regular' : null, winner_team_id: status === 'finished' && scores.h !== scores.a ? (scores.h > scores.a ? home : away) : null, result_provider: P }] }));
     }
+    count(await syncRows(store, { table: 'soccer_match_source_results', key: ['match_id', 'provider'], compare: ['status', 'home_score', 'away_score'], provider: P, captureId: stCap.capture_id, rows: [{ match_id: matchId, provider: P, status, home_score: scores.h ?? null, away_score: scores.a ?? null, home_score_ht: null, away_score_ht: null, capture_id: stCap.capture_id, observed_at: stCap.captured_at }] }));
+    if (status !== 'finished') return { final: true, changed, summary };
+  } else summary.retry = [...only];
+
+  // ---- lineups (rosters -> athletes, lineups, substitutions), where no other provider supplied them
+  if (want('lineups')) {
+    const lineups = await store.select('soccer_lineups', { columns: ['id', 'team_id', 'provider'], eq: { match_id: matchId } });
+    const rosters = {};
+    for (const side of ['h', 'a']) {
+      const key = side === 'h' ? 'lineup_home' : 'lineup_away';
+      const teamId = side === 'h' ? home : away;
+      if (lineups.some(l => l.team_id === teamId && l.provider !== P)) { outcomes[key] = { status: 'not_applicable', detail: { reason: 'lineup supplied by a stronger provider' } }; rosters[side] = { entries: [], skip: true }; continue; }
+      let capture = null;
+      try {
+        const res = await client.get(`${base}/competitors/${fixture[side]}/roster`);
+        capture = res.capture;
+        rosters[side] = { ...espn.parseRoster(res.json), capture_id: capture.capture_id };
+        outcomes[key] = rosters[side].entries.length ? { status: 'complete', detail: { entries: rosters[side].entries.length } } : { status: 'empty', detail: { reason: 'roster published without entries' } };
+      } catch (err) {
+        if (!(err instanceof espn.EspnShapeError)) throw err;
+        // No usable roster (missing entries or a non-JSON page): unavailable, never invented.
+        rosters[side] = { entries: [], formation: null, capture_id: capture?.capture_id || null, unavailable: true };
+        outcomes[key] = { status: 'unavailable', error: String(err.message).slice(0, 300) };
+      }
+    }
+    await client.flush();
+    const athleteIds = [...new Set(Object.values(rosters).flatMap(r => r.entries.flatMap(e => [e.athlete_id, e.sub_out?.replacement_id].filter(Boolean))))];
+    const teamOf = new Map();
+    for (const side of ['h', 'a']) for (const e of rosters[side].entries) teamOf.set(e.athlete_id, { match_id: matchId, team_id: side === 'h' ? home : away });
+    const ath = await resolveAthletes(store, { athleteIds, client, league, year, registry: client.registry, areas: client.areas, teamOf });
+    summary.athletes = { in_rosters: athleteIds.length, founded: ath.founded, corroborated: ath.corroborated, queued: ath.queued };
+    const lpRows = []; const lineupRows = []; const subRows = []; const lpContext = [];
+    for (const side of ['h', 'a']) {
+      const teamId = side === 'h' ? home : away;
+      if (rosters[side].skip || rosters[side].unavailable || !rosters[side].entries.length) continue;
+      const lineupId = childId('lineup', matchId, teamId);
+      lineupRows.push({ id: lineupId, match_id: matchId, team_id: teamId, formation: rosters[side].formation, manager_id: null, provider: P, capture_id: rosters[side].capture_id });
+      const seen = new Set();
+      for (const e of rosters[side].entries) {
+        const pid = ath.map.get(e.athlete_id);
+        if (!pid || seen.has(pid)) continue; seen.add(pid);
+        lpRows.push({ lineup_id: lineupId, player_id: pid, is_starter: e.starter, shirt_number: e.jersey, position: null, is_captain: null });
+        lpContext.push({ match_id: matchId, team_id: teamId, player_id: pid, is_starter: e.starter });
+        if (e.sub_out?.replacement_id && ath.map.get(e.sub_out.replacement_id)) {
+          const pin = ath.map.get(e.sub_out.replacement_id);
+          subRows.push({ id: childId('substitution', matchId, teamId, pid, pin), match_id: matchId, team_id: teamId, player_out_id: pid, player_in_id: pin, minute: e.sub_out.clock_s !== null ? footballMinute('1H', e.sub_out.clock_s) : null, provider: P, capture_id: rosters[side].capture_id });
+        }
+      }
+    }
+    // Upserts only: a failed side never deletes rows a previous run wrote.
+    count(await syncRows(store, { table: 'soccer_lineups', key: ['id'], rows: lineupRows }));
+    count(await syncRows(store, { table: 'soccer_lineup_players', key: ['lineup_id', 'player_id'], rows: lpRows }));
+    count(await syncRows(store, { table: 'soccer_substitutions', key: ['id'], rows: subRows }));
+    if (lpContext.length) await deriveMatchStats(store, { matches: [{ id: matchId, duration: 'regular' }], events: [], lineupPlayers: lpContext, subs: subRows });
   }
-  await client.flush();
-  const athleteIds = [...new Set(Object.values(rosters).flatMap(r => r.entries.flatMap(e => [e.athlete_id, e.sub_out?.replacement_id].filter(Boolean))))];
-  const teamOf = new Map();
-  for (const side of ['h', 'a']) for (const e of rosters[side].entries) teamOf.set(e.athlete_id, { match_id: matchId, team_id: side === 'h' ? home : away });
-  const ath = await resolveAthletes(store, { athleteIds, client, league, year, registry: client.registry, areas: client.areas, teamOf });
-  summary.athletes = { in_rosters: athleteIds.length, founded: ath.founded, corroborated: ath.corroborated, queued: ath.queued };
-  const lineups = await store.select('soccer_lineups', { columns: ['id', 'team_id', 'provider'], eq: { match_id: matchId } });
-  const lpRows = []; const lineupRows = []; const subRows = []; const lpContext = [];
-  for (const side of ['h', 'a']) {
-    const teamId = side === 'h' ? home : away;
-    if (lineups.some(l => l.team_id === teamId && l.provider !== P)) continue;
-    if (rosters[side].unavailable) continue;
-    const lineupId = childId('lineup', matchId, teamId);
-    lineupRows.push({ id: lineupId, match_id: matchId, team_id: teamId, formation: rosters[side].formation, manager_id: null, provider: P, capture_id: rosters[side].capture_id });
-    const seen = new Set();
-    for (const e of rosters[side].entries) {
-      const pid = ath.map.get(e.athlete_id);
-      if (!pid || seen.has(pid)) continue; seen.add(pid);
-      lpRows.push({ lineup_id: lineupId, player_id: pid, is_starter: e.starter, shirt_number: e.jersey, position: null, is_captain: null });
-      lpContext.push({ match_id: matchId, team_id: teamId, player_id: pid, is_starter: e.starter });
-      if (e.sub_out?.replacement_id && ath.map.get(e.sub_out.replacement_id)) {
-        const pin = ath.map.get(e.sub_out.replacement_id);
-        subRows.push({ id: childId('substitution', matchId, teamId, pid, pin), match_id: matchId, team_id: teamId, player_out_id: pid, player_in_id: pin, minute: e.sub_out.clock_s !== null ? footballMinute('1H', e.sub_out.clock_s) : null, provider: P, capture_id: rosters[side].capture_id });
+
+  // ---- team statistics (source facts)
+  if (want('stats')) {
+    const statRows = [];
+    for (const side of ['h', 'a']) {
+      const key = side === 'h' ? 'stats_home' : 'stats_away';
+      let json;
+      try { ({ json } = await client.get(`${base}/competitors/${fixture[side]}/statistics`)); } catch (err) {
+        if (!(err instanceof espn.EspnShapeError)) throw err;
+        outcomes[key] = { status: 'unavailable', error: String(err.message).slice(0, 300) };
+        continue; // shown as missing, never zero
+      }
+      const parsed = Object.entries(espn.parseTeamStats(json));
+      outcomes[key] = parsed.length ? { status: 'complete', detail: { stats: parsed.length } } : { status: 'empty', detail: { reason: 'no recognised statistics published' } };
+      for (const [k, v] of parsed) statRows.push({ match_id: matchId, team_id: side === 'h' ? home : away, stat_key: k, value: v, basis: 'source', provider: P, derivation_version: null });
+    }
+    await client.flush();
+    count(await syncRows(store, { table: 'soccer_team_match_stats', key: ['match_id', 'team_id', 'stat_key', 'basis'], compare: ['value', 'provider'], rows: statRows }));
+  }
+
+  // ---- plays -> ledger, unless a richer ledger (Wyscout) already covers the match
+  if (want('plays')) {
+    const richer = await store.select('soccer_match_external_ids', { columns: ['provider'], eq: { match_id: matchId, provider: 'wyscout' }, limit: 1 });
+    if (richer.length) outcomes.plays = { status: 'not_applicable', detail: { reason: 'Wyscout event ledger covers this match' } };
+    else {
+      let items = []; let capId = null; let page = 1; let pages = 1; let failed = null;
+      try {
+        do { const { json, capture } = await client.get(espn.urls.plays(league, eventId, page)); capId = capId || capture.capture_id; items.push(...(json.items || [])); pages = json.pageCount || 1; page += 1; } while (page <= pages);
+      } catch (err) {
+        if (!(err instanceof espn.EspnShapeError)) throw err;
+        items = []; failed = String(err.message).slice(0, 300); // never write a partial ledger
+      }
+      await client.flush();
+      const { events, unmapped } = espn.parsePlays(items, { eventId });
+      outcomes.plays = failed ? { status: 'unavailable', error: failed } : events.length ? { status: 'complete', detail: { events: events.length, pages: pages } } : { status: 'empty', detail: { reason: 'play-by-play published without plays' } };
+      if (events.length) {
+        const participantIds = [...new Set(events.map(e => e.player_external_id).filter(Boolean))];
+        const pmap = await resolveMany(store, 'player', P, participantIds);
+        const obs = new Date(now).toISOString();
+        const rows = events.map(e => ({
+          id: mintId('event', P, e.source_event_id), match_id: matchId, sequence: e.sequence, period: e.period, clock_seconds: e.clock_seconds, minute: e.minute,
+          team_id: teamMap.get(e.team_external_id) || null, player_id: e.player_external_id ? pmap.get(e.player_external_id) || null : null,
+          event_type: e.event_type, subtype: e.subtype, outcome: e.outcome, body_part: e.body_part, under_pressure: null, set_piece: e.set_piece,
+          is_goal: e.is_goal, is_own_goal: e.is_own_goal, card: e.card, qualifiers: e.qualifiers, possession_id: null,
+          source_x: e.source_x, source_y: e.source_y, source_end_x: e.source_end_x, source_end_y: e.source_end_y, source_coordinate_system: e.source_coordinate_system,
+          x_m: e.x_m, y_m: e.y_m, end_x_m: e.end_x_m, end_y_m: e.end_y_m, source_family: P, source_event_id: e.source_event_id,
+          observed_at: obs, event_at: null, raw_payload_hash: payloadHash(e.raw), capture_id: capId, parser_version: espn.ESPN_PARSER_VERSION,
+        }));
+        summary.plays = { events: rows.length, with_coordinates: rows.filter(r => r.x_m !== null).length, unmapped_types: unmapped, goals: rows.filter(r => r.is_goal).length };
+        count(await syncRows(store, { table: 'soccer_match_events', key: ['source_family', 'source_event_id'], rows, compare: ['raw_payload_hash', 'match_id', 'player_id', 'team_id', 'sequence'], provider: P, captureId: capId, chunk: 1000 }));
       }
     }
   }
-  count(await syncRows(store, { table: 'soccer_lineups', key: ['id'], rows: lineupRows }));
-  count(await syncRows(store, { table: 'soccer_lineup_players', key: ['lineup_id', 'player_id'], rows: lpRows }));
-  count(await syncRows(store, { table: 'soccer_substitutions', key: ['id'], rows: subRows }));
-  if (lpContext.length) await deriveMatchStats(store, { matches: [{ id: matchId, duration: 'regular' }], events: [], lineupPlayers: lpContext, subs: subRows });
-
-  // Team statistics (source facts)
-  const statRows = [];
-  for (const side of ['h', 'a']) {
-    let json;
-    try { ({ json } = await client.get(`${base}/competitors/${fixture[side]}/statistics`)); } catch (err) {
-      if (!(err instanceof espn.EspnShapeError)) throw err;
-      summary.stats_unavailable = [...(summary.stats_unavailable || []), side === 'h' ? 'home' : 'away'];
-      continue; // statistics unavailable for this side: shown as missing, never zero
-    }
-    for (const [k, v] of Object.entries(espn.parseTeamStats(json))) statRows.push({ match_id: matchId, team_id: side === 'h' ? home : away, stat_key: k, value: v, basis: 'source', provider: P, derivation_version: null });
-  }
-  await client.flush();
-  count(await syncRows(store, { table: 'soccer_team_match_stats', key: ['match_id', 'team_id', 'stat_key', 'basis'], compare: ['value', 'provider'], rows: statRows }));
-
-  // Plays -> ledger, unless a richer ledger (Wyscout) already covers the match.
-  const richer = await store.select('soccer_match_external_ids', { columns: ['provider'], eq: { match_id: matchId, provider: 'wyscout' }, limit: 1 });
-  if (!richer.length) {
-    let items = []; let capId = null; let page = 1; let pages = 1;
-    try {
-      do { const { json, capture } = await client.get(espn.urls.plays(league, eventId, page)); capId = capId || capture.capture_id; items.push(...(json.items || [])); pages = json.pageCount || 1; page += 1; } while (page <= pages);
-    } catch (err) {
-      if (!(err instanceof espn.EspnShapeError)) throw err;
-      items = []; summary.plays_unavailable = true; // never write a partial ledger
-    }
-    await client.flush();
-    const { events, unmapped } = espn.parsePlays(items, { eventId });
-    const participantIds = [...new Set(events.map(e => e.player_external_id).filter(Boolean))];
-    const pmap = await resolveMany(store, 'player', P, participantIds);
-    const obs = new Date(now).toISOString();
-    const rows = events.map(e => ({
-      id: mintId('event', P, e.source_event_id), match_id: matchId, sequence: e.sequence, period: e.period, clock_seconds: e.clock_seconds, minute: e.minute,
-      team_id: teamMap.get(e.team_external_id) || null, player_id: e.player_external_id ? pmap.get(e.player_external_id) || null : null,
-      event_type: e.event_type, subtype: e.subtype, outcome: e.outcome, body_part: e.body_part, under_pressure: null, set_piece: e.set_piece,
-      is_goal: e.is_goal, is_own_goal: e.is_own_goal, card: e.card, qualifiers: e.qualifiers, possession_id: null,
-      source_x: e.source_x, source_y: e.source_y, source_end_x: e.source_end_x, source_end_y: e.source_end_y, source_coordinate_system: e.source_coordinate_system,
-      x_m: e.x_m, y_m: e.y_m, end_x_m: e.end_x_m, end_y_m: e.end_y_m, source_family: P, source_event_id: e.source_event_id,
-      observed_at: obs, event_at: null, raw_payload_hash: payloadHash(e.raw), capture_id: capId, parser_version: espn.ESPN_PARSER_VERSION,
-    }));
-    summary.plays = { events: rows.length, with_coordinates: rows.filter(r => r.x_m !== null).length, unmapped_types: unmapped, goals: rows.filter(r => r.is_goal).length };
-    count(await syncRows(store, { table: 'soccer_match_events', key: ['source_family', 'source_event_id'], rows, compare: ['raw_payload_hash', 'match_id', 'player_id', 'team_id', 'sequence'], provider: P, captureId: capId, chunk: 1000 }));
-  }
+  summary.enrichment = Object.fromEntries(Object.entries(outcomes).map(([k, v]) => [k, v.status]));
+  await recordEnrichment(store, { matchId, outcomes, now });
   return { final: true, changed, summary };
+}
+
+// Retry schedule for a component that is not complete: 30 min, doubling, capped at
+// 24 h; after MAX_ATTEMPTS the component stays as recorded (reported, not retried).
+export const MAX_ENRICH_ATTEMPTS = 8;
+export function nextRetryAt(attempts, now) {
+  return new Date(now + Math.min(24 * 3600e3, 30 * 60e3 * 2 ** Math.max(0, attempts - 1))).toISOString();
+}
+
+export async function recordEnrichment(store, { matchId, outcomes, now = Date.now() }) {
+  const keys = Object.keys(outcomes);
+  if (!keys.length) return;
+  const prev = new Map((await store.select('soccer_match_enrichment', { columns: ['component', 'attempts', 'status'], eq: { match_id: matchId, provider: P } })).map(r => [r.component, r]));
+  const iso = new Date(now).toISOString();
+  const rows = keys.map(component => {
+    const o = outcomes[component]; const was = prev.get(component);
+    const attempts = (was?.attempts || 0) + 1;
+    const settled = o.status === 'complete' || o.status === 'not_applicable';
+    return { match_id: matchId, component, provider: P, status: o.status, attempts, last_attempt_at: iso,
+      next_retry_at: settled || attempts >= MAX_ENRICH_ATTEMPTS ? null : nextRetryAt(attempts, now),
+      last_error: o.error || null, detail: o.detail || {}, updated_at: iso };
+  });
+  // The table's trigger keeps a 'complete' component complete whatever a later attempt says.
+  await store.upsert('soccer_match_enrichment', rows, ['match_id', 'component', 'provider']);
+}
+
+// Retry components that are unavailable/empty and due, for one competition season.
+export async function retryEnrichment(store, { comp, league, year, cursor, teamMap, client, now = Date.now(), maxMatches = 6 }) {
+  const out = { due: 0, retried: 0, completed: 0, still_missing: 0 };
+  const { seasonId } = await ensureCompetitionSeason(store, { comp, year });
+  const seasonMatches = new Set((await store.select('soccer_matches', { columns: ['id'], eq: { season_id: seasonId } })).map(m => m.id));
+  const due = (await store.select('soccer_match_enrichment', { columns: ['match_id', 'component', 'attempts'], eq: { provider: P }, in: { status: ['unavailable', 'empty'] }, lte: { next_retry_at: new Date(now).toISOString() }, order: 'next_retry_at.asc' }))
+    .filter(r => seasonMatches.has(r.match_id) && r.attempts < MAX_ENRICH_ATTEMPTS);
+  const byMatch = new Map();
+  for (const r of due) byMatch.set(r.match_id, new Set([...(byMatch.get(r.match_id) || []), r.component.startsWith('lineup') ? 'lineups' : r.component.startsWith('stats') ? 'stats' : 'plays']));
+  out.due = byMatch.size;
+  const ids = [...byMatch.keys()].slice(0, maxMatches);
+  const ext = ids.length ? await store.select('soccer_match_external_ids', { columns: ['match_id', 'external_id'], eq: { provider: P }, in: { match_id: ids } }) : [];
+  for (const x of ext) {
+    const fixture = cursor.fixtures?.[x.external_id];
+    if (!fixture) continue;
+    if (client.budget - client.used < 12) break;
+    const r = await ingestEspnMatch(store, { comp, league, year, eventId: x.external_id, fixture, teamMap, client, now, only: byMatch.get(x.match_id) });
+    out.retried += 1;
+    const statuses = Object.values(r.summary.enrichment || {});
+    if (statuses.length && statuses.every(s => s === 'complete' || s === 'not_applicable')) out.completed += 1; else out.still_missing += 1;
+  }
+  return out;
 }
 
 // Bridge OpenLigaDB scorer ids (queued: abbreviated names, no DOB) to canonical

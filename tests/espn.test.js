@@ -78,6 +78,8 @@ test('season-type roles: MLS regular season is the league, playoffs separate, Al
   assert.equal(espn.seasonTypeRole('All-Star Game'), 'excluded');
   assert.equal(espn.seasonTypeRole('Combined'), 'excluded');
   assert.equal(espn.seasonTypeRole(undefined), 'excluded');
+  assert.equal(espn.seasonTypeRole('League Phase'), 'league'); // UCL 2024+ format
+  for (const k of ['Knockout Round Playoffs', 'Round of 16', 'Quarterfinals', 'Semifinals', 'Final']) assert.equal(espn.seasonTypeRole(k), 'playoff', k);
 });
 
 test('All-Star exhibition sides are flagged and never treated as league teams', () => {
@@ -96,5 +98,68 @@ test('an unavailable athlete record is queued, never fails the match', async () 
   assert.equal(out.queued, 1); assert.equal(out.map.size, 0);
   const [q] = await store.select('soccer_identity_queue', { columns: ['reason'], eq: { external_id: '999999' } });
   assert.equal(q.reason, 'athlete_record_unavailable');
+  await store.close();
+});
+
+test('enrichment ledger: unavailable is scheduled for retry; complete is never downgraded', async () => {
+  const { openPglite, applyMigrations } = await import('../workers/soccer-ingest/src/store-pglite.js');
+  const { recordEnrichment, nextRetryAt, MAX_ENRICH_ATTEMPTS } = await import('../workers/soccer-ingest/src/espn-lane.js');
+  const store = await openPglite(); await applyMigrations(store);
+  const cid = '00000000-0000-5000-8000-00000000c001'; const sid = '00000000-0000-5000-8000-00000000c002'; const stg = '00000000-0000-5000-8000-00000000c003';
+  const t1 = '00000000-0000-5000-8000-00000000c004'; const t2 = '00000000-0000-5000-8000-00000000c005'; const mid = '00000000-0000-5000-8000-00000000c006';
+  await store.insert('soccer_competitions', [{ id: cid, slug: 'x', name: 'X', comp_type: 'league' }]);
+  await store.insert('soccer_seasons', [{ id: sid, competition_id: cid, label: '2026' }]);
+  await store.insert('soccer_stages', [{ id: stg, season_id: sid, name: 'Regular Season', stage_type: 'league', stage_order: 1 }]);
+  await store.insert('soccer_teams', [{ id: t1, slug: 'a', name: 'A', team_type: 'club', gender: 'men', founding_provider: 'espn', founding_external_id: '1' }, { id: t2, slug: 'b', name: 'B', team_type: 'club', gender: 'men', founding_provider: 'espn', founding_external_id: '2' }]);
+  await store.insert('soccer_matches', [{ id: mid, competition_id: cid, season_id: sid, stage_id: stg, kickoff_at: '2026-09-20T00:00:00Z', home_team_id: t1, away_team_id: t2, status: 'finished', home_score: 1, away_score: 0, result_provider: 'espn' }]);
+  const now = Date.parse('2026-09-28T00:00:00Z');
+  await recordEnrichment(store, { matchId: mid, now, outcomes: { plays: { status: 'unavailable', error: 'non-JSON response' }, stats_home: { status: 'complete' } } });
+  let rows = await store.select('soccer_match_enrichment', { columns: ['component', 'status', 'attempts', 'next_retry_at'], eq: { match_id: mid } });
+  const plays = rows.find(r => r.component === 'plays');
+  assert.equal(plays.status, 'unavailable'); assert.equal(new Date(plays.next_retry_at).toISOString(), nextRetryAt(1, now));
+  assert.equal(rows.find(r => r.component === 'stats_home').next_retry_at, null);
+  // A later failure never downgrades the complete component; the retried one completes.
+  await recordEnrichment(store, { matchId: mid, now: now + 3600e3, outcomes: { stats_home: { status: 'unavailable', error: 'boom' }, plays: { status: 'complete', detail: { events: 700 } } } });
+  rows = await store.select('soccer_match_enrichment', { columns: ['component', 'status', 'attempts', 'next_retry_at'], eq: { match_id: mid } });
+  assert.deepEqual(rows.map(r => [r.component, r.status]).sort(), [['plays', 'complete'], ['stats_home', 'complete']]);
+  assert.equal(rows.find(r => r.component === 'plays').attempts, 2);
+  assert.ok(nextRetryAt(20, now) <= new Date(now + 24 * 3600e3).toISOString()); // capped at 24 h
+  assert.equal(MAX_ENRICH_ATTEMPTS, 8);
+  await store.close();
+});
+
+test('standings lane: conference membership + provider standings; a group with an unresolved member is withheld whole', async () => {
+  const { openPglite, applyMigrations } = await import('../workers/soccer-ingest/src/store-pglite.js');
+  const { runEspnStandings, parseStandingsEntry, groupKey } = await import('../workers/soccer-ingest/src/espn-standings.js');
+  const { emptyLaneState } = await import('../workers/soccer-ingest/src/state.js');
+  const store = await openPglite(); await applyMigrations(store);
+  const team = (id, n) => ({ id: `00000000-0000-5000-8000-0000000d00${n}`, slug: `t${id}`, name: `T${id}`, team_type: 'club', founding_provider: 'espn', founding_external_id: String(id) });
+  const teams = [team(182, 10), team(183, 11), team(900, 12)];
+  await store.insert('soccer_teams', teams);
+  await store.insert('soccer_team_external_ids', teams.slice(0, 2).map(t => ({ provider: 'espn', external_id: t.founding_external_id, team_id: t.id, method: 'founding', evidence: 't' })));
+  const rec = (rank, pts, note) => ({ team: { $ref: 'x' }, note: note ? { description: note, rank } : undefined, records: [{ type: 'total', name: 'overall', stats: [['gamesPlayed', 26], ['wins', 12], ['ties', 6], ['losses', 8], ['pointsFor', 46], ['pointsAgainst', 38], ['pointDifferential', 8], ['points', pts], ['rank', rank], ['deductions', '']].map(([name, value]) => ({ name, value })) }] });
+  const body = url => {
+    if (/leagues\/usa\.1$/.test(url)) return { season: { $ref: 'http://x/leagues/usa.1/seasons/2026' } };
+    if (url.endsWith('/types/1/groups')) return { items: [{ $ref: 'http://x/types/1/groups/1' }, { $ref: 'http://x/types/1/groups/2' }] };
+    if (url.endsWith('/groups/1')) return { id: '1', name: 'Eastern Conference', abbreviation: 'East' };
+    if (url.endsWith('/groups/2')) return { id: '2', name: 'Western Conference', abbreviation: 'West' };
+    if (url.endsWith('/groups/1/standings/0')) return { standings: [{ ...rec(1, 42, 'Playoffs'), team: { $ref: 'http://x/teams/182' } }, { ...rec(2, 40), team: { $ref: 'http://x/teams/183' } }] };
+    if (url.endsWith('/groups/2/standings/0')) return { standings: [{ ...rec(1, 50), team: { $ref: 'http://x/teams/900' } }] }; // unresolved team
+    return {};
+  };
+  const mem = new Map();
+  const storage = { async head(k) { return mem.has(k); }, async put(k, b) { mem.set(k, b); }, async get(k) { return mem.get(k) || null; } };
+  const fetcher = async url => ({ status: 200, contentType: 'application/json', bytes: new TextEncoder().encode(JSON.stringify(body(url))) });
+  const reg = { competitions: [{ slug: 'mls', name: 'MLS', comp_type: 'league', gender: 'men', country_code: 'USA', tier: 1, season_format: 'calendar', espn: { league: 'usa.1', enabled: true, standings: { group_type: 'conference' } }, external_ids: [{ provider: 'espn', external_id: 'usa.1', method: 'founding', evidence: 't' }] }] };
+  const out = await runEspnStandings({ store, storage, registry: reg, state: emptyLaneState('x'), fetcher, force: true });
+  assert.equal(out.results[0].groups, 1); assert.equal(out.results[0].unresolved, 1);
+  const g = await store.select('soccer_season_groups', { columns: ['group_key', 'name', 'group_type'] });
+  assert.deepEqual(g.map(x => [x.group_key, x.group_type]), [['east', 'conference']]);
+  const st = await store.select('soccer_source_standings', { columns: ['rank', 'points', 'note', 'deductions'], order: 'rank.asc' });
+  assert.deepEqual(st.map(x => [x.rank, x.points, x.note, x.deductions]), [[1, 42, 'Playoffs', null], [2, 40, null, null]]);
+  const q = await store.select('soccer_identity_queue', { columns: ['external_id', 'reason'] });
+  assert.ok(q.some(x => x.external_id === '900' && x.reason === 'standings_member_unresolved'));
+  assert.equal(groupKey({ abbreviation: 'West' }, 'conference'), 'west'); assert.equal(groupKey({}, 'league_phase'), 'league-phase');
+  assert.throws(() => parseStandingsEntry({ records: [] }));
   await store.close();
 });

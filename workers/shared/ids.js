@@ -18,7 +18,7 @@ export const SOCCER_NAMESPACE = '6f1c9a52-3b0e-5d47-9a1e-2c5b7d8e4f10';
 export const ENTITY_KINDS = Object.freeze([
   'competition', 'season', 'stage', 'team', 'player', 'manager', 'referee',
   'venue', 'match', 'lineup', 'substitution', 'event', 'possession', 'capture',
-  'article', 'news_event',
+  'article', 'news_event', 'group',
 ]);
 
 function uuidToBytes(uuid) {
