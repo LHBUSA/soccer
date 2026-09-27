@@ -4,7 +4,7 @@
 // (e.g. MLS says "overall standings", never relegation or European places).
 import { slugify } from '../../shared/ids.js';
 
-export const COMPOSER_V2 = 'template/soccer-news@2.0.0';
+export const COMPOSER_V2 = 'template/soccer-news@2.1.0';
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const fmtDate = iso => { const d = new Date(iso); return `${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`; };
 const ord = n => `${n}${n % 100 >= 11 && n % 100 <= 13 ? 'th' : ['th', 'st', 'nd', 'rd'][n % 10] || 'th'}`;
@@ -13,6 +13,7 @@ const list = xs => (xs.length <= 1 ? xs.join('') : `${xs.slice(0, -1).join(', ')
 const DESK = { 'premier-league': 'premier-league', bundesliga: 'bundesliga', mls: 'mls', 'uefa-champions-league': 'champions-league' };
 const standingsWord = p => (p.competition.slug === 'mls' ? 'overall MLS standings' : `${p.competition.name} table`);
 const method = (p, extra = '') => ({ key: 'method', heading: 'Evidence and method', paragraphs: [
+  ...(p.event.corrects ? [/own goal/i.test(p.event.corrects.reason || '') ? 'Correction: this story replaces an earlier version that was withdrawn because an own goal was credited to the wrong side. The goal sequence now reproduces the recorded result.' : 'Correction: this story replaces an earlier version that was withdrawn after an error was found.'] : []),
   `Every figure in this story comes from its frozen evidence packet (${p.version}, profile ${p.event.profile}, hash ${p.hash.slice(0, 12)}).${extra} Not reported: ${p.unavailable.join('; ')}.`,
   ...p.provenance.attributions,
 ] });
@@ -28,6 +29,17 @@ export function compose(p) {
   if (p.event.kind === 'competition_intelligence') return finish(p, race(p));
   throw new Error(`no composer for ${p.event.kind}`);
 }
+
+function standingSentence(p, t) {
+  const g = t.group;
+  if (g?.verified) {
+    const where = g.group_type === 'league_phase' ? 'the league phase' : `the ${g.group}`;
+    return `${t.name} ${g.group_type === 'league_phase' ? 'are' : 'sit'} ${ord(g.position)} of ${g.teams_in_group} in ${where} on ${plural(g.points, 'point')} from ${plural(g.played, 'match', 'matches')}${g.zone ? `, a position the published standings mark as: ${g.zone}` : ''}.`;
+  }
+  if (t.table_after && t.table_before) return `${t.name} ${t.table_after.position === t.table_before.position ? `stayed ${ord(t.table_after.position)}` : `moved from ${ord(t.table_before.position)} to ${ord(t.table_after.position)}`} in the ${standingsWord(p)} after the match, on ${plural(t.table_after.points, 'point')} from ${plural(t.table_after.played, 'match', 'matches')}.`;
+  return null;
+}
+const nextSentence = t => (t.next ? `${t.name}: ${t.next.venue === 'home' ? 'v' : 'at'} ${t.next.opponent.name}, ${fmtDate(t.next.date)}.` : null);
 
 function recap(p) {
   const { match: m, teams: T } = p;
@@ -46,10 +58,11 @@ function recap(p) {
   const ht = m.score.home_ht !== null && m.score.away_ht !== null;
   const dek = `${p.competition.name} ${p.competition.season}, ${fmtDate(m.kickoff_utc)}${m.venue ? `, ${m.venue}` : ''}.${ht ? ` Half-time ${m.score.home_ht}-${m.score.away_ht}.` : ''}`;
   const sections = [];
-  sections.push({ key: 'result', heading: 'Result', paragraphs: [W
-    ? `${W.name} beat ${L.name} ${hi}-${lo}${m.venue ? ` at ${m.venue}` : ''}${ht ? `, having been ${(m.winner === 'home' ? m.score.home_ht - m.score.away_ht : m.score.away_ht - m.score.home_ht) < 0 ? 'behind' : (m.score.home_ht === m.score.away_ht ? 'level' : 'ahead')} ${m.score.home_ht}-${m.score.away_ht} at half-time` : ''}.`
-    : `${H.name} and ${A.name} drew ${m.score.final}${m.venue ? ` at ${m.venue}` : ''}.`] });
-  if (p.goals.length) sections.push({ key: 'goals', heading: 'Goals', paragraphs: [`${p.goals.map(g => `${g.display_minute || `${g.minute}'`} ${g.own_goal ? `own goal by ${g.scorer?.name || 'an unidentified player'}` : g.scorer?.name || 'unidentified scorer'}${g.penalty ? ' (penalty)' : ''} for ${T[g.team].name}, ${g.running_score}`).join('; ')}.`] });
+  // 1. What happened: the result, then the goals as one flowing sentence.
+  const what = [W ? `${W.name} beat ${L.name} ${hi}-${lo}${m.venue ? ` at ${m.venue}` : ''}${ht ? `, having been ${(m.winner === 'home' ? m.score.home_ht - m.score.away_ht : m.score.away_ht - m.score.home_ht) < 0 ? 'behind' : (m.score.home_ht === m.score.away_ht ? 'level' : 'ahead')} ${m.score.home_ht}-${m.score.away_ht} at half-time` : ''}.` : `${H.name} and ${A.name} drew ${m.score.final}${m.venue ? ` at ${m.venue}` : ''}.`];
+  if (p.goals.length) what.push(`${p.goals.map(g => `${g.display_minute || `${g.minute}'`} ${g.own_goal ? `an own goal by ${g.scorer?.name || 'an unidentified player'}` : g.scorer?.name || 'an unidentified scorer'}${g.penalty ? ' (penalty)' : ''}${g.assist ? `, set up by ${g.assist.name}` : ''} for ${T[g.team].name} (${g.running_score})`).join('; ')}.`);
+  sections.push({ key: 'result', heading: 'What happened', paragraphs: what });
+  // 2. Why it mattered
   const why = [];
   for (const a of p.angles) {
     const d = a.detail;
@@ -65,24 +78,34 @@ function recap(p) {
     if (a.key === 'high_scoring') why.push(`The match produced ${d.goals} goals.`);
     if (a.key === 'heavy_margin') why.push(`The winning margin was ${d.margin} goals.`);
   }
-  if (why.length) sections.push({ key: 'angle', heading: 'Why it matters', paragraphs: [why.join(' ')] });
+  if (why.length) sections.push({ key: 'angle', heading: 'Why it mattered', paragraphs: [why.join(' ')] });
+  // 3. The numbers
   const sh = [];
   if (p.stats && p.stats.home.shots !== undefined && p.stats.away.shots !== undefined) {
     sh.push(`${H.name} had ${p.stats.home.shots} shots${p.stats.home.shots_on_target !== undefined ? ` (${p.stats.home.shots_on_target} on target)` : ''}; ${A.name} had ${p.stats.away.shots}${p.stats.away.shots_on_target !== undefined ? ` (${p.stats.away.shots_on_target} on target)` : ''}.`);
+    if (p.stats.home.possession_pct !== undefined && p.stats.away.possession_pct !== undefined) sh.push(`Possession as recorded by the source: ${p.stats.home.possession_pct}% to ${p.stats.away.possession_pct}%.`);
     if (p.stats.home.corners !== undefined && p.stats.away.corners !== undefined) sh.push(`Corners ${p.stats.home.corners}-${p.stats.away.corners}.`);
   }
   if (p.shots_located && p.shots_located.avg_distance_m.home !== null && p.shots_located.avg_distance_m.away !== null) sh.push(`Average distance of located shots from goal: ${H.name} ${p.shots_located.avg_distance_m.home} m, ${A.name} ${p.shots_located.avg_distance_m.away} m.`);
-  if (sh.length) sections.push({ key: 'shots', heading: 'Shots', paragraphs: sh });
+  if (sh.length) sections.push({ key: 'shots', heading: 'The numbers', paragraphs: sh });
+  // 4. Decisive players
+  if (p.decisive?.length) sections.push({ key: 'players', heading: 'Decisive players', paragraphs: [`${p.decisive.map(r => `${r.player.name} (${T[r.team].name}): ${[r.goals ? plural(r.goals, 'goal') : null, r.assists ? plural(r.assists, 'assist') : null, r.shots ? `${plural(r.shots, 'shot')}${r.shots_on_target ? ` (${r.shots_on_target} on target)` : ''}` : null].filter(Boolean).join(', ')}`).join('. ')}.`] });
+  // 5. Standings context (verified group table where it exists, else the after-match table)
   const tb = [];
   for (const k of ['home', 'away']) {
     const t = T[k];
-    if (t.table_after && t.table_before) tb.push(`${t.name} ${t.table_after.position === t.table_before.position ? `stayed ${ord(t.table_after.position)}` : `moved from ${ord(t.table_before.position)} to ${ord(t.table_after.position)}`} in the ${standingsWord(p)} after the match, on ${plural(t.table_after.points, 'point')} from ${plural(t.table_after.played, 'match', 'matches')}.`);
-    if (t.form_before?.length) tb.push(`${t.name}'s previous ${t.form_before.length} league results: ${t.form_before.join(' ')}.`);
+    const s = standingSentence(p, t); if (s) tb.push(s);
+    if (!t.group?.verified && t.form_before?.length) tb.push(`${t.name}'s previous ${t.form_before_count ?? t.form_before.length} league results: ${t.form_before.join(' ')}.`);
   }
-  if (tb.length) sections.push({ key: 'table', heading: p.competition.slug === 'mls' ? 'Standings and form' : 'Table and form', paragraphs: tb });
-  sections.push(method(p, p.stats ? ` Team statistics are ${p.stats.basis === 'source' ? 'source facts, not PropBetEdge metrics' : 'PropBetEdge counts from the event ledger'}.` : ''));
+  if (tb.length) sections.push({ key: 'table', heading: 'Where it leaves them', paragraphs: tb });
+  // 6. What comes next
+  const nx = [nextSentence(H), nextSentence(A)].filter(Boolean);
+  if (nx.length) sections.push({ key: 'next', heading: 'What comes next', paragraphs: nx });
+  sections.push(method(p, `${p.stats ? ` Team statistics are ${p.stats.basis === 'source' ? 'source facts, not PropBetEdge metrics' : 'PropBetEdge counts from the event ledger'}.` : ''}${[H, A].some(t => t.group?.verified) ? ' Group positions come from the published standings and were verified against PropBetEdge canonical results when this story was built.' : ''}`));
   const entities = uniq([teamEntity(H), teamEntity(A), { type: 'SportsEvent', id: m.id, name: `${H.name} v ${A.name}`, href: `/matches/${m.id}` }, compEntity(p),
-    ...p.goals.map(g => g.scorer).filter(Boolean).map(s => ({ type: 'Person', id: s.id, name: s.name, slug: s.slug, href: `/players/${s.slug}` }))]);
+    ...p.goals.flatMap(g => [g.scorer, g.assist]).filter(Boolean).map(s => ({ type: 'Person', id: s.id, name: s.name, slug: s.slug, href: `/players/${s.slug}` })),
+    ...(p.decisive || []).map(r => ({ type: 'Person', id: r.player.id, name: r.player.name, slug: r.player.slug, href: `/players/${r.player.slug}` })),
+    ...[H.next, A.next].filter(Boolean).map(n => teamEntity(n.opponent))]);
   return { headline, dek, sections, entities, slug_base: `${H.name} ${A.name} ${m.kickoff_utc.slice(0, 10)}` };
 }
 
@@ -95,9 +118,15 @@ function trend(p) {
     { key: 'run', heading: 'The run', paragraphs: [`${t.name} have ${tr.kind === 'winning_run' ? 'won' : tr.kind === 'losing_run' ? 'lost' : tr.kind === 'unbeaten_run' ? 'avoided defeat in' : 'failed to win'} their last ${tr.matches} league matches, scoring ${tr.goals_for} and conceding ${tr.goals_against}.`] },
     { key: 'results', heading: 'Results', paragraphs: [`${tr.games.map(g => `${g.date}: ${g.result} ${g.goals_for}-${g.goals_against} ${g.venue === 'home' ? 'v' : 'at'} ${g.opponent.name}`).join('; ')}.`] },
   ];
+  const d = p.dna;
+  if (d && d.goals_for_per_match !== null && d.goals_against_per_match !== null) {
+    const ranks = [d.percentiles.goals_against_per_match !== null ? `p${d.percentiles.goals_against_per_match} for goals conceded` : null, d.percentiles.goals_for_per_match !== null ? `p${d.percentiles.goals_for_per_match} for goals scored` : null].filter(Boolean);
+    sections.push({ key: 'profile', heading: 'Season profile', paragraphs: [`Across ${plural(d.matches, 'match', 'matches')} this season they average ${d.goals_for_per_match} goals scored and ${d.goals_against_per_match} conceded per match${d.clean_sheet_pct !== null ? `, with clean sheets in ${d.clean_sheet_pct}% of them` : ''}.${ranks.length ? ` Among the ${d.teams_compared} teams, that is ${ranks.join(' and ')} (Team DNA percentiles; higher is better).` : ''}`] });
+  }
   if (t.table_now) sections.push({ key: 'table', heading: 'Where it leaves them', paragraphs: [`${t.name} are ${ord(t.table_now.position)} of ${p.teams_in_table} in the ${standingsWord(p)} on ${plural(t.table_now.points, 'point')} from ${plural(t.table_now.played, 'match', 'matches')}.`] });
-  sections.push(method(p));
-  return { headline, dek, sections, entities: uniq([teamEntity(t), compEntity(p), ...tr.games.map(g => teamEntity(g.opponent))]), slug_base: `${t.name} ${tr.matches} ${phrase} ${p.event.as_of.slice(0, 10)}` };
+  if (t.next) sections.push({ key: 'next', heading: 'What comes next', paragraphs: [nextSentence(t)] });
+  sections.push(method(p, d ? ` Team DNA uses only matches before ${d.as_of.slice(0, 10)}.` : ''));
+  return { headline, dek, sections, entities: uniq([teamEntity(t), compEntity(p), ...tr.games.map(g => teamEntity(g.opponent)), ...(t.next ? [teamEntity(t.next.opponent)] : [])]), slug_base: `${t.name} ${tr.matches} ${phrase} ${p.event.as_of.slice(0, 10)}` };
 }
 
 function form(p) {

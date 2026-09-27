@@ -59,7 +59,7 @@ const packet = () => ({
   teams: { home: { id: 'h', name: 'Inter Miami CF', slug: 'inter-miami-cf', table_before: { position: 3, points: 50, played: 29 }, table_after: { position: 2, points: 53, played: 30 }, form_before: ['W', 'D'] },
     away: { id: 'a', name: 'Toronto FC', slug: 'toronto-fc', table_before: { position: 28, points: 25, played: 29 }, table_after: { position: 28, points: 25, played: 30 }, form_before: ['L'] } },
   teams_in_table: 30,
-  goals: [{ minute: 10, display_minute: "10'", team: 'home', scorer: { id: 'p1', name: 'Luis Suárez', slug: 'luis-suarez' }, own_goal: false, penalty: false, running_score: '1-0' }],
+  goals: ['Luis Suárez', 'Lionel Messi', 'Jordi Alba', 'Sergio Busquets', 'Tadeo Allende', 'Telasco Segovia'].map((n, i) => ({ minute: 10 + i * 12, display_minute: `${10 + i * 12}'`, team: 'home', scorer: { id: `p${i + 1}`, name: n, slug: n.toLowerCase().replace(/[^a-z]+/g, '-') }, own_goal: false, penalty: false, running_score: `${i + 1}-0` })),
   angles: [{ key: 'heavy_margin', weight: 0.6, detail: { margin: 6 } }, { key: 'high_scoring', weight: 0.6, detail: { goals: 6 } }],
   stats: { basis: 'source', provider: 'espn', home: { shots: 20, shots_on_target: 11 }, away: { shots: 4, shots_on_target: 1 } }, shots_located: null,
   unavailable: ['quotes (none sourced)'], provenance: { attributions: ['Structured facts: ESPN (secondary source).'] },
@@ -117,4 +117,53 @@ test('derived counts printed in a story are carried in the packet (no coincident
   assert.ok(runGates2(compose(p), p).failed.includes('numeric_grounding'));
   p.teams.home.form_before_count = 5;
   assert.ok(!runGates2(compose(p), p).failed.includes('numeric_grounding'));
+});
+
+test('own goals: per-provider convention; the goal sequence must reproduce the final score', async () => {
+  const { ownGoalBeneficiary, ownGoalPlayerTeam } = await import('../workers/shared/own-goals.js');
+  assert.equal(ownGoalBeneficiary({ source_family: 'espn', team_id: 'A' }, 'H', 'A'), 'A'); // ESPN tags the benefiting team
+  assert.equal(ownGoalBeneficiary({ source_family: 'wyscout_figshare', team_id: 'A' }, 'H', 'A'), 'H'); // Wyscout tags the player's team
+  assert.equal(ownGoalBeneficiary({ source_family: 'openligadb', team_id: 'H' }, 'H', 'A'), 'A');
+  assert.equal(ownGoalPlayerTeam({ source_family: 'espn', team_id: 'A' }, 'H', 'A'), 'H');
+  const p = packet(); p.goals = p.goals.slice(0, 1); // 6-0 with one listed goal -> incomplete sequence
+  assert.ok(runGates2(compose(p), p).failed.includes('goal_sequence_matches_score'));
+  const p2 = packet(); p2.goals = p2.goals.slice(0, 1); p2.match.score = { home: 1, away: 0, home_ht: null, away_ht: null, final: '1-0' }; p2.match.margin = 1; p2.angles = [{ key: 'comeback_from_ht', weight: 1, detail: {} }].slice(0, 0).concat([{ key: 'high_scoring', weight: 1, detail: { goals: 1 } }]);
+  assert.ok(!runGates2(compose(p2), p2).failed.includes('goal_sequence_matches_score'));
+  p2.goals = [{ ...p2.goals[0], own_goal: true, team: 'away', running_score: '0-1' }];
+  assert.ok(runGates2(compose(p2), p2).failed.includes('goal_sequence_matches_score')); // own goal on the wrong side
+});
+
+test('UCL readiness: league-phase recap with a verified table publishes on the champions-league desk, sitemap + article API', async () => {
+  const R = await import('../workers/soccer-api/src/routes.js');
+  const store = await openPglite(); await applyMigrations(store);
+  const id = n => `00000000-0000-5000-8000-0000000f${String(n).padStart(4, '0')}`;
+  await store.insert('soccer_competitions', [{ id: id(1), slug: 'uefa-champions-league', name: 'UEFA Champions League', comp_type: 'cup' }]);
+  await store.insert('soccer_seasons', [{ id: id(2), competition_id: id(1), label: '2026/27' }]);
+  await store.insert('soccer_stages', [{ id: id(3), season_id: id(2), name: 'League phase', stage_type: 'league', stage_order: 1 }]);
+  const teams = ['Alpha FC', 'Beta SC', 'Gamma AC', 'Delta CF'].map((n, i) => ({ id: id(10 + i), slug: n.toLowerCase().replace(/ /g, '-'), name: n, team_type: 'club', founding_provider: 'espn', founding_external_id: String(100 + i) }));
+  await store.insert('soccer_teams', teams);
+  const mk = (n, h, a, hs, as, day) => ({ id: id(n), competition_id: id(1), season_id: id(2), stage_id: id(3), kickoff_at: `2026-10-${day}T19:00:00Z`, home_team_id: teams[h].id, away_team_id: teams[a].id, status: 'finished', home_score: hs, away_score: as, result_provider: 'espn' });
+  await store.insert('soccer_matches', [mk(20, 0, 1, 6, 0, '01'), mk(21, 2, 3, 1, 1, '01'), { ...mk(22, 0, 2, null, null, '21'), status: 'scheduled' }]);
+  // 6 goal events for the 6-0 (ESPN family), so the goal sequence reproduces the score
+  await store.insert('soccer_match_events', Array.from({ length: 6 }, (_, i) => ({ id: id(100 + i), match_id: id(20), sequence: i + 1, period: '1H', minute: 5 + i * 7, team_id: teams[0].id, event_type: 'shot', outcome: 'goal', is_goal: true, is_own_goal: false, source_family: 'espn', source_event_id: `g${i}`, source_coordinate_system: 'none', qualifiers: {}, observed_at: '2026-10-01T21:00:00Z', raw_payload_hash: 'a'.repeat(64), parser_version: 't' })));
+  await store.insert('soccer_season_groups', [{ id: id(30), season_id: id(2), group_key: 'league-phase', name: 'League phase', group_type: 'league_phase', provider: 'espn', external_id: '1' }]);
+  const srow = (t, rank, p, w, d, l, gf, ga, pts, note) => ({ group_id: id(30), team_id: teams[t].id, provider: 'espn', rank, played: p, won: w, drawn: d, lost: l, goals_for: gf, goals_against: ga, goal_difference: gf - ga, points: pts, note, observed_at: '2026-10-02T00:00:00Z' });
+  await store.insert('soccer_source_standings', [srow(0, 1, 1, 1, 0, 0, 6, 0, 3, 'Qualifies for round of 16'), srow(2, 2, 1, 0, 1, 0, 1, 1, 1, 'Qualifies for round of 16'), srow(3, 3, 1, 0, 1, 0, 1, 1, 1, 'Knockout phase playoffs - seeded'), srow(1, 4, 1, 0, 0, 1, 0, 6, 0, 'Eliminated')]);
+  const out = await runNews(store, { now: Date.parse('2026-10-02T12:00:00Z'), competitions: ['uefa-champions-league'] });
+  const u = out.competitions['uefa-champions-league'];
+  const recap = u.stories.find(s => s.story_class === 'match_recap');
+  assert.ok(recap && recap.status === 'published', JSON.stringify(u));
+  const [art] = await store.select('soccer_articles', { columns: ['slug', 'desk', 'body', 'status'], eq: { slug: recap.slug } });
+  assert.equal(art.desk, 'champions-league');
+  const text = JSON.stringify(art.body);
+  assert.ok(text.includes('1st of 4 in the league phase') && text.includes('Qualifies for round of 16'), text.slice(0, 400));
+  assert.ok(!/top[ -]four/i.test(text));
+  assert.ok(text.includes('What comes next')); // the scheduled league-phase match
+  const sm = await R.sitemap(store, 'news');
+  assert.ok(sm.data.some(r => r.key === `champions-league/${art.slug}`));
+  assert.equal((await R.news(store, { desk: 'champions-league' })).data.length >= 1, true);
+  assert.equal((await R.article(store, art.slug)).data.desk, 'champions-league');
+  const tbl = await R.table(store, { competition: 'uefa-champions-league' });
+  assert.equal(tbl.data.verification.verified, true); assert.equal(tbl.data.rows[0].zone.label, 'Qualifies for round of 16');
+  await store.close();
 });

@@ -18,9 +18,19 @@ export async function runNews(store, { now = Date.now(), env = {}, windowDays = 
     if (!S) { out.skipped = 'no season'; continue; }
     const cands = await detect(store, S, { now, windowDays, cfg });
     out.candidates = cands.length;
-    const ids = cands.map(c => uuidv5(`news_event:${c.key}`));
+    let ids = cands.map(c => uuidv5(`news_event:${c.key}`));
     const existing = new Set();
     for (const part of chunkArr(ids, 100)) for (const r of await store.select('soccer_news_events', { columns: ['id'], in: { id: part } })) existing.add(r.id);
+    // Corrections: a story whose article was WITHDRAWN (and never replaced) is re-issued
+    // once under `<key>:correction`, and the new article says what it replaces and why.
+    const withdrawn = new Map();
+    for (const part of chunkArr(ids.filter(i => existing.has(i)), 100)) for (const a of await store.select('soccer_articles', { columns: ['news_event_id', 'slug', 'status', 'hold_reasons'], in: { news_event_id: part } })) if (a.status === 'withdrawn') withdrawn.set(a.news_event_id, a);
+    for (let i = 0; i < cands.length; i++) {
+      const w = withdrawn.get(ids[i]); if (!w) continue;
+      cands[i] = { ...cands[i], key: `${cands[i].key}:correction`, corrects: { slug: w.slug, reason: (w.hold_reasons || [])[0] || 'withdrawn' } };
+      ids[i] = uuidv5(`news_event:${cands[i].key}`);
+    }
+    for (const part of chunkArr(ids.filter(i => !existing.has(i)), 100)) for (const r of await store.select('soccer_news_events', { columns: ['id'], in: { id: part } })) existing.add(r.id);
     const fresh = cands.filter((c, i) => !existing.has(ids[i])).sort((a, b) => b.materiality.score - a.materiality.score).slice(0, maxPerCompetition);
     out.new = fresh.length;
     for (const cand of fresh) {

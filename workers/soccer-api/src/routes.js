@@ -8,6 +8,7 @@ import { toMatchFrame } from '../../shared/coords.js';
 import { displayMinute } from '../../shared/clock.js';
 import { COVERAGE, envelope, maxTs } from './envelope.js';
 import { chunkArr } from '../../soccer-ingest/src/store.js';
+import { ownGoalBeneficiary } from '../../shared/own-goals.js';
 
 export const API_VERSION = 'soccer-api/1.2.0';
 const E = (data, o) => envelope(data, { version: API_VERSION, ...o });
@@ -200,7 +201,7 @@ export async function match(store, id) {
   const side = tid => (tid === m.home_team_id ? 'home' : tid === m.away_team_id ? 'away' : null);
 
   const timeline = evs.filter(e => e.is_goal || e.is_own_goal || e.card).map(e => ({
-    minute: e.minute, display_minute: displayMinute(e.period, e.minute), team: side(e.team_id), type: e.is_goal ? 'goal' : e.is_own_goal ? 'own_goal' : `card_${e.card}`,
+    minute: e.minute, display_minute: displayMinute(e.period, e.minute), team: side(e.is_own_goal ? ownGoalBeneficiary(e, m.home_team_id, m.away_team_id) : e.team_id), type: e.is_goal ? 'goal' : e.is_own_goal ? 'own_goal' : `card_${e.card}`,
     player: person(e.player_id) || (e.qualifiers?.source_player ? { name: e.qualifiers.source_player.name, resolved: false } : null),
     penalty: e.set_piece === 'penalty', source: e.source_family,
   }));
@@ -235,7 +236,7 @@ export async function match(store, id) {
         assist: assist ? person(assist.player_id) : null, provider_xg: e.qualifiers?.provider_xg || null, located: e.x_m !== null });
     }
     if (e.is_goal) { if (side(e.team_id) === 'home') hs += 1; else as += 1; }
-    if (e.is_own_goal) { if (side(e.team_id) === 'home') as += 1; else hs += 1; }
+    if (e.is_own_goal) { if (side(ownGoalBeneficiary(e, m.home_team_id, m.away_team_id)) === 'home') hs += 1; else as += 1; }
   }
   // ---- PLAYER IMPACT: sourced counts only. ESPN matches count the ESPN event record;
   // Wyscout matches use PBE derived counts from the ledger. Minutes are nominal (from
@@ -467,21 +468,8 @@ async function seasonGroups(store, seasonId) {
 // application of the competition's tie-breakers) and zone notes; PropBetEdge publishes
 // the table ONLY if every team's P W D L GF GA PTS equals the table recomputed from our
 // own canonical results. Any disagreement -> no rows, mismatches listed.
-export const COUNT_KEYS = [['played', 'played'], ['won', 'won'], ['drawn', 'drawn'], ['lost', 'lost'], ['goals_for', 'gf'], ['goals_against', 'ga'], ['points', 'points']];
-export function verifyGroupStandings(source, computedById) {
-  const mismatches = [];
-  for (const s of source) {
-    const c = computedById.get(s.team_id) || { played: 0, won: 0, drawn: 0, lost: 0, gf: 0, ga: 0, points: 0 };
-    const pointsWant = s.points === null ? null : s.points + (s.deductions || 0); // deductions are applied by the provider, not in results
-    for (const [sk, ck] of COUNT_KEYS) {
-      const want = sk === 'points' ? pointsWant : s[sk];
-      if (want === null || want === undefined || Number(want) !== Number(c[ck])) mismatches.push({ team_id: s.team_id, field: sk, source: want ?? null, computed: c[ck] });
-    }
-  }
-  const ranks = source.map(s => s.rank);
-  if (ranks.some(r => !Number.isInteger(r)) || new Set(ranks).size !== ranks.length) mismatches.push({ field: 'rank', source: 'missing or duplicate provider ranks' });
-  return { verified: source.length > 0 && mismatches.length === 0, mismatches };
-}
+export { COUNT_KEYS, verifyGroupStandings } from '../../shared/standings.js';
+import { verifyGroupStandings } from '../../shared/standings.js';
 
 export async function table(store, q) {
   const c = await competitionBySlug(store, q.competition || 'bundesliga');

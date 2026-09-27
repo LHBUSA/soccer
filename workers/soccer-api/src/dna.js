@@ -6,6 +6,7 @@
 // with >= MIN_MINUTES nominal minutes). Minutes are NOMINAL (lineups + substitutions),
 // never the source's playing time.
 import { chunkArr } from '../../soccer-ingest/src/store.js';
+import { ownGoalBeneficiary } from '../../shared/own-goals.js';
 
 export const DNA_VERSION = 'soccer-dna/1.0.0';
 export const MIN_MINUTES = 450;
@@ -64,7 +65,7 @@ export function teamProfiles(D) {
   const T = id => { if (!byTeam.has(id)) byTeam.set(id, { team_id: id, results: [], gf: 0, ga: 0, cs: 0, fts: 0, firstFor: 0, firstAgainst: 0, ptsAfterConceding: 0, conceded1st: 0, comebacks: 0, shots: 0, shotsAg: 0, sot: 0, sotAg: 0, statMatches: 0, poss: [], cards: 0, home: { m: 0, pts: 0 }, away: { m: 0, pts: 0 } }); return byTeam.get(id); };
   const goalsBy = new Map();
   for (const g of D.goals) goalsBy.set(g.match_id, [...(goalsBy.get(g.match_id) || []), { seq: g.sequence, team: g.team_id }]);
-  for (const o of D.own) { const m = D.matches.find(x => x.id === o.match_id); if (!m) continue; goalsBy.set(o.match_id, [...(goalsBy.get(o.match_id) || []), { seq: o.sequence, team: o.team_id === m.home_team_id ? m.away_team_id : m.home_team_id }]); }
+  for (const o of D.own) { const m = D.matches.find(x => x.id === o.match_id); if (!m) continue; goalsBy.set(o.match_id, [...(goalsBy.get(o.match_id) || []), { seq: o.sequence, team: ownGoalBeneficiary(o, m.home_team_id, m.away_team_id) }]); }
   const statBy = new Map();
   for (const s of D.stats) { const k = `${s.match_id}|${s.team_id}`; const cur = statBy.get(k) || {}; if (!(s.stat_key in cur) || s.basis === 'source') cur[s.stat_key] = Number(s.value); statBy.set(k, cur); }
   for (const c of D.cards) if (c.team_id) T(c.team_id).cards += c.card === 'red' ? 2 : 1;

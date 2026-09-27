@@ -87,6 +87,15 @@ function claims(t, p) {
   }
   if (p.form) for (const m of t.matchAll(/scored in (\d+) (?:straight|consecutive)/g)) want('scoring run', m[1], p.form.consecutive_scoring_appearances);
   if (p.table) for (const m of t.matchAll(/lead the [^.]+? by (\d+) points?/g)) want('leader gap', m[1], p.table.leader_gap);
+  // Verified group positions ("X sit 6th of 15 in the Eastern Conference on 39 points from 27 matches").
+  for (const [, tm] of teams) {
+    const g = tm.group; const T = reEsc(tm.name);
+    for (const m of t.matchAll(new RegExp(`${T} (?:sit|are) (\\d+)(?:st|nd|rd|th) of (\\d+) in (?:the )?[^.;]+? on (\\d+) points? from (\\d+) match`, 'g'))) {
+      if (!g?.verified) { wrong.push(`${tm.name}: group position without a verified group table`); continue; }
+      want(`${tm.name} group position`, m[1], g.position); want(`${tm.name} group size`, m[2], g.teams_in_group); want(`${tm.name} group points`, m[3], g.points); want(`${tm.name} group played`, m[4], g.played);
+    }
+  }
+  if (p.stats) for (const m of t.matchAll(/Possession as recorded by the source: (\d+(?:\.\d+)?)% to (\d+(?:\.\d+)?)%/g)) { want('home possession', m[1], p.stats.home?.possession_pct); want('away possession', m[2], p.stats.away?.possession_pct); }
   return wrong;
 }
 
@@ -106,14 +115,27 @@ export function runGates2(article, packet) {
   gate('entity_grounding', bad.length === 0, bad.length ? bad : null);
 
   const editorial = text({ ...article, sections: article.sections.filter(s => s.key !== 'method') });
-  for (const [name, re] of GLOBAL_BANNED) { const m = editorial.match(re); gate(name, !m, m ? m[0] : null); }
+  // Possession may be printed only as the source's figure carried in the packet (both sides).
+  const hasPossession = packet.stats?.home?.possession_pct !== undefined && packet.stats?.away?.possession_pct !== undefined;
+  for (const [name, re] of GLOBAL_BANNED) { if (name === 'unsupported_possession' && hasPossession) continue; const m = editorial.match(re); gate(name, !m, m ? m[0] : null); }
   const profile = PROFILES[packet.event.profile];
-  for (const [name, re] of profile?.banned || []) { const m = editorial.match(re); gate(name, !m, m ? m[0] : null); }
+  // Conference / league-phase / qualification-zone language is allowed ONLY when the
+  // packet carries a group position verified against canonical results. "Top four" never.
+  const verifiedGroup = [packet.teams?.home?.group, packet.teams?.away?.group, packet.team?.group].some(g => g?.verified);
+  const EXEMPT_WITH_VERIFIED_GROUP = new Set(['mls_conference_claim', 'ucl_table_claim', 'ucl_qualification_claim']);
+  for (const [name, re] of profile?.banned || []) { if (verifiedGroup && EXEMPT_WITH_VERIFIED_GROUP.has(name)) continue; const m = editorial.match(re); gate(name, !m, m ? m[0] : null); }
 
   const wrong = claims(t, packet);
   gate('claims_consistency', wrong.length === 0, wrong.length ? wrong : null);
   if (packet.match) {
     gate('match_final', packet.match.status === 'finished');
+    // The goal sequence must reproduce the recorded result exactly (catches own goals
+    // credited to the wrong side and incomplete goal lists).
+    if (packet.goals) {
+      const total = packet.match.score.home + packet.match.score.away;
+      const last = packet.goals[packet.goals.length - 1]?.running_score || '0-0';
+      gate('goal_sequence_matches_score', packet.goals.length === total && last === packet.match.score.final, { goals: packet.goals.length, total, last, final: packet.match.score.final });
+    }
     const s = packet.match.score;
     gate('score_in_headline', article.headline.includes(`${Math.max(s.home, s.away)}-${Math.min(s.home, s.away)}`) || article.headline.includes(s.final), article.headline);
     if (packet.match.winner !== 'draw') { const w = packet.teams[packet.match.winner].name; const l = packet.teams[packet.match.winner === 'home' ? 'away' : 'home'].name; gate('wrong_winner', article.headline.indexOf(w) > -1 && article.headline.indexOf(w) < article.headline.indexOf(l)); }

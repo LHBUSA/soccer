@@ -7,6 +7,9 @@ import { profileFor, PROFILES_VERSION } from './profiles.js';
 import { displayMinute } from '../../shared/clock.js';
 import { payloadHash, uuidv5 } from '../../shared/ids.js';
 import { chunkArr } from '../../soccer-ingest/src/store.js';
+import { verifyGroupStandings } from '../../shared/standings.js';
+import { ownGoalBeneficiary } from '../../shared/own-goals.js';
+import { loadSeasonData, teamDna } from '../../soccer-api/src/dna.js';
 
 export const ENGINE_VERSION = 'soccer-news-engine/2.0.0';
 export const PACKET_V2 = 'soccer-packet/2.0.0';
@@ -196,65 +199,109 @@ function freeze(packet) {
 }
 
 export async function buildPacket(store, S, cand) {
-  const base = { version: PACKET_V2, engine: ENGINE_VERSION, event: { kind: cand.story_class, key: cand.key, as_of: cand.as_of, profile: cand.profile.key }, competition: { id: S.comp.id, name: S.comp.name, slug: S.comp.slug, season: S.season.label }, materiality: cand.materiality };
+  const base = { version: PACKET_V2, engine: ENGINE_VERSION, event: { kind: cand.story_class, key: cand.key, as_of: cand.as_of, profile: cand.profile.key, ...(cand.corrects ? { corrects: cand.corrects } : {}) }, competition: { id: S.comp.id, name: S.comp.name, slug: S.comp.slug, season: S.season.label }, materiality: cand.materiality };
   if (cand.story_class === 'match_recap') return freeze({ ...base, ...(await recapBody(store, S, cand)) });
-  if (cand.story_class === 'team_trend') return freeze({ ...base, ...trendBody(S, cand) });
+  if (cand.story_class === 'team_trend') return freeze({ ...base, ...(await trendBody(store, S, cand)) });
   if (cand.story_class === 'player_form') return freeze({ ...base, ...(await formBody(store, S, cand)) });
   if (cand.story_class === 'competition_intelligence') return freeze({ ...base, ...raceBody(S, cand) });
   throw new Error(`unknown story class ${cand.story_class}`);
+}
+
+// Verified group context (MLS conference / UCL league phase) for the given teams, as of
+// NOW (packet build time): only when the provider's standings verify against our own
+// canonical results (same rule as the API). Unverified -> no context, no claims.
+export async function groupContext(store, S, teamIds) {
+  const groups = await store.select('soccer_season_groups', { columns: ['id', 'group_key', 'name', 'group_type'], eq: { season_id: S.season.id } });
+  if (!groups.length) return {};
+  const byId = new Map(computeTable(S.finished.filter(m => S.leagueStages.has(m.stage_id))).map(r => [r.team_id, r]));
+  const out = {};
+  for (const g of groups) {
+    const src = await store.select('soccer_source_standings', { columns: ['team_id', 'rank', 'played', 'won', 'drawn', 'lost', 'goals_for', 'goals_against', 'points', 'deductions', 'note', 'observed_at'], eq: { group_id: g.id, provider: 'espn' } });
+    if (!verifyGroupStandings(src, byId).verified) continue;
+    for (const tid of teamIds) {
+      const r = src.find(x => x.team_id === tid);
+      if (r) out[tid] = { group: g.name, group_type: g.group_type, position: r.rank, teams_in_group: src.length, points: r.points, played: r.played, zone: r.note || null, verified: true, observed_at: r.observed_at };
+    }
+  }
+  return out;
+}
+
+// The team's next scheduled canonical match after this one (never a played match).
+export function nextFixture(S, tid, afterIso) {
+  const n = S.matches.filter(x => x.status === 'scheduled' && (x.home_team_id === tid || x.away_team_id === tid) && Date.parse(x.kickoff_at) > Date.parse(afterIso)).sort(byKick)[0];
+  if (!n) return null;
+  const home = n.home_team_id === tid;
+  return { match_id: n.id, date: new Date(n.kickoff_at).toISOString().slice(0, 10), opponent: teamRef(S, home ? n.away_team_id : n.home_team_id), venue: home ? 'home' : 'away' };
 }
 
 async function recapBody(store, S, cand) {
   const m = cand.match;
   const [venue] = m.venue_id ? await store.select('soccer_venues', { columns: ['name'], eq: { id: m.venue_id }, limit: 1 }) : [];
   const goals = (await goalsFor(store, [m.id])).get(m.id) || [];
-  const shots = await store.select('soccer_match_events', { columns: ['team_id', 'x_m', 'y_m', 'source_family'], eq: { match_id: m.id, event_type: 'shot' } });
+  const shots = await store.select('soccer_match_events', { columns: ['sequence', 'team_id', 'player_id', 'outcome', 'is_goal', 'x_m', 'y_m', 'source_family'], eq: { match_id: m.id, event_type: 'shot' } });
   const fam = FAMILY.find(f => shots.some(s => s.source_family === f));
-  const located = shots.filter(s => s.source_family === fam && s.x_m !== null);
+  const famShots = shots.filter(s => s.source_family === fam);
+  const located = famShots.filter(s => s.x_m !== null);
+  const assistEv = fam === 'espn' ? await store.select('soccer_match_events', { columns: ['sequence', 'team_id', 'player_id'], eq: { match_id: m.id, source_family: 'espn', subtype: 'espn_assist' } }) : [];
   const stats = await store.select('soccer_team_match_stats', { columns: ['team_id', 'stat_key', 'value', 'basis', 'provider'], eq: { match_id: m.id } });
   const basis = stats.some(s => s.basis === 'source') ? 'source' : stats.length ? 'derived' : null;
   const side = tid => (tid === m.home_team_id ? 'home' : 'away');
   const st = { home: {}, away: {} };
-  for (const s of stats.filter(x => x.basis === basis)) if (['shots', 'shots_on_target', 'corners', 'fouls_committed', 'saves'].includes(s.stat_key)) st[side(s.team_id)][s.stat_key] = Number(s.value);
-  const people = await peopleById(store, [...goals.map(g => g.player_id), ...cand.materiality.angles.map(a => a.detail?.player_id)]);
+  for (const s of stats.filter(x => x.basis === basis)) if (['shots', 'shots_on_target', 'corners', 'fouls_committed', 'saves', 'possession_pct'].includes(s.stat_key)) st[side(s.team_id)][s.stat_key] = Number(s.value);
+  const people = await peopleById(store, [...goals.map(g => g.player_id), ...famShots.map(s => s.player_id), ...assistEv.map(x => x.player_id), ...cand.materiality.angles.map(a => a.detail?.player_id)]);
   let h = 0; let a = 0;
   const goalList = goals.map(g => {
-    const benefit = g.is_own_goal ? (g.team_id === m.home_team_id ? 'away' : 'home') : side(g.team_id);
+    const benefit = side(g.is_own_goal ? ownGoalBeneficiary(g, m.home_team_id, m.away_team_id) : g.team_id);
     if (benefit === 'home') h += 1; else a += 1;
-    return { minute: g.minute, display_minute: displayMinute(g.period, g.minute), team: benefit, scorer: people.get(g.player_id) || null, own_goal: !!g.is_own_goal, penalty: g.set_piece === 'penalty', running_score: `${h}-${a}` };
+    const assist = !g.is_own_goal ? assistEv.filter(x => x.team_id === g.team_id && Math.abs(x.sequence - g.sequence) <= 4).sort((x, y) => Math.abs(g.sequence - x.sequence) - Math.abs(g.sequence - y.sequence))[0] : null;
+    return { minute: g.minute, display_minute: displayMinute(g.period, g.minute), team: benefit, scorer: people.get(g.player_id) || null, assist: assist ? people.get(assist.player_id) || null : null, own_goal: !!g.is_own_goal, penalty: g.set_piece === 'penalty', running_score: `${h}-${a}` };
   });
+  // Decisive players: goals + assists, then shots on target, then shots (a documented ordering rule, not a rating).
+  const perf = new Map();
+  const P = (pid, tid) => { if (!perf.has(pid)) perf.set(pid, { player: people.get(pid), team: side(tid), goals: 0, assists: 0, shots: 0, shots_on_target: 0 }); return perf.get(pid); };
+  for (const s of famShots) if (s.player_id && people.has(s.player_id)) { const r = P(s.player_id, s.team_id); r.shots += 1; if (s.outcome === 'goal' || s.outcome === 'on_target') r.shots_on_target += 1; }
+  for (const g of goals) if (g.player_id && people.has(g.player_id) && !g.is_own_goal) P(g.player_id, g.team_id).goals += 1;
+  for (const g of goalList) if (g.assist) { const pid = g.assist.id; const tid = g.team === 'home' ? m.home_team_id : m.away_team_id; P(pid, tid).assists += 1; }
+  const decisive = [...perf.values()].filter(r => r.player && (r.goals || r.assists)).sort((x, y) => (y.goals + y.assists) - (x.goals + x.assists) || y.shots_on_target - x.shots_on_target || y.shots - x.shots || (x.player.name < y.player.name ? -1 : 1)).slice(0, 4);
   const profile = cand.profile;
   const league = S.leagueStages.has(m.stage_id) && profile.table;
   const tb = league ? tableUntil(S, profile, m.kickoff_at, m.id) : null; const ta = league ? tableUntil(S, profile, m.kickoff_at) : null;
   const form = tid => S.finished.filter(x => x.id !== m.id && Date.parse(x.kickoff_at) < Date.parse(m.kickoff_at) && S.leagueStages.has(x.stage_id) && (x.home_team_id === tid || x.away_team_id === tid)).sort((x, y) => byKick(y, x)).slice(0, 5).map(x => res(x, tid));
   const angles = cand.materiality.angles.map(x => ({ ...x, detail: { ...x.detail, ...(x.detail.team_id ? { team: teamRef(S, x.detail.team_id) } : {}), ...(x.detail.new_leader ? { new_leader_team: teamRef(S, x.detail.new_leader) } : {}), ...(x.detail.player_id ? { player: people.get(x.detail.player_id) || null } : {}) } }));
   const dist = k => { const d = located.filter(s => side(s.team_id) === k).map(s => distanceToGoal(s.x_m, s.y_m)).filter(v => v !== null); return d.length ? Math.round((d.reduce((p, q) => p + q, 0) / d.length) * 10) / 10 : null; };
+  const groups = await groupContext(store, S, [m.home_team_id, m.away_team_id]);
+  const team = tid => ({ ...teamRef(S, tid), table_before: tb && row(tb, tid), table_after: ta && row(ta, tid), form_before: league ? form(tid) : [], form_before_count: league ? form(tid).length : 0, group: groups[tid] || null, next: nextFixture(S, tid, m.kickoff_at) });
   return {
     match: { id: m.id, kickoff_utc: new Date(m.kickoff_at).toISOString(), venue: venue?.name || null, league_stage: S.leagueStages.has(m.stage_id), status: m.status,
       score: { home: m.home_score, away: m.away_score, home_ht: m.home_score_ht, away_ht: m.away_score_ht, final: `${m.home_score}-${m.away_score}` },
       winner: m.home_score > m.away_score ? 'home' : m.away_score > m.home_score ? 'away' : 'draw', margin: Math.abs(m.home_score - m.away_score) },
-    teams: {
-      home: { ...teamRef(S, m.home_team_id), table_before: tb && row(tb, m.home_team_id), table_after: ta && row(ta, m.home_team_id), form_before: league ? form(m.home_team_id) : [], form_before_count: league ? form(m.home_team_id).length : 0 },
-      away: { ...teamRef(S, m.away_team_id), table_before: tb && row(tb, m.away_team_id), table_after: ta && row(ta, m.away_team_id), form_before: league ? form(m.away_team_id) : [], form_before_count: league ? form(m.away_team_id).length : 0 },
-    },
+    teams: { home: team(m.home_team_id), away: team(m.away_team_id) },
     teams_in_table: ta ? ta.length : null,
-    goals: goalList, angles,
+    goals: goalList, angles, decisive,
     stats: basis ? { basis, provider: stats.find(x => x.basis === basis)?.provider || null, ...st } : null,
     shots_located: fam ? { home: located.filter(s => side(s.team_id) === 'home').length, away: located.filter(s => side(s.team_id) === 'away').length, avg_distance_m: { home: dist('home'), away: dist('away') }, source: fam } : null,
     unavailable: ['quotes (none sourced)', 'injuries (no legitimate source ingested)', 'odds (not part of this product)', 'xG (PBE xG not validated)'],
-    provenance: { attributions: [...new Set([m.result_provider, fam, basis === 'source' ? stats.find(x => x.basis === 'source')?.provider : null].filter(Boolean).map(p => ATTRIBUTION[p]).filter(Boolean))] },
+    provenance: { attributions: [...new Set([m.result_provider, fam, basis === 'source' ? stats.find(x => x.basis === 'source')?.provider : null, Object.keys(groups).length ? 'espn' : null].filter(Boolean).map(p => ATTRIBUTION[p]).filter(Boolean))] },
   };
 }
 
-function trendBody(S, cand) {
+async function trendBody(store, S, cand) {
   const t = teamRef(S, cand.team_id);
   const table = tableUntil(S, cand.profile, cand.as_of);
   const games = cand.run.map(g => {
     const home = g.home_team_id === cand.team_id;
     return { match_id: g.id, date: g.kickoff_at.slice(0, 10), opponent: teamRef(S, home ? g.away_team_id : g.home_team_id), venue: home ? 'home' : 'away', goals_for: home ? g.home_score : g.away_score, goals_against: home ? g.away_score : g.home_score, result: res(g, cand.team_id) };
   });
+  // Team DNA (time-safe: matches before the day after the run's last match) — only the
+  // metrics a story may cite, with their percentile among the competition-season's teams.
+  let dna = null;
+  try {
+    const asOf = new Date(Date.parse(cand.as_of) + 86400e3).toISOString().slice(0, 10) + 'T00:00:00Z';
+    const all = teamDna(await loadSeasonData(store, S.season.id, asOf)); const me = all.get(cand.team_id);
+    if (me) dna = { as_of: asOf, teams_compared: all.size, matches: me.matches, goals_for_per_match: me.goals_for_per_match, goals_against_per_match: me.goals_against_per_match, clean_sheet_pct: me.clean_sheet_rate === null ? null : Math.round(me.clean_sheet_rate * 100), percentiles: { goals_for_per_match: me.percentiles.goals_for_per_match, goals_against_per_match: me.percentiles.goals_against_per_match, clean_sheet_rate: me.percentiles.clean_sheet_rate } };
+  } catch { dna = null; }
   return {
-    team: { ...t, table_now: row(table, cand.team_id) }, teams_in_table: table.length,
+    team: { ...t, table_now: row(table, cand.team_id), next: nextFixture(S, cand.team_id, cand.as_of) }, teams_in_table: table.length, dna,
     trend: { kind: cand.kind, matches: games.length, goals_for: games.reduce((n, g) => n + g.goals_for, 0), goals_against: games.reduce((n, g) => n + g.goals_against, 0), wins: games.filter(g => g.result === 'W').length, draws: games.filter(g => g.result === 'D').length, losses: games.filter(g => g.result === 'L').length, games },
     unavailable: ['quotes (none sourced)', 'injuries (no legitimate source ingested)', 'odds (not part of this product)'],
     provenance: { attributions: [...new Set(cand.run.map(g => ATTRIBUTION[g.result_provider]).filter(Boolean))] },
