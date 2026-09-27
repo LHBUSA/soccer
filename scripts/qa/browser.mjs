@@ -23,11 +23,13 @@ const espnDetail = (await getJson(`matches/${espnMatch.id}`)).data;
 const playerSlug = espnDetail.lineups?.home?.starters?.find(Boolean)?.slug;
 
 const ROUTES = [
-  { path: '/', expect: ['SOCCER INTELLIGENCE', 'One canonical field', 'BUNDESLIGA', 'PREMIER LEAGUE'], name: 'home' },
+  { path: '/', expect: ['SOCCER INTELLIGENCE', 'One canonical field', 'MLS', 'BUNDESLIGA', 'PREMIER LEAGUE', 'CHAMPIONS LEAGUE'], name: 'home' },
   { path: '/competitions', expect: ['Competitions on the canonical graph'], name: 'competitions' },
   { path: '/competitions/bundesliga', expect: ['Bundesliga', 'TABLE'], name: 'bundesliga' },
   { path: '/competitions/premier-league', expect: ['Premier League', 'TABLE'], name: 'epl' },
-  { path: '/competitions/uefa-champions-league', expect: ['Champions League'], name: 'ucl' },
+  { path: '/competitions/uefa-champions-league', expect: ['Champions League', 'table not available'], name: 'ucl' },
+  { path: '/competitions/mls', expect: ['Major League Soccer', 'OVERVIEW', 'TEAMS'], name: 'mls' },
+  { path: '/competitions/mls?tab=table', expect: ['Major League Soccer', 'PTS'], name: 'mls-table' },
   { path: '/matches', expect: ['From result to event map'], name: 'matches' },
   { path: '/matches?view=upcoming', expect: ['Upcoming'], name: 'matches-upcoming' },
   { path: `/matches/${espnMatch.id}`, expect: ['MATCH INTELLIGENCE', 'EVENT LOCATIONS — NOT PLAYER TRACKING', 'SOURCE MATCH STATISTICS', 'STARTING XI', 'ESPN'], marks: true, name: 'match-espn-epl' },

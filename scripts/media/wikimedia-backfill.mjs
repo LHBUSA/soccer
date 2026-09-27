@@ -103,9 +103,16 @@ report.samples = rows.slice(0, 5).map(r => ({ entity: r.entity_id, file: r.sourc
 log('rows', JSON.stringify(report.rows));
 
 // ---- cache approved bytes (write-once, content-addressed) and mark primary
-let cached = 0;
+let cached = 0; let reused = 0;
+// Re-runs: a row already cached for the same file keeps its verified copy (no re-download).
+const prior = new Map((await selectIn('soccer_entity_media', 'id', rows.map(r => r.id), { columns: ['id', 'url', 'object_key', 'content_sha256', 'cached_url', 'verified_at', 'mime'] })).map(x => [x.id, x]));
 for (const r of rows.filter(x => x.rights_status === 'approved')) {
   if (DRY) break;
+  const was = prior.get(r.id);
+  if (was?.object_key && was.url === r.url) {
+    Object.assign(r, { object_key: was.object_key, content_sha256: was.content_sha256, cached_url: was.cached_url, verified_at: new Date(was.verified_at).toISOString(), mime: was.mime, is_primary: true });
+    reused += 1; continue;
+  }
   try {
     const res = await politeFetch(r.url, { minIntervalMs: 700, headers: { accept: 'image/*' } });
     if (res.status !== 200 || !/^image\//.test(res.contentType || '')) throw new Error(`HTTP ${res.status} ${res.contentType}`);
@@ -123,7 +130,7 @@ for (const r of rows.filter(x => x.rights_status === 'approved')) {
   }
 }
 report.rows_after_cache = {}; for (const r of rows) tally(report.rows_after_cache, `${r.entity_type}:${r.rights_status}`);
-report.cached = cached;
+report.cached = cached; report.reused = reused;
 // One primary per entity/media type: keep the first approved.
 const seen = new Set();
 for (const r of rows) { const k = `${r.entity_type}:${r.entity_id}:${r.media_type}`; if (r.is_primary && seen.has(k)) r.is_primary = false; if (r.is_primary) seen.add(k); }

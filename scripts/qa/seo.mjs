@@ -25,6 +25,7 @@ const PAGES = [
   { key: 'homepage', path: '/', ld: ['WebSite', 'Organization'] },
   { key: 'competition-epl', path: '/competitions/premier-league', ld: ['SportsOrganization', 'BreadcrumbList'], titleHas: 'Premier League' },
   { key: 'competition-bundesliga', path: '/competitions/bundesliga', ld: ['SportsOrganization'], titleHas: 'Table, Results & Fixtures' },
+  { key: 'competition-mls', path: '/competitions/mls', ld: ['SportsOrganization', 'BreadcrumbList'], titleHas: 'MLS' },
   { key: 'competition-ucl', path: '/competitions/uefa-champions-league', ld: ['SportsOrganization'], titleHas: 'Champions League', noTableClaim: true },
   { key: 'match-espn', path: `/matches/${epl.id}`, ld: ['SportsEvent', 'BreadcrumbList'], titleHas: `${epl.home.name} vs ${epl.away.name} — Match Intelligence | PropBetEdge Soccer` },
   { key: 'match-wyscout', path: `/matches/${wy.id}`, ld: ['SportsEvent'], titleHas: 'Match Intelligence' },
