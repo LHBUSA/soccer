@@ -62,8 +62,17 @@ export function postgrestStore(url, key, f = (...a) => globalThis.fetch(...a)) {
       if (opts.limit !== undefined && opts.limit <= MAX_ROWS) return (await store.req('GET', `${table}?${buildQuery(opts)}`)) || [];
       const out = [];
       const cap = opts.limit ?? Infinity;
+      // Offset paging is only correct with a total, deterministic order: without
+      // ORDER BY Postgres may return rows in a different order per page and
+      // silently skip some (found in production: syncRows missed existing rows).
+      let order = opts.order;
+      if (!order) {
+        const cols = Array.isArray(opts.columns) ? opts.columns : String(opts.columns || '*').split(',').map(c => c.trim());
+        if (cols.includes('*')) throw new Error(`paged select on ${table} needs an explicit order (columns '*')`);
+        order = cols.map(c => `${c}.asc`).join(',');
+      }
       for (let offset = 0; out.length < cap; offset += MAX_ROWS) {
-        const page = (await store.req('GET', `${table}?${buildQuery({ ...opts, limit: Math.min(MAX_ROWS, cap - out.length), offset, order: opts.order || undefined })}`)) || [];
+        const page = (await store.req('GET', `${table}?${buildQuery({ ...opts, limit: Math.min(MAX_ROWS, cap - out.length), offset, order })}`)) || [];
         out.push(...page);
         if (page.length < MAX_ROWS) break;
       }

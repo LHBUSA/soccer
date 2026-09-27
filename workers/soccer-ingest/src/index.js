@@ -34,19 +34,19 @@ function context(env) {
   return { store, storage: r2Storage(env.SOCCER_SOURCE), registry, reviewed, areas };
 }
 
-export async function runLane(env, name, { force = false, now = Date.now() } = {}) {
+export async function runLane(env, name, { force = false, now = Date.now(), budget = undefined } = {}) {
   const fn = LANES[name];
   if (!fn) throw new Error(`unknown lane ${name}`);
   let state = await readLane(env.SOCCER_STATE, name);
   if (!force && inBackoff(state, now)) return { lane: name, skipped: 'backoff', backoff_until: state.backoff_until };
   state = { ...state, last_attempt_at: new Date(now).toISOString() };
   try {
-    const ctx = { ...context(env), state, now, force };
+    const ctx = { ...context(env), state, now, force, ...(budget ? { budget } : {}) };
     const out = await fn(ctx);
     if (out?.skipped) { await writeLane(env.SOCCER_STATE, state); return { lane: name, ...out }; }
     state = successState(state, { now, observed: out.observed, changed: out.changed, captureId: out.captureId, parserVersion: out.parserVersion, cursor: out.cursor, changedValue: out.changedValue || null });
     await writeLane(env.SOCCER_STATE, state);
-    return { lane: name, observed: out.observed, changed: out.changed, capture_id: out.captureId, results: out.results };
+    return { lane: name, observed: out.observed, changed: out.changed, capture_id: out.captureId, requests: out.requests, results: out.results };
   } catch (err) {
     state = failureState(state, err, now);
     await writeLane(env.SOCCER_STATE, state);
@@ -127,7 +127,8 @@ export default {
       if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);
       const lane = url.searchParams.get('lane');
       if (!LANES[lane]) return json({ error: 'unknown lane', lanes: Object.keys(LANES) }, 400);
-      return json(await runLane(env, lane, { force: url.searchParams.get('force') === '1' }));
+      const budget = Math.max(1, Math.min(120, Number(url.searchParams.get('budget')) || 0)) || undefined;
+      return json(await runLane(env, lane, { force: url.searchParams.get('force') === '1', budget }));
     }
     return json({ error: 'not found' }, 404);
   },

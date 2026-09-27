@@ -71,7 +71,7 @@ export async function selectByKeys(store, table, key, batch, columns) {
   const step = store.inChunk || 500;
   const lists = inCol ? chunkArr(inVals, step) : [null];
   for (const list of lists) {
-    const rows = await store.select(table, { columns, eq, in: list ? { [inCol]: list } : {} });
+    const rows = await store.select(table, { columns, eq, in: list ? { [inCol]: list } : {}, order: key.map(k => `${k}.asc`).join(',') });
     out.push(...rows);
   }
   if (!multi.length) return out;

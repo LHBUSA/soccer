@@ -347,7 +347,7 @@ export async function alignOpenLigaScorersToEspn(store, { seasonId }) {
   const resolved = new Map([...already, ...xw.map(x => [x.external_id, x.player_id])]);
   const updates = oldb.filter(g => !g.player_id && resolved.has(g.qualifiers?.source_player?.id)).map(g => g.id);
   if (updates.length) {
-    const full = await selectIn(store, 'soccer_match_events', 'id', updates, { columns: '*' });
+    const full = await selectIn(store, 'soccer_match_events', 'id', updates, { columns: '*', order: 'id.asc' });
     await syncRows(store, { table: 'soccer_match_events', key: ['id'], compare: ['player_id'], provider: 'openligadb', rows: full.map(r => ({ ...r, player_id: resolved.get(r.qualifiers.source_player.id) })) });
   }
   return { scorer_ids_seen: votes.size, crosswalked: xw.length, conflicts, goal_events_resolved: updates.length, written };

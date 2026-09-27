@@ -38,6 +38,8 @@ test('postgrest store pages past max-rows, retries 5xx, surfaces 4xx', async () 
   const s = postgrestStore('https://tkmlnhmylqnttmnsnief.supabase.co', 'k', fake);
   const rows = await s.select('soccer_teams', { columns: ['id'] });
   assert.equal(rows.length, 1003);
+  assert.ok(calls.filter(([, u]) => u.includes('soccer_teams?') && u.includes('offset=')).every(([, u]) => u.includes('order=id.asc')), 'paged selects must be ordered');
+  await assert.rejects(s.select('soccer_teams', { columns: '*' }), /needs an explicit order/);
   await assert.rejects(s.select('bad', { limit: 1 }), /postgrest 400/);
   await s.upsert('soccer_teams', [{ id: 'a' }], ['id']);
   assert.ok(calls.some(([m, u]) => m === 'POST' && u.endsWith('soccer_teams?on_conflict=id')));
