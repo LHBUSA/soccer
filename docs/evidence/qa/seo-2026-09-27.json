@@ -1,0 +1,335 @@
+{
+  "base": "https://soccer.propbetedge.ai",
+  "at": "2026-09-27T19:40:20.665Z",
+  "pages": [
+    {
+      "key": "homepage",
+      "path": "/",
+      "status": 200,
+      "title": "PropBetEdge Soccer Intelligence — Every match. Every event. One canonical field.",
+      "description": "Soccer intelligence from the PropBetEdge canonical graph: Bundesliga, Premier League and Champions League results, tables, lineups and event maps with visible…",
+      "canonical": "https://soccer.propbetedge.ai/",
+      "robots": "index, follow, max-image-preview:large",
+      "og_image": "https://soccer.propbetedge.ai/og/site/home.png",
+      "jsonld": [
+        "WebSite",
+        "Organization"
+      ]
+    },
+    {
+      "key": "competition-epl",
+      "path": "/competitions/premier-league",
+      "status": 200,
+      "title": "Premier League — Table, Results &amp; Fixtures | PropBetEdge Soccer",
+      "description": "Premier League 2026/27: table, results and fixtures — 1 stored season, 380 canonical matches on the PropBetEdge soccer graph.",
+      "canonical": "https://soccer.propbetedge.ai/competitions/premier-league",
+      "robots": "index, follow, max-image-preview:large",
+      "og_image": "https://soccer.propbetedge.ai/og/competition/premier-league.png",
+      "jsonld": [
+        "BreadcrumbList",
+        "SportsOrganization"
+      ]
+    },
+    {
+      "key": "competition-bundesliga",
+      "path": "/competitions/bundesliga",
+      "status": 200,
+      "title": "Bundesliga — Table, Results &amp; Fixtures | PropBetEdge Soccer",
+      "description": "Bundesliga 2026/27: table, results and fixtures — 23 stored seasons, 7,040 canonical matches on the PropBetEdge soccer graph.",
+      "canonical": "https://soccer.propbetedge.ai/competitions/bundesliga",
+      "robots": "index, follow, max-image-preview:large",
+      "og_image": "https://soccer.propbetedge.ai/og/competition/bundesliga.png",
+      "jsonld": [
+        "BreadcrumbList",
+        "SportsOrganization"
+      ]
+    },
+    {
+      "key": "competition-ucl",
+      "path": "/competitions/uefa-champions-league",
+      "status": 200,
+      "title": "UEFA Champions League — Results &amp; Fixtures | PropBetEdge Soccer",
+      "description": "UEFA Champions League 2026/27: results and fixtures — 1 stored season, 144 canonical matches on the PropBetEdge soccer graph.",
+      "canonical": "https://soccer.propbetedge.ai/competitions/uefa-champions-league",
+      "robots": "index, follow, max-image-preview:large",
+      "og_image": "https://soccer.propbetedge.ai/og/competition/uefa-champions-league.png",
+      "jsonld": [
+        "BreadcrumbList",
+        "SportsOrganization"
+      ]
+    },
+    {
+      "key": "match-espn",
+      "path": "/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "status": 200,
+      "title": "Fulham vs Manchester United — Match Intelligence | PropBetEdge Soccer",
+      "description": "Fulham 1–1 Manchester United · Premier League 2026/27 · 20 September 2026. Full time. Match Intelligence: event map (40 shots), source stats, lineups, timeline.",
+      "canonical": "https://soccer.propbetedge.ai/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "robots": "index, follow, max-image-preview:large",
+      "og_image": "https://soccer.propbetedge.ai/og/match/10545ede-6c4e-5806-8c0f-a34b85e8f442.png",
+      "jsonld": [
+        "SportsEvent",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "key": "match-wyscout",
+      "path": "/matches/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a",
+      "status": 200,
+      "title": "Bayern München vs Stuttgart — Match Intelligence | PropBetEdge Soccer",
+      "description": "Bayern München 1–4 Stuttgart · Bundesliga 2017/18 · 12 May 2018. Full time. Match Intelligence: event map (22 shots), PBE derived counts, lineups, timeline.",
+      "canonical": "https://soccer.propbetedge.ai/matches/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a",
+      "robots": "index, follow, max-image-preview:large",
+      "og_image": "https://soccer.propbetedge.ai/og/match/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a.png",
+      "jsonld": [
+        "SportsEvent",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "key": "team",
+      "path": "/teams/bayern-munchen",
+      "status": 200,
+      "title": "Bayern München — Soccer Intelligence | PropBetEdge",
+      "description": "Bayern München (Bundesliga, UEFA Champions League): recent results (last five: W-W-W-D-W), upcoming fixtures and match intelligence from the PropBetEdge canonical…",
+      "canonical": "https://soccer.propbetedge.ai/teams/bayern-munchen",
+      "robots": "index, follow, max-image-preview:large",
+      "og_image": "https://soccer.propbetedge.ai/og/team/bayern-munchen.png",
+      "jsonld": [
+        "SportsTeam",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "key": "player",
+      "path": "/players/shea-charles",
+      "status": 200,
+      "title": "Shea Charles — Player Intelligence | PropBetEdge Soccer",
+      "description": "Shea Charles — midfielder, born 5 November 2003. Player Intelligence from the PropBetEdge canonical soccer graph: event-derived statistics for 2026/27.",
+      "canonical": "https://soccer.propbetedge.ai/players/shea-charles",
+      "robots": "index, follow, max-image-preview:large",
+      "og_image": "https://soccer.propbetedge.ai/og/player/shea-charles.png",
+      "jsonld": [
+        "Person",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "key": "player-wyscout",
+      "path": "/players/robert-lewandowski",
+      "status": 200,
+      "title": "Robert Lewandowski — Player Intelligence | PropBetEdge Soccer",
+      "description": "Robert Lewandowski — forward, born 21 August 1988. Player Intelligence from the PropBetEdge canonical soccer graph: event-derived statistics for 2017/18.",
+      "canonical": "https://soccer.propbetedge.ai/players/robert-lewandowski",
+      "robots": "index, follow, max-image-preview:large",
+      "og_image": "https://soccer.propbetedge.ai/og/player/robert-lewandowski.png",
+      "jsonld": [
+        "Person",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "key": "sources",
+      "path": "/sources",
+      "status": 200,
+      "title": "Sources &amp; Method — PropBetEdge Soccer Intelligence",
+      "description": "Where every PropBetEdge Soccer fact comes from: sources, attribution, identity rules, event-map semantics and how missing data is shown.",
+      "canonical": "https://soccer.propbetedge.ai/sources",
+      "robots": "index, follow, max-image-preview:large",
+      "og_image": "https://soccer.propbetedge.ai/og/site/home.png",
+      "jsonld": [
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "key": "tables",
+      "path": "/tables",
+      "status": 200,
+      "title": "Tables — League Standings | PropBetEdge Soccer",
+      "description": "League tables computed by PropBetEdge from canonical finished league-stage results, with the method shown alongside every table.",
+      "canonical": "https://soccer.propbetedge.ai/tables",
+      "robots": "index, follow, max-image-preview:large",
+      "og_image": "https://soccer.propbetedge.ai/og/site/home.png",
+      "jsonld": [
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "key": "news",
+      "path": "/news",
+      "status": 200,
+      "title": "Soccer Newsroom — PropBetEdge Soccer",
+      "description": "Evidence-backed soccer reporting from the PropBetEdge canonical graph is coming online.",
+      "canonical": "https://soccer.propbetedge.ai/news",
+      "robots": "noindex, follow",
+      "og_image": "https://soccer.propbetedge.ai/og/site/home.png",
+      "jsonld": [
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "key": "missing-match",
+      "path": "/matches/00000000-0000-5000-8000-000000000000",
+      "status": 404,
+      "title": "Not found — PropBetEdge Soccer",
+      "description": "This match is not in the PropBetEdge canonical soccer graph.",
+      "canonical": null,
+      "robots": "noindex, follow",
+      "og_image": null,
+      "jsonld": []
+    },
+    {
+      "key": "missing-team",
+      "path": "/teams/not-a-real-team-xyz",
+      "status": 404,
+      "title": "Not found — PropBetEdge Soccer",
+      "description": "This team is not in the PropBetEdge canonical soccer graph.",
+      "canonical": null,
+      "robots": "noindex, follow",
+      "og_image": null,
+      "jsonld": []
+    },
+    {
+      "key": "missing-player",
+      "path": "/players/not-a-real-player-xyz",
+      "status": 404,
+      "title": "Not found — PropBetEdge Soccer",
+      "description": "This player is not in the PropBetEdge canonical soccer graph.",
+      "canonical": null,
+      "robots": "noindex, follow",
+      "og_image": null,
+      "jsonld": []
+    },
+    {
+      "key": "missing-competition",
+      "path": "/competitions/not-a-league",
+      "status": 404,
+      "title": "Not found — PropBetEdge Soccer",
+      "description": "This competition is not in the PropBetEdge canonical soccer graph.",
+      "canonical": null,
+      "robots": "noindex, follow",
+      "og_image": null,
+      "jsonld": []
+    },
+    {
+      "key": "unknown-route",
+      "path": "/this/does/not/exist",
+      "status": 404,
+      "title": "Not found — PropBetEdge Soccer",
+      "description": "This page is not in the PropBetEdge canonical soccer graph.",
+      "canonical": null,
+      "robots": "noindex, follow",
+      "og_image": null,
+      "jsonld": []
+    }
+  ],
+  "sitemaps": {
+    "static": {
+      "status": 200,
+      "urls": 5,
+      "with_lastmod": 0
+    },
+    "competitions": {
+      "status": 200,
+      "urls": 3,
+      "with_lastmod": 3
+    },
+    "matches": {
+      "status": 200,
+      "urls": 7564,
+      "with_lastmod": 7564
+    },
+    "teams": {
+      "status": 200,
+      "urls": 85,
+      "with_lastmod": 85
+    },
+    "players": {
+      "status": 200,
+      "urls": 1976,
+      "with_lastmod": 1976
+    }
+  },
+  "robots_ok": true,
+  "cards": [
+    {
+      "path": "/og/match/10545ede-6c4e-5806-8c0f-a34b85e8f442.png",
+      "status": 200,
+      "type": "image/png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 57740
+    },
+    {
+      "path": "/og/team/bayern-munchen.png",
+      "status": 200,
+      "type": "image/png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 53287
+    },
+    {
+      "path": "/og/player/robert-lewandowski.png",
+      "status": 200,
+      "type": "image/png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 57052
+    },
+    {
+      "path": "/og/competition/premier-league.png",
+      "status": 200,
+      "type": "image/png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 53465
+    },
+    {
+      "path": "/og/site/home.png",
+      "status": 200,
+      "type": "image/png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 63327
+    }
+  ],
+  "security": [
+    {
+      "path": "/api/soccer/..%2F..%2Fetc%2Fpasswd",
+      "status": 404
+    },
+    {
+      "path": "/api/soccer/https:%2F%2Fevil.example",
+      "status": 404
+    },
+    {
+      "path": "/workers/soccer-ingest/src/index.js",
+      "status": 404
+    },
+    {
+      "path": "/server/upstream.js",
+      "status": 404
+    },
+    {
+      "path": "/src/seo/meta.js",
+      "status": 404
+    },
+    {
+      "path": "/middleware.js",
+      "status": 404
+    },
+    {
+      "path": "/api/og.js",
+      "status": 200
+    },
+    {
+      "path": "POST /api/soccer/competitions",
+      "status": 405
+    }
+  ],
+  "failures": [
+    "competition-bundesliga: title \"Bundesliga — Table, Results &amp; Fixtures | PropBetEdge Soccer\"",
+    "security: /api/og.js -> 200"
+  ],
+  "pass": false
+}

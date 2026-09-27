@@ -5,7 +5,7 @@
 import { SITE, upstreamJson } from '../server/upstream.js';
 
 export const config = { runtime: 'edge' };
-export const KINDS = ['static', 'competitions', 'matches', 'teams', 'players'];
+export const KINDS = ['static', 'competitions', 'matches', 'teams', 'players', 'news'];
 export const STATIC_PATHS = ['/', '/competitions', '/matches', '/tables', '/sources'];
 const PREFIX = { competitions: '/competitions/', matches: '/matches/', teams: '/teams/', players: '/players/' };
 
@@ -22,6 +22,14 @@ export function sitemapIndex(items) {
 export async function entriesFor(kind) {
   if (kind === 'static') return STATIC_PATHS.map(p => ({ loc: `${SITE}${p}` }));
   const env = await upstreamJson(`sitemap/${kind}`, { timeoutMs: 20000 });
+  if (kind === 'news') {
+    // Articles, plus the newsroom index and each desk ONLY once they hold published stories.
+    const rows = (env.data || []).filter(r => /^[a-z-]+[/][a-z0-9-]+$/.test(r.key || ''));
+    if (!rows.length) return [];
+    const desks = [...new Set(rows.map(r => r.desk))];
+    const newest = d => lastmod(rows.filter(r => !d || r.desk === d).map(r => r.updated_at).sort().pop());
+    return [{ loc: `${SITE}/news`, lastmod: newest(null) }, ...desks.map(d => ({ loc: `${SITE}/news/${d}`, lastmod: newest(d) })), ...rows.map(r => ({ loc: `${SITE}/news/${r.key}`, lastmod: lastmod(r.updated_at) }))];
+  }
   const seen = new Set();
   return (env.data || []).filter(r => r.key && /^[a-z0-9-]+$/.test(r.key) && !seen.has(r.key) && seen.add(r.key))
     .map(r => ({ loc: `${SITE}${PREFIX[kind]}${r.key}`, lastmod: lastmod(r.updated_at) }));

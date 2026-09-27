@@ -20,6 +20,16 @@ const epl = (await api('matches?competition=premier-league&status=finished&limit
 const wy = (await api('matches?competition=bundesliga&season=2017/18&status=finished&limit=1')).data[0];
 const epld = (await api(`matches/${epl.id}`)).data;
 const playerSlug = epld.lineups?.home?.starters?.find(Boolean)?.slug;
+const stories = (await api('news?limit=5')).data || [];
+const story = stories[0];
+const otherDesk = story && ['mls', 'premier-league', 'champions-league', 'bundesliga'].find(d => d !== story.desk);
+const NEWS_PAGES = story ? [
+  { key: 'news', path: '/news', ld: ['BreadcrumbList', 'ItemList'] },
+  { key: 'news-desk', path: `/news/${story.desk}`, ld: ['BreadcrumbList', 'ItemList'] },
+  { key: 'article', path: `/news/${story.desk}/${story.slug}`, ld: ['NewsArticle', 'BreadcrumbList'], titleHas: story.headline },
+  { key: 'article-wrong-desk', path: `/news/${otherDesk}/${story.slug}`, status: 404 },
+  { key: 'article-missing', path: `/news/${story.desk}/no-such-story-xyz`, status: 404 },
+] : [{ key: 'news', path: '/news', robots: 'noindex, follow' }];
 
 const PAGES = [
   { key: 'homepage', path: '/', ld: ['WebSite', 'Organization'] },
@@ -34,7 +44,7 @@ const PAGES = [
   { key: 'player-wyscout', path: '/players/robert-lewandowski', ld: ['Person'], titleHas: 'Robert Lewandowski' },
   { key: 'sources', path: '/sources', ld: ['BreadcrumbList'] },
   { key: 'tables', path: '/tables', ld: ['BreadcrumbList'] },
-  { key: 'news', path: '/news', robots: 'noindex, follow' },
+  ...NEWS_PAGES,
   { key: 'missing-match', path: '/matches/00000000-0000-5000-8000-000000000000', status: 404 },
   { key: 'missing-team', path: '/teams/not-a-real-team-xyz', status: 404 },
   { key: 'missing-player', path: '/players/not-a-real-player-xyz', status: 404 },
@@ -81,6 +91,15 @@ for (const p of PAGES) {
 const sm = {};
 const idx = await get('/sitemap.xml');
 if (idx.r.status !== 200 || !idx.text.includes('<sitemapindex')) fail('sitemap-index', `HTTP ${idx.r.status}`);
+{
+  // News sitemap: only published articles (+ /news and desks that have them).
+  const { r, text } = await get('/sitemap-news.xml');
+  const locs = all(text, /<loc>([^<]*)<\/loc>/g);
+  sm.news = { status: r.status, urls: locs.length };
+  if (r.status !== 200) fail('sitemap-news', `HTTP ${r.status}`);
+  if (story && !locs.includes(`${SITE}/news/${story.desk}/${story.slug}`)) fail('sitemap-news', 'published article missing');
+  if (!story && locs.length) fail('sitemap-news', 'URLs listed with no published stories');
+}
 for (const kind of ['static', 'competitions', 'matches', 'teams', 'players']) {
   const { r, text } = await get(`/sitemap-${kind}.xml`);
   const locs = all(text, /<loc>([^<]*)<\/loc>/g);

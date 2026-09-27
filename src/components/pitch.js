@@ -57,7 +57,7 @@ export function pitchSvg(shots, { homeName = 'Home', awayName = 'Away', portrait
   return `<svg class="pitch" viewBox="${-PAD} ${-PAD} ${L + 2 * PAD} ${W + 2 * PAD}" role="img" aria-label="Event map: ${pts.length} located shots. ${esc(homeName)} attack right, ${esc(awayName)} attack left.">
     ${pitchLines()}
     <text class="dir" x="${L - 1}" y="${-0.8}" text-anchor="end">${esc(homeName.toUpperCase())} →</text>
-    <text class="dir" x="1" y="${-0.8}">← ${esc(awayName.toUpperCase())}</text>
+    ${awayName ? `<text class="dir" x="1" y="${-0.8}">← ${esc(awayName.toUpperCase())}</text>` : ''}
     <g class="marks">${marks}</g>
   </svg>`;
 }
@@ -77,7 +77,7 @@ function portraitSvg(pts, { homeName, awayName }) {
   return `<svg class="pitch portrait" viewBox="${-PAD} ${-PAD - 4} ${W + 2 * PAD} ${L + 2 * PAD + 8}" role="img" aria-label="Event map (portrait): ${pts.length} located shots. ${esc(homeName)} attack up, ${esc(awayName)} attack down.">
     <g transform="translate(0 ${L}) rotate(-90)">${pitchLines()}</g>
     <text class="dir" x="${W / 2}" y="${-3.6}" text-anchor="middle">↑ ${esc(homeName.toUpperCase())} ATTACK</text>
-    <text class="dir" x="${W / 2}" y="${L + 5.6}" text-anchor="middle">↓ ${esc(awayName.toUpperCase())} ATTACK</text>
+    ${awayName ? `<text class="dir" x="${W / 2}" y="${L + 5.6}" text-anchor="middle">↓ ${esc(awayName.toUpperCase())} ATTACK</text>` : ''}
     <g class="marks">${marks}</g>
   </svg>`;
 }

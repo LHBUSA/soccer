@@ -9,6 +9,8 @@ export const ROUTES = [
   [/^\/players\/([a-z0-9-]+)\/?$/, 'player'],
   [/^\/tables\/?$/, 'tables'],
   [/^\/news\/?$/, 'news'],
+  [/^\/news\/(mls|premier-league|champions-league|bundesliga)\/?$/, 'newsDesk'],
+  [/^\/news\/(mls|premier-league|champions-league|bundesliga)\/([a-z0-9-]{3,200})\/?$/, 'article'],
   [/^\/sources\/?$/, 'sources'],
 ];
 

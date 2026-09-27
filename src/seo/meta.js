@@ -16,15 +16,51 @@ export const canonicalFor = pathname => `${SITE}${pathname === '/' ? '/' : pathn
 const STATIC = {
   home: {
     title: 'PropBetEdge Soccer Intelligence — Every match. Every event. One canonical field.',
-    description: 'Soccer intelligence from the PropBetEdge canonical graph: Bundesliga, Premier League and Champions League results, tables, lineups and event maps with visible sources.',
+    description: 'Soccer intelligence from the PropBetEdge canonical graph: MLS, Premier League, Champions League and Bundesliga results, tables, lineups, event maps and evidence-backed news with visible sources.',
     h1: 'PropBetEdge Soccer Intelligence',
   },
-  competitions: { title: 'Competitions — Soccer Intelligence | PropBetEdge Soccer', description: 'Bundesliga, Premier League and UEFA Champions League on the PropBetEdge canonical soccer graph: seasons, results, fixtures and coverage.', h1: 'Competitions' },
+  competitions: { title: 'Competitions — Soccer Intelligence | PropBetEdge Soccer', description: 'MLS, Premier League, UEFA Champions League and Bundesliga on the PropBetEdge canonical soccer graph: seasons, results, fixtures and coverage.', h1: 'Competitions' },
   matches: { title: 'Matches — Results, Fixtures & Match Intelligence | PropBetEdge Soccer', description: 'Recent results, today’s matches and upcoming fixtures, each with PropBetEdge Match Intelligence: timelines, event maps, statistics and lineups where sourced.', h1: 'Matches' },
   tables: { title: 'Tables — League Standings | PropBetEdge Soccer', description: 'League tables computed by PropBetEdge from canonical finished league-stage results, with the method shown alongside every table.', h1: 'Tables' },
   sources: { title: 'Sources & Method — PropBetEdge Soccer Intelligence', description: 'Where every PropBetEdge Soccer fact comes from: sources, attribution, identity rules, event-map semantics and how missing data is shown.', h1: 'Sources' },
-  news: { title: 'Soccer Newsroom — PropBetEdge Soccer', description: 'Evidence-backed soccer reporting from the PropBetEdge canonical graph is coming online.', h1: 'PropBetEdge Soccer Newsroom', robots: NOINDEX },
 };
+
+// Newsroom desks (URL segment -> display). The index and each desk are indexable
+// only once they contain real published stories.
+export const DESKS = { mls: 'MLS', 'premier-league': 'Premier League', 'champions-league': 'Champions League', bundesliga: 'Bundesliga' };
+
+export function newsMeta(pathname, env, desk = null) {
+  const items = env?.data || [];
+  const where = desk ? `${DESKS[desk]} ` : '';
+  const title = `${where}Soccer News — Evidence-Backed Reporting | ${BRAND}`;
+  const description = items.length
+    ? `${where}soccer news from the PropBetEdge canonical graph: ${items.slice(0, 2).map(a => a.headline).join('; ')}. Every figure traces to a frozen evidence packet.`
+    : `${where}evidence-backed soccer reporting from the PropBetEdge canonical graph is coming online.`;
+  const url = canonicalFor(pathname);
+  return base(pathname, {
+    title, description, robots: items.length ? INDEX : NOINDEX,
+    jsonld: [breadcrumb([['Soccer', `${SITE}/`], ['News', `${SITE}/news`], ...(desk ? [[DESKS[desk], url]] : [])]),
+      ...(items.length ? [{ '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: items.slice(0, 10).map((a, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE}/news/${a.desk}/${a.slug}`, name: a.headline })) }] : [])],
+    ssr: { h1: desk ? `${DESKS[desk]} news` : 'PropBetEdge Soccer Newsroom', p: description, links: items.slice(0, 8).map(a => [`/news/${a.desk}/${a.slug}`, a.headline]) },
+  });
+}
+
+export function articleMeta(pathname, env, desk) {
+  const a = env.data;
+  if (a.desk !== desk) return notFoundMeta(pathname, 'article');
+  const url = canonicalFor(pathname);
+  const teams = (a.entities || []).filter(e => e.type === 'SportsTeam');
+  const org = { '@type': 'Organization', name: 'PropBetEdge', url: 'https://propbetedge.ai' };
+  return base(pathname, {
+    title: `${a.headline} | ${BRAND}`, description: a.dek || a.headline, ogType: 'article',
+    jsonld: [{ '@context': 'https://schema.org', '@type': 'NewsArticle', headline: a.headline.slice(0, 110), ...(a.dek ? { description: a.dek } : {}),
+      datePublished: a.published_at, dateModified: a.updated_at || a.published_at, author: org, publisher: org, mainEntityOfPage: url, url,
+      articleSection: DESKS[a.desk], image: [`${SITE}/og/site/home.png`],
+      ...(teams.length ? { about: teams.map(t => ({ '@type': 'SportsTeam', name: t.name, url: `${SITE}/teams/${t.slug}` })) } : {}) },
+    breadcrumb([['Soccer', `${SITE}/`], ['News', `${SITE}/news`], [DESKS[a.desk], `${SITE}/news/${a.desk}`], [a.headline, url]])],
+    ssr: { h1: a.headline, p: a.dek || '', links: [[`/news/${a.desk}`, `${DESKS[a.desk]} news`], ...(a.entities || []).filter(e => e.href).slice(0, 6).map(e => [e.href, e.name])] },
+  });
+}
 
 const breadcrumb = items => ({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items.map(([name, url], i) => ({ '@type': 'ListItem', position: i + 1, name, item: url })) });
 
@@ -142,6 +178,9 @@ export function metaPlan(pathname) {
   if (page === 'match') return { page, calls: [`matches/${params[0]}`] };
   if (page === 'team') return { page, calls: [`teams/${params[0]}`] };
   if (page === 'player') return { page, calls: [`players/${params[0]}`] };
+  if (page === 'news') return { page, calls: ['news?limit=10'] };
+  if (page === 'newsDesk') return { page, calls: [`news?desk=${params[0]}&limit=10`] };
+  if (page === 'article') return { page, calls: [`news/${params[1]}`] };
   return { page };
 }
 
@@ -154,6 +193,9 @@ export function buildMeta(pathname, page, results = []) {
   if (page === 'match') return matchMeta(pathname, first);
   if (page === 'team') return teamMeta(pathname, first);
   if (page === 'player') return playerMeta(pathname, first);
+  if (page === 'news') return newsMeta(pathname, first);
+  if (page === 'newsDesk') return newsMeta(pathname, first, resolve(pathname).params[0]);
+  if (page === 'article') return articleMeta(pathname, first, resolve(pathname).params[0]);
   return notFoundMeta(pathname);
 }
 

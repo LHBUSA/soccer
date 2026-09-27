@@ -2,9 +2,10 @@
 import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { num, todayUtc } from '../lib/format.js';
-import { empty, errorState, link, matchGrid, sectionHead, sourcePanel } from '../components/ui.js';
+import { compMono, empty, errorState, link, matchGrid, sectionHead, sourcePanel } from '../components/ui.js';
 import { tableView } from '../components/table.js';
-import { coverageCards, FEATURED } from './home.js';
+import { coverageCards } from './home.js';
+import { FEATURED, FEATURED_COMPS, compMeta } from '../lib/competitions.js';
 
 // ---- /competitions
 export const competitions = {
@@ -36,11 +37,12 @@ export const matches = {
     return { view, comp, list, comps };
   },
   render(d) {
-    const comps = d.comps.status === 'fulfilled' ? d.comps.value.data.filter(c => FEATURED.includes(c.slug)) : [];
+    const stored = d.comps.status === 'fulfilled' ? d.comps.value.data.map(c => c.slug) : [];
+    const comps = FEATURED_COMPS.filter(c => stored.includes(c.slug));
     const q = (view, comp) => `/matches?view=${view}${comp ? `&competition=${comp}` : ''}`;
     return `<section class="hero compact"><div class="wrap"><p class="kicker gold">MATCHES</p><h1 class="display">From result to event map</h1>
       <nav class="tabs" aria-label="Match views">${join(Object.entries(VIEWS), ([k, v]) => link(q(k, d.comp), esc(v), `tab${k === d.view ? ' on' : ''}`))}</nav>
-      <nav class="tabs sub" aria-label="Competition filter">${link(q(d.view, ''), 'All', `tab${!d.comp ? ' on' : ''}`)}${join(comps, c => link(q(d.view, c.slug), esc(c.name), `tab${c.slug === d.comp ? ' on' : ''}`))}</nav>
+      <nav class="tabs sub" aria-label="Competition filter">${link(q(d.view, ''), 'All', `tab${!d.comp ? ' on' : ''}`)}${join(comps, c => link(q(d.view, c.slug), `${compMono(c.slug, 'xs')}${esc(c.name)}`, `tab${c.slug === d.comp ? ' on' : ''}`))}</nav>
       </div></section>
       <section class="canvas"><div class="wrap">
       ${d.list.status === 'rejected' ? errorState(d.list.reason) : matchGrid(d.list.value.data) || empty(`No ${VIEWS[d.view].toLowerCase()} matches`, d.view === 'today' ? 'Nothing is scheduled today in the covered competitions.' : 'The canonical graph has no matches for this view yet.')}
@@ -52,40 +54,28 @@ export const matches = {
 export const tables = {
   title: () => 'Tables · PropBetEdge Soccer',
   async load(_p, q) {
-    const comp = FEATURED.includes(q.get('competition')) ? q.get('competition') : 'bundesliga';
-    const [table, comps] = await Promise.allSettled([api('table', { competition: comp }), api('competitions')]);
+    const comps = await Promise.allSettled([api('competitions')]).then(([r]) => r);
+    const stored = comps.status === 'fulfilled' ? comps.value.data.map(c => c.slug) : FEATURED;
+    // Default to the first product competition the graph actually holds.
+    const comp = FEATURED.includes(q.get('competition')) ? q.get('competition') : FEATURED.find(s => stored.includes(s)) || FEATURED[0];
+    const [table] = await Promise.allSettled([api('table', { competition: comp })]);
     return { comp, table, comps };
   },
   render(d) {
-    const comps = d.comps.status === 'fulfilled' ? d.comps.value.data.filter(c => FEATURED.includes(c.slug)) : [];
-    const name = comps.find(c => c.slug === d.comp)?.name || d.comp;
+    const stored = d.comps.status === 'fulfilled' ? d.comps.value.data.map(c => c.slug) : [];
+    const comps = FEATURED_COMPS.filter(c => stored.includes(c.slug));
+    const name = compMeta(d.comp)?.long || d.comp;
+    const reason = compMeta(d.comp)?.format === 'ucl' ? 'Champions League table not available. The league phase and knockout rounds are stored as matches only; PropBetEdge does not compute a league-phase table it cannot verify.' : null;
     return `<section class="hero compact"><div class="wrap"><p class="kicker gold">TABLES</p><h1 class="display">${esc(name)}</h1>
-      <nav class="tabs" aria-label="Competition">${join(comps, c => link(`/tables?competition=${c.slug}`, esc(c.name), `tab${c.slug === d.comp ? ' on' : ''}`))}</nav></div></section>
-      <section class="canvas"><div class="wrap narrow">
-      ${d.table.status === 'rejected' ? errorState(d.table.reason) : `${d.table.value.data?.season ? `<p class="kicker">SEASON ${esc(d.table.value.data.season)}</p>` : ''}${tableView(d.table.value)}${sourcePanel(d.table.value.meta, { title: 'HOW THIS TABLE IS COMPUTED', open: true })}`}
+      <nav class="tabs" aria-label="Competition">${join(comps, c => link(`/tables?competition=${c.slug}`, `${compMono(c.slug, 'xs')}${esc(c.name)}`, `tab${c.slug === d.comp ? ' on' : ''}`))}</nav></div></section>
+      <section class="canvas"><div class="wrap mid">
+      ${d.table.status === 'rejected' ? errorState(d.table.reason) : `${d.table.value.data?.season ? `<p class="kicker">SEASON ${esc(d.table.value.data.season)}</p>` : ''}${tableView(d.table.value, { reason })}${sourcePanel(d.table.value.meta, { title: 'HOW THIS TABLE IS COMPUTED', open: true })}`}
       </div></section>`;
   },
 };
 
-// ---- /news
-export const news = {
-  title: () => 'News · PropBetEdge Soccer',
-  robots: 'noindex',
-  async load() { return { env: await api('news') }; },
-  render(d) {
-    const items = d.env.data || [];
-    if (!items.length) {
-      return `<section class="newsroom"><div class="wrap narrow center">
-        <p class="kicker gold">PROPBETEDGE SOCCER NEWSROOM</p>
-        <h1 class="display">Evidence-backed soccer reporting is coming online.</h1>
-        <p class="lede">Every story will be written from a frozen evidence packet drawn from the canonical graph, and checked by publication gates before it runs. Every number traces to a source. No invented quotes, injuries or odds.</p>
-        <div class="nr-steps"><div><b>01</b><span>Canonical data</span></div><div><b>02</b><span>Frozen evidence packet</span></div><div><b>03</b><span>Original composition</span></div><div><b>04</b><span>Publication gates</span></div></div>
-        <p>${link('/matches', 'Explore match intelligence', 'btn gold')}</p>
-      </div></section>`;
-    }
-    return `<section class="canvas"><div class="wrap narrow">${sectionHead('NEWS', 'Latest')}<ul class="newslist">${join(items, a => `<li><a href="/news/${esc(a.slug)}" data-link><b>${esc(a.headline)}</b><span>${esc(a.dek || '')}</span></a></li>`)}</ul></div></section>`;
-  },
-};
+// ---- /news lives in ./news.js (re-exported for existing imports)
+export { news } from './news.js';
 
 // ---- /sources (static trust page: attributions and rules, no data claims)
 export const sources = {
@@ -99,7 +89,7 @@ export const sources = {
         <dl class="srclist">
           <div><dt>Wyscout public dataset</dt><dd>Event data with pitch locations for the 2017/18 Bundesliga. Pappalardo et al. (2019), CC BY 4.0.</dd></div>
           <div><dt>OpenLigaDB</dt><dd>Bundesliga fixtures, results and reported goals, 2004/05 to today. Open Database License (ODbL).</dd></div>
-          <div><dt>ESPN (secondary)</dt><dd>Structured current-season facts: fixtures, results, lineups, team statistics and event locations for the Bundesliga, Premier League and Champions League. Secondary source: it never overrides a stronger source, and its provider xG is labelled as ESPN's.</dd></div>
+          <div><dt>ESPN (secondary)</dt><dd>Structured current-season facts: fixtures, results, lineups, team statistics and event locations for MLS, the Premier League, Champions League and Bundesliga. Secondary source: it never overrides a stronger source, and its provider xG is labelled as ESPN's.</dd></div>
         </dl>
         <h2>Rules the product follows</h2>
         <ul>

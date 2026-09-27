@@ -108,3 +108,25 @@ test('middleware: real statuses and first-response tags (stubbed network)', asyn
     assert.equal(await middleware(new Request(`${SITE}/assets/app.js`)), undefined);
   } finally { globalThis.fetch = realFetch; }
 });
+
+test('newsroom SEO: index only with published stories, NewsArticle for articles, wrong desk is 404', async () => {
+  const { resolve } = await import('../../src/lib/router.js');
+  assert.equal(resolve('/news/mls').page, 'newsDesk');
+  assert.deepEqual(resolve('/news/champions-league/some-story-abc123').params, ['champions-league', 'some-story-abc123']);
+  assert.equal(resolve('/news/la-liga').page, 'notfound');
+  assert.deepEqual(metaPlan('/news/bundesliga/x-story').calls, ['news/x-story']);
+  const empty = buildMeta('/news', 'news', [{ data: [] }]);
+  assert.equal(empty.robots, NOINDEX); assert.equal(empty.status, 200);
+  const items = [{ desk: 'mls', slug: 'a-story', headline: 'Inter Miami CF beat Toronto FC 6-0' }];
+  const full = buildMeta('/news', 'news', [{ data: items }]);
+  assert.match(full.robots, /^index/); assert.ok(full.jsonld.some(j => j['@type'] === 'ItemList'));
+  assert.equal(buildMeta('/news/mls', 'newsDesk', [{ data: [] }]).robots, NOINDEX);
+  const art = { data: { desk: 'mls', slug: 'a-story', headline: 'Inter Miami CF beat Toronto FC 6-0', dek: 'MLS 2026.', published_at: '2026-09-21T12:00:00Z', updated_at: '2026-09-21T12:00:00Z', entities: [{ type: 'SportsTeam', name: 'Inter Miami CF', slug: 'inter-miami-cf', href: '/teams/inter-miami-cf' }] } };
+  const m = buildMeta('/news/mls/a-story', 'article', [art]);
+  const na = m.jsonld.find(j => j['@type'] === 'NewsArticle');
+  assert.equal(m.status, 200); assert.equal(m.ogType, 'article'); assert.equal(na.datePublished, '2026-09-21T12:00:00Z'); assert.equal(na.articleSection, 'MLS');
+  assert.equal(na.about[0].name, 'Inter Miami CF'); assert.equal(m.canonical, `${SITE}/news/mls/a-story`);
+  assert.equal(buildMeta('/news/bundesliga/a-story', 'article', [art]).status, 404); // desk mismatch
+  assert.equal(buildMeta('/news/mls/nope', 'article', [{ notFound: true }]).status, 404);
+  assert.ok(KINDS.includes('news'));
+});
