@@ -3,13 +3,13 @@
 // Never exposes: raw captures, the identity queue, source-change ledger,
 // provider disagreement tooling, service-role data, or bulk dumps (lists cap at 100).
 
-import { computeTable } from '../../soccer-news/src/packet.js';
+import { computeTable, TIEBREAKS } from '../../soccer-news/src/packet.js';
 import { toMatchFrame } from '../../shared/coords.js';
 import { displayMinute } from '../../shared/clock.js';
 import { COVERAGE, envelope, maxTs } from './envelope.js';
 import { chunkArr } from '../../soccer-ingest/src/store.js';
 
-export const API_VERSION = 'soccer-api/1.0.0';
+export const API_VERSION = 'soccer-api/1.1.0';
 const E = (data, o) => envelope(data, { version: API_VERSION, ...o });
 export class NotFound extends Error { constructor(what) { super(`${what} not found`); this.status = 404; } }
 const clampLimit = (v, d = 50) => Math.max(1, Math.min(100, Number(v) || d));
@@ -30,7 +30,26 @@ async function compsById(store, ids) {
   return new Map((await store.select('soccer_competitions', { columns: ['id', 'slug', 'name'], in: { id: u } })).map(c => [c.id, { slug: c.slug, name: c.name }]));
 }
 
-function shapeMatch(m, teams, comps = null) {
+// Which Match Intelligence layers exist for each match (existence only, never counts):
+// lineups = a sourced lineup; stats = team stats (source or derived); event_map = >=1 located shot.
+async function intelFlags(store, ids) {
+  const sets = { lineups: new Set(), stats: new Set(), event_map: new Set() };
+  for (const part of chunkArr([...new Set(ids.filter(Boolean))], 100)) {
+    const [l, st, ev] = await Promise.all([
+      store.select('soccer_lineups', { columns: ['match_id'], in: { match_id: part }, order: 'match_id.asc' }),
+      store.select('soccer_team_match_stats', { columns: ['match_id'], in: { match_id: part }, eq: { stat_key: 'shots' }, order: 'match_id.asc' }),
+      store.select('soccer_match_events', { columns: ['match_id'], in: { match_id: part }, eq: { event_type: 'shot' }, gte: { x_m: 0 }, order: 'match_id.asc' }),
+    ]);
+    for (const r of l) sets.lineups.add(r.match_id);
+    for (const r of st) sets.stats.add(r.match_id);
+    for (const r of ev) sets.event_map.add(r.match_id);
+  }
+  return id => ({ lineups: sets.lineups.has(id), stats: sets.stats.has(id), event_map: sets.event_map.has(id) });
+}
+
+const tiebreakOf = slug => (slug === 'mls' ? 'mls' : 'standard');
+
+function shapeMatch(m, teams, comps = null, intel = null) {
   const t = id => { const x = teams.get(id); return x ? { id: x.id, slug: x.slug, name: x.name, short_name: x.short_name } : { id }; };
   return {
     id: m.id, matchday: m.matchday, round: m.round_label, kickoff_at: m.kickoff_at, status: m.status,
@@ -38,6 +57,7 @@ function shapeMatch(m, teams, comps = null) {
     home: t(m.home_team_id), away: t(m.away_team_id),
     score: m.home_score === null ? null : { home: m.home_score, away: m.away_score, home_ht: m.home_score_ht, away_ht: m.away_score_ht },
     result_source: m.result_provider,
+    ...(intel ? { intel: intel(m.id) } : {}),
   };
 }
 
@@ -80,8 +100,18 @@ export async function competition(store, slug) {
   const seasons = await seasonsOf(store, c.id);
   const counts = await Promise.all(seasons.map(s => store.count('soccer_matches', { eq: { season_id: s.id } })));
   const withCounts = seasons.map((s, i) => ({ label: s.label, start_date: s.start_date, end_date: s.end_date, matches: counts[i] }));
-  return E({ slug: c.slug, name: c.name, type: c.comp_type, country_code: c.country_code, tier: c.tier, seasons: withCounts }, {
-    source: 'pbe', semantics: 'Competition and the seasons stored for it.', source_updated_at: c.updated_at,
+  let current = null;
+  if (seasons[0]) {
+    const ms = await store.select('soccer_matches', { columns: ['id', 'home_team_id', 'away_team_id', 'status'], eq: { season_id: seasons[0].id }, order: 'id.asc' });
+    const teams = await teamsById(store, ms.flatMap(x => [x.home_team_id, x.away_team_id]));
+    const n = st => ms.filter(x => x.status === st).length;
+    current = {
+      season: seasons[0].label, matches: ms.length, finished: n('finished'), scheduled: n('scheduled'), live: n('live'),
+      teams: [...teams.values()].sort((a, b) => (a.name < b.name ? -1 : 1)).map(t => ({ slug: t.slug, name: t.name, short_name: t.short_name })),
+    };
+  }
+  return E({ slug: c.slug, name: c.name, type: c.comp_type, country_code: c.country_code, tier: c.tier, seasons: withCounts, current, tiebreak: TIEBREAKS[tiebreakOf(c.slug)] }, {
+    source: 'pbe', semantics: 'Competition, the seasons stored for it, and the teams appearing in canonical matches of the latest stored season.', source_updated_at: c.updated_at,
   });
 }
 
@@ -104,12 +134,12 @@ export async function matches(store, q) {
     if (!t) throw new NotFound(`team ${q.team}`);
     const [h, a] = await Promise.all([store.select('soccer_matches', { ...opts, eq: { ...opts.eq, home_team_id: t.id } }), store.select('soccer_matches', { ...opts, eq: { ...opts.eq, away_team_id: t.id } })]);
     const rows = [...h, ...a].sort((x, y) => (opts.order === 'kickoff_at.asc' ? 1 : -1) * (Date.parse(x.kickoff_at) - Date.parse(y.kickoff_at))).slice(0, opts.limit);
-    const [teams, comps] = await Promise.all([teamsById(store, rows.flatMap(r => [r.home_team_id, r.away_team_id])), compsById(store, rows.map(r => r.competition_id))]);
-    return E(rows.map(r => shapeMatch(r, teams, comps)), { source: 'pbe', semantics: 'Canonical matches (max 100 per page).', source_updated_at: maxTs(rows.map(r => r.updated_at)), attribution: [...new Set(rows.map(r => r.result_provider))] });
+    const [teams, comps, intel] = await Promise.all([teamsById(store, rows.flatMap(r => [r.home_team_id, r.away_team_id])), compsById(store, rows.map(r => r.competition_id)), intelFlags(store, rows.map(r => r.id))]);
+    return E(rows.map(r => shapeMatch(r, teams, comps, intel)), { source: 'pbe', semantics: 'Canonical matches (max 100 per page); intel flags which Match Intelligence layers exist.', source_updated_at: maxTs(rows.map(r => r.updated_at)), attribution: [...new Set(rows.map(r => r.result_provider))] });
   }
   const rows = await store.select('soccer_matches', opts);
-  const [teams, comps] = await Promise.all([teamsById(store, rows.flatMap(r => [r.home_team_id, r.away_team_id])), compsById(store, rows.map(r => r.competition_id))]);
-  return E(rows.map(r => shapeMatch(r, teams, comps)), { source: 'pbe', semantics: 'Canonical matches (max 100 per page).', source_updated_at: maxTs(rows.map(r => r.updated_at)), attribution: [...new Set(rows.map(r => r.result_provider))], coverage: rows.length ? COVERAGE.OK : COVERAGE.PARTIAL });
+  const [teams, comps, intel] = await Promise.all([teamsById(store, rows.flatMap(r => [r.home_team_id, r.away_team_id])), compsById(store, rows.map(r => r.competition_id)), intelFlags(store, rows.map(r => r.id))]);
+  return E(rows.map(r => shapeMatch(r, teams, comps, intel)), { source: 'pbe', semantics: 'Canonical matches (max 100 per page); intel flags which Match Intelligence layers exist.', source_updated_at: maxTs(rows.map(r => r.updated_at)), attribution: [...new Set(rows.map(r => r.result_provider))], coverage: rows.length ? COVERAGE.OK : COVERAGE.PARTIAL });
 }
 
 export async function match(store, id) {
@@ -202,11 +232,112 @@ export async function team(store, slug) {
   const next = all.filter(x => x.status === 'scheduled').sort((x, y) => Date.parse(x.kickoff_at) - Date.parse(y.kickoff_at)).slice(0, 5);
   const teams = await teamsById(store, [...recent, ...next].flatMap(r => [r.home_team_id, r.away_team_id]));
   const form = recent.slice(0, 5).map(x => { const gf = x.home_team_id === t.id ? x.home_score : x.away_score; const ga = x.home_team_id === t.id ? x.away_score : x.home_score; return gf > ga ? 'W' : gf < ga ? 'L' : 'D'; });
-  const comps = await compsById(store, [...recent, ...next].map(r => r.competition_id));
-  return E({ id: t.id, slug: t.slug, name: t.name, official_name: t.official_name, type: t.team_type, country_code: t.country_code, city: t.city, form, recent: recent.map(r => shapeMatch(r, teams, comps)), upcoming: next.map(r => shapeMatch(r, teams, comps)) }, {
-    source: 'pbe', semantics: 'Canonical team; form = last 5 finished canonical matches (W/D/L), newest first.', source_updated_at: maxTs(t.updated_at, recent.map(r => r.updated_at)),
+  const comps = await compsById(store, [...all].map(r => r.competition_id));
+  const intel = await intelFlags(store, [...recent, ...next].map(r => r.id));
+  const { records, observed } = await teamSeasonDepth(store, t, all, comps);
+  return E({ id: t.id, slug: t.slug, name: t.name, official_name: t.official_name, type: t.team_type, country_code: t.country_code, city: t.city, form, records, players_observed: observed, recent: recent.map(r => shapeMatch(r, teams, comps, intel)), upcoming: next.map(r => shapeMatch(r, teams, comps, intel)) }, {
+    source: 'pbe', semantics: 'Canonical team; form = last 5 finished canonical matches (W/D/L), newest first. records = league-stage record in the latest stored season of each competition (position only where a league table exists). players_observed = players named in sourced lineups for those seasons (appearance = started or came on).', source_updated_at: maxTs(t.updated_at, recent.map(r => r.updated_at)),
     attribution: [...new Set(all.map(r => r.result_provider))],
   });
+}
+
+async function teamSeasonDepth(store, t, all, comps) {
+  // Latest season per competition among the team's recent canonical matches.
+  const latest = new Map();
+  for (const m of all) if (!latest.has(m.competition_id)) latest.set(m.competition_id, m.season_id);
+  const records = []; const seasonMatchIds = [];
+  for (const [compId, seasonId] of latest) {
+    const [seasonRow] = await store.select('soccer_seasons', { columns: ['label'], eq: { id: seasonId }, limit: 1 });
+    const league = (await store.select('soccer_stages', { columns: ['id'], eq: { season_id: seasonId, stage_type: 'league' } })).map(x => x.id);
+    const [h, a] = await Promise.all(['home_team_id', 'away_team_id'].map(k => store.select('soccer_matches', { columns: ['id', 'stage_id', 'status', 'home_team_id', 'away_team_id', 'home_score', 'away_score', 'kickoff_at'], eq: { season_id: seasonId, [k]: t.id }, order: 'id.asc' })));
+    const mine = [...h, ...a];
+    seasonMatchIds.push(...mine.filter(x => x.status === 'finished').map(x => x.id));
+    const done = mine.filter(x => x.status === 'finished' && x.home_score !== null && league.includes(x.stage_id));
+    const comp = comps.get(compId) || null;
+    if (!done.length) { records.push({ competition: comp, season: seasonRow?.label || null, record: null, position: null }); continue; }
+    const tb = tiebreakOf(comp?.slug);
+    const full = await store.select('soccer_matches', { columns: ['id', 'home_team_id', 'away_team_id', 'home_score', 'away_score', 'kickoff_at'], eq: { season_id: seasonId, status: 'finished' }, in: { stage_id: league }, order: 'id.asc' });
+    const tbl = computeTable(full.filter(x => x.home_score !== null && x.away_score !== null), { tiebreak: tb });
+    const i = tbl.findIndex(r => r.team_id === t.id);
+    const r = tbl[i];
+    records.push({ competition: comp, season: seasonRow?.label || null, position: i + 1, teams_in_table: tbl.length,
+      record: { played: r.played, won: r.won, drawn: r.drawn, lost: r.lost, goals_for: r.gf, goals_against: r.ga, goal_difference: r.gd, points: r.points, form: r.form } });
+  }
+  // Players observed in sourced lineups for those seasons.
+  const lineups = [];
+  for (const part of chunkArr(seasonMatchIds, 100)) lineups.push(...await store.select('soccer_lineups', { columns: ['id', 'match_id'], eq: { team_id: t.id }, in: { match_id: part } }));
+  const lps = []; const subsIn = new Set();
+  for (const part of chunkArr(lineups.map(l => l.id), 100)) lps.push(...await store.select('soccer_lineup_players', { columns: ['lineup_id', 'player_id', 'is_starter'], in: { lineup_id: part }, order: 'lineup_id.asc,player_id.asc' }));
+  for (const part of chunkArr(lineups.map(l => l.match_id), 100)) for (const s of await store.select('soccer_substitutions', { columns: ['match_id', 'player_in_id'], eq: { team_id: t.id }, in: { match_id: part } })) subsIn.add(`${s.match_id}|${s.player_in_id}`);
+  const matchOf = new Map(lineups.map(l => [l.id, l.match_id]));
+  const agg = new Map();
+  for (const x of lps) {
+    const a = agg.get(x.player_id) || { appearances: 0, starts: 0, named: 0 };
+    a.named += 1;
+    if (x.is_starter) { a.starts += 1; a.appearances += 1; } else if (subsIn.has(`${matchOf.get(x.lineup_id)}|${x.player_id}`)) a.appearances += 1;
+    agg.set(x.player_id, a);
+  }
+  const people = new Map();
+  for (const part of chunkArr([...agg.keys()], 150)) for (const p of await store.select('soccer_players', { columns: ['id', 'slug', 'display_name', 'primary_role'], in: { id: part } })) people.set(p.id, p);
+  const observed = [...agg.entries()].filter(([id]) => people.has(id)).map(([id, a]) => ({ slug: people.get(id).slug, name: people.get(id).display_name, role: people.get(id).primary_role, ...a }))
+    .sort((x, y) => y.appearances - x.appearances || y.starts - x.starts || (x.name < y.name ? -1 : 1));
+  return { records, observed: { lineups_counted: lineups.length, players: observed } };
+}
+
+// Observed player record: lineups (starts / came on) plus goals and shots from the
+// richest event family per match (wyscout_figshare > espn > openligadb), so a goal
+// reported by two providers is counted once.
+const FAMILY_RANK = { wyscout_figshare: 0, espn: 1, openligadb: 2 };
+function perMatchBestFamily(rows) {
+  const best = new Map();
+  for (const r of rows) { const b = best.get(r.match_id); if (b === undefined || FAMILY_RANK[r.source_family] < FAMILY_RANK[b]) best.set(r.match_id, r.source_family); }
+  return rows.filter(r => best.get(r.match_id) === r.source_family);
+}
+
+async function playerObserved(store, p) {
+  const lps = await store.select('soccer_lineup_players', { columns: ['lineup_id', 'is_starter'], eq: { player_id: p.id }, order: 'lineup_id.asc' });
+  const lineups = [];
+  for (const part of chunkArr(lps.map(x => x.lineup_id), 100)) lineups.push(...await store.select('soccer_lineups', { columns: ['id', 'match_id', 'team_id'], in: { id: part } }));
+  const starterOf = new Map(lps.map(x => [x.lineup_id, x.is_starter]));
+  const subIns = new Set((await store.select('soccer_substitutions', { columns: ['match_id'], eq: { player_in_id: p.id }, order: 'match_id.asc' })).map(x => x.match_id));
+  const [goalsRaw, shotsRaw, located] = await Promise.all([
+    store.select('soccer_match_events', { columns: ['match_id', 'source_family', 'sequence'], eq: { player_id: p.id, is_goal: true }, order: 'match_id.asc,sequence.asc' }),
+    store.select('soccer_match_events', { columns: ['match_id', 'source_family', 'sequence', 'minute', 'outcome', 'x_m', 'y_m'], eq: { player_id: p.id, event_type: 'shot' }, order: 'match_id.asc,sequence.asc' }),
+    store.count('soccer_match_events', { eq: { player_id: p.id }, neq: { source_coordinate_system: 'none' } }),
+  ]);
+  const goals = perMatchBestFamily(goalsRaw); const shots = perMatchBestFamily(shotsRaw);
+  const matchIds = [...new Set([...lineups.map(l => l.match_id), ...goals.map(g => g.match_id), ...shots.map(s => s.match_id)])];
+  const ms = [];
+  for (const part of chunkArr(matchIds, 100)) ms.push(...await store.select('soccer_matches', { columns: MATCH_COLS, in: { id: part } }));
+  const byId = new Map(ms.map(m => [m.id, m]));
+  const lineupByMatch = new Map(lineups.map(l => [l.match_id, l]));
+  const seasons = new Map();
+  const sIds = [...new Set(ms.map(m => m.season_id))];
+  for (const part of chunkArr(sIds, 100)) for (const s of await store.select('soccer_seasons', { columns: ['id', 'label'], in: { id: part } })) seasons.set(s.id, s.label);
+  const [teams, comps] = await Promise.all([teamsById(store, ms.flatMap(m => [m.home_team_id, m.away_team_id])), compsById(store, ms.map(m => m.competition_id))]);
+  const count = (arr, id) => arr.filter(x => x.match_id === id).length;
+  const rows = new Map();
+  for (const id of matchIds) {
+    const m = byId.get(id); if (!m) continue;
+    const l = lineupByMatch.get(id);
+    const key = `${m.competition_id}|${m.season_id}|${l?.team_id || ''}`;
+    const r = rows.get(key) || { competition: comps.get(m.competition_id) || null, season: seasons.get(m.season_id) || null, team: l && teams.get(l.team_id) ? { slug: teams.get(l.team_id).slug, name: teams.get(l.team_id).name } : null, appearances: 0, starts: 0, goals: 0, shots: 0 };
+    const started = l ? starterOf.get(l.id) === true : false;
+    if (started) r.starts += 1;
+    if (started || subIns.has(id)) r.appearances += 1;
+    r.goals += count(goals, id); r.shots += count(shots, id);
+    rows.set(key, r);
+  }
+  const totals = [...rows.values()].reduce((t, r) => ({ appearances: t.appearances + r.appearances, starts: t.starts + r.starts, goals: t.goals + r.goals, shots: t.shots + r.shots }), { appearances: 0, starts: 0, goals: 0, shots: 0 });
+  const recent = ms.filter(m => lineupByMatch.has(m.id) && m.status === 'finished').sort((a, b) => Date.parse(b.kickoff_at) - Date.parse(a.kickoff_at)).slice(0, 10)
+    .map(m => ({ ...shapeMatch(m, teams, comps), started: starterOf.get(lineupByMatch.get(m.id).id) === true, came_on: subIns.has(m.id), goals: count(goals, m.id), shots: count(shots, m.id) }));
+  return {
+    totals: { ...totals, located_events: located, lineups_named: lineups.length },
+    by_competition: [...rows.values()].sort((a, b) => ((b.season || '') < (a.season || '') ? -1 : (b.season || '') > (a.season || '') ? 1 : 0)),
+    recent,
+    // Located shots in the attacking frame (the player's team attacks toward x = 105).
+    shot_map: shots.filter(x => x.x_m !== null && x.y_m !== null).slice(-300).map(x => ({ match_id: x.match_id, minute: x.minute, outcome: x.outcome, x: Number(x.x_m), y: Number(x.y_m) })),
+  };
 }
 
 export async function player(store, slug) {
@@ -229,13 +360,15 @@ export async function player(store, slug) {
     for (const [k, v] of Object.entries(row)) if (k !== 'team_id') t[k] = (t[k] || 0) + v;
   }
   const goalsReported = await store.count('soccer_match_events', { eq: { player_id: p.id, source_family: 'openligadb', is_goal: true } });
+  const observed = await playerObserved(store, p);
   return E({
     id: p.id, slug: p.slug, name: p.display_name, first_name: p.first_name, last_name: p.last_name, birth_date: p.birth_date,
     nationality_code: p.nationality_code, foot: p.foot, height_cm: p.height_cm, role: p.primary_role,
     seasons: Object.values(totals).sort((a, b) => (a.season < b.season ? 1 : -1)), reported_goals_other_seasons: goalsReported,
+    observed,
   }, {
-    source: 'pbe', semantics: 'Per-season totals of pbe-counts derived from the event ledger (seasons with an event ledger only); minutes are nominal (90/120, cut at substitution/dismissal). reported_goals_other_seasons counts goals reported by OpenLigaDB in seasons without a ledger.',
-    coverage: Object.keys(totals).length ? COVERAGE.PARTIAL : COVERAGE.UNAVAILABLE, coverage_notes: ['Event-level statistics exist only for seasons with a legitimate event ledger (Bundesliga 2017/18).'],
+    source: 'pbe', semantics: 'seasons = per-season totals of pbe-counts derived from the event ledger (seasons with an event ledger only); minutes are nominal (90/120, cut at substitution/dismissal). observed = what source data shows for this player: appearances/starts from sourced lineups (appearance = started or came on), goals and shots from the richest event family per match, located_events = events with a pitch location. Observed, not complete career statistics.',
+    coverage: Object.keys(totals).length || observed.totals.lineups_named ? COVERAGE.PARTIAL : COVERAGE.UNAVAILABLE, coverage_notes: ['Event-level statistics exist only for seasons with a legitimate event ledger (Bundesliga 2017/18).'],
     source_updated_at: p.updated_at, attribution: Object.keys(totals).length ? ['wyscout'] : [],
   });
 }
@@ -248,13 +381,14 @@ export async function table(store, q) {
   const leagueStages = (await store.select('soccer_stages', { columns: ['id'], eq: { season_id: season.id, stage_type: 'league' } })).map(s => s.id);
   const played = leagueStages.length ? await store.select('soccer_matches', { columns: ['id', 'home_team_id', 'away_team_id', 'home_score', 'away_score', 'kickoff_at', 'updated_at', 'result_provider'], eq: { season_id: season.id, status: 'finished' }, in: { stage_id: leagueStages } }) : [];
   const valid = played.filter(x => x.home_score !== null && x.away_score !== null);
-  const rows = computeTable(valid);
+  const tb = tiebreakOf(c.slug);
+  const rows = computeTable(valid, { tiebreak: tb });
   const teams = await teamsById(store, rows.map(r => r.team_id));
   return E({
-    competition: c.slug, season: season.label, matches_counted: valid.length,
-    rows: rows.map((r, i) => ({ position: i + 1, team: { slug: teams.get(r.team_id)?.slug, name: teams.get(r.team_id)?.name }, played: r.played, points: r.points, goals_for: r.gf, goals_against: r.ga, goal_difference: r.gd })),
+    competition: c.slug, season: season.label, matches_counted: valid.length, tiebreak: TIEBREAKS[tb],
+    rows: rows.map((r, i) => ({ position: i + 1, team: { slug: teams.get(r.team_id)?.slug, name: teams.get(r.team_id)?.name, short_name: teams.get(r.team_id)?.short_name }, played: r.played, won: r.won, drawn: r.drawn, lost: r.lost, points: r.points, goals_for: r.gf, goals_against: r.ga, goal_difference: r.gd, form: r.form })),
   }, {
-    source: 'pbe', semantics: 'Table computed by PropBetEdge from canonical finished league-stage results (play-offs excluded). Order: points, goal difference, goals for (head-to-head and deductions not applied).',
+    source: 'pbe', semantics: `Table computed by PropBetEdge from canonical finished league-stage results (play-offs excluded). Order: ${TIEBREAKS[tb]} (head-to-head and deductions not applied). Form = last five counted results, newest first.${tb === 'mls' ? ' MLS: single overall table across both conferences (conference standings are not stored).' : ''}`,
     source_updated_at: maxTs(valid.map(x => x.updated_at)), attribution: [...new Set(valid.map(x => x.result_provider))],
     coverage: valid.length ? COVERAGE.OK : COVERAGE.UNAVAILABLE,
   });

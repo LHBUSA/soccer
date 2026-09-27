@@ -161,13 +161,19 @@ test('api routes serve an envelope and hide internals (PGlite)', async () => {
   assert.ok(tbl.meta.semantics && tbl.meta.source && tbl.meta.source_updated_at);
   assert.deepEqual(tbl.data.rows.map(r => [r.team.name, r.points]), [['Club 10', 3], ['Club 30', 1], ['Club 40', 1], ['Club 20', 0]]);
   assert.ok(tbl.meta.attribution.some(a => a.includes('ODbL')));
+  assert.deepEqual(tbl.data.rows.map(r => [r.won, r.drawn, r.lost, r.form.join('')]), [[1, 0, 0, 'W'], [0, 1, 0, 'D'], [0, 1, 0, 'D'], [0, 0, 1, 'L']]);
   const list = await R.matches(store, { competition: 'bundesliga', limit: 500 });
   assert.equal(list.data.length, 2);
+  assert.deepEqual(list.data[0].intel, { lineups: false, stats: false, event_map: false }); // OpenLigaDB: results only
+  const comp = await R.competition(store, 'bundesliga');
+  assert.deepEqual([comp.data.current.matches, comp.data.current.finished, comp.data.current.teams.length], [2, 2, 4]);
   const m = await R.match(store, list.data[0].id);
   assert.equal(m.meta.coverage.state, 'partial'); // no ledger, no lineups
   assert.ok(!JSON.stringify(m).includes('capture_id') && !JSON.stringify(m).includes('identity_queue'));
   const team = await R.team(store, 'club-10');
   assert.deepEqual(team.data.form, ['W']);
+  assert.deepEqual([team.data.records[0].position, team.data.records[0].record.points, team.data.records[0].record.won], [1, 3, 1]);
+  assert.deepEqual(team.data.players_observed, { lineups_counted: 0, players: [] }); // no sourced lineups -> nothing invented
   const news = await R.news(store, {});
   assert.equal(news.meta.coverage.state, 'unavailable');
   await assert.rejects(R.team(store, 'nope'), /not found/);

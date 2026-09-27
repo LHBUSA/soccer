@@ -84,6 +84,26 @@ test('table and geometry helpers', () => {
     { home_team_id: 'b', away_team_id: 'c', home_score: 1, away_score: 1 },
   ]);
   assert.deepEqual(t.map(r => [r.team_id, r.points, r.gd]), [['a', 3, 2], ['c', 1, 0], ['b', 1, -2]]);
+  assert.equal(t[0].form, null); // no kickoff times -> results cannot be ordered -> no form
+  const k = d => `2026-03-0${d}T19:00:00Z`;
+  const wdl = computeTable([
+    { home_team_id: 'x', away_team_id: 'y', home_score: 0, away_score: 1, kickoff_at: k(3) },
+    { home_team_id: 'x', away_team_id: 'z', home_score: 2, away_score: 2, kickoff_at: k(1) },
+    { home_team_id: 'y', away_team_id: 'z', home_score: 3, away_score: 0, kickoff_at: k(2) },
+  ]);
+  const y = wdl.find(r => r.team_id === 'y');
+  assert.deepEqual([y.won, y.drawn, y.lost, y.form], [2, 0, 0, ['W', 'W']]);
+  assert.deepEqual(wdl.find(r => r.team_id === 'x').form, ['L', 'D']); // newest first
+  // MLS: wins break a points tie before goal difference.
+  const tie = [
+    { home_team_id: 'p', away_team_id: 'q', home_score: 5, away_score: 0, kickoff_at: k(1) }, // p: W +5
+    { home_team_id: 'p', away_team_id: 'r', home_score: 0, away_score: 1, kickoff_at: k(2) }, // p: L -> 3 pts, 1 win, +4
+    { home_team_id: 's', away_team_id: 'q', home_score: 1, away_score: 1, kickoff_at: k(3) },
+    { home_team_id: 's', away_team_id: 'r', home_score: 1, away_score: 1, kickoff_at: k(4) },
+    { home_team_id: 's', away_team_id: 't', home_score: 1, away_score: 1, kickoff_at: k(5) }, // s: 3 pts, 0 wins, 0 gd
+  ];
+  const pos = (tb, id) => computeTable(tie, { tiebreak: tb }).findIndex(r => r.team_id === id);
+  assert.ok(pos('mls', 'p') < pos('mls', 's'));
   assert.equal(distanceToGoal(105, 34), 0);
   assert.equal(distanceToGoal(94, 34), 11);
   assert.equal(distanceToGoal(null, 34), null);

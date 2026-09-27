@@ -137,14 +137,29 @@ export async function buildMatchRecapPacket(store, matchId, { asOf = null, attri
   return packet;
 }
 
-export function computeTable(matches) {
+// Tiebreak orders (head-to-head, deductions and fair play are never applied):
+//   standard: points, goal difference, goals for
+//   mls:      points, wins, goal difference, goals for (MLS rule order)
+export const TIEBREAKS = { standard: 'points, goal difference, goals for', mls: 'points, wins, goal difference, goals for' };
+
+export function computeTable(matches, { tiebreak = 'standard' } = {}) {
   const t = new Map();
-  const row = id => { if (!t.has(id)) t.set(id, { team_id: id, played: 0, points: 0, gf: 0, ga: 0, gd: 0 }); return t.get(id); };
-  for (const x of matches) {
+  const row = id => { if (!t.has(id)) t.set(id, { team_id: id, played: 0, won: 0, drawn: 0, lost: 0, points: 0, gf: 0, ga: 0, gd: 0, results: [] }); return t.get(id); };
+  const timed = matches.length > 0 && matches.every(x => x.kickoff_at);
+  const ordered = timed ? [...matches].sort((x, y) => Date.parse(x.kickoff_at) - Date.parse(y.kickoff_at)) : matches;
+  for (const x of ordered) {
     const h = row(x.home_team_id); const a = row(x.away_team_id);
     h.played += 1; a.played += 1; h.gf += x.home_score; h.ga += x.away_score; a.gf += x.away_score; a.ga += x.home_score;
-    if (x.home_score > x.away_score) h.points += 3; else if (x.home_score < x.away_score) a.points += 3; else { h.points += 1; a.points += 1; }
+    if (x.home_score > x.away_score) { h.points += 3; h.won += 1; a.lost += 1; h.results.push('W'); a.results.push('L'); }
+    else if (x.home_score < x.away_score) { a.points += 3; a.won += 1; h.lost += 1; h.results.push('L'); a.results.push('W'); }
+    else { h.points += 1; a.points += 1; h.drawn += 1; a.drawn += 1; h.results.push('D'); a.results.push('D'); }
   }
-  for (const r of t.values()) r.gd = r.gf - r.ga;
-  return [...t.values()].sort((x, y) => y.points - x.points || y.gd - x.gd || y.gf - x.gf || (x.team_id < y.team_id ? -1 : 1));
+  for (const r of t.values()) {
+    r.gd = r.gf - r.ga;
+    // Form only when results can be ordered by kickoff; newest first.
+    r.form = timed ? r.results.slice(-5).reverse() : null;
+    delete r.results;
+  }
+  const byWins = tiebreak === 'mls';
+  return [...t.values()].sort((x, y) => y.points - x.points || (byWins ? y.won - x.won : 0) || y.gd - x.gd || y.gf - x.gf || (x.team_id < y.team_id ? -1 : 1));
 }
