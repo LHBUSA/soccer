@@ -8,6 +8,7 @@
 
 import registry from '../../../data/registry/competitions.json' with { type: 'json' };
 import reviewed from '../../../data/registry/team-crosswalk-reviewed.json' with { type: 'json' };
+import areas from '../../../data/registry/areas.json' with { type: 'json' };
 import { r2Storage } from '../../shared/archive.js';
 import { storeFromEnv } from '../../shared/postgrest.js';
 import { LANE as OLDB_CURRENT, runOpenLigaCurrent } from './openligadb-current.js';
@@ -30,7 +31,7 @@ function context(env) {
   const store = storeFromEnv(env);
   if (!store) throw new Error('SOCCER_MODEL_SUPABASE_URL / _SERVICE_ROLE_KEY not configured');
   if (!env.SOCCER_SOURCE) throw new Error('R2 binding SOCCER_SOURCE missing');
-  return { store, storage: r2Storage(env.SOCCER_SOURCE), registry, reviewed };
+  return { store, storage: r2Storage(env.SOCCER_SOURCE), registry, reviewed, areas };
 }
 
 export async function runLane(env, name, { force = false, now = Date.now() } = {}) {

@@ -59,6 +59,7 @@ if (argv.includes('--replay')) {
 }
 const registry = JSON.parse(readFileSync('data/registry/competitions.json', 'utf8'));
 const reviewed = JSON.parse(readFileSync('data/registry/team-crosswalk-reviewed.json', 'utf8'));
+const areas = JSON.parse(readFileSync('data/registry/areas.json', 'utf8'));
 const storage = await fsStorage('.raw');
 
 log('openligadb current season');
@@ -73,7 +74,7 @@ for (const c of comps) {
   const runs = [];
   for (let i = 0; i < 200 && budgetLeft > 0; i++) {
     const budget = Math.min(150, budgetLeft);
-    const out = await runEspnLane(lane, { store, storage, registry, state, budget, fetcher });
+    const out = await runEspnLane(lane, { store, storage, registry, areas, state, budget, fetcher });
     budgetLeft -= out.requests;
     state = { ...state, cursor: out.cursor };
     const r = out.results[0];
@@ -133,6 +134,33 @@ const report = {
     queue_open_by_reason: queue.reduce((o, q) => { const k = `${q.entity_type}/${q.provider}/${q.reason}`; o[k] = (o[k] || 0) + 1; return o; }, {}),
   },
   store_canary: await espnStoreCanary(store),
+  corroboration: await (async () => {
+    const merged = (await sel('soccer_player_external_ids', { columns: ['external_id', 'player_id', 'evidence'], eq: { provider: 'espn', method: 'attribute_corroborated' } })).map(r => ({ ...r, ev: JSON.parse(r.evidence) }));
+    const espnQ = await sel('soccer_identity_queue', { columns: ['external_id', 'reason', 'payload', 'candidate_ids'], eq: { provider: 'espn', entity_type: 'player', status: 'open' } });
+    const nameDob = espnQ.filter(q => q.reason !== 'athlete_without_dob_or_name');
+    const conflicting = nameDob.filter(q => q.reason.startsWith('contradiction_'));
+    const whyUnverifiable = {};
+    for (const q of nameDob) for (const w of q.payload?.evidence?.unverifiable_windows || []) whyUnverifiable[w.why] = (whyUnverifiable[w.why] || 0) + 1;
+    const movers = merged.filter(m => m.ev.current_club && m.ev.corroborating_windows.some(w => w.canonical_team !== m.ev.current_club));
+    return {
+      name_dob_candidates_total: merged.length + nameDob.length,
+      auto_resolved: merged.length,
+      still_queued: nameDob.length - conflicting.length,
+      conflicting: conflicting.length,
+      queued_by_reason: nameDob.reduce((o, q) => ({ ...o, [q.reason]: (o[q.reason] || 0) + 1 }), {}),
+      contradiction_kinds: conflicting.flatMap(q => (q.payload?.evidence?.contradictions || []).map(c => c.kind)).reduce((o, k) => ({ ...o, [k]: (o[k] || 0) + 1 }), {}),
+      unverifiable_window_reasons: whyUnverifiable,
+      merged_evidence: {
+        corroborating_windows_by_season: merged.flatMap(m => m.ev.corroborating_windows.map(w => w.season)).reduce((o, s) => ({ ...o, [s]: (o[s] || 0) + 1 }), {}),
+        nationality_compared: merged.filter(m => m.ev.nationality?.compared).length,
+        movers_2017_club_differs_from_current_club: movers.length,
+      },
+      samples: {
+        merged: merged.slice(0, 5).map(m => ({ name: m.ev.name, dob: m.ev.birth_date, windows: m.ev.corroborating_windows })),
+        conflicting: conflicting.slice(0, 5).map(q => ({ name: q.payload?.name, reason: q.reason, contradictions: q.payload?.evidence?.contradictions })),
+      },
+    };
+  })(),
   replay: { hits: replayHits, live_fetches: liveFetches },
   elapsed_s: Math.round((Date.now() - t0) / 1000),
 };

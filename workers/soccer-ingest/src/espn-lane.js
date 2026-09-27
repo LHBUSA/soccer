@@ -19,6 +19,7 @@ import { allocateSlugs, normName, queueIdentity, resolveMany, resolveQueued } fr
 import { chunkArr, syncRows } from './store.js';
 import { deriveMatchStats } from './derive.js';
 import { minuteClose } from './openligadb-lane.js';
+import { RULE, corroborate } from './corroborate.js';
 
 const P = 'espn';
 const dateOf = ts => new Date(ts).toISOString().slice(0, 10);
@@ -141,9 +142,9 @@ export async function upsertEspnFixtures(store, { comp, year, cursor, teamMap, n
   return { considered: ids.length, attached_to_existing: attached, founded, repeated_pairs_skipped: pairConflicts, written, crosswalk };
 }
 
-async function resolveAthletes(store, { athleteIds, client, league, year }) {
+export async function resolveAthletes(store, { athleteIds, client, league, year, registry, areas, teamOf = new Map() }) {
   const map = await resolveMany(store, 'player', P, athleteIds);
-  const queued = []; const found = [];
+  const queued = []; const found = []; const corroborated = [];
   for (const aid of athleteIds.filter(a => !map.has(a))) {
     const [q] = await store.select('soccer_identity_queue', { columns: ['status'], eq: { entity_type: 'player', provider: P, external_id: aid }, limit: 1 });
     if (q) { queued.push(aid); continue; } // already queued: do not refetch
@@ -151,12 +152,13 @@ async function resolveAthletes(store, { athleteIds, client, league, year }) {
     const a = espn.parseAthlete(json);
     const fullName = [a.first_name, a.last_name].filter(Boolean).join(' ') || a.display_name;
     if (!a.birth_date || !fullName) { await client.flush(); await queueIdentity(store, { entity_type: 'player', provider: P, external_id: aid, reason: 'athlete_without_dob_or_name', payload: { name: a.display_name } }); queued.push(aid); continue; }
-    const sameDob = await store.select('soccer_players', { columns: ['id', 'display_name', 'first_name', 'last_name'], eq: { birth_date: a.birth_date } });
-    const hits = sameDob.filter(p => normName([p.first_name, p.last_name].filter(Boolean).join(' ') || p.display_name) === normName(fullName) || normName(p.display_name) === normName(a.display_name));
+    const hits = await nameDobCandidates(store, a);
     if (hits.length) {
-      // Same person almost certainly — but name+DOB is not an allowed merge method.
+      // Never a name merge: the attribute_corroborated rule decides, else queue.
+      const r = await corroborate(store, { athlete: a, candidates: hits, client, registry, areas, currentMatchTeam: teamOf.get(aid) || null });
       await client.flush();
-      await queueIdentity(store, { entity_type: 'player', provider: P, external_id: aid, reason: 'dob_and_name_match_existing_player', candidate_ids: hits.map(h => h.id), payload: { name: a.display_name, birth_date: a.birth_date } });
+      if (r.decision === 'merge') { corroborated.push({ aid, player_id: hits[0].id, evidence: r.evidence, capture_id: capture.capture_id }); map.set(aid, hits[0].id); continue; }
+      await queueIdentity(store, { entity_type: 'player', provider: P, external_id: aid, reason: r.reason, candidate_ids: hits.map(h => h.id), payload: { name: a.display_name, birth_date: a.birth_date, evidence: r.evidence } });
       queued.push(aid); continue;
     }
     found.push({ ...a, capture_id: capture.capture_id });
@@ -172,7 +174,43 @@ async function resolveAthletes(store, { athleteIds, client, league, year }) {
     await syncRows(store, { table: 'soccer_player_external_ids', key: ['provider', 'external_id'], compare: ['player_id'], rows: found.map(a => ({ provider: P, external_id: a.external_id, player_id: mintId('player', P, a.external_id), method: 'founding', evidence: `espn athlete id; dob ${a.birth_date}`, capture_id: a.capture_id })) });
     for (const a of found) map.set(a.external_id, mintId('player', P, a.external_id));
   }
-  return { map, queued: queued.length, founded: found.length };
+  if (corroborated.length) {
+    await syncRows(store, { table: 'soccer_player_external_ids', key: ['provider', 'external_id'], compare: ['player_id'], rows: corroborated.map(c => ({ provider: P, external_id: c.aid, player_id: c.player_id, method: 'attribute_corroborated', evidence: JSON.stringify(c.evidence), capture_id: c.capture_id })) });
+    for (const c of corroborated) await resolveQueued(store, { entity_type: 'player', provider: P, external_id: c.aid, resolution: { method: 'attribute_corroborated', rule: RULE, player_id: c.player_id } });
+  }
+  return { map, queued: queued.length, founded: found.length, corroborated: corroborated.length };
+}
+
+// Exact normalized full name + exact DOB (the only candidate filter; never a merge by itself).
+export async function nameDobCandidates(store, a) {
+  const fullName = [a.first_name, a.last_name].filter(Boolean).join(' ') || a.display_name;
+  const sameDob = await store.select('soccer_players', { columns: ['id', 'display_name', 'first_name', 'last_name', 'birth_date', 'nationality_code', 'status'], eq: { birth_date: a.birth_date, status: 'active' } });
+  return sameDob.filter(p => normName([p.first_name, p.last_name].filter(Boolean).join(' ') || p.display_name) === normName(fullName) || normName(p.display_name) === normName(a.display_name));
+}
+
+// Re-evaluate ESPN athletes queued for a name+DOB match (e.g. before the rule
+// existed) under attribute_corroborated. Budgeted; untouched entries stay queued.
+export async function reevaluateQueuedEspnAthletes(store, { client, registry, areas, league, year, reasons = ['dob_and_name_match_existing_player', 'no_overlapping_club_corroboration'] }) {
+  const out = { evaluated: 0, merged: 0, still_queued: 0, by_reason: {} };
+  const rows = [];
+  for (const reason of reasons) rows.push(...await store.select('soccer_identity_queue', { columns: ['external_id', 'reason', 'payload'], eq: { entity_type: 'player', provider: P, status: 'open', reason } }));
+  for (const q of rows) {
+    const { json, capture } = await client.get(`${espn.CORE}/${league}/seasons/${year}/athletes/${q.external_id}`);
+    const a = espn.parseAthlete(json);
+    const hits = a.birth_date ? await nameDobCandidates(store, a) : [];
+    const r = await corroborate(store, { athlete: a, candidates: hits, client, registry, areas });
+    await client.flush();
+    out.evaluated += 1; out.by_reason[r.reason] = (out.by_reason[r.reason] || 0) + 1;
+    if (r.decision === 'merge') {
+      await syncRows(store, { table: 'soccer_player_external_ids', key: ['provider', 'external_id'], compare: ['player_id'], rows: [{ provider: P, external_id: q.external_id, player_id: hits[0].id, method: 'attribute_corroborated', evidence: JSON.stringify(r.evidence), capture_id: capture.capture_id }] });
+      await resolveQueued(store, { entity_type: 'player', provider: P, external_id: q.external_id, resolution: { method: 'attribute_corroborated', rule: RULE, player_id: hits[0].id } });
+      out.merged += 1;
+    } else {
+      await store.upsert('soccer_identity_queue', [{ entity_type: 'player', provider: P, external_id: q.external_id, reason: q.reason, candidate_ids: hits.map(h => h.id), payload: { ...(q.payload || {}), reevaluated: { rule: RULE, reason: r.reason, evidence: r.evidence } }, status: 'open' }], ['entity_type', 'provider', 'external_id']);
+      out.still_queued += 1;
+    }
+  }
+  return out;
 }
 
 export async function ingestEspnMatch(store, { comp, league, year, eventId, fixture, teamMap, client, now = Date.now() }) {
@@ -204,8 +242,10 @@ export async function ingestEspnMatch(store, { comp, league, year, eventId, fixt
   for (const side of ['h', 'a']) { const { json, capture } = await client.get(`${base}/competitors/${fixture[side]}/roster`); rosters[side] = { ...espn.parseRoster(json), capture_id: capture.capture_id }; }
   await client.flush();
   const athleteIds = [...new Set(Object.values(rosters).flatMap(r => r.entries.flatMap(e => [e.athlete_id, e.sub_out?.replacement_id].filter(Boolean))))];
-  const ath = await resolveAthletes(store, { athleteIds, client, league, year });
-  summary.athletes = { in_rosters: athleteIds.length, founded: ath.founded, queued: ath.queued };
+  const teamOf = new Map();
+  for (const side of ['h', 'a']) for (const e of rosters[side].entries) teamOf.set(e.athlete_id, { match_id: matchId, team_id: side === 'h' ? home : away });
+  const ath = await resolveAthletes(store, { athleteIds, client, league, year, registry: client.registry, areas: client.areas, teamOf });
+  summary.athletes = { in_rosters: athleteIds.length, founded: ath.founded, corroborated: ath.corroborated, queued: ath.queued };
   const lineups = await store.select('soccer_lineups', { columns: ['id', 'team_id', 'provider'], eq: { match_id: matchId } });
   const lpRows = []; const lineupRows = []; const subRows = []; const lpContext = [];
   for (const side of ['h', 'a']) {

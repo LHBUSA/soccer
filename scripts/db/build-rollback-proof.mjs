@@ -26,6 +26,10 @@ begin
   exception when others then blocked := true;
   end;
   if not blocked then raise exception 'PROOF_FAIL evidence packet was updatable'; end if;
+  -- 0400: player crosswalk accepts attribute_corroborated only with structured evidence; teams unchanged
+  if not exists (select 1 from pg_constraint where conname = 'soccer_player_external_ids_corroboration_evidence') then raise exception 'PROOF_FAIL corroboration evidence constraint missing'; end if;
+  if pg_get_constraintdef((select oid from pg_constraint where conname = 'soccer_team_external_ids_method_check')) like '%attribute_corroborated%' then raise exception 'PROOF_FAIL team methods were widened'; end if;
+  if pg_get_constraintdef((select oid from pg_constraint where conname = 'soccer_player_external_ids_method_check')) not like '%attribute_corroborated%' then raise exception 'PROOF_FAIL player method not extended'; end if;
   raise exception 'ROLLBACK_PROOF_OK tables=% rls=% metric_seeds=% packet_immutable=%', n_tables, n_rls, n_metrics, blocked;
 end $$;`;
 

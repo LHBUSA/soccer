@@ -25,8 +25,8 @@ export const DEFAULT_BUDGET = 30;
 
 export class BudgetExhausted extends Error { constructor() { super('request budget exhausted'); this.name = 'BudgetExhausted'; } }
 
-export function espnClient({ storage, store, fetcher = politeFetch, budget = DEFAULT_BUDGET }) {
-  const client = { used: 0, budget, pending: [] };
+export function espnClient({ storage, store, fetcher = politeFetch, budget = DEFAULT_BUDGET, registry = null, areas = null }) {
+  const client = { used: 0, budget, pending: [], registry, areas };
   client.get = async (url) => {
     if (client.used >= client.budget) throw new BudgetExhausted();
     client.used += 1;
@@ -48,11 +48,11 @@ export function espnClient({ storage, store, fetcher = politeFetch, budget = DEF
   return client;
 }
 
-export async function runEspnLane(lane, { store, storage, registry, state, now = Date.now(), fetcher = politeFetch, budget = DEFAULT_BUDGET, force = false }) {
+export async function runEspnLane(lane, { store, storage, registry, areas = { areas: {}, aliases: {} }, state, now = Date.now(), fetcher = politeFetch, budget = DEFAULT_BUDGET, force = false }) {
   const comp = registry.competitions.find(c => c.slug === lane.competition);
   if (!comp?.espn) throw new Error(`registry has no ESPN id for ${lane.competition}`);
   const league = comp.espn.league;
-  const client = espnClient({ storage, store, fetcher, budget });
+  const client = espnClient({ storage, store, fetcher, budget, registry, areas });
   const today = new Date(now).toISOString().slice(0, 10);
   const cursor = { fixtures: {}, done: {}, ...(state.cursor || {}) };
   const stats = { competition: comp.slug, observed: 0, changed: 0, matches_detailed: 0, fixtures_new: 0, match_results: [] };
