@@ -265,11 +265,16 @@ export async function ingestEspnMatch(store, { comp, league, year, eventId, fixt
   // Rosters -> athletes, lineups, substitutions (where no other provider supplied them)
   const rosters = {};
   for (const side of ['h', 'a']) {
-    const { json, capture } = await client.get(`${base}/competitors/${fixture[side]}/roster`);
-    try { rosters[side] = { ...espn.parseRoster(json), capture_id: capture.capture_id }; } catch (err) {
+    let capture = null;
+    try {
+      const res = await client.get(`${base}/competitors/${fixture[side]}/roster`);
+      capture = res.capture;
+      rosters[side] = { ...espn.parseRoster(res.json), capture_id: capture.capture_id };
+    } catch (err) {
       if (!(err instanceof espn.EspnShapeError)) throw err;
-      // No published roster for this side: the lineup is unavailable (never invented); the match goes on.
-      rosters[side] = { entries: [], formation: null, capture_id: capture.capture_id, unavailable: true };
+      // No usable roster for this side (missing entries or a non-JSON page): the lineup is
+      // unavailable (never invented); the match goes on.
+      rosters[side] = { entries: [], formation: null, capture_id: capture?.capture_id || null, unavailable: true };
       summary.lineups_unavailable = [...(summary.lineups_unavailable || []), side === 'h' ? 'home' : 'away'];
     }
   }
