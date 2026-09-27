@@ -118,6 +118,11 @@ export async function commonsInfo(fetcher, fileNames, { width = 480 } = {}) {
 // Registry row (before bytes are cached). Only approved rows get bytes + primary.
 export function mediaRow({ entityType, entityId, mediaType, info, sourceEntity, evidence, policy }) {
   const verdict = classifyCommons(info.meta, { mediaType, fileUrl: info.page_url, policy });
+  // A crest is an emblem: a wide wordmark in a round mark is illegible, so it is not published.
+  const ratio = info.thumb_width && info.thumb_height ? info.thumb_width / info.thumb_height : null;
+  if (mediaType === 'crest' && verdict.rights_status === 'approved' && (ratio === null || ratio < 0.6 || ratio > 1.67)) {
+    verdict.rights_status = 'review_required'; verdict.rights_notes = `${verdict.rights_notes} Shape ${info.thumb_width}x${info.thumb_height}: a wordmark, not an emblem.`;
+  }
   return {
     id: mediaId(entityType, entityId, mediaType, info.page_url), entity_type: entityType, entity_id: entityId, media_type: mediaType,
     url: info.thumb_url, source: 'wikimedia_commons', source_url: info.page_url, source_entity: sourceEntity,

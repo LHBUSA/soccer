@@ -54,3 +54,11 @@ test('crests: a third-party CC licence on a club emblem is never approved; Commo
   assert.equal(classifyCommons(meta({ LicenseShortName: 'Public domain', License: 'pd', Artist: 'FC Example' }), { mediaType: 'crest' }).rights_status, 'approved');
   assert.equal(classifyCommons(meta({ LicenseShortName: 'CC0', License: 'cc0', LicenseUrl: 'https://c', Artist: 'U' }), { mediaType: 'portrait' }).rights_status, 'approved'); // portraits unaffected
 });
+
+test('crests must be emblem-shaped: a wide wordmark is not published', () => {
+  const info = w => ({ page_url: 'https://commons.wikimedia.org/wiki/File:C.svg', thumb_url: 'https://upload.wikimedia.org/c.png', mime: 'image/png', thumb_width: w, thumb_height: 480, meta: meta({ LicenseShortName: 'Public domain', License: 'pd' }) });
+  const row = w => mediaRow({ entityType: 'team', entityId: 't', mediaType: 'crest', info: info(w), sourceEntity: 'Q1', evidence: {}, policy: {} });
+  assert.equal(row(480).rights_status, 'approved');
+  assert.equal(row(6775).rights_status, 'review_required'); // 480x34-like wordmark
+  assert.match(row(6775).rights_notes, /wordmark/);
+});
