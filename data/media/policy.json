@@ -1,0 +1,12 @@
+{
+  "policy_version": "2026-09-27.1",
+  "sources": {
+    "wikimedia_commons": "per-file licence from Commons extmetadata; CC0 / public domain / CC BY / CC BY-SA approved when author + licence URL are stated",
+    "provider_artwork": "not used: no provider image licence permits our use (ESPN headshots are never guessed or hotlinked)"
+  },
+  "player_identity": "Wikidata item via exact ESPN FC player id (P3681); birth date must not contradict",
+  "team_identity": "Wikidata club via roster proof (>=60% and >=5 id-matched players share the current club, runner-up <=30%, unique)",
+  "crest_trademark": "approve_nominative",
+  "crest_trademark_note": "Free-licensed Commons crests are approved and used only to identify the club; set to \"review\" to hold every trademarked crest for owner review.",
+  "thumb_width": 480
+}
