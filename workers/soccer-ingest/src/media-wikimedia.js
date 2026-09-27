@@ -130,3 +130,47 @@ export function mediaRow({ entityType, entityId, mediaType, info, sourceEntity, 
     ...verdict, mime: info.mime, width: info.thumb_width || null, height: info.thumb_height || null,
   };
 }
+
+// ---- Tier 2 portraits: attribute corroboration inside a PROVEN club --------------
+// Mirrors the owner-approved attribute_corroborated identity rule, never a name match:
+// exact normalized name (label or alias) + exact birth date + membership of the SAME
+// club (QID proven by roster proof) in a period overlapping the seasons we observed the
+// player at that club + exactly one candidate. Anything else is recorded, not attached.
+const NAME_LANGS = ['en', 'de', 'es', 'fr', 'it', 'pt', 'nl', 'mul'];
+export async function clubMembers(fetcher, clubQid) {
+  const rows = await sparql(fetcher, `SELECT ?p ?dob ?img ?start ?end ?name WHERE {
+    ?p p:P54 ?st . ?st ps:P54 wd:${clubQid} . ?p wdt:P569 ?dob . ?p wdt:P18 ?img .
+    OPTIONAL { ?st pq:P580 ?start } OPTIONAL { ?st pq:P582 ?end }
+    { ?p rdfs:label ?name } UNION { ?p skos:altLabel ?name }
+    FILTER (LANG(?name) IN (${NAME_LANGS.map(l => `"${l}"`).join(',')}))
+  }`);
+  const out = new Map();
+  for (const r of rows) {
+    const q = qidOf(r.p.value);
+    const e = out.get(q) || { qid: q, dobs: new Set(), images: new Set(), names: new Set(), spells: [] };
+    e.dobs.add(r.dob.value.slice(0, 10)); e.images.add(r.img.value); e.names.add(r.name.value);
+    const spell = { start: r.start?.value?.slice(0, 10) || null, end: r.end?.value?.slice(0, 10) || null };
+    if (!e.spells.some(s => s.start === spell.start && s.end === spell.end)) e.spells.push(spell);
+    out.set(q, e);
+  }
+  return [...out.values()].map(e => ({ ...e, dobs: [...e.dobs], images: [...e.images], names: [...e.names] }));
+}
+
+// window: { from: 'YYYY-MM-DD', to: 'YYYY-MM-DD' } observed at the club.
+export function spellOverlaps(spells, window) {
+  return spells.some(s => (!s.start || s.start <= window.to) && (!s.end || s.end >= window.from));
+}
+
+export function corroborateInClub(player, members, window, norm) {
+  const want = norm(player.full_name || player.display_name);
+  const dob = player.birth_date ? String(player.birth_date).slice(0, 10) : null;
+  if (!dob || !want) return { ok: false, reason: 'no_birth_date_or_name' };
+  const hits = members.filter(m => m.dobs.includes(dob) && m.names.some(n => norm(n) === want || norm(n) === norm(player.display_name)));
+  if (!hits.length) return { ok: false, reason: 'no_club_member_with_same_name_and_birth_date' };
+  if (hits.length > 1) return { ok: false, reason: 'several_club_members_match', qids: hits.map(h => h.qid) };
+  const h = hits[0];
+  if (h.dobs.length > 1) return { ok: false, reason: 'conflicting_birth_dates_on_item', qid: h.qid };
+  if (!spellOverlaps(h.spells, window)) return { ok: false, reason: 'no_overlapping_club_spell', qid: h.qid };
+  if (h.images.length !== 1) return { ok: false, reason: h.images.length ? 'several_images' : 'no_image', qid: h.qid };
+  return { ok: true, qid: h.qid, image: h.images[0], spells: h.spells };
+}

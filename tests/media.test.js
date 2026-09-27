@@ -62,3 +62,17 @@ test('crests must be emblem-shaped: a wide wordmark is not published', () => {
   assert.equal(row(6775).rights_status, 'review_required'); // 480x34-like wordmark
   assert.match(row(6775).rights_notes, /wordmark/);
 });
+
+test('tier-2 portraits: exact name + exact DOB + overlapping spell at the proven club + unique', async () => {
+  const { corroborateInClub, spellOverlaps } = await import('../workers/soccer-ingest/src/media-wikimedia.js');
+  const { normName } = await import('../workers/soccer-ingest/src/identity.js');
+  const member = { qid: 'Q1', dobs: ['1995-04-02'], images: ['http://commons.wikimedia.org/wiki/Special:FilePath/A.jpg'], names: ['Álex Pérez', 'Alex Perez'], spells: [{ start: '2021-07-01', end: null }] };
+  const p = { display_name: 'Álex Pérez', full_name: 'Alex Perez', birth_date: '1995-04-02' };
+  const w = { from: '2026-02-21', to: '2026-09-27' };
+  assert.equal(corroborateInClub(p, [member], w, normName).ok, true);
+  assert.equal(corroborateInClub({ ...p, birth_date: '1995-04-03' }, [member], w, normName).reason, 'no_club_member_with_same_name_and_birth_date');
+  assert.equal(corroborateInClub(p, [member, { ...member, qid: 'Q2' }], w, normName).reason, 'several_club_members_match');
+  assert.equal(corroborateInClub(p, [{ ...member, spells: [{ start: '2014-07-01', end: '2019-06-30' }] }], w, normName).reason, 'no_overlapping_club_spell');
+  assert.equal(corroborateInClub({ ...p, display_name: 'A. Pérez', full_name: 'Alexander Perez' }, [member], w, normName).ok, false); // never a partial/fuzzy name
+  assert.equal(spellOverlaps([{ start: null, end: null }], w), true);
+});

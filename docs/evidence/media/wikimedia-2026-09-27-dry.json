@@ -1,79 +1,1459 @@
 {
   "version": "media-wikimedia/1.0.0",
   "policy_version": "2026-09-27.1",
-  "started_at": "2026-09-27T20:26:35.855Z",
+  "started_at": "2026-09-27T22:31:11.077Z",
   "players": {
-    "espn_linked": 300,
-    "wikidata_items": 126,
-    "verdicts": {
-      "no_wikidata_item_for_espn_id": 174,
-      "ok": 116,
-      "several_images": 5,
-      "no_image": 5
+    "espn_linked": 2467,
+    "wikidata_items": 494,
+    "t1": {
+      "no_wikidata_item_for_espn_id": 1973,
+      "ok": 422,
+      "several_images": 15,
+      "no_image": 52,
+      "birth_date_contradiction": 5
+    },
+    "t2": {
+      "no_club_member_with_same_name_and_birth_date": 164,
+      "ok": 171,
+      "no_overlapping_club_spell": 3,
+      "several_images": 16
     }
   },
-  "teams": {},
+  "teams": {
+    "with_lineups": 98,
+    "verdicts": {
+      "too_few_matched_players": 54,
+      "no_majority_club": 22,
+      "roster_proof": 7,
+      "club_has_no_logo_on_wikidata": 15
+    },
+    "proofs": [
+      {
+        "team": "Hoffenheim",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 2,
+        "top": {
+          "qid": "Q16932",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q22707",
+          "players": 1
+        }
+      },
+      {
+        "team": "Borussia M'gladbach",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 10,
+        "top": {
+          "qid": "Q101959",
+          "players": 2
+        },
+        "runner_up": {
+          "qid": "Q104761",
+          "players": 1
+        }
+      },
+      {
+        "team": "Borussia Dortmund",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 6,
+        "top": {
+          "qid": "Q41420",
+          "players": 3
+        },
+        "runner_up": {
+          "qid": "Q101959",
+          "players": 1
+        }
+      },
+      {
+        "team": "Freiburg",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 6,
+        "top": {
+          "qid": "Q106394",
+          "players": 3
+        },
+        "runner_up": {
+          "qid": "Q102720",
+          "players": 1
+        }
+      },
+      {
+        "team": "Mainz 05",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 5,
+        "top": {
+          "qid": "Q105254",
+          "players": 2
+        },
+        "runner_up": {
+          "qid": "Q141971",
+          "players": 2
+        }
+      },
+      {
+        "team": "1. FC Union Berlin",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 6,
+        "top": {
+          "qid": "Q141971",
+          "players": 2
+        },
+        "runner_up": {
+          "qid": "Q106394",
+          "players": 1
+        }
+      },
+      {
+        "team": "Eintracht Frankfurt",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 6,
+        "top": {
+          "qid": "Q38245",
+          "players": 2
+        },
+        "runner_up": {
+          "qid": "Q19467",
+          "players": 1
+        }
+      },
+      {
+        "team": "Toronto FC",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 2,
+        "top": {
+          "qid": "Q15786",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q15789",
+          "players": 1
+        }
+      },
+      {
+        "team": "Chicago Fire FC",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 3,
+        "top": {
+          "qid": "Q176371",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q308683",
+          "players": 1
+        }
+      },
+      {
+        "team": "Bayern München",
+        "qid": "Q15789",
+        "reason": "roster_proof",
+        "players_matched": 16,
+        "top": {
+          "qid": "Q15789",
+          "players": 12
+        },
+        "runner_up": {
+          "qid": "Q994701",
+          "players": 2
+        }
+      },
+      {
+        "team": "Real Salt Lake",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 1,
+        "top": {
+          "qid": "Q19518",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q209895",
+          "players": 1
+        }
+      },
+      {
+        "team": "Portland Timbers",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 2,
+        "top": {
+          "qid": "Q1031200",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q19473",
+          "players": 1
+        }
+      },
+      {
+        "team": "CF Montréal",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 2,
+        "top": {
+          "qid": "Q167615",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q18716",
+          "players": 1
+        }
+      },
+      {
+        "team": "Augsburg",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 5,
+        "top": {
+          "qid": "Q15755",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q15789",
+          "players": 1
+        }
+      },
+      {
+        "team": "Everton",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 3,
+        "top": {
+          "qid": "Q5794",
+          "players": 2
+        },
+        "runner_up": {
+          "qid": "Q50602",
+          "players": 1
+        }
+      },
+      {
+        "team": "Manchester City",
+        "qid": "Q50602",
+        "reason": "club_has_no_logo_on_wikidata",
+        "players_matched": 13,
+        "top": {
+          "qid": "Q50602",
+          "players": 13
+        },
+        "runner_up": {
+          "qid": "Q18741",
+          "players": 1
+        }
+      },
+      {
+        "team": "Seattle Sounders FC",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 1,
+        "top": {
+          "qid": "Q632511",
+          "players": 1
+        },
+        "runner_up": null
+      },
+      {
+        "team": "Brighton & Hove Albion",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 5,
+        "top": {
+          "qid": "Q19453",
+          "players": 4
+        },
+        "runner_up": {
+          "qid": "Q185163",
+          "players": 1
+        }
+      },
+      {
+        "team": "Red Bull New York",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 3,
+        "top": {
+          "qid": "Q204220",
+          "players": 3
+        },
+        "runner_up": {
+          "qid": "Q1871928",
+          "players": 1
+        }
+      },
+      {
+        "team": "RB Leipzig",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 8,
+        "top": {
+          "qid": "Q702455",
+          "players": 4
+        },
+        "runner_up": {
+          "qid": "Q12297",
+          "players": 1
+        }
+      },
+      {
+        "team": "D.C. United",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 1,
+        "top": {
+          "qid": "Q49711",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q689874",
+          "players": 1
+        }
+      },
+      {
+        "team": "Orlando City SC",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 3,
+        "top": {
+          "qid": "Q15214308",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q167615",
+          "players": 1
+        }
+      },
+      {
+        "team": "Atlanta United FC",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 2,
+        "top": {
+          "qid": "Q16836317",
+          "players": 2
+        },
+        "runner_up": null
+      },
+      {
+        "team": "Schalke 04",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 5,
+        "top": {
+          "qid": "Q32494",
+          "players": 4
+        },
+        "runner_up": {
+          "qid": "Q2052",
+          "players": 1
+        }
+      },
+      {
+        "team": "LASK Linz",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 0,
+        "top": null,
+        "runner_up": null
+      },
+      {
+        "team": "St. Louis CITY SC",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 2,
+        "top": {
+          "qid": "Q188430",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q4512",
+          "players": 1
+        }
+      },
+      {
+        "team": "Wolfsburg",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 0,
+        "top": null,
+        "runner_up": null
+      },
+      {
+        "team": "Stuttgart",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 6,
+        "top": {
+          "qid": "Q4512",
+          "players": 3
+        },
+        "runner_up": {
+          "qid": "Q153539",
+          "players": 1
+        }
+      },
+      {
+        "team": "Vancouver Whitecaps",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 2,
+        "top": {
+          "qid": "Q196107",
+          "players": 2
+        },
+        "runner_up": {
+          "qid": "Q1051238",
+          "players": 1
+        }
+      },
+      {
+        "team": "Bayer Leverkusen",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 7,
+        "top": {
+          "qid": "Q104761",
+          "players": 4
+        },
+        "runner_up": {
+          "qid": "Q132885",
+          "players": 1
+        }
+      },
+      {
+        "team": "Fulham",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 2,
+        "top": {
+          "qid": "Q18708",
+          "players": 2
+        },
+        "runner_up": null
+      },
+      {
+        "team": "Arsenal",
+        "qid": "Q9617",
+        "reason": "club_has_no_logo_on_wikidata",
+        "players_matched": 11,
+        "top": {
+          "qid": "Q9617",
+          "players": 10
+        },
+        "runner_up": {
+          "qid": "Q204888",
+          "players": 1
+        }
+      },
+      {
+        "team": "Werder Bremen",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 2,
+        "top": {
+          "qid": "Q105844",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q51976",
+          "players": 1
+        }
+      },
+      {
+        "team": "Köln",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 5,
+        "top": {
+          "qid": "Q104770",
+          "players": 3
+        },
+        "runner_up": {
+          "qid": "Q1061627",
+          "players": 1
+        }
+      },
+      {
+        "team": "Internazionale",
+        "qid": "Q631",
+        "reason": "roster_proof",
+        "players_matched": 14,
+        "top": {
+          "qid": "Q631",
+          "players": 10
+        },
+        "runner_up": {
+          "qid": "Q104770",
+          "players": 1
+        }
+      },
+      {
+        "team": "LA Galaxy",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 5,
+        "top": {
+          "qid": "Q204357",
+          "players": 4
+        },
+        "runner_up": {
+          "qid": "Q118945347",
+          "players": 1
+        }
+      },
+      {
+        "team": "New England Revolution",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 6,
+        "top": {
+          "qid": "Q18711",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q19490",
+          "players": 1
+        }
+      },
+      {
+        "team": "Villarreal",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 1,
+        "top": {
+          "qid": "Q12297",
+          "players": 1
+        },
+        "runner_up": null
+      },
+      {
+        "team": "San Jose Earthquakes",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 1,
+        "top": {
+          "qid": "Q575370",
+          "players": 1
+        },
+        "runner_up": null
+      },
+      {
+        "team": "Real Madrid",
+        "qid": "Q8682",
+        "reason": "club_has_no_logo_on_wikidata",
+        "players_matched": 12,
+        "top": {
+          "qid": "Q8682",
+          "players": 12
+        },
+        "runner_up": null
+      },
+      {
+        "team": "New York City FC",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 2,
+        "top": {
+          "qid": "Q1322654",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q19601",
+          "players": 1
+        }
+      },
+      {
+        "team": "Sporting Kansas City",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 1,
+        "top": {
+          "qid": "Q12278",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q219926",
+          "players": 1
+        }
+      },
+      {
+        "team": "San Diego FC",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 1,
+        "top": {
+          "qid": "Q118945347",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q24185298",
+          "players": 1
+        }
+      },
+      {
+        "team": "Colorado Rapids",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 3,
+        "top": {
+          "qid": "Q19467",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q214940",
+          "players": 1
+        }
+      },
+      {
+        "team": "Inter Miami CF",
+        "qid": "Q16844931",
+        "reason": "roster_proof",
+        "players_matched": 5,
+        "top": {
+          "qid": "Q16844931",
+          "players": 5
+        },
+        "runner_up": null
+      },
+      {
+        "team": "Nashville SC",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 1,
+        "top": {
+          "qid": "Q12297",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q21071146",
+          "players": 1
+        }
+      },
+      {
+        "team": "Charlotte FC",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 3,
+        "top": {
+          "qid": "Q78944434",
+          "players": 2
+        },
+        "runner_up": {
+          "qid": "Q19593",
+          "players": 1
+        }
+      },
+      {
+        "team": "Hull City",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 5,
+        "top": {
+          "qid": "Q19477",
+          "players": 4
+        },
+        "runner_up": {
+          "qid": "Q18708",
+          "players": 1
+        }
+      },
+      {
+        "team": "Houston Dynamo FC",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 2,
+        "top": {
+          "qid": "Q1387293",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q506832",
+          "players": 1
+        }
+      },
+      {
+        "team": "Leeds United",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 11,
+        "top": {
+          "qid": "Q1128631",
+          "players": 5
+        },
+        "runner_up": {
+          "qid": "Q50602",
+          "players": 2
+        }
+      },
+      {
+        "team": "Club Brugge",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 4,
+        "top": {
+          "qid": "Q190916",
+          "players": 4
+        },
+        "runner_up": null
+      },
+      {
+        "team": "Lens",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 7,
+        "top": {
+          "qid": "Q191843",
+          "players": 4
+        },
+        "runner_up": {
+          "qid": "Q15789",
+          "players": 1
+        }
+      },
+      {
+        "team": "FC Cincinnati",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 0,
+        "top": null,
+        "runner_up": null
+      },
+      {
+        "team": "Crystal Palace",
+        "qid": "Q19467",
+        "reason": "club_has_no_logo_on_wikidata",
+        "players_matched": 9,
+        "top": {
+          "qid": "Q19467",
+          "players": 9
+        },
+        "runner_up": {
+          "qid": "Q104770",
+          "players": 1
+        }
+      },
+      {
+        "team": "Hertha BSC",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 0,
+        "top": null,
+        "runner_up": null
+      },
+      {
+        "team": "Minnesota United FC",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 0,
+        "top": null,
+        "runner_up": null
+      },
+      {
+        "team": "Hamburger SV",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 4,
+        "top": {
+          "qid": "Q51974",
+          "players": 3
+        },
+        "runner_up": {
+          "qid": "Q187528",
+          "players": 1
+        }
+      },
+      {
+        "team": "PSV Eindhoven",
+        "qid": "Q11938",
+        "reason": "club_has_no_logo_on_wikidata",
+        "players_matched": 5,
+        "top": {
+          "qid": "Q11938",
+          "players": 5
+        },
+        "runner_up": {
+          "qid": "Q219233",
+          "players": 1
+        }
+      },
+      {
+        "team": "FC Dallas",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 1,
+        "top": {
+          "qid": "Q206585",
+          "players": 1
+        },
+        "runner_up": null
+      },
+      {
+        "team": "Austin FC",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 3,
+        "top": {
+          "qid": "Q60643348",
+          "players": 2
+        },
+        "runner_up": {
+          "qid": "Q20855983",
+          "players": 1
+        }
+      },
+      {
+        "team": "Columbus Crew",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 3,
+        "top": {
+          "qid": "Q457163",
+          "players": 2
+        },
+        "runner_up": {
+          "qid": "Q167615",
+          "players": 1
+        }
+      },
+      {
+        "team": "LAFC",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 3,
+        "top": {
+          "qid": "Q18380286",
+          "players": 2
+        },
+        "runner_up": {
+          "qid": "Q196107",
+          "players": 1
+        }
+      },
+      {
+        "team": "Hannover 96",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 0,
+        "top": null,
+        "runner_up": null
+      },
+      {
+        "team": "SC Paderborn 07",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 3,
+        "top": {
+          "qid": "Q15789",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q1634669",
+          "players": 1
+        }
+      },
+      {
+        "team": "Lille",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 5,
+        "top": {
+          "qid": "Q19516",
+          "players": 4
+        },
+        "runner_up": {
+          "qid": "Q483020",
+          "players": 1
+        }
+      },
+      {
+        "team": "Ipswich Town",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 3,
+        "top": {
+          "qid": "Q9653",
+          "players": 2
+        },
+        "runner_up": {
+          "qid": "Q1061627",
+          "players": 1
+        }
+      },
+      {
+        "team": "Como",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 6,
+        "top": {
+          "qid": "Q1120838",
+          "players": 3
+        },
+        "runner_up": {
+          "qid": "Q9616",
+          "players": 2
+        }
+      },
+      {
+        "team": "Philadelphia Union",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 1,
+        "top": {
+          "qid": "Q689874",
+          "players": 1
+        },
+        "runner_up": null
+      },
+      {
+        "team": "AEK Athens",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 6,
+        "top": {
+          "qid": "Q201584",
+          "players": 4
+        },
+        "runner_up": {
+          "qid": "Q101859",
+          "players": 1
+        }
+      },
+      {
+        "team": "Tottenham Hotspur",
+        "qid": "Q18741",
+        "reason": "club_has_no_logo_on_wikidata",
+        "players_matched": 8,
+        "top": {
+          "qid": "Q18741",
+          "players": 8
+        },
+        "runner_up": {
+          "qid": "Q50602",
+          "players": 1
+        }
+      },
+      {
+        "team": "Newcastle United",
+        "qid": "Q18716",
+        "reason": "club_has_no_logo_on_wikidata",
+        "players_matched": 12,
+        "top": {
+          "qid": "Q18716",
+          "players": 12
+        },
+        "runner_up": {
+          "qid": "Q1422",
+          "players": 1
+        }
+      },
+      {
+        "team": "Coventry City",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 1,
+        "top": {
+          "qid": "Q19509",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q219233",
+          "players": 1
+        }
+      },
+      {
+        "team": "Brentford",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 3,
+        "top": {
+          "qid": "Q19571",
+          "players": 2
+        },
+        "runner_up": {
+          "qid": "Q19568",
+          "players": 1
+        }
+      },
+      {
+        "team": "Manchester United",
+        "qid": "Q18656",
+        "reason": "club_has_no_logo_on_wikidata",
+        "players_matched": 10,
+        "top": {
+          "qid": "Q18656",
+          "players": 10
+        },
+        "runner_up": {
+          "qid": "Q81888",
+          "players": 1
+        }
+      },
+      {
+        "team": "Galatasaray",
+        "qid": null,
+        "reason": "no_majority_club",
+        "players_matched": 5,
+        "top": {
+          "qid": "Q495299",
+          "players": 4
+        },
+        "runner_up": {
+          "qid": "Q104770",
+          "players": 1
+        }
+      },
+      {
+        "team": "Sunderland",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 4,
+        "top": {
+          "qid": "Q18739",
+          "players": 3
+        },
+        "runner_up": {
+          "qid": "Q290860",
+          "players": 1
+        }
+      },
+      {
+        "team": "Barcelona",
+        "qid": "Q7156",
+        "reason": "roster_proof",
+        "players_matched": 13,
+        "top": {
+          "qid": "Q7156",
+          "players": 13
+        },
+        "runner_up": {
+          "qid": "Q10467",
+          "players": 1
+        }
+      },
+      {
+        "team": "Aston Villa",
+        "qid": "Q18711",
+        "reason": "club_has_no_logo_on_wikidata",
+        "players_matched": 8,
+        "top": {
+          "qid": "Q18711",
+          "players": 7
+        },
+        "runner_up": {
+          "qid": "Q132885",
+          "players": 1
+        }
+      },
+      {
+        "team": "SV 07 Elversberg",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 0,
+        "top": null,
+        "runner_up": null
+      },
+      {
+        "team": "Chelsea",
+        "qid": "Q9616",
+        "reason": "club_has_no_logo_on_wikidata",
+        "players_matched": 9,
+        "top": {
+          "qid": "Q9616",
+          "players": 7
+        },
+        "runner_up": {
+          "qid": "Q1120838",
+          "players": 1
+        }
+      },
+      {
+        "team": "Liverpool",
+        "qid": "Q1130849",
+        "reason": "roster_proof",
+        "players_matched": 9,
+        "top": {
+          "qid": "Q1130849",
+          "players": 9
+        },
+        "runner_up": {
+          "qid": "Q7156",
+          "players": 1
+        }
+      },
+      {
+        "team": "Sabah FK",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 0,
+        "top": null,
+        "runner_up": null
+      },
+      {
+        "team": "AFC Bournemouth",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 3,
+        "top": {
+          "qid": "Q19568",
+          "players": 2
+        },
+        "runner_up": {
+          "qid": "Q1770361",
+          "players": 1
+        }
+      },
+      {
+        "team": "Viking FK",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 1,
+        "top": {
+          "qid": "Q186785",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q204881",
+          "players": 1
+        }
+      },
+      {
+        "team": "Slavia Prague",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 0,
+        "top": null,
+        "runner_up": null
+      },
+      {
+        "team": "Nottingham Forest",
+        "qid": "Q19490",
+        "reason": "club_has_no_logo_on_wikidata",
+        "players_matched": 7,
+        "top": {
+          "qid": "Q19490",
+          "players": 5
+        },
+        "runner_up": {
+          "qid": "Q11938",
+          "players": 1
+        }
+      },
+      {
+        "team": "Fenerbahce",
+        "qid": "Q6601875",
+        "reason": "club_has_no_logo_on_wikidata",
+        "players_matched": 6,
+        "top": {
+          "qid": "Q6601875",
+          "players": 6
+        },
+        "runner_up": null
+      },
+      {
+        "team": "AS Roma",
+        "qid": "Q2739",
+        "reason": "roster_proof",
+        "players_matched": 8,
+        "top": {
+          "qid": "Q2739",
+          "players": 8
+        },
+        "runner_up": {
+          "qid": "Q132885",
+          "players": 1
+        }
+      },
+      {
+        "team": "Slovan Bratislava",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 4,
+        "top": {
+          "qid": "Q1051238",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q192253",
+          "players": 1
+        }
+      },
+      {
+        "team": "Paris Saint-Germain",
+        "qid": "Q483020",
+        "reason": "club_has_no_logo_on_wikidata",
+        "players_matched": 17,
+        "top": {
+          "qid": "Q483020",
+          "players": 17
+        },
+        "runner_up": null
+      },
+      {
+        "team": "Atlético Madrid",
+        "qid": "Q8701",
+        "reason": "club_has_no_logo_on_wikidata",
+        "players_matched": 9,
+        "top": {
+          "qid": "Q8701",
+          "players": 9
+        },
+        "runner_up": {
+          "qid": "Q1422",
+          "players": 1
+        }
+      },
+      {
+        "team": "Real Betis",
+        "qid": "Q8723",
+        "reason": "club_has_no_logo_on_wikidata",
+        "players_matched": 8,
+        "top": {
+          "qid": "Q8723",
+          "players": 6
+        },
+        "runner_up": {
+          "qid": "Q15789",
+          "players": 1
+        }
+      },
+      {
+        "team": "Sporting CP",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 3,
+        "top": {
+          "qid": "Q2714",
+          "players": 1
+        },
+        "runner_up": {
+          "qid": "Q4122219",
+          "players": 1
+        }
+      },
+      {
+        "team": "FC Porto",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 4,
+        "top": {
+          "qid": "Q128446",
+          "players": 2
+        },
+        "runner_up": {
+          "qid": "Q208399",
+          "players": 1
+        }
+      },
+      {
+        "team": "Shakhtar Donetsk",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 3,
+        "top": {
+          "qid": "Q172969",
+          "players": 2
+        },
+        "runner_up": {
+          "qid": "Q274762",
+          "players": 1
+        }
+      },
+      {
+        "team": "Bodo/Glimt",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 1,
+        "top": {
+          "qid": "Q478167",
+          "players": 1
+        },
+        "runner_up": null
+      },
+      {
+        "team": "Napoli",
+        "qid": "Q2641",
+        "reason": "roster_proof",
+        "players_matched": 9,
+        "top": {
+          "qid": "Q2641",
+          "players": 8
+        },
+        "runner_up": {
+          "qid": "Q8806",
+          "players": 1
+        }
+      },
+      {
+        "team": "Feyenoord Rotterdam",
+        "qid": null,
+        "reason": "too_few_matched_players",
+        "players_matched": 1,
+        "top": {
+          "qid": "Q134241",
+          "players": 1
+        },
+        "runner_up": null
+      }
+    ]
+  },
   "files": {},
   "rows": {
-    "player:approved": 116
+    "player:approved": 592,
+    "player:review_required": 1,
+    "team:approved": 3,
+    "team:review_required": 4
   },
-  "licenses": {
-    "approved:CC BY-SA 3.0 at": 3,
-    "approved:CC BY-SA 4.0": 67,
-    "approved:CC0": 5,
-    "approved:Public domain": 2,
-    "approved:CC BY-SA 3.0": 17,
-    "approved:CC BY-SA 2.0": 4,
-    "approved:CC BY 3.0": 4,
-    "approved:CC BY 2.0": 7,
-    "approved:CC BY 4.0": 7
-  },
-  "samples": [
-    {
-      "entity": "3febec9f-c803-5481-b63c-0667b54d15d6",
-      "file": "https://commons.wikimedia.org/wiki/File:20150331_2026_AUT_BIH_2177_Edin_D%C5%BEeko_(cropped).jpg",
-      "license": "CC BY-SA 3.0 at",
-      "author": "Ailura",
-      "status": "approved",
-      "notes": "media-rights/1.0.0"
-    },
-    {
-      "entity": "efdfce96-4a2b-5ba8-9d73-81dabbdfd8db",
-      "file": "https://commons.wikimedia.org/wiki/File:Ivan_Perisic_Croatia_v_Portugal_2_July_2026-033.jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "Bryan Berlin",
-      "status": "approved",
-      "notes": "media-rights/1.0.0 Commons: personality rights apply (editorial identification of the person only)."
-    },
-    {
-      "entity": "b0bc489b-9958-5638-91f9-08481eca5132",
-      "file": "https://commons.wikimedia.org/wiki/File:Lewis_Hall_24052026_(2).jpg",
-      "license": "CC0",
-      "author": "Timmy96",
-      "status": "approved",
-      "notes": "media-rights/1.0.0"
-    },
-    {
-      "entity": "24d8431e-de90-574c-becf-9e7ad6a7add3",
-      "file": "https://commons.wikimedia.org/wiki/File:Robert_S%C3%A1nchez_FIFA_Club_World_Cup_final_extraction.jpg",
-      "license": "Public domain",
-      "author": "The White House",
-      "status": "approved",
-      "notes": "media-rights/1.0.0"
-    },
-    {
-      "entity": "dab2fbe0-7f0b-5b26-b27d-084cc8ed25bf",
-      "file": "https://commons.wikimedia.org/wiki/File:2022_Sven_Ulreich_(cropped).jpg",
-      "license": "CC BY-SA 4.0",
-      "author": "Steffen Prößdorf",
-      "status": "approved",
-      "notes": "media-rights/1.0.0 Commons: personality rights apply (editorial identification of the person only)."
-    }
-  ],
   "rows_after_cache": {
-    "player:approved": 116
+    "player:approved": 592,
+    "player:review_required": 1,
+    "team:approved": 3,
+    "team:review_required": 4
   },
   "cached": 0,
-  "finished_at": "2026-09-27T20:26:41.568Z",
-  "elapsed_s": 6
+  "reused": 0,
+  "discovery": {
+    "player:not_found": 2334,
+    "player:approved": 592,
+    "player:rejected": 5,
+    "team:not_found": 91,
+    "player:held_review": 1,
+    "team:approved": 3,
+    "team:held_review": 4
+  },
+  "coverage": {
+    "bundesliga:historical": {
+      "players": 535,
+      "with_photo": 49,
+      "pct": 9.2
+    },
+    "mls:active": {
+      "players": 971,
+      "with_photo": 70,
+      "pct": 7.2
+    },
+    "bundesliga:active": {
+      "players": 402,
+      "with_photo": 82,
+      "pct": 20.4
+    },
+    "premier-league:active": {
+      "players": 500,
+      "with_photo": 223,
+      "pct": 44.6
+    },
+    "uefa-champions-league:active": {
+      "players": 781,
+      "with_photo": 313,
+      "pct": 40.1
+    }
+  },
+  "coverage_by_club_active": {
+    "Arsenal": "24/25",
+    "Barcelona": "21/23",
+    "Paris Saint-Germain": "21/23",
+    "Manchester City": "24/30",
+    "Bayern München": "17/22",
+    "Tottenham Hotspur": "20/26",
+    "Chelsea": "19/25",
+    "Liverpool": "18/24",
+    "Atlético Madrid": "17/23",
+    "Real Madrid": "16/22",
+    "Manchester United": "18/25",
+    "Fenerbahce": "15/22",
+    "Nottingham Forest": "15/23",
+    "PSV Eindhoven": "14/22",
+    "Internazionale": "13/21",
+    "Crystal Palace": "18/30",
+    "AS Roma": "13/22",
+    "Newcastle United": "17/29",
+    "Aston Villa": "14/27",
+    "Napoli": "10/20",
+    "Real Betis": "10/23",
+    "Leeds United": "10/27",
+    "Bayer Leverkusen": "8/24",
+    "Inter Miami CF": "10/31",
+    "1. FC Union Berlin": "7/23",
+    "AEK Athens": "6/20",
+    "Como": "6/21",
+    "Schalke 04": "6/21",
+    "Lens": "6/23",
+    "RB Leipzig": "7/27",
+    "Mainz 05": "5/21",
+    "Borussia M'gladbach": "5/23",
+    "Shakhtar Donetsk": "5/23",
+    "Borussia Dortmund": "5/24",
+    "Fulham": "5/25",
+    "Brentford": "5/25",
+    "Galatasaray": "4/21",
+    "Brighton & Hove Albion": "5/27",
+    "Hamburger SV": "4/22",
+    "Sunderland": "4/23",
+    "Lille": "4/23",
+    "Slovan Bratislava": "4/23",
+    "FC Porto": "4/23",
+    "Stuttgart": "4/24",
+    "New England Revolution": "6/36",
+    "Red Bull New York": "5/31",
+    "Everton": "4/25",
+    "Chicago Fire FC": "5/35",
+    "Hull City": "4/28",
+    "LA Galaxy": "5/38",
+    "Augsburg": "3/23",
+    "SC Paderborn 07": "3/23",
+    "AFC Bournemouth": "3/23",
+    "Ipswich Town": "3/24",
+    "Charlotte FC": "3/26",
+    "Austin FC": "3/30",
+    "Colorado Rapids": "4/41",
+    "Freiburg": "2/21",
+    "Werder Bremen": "2/22",
+    "Villarreal": "2/22",
+    "CF Montréal": "3/34",
+    "Köln": "2/23",
+    "Hoffenheim": "2/23",
+    "Club Brugge": "2/23",
+    "Sporting CP": "2/23",
+    "Orlando City SC": "3/35",
+    "Columbus Crew": "3/36",
+    "Eintracht Frankfurt": "2/24",
+    "Minnesota United FC": "2/31",
+    "Atlanta United FC": "2/34",
+    "Vancouver Whitecaps": "2/34",
+    "New York City FC": "2/35",
+    "St. Louis CITY SC": "2/36",
+    "Bodo/Glimt": "1/18",
+    "Seattle Sounders FC": "2/37",
+    "LAFC": "2/37",
+    "Toronto FC": "2/41",
+    "Feyenoord Rotterdam": "1/22",
+    "Viking FK": "1/23",
+    "Coventry City": "1/26",
+    "D.C. United": "1/28",
+    "Houston Dynamo FC": "1/31",
+    "FC Dallas": "1/31",
+    "Portland Timbers": "1/32",
+    "Philadelphia Union": "1/33",
+    "San Diego FC": "1/35",
+    "Sporting Kansas City": "1/36",
+    "Real Salt Lake": "1/38",
+    "Nashville SC": "0/28",
+    "FC Cincinnati": "0/30",
+    "San Jose Earthquakes": "0/30",
+    "SV 07 Elversberg": "0/20",
+    "Sabah FK": "0/21",
+    "Slavia Prague": "0/20",
+    "LASK Linz": "0/21"
+  },
+  "finished_at": "2026-09-27T22:33:39.262Z",
+  "elapsed_s": 148
 }
