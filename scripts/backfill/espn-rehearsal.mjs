@@ -11,7 +11,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { fsStorage } from '../../workers/shared/archive.js';
 import { storeFromEnv } from '../../workers/shared/postgrest.js';
-import { applyMigrations, openPglite, pgliteStore } from '../../workers/soccer-ingest/src/store.js';
+import { applyMigrations, openPglite, pgliteStore } from '../../workers/soccer-ingest/src/store-pglite.js';
 import { normalizeUrl } from '../../workers/shared/archive.js';
 import { politeFetch } from '../../workers/shared/http.js';
 import { readdirSync } from 'node:fs';

@@ -15,7 +15,8 @@ import { join } from 'node:path';
 import { strFromU8, unzipSync } from 'fflate';
 import { fsStorage } from '../../workers/shared/archive.js';
 import * as wy from '../../workers/providers/wyscout-figshare.js';
-import { applyMigrations, openPglite, syncRows } from '../../workers/soccer-ingest/src/store.js';
+import { syncRows } from '../../workers/soccer-ingest/src/store.js';
+import { applyMigrations, openPglite } from '../../workers/soccer-ingest/src/store-pglite.js';
 import { ingestWyscoutSeason } from '../../workers/soccer-ingest/src/wyscout-lane.js';
 import { ingestOpenLigaSeason } from '../../workers/soccer-ingest/src/openligadb-lane.js';
 

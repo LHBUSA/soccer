@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { applyMigrations, openPglite, syncRows } from '../workers/soccer-ingest/src/store.js';
+import { syncRows } from '../workers/soccer-ingest/src/store.js';
+import { applyMigrations, openPglite } from '../workers/soccer-ingest/src/store-pglite.js';
 import { ingestWyscoutSeason } from '../workers/soccer-ingest/src/wyscout-lane.js';
 import { mintId } from '../workers/shared/ids.js';
 
