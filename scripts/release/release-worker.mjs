@@ -48,11 +48,13 @@ log('uploaded', version, preview || '(no preview url)');
 const canary = async base => {
   let last = null;
   for (let i = 0; i < 8; i++) {
+    // A fresh curl process per attempt: in-process fetch kept failing on new preview
+    // hostnames that a new process resolved instantly.
     try {
-      const r = await fetch(base.replace(/\/$/, '') + canaryPath);
-      last = { status: r.status, ok: r.status < 300 || (worker === 'soccer-news' && canaryPath === '/health' && r.status === 503), attempts: i + 1 };
+      const status = Number(execSync(`curl -s -o /dev/null -w "%{http_code}" --max-time 45 "${base.replace(/\/$/, '')}${canaryPath}"`, { encoding: 'utf8', shell: 'bash' }).trim());
+      last = { status, ok: (status >= 200 && status < 300) || (worker === 'soccer-news' && canaryPath === '/health' && status === 503), attempts: i + 1 };
       if (last.ok) return last;
-    } catch (e) { last = { status: 0, ok: false, error: String(e.message), attempts: i + 1 }; }
+    } catch (e) { last = { status: 0, ok: false, error: String(e.message).slice(0, 200), attempts: i + 1 }; }
     await new Promise(res => setTimeout(res, 8000));
   }
   return last;
