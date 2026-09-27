@@ -127,7 +127,7 @@ test('news empty state, unavailable table, player page honesty', () => {
   const tb = tables.render({ comp: 'uefa-champions-league', comps: { status: 'fulfilled', value: { data: [{ slug: 'uefa-champions-league', name: 'UEFA Champions League' }] } }, table: { status: 'fulfilled', value: { data: { rows: [] }, meta: { semantics: 'x', coverage: { state: 'unavailable', notes: [] } } } } });
   assert.ok(tb.includes('Table not available'));
   const p = player.render({ env: { data: { name: 'Test Player', role: null, seasons: [], reported_goals_other_seasons: 0 }, meta: { source: 'pbe', coverage: { state: 'unavailable', notes: ['Event-level statistics exist only for seasons with a legitimate event ledger.'] } } } });
-  assert.ok(p.includes('PLAYER INTELLIGENCE') && p.includes('not Soccer DNA') && p.includes('No event-level season history'));
+  assert.ok(p.includes('PLAYER INTELLIGENCE') && p.includes('Player DNA is descriptive') && p.includes('No event-level season history') && p.includes('data-player-dna'));
   assert.ok(!/Soccer DNA<\/h|SOCCER DNA/.test(p));
 });
 

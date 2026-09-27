@@ -2,9 +2,10 @@
 // Mobile order: score · story · event map · stats · lineups · substitutions · source truth.
 import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
-import { DASH, STAT_LABELS, dateTime, num, sourceName, statsHeading } from '../lib/format.js';
+import { DASH, STAT_LABELS, ago, dateTime, num, sourceName, statsHeading } from '../lib/format.js';
 import { link, sectionHead, sourcePanel, statusPill, teamLink } from '../components/ui.js';
 import { pitchSvg, validShots } from '../components/pitch.js';
+import { mountRelatedNews } from '../components/related.js';
 
 export const title = d => {
   const m = d?.env?.data;
@@ -94,6 +95,49 @@ export function eventMap(m) {
   </div>`;
 }
 
+
+const OUTCOME = { goal: 'Goal', on_target: 'Saved / on target', off_target: 'Off target', blocked: 'Blocked', post: 'Woodwork' };
+const BODY = { right_foot: 'Right foot', left_foot: 'Left foot', head: 'Header', head_or_body: 'Header / body', other: 'Other' };
+
+// SHOT INTELLIGENCE — every shot the event source records, in order.
+export function shotTimeline(m) {
+  const shots = m.shot_timeline || [];
+  if (!shots.length) return '<p class="muted">No shot-level record for this match.</p>';
+  const tn = s => (s === 'away' ? m.away : m.home)?.short_name || (s === 'away' ? m.away : m.home)?.name || '';
+  const hasXg = shots.some(s => s.provider_xg);
+  return `<div class="tablewrap" tabindex="0" role="region" aria-label="Shot timeline (scrolls horizontally)"><table class="ltable shots">
+    <caption class="sr-only">Every shot in match order</caption>
+    <thead><tr><th scope="col">Min</th><th class="tm" scope="col">Shooter</th><th scope="col" class="tl">Team</th><th scope="col" class="tl">Result</th><th scope="col" class="tl wide">How</th><th scope="col"><abbr title="Score before the shot">Score</abbr></th><th scope="col" class="tl wide">Assist</th>${hasXg ? '<th scope="col" title="Expected goals supplied by ESPN, not PropBetEdge">ESPN xG</th>' : ''}</tr></thead>
+    <tbody>${join(shots, s => `<tr class="${s.goal ? 'goalrow' : ''} ${s.team}">
+      <td>${esc(s.display_minute || (s.minute !== null && s.minute !== undefined ? `${s.minute}'` : DASH))}</td>
+      <th class="tm" scope="row">${personLink(s.player)}</th><td class="tl">${esc(tn(s.team))}</td>
+      <td class="tl">${s.goal ? '<b>Goal</b>' : esc(OUTCOME[s.outcome] || 'Shot')}</td>
+      <td class="tl wide">${esc([BODY[s.body_part], s.set_piece ? String(s.set_piece).replace(/_/g, ' ') : null, s.situation && s.situation !== 'Regular Play' ? s.situation : null].filter(Boolean).join(' · ') || DASH)}</td>
+      <td>${esc(s.score_before || DASH)}</td><td class="tl wide">${s.assist ? personLink(s.assist) : DASH}</td>
+      ${hasXg ? `<td>${s.provider_xg ? num(s.provider_xg.value, { dp: 2 }) : DASH}</td>` : ''}</tr>`)}</tbody></table></div>
+    ${hasXg ? '<p class="caveat">ESPN xG is supplied by ESPN (secondary source) and is not a PropBetEdge model.</p>' : ''}`;
+}
+
+// PLAYER IMPACT — sourced counts per player; minutes are nominal.
+const IMPACT_COLS = [['minutes_nominal', 'Min', 'Nominal minutes (lineups and substitutions)'], ['goals', 'G', 'Goals'], ['assists', 'A', 'Assists'], ['shots', 'Sh', 'Shots'], ['shots_on_target', 'SoT', 'Shots on target'], ['key_passes', 'KP', 'Key passes'], ['passes', 'Pas', 'Passes'], ['tackles', 'Tkl', 'Tackles'], ['interceptions', 'Int', 'Interceptions'], ['saves', 'Sv', 'Saves'], ['yellow_cards', 'YC', 'Yellow cards'], ['red_cards', 'RC', 'Red cards']];
+export function playerImpact(m) {
+  const p = m.players;
+  if (!p?.rows?.length) return '<p class="muted">No player-level record for this match.</p>';
+  const cols = IMPACT_COLS.filter(([k]) => p.rows.some(r => r[k] !== undefined && r[k] !== null));
+  const basis = p.basis === 'derived' ? 'PBE derived counts from the event ledger' : 'Counted from the ESPN event record (secondary source)';
+  const side = key => { const rows = p.rows.filter(r => r.team === key); if (!rows.length) return ''; const team = key === 'away' ? m.away : m.home; return `
+    <h3 class="impact-team">${teamLink(team)}</h3>
+    <div class="tablewrap" tabindex="0" role="region" aria-label="${esc(team?.name || key)} player impact (scrolls horizontally)"><table class="ltable impact"><caption class="sr-only">${esc(team?.name || key)} players</caption>
+      <thead><tr><th class="tm" scope="col">Player</th>${join(cols, ([, l, t]) => `<th scope="col"><abbr title="${esc(t)}">${esc(l)}</abbr></th>`)}</tr></thead>
+      <tbody>${join(rows, r => `<tr><th class="tm" scope="row">${personLink(r.player)}${r.started ? '' : ' <span class="subtag" title="Came on">sub</span>'}${r.sub_on !== undefined && r.sub_on !== null ? `<span class="sr-only"> on ${esc(r.sub_on)}'</span>` : ''}</th>${join(cols, ([k]) => `<td>${num(r[k])}</td>`)}</tr>`)}</tbody></table></div>`; };
+  return `<p class="stats-basis"><b>PLAYER IMPACT</b> ${esc(basis)}. Minutes are nominal. A dash means not recorded, not zero.</p>${side('home')}${side('away')}`;
+}
+
+export function freshness(m, meta) {
+  if (m.status !== 'live') return '';
+  return `<p class="fresh" role="status">Live · updated ${esc(ago(meta?.source_updated_at))}. Scores refresh about every 5 minutes from the source; this page checks every minute.</p>`;
+}
+
 export function render(d) {
   const m = d.env.data; const meta = d.env.meta;
   const sc = m.score;
@@ -113,11 +157,13 @@ export function render(d) {
     </div>
     <p class="mh-sub">${statusPill(m.status)} <span>${esc(dateTime(m.kickoff_at))}</span>${m.venue ? ` <span>· ${esc(m.venue.name)}${m.venue.city ? `, ${esc(m.venue.city)}` : ''}</span>` : ''}</p>
     <p class="kicker gold center">MATCH INTELLIGENCE</p>
+    ${freshness(m, meta)}
   </div></section>
   <section class="canvas"><div class="wrap mgrid2">
     <div class="col-a">
       <div class="panel">${sectionHead('MATCH STORY', 'Goals, cards and substitutions')}${story(m)}</div>
       <div class="panel map">${sectionHead('EVENT MAP', 'Every shot on the canonical 105 × 68 m pitch')}${eventMap(m)}</div>
+      ${when(m.shot_timeline?.length, () => `<div class="panel">${sectionHead('SHOT INTELLIGENCE', 'Every shot, in order')}${shotTimeline(m)}</div>`)}
     </div>
     <div class="col-b">
       <div class="panel">${sectionHead('MATCH STATS', 'By source basis')}${statsBlock(m)}</div>
@@ -125,10 +171,24 @@ export function render(d) {
       <div class="panel">${sectionHead('SUBSTITUTIONS', 'Who came off, who came on')}${subsBlock(m)}</div>
       ${sourcePanel(meta, { title: 'SOURCE & FRESHNESS', extra })}
     </div>
-  </div></section>`;
+  </div></section>
+  ${when(m.players?.rows?.length, () => `<section class="canvas alt"><div class="wrap">${sectionHead('PLAYER IMPACT', 'Who shaped the match')}${playerImpact(m)}${newsSlot()}</div></section>`)}
+  ${when(!m.players?.rows?.length, () => `<section class="canvas alt"><div class="wrap">${newsSlot()}</div></section>`)}`;
 }
 
+const newsSlot = () => '<div data-related-news></div>';
+
 export function mount(root, d) {
+  mountRelatedNews(root, { match: d.env.data.id }, { title: 'Stories about this match' });
+  // Live: soft refresh every 60 s while the page is still this match (no history change).
+  if (d.env.data.status === 'live') {
+    const path = location.pathname;
+    const t = setTimeout(async () => {
+      if (location.pathname !== path || !root.isConnected) return;
+      try { const env = await api(`matches/${d.env.data.id}`, {}, { fresh: true }); if (location.pathname !== path) return; root.innerHTML = render({ env }); mount(root, { env }); } catch { /* keep the current view */ }
+    }, 60000);
+    root.dataset.liveTimer = String(t);
+  }
   const shots = validShots(d.env.data.shots);
   const detail = root.querySelector('.emap-detail');
   const m = d.env.data;

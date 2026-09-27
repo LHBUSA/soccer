@@ -10,9 +10,10 @@ export { UPSTREAM };
 const ROUTES = [
   /^health$/, /^coverage$/, /^competitions$/, /^competitions\/[a-z0-9-]{1,80}$/,
   /^matches$/, /^matches\/[0-9a-f-]{36}$/, /^teams\/[a-z0-9-]{1,120}$/, /^players\/[a-z0-9-]{1,120}$/,
+  /^teams\/[a-z0-9-]{1,120}\/dna$/, /^players\/[a-z0-9-]{1,120}\/dna$/,
   /^table$/, /^news$/, /^news\/[a-z0-9-]{1,200}$/, /^media\/[0-9a-f]{64}$/,
 ];
-const QUERY_KEYS = new Set(['competition', 'season', 'status', 'date', 'from', 'to', 'order', 'team', 'limit', 'desk', 'group', 'player', 'match']);
+const QUERY_KEYS = new Set(['competition', 'season', 'status', 'date', 'from', 'to', 'order', 'team', 'limit', 'desk', 'group', 'player', 'match', 'as_of']);
 
 export function isAllowedPath(path) {
   return typeof path === 'string' && ROUTES.some(re => re.test(path));

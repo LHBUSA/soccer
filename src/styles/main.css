@@ -471,3 +471,44 @@ button { font: inherit; }
 .evidence p { margin: 0 0 8px; }
 .evidence code { font-family: var(--mono); font-size: 12.5px; }
 .credit a { color: var(--muted-dark); }
+
+/* ---------- zones (source-stated qualification lines) ---------- */
+.ltable tr.zone td.pos { box-shadow: inset 4px 0 0 var(--zc, transparent); font-weight: 700; color: var(--ink); }
+.z1 { --zc: #1d8a4e; } .z2 { --zc: #3d8bfd; } .z3 { --zc: #9b6cff; } .z4 { --zc: #c0392b; } .z5 { --zc: #d4a73a; }
+.zones { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 10px 0 0; padding: 0; font-size: 12.5px; color: var(--muted); }
+.zdot { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; background: var(--zc); }
+.ded { color: var(--loss); margin-left: 2px; }
+.subtabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
+.subtabs button { font: 700 13px/1 var(--display); letter-spacing: .1em; text-transform: uppercase; padding: 10px 14px; min-height: 40px; border-radius: 999px; border: 1px solid var(--line-2); background: #fff; color: var(--ink-2); cursor: pointer; }
+.subtabs button[aria-selected="true"] { background: var(--shell); color: #fff; border-color: var(--shell); }
+
+/* ---------- DNA ---------- */
+.dna-slot:empty { display: none; }
+.dna { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; grid-template-columns: 1fr; }
+@media (min-width: 900px) { .dna { grid-template-columns: 1fr 1fr; column-gap: 28px; } }
+.dna li { display: grid; grid-template-columns: 1fr auto; grid-template-areas: 'l v' 'bar p'; gap: 4px 12px; padding: 9px 0; border-top: 1px solid var(--line); }
+.dna-l { grid-area: l; font-size: 14px; } .dna-v { grid-area: v; font: 700 15px/1.2 var(--mono); text-align: right; }
+.dna-bar { grid-area: bar; align-self: center; height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.dna-bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-2)); }
+.dna-p { grid-area: p; font: 700 12px/1 var(--mono); color: var(--gold-ink); text-align: right; min-width: 36px; }
+.dna-p.none { grid-column: 1 / -1; color: var(--muted); font-weight: 600; text-align: left; }
+.dna-intro { color: var(--ink-2); font-size: 14px; margin: 0 0 10px; }
+.dna-intro .form { vertical-align: middle; }
+.dna-season h3 { font: 800 19px/1.2 var(--display); text-transform: uppercase; margin: 22px 0 8px; display: flex; align-items: center; gap: 8px; }
+
+/* ---------- related news ---------- */
+.related { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: var(--radius-s); overflow: hidden; background: #fff; }
+.related a { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; padding: 12px 14px; text-decoration: none; border-top: 1px solid var(--line); min-height: 48px; }
+.related li:first-child a { border-top: 0; }
+.related a:hover { background: var(--canvas-alt); }
+.rel-head { font-weight: 600; overflow-wrap: anywhere; } .rel-date { font: 600 12px/1 var(--mono); color: var(--muted); white-space: nowrap; }
+
+/* ---------- match intelligence ---------- */
+.ltable .tl { text-align: left; font-family: var(--body); }
+.ltable.shots tr.goalrow td, .ltable.shots tr.goalrow th { background: #fbf6e8; }
+.ltable.shots tr.away th.tm { box-shadow: inset 3px 0 0 var(--away-ink), 1px 0 0 var(--line); } .ltable.shots tr.home th.tm { box-shadow: inset 3px 0 0 var(--home), 1px 0 0 var(--line); }
+.impact-team { font: 800 19px/1.2 var(--display); text-transform: uppercase; margin: 18px 0 8px; } .impact-team a { text-decoration: none; }
+.subtag { font: 700 9.5px/1 var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line-2); border-radius: 4px; padding: 2px 4px; margin-left: 4px; vertical-align: 1px; }
+.fresh { text-align: center; margin: 8px 0 0; font-size: 12.5px; color: var(--muted-dark); }
+abbr[title] { text-decoration: none; cursor: help; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }

@@ -5,6 +5,8 @@ import { DASH, FOOT, ROLE, dateLong, dateShort, num, scoreline } from '../lib/fo
 import { compMeta } from '../lib/competitions.js';
 import { compMono, formChips, link, matchGrid, sectionHead, sourcePanel, teamLink, teamMark } from '../components/ui.js';
 import { pitchSvg, validShots } from '../components/pitch.js';
+import { mountPlayerDna, mountTeamDna } from '../components/dna.js';
+import { mountRelatedNews } from '../components/related.js';
 
 function recordCard(r) {
   const f = compMeta(r.competition?.slug);
@@ -44,14 +46,17 @@ export const team = {
         <div>${sectionHead('FIXTURES', 'Next matches')}${matchGrid(t.upcoming) || '<p class="muted">No scheduled matches stored for this team.</p>'}</div>
         <div>${sectionHead('RESULTS', 'Recent results')}${matchGrid(t.recent) || '<p class="muted">No finished matches stored for this team.</p>'}</div>
       </div>
+      <div data-team-dna class="dna-slot" aria-live="polite"></div>
       ${sectionHead('PLAYERS OBSERVED IN SOURCE DATA', obs.players.length ? `${num(obs.players.length)} players · ${num(obs.lineups_counted)} sourced lineups` : 'No sourced lineups')}
       ${obs.players.length ? `<div class="tablewrap"><table class="ltable obs"><thead><tr><th class="tm" scope="col">Player</th><th scope="col">Role</th><th scope="col" title="Started or came on">Apps</th><th scope="col">Starts</th><th class="wide" scope="col" title="Named in the matchday squad">Named</th></tr></thead>
         <tbody>${join(obs.players, p => `<tr><th class="tm" scope="row">${link(`/players/${p.slug}`, esc(p.name))}</th><td class="role">${esc(ROLE[p.role] || DASH)}</td><td>${num(p.appearances)}</td><td>${num(p.starts)}</td><td class="wide">${num(p.named)}</td></tr>`)}</tbody></table></div>
         <p class="caveat">Not a squad list: only players named in sourced lineups for this season's stored matches. An appearance means the player started or came on.</p>`
         : '<p class="muted">No sourced lineups are stored for this team this season, so no players are listed. Squad lists are never guessed.</p>'}
+      <div data-related-news></div>
       ${sourcePanel(d.env.meta)}
     </div></section>`;
   },
+  mount(root, d) { mountTeamDna(root, d.env.data.slug); mountRelatedNews(root, { team: d.env.data.slug }, { title: 'Stories mentioning this club' }); },
 };
 
 const STAT_COLS = [
@@ -100,14 +105,17 @@ export const player = {
     </div></section>
     <section class="canvas"><div class="wrap">
       ${observedBlock(p.observed)}
+      <div data-player-dna class="dna-slot" aria-live="polite"></div>
+      <div data-related-news></div>
       ${sectionHead('SEASON HISTORY', 'Event-derived statistics')}
       ${seasons.length ? `<div class="tablewrap"><table class="ltable ptable"><thead><tr><th class="tm" scope="col">Season</th>${join(cols, ([, l]) => `<th scope="col">${esc(l)}</th>`)}</tr></thead>
         <tbody>${join(seasons, s => `<tr><th class="tm" scope="row">${esc(s.season)}</th>${join(cols, ([k]) => `<td>${num(s[k])}</td>`)}</tr>`)}</tbody></table></div>
         <p class="caveat">Counts come from the event ledger (PBE derived counts), only for seasons that have one. Minutes are nominal (90/120, cut at substitution or dismissal). A dash means the value is not recorded, not zero.</p>`
         : '<div class="state empty"><p class="state-title">No event-level season history</p><p>This player has no season in the graph with an event ledger. Their identity and appearances in sourced lineups or reported goals may still exist.</p></div>'}
       ${when(p.reported_goals_other_seasons, () => `<p class="note-line"><b>${num(p.reported_goals_other_seasons)}</b> goals reported by OpenLigaDB in seasons without an event ledger.</p>`)}
-      <p class="muted small">This is not Soccer DNA. Player profiles and percentiles stay unpublished until the model-readiness gates pass.</p>
+      <p class="muted small">Player DNA is descriptive: time-safe counts and rates from sourced data, not a forecast. Predictive models stay unpublished until they beat declared baselines out of sample.</p>
       ${sourcePanel(meta, { title: 'SOURCE & COVERAGE' })}
     </div></section>`;
   },
+  mount(root, d) { mountPlayerDna(root, d.env.data.slug); mountRelatedNews(root, { player: d.env.data.slug }, { title: 'Stories mentioning this player' }); },
 };

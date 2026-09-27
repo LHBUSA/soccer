@@ -38,7 +38,7 @@ const ROUTES = [
   { path: `/matches/${wyMatch.id}`, expect: ['EVENT LOCATIONS — NOT PLAYER TRACKING', 'PBE DERIVED COUNTS', 'Wyscout'], marks: true, name: 'match-wyscout' },
   { path: `/teams/${espnMatch.home.slug}`, expect: ['TEAM', 'Recent results'], name: 'team' },
   { path: '/teams/bayern-munchen', expect: ['Bayern'], name: 'team-bayern' },
-  ...(playerSlug ? [{ path: `/players/${playerSlug}`, expect: ['PLAYER INTELLIGENCE', 'This is not Soccer DNA'], name: 'player-espn' }] : []),
+  ...(playerSlug ? [{ path: `/players/${playerSlug}`, expect: ['PLAYER INTELLIGENCE', 'Player DNA is descriptive'], name: 'player-espn' }] : []),
   { path: '/players/robert-lewandowski', expect: ['PLAYER INTELLIGENCE', '2017/18'], name: 'player-wyscout' },
   { path: '/tables', expect: ['TABLES', 'Pts'], name: 'tables' },
   { path: '/tables?competition=premier-league', expect: ['Premier League', 'Pts'], name: 'tables-epl' },
