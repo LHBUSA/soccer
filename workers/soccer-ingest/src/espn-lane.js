@@ -264,7 +264,15 @@ export async function ingestEspnMatch(store, { comp, league, year, eventId, fixt
 
   // Rosters -> athletes, lineups, substitutions (where no other provider supplied them)
   const rosters = {};
-  for (const side of ['h', 'a']) { const { json, capture } = await client.get(`${base}/competitors/${fixture[side]}/roster`); rosters[side] = { ...espn.parseRoster(json), capture_id: capture.capture_id }; }
+  for (const side of ['h', 'a']) {
+    const { json, capture } = await client.get(`${base}/competitors/${fixture[side]}/roster`);
+    try { rosters[side] = { ...espn.parseRoster(json), capture_id: capture.capture_id }; } catch (err) {
+      if (!(err instanceof espn.EspnShapeError)) throw err;
+      // No published roster for this side: the lineup is unavailable (never invented); the match goes on.
+      rosters[side] = { entries: [], formation: null, capture_id: capture.capture_id, unavailable: true };
+      summary.lineups_unavailable = [...(summary.lineups_unavailable || []), side === 'h' ? 'home' : 'away'];
+    }
+  }
   await client.flush();
   const athleteIds = [...new Set(Object.values(rosters).flatMap(r => r.entries.flatMap(e => [e.athlete_id, e.sub_out?.replacement_id].filter(Boolean))))];
   const teamOf = new Map();
@@ -276,6 +284,7 @@ export async function ingestEspnMatch(store, { comp, league, year, eventId, fixt
   for (const side of ['h', 'a']) {
     const teamId = side === 'h' ? home : away;
     if (lineups.some(l => l.team_id === teamId && l.provider !== P)) continue;
+    if (rosters[side].unavailable) continue;
     const lineupId = childId('lineup', matchId, teamId);
     lineupRows.push({ id: lineupId, match_id: matchId, team_id: teamId, formation: rosters[side].formation, manager_id: null, provider: P, capture_id: rosters[side].capture_id });
     const seen = new Set();
