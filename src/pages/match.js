@@ -24,8 +24,8 @@ export function story(m) {
     ...(m.substitutions || []).map(s => ({ minute: s.minute, display: s.minute !== null && s.minute !== undefined ? `${s.minute}'` : null, team: s.team, kind: 'sub', inP: s.in, outP: s.out })),
   ].sort((a, b) => (a.minute ?? 999) - (b.minute ?? 999));
   if (!items.length) return '<p class="muted">No goals, cards or substitutions are recorded for this match in the canonical graph.</p>';
-  const icon = k => (k === 'goal' ? '<span class="ev goal" aria-label="Goal">●</span>' : k === 'own_goal' ? '<span class="ev og" aria-label="Own goal">●</span>'
-    : k.startsWith('card_') ? `<span class="ev card ${k === 'card_yellow' ? 'y' : 'r'}" aria-label="${k === 'card_yellow' ? 'Yellow card' : 'Red card'}"></span>` : '<span class="ev sub" aria-label="Substitution">⇄</span>');
+  const icon = k => (k === 'goal' ? '<span class="ev goal" role="img" aria-label="Goal">●</span>' : k === 'own_goal' ? '<span class="ev og" role="img" aria-label="Own goal">●</span>'
+    : k.startsWith('card_') ? `<span class="ev card ${k === 'card_yellow' ? 'y' : 'r'}" role="img" aria-label="${k === 'card_yellow' ? 'Yellow card' : 'Red card'}"></span>` : '<span class="ev sub" role="img" aria-label="Substitution">⇄</span>');
   const text = it => (it.kind === 'sub' ? `${personLink(it.inP)} <span class="muted">for</span> ${personLink(it.outP)}`
     : `${it.player ? (it.player.resolved === false ? `${esc(it.player.name)} <span class="tag">identity pending</span>` : personLink(it.player)) : 'Unidentified player'}${it.kind === 'own_goal' ? ' <span class="muted">(own goal)</span>' : ''}${it.penalty ? ' <span class="muted">(pen)</span>' : ''}`);
   const teamName = side => (side === 'away' ? m.away : m.home)?.short_name || (side === 'away' ? m.away : m.home)?.name || '';
@@ -148,6 +148,7 @@ export function render(d) {
   ];
   return `
   <section class="mhero"><div class="wrap">
+    <h1 class="sr-only">${esc(m.home?.name || '')} ${sc ? `${esc(sc.home)}–${esc(sc.away)}` : 'v'} ${esc(m.away?.name || '')}: Match Intelligence</h1>
     <p class="mh-meta">${m.competition ? link(`/competitions/${m.competition.slug}`, esc(m.competition.name)) : ''}${m.season ? ` · ${esc(m.season)}` : ''}${m.round ? ` · ${esc(m.round)}` : ''}</p>
     <div class="scoreboard">
       <div class="sb-team home">${teamLink(m.home, 'sb-name')}</div>

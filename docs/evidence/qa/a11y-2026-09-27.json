@@ -1,0 +1,188 @@
+{
+  "base": "http://localhost:4199",
+  "at": "2026-09-27T23:40:32.336Z",
+  "standard": "axe-core wcag2a + wcag2aa + wcag21a + wcag21aa + best-practice",
+  "pages": [
+    {
+      "path": "/",
+      "width": 390,
+      "violations": [],
+      "imgs_without_alt": 0,
+      "heading_skips": 0,
+      "h1_count": 1,
+      "small_targets": 0
+    },
+    {
+      "path": "/",
+      "width": 1440,
+      "violations": [],
+      "imgs_without_alt": 0,
+      "heading_skips": 0,
+      "h1_count": 1,
+      "small_targets": 0
+    },
+    {
+      "path": "/competitions/mls?tab=table",
+      "width": 390,
+      "violations": [],
+      "imgs_without_alt": 0,
+      "heading_skips": 0,
+      "h1_count": 1,
+      "small_targets": 0
+    },
+    {
+      "path": "/competitions/mls?tab=table",
+      "width": 1440,
+      "violations": [],
+      "imgs_without_alt": 0,
+      "heading_skips": 0,
+      "h1_count": 1,
+      "small_targets": 0
+    },
+    {
+      "path": "/competitions/uefa-champions-league?tab=table",
+      "width": 390,
+      "violations": [],
+      "imgs_without_alt": 0,
+      "heading_skips": 0,
+      "h1_count": 1,
+      "small_targets": 0
+    },
+    {
+      "path": "/competitions/uefa-champions-league?tab=table",
+      "width": 1440,
+      "violations": [],
+      "imgs_without_alt": 0,
+      "heading_skips": 0,
+      "h1_count": 1,
+      "small_targets": 0
+    },
+    {
+      "path": "/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 390,
+      "violations": [],
+      "imgs_without_alt": 0,
+      "heading_skips": 0,
+      "h1_count": 1,
+      "small_targets": 0
+    },
+    {
+      "path": "/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 1440,
+      "violations": [],
+      "imgs_without_alt": 0,
+      "heading_skips": 0,
+      "h1_count": 1,
+      "small_targets": 0
+    },
+    {
+      "path": "/teams/arsenal",
+      "width": 390,
+      "violations": [],
+      "imgs_without_alt": 0,
+      "heading_skips": 0,
+      "h1_count": 1,
+      "small_targets": 0
+    },
+    {
+      "path": "/teams/arsenal",
+      "width": 1440,
+      "violations": [],
+      "imgs_without_alt": 0,
+      "heading_skips": 0,
+      "h1_count": 1,
+      "small_targets": 0
+    },
+    {
+      "path": "/players/bukayo-saka",
+      "width": 390,
+      "violations": [],
+      "imgs_without_alt": 0,
+      "heading_skips": 0,
+      "h1_count": 1,
+      "small_targets": 0
+    },
+    {
+      "path": "/players/bukayo-saka",
+      "width": 1440,
+      "violations": [],
+      "imgs_without_alt": 0,
+      "heading_skips": 0,
+      "h1_count": 1,
+      "small_targets": 0
+    },
+    {
+      "path": "/tables",
+      "width": 390,
+      "violations": [],
+      "imgs_without_alt": 0,
+      "heading_skips": 0,
+      "h1_count": 1,
+      "small_targets": 0
+    },
+    {
+      "path": "/tables",
+      "width": 1440,
+      "violations": [],
+      "imgs_without_alt": 0,
+      "heading_skips": 0,
+      "h1_count": 1,
+      "small_targets": 0
+    },
+    {
+      "path": "/news",
+      "width": 390,
+      "violations": [],
+      "imgs_without_alt": 0,
+      "heading_skips": 0,
+      "h1_count": 1,
+      "small_targets": 0
+    },
+    {
+      "path": "/news",
+      "width": 1440,
+      "violations": [],
+      "imgs_without_alt": 0,
+      "heading_skips": 0,
+      "h1_count": 1,
+      "small_targets": 0
+    },
+    {
+      "path": "/news/mls/sporting-kansas-city-philadelphia-union-2026-09-20-29f034",
+      "width": 390,
+      "violations": [],
+      "imgs_without_alt": 0,
+      "heading_skips": 0,
+      "h1_count": 1,
+      "small_targets": 1
+    },
+    {
+      "path": "/news/mls/sporting-kansas-city-philadelphia-union-2026-09-20-29f034",
+      "width": 1440,
+      "violations": [],
+      "imgs_without_alt": 0,
+      "heading_skips": 0,
+      "h1_count": 1,
+      "small_targets": 1
+    },
+    {
+      "path": "/sources",
+      "width": 390,
+      "violations": [],
+      "imgs_without_alt": 0,
+      "heading_skips": 0,
+      "h1_count": 1,
+      "small_targets": 0
+    },
+    {
+      "path": "/sources",
+      "width": 1440,
+      "violations": [],
+      "imgs_without_alt": 0,
+      "heading_skips": 0,
+      "h1_count": 1,
+      "small_targets": 0
+    }
+  ],
+  "by_rule": {}
+}

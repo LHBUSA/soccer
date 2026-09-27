@@ -1,6 +1,6 @@
 {
   "base": "https://soccer.propbetedge.ai",
-  "at": "2026-09-27T22:05:10.664Z",
+  "at": "2026-09-27T23:32:44.153Z",
   "pages": [
     {
       "key": "homepage",
@@ -62,8 +62,8 @@
       "key": "competition-ucl",
       "path": "/competitions/uefa-champions-league",
       "status": 200,
-      "title": "UEFA Champions League — Results & Fixtures | PropBetEdge Soccer",
-      "description": "UEFA Champions League 2026/27: results and fixtures — 1 stored season, 144 canonical matches on the PropBetEdge soccer graph.",
+      "title": "UEFA Champions League — Table, Results & Fixtures | PropBetEdge Soccer",
+      "description": "UEFA Champions League 2026/27: table, results and fixtures — 1 stored season, 144 canonical matches on the PropBetEdge soccer graph.",
       "canonical": "https://soccer.propbetedge.ai/competitions/uefa-champions-league",
       "robots": "index, follow, max-image-preview:large",
       "og_image": "https://soccer.propbetedge.ai/og/competition/uefa-champions-league.png",
@@ -173,7 +173,7 @@
       "path": "/news",
       "status": 200,
       "title": "Soccer News — Evidence-Backed Reporting | PropBetEdge Soccer",
-      "description": "soccer news from the PropBetEdge canonical graph: Austin FC make it 8 MLS matches unbeaten; Sporting Kansas City win 2-0 at Houston Dynamo FC. Every figure traces…",
+      "description": "soccer news from the PropBetEdge canonical graph: Austin FC and San Diego FC draw 3-3: Christian Ramírez scores 2; Chicago Fire FC win 1-0 at Charlotte FC. Every…",
       "canonical": "https://soccer.propbetedge.ai/news",
       "robots": "index, follow, max-image-preview:large",
       "og_image": "https://soccer.propbetedge.ai/og/site/home.png",
@@ -187,7 +187,7 @@
       "path": "/news/mls",
       "status": 200,
       "title": "MLS Soccer News — Evidence-Backed Reporting | PropBetEdge Soccer",
-      "description": "MLS soccer news from the PropBetEdge canonical graph: Sporting Kansas City win 2-0 at Houston Dynamo FC; André Luiz has scored in 3 straight MLS appearances. Every…",
+      "description": "MLS soccer news from the PropBetEdge canonical graph: Philadelphia Union win 4-3 at Sporting Kansas City: André Luiz scores 2; Austin FC and San Diego FC draw 3-3:…",
       "canonical": "https://soccer.propbetedge.ai/news/mls",
       "robots": "index, follow, max-image-preview:large",
       "og_image": "https://soccer.propbetedge.ai/og/site/home.png",
@@ -198,11 +198,11 @@
     },
     {
       "key": "article",
-      "path": "/news/mls/seattle-sounders-fc-7-league-matches-unbeaten-2026-09-27-640861",
+      "path": "/news/mls/charlotte-fc-chicago-fire-fc-2026-09-26-545408",
       "status": 200,
-      "title": "Seattle Sounders FC make it 7 MLS matches unbeaten | PropBetEdge Soccer",
-      "description": "MLS 2026. 2 won, 5 drawn, 0 lost; goals 12-8 across the run.",
-      "canonical": "https://soccer.propbetedge.ai/news/mls/seattle-sounders-fc-7-league-matches-unbeaten-2026-09-27-640861",
+      "title": "Chicago Fire FC win 1-0 at Charlotte FC | PropBetEdge Soccer",
+      "description": "MLS 2026, 26 September 2026, Bank of America Stadium.",
+      "canonical": "https://soccer.propbetedge.ai/news/mls/charlotte-fc-chicago-fire-fc-2026-09-26-545408",
       "robots": "index, follow, max-image-preview:large",
       "og_image": "https://soccer.propbetedge.ai/og/site/home.png",
       "jsonld": [
@@ -212,7 +212,7 @@
     },
     {
       "key": "article-wrong-desk",
-      "path": "/news/premier-league/seattle-sounders-fc-7-league-matches-unbeaten-2026-09-27-640861",
+      "path": "/news/premier-league/charlotte-fc-chicago-fire-fc-2026-09-26-545408",
       "status": 404,
       "title": "Not found — PropBetEdge Soccer",
       "description": "This article is not in the PropBetEdge canonical soccer graph.",
@@ -305,8 +305,8 @@
     },
     "matches": {
       "status": 200,
-      "urls": 8074,
-      "with_lastmod": 8074
+      "urls": 8073,
+      "with_lastmod": 8073
     },
     "teams": {
       "status": 200,

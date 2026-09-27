@@ -54,7 +54,7 @@ export function pitchSvg(shots, { homeName = 'Home', awayName = 'Away', portrait
       ${s.outcome === 'goal' ? `<circle class="ring" cx="${s.x}" cy="${s.y}" r="2.4"/>` : ''}
     </g>`;
   }).join('');
-  return `<svg class="pitch" viewBox="${-PAD} ${-PAD} ${L + 2 * PAD} ${W + 2 * PAD}" role="img" aria-label="Event map: ${pts.length} located shots. ${esc(homeName)} attack right, ${esc(awayName)} attack left.">
+  return `<svg class="pitch" viewBox="${-PAD} ${-PAD} ${L + 2 * PAD} ${W + 2 * PAD}" role="group" aria-label="Event map: ${pts.length} located shots. ${esc(homeName)} attack right, ${esc(awayName)} attack left.">
     ${pitchLines()}
     <text class="dir" x="${L - 1}" y="${-0.8}" text-anchor="end">${esc(homeName.toUpperCase())} →</text>
     ${awayName ? `<text class="dir" x="1" y="${-0.8}">← ${esc(awayName.toUpperCase())}</text>` : ''}
@@ -74,7 +74,7 @@ function portraitSvg(pts, { homeName, awayName }) {
     </g>`;
   }).join('');
   // Draw the landscape pitch inside a rotated group: (x, y) -> (y, L - x) == rotate(-90) then translate.
-  return `<svg class="pitch portrait" viewBox="${-PAD} ${-PAD - 4} ${W + 2 * PAD} ${L + 2 * PAD + 8}" role="img" aria-label="Event map (portrait): ${pts.length} located shots. ${esc(homeName)} attack up, ${esc(awayName)} attack down.">
+  return `<svg class="pitch portrait" viewBox="${-PAD} ${-PAD - 4} ${W + 2 * PAD} ${L + 2 * PAD + 8}" role="group" aria-label="Event map (portrait): ${pts.length} located shots. ${esc(homeName)} attack up, ${esc(awayName)} attack down.">
     <g transform="translate(0 ${L}) rotate(-90)">${pitchLines()}</g>
     <text class="dir" x="${W / 2}" y="${-3.6}" text-anchor="middle">↑ ${esc(homeName.toUpperCase())} ATTACK</text>
     ${awayName ? `<text class="dir" x="${W / 2}" y="${L + 5.6}" text-anchor="middle">↓ ${esc(awayName.toUpperCase())} ATTACK</text>` : ''}
