@@ -1,0 +1,27 @@
+{
+  "source": "bundesliga",
+  "probe": "terms",
+  "kind": "terms",
+  "url": "https://www.bundesliga.com/en/bundesliga/info/terms-of-use-services",
+  "captured_at": "2026-09-27T12:50:36.418Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.bundesliga.com/en/bundesliga/info/terms-of-use-services",
+  "elapsed_ms": 96,
+  "bytes": 429817,
+  "sha256": "38f88d8fadb6777168fdd05520c8b95b0546dafe8b6d7856e016c1db8b3999fe",
+  "headers": {
+    "content-type": "text/html;charset=UTF-8",
+    "cache-control": "public, max-age=30",
+    "x-cache": "Hit from cloudfront"
+  },
+  "access_fingerprint": [],
+  "terms_excerpts": [
+    "particular the official Bundesliga Fantasy Manager, the Bundesliga Newsletter and newsletters with product information and other information from partners and licensees of the Bundesliga as well as certain editorial content) on the web presence of Bundesliga-Gruppe GmbH (' the Bundesliga' ) at www.bundesliga.com (the ' Website ') as well as the Bundesliga O",
+    "rom anything that could make it more difficult or impossible for the Bundesliga to render the Services. 5.3 The User is generally prohibited from capturing and extracting user data in order to send spam emails, using this data for phishing or for other misuse of data. 6. Rights 6.1 All rights are reserved. The intellectual property contained in the Products",
+    "”) , the Bundesliga expressly reserves the right to reproduce the content available in the Products and their Services and content for the purposes of text and data mining. Any automated programmes, applets, bots or similar technologies may not be used to access, analyse or download the content distributed via the Products and their Services and content. Thi",
+    "filiated with the Bundesliga within the meaning of Sec. 15 et seq. German Stock Corporations Act (Aktiengesetz, 'AktG') and Bundesliga Foundation, employees of licensees, partners and sponsors, as well as the respective relatives of these employees are excluded from participation. 7.1.7 The Bundesliga will not grant any prizes to persons who are excluded fro",
+    "al content against unauthorized use by third parties). 8.2 The audiovisual content available within the Products is made available to the User for personal and non-commercial purposes only. The User is authorized to use this audiovisual content only for the purposes of information and entertainment in the private sphere for themselves and persons personally",
+    "d right of use, the User is not granted any rights to the audiovisual content. 8.3 The User is expressly prohibited from putting the audiovisual content to any commercial use. In particular, the User is not permitted to use the audiovisual content for the following purposes: Public performance and/or public playback (e.g. in pubs, hotels, bars, restaurants)"
+  ]
+}

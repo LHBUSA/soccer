@@ -1,0 +1,30 @@
+{
+  "source": "wyscout_figshare",
+  "probe": "competitions",
+  "kind": "data",
+  "url": "https://ndownloader.figshare.com/files/15073685",
+  "captured_at": "2026-09-27T12:49:34.414Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://s3-eu-west-1.amazonaws.com/pfigshare-u-files/15073685/competitions.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIYCQYOYV5JSSROOA/20260927/eu-west-1/s3/aws4_request&X-Amz-Date=20260927T125014Z&X-Amz-Expires=10&X-Amz-SignedHeaders=host&X-Amz-Signature=50a6f21dcc692adfdd5f75fbf875825a766d4758ffeed9643af5843e399e1515",
+  "elapsed_ms": 856,
+  "bytes": 1209,
+  "sha256": "39a738d2bc97638502e1ead01d661b54c623d6d6b37f77de3846f9a94db7a3a1",
+  "headers": {
+    "content-type": "application/json",
+    "server": "AmazonS3",
+    "last-modified": "Fri, 16 Apr 2021 01:27:40 GMT"
+  },
+  "access_fingerprint": [],
+  "body_head": "[{\"name\": \"Italian first division\", \"wyId\": 524, \"format\": \"Domestic league\", \"area\": {\"name\": \"Italy\", \"id\": \"380\", \"alpha3code\": \"ITA\", \"alpha2code\": \"IT\"}, \"type\": \"club\"}, {\"name\": \"English first division\", \"wyId\": 364, \"format\": \"Domestic league\", \"area\": {\"name\": \"England\", \"id\": \"0\", \"alpha3code\": \"XEN\", \"alpha2code\": \"\"}, \"type\": \"club\"}, {\"name\": \"Spanish first division\", \"wyId\": 795, \"format\": \"Domestic league\", \"area\": {\"name\": \"Spain\", \"id\": \"724\", \"alpha3code\": \"ESP\", \"alpha2code\": \"ES\"}, \"type\": \"club\"}, {\"name\": \"French first division\", \"wyId\": 412, \"format\": \"Domestic league\", \"area\": {\"name\": \"France\", \"id\": \"250\", \"alpha3code\": \"FRA\", \"alpha2code\": \"FR\"}, \"type\": \"club\"}, {",
+  "json_top_level": {
+    "array_length": 7,
+    "first_keys": [
+      "name",
+      "wyId",
+      "format",
+      "area",
+      "type"
+    ]
+  }
+}

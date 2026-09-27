@@ -1,0 +1,21 @@
+{
+  "source": "openfootball",
+  "probe": "epl_2025_26",
+  "kind": "data",
+  "url": "https://raw.githubusercontent.com/openfootball/football.json/master/2025-26/en.1.json",
+  "captured_at": "2026-09-27T12:49:33.551Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://raw.githubusercontent.com/openfootball/football.json/master/2025-26/en.1.json",
+  "elapsed_ms": 33,
+  "bytes": 108493,
+  "sha256": "d6070bdf731546ccf97767f062e8af4bd26dd309dee69f6092025bf9c78f43c1",
+  "headers": {
+    "content-type": "text/plain; charset=utf-8",
+    "cache-control": "max-age=300",
+    "x-cache": "HIT",
+    "access-control-allow-origin": "*"
+  },
+  "access_fingerprint": [],
+  "body_head": "{\n  \"name\": \"English Premier League 2025/26\",\n  \"matches\": [\n    {\n      \"round\": \"Matchday 1\",\n      \"date\": \"2025-08-15\",\n      \"time\": \"20:00\",\n      \"team1\": \"Liverpool FC\",\n      \"team2\": \"AFC Bournemouth\",\n      \"score\": {\n        \"ft\": [\n          4,\n          2\n        ],\n        \"ht\": [\n          1,\n          0\n        ]\n      }\n    },\n    {\n      \"round\": \"Matchday 1\",\n      \"date\": \"2025-08-16\",\n      \"time\": \"12:30\",\n      \"team1\": \"Aston Villa FC\",\n      \"team2\": \"Newcastle United FC\",\n      \"score\": [\n        0,\n        0\n      ]\n    },\n    {\n      \"round\": \"Matchday 1\",\n      \"date\": \"2025-08-16\",\n      \"time\": \"15:00\",\n      \"team1\": \"Brighton & Hove Albion FC\",\n      \"team2\""
+}

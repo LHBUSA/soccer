@@ -1,0 +1,24 @@
+{
+  "source": "whoscored",
+  "probe": "home",
+  "kind": "data",
+  "url": "https://www.whoscored.com/",
+  "captured_at": "2026-09-27T12:49:47.804Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 403,
+  "final_url": "https://www.whoscored.com/",
+  "elapsed_ms": 24,
+  "bytes": 4572,
+  "sha256": "1cd9effacf8b5f3ac3aaf5bf5ec12752c69fa4a165d6a871e6250ec601a433e8",
+  "headers": {
+    "content-type": "text/html; charset=UTF-8",
+    "server": "cloudflare",
+    "cache-control": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+    "cf-ray": "a41aa258582feacf-ORD"
+  },
+  "access_fingerprint": [
+    "captcha_markup",
+    "forbidden"
+  ],
+  "body_head": "<!DOCTYPE html>\n<!--[if lt IE 7]> <html class=\"no-js ie6 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 7]>    <html class=\"no-js ie7 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if IE 8]>    <html class=\"no-js ie8 oldie\" lang=\"en-US\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\" lang=\"en-US\"> <!--<![endif]-->\n<head>\n<title>Attention Required! | Cloudflare</title>\n<meta charset=\"UTF-8\" />\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\" />\n<meta name=\"robots\" content=\"noindex, nofollow\" />\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\" />\n<link rel=\"stylesheet\" id=\"cf_styles-css\" href=\"/cdn-cgi/s"
+}

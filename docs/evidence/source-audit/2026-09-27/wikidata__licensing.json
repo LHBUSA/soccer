@@ -1,0 +1,38 @@
+{
+  "source": "wikidata",
+  "probe": "licensing",
+  "kind": "terms",
+  "url": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+  "captured_at": "2026-09-27T12:49:42.972Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+  "elapsed_ms": 189,
+  "bytes": 64916,
+  "sha256": "fd9922df1bf16ad187afde0f759b3e7fe5a2986927fc98b1c55e66e21efb8c01",
+  "headers": {
+    "content-type": "text/html; charset=UTF-8",
+    "server": "mw-web.eqiad.main-5c56dd8bb-vgzw4",
+    "cache-control": "private, s-maxage=0, max-age=0, must-revalidate, no-transform",
+    "x-cache": "cp1102 hit, cp1102 hit/11",
+    "last-modified": "Sat, 26 Sep 2026 00:11:08 GMT"
+  },
+  "access_fingerprint": [
+    "captcha_markup"
+  ],
+  "terms_excerpts": [
+    "er compatible copyright designations 3 Determining the copyright of a dataset 4 Examples Toggle Examples subsection 4.1 Stories 4.2 Uses 5 Why should you use a CC0 license for data in Wikidata? 6 See also 7 External links Toggle the table of contents Wikidata : Licensing Project page Discussion English Read Edit View history Tools Tools move to sidebar hide",
+    "s policy statement can be found at Wikidata:Copyright . All structured data (i.e. the main, Property, Lexeme, and EntitySchema namespaces) is released into the public domain under Creative Commons Zero . Text in other namespaces is copyrighted and available under the Creative Commons Attribution-ShareAlike 4.0 License . Other compatible copyright designation",
+    "copyright designations [ edit ] Wikidata requires a CC0 license, which is equivalent to public domain; anyone may freely designate any public-domain data to be CC0. Other than public-domain data and CC0 data, no other data license or designation is compatible with Wikidata's copyright requirements. Determining the copyright of a dataset [ edit ] All data in",
+    "ata's copyright requirements. Determining the copyright of a dataset [ edit ] All data in Wikidata has a CC0 license. Wikidata avoids hosting data that lacks a CC0 license. However, in cases where the Wikidata community decides not to host data due to a copyright claim, that decision does not constitute recognition or confirmation by the Wikidata community (",
+    "ting a copyright claim over data that, in fact, may not be eligible for copyright. When any Wikidata user makes a contribution to Wikidata, that user applies a CC0 license to their contribution as a term of use of the Wikidata website. This happens irrespective of whether the user has any claim of ownership to the data they contribute. Discussing ownership o",
+    "which have no claim of copyright over the data they contain; if the Wikidata user has any claim to copyright ownership, they relinquish it under the compulsory CC0 license as soon as they post it to Wikidata. Less clear-cut are situations in which someone wishes to integrate an existing dataset into Wikidata. A dataset is a collection of data that has been c",
+    "ploading data when someone has made any of the following kinds of copyright claims on the data: traditional copyright, even with no copyright notice at all any Creative Commons license other than CC0. This includes Creative Commons Attribution, the very permissive license accepted on other Wikimedia projects. Some datasets may have Creative Commons Non-Comme",
+    "g kinds of copyright claims on the data: traditional copyright, even with no copyright notice at all any Creative Commons license other than CC0. This includes Creative Commons Attribution, the very permissive license accepted on other Wikimedia projects. Some datasets may have Creative Commons Non-Commercial licenses as well. any specialized license with re",
+    "rom compilations of data is permissible, since this sort of information is not eligible for copyright. Uses [ edit ] Organisations who release data under PD or CC0 licences include: Science Museum (Q674773) (e.g. [1] ) Creative Commons hosts a list for several sources that use CC0 license for data: CC0 use for data Europeana (Q234110) , see https://www.europ",
+    "6) , see https://www.si.edu/openaccess/faq Rijksmuseum (Q190804) , see https://www.rijksmuseum.nl/en/research/conduct-research/data/policy Why should you use a CC0 license for data in Wikidata? [ edit ] The Wikidata community frequently gets questions as to why data providers should license content with a CC0 license. Here are some pieces describing various",
+    "ch/data/policy Why should you use a CC0 license for data in Wikidata? [ edit ] The Wikidata community frequently gets questions as to why data providers should license content with a CC0 license. Here are some pieces describing various explanations for this reasoning: Lydia Pintscher's thoughts Arguments on CC0-licensing for data (PDF) Why Sweden advocates f",
+    "us explanations for this reasoning: Lydia Pintscher's thoughts Arguments on CC0-licensing for data (PDF) Why Sweden advocates for CC0 Discussion of benefits of CC0 for data on StackExchange How Do We Attribute Data? by Leigh Dodds (2013) Protocol for Implementing Open Access Data -- by the Science Commons project at Creative Commons Free data by Denny Vrande",
+    "is page was last edited on 24 September 2026, at 03:42. All structured data from the main, Property, Lexeme, and EntitySchema namespaces is available under the Creative Commons CC0 License ; text in the other namespaces is available under the Creative Commons Attribution-ShareAlike License ; additional terms may apply. By using this site, you agree to the Te"
+  ]
+}

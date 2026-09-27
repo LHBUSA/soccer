@@ -1,0 +1,19 @@
+{
+  "source": "football_data_org",
+  "probe": "terms",
+  "kind": "terms",
+  "url": "https://www.football-data.org/documentation/quickstart",
+  "captured_at": "2026-09-27T12:50:31.597Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.football-data.org/documentation/quickstart",
+  "elapsed_ms": 923,
+  "bytes": 753192,
+  "sha256": "8901ea2cb2d4440452885e945efb2c0f691fb0927f4b7215a5e5935b452b70ad",
+  "headers": {
+    "content-type": "text/html;charset=UTF-8",
+    "server": "nginx/1.14.2"
+  },
+  "access_fingerprint": [],
+  "terms_excerpts": []
+}

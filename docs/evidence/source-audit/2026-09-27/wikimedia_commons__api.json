@@ -1,0 +1,28 @@
+{
+  "source": "wikimedia_commons",
+  "probe": "api",
+  "kind": "data",
+  "url": "https://commons.wikimedia.org/w/api.php?action=query&list=search&srsearch=Premier%20League%20match&srnamespace=6&format=json&srlimit=3",
+  "captured_at": "2026-09-27T12:49:43.524Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://commons.wikimedia.org/w/api.php?action=query&list=search&srsearch=Premier%20League%20match&srnamespace=6&format=json&srlimit=3",
+  "elapsed_ms": 567,
+  "bytes": 1830,
+  "sha256": "412f45d78f4fb2c75742f0554e01e19338cdce035a504a5063dc5baba3a04785",
+  "headers": {
+    "content-type": "application/json; charset=utf-8",
+    "server": "mw-api-ext.eqiad.main-85f7454bb8-lx6mk",
+    "cache-control": "private, must-revalidate, max-age=0",
+    "x-cache": "cp1102 miss, cp1102 pass"
+  },
+  "access_fingerprint": [],
+  "body_head": "{\"batchcomplete\":\"\",\"continue\":{\"sroffset\":3,\"continue\":\"-||\"},\"query\":{\"searchinfo\":{\"totalhits\":8759},\"search\":[{\"ns\":6,\"title\":\"File:Canadian Premier League official match ball (photo by Djuradj Vujcic).jpg\",\"pageid\":118542475,\"size\":484,\"wordcount\":125,\"snippet\":\"DescriptionCanadian <span class=\\\"searchmatch\\\">Premier</span> <span class=\\\"searchmatch\\\">League</span> official <span class=\\\"searchmatch\\\">match</span> ball (photo by Djuradj Vujcic).jpg English: The official <span class=\\\"searchmatch\\\">match</span> ball of the Canadian <span class=\\\"searchmatch\\\">Premier</span> <span class=\\\"searchmatch\\\">League</span>. Date 6 May\",\"timestamp\":\"2024-01-30T11:05:49Z\"},{\"ns\":6,\"title\":\"File:Fi",
+  "json_top_level": {
+    "keys": [
+      "batchcomplete",
+      "continue",
+      "query"
+    ]
+  }
+}

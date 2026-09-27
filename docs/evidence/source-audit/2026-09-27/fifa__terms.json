@@ -1,0 +1,31 @@
+{
+  "source": "fifa",
+  "probe": "terms",
+  "kind": "terms",
+  "url": "https://www.fifa.com/en/legal/terms-of-service",
+  "captured_at": "2026-09-27T12:49:54.574Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://inside.fifa.com/terms-of-service",
+  "elapsed_ms": 1476,
+  "bytes": 179601,
+  "sha256": "20807b7324c9608eba9b0f63d57a28309b5710e383cf4b713a59ce412c56a9f1",
+  "headers": {
+    "content-type": "text/html; charset=utf-8",
+    "cache-control": "max-age=0, no-cache, no-store"
+  },
+  "access_fingerprint": [
+    "akamai"
+  ],
+  "terms_excerpts": [
+    "rom or to other websites or resources (“ Third-Party Content ”). 5.3 Content may not be used, reproduced, distributed, transmitted, broadcast, displayed, sold, licensed or otherwise exploited for any other purposes than for accessing and using it on the FIFA Digital Platforms save as permitted pursuant to Section 6.2 below . For that sole and exclusive purpo",
+    "FA Digital Platforms save as permitted pursuant to Section 6.2 below . For that sole and exclusive purpose, FIFA grants You a limited, revocable, non-exclusive licence to access the FIFA Digital Platforms and use the Content strictly for the purpose of using the FIFA Digital Platforms privately for non-commercial purposes, in accordance with these Terms. FIF",
+    "nge any copyright, patent, trademark, trade secret, or other proprietary rights or right of publicity or privacy, including for any use by FIFA pursuant to the license granted under Section 5.7; (ii) shall not violate any law or regulation; (iii) shall not be defamatory or trade libellous; (iv) shall not be obscene or contain pornography; (v) shall not inclu",
+    "Submission to use their name or likeness. 5.7 You grant FIFA an irrevocable, worldwide, non-exclusive, royalty-free, perpetual, sub-licensable and transferable licence to use, reproduce, distribute, prepare derivative works of, display and perform User Submissions in connection with the FIFA Digital Platforms or FIFA’s (and its successor’s) business for any",
+    "ereof) in any and/or all media formats and through any and/or all media channels. You also hereby grant each User of the FIFA Digital Platforms a non-exclusive licence to access and use Your User Submissions through the FIFA Digital Platforms. 5.8 You hereby acknowledge and agree that FIFA has no obligation to post any User Submission from You or anyone else",
+    "FIFA Digital Platforms. 6.4 If You wish to use or display any FIFA Content on Your website: (a) FIFA grants You a non-transferable, royalty free, non-exclusive licence to display such FIFA Content on Your website solely for non-commercial purposes, subject to these Terms; (b) You expressly agree: (i) to ensure that Your use of the FIFA Content does not state",
+    "A, You are not permitted to use any area of the FIFA Digital Platforms (either directly within the FIFA Digital Platforms or by linking to other sites) for any commercial purposes, such as by selling or offering for sale any tickets, ticket-related products or services, merchandise or other services (with the exception of using FIFA’s official ticket resale",
+    "th the exception of using FIFA’s official ticket resale platform to resell tickets You have previously purchased). 6.6 You acknowledge that You may not use any robots, spiders or other automated programmes or manual processes in connection with Your use of the FIFA Digital Platforms in order to manipulate or circumvent their intended functionality, particula",
+    "MAY BE INFORMED OF ANY OF ITS SERVICES OR CONTENT. 12. INDEMNIFICATION You hereby agree to indemnify and hold FIFA and its subsidiaries, affiliates, licensors, licensees, officers, agents, co-branders and other partners, and employees, harmless from any and all liabilities, losses, damages, claims, penalties, fines, costs and expenses, including, and without"
+  ]
+}

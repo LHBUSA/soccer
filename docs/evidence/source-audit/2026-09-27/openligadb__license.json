@@ -1,0 +1,20 @@
+{
+  "source": "openligadb",
+  "probe": "license",
+  "kind": "terms",
+  "url": "https://www.openligadb.de/lizenz",
+  "captured_at": "2026-09-27T12:50:33.899Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.openligadb.de/lizenz",
+  "elapsed_ms": 143,
+  "bytes": 8270,
+  "sha256": "c97866d21b7d1451afafe8ff2247e0517056fef2448413a48b080f95fcad6881",
+  "headers": {
+    "content-type": "text/html; charset=utf-8",
+    "server": "Microsoft-IIS/10.0",
+    "cache-control": "no-cache, no-store, max-age=0"
+  },
+  "access_fingerprint": [],
+  "terms_excerpts": []
+}

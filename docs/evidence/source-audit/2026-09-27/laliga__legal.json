@@ -1,0 +1,29 @@
+{
+  "source": "laliga",
+  "probe": "legal",
+  "kind": "terms",
+  "url": "https://www.laliga.com/en-GB/legal/legal-web",
+  "captured_at": "2026-09-27T12:50:35.225Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.laliga.com/en-GB/legal/legal-web",
+  "elapsed_ms": 1146,
+  "bytes": 388587,
+  "sha256": "4aeff1629ac6f20faf75df3885d5a44bb6685bb291f1218f1fc79e294b8e2c1f",
+  "headers": {
+    "content-type": "text/html; charset=utf-8",
+    "cache-control": "public, max-age=600",
+    "x-cache": "TCP_MISS"
+  },
+  "access_fingerprint": [],
+  "terms_excerpts": [
+    "tered Office: Calle Torrelaguna 60, 28043 Madrid, Spain. &middot; Tel.: (+34) 91 205 50 00 &middot; Email: laliga@laliga.es &middot; Registration in the Madrid Commercial Registry: LALIGA is a company duly incorporated under Spanish law, majority owned by the Liga Nacional de F&uacute;tbol Profesional and registered in the Registro Mercantil de Madrid in vol",
+    "information included in this Website is for information purposes only. Simply accessing this Website directly or through other links does not imply any type of commercial relationship. LALIGA, acting under the principle of good faith, makes its best efforts to ensure that the information, Content and data appearing on this Website are duly reviewed and updat",
+    "contact LALIGA through the channels provided in the \"Help\" section of these Terms of Use. The Content that you access through the Website is for your personal, non-commercial use. As a User, we grant you a limited, non-exclusive, non-transferable, non-sublicensable, non-sublicensable licence to access the Website and view its Content. Except for this limited",
+    "the Website is for your personal, non-commercial use. As a User, we grant you a limited, non-exclusive, non-transferable, non-sublicensable, non-sublicensable licence to access the Website and view its Content. Except for this limited licence, no right, title or interest is granted to you. You agree not to use the Content for public performances or events.",
+    "ebsite. Likewise, all trade names, trademarks or distinctive signs of any kind contained in the Website are protected by law. LALIGA does not grant any type of licence or authorisation for personal use to the User over its intellectual and industrial property rights or over any other right related to the Website and the services offered therein. Therefore, t",
+    "y rights or over any other right related to the Website and the services offered therein. Therefore, the User acknowledges that the reproduction, distribution, commercialisation, transformation and, in general, any other form of exploitation, by any means, of all or part of the Website's Contents constitutes an infringement of the intellectual and/or industr",
+    "f. The User, solely and exclusively, may use the material that appears on this Website site for his/her personal and private use, being forbidden to use it for commercial purposes or to engage in illegal activities. The reproduction, distribution and public communication, including making available, of all or part of the contents of this LALIGA website, for",
+    "gal activities. The reproduction, distribution and public communication, including making available, of all or part of the contents of this LALIGA website, for commercial purposes, on any medium and by any technical means, without the authorisation of LALIGA, are expressly prohibited without the authorisation of LALIGA. The User undertakes to respect the Int"
+  ]
+}

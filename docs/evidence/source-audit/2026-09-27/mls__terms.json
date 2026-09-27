@@ -1,0 +1,35 @@
+{
+  "source": "mls",
+  "probe": "terms",
+  "kind": "terms",
+  "url": "https://www.mlssoccer.com/about/terms-of-service",
+  "captured_at": "2026-09-27T12:49:53.479Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.mlssoccer.com/legal/terms-of-service",
+  "elapsed_ms": 634,
+  "bytes": 278640,
+  "sha256": "5b2e4de005a53a0eb0b91836391c53792812946cb5f8b4c3c3f30d168c872ecd",
+  "headers": {
+    "content-type": "text/html",
+    "cache-control": "max-age=300",
+    "access-control-allow-origin": "*"
+  },
+  "access_fingerprint": [],
+  "terms_excerpts": [
+    "ffiliate of MLS or SUM, Player Development, L.L.C. (“MLS NEXT”), MLS GO, any of the MLS member clubs, or any of the MLS, MLS NEXT, MLS GO or MLS Club sponsors, licensees and other affiliates (the \"Content\") are either owned by, or licensed to, MLS. We maintain the Site and Services for your personal entertainment, information, education, and communication. Y",
+    ", any of the MLS member clubs, or any of the MLS, MLS NEXT, MLS GO or MLS Club sponsors, licensees and other affiliates (the \"Content\") are either owned by, or licensed to, MLS. We maintain the Site and Services for your personal entertainment, information, education, and communication. You may download one copy of each piece of Content from the Site and/or",
+    "ontent in any manner, except as expressly provided in these Terms of Service, without the express written permission of MLS, and nothing herein shall imply any license or right otherwise. Modification of any Content on the Site or Services in any manner is a violation of the applicable owner's copyright and other proprietary rights. The word marks, logos, tr",
+    "ith the trademark symbol. Nothing contained on the Site or as part of the Services should be construed as granting, by implication, estoppel, or otherwise, any license or right to use any Trademark displayed on the Site or on the Services in any manner without the express written permission of its respective owner. Any use of the Trademarks displayed on the",
+    "\"Submission\" and, collectively, \"Submissions\"), you are granting us a perpetual, royalty-free, non-exclusive, unrestricted, worldwide and irrevocable right and license to use, reproduce, modify, publish, translate, prepare derivative works based upon, distribute, perform or display such Submissions, in whole or in part, in any form, media or technology known",
+    "absolute right, but not the obligation, to use your name in connection with the broadcast, print, online or other use or publication of your Submission and to license your Submission to third parties without seeking or receiving your further consent. a. Solicited Submissions: At times, we may solicit Submissions from visitors to the Site, including, without",
+    "solicitation constitutes a grant by you to us of the Rights described above. In the event we seek to claim full ownership, rather than an irrevocable perpetual license of your Submission, you hereby assign all right title and interest to such Submission without any payment or further obligation to you and to take any and all action necessary to effect such a",
+    "created between you and MLS; (ii) any such unsolicited Submission(s) and copyright become the property of and will be owned by MLS and may be used, copied, sublicensed, adapted, transmitted, distributed, publicly performed, published, displayed or deleted as MLS sees fit; (iii) you are not entitled to any compensation, credit or notice whatsoever in connect",
+    "other similar harmful or deleterious programming routine; vi) harms or attempts to harm minors; vii) contains any information, software or other material of a commercial nature; viii) contains advertising, promotions, spam or commercial solicitations of any kind; ix) constitutes or contains false or misleading indications of origin or statements of fact; or",
+    "be referred to as the \"Code of Conduct\". 5.2 General Prohibited Uses You agree that in connection with your use of the Site and the Services, you will not: i) harvest or collect email addresses or other contact information of other users by electronic or other means or engaging in spidering, screen scraping, database scraping or other such activity; ii) use",
+    "e and the Services, you will not: i) harvest or collect email addresses or other contact information of other users by electronic or other means or engaging in spidering, screen scraping, database scraping or other such activity; ii) use any incomplete, false or inaccurate biographical or other information for purposes of registering as a user of the Service",
+    "eing conducted on this Site; vi) use or attempt to use any engine, software, tool, agent or other device or mechanism (including, without limitation, browsers, spiders, robots, avatars or intelligent agents) to navigate or search the Services to harvest or otherwise collect information from the Services to be used for any commercial purpose; vii) allow any o",
+    "es from or to any on-line, cable, wireless or other website, service, browser or other resource: A. Websites, services, browsers and other resources other than commercial sites (e.g., fan sites, chamber of commerce sites, search engine sites, widely available Internet browsers) (each, a \"Permissible Site\" and, collectively, \"Permissible Sites\") may link to w",
+    ".com,\" \"The Official Site of Major League Soccer\"); and (ii) spatially separated from, and not otherwise associated with, any sponsorship advertising, or other commercial text or graphics that may be on the page/area containing such word link. B. The www.MLSSoccer.com logo, or a link containing any other logo of MLS or its member clubs (a \"logo\" link) may no"
+  ]
+}

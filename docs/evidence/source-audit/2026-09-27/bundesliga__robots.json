@@ -1,0 +1,10 @@
+{
+  "source": "bundesliga",
+  "probe": "robots",
+  "kind": "robots",
+  "url": "https://www.bundesliga.com/robots.txt",
+  "captured_at": "2026-09-27T12:50:36.375Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "error": "ECONNRESET",
+  "elapsed_ms": 40
+}

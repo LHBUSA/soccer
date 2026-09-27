@@ -1,0 +1,27 @@
+{
+  "source": "fifa",
+  "probe": "api_matches",
+  "kind": "data",
+  "url": "https://api.fifa.com/api/v3/calendar/matches?idCompetition=17&idSeason=285023&count=5&language=en",
+  "captured_at": "2026-09-27T12:49:56.054Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://api.fifa.com/api/v3/calendar/matches?idCompetition=17&idSeason=285023&count=5&language=en",
+  "elapsed_ms": 220,
+  "bytes": 22528,
+  "sha256": "e812da755c5fedddade844ce707da02e8f89fce244c0c4aa7ef49dde5b6b4ba4",
+  "headers": {
+    "content-type": "application/json; charset=utf-8",
+    "cache-control": "must-revalidate, max-age=0, s-maxage=28800",
+    "access-control-allow-origin": "*"
+  },
+  "access_fingerprint": [],
+  "body_head": "{\"ContinuationToken\":\"W3sidG9rZW4iOiIrUklEOn5XYWs3QVAtVnp4b2M3QUVBQUFBQUNBPT0jUlQ6MSNUUkM6NSNSVEQ6eEo1WGk5ZlRBSnRUKzRWL2tOYkJCVE14TXpjdU1UY3VNalJWTWpvN01URTdNVEZiQUE9PSNJU1Y6MiNJRU86NjU1NjcjUUNGOjgiLCJyYW5nZSI6eyJtaW4iOiIwNUMxREZGRkZGRkZGQyIsIm1heCI6IkZGIn19XQ==\",\"ContinuationHash\":\"3803767845\",\"Results\":[{\"IdCompetition\":\"17\",\"IdSeason\":\"285023\",\"IdStage\":\"289273\",\"IdGroup\":\"289275\",\"Weather\":{\"Humidity\":null,\"Temperature\":null,\"WindSpeed\":null,\"Type\":null,\"TypeLocalized\":[]},\"Attendance\":\"80824\",\"IdMatch\":\"400021443\",\"MatchDay\":null,\"StageName\":[{\"Locale\":\"en-GB\",\"Description\":\"First Stage\"}],\"GroupName\":[{\"Locale\":\"en-GB\",\"Description\":\"Group A\"}],\"CompetitionName\":[{\"Locale\":\"en-GB\",\"Des",
+  "json_top_level": {
+    "keys": [
+      "ContinuationToken",
+      "ContinuationHash",
+      "Results"
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "source": "espn_soccer",
+  "probe": "core_events",
+  "kind": "data",
+  "url": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/events?limit=5",
+  "captured_at": "2026-09-27T12:49:48.150Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/events?limit=5",
+  "elapsed_ms": 203,
+  "bytes": 586,
+  "sha256": "4ffa0e05a488927b1f330ffb64dd94f3263db85397c63653de22e4ae41f3b7ce",
+  "headers": {
+    "content-type": "application/json;charset=utf-8",
+    "cache-control": "max-age=900, stale-while-revalidate=7200",
+    "access-control-allow-origin": "*"
+  },
+  "access_fingerprint": [],
+  "body_head": "{\"$meta\":{\"parameters\":{\"season\":[\"2026\"],\"seasontypes\":[\"14308\"],\"dates\":[\"20260920\"]}},\"count\":4,\"pageIndex\":1,\"pageSize\":5,\"pageCount\":1,\"items\":[{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/events/401879276?lang=en&region=us\"},{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/events/401879273?lang=en&region=us\"},{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/events/401879272?lang=en&region=us\"},{\"$ref\":\"http://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/events/401878777?lang=en&region=us\"}]}",
+  "json_top_level": {
+    "keys": [
+      "$meta",
+      "count",
+      "pageIndex",
+      "pageSize",
+      "pageCount",
+      "items"
+    ]
+  }
+}

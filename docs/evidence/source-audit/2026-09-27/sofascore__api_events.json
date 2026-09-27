@@ -1,0 +1,27 @@
+{
+  "source": "sofascore",
+  "probe": "api_events",
+  "kind": "data",
+  "url": "https://api.sofascore.com/api/v1/sport/football/scheduled-events/2026-09-27",
+  "captured_at": "2026-09-27T12:49:46.883Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 403,
+  "final_url": "https://api.sofascore.com/api/v1/sport/football/scheduled-events/2026-09-27",
+  "elapsed_ms": 388,
+  "bytes": 48,
+  "sha256": "6b771bca0fe4271cc0baf29954f10c68be99102048e4df524b6d7d6bf38dad5d",
+  "headers": {
+    "content-type": "application/json",
+    "server": "Varnish",
+    "access-control-allow-origin": "*"
+  },
+  "access_fingerprint": [
+    "forbidden"
+  ],
+  "body_head": "{\"error\": {\"code\": 403, \"reason\": \"Forbidden\" }}",
+  "json_top_level": {
+    "keys": [
+      "error"
+    ]
+  }
+}

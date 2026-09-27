@@ -1,0 +1,20 @@
+{
+  "source": "fifa",
+  "probe": "robots",
+  "kind": "robots",
+  "url": "https://www.fifa.com/robots.txt",
+  "captured_at": "2026-09-27T12:49:54.380Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.fifa.com/robots.txt",
+  "elapsed_ms": 190,
+  "bytes": 82,
+  "sha256": "141c58c4d8e635d2bf5740598e96df756aa1a153ec524ee0f4d84e43408ea43f",
+  "headers": {
+    "content-type": "text/plain; charset=UTF-8",
+    "cache-control": "public, max-age=3600, immutable",
+    "last-modified": "Wed, 16 Sep 2026 10:38:22 GMT"
+  },
+  "access_fingerprint": [],
+  "robots_txt": "User-agent: *\nDisallow: /*?archive?filters=\nSitemap: https://www.fifa.com/sitemap\n"
+}

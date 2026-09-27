@@ -1,0 +1,37 @@
+{
+  "source": "thesportsdb",
+  "probe": "terms",
+  "kind": "terms",
+  "url": "https://www.thesportsdb.com/docs_terms_of_use.php",
+  "captured_at": "2026-09-27T12:50:34.226Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.thesportsdb.com/docs_terms_of_use.php",
+  "elapsed_ms": 116,
+  "bytes": 18619,
+  "sha256": "380d45c3f5b7cc92667d9a19e6e0b0b6812d020c646de3b3d6699f4fecd7c601",
+  "headers": {
+    "content-type": "text/html; charset=UTF-8",
+    "server": "cloudflare",
+    "cache-control": "no-store, no-cache, must-revalidate",
+    "cf-ray": "a41aa37a8b69320f-ORD",
+    "access-control-allow-origin": "*"
+  },
+  "access_fingerprint": [],
+  "terms_excerpts": [
+    "atest Stats Develop Pricing Free Sports API API Documentation API Code Examples API Testing Guide API Data Guide Artwork Types Roadmap 3rd Party Libraries Kodi Scraper Plex Scraper Tools Forum Discord Chat Top 100 Events Charts Player Charts Team Quick Image (Beta) Login Signup Terms of use Last updated: 17/09/2026 Welcome to TheSportsDB by TheDataDB Ltd! Pl",
+    "https://www.thesportsdb.com, you agree to abide by these terms. If you have any questions or concerns, email us at [email&#160;protected] . Content use You can scrape, copy and modify content returned from the API using the official end points, subject to the image licensing and third-party rights requirements below. Please do not scrape our website. You als",
+    "and modify content returned from the API using the official end points, subject to the image licensing and third-party rights requirements below. Please do not scrape our website. You also cannot remove or alter any copyright or trademark notices. Free API Usage You may use our API to lookup data and artwork for your development projects. You cannot publish",
+    "ot publish apps to an appstore unless you are a paid subscriber. Paid API Usage You may use our API to develop apps and services as long as you stay within the rate limit. You can use our custom artwork in accordance with its applicable licence and the image licensing section below, and must mention us as the source of the data. A paid API subscription does",
+    "ied in any way. This does not grant permission to use a third-party trademark. Image licensing and app store use All original artwork created by TheSportsDB is licensed under Creative Commons. This applies to rights held by TheSportsDB; it does not relicense third-party photographs, logos or other material included in or hosted alongside that artwork. Check",
+    "ts held by TheSportsDB; it does not relicense third-party photographs, logos or other material included in or hosted alongside that artwork. Check the specific licence and version attached to each image or its original source. If these details are missing, contact us before publishing it. Understanding strCreativeCommons Where provided, this API field record",
+    "Where provided, this API field records the Creative Commons status of artwork associated with a record, including player artwork. It is a status flag, not the licence text or proof that every image on that record has the same licence: Yes : artwork is recorded as Creative Commons. Verify the exact image, creator, source and applicable licence before use. No",
+    ", including published apps, websites, store listings, screenshots, previews, icons and promotional material. Exclude it or use a cleared replacement until its licence or written permission has been confirmed. Licence conditions and attribution Follow the actual image licence: credit the creator and TheSportsDB as appropriate, link to the source and licence,",
+    "ribution Follow the actual image licence: credit the creator and TheSportsDB as appropriate, link to the source and licence, and identify changes. Check any NonCommercial, NoDerivatives or ShareAlike conditions against your intended use. Do not impose licence-prohibited restrictions or DRM on the artwork. A Creative Commons flag does not clear third-party tr",
+    "artwork. A Creative Commons flag does not clear third-party trademark, privacy or publicity rights, or imply endorsement by a team, league or athlete. See the Creative Commons guidance . Submitting to the Apple App Store or Google Play (Android) Check the images both inside your app, including those loaded through the API, and in your store listing. Use onl",
+    "e API, and in your store listing. Use only images for which you can demonstrate the necessary rights. Keep an image-by-image record of the source URL, creator, licence and version, attribution, and any written permissions. Make credits accessible in your app and supply rights documentation to reviewers when requested. Apple App Review Guidelines 5.2, includi",
+    "ains how to provide written permission before submission. Follow each store's current policies and ensure its distribution terms are compatible with each image licence. Our paid-subscription requirement for API use in published app store apps still applies; it does not replace image permissions or change existing Creative Commons licence rights. TheSportsDB",
+    "mage licence. Our paid-subscription requirement for API use in published app store apps still applies; it does not replace image permissions or change existing Creative Commons licence rights. TheSportsDB cannot guarantee app store approval. Security You cannot compromise the security of the API or its technical processes. You also cannot create security vul",
+    "impact other users. Third-party content You cannot use third-party content in the API unless you have the owner's permission or are legally permitted to do so. Reselling You cannot resell our API in any way without specific permission. Third-party access You are responsible for ensuring that any third parties you give access to the API comply with the terms"
+  ]
+}

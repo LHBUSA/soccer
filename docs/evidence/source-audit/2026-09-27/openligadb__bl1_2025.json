@@ -1,0 +1,41 @@
+{
+  "source": "openligadb",
+  "probe": "bl1_2025",
+  "kind": "data",
+  "url": "https://api.openligadb.de/getmatchdata/bl1/2025/1",
+  "captured_at": "2026-09-27T12:50:33.199Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://api.openligadb.de/getmatchdata/bl1/2025/1",
+  "elapsed_ms": 550,
+  "bytes": 17537,
+  "sha256": "9bd62b9d7d5e71bdd29ca111c21a2d90525e668f74e22db95aa87ada87035bc0",
+  "headers": {
+    "content-type": "application/json; charset=utf-8",
+    "server": "Microsoft-IIS/10.0"
+  },
+  "access_fingerprint": [],
+  "body_head": "[{\"matchID\":77256,\"matchDateTime\":\"2025-08-22T20:30:00\",\"timeZoneID\":\"W. Europe Standard Time\",\"leagueId\":4821,\"leagueName\":\"1. Fußball-Bundesliga 2025/2026\",\"leagueSeason\":2025,\"leagueShortcut\":\"bl1\",\"matchDateTimeUTC\":\"2025-08-22T18:30:00Z\",\"group\":{\"groupName\":\"1. Spieltag\",\"groupOrderID\":1,\"groupID\":47611},\"team1\":{\"teamId\":40,\"teamName\":\"FC Bayern München\",\"shortName\":\"Bayern\",\"teamIconUrl\":\"https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_FC_Bayern_M%C3%BCnchen_%282002%E2%80%932017%29.svg\",\"teamGroupName\":null},\"team2\":{\"teamId\":1635,\"teamName\":\"RB Leipzig\",\"shortName\":\"Leipzig\",\"teamIconUrl\":\"https://i.imgur.com/Rpwsjz1.png\",\"teamGroupName\":null},\"lastUpdateDateTime\":\"2025-08-",
+  "json_top_level": {
+    "array_length": 9,
+    "first_keys": [
+      "matchID",
+      "matchDateTime",
+      "timeZoneID",
+      "leagueId",
+      "leagueName",
+      "leagueSeason",
+      "leagueShortcut",
+      "matchDateTimeUTC",
+      "group",
+      "team1",
+      "team2",
+      "lastUpdateDateTime",
+      "matchIsFinished",
+      "matchResults",
+      "goals",
+      "location",
+      "numberOfViewers"
+    ]
+  }
+}

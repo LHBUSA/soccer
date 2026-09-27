@@ -1,0 +1,21 @@
+{
+  "source": "openligadb",
+  "probe": "home",
+  "kind": "terms",
+  "url": "https://www.openligadb.de/",
+  "captured_at": "2026-09-27T12:50:33.752Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.openligadb.de/",
+  "elapsed_ms": 144,
+  "bytes": 33316,
+  "sha256": "2ecae25fa603f74d9a0e08d571e327ea0215cbf47829d226e79ece67b0840a59",
+  "headers": {
+    "content-type": "text/html; charset=utf-8",
+    "server": "Microsoft-IIS/10.0"
+  },
+  "access_fingerprint": [],
+  "terms_excerpts": [
+    "e kann und sollte jeder angemeldete Benutzer vornehmen - Von der Community - für die Community! Die über diese API bereitgestellten Daten stehen unter der Open Database License (ODbL) . Weitere Informationen finden Sie unter www.openligadb.de/lizenz Infos Diskussionen, Ankündigungen, Tutorials und Code-Samples auf GitHub &#105;&#110;&#102;&#111;&#064;&#111;&"
+  ]
+}

@@ -1,0 +1,519 @@
+[
+  {
+    "source": "openfootball",
+    "probe": "license",
+    "kind": "terms",
+    "status": 200,
+    "error": null,
+    "bytes": 6555,
+    "flags": []
+  },
+  {
+    "source": "openfootball",
+    "probe": "epl_2025_26",
+    "kind": "data",
+    "status": 200,
+    "error": null,
+    "bytes": 108493,
+    "flags": []
+  },
+  {
+    "source": "openfootball",
+    "probe": "bundesliga_2025_26",
+    "kind": "data",
+    "status": 200,
+    "error": null,
+    "bytes": 88247,
+    "flags": []
+  },
+  {
+    "source": "openfootball",
+    "probe": "worldcup_2026",
+    "kind": "data",
+    "status": 200,
+    "error": null,
+    "bytes": 42736,
+    "flags": []
+  },
+  {
+    "source": "statsbomb_open",
+    "probe": "competitions",
+    "kind": "data",
+    "status": 200,
+    "error": null,
+    "bytes": 34887,
+    "flags": []
+  },
+  {
+    "source": "wyscout_figshare",
+    "probe": "collection",
+    "kind": "data",
+    "status": 200,
+    "error": null,
+    "bytes": 4574,
+    "flags": []
+  },
+  {
+    "source": "wyscout_figshare",
+    "probe": "competitions",
+    "kind": "data",
+    "status": 200,
+    "error": null,
+    "bytes": 1209,
+    "flags": []
+  },
+  {
+    "source": "football_data_co_uk",
+    "probe": "robots",
+    "kind": "robots",
+    "status": 200,
+    "error": null,
+    "bytes": 732,
+    "flags": []
+  },
+  {
+    "source": "football_data_co_uk",
+    "probe": "epl_2025_26_csv",
+    "kind": "data",
+    "status": 200,
+    "error": null,
+    "bytes": 203438,
+    "flags": []
+  },
+  {
+    "source": "football_data_co_uk",
+    "probe": "notes",
+    "kind": "terms",
+    "status": 200,
+    "error": null,
+    "bytes": 7686,
+    "flags": []
+  },
+  {
+    "source": "football_data_co_uk",
+    "probe": "disclaimer",
+    "kind": "terms",
+    "status": 200,
+    "error": null,
+    "bytes": 34387,
+    "flags": []
+  },
+  {
+    "source": "football_data_org",
+    "probe": "matches_no_token",
+    "kind": "data",
+    "status": 403,
+    "error": null,
+    "bytes": 152,
+    "flags": [
+      "forbidden"
+    ]
+  },
+  {
+    "source": "football_data_org",
+    "probe": "terms",
+    "kind": "terms",
+    "status": 404,
+    "error": null,
+    "bytes": 7751,
+    "flags": []
+  },
+  {
+    "source": "openligadb",
+    "probe": "robots",
+    "kind": "robots",
+    "status": 404,
+    "error": null,
+    "bytes": 0,
+    "flags": []
+  },
+  {
+    "source": "openligadb",
+    "probe": "bl1_2025",
+    "kind": "data",
+    "status": 200,
+    "error": null,
+    "bytes": 17537,
+    "flags": []
+  },
+  {
+    "source": "openligadb",
+    "probe": "home",
+    "kind": "terms",
+    "status": 200,
+    "error": null,
+    "bytes": 33316,
+    "flags": []
+  },
+  {
+    "source": "wikidata",
+    "probe": "sparql_epl_clubs",
+    "kind": "data",
+    "status": 200,
+    "error": null,
+    "bytes": 4668,
+    "flags": []
+  },
+  {
+    "source": "wikidata",
+    "probe": "licensing",
+    "kind": "terms",
+    "status": 200,
+    "error": null,
+    "bytes": 64916,
+    "flags": [
+      "captcha_markup"
+    ]
+  },
+  {
+    "source": "thesportsdb",
+    "probe": "epl_next",
+    "kind": "data",
+    "status": 200,
+    "error": null,
+    "bytes": 1680,
+    "flags": []
+  },
+  {
+    "source": "thesportsdb",
+    "probe": "terms",
+    "kind": "terms",
+    "status": 404,
+    "error": null,
+    "bytes": 1245,
+    "flags": []
+  },
+  {
+    "source": "wikimedia_commons",
+    "probe": "api",
+    "kind": "data",
+    "status": 200,
+    "error": null,
+    "bytes": 1830,
+    "flags": []
+  },
+  {
+    "source": "fbref",
+    "probe": "robots",
+    "kind": "robots",
+    "status": 403,
+    "error": null,
+    "bytes": 5668,
+    "flags": [
+      "cloudflare_challenge",
+      "forbidden"
+    ]
+  },
+  {
+    "source": "fbref",
+    "probe": "epl_page",
+    "kind": "data",
+    "status": 403,
+    "error": null,
+    "bytes": 5753,
+    "flags": [
+      "cloudflare_challenge",
+      "forbidden"
+    ]
+  },
+  {
+    "source": "fbref",
+    "probe": "terms",
+    "kind": "terms",
+    "status": 200,
+    "error": null,
+    "bytes": 121196,
+    "flags": []
+  },
+  {
+    "source": "fbref",
+    "probe": "data_use",
+    "kind": "terms",
+    "status": 200,
+    "error": null,
+    "bytes": 84000,
+    "flags": []
+  },
+  {
+    "source": "understat",
+    "probe": "robots",
+    "kind": "robots",
+    "status": 200,
+    "error": null,
+    "bytes": 26,
+    "flags": []
+  },
+  {
+    "source": "understat",
+    "probe": "epl_page",
+    "kind": "data",
+    "status": 200,
+    "error": null,
+    "bytes": 18698,
+    "flags": []
+  },
+  {
+    "source": "sofascore",
+    "probe": "robots",
+    "kind": "robots",
+    "status": 403,
+    "error": null,
+    "bytes": 48,
+    "flags": [
+      "forbidden"
+    ]
+  },
+  {
+    "source": "sofascore",
+    "probe": "api_events",
+    "kind": "data",
+    "status": 403,
+    "error": null,
+    "bytes": 48,
+    "flags": [
+      "forbidden"
+    ]
+  },
+  {
+    "source": "fotmob",
+    "probe": "robots",
+    "kind": "robots",
+    "status": 200,
+    "error": null,
+    "bytes": 16091,
+    "flags": []
+  },
+  {
+    "source": "fotmob",
+    "probe": "api_league",
+    "kind": "data",
+    "status": 404,
+    "error": null,
+    "bytes": 206355,
+    "flags": []
+  },
+  {
+    "source": "fotmob",
+    "probe": "terms",
+    "kind": "terms",
+    "status": 200,
+    "error": null,
+    "bytes": 276774,
+    "flags": []
+  },
+  {
+    "source": "whoscored",
+    "probe": "robots",
+    "kind": "robots",
+    "status": 200,
+    "error": null,
+    "bytes": 139,
+    "flags": []
+  },
+  {
+    "source": "whoscored",
+    "probe": "home",
+    "kind": "data",
+    "status": 403,
+    "error": null,
+    "bytes": 4572,
+    "flags": [
+      "captcha_markup",
+      "forbidden"
+    ]
+  },
+  {
+    "source": "transfermarkt",
+    "probe": "robots",
+    "kind": "robots",
+    "status": 200,
+    "error": null,
+    "bytes": 131,
+    "flags": []
+  },
+  {
+    "source": "espn_soccer",
+    "probe": "scoreboard",
+    "kind": "data",
+    "status": 403,
+    "error": null,
+    "bytes": 442,
+    "flags": [
+      "akamai",
+      "forbidden"
+    ]
+  },
+  {
+    "source": "espn_soccer",
+    "probe": "core_events",
+    "kind": "data",
+    "status": 200,
+    "error": null,
+    "bytes": 586,
+    "flags": []
+  },
+  {
+    "source": "premier_league",
+    "probe": "robots",
+    "kind": "robots",
+    "status": 200,
+    "error": null,
+    "bytes": 638,
+    "flags": []
+  },
+  {
+    "source": "premier_league",
+    "probe": "terms",
+    "kind": "terms",
+    "status": 200,
+    "error": null,
+    "bytes": 92029,
+    "flags": []
+  },
+  {
+    "source": "premier_league",
+    "probe": "pulselive_comps",
+    "kind": "data",
+    "status": null,
+    "error": "ECONNRESET",
+    "bytes": 0,
+    "flags": []
+  },
+  {
+    "source": "uefa",
+    "probe": "robots",
+    "kind": "robots",
+    "status": 200,
+    "error": null,
+    "bytes": 540,
+    "flags": []
+  },
+  {
+    "source": "uefa",
+    "probe": "terms",
+    "kind": "terms",
+    "status": 404,
+    "error": null,
+    "bytes": 105201,
+    "flags": []
+  },
+  {
+    "source": "uefa",
+    "probe": "match_api",
+    "kind": "data",
+    "status": 200,
+    "error": null,
+    "bytes": 170952,
+    "flags": []
+  },
+  {
+    "source": "laliga",
+    "probe": "robots",
+    "kind": "robots",
+    "status": 200,
+    "error": null,
+    "bytes": 1484,
+    "flags": []
+  },
+  {
+    "source": "laliga",
+    "probe": "legal",
+    "kind": "terms",
+    "status": 404,
+    "error": null,
+    "bytes": 9857,
+    "flags": []
+  },
+  {
+    "source": "bundesliga",
+    "probe": "robots",
+    "kind": "robots",
+    "status": 200,
+    "error": null,
+    "bytes": 11644,
+    "flags": []
+  },
+  {
+    "source": "bundesliga",
+    "probe": "terms",
+    "kind": "terms",
+    "status": 404,
+    "error": null,
+    "bytes": 361625,
+    "flags": []
+  },
+  {
+    "source": "serie_a",
+    "probe": "robots",
+    "kind": "robots",
+    "status": 200,
+    "error": null,
+    "bytes": 515,
+    "flags": []
+  },
+  {
+    "source": "ligue_1",
+    "probe": "robots",
+    "kind": "robots",
+    "status": 200,
+    "error": null,
+    "bytes": 115,
+    "flags": []
+  },
+  {
+    "source": "mls",
+    "probe": "robots",
+    "kind": "robots",
+    "status": 200,
+    "error": null,
+    "bytes": 296,
+    "flags": []
+  },
+  {
+    "source": "mls",
+    "probe": "terms",
+    "kind": "terms",
+    "status": 200,
+    "error": null,
+    "bytes": 278640,
+    "flags": []
+  },
+  {
+    "source": "mls",
+    "probe": "stats_api",
+    "kind": "data",
+    "status": 404,
+    "error": null,
+    "bytes": 32,
+    "flags": []
+  },
+  {
+    "source": "fifa",
+    "probe": "robots",
+    "kind": "robots",
+    "status": 200,
+    "error": null,
+    "bytes": 82,
+    "flags": []
+  },
+  {
+    "source": "fifa",
+    "probe": "terms",
+    "kind": "terms",
+    "status": 200,
+    "error": null,
+    "bytes": 179601,
+    "flags": [
+      "akamai"
+    ]
+  },
+  {
+    "source": "fifa",
+    "probe": "api_matches",
+    "kind": "data",
+    "status": 200,
+    "error": null,
+    "bytes": 22528,
+    "flags": []
+  }
+]

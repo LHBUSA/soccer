@@ -1,0 +1,22 @@
+{
+  "source": "fotmob",
+  "probe": "terms",
+  "kind": "terms",
+  "url": "https://www.fotmob.com/terms",
+  "captured_at": "2026-09-27T12:49:47.545Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.fotmob.com/terms",
+  "elapsed_ms": 47,
+  "bytes": 276774,
+  "sha256": "9291454350c9e8c23a2fa18e90b23ea3fb6f543a203af6d2c9f44a2e223d2bad",
+  "headers": {
+    "content-type": "text/html; charset=utf-8",
+    "cache-control": "public, max-age=3600, s-maxage=3600, stale-while-revalidate=1200, stale-if-error=86400",
+    "x-cache": "Hit from cloudfront"
+  },
+  "access_fingerprint": [],
+  "terms_excerpts": [
+    "dictor Newsletter Get the app © Copyright 2026 FotMob Terms of use • Cookie policy • Privacy policy • Transparency act statement The use of automatic services (robots, crawler, indexing etc.) as well as other methods for systematic or regular use is not permitted. Follow us production:1bd2cb672d946bb3b83047d5b0486d159a363f15"
+  ]
+}

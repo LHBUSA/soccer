@@ -1,0 +1,30 @@
+{
+  "source": "football_data_co_uk",
+  "probe": "disclaimer",
+  "kind": "terms",
+  "url": "https://www.football-data.co.uk/disclaimer.php",
+  "captured_at": "2026-09-27T12:49:37.700Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://football-data.co.uk/disclaimer.php",
+  "elapsed_ms": 362,
+  "bytes": 34387,
+  "sha256": "5c4e0af73ab3f221ed320ea8c029ac979e9bfc94ca98eeb0bc7776aa7dc2d6d3",
+  "headers": {
+    "content-type": "text/html; charset=UTF-8",
+    "server": "Apache"
+  },
+  "access_fingerprint": [],
+  "terms_excerpts": [
+    "Football-Data.co.uk Disclaimer --> Network Sites Football Betting Football Livescore Learn to Bet Tennis Betting Tennis Livescore Updated: 24/09/26 Home Free Bets Livescores Football API Betting Books Learn Tennis Data Safer Gambling Contact --> BETTING SYST",
+    "ing --> BETTING ARTICLES Bet2Invest Strategy Builder tipstrr Betshares in Overs/Unders Analysing Tipsters Asian Handicap Closing Odds Unpredictable Premiership Betting Psychology Steamers & Drifters How Good are Tipsters? Betting Hot Hands Favourite-Longshot Bias Favourite-Longshot Bias 2 Point Spread Bias Power Ratings Wisdom of Crowds Wisdom of Crowds 2 Is",
+    "w Good are Tipsters? Betting Hot Hands Favourite-Longshot Bias Favourite-Longshot Bias 2 Point Spread Bias Power Ratings Wisdom of Crowds Wisdom of Crowds 2 Is Betting Random? Monkeys Throwing Darts How Many Win? Hot Hand Fallacy Luck & Skill Kelly Staking Progressive Staking Tipster Verification Scam Tipsters Scam Tipsters 2 Betting Model Testing Other Arti",
+    "ues earned by Football-Data come from losses accrued by customers of advertised sports bookmakers, Football-Data accepts no responsibility or liability for any betting or gambling losses or damages which may be incurred by any person or persons using any of the data services, other information contained on this website, third party links, sponsors and affili",
+    "e, third party links, sponsors and affiliates, and any email correspondence. Users of Football-Data should accept that they bet or gamble at their own risk. No betting or gambling of any form occurs on the Football-Data website. In a region where betting or gambling is not permitted this site should be used for informational purposes only, and not with a vie",
+    "a should accept that they bet or gamble at their own risk. No betting or gambling of any form occurs on the Football-Data website. In a region where betting or gambling is not permitted this site should be used for informational purposes only, and not with a view to betting or gambling via a third party website, including those sponsors and affiliates promot",
+    "or gambling is facilitated. It is the individual's responsibility to ensure that any activity with a third party which facilitates the placement of bets and/or wagers does not breach the laws relating to betting or gambling of the country or state where the individual is based. Under no circumstances will Football-Data be liable for any breach of state or co",
+    "ta advises that if your computer is used by children that you should consider the use of parental control software such as netnanny or cybersitter . All of the betting and gambling offers advertised on this website with online sports bookmakers, casinos and poker rooms, including, but not restricted to, free bets and deposit bonuses, are subject to specific",
+    "the such incentives, in addition to the standard terms and conditions of the website, before registering. RESOURCES Historical Excel Data FootballStatsAPI HOT Betting Broker NEW --> Betting Guide Free Bets Books on Betting Other Sites Like Football-Data? --> --> --> BETTING ARTICLES In-House Articles Pinnacle Sportsbook --> BET CALCULATORS Fair Odds P-value",
+    "ners Guide Top 100 Bookmakers Casino Advisor LIVESCORES Live Scores Football Scores Live Soccer Statisticsports STATS Soccer Bets MakeYourStats FootyStats ODDS Betting Odds BETTING BetExplorer Betfair Trading GodsOfOdds Soccerwidow CASINO William Hill Vegas FOOTBALL Injuries & Suspensions FORUMS Punters Lounge US BETTORS Best Offshore Sportsbooks"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "source": "wikidata",
+  "probe": "sparql_epl_clubs",
+  "kind": "data",
+  "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fclub%20%3FclubLabel%20WHERE%20%7B%20%3Fclub%20wdt%3AP118%20wd%3AQ9448%3B%20wdt%3AP31%20wd%3AQ476028.%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22.%20%7D%20%7D%20LIMIT%2040",
+  "captured_at": "2026-09-27T12:49:41.842Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fclub%20%3FclubLabel%20WHERE%20%7B%20%3Fclub%20wdt%3AP118%20wd%3AQ9448%3B%20wdt%3AP31%20wd%3AQ476028.%20SERVICE%20wikibase%3Alabel%20%7B%20bd%3AserviceParam%20wikibase%3Alanguage%20%22en%22.%20%7D%20%7D%20LIMIT%2040",
+  "elapsed_ms": 1127,
+  "bytes": 4668,
+  "sha256": "60fa6ce8a55419f296ea6f128d51bbbddc40866daf3f704eff380c4dba0703ab",
+  "headers": {
+    "content-type": "application/sparql-results+json;charset=utf-8",
+    "server": "nginx/1.22.1",
+    "cache-control": "public, max-age=300",
+    "x-cache": "cp1102 miss, cp1102 pass",
+    "access-control-allow-origin": "*"
+  },
+  "access_fingerprint": [],
+  "body_head": "{\n  \"head\" : {\n    \"vars\" : [ \"club\", \"clubLabel\" ]\n  },\n  \"results\" : {\n    \"bindings\" : [ {\n      \"club\" : {\n        \"type\" : \"uri\",\n        \"value\" : \"http://www.wikidata.org/entity/Q5794\"\n      },\n      \"clubLabel\" : {\n        \"xml:lang\" : \"en\",\n        \"type\" : \"literal\",\n        \"value\" : \"Everton F.C.\"\n      }\n    }, {\n      \"club\" : {\n        \"type\" : \"uri\",\n        \"value\" : \"http://www.wikidata.org/entity/Q9617\"\n      },\n      \"clubLabel\" : {\n        \"xml:lang\" : \"en\",\n        \"type\" : \"literal\",\n        \"value\" : \"Arsenal F.C.\"\n      }\n    }, {\n      \"club\" : {\n        \"type\" : \"uri\",\n        \"value\" : \"http://www.wikidata.org/entity/Q9653\"\n      },\n      \"clubLabel\" : {\n        \"",
+  "json_top_level": {
+    "keys": [
+      "head",
+      "results"
+    ]
+  }
+}

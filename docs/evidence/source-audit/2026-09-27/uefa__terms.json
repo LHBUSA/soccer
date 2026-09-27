@@ -1,0 +1,29 @@
+{
+  "source": "uefa",
+  "probe": "terms",
+  "kind": "terms",
+  "url": "https://www.uefa.com/termsconditions/",
+  "captured_at": "2026-09-27T12:50:34.416Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.uefa.com/termsconditions/",
+  "elapsed_ms": 151,
+  "bytes": 140994,
+  "sha256": "93114bf6a0022864a9600257d1232a410843010d12597f1aaf0720cd58f616e1",
+  "headers": {
+    "content-type": "text/html",
+    "cache-control": "max-age=300",
+    "access-control-allow-origin": "*"
+  },
+  "access_fingerprint": [],
+  "terms_excerpts": [
+    "ent provided by UEFA; and (ii) Content that may be posted by users of the UEFA Platforms (\"User Submissions\"). 6.2 All Content provided by UEFA is owned by, or licensed to, UEFA. Content provided by UEFA is provided to you \"AS IS\" and may not be used, reproduced, distributed, transmitted, broadcast, displayed, sold, licensed or otherwise exploited for any ot",
+    "r personal access and viewing of the Content on the UEFA Platforms. For that sole and exclusive purpose, UEFA grants to you a limited, revocable, non-exclusive license to access and use the UEFA Platforms privately for non-commercial purposes, in accordance with these Terms & Conditions. You agree not to attempt to arrange, decompile, modify, disassemble, tr",
+    "& Conditions. You are not allowed to systematically collect, compile, or gather the Content in any way, whether directly or indirectly, to create a collection, database, or directory. Additionally, you are prohibited from using automated tools, such as robots, spiders, or scripts, to scrape or collect Content and you must not use the Content to develop or tr",
+    ", or gather the Content in any way, whether directly or indirectly, to create a collection, database, or directory. Additionally, you are prohibited from using automated tools, such as robots, spiders, or scripts, to scrape or collect Content and you must not use the Content to develop or train any software, model, algorithm, or AI tool, including machine le",
+    "it undertake to, proactively control or moderate User Submissions. 6.5 You grant to UEFA a worldwide, non-exclusive, royalty-free, sub-licensable, transferable license to use, reproduce, distribute, prepare derivative works of, and display User Submissions (for so long as such User Submission exists) in connection with the delivery of the UEFA Platforms and",
+    "marks and product and service names are trademarks and copyright material of UEFA (\" UEFA Marks \"). 8.2 Nothing in the UEFA Platforms is designed to grant any licence or right to use any UEFA Marks or Content to you other than expressly detailed in these Terms & Conditions. 8.3 UEFA respects the intellectual property rights of others. If you believe that an",
+    "rising from any reliance placed upon such materials by you. 12 Your indemnity You agree to indemnify and hold UEFA and its subsidiaries, affiliates, licensors, licensees, officers, agents, co-branders and other partners, and employees, harmless from any and all liabilities, losses, damages, claims, penalties, fines, costs and expenses, including without limi",
+    ". All rights reserved The UEFA word, the UEFA logo and all marks related to UEFA competitions, are protected by trademarks and/or copyright of UEFA. No use for commercial purposes may be made of such trademarks. Use of UEFA.com signifies your agreement to the Terms and Conditions and Privacy Policy. Top"
+  ]
+}

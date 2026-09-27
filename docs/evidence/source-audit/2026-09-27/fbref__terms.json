@@ -1,0 +1,36 @@
+{
+  "source": "fbref",
+  "probe": "terms",
+  "kind": "terms",
+  "url": "https://www.sports-reference.com/termsofuse.html",
+  "captured_at": "2026-09-27T12:49:44.363Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.sports-reference.com/termsofuse.html",
+  "elapsed_ms": 180,
+  "bytes": 121196,
+  "sha256": "3dd9a93b8d174222a88e2a997208d9f38fda2839270a746ade66e95847194a27",
+  "headers": {
+    "content-type": "text/html",
+    "server": "cloudflare",
+    "cf-ray": "a41aa2439dfd0004-ORD",
+    "last-modified": "Sun, 27 Sep 2026 12:06:23 GMT"
+  },
+  "access_fingerprint": [],
+  "terms_excerpts": [
+    "nt that you are authorized (a) to accept this Agreement on that entity’s behalf and (b) to bind such entity to the Agreement. 2. Proprietary Rights SRL owns or licenses the data, statistics, text, graphics, images, forms, artwork, sound recordings, audio, video, software, and other material for this Site (the \"Content\"), as well as the selection, coordinatio",
+    ", arrangement, and organization and enhancement of the Content (also, the \"Content\") for this Site. Except as indicated, this Site and its Content are owned or licensed by SRL, and are protected by copyrights, trademarks, and/or other intellectual property owned or controlled by SRL and/or third-party licensors. Except as otherwise provided for in this Agree",
+    "find on our Site as a general matter, but our business obviously would be harmed if a bad apple were to abuse that privilege to create a competing statistical database or to copy a materially significant portion of our data. So, to strike an appropriate balance between these goals, and to protect our business, our technology infrastructure, and our ability",
+    "ntent. Our guiding principles are that (1) sharing, using, modifying, repackaging, or publishing data found on individual SRL webpages is welcomed, whether for commercial or non-commercial purposes, but (2) any such sharing, use, modification, repackaging, or publication should explicitly credit SRL as the source of the data to the maximum extent possible an",
+    "Subject to the terms of this Agreement, you are granted a limited, personal, non-exclusive, non-sublicensable, non-assignable, non-transferable, and revocable license to access and use the Site and Content. However, except as expressly permitted by this Agreement, in connection with the use of the Site, you may not: alter or modify the Site; or sell, rent,",
+    "s specifically authorized by SRL; or impersonate or misrepresent your affiliation with any person or entity; or without our express written permission, use any automated means to access or use the Site, including scripts, bots, scrapers, data miners, or similar software, in a manner that adversely impacts site performance or access; or use any material or Co",
+    "ersely impacts site performance or access; or use any material or Content from the Site, including without limitation any statistics or data, (i) to create any database, archive, or other data store that competes with or constitutes a material substitute for the services or data stores offered on the Site or by the Site's Data Providers or (ii) to provide an",
+    "y shocking or disgusting; (v) depicts or suggests presently occurring illegal activity, including, e.g., illicit drug use or underage drinking; (vi) includes unlicensed proprietary content of a third party, including, e.g., third-party content protected by copyright or trademark for which you do not have a license; (vii) breaches any duty of confidentiality",
+    "ithstanding any other terms of this Agreement, SRL grants the right to teachers to print pages from the Site for distribution to students, provided that proper attribution is given to the URL on the Site where the material originated. Notwithstanding any other terms of this Agreement, SRL also grant the operators of search engines permission to use robots to",
+    "on the Site where the material originated. Notwithstanding any other terms of this Agreement, SRL also grant the operators of search engines permission to use robots to copy materials and Content from the site for the sole purpose of creating publicly available searchable indexes of the materials, but not caches, copies, or archives of the materials or Cont",
+    "ches, copies, or archives of the materials or Content for any other non-indexing purpose. Search engines are expected to follow the guidelines set forth in the robots.txt file that we provide. For avoidance of doubt, search engines are not permitted to cache, copy, or archive any material or Content from the Site (including without limitation any statistical",
+    "o the ongoing conversation on the Site. With respect to email address submitted to the Site, including through sponsorships or advertisements, you agree not to harvest or compile these email addresses for purposes of spamming or engaging in other illicit commercial behavior. 12. Disclaimer of Warranty and Liability THIS SITE AND THE CONTENT ON AND MADE AVAIL",
+    "tes and the collection, use, and disclosure of your information in accordance with United States law. 19. Unsolicited Materials and End User’s Grant of Limited Licensed In operating our Site, SRL does not solicit nor does it wish to receive any confidential, secret, or proprietary information or other material from you through the Site, our mail and email ad",
+    "ng or sending content to us, you grant SRL the royalty-free, unrestricted, world-wide, perpetual, irrevocable, non-exclusive, and fully sublicensable right and license to use, reproduce, modify, adapt, publish, translate, create derivative works from, distribute, perform and display such content (in whole or part), including any information, suggestions, ide"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "source": "openfootball",
+  "probe": "bundesliga_2025_26",
+  "kind": "data",
+  "url": "https://raw.githubusercontent.com/openfootball/football.json/master/2025-26/de.1.json",
+  "captured_at": "2026-09-27T12:49:33.587Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://raw.githubusercontent.com/openfootball/football.json/master/2025-26/de.1.json",
+  "elapsed_ms": 92,
+  "bytes": 88247,
+  "sha256": "17d0999db6281e6365823acdbce41a4f01dd469eac63e1f897e4e47c02906672",
+  "headers": {
+    "content-type": "text/plain; charset=utf-8",
+    "cache-control": "max-age=300",
+    "x-cache": "HIT",
+    "access-control-allow-origin": "*"
+  },
+  "access_fingerprint": [],
+  "body_head": "{\n  \"name\": \"Deutsche Bundesliga 2025/26\",\n  \"matches\": [\n    {\n      \"round\": \"Matchday 1\",\n      \"date\": \"2025-08-22\",\n      \"time\": \"20:30\",\n      \"team1\": \"FC Bayern München\",\n      \"team2\": \"RB Leipzig\",\n      \"score\": {\n        \"ft\": [\n          6,\n          0\n        ],\n        \"ht\": [\n          3,\n          0\n        ]\n      }\n    },\n    {\n      \"round\": \"Matchday 1\",\n      \"date\": \"2025-08-23\",\n      \"time\": \"15:30\",\n      \"team1\": \"Eintracht Frankfurt\",\n      \"team2\": \"SV Werder Bremen\",\n      \"score\": {\n        \"ft\": [\n          4,\n          1\n        ],\n        \"ht\": [\n          2,\n          0\n        ]\n      }\n    },\n    {\n      \"round\": \"Matchday 1\",\n      \"date\": \"2025-08-23\","
+}

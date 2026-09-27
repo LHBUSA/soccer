@@ -1,0 +1,18 @@
+{
+  "source": "openligadb",
+  "probe": "robots",
+  "kind": "robots",
+  "url": "https://www.openligadb.de/robots.txt",
+  "captured_at": "2026-09-27T12:50:32.531Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 404,
+  "final_url": "https://www.openligadb.de/robots.txt",
+  "elapsed_ms": 665,
+  "bytes": 0,
+  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "headers": {
+    "server": "Microsoft-IIS/10.0"
+  },
+  "access_fingerprint": [],
+  "robots_txt": ""
+}

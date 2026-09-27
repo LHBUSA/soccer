@@ -1,0 +1,9 @@
+node_modules/
+.raw/
+.proof/
+dist/
+.env
+.env.*
+.wrangler/
+*.log
+.DS_Store

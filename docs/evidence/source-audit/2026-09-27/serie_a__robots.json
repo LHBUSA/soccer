@@ -1,0 +1,19 @@
+{
+  "source": "serie_a",
+  "probe": "robots",
+  "kind": "robots",
+  "url": "https://www.legaseriea.it/robots.txt",
+  "captured_at": "2026-09-27T12:49:51.883Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.legaseriea.it/robots.txt",
+  "elapsed_ms": 803,
+  "bytes": 515,
+  "sha256": "f6f54e81ece5b23c8cc8661944f001891499b9880ed3735c2d2983f3eb29d335",
+  "headers": {
+    "content-type": "text/plain",
+    "cache-control": "private, max-age=86400"
+  },
+  "access_fingerprint": [],
+  "robots_txt": "User-agent: *\nAllow: /\nDisallow: /_showcase/\nDisallow: {formatInstructions}\nDisallow: /_libraries/\nDisallow: /errors/\nDisallow: /_test\nDisallow: /template\nDisallow: /_mobileapp\nDisallow: virgilio\nDisallow: virgilio-mail\nDisallow: tv-radio-serie-a-test-for-cdn-raiway\nDisallow: geo.json\nDisallow: https://www1.legaseriea.it/\nDisallow: https://en1.legaseriea.it/\nSitemap: https://www.legaseriea.it/sitemap.xml\nSitemap: https://www.legaseriea.it/sitemap-article.xml\nSitemap: https://www.legaseriea.it/sitemap-video.xml"
+}

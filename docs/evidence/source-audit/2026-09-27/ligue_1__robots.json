@@ -1,0 +1,19 @@
+{
+  "source": "ligue_1",
+  "probe": "robots",
+  "kind": "robots",
+  "url": "https://ligue1.com/robots.txt",
+  "captured_at": "2026-09-27T12:49:52.689Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://ligue1.com/robots.txt",
+  "elapsed_ms": 614,
+  "bytes": 115,
+  "sha256": "3dcb618e9023b4a6480b429d966c70b64731e51127d118ae2d0df33449d0d751",
+  "headers": {
+    "content-type": "text/plain",
+    "server": "nginx/1.18.0 (Ubuntu)"
+  },
+  "access_fingerprint": [],
+  "robots_txt": "User-agent: *\n        Disallow: /catchAll\n        Allow: /\n        \n        Sitemap: https://ligue1.com/sitemap.xml"
+}

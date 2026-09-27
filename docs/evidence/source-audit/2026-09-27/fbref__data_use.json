@@ -1,0 +1,31 @@
+{
+  "source": "fbref",
+  "probe": "data_use",
+  "kind": "terms",
+  "url": "https://www.sports-reference.com/data_use.html",
+  "captured_at": "2026-09-27T12:49:44.547Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.sports-reference.com/data_use.html",
+  "elapsed_ms": 72,
+  "bytes": 84000,
+  "sha256": "b392f6085a998e1d928cc887d67a51a68ac3840b08d240bc60763512cf60aaa2",
+  "headers": {
+    "content-type": "text/html",
+    "server": "cloudflare",
+    "cf-ray": "a41aa2440e380004-ORD",
+    "last-modified": "Sun, 27 Sep 2026 12:50:24 GMT"
+  },
+  "access_fingerprint": [],
+  "terms_excerpts": [
+    ", or otherwise objectionable; or ... impersonate or misrepresent your affiliation with any person or entity; or without our express written permission, use any automated means to access or use the Site, including scripts, bots, scrapers, data miners, or similar software, in a manner that adversely impacts site performance or access; or use any material or Co",
+    "ersely impacts site performance or access; or use any material or Content from the Site, including without limitation any statistics or data, (i) to create any database, archive, or other data store that competes with or constitutes a material substitute for the services or data stores offered on the Site or by the Site's Data Providers or (ii) to provide an",
+    "ng methods used to predict, classify, label, or score inputs into the models; or .... This means that you should not create websites or tools based on data you scrape from Sports Reference or any of our sites or use our data to train generative artificial intelligence models without our permission. We have seen an uptick in requests from students, academics",
+    "erms. However, the rate of requests has forced us to reevaluate this stance. There are a couple of additional mitigating factors. For some of our datasets, our licenses completely preclude any redistribution of the data. And, in some cases, we cannot even give you explicit permission to reuse en masse what you find on the site. Additionally, we need to block",
+    "or us. There are also many excellent, free data sources listed below. If you are willing to meet our minimum fee, please contact us via our Feedback Form . Web Scraping Please see bot traffic page for information on how we limit and may at times block bot traffic and what our expectations are for responsible bot use. Paid Data Sources Here are some additiona",
+    "that we forwarded you to them. Sports Info Solutions . Sports Direct, Inc a Gracenote subsidiary. Spotrac for contract data. Free Data Sources Lahman Baseball Database . Complete batting and pitching statistics since 1871, plus fielding statistics, standings, team stats, managerial records, post-season data, and more. RetroSheet.org . RetroSheet has free do",
+    "to find help with the files on the RetroList yahoo group. Hockey Summary Project . Game level accounts of hockey seasons. Please do not attempt to aggressively spider data from our web sites, as spidering violates the terms and conditions that govern your use of our web sites: Site Terms of Use If we notice excessive activity from a particular IP address we",
+    "ll rights reserved. The SPORTS REFERENCE, STATHEAD, IMMACULATE GRID, and IMMACULATE FOOTY trademarks are owned exclusively by Sports Reference LLC. Use without license or authorization is expressly prohibited. Sports Reference&#8239;&reg; Hub Baseball Football (college) Basketball (college) Hockey Soccer Blog Stathead&#8239;&reg; Immaculate Grid&#8239;&reg;",
+    "will be the trusted source of information and tools that inspire and empower users to enjoy, understand, and share the sports they love. Privacy Policy &bull; Gambling Revenue Policy &bull; Accessibility Policy &bull; Use of Data"
+  ]
+}

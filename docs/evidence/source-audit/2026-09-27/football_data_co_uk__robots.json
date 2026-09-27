@@ -1,0 +1,20 @@
+{
+  "source": "football_data_co_uk",
+  "probe": "robots",
+  "kind": "robots",
+  "url": "https://www.football-data.co.uk/robots.txt",
+  "captured_at": "2026-09-27T12:49:35.273Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://football-data.co.uk/robots.txt",
+  "elapsed_ms": 1322,
+  "bytes": 732,
+  "sha256": "2dbd3891735d090f6a577d1281efeba5be6280e17bb1e4a8fd936cdc69c2d236",
+  "headers": {
+    "content-type": "text/plain",
+    "server": "Apache",
+    "last-modified": "Tue, 22 Sep 2026 21:27:50 GMT"
+  },
+  "access_fingerprint": [],
+  "robots_txt": "# Robots.txt file created by http://www.webtoolcentral.com\r\n# For domain: http://www.football-data.co.uk\r\n\r\n# All robots will spider the domain\r\nUser-agent: *\r\nDisallow:\r\n\r\n# Block major AI training models\r\nUser-agent: GPTBot\r\nDisallow: /\r\n\r\nUser-agent: ChatGPT-User\r\nDisallow: /\r\n\r\nUser-agent: Google-Extended\r\nDisallow: /\r\n\r\nUser-agent: Anthropic-AI\r\nDisallow: /\r\n\r\nUser-agent: Claude-Web\r\nDisallow: /\r\n\r\nUser-agent: ClaudeBot\r\nDisallow: /\r\n\r\nUser-agent: PerplexityBot\r\nDisallow: /\r\n\r\nUser-agent: Applebot-Extended\r\nDisallow: /\r\n\r\n# Block aggressive common scraping tools\r\nUser-agent: CCBot\r\nDisallow: /\r\n\r\nUser-agent: Meta-ExternalAgent\r\nDisallow: /\r\n\r\nUser-agent: Diffbot\r\nDisallow: /\r\n\r\nUser-agent: Omgilibot\r\nDisallow: /\r\n\r\n\r\n"
+}

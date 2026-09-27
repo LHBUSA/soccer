@@ -1,0 +1,10 @@
+{
+  "source": "premier_league",
+  "probe": "pulselive_comps",
+  "kind": "data",
+  "url": "https://footballapi.pulselive.com/football/competitions?page=0&pageSize=5",
+  "captured_at": "2026-09-27T12:49:48.830Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "error": "ECONNRESET",
+  "elapsed_ms": 104
+}

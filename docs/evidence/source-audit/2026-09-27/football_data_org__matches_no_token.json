@@ -1,0 +1,27 @@
+{
+  "source": "football_data_org",
+  "probe": "matches_no_token",
+  "kind": "data",
+  "url": "https://api.football-data.org/v4/competitions/PL/matches",
+  "captured_at": "2026-09-27T12:50:31.110Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 403,
+  "final_url": "https://api.football-data.org/v4/competitions/PL/matches",
+  "elapsed_ms": 483,
+  "bytes": 152,
+  "sha256": "2ed7e446e2d24b88fc0a2944c28555c9df188c3193a9ca7f0189709b821d3c44",
+  "headers": {
+    "content-type": "application/json;charset=UTF-8",
+    "server": "nginx"
+  },
+  "access_fingerprint": [
+    "forbidden"
+  ],
+  "body_head": "{\"message\":\"The resource you are looking for is restricted and apparently not within your permissions. Please check your subscription.\",\"errorCode\":403}",
+  "json_top_level": {
+    "keys": [
+      "message",
+      "errorCode"
+    ]
+  }
+}

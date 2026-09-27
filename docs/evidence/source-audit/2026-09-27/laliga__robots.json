@@ -1,0 +1,21 @@
+{
+  "source": "laliga",
+  "probe": "robots",
+  "kind": "robots",
+  "url": "https://www.laliga.com/robots.txt",
+  "captured_at": "2026-09-27T12:50:34.916Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.laliga.com/robots.txt",
+  "elapsed_ms": 306,
+  "bytes": 1484,
+  "sha256": "90e70aea5d2690e4c3954e9fca79e02b024431b7d210310c97947bb323dab362",
+  "headers": {
+    "content-type": "text/plain;charset=UTF-8",
+    "cache-control": "public, max-age=600",
+    "x-cache": "TCP_HIT",
+    "last-modified": "Wed, 23 Sep 2026 13:16:06 GMT"
+  },
+  "access_fingerprint": [],
+  "robots_txt": "User-agent: *\nAllow: /es-AR/\nAllow: /en-AR/\nAllow: /es-BR/\nAllow: /en-BR/\nAllow: /es-CA/\nAllow: /en-CA/\nAllow: /es-CO/\nAllow: /en-CO/\nAllow: /es-DE/\nAllow: /en-DE/\nAllow: /es-EG/\nAllow: /en-EG/\nAllow: /en-ES/\nAllow: /es-FR/\nAllow: /en-FR/\nAllow: /es-GB/\nAllow: /en-GB/\nAllow: /es-ID/\nAllow: /en-ID/\nAllow: /es-IN/\nAllow: /en-IN/\nAllow: /es-MA/\nAllow: /en-MA/\nAllow: /es-MX/\nAllow: /en-MX/\nAllow: /es-NG/\nAllow: /en-NG/\nAllow: /es-NL/\nAllow: /en-NL/\nAllow: /es-PE/\nAllow: /en-PE/\nAllow: /es-US/\nAllow: /en-US/\nDisallow: /en-*/*\nDisallow: /es-*/*\n########### Allows Robots all user agents ############\nAllow: /\nAllow: /sitemap.xml\nAllow: /noticias/*\nAllow: /partido/*\nAllow: /jugador/*\nAllow: /clubes/*\nAllow: /laliga-santander/*\nAllow: /laliga-smartbank/*\nAllow: /futbol-femenino/*\nAllow: /laliga-genuine-santander/*\nAllow: /laligatv/*\nAllow: /estadisticas\nAllow: /estadisticas-avanzadas\nAllow: /leaderboard\nAllow: /multimedia/*\nAllow: /transparencia/*\nAllow: /laliga/*\nAllow: /fundacion/*\nAllow: /embajadores/*\nAllow: /derechos-audiovisuales/*\nAllow: /otras-competiciones/*\nAllow: /operadores/*\nAllow: /apps/*\nAllow: /mapa-web\nAllow: /*.php$\nAllow: /*.js$\nAllow: /*.inc$\nAllow: /*.css$\nAllow: /*.xhtml$\nAllow: /*.gif$\nAllow: /*.png$\nAllow: /*.jpeg$\nAllow: /*.jpg$\nAllow: /*.ico$\n### disallow all files with? in url\n#Disallow: /*?*\n#Disallow: /*?\n### Tiempo en segundos entre dos solicitudes\nCrawl-delay: 30\nSitemap: https://www.laliga.com/sitemap.xml\n### disallow pdf\nDisallow: *.pdf$"
+}

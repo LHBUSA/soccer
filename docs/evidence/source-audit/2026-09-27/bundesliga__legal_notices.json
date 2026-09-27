@@ -1,0 +1,24 @@
+{
+  "source": "bundesliga",
+  "probe": "legal_notices",
+  "kind": "terms",
+  "url": "https://www.bundesliga.com/en/bundesliga/info/legal-notices",
+  "captured_at": "2026-09-27T12:50:36.518Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.bundesliga.com/en/bundesliga/info/legal-notices",
+  "elapsed_ms": 22,
+  "bytes": 384950,
+  "sha256": "9f48bfe18e347b8d42e718fa889651e6c47d00ed313db23f8fc310a131c90d1a",
+  "headers": {
+    "content-type": "text/html;charset=UTF-8",
+    "cache-control": "public, max-age=30",
+    "x-cache": "Hit from cloudfront"
+  },
+  "access_fingerprint": [],
+  "terms_excerpts": [
+    "opyright and protective rights 2.1 All rights are reserved. The intellectual property contained on or in this Website is protected. The User is not granted any license to use or exploit the intellectual property of the Bundesliga in this Website. Especially the content published on this Website, such as text, images, illustrations, sound, animation and video",
+    "d repetition of content in data bases or other electronic media and systems. The production of copies and downloads is only permitted for personal, private and non-commercial use. The display of this Website in third party frames is only permissible with written permission. The User is instructed that the content in the Website is subject in part to third pa",
+    "ghts (Urheberrechtsgesetz, “UrhG”), the Bundesliga expressly reserves the right to reproduce the content available on this Website for the purposes of text and data mining. Any automated programmes, applets, bots or similar technologies may not be used to access, analyse or download the content distributed via this Website. This applies in particular to the"
+  ]
+}

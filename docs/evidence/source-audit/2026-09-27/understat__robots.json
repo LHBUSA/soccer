@@ -1,0 +1,20 @@
+{
+  "source": "understat",
+  "probe": "robots",
+  "kind": "robots",
+  "url": "https://understat.com/robots.txt",
+  "captured_at": "2026-09-27T12:49:44.622Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://understat.com/robots.txt",
+  "elapsed_ms": 1679,
+  "bytes": 26,
+  "sha256": "133e4db054e73a10017a1f429c80c35cd5bfa9c3a1aba581b364ecc459c48a4b",
+  "headers": {
+    "content-type": "text/plain",
+    "server": "Apache/2.4.29 (Ubuntu)",
+    "last-modified": "Mon, 13 Jul 2020 18:28:54 GMT"
+  },
+  "access_fingerprint": [],
+  "robots_txt": "User-agent: *\r\nDisallow: /"
+}

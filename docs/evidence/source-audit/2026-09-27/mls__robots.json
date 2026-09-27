@@ -1,0 +1,21 @@
+{
+  "source": "mls",
+  "probe": "robots",
+  "kind": "robots",
+  "url": "https://www.mlssoccer.com/robots.txt",
+  "captured_at": "2026-09-27T12:49:53.306Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.mlssoccer.com/robots.txt",
+  "elapsed_ms": 171,
+  "bytes": 296,
+  "sha256": "df54dd4befb0a47a05aa47e59f26d708996008fecf6b28f373005c180e43d33b",
+  "headers": {
+    "content-type": "text/plain",
+    "cache-control": "public, max-age=7200",
+    "access-control-allow-origin": "*",
+    "last-modified": "Mon, 14 Sep 2026 10:49:45 GMT"
+  },
+  "access_fingerprint": [],
+  "robots_txt": "User-agent: *\n\nAllow: /\n\nDisallow: /js/\nDisallow: /css/\nDisallow: /_libraries/\nDisallow: /errors/\nDisallow: /_d3_qa_test/\nDisallow: /handlers/\nDisallow: /layouts/\nDisallow: /modules/\nDisallow: /services/\nDisallow: /storybook/\nDisallow: /templates/\nDisallow: /views/\nDisallow: /d3-test-not-remove\n"
+}

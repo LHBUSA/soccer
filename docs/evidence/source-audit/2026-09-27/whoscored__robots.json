@@ -1,0 +1,23 @@
+{
+  "source": "whoscored",
+  "probe": "robots",
+  "kind": "robots",
+  "url": "https://www.whoscored.com/robots.txt",
+  "captured_at": "2026-09-27T12:49:47.596Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.whoscored.com/robots.txt",
+  "elapsed_ms": 205,
+  "bytes": 139,
+  "sha256": "1dc19d25aca8d9272bc8fd27a213d9fff9d0807f3ea077bc709e9e4a60401f78",
+  "headers": {
+    "content-type": "text/plain",
+    "server": "cloudflare",
+    "cache-control": "public, max-age=1728000",
+    "cf-ray": "a41aa2580f2deacf-ORD",
+    "access-control-allow-origin": "*",
+    "last-modified": "Wed, 05 Feb 2025 14:07:27 GMT"
+  },
+  "access_fingerprint": [],
+  "robots_txt": "User-agent: *\nDisallow: /Accounts/\nDisallow: /Predictions/\nDisallow: /Users/\nDisallow: /accounts/\nDisallow: /predictions/\nDisallow: /users/"
+}

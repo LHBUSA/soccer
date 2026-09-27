@@ -1,0 +1,49 @@
+{
+  "source": "uefa",
+  "probe": "match_api",
+  "kind": "data",
+  "url": "https://match.uefa.com/v5/matches?competitionId=1&seasonYear=2026&limit=5&offset=0&order=ASC",
+  "captured_at": "2026-09-27T12:50:34.571Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://match.uefa.com/v5/matches?competitionId=1&seasonYear=2026&limit=5&offset=0&order=ASC",
+  "elapsed_ms": 340,
+  "bytes": 170952,
+  "sha256": "ab990f285065219eaafe8382379ce9143147f5967c62b25dff551bd00d8f8bb2",
+  "headers": {
+    "content-type": "application/json",
+    "cache-control": "public, max-age=1130, s-maxage=587",
+    "access-control-allow-origin": "https://www.uefa.com"
+  },
+  "access_fingerprint": [],
+  "body_head": "[{\"awayTeam\":{\"associationId\":\"257160\",\"associationLogoUrl\":\"https://img.uefa.com/imgml/uefacom/elements/logos/ma/MDA.svg\",\"bigLogoUrl\":\"https://img.uefa.com/imgml/TP/teams/logos/700x700/2600714.png\",\"confederationType\":\"UEFA\",\"countryCode\":\"MDA\",\"id\":\"2600714\",\"idProvider\":\"FAME\",\"internationalName\":\"Milsami\",\"isPlaceHolder\":false,\"logoUrl\":\"https://img.uefa.com/imgml/TP/teams/logos/70x70/2600714.png\",\"mediumLogoUrl\":\"https://img.uefa.com/imgml/TP/teams/logos/240x240/2600714.png\",\"organizationId\":\"250000162\",\"teamCode\":\"MIO\",\"teamTypeDetail\":\"DOMESTIC_MEN_TEAM_A\",\"translations\":{\"countryName\":{\"EN\":\"Moldova\",\"FR\":\"Moldavie\",\"DE\":\"Moldau\",\"ES\":\"Moldavia\",\"PT\":\"Moldávia\",\"IT\":\"Moldavia\",\"RU\":",
+  "json_top_level": {
+    "array_length": 5,
+    "first_keys": [
+      "awayTeam",
+      "behindClosedDoors",
+      "competition",
+      "competitionPhase",
+      "condition",
+      "fullTimeAt",
+      "homeTeam",
+      "id",
+      "kickOffTime",
+      "leg",
+      "lineupStatus",
+      "matchAttendance",
+      "matchday",
+      "playerEvents",
+      "referees",
+      "relatedMatches",
+      "round",
+      "score",
+      "seasonYear",
+      "sessionNumber",
+      "stadium",
+      "status",
+      "type",
+      "winner"
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "source": "mls",
+  "probe": "stats_api",
+  "kind": "data",
+  "url": "https://stats-api.mlssoccer.com/v1/matches/seasons/MLS-SEA-0001KA/competitions/MLS-COM-000001?per_page=5",
+  "captured_at": "2026-09-27T12:49:54.121Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 404,
+  "final_url": "https://stats-api.mlssoccer.com/v1/matches/seasons/MLS-SEA-0001KA/competitions/MLS-COM-000001?per_page=5",
+  "elapsed_ms": 223,
+  "bytes": 32,
+  "sha256": "4aea703947daa014b870769bc24fcafc7eec1eec9411a5a1331f70c1ae7de155",
+  "headers": {
+    "content-type": "application/json",
+    "cache-control": "max-age=30",
+    "access-control-allow-origin": "*"
+  },
+  "access_fingerprint": [],
+  "body_head": "{\"message\":\"Endpoint Not Found\"}",
+  "json_top_level": {
+    "keys": [
+      "message"
+    ]
+  }
+}

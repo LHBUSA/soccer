@@ -1,0 +1,20 @@
+{
+  "source": "understat",
+  "probe": "epl_page",
+  "kind": "data",
+  "url": "https://understat.com/league/EPL",
+  "captured_at": "2026-09-27T12:49:46.304Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://understat.com/league/EPL",
+  "elapsed_ms": 483,
+  "bytes": 18698,
+  "sha256": "aee571f0d3a1cb9720c41be8caf7aed56f73818ef670e7ac698324a46e1612d6",
+  "headers": {
+    "content-type": "text/html; charset=UTF-8",
+    "server": "Apache/2.4.29 (Ubuntu)",
+    "cache-control": "no-store, no-cache, must-revalidate"
+  },
+  "access_fingerprint": [],
+  "body_head": "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n\t\t<base href=\"https://understat.com/\">\n\t\t<title>EPL xG Table and Scorers for the 2026/2027 season | Understat.com</title>\n        <meta charset=\"UTF-8\" />\n\t\t<meta name=\"description\" content=\"xG table of EPL standings and top scorers for the 2026/2027 season, also tables from past seasons and other European football leagues.\">\n\t\t<meta name=\"Keywords\" content=\"EPL, xg table,scorers, expected goals table, season 2026/2027\">\n\t\t<meta name=\"viewport\" user-scalable=\"no\" content=\"width=device-width, maximum-scale=1, initial-scale=1\">\n\t\t<script src=\"https://sdk.adlook.tech/inventory/core.js\" async type=\"text/javascript\"></script>\n\t\t\t<link rel=\"apple-touch-i"
+}

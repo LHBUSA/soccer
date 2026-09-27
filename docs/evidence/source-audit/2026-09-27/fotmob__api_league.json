@@ -1,0 +1,20 @@
+{
+  "source": "fotmob",
+  "probe": "api_league",
+  "kind": "data",
+  "url": "https://www.fotmob.com/api/leagues?id=47",
+  "captured_at": "2026-09-27T12:49:47.383Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 404,
+  "final_url": "https://www.fotmob.com/api/leagues?id=47",
+  "elapsed_ms": 159,
+  "bytes": 206355,
+  "sha256": "ed535f4ed762896ad84de4b4072de2a7ad7cf1d903c5cdc9fd0c2eb0a94df27e",
+  "headers": {
+    "content-type": "text/html; charset=utf-8",
+    "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
+    "x-cache": "Error from cloudfront"
+  },
+  "access_fingerprint": [],
+  "body_head": "<!DOCTYPE html><html lang=\"en\" dir=\"ltr\"><head><meta name=\"apple-itunes-app\" content=\"app-id=488575683\"/><link rel=\"alternate\" href=\"android-app://com.mobilefootie.wc2010/http\"/><link rel=\"apple-touch-icon\" href=\"/img/android-icon-192x192.png\"/><link rel=\"manifest\" href=\"/manifest.json\"/><link rel=\"icon\" type=\"image/x-icon\" href=\"/favicon.ico\"/><link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\"/><link rel=\"icon\" type=\"image/png\" sizes=\"96x96\" href=\"/img/favicon-96x96.png\"/><link rel=\"icon\" type=\"image/svg+xml\" href=\"/favicon.svg\"/><meta name=\"apple-mobile-web-app-title\" content=\"FotMob\"/><meta name=\"color-scheme\" content=\"dark light\"/><title>FotMob - Football Live Scores</title><meta name"
+}

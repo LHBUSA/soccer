@@ -1,0 +1,21 @@
+{
+  "source": "openfootball",
+  "probe": "worldcup_2026",
+  "kind": "data",
+  "url": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
+  "captured_at": "2026-09-27T12:49:33.684Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
+  "elapsed_ms": 29,
+  "bytes": 42736,
+  "sha256": "0ae2c18109b5aa86bc11928b43586ca430c234804d5bbf808d2c3bf2051ecfca",
+  "headers": {
+    "content-type": "text/plain; charset=utf-8",
+    "cache-control": "max-age=300",
+    "x-cache": "HIT",
+    "access-control-allow-origin": "*"
+  },
+  "access_fingerprint": [],
+  "body_head": "{\"name\": \"World Cup 2026\",\n \"matches\": \n  [{\"round\": \"Matchday 1\",\n    \"date\": \"2026-06-11\",\n    \"time\": \"13:00 UTC-6\",\n    \"team1\": \"Mexico\",\n    \"team2\": \"South Africa\",\n    \"score\": {\"ft\": [2, 0], \"ht\": [1, 0]},\n    \"goals1\": \n     [{\"name\": \"Julián Quiñones\", \"minute\": \"9\"},\n      {\"name\": \"Raúl Jiménez\", \"minute\": \"67\"}],\n    \"goals2\": [],\n    \"group\": \"Group A\",\n    \"ground\": \"Mexico City\"},\n   {\"round\": \"Matchday 1\",\n    \"date\": \"2026-06-11\",\n    \"time\": \"20:00 UTC-6\",\n    \"team1\": \"South Korea\",\n    \"team2\": \"Czech Republic\",\n    \"score\": {\"ft\": [2, 1], \"ht\": [0, 0]},\n    \"goals1\": \n     [{\"name\": \"Hwang In-Beom\", \"minute\": \"67\"},\n      {\"name\": \"Oh Hyeon-Gyu\", \"minute\": \"80\"}],\n    "
+}

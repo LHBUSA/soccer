@@ -1,0 +1,22 @@
+{
+  "source": "transfermarkt",
+  "probe": "robots",
+  "kind": "robots",
+  "url": "https://www.transfermarkt.com/robots.txt",
+  "captured_at": "2026-09-27T12:49:47.831Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.transfermarkt.com/robots.txt",
+  "elapsed_ms": 232,
+  "bytes": 131,
+  "sha256": "9fd22887e9239d1a35054a5fb86763554940ebd951ce9e4ecc8d10a86eada5f9",
+  "headers": {
+    "content-type": "text/plain; charset=utf-8",
+    "server": "nginx",
+    "x-cache": "Miss from cloudfront",
+    "access-control-allow-origin": "*",
+    "last-modified": "Fri, 25 Sep 2026 13:49:04 GMT"
+  },
+  "access_fingerprint": [],
+  "robots_txt": "User-agent: Slurp\nCrawl-delay: 2\n\nUser-agent: Mediapartners-Google\nDisallow:\n\nUser-agent: wget\nDisallow: /\n\nUser-agent: *\nAllow: /\n"
+}

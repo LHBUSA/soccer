@@ -1,0 +1,25 @@
+{
+  "source": "football_data_co_uk",
+  "probe": "notes",
+  "kind": "terms",
+  "url": "https://www.football-data.co.uk/notes.txt",
+  "captured_at": "2026-09-27T12:49:37.383Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://football-data.co.uk/notes.txt",
+  "elapsed_ms": 314,
+  "bytes": 7686,
+  "sha256": "6ecd41a98ad2751372817e7e6f1709bfeb433c53dd9aeda330fd926a5471452d",
+  "headers": {
+    "content-type": "text/plain",
+    "server": "Apache",
+    "last-modified": "Fri, 31 Jul 2026 07:33:08 GMT"
+  },
+  "access_fingerprint": [],
+  "terms_excerpts": [
+    "l yellow card when a second is shown to a player converting it into a red, but this is included as a yellow (plus red) for European games. The following key to betting odds data is described below. These are for pre-closing odds. For the closing odds, as below but with an additional \"C\" character following the bookmaker abbreviation/Max/Avg (e.g. B365CH = cl",
+    "= Market average away win odds BFEH = Betfair Exchange home win odds BFED = Betfair Exchange draw odds BFEA = Betfair Exchange away win odds Key to total goals betting odds: BbOU = Number of BetBrain bookmakers used to calculate over/under 2.5 goals (total goals) averages and maximums BbMx>2.5 = Betbrain maximum over 2.5 goals BbAv>2.5 = Betbrain average ove",
+    "cle over 2.5 goals P 2.5 = Market maximum over 2.5 goals Max 2.5 = Market average over 2.5 goals Avg<2.5 = Market average under 2.5 goals Key to Asian handicap betting odds: BbAH = Number of BetBrain bookmakers used to Asian handicap averages and maximums BbAHh = Betbrain size of handicap (home team) AHh = Market size of handicap (home team) (since 2019/2020",
+    "s (full time, half time) XScores - http://www.xscores .com Match statistics BBC, Flashscore, ESPN Soccer, Bundesliga.de, Gazzetta.it and Football.fr Bookmakers betting odds Betbrain.com Oddsportal.com Individual bookmakers Betting odds for weekend games are collected Friday afternoons, and on Tuesday afternoons for midweek games. Additional match statistics"
+  ]
+}

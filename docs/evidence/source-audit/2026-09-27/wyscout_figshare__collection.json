@@ -1,0 +1,48 @@
+{
+  "source": "wyscout_figshare",
+  "probe": "collection",
+  "kind": "data",
+  "url": "https://api.figshare.com/v2/collections/4415000",
+  "captured_at": "2026-09-27T12:49:33.792Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://api.figshare.com/v2/collections/4415000",
+  "elapsed_ms": 618,
+  "bytes": 4574,
+  "sha256": "196d6320849c0d7849362a0683f51b5e9a830a235d6482adccb746898744a0ab",
+  "headers": {
+    "content-type": "application/json",
+    "server": "nginx"
+  },
+  "access_fingerprint": [],
+  "body_head": "{\"version\": 5, \"resource_id\": \"\", \"resource_doi\": \"\", \"resource_title\": \"\", \"resource_link\": \"\", \"resource_version\": 0, \"description\": \"<div>If you use the data in this collection for your research or analyses, cite the following papers:</div><div><br></div><div><div>- Pappalardo et al., (2019) <b>A public data set of spatio-temporal match events in soccer competitions</b>, Nature Scientific Data 6:236, https://www.nature.com/articles/s41597-019-0247-7</div><div><br></div>- Pappalardo et al. (2019) <b>PlayeRank: Data-driven Performance Evaluation and Player Ranking in Soccer via a Machine Learning Approach</b>.\\n ACM Transactions on Intellingent Systems and Technologies (TIST) 10, 5,\\n Artic",
+  "json_top_level": {
+    "keys": [
+      "version",
+      "resource_id",
+      "resource_doi",
+      "resource_title",
+      "resource_link",
+      "resource_version",
+      "description",
+      "categories",
+      "references",
+      "tags",
+      "keywords",
+      "authors",
+      "funding",
+      "institution_id",
+      "group_id",
+      "group_resource_id",
+      "articles_count",
+      "public",
+      "custom_fields",
+      "citation",
+      "created_date",
+      "modified_date",
+      "related_materials",
+      "id",
+      "title"
+    ]
+  }
+}

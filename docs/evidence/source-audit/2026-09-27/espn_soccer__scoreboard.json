@@ -1,0 +1,22 @@
+{
+  "source": "espn_soccer",
+  "probe": "scoreboard",
+  "kind": "data",
+  "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
+  "captured_at": "2026-09-27T12:49:48.066Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 403,
+  "final_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
+  "elapsed_ms": 81,
+  "bytes": 442,
+  "sha256": "73a9f6ad0cf2815f792af1142653bcb71abdeef64bfe9b8e6cde451dd3aba401",
+  "headers": {
+    "content-type": "text/html",
+    "server": "AkamaiGHost"
+  },
+  "access_fingerprint": [
+    "akamai",
+    "forbidden"
+  ],
+  "body_head": "<HTML><HEAD>\n<TITLE>Access Denied</TITLE>\n</HEAD><BODY>\n<H1>Access Denied</H1>\n \nYou don't have permission to access \"http&#58;&#47;&#47;site&#46;api&#46;espn&#46;com&#47;apis&#47;site&#47;v2&#47;sports&#47;soccer&#47;eng&#46;1&#47;scoreboard\" on this server.<P>\nReference&#32;&#35;18&#46;5ed2017&#46;1790513427&#46;9661ea9\n<P>https&#58;&#47;&#47;errors&#46;edgesuite&#46;net&#47;18&#46;5ed2017&#46;1790513427&#46;9661ea9</P>\n</BODY>\n</HTML>\n"
+}

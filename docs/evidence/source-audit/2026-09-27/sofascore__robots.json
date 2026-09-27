@@ -1,0 +1,22 @@
+{
+  "source": "sofascore",
+  "probe": "robots",
+  "kind": "robots",
+  "url": "https://www.sofascore.com/robots.txt",
+  "captured_at": "2026-09-27T12:49:46.790Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 403,
+  "final_url": "https://www.sofascore.com/robots.txt",
+  "elapsed_ms": 91,
+  "bytes": 48,
+  "sha256": "6b771bca0fe4271cc0baf29954f10c68be99102048e4df524b6d7d6bf38dad5d",
+  "headers": {
+    "content-type": "application/json",
+    "server": "Varnish",
+    "access-control-allow-origin": "*"
+  },
+  "access_fingerprint": [
+    "forbidden"
+  ],
+  "robots_txt": "{\"error\": {\"code\": 403, \"reason\": \"Forbidden\" }}"
+}

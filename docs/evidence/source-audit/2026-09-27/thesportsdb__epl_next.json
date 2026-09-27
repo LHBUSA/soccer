@@ -1,0 +1,26 @@
+{
+  "source": "thesportsdb",
+  "probe": "epl_next",
+  "kind": "data",
+  "url": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php?id=4328",
+  "captured_at": "2026-09-27T12:50:34.045Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php?id=4328",
+  "elapsed_ms": 178,
+  "bytes": 1680,
+  "sha256": "ae0dd502f1532adff5e8cf6a5419dc597f594da38b2169fb4d86d079328e7751",
+  "headers": {
+    "content-type": "application/json; charset=utf-8",
+    "server": "cloudflare",
+    "cf-ray": "a41aa379b98b320f-ORD",
+    "access-control-allow-origin": "*"
+  },
+  "access_fingerprint": [],
+  "body_head": "{\"events\":[{\"idEvent\":\"2494052\",\"idAPIfootball\":\"1557417\",\"strTimestamp\":\"2026-10-10T11:30:00\",\"strEvent\":\"Arsenal vs Leeds United\",\"strEventAlternate\":\"Leeds United @ Arsenal\",\"strFilename\":\"English Premier League 2026-10-10 Arsenal vs Leeds United\",\"strSport\":\"Soccer\",\"idLeague\":\"4328\",\"strLeague\":\"English Premier League\",\"strLeagueBadge\":\"https:\\/\\/r2.thesportsdb.com\\/images\\/media\\/league\\/badge\\/gasy9d1737743125.png\",\"strSeason\":\"2026-2027\",\"strDescriptionEN\":null,\"strHomeTeam\":\"Arsenal\",\"strAwayTeam\":\"Leeds United\",\"intHomeScore\":null,\"intHomeScoreExtra\":null,\"intAwayScoreExtra\":null,\"intRound\":\"6\",\"intAwayScore\":null,\"intSpectators\":null,\"strOfficial\":\"\",\"strWeather\":null,\"dateEvent\":",
+  "json_top_level": {
+    "keys": [
+      "events"
+    ]
+  }
+}

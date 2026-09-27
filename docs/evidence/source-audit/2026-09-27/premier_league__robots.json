@@ -1,0 +1,20 @@
+{
+  "source": "premier_league",
+  "probe": "robots",
+  "kind": "robots",
+  "url": "https://www.premierleague.com/robots.txt",
+  "captured_at": "2026-09-27T12:49:48.355Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.premierleague.com/robots.txt",
+  "elapsed_ms": 257,
+  "bytes": 638,
+  "sha256": "344085231eae7ed38f04dd8d3ba6aa9db7fe0dac3699dd682fbc1e48f56e15e0",
+  "headers": {
+    "content-type": "text/plain;charset=utf-8",
+    "cache-control": "max-age=30, stale-while-revalidate=600, stale-if-error=86400",
+    "x-cache": "Miss from cloudfront"
+  },
+  "access_fingerprint": [],
+  "robots_txt": "User-agent: *\n\nSitemap: https://www.premierleague.com/sitemap_index.xml\n\n# Disallow: /*#!\n\n# Block query parameters\nDisallow: /*term=\nDisallow: /*utm_source=\nDisallow: /*utm_medium=\nDisallow: /*utm_campaign=\nDisallow: /*utm_content=\nDisallow: /*jumpToSparkByWebViewIsolation=\nDisallow: /*napp=\nDisallow: /*subtab_h=\nDisallow: /*tblci=\nDisallow: /*webview=\nDisallow: /*_source_stat_=\nDisallow: /*fbclid=\nDisallow: /*form=\nDisallow: /*gad_source=\nDisallow: /*geo=\nDisallow: /*hl=\nDisallow: /*reason=\nDisallow: /*redirect_uri=\nDisallow: /*ref=\nDisallow: /*scrlybrkr=\nDisallow: /*source=\nDisallow: /*state=\nDisallow: /*app=\nDisallow: /*match="
+}

@@ -1,0 +1,21 @@
+{
+  "source": "uefa",
+  "probe": "robots",
+  "kind": "robots",
+  "url": "https://www.uefa.com/robots.txt",
+  "captured_at": "2026-09-27T12:50:34.345Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.uefa.com/robots.txt",
+  "elapsed_ms": 67,
+  "bytes": 540,
+  "sha256": "5300d0cb8b6ccc4161f1bd16a2547e919f0bd8604918822c50caaee2cfdeffd8",
+  "headers": {
+    "content-type": "text/plain; charset=utf-8",
+    "cache-control": "max-age=300",
+    "access-control-allow-origin": "*",
+    "last-modified": "Sun, 27 Sep 2026 12:47:25 GMT"
+  },
+  "access_fingerprint": [],
+  "robots_txt": "User-agent: *\nDisallow: /generic/*\nDisallow: /images/*\nDisallow: /libraries/*\nDisallow: /thirdparties/*\nDisallow: /test/*\nDisallow: /uc3/*\nDisallow: /*/_content\nDisallow: /disciplinary/*\nDisallow: /*?_preview_token_uefacom=\n\nSitemap: https://www.uefa.com/sitemap.xml\nSitemap: https://www.uefa.com/sitemap/news/latest.xml\nSitemap: https://www.uefa.com/sitemap/news/index.xml\nSitemap: https://www.uefa.com/sitemap/video/index.xml\nSitemap: https://www.uefa.com/sitemap/document/index.xml\nSitemap: https://www.uefa.com/sitemap/matches/index.xml"
+}

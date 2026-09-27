@@ -1,0 +1,25 @@
+{
+  "source": "premier_league",
+  "probe": "terms",
+  "kind": "terms",
+  "url": "https://www.premierleague.com/en/terms-and-conditions",
+  "captured_at": "2026-09-27T12:49:48.616Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.premierleague.com/en/terms-and-conditions",
+  "elapsed_ms": 210,
+  "bytes": 92029,
+  "sha256": "9d2d2f477279723c0e83fc6a4f6545de1855f4ef1de46119ce738cdae37f5618",
+  "headers": {
+    "content-type": "text/html;charset=utf-8",
+    "cache-control": "max-age=30, stale-while-revalidate=600, stale-if-error=86400",
+    "x-cache": "Miss from cloudfront"
+  },
+  "access_fingerprint": [],
+  "terms_excerpts": [
+    "of date at any given time, and we are under no obligation to update such material. INTELLECTUAL PROPERTY RIGHTS The Website and App are protected by copyright, database rights and other intellectual property and related rights (\"Rights\") which are owned by us and our suppliers. All such Rights are reserved. Except where otherwise indicated on the Website or",
+    "gest any form of association, approval or endorsement on the part of us where none exists. The Website and App must not be used in any other way, including for commercial purposes, and you may not otherwise reproduce, re-utilise or redistribute it (including, by way of example, creating a database (electronic or otherwise) that includes material downloaded o",
+    "ammes. You must not attempt to gain unauthorised access to the Website or App, the server(s) on which the Website and App are stored or any server, computer or database connected to the Website and App. You must not attack the Website or App via a denial-of-service attack or a distributed denial-of-service attack. By breaching this provision, you would commi",
+    "premierleague.com . Lead Partner Official Creativity Partner Official Bank Official Soft Drink Official Beer Official Cloud & AI Partner Official Ball Official Licensee Official Licensee Official Licensee Official Licensee Premier League Fantasy Matches Table Statistics Latest News Latest Video Clubs Players English Español ع Thai Modern Slavery Statement Eq"
+  ]
+}
