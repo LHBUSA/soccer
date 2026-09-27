@@ -43,17 +43,17 @@ const version = (up.match(/Worker Version ID: ([0-9a-f-]{36})/) || [])[1];
 const preview = (up.match(/Version Preview URL: (\S+)/) || [])[1];
 if (!version) throw new Error(`upload did not report a version id:\n${up.slice(-600)}`);
 log('uploaded', version, preview || '(no preview url)');
-// Up to 4 attempts, 6 s apart (a fresh preview hostname takes seconds to resolve).
+// Up to 8 attempts, 8 s apart (a fresh preview hostname can take ~30 s to resolve).
 // Only soccer-news may answer /health with 503 (it is 503 until its first run).
 const canary = async base => {
   let last = null;
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 8; i++) {
     try {
       const r = await fetch(base.replace(/\/$/, '') + canaryPath);
       last = { status: r.status, ok: r.status < 300 || (worker === 'soccer-news' && canaryPath === '/health' && r.status === 503), attempts: i + 1 };
       if (last.ok) return last;
     } catch (e) { last = { status: 0, ok: false, error: String(e.message), attempts: i + 1 }; }
-    await new Promise(res => setTimeout(res, 6000));
+    await new Promise(res => setTimeout(res, 8000));
   }
   return last;
 };
