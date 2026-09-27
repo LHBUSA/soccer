@@ -96,7 +96,8 @@ export function runGates2(article, packet) {
   const gate = (name, pass, detail = null) => results.push({ gate: name, pass, detail });
   const allowed = packetNumbers2(packet);
   const ungrounded = [];
-  for (const m of stripIdentifiers(t.replace(/\b\d{4}-\d{2}-\d{2}\b/g, d => (JSON.stringify(packet).includes(d) ? ' ' : d))).matchAll(/(\d+(?:\.\d+)?)(?:st|nd|rd|th)?/g)) if (!allowed.has(String(Number(m[1])))) ungrounded.push(m[0]);
+  // Version identifiers ("soccer-packet/2.0.0") are not facts: strip before extracting numbers.
+  for (const m of stripIdentifiers(t.replace(/[a-z][a-z-]*\/\d+(?:\.\d+)+/gi, ' ').replace(/\b\d{4}-\d{2}-\d{2}\b/g, d => (JSON.stringify(packet).includes(d) ? ' ' : d))).matchAll(/(\d+(?:\.\d+)?)(?:st|nd|rd|th)?/g)) if (!allowed.has(String(Number(m[1])))) ungrounded.push(m[0]);
   for (const m of t.toLowerCase().matchAll(/\b(two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\b/g)) if (!allowed.has(String(NUMBER_WORDS[m[1]])) && !/top four|bottom three/.test(t.toLowerCase().slice(Math.max(0, m.index - 7), m.index + 8))) ungrounded.push(m[1]);
   gate('numeric_grounding', ungrounded.length === 0, ungrounded.length ? [...new Set(ungrounded)] : null);
 

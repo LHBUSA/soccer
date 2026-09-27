@@ -483,7 +483,13 @@ export async function sitemap(store, kind) {
     teams: ['soccer_teams', ['slug', 'updated_at'], { eq: { status: 'active' } }, 'slug.asc'],
     players: ['soccer_players', ['slug', 'updated_at'], { eq: { status: 'active' } }, 'slug.asc'],
     matches: ['soccer_matches', ['id', 'status', 'updated_at'], { in: { status: ['finished', 'scheduled'] } }, 'id.asc'],
+    news: ['soccer_articles', ['desk', 'slug', 'published_at', 'updated_at'], { eq: { status: 'published' } }, 'published_at.desc'],
   }[kind];
+  if (kind === 'news') {
+    const rows = await store.select(K[0], { columns: K[1], ...K[2], order: K[3], limit: 1000 });
+    const out = rows.map(r => ({ key: `${r.desk}/${r.slug}`, desk: r.desk, updated_at: r.updated_at || r.published_at, published_at: r.published_at }));
+    return E(out, { source: 'pbe', semantics: 'Published article URL keys (desk/slug) for the news sitemap; only published, gate-passed articles.', source_updated_at: maxTs(out.map(r => r.updated_at)) });
+  }
   if (!K) throw new NotFound(`sitemap ${kind}`);
   const [table, columns, filter, order] = K;
   const rows = await store.select(table, { columns, ...filter, order });
