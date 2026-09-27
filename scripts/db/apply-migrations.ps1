@@ -1,5 +1,5 @@
 # Apply soccer migrations to the SPORTS project, one file at a time, UNMODIFIED.
-# Owner approval required (granted 2026-09-27 for 0100/0200/0300, and 0400 attribute_corroborated).
+# Owner approval required (granted 2026-09-27 for 0100/0200/0300, 0400 attribute_corroborated, and 0500 entity media per the MEDIA IDENTITY brief).
 #   pwsh scripts/db/apply-migrations.ps1 20260927000100_soccer_core.sql 20260927000200_soccer_events.sql ...
 param([Parameter(ValueFromRemainingArguments = $true)][string[]]$Files)
 $ErrorActionPreference = "Stop"
