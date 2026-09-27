@@ -10,7 +10,7 @@ export { UPSTREAM };
 const ROUTES = [
   /^health$/, /^coverage$/, /^competitions$/, /^competitions\/[a-z0-9-]{1,80}$/,
   /^matches$/, /^matches\/[0-9a-f-]{36}$/, /^teams\/[a-z0-9-]{1,120}$/, /^players\/[a-z0-9-]{1,120}$/,
-  /^table$/, /^news$/, /^news\/[a-z0-9-]{1,200}$/,
+  /^table$/, /^news$/, /^news\/[a-z0-9-]{1,200}$/, /^media\/[0-9a-f]{64}$/,
 ];
 const QUERY_KEYS = new Set(['competition', 'season', 'status', 'date', 'from', 'to', 'order', 'team', 'limit', 'desk']);
 
@@ -37,7 +37,7 @@ export default async function handler(request) {
   if (!target) return json({ error: 'not found' }, 404);
   let res;
   try {
-    res = await fetch(target, { method: 'GET', headers: { accept: 'application/json', 'user-agent': 'propbetedge-soccer-web-proxy' } });
+    res = await fetch(target, { method: 'GET', headers: { accept: /^media\//.test(target.pathname.replace(/^\/v1\//, '')) ? 'image/*' : 'application/json', 'user-agent': 'propbetedge-soccer-web-proxy' } });
   } catch {
     return json({ error: 'upstream unavailable' }, 502);
   }

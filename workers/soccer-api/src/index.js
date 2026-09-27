@@ -39,6 +39,16 @@ export default {
     const origin = req.headers.get('origin');
     if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: origin && ALLOWED_ORIGIN.test(origin) ? { 'access-control-allow-origin': origin, 'access-control-allow-methods': 'GET', 'access-control-max-age': '86400' } : {} });
     if (req.method !== 'GET') return respond({ error: 'method not allowed' }, 405, 0, origin);
+    const media = url.pathname.match(/^\/v1\/media\/([0-9a-f]{64})$/);
+    if (media) {
+      const store = storeFromEnv(env);
+      try {
+        const o = await R.mediaObject(store, env.SOCCER_SOURCE, media[1]);
+        return new Response(o.body, { status: 200, headers: { 'content-type': o.contentType, 'cache-control': 'public, max-age=31536000, s-maxage=31536000, immutable', 'x-content-type-options': 'nosniff', 'content-security-policy': "default-src 'none'" } });
+      } catch (err) {
+        return respond({ error: err.status === 404 ? 'not found' : 'upstream error' }, err.status === 404 ? 404 : 502, 0, origin);
+      }
+    }
     const hit = ROUTES.map(([re, fn, ttl]) => [url.pathname.match(re), fn, ttl]).find(([m]) => m);
     if (!hit) return respond({ error: 'not found' }, 404, 0, origin);
     const [m, fn, ttl] = hit;

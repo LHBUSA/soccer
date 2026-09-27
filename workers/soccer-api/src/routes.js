@@ -9,7 +9,7 @@ import { displayMinute } from '../../shared/clock.js';
 import { COVERAGE, envelope, maxTs } from './envelope.js';
 import { chunkArr } from '../../soccer-ingest/src/store.js';
 
-export const API_VERSION = 'soccer-api/1.1.0';
+export const API_VERSION = 'soccer-api/1.2.0';
 const E = (data, o) => envelope(data, { version: API_VERSION, ...o });
 export class NotFound extends Error { constructor(what) { super(`${what} not found`); this.status = 404; } }
 const clampLimit = (v, d = 50) => Math.max(1, Math.min(100, Number(v) || d));
@@ -18,9 +18,27 @@ const TEAM_COLS = ['id', 'slug', 'name', 'short_name', 'official_name', 'team_ty
 const PLAYER_COLS = ['id', 'slug', 'display_name', 'first_name', 'last_name', 'birth_date', 'nationality_code', 'foot', 'height_cm', 'primary_role'];
 const MATCH_COLS = ['id', 'competition_id', 'season_id', 'matchday', 'round_label', 'kickoff_at', 'venue_id', 'home_team_id', 'away_team_id', 'status', 'home_score', 'away_score', 'home_score_ht', 'away_score_ht', 'duration', 'winner_team_id', 'result_provider', 'updated_at'];
 
+// Media: ONLY approved rows with a cached copy are ever exposed (rights_status is
+// filtered here, in the one query every media read goes through).
+const MEDIA_COLS = ['entity_id', 'media_type', 'cached_url', 'width', 'height', 'license', 'license_url', 'author', 'attribution', 'source', 'source_url', 'is_primary'];
+export async function approvedMedia(store, entityType, ids, { mediaType = null, primaryOnly = false } = {}) {
+  const out = new Map();
+  for (const part of chunkArr([...new Set(ids.filter(Boolean))], 150)) {
+    const eq = { entity_type: entityType, rights_status: 'approved', ...(mediaType ? { media_type: mediaType } : {}), ...(primaryOnly ? { is_primary: true } : {}) };
+    for (const r of await store.select('soccer_entity_media', { columns: MEDIA_COLS, eq, in: { entity_id: part } })) {
+      if (!r.cached_url) continue;
+      out.set(r.entity_id, [...(out.get(r.entity_id) || []), shapeMedia(r)]);
+    }
+  }
+  return out;
+}
+const shapeMedia = r => ({ media_type: r.media_type, url: r.cached_url, width: r.width, height: r.height, license: r.license, license_url: r.license_url, author: r.author, attribution: r.attribution, source: r.source, source_url: r.source_url, primary: r.is_primary });
+
 async function teamsById(store, ids) {
   const out = new Map();
   for (const part of chunkArr([...new Set(ids.filter(Boolean))], 150)) for (const t of await store.select('soccer_teams', { columns: ['id', 'slug', 'name', 'short_name'], in: { id: part } })) out.set(t.id, t);
+  const crests = await approvedMedia(store, 'team', [...out.keys()], { mediaType: 'crest', primaryOnly: true });
+  for (const [id, m] of crests) out.get(id).crest = m[0];
   return out;
 }
 
@@ -50,7 +68,7 @@ async function intelFlags(store, ids) {
 const tiebreakOf = slug => (slug === 'mls' ? 'mls' : 'standard');
 
 function shapeMatch(m, teams, comps = null, intel = null) {
-  const t = id => { const x = teams.get(id); return x ? { id: x.id, slug: x.slug, name: x.name, short_name: x.short_name } : { id }; };
+  const t = id => { const x = teams.get(id); return x ? { id: x.id, slug: x.slug, name: x.name, short_name: x.short_name, ...(x.crest ? { crest: x.crest } : {}) } : { id }; };
   return {
     id: m.id, matchday: m.matchday, round: m.round_label, kickoff_at: m.kickoff_at, status: m.status,
     ...(comps && comps.get(m.competition_id) ? { competition: comps.get(m.competition_id) } : {}),
@@ -235,7 +253,8 @@ export async function team(store, slug) {
   const comps = await compsById(store, [...all].map(r => r.competition_id));
   const intel = await intelFlags(store, [...recent, ...next].map(r => r.id));
   const { records, observed } = await teamSeasonDepth(store, t, all, comps);
-  return E({ id: t.id, slug: t.slug, name: t.name, official_name: t.official_name, type: t.team_type, country_code: t.country_code, city: t.city, form, records, players_observed: observed, recent: recent.map(r => shapeMatch(r, teams, comps, intel)), upcoming: next.map(r => shapeMatch(r, teams, comps, intel)) }, {
+  const media = (await approvedMedia(store, 'team', [t.id])).get(t.id) || [];
+  return E({ id: t.id, slug: t.slug, name: t.name, official_name: t.official_name, type: t.team_type, country_code: t.country_code, city: t.city, form, media, crest: media.find(x => x.media_type === 'crest' && x.primary) || null, records, players_observed: observed, recent: recent.map(r => shapeMatch(r, teams, comps, intel)), upcoming: next.map(r => shapeMatch(r, teams, comps, intel)) }, {
     source: 'pbe', semantics: 'Canonical team; form = last 5 finished canonical matches (W/D/L), newest first. records = league-stage record in the latest stored season of each competition (position only where a league table exists). players_observed = players named in sourced lineups for those seasons (appearance = started or came on).', source_updated_at: maxTs(t.updated_at, recent.map(r => r.updated_at)),
     attribution: [...new Set(all.map(r => r.result_provider))],
   });
@@ -369,11 +388,12 @@ export async function player(store, slug) {
   }
   const goalsReported = await store.count('soccer_match_events', { eq: { player_id: p.id, source_family: 'openligadb', is_goal: true } });
   const observed = await playerObserved(store, p);
+  const media = (await approvedMedia(store, 'player', [p.id])).get(p.id) || [];
   return E({
     id: p.id, slug: p.slug, name: p.display_name, first_name: p.first_name, last_name: p.last_name, birth_date: p.birth_date,
     nationality_code: p.nationality_code, foot: p.foot, height_cm: p.height_cm, role: p.primary_role,
     seasons: Object.values(totals).sort((a, b) => (a.season < b.season ? 1 : -1)), reported_goals_other_seasons: goalsReported,
-    observed,
+    observed, media,
   }, {
     source: 'pbe', semantics: 'seasons = per-season totals of pbe-counts derived from the event ledger (seasons with an event ledger only); minutes are nominal (90/120, cut at substitution/dismissal). observed = what source data shows for this player: appearances/starts from sourced lineups (appearance = started or came on), goals and shots from the richest event family per match, located_events = events with a pitch location. Observed, not complete career statistics.',
     coverage: Object.keys(totals).length || observed.totals.lineups_named ? COVERAGE.PARTIAL : COVERAGE.UNAVAILABLE, coverage_notes: ['Event-level statistics exist only for seasons with a legitimate event ledger (Bundesliga 2017/18).'],
@@ -394,12 +414,23 @@ export async function table(store, q) {
   const teams = await teamsById(store, rows.map(r => r.team_id));
   return E({
     competition: c.slug, season: season.label, matches_counted: valid.length, tiebreak: TIEBREAKS[tb],
-    rows: rows.map((r, i) => ({ position: i + 1, team: { slug: teams.get(r.team_id)?.slug, name: teams.get(r.team_id)?.name, short_name: teams.get(r.team_id)?.short_name }, played: r.played, won: r.won, drawn: r.drawn, lost: r.lost, points: r.points, goals_for: r.gf, goals_against: r.ga, goal_difference: r.gd, form: r.form })),
+    rows: rows.map((r, i) => ({ position: i + 1, team: { slug: teams.get(r.team_id)?.slug, name: teams.get(r.team_id)?.name, short_name: teams.get(r.team_id)?.short_name, ...(teams.get(r.team_id)?.crest ? { crest: teams.get(r.team_id).crest } : {}) }, played: r.played, won: r.won, drawn: r.drawn, lost: r.lost, points: r.points, goals_for: r.gf, goals_against: r.ga, goal_difference: r.gd, form: r.form })),
   }, {
     source: 'pbe', semantics: `Table computed by PropBetEdge from canonical finished league-stage results (play-offs excluded). Order: ${TIEBREAKS[tb]} (head-to-head and deductions not applied). Form = last five counted results, newest first.${tb === 'mls' ? ' MLS: single overall table across both conferences (conference standings are not stored).' : ''}`,
     source_updated_at: maxTs(valid.map(x => x.updated_at)), attribution: [...new Set(valid.map(x => x.result_provider))],
     coverage: valid.length ? COVERAGE.OK : COVERAGE.UNAVAILABLE,
   });
+}
+
+// Media bytes, content-addressed: served only while an APPROVED registry row carries
+// this hash (a rejected or unreviewed file can never be fetched by guessing its hash).
+export async function mediaObject(store, bucket, sha) {
+  if (!/^[0-9a-f]{64}$/.test(sha) || !bucket) throw new NotFound('media');
+  const [row] = await store.select('soccer_entity_media', { columns: ['object_key', 'mime'], eq: { content_sha256: sha, rights_status: 'approved' }, limit: 1 });
+  if (!row?.object_key) throw new NotFound('media');
+  const obj = await bucket.get(row.object_key);
+  if (!obj) throw new NotFound('media');
+  return { body: obj.body, contentType: row.mime || obj.httpMetadata?.contentType || 'application/octet-stream' };
 }
 
 export async function news(store, q) {

@@ -174,6 +174,19 @@ test('api routes serve an envelope and hide internals (PGlite)', async () => {
   assert.deepEqual(team.data.form, ['W']);
   assert.deepEqual([team.data.records[0].position, team.data.records[0].record.points, team.data.records[0].record.won], [1, 3, 1]);
   assert.deepEqual(team.data.players_observed, { lineups_counted: 0, players: [] }); // no sourced lineups -> nothing invented
+  // Media: only approved rows with a cached copy are exposed; review_required never is.
+  const [c10] = await store.select('soccer_teams', { columns: ['id'], eq: { slug: 'club-10' } });
+  const base = { entity_type: 'team', entity_id: c10.id, media_type: 'crest', source: 'wikimedia_commons', url: 'https://upload.wikimedia.org/c.png' };
+  await store.insert('soccer_entity_media', [{ ...base, id: '00000000-0000-5000-8000-0000000000b1', source_url: 'https://commons.wikimedia.org/wiki/File:Unclear.png', rights_status: 'review_required' }]);
+  await store.insert('soccer_entity_media', [
+    { ...base, id: '00000000-0000-5000-8000-0000000000b2', source_url: 'https://commons.wikimedia.org/wiki/File:Crest.svg', rights_status: 'approved', license: 'Public domain', license_url: 'https://commons.wikimedia.org/wiki/File:Crest.svg', attribution: 'Public domain, via Wikimedia Commons', verified_at: new Date().toISOString(), content_sha256: 'c'.repeat(64), object_key: 'soccer-source/media/sha256/cc/' + 'c'.repeat(64), cached_url: '/api/soccer/media/' + 'c'.repeat(64), is_primary: true },
+  ]);
+  const tm = await R.team(store, 'club-10');
+  assert.equal(tm.data.media.length, 1); assert.equal(tm.data.crest.url, '/api/soccer/media/' + 'c'.repeat(64));
+  assert.ok(!JSON.stringify(tm).includes('Unclear.png') && !JSON.stringify(tm).includes('object_key'));
+  const lm = await R.matches(store, { competition: 'bundesliga' });
+  assert.ok(lm.data.some(m => m.home.crest?.attribution === 'Public domain, via Wikimedia Commons'));
+  await assert.rejects(R.mediaObject(store, { get: async () => null }, 'd'.repeat(64)), /not found/); // unknown / unapproved hash
   const news = await R.news(store, {});
   assert.equal(news.meta.coverage.state, 'unavailable');
   await assert.rejects(R.team(store, 'nope'), /not found/);

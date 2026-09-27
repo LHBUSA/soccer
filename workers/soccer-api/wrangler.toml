@@ -10,5 +10,10 @@ workers_dev = true
 binding = "SOCCER_STATE"
 id = "3e665f75414849578249f5aed979b868"
 
+# Media bytes (read-only use): approved, content-addressed objects under soccer-source/media/.
+[[r2_buckets]]
+binding = "SOCCER_SOURCE"
+bucket_name = "soccer-source"
+
 [observability]
 enabled = true
