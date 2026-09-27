@@ -1,0 +1,602 @@
+{
+  "version": "soccer-packet/1.0.0",
+  "event": {
+    "kind": "match_recap",
+    "as_of": "2018-03-31T16:30:00.000Z",
+    "archive": true,
+    "event_id": "678dabfb-3a1e-5f9f-8006-33887093f29a"
+  },
+  "match": {
+    "id": "b853e6d6-967b-5d1a-bf36-8f3acd40ed69",
+    "competition": {
+      "name": "Bundesliga",
+      "slug": "bundesliga"
+    },
+    "season": "2017/18",
+    "matchday": 28,
+    "kickoff_utc": "2018-03-31T16:30:00.000Z",
+    "venue": "Allianz Arena",
+    "status": "finished",
+    "score": {
+      "home": 6,
+      "away": 0,
+      "home_ht": 5,
+      "away_ht": 0,
+      "final": "6-0",
+      "half_time": "5-0"
+    },
+    "winner": "home",
+    "margin": 6
+  },
+  "teams": {
+    "home": {
+      "id": "9c2ce181-7bf4-55cf-b770-949389bb8797",
+      "name": "Bayern München",
+      "slug": "bayern-munchen",
+      "manager": {
+        "name": "Josef Heynckes",
+        "slug": "josef-heynckes"
+      },
+      "form_before": [
+        "L",
+        "W",
+        "W",
+        "D",
+        "W"
+      ],
+      "table_before": {
+        "position": 1,
+        "points": 66,
+        "played": 27,
+        "goal_difference": 46
+      },
+      "table_after": {
+        "position": 1,
+        "points": 69,
+        "played": 28,
+        "goal_difference": 52
+      }
+    },
+    "away": {
+      "id": "640424d4-438b-5524-8909-0422f7e8ce97",
+      "name": "Borussia Dortmund",
+      "slug": "borussia-dortmund",
+      "manager": {
+        "name": "Peter Stöger",
+        "slug": "peter-stoger"
+      },
+      "form_before": [
+        "W",
+        "W",
+        "D",
+        "D",
+        "W"
+      ],
+      "table_before": {
+        "position": 3,
+        "points": 48,
+        "played": 27,
+        "goal_difference": 21
+      },
+      "table_after": {
+        "position": 3,
+        "points": 48,
+        "played": 28,
+        "goal_difference": 15
+      }
+    }
+  },
+  "goals": [
+    {
+      "minute": 5,
+      "display_minute": "5'",
+      "period": "1H",
+      "team": "home",
+      "scorer": {
+        "id": "629a0ab4-b08a-5477-bced-2c510d0026e6",
+        "name": "Robert Lewandowski",
+        "slug": "robert-lewandowski"
+      },
+      "own_goal": false,
+      "penalty": false,
+      "free_kick": false,
+      "body_part": "right_foot",
+      "distance_m": 13.5,
+      "assist": {
+        "id": "801dd668-f844-5c5f-829c-8c807f7dbcf8",
+        "name": "Thomas Müller",
+        "slug": "thomas-muller"
+      },
+      "running_score": "1-0"
+    },
+    {
+      "minute": 14,
+      "display_minute": "14'",
+      "period": "1H",
+      "team": "home",
+      "scorer": {
+        "id": "49b2051d-58bd-5615-ba03-faad44ab707b",
+        "name": "James Rodríguez",
+        "slug": "james-rodriguez"
+      },
+      "own_goal": false,
+      "penalty": false,
+      "free_kick": false,
+      "body_part": "left_foot",
+      "distance_m": 7.4,
+      "assist": {
+        "id": "f3f7acf3-b582-56c9-83d5-e682fa29b3c3",
+        "name": "David Alaba",
+        "slug": "david-alaba"
+      },
+      "running_score": "2-0"
+    },
+    {
+      "minute": 23,
+      "display_minute": "23'",
+      "period": "1H",
+      "team": "home",
+      "scorer": {
+        "id": "801dd668-f844-5c5f-829c-8c807f7dbcf8",
+        "name": "Thomas Müller",
+        "slug": "thomas-muller"
+      },
+      "own_goal": false,
+      "penalty": false,
+      "free_kick": false,
+      "body_part": "right_foot",
+      "distance_m": 9.1,
+      "assist": {
+        "id": "49b2051d-58bd-5615-ba03-faad44ab707b",
+        "name": "James Rodríguez",
+        "slug": "james-rodriguez"
+      },
+      "running_score": "3-0"
+    },
+    {
+      "minute": 44,
+      "display_minute": "44'",
+      "period": "1H",
+      "team": "home",
+      "scorer": {
+        "id": "629a0ab4-b08a-5477-bced-2c510d0026e6",
+        "name": "Robert Lewandowski",
+        "slug": "robert-lewandowski"
+      },
+      "own_goal": false,
+      "penalty": false,
+      "free_kick": false,
+      "body_part": "right_foot",
+      "distance_m": 3.2,
+      "assist": null,
+      "running_score": "4-0"
+    },
+    {
+      "minute": 46,
+      "display_minute": "45+1'",
+      "period": "1H",
+      "team": "home",
+      "scorer": {
+        "id": "c4a20131-0c2d-54cc-88ff-6e1f105cf088",
+        "name": "Franck Ribéry",
+        "slug": "franck-ribery"
+      },
+      "own_goal": false,
+      "penalty": false,
+      "free_kick": false,
+      "body_part": "right_foot",
+      "distance_m": 13.7,
+      "assist": {
+        "id": "49b2051d-58bd-5615-ba03-faad44ab707b",
+        "name": "James Rodríguez",
+        "slug": "james-rodriguez"
+      },
+      "running_score": "5-0"
+    },
+    {
+      "minute": 87,
+      "display_minute": "87'",
+      "period": "2H",
+      "team": "home",
+      "scorer": {
+        "id": "629a0ab4-b08a-5477-bced-2c510d0026e6",
+        "name": "Robert Lewandowski",
+        "slug": "robert-lewandowski"
+      },
+      "own_goal": false,
+      "penalty": false,
+      "free_kick": false,
+      "body_part": "right_foot",
+      "distance_m": 3.2,
+      "assist": {
+        "id": "308e1d2d-9bfe-5ac0-b3b8-af5d7c4b572a",
+        "name": "Joshua Kimmich",
+        "slug": "joshua-kimmich"
+      },
+      "running_score": "6-0"
+    }
+  ],
+  "shots": [
+    {
+      "minute": 3,
+      "team": "home",
+      "player": "Thomas Müller",
+      "outcome": "off_target",
+      "set_piece": null,
+      "x": 92.4,
+      "y": 24.48,
+      "distance_m": 15.8
+    },
+    {
+      "minute": 4,
+      "team": "away",
+      "player": "Michy Batshuayi",
+      "outcome": "blocked",
+      "set_piece": null,
+      "x": 7.35,
+      "y": 27.88,
+      "distance_m": 9.6
+    },
+    {
+      "minute": 4,
+      "team": "away",
+      "player": "Mario Götze",
+      "outcome": "off_target",
+      "set_piece": null,
+      "x": 17.85,
+      "y": 32.64,
+      "distance_m": 17.9
+    },
+    {
+      "minute": 5,
+      "team": "home",
+      "player": "Robert Lewandowski",
+      "outcome": "goal",
+      "set_piece": null,
+      "x": 92.4,
+      "y": 38.76,
+      "distance_m": 13.5
+    },
+    {
+      "minute": 8,
+      "team": "away",
+      "player": "André Schürrle",
+      "outcome": "blocked",
+      "set_piece": null,
+      "x": 18.9,
+      "y": 31.96,
+      "distance_m": 19
+    },
+    {
+      "minute": 12,
+      "team": "away",
+      "player": "André Schürrle",
+      "outcome": "off_target",
+      "set_piece": null,
+      "x": 11.55,
+      "y": 38.76,
+      "distance_m": 12.5
+    },
+    {
+      "minute": 14,
+      "team": "home",
+      "player": "James Rodríguez",
+      "outcome": "goal",
+      "set_piece": null,
+      "x": 97.65,
+      "y": 33.32,
+      "distance_m": 7.4
+    },
+    {
+      "minute": 17,
+      "team": "away",
+      "player": "Mario Götze",
+      "outcome": "blocked",
+      "set_piece": null,
+      "x": 14.7,
+      "y": 46.92,
+      "distance_m": 19.6
+    },
+    {
+      "minute": 17,
+      "team": "away",
+      "player": "Mahmoud Dahoud",
+      "outcome": "off_target",
+      "set_piece": null,
+      "x": 25.2,
+      "y": 36.72,
+      "distance_m": 25.3
+    },
+    {
+      "minute": 19,
+      "team": "home",
+      "player": "Arjen Robben",
+      "outcome": "off_target",
+      "set_piece": null,
+      "x": 77.7,
+      "y": 48.96,
+      "distance_m": 31.1
+    },
+    {
+      "minute": 20,
+      "team": "away",
+      "player": "Christian Pulisic",
+      "outcome": "on_target",
+      "set_piece": null,
+      "x": 22.05,
+      "y": 29.92,
+      "distance_m": 22.4
+    },
+    {
+      "minute": 23,
+      "team": "home",
+      "player": "Thomas Müller",
+      "outcome": "goal",
+      "set_piece": null,
+      "x": 97.65,
+      "y": 39.44,
+      "distance_m": 9.1
+    },
+    {
+      "minute": 42,
+      "team": "home",
+      "player": "Arjen Robben",
+      "outcome": "off_target",
+      "set_piece": null,
+      "x": 91.35,
+      "y": 51.68,
+      "distance_m": 22.3
+    },
+    {
+      "minute": 44,
+      "team": "home",
+      "player": "Robert Lewandowski",
+      "outcome": "goal",
+      "set_piece": null,
+      "x": 101.85,
+      "y": 34,
+      "distance_m": 3.2
+    },
+    {
+      "minute": 46,
+      "team": "home",
+      "player": "Franck Ribéry",
+      "outcome": "goal",
+      "set_piece": null,
+      "x": 94.5,
+      "y": 25.16,
+      "distance_m": 13.7
+    },
+    {
+      "minute": 54,
+      "team": "home",
+      "player": "Rafinha",
+      "outcome": "off_target",
+      "set_piece": null,
+      "x": 89.25,
+      "y": 23.12,
+      "distance_m": 19.1
+    },
+    {
+      "minute": 61,
+      "team": "home",
+      "player": "Arjen Robben",
+      "outcome": "on_target",
+      "set_piece": null,
+      "x": 90.3,
+      "y": 49.64,
+      "distance_m": 21.5
+    },
+    {
+      "minute": 62,
+      "team": "home",
+      "player": "James Rodríguez",
+      "outcome": "blocked",
+      "set_piece": null,
+      "x": 92.4,
+      "y": 38.08,
+      "distance_m": 13.2
+    },
+    {
+      "minute": 67,
+      "team": "away",
+      "player": "Mario Götze",
+      "outcome": "off_target",
+      "set_piece": null,
+      "x": 18.9,
+      "y": 41.48,
+      "distance_m": 20.3
+    },
+    {
+      "minute": 70,
+      "team": "home",
+      "player": "Mats Hummels",
+      "outcome": "off_target",
+      "set_piece": null,
+      "x": 97.65,
+      "y": 34.68,
+      "distance_m": 7.4
+    },
+    {
+      "minute": 74,
+      "team": "home",
+      "player": "Thomas Müller",
+      "outcome": "blocked",
+      "set_piece": null,
+      "x": 79.8,
+      "y": 34.68,
+      "distance_m": 25.2
+    },
+    {
+      "minute": 74,
+      "team": "home",
+      "player": "Robert Lewandowski",
+      "outcome": "on_target",
+      "set_piece": null,
+      "x": 86.1,
+      "y": 31.96,
+      "distance_m": 19
+    },
+    {
+      "minute": 79,
+      "team": "away",
+      "player": "Łukasz Piszczek",
+      "outcome": "on_target",
+      "set_piece": null,
+      "x": 17.85,
+      "y": 31.96,
+      "distance_m": 18
+    },
+    {
+      "minute": 87,
+      "team": "home",
+      "player": "Robert Lewandowski",
+      "outcome": "goal",
+      "set_piece": null,
+      "x": 101.85,
+      "y": 33.32,
+      "distance_m": 3.2
+    }
+  ],
+  "stats": {
+    "home": {
+      "corners": 2,
+      "crosses": 13,
+      "duels": 151,
+      "duels_won": 58,
+      "events_in_final_third": 255,
+      "final_third_passes_completed": 146,
+      "fouls_committed": 6,
+      "goals_scored_by_players": 6,
+      "offsides": 2,
+      "own_goals_conceded_for_opponent": 0,
+      "passes": 717,
+      "passes_completed": 632,
+      "red_cards": 0,
+      "shots": 15,
+      "shots_on_target": 8,
+      "yellow_cards": 1,
+      "pass_completion_pct": 88.1,
+      "duel_win_pct": 38.4
+    },
+    "away": {
+      "corners": 1,
+      "crosses": 13,
+      "duels": 151,
+      "duels_won": 57,
+      "events_in_final_third": 171,
+      "final_third_passes_completed": 105,
+      "fouls_committed": 7,
+      "goals_scored_by_players": 0,
+      "offsides": 3,
+      "own_goals_conceded_for_opponent": 0,
+      "passes": 472,
+      "passes_completed": 398,
+      "red_cards": 0,
+      "shots": 9,
+      "shots_on_target": 2,
+      "yellow_cards": 1,
+      "pass_completion_pct": 84.3,
+      "duel_win_pct": 37.7
+    }
+  },
+  "shares": {
+    "completed_pass_share": {
+      "home": 61.4,
+      "away": 38.6
+    },
+    "attacking_third_event_share": {
+      "home": 59.9,
+      "away": 40.1
+    }
+  },
+  "shot_profile": {
+    "home": {
+      "avg_shot_distance_m": 15,
+      "shots_inside_box": 12
+    },
+    "away": {
+      "avg_shot_distance_m": 18.3,
+      "shots_inside_box": 3
+    }
+  },
+  "key_performers": [
+    {
+      "id": "629a0ab4-b08a-5477-bced-2c510d0026e6",
+      "name": "Robert Lewandowski",
+      "slug": "robert-lewandowski",
+      "team": "home",
+      "goals": 3,
+      "assists": 0,
+      "shots_on_target": 4,
+      "key_passes": 0
+    },
+    {
+      "id": "49b2051d-58bd-5615-ba03-faad44ab707b",
+      "name": "James Rodríguez",
+      "slug": "james-rodriguez",
+      "team": "home",
+      "goals": 1,
+      "assists": 2,
+      "shots_on_target": 1,
+      "key_passes": 0
+    },
+    {
+      "id": "801dd668-f844-5c5f-829c-8c807f7dbcf8",
+      "name": "Thomas Müller",
+      "slug": "thomas-muller",
+      "team": "home",
+      "goals": 1,
+      "assists": 1,
+      "shots_on_target": 1,
+      "key_passes": 0
+    },
+    {
+      "id": "c4a20131-0c2d-54cc-88ff-6e1f105cf088",
+      "name": "Franck Ribéry",
+      "slug": "franck-ribery",
+      "team": "home",
+      "goals": 1,
+      "assists": 0,
+      "shots_on_target": 1,
+      "key_passes": 0
+    }
+  ],
+  "derivation": {
+    "counts": "pbe-counts/1.0.0",
+    "shares": "ratio of derived counts",
+    "distance": "euclidean distance to goal centre on the 105x68 canonical pitch"
+  },
+  "unavailable": [
+    "possession_pct (no possession clock in source)",
+    "xg (PBE xG not validated)",
+    "formation (not stated by source)",
+    "injuries (no legitimate source ingested)",
+    "quotes (none sourced)"
+  ],
+  "provenance": {
+    "attributions": [
+      "Event data: Pappalardo et al. (2019), Wyscout public soccer-logs dataset (figshare 4415000), CC BY 4.0",
+      "Fixtures/results: OpenLigaDB (openligadb.de), ODbL"
+    ],
+    "source_results": [
+      {
+        "provider": "openligadb",
+        "home_score": 6,
+        "away_score": 0,
+        "home_score_ht": 5,
+        "away_score_ht": 0,
+        "capture_id": "9440fb92937fbce745bdd8be"
+      },
+      {
+        "provider": "wyscout",
+        "home_score": 6,
+        "away_score": 0,
+        "home_score_ht": 5,
+        "away_score_ht": 0,
+        "capture_id": "18d3ca4afede6c3f01e86dad"
+      }
+    ]
+  },
+  "hash": "e2e362b56b1a0e17cb788163ca3c167b2bac19404e93f75c2db87a31eb3e8574"
+}

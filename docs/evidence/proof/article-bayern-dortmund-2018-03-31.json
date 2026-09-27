@@ -1,0 +1,263 @@
+{
+  "article": {
+    "slug": "bayern-munchen-borussia-dortmund-2018-03-31-recap",
+    "headline": "Bayern München 6-0 Borussia Dortmund: Robert Lewandowski hat-trick",
+    "dek": "Bundesliga 2017/18, Matchday 28, 31 March 2018, Allianz Arena. Half-time 5-0.",
+    "sections": [
+      {
+        "key": "result",
+        "heading": "Result",
+        "paragraphs": [
+          "Bayern München beat Borussia Dortmund 6-0 in Bundesliga Matchday 28 at Allianz Arena, having led 5-0 at half-time."
+        ]
+      },
+      {
+        "key": "goals",
+        "heading": "How the goals came",
+        "paragraphs": [
+          "5' Robert Lewandowski, set up by Thomas Müller (Bayern München, 1-0); 14' James Rodríguez, set up by David Alaba (Bayern München, 2-0); 23' Thomas Müller, set up by James Rodríguez (Bayern München, 3-0); 44' Robert Lewandowski (Bayern München, 4-0); 45+1' Franck Ribéry, set up by James Rodríguez (Bayern München, 5-0); 87' Robert Lewandowski, set up by Joshua Kimmich (Bayern München, 6-0)."
+        ]
+      },
+      {
+        "key": "shots",
+        "heading": "Shot profile",
+        "paragraphs": [
+          "Bayern München had 15 shots, 8 on target; Borussia Dortmund had 9, 2 on target.",
+          "Bayern München took 12 of their shots inside the penalty area at an average distance of 15 m from goal; Borussia Dortmund took 3 inside the area at 18.3 m."
+        ]
+      },
+      {
+        "key": "territory",
+        "heading": "Territory and control",
+        "paragraphs": [
+          "Bayern München completed 632 of 717 passes (88.1%) against Borussia Dortmund's 398 of 472 (84.3%), a 61.4% share of the match's completed passes.",
+          "59.9% of on-ball events in either attacking third belonged to Bayern München.",
+          "Duels: Bayern München won 58 of 151, Borussia Dortmund 57 of 151. Corners 2-1; fouls 6-7."
+        ]
+      },
+      {
+        "key": "performers",
+        "heading": "Key performers",
+        "paragraphs": [
+          "Robert Lewandowski (Bayern München): 3 goals and 4 shots on target. James Rodríguez (Bayern München): 1 goal, 2 assists and 1 shot on target. Thomas Müller (Bayern München): 1 goal, 1 assist and 1 shot on target. Franck Ribéry (Bayern München): 1 goal and 1 shot on target."
+        ]
+      },
+      {
+        "key": "table",
+        "heading": "Table impact and form",
+        "paragraphs": [
+          "Bayern München stayed 1st on 69 points after 28 matches.",
+          "Bayern München's previous 5 league results: L W W D W.",
+          "Borussia Dortmund stayed 3rd on 48 points after 28 matches.",
+          "Borussia Dortmund's previous 5 league results: W W D D W."
+        ]
+      },
+      {
+        "key": "method",
+        "heading": "Evidence and method",
+        "paragraphs": [
+          "Every figure above comes from the frozen evidence packet for this match (soccer-packet/1.0.0, hash e2e362b56b1a). Counts are derived from the event ledger (pbe-counts/1.0.0); shot distance is euclidean distance to goal centre on the 105x68 canonical pitch. Not reported: possession_pct (no possession clock in source); xg (PBE xG not validated); formation (not stated by source); injuries (no legitimate source ingested); quotes (none sourced).",
+          "Event data: Pappalardo et al. (2019), Wyscout public soccer-logs dataset (figshare 4415000), CC BY 4.0",
+          "Fixtures/results: OpenLigaDB (openligadb.de), ODbL"
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "type": "SportsTeam",
+        "id": "9c2ce181-7bf4-55cf-b770-949389bb8797",
+        "name": "Bayern München",
+        "slug": "bayern-munchen",
+        "href": "/teams/bayern-munchen"
+      },
+      {
+        "type": "SportsTeam",
+        "id": "640424d4-438b-5524-8909-0422f7e8ce97",
+        "name": "Borussia Dortmund",
+        "slug": "borussia-dortmund",
+        "href": "/teams/borussia-dortmund"
+      },
+      {
+        "type": "SportsEvent",
+        "id": "b853e6d6-967b-5d1a-bf36-8f3acd40ed69",
+        "name": "Bayern München v Borussia Dortmund",
+        "href": "/matches/b853e6d6-967b-5d1a-bf36-8f3acd40ed69"
+      },
+      {
+        "type": "SportsOrganization",
+        "name": "Bundesliga",
+        "slug": "bundesliga",
+        "href": "/competitions/bundesliga"
+      },
+      {
+        "type": "Person",
+        "id": "629a0ab4-b08a-5477-bced-2c510d0026e6",
+        "name": "Robert Lewandowski",
+        "slug": "robert-lewandowski",
+        "href": "/players/robert-lewandowski"
+      },
+      {
+        "type": "Person",
+        "id": "801dd668-f844-5c5f-829c-8c807f7dbcf8",
+        "name": "Thomas Müller",
+        "slug": "thomas-muller",
+        "href": "/players/thomas-muller"
+      },
+      {
+        "type": "Person",
+        "id": "49b2051d-58bd-5615-ba03-faad44ab707b",
+        "name": "James Rodríguez",
+        "slug": "james-rodriguez",
+        "href": "/players/james-rodriguez"
+      },
+      {
+        "type": "Person",
+        "id": "f3f7acf3-b582-56c9-83d5-e682fa29b3c3",
+        "name": "David Alaba",
+        "slug": "david-alaba",
+        "href": "/players/david-alaba"
+      },
+      {
+        "type": "Person",
+        "id": "c4a20131-0c2d-54cc-88ff-6e1f105cf088",
+        "name": "Franck Ribéry",
+        "slug": "franck-ribery",
+        "href": "/players/franck-ribery"
+      },
+      {
+        "type": "Person",
+        "id": "308e1d2d-9bfe-5ac0-b3b8-af5d7c4b572a",
+        "name": "Joshua Kimmich",
+        "slug": "joshua-kimmich",
+        "href": "/players/joshua-kimmich"
+      }
+    ],
+    "composer": "template/soccer-recap@1.0.0",
+    "desk": "bundesliga",
+    "story_class": "match_recap"
+  },
+  "gates": {
+    "version": "soccer-gates/1.0.0",
+    "pass": true,
+    "failed": [],
+    "results": [
+      {
+        "gate": "numeric_grounding",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "gate": "match_not_final",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "gate": "score_in_headline",
+        "pass": true,
+        "detail": "Bayern München 6-0 Borussia Dortmund: Robert Lewandowski hat-trick"
+      },
+      {
+        "gate": "wrong_winner",
+        "pass": true,
+        "detail": {
+          "winner": "Bayern München"
+        }
+      },
+      {
+        "gate": "hat_trick_grounding",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "gate": "entity_grounding",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "gate": "entity_headline",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "gate": "unsupported_quote",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "gate": "unsupported_medical",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "gate": "unsupported_market",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "gate": "unsupported_record",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "gate": "unsupported_mentality",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "gate": "unpublished_metric",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "gate": "unsupported_possession",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "gate": "cliche",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "gate": "claims_consistency",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "gate": "too_thin",
+        "pass": true,
+        "detail": 7
+      },
+      {
+        "gate": "headline_length",
+        "pass": true,
+        "detail": 66
+      },
+      {
+        "gate": "attribution",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "gate": "render_artifact",
+        "pass": true,
+        "detail": null
+      }
+    ]
+  },
+  "tampered_gates": {
+    "pass": false,
+    "failed": [
+      "numeric_grounding",
+      "claims_consistency"
+    ],
+    "detail": [
+      "22"
+    ]
+  },
+  "packet_immutable": true,
+  "status": "held",
+  "hold_reasons": [
+    "archive_match_not_current_news"
+  ]
+}

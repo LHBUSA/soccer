@@ -1,0 +1,26 @@
+{
+  "registry_version": "2026-09-27.1",
+  "note": "Reviewed canonical metadata for competitions and the provider ids proven to denote them. Provider ids here are crosswalks, not identity.",
+  "competitions": [
+    {
+      "slug": "bundesliga", "name": "Bundesliga", "comp_type": "league", "gender": "men", "country_code": "DEU", "tier": 1,
+      "desk": "bundesliga",
+      "external_ids": [
+        { "provider": "wyscout", "external_id": "426", "method": "founding", "evidence": "Wyscout competitions.json wyId 426 'German first division', area DEU" },
+        { "provider": "openligadb", "external_id": "bl1", "method": "reviewed", "evidence": "OpenLigaDB league shortcut bl1 = '1. Fußball-Bundesliga'; 2017 season fixture graph matches Wyscout 426 season 181137 (see docs/evidence/proof/bundesliga-2017-18.json)" }
+      ]
+    },
+    { "slug": "premier-league", "name": "Premier League", "comp_type": "league", "gender": "men", "country_code": "ENG", "tier": 1, "desk": "premier-league",
+      "external_ids": [ { "provider": "wyscout", "external_id": "364", "method": "founding", "evidence": "Wyscout wyId 364 'English first division'" } ] },
+    { "slug": "la-liga", "name": "LaLiga", "comp_type": "league", "gender": "men", "country_code": "ESP", "tier": 1, "desk": "la-liga",
+      "external_ids": [ { "provider": "wyscout", "external_id": "795", "method": "founding", "evidence": "Wyscout wyId 795 'Spanish first division'" } ] },
+    { "slug": "serie-a", "name": "Serie A", "comp_type": "league", "gender": "men", "country_code": "ITA", "tier": 1, "desk": "serie-a",
+      "external_ids": [ { "provider": "wyscout", "external_id": "524", "method": "founding", "evidence": "Wyscout wyId 524 'Italian first division'" } ] },
+    { "slug": "ligue-1", "name": "Ligue 1", "comp_type": "league", "gender": "men", "country_code": "FRA", "tier": 1, "desk": "ligue-1",
+      "external_ids": [ { "provider": "wyscout", "external_id": "412", "method": "founding", "evidence": "Wyscout wyId 412 'French first division'" } ] },
+    { "slug": "fifa-world-cup", "name": "FIFA World Cup", "comp_type": "international_tournament", "gender": "men", "country_code": null, "tier": null, "desk": "international",
+      "external_ids": [ { "provider": "wyscout", "external_id": "28", "method": "founding", "evidence": "Wyscout wyId 28 'World Cup'" } ] },
+    { "slug": "uefa-european-championship", "name": "UEFA European Championship", "comp_type": "international_tournament", "gender": "men", "country_code": null, "tier": null, "desk": "international",
+      "external_ids": [ { "provider": "wyscout", "external_id": "102", "method": "founding", "evidence": "Wyscout wyId 102 'European Championship'" } ] }
+  ]
+}

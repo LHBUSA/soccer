@@ -1,0 +1,410 @@
+{
+  "proof": "bundesliga-2017-18",
+  "generated_at": "2026-09-27T13:24:20.779Z",
+  "engine": "PGlite (Postgres 17, WASM) running supabase/migrations/*",
+  "migrations": [
+    "20260927000100_soccer_core.sql",
+    "20260927000200_soccer_events.sql",
+    "20260927000300_soccer_news.sql"
+  ],
+  "attribution": "Event data: Pappalardo et al. (2019), Wyscout public soccer-logs dataset (figshare 4415000), CC BY 4.0",
+  "captures": [
+    {
+      "source_key": "wyscout_figshare.competitions",
+      "capture_id": "f61b9471d290d132ac77795e",
+      "sha256": "39a738d2bc97638502e1ead01d661b54c623d6d6b37f77de3846f9a94db7a3a1",
+      "bytes": 1209
+    },
+    {
+      "source_key": "wyscout_figshare.teams",
+      "capture_id": "af428d6c7eabfe302322393f",
+      "sha256": "9f7a4a3b3d92c0be33f40613ad6e6eb4316c3b9771ec74c61a22c9b8ece23a4d",
+      "bytes": 27404
+    },
+    {
+      "source_key": "wyscout_figshare.players",
+      "capture_id": "f2c9e4bf02cd059dd9f636b5",
+      "sha256": "877a111cb1005b73df5645e9338bd74fb4b496bace2fbc545a72abb3b73efa2e",
+      "bytes": 1737347
+    },
+    {
+      "source_key": "wyscout_figshare.coaches",
+      "capture_id": "725b192b9b3fd2809fa0cc29",
+      "sha256": "27fcc0dab9b0fbcdf9d4101813ec47810feb832ad0426a27d6cef7c1210ae636",
+      "bytes": 70664
+    },
+    {
+      "source_key": "wyscout_figshare.referees",
+      "capture_id": "597bad8e32b1c435623c2279",
+      "sha256": "616014a2cae374c32ab92b550a8452a8d4a345bf7b3ed513f5677355140d5752",
+      "bytes": 196709
+    },
+    {
+      "source_key": "wyscout_figshare.matches",
+      "capture_id": "18d3ca4afede6c3f01e86dad",
+      "sha256": "c8f92bb7533e5c127e043cee764c991b5c25b4f5e70a65be931baae0b1765ce9",
+      "bytes": 645097
+    },
+    {
+      "source_key": "wyscout_figshare.events",
+      "capture_id": "400a0e60773f30427b4fcdf1",
+      "sha256": "877e015b716ffdeea18f04418e3f24fed307ed03c37ff305cabe1f47c4822a45",
+      "bytes": 77323413
+    },
+    {
+      "source_key": "wyscout_figshare.eventid2name",
+      "capture_id": "67c0ac335df0fa1f75a363b8",
+      "sha256": "ce7bafb341b36ab4c6093bf1c09c967e9cea10d4223724a1fc679086e5d16842",
+      "bytes": 1001
+    },
+    {
+      "source_key": "wyscout_figshare.tags2name",
+      "capture_id": "0d2364218d5caeba55bba747",
+      "sha256": "e0bc1bd8ff6ea5339586fdfc3e8e9b285a4a18f1ae2f5868ccc9ec9cecc8a922",
+      "bytes": 1754
+    }
+  ],
+  "run1": {
+    "teams": {
+      "inserted": 18,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "team_crosswalk": {
+      "inserted": 18,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "players": {
+      "inserted": 535,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "player_crosswalk": {
+      "inserted": 535,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "managers": {
+      "inserted": 30,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "venues": {
+      "inserted": 18,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "matches": {
+      "inserted": 306,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "match_crosswalk": {
+      "inserted": 306,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "match_source_results": {
+      "inserted": 306,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "lineups": {
+      "inserted": 612,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "lineup_players": {
+      "inserted": 11000,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "substitutions": {
+      "inserted": 1769,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "events": {
+      "inserted": 519407,
+      "updated": 0,
+      "unchanged": 0
+    },
+    "derived": {
+      "team": {
+        "inserted": 9792,
+        "updated": 0,
+        "unchanged": 0
+      },
+      "player": {
+        "inserted": 71434,
+        "updated": 0,
+        "unchanged": 0
+      }
+    }
+  },
+  "run2_non_idempotent_writes": [],
+  "unmapped_event_types": {},
+  "season": {
+    "id": "e4a592e6-00df-5d2c-a05d-9d380a654fa8",
+    "label": "2017/18",
+    "matches": 306
+  },
+  "queued": [
+    {
+      "player": "302605",
+      "reason": "absent"
+    },
+    {
+      "player": "497353",
+      "reason": "absent"
+    }
+  ],
+  "lineup_refs_unresolved": 2,
+  "event_players_unresolved": 0,
+  "score_reconciliation": {
+    "matches": 306,
+    "agree": 306,
+    "mismatches": []
+  },
+  "integrity": {
+    "events_out_of_pitch": 1,
+    "events_without_coords": 0,
+    "duplicate_sequences": 0,
+    "events_player_null": 37244,
+    "identity_queue_open": 2,
+    "source_changes_logged": 0
+  },
+  "openligadb": {
+    "summary": {
+      "capture_id": "9440fb92937fbce745bdd8be",
+      "sha256": "06bb193248f7419cdf8952d9849a2cb813003095b4f060a8994303e07217f6cf",
+      "matches": 306,
+      "finished": 306,
+      "fixture_graph": {
+        "proven": true,
+        "mapped": 18,
+        "unresolved": 0,
+        "collisions": 0,
+        "unmatched_fixtures": 0
+      },
+      "team_crosswalk": {
+        "inserted": 18,
+        "updated": 0,
+        "unchanged": 0
+      },
+      "matches_skipped_unresolved_team": 0,
+      "matches_written": {
+        "inserted": 0,
+        "updated": 0,
+        "unchanged": 0
+      },
+      "match_crosswalk": {
+        "inserted": 306,
+        "updated": 0,
+        "unchanged": 0
+      },
+      "source_results": {
+        "inserted": 306,
+        "updated": 0,
+        "unchanged": 0
+      },
+      "cross_source": {
+        "compared": 306,
+        "final_score_agree": 306,
+        "half_time_agree": 304,
+        "final_disagreements": [],
+        "half_time_disagreements": [
+          {
+            "match_id": "bb81fb7a-03da-5e69-be20-84cf2a50932c",
+            "wyscout": "0-0",
+            "openligadb": "1-0"
+          },
+          {
+            "match_id": "e5f27766-de2f-530f-ab68-5bc82b1d15a4",
+            "wyscout": "1-0",
+            "openligadb": "0-0"
+          }
+        ]
+      },
+      "scorer_alignment": {
+        "scorers": 298,
+        "already_crosswalked": 0,
+        "aligned": 285,
+        "queued": 13,
+        "conflicts": 10,
+        "provider_duplicate_ids": {
+          "canonical_players": 47,
+          "provider_ids": 103
+        }
+      },
+      "player_crosswalk": {
+        "inserted": 285,
+        "updated": 0,
+        "unchanged": 0
+      },
+      "goal_events": {
+        "inserted": 0,
+        "updated": 0,
+        "unchanged": 0
+      },
+      "goal_scorers_unresolved": 0
+    },
+    "fixture_proof": {
+      "proven": true,
+      "unresolved": [],
+      "collisions": []
+    }
+  },
+  "current_season": {
+    "summary": {
+      "capture_id": "0612a9f2a3eb252239d8ca25",
+      "sha256": "f458ec10905021323619f6a47da1970b23c9b2dc31314acf71fcb56ea6fa0fcb",
+      "matches": 306,
+      "finished": 36,
+      "teams_founded": 3,
+      "team_crosswalk": {
+        "inserted": 3,
+        "updated": 0,
+        "unchanged": 0
+      },
+      "matches_skipped_unresolved_team": 0,
+      "matches_written": {
+        "inserted": 306,
+        "updated": 0,
+        "unchanged": 0
+      },
+      "match_crosswalk": {
+        "inserted": 306,
+        "updated": 0,
+        "unchanged": 0
+      },
+      "source_results": {
+        "inserted": 306,
+        "updated": 0,
+        "unchanged": 0
+      },
+      "scorer_alignment": {
+        "scorers": 89,
+        "already_crosswalked": 3,
+        "aligned": 0,
+        "queued": 0,
+        "conflicts": 0,
+        "provider_duplicate_ids": {
+          "canonical_players": 0,
+          "provider_ids": 0
+        }
+      },
+      "player_crosswalk": {
+        "inserted": 0,
+        "updated": 0,
+        "unchanged": 0
+      },
+      "goal_events": {
+        "inserted": 137,
+        "updated": 0,
+        "unchanged": 0
+      },
+      "goal_scorers_unresolved": 131
+    },
+    "fixture_proof": null,
+    "rerun_writes": [],
+    "team_identity": [
+      {
+        "name": "Augsburg",
+        "method": "fixture_graph"
+      },
+      {
+        "name": "Bayer Leverkusen",
+        "method": "fixture_graph"
+      },
+      {
+        "name": "Bayern München",
+        "method": "fixture_graph"
+      },
+      {
+        "name": "Borussia Dortmund",
+        "method": "fixture_graph"
+      },
+      {
+        "name": "Borussia M'gladbach",
+        "method": "fixture_graph"
+      },
+      {
+        "name": "Eintracht Frankfurt",
+        "method": "fixture_graph"
+      },
+      {
+        "name": "Freiburg",
+        "method": "fixture_graph"
+      },
+      {
+        "name": "Hamburger SV",
+        "method": "fixture_graph"
+      },
+      {
+        "name": "Hoffenheim",
+        "method": "fixture_graph"
+      },
+      {
+        "name": "Köln",
+        "method": "fixture_graph"
+      },
+      {
+        "name": "Mainz 05",
+        "method": "fixture_graph"
+      },
+      {
+        "name": "RB Leipzig",
+        "method": "fixture_graph"
+      },
+      {
+        "name": "Schalke 04",
+        "method": "fixture_graph"
+      },
+      {
+        "name": "Stuttgart",
+        "method": "fixture_graph"
+      },
+      {
+        "name": "Werder Bremen",
+        "method": "fixture_graph"
+      },
+      {
+        "name": "1. FC Union Berlin",
+        "method": "founding"
+      },
+      {
+        "name": "SC Paderborn 07",
+        "method": "founding"
+      },
+      {
+        "name": "SV 07 Elversberg",
+        "method": "founding"
+      }
+    ]
+  },
+  "row_counts": {
+    "soccer_competitions": 1,
+    "soccer_seasons": 2,
+    "soccer_teams": 21,
+    "soccer_players": 535,
+    "soccer_managers": 30,
+    "soccer_venues": 18,
+    "soccer_matches": 612,
+    "soccer_lineups": 612,
+    "soccer_lineup_players": 11000,
+    "soccer_substitutions": 1769,
+    "soccer_match_events": 519544,
+    "soccer_team_match_stats": 9792,
+    "soccer_player_match_stats": 71434,
+    "soccer_team_external_ids": 39,
+    "soccer_player_external_ids": 820,
+    "soccer_match_external_ids": 918,
+    "soccer_match_source_results": 918,
+    "soccer_source_captures": 12,
+    "soccer_identity_queue": 101,
+    "soccer_source_changes": 0
+  },
+  "elapsed_s": 143
+}
