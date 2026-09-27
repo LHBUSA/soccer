@@ -234,8 +234,8 @@ async function recapBody(store, S, cand) {
       score: { home: m.home_score, away: m.away_score, home_ht: m.home_score_ht, away_ht: m.away_score_ht, final: `${m.home_score}-${m.away_score}` },
       winner: m.home_score > m.away_score ? 'home' : m.away_score > m.home_score ? 'away' : 'draw', margin: Math.abs(m.home_score - m.away_score) },
     teams: {
-      home: { ...teamRef(S, m.home_team_id), table_before: tb && row(tb, m.home_team_id), table_after: ta && row(ta, m.home_team_id), form_before: league ? form(m.home_team_id) : [] },
-      away: { ...teamRef(S, m.away_team_id), table_before: tb && row(tb, m.away_team_id), table_after: ta && row(ta, m.away_team_id), form_before: league ? form(m.away_team_id) : [] },
+      home: { ...teamRef(S, m.home_team_id), table_before: tb && row(tb, m.home_team_id), table_after: ta && row(ta, m.home_team_id), form_before: league ? form(m.home_team_id) : [], form_before_count: league ? form(m.home_team_id).length : 0 },
+      away: { ...teamRef(S, m.away_team_id), table_before: tb && row(tb, m.away_team_id), table_after: ta && row(ta, m.away_team_id), form_before: league ? form(m.away_team_id) : [], form_before_count: league ? form(m.away_team_id).length : 0 },
     },
     teams_in_table: ta ? ta.length : null,
     goals: goalList, angles,

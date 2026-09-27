@@ -110,3 +110,11 @@ test('pipeline: detects, freezes, publishes gated stories once (idempotent), evi
   await assert.rejects(store.query('delete from public.soccer_article_evidence'), /append-only/);
   await store.close();
 });
+
+test('derived counts printed in a story are carried in the packet (no coincidental grounding)', () => {
+  const p = packet(); p.teams.home.form_before = ['W', 'D', 'L', 'W', 'W']; // 5 results, and no bare 5 elsewhere
+  p.goals = []; p.angles = [{ key: 'high_scoring', weight: 1, detail: { goals: 6 } }]; p.stats = null;
+  assert.ok(runGates2(compose(p), p).failed.includes('numeric_grounding'));
+  p.teams.home.form_before_count = 5;
+  assert.ok(!runGates2(compose(p), p).failed.includes('numeric_grounding'));
+});
