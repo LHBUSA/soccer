@@ -86,3 +86,15 @@ test('All-Star exhibition sides are flagged and never treated as league teams', 
   assert.equal(espn.parseTeam({ id: '18966', displayName: 'LAFC', isAllStar: false }).is_all_star, false);
   assert.equal(espn.parseTeam({ id: '1', displayName: 'Stars FC' }).is_all_star, false);
 });
+
+test('an unavailable athlete record is queued, never fails the match', async () => {
+  const { openPglite, applyMigrations } = await import('../workers/soccer-ingest/src/store-pglite.js');
+  const { resolveAthletes } = await import('../workers/soccer-ingest/src/espn-lane.js');
+  const store = await openPglite(); await applyMigrations(store);
+  const client = { flush: async () => {}, get: async () => ({ json: { error: { message: 'no instance found', code: 404 } }, capture: { capture_id: 'c'.repeat(24), http_status: 404 } }) };
+  const out = await resolveAthletes(store, { athleteIds: ['999999'], client, league: 'usa.1', year: 2026, registry: { competitions: [] }, areas: { areas: {}, aliases: {} } });
+  assert.equal(out.queued, 1); assert.equal(out.map.size, 0);
+  const [q] = await store.select('soccer_identity_queue', { columns: ['reason'], eq: { external_id: '999999' } });
+  assert.equal(q.reason, 'athlete_record_unavailable');
+  await store.close();
+});

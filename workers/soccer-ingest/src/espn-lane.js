@@ -166,7 +166,15 @@ export async function resolveAthletes(store, { athleteIds, client, league, year,
     const [q] = await store.select('soccer_identity_queue', { columns: ['status'], eq: { entity_type: 'player', provider: P, external_id: aid }, limit: 1 });
     if (q) { queued.push(aid); continue; } // already queued: do not refetch
     const { json, capture } = await client.get(`${espn.CORE}/${league}/seasons/${year}/athletes/${aid}`);
-    const a = espn.parseAthlete(json);
+    let a;
+    try { a = espn.parseAthlete(json); } catch (err) {
+      if (!(err instanceof espn.EspnShapeError)) throw err;
+      // The athlete record is unavailable (e.g. an ESPN error body): the capture is
+      // archived, the athlete waits in the identity queue, and the match goes on.
+      await client.flush();
+      await queueIdentity(store, { entity_type: 'player', provider: P, external_id: aid, reason: 'athlete_record_unavailable', payload: { capture_id: capture.capture_id, http_status: capture.http_status ?? null } });
+      queued.push(aid); continue;
+    }
     const fullName = [a.first_name, a.last_name].filter(Boolean).join(' ') || a.display_name;
     if (!a.birth_date || !fullName) { await client.flush(); await queueIdentity(store, { entity_type: 'player', provider: P, external_id: aid, reason: 'athlete_without_dob_or_name', payload: { name: a.display_name } }); queued.push(aid); continue; }
     const hits = await nameDobCandidates(store, a);
