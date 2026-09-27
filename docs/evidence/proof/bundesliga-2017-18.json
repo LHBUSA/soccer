@@ -1,6 +1,6 @@
 {
   "proof": "bundesliga-2017-18",
-  "generated_at": "2026-09-27T13:24:20.779Z",
+  "generated_at": "2026-09-27T13:40:57.951Z",
   "engine": "PGlite (Postgres 17, WASM) running supabase/migrations/*",
   "migrations": [
     "20260927000100_soccer_core.sql",
@@ -177,7 +177,7 @@
   },
   "openligadb": {
     "summary": {
-      "capture_id": "9440fb92937fbce745bdd8be",
+      "capture_id": "b7866116b30bd2ddcc11d5be",
       "sha256": "06bb193248f7419cdf8952d9849a2cb813003095b4f060a8994303e07217f6cf",
       "matches": 306,
       "finished": 306,
@@ -258,7 +258,7 @@
   },
   "current_season": {
     "summary": {
-      "capture_id": "0612a9f2a3eb252239d8ca25",
+      "capture_id": "6e4bbc358f66503c08ffa3c4",
       "sha256": "f458ec10905021323619f6a47da1970b23c9b2dc31314acf71fcb56ea6fa0fcb",
       "matches": 306,
       "finished": 36,
@@ -406,5 +406,5 @@
     "soccer_identity_queue": 101,
     "soccer_source_changes": 0
   },
-  "elapsed_s": 143
+  "elapsed_s": 150
 }

@@ -1,0 +1,32 @@
+{
+  "project_ref": "tkmlnhmylqnttmnsnief",
+  "role": "SPORTS (models, predictions, markets, history) per PropBetEdge DB split",
+  "checked_at": "2026-09-27T13:35:18.220Z",
+  "precheck": {
+    "soccer_tables": 0,
+    "has_ufc_bouts": true,
+    "has_ufc_model_versions": true,
+    "has_identity_tables": false,
+    "tennis_tables": 50,
+    "pg_version": "17.6"
+  },
+  "rollback_only_proof": {
+    "sql": ".proof/rollback-proof.sql built by scripts/db/build-rollback-proof.mjs from supabase/migrations/* (begin/commit stripped, wrapped in one transaction, ends in RAISE)",
+    "runner": "scripts/db/run-rollback-proof.ps1",
+    "result": "ROLLBACK_PROOF_OK tables=31 rls=31 metric_seeds=10 packet_immutable=t",
+    "catalog_fingerprint_before": {
+      "md5": "ae61aa44803aa9767d6bc93b21e7faec",
+      "objects": 1499
+    },
+    "catalog_fingerprint_after": {
+      "md5": "ae61aa44803aa9767d6bc93b21e7faec",
+      "objects": 1499
+    },
+    "residue": {
+      "soccer_relations": 0,
+      "soccer_functions": 0
+    }
+  },
+  "applied": false,
+  "apply_requires": "owner approval (Justin): migrations are never applied without it"
+}
