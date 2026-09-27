@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026-09-27.1",
+  "registry_version": "2026-09-27.2",
   "audited_at": "2026-09-27",
   "directive": "No external data API may become our runtime database. Sources are captured, archived, normalized and stored by us; production pages read PropBetEdge infrastructure only. $0 data licensing unless the owner approves otherwise.",
   "verdicts": [

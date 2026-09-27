@@ -13,7 +13,35 @@ per source) and wrote one evidence file per probe to
 control was bypassed; every block is recorded as a block. This is an engineering
 rights triage, not legal advice.
 
-## Headline
+## Update — ESPN Core as a secondary source (owner decision 2026-09-27)
+
+The owner approved ESPN as a **secondary ingestion source**. The terms verdict stays `RESTRICTS_COMMERCIAL_USE`, now with `use_status = OWNER_APPROVED_SECONDARY`.
+
+- **Access:** Core API only. site.api is Akamai-blocked and is never touched.
+- **Evidence:**
+  - discovery: `docs/evidence/espn-soccer-discovery-latest.json`, 308 requests, all 200;
+  - coordinates: `docs/evidence/espn-soccer-coordinates.json`;
+  - rehearsals: `docs/evidence/espn/`;
+  - live canary: `docs/evidence/espn-canary-latest.json`, passing.
+
+ESPN reverses several of the conclusions below:
+
+| Earlier conclusion | With ESPN Core |
+|---|---|
+| No Champions League / Europa League source | uefa.champions (775) and uefa.europa (776): fixtures, results, lineups, formations, team stats and plays with coordinates. Rehearsed on the Champions League: 144 fixtures, 18 finished matches detailed. |
+| No MLS source | usa.1 (770): 511 regular-season events and 32 teams; canary passes. Not yet rehearsed through the lane. |
+| Premier League current data weak | eng.1 (700), rehearsed: 380 fixtures and 20 teams founded; 50 finished matches with lineups, formations, team stats and 71,092 play events. |
+| No current-season event coordinates anywhere | **Core plays carry fieldPositionX/Y for current matches**, verified 0–100, team-relative, attacking x=100, y=0 on the attacking right. The 2012 and 2017 seasons also have X/Y in the EPL and Bundesliga. |
+
+**What ESPN does not provide:**
+- Pass completion: there is no success flag, so outcome stays null.
+- Standings: the current table has empty records. We compute tables ourselves.
+- Coaches: stale or missing refs.
+- Continuous tracking: none.
+
+Its own xG is stored only as a labelled provider fact.
+
+## Headline (Phase 0 audit, before the ESPN decision)
 
 1. **Only two sources give us legitimately reusable soccer data at scale, and both are proven end-to-end:**
    - **Wyscout public dataset (CC BY 4.0)** — full event data with coordinates for 2017/18 in the five big leagues, plus World Cup 2018 and Euro 2016. It's frozen history.
@@ -67,7 +95,7 @@ The choice is based on data, not brand:
 ## Event coordinates
 
 - **Available legitimately:** Wyscout 2017/18 only (0–100 team-relative, mapped to 105×68). Shot end locations in that dataset are placeholders, so no canonical end point is derived for shots.
-- **No current-season source provides event coordinates.**
+- **Before ESPN, no current-season source provided event coordinates.** ESPN Core plays now do, as a secondary, rights-flagged source (`espn_pct_v1`). They are stored alongside, never replacing, the Wyscout ledger.
 
 ## Owner decisions this matrix raises
 
@@ -78,10 +106,13 @@ The choice is based on data, not brand:
    - keep the event layer historical
    - license a feed. This conflicts with the $0 rule and needs owner approval.
    - ask a federation or league for a data partnership.
-5. **ESPN:** do not use it for soccer unless the owner extends the tennis/NBA ESPN decision in writing.
+5. **ESPN:** RESOLVED 2026-09-27. The owner approved it as a secondary source; see the update at the top.
+6. **Identity method for exact name + DOB matches:** 79 ESPN athletes match an existing canonical player on normalized full name and birth date, mostly Wyscout 2017/18 players still active. Name + DOB is not an allowed merge method today, so they are queued. The options:
+   - review them individually (method `reviewed`);
+   - approve a new crosswalk method, e.g. `attribute_corroborated`: DOB + name + membership of the same canonical club. That needs a new migration.
 
 <!-- generated:start -->
-_Generated from `data/source-registry/sources.json` (registry 2026-09-27.1) by `npm run matrix`. Do not edit by hand._
+_Generated from `data/source-registry/sources.json` (registry 2026-09-27.2) by `npm run matrix`. Do not edit by hand._
 
 ### Verdicts
 

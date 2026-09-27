@@ -11,6 +11,16 @@
 - [x] One match through the whole chain: evidence packet, gated article, rendered match page
 - [x] Current season 2026/27 on the same graph (OpenLigaDB)
 
+## Milestone 1b — production foundation (code DONE, production run BLOCKED, 2026-09-27)
+
+- [x] Store primitives + PostgREST backend; lanes free of raw SQL
+- [x] soccer-ingest Worker (cron, KV lane state, OpenLigaDB current lane with change-date polling, ESPN lanes, write-once R2 admin upload, ESPN canary)
+- [x] soccer-api Worker (/v1 health, competitions, matches, teams, players, table, news; envelope; no internals)
+- [x] Production backfill + certification script, rehearsed locally: 23 seasons, 7,040 matches, all expected checks match, second pass writes 0 rows
+- [x] ESPN Core secondary lane, rehearsed on live Core data
+- [x] News materiality gate: ordinary results stay match pages
+- [ ] **Owner:** run `docs/RELEASE.md` steps 2–10. The session's permission classifier blocked the migration apply.
+
 ## Next, in order (each needs the approval noted)
 
 1. **Apply migrations to tkmln** — owner approval. Then run the Wyscout backfill against tkmln through a PostgREST/SQL store adapter (not built yet; PGlite is the only backend today).

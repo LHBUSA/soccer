@@ -73,6 +73,43 @@ Lanes:
   - on seasons that already have canonical fixtures, it proves teams by fixture graph, crosswalks matches and aligns scorers;
   - on other seasons, it resolves through the crosswalk or founds teams by stable id, founds matches, and writes reported goals as `goal` events without coordinates.
 
+## Store contract (2026-09-27)
+
+- **Lanes never issue raw SQL.** They speak only four primitives: `select`, `insert`, `upsert` (on a real unique key) and `count`.
+- **Two backends implement them:**
+  - PGlite runs the real migrations for tests and rehearsals;
+  - PostgREST, with the service role, is production (`workers/shared/postgrest.js`). It refuses any host other than the sports project.
+- **`syncRows` sits on top of those primitives:**
+  - rows whose key is absent are inserted;
+  - rows that changed are upserted, and every changed field is logged to `soccer_source_changes`;
+  - identical rows are left alone, so a re-run writes nothing.
+  `touch` stamps `updated_at` only on rows that actually changed.
+- **Derived counts are computed in JS** from the rows a lane has just written.
+
+## ESPN Core — secondary lane (owner decision 2026-09-27)
+
+- **Access:**
+  - Core API only (`sports.core.api.espn.com`). `site.api` is Akamai-blocked and never touched.
+  - Sequential requests, 700 ms spacing, an honest user agent, and 30 requests per tick.
+  - One competition per cron tick, rotating.
+  - Every response is archived to R2 family `espn` before parsing.
+- **Structured facts only:**
+  - play `text`, headlines and editorial prose are stripped before hashing and never stored;
+  - ESPN's own xG is kept as `qualifiers.provider_xg`, labelled `espn`, and is never PBE xG.
+- **Identity:**
+  - team ids are proven by a fixture-subset graph against fixtures owned by another provider. For the Bundesliga that provider is OpenLigaDB.
+  - A contradiction voids the proof.
+  - ESPN founds teams and matches only where no other source owns the season.
+  - Athletes are founded only with a full name and birth date. A name + DOB match with an existing canonical player is queued, never merged.
+- **Precedence:**
+  - ESPN attaches its id to an existing canonical match, never creating a duplicate;
+  - it records its result in `soccer_match_source_results`, and never rewrites a match whose `result_provider` is another source;
+  - lineups and substitutions are written only where no other provider supplied them;
+  - plays become the event ledger only where no richer ledger (Wyscout) exists.
+  The API shows one event family per match, in the order Wyscout, then ESPN, then OpenLigaDB.
+- **Scorer bridge:** OpenLigaDB current-season scorer ids (abbreviated names, no DOB) are crosswalked to ESPN-founded players by goal alignment, under the same zero-conflict rule.
+- **Coordinates:** `espn_pct_v1` is 0–100, team-relative, attacking toward x=100, with y=0 on the attacking right (`docs/evidence/espn-soccer-coordinates.json`).
+
 ## Source precedence
 
 - **Results.** Every provider's observation is stored in `soccer_match_source_results`. The canonical score on `soccer_matches` comes from the provider that founded the match; for 2017/18 that is Wyscout, because it is also the event source, so ledger goals match the canonical score. Disagreements are never overwritten. They stay visible, e.g. the 2 half-time contradictions in 2017/18.

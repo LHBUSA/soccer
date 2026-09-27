@@ -57,6 +57,16 @@ Bundesliga 2017/18, from `docs/evidence/proof/bundesliga-2017-18.json`:
 | Identity queue at the end of the proof | 101 open entries: 2 Wyscout player ids referenced but absent from `players.json`, 13 OpenLigaDB 2017/18 scorer ids, and 86 current-season scorer ids with no canonical identity |
 | Current season 2026/27 on the same graph | 15/18 teams resolved through the 2017/18 crosswalk, 3 founded, 306 matches, 137 goal events. 131 scorer references are queued (no roster source) |
 
+## Identity decisions made after the first proof (2026-09-27)
+
+- **Reviewed crosswalk:** `data/registry/team-crosswalk-reviewed.json`. OpenLigaDB team 123 ("TSG 1899 Hoffenheim") is mapped onto the canonical Hoffenheim proven for id 175, with non-name evidence: the two ids never co-occur in any season from 2008/09 to 2026/27. **Pending owner confirmation.**
+- **Play-off rounds:** rounds beyond `regular_rounds` go to their own `playoff` stage and never enter the league table. This covers the 2008/09 relegation play-off that OpenLigaDB lists inside the league season.
+- **Queue evidence is kept.** The first reason is preserved, and later, weaker observations are appended to `payload.also_seen`. `resolveQueued` closes an entry when a proven crosswalk appears.
+- **ESPN (secondary):**
+  - teams are proven by fixture-subset graph where another provider owns the season, and founded elsewhere;
+  - athletes are founded only with a full name + DOB;
+  - a name + DOB match with an existing player is queued as `dob_and_name_match_existing_player`. Resolving these needs either a reviewed mapping or a new crosswalk method (for example "attribute-corroborated": DOB + name + same canonical club), which would be an owner decision and a new migration.
+
 ## Invariants the schema enforces
 
 - `x_m ∈ [0,105]`, `y_m ∈ [0,68]`. An out-of-range source point keeps its source value and gets no canonical one (1 event in 2017/18: y = 101).

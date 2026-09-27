@@ -1,0 +1,83 @@
+{
+  "version": "espn-canary/1.0.0",
+  "part": "live",
+  "at": "2026-09-27T15:12:37.172Z",
+  "pass": true,
+  "checks": [
+    {
+      "name": "ger.1:season",
+      "pass": true,
+      "detail": 2026
+    },
+    {
+      "name": "ger.1:min_teams",
+      "pass": true,
+      "detail": 18
+    },
+    {
+      "name": "ger.1:events",
+      "pass": true,
+      "detail": 306
+    },
+    {
+      "name": "ger.1:event_parses",
+      "pass": true,
+      "detail": "401884492"
+    },
+    {
+      "name": "ger.1:team_parses",
+      "pass": true,
+      "detail": "SV Elversberg"
+    },
+    {
+      "name": "eng.1:season",
+      "pass": true,
+      "detail": 2026
+    },
+    {
+      "name": "eng.1:min_teams",
+      "pass": true,
+      "detail": 20
+    },
+    {
+      "name": "eng.1:events",
+      "pass": true,
+      "detail": 380
+    },
+    {
+      "name": "eng.1:event_parses",
+      "pass": true,
+      "detail": "401878658"
+    },
+    {
+      "name": "eng.1:team_parses",
+      "pass": true,
+      "detail": "Sunderland"
+    },
+    {
+      "name": "usa.1:season",
+      "pass": true,
+      "detail": 2026
+    },
+    {
+      "name": "usa.1:min_teams",
+      "pass": true,
+      "detail": 32
+    },
+    {
+      "name": "usa.1:events",
+      "pass": true,
+      "detail": 511
+    },
+    {
+      "name": "usa.1:event_parses",
+      "pass": true,
+      "detail": "761439"
+    },
+    {
+      "name": "usa.1:team_parses",
+      "pass": true,
+      "detail": "St. Louis CITY SC"
+    }
+  ]
+}
