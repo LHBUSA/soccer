@@ -5,7 +5,8 @@
 // Vercel edge caches exactly as the API intends.
 export const config = { runtime: 'edge' };
 
-export const UPSTREAM = 'https://soccer-api.sales-fd3.workers.dev/v1/';
+import { UPSTREAM } from '../server/upstream.js';
+export { UPSTREAM };
 const ROUTES = [
   /^health$/, /^coverage$/, /^competitions$/, /^competitions\/[a-z0-9-]{1,80}$/,
   /^matches$/, /^matches\/[0-9a-f-]{36}$/, /^teams\/[a-z0-9-]{1,120}$/, /^players\/[a-z0-9-]{1,120}$/,

@@ -30,19 +30,24 @@ app.innerHTML = shell();
 const main = document.getElementById('main');
 let seq = 0;
 
+let firstLoad = true; // the server already wrote title/canonical/robots for the first response
 function setMeta(page, data) {
   const mod = PAGES[page];
-  document.title = (mod?.title && data ? mod.title(data) : null) || 'PropBetEdge Soccer Intelligence';
-  let robots = document.querySelector('meta[name="robots"]');
-  if (!robots) { robots = document.createElement('meta'); robots.name = 'robots'; document.head.appendChild(robots); }
-  robots.content = mod?.robots || 'index,follow';
+  if (!firstLoad) {
+    document.title = (mod?.title && data ? mod.title(data) : null) || 'PropBetEdge Soccer Intelligence';
+    let robots = document.querySelector('meta[name="robots"]');
+    if (!robots) { robots = document.createElement('meta'); robots.name = 'robots'; document.head.appendChild(robots); }
+    robots.content = page === 'notfound' ? 'noindex, follow' : mod?.robots || 'index, follow, max-image-preview:large';
+    const canon = document.querySelector('link[rel="canonical"]');
+    if (canon && page !== 'notfound') canon.href = `https://soccer.propbetedge.ai${location.pathname === '/' ? '/' : location.pathname.replace(/\/+$/, '')}`;
+  }
   document.querySelectorAll('.nav a').forEach(a => a.classList.toggle('on', a.dataset.pages.split(',').includes(page)));
 }
 
 export async function render(url = new URL(location.href)) {
   const my = ++seq;
   const { page, params } = resolve(url.pathname);
-  if (page === 'notfound') { setMeta('notfound'); main.innerHTML = notFoundPage(); return; }
+  if (page === 'notfound') { setMeta('notfound'); firstLoad = false; main.innerHTML = notFoundPage(); return; }
   const mod = PAGES[page];
   main.innerHTML = `<div class="wrap">${loading()}</div>`;
   setMeta(page, null);
@@ -51,9 +56,11 @@ export async function render(url = new URL(location.href)) {
     if (my !== seq) return;
     main.innerHTML = mod.render(data);
     setMeta(page, data);
+    firstLoad = false;
     mod.mount?.(main, data, { navigate });
   } catch (err) {
     if (my !== seq) return;
+    firstLoad = false;
     main.innerHTML = `<section class="canvas"><div class="wrap narrow">${errorState(err)}</div></section>`;
     main.querySelector('[data-retry]')?.addEventListener('click', () => render(url));
     if (err?.status !== 404) console.warn('load failed', page, err?.message);

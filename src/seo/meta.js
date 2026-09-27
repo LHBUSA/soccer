@@ -1,0 +1,196 @@
+// Server-first SEO: pure builders from API envelopes to page metadata.
+// Used by middleware.js (first HTML response) and by the client on navigation.
+// Only fields the canonical graph actually returns are ever emitted.
+import { resolve } from '../lib/router.js';
+
+export const SITE = 'https://soccer.propbetedge.ai';
+export const BRAND = 'PropBetEdge Soccer';
+export const INDEX = 'index, follow, max-image-preview:large';
+export const NOINDEX = 'noindex, follow';
+
+const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const clip = (s, n = 165) => (s.length <= n ? s : `${s.slice(0, n - 1).replace(/\s+\S*$/, '')}…`);
+const day = iso => (iso ? new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }) : null);
+export const canonicalFor = pathname => `${SITE}${pathname === '/' ? '/' : pathname.replace(/\/+$/, '')}`;
+
+const STATIC = {
+  home: {
+    title: 'PropBetEdge Soccer Intelligence — Every match. Every event. One canonical field.',
+    description: 'Soccer intelligence from the PropBetEdge canonical graph: Bundesliga, Premier League and Champions League results, tables, lineups and event maps with visible sources.',
+    h1: 'PropBetEdge Soccer Intelligence',
+  },
+  competitions: { title: 'Competitions — Soccer Intelligence | PropBetEdge Soccer', description: 'Bundesliga, Premier League and UEFA Champions League on the PropBetEdge canonical soccer graph: seasons, results, fixtures and coverage.', h1: 'Competitions' },
+  matches: { title: 'Matches — Results, Fixtures & Match Intelligence | PropBetEdge Soccer', description: 'Recent results, today’s matches and upcoming fixtures, each with PropBetEdge Match Intelligence: timelines, event maps, statistics and lineups where sourced.', h1: 'Matches' },
+  tables: { title: 'Tables — League Standings | PropBetEdge Soccer', description: 'League tables computed by PropBetEdge from canonical finished league-stage results, with the method shown alongside every table.', h1: 'Tables' },
+  sources: { title: 'Sources & Method — PropBetEdge Soccer Intelligence', description: 'Where every PropBetEdge Soccer fact comes from: sources, attribution, identity rules, event-map semantics and how missing data is shown.', h1: 'Sources' },
+  news: { title: 'Soccer Newsroom — PropBetEdge Soccer', description: 'Evidence-backed soccer reporting from the PropBetEdge canonical graph is coming online.', h1: 'PropBetEdge Soccer Newsroom', robots: NOINDEX },
+};
+
+const breadcrumb = items => ({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items.map(([name, url], i) => ({ '@type': 'ListItem', position: i + 1, name, item: url })) });
+
+export function notFoundMeta(pathname, what = 'page') {
+  return { status: 404, title: `Not found — ${BRAND}`, description: `This ${what} is not in the PropBetEdge canonical soccer graph.`, canonical: null, robots: NOINDEX, jsonld: [], image: null, ssr: { h1: 'Not found', p: `This ${what} is not in the PropBetEdge canonical soccer graph.`, links: [['/', 'Back to today']] } };
+}
+
+function base(pathname, { title, description, robots = INDEX, jsonld = [], image = null, ogType = 'website', ssr }) {
+  return { status: 200, title, description: clip(description), canonical: canonicalFor(pathname), robots, jsonld, image: image || `${SITE}/og/site/home.png`, ogType, ssr };
+}
+
+export function staticMeta(page, pathname) {
+  const s = STATIC[page];
+  const jsonld = page === 'home' ? [
+    { '@context': 'https://schema.org', '@type': 'WebSite', name: 'PropBetEdge Soccer Intelligence', url: `${SITE}/` },
+    { '@context': 'https://schema.org', '@type': 'Organization', name: 'PropBetEdge', url: 'https://propbetedge.ai' },
+  ] : [breadcrumb([['Soccer', `${SITE}/`], [s.h1, canonicalFor(pathname)]])];
+  return base(pathname, { title: s.title, description: s.description, robots: s.robots || INDEX, jsonld, ssr: { h1: s.h1, p: s.description, links: [['/competitions', 'Competitions'], ['/matches', 'Matches'], ['/tables', 'Tables'], ['/sources', 'Sources']] } });
+}
+
+export function competitionMeta(pathname, compEnv, tableEnv) {
+  const c = compEnv.data;
+  const seasons = c.seasons || [];
+  const total = seasons.reduce((n, s) => n + (s.matches || 0), 0);
+  const hasTable = (tableEnv?.data?.rows || []).length > 0;
+  const latest = seasons[0]?.label;
+  const title = hasTable ? `${c.name} — Table, Results & Fixtures | ${BRAND}` : `${c.name} — Results & Fixtures | ${BRAND}`;
+  const description = `${c.name}${latest ? ` ${latest}` : ''}: ${hasTable ? 'table, results and fixtures' : 'results and fixtures'} — ${seasons.length} stored ${seasons.length === 1 ? 'season' : 'seasons'}, ${total.toLocaleString('en-US')} canonical matches on the PropBetEdge soccer graph.`;
+  const url = canonicalFor(pathname);
+  return base(pathname, {
+    title, description, image: `${SITE}/og/competition/${c.slug}.png`,
+    jsonld: [breadcrumb([['Soccer', `${SITE}/`], ['Competitions', `${SITE}/competitions`], [c.name, url]]),
+      { '@context': 'https://schema.org', '@type': 'SportsOrganization', name: c.name, sport: 'Soccer', url }],
+    ssr: { h1: c.name, p: description, links: [['/competitions', 'All competitions'], [`/tables?competition=${c.slug}`, `${c.name} table`], ['/matches', 'Matches']] },
+  });
+}
+
+const EVENT_STATUS = { scheduled: 'https://schema.org/EventScheduled', finished: 'https://schema.org/EventScheduled', postponed: 'https://schema.org/EventPostponed', cancelled: 'https://schema.org/EventCancelled' };
+
+export function matchMeta(pathname, env) {
+  const m = env.data;
+  const home = m.home?.name; const away = m.away?.name;
+  const sc = m.score && m.score.home !== null && m.score.home !== undefined ? `${m.score.home}–${m.score.away}` : null;
+  const when = day(m.kickoff_at);
+  const shots = (m.shots || []).length;
+  const intel = [
+    shots ? `event map (${shots} ${shots === 1 ? 'shot' : 'shots'})` : null,
+    m.stats?.basis === 'source' ? 'source stats' : m.stats?.basis === 'derived' ? 'PBE derived counts' : null,
+    m.lineups ? 'lineups' : null,
+    (m.timeline || []).length ? 'timeline' : null,
+  ].filter(Boolean);
+  const head = m.status === 'finished' && sc ? `${home} ${sc} ${away}` : `${home} vs ${away}`;
+  const status = m.status === 'scheduled' ? ' Scheduled.' : m.status === 'postponed' ? ' Postponed.' : m.status === 'finished' && sc ? ' Full time.' : '';
+  const description = `${head}${m.competition ? ` · ${m.competition.name}${m.season ? ` ${m.season}` : ''}` : ''}${when ? ` · ${when}` : ''}.${status}${intel.length ? ` Match Intelligence: ${intel.join(', ')}.` : ''}`.replace(/\s+/g, ' ').trim();
+  const url = canonicalFor(pathname);
+  const team = t => ({ '@type': 'SportsTeam', name: t.name, ...(t.slug ? { url: `${SITE}/teams/${t.slug}` } : {}) });
+  const event = {
+    '@context': 'https://schema.org', '@type': 'SportsEvent', name: `${home} vs ${away}`, sport: 'Soccer', url,
+    ...(m.kickoff_at ? { startDate: m.kickoff_at } : {}),
+    ...(EVENT_STATUS[m.status] ? { eventStatus: EVENT_STATUS[m.status] } : {}),
+    homeTeam: team(m.home), awayTeam: team(m.away),
+    ...(m.venue?.name ? { location: { '@type': 'Place', name: m.venue.name, ...(m.venue.city ? { address: { '@type': 'PostalAddress', addressLocality: m.venue.city } } : {}) } } : {}),
+    ...(m.competition ? { superEvent: { '@type': 'SportsEvent', name: `${m.competition.name}${m.season ? ` ${m.season}` : ''}`, url: `${SITE}/competitions/${m.competition.slug}` } } : {}),
+  };
+  const crumbs = [['Soccer', `${SITE}/`], ...(m.competition ? [[m.competition.name, `${SITE}/competitions/${m.competition.slug}`]] : []), [`${home} vs ${away}`, url]];
+  return base(pathname, {
+    title: `${home} vs ${away} — Match Intelligence | ${BRAND}`, description, image: `${SITE}/og/match/${m.id}.png`,
+    robots: m.status === 'finished' || m.status === 'scheduled' ? INDEX : NOINDEX,
+    jsonld: [event, breadcrumb(crumbs)],
+    ssr: { h1: `${home}${sc ? ` ${sc} ` : ' vs '}${away}`, p: description, links: [...(m.home?.slug ? [[`/teams/${m.home.slug}`, home]] : []), ...(m.away?.slug ? [[`/teams/${m.away.slug}`, away]] : []), ...(m.competition ? [[`/competitions/${m.competition.slug}`, m.competition.name]] : [])] },
+  });
+}
+
+export function teamMeta(pathname, env) {
+  const t = env.data;
+  const comps = [...new Set([...(t.recent || []), ...(t.upcoming || [])].map(x => x.competition?.name).filter(Boolean))];
+  const form = (t.form || []).join('-');
+  const description = `${t.name}${comps.length ? ` (${comps.join(', ')})` : ''}: recent results${form ? ` (last five: ${form})` : ''}, upcoming fixtures and match intelligence from the PropBetEdge canonical soccer graph.`;
+  const url = canonicalFor(pathname);
+  return base(pathname, {
+    title: `${t.name} — Soccer Intelligence | PropBetEdge`, description, image: `${SITE}/og/team/${t.slug}.png`,
+    jsonld: [{ '@context': 'https://schema.org', '@type': 'SportsTeam', name: t.name, sport: 'Soccer', url,
+      ...(t.official_name && t.official_name !== t.name ? { alternateName: t.official_name } : {}),
+      ...(t.city ? { location: { '@type': 'Place', name: t.city } } : {}) },
+    breadcrumb([['Soccer', `${SITE}/`], [t.name, url]])],
+    ssr: { h1: t.name, p: description, links: [...(t.recent || []).slice(0, 5).map(x => [`/matches/${x.id}`, `${x.home?.name} vs ${x.away?.name}`])] },
+  });
+}
+
+const ROLE = { goalkeeper: 'goalkeeper', defender: 'defender', midfielder: 'midfielder', forward: 'forward' };
+export function playerMeta(pathname, env) {
+  const p = env.data;
+  const seasons = (p.seasons || []).map(s => s.season).filter(Boolean);
+  const bits = [ROLE[p.role], p.birth_date ? `born ${day(`${String(p.birth_date).slice(0, 10)}T12:00:00Z`)}` : null].filter(Boolean);
+  const description = `${p.name}${bits.length ? ` — ${bits.join(', ')}` : ''}. Player Intelligence from the PropBetEdge canonical soccer graph${seasons.length ? `: event-derived statistics for ${seasons.join(', ')}` : ''}.`;
+  const url = canonicalFor(pathname);
+  const person = { '@context': 'https://schema.org', '@type': 'Person', name: p.name, url,
+    ...(p.first_name ? { givenName: p.first_name } : {}), ...(p.last_name ? { familyName: p.last_name } : {}),
+    ...(p.birth_date ? { birthDate: String(p.birth_date).slice(0, 10) } : {}),
+    ...(p.height_cm ? { height: { '@type': 'QuantitativeValue', value: p.height_cm, unitCode: 'CMT' } } : {}),
+    ...(p.nationality_code ? { nationality: { '@type': 'Country', identifier: p.nationality_code } } : {}) };
+  return base(pathname, {
+    title: `${p.name} — Player Intelligence | ${BRAND}`, description, image: `${SITE}/og/player/${p.slug}.png`, ogType: 'profile',
+    jsonld: [person, breadcrumb([['Soccer', `${SITE}/`], [p.name, url]])],
+    ssr: { h1: p.name, p: description, links: [['/matches', 'Matches']] },
+  });
+}
+
+// Which API calls a route needs for its metadata.
+export function metaPlan(pathname) {
+  const { page, params } = resolve(pathname);
+  if (page === 'notfound') return { page };
+  if (STATIC[page]) return { page };
+  if (page === 'competition') return { page, calls: [`competitions/${params[0]}`, `table?competition=${encodeURIComponent(params[0])}`] };
+  if (page === 'match') return { page, calls: [`matches/${params[0]}`] };
+  if (page === 'team') return { page, calls: [`teams/${params[0]}`] };
+  if (page === 'player') return { page, calls: [`players/${params[0]}`] };
+  return { page };
+}
+
+export function buildMeta(pathname, page, results = []) {
+  if (page === 'notfound') return notFoundMeta(pathname);
+  if (STATIC[page]) return staticMeta(page, pathname);
+  const [first, second] = results;
+  if (!first || first.notFound) return notFoundMeta(pathname, page);
+  if (page === 'competition') return competitionMeta(pathname, first, second && !second.notFound ? second : null);
+  if (page === 'match') return matchMeta(pathname, first);
+  if (page === 'team') return teamMeta(pathname, first);
+  if (page === 'player') return playerMeta(pathname, first);
+  return notFoundMeta(pathname);
+}
+
+// ---- HTML injection (server) ----
+export function headTags(meta) {
+  const t = [
+    `<title>${esc(meta.title)}</title>`,
+    `<meta name="description" content="${esc(meta.description)}">`,
+    `<meta name="robots" content="${esc(meta.robots)}">`,
+    meta.canonical ? `<link rel="canonical" href="${esc(meta.canonical)}">` : '',
+    `<meta property="og:site_name" content="PropBetEdge Soccer Intelligence">`,
+    `<meta property="og:type" content="${esc(meta.ogType || 'website')}">`,
+    `<meta property="og:title" content="${esc(meta.title)}">`,
+    `<meta property="og:description" content="${esc(meta.description)}">`,
+    meta.canonical ? `<meta property="og:url" content="${esc(meta.canonical)}">` : '',
+    meta.image ? `<meta property="og:image" content="${esc(meta.image)}">` : '',
+    meta.image ? '<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">' : '',
+    '<meta name="twitter:card" content="summary_large_image">',
+    `<meta name="twitter:title" content="${esc(meta.title)}">`,
+    `<meta name="twitter:description" content="${esc(meta.description)}">`,
+    meta.image ? `<meta name="twitter:image" content="${esc(meta.image)}">` : '',
+    ...(meta.jsonld || []).map(j => `<script type="application/ld+json">${JSON.stringify(j).replace(/</g, '\\u003c')}</script>`),
+  ];
+  return t.filter(Boolean).join('\n  ');
+}
+
+export function ssrBody(meta) {
+  const s = meta.ssr || {};
+  return `<div id="app"><main class="ssr"><p class="ssr-brand">PROPBETEDGE SOCCER INTELLIGENCE</p><h1>${esc(s.h1 || meta.title)}</h1><p>${esc(s.p || meta.description)}</p>${(s.links || []).length ? `<nav>${s.links.map(([h, l]) => `<a href="${esc(h)}">${esc(l)}</a>`).join(' · ')}</nav>` : ''}</main></div>`;
+}
+
+export function injectMeta(html, meta) {
+  return html
+    .replace(/<title>[\s\S]*?<\/title>/i, '')
+    .replace(/<meta\s+name="description"[^>]*>/i, '')
+    .replace(/<meta\s+name="robots"[^>]*>/i, '')
+    .replace(/<link\s+rel="canonical"[^>]*>/i, '')
+    .replace('</head>', `  ${headTags(meta)}\n</head>`)
+    .replace(/<div id="app"><\/div>/, ssrBody(meta));
+}

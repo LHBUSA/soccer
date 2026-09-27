@@ -10,6 +10,18 @@
       "destination": "/api/soccer?path=:path*"
     },
     {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap?kind=index"
+    },
+    {
+      "source": "/sitemap-:kind.xml",
+      "destination": "/api/sitemap?kind=:kind"
+    },
+    {
+      "source": "/og/:type/:key.png",
+      "destination": "/api/og?type=:type&key=:key"
+    },
+    {
       "source": "/(competitions|matches|teams|players|tables|news|sources)",
       "destination": "/index.html"
     },

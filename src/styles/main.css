@@ -348,3 +348,10 @@ button { font: inherit; }
 .foot nav { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: flex-start; }
 .foot nav a { font: 700 13px/1 var(--display); letter-spacing: .16em; color: #fff; text-decoration: none; padding: 6px 0; }
 .foot .muted { color: var(--muted-dark); }
+
+/* ---------- server-rendered summary (visible only until the app boots) ---------- */
+.ssr { max-width: 820px; margin: 0 auto; padding: 64px 16px; color: #fff; }
+.ssr-brand { font: 700 12px/1 var(--body); letter-spacing: .22em; color: var(--gold); }
+.ssr h1 { font: 800 clamp(30px, 6vw, 56px)/1 var(--display); text-transform: uppercase; margin: 12px 0; }
+.ssr p { color: var(--muted-dark); }
+.ssr nav a { color: var(--gold); }

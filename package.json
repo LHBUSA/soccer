@@ -26,5 +26,8 @@
     "fflate": "^0.8.3",
     "puppeteer-core": "^25.12.0",
     "vite": "^6.4.3"
+  },
+  "dependencies": {
+    "@vercel/og": "0.6.8"
   }
 }
