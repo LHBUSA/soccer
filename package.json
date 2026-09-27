@@ -15,10 +15,16 @@
     "proof": "node scripts/backfill/proof-bundesliga-2017.mjs",
     "matrix": "node scripts/matrix.mjs",
     "coverage:openligadb": "node scripts/coverage/openligadb-depth.mjs",
-    "proof:article": "node scripts/news/proof-article.mjs"
+    "proof:article": "node scripts/news/proof-article.mjs",
+    "dev": "vite",
+    "build": "node scripts/guard-truth.mjs && vite build",
+    "test:web": "node --test \"tests/web/**/*.test.js\"",
+    "qa:browser": "node scripts/qa/browser.mjs"
   },
   "devDependencies": {
     "@electric-sql/pglite": "^0.5.8",
-    "fflate": "^0.8.3"
+    "fflate": "^0.8.3",
+    "puppeteer-core": "^25.12.0",
+    "vite": "^6.4.3"
   }
 }

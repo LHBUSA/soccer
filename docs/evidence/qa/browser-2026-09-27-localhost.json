@@ -1,0 +1,2358 @@
+{
+  "base": "http://localhost:4199",
+  "at": "2026-09-27T18:41:54.252Z",
+  "widths": [
+    320,
+    360,
+    390,
+    430,
+    768,
+    1024,
+    1440
+  ],
+  "routes": [
+    "/",
+    "/competitions",
+    "/competitions/bundesliga",
+    "/competitions/premier-league",
+    "/competitions/uefa-champions-league",
+    "/matches",
+    "/matches?view=upcoming",
+    "/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+    "/matches/df69bc8e-7143-5f4a-888e-afccbd2a90a3",
+    "/matches/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a",
+    "/teams/fulham",
+    "/teams/bayern-munchen",
+    "/players/shea-charles",
+    "/players/robert-lewandowski",
+    "/tables",
+    "/tables?competition=premier-league",
+    "/tables?competition=uefa-champions-league",
+    "/news",
+    "/sources",
+    "/this-route-does-not-exist"
+  ],
+  "checks": 140,
+  "failures": [],
+  "pass": true,
+  "exposure": [
+    {
+      "path": "/workers/soccer-ingest/src/index.js",
+      "status": 200,
+      "leaked": false
+    },
+    {
+      "path": "/supabase/migrations/20260927000100_soccer_core.sql",
+      "status": 200,
+      "leaked": false
+    },
+    {
+      "path": "/package.json",
+      "status": 200,
+      "leaked": false
+    },
+    {
+      "path": "/tests/core.test.js",
+      "status": 200,
+      "leaked": false
+    },
+    {
+      "path": "/scripts/guard-truth.mjs",
+      "status": 200,
+      "leaked": false
+    },
+    {
+      "path": "/docs/RELEASE.md",
+      "status": 200,
+      "leaked": false
+    },
+    {
+      "path": "/data/registry/competitions.json",
+      "status": 200,
+      "leaked": false
+    },
+    {
+      "path": "/api/soccer.js",
+      "status": 404,
+      "leaked": false
+    },
+    {
+      "path": "/.env",
+      "status": 200,
+      "leaked": false
+    },
+    {
+      "path": "/vercel.json",
+      "status": 200,
+      "leaked": false
+    }
+  ],
+  "proxy": [
+    {
+      "path": "/api/soccer/health",
+      "status": 200
+    },
+    {
+      "path": "/api/soccer/competitions",
+      "status": 200
+    },
+    {
+      "path": "/api/soccer/..%2F..%2Fetc%2Fpasswd",
+      "status": 400
+    },
+    {
+      "path": "/api/soccer/https:%2F%2Fevil.example",
+      "status": 404
+    },
+    {
+      "path": "/api/soccer/matches/not-a-uuid",
+      "status": 404
+    },
+    {
+      "path": "POST /api/soccer/competitions",
+      "status": 405
+    }
+  ],
+  "results": [
+    {
+      "route": "/",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "PropBetEdge Soccer Intelligence"
+    },
+    {
+      "route": "/",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "PropBetEdge Soccer Intelligence"
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "PropBetEdge Soccer Intelligence"
+    },
+    {
+      "route": "/",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "PropBetEdge Soccer Intelligence"
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "PropBetEdge Soccer Intelligence"
+    },
+    {
+      "route": "/",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "PropBetEdge Soccer Intelligence"
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "PropBetEdge Soccer Intelligence"
+    },
+    {
+      "route": "/competitions",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Competitions · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Competitions · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Competitions · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Competitions · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Competitions · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Competitions · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Competitions · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/bundesliga",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bundesliga · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/bundesliga",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bundesliga · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/bundesliga",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bundesliga · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/bundesliga",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bundesliga · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/bundesliga",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bundesliga · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/bundesliga",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bundesliga · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/bundesliga",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bundesliga · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/premier-league",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Premier League · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/premier-league",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Premier League · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/premier-league",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Premier League · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/premier-league",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Premier League · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/premier-league",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Premier League · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/premier-league",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Premier League · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/premier-league",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Premier League · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/uefa-champions-league",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "UEFA Champions League · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/uefa-champions-league",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "UEFA Champions League · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/uefa-champions-league",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "UEFA Champions League · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/uefa-champions-league",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "UEFA Champions League · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/uefa-champions-league",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "UEFA Champions League · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/uefa-champions-league",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "UEFA Champions League · PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/uefa-champions-league",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 5,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "UEFA Champions League · PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Matches · PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Matches · PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Matches · PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Matches · PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Matches · PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Matches · PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Matches · PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches?view=upcoming",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Matches · PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches?view=upcoming",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Matches · PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches?view=upcoming",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Matches · PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches?view=upcoming",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Matches · PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches?view=upcoming",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Matches · PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches?view=upcoming",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Matches · PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches?view=upcoming",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Matches · PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 80,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Fulham 1–1 Manchester United · Match Intelligence"
+    },
+    {
+      "route": "/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 80,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Fulham 1–1 Manchester United · Match Intelligence"
+    },
+    {
+      "route": "/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 80,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Fulham 1–1 Manchester United · Match Intelligence"
+    },
+    {
+      "route": "/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 80,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Fulham 1–1 Manchester United · Match Intelligence"
+    },
+    {
+      "route": "/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 80,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Fulham 1–1 Manchester United · Match Intelligence"
+    },
+    {
+      "route": "/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 80,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Fulham 1–1 Manchester United · Match Intelligence"
+    },
+    {
+      "route": "/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 80,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Fulham 1–1 Manchester United · Match Intelligence"
+    },
+    {
+      "route": "/matches/df69bc8e-7143-5f4a-888e-afccbd2a90a3",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 88,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Slavia Prague 2–3 Lens · Match Intelligence"
+    },
+    {
+      "route": "/matches/df69bc8e-7143-5f4a-888e-afccbd2a90a3",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 88,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Slavia Prague 2–3 Lens · Match Intelligence"
+    },
+    {
+      "route": "/matches/df69bc8e-7143-5f4a-888e-afccbd2a90a3",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 88,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Slavia Prague 2–3 Lens · Match Intelligence"
+    },
+    {
+      "route": "/matches/df69bc8e-7143-5f4a-888e-afccbd2a90a3",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 88,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Slavia Prague 2–3 Lens · Match Intelligence"
+    },
+    {
+      "route": "/matches/df69bc8e-7143-5f4a-888e-afccbd2a90a3",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 88,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Slavia Prague 2–3 Lens · Match Intelligence"
+    },
+    {
+      "route": "/matches/df69bc8e-7143-5f4a-888e-afccbd2a90a3",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 88,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Slavia Prague 2–3 Lens · Match Intelligence"
+    },
+    {
+      "route": "/matches/df69bc8e-7143-5f4a-888e-afccbd2a90a3",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 88,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Slavia Prague 2–3 Lens · Match Intelligence"
+    },
+    {
+      "route": "/matches/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 44,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bayern München 1–4 Stuttgart · Match Intelligence"
+    },
+    {
+      "route": "/matches/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 44,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bayern München 1–4 Stuttgart · Match Intelligence"
+    },
+    {
+      "route": "/matches/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 44,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bayern München 1–4 Stuttgart · Match Intelligence"
+    },
+    {
+      "route": "/matches/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 44,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bayern München 1–4 Stuttgart · Match Intelligence"
+    },
+    {
+      "route": "/matches/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 44,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bayern München 1–4 Stuttgart · Match Intelligence"
+    },
+    {
+      "route": "/matches/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 44,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bayern München 1–4 Stuttgart · Match Intelligence"
+    },
+    {
+      "route": "/matches/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 44,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bayern München 1–4 Stuttgart · Match Intelligence"
+    },
+    {
+      "route": "/teams/fulham",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Fulham · PropBetEdge Soccer"
+    },
+    {
+      "route": "/teams/fulham",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Fulham · PropBetEdge Soccer"
+    },
+    {
+      "route": "/teams/fulham",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Fulham · PropBetEdge Soccer"
+    },
+    {
+      "route": "/teams/fulham",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Fulham · PropBetEdge Soccer"
+    },
+    {
+      "route": "/teams/fulham",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Fulham · PropBetEdge Soccer"
+    },
+    {
+      "route": "/teams/fulham",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Fulham · PropBetEdge Soccer"
+    },
+    {
+      "route": "/teams/fulham",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Fulham · PropBetEdge Soccer"
+    },
+    {
+      "route": "/teams/bayern-munchen",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bayern München · PropBetEdge Soccer"
+    },
+    {
+      "route": "/teams/bayern-munchen",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bayern München · PropBetEdge Soccer"
+    },
+    {
+      "route": "/teams/bayern-munchen",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bayern München · PropBetEdge Soccer"
+    },
+    {
+      "route": "/teams/bayern-munchen",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bayern München · PropBetEdge Soccer"
+    },
+    {
+      "route": "/teams/bayern-munchen",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bayern München · PropBetEdge Soccer"
+    },
+    {
+      "route": "/teams/bayern-munchen",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bayern München · PropBetEdge Soccer"
+    },
+    {
+      "route": "/teams/bayern-munchen",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bayern München · PropBetEdge Soccer"
+    },
+    {
+      "route": "/players/shea-charles",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Shea Charles · Player Intelligence"
+    },
+    {
+      "route": "/players/shea-charles",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Shea Charles · Player Intelligence"
+    },
+    {
+      "route": "/players/shea-charles",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Shea Charles · Player Intelligence"
+    },
+    {
+      "route": "/players/shea-charles",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Shea Charles · Player Intelligence"
+    },
+    {
+      "route": "/players/shea-charles",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Shea Charles · Player Intelligence"
+    },
+    {
+      "route": "/players/shea-charles",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Shea Charles · Player Intelligence"
+    },
+    {
+      "route": "/players/shea-charles",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Shea Charles · Player Intelligence"
+    },
+    {
+      "route": "/players/robert-lewandowski",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Robert Lewandowski · Player Intelligence"
+    },
+    {
+      "route": "/players/robert-lewandowski",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Robert Lewandowski · Player Intelligence"
+    },
+    {
+      "route": "/players/robert-lewandowski",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Robert Lewandowski · Player Intelligence"
+    },
+    {
+      "route": "/players/robert-lewandowski",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Robert Lewandowski · Player Intelligence"
+    },
+    {
+      "route": "/players/robert-lewandowski",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Robert Lewandowski · Player Intelligence"
+    },
+    {
+      "route": "/players/robert-lewandowski",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Robert Lewandowski · Player Intelligence"
+    },
+    {
+      "route": "/players/robert-lewandowski",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Robert Lewandowski · Player Intelligence"
+    },
+    {
+      "route": "/tables",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=premier-league",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=premier-league",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=premier-league",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=premier-league",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=premier-league",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=premier-league",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=premier-league",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=uefa-champions-league",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=uefa-champions-league",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=uefa-champions-league",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=uefa-champions-league",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=uefa-champions-league",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=uefa-champions-league",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=uefa-champions-league",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 2,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables · PropBetEdge Soccer"
+    },
+    {
+      "route": "/news",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "News · PropBetEdge Soccer"
+    },
+    {
+      "route": "/news",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "News · PropBetEdge Soccer"
+    },
+    {
+      "route": "/news",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "News · PropBetEdge Soccer"
+    },
+    {
+      "route": "/news",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "News · PropBetEdge Soccer"
+    },
+    {
+      "route": "/news",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "News · PropBetEdge Soccer"
+    },
+    {
+      "route": "/news",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "News · PropBetEdge Soccer"
+    },
+    {
+      "route": "/news",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 1,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "News · PropBetEdge Soccer"
+    },
+    {
+      "route": "/sources",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 0,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Sources · PropBetEdge Soccer"
+    },
+    {
+      "route": "/sources",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 0,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Sources · PropBetEdge Soccer"
+    },
+    {
+      "route": "/sources",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 0,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Sources · PropBetEdge Soccer"
+    },
+    {
+      "route": "/sources",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 0,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Sources · PropBetEdge Soccer"
+    },
+    {
+      "route": "/sources",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 0,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Sources · PropBetEdge Soccer"
+    },
+    {
+      "route": "/sources",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 0,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Sources · PropBetEdge Soccer"
+    },
+    {
+      "route": "/sources",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 0,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Sources · PropBetEdge Soccer"
+    },
+    {
+      "route": "/this-route-does-not-exist",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 0,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "PropBetEdge Soccer Intelligence"
+    },
+    {
+      "route": "/this-route-does-not-exist",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 0,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "PropBetEdge Soccer Intelligence"
+    },
+    {
+      "route": "/this-route-does-not-exist",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 0,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "PropBetEdge Soccer Intelligence"
+    },
+    {
+      "route": "/this-route-does-not-exist",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 0,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "PropBetEdge Soccer Intelligence"
+    },
+    {
+      "route": "/this-route-does-not-exist",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 0,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "PropBetEdge Soccer Intelligence"
+    },
+    {
+      "route": "/this-route-does-not-exist",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 0,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "PropBetEdge Soccer Intelligence"
+    },
+    {
+      "route": "/this-route-does-not-exist",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 0,
+      "hosts": [
+        "localhost:4199",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "PropBetEdge Soccer Intelligence"
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+// Frontend contract tests: pure render functions + proxy allowlist. Inputs are
+// inline test objects shaped like the API envelope (not committed mock data).
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { join } from 'node:path';
+import { isAllowedPath, upstreamUrl, UPSTREAM } from '../../api/soccer.js';
+import { resolve } from '../../src/lib/router.js';
+import { num, statsHeading, coverageOf, scoreline, DASH } from '../../src/lib/format.js';
+import { pitchLines, pitchSvg, toPortrait, validShots, L, W } from '../../src/components/pitch.js';
+import { sourcePanel, matchCard, formChips } from '../../src/components/ui.js';
+import { tableView } from '../../src/components/table.js';
+import * as match from '../../src/pages/match.js';
+import { news, tables } from '../../src/pages/lists.js';
+import { player } from '../../src/pages/people.js';
+import { API_BASE, apiPath } from '../../src/lib/api.js';
+
+test('proxy: only the public API routes, fixed upstream, known query keys, no traversal', () => {
+  assert.equal(isAllowedPath('matches/5b0c8f3e-1111-5222-8333-444455556666'), true);
+  assert.equal(isAllowedPath('competitions/bundesliga'), true);
+  for (const bad of ['', '../etc/passwd', 'matches/not-a-uuid', 'https://evil.example', 'admin', 'v1/matches', 'teams/../x', 'runs']) assert.equal(isAllowedPath(bad), false, bad);
+  const u = upstreamUrl('https://soccer.propbetedge.ai/api/soccer?path=matches&competition=bundesliga&token=x&limit=5');
+  assert.equal(u.href, `${UPSTREAM}matches?competition=bundesliga&limit=5`);
+  assert.equal(upstreamUrl('https://x/api/soccer?path=..%2F..%2Fetc'), null);
+  assert.equal(upstreamUrl('https://x/api/soccer?path=https%3A%2F%2Fevil.example'), null);
+  assert.ok(UPSTREAM.startsWith('https://soccer-api.') && UPSTREAM.endsWith('/v1/'));
+});
+
+test('browser API client only targets the same-origin proxy', () => {
+  assert.equal(API_BASE, '/api/soccer/');
+  assert.equal(apiPath('matches', { competition: 'bundesliga', status: '', limit: 5 }), '/api/soccer/matches?competition=bundesliga&limit=5');
+});
+
+test('browser source never calls a provider, the Worker host or Supabase directly', () => {
+  const walk = d => readdirSync(d).flatMap(f => (statSync(join(d, f)).isDirectory() ? walk(join(d, f)) : [join(d, f)]));
+  for (const f of walk('src')) {
+    const t = readFileSync(f, 'utf8');
+    assert.ok(!/workers\.dev|supabase\.co|espn\.com|openligadb\.de|figshare\.com|ndownloader|service_role/i.test(t), `${f} references an upstream`);
+    assert.ok(!/fetch\(\s*['"`]https?:/.test(t), `${f} fetches an absolute URL`);
+  }
+});
+
+test('router resolves every shipped route and 404s the rest', () => {
+  assert.equal(resolve('/').page, 'home');
+  assert.deepEqual(resolve('/competitions/premier-league'), { page: 'competition', params: ['premier-league'] });
+  assert.equal(resolve('/matches/5b0c8f3e-1111-5222-8333-444455556666').page, 'match');
+  assert.equal(resolve('/teams/bayern-munchen').page, 'team');
+  assert.equal(resolve('/players/robert-lewandowski').page, 'player');
+  for (const p of ['/tables', '/news', '/sources', '/matches', '/competitions']) assert.notEqual(resolve(p).page, 'notfound', p);
+  assert.equal(resolve('/matches/abc').page, 'notfound');
+  assert.equal(resolve('/predictions').page, 'notfound');
+  assert.equal(resolve('/dna').page, 'notfound');
+});
+
+test('missing values render as missing, never as zero', () => {
+  assert.equal(num(null), DASH); assert.equal(num(undefined), DASH); assert.equal(num(''), DASH);
+  assert.equal(num(0), '0'); assert.equal(num(57.2, { dp: 1, suffix: '%' }), '57.2%');
+  assert.equal(scoreline(null), null); assert.equal(scoreline({ home: 0, away: 0 }), '0–0');
+  assert.equal(formChips([]).includes('No finished matches'), true);
+});
+
+test('stats basis labels are never blurred', () => {
+  assert.equal(statsHeading({ basis: 'derived', derivation: 'pbe-counts/1.0.0' }).title, 'PBE DERIVED COUNTS');
+  assert.equal(statsHeading({ basis: 'source', provider: 'espn' }).title, 'SOURCE MATCH STATISTICS');
+  assert.match(statsHeading({ basis: 'source', provider: 'espn' }).note, /ESPN/);
+  assert.equal(statsHeading(null), null);
+  assert.deepEqual(['ok', 'partial', 'unavailable', 'degraded'].map(s => coverageOf({ coverage: { state: s } }).label), ['FULL', 'PARTIAL', 'UNAVAILABLE', 'DEGRADED']);
+});
+
+test('pitch: real 105x68 geometry, portrait rotation keeps home attacking up', () => {
+  const lines = pitchLines();
+  assert.match(lines, /width="105" height="68"/);
+  assert.match(lines, /width="16.5" height="40.32"/); // penalty area
+  assert.match(lines, /width="5.5" height="18.32"/); // goal area
+  assert.match(lines, /r="9.15"/);
+  assert.deepEqual(toPortrait(105, 34), { x: 34, y: 0 });   // home goal line -> top
+  assert.deepEqual(toPortrait(0, 0), { x: 0, y: L });        // away goal line, top touchline -> bottom-left
+  const shots = [{ x: 90, y: 30, team: 'home', outcome: 'goal', minute: 12 }, { x: 200, y: 30 }, { x: null, y: 1 }];
+  assert.equal(validShots(shots).length, 1);
+  assert.equal((pitchSvg(shots).match(/class="mark"/g) || []).length, 1);
+  assert.equal((pitchSvg(shots, { portrait: true }).match(/class="mark"/g) || []).length, 1);
+  assert.equal(W, 68);
+});
+
+// An API-shaped match (ESPN-backed) for render tests.
+const espnMatch = () => ({
+  data: {
+    id: '5b0c8f3e-1111-5222-8333-444455556666', status: 'finished', kickoff_at: '2026-09-20T15:30:00Z', round: null,
+    home: { id: 'h', slug: 'fulham', name: 'Fulham' }, away: { id: 'a', slug: 'manchester-united', name: 'Manchester United', short_name: 'Man United' },
+    score: { home: 1, away: 1, home_ht: null, away_ht: null }, result_source: 'espn', event_source: 'espn',
+    competition: { slug: 'premier-league', name: 'Premier League' }, season: '2026/27', venue: { name: 'Craven Cottage', city: 'London' },
+    timeline: [{ minute: 63, display_minute: "63'", team: 'home', type: 'own_goal', player: { slug: 'x', name: 'Lisandro Martínez' } }, { minute: 89, display_minute: "89'", team: 'away', type: 'goal', player: { slug: 'y', name: 'Matheus Cunha' } }],
+    shots: [{ minute: 89, team: 'away', player: { slug: 'y', name: 'Matheus Cunha' }, outcome: 'goal', x: 20, y: 30 }, { minute: 10, team: 'home', player: null, outcome: 'off_target', x: 90, y: 40 }],
+    stats: { basis: 'source', provider: 'espn', derivation: null, home: { possession_pct: 43, shots: 12, provider_xg_espn: 1.57 }, away: { possession_pct: 57, shots: 28 } },
+    lineups: { home: { formation: '4-2-3-1', manager: null, starters: [{ slug: 'b', name: 'Bernd Leno' }], bench: [] }, away: { formation: null, manager: null, starters: [{ slug: 'o', name: 'Onana' }], bench: [] } },
+    substitutions: [{ minute: 71, team: 'home', in: { slug: 'c', name: 'César Palacios' }, out: { slug: 'i', name: 'Alex Iwobi' } }],
+    coordinates: { system: '105x68 m, match frame: home attacks toward x=105', note: 'Event locations, not player tracking.' },
+  },
+  meta: { source: 'pbe', source_updated_at: '2026-09-27T17:36:23Z', semantics: 'Canonical match assembled by PropBetEdge.', coverage: { state: 'ok', notes: [] }, attribution: ['Structured facts: ESPN (secondary source)'] },
+});
+
+test('match page: truthful labels, event map, stats basis, lineups, provenance', () => {
+  const html = match.render({ env: espnMatch() });
+  for (const s of ['MATCH INTELLIGENCE', 'EVENT LOCATIONS — NOT PLAYER TRACKING', 'SOURCE MATCH STATISTICS', 'xG (ESPN-supplied)', 'STARTING XI', 'Formation <b>4-2-3-1</b>', 'Formation not stated by the source', 'SOURCE &amp; FRESHNESS', 'ESPN (secondary)', 'Structured facts: ESPN (secondary source)', 'Craven Cottage', 'César Palacios']) assert.ok(html.includes(s), s);
+  assert.ok(!html.includes('PBE DERIVED COUNTS'));
+  assert.ok(html.includes('class="pitchwrap land"') && html.includes('class="pitchwrap port"'));
+  // a stat present for one side only is shown as missing on the other, not 0
+  assert.ok(/1\.57<\/span>[\s\S]*?—<\/span>/.test(html));
+});
+
+test('match page without located events says so instead of plotting anything', () => {
+  const env = espnMatch(); env.data.shots = []; env.data.event_source = 'openligadb'; env.data.stats = null; env.data.lineups = null;
+  const html = match.render({ env });
+  assert.ok(html.includes('No event map for this match'));
+  assert.ok(html.includes('reports goals only'));
+  assert.ok(html.includes('Absent statistics are not zeros'));
+  assert.ok(html.includes('Lineups are not available'));
+  assert.ok(!html.includes('class="mark"'));
+});
+
+test('news empty state, unavailable table, player page honesty', () => {
+  const n = news.render({ env: { data: [], meta: { coverage: { state: 'unavailable' } } } });
+  assert.ok(n.includes('PROPBETEDGE SOCCER NEWSROOM') && n.includes('Evidence-backed soccer reporting is coming online.'));
+  const t = tableView({ data: { rows: [] }, meta: { coverage: { state: 'unavailable', notes: [] } } });
+  assert.ok(t.includes('Table not available'));
+  const tb = tables.render({ comp: 'uefa-champions-league', comps: { status: 'fulfilled', value: { data: [{ slug: 'uefa-champions-league', name: 'UEFA Champions League' }] } }, table: { status: 'fulfilled', value: { data: { rows: [] }, meta: { semantics: 'x', coverage: { state: 'unavailable', notes: [] } } } } });
+  assert.ok(tb.includes('Table not available'));
+  const p = player.render({ env: { data: { name: 'Test Player', role: null, seasons: [], reported_goals_other_seasons: 0 }, meta: { source: 'pbe', coverage: { state: 'unavailable', notes: ['Event-level statistics exist only for seasons with a legitimate event ledger.'] } } } });
+  assert.ok(p.includes('PLAYER INTELLIGENCE') && p.includes('not Soccer DNA') && p.includes('No event-level season history'));
+  assert.ok(!/Soccer DNA<\/h|SOCCER DNA/.test(p));
+});
+
+test('source panel renders every envelope field and escapes content', () => {
+  const html = sourcePanel({ source: 'pbe', source_updated_at: '2026-09-27T00:00:00Z', semantics: '<script>x</script>', coverage: { state: 'partial', notes: ['Lineups missing'] }, attribution: ['A'] });
+  assert.ok(html.includes('PARTIAL') && html.includes('Lineups missing') && html.includes('&lt;script&gt;') && !html.includes('<script>'));
+  const card = matchCard({ id: 'x', status: 'scheduled', kickoff_at: '2026-10-10T13:30:00Z', home: { name: 'A', slug: 'a' }, away: { name: 'B', slug: 'b' }, score: null, competition: { slug: 'bundesliga', name: 'Bundesliga' } });
+  assert.ok(card.includes('>v<') && card.includes('Scheduled') && card.includes('Bundesliga'));
+});
