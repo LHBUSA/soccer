@@ -61,7 +61,9 @@ export async function resolveEspnTeams(store, { comp, year, cursor, client }) {
   const espnTeams = [...new Set(fixtures.flatMap(f => [f.home, f.away]))];
   const teamMap = await resolveMany(store, 'team', P, espnTeams);
   const summary = { espn_teams: espnTeams.length, resolved_before: teamMap.size };
-  const pending = espnTeams.filter(t => !teamMap.has(t));
+  const excluded = new Set(Object.keys(cursor.excluded_teams || {}));
+  const pending = espnTeams.filter(t => !teamMap.has(t) && !excluded.has(t));
+  if (excluded.size) summary.all_star_teams_excluded = excluded.size;
   if (!pending.length) return { teamMap, summary };
   const canon = (await store.select('soccer_matches', { columns: ['id', 'kickoff_at', 'home_team_id', 'away_team_id', 'result_provider'], eq: { season_id: seasonId } })).filter(m => m.result_provider !== P);
   const xw = [];
@@ -91,6 +93,7 @@ export async function resolveEspnTeams(store, { comp, year, cursor, client }) {
     for (const t of pending.sort((a, b) => Number(a) - Number(b))) {
       const { json, capture } = await client.get(`${espn.CORE}/${comp.espn.league}/seasons/${year}/teams/${t}`);
       const team = espn.parseTeam(json);
+      if (team.is_all_star) { cursor.excluded_teams = { ...(cursor.excluded_teams || {}), [t]: team.name }; summary.all_star_teams_excluded = (summary.all_star_teams_excluded || 0) + 1; continue; }
       const clash = byName.get(normName(team.name));
       if (clash) { await client.flush(); await queueIdentity(store, { entity_type: 'team', provider: P, external_id: t, reason: 'same_normalized_name_as_existing_team', candidate_ids: clash, payload: { name: team.name } }); continue; }
       byName.set(normName(team.name), [mintId('team', P, t)]);
@@ -98,7 +101,7 @@ export async function resolveEspnTeams(store, { comp, year, cursor, client }) {
     }
     await client.flush();
     const slugs = allocateSlugs(found.map(s => ({ id: mintId('team', P, s.external_id), name: s.name })), found.length ? (await store.select('soccer_teams', { columns: ['slug'] })).map(r => r.slug) : []);
-    await syncRows(store, { table: 'soccer_teams', key: ['id'], rows: found.map(s => ({ id: mintId('team', P, s.external_id), slug: slugs.get(mintId('team', P, s.external_id)), name: s.name, short_name: s.short_name, official_name: null, team_type: s.is_national ? 'national' : 'club', gender: 'men', country_code: null, city: s.location, founding_provider: P, founding_external_id: s.external_id })) });
+    await syncRows(store, { table: 'soccer_teams', key: ['id'], rows: found.map(s => ({ id: mintId('team', P, s.external_id), slug: slugs.get(mintId('team', P, s.external_id)), name: s.name, short_name: s.short_name, official_name: null, team_type: s.is_national ? 'national' : 'club', gender: 'men', country_code: null, city: null, founding_provider: P, founding_external_id: s.external_id })) });
     for (const s of found) { teamMap.set(s.external_id, mintId('team', P, s.external_id)); xw.push({ provider: P, external_id: s.external_id, team_id: mintId('team', P, s.external_id), method: 'founding', evidence: `espn team id${s.sdr ? `; sdr ${s.sdr}` : ''}`, capture_id: s.capture_id }); }
     summary.teams_founded = found.length;
   }

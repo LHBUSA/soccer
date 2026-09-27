@@ -1,0 +1,539 @@
+{
+  "generated_at": "2026-09-27T20:21:59.557Z",
+  "mode": "local-rehearsal",
+  "competitions": [
+    "premier-league",
+    "mls"
+  ],
+  "requests_used": 3492,
+  "lanes": {
+    "premier-league": {
+      "runs": [
+        {
+          "requests": 150,
+          "fixtures_new": 147,
+          "detailed": 0,
+          "exhausted": "discovery"
+        },
+        {
+          "requests": 150,
+          "fixtures_new": 150,
+          "detailed": 0,
+          "exhausted": "discovery"
+        },
+        {
+          "requests": 150,
+          "fixtures_new": 83,
+          "detailed": 0,
+          "team_identity": {
+            "espn_teams": 20,
+            "resolved_before": 0,
+            "teams_founded": 20,
+            "team_crosswalk": {
+              "inserted": 20,
+              "updated": 0,
+              "unchanged": 0
+            },
+            "resolved_after": 20
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 380
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 150,
+          "fixtures_new": 0,
+          "detailed": 3,
+          "team_identity": {
+            "espn_teams": 20,
+            "resolved_before": 20
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 149,
+          "fixtures_new": 0,
+          "detailed": 3,
+          "team_identity": {
+            "espn_teams": 20,
+            "resolved_before": 20
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 148,
+          "fixtures_new": 0,
+          "detailed": 3,
+          "team_identity": {
+            "espn_teams": 20,
+            "resolved_before": 20
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 141,
+          "fixtures_new": 0,
+          "detailed": 8,
+          "team_identity": {
+            "espn_teams": 20,
+            "resolved_before": 20
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 141,
+          "fixtures_new": 0,
+          "detailed": 11,
+          "team_identity": {
+            "espn_teams": 20,
+            "resolved_before": 20
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 148,
+          "fixtures_new": 0,
+          "detailed": 14,
+          "team_identity": {
+            "espn_teams": 20,
+            "resolved_before": 20
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 83,
+          "fixtures_new": 0,
+          "detailed": 8,
+          "team_identity": {
+            "espn_teams": 20,
+            "resolved_before": 20
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": null
+        },
+        {
+          "requests": 0,
+          "fixtures_new": 0,
+          "detailed": 0,
+          "team_identity": {
+            "espn_teams": 20,
+            "resolved_before": 20
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": null
+        }
+      ],
+      "cursor_summary": {
+        "season_year": 2026,
+        "index": 380,
+        "fixtures": 380,
+        "detailed": 50
+      }
+    },
+    "mls": {
+      "runs": [
+        {
+          "requests": 150,
+          "fixtures_new": 114,
+          "detailed": 0,
+          "exhausted": "discovery"
+        },
+        {
+          "requests": 150,
+          "fixtures_new": 150,
+          "detailed": 0,
+          "exhausted": "discovery"
+        },
+        {
+          "requests": 150,
+          "fixtures_new": 150,
+          "detailed": 0,
+          "exhausted": "discovery"
+        },
+        {
+          "requests": 150,
+          "fixtures_new": 97,
+          "detailed": 0,
+          "team_identity": {
+            "espn_teams": 32,
+            "resolved_before": 0,
+            "all_star_teams_excluded": 2,
+            "teams_founded": 30,
+            "team_crosswalk": {
+              "inserted": 30,
+              "updated": 0,
+              "unchanged": 0
+            },
+            "resolved_after": 30
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 510
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 150,
+          "fixtures_new": 0,
+          "detailed": 3,
+          "team_identity": {
+            "espn_teams": 32,
+            "resolved_before": 30,
+            "all_star_teams_excluded": 2
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 145,
+          "fixtures_new": 0,
+          "detailed": 3,
+          "team_identity": {
+            "espn_teams": 32,
+            "resolved_before": 30,
+            "all_star_teams_excluded": 2
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 143,
+          "fixtures_new": 0,
+          "detailed": 3,
+          "team_identity": {
+            "espn_teams": 32,
+            "resolved_before": 30,
+            "all_star_teams_excluded": 2
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 143,
+          "fixtures_new": 0,
+          "detailed": 3,
+          "team_identity": {
+            "espn_teams": 32,
+            "resolved_before": 30,
+            "all_star_teams_excluded": 2
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 143,
+          "fixtures_new": 0,
+          "detailed": 3,
+          "team_identity": {
+            "espn_teams": 32,
+            "resolved_before": 30,
+            "all_star_teams_excluded": 2
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 147,
+          "fixtures_new": 0,
+          "detailed": 13,
+          "team_identity": {
+            "espn_teams": 32,
+            "resolved_before": 30,
+            "all_star_teams_excluded": 2
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 141,
+          "fixtures_new": 0,
+          "detailed": 14,
+          "team_identity": {
+            "espn_teams": 32,
+            "resolved_before": 30,
+            "all_star_teams_excluded": 2
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 144,
+          "fixtures_new": 0,
+          "detailed": 14,
+          "team_identity": {
+            "espn_teams": 32,
+            "resolved_before": 30,
+            "all_star_teams_excluded": 2
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 142,
+          "fixtures_new": 0,
+          "detailed": 16,
+          "team_identity": {
+            "espn_teams": 32,
+            "resolved_before": 30,
+            "all_star_teams_excluded": 2
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 142,
+          "fixtures_new": 0,
+          "detailed": 15,
+          "team_identity": {
+            "espn_teams": 32,
+            "resolved_before": 30,
+            "all_star_teams_excluded": 2
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        },
+        {
+          "requests": 42,
+          "fixtures_new": 0,
+          "detailed": 4,
+          "team_identity": {
+            "espn_teams": 32,
+            "resolved_before": 30,
+            "all_star_teams_excluded": 2
+          },
+          "fixtures": {
+            "attached": 0,
+            "founded": 0
+          },
+          "exhausted": "details"
+        }
+      ],
+      "cursor_summary": {
+        "season_year": 2026,
+        "index": 511,
+        "fixtures": 511,
+        "detailed": 91
+      }
+    }
+  },
+  "metrics": {
+    "premier-league": {
+      "season": "2026/27",
+      "canonical_matches": 380,
+      "finished": 50,
+      "espn_linked_matches": 380,
+      "espn_linked_by_method": {
+        "founding": 380
+      },
+      "duplicate_matches_prevented": 0,
+      "teams": 20,
+      "espn_team_links_by_method": {
+        "founding": 20
+      },
+      "matches_with_espn_lineups": 50,
+      "lineups_with_formation": 100,
+      "matches_with_espn_team_stats": 50,
+      "matches_with_espn_plays": 50,
+      "espn_events": 71092,
+      "espn_events_with_coordinates": 68825,
+      "cross_source_finished_compared": 0,
+      "cross_source_score_disagreements": []
+    },
+    "mls": {
+      "season": "2026",
+      "canonical_matches": 510,
+      "finished": 91,
+      "espn_linked_matches": 510,
+      "espn_linked_by_method": {
+        "founding": 510
+      },
+      "duplicate_matches_prevented": 0,
+      "teams": 30,
+      "espn_team_links_by_method": {
+        "founding": 30
+      },
+      "matches_with_espn_lineups": 91,
+      "lineups_with_formation": 182,
+      "matches_with_espn_team_stats": 91,
+      "matches_with_espn_plays": 91,
+      "espn_events": 18174,
+      "espn_events_with_coordinates": 18173,
+      "cross_source_finished_compared": 0,
+      "cross_source_score_disagreements": []
+    }
+  },
+  "identity": {
+    "espn_players_founded": 1227,
+    "espn_teams_founded": 50,
+    "espn_teams_proven_fixture_graph": 0,
+    "openligadb_scorers_bridged_via_espn": 0,
+    "queue_open_by_reason": {
+      "player/wyscout/referenced_but_absent_from_players_json": 2,
+      "player/openligadb/event_alignment_conflict": 10,
+      "player/openligadb/event_alignment_no_unique_candidate": 3,
+      "player/openligadb/scorer_without_canonical_identity": 1973,
+      "player/espn/no_overlapping_club_corroboration": 14,
+      "player/espn/contradiction_nationality": 2
+    }
+  },
+  "store_canary": {
+    "version": "espn-canary/1.0.0",
+    "part": "store",
+    "at": "2026-09-27T20:21:59.576Z",
+    "pass": true,
+    "checks": [
+      {
+        "name": "soccer_team_external_ids:one_espn_id_per_canonical",
+        "pass": true,
+        "detail": {
+          "espn_ids": 50,
+          "duplicates": 0
+        }
+      },
+      {
+        "name": "soccer_player_external_ids:one_espn_id_per_canonical",
+        "pass": true,
+        "detail": {
+          "espn_ids": 1227,
+          "duplicates": 0
+        }
+      },
+      {
+        "name": "soccer_match_external_ids:one_espn_id_per_canonical",
+        "pass": true,
+        "detail": {
+          "espn_ids": 890,
+          "duplicates": 0
+        }
+      },
+      {
+        "name": "source_results:espn_observations_recorded",
+        "pass": true,
+        "detail": 141
+      },
+      {
+        "name": "precedence:espn_never_owns_attached_matches",
+        "pass": true,
+        "detail": {
+          "attached_to_other_owner": 0,
+          "taken_over": 0
+        }
+      }
+    ]
+  },
+  "corroboration": {
+    "name_dob_candidates_total": 16,
+    "auto_resolved": 0,
+    "still_queued": 14,
+    "conflicting": 2,
+    "queued_by_reason": {
+      "no_overlapping_club_corroboration": 14,
+      "contradiction_nationality": 2
+    },
+    "contradiction_kinds": {
+      "nationality": 2
+    },
+    "unverifiable_window_reasons": {
+      "espn_club_not_in_canonical_graph": 16
+    },
+    "merged_evidence": {
+      "corroborating_windows_by_season": {},
+      "nationality_compared": 0,
+      "movers_2017_club_differs_from_current_club": 0
+    },
+    "samples": {
+      "merged": [],
+      "conflicting": [
+        {
+          "name": "Alexander Isak",
+          "reason": "contradiction_nationality",
+          "contradictions": [
+            {
+              "espn": "Sweden",
+              "kind": "nationality",
+              "canonical": "Eritrea"
+            }
+          ]
+        },
+        {
+          "name": "Kevin Danso",
+          "reason": "contradiction_nationality",
+          "contradictions": [
+            {
+              "espn": "Austria",
+              "kind": "nationality",
+              "canonical": "Ghana"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "replay": {
+    "hits": 3492,
+    "live_fetches": 0
+  },
+  "elapsed_s": 174
+}

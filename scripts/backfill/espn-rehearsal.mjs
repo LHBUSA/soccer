@@ -74,7 +74,7 @@ for (const c of comps) {
   if (!lane) throw new Error(`no ESPN lane for ${c}`);
   let state = emptyLaneState(lane.name);
   const runs = [];
-  for (let i = 0; i < 200 && budgetLeft > 0; i++) {
+  for (let i = 0; i < 200 && budgetLeft >= 10; i++) {
     const budget = Math.min(150, budgetLeft);
     const out = await runEspnLane(lane, { store, storage, registry, areas, state, budget, fetcher });
     budgetLeft -= out.requests;

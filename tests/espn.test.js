@@ -79,3 +79,10 @@ test('season-type roles: MLS regular season is the league, playoffs separate, Al
   assert.equal(espn.seasonTypeRole('Combined'), 'excluded');
   assert.equal(espn.seasonTypeRole(undefined), 'excluded');
 });
+
+test('All-Star exhibition sides are flagged and never treated as league teams', () => {
+  assert.equal(espn.parseTeam({ id: '9817', displayName: 'MLS All-Stars', isAllStar: true }).is_all_star, true);
+  assert.equal(espn.parseTeam({ id: '20279', displayName: 'Liga MX All-Stars' }).is_all_star, true); // name fallback
+  assert.equal(espn.parseTeam({ id: '18966', displayName: 'LAFC', isAllStar: false }).is_all_star, false);
+  assert.equal(espn.parseTeam({ id: '1', displayName: 'Stars FC' }).is_all_star, false);
+});

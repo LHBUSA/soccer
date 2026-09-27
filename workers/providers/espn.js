@@ -90,6 +90,9 @@ export function parseTeam(t) {
   return {
     provider: 'espn', external_id: String(t.id), name: t.displayName || t.name || null, short_name: t.shortDisplayName || t.abbreviation || null,
     location: t.location || null, uid: t.uid || null, sdr: t.alternateIds?.sdr ? String(t.alternateIds.sdr) : null, is_national: !!t.isNational,
+    // All-Star selections are exhibition sides, never league members (ESPN files the
+    // MLS All-Star game under Regular Season).
+    is_all_star: t.isAllStar === true || /\ball-?stars?\b/i.test(`${t.displayName || ''} ${t.name || ''}`),
   };
 }
 
