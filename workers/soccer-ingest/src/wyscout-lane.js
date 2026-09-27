@@ -39,8 +39,7 @@ export function playerDisplayName(p) {
 }
 
 async function takenSlugs(store, table) {
-  const { rows } = await store.query(`select slug from public.${table}`);
-  return rows.map(r => r.slug);
+  return (await store.select(table, { columns: ['slug'] })).map(r => r.slug);
 }
 
 export async function ingestWyscoutSeason(store, { registry, competitionExternalId, parsed, captures, log = () => {} }) {
@@ -112,7 +111,7 @@ export async function ingestWyscoutSeason(store, { registry, competitionExternal
   const playerMap = await resolveMany(store, 'player', P, playerExt);
   const unresolved = playerExt.filter(p => !playerMap.has(p));
   // Strong-attribute collision check against entities founded by OTHER providers.
-  const { rows: others } = await store.query(`select id, display_name, first_name, last_name, birth_date from public.soccer_players where founding_provider <> $1`, [P]);
+  const others = await store.select('soccer_players', { columns: ['id', 'display_name', 'first_name', 'last_name', 'birth_date'], neq: { founding_provider: P } });
   const otherKey = new Map();
   for (const o of others) {
     if (!o.birth_date) continue;
@@ -198,7 +197,7 @@ export async function ingestWyscoutSeason(store, { registry, competitionExternal
   report.counts.match_source_results = await syncRows(store, { table: 'soccer_match_source_results', key: ['match_id', 'provider'], compare: ['status', 'home_score', 'away_score', 'home_score_ht', 'away_score_ht'], rows: resultRows, provider: P, captureId: captures.matches });
 
   // --- lineups, lineup players, substitutions
-  const lineupRows = []; const lpRows = []; const subRows = []; let missingPlayers = 0;
+  const lineupRows = []; const lpRows = []; const lpContext = []; const subRows = []; let missingPlayers = 0;
   for (const m of matches) {
     const matchId = matchMap.get(m.external_id);
     for (const side of [m.home, m.away]) {
@@ -211,6 +210,7 @@ export async function ingestWyscoutSeason(store, { registry, competitionExternal
         if (!pid) { missingPlayers += 1; continue; }
         if (seen.has(pid)) continue; seen.add(pid);
         lpRows.push({ lineup_id: lineupId, player_id: pid, is_starter: starter, shirt_number: null, position: null, is_captain: null });
+        lpContext.push({ match_id: matchId, team_id: teamId, player_id: pid, is_starter: starter });
       }
       for (const s of side.substitutions) {
         const pin = playerMap.get(s.player_in); const pout = playerMap.get(s.player_out);
@@ -251,7 +251,7 @@ export async function ingestWyscoutSeason(store, { registry, competitionExternal
   report.event_players_unresolved = unresolvedEventPlayers;
 
   // --- derived per-match stats from the ledger
-  report.counts.derived = await deriveMatchStats(store, [...matchMap.values()]);
+  report.counts.derived = await deriveMatchStats(store, { matches: matchRows, events: eventRows, lineupPlayers: lpContext, subs: subRows });
   report.attribution = ATTRIBUTION;
   return report;
 }

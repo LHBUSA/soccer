@@ -1,6 +1,6 @@
 {
   "proof": "bundesliga-2017-18",
-  "generated_at": "2026-09-27T13:40:57.951Z",
+  "generated_at": "2026-09-27T13:57:47.732Z",
   "engine": "PGlite (Postgres 17, WASM) running supabase/migrations/*",
   "migrations": [
     "20260927000100_soccer_core.sql",
@@ -177,7 +177,7 @@
   },
   "openligadb": {
     "summary": {
-      "capture_id": "b7866116b30bd2ddcc11d5be",
+      "capture_id": "40ac5fe6e5115854932110fd",
       "sha256": "06bb193248f7419cdf8952d9849a2cb813003095b4f060a8994303e07217f6cf",
       "matches": 306,
       "finished": 306,
@@ -249,16 +249,11 @@
         "unchanged": 0
       },
       "goal_scorers_unresolved": 0
-    },
-    "fixture_proof": {
-      "proven": true,
-      "unresolved": [],
-      "collisions": []
     }
   },
   "current_season": {
     "summary": {
-      "capture_id": "6e4bbc358f66503c08ffa3c4",
+      "capture_id": "1c2e8b2268b7650a36da7c73",
       "sha256": "f458ec10905021323619f6a47da1970b23c9b2dc31314acf71fcb56ea6fa0fcb",
       "matches": 306,
       "finished": 36,
@@ -305,9 +300,8 @@
         "updated": 0,
         "unchanged": 0
       },
-      "goal_scorers_unresolved": 131
+      "goal_scorers_unresolved": 86
     },
-    "fixture_proof": null,
     "rerun_writes": [],
     "team_identity": [
       {
@@ -406,5 +400,5 @@
     "soccer_identity_queue": 101,
     "soccer_source_changes": 0
   },
-  "elapsed_s": 150
+  "elapsed_s": 124
 }

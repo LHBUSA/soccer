@@ -1,0 +1,25 @@
+# soccer-ingest — captures sources into R2, writes the canonical graph (SPORTS Supabase).
+# Deploy: docs/RELEASE.md (wrangler versions upload -> /health -> versions deploy).
+# Secrets (wrangler secret put): SOCCER_MODEL_SUPABASE_URL, SOCCER_MODEL_SUPABASE_SERVICE_ROLE_KEY, INGEST_ADMIN_TOKEN
+name = "soccer-ingest"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+[triggers]
+crons = ["*/5 * * * *"]
+
+[[r2_buckets]]
+binding = "SOCCER_SOURCE"
+bucket_name = "soccer-source"
+
+[[kv_namespaces]]
+binding = "SOCCER_STATE"
+id = "REPLACE_WITH_KV_ID_AT_FIRST_DEPLOY"
+
+[limits]
+cpu_ms = 60000
+
+[observability]
+enabled = true

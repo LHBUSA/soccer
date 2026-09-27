@@ -29,23 +29,42 @@ export function crosswalkTable(kind) {
 // Returns Map(external_id -> canonical id) for the ids that resolve.
 export async function resolveMany(store, kind, provider, externalIds) {
   const [table, col] = crosswalkTable(kind);
-  if (!externalIds.length) return new Map();
-  const { rows } = await store.query(
-    `select external_id, ${col} as id from public.${table} where provider = $1 and external_id = any($2::text[])`,
-    [provider, externalIds.map(String)],
-  );
-  return new Map(rows.map(r => [r.external_id, r.id]));
+  const ids = [...new Set(externalIds.map(String))];
+  const out = new Map();
+  const step = store.inChunk || 500;
+  for (let i = 0; i < ids.length; i += step) {
+    const rows = await store.select(table, { columns: ['external_id', col], eq: { provider }, in: { external_id: ids.slice(i, i + step) } });
+    for (const r of rows) out.set(r.external_id, r[col]);
+  }
+  return out;
 }
 
+// Queue an unresolved identity. An already-resolved/rejected entry is never reopened.
 export async function queueIdentity(store, { entity_type, provider, external_id, reason, candidate_ids = [], payload = {} }) {
-  await store.query(
-    `insert into public.soccer_identity_queue (entity_type, provider, external_id, reason, candidate_ids, payload)
-     values ($1,$2,$3,$4,$5::uuid[],$6::jsonb)
-     on conflict (entity_type, provider, external_id) do update
-       set reason = excluded.reason, candidate_ids = excluded.candidate_ids, payload = excluded.payload
-       where soccer_identity_queue.status = 'open'`,
-    [entity_type, provider, String(external_id), reason, candidate_ids, JSON.stringify(payload)],
-  );
+  const key = { entity_type, provider, external_id: String(external_id) };
+  const [cur] = await store.select('soccer_identity_queue', { columns: ['status', 'reason', 'candidate_ids', 'payload'], eq: key, limit: 1 });
+  if (cur && cur.status !== 'open') return 'kept_' + cur.status;
+  if (!cur) { await store.insert('soccer_identity_queue', [{ ...key, reason, candidate_ids, payload }]); return 'queued'; }
+  // The FIRST reason is kept: a later, weaker observation (e.g. "no canonical
+  // identity" in a season without an event ledger) must not overwrite evidence
+  // such as an event-alignment conflict. Later reasons are recorded alongside.
+  const prev = cur.payload || {};
+  const seen = new Set([...(prev.also_seen || [])]);
+  if (reason !== cur.reason) seen.add(reason);
+  const cands = [...new Set([...(cur.candidate_ids || []), ...candidate_ids])].sort();
+  const same = JSON.stringify([...(cur.candidate_ids || [])].sort()) === JSON.stringify(cands) && seen.size === (prev.also_seen || []).length;
+  if (same) return 'unchanged';
+  await store.upsert('soccer_identity_queue', [{ ...key, reason: cur.reason, candidate_ids: cands, payload: { ...prev, also_seen: [...seen].sort() } }], ['entity_type', 'provider', 'external_id']);
+  return 'updated';
+}
+
+// Close an open queue entry once a proven crosswalk exists.
+export async function resolveQueued(store, { entity_type, provider, external_id, resolution }) {
+  const key = { entity_type, provider, external_id: String(external_id) };
+  const [cur] = await store.select('soccer_identity_queue', { columns: ['status', 'reason', 'candidate_ids', 'payload'], eq: key, limit: 1 });
+  if (!cur || cur.status !== 'open') return false;
+  await store.upsert('soccer_identity_queue', [{ ...key, reason: cur.reason, candidate_ids: cur.candidate_ids || [], payload: cur.payload || {}, status: 'resolved', resolution, resolved_at: new Date().toISOString() }], ['entity_type', 'provider', 'external_id']);
+  return true;
 }
 
 export function normName(s) {

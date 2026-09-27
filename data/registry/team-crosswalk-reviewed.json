@@ -1,0 +1,18 @@
+{
+  "registry_version": "2026-09-27.1",
+  "note": "Human-reviewable team crosswalks (method 'reviewed'). Each entry maps a provider team id onto the canonical team already proven for another id, with non-name evidence. Never a name-only merge.",
+  "entries": [
+    {
+      "provider": "openligadb",
+      "external_id": "123",
+      "same_as": { "provider": "openligadb", "external_id": "175" },
+      "reviewer": "Claude session 2026-09-27; pending owner confirmation",
+      "evidence": [
+        "openligadb id 175 ('TSG Hoffenheim') is proven by the 2017/18 fixture graph against Wyscout team 'Hoffenheim' (official name 'TSG 1899 Hoffenheim').",
+        "openligadb id 123 ('TSG 1899 Hoffenheim') appears in bl1 only in 2011 and 2013; id 175 appears in every bl1 season 2008-2026 EXCEPT 2011 and 2013. The two ids never co-occur in a season, so they occupy the same single league slot.",
+        "id 123's name equals the Wyscout official name of the proven canonical team exactly.",
+        "coverage scan: docs/evidence/coverage/openligadb-bl1.json (captures per season)"
+      ]
+    }
+  ]
+}

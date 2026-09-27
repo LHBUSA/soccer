@@ -1,0 +1,1700 @@
+{
+  "generated_at": "2026-09-27T14:10:37.504Z",
+  "target": "pglite (local rehearsal)",
+  "elapsed_s": 127,
+  "run1": {
+    "label": "run1",
+    "seasons": {
+      "2004": {
+        "capture_id": "22d0849ccf66a5273df5f355",
+        "sha256": "79502d155affd4e0a2532a8c5fed0be0678b0b49426cd32a1a8889eef8bb2ded",
+        "matches": 306,
+        "finished": 306,
+        "teams_founded": 5,
+        "team_crosswalk": {
+          "inserted": 5,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 0,
+          "already_crosswalked": 0,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 0,
+        "writes": [
+          "\"inserted\":5",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306"
+        ]
+      },
+      "2005": {
+        "capture_id": "a6192ed231886faa679af798",
+        "sha256": "bfbe3d522c29f23af151d066de7effc45cc23967c4af24427c20c136d0077cff",
+        "matches": 306,
+        "finished": 306,
+        "teams_founded": 1,
+        "team_crosswalk": {
+          "inserted": 1,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 0,
+          "already_crosswalked": 0,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 0,
+        "writes": [
+          "\"inserted\":1",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306"
+        ]
+      },
+      "2006": {
+        "capture_id": "8191c4e269bb90a9679c879f",
+        "sha256": "9c7d1f78c9c3e69626b2812a464a8af55546915f1abdef5a0f6d9d5f99896d4b",
+        "matches": 306,
+        "finished": 306,
+        "teams_founded": 2,
+        "team_crosswalk": {
+          "inserted": 2,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 0,
+          "already_crosswalked": 0,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 0,
+        "writes": [
+          "\"inserted\":2",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306"
+        ]
+      },
+      "2007": {
+        "capture_id": "d10a6f5f58422152078c002d",
+        "sha256": "3f6d9137af24a32e1ce31aadbbef73e3bcbe734cfba6e4c250dd3ed16854df56",
+        "matches": 306,
+        "finished": 306,
+        "teams_founded": 1,
+        "team_crosswalk": {
+          "inserted": 1,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 0,
+          "already_crosswalked": 0,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 0,
+        "writes": [
+          "\"inserted\":1",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306"
+        ]
+      },
+      "2008": {
+        "capture_id": "0df1b391c6ce479302aec935",
+        "sha256": "3c6ac1a5d43d8ca4ac620d7891ece7f8c935125e6020dfa7912394d94c2c2f49",
+        "matches": 308,
+        "finished": 308,
+        "teams_founded": 0,
+        "team_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 308,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 308,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 308,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 0,
+          "already_crosswalked": 0,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 0,
+        "writes": [
+          "\"inserted\":308",
+          "\"inserted\":308",
+          "\"inserted\":308"
+        ]
+      },
+      "2009": {
+        "capture_id": "a3019e9cc75a2f62f0a784e6",
+        "sha256": "d690e65a794fbafe2789d28929e7f5e162aca404f3fa2c0cc240eb4715d40a6d",
+        "matches": 306,
+        "finished": 306,
+        "teams_founded": 0,
+        "team_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 248,
+          "already_crosswalked": 18,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 697,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 230,
+        "writes": [
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":697"
+        ]
+      },
+      "2010": {
+        "capture_id": "5d4b2d0f375b097dc8d3d493",
+        "sha256": "dc45ef9af19929b772fb2ae2e3cb9f3fe86493c2b107f3a4e2586931c4a37662",
+        "matches": 306,
+        "finished": 306,
+        "teams_founded": 1,
+        "team_crosswalk": {
+          "inserted": 1,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 253,
+          "already_crosswalked": 26,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 836,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 227,
+        "writes": [
+          "\"inserted\":1",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":836"
+        ]
+      },
+      "2011": {
+        "capture_id": "2b63c91efdcb96fdf552539b",
+        "sha256": "c628ba395f77b4c711c80d0a7da4c13ae21b22b2a67e4461f8428a39f33b23c0",
+        "matches": 306,
+        "finished": 306,
+        "teams_founded": 0,
+        "team_crosswalk": {
+          "inserted": 1,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 278,
+          "already_crosswalked": 35,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 875,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 243,
+        "writes": [
+          "\"inserted\":1",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":875"
+        ]
+      },
+      "2012": {
+        "capture_id": "23854dba01e69cb3c78a3285",
+        "sha256": "d514b06877ac33f9e168746ebd96899b3e76c138ea61d8232712647f33ebbfbd",
+        "matches": 306,
+        "finished": 306,
+        "teams_founded": 2,
+        "team_crosswalk": {
+          "inserted": 2,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 258,
+          "already_crosswalked": 36,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 898,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 222,
+        "writes": [
+          "\"inserted\":2",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":898"
+        ]
+      },
+      "2013": {
+        "capture_id": "e547c0d19072b13991c2c4ce",
+        "sha256": "f14106207999553902565c78b5cf532e74c7790590d5a059488e5652f89c313b",
+        "matches": 306,
+        "finished": 306,
+        "teams_founded": 1,
+        "team_crosswalk": {
+          "inserted": 1,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 240,
+          "already_crosswalked": 45,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 966,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 195,
+        "writes": [
+          "\"inserted\":1",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":966"
+        ]
+      },
+      "2014": {
+        "capture_id": "0d8c7d9ce8cbf431d608b261",
+        "sha256": "4a3f904ea55e3504d675090ce32d9b6fe4b47c34a098ece95372646c6545db17",
+        "matches": 306,
+        "finished": 306,
+        "teams_founded": 1,
+        "team_crosswalk": {
+          "inserted": 1,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 271,
+          "already_crosswalked": 59,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 844,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 212,
+        "writes": [
+          "\"inserted\":1",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":844"
+        ]
+      },
+      "2015": {
+        "capture_id": "152bb65a2457eeb2ede1be0f",
+        "sha256": "ff4225bc3c66af5648e67081e1d1ba925158f89213ba4294b5be8cf44da9a25c",
+        "matches": 306,
+        "finished": 306,
+        "teams_founded": 2,
+        "team_crosswalk": {
+          "inserted": 2,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 280,
+          "already_crosswalked": 84,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 868,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 196,
+        "writes": [
+          "\"inserted\":2",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":868"
+        ]
+      },
+      "2016": {
+        "capture_id": "01916f06f2aacfcf41c118ff",
+        "sha256": "84a99c9a2c2b27fb0f641d79085e6e7e92afad8ce979f38b08f7bd9009435a38",
+        "matches": 306,
+        "finished": 306,
+        "teams_founded": 0,
+        "team_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 292,
+          "already_crosswalked": 107,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 878,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 185,
+        "writes": [
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":878"
+        ]
+      },
+      "2017": {
+        "capture_id": "40ac5fe6e5115854932110fd",
+        "sha256": "06bb193248f7419cdf8952d9849a2cb813003095b4f060a8994303e07217f6cf",
+        "matches": 306,
+        "finished": 306,
+        "fixture_graph": {
+          "proven": true,
+          "mapped": 18,
+          "unresolved": 0,
+          "collisions": 0,
+          "unmatched_fixtures": 0
+        },
+        "team_crosswalk": {
+          "inserted": 18,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "cross_source": {
+          "compared": 306,
+          "final_score_agree": 306,
+          "half_time_agree": 304,
+          "final_disagreements": [],
+          "half_time_disagreements": [
+            {
+              "match_id": "bb81fb7a-03da-5e69-be20-84cf2a50932c",
+              "wyscout": "0-0",
+              "openligadb": "1-0"
+            },
+            {
+              "match_id": "e5f27766-de2f-530f-ab68-5bc82b1d15a4",
+              "wyscout": "1-0",
+              "openligadb": "0-0"
+            }
+          ]
+        },
+        "scorer_alignment": {
+          "scorers": 298,
+          "already_crosswalked": 0,
+          "aligned": 285,
+          "queued": 13,
+          "conflicts": 10,
+          "provider_duplicate_ids": {
+            "canonical_players": 47,
+            "provider_ids": 103
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 285,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 0,
+        "writes": [
+          "\"inserted\":18",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":285"
+        ]
+      },
+      "2018": {
+        "capture_id": "4ac040aa5cb6a70f5fb3ed8a",
+        "sha256": "d5d75750dbc2cd64b4196097a683ccfdf39036b6bae464ff96bc5212d9a1cc47",
+        "matches": 306,
+        "finished": 306,
+        "teams_founded": 0,
+        "team_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 325,
+          "already_crosswalked": 145,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 973,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 180,
+        "writes": [
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":973"
+        ]
+      },
+      "2019": {
+        "capture_id": "8e787b2fc5da504b0db2acc8",
+        "sha256": "c3c6112de7d072bf97135ca45be85b2c988bc0616c5e9a74998bdcec31ca9df9",
+        "matches": 306,
+        "finished": 306,
+        "teams_founded": 1,
+        "team_crosswalk": {
+          "inserted": 1,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 282,
+          "already_crosswalked": 91,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 983,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 191,
+        "writes": [
+          "\"inserted\":1",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":983"
+        ]
+      },
+      "2020": {
+        "capture_id": "7f3b1b010002bfbd732babe2",
+        "sha256": "02f502ed2623598529c801031c3fefd28312c6b4699c55d29414eabcf44d6e51",
+        "matches": 306,
+        "finished": 306,
+        "teams_founded": 0,
+        "team_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 384,
+          "already_crosswalked": 60,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 927,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 324,
+        "writes": [
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":927"
+        ]
+      },
+      "2021": {
+        "capture_id": "356d3bd0abf4ed1c941d198c",
+        "sha256": "c499b35b9daf24ad8970f8e6b90d43c564d9879686850cf5459f205f1b62d673",
+        "matches": 306,
+        "finished": 306,
+        "teams_founded": 0,
+        "team_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 283,
+          "already_crosswalked": 23,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 954,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 260,
+        "writes": [
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":954"
+        ]
+      },
+      "2022": {
+        "capture_id": "bd093b35f8683d4357de1e56",
+        "sha256": "a007ad90e5de012311ce73cbbe5e315c0c8c70d7c3bbed7f5a31715170332a5e",
+        "matches": 306,
+        "finished": 306,
+        "teams_founded": 0,
+        "team_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 295,
+          "already_crosswalked": 26,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 972,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 269,
+        "writes": [
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":972"
+        ]
+      },
+      "2023": {
+        "capture_id": "88eb14d97f2fe6443799af69",
+        "sha256": "fc269cc5b3aba0e1e8771848900b6b43ed3c801d3bf8f7a10c259bdd4973131e",
+        "matches": 306,
+        "finished": 306,
+        "teams_founded": 1,
+        "team_crosswalk": {
+          "inserted": 1,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 301,
+          "already_crosswalked": 30,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 983,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 271,
+        "writes": [
+          "\"inserted\":1",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":983"
+        ]
+      },
+      "2024": {
+        "capture_id": "8d9fdc1b0e31dcfbf9cbbca7",
+        "sha256": "5d037fddddc25d43988dbe264fff328c3ce8e853fd023ce8175496c1422a9e34",
+        "matches": 306,
+        "finished": 306,
+        "teams_founded": 1,
+        "team_crosswalk": {
+          "inserted": 1,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 321,
+          "already_crosswalked": 16,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 959,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 305,
+        "writes": [
+          "\"inserted\":1",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":959"
+        ]
+      },
+      "2025": {
+        "capture_id": "56097dddeaa6072154f6682c",
+        "sha256": "21ec527ed6acb7b0bf6835541e2cf35e036748443cd95e51e2731eb6c6fd7c7a",
+        "matches": 306,
+        "finished": 306,
+        "teams_founded": 0,
+        "team_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 321,
+          "already_crosswalked": 15,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 989,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 306,
+        "writes": [
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":989"
+        ]
+      },
+      "2026": {
+        "capture_id": "ab50a80be2b341b94cfe94bd",
+        "sha256": "f458ec10905021323619f6a47da1970b23c9b2dc31314acf71fcb56ea6fa0fcb",
+        "matches": 306,
+        "finished": 36,
+        "teams_founded": 1,
+        "team_crosswalk": {
+          "inserted": 1,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches_skipped_unresolved_team": 0,
+        "matches_written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "scorer_alignment": {
+          "scorers": 89,
+          "already_crosswalked": 3,
+          "aligned": 0,
+          "queued": 0,
+          "conflicts": 0,
+          "provider_duplicate_ids": {
+            "canonical_players": 0,
+            "provider_ids": 0
+          }
+        },
+        "player_crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_events": {
+          "inserted": 137,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "goal_scorers_unresolved": 86,
+        "writes": [
+          "\"inserted\":1",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":306",
+          "\"inserted\":137"
+        ]
+      }
+    },
+    "wyscout": {
+      "counts": {
+        "teams": {
+          "inserted": 18,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "team_crosswalk": {
+          "inserted": 18,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "players": {
+          "inserted": 535,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "player_crosswalk": {
+          "inserted": 535,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "managers": {
+          "inserted": 30,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "venues": {
+          "inserted": 18,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "matches": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "match_source_results": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "lineups": {
+          "inserted": 612,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "lineup_players": {
+          "inserted": 11000,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "substitutions": {
+          "inserted": 1769,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "events": {
+          "inserted": 519407,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "derived": {
+          "team": {
+            "inserted": 9792,
+            "updated": 0,
+            "unchanged": 0
+          },
+          "player": {
+            "inserted": 71434,
+            "updated": 0,
+            "unchanged": 0
+          }
+        }
+      },
+      "queued": 2,
+      "writes": [
+        "\"inserted\":18",
+        "\"inserted\":18",
+        "\"inserted\":535",
+        "\"inserted\":535",
+        "\"inserted\":30",
+        "\"inserted\":18",
+        "\"inserted\":306",
+        "\"inserted\":306",
+        "\"inserted\":306",
+        "\"inserted\":612",
+        "\"inserted\":11000",
+        "\"inserted\":1769",
+        "\"inserted\":519407",
+        "\"inserted\":9792",
+        "\"inserted\":71434"
+      ]
+    }
+  },
+  "run2_writes": {
+    "wyscout": [],
+    "seasons": {
+      "2004": [],
+      "2005": [],
+      "2006": [],
+      "2007": [],
+      "2008": [],
+      "2009": [],
+      "2010": [],
+      "2011": [],
+      "2012": [],
+      "2013": [],
+      "2014": [],
+      "2015": [],
+      "2016": [],
+      "2017": [],
+      "2018": [],
+      "2019": [],
+      "2020": [],
+      "2021": [],
+      "2022": [],
+      "2023": [],
+      "2024": [],
+      "2025": [],
+      "2026": []
+    }
+  },
+  "certification": {
+    "counts": {
+      "soccer_competitions": 1,
+      "soccer_seasons": 23,
+      "soccer_stages": 24,
+      "soccer_teams": 38,
+      "soccer_players": 535,
+      "soccer_managers": 30,
+      "soccer_venues": 18,
+      "soccer_matches": 7040,
+      "soccer_lineups": 612,
+      "soccer_lineup_players": 11000,
+      "soccer_substitutions": 1769,
+      "soccer_match_events": 534146,
+      "soccer_team_match_stats": 9792,
+      "soccer_player_match_stats": 71434,
+      "soccer_team_external_ids": 57,
+      "soccer_player_external_ids": 820,
+      "soccer_match_external_ids": 7346,
+      "soccer_match_source_results": 7346,
+      "soccer_source_captures": 34,
+      "soccer_identity_queue": 1988,
+      "soccer_source_changes": 0
+    },
+    "bundesliga_seasons": {
+      "2004/05": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2005/06": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2006/07": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2007/08": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2008/09": {
+        "matches": 308,
+        "league_stage": 306,
+        "finished": 308
+      },
+      "2009/10": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2010/11": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2011/12": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2012/13": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2013/14": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2014/15": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2015/16": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2016/17": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2017/18": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2018/19": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2019/20": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2020/21": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2021/22": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2022/23": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2023/24": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2024/25": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2025/26": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 306
+      },
+      "2026/27": {
+        "matches": 306,
+        "league_stage": 306,
+        "finished": 36
+      }
+    },
+    "reconciliation_2017": {
+      "matches": 306,
+      "agree": 306,
+      "mismatches": 0
+    },
+    "cross_source_2017": {
+      "compared": 306,
+      "final_agree": 306,
+      "half_time_agree": 304,
+      "half_time_disagreements_preserved": [
+        {
+          "match_id": "bb81fb7a-03da-5e69-be20-84cf2a50932c",
+          "wyscout": "0-0",
+          "openligadb": "1-0"
+        },
+        {
+          "match_id": "e5f27766-de2f-530f-ab68-5bc82b1d15a4",
+          "wyscout": "1-0",
+          "openligadb": "0-0"
+        }
+      ]
+    },
+    "crosswalk_methods": {
+      "founding": {
+        "team": 38,
+        "player": 535,
+        "match": 7040
+      },
+      "fixture_graph": {
+        "team": 18,
+        "player": 0,
+        "match": 306
+      },
+      "event_alignment": {
+        "team": 0,
+        "player": 285,
+        "match": 0
+      },
+      "reviewed": {
+        "team": 1,
+        "player": 0,
+        "match": 0
+      },
+      "exact_id": {
+        "team": 0,
+        "player": 0,
+        "match": 0
+      }
+    },
+    "identity_queue_open": {
+      "total": 1988,
+      "by_reason": {
+        "player/wyscout/referenced_but_absent_from_players_json": 2,
+        "player/openligadb/event_alignment_conflict": 10,
+        "player/openligadb/event_alignment_no_unique_candidate": 3,
+        "player/openligadb/scorer_without_canonical_identity": 1973
+      }
+    },
+    "duplicate_guards": "unique(source_family, source_event_id), unique(match_id, source_family, sequence), unique(season, home, away, stage) enforced by schema",
+    "checks": {
+      "wyscout_2017_matches": {
+        "expected": 306,
+        "observed": 306,
+        "match": true
+      },
+      "wyscout_2017_events": {
+        "expected": 519407,
+        "observed": 519407,
+        "match": true
+      },
+      "score_reconciliation": {
+        "expected": "306/306",
+        "observed": "306/306",
+        "match": true
+      },
+      "cross_source_final": {
+        "expected": "306/306",
+        "observed": "306/306",
+        "match": true
+      },
+      "cross_source_half_time": {
+        "expected": "304/306",
+        "observed": "304/306",
+        "match": true
+      },
+      "scorer_alignment_crosswalks": {
+        "expected": 285,
+        "observed": 285,
+        "match": true
+      },
+      "run2_writes": {
+        "expected": 0,
+        "observed": 0,
+        "match": true
+      }
+    },
+    "verdict": {
+      "all_expected_match": true,
+      "mismatched": []
+    }
+  }
+}

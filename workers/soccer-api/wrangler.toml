@@ -1,0 +1,14 @@
+# soccer-api — read-only public API over the canonical soccer graph.
+# Deploy: docs/RELEASE.md. Secrets: SOCCER_MODEL_SUPABASE_URL, SOCCER_MODEL_SUPABASE_SERVICE_ROLE_KEY
+name = "soccer-api"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+[[kv_namespaces]]
+binding = "SOCCER_STATE"
+id = "REPLACE_WITH_KV_ID_AT_FIRST_DEPLOY"
+
+[observability]
+enabled = true
