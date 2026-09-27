@@ -1,0 +1,131 @@
+{
+  "pass": true,
+  "live": {
+    "version": "espn-canary/1.0.0",
+    "part": "live",
+    "at": "2026-09-27T17:00:31.510Z",
+    "pass": true,
+    "checks": [
+      {
+        "name": "ger.1:season",
+        "pass": true,
+        "detail": 2026
+      },
+      {
+        "name": "ger.1:min_teams",
+        "pass": true,
+        "detail": 18
+      },
+      {
+        "name": "ger.1:events",
+        "pass": true,
+        "detail": 306
+      },
+      {
+        "name": "ger.1:event_parses",
+        "pass": true,
+        "detail": "401884492"
+      },
+      {
+        "name": "ger.1:team_parses",
+        "pass": true,
+        "detail": "SV Elversberg"
+      },
+      {
+        "name": "eng.1:season",
+        "pass": true,
+        "detail": 2026
+      },
+      {
+        "name": "eng.1:min_teams",
+        "pass": true,
+        "detail": 20
+      },
+      {
+        "name": "eng.1:events",
+        "pass": true,
+        "detail": 380
+      },
+      {
+        "name": "eng.1:event_parses",
+        "pass": true,
+        "detail": "401878658"
+      },
+      {
+        "name": "eng.1:team_parses",
+        "pass": true,
+        "detail": "Sunderland"
+      },
+      {
+        "name": "usa.1:season",
+        "pass": true,
+        "detail": 2026
+      },
+      {
+        "name": "usa.1:min_teams",
+        "pass": true,
+        "detail": 32
+      },
+      {
+        "name": "usa.1:events",
+        "pass": true,
+        "detail": 511
+      },
+      {
+        "name": "usa.1:event_parses",
+        "pass": true,
+        "detail": "761439"
+      },
+      {
+        "name": "usa.1:team_parses",
+        "pass": true,
+        "detail": "St. Louis CITY SC"
+      }
+    ]
+  },
+  "store": {
+    "version": "espn-canary/1.0.0",
+    "part": "store",
+    "at": "2026-09-27T17:00:31.744Z",
+    "pass": true,
+    "checks": [
+      {
+        "name": "soccer_team_external_ids:one_espn_id_per_canonical",
+        "pass": true,
+        "detail": {
+          "espn_ids": 0,
+          "duplicates": 0
+        }
+      },
+      {
+        "name": "soccer_player_external_ids:one_espn_id_per_canonical",
+        "pass": true,
+        "detail": {
+          "espn_ids": 0,
+          "duplicates": 0
+        }
+      },
+      {
+        "name": "soccer_match_external_ids:one_espn_id_per_canonical",
+        "pass": true,
+        "detail": {
+          "espn_ids": 0,
+          "duplicates": 0
+        }
+      },
+      {
+        "name": "source_results:espn_observations_recorded",
+        "pass": true,
+        "detail": 0
+      },
+      {
+        "name": "precedence:espn_never_owns_attached_matches",
+        "pass": true,
+        "detail": {
+          "attached_to_other_owner": 0,
+          "taken_over": 0
+        }
+      }
+    ]
+  }
+}

@@ -71,11 +71,8 @@ export async function competitions(store) {
 export async function competition(store, slug) {
   const c = await competitionBySlug(store, slug);
   const seasons = await seasonsOf(store, c.id);
-  const withCounts = [];
-  for (const s of seasons) {
-    const n = await store.count('soccer_matches', { eq: { season_id: s.id } });
-    withCounts.push({ label: s.label, start_date: s.start_date, end_date: s.end_date, matches: n });
-  }
+  const counts = await Promise.all(seasons.map(s => store.count('soccer_matches', { eq: { season_id: s.id } })));
+  const withCounts = seasons.map((s, i) => ({ label: s.label, start_date: s.start_date, end_date: s.end_date, matches: counts[i] }));
   return E({ slug: c.slug, name: c.name, type: c.comp_type, country_code: c.country_code, tier: c.tier, seasons: withCounts }, {
     source: 'pbe', semantics: 'Competition and the seasons stored for it.', source_updated_at: c.updated_at,
   });
@@ -108,11 +105,14 @@ export async function match(store, id) {
   if (!/^[0-9a-f-]{36}$/.test(id)) throw new NotFound('match');
   const [m] = await store.select('soccer_matches', { columns: MATCH_COLS, eq: { id }, limit: 1 });
   if (!m) throw new NotFound('match');
-  const teams = await teamsById(store, [m.home_team_id, m.away_team_id]);
-  const [comp] = await store.select('soccer_competitions', { columns: ['slug', 'name'], eq: { id: m.competition_id }, limit: 1 });
-  const [season] = await store.select('soccer_seasons', { columns: ['label'], eq: { id: m.season_id }, limit: 1 });
-  const venue = m.venue_id ? (await store.select('soccer_venues', { columns: ['name', 'city'], eq: { id: m.venue_id }, limit: 1 }))[0] : null;
-  const sources = await store.select('soccer_match_source_results', { columns: ['provider', 'observed_at'], eq: { match_id: id } });
+  const [teams, [comp], [season], venueRows, sources] = await Promise.all([
+    teamsById(store, [m.home_team_id, m.away_team_id]),
+    store.select('soccer_competitions', { columns: ['slug', 'name'], eq: { id: m.competition_id }, limit: 1 }),
+    store.select('soccer_seasons', { columns: ['label'], eq: { id: m.season_id }, limit: 1 }),
+    m.venue_id ? store.select('soccer_venues', { columns: ['name', 'city'], eq: { id: m.venue_id }, limit: 1 }) : Promise.resolve([]),
+    store.select('soccer_match_source_results', { columns: ['provider', 'observed_at'], eq: { match_id: id } }),
+  ]);
+  const venue = venueRows[0] || null;
 
   // Key events only (goals, cards, shots) — never the full ledger.
   const keyEvents = await store.select('soccer_match_events', {
@@ -127,9 +127,11 @@ export async function match(store, id) {
   const evs = all.filter(e => e.source_family === family).sort((a, b) => a.sequence - b.sequence);
   const playerIds = [...new Set(evs.map(e => e.player_id).filter(Boolean))];
 
-  const lineups = await store.select('soccer_lineups', { columns: ['id', 'team_id', 'formation', 'manager_id'], eq: { match_id: id } });
+  const [lineups, subs] = await Promise.all([
+    store.select('soccer_lineups', { columns: ['id', 'team_id', 'formation', 'manager_id'], eq: { match_id: id } }),
+    store.select('soccer_substitutions', { columns: ['team_id', 'player_out_id', 'player_in_id', 'minute'], eq: { match_id: id } }),
+  ]);
   const lp = lineups.length ? await store.select('soccer_lineup_players', { columns: ['lineup_id', 'player_id', 'is_starter', 'shirt_number', 'position'], in: { lineup_id: lineups.map(l => l.id) } }) : [];
-  const subs = await store.select('soccer_substitutions', { columns: ['team_id', 'player_out_id', 'player_in_id', 'minute'], eq: { match_id: id } });
   const allPlayers = [...new Set([...playerIds, ...lp.map(x => x.player_id), ...subs.flatMap(s => [s.player_in_id, s.player_out_id])])];
   const people = new Map();
   for (const part of chunkArr(allPlayers, 150)) for (const p of await store.select('soccer_players', { columns: ['id', 'slug', 'display_name'], in: { id: part } })) people.set(p.id, p);
