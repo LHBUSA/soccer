@@ -19,8 +19,8 @@ evidence are the source of truth; nothing here comes only from chat memory.
 
 | Worker | Live version | Rollback |
 |---|---|---|
-| soccer-api | `a6f3631b` | `b7c7fdcb` |
-| soccer-ingest | `dd868f6f` (1.2.0, per-minute live lane) | `96fd029a` (its cron was `*/5`: after a rollback run `npx wrangler triggers deploy` from 1a5c8d4) |
+| soccer-api | `a12b822d` (1.4.0, rights-gated enrichment contract) | `a6f3631b` |
+| soccer-ingest | `533fb55e` (1.3.0, shadow Bundesliga enrichment + hardening) | `dd868f6f` (same cron) |
 | soccer-news | `a04b2183` | `5c03ee80` |
 
 Rollback: `cd workers/<worker> && npx wrangler versions deploy <rollback>@100% --yes`. Web rollback: Vercel instant rollback to the previous production deployment.
