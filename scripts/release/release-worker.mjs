@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Safe Worker release with a checked-in ledger (docs/deployments.jsonl).
 //   node scripts/release/release-worker.mjs <soccer-api|soccer-ingest|soccer-news> [--canary <path>] [--dry]
-// 1. refuses unless HEAD == origin/main and workers/ + data/ are clean
+// 1. refuses unless HEAD == origin/main and workers/ + data/ (+ the frozen research core) are clean
 // 2. builds from a clean `git archive` of HEAD
 // 3. records the CURRENT production version (the rollback target)
 // 4. uploads a version, canaries its preview URL (/health or --canary path must be 2xx)
@@ -26,11 +26,12 @@ const log = (...a) => console.log('[release]', ...a);
 sh('git fetch -q origin');
 const head = sh('git rev-parse HEAD').trim();
 if (head !== sh('git rev-parse origin/main').trim()) throw new Error('HEAD != origin/main: push first');
-if (sh('git status --porcelain -- workers data').trim()) throw new Error('uncommitted changes under workers/ or data/');
+// The model shadow lane imports the frozen research core directly (single source of truth).
+if (sh('git status --porcelain -- workers data scripts/research/structural-core.mjs').trim()) throw new Error('uncommitted changes under workers/, data/ or the frozen research core');
 const short = head.slice(0, 7);
 const OUT = `D:/Workers/_deploy/soccer-${short}`;
 rmSync(OUT, { recursive: true, force: true }); mkdirSync(OUT, { recursive: true });
-execSync(`git archive HEAD workers data package.json | tar -x -C "${OUT}"`, { cwd: ROOT, shell: 'bash' });
+execSync(`git archive HEAD workers data package.json scripts/research/structural-core.mjs | tar -x -C "${OUT}"`, { cwd: ROOT, shell: 'bash' });
 const wdir = join(OUT, 'workers', worker);
 const wr = args => sh(`npx wrangler ${args}`, wdir);
 const liveVersion = () => { const d = JSON.parse(wr('deployments list --json')); const last = d[d.length - 1]; return { deployment: last.id, versions: last.versions }; };
