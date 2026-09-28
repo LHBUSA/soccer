@@ -1,0 +1,91 @@
+    {
+  "route": "/v1/canary/editorial-desk",
+  "slug": "bayern-fixture",
+  "run": 2,
+  "model": "gpt-5.6-sol",
+  "desk": "soccer-desk/2.0.0",
+  "quality": "soccer-quality/2.0.0",
+  "packet_version": "soccer-packet/3.0.0",
+  "packet_path": "fixture v3 (A_asof_safe_rebuild of the original frozen packet)",
+  "story_class": "match_recap",
+  "result": "HOLD",
+  "attempt": 2,
+  "hold_reasons": [
+    "editorial:new_player_or_team"
+  ],
+  "fact_gates": {
+    "total": 18,
+    "failed": [
+      {
+        "gate": "new_player_or_team",
+        "detail": [
+          "Unbeaten"
+        ]
+      }
+    ]
+  },
+  "quality_gates": {
+    "total": 23,
+    "failed": []
+  },
+  "evidence": {
+    "available": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT",
+      "DISCIPLINE",
+      "SUBSTITUTIONS"
+    ],
+    "used": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT",
+      "SUBSTITUTIONS"
+    ]
+  },
+  "word_count": 515,
+  "sections_count": 4,
+  "headline": "Olise hat-trick powers Bayern München to 7-0 rout of 1. FC Union Berlin",
+  "dek": "Harry Kane added a brace as Bayern built a three-goal half-time lead, scored four more after the break and climbed from fourth to first in the Bundesliga.",
+  "sections": [
+    {
+      "heading": "Musiala opens the way before Bayern accelerate",
+      "paragraphs": [
+        "Michael Olise completed his hat-trick with two goals in quick succession late on, putting the defining flourish on a Bayern München performance that had already been shaped by Jamal Musiala and Harry Kane. Union Berlin reached half-time without a shot and never found a route back once Bayern began converting their early attempts.",
+        "Musiala opened the scoring in the 18th minute. Kane converted a penalty in the 39th, and Olise struck four minutes later to send Bayern into the interval 3-0 ahead. The sequence transformed a one-goal advantage into a settled half-time position before Union Berlin had registered an attempt.",
+        "Bayern had placed seven of their first-half shots on target. That accuracy mattered as much as the volume: the hosts did not merely keep producing attempts, but repeatedly made Union Berlin’s goalkeeper intervene or retrieve the ball from the net."
+      ]
+    },
+    {
+      "heading": "Olise supplies the finish to Kane’s second-half restart",
+      "paragraphs": [
+        "Kane resumed the scoring in the 54th minute, adding his second goal and Bayern’s first after the break. Ismael Saibari, introduced as a substitute, followed in the 70th before Olise scored in the 73rd and 76th minutes to complete his hat-trick.",
+        "Olise finished with five shots on target from six attempts, the largest shooting contribution by any player in the game. Kane took five shots and put two on target, scoring with both of those efforts, while Saibari produced two efforts on target from four shots.",
+        "The scorers arrived through different parts of the match. Musiala provided the breakthrough, Kane scored either side of half-time, Saibari contributed from the bench and Olise turned the closing passage into his own with the final two goals."
+      ]
+    },
+    {
+      "heading": "A shot gap Union Berlin could not bridge",
+      "paragraphs": [
+        "The contrast began before the scoreline widened. Union Berlin did not attempt a first-half shot, while Bayern continued to generate efforts on both sides of the interval. The visitors’ only attempts all came after the break.",
+        "Bayern finished with 23 shots, including 15 on target, compared with three attempts and two on target for Union Berlin. The hosts accounted for 88 per cent of all shots and also led the corner count nine to two.",
+        "Union Berlin’s goalkeeper made six saves, while Bayern’s goalkeeper stopped both shots he faced. Those interventions prevented further scoring at one end and preserved the clean sheet at the other, but they could not alter the broad difference in attacking output.",
+        "Fourteen of Bayern’s located shots came from inside the penalty area and nine from outside it. Their average located shooting distance was 17.9 metres, close to Union Berlin’s 17.6 metres, showing that distance was not the central contrast; the decisive separation lay in how often Bayern shot and how frequently those efforts reached the target."
+      ]
+    },
+    {
+      "heading": "Unbeaten Bayern rise as Union remain stuck",
+      "paragraphs": [
+        "Bayern extended their unbeaten league opening after arriving with two wins and a draw. Union Berlin remain without a victory, having followed their opening draw with successive defeats before this trip and another loss in München.",
+        "The result lifted Bayern from fourth to first in the Bundesliga, with 10 points from four matches and a goal difference of 12. Union Berlin stayed 16th on one point from four games, while their goal difference fell from minus six to minus 13."
+      ]
+    }
+  ],
+  "elapsed_ms": 62524
+}

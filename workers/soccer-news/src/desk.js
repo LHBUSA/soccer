@@ -173,6 +173,7 @@ function packetScores(p) {
   return s;
 }
 
+const DESCRIPTORS = new Set(['Unbeaten', 'Winless', 'Relentless', 'Ruthless', 'Clinical', 'Early', 'Late', 'Leaders', 'Struggling', 'Bottom', 'Rampant', 'Resurgent', 'Wasteful', 'Promoted', 'Home', 'Away', 'Visiting', 'Hosts', 'Victorious', 'Beaten', 'Second-half', 'First-half', 'Late-season', 'Free-scoring', 'Ten-man', 'High-scoring', 'Goalless', 'Scoreless']);
 const BUCKET_RANGES = new Set(['0-15', '16-30', '31-45', '46-60', '61-75', '76-90']);
 
 export function validateEditorial(article, packet) {
@@ -205,6 +206,11 @@ export function validateEditorial(article, packet) {
   gate('new_url', !/https?:\/\/|www\.|\.(com|org|net|de|uk)\b/i.test(t), (t.match(/https?:\/\/\S+|www\.\S+/) || [null])[0]);
   // names: a capitalised word that is not sentence-initial common English must appear in the packet
   const unknown = new Set();
+  // A sentence-initial capitalised word before a name ("Unbeaten Bayern ...") is ordinary English when the
+  // same word is written lowercase somewhere in the article or packet, or is a common football descriptor.
+  // A real first name ("Thomas Müller") is never written lowercase, so invented people are still caught.
+  const lowerWords = new Set((`${t}\n${P}`.match(/(?<![\p{L}])[\p{Ll}][\p{L}'’-]*/gu) || []));
+  const commonWord = w => lowerWords.has(w.toLowerCase()) || DESCRIPTORS.has(w);
   for (const s of sentences(t)) {
     const toks = [...s.matchAll(/\b[A-ZÀ-Ý][\p{L}'’.-]+/gu)];
     toks.forEach((m, i) => {
@@ -213,6 +219,7 @@ export function validateEditorial(article, packet) {
       const initial = m.index === 0 || /^["“(]?$/.test(s.slice(0, m.index).trim());
       const nextIsName = toks[i + 1] && toks[i + 1].index === m.index + m[0].length + 1;
       if (initial && !nextIsName) return; // an ordinary sentence opener
+      if (initial && commonWord(w)) return; // "Unbeaten Bayern", "Clinical Kane"
       if (!P.includes(w)) unknown.add(w);
     });
   }

@@ -92,3 +92,10 @@ test('wrong_score: packet phase buckets and nearby stat pairs are not scores; a 
   const bad = art('Olise hat-trick powers Bayern past Union Berlin in 7-0 rout', 'Michael Olise scored three as Bayern went from fourth to first.', [['X', ['Bayern won 8-0 in the end.', 'Earlier it was 16-31 minutes of pressure and a 16-30 lead.']]]);
   assert.deepEqual(validateEditorial(bad, V3).find(r => r.gate === 'wrong_score').detail, ['8-0', '16-31', '16-30']);
 });
+
+test('new_player_or_team: a capitalised descriptor opening a sentence before a club is not a name; an invented first name is', () => {
+  const a = art('Olise hat-trick powers Bayern past Union Berlin in 7-0 rout', 'Michael Olise scored three as Bayern went from fourth to first.', [['Unbeaten Bayern go top', ['Unbeaten Bayern München stayed that way.', 'Clinical Kane scored twice.']]]);
+  assert.equal(validateEditorial(a, V3).find(r => r.gate === 'new_player_or_team').pass, true);
+  const b = art('Olise hat-trick powers Bayern past Union Berlin in 7-0 rout', 'Michael Olise scored three as Bayern went from fourth to first.', [['X', ['Thomas Müller came on.', 'Serge Kane scored.']]]);
+  assert.deepEqual(validateEditorial(b, V3).find(r => r.gate === 'new_player_or_team').detail, ['Thomas', 'Müller', 'Serge']);
+});
