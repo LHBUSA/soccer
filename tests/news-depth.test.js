@@ -85,3 +85,10 @@ test('fact gates are unchanged by the depth block (still no invention); a senten
   const a = art('Olise hat-trick powers Bayern past Union Berlin in 7-0 rout', 'Michael Olise scored three as Bayern went from fourth to first.', [['X', ['Against Bayern, Union Berlin had three shots.', 'Thomas Müller came off the bench.']]]);
   assert.deepEqual(validateEditorial(a, V3).find(r => r.gate === 'new_player_or_team').detail, ['Thomas', 'Müller']);
 });
+
+test('wrong_score: packet phase buckets and nearby stat pairs are not scores; a real wrong score still fails', () => {
+  const ok = art('Olise hat-trick powers Bayern past Union Berlin in 7-0 rout', 'Michael Olise scored three as Bayern went from fourth to first.', [['X', ['During the 16-30 minute spell Bayern took six shots, and Union did not shoot until the 46-60 minute period.', 'Bayern held a 15-2 advantage in efforts on target.']]]);
+  assert.equal(validateEditorial(ok, V3).find(r => r.gate === 'wrong_score').pass, true);
+  const bad = art('Olise hat-trick powers Bayern past Union Berlin in 7-0 rout', 'Michael Olise scored three as Bayern went from fourth to first.', [['X', ['Bayern won 8-0 in the end.', 'Earlier it was 16-31 minutes of pressure and a 16-30 lead.']]]);
+  assert.deepEqual(validateEditorial(bad, V3).find(r => r.gate === 'wrong_score').detail, ['8-0', '16-31', '16-30']);
+});

@@ -52,6 +52,10 @@ lead into a rout, while a 23-3 edge in shots showed how little room Union had to
 - Dek: add information beyond the headline (player angle, how the match developed, table consequence) in one sentence.
 - Headline: the material angle when one exists ("Olise hat-trick powers Bayern past Union Berlin in 7-0 rout"),
   not the bare "Team A beat Team B 7-0".
+- Phase buckets are evidence, not copy: write "between the 16th and 30th minutes", never "the 16-30 minute spell".
+- Summarise recent form as a pattern ("unbeaten in their opening four", "a draw and two defeats before this trip")
+  instead of listing every previous score; name one earlier result only when it adds something.
+- Do not stack statistics: no more than two numbers-heavy paragraphs in a row. Interpret, then move on.
 - Short, varied paragraphs. Natural transitions.
 - Write natural newsroom prose with complete noun phrases: "Bayern's goalkeeper made two saves", never "with Bayern goalkeeper required to make 2 saves". Spell out numbers one to nine in running prose, as a newspaper would ("two goals", "fourth to first"); keep digits for scores, minutes and larger figures.
 - No empty verdicts ("clearest statement yet", "sent a message", "a night to remember"); let specific match evidence carry the point.
@@ -169,6 +173,8 @@ function packetScores(p) {
   return s;
 }
 
+const BUCKET_RANGES = new Set(['0-15', '16-30', '31-45', '46-60', '61-75', '76-90']);
+
 export function validateEditorial(article, packet) {
   const results = []; const gate = (name, pass, detail = null) => results.push({ gate: name, pass, detail });
   const t = bodyText(article);
@@ -187,7 +193,10 @@ export function validateEditorial(article, packet) {
   const STAT_NEAR = /\b(corners?|shots?|saves?|fouls?|on target|cards?|offsides?)\b/i;
   const badScores = [...t.matchAll(/\b(\d{1,2})-(\d{1,2})\b/g)]
     .filter(m => !/\d{4}-$/.test(t.slice(Math.max(0, m.index - 5), m.index))) // part of an ISO date, not a score
-    .filter(m => !STAT_NEAR.test(t.slice(Math.max(0, m.index - 24), m.index + m[0].length + 24))).map(m => m[0]).filter(x => !scores.has(x));
+    .filter(m => !STAT_NEAR.test(t.slice(Math.max(0, m.index - 24), m.index + m[0].length + 40)))
+    // a packet phase bucket written as a minute range ("the 16-30 minute spell") is a time span, not a score
+    .filter(m => !(BUCKET_RANGES.has(m[0]) && /^\+?(-| )?minutes?\b/i.test(t.slice(m.index + m[0].length, m.index + m[0].length + 10))))
+    .map(m => m[0]).filter(x => !scores.has(x));
   gate('wrong_score', !badScores.length, badScores.length ? [...new Set(badScores)] : null);
   // dates: "<day> <Month>" and "<Month> <day>" must be dates the packet carries
   const isoDays = new Set([...JSON.stringify(packet).matchAll(/\b(\d{4})-(\d{2})-(\d{2})/g)].map(m => `${Number(m[3])} ${MONTHS[Number(m[2]) - 1]}`));

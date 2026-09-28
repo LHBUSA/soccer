@@ -1,0 +1,97 @@
+   {
+  "route": "/v1/canary/editorial-desk",
+  "slug": "bayern-fixture",
+  "run": 1,
+  "model": "gpt-5.6-sol",
+  "desk": "soccer-desk/2.0.0",
+  "quality": "soccer-quality/2.0.0",
+  "packet_version": "soccer-packet/3.0.0",
+  "packet_path": "fixture v3 (A_asof_safe_rebuild of the original frozen packet)",
+  "story_class": "match_recap",
+  "result": "HOLD",
+  "attempt": 2,
+  "hold_reasons": [
+    "editorial:wrong_score",
+    "editorial:numeric_paragraph_run"
+  ],
+  "fact_gates": {
+    "total": 18,
+    "failed": [
+      {
+        "gate": "wrong_score",
+        "detail": [
+          "16-30",
+          "46-60",
+          "15-2"
+        ]
+      }
+    ]
+  },
+  "quality_gates": {
+    "total": 23,
+    "failed": [
+      {
+        "gate": "numeric_paragraph_run",
+        "detail": 3
+      }
+    ]
+  },
+  "evidence": {
+    "available": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT",
+      "DISCIPLINE",
+      "SUBSTITUTIONS"
+    ],
+    "used": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT"
+    ]
+  },
+  "word_count": 522,
+  "sections_count": 4,
+  "headline": "Olise hat-trick powers Bayern München past Union Berlin in 7-0 rout",
+  "dek": "Harry Kane added two goals as Bayern turned a three-goal half-time lead into a move from fourth to first in the Bundesliga.",
+  "sections": [
+    {
+      "heading": "Olise closes a scoring sequence Musiala began",
+      "paragraphs": [
+        "Jamal Musiala opened the scoring in the 18th minute, converting Bayern München’s only on-target attempt from his two shots. That breakthrough came during a 16-30 minute spell in which Bayern took six shots and put four on target, while 1. FC Union Berlin did not register an attempt anywhere in the first half.",
+        "The gap expanded rapidly before the interval. Harry Kane converted a penalty in the 39th minute, and Michael Olise added another four minutes later to give Bayern a 3-0 half-time lead. Bayern had taken 10 shots by then, seven of them on target.",
+        "Kane scored again in the 54th minute, supplying the first goal after the break. Union finally produced their first attempts during the 46-60 minute period, putting both of their two shots in that phase on target, but Bayern’s goalkeeper saved each one."
+      ]
+    },
+    {
+      "heading": "Three late goals turn a clear lead into a rout",
+      "paragraphs": [
+        "Ismael Saibari entered in the 63rd minute and scored in the 70th. His contribution formed the start of another compressed burst: Olise struck in the 73rd minute and completed his hat-trick in the 76th, giving Bayern three goals across that closing sequence.",
+        "Olise was the most productive shooter in the match, scoring three times from six attempts and placing five on target. Kane scored twice from five shots, with both of his on-target efforts finding the net. Saibari took four shots, put two on target and scored once.",
+        "Together, Olise, Kane and Saibari accounted for 15 of Bayern’s 23 attempts. Musiala supplied the other goal, while Luis Díaz and Josip Stanisic were also among Bayern’s players to test the Union goalkeeper."
+      ]
+    },
+    {
+      "heading": "Shot volume separates two similar average distances",
+      "paragraphs": [
+        "The defining statistical contrast was the number of attempts rather than where they were taken from. Bayern finished with 23 shots to Union’s three and held a 15-2 advantage in efforts on target. They also led 9-2 in corners, while Union’s goalkeeper made six saves and Bayern’s made two.",
+        "Bayern placed 14 shots inside the box and took nine from outside it. Union managed two from inside the box and one from outside. The average distance of the located attempts was close—17.9 metres for Bayern and 17.6 for Union—but Bayern accounted for 88 per cent of all shots.",
+        "Union’s three attempts all came after half-time. Janik Haberer and Tom Rothe each put a shot on target, while Derrick Köhn’s attempt was off target. Bayern, by contrast, followed 10 first-half shots with another 13 after the interval."
+      ]
+    },
+    {
+      "heading": "Bayern rise as Union remain 16th",
+      "paragraphs": [
+        "The victory lifted Bayern from fourth to first in the 18-team Bundesliga table. They have 10 points from four matches, with three wins and one draw, while their goal difference moved from plus five before the match to plus 12 afterward.",
+        "Bayern’s preceding league results were a 5-1 home win over Stuttgart, a 0-0 away draw with Schalke 04 and a 2-1 away win against SV 07 Elversberg. The latest result extended that opening sequence without a defeat.",
+        "Union stayed 16th with one point from four matches, and their goal difference fell from minus six to minus 13. A 3-3 draw with Eintracht Frankfurt had been followed by a 4-0 loss at Bayer Leverkusen and a 3-1 home defeat by Schalke 04 before the trip to Bayern."
+      ]
+    }
+  ],
+  "elapsed_ms": 58171
+}
