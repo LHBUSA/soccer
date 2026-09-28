@@ -9,7 +9,7 @@ import { packetNumbers2 } from './gates2.js';
 import { stripIdentifiers } from './gates.js';
 import { PROFILES } from './profiles.js';
 
-export const DESK_VERSION = 'soccer-desk/2.1.0'; // 2.0.0: depth contract (packet v3), evidence-family + repetition gates
+export const DESK_VERSION = 'soccer-desk/2.1.1'; // 2.0.0: depth contract (packet v3), evidence-family + repetition gates
 export const QUALITY_VERSION = 'soccer-quality/2.1.0'; // 2.1.0: evidence-aware depth floor
 export const DESK_MODEL = 'gpt-5.6-sol'; // OpenAI Responses API; override with NEWS_DESK_MODEL
 export const DESK_API = 'https://api.openai.com/v1/responses';
