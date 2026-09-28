@@ -1,0 +1,58 @@
+ {
+  "route": "/v1/canary/desk-qa",
+  "slug": "premier-league-table-2026-09-20-fb92ec",
+  "run": 12,
+  "model": "gpt-5.6-sol",
+  "desk": "soccer-desk/2.0.0",
+  "quality": "soccer-quality/2.0.0",
+  "packet_version": "soccer-packet/2.0.0",
+  "packet_path": "B_original_packet_only",
+  "story_class": "competition_intelligence",
+  "result": "PASS",
+  "attempt": 1,
+  "hold_reasons": [],
+  "fact_gates": {
+    "total": 16,
+    "failed": []
+  },
+  "quality_gates": {
+    "total": 13,
+    "failed": []
+  },
+  "evidence": null,
+  "word_count": 290,
+  "sections_count": 4,
+  "headline": "Perfect Manchester City open three-point Premier League lead",
+  "dek": "City’s 5-3 win over Sunderland took them to 15 points from five matches, while Arsenal’s defeat at Brighton left the leaders with early separation at the top.",
+  "sections": [
+    {
+      "heading": "City capitalise as Arsenal stumble",
+      "paragraphs": [
+        "Manchester City remain perfect through five Premier League matches, with Sunday’s 5-3 victory over Sunderland preserving their winning start and establishing a three-point lead. City have 15 points and a goal difference of plus eight.",
+        "The gap opened because Arsenal’s four-match winning run ended in a 3-0 defeat at Brighton & Hove Albion. Arsenal stay second on 12 points, but the result brought Brighton into the leading group rather than allowing the top two to continue together."
+      ]
+    },
+    {
+      "heading": "Brighton surge into third",
+      "paragraphs": [
+        "Brighton are third with 10 points and a goal difference of plus 11 after their victory over Arsenal. That places them two points behind the side they beat and one ahead of both Brentford and Leeds United.",
+        "Brentford’s 3-0 win over Chelsea lifted their total to nine points and fourth place, ahead of Leeds on goal difference. Leeds also have nine after a 0-0 draw with Crystal Palace, but their plus-four goal difference trails Brentford’s plus six."
+      ]
+    },
+    {
+      "heading": "Away wins shape the middle ground",
+      "paragraphs": [
+        "Aston Villa, Liverpool and Coventry City supplied the round’s three away victories. Villa won 3-2 at Tottenham Hotspur, Liverpool edged AFC Bournemouth 1-0 and Coventry took a 1-0 result from Nottingham Forest.",
+        "Elsewhere, Everton beat Ipswich Town 1-0 and Newcastle United defeated Hull City 2-1. Fulham and Manchester United drew 1-1, completing a round in which eight of the 10 fixtures produced a winner."
+      ]
+    },
+    {
+      "heading": "Coventry win but remain in the bottom three",
+      "paragraphs": [
+        "Coventry’s victory at Nottingham Forest was not enough to move them out of 18th place. They have three points from five matches and a goal difference of minus nine.",
+        "Fulham remain winless and sit 19th with two points after their draw against Manchester United. Tottenham are also without a victory and occupy 20th place on two points, with their 3-2 home defeat by Aston Villa leaving them below Fulham on goal difference."
+      ]
+    }
+  ],
+  "elapsed_ms": 16449
+}

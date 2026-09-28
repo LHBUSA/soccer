@@ -1,0 +1,84 @@
+     {
+  "route": "/v1/canary/editorial-desk",
+  "slug": "bayern-fixture",
+  "run": 3,
+  "model": "gpt-5.6-sol",
+  "desk": "soccer-desk/2.0.0",
+  "quality": "soccer-quality/2.0.0",
+  "packet_version": "soccer-packet/3.0.0",
+  "packet_path": "fixture v3 (A_asof_safe_rebuild of the original frozen packet)",
+  "story_class": "match_recap",
+  "result": "PASS",
+  "attempt": 2,
+  "hold_reasons": [],
+  "fact_gates": {
+    "total": 18,
+    "failed": []
+  },
+  "quality_gates": {
+    "total": 23,
+    "failed": []
+  },
+  "evidence": {
+    "available": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT",
+      "DISCIPLINE",
+      "SUBSTITUTIONS"
+    ],
+    "used": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT",
+      "SUBSTITUTIONS"
+    ]
+  },
+  "word_count": 503,
+  "sections_count": 4,
+  "headline": "Michael Olise hat-trick powers Bayern München past 1. FC Union Berlin in 7-0 rout",
+  "dek": "Olise struck either side of the interval before completing his hat-trick late, while Harry Kane scored twice as Bayern climbed to the top of the Bundesliga.",
+  "sections": [
+    {
+      "heading": "A contest settled before the interval",
+      "paragraphs": [
+        "Michael Olise supplied three of Bayern München’s goals, but his hat-trick emerged from a wider procession of scorers. Jamal Musiala opened the way, Harry Kane converted a penalty and struck again after the break, and substitute Ismael Saibari added his name before Olise closed the scoring with efforts in the 73rd and 76th minutes.",
+        "Musiala made the breakthrough in the 18th minute after Bayern had begun to build a clear advantage in attempts. Kane’s penalty followed in the 39th, and Olise struck in the 43rd to establish a 3-0 half-time lead.",
+        "1. FC Union Berlin had not taken a shot by the interval. Bayern, meanwhile, had already found contributions from three scorers and left the visitors with no foothold in the scoreline."
+      ]
+    },
+    {
+      "heading": "Kane resumes, Olise supplies the finish",
+      "paragraphs": [
+        "Kane scored again in the 54th minute, extending Bayern’s lead shortly after Union registered its first attempts of the match. Saibari entered in the 63rd and scored in the 70th, before Olise’s late pair completed the sequence.",
+        "Saibari’s contribution gave Bayern another scorer from the bench, but Olise remained the central figure. His first goal had capped the opening half, and his closing strikes turned a strong individual return into a hat-trick.",
+        "Olise produced six shots and put five on target. Kane took five shots, with two on target, while Saibari recorded four attempts and tested the goalkeeper twice. Together, the trio accounted for 15 of Bayern’s 23 shots."
+      ]
+    },
+    {
+      "heading": "Union’s empty first half becomes the defining contrast",
+      "paragraphs": [
+        "The gap was not merely a product of the finishing sequence. Bayern kept generating attempts throughout both halves, whereas every Union shot arrived after the restart.",
+        "Bayern finished with 23 shots to Union’s three and put 15 on target to the visitors’ two. Fourteen of Bayern’s attempts came from inside the penalty area and nine from outside; Union managed two from inside and one from outside.",
+        "Average shot distance offered little separation, with Bayern’s located attempts coming from 17.9 metres and Union’s from 17.6. The decisive distinction was frequency: Bayern repeatedly reached shooting positions while Union’s attacking output remained sparse.",
+        "Union’s goalkeeper made six saves, compared with two by Bayern’s goalkeeper. The home side also held a nine-to-two advantage in corners, another measure of how much more often the match unfolded around Union’s goal."
+      ]
+    },
+    {
+      "heading": "Bayern rise as Union remain stranded",
+      "paragraphs": [
+        "Bayern carried an unbeaten league sequence into the match, having followed a home win over Stuttgart with a draw at Schalke 04 and an away victory against SV 07 Elversberg. The latest result extended that start and transformed their position in the standings.",
+        "Bayern moved from fourth to first in the Bundesliga, reaching 10 points after four matches. Their goal difference rose from five to 12, with their goals scored increasing from seven to 14.",
+        "Union arrived after a draw with Eintracht Frankfurt and defeats against Bayer Leverkusen and Schalke 04. Their search for a league victory continued as the defensive cost of that run grew sharply.",
+        "The visitors remained 16th with one point from four matches. Their goal difference fell from minus six to minus 13, while Bayern ended the match at the head of the table."
+      ]
+    }
+  ],
+  "elapsed_ms": 79634
+}

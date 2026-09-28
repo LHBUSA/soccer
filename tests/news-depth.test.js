@@ -99,3 +99,15 @@ test('new_player_or_team: a capitalised descriptor opening a sentence before a c
   const b = art('Olise hat-trick powers Bayern past Union Berlin in 7-0 rout', 'Michael Olise scored three as Bayern went from fourth to first.', [['X', ['Thomas Müller came on.', 'Serge Kane scored.']]]);
   assert.deepEqual(validateEditorial(b, V3).find(r => r.gate === 'new_player_or_team').detail, ['Thomas', 'Müller', 'Serge']);
 });
+
+test('QA false positives fixed narrowly: bucket bounds, sourced stat pairs, month abbreviations, the verb "record"', () => {
+  const g = (paras, gate) => validateEditorial(art('Olise hat-trick powers Bayern past Union Berlin in 7-0 rout', 'Michael Olise scored three as Bayern went from fourth to first.', [['X', paras]]), V3).find(r => r.gate === gate);
+  assert.equal(g(['Bayern took six shots between the 61st and 75th minutes.'], 'new_number_not_in_packet').pass, true);
+  assert.equal(g(['The corner count was lopsided all evening, with Bayern holding a 9-2 edge.'], 'wrong_score').pass, true);
+  assert.deepEqual(g(['Bayern won 9-2 on the night.'], 'wrong_score').detail, ['9-2'], 'a stat pair used as a result is still a wrong score');
+  assert.equal(g(['The run stretched from Aug. 28 to Sept. 18.'], 'new_date').pass, true);
+  assert.equal(g(['The run stretched from Aug. 28 to Sept. 18.'], 'new_player_or_team').pass, true);
+  assert.deepEqual(g(['The run started on Aug. 30.'], 'new_date').detail, ['30 August']);
+  assert.equal(g(['Bayern did not record one save of note.'], 'unsupported_record').pass, true);
+  for (const bad of ['It was a club record.', 'Bayern set a new record.', 'A record win for Bayern.', 'The result was record-breaking.']) assert.equal(g([bad], 'unsupported_record').pass, false, bad);
+});

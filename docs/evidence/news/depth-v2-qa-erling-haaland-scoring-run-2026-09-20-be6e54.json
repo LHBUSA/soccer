@@ -1,0 +1,51 @@
+ {
+  "route": "/v1/canary/desk-qa",
+  "slug": "erling-haaland-scoring-run-2026-09-20-be6e54",
+  "run": 10,
+  "model": "gpt-5.6-sol",
+  "desk": "soccer-desk/2.0.0",
+  "quality": "soccer-quality/2.0.0",
+  "packet_version": "soccer-packet/2.0.0",
+  "packet_path": "B_original_packet_only",
+  "story_class": "player_form",
+  "result": "PASS",
+  "attempt": 2,
+  "hold_reasons": [],
+  "fact_gates": {
+    "total": 16,
+    "failed": []
+  },
+  "quality_gates": {
+    "total": 13,
+    "failed": []
+  },
+  "evidence": null,
+  "word_count": 167,
+  "sections_count": 3,
+  "headline": "Haaland scores in four straight Premier League appearances for Manchester City",
+  "dek": "The forward has struck five times during the run, scoring in wins over Crystal Palace, Coventry City, Manchester United and Sunderland.",
+  "sections": [
+    {
+      "heading": "Two goals launched the sequence",
+      "paragraphs": [
+        "Erling Haaland began the run with two goals as Manchester City beat Crystal Palace 4-1 on August 28. It remains his only multi-goal appearance in the sequence.",
+        "He followed that with the goal in a 1-0 victory over Coventry City on September 5, giving him three goals across the first two matches of the run."
+      ]
+    },
+    {
+      "heading": "Haaland delivers in consecutive 1-0 wins",
+      "paragraphs": [
+        "Manchester City's next league match brought the same scoreline. Haaland scored against Manchester United on September 13 as City won 1-0.",
+        "Those consecutive victories placed his scoring at the centre of two matches in which one goal separated Manchester City from their opponent. Haaland started both, as he did in every appearance covered by the run."
+      ]
+    },
+    {
+      "heading": "Sunderland strike extends the run",
+      "paragraphs": [
+        "Haaland made it four scoring appearances in succession when Manchester City defeated Sunderland 5-3 on September 20. His goal took his total across the sequence to five.",
+        "Manchester City won all four matches in the run, with Haaland moving from a two-goal contribution against Crystal Palace to single goals in each of the following three appearances."
+      ]
+    }
+  ],
+  "elapsed_ms": 28209
+}

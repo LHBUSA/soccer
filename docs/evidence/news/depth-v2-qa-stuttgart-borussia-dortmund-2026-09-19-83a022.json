@@ -1,0 +1,79 @@
+   {
+  "route": "/v1/canary/desk-qa",
+  "slug": "stuttgart-borussia-dortmund-2026-09-19-83a022",
+  "run": 5,
+  "model": "gpt-5.6-sol",
+  "desk": "soccer-desk/2.0.0",
+  "quality": "soccer-quality/2.0.0",
+  "packet_version": "soccer-packet/3.0.0",
+  "packet_path": "A_asof_safe_rebuild",
+  "story_class": "match_recap",
+  "result": "PASS",
+  "attempt": 2,
+  "hold_reasons": [],
+  "fact_gates": {
+    "total": 18,
+    "failed": []
+  },
+  "quality_gates": {
+    "total": 21,
+    "failed": []
+  },
+  "evidence": {
+    "available": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT",
+      "DISCIPLINE",
+      "SUBSTITUTIONS"
+    ],
+    "used": [
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT",
+      "SUBSTITUTIONS"
+    ]
+  },
+  "word_count": 366,
+  "sections_count": 4,
+  "headline": "Beier sends Borussia Dortmund top with 1-0 win at Stuttgart",
+  "dek": "Maximilian Beier struck at 70' after a goalless first half, extending Dortmund’s winning start and lifting them from third to first in the Bundesliga.",
+  "sections": [
+    {
+      "heading": "Beier finds the opening after the interval",
+      "paragraphs": [
+        "Maximilian Beier supplied the decisive finish in a match that remained unresolved deep into the second half. His goal was the difference as Borussia Dortmund converted another unbeaten outing into a place at the top of the table.",
+        "The breakthrough arrived at 70'. Dortmund had recorded six shots before half-time without putting one on target, while Stuttgart directed two of their five first-half attempts at goal.",
+        "The interval arrived goalless, and neither side scored early in the second half. Dortmund then assembled their busiest attacking passage of the match around Beier’s finish, recording six shots and both of their efforts on target during that period."
+      ]
+    },
+    {
+      "heading": "A scorer working inside the penalty area",
+      "paragraphs": [
+        "Beier took three shots, all from inside the box, and scored with his only attempt on target. That made him Dortmund’s central figure on a day when Serhou Guirassy also attempted three shots but did not test the goalkeeper.",
+        "Konstantinos Karetsas provided Dortmund’s other effort on target after entering as a substitute. Stuttgart spread their accurate shooting among Bilal El Khannouss, Josha Vagnoman, Deniz Undav, Ermedin Demirovic and Leo Sauer, but none found a way past Dortmund’s goalkeeper."
+      ]
+    },
+    {
+      "heading": "Stuttgart’s accuracy meets Dortmund’s finish",
+      "paragraphs": [
+        "The overall shot count was almost level: Dortmund had 13 attempts to Stuttgart’s 12. Yet the hosts put five on target to Dortmund’s two, forcing five saves at one end while Stuttgart’s goalkeeper made one. Stuttgart also led the corner count 6-2.",
+        "Those figures sharpen the contrast at the heart of the game. Stuttgart tested the goalkeeper more frequently, but Dortmund turned one of their accurate attempts into the goal that settled the contest.",
+        "Most of the shooting came from inside the penalty area. Dortmund placed 10 of their 13 located attempts there, compared with eight of Stuttgart’s 12, while the average shot distances were similar at 16.1 metres for Dortmund and 16.6 for Stuttgart."
+      ]
+    },
+    {
+      "heading": "Dortmund’s perfect start reaches the summit",
+      "paragraphs": [
+        "Dortmund moved from third to first with 12 points from four matches and a goal difference of 7. The victory followed wins over Hamburger SV, Hoffenheim and SC Paderborn 07, leaving Dortmund with four league wins from four.",
+        "Stuttgart remained 14th on three points after four matches. Their early league sequence now contains three defeats around the victory over Köln, with this loss following the defeat at Hoffenheim."
+      ]
+    }
+  ],
+  "elapsed_ms": 50899
+}

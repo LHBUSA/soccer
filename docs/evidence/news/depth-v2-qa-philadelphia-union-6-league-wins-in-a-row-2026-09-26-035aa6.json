@@ -1,0 +1,61 @@
+ {
+  "route": "/v1/canary/desk-qa",
+  "slug": "philadelphia-union-6-league-wins-in-a-row-2026-09-26-035aa6",
+  "run": 11,
+  "model": "gpt-5.6-sol",
+  "desk": "soccer-desk/2.0.0",
+  "quality": "soccer-quality/2.0.0",
+  "packet_version": "soccer-packet/2.0.0",
+  "packet_path": "B_original_packet_only",
+  "story_class": "team_trend",
+  "result": "HOLD",
+  "attempt": 2,
+  "hold_reasons": [
+    "editorial:new_player_or_team"
+  ],
+  "fact_gates": {
+    "total": 16,
+    "failed": [
+      {
+        "gate": "new_player_or_team",
+        "detail": [
+          "Aug",
+          "Sept"
+        ]
+      }
+    ]
+  },
+  "quality_gates": {
+    "total": 13,
+    "failed": []
+  },
+  "evidence": null,
+  "word_count": 206,
+  "sections_count": 3,
+  "headline": "Philadelphia Union extend winning run to six with 4-2 victory over Orlando City SC",
+  "dek": "The Union have scored 23 goals and conceded six during their unbeaten MLS surge, climbing to 39 points from 27 matches.",
+  "sections": [
+    {
+      "heading": "Another win keeps the sequence intact",
+      "paragraphs": [
+        "Philadelphia Union’s home victory over Orlando City SC completed a run of six consecutive MLS wins stretching from Aug. 29 to Sept. 26. The latest 4-2 result also continued the high-scoring turn that has defined the second half of the sequence.",
+        "Across the run, Philadelphia have scored 23 times and conceded six. Their first two victories came against Red Bull New York and CF Montréal before the attack accelerated against FC Cincinnati and San Diego FC."
+      ]
+    },
+    {
+      "heading": "Five-goal victories changed the shape of the run",
+      "paragraphs": [
+        "The Union followed a 3-1 away win over Red Bull New York with a 2-0 home success against CF Montréal. They then beat FC Cincinnati 5-0 and repeated that score away to San Diego FC.",
+        "Those shutouts gave way to tighter contests. Philadelphia won 4-3 at Sporting Kansas City before returning home to defeat Orlando, preserving a sequence with no draws or defeats."
+      ]
+    },
+    {
+      "heading": "Six wins lift Philadelphia to 39 points",
+      "paragraphs": [
+        "The run has left Philadelphia 12th in the 30-team MLS table, with 39 points from 27 matches. Their season totals stand at 11 wins, six draws and 10 defeats, with 54 goals scored and a goal difference of 10.",
+        "The broader campaign remains uneven, but the latest stretch is clear: six matches, six wins, with victories at home and away and 23 goals scored along the way."
+      ]
+    }
+  ],
+  "elapsed_ms": 29629
+}

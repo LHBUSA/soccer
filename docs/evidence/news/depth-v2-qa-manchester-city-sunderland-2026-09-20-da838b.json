@@ -1,0 +1,101 @@
+    {
+  "route": "/v1/canary/desk-qa",
+  "slug": "manchester-city-sunderland-2026-09-20-da838b",
+  "run": 8,
+  "model": "gpt-5.6-sol",
+  "desk": "soccer-desk/2.0.0",
+  "quality": "soccer-quality/2.0.0",
+  "packet_version": "soccer-packet/3.0.0",
+  "packet_path": "A_asof_safe_rebuild",
+  "story_class": "match_recap",
+  "result": "HOLD",
+  "attempt": 2,
+  "hold_reasons": [
+    "editorial:new_number_not_in_packet",
+    "editorial:wrong_score"
+  ],
+  "fact_gates": {
+    "total": 18,
+    "failed": [
+      {
+        "gate": "new_number_not_in_packet",
+        "detail": [
+          "61st"
+        ]
+      },
+      {
+        "gate": "wrong_score",
+        "detail": [
+          "6-5"
+        ]
+      }
+    ]
+  },
+  "quality_gates": {
+    "total": 23,
+    "failed": []
+  },
+  "evidence": {
+    "available": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT",
+      "DISCIPLINE",
+      "SUBSTITUTIONS"
+    ],
+    "used": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT"
+    ]
+  },
+  "word_count": 491,
+  "sections_count": 5,
+  "headline": "Semenyo double helps Manchester City withstand Brobbey hat-trick in 5-3 win",
+  "dek": "City repeatedly found an answer to Sunderland’s leading scorer, extending their perfect Premier League start while remaining top of the table.",
+  "sections": [
+    {
+      "heading": "City keep finding answers",
+      "paragraphs": [
+        "Manchester City’s fifth consecutive league victory was built around their response to Brian Brobbey. The Sunderland forward scored a hat-trick to keep the contest open, but Antoine Semenyo struck on either side of half-time before Erling Haaland supplied the late separation.",
+        "Enzo Fernández opened the scoring in the 9th minute, only for Brobbey to equalise three minutes later. It established the first-half pattern: City moved ahead, Sunderland replied, and the hosts had to create another route back in front."
+      ]
+    },
+    {
+      "heading": "Semenyo breaks the cycle",
+      "paragraphs": [
+        "Rayan Cherki restored City’s lead in the 29th minute, but that advantage lasted only four minutes before Brobbey scored again. Semenyo’s first goal, arriving in the 43rd minute, sent City into the interval leading 3-2 after a half in which both teams had seven shots.",
+        "That was the first City lead Sunderland did not quickly erase. Semenyo scored again in the 57th minute, converting his second shot of the match, although Brobbey completed his hat-trick two minutes later to reduce the gap once more.",
+        "The scoring then stopped for more than twenty minutes. Neither side put a shot on target between the 61st and 75th minutes, before Haaland made City’s position safer in the 81st. Sunderland registered two more efforts on target during the closing period but did not add another goal."
+      ]
+    },
+    {
+      "heading": "Two scorers, two contrasting returns",
+      "paragraphs": [
+        "Semenyo’s contribution was exact: two shots, both from inside the penalty area, both on target and both goals. His finishes turned a one-goal half-time advantage into the cushion City ultimately needed against Brobbey.",
+        "Brobbey was responsible for every Sunderland goal and put four of his five attempts on target, with four of those shots coming from inside the box. Haaland took four shots for City, all from inside the area, while Cherki scored from his only effort on target. Fernández converted his lone attempt, City’s only goal by a scorer whose shot was located outside the box."
+      ]
+    },
+    {
+      "heading": "Finishing separates near-even shot counts",
+      "paragraphs": [
+        "Sunderland led the overall shot count 17-16 and produced nine attempts on target to City’s six. City, however, scored with five of those six efforts on target, while Sunderland converted three of nine. The corner count was similarly close, with City holding a 6-5 edge.",
+        "Most of the shooting came from inside the penalty area: Sunderland had 14 such attempts and City had 12. Sunderland’s located shots averaged 13.5 metres from goal, compared with City’s 15.3 metres, yet the visitors’ greater shot volume and shorter average distance did not translate into enough goals to keep pace."
+      ]
+    },
+    {
+      "heading": "A perfect start holds at the summit",
+      "paragraphs": [
+        "City remain first in the Premier League after winning each of their opening five matches. This was a more open result than their previous two league victories, both of which came without conceding, but it preserved the same outcome and extended their winning sequence.",
+        "They have 15 points from five games and a goal difference of eight. Sunderland remain 14th with four points from five, having followed one win, one draw and two defeats in their opening four league fixtures with another loss at the Etihad Stadium."
+      ]
+    }
+  ],
+  "elapsed_ms": 72114
+}

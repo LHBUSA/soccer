@@ -1,0 +1,93 @@
+   {
+  "route": "/v1/canary/desk-qa",
+  "slug": "tottenham-hotspur-aston-villa-2026-09-19-ce492a",
+  "run": 9,
+  "model": "gpt-5.6-sol",
+  "desk": "soccer-desk/2.0.0",
+  "quality": "soccer-quality/2.0.0",
+  "packet_version": "soccer-packet/3.0.0",
+  "packet_path": "A_asof_safe_rebuild",
+  "story_class": "match_recap",
+  "result": "HOLD",
+  "attempt": 2,
+  "hold_reasons": [
+    "editorial:new_number_not_in_packet",
+    "editorial:numeric_paragraph_run"
+  ],
+  "fact_gates": {
+    "total": 18,
+    "failed": [
+      {
+        "gate": "new_number_not_in_packet",
+        "detail": [
+          "60th"
+        ]
+      }
+    ]
+  },
+  "quality_gates": {
+    "total": 23,
+    "failed": [
+      {
+        "gate": "numeric_paragraph_run",
+        "detail": 3
+      }
+    ]
+  },
+  "evidence": {
+    "available": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT",
+      "DISCIPLINE",
+      "SUBSTITUTIONS"
+    ],
+    "used": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "SUBSTITUTIONS"
+    ]
+  },
+  "word_count": 498,
+  "sections_count": 4,
+  "headline": "Manzambi, Jackson and Buendía lift Aston Villa past Tottenham 3-2",
+  "dek": "Villa scored either side of the interval and added a third before Tottenham’s late reply, earning their first Premier League win of the season and climbing out of the bottom three.",
+  "sections": [
+    {
+      "heading": "Manzambi breaks through at the end of the half",
+      "paragraphs": [
+        "Tottenham produced the greater shot volume at Tottenham Hotspur Stadium, but Aston Villa supplied the sequence that decided the contest. Johan Manzambi opened the scoring at 45+1, Nicolas Jackson extended the lead in the 67th minute and Emiliano Buendía added another in the 79th, giving Villa enough protection against a late home recovery.",
+        "The opening goal followed a first half in which Tottenham took ten shots to Villa’s nine and put four on target to the visitors’ three. Villa’s activity increased near the interval: six of their first-half attempts came between the 31st minute and stoppage time, with Manzambi scoring from the only one in that period to test the goalkeeper. He finished with four shots and two on target."
+      ]
+    },
+    {
+      "heading": "Jackson and Buendía build the cushion",
+      "paragraphs": [
+        "Tottenham did not register a shot between the 46th and 60th minutes, while Villa took three. Jackson then struck in the 67th minute, one minute after James Maddison replaced Dominic Solanke for the home side. The goal rewarded the busiest shooter in the match: Jackson attempted six shots, putting two on target and taking three from inside the penalty area.",
+        "Manzambi was replaced by George Hemmings in the 72nd minute, but Villa’s scoring continued through Buendía seven minutes later. Buendía needed three attempts to find his goal, with two on target and two coming from inside the box. Between them, Jackson, Manzambi and Buendía accounted for all six of Villa’s shots on target."
+      ]
+    },
+    {
+      "heading": "Tottenham’s late scorers narrow the gap",
+      "paragraphs": [
+        "Tottenham’s response came from two players who each scored with their only attempt. Conor Gallagher entered in the 84th minute and found the net two minutes later, before Jan Paul van Hecke scored at 90+1. Those goals arrived during a closing period in which Tottenham took seven shots and put three on target.",
+        "Sávio had earlier provided Tottenham’s most consistent accuracy, directing all three of his attempts on target, but he did not score. Maddison and Archie Gray each tested the goalkeeper once, while Sandro Tonali had three attempts without hitting the target and Solanke took two, both from inside the box, without doing so. Aston Villa made five saves overall; Tottenham made three."
+      ]
+    },
+    {
+      "heading": "Villa’s efficiency reshapes the bottom three",
+      "paragraphs": [
+        "Tottenham ended with 20 shots to Villa’s 15, seven on target to six and an 11-1 advantage in corners. They also took 12 shots from inside the box compared with Villa’s seven, while both teams attempted eight from outside it. Tottenham’s located shots averaged 17 metres from goal, against 19.6 metres for Villa, but the visitors converted three of their 15 attempts while Tottenham converted two of 20.",
+        "The result carried an immediate table consequence. Villa rose four places from 19th to 15th, reaching four points after five matches and leaving the bottom three. Their victory followed three defeats and a draw in their opening four league games.",
+        "Tottenham dropped from 17th to 18th, with two points from five matches. Their first four league fixtures had brought two defeats followed by goalless draws against Nottingham Forest and Everton; this defeat left them in the bottom three despite their two late goals."
+      ]
+    }
+  ],
+  "elapsed_ms": 47273
+}

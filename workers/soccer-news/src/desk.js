@@ -128,6 +128,7 @@ export function deskArticle(edited, draft) {
 
 // ---------------------------------------------------------------- grounded validation
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const MONTH_ABBR = { Jan: 'January', Feb: 'February', Mar: 'March', Apr: 'April', Jun: 'June', Jul: 'July', Aug: 'August', Sep: 'September', Sept: 'September', Oct: 'October', Nov: 'November', Dec: 'December' };
 const ALWAYS_OK = new Set([...MONTHS, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'MLS', 'Premier', 'League', 'Champions', 'Bundesliga', 'UEFA', 'Europe', 'European', 'Eastern', 'Western', 'Conference', 'Cup', 'FC', 'SC', 'CF', 'AFC', 'The', 'A', 'An', 'In', 'On', 'At', 'For', 'With', 'After', 'Before', 'By', 'From', 'Of', 'And', 'But', 'It', 'Its', 'This', 'That', 'Their', 'They', 'He', 'His', 'When', 'Then', 'Yet', 'Still', 'Only', 'No', 'Not', 'All', 'Both', 'Neither', 'Each', 'Every', 'Half', 'Full', 'Round', 'Matchday', 'Week', 'Table', 'Top',
   // sentence-initial prepositions / connectives before a name ("Against Bayern, ...") are not names
   'Against', 'Despite', 'Without', 'Under', 'Between', 'Behind', 'Beyond', 'Unlike', 'Across', 'Through', 'Since', 'Until', 'During', 'Over', 'Into', 'Inside', 'Outside', 'Among', 'Amid', 'Following', 'Like', 'Beside', 'Versus', 'Once', 'While', 'Where', 'Although', 'Though', 'With', 'Nor', 'Both', 'Neither']);
@@ -140,7 +141,8 @@ const BANNED = [
   // "spread across four scorers" and "the spread of goals" are ordinary English.
   ['unsupported_odds', /\b(odds|bet(s|ting)?|wager|point spreads?|the spread(?! (of|across|throughout|between|among|around)\b)|moneyline|bookmaker|sportsbook|favou?rites? to|underdogs?)\b/i],
   ['unsupported_xg', /\b(xg|expected goals|xt|expected threat|big chances?|chance quality)\b/i],
-  ['unsupported_record', /\b(record|first time|all-time|historic\w*|best ever|worst ever|unprecedented|never before|club history)\b/i],
+  // "record" as a claim (noun / attributive), not the verb ("did not record one")
+  ['unsupported_record', /\b((a|the|club|league|new|unbeaten|scoring|winning|home|away|perfect|their|his|its|season|competition|mls|bundesliga) records?|records? (win|victory|defeat|margin|score|number|total|haul|tally|run|books?|breaking)|record-\w+|first time|all-time|historic\w*|best ever|worst ever|unprecedented|never before|club history)\b/i],
   ['unsupported_mentality', /\b(wanted it more|hungr\w*|desire|mentality|bottled|choked|confiden\w*|frustrat\w*|nervous|belief|determined|pressure mounts|spirit)\b/i],
   ['unsupported_tactics', /\b(formation|high press|pressing|back three|back four|false nine|gegenpress\w*|low block|counter-?press\w*)\b/i],
   ['unsupported_intent', /\b(wanted to|tried to|hoped to|planned to|decided to|chose to|set out to|was desperate)\b/i],
@@ -182,6 +184,8 @@ export function validateEditorial(article, packet) {
   const P = packetStrings(packet);
   // numbers (digits and number words), same grounding rule as the fact gates
   const allowed = packetNumbers2(packet);
+  // phase bucket bounds are grounded minutes ("between the 61st and 75th minutes") for buckets the packet carries
+  for (const k of Object.keys(packet.depth?.phases?.buckets || {})) for (const n of k.match(/\d+/g) || []) allowed.add(String(Number(n)));
   for (const v of [...allowed]) if (v.startsWith('-')) allowed.add(v.slice(1)); // "minus 13" for a goal difference of -13
   const ungrounded = [];
   const scrub = stripIdentifiers(t).replace(/\b\d{1,2}-\d{1,2}\b/g, ' ');
@@ -191,17 +195,23 @@ export function validateEditorial(article, packet) {
   // scores
   const scores = packetScores(packet);
   // a pair next to a stat word ("corners 9-2", "9-2 on shots") is a count pair, grounded by the number gate
+  const statPairs = new Set();
+  for (const k of Object.keys(packet.stats?.home || {})) { const h = packet.stats.home[k]; const a = packet.stats.away?.[k]; if (Number.isInteger(Number(h)) && Number.isInteger(Number(a))) { statPairs.add(`${Number(h)}-${Number(a)}`); statPairs.add(`${Number(a)}-${Number(h)}`); } }
   const STAT_NEAR = /\b(corners?|shots?|saves?|fouls?|on target|cards?|offsides?)\b/i;
   const badScores = [...t.matchAll(/\b(\d{1,2})-(\d{1,2})\b/g)]
     .filter(m => !/\d{4}-$/.test(t.slice(Math.max(0, m.index - 5), m.index))) // part of an ISO date, not a score
     .filter(m => !STAT_NEAR.test(t.slice(Math.max(0, m.index - 24), m.index + m[0].length + 40)))
+    // a pair that IS a sourced stat pair (e.g. corners 6-5), in a sentence that names that stat
+    .filter(m => !(statPairs.has(m[0]) && STAT_NEAR.test(t.slice(Math.max(0, t.lastIndexOf('.', m.index) + 1), (t.indexOf('.', m.index) + 1 || t.length)))))
     // a packet phase bucket written as a minute range ("the 16-30 minute spell") is a time span, not a score
     .filter(m => !(BUCKET_RANGES.has(m[0]) && /^\+?(-| )?minutes?\b/i.test(t.slice(m.index + m[0].length, m.index + m[0].length + 10))))
     .map(m => m[0]).filter(x => !scores.has(x));
   gate('wrong_score', !badScores.length, badScores.length ? [...new Set(badScores)] : null);
   // dates: "<day> <Month>" and "<Month> <day>" must be dates the packet carries
   const isoDays = new Set([...JSON.stringify(packet).matchAll(/\b(\d{4})-(\d{2})-(\d{2})/g)].map(m => `${Number(m[3])} ${MONTHS[Number(m[2]) - 1]}`));
-  const badDates = [...t.matchAll(new RegExp(`\\b(\\d{1,2}) (${MONTHS.join('|')})\\b|\\b(${MONTHS.join('|')}) (\\d{1,2})\\b`, 'g'))].map(m => (m[1] ? `${Number(m[1])} ${m[2]}` : `${Number(m[4])} ${m[3]}`)).filter(d => !isoDays.has(d));
+  const MON = `${MONTHS.join('|')}|${Object.keys(MONTH_ABBR).join('|')}`;
+  const full = m => MONTH_ABBR[m] || m;
+  const badDates = [...t.matchAll(new RegExp(`\\b(\\d{1,2}) (${MON})\\b\\.?|\\b(${MON})\\.? (\\d{1,2})\\b`, 'g'))].map(m => (m[1] ? `${Number(m[1])} ${full(m[2])}` : `${Number(m[4])} ${full(m[3])}`)).filter(d => !isoDays.has(d));
   gate('new_date', !badDates.length, badDates.length ? badDates : null);
   gate('new_url', !/https?:\/\/|www\.|\.(com|org|net|de|uk)\b/i.test(t), (t.match(/https?:\/\/\S+|www\.\S+/) || [null])[0]);
   // names: a capitalised word that is not sentence-initial common English must appear in the packet
@@ -215,7 +225,7 @@ export function validateEditorial(article, packet) {
     const toks = [...s.matchAll(/\b[A-ZÀ-Ý][\p{L}'’.-]+/gu)];
     toks.forEach((m, i) => {
       const w = m[0].replace(/[’'.]s?$/, '').replace(/\.$/, '');
-      if (w.length < 3 || ALWAYS_OK.has(w)) return;
+      if (w.length < 3 || ALWAYS_OK.has(w) || MONTH_ABBR[w]) return;
       const initial = m.index === 0 || /^["“(]?$/.test(s.slice(0, m.index).trim());
       const nextIsName = toks[i + 1] && toks[i + 1].index === m.index + m[0].length + 1;
       if (initial && !nextIsName) return; // an ordinary sentence opener

@@ -1,0 +1,91 @@
+   {
+  "route": "/v1/canary/desk-qa",
+  "slug": "werder-bremen-augsburg-2026-09-19-aee7b2",
+  "run": 4,
+  "model": "gpt-5.6-sol",
+  "desk": "soccer-desk/2.0.0",
+  "quality": "soccer-quality/2.0.0",
+  "packet_version": "soccer-packet/3.0.0",
+  "packet_path": "A_asof_safe_rebuild",
+  "story_class": "match_recap",
+  "result": "HOLD",
+  "attempt": 2,
+  "hold_reasons": [
+    "editorial:new_number_not_in_packet"
+  ],
+  "fact_gates": {
+    "total": 18,
+    "failed": [
+      {
+        "gate": "new_number_not_in_packet",
+        "detail": [
+          "61st",
+          "75th"
+        ]
+      }
+    ]
+  },
+  "quality_gates": {
+    "total": 23,
+    "failed": []
+  },
+  "evidence": {
+    "available": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT",
+      "DISCIPLINE",
+      "SUBSTITUTIONS"
+    ],
+    "used": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "SUBSTITUTIONS"
+    ]
+  },
+  "word_count": 572,
+  "sections_count": 4,
+  "headline": "Werder Bremen overturn two-goal deficit to stun Augsburg 3-2",
+  "dek": "Marco Grüll began the recovery before two late goals lifted Werder from 10th to sixth in the Bundesliga, level with fourth-placed Augsburg on seven points.",
+  "sections": [
+    {
+      "heading": "Three goals turn the game after the break",
+      "paragraphs": [
+        "Werder Bremen won by transforming a difficult afternoon in its final stages. Augsburg led at half-time and doubled that advantage in the 58th minute, but Grüll answered eight minutes later before the home side scored again in the 86th and 90+1 minutes.",
+        "Robin Fellhauer had opened the scoring for Augsburg in the 18th minute. That was the only goal of a first half in which Werder took seven shots to Augsburg’s two, yet the visitors put both of their attempts on target and carried a 1-0 lead into the interval.",
+        "Calvin Brackelmann extended the advantage with his only shot, an on-target effort from inside the box. Augsburg were two goals ahead with just over half an hour remaining, but every subsequent goal belonged to Werder. Grüll’s strike reopened the contest before the two late finishes completed the turnaround."
+      ]
+    },
+    {
+      "heading": "Grüll opens the route back",
+      "paragraphs": [
+        "Grüll supplied the only identified goal in Werder’s recovery, scoring from one of his two shots and with his sole effort on target. His 66th-minute response arrived during Werder’s busiest productive stretch: the home side recorded five shots and three on target between the 61st and 75th minutes.",
+        "Ludovit Reis was Werder’s most frequent shooter with four attempts, all from inside the penalty area, and put two on target before being replaced in the 78th minute. Chuki also tested Augsburg twice from three shots. Those contributions helped sustain a second-half output of 13 attempts after Werder had gone into the break without a goal.",
+        "Augsburg’s scorers were far more economical. Fellhauer and Brackelmann each converted his only shot, with both attempts coming from inside the box. Their goals were separated by 40 minutes, but Werder’s reply to the second took only eight. The final two home goals then arrived five minutes apart."
+      ]
+    },
+    {
+      "heading": "Shot volume finally tells for Werder",
+      "paragraphs": [
+        "The contrast lay less in accuracy than in volume. Werder produced 20 shots and Augsburg seven, accounting for 74 per cent of the 27 attempts. The home side put 11 on target, compared with four from Augsburg, while the on-target rates were close at 55 and 57 per cent respectively.",
+        "Fifteen of Werder’s shots came from inside the box and five from outside it. Augsburg split its attempts between four inside and three outside, with an average located distance of 15.1 metres compared with Werder’s 17 metres. Augsburg converted two of seven shots; Werder required 20 attempts for its three goals.",
+        "The goalkeepers’ workloads reflected that difference. Augsburg’s goalkeeper made seven saves, while Werder’s made two. Corners were level at two apiece, so the separation came through the number of shots Werder generated, particularly after half-time. The home side took 13 attempts in the second half and scored all three of its goals after the 60th minute."
+      ]
+    },
+    {
+      "heading": "A four-place rise on seven points",
+      "paragraphs": [
+        "The victory moved Werder from 10th to sixth in the 18-team Bundesliga table. They now have seven points from four matches and a goal difference of zero, having followed a draw at Köln with their second league win of the season.",
+        "Werder’s opening four results comprise two wins, a draw and a defeat. The late recovery also built on the points collected in their previous two fixtures, including the 3-1 home win over RB Leipzig before the draw at Köln.",
+        "Augsburg remained fourth, also on seven points from four matches, but this was their first league defeat after two wins and a draw. They arrived having beaten Schalke 04 and Eintracht Frankfurt before drawing with Bayer Leverkusen; the loss left their goal difference at five."
+      ]
+    }
+  ],
+  "elapsed_ms": 54989
+}

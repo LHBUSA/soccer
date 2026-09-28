@@ -1,0 +1,93 @@
+      {
+  "route": "/v1/canary/desk-qa",
+  "slug": "philadelphia-union-orlando-city-sc-2026-09-26-2fcde7",
+  "run": 6,
+  "model": "gpt-5.6-sol",
+  "desk": "soccer-desk/2.0.0",
+  "quality": "soccer-quality/2.0.0",
+  "packet_version": "soccer-packet/3.0.0",
+  "packet_path": "A_asof_safe_rebuild",
+  "story_class": "match_recap",
+  "result": "HOLD",
+  "attempt": 2,
+  "hold_reasons": [
+    "editorial:unsupported_record"
+  ],
+  "fact_gates": {
+    "total": 18,
+    "failed": [
+      {
+        "gate": "unsupported_record",
+        "detail": "record"
+      }
+    ]
+  },
+  "quality_gates": {
+    "total": 23,
+    "failed": []
+  },
+  "evidence": {
+    "available": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT",
+      "DISCIPLINE",
+      "SUBSTITUTIONS"
+    ],
+    "used": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT"
+    ]
+  },
+  "word_count": 443,
+  "sections_count": 5,
+  "headline": "Iloski hat-trick drives Philadelphia Union past Orlando City SC 4-2",
+  "dek": "Philadelphia built a four-goal advantage by the 51st minute at Subaru Park, extending its winning run and climbing one place in the MLS standings.",
+  "sections": [
+    {
+      "heading": "Iloski puts Philadelphia in command",
+      "paragraphs": [
+        "Milan Iloski shaped the match before Orlando City SC could register a shot on target. He converted an 11th-minute penalty and scored again eight minutes later, giving Philadelphia Union an early platform for a sixth consecutive league victory.",
+        "The Union carried that two-goal lead into the interval after taking 11 first-half shots to Orlando’s three. Four of Philadelphia’s attempts were on target, while none of Orlando’s tested the goalkeeper before the break."
+      ]
+    },
+    {
+      "heading": "Two quick goals settle the contest",
+      "paragraphs": [
+        "Any route back for Orlando narrowed almost immediately after the restart. Indiana Vassilev scored in the 47th minute, and Iloski completed his hat-trick four minutes later to leave Philadelphia four goals ahead.",
+        "Orlando’s response came late. Iván Angulo scored in the 78th minute before Martín Ojeda added another in the 90th, meaning the sides scored twice each after half-time. Philadelphia’s work on either side of the interval had already established the decisive separation."
+      ]
+    },
+    {
+      "heading": "A concentrated Philadelphia attack",
+      "paragraphs": [
+        "Iloski was the central figure in a broader Union attack that repeatedly forced Orlando’s goalkeeper into action. Vassilev supplied Philadelphia’s other goal, while Quinn Sullivan and Ezekiel Alladoh also put attempts on target.",
+        "Iloski scored with all three of his shots on target from five attempts overall. Vassilev directed two of his three shots on target, and Sullivan and Alladoh each did the same from three attempts.",
+        "Orlando’s output was distributed differently. Ojeda took four shots but put only one on target, while Angulo scored with his lone attempt. Antoine Griezmann had three shots, all from inside the penalty area, without hitting the target."
+      ]
+    },
+    {
+      "heading": "Shot volume tells the wider story",
+      "paragraphs": [
+        "Philadelphia finished with 20 shots and nine on target, compared with Orlando’s 11 attempts and two on target. Orlando’s goalkeeper made five saves; Philadelphia did not record one because both visiting shots on target became goals. The corner count was level at seven apiece.",
+        "Of Philadelphia’s 19 located shots, 13 came from inside the penalty area and six from outside, with an average distance of 19.6 metres. Orlando placed nine of its 11 located attempts inside the box, while its average distance was 15.9 metres.",
+        "The location data shows that Orlando often shot from closer positions when it did attack, but Philadelphia combined penalty-area attempts with a larger outside-box contribution. That broader volume, rather than the equal corner count, separated the teams’ attacking output."
+      ]
+    },
+    {
+      "heading": "Six straight wins lift the Union",
+      "paragraphs": [
+        "Philadelphia rose from 13th to 12th in the overall MLS table, reaching 39 points from 27 matches with a goal difference of plus 10. The Union arrived on five consecutive league wins and extended that sequence at Subaru Park.",
+        "Orlando remained 14th with 34 points from 27 matches, and its goal difference moved to minus 16. After a draw and three successive victories, Orlando has now lost back-to-back league matches."
+      ]
+    }
+  ],
+  "elapsed_ms": 97738
+}
