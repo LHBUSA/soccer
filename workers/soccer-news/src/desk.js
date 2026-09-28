@@ -10,7 +10,7 @@ import { stripIdentifiers } from './gates.js';
 import { PROFILES } from './profiles.js';
 
 export const DESK_VERSION = 'soccer-desk/1.0.0';
-export const DESK_MODEL = 'claude-opus-5-5';
+export const DESK_MODEL = 'claude-opus-5'; // current generally available Opus; override with NEWS_DESK_MODEL
 export const deskRequired = env => env?.NEWS_DESK !== 'off'; // default: required for every new story
 export const deskAvailable = env => !!env?.ANTHROPIC_API_KEY;
 
@@ -44,7 +44,11 @@ export async function callDesk(env, packet, draft, { fetcher = fetch, feedback =
     body: JSON.stringify({ model, max_tokens: 16000, thinking: { type: 'adaptive' }, system: SYSTEM, messages: [{ role: 'user', content: user }] }),
     signal: AbortSignal.timeout(120000),
   });
-  if (!res.ok) throw new Error(`desk HTTP ${res.status}`);
+  if (!res.ok) {
+    // The API's own error message (never headers or keys), so a hold explains itself.
+    let why = ''; try { const e = await res.json(); why = `${e?.error?.type || ''} ${e?.error?.message || ''}`.trim().slice(0, 160); } catch { /* no body */ }
+    throw new Error(`desk HTTP ${res.status}${why ? `: ${why}` : ''}`);
+  }
   const j = await res.json();
   if (j.stop_reason === 'refusal' || j.stop_reason === 'max_tokens') throw new Error(`desk stop_reason ${j.stop_reason}`);
   const txt = (j.content || []).map(c => c.text || '').join('');
