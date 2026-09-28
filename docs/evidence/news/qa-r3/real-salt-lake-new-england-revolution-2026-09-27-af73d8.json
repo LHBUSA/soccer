@@ -1,0 +1,102 @@
+   {
+  "route": "/v1/canary/desk-qa",
+  "slug": "real-salt-lake-new-england-revolution-2026-09-27-af73d8",
+  "run": 20,
+  "model": "gpt-5.6-sol",
+  "desk": "soccer-desk/2.0.0",
+  "quality": "soccer-quality/2.0.0",
+  "packet_version": "soccer-packet/3.0.0",
+  "packet_path": "A_asof_safe_rebuild",
+  "story_class": "match_recap",
+  "result": "HOLD",
+  "attempt": 2,
+  "hold_reasons": [
+    "editorial:unsupported_intent",
+    "editorial:thin_output",
+    "editorial:evidence_coverage"
+  ],
+  "fact_gates": {
+    "total": 18,
+    "failed": [
+      {
+        "gate": "unsupported_intent",
+        "detail": "tried to"
+      }
+    ]
+  },
+  "quality_gates": {
+    "total": 23,
+    "failed": [
+      {
+        "gate": "thin_output",
+        "detail": {
+          "words": 440,
+          "min": 450
+        }
+      },
+      {
+        "gate": "evidence_coverage",
+        "detail": [
+          "match progression (goal sequence / half-time)"
+        ]
+      }
+    ]
+  },
+  "evidence": {
+    "available": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT",
+      "DISCIPLINE",
+      "SUBSTITUTIONS"
+    ],
+    "used": [
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT"
+    ]
+  },
+  "word_count": 431,
+  "sections_count": 4,
+  "headline": "Solans double carries Real Salt Lake past New England in 3-0 upset",
+  "dek": "Aiden Hezarkhani struck almost immediately before Sergi Solans added twice after the break, lifting Real Salt Lake two places in the MLS table.",
+  "sections": [
+    {
+      "heading": "Hezarkhani changes the match in the opening minutes",
+      "paragraphs": [
+        "Real Salt Lake began the night in 23rd place, but needed only two minutes to go ahead against fourth-placed New England Revolution. Hezarkhani converted his only shot, giving the home side a lead that remained intact through the rest of the first half.",
+        "New England found routes to goal without finding an equaliser. Real Salt Lake's goalkeeper dealt with the attempts that reached the target, while the hosts retained the advantage Hezarkhani had provided almost from kickoff."
+      ]
+    },
+    {
+      "heading": "Solans turns a narrow lead into a decisive one",
+      "paragraphs": [
+        "Solans took over the scoring after the interval. He struck in the 62nd minute and again in the 80th, finishing with two goals from five shots. Four of his attempts were on target and four came from inside the penalty area.",
+        "Those finishes accounted for most of Real Salt Lake's attacking output. Hezarkhani scored with his lone attempt, while Morgan Guilavogui supplied the hosts' other shot on target. Solans was substituted six minutes after completing his double.",
+        "New England's individual returns told a different story. Joshua Wynder had three attempts, while Dániel Gazdag and Luca Langoni took two apiece; each put one on target. Jackson Yueill also tested Real Salt Lake's goalkeeper, but none of the visitors' four accurate efforts produced a goal."
+      ]
+    },
+    {
+      "heading": "Fewer attempts, far greater return",
+      "paragraphs": [
+        "New England led the shot count 16-9 and won 11 corners to Real Salt Lake's one, yet the hosts placed six attempts on target to the visitors' four. Real Salt Lake converted three of those accurate shots, while its goalkeeper made four saves.",
+        "The contrast was not simply about how often each side tried to score. Real Salt Lake directed a much larger share of its attempts on target, whereas most of New England's shots either missed or were stopped.",
+        "All nine of Real Salt Lake's shots were located, with six coming from inside the box and an average distance of 15 metres. Of New England's 15 located attempts, seven were inside the area and eight outside it, with an average distance of 17.6 metres."
+      ]
+    },
+    {
+      "heading": "A losing run ends with a two-place climb",
+      "paragraphs": [
+        "Real Salt Lake entered the match after a draw followed by four consecutive league defeats. This victory ended that winless sequence against a New England side that had won four of its previous five league matches.",
+        "The three points moved Real Salt Lake from 23rd to 21st in the 30-team standings. The club now has 32 points from 27 matches, and its goal difference improved from minus seven to minus four.",
+        "New England remained fourth on 46 points after 27 matches. Its goal difference fell from plus 12 to plus nine as a productive recent run gave way to a scoreless defeat at America First Field."
+      ]
+    }
+  ],
+  "elapsed_ms": 52366
+}

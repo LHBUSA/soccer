@@ -1,0 +1,81 @@
+  {
+  "route": "/v1/canary/desk-qa",
+  "slug": "werder-bremen-augsburg-2026-09-19-aee7b2",
+  "run": 21,
+  "model": "gpt-5.6-sol",
+  "desk": "soccer-desk/2.0.0",
+  "quality": "soccer-quality/2.0.0",
+  "packet_version": "soccer-packet/3.0.0",
+  "packet_path": "A_asof_safe_rebuild",
+  "story_class": "match_recap",
+  "result": "PASS",
+  "attempt": 1,
+  "hold_reasons": [],
+  "fact_gates": {
+    "total": 18,
+    "failed": []
+  },
+  "quality_gates": {
+    "total": 23,
+    "failed": []
+  },
+  "evidence": {
+    "available": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT",
+      "DISCIPLINE",
+      "SUBSTITUTIONS"
+    ],
+    "used": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT"
+    ]
+  },
+  "word_count": 512,
+  "sections_count": 4,
+  "headline": "Werder Bremen complete stoppage-time comeback to beat Augsburg 3-2",
+  "dek": "Marco Grüll began the recovery from two goals down before goals in the 86th and 90+1 minutes lifted Werder Bremen from 10th to sixth in the Bundesliga.",
+  "sections": [
+    {
+      "heading": "Two late goals complete the reversal",
+      "paragraphs": [
+        "Augsburg held the lead for most of the afternoon, but Werder Bremen reshaped the result in the closing minutes. An equaliser arrived in the 86th minute before another home goal at 90+1 completed a comeback that had begun with Marco Grüll after the break.",
+        "Robin Fellhauer had opened the scoring in the 18th minute, putting Augsburg ahead with his only shot of the match. Werder Bremen went into half-time trailing despite taking seven shots to the visitors’ two in the opening period.",
+        "Calvin Brackelmann extended Augsburg’s advantage in the 58th minute, also scoring with his only attempt. Grüll replied eight minutes later, cutting the deficit before the two late goals overturned it. Werder Bremen produced five shots from the 76th minute onward, putting three on target and scoring twice."
+      ]
+    },
+    {
+      "heading": "Grüll starts the route back",
+      "paragraphs": [
+        "Grüll’s contribution supplied the first change to a scoreline that had moved firmly in Augsburg’s direction. He finished with two shots, one on target, and scored from his only attempt recorded inside the penalty area.",
+        "Ludovit Reis was Werder Bremen’s busiest shooter, taking four attempts and placing two on target; all four came from inside the box. Chuki added three shots, two of them on target, as the home side’s attacking output was spread beyond the scorer who initiated the recovery.",
+        "Augsburg’s two scorers were more economical. Fellhauer and Brackelmann each registered one shot, both from inside the box, and each converted. That efficiency established a two-goal lead, but Augsburg did not score from their remaining five attempts."
+      ]
+    },
+    {
+      "heading": "Shot volume eventually tells",
+      "paragraphs": [
+        "Werder Bremen finished with 20 shots and 11 on target, compared with seven attempts and four on target for Augsburg. The visitors’ goalkeeper made seven saves, while Werder Bremen’s goalkeeper made two. Those figures reflect how often the home side tested the target even while spending much of the game behind.",
+        "The accuracy rates were close—55 per cent for Werder Bremen and 57 per cent for Augsburg—so the defining statistical difference was volume rather than the proportion of attempts on target. Werder Bremen accounted for 74 per cent of the match’s shots and took 13 of their 20 attempts after half-time.",
+        "Fifteen of Werder Bremen’s shots came from inside the penalty area, against four for Augsburg. Yet the visitors’ average shot distance was shorter, at 15.1 metres compared with 17 metres. Corners were level at two apiece, offering little separation compared with the pronounced gap in attempts."
+      ]
+    },
+    {
+      "heading": "A four-place climb for Werder Bremen",
+      "paragraphs": [
+        "The comeback moved Werder Bremen from 10th to sixth in the 18-team Bundesliga table. They now have seven points from four matches and a goal difference of zero, having begun the day on four points with a negative goal difference.",
+        "After an opening defeat, Werder Bremen have followed with two wins and a draw. Augsburg arrived unbeaten after two victories and a draw, but their first loss of the league season left them fourth rather than changing their position.",
+        "The teams are level on seven points after four games, with Augsburg holding a goal difference of five. Werder Bremen’s late recovery therefore brought them level on points with opponents who had started the day six places above them."
+      ]
+    }
+  ],
+  "elapsed_ms": 35216
+}
