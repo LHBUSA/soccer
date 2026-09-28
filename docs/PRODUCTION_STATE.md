@@ -10,7 +10,7 @@ evidence are the source of truth; nothing here comes only from chat memory.
 |---|---|---|
 | Web app | https://soccer.propbetedge.ai — Vercel project `soccer` (prj_3UgFIxhnlVcLmhnnNDc1WoHOtXGn; never `soccer-hs22`) | git-connected: **every push to `main` deploys production** |
 | soccer-api | Cloudflare Worker (public read API; reached by the browser only through the same-origin `/api/soccer/*` edge proxy) | `scripts/release/release-worker.mjs` |
-| soccer-ingest | Cloudflare Worker, cron `*/5 * * * *` | same |
+| soccer-ingest | Cloudflare Worker, cron `* * * * *` (live lane every minute; every other lane on the 5-minute boundary) | same (the script also deploys + verifies cron triggers, which `versions deploy` does not) |
 | soccer-news | Cloudflare Worker, cron `7,37 * * * *`, `NEWS_ENABLED=on`, optional LLM pass `NEWS_LLM=off` | same |
 | Data | Supabase SPORTS project `tkmlnhmylqnttmnsnief`, tables `soccer_*`, RLS on, no public policies | migrations below |
 | Raw archive | R2 bucket `soccer-source` (write-once captures; content-addressed media) | — |
@@ -19,8 +19,8 @@ evidence are the source of truth; nothing here comes only from chat memory.
 
 | Worker | Live version | Rollback |
 |---|---|---|
-| soccer-api | `b7c7fdcb` | `b22668d3` |
-| soccer-ingest | `96fd029a` | `e15074df` |
+| soccer-api | `a6f3631b` | `b7c7fdcb` |
+| soccer-ingest | `dd868f6f` (1.2.0, per-minute live lane) | `96fd029a` (its cron was `*/5`: after a rollback run `npx wrangler triggers deploy` from 1a5c8d4) |
 | soccer-news | `a04b2183` | `5c03ee80` |
 
 Rollback: `cd workers/<worker> && npx wrangler versions deploy <rollback>@100% --yes`. Web rollback: Vercel instant rollback to the previous production deployment.

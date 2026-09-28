@@ -6,10 +6,11 @@
 // 3. records the CURRENT production version (the rollback target)
 // 4. uploads a version, canaries its preview URL (/health or --canary path must be 2xx)
 // 5. promotes EXACTLY that version to 100%
-// 6. verifies the live deployment is that version (never "deployed" because upload worked)
+// 6. verifies the live deployment is that version (never "deployed" because upload worked),
+//    then deploys + verifies cron triggers (not versioned, so `versions deploy` skips them)
 // 7. canaries production, appends the ledger row, and prints the rollback command
 import { execSync, spawnSync } from 'node:child_process';
-import { appendFileSync, mkdirSync, rmSync } from 'node:fs';
+import { appendFileSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 
 const [worker, ...rest] = process.argv.slice(2);
@@ -68,11 +69,23 @@ wr(`versions deploy ${version}@100% --yes --message "soccer ${short}"`);
 const after = liveVersion();
 const live = after.versions.length === 1 && after.versions[0].percentage === 100 ? after.versions[0].version_id : null;
 if (live !== version) throw new Error(`promotion NOT verified: live ${JSON.stringify(after.versions)} expected ${version}`);
+// Cron triggers are NOT part of a Worker version: `versions deploy` leaves the old schedule in
+// place, so a cron change would silently never ship. Deploy them from the same archive and
+// verify wrangler reports exactly the schedules in wrangler.toml.
+const crons = (readFileSync(join(wdir, 'wrangler.toml'), 'utf8').match(/^crons\s*=\s*\[([^\]]*)\]/m)?.[1] || '').match(/"[^"]+"/g)?.map(s => s.slice(1, -1)) || [];
+let triggers = null;
+if (crons.length) {
+  const reported = [...wr('triggers deploy').matchAll(/schedule: (.+)/g)].map(x => x[1].trim());
+  triggers = { expected: crons, reported, ok: reported.length === crons.length && crons.every(c => reported.includes(c)) };
+  if (!triggers.ok) throw new Error(`triggers NOT verified: ${JSON.stringify(triggers)} (version ${version} is live; schedules may be stale)`);
+  log('triggers', reported.join(', '));
+}
 const host = { 'soccer-api': 'https://soccer-api.sales-fd3.workers.dev', 'soccer-ingest': 'https://soccer-ingest.sales-fd3.workers.dev', 'soccer-news': 'https://soccer-news.sales-fd3.workers.dev' }[worker];
 const prod = await canary(host);
-const row = { at: new Date().toISOString(), worker, commit: head, uploaded_version: version, promoted_version: live, previous_version: previous, rollback_version: previous, deployment_id: after.deployment, preview_canary: pre, production_canary: { path: canaryPath, ...prod } };
+const row = { at: new Date().toISOString(), worker, commit: head, uploaded_version: version, promoted_version: live, previous_version: previous, rollback_version: previous, deployment_id: after.deployment, preview_canary: pre, production_canary: { path: canaryPath, ...prod }, ...(triggers ? { triggers } : {}) };
 mkdirSync(join(ROOT, 'docs'), { recursive: true });
 appendFileSync(join(ROOT, 'docs', 'deployments.jsonl'), JSON.stringify(row) + '\n');
 log('LIVE', worker, live, 'production canary', JSON.stringify(prod));
 log(`rollback: cd workers/${worker} && npx wrangler versions deploy ${previous}@100% --yes`);
+if (triggers) log('rollback note: schedules are not versioned; if the previous commit had different crons, run `npx wrangler triggers deploy` from that commit');
 if (!prod.ok) { console.error('[release] PRODUCTION CANARY FAILED — roll back with the command above'); process.exit(2); }
