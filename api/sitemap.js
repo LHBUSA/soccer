@@ -6,7 +6,7 @@ import { SITE, upstreamJson } from '../server/upstream.js';
 
 export const config = { runtime: 'edge' };
 export const KINDS = ['static', 'competitions', 'matches', 'teams', 'players', 'news'];
-export const STATIC_PATHS = ['/', '/competitions', '/matches', '/tables', '/players', '/sources'];
+export const STATIC_PATHS = ['/', '/competitions', '/matches', '/tables', '/pbecast', '/players', '/sources'];
 const PREFIX = { competitions: '/competitions/', matches: '/matches/', teams: '/teams/', players: '/players/' };
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' }[c]));

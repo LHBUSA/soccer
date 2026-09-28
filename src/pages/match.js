@@ -158,6 +158,7 @@ export function render(d) {
     </div>
     <p class="mh-sub">${statusPill(m.status)} <span>${esc(dateTime(m.kickoff_at))}</span>${m.venue ? ` <span>· ${esc(m.venue.name)}${m.venue.city ? `, ${esc(m.venue.city)}` : ''}</span>` : ''}</p>
     <p class="kicker gold center">MATCH INTELLIGENCE</p>
+    ${when(m.status === 'live' || (m.timeline || []).length || (m.shots || []).length, () => `<p class="center mh-cast">${link(`/pbecast/${m.id}`, m.status === 'live' ? '<i class="livedot" aria-hidden="true"></i> WATCH THE LIVE PBECAST' : '▶ REPLAY ON PBECAST', 'btn gold')}</p>`)}
     ${freshness(m, meta)}
   </div></section>
   <section class="canvas"><div class="wrap mgrid2">

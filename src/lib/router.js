@@ -5,6 +5,8 @@ export const ROUTES = [
   [/^\/competitions\/([a-z0-9-]+)\/?$/, 'competition'],
   [/^\/matches\/?$/, 'matches'],
   [/^\/matches\/([0-9a-f-]{36})\/?$/, 'match'],
+  [/^\/pbecast\/?$/, 'pbecastHub'],
+  [/^\/pbecast\/([0-9a-f-]{36})\/?$/, 'pbecast'],
   [/^\/teams\/([a-z0-9-]+)\/?$/, 'team'],
   [/^\/players\/?$/, 'players'],
   [/^\/players\/([a-z0-9-]+)\/?$/, 'player'],

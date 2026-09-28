@@ -21,7 +21,8 @@ export function initials(name) {
   return use.slice(0, 3).map(w => w[0]).join('').toUpperCase();
 }
 
-// Club crest (approved, roster-proven) or the typographic initials mark. size: '' | xs | lg | xl.
+// Club crest (approved, roster-proven) or the typographic initials mark. size: '' | xs | md | xl
+// ('lg' is taken by the legend dot class).
 export function crest(t, size = '') {
   const cls = `tmark${size ? ` ${size}` : ''}`;
   const mark = initials(t?.short_name || t?.name);

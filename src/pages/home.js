@@ -61,7 +61,7 @@ export function dataDepth(covEnv) {
 export function newsCard(a) {
   const f = FEATURED_COMPS.find(c => c.desk === a.desk);
   // Card image: the approved portrait / crest the API picked for the story, else no image.
-  const img = a.image?.url ? (a.image.kind === 'portrait' ? portrait({ portrait: a.image }, 'lg') : teamMark({ name: a.image.alt, crest: a.image }, 'lg')) : '';
+  const img = a.image?.url ? (a.image.kind === 'portrait' ? portrait({ portrait: a.image }, 'lg') : teamMark({ name: a.image.alt, crest: a.image }, 'md')) : '';
   return `<a class="ncard${img ? ' has-img' : ''}" href="/news/${esc(a.desk)}/${esc(a.slug)}" data-link>
     ${img ? `<span class="nc-img">${img}</span>` : ''}
     <span class="nc-top">${f ? compMono(f.slug, 'xs') : ''}<span>${esc(f?.name || a.desk)}</span><span class="nc-kind">${esc(String(a.story_class || '').replace(/_/g, ' ').toUpperCase())}</span></span>

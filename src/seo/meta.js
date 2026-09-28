@@ -25,6 +25,7 @@ const STATIC = {
   competitions: { title: 'Competitions — Soccer Intelligence | PropBetEdge Soccer', description: 'MLS, Premier League, UEFA Champions League and Bundesliga on the PropBetEdge canonical soccer graph: seasons, results, fixtures and coverage.', h1: 'Competitions' },
   matches: { title: 'Matches — Results, Fixtures & Match Intelligence | PropBetEdge Soccer', description: 'Recent results, today’s matches and upcoming fixtures, each with PropBetEdge Match Intelligence: timelines, event maps, statistics and lineups where sourced.', h1: 'Matches' },
   tables: { title: 'Tables — League Standings | PropBetEdge Soccer', description: 'League tables computed by PropBetEdge from canonical finished league-stage results, with the method shown alongside every table.', h1: 'Tables' },
+  pbecastHub: { title: 'PBEcast — Live Soccer Match Tracker & Replays | PropBetEdge Soccer', description: 'Live soccer scores with the provider clock, then replays of every sourced shot, goal, card and substitution on the canonical pitch, across MLS, Premier League, Champions League and Bundesliga.', h1: 'PBEcast' },
   players: { title: 'Player DNA Directory — Soccer Player Stats & Profiles | PropBetEdge Soccer', description: 'Every player named in sourced lineups this season across MLS, Premier League, Champions League and Bundesliga: appearances, minutes, goals, assists and per-competition rate leaders, with Player DNA for each.', h1: 'Player DNA directory' },
   sources: { title: 'Sources & Method — PropBetEdge Soccer Intelligence', description: 'Where every PropBetEdge Soccer fact comes from: sources, attribution, identity rules, event-map semantics and how missing data is shown.', h1: 'Sources' },
 };
@@ -144,6 +145,14 @@ export function matchMeta(pathname, env) {
   });
 }
 
+// A PBEcast page shows the same match as its Match Intelligence page: same facts, canonical
+// to the match page, its own title.
+export function castMeta(pathname, env) {
+  const m = env.data;
+  const meta = matchMeta(`/matches/${m.id}`, env);
+  return { ...meta, title: `${m.home?.name} vs ${m.away?.name} ${m.status === 'live' ? 'Live ' : ''}PBEcast | PropBetEdge`, ssr: { ...meta.ssr, links: [[`/matches/${m.id}`, 'Match Intelligence'], ...meta.ssr.links] } };
+}
+
 export function teamMeta(pathname, env) {
   const t = env.data;
   const comps = [...new Set([...(t.recent || []), ...(t.upcoming || [])].map(x => x.competition?.name).filter(Boolean))];
@@ -185,7 +194,7 @@ export function metaPlan(pathname) {
   if (page === 'notfound') return { page };
   if (STATIC[page]) return { page };
   if (page === 'competition') return { page, calls: [`competitions/${params[0]}`, `table?competition=${encodeURIComponent(params[0])}`] };
-  if (page === 'match') return { page, calls: [`matches/${params[0]}`] };
+  if (page === 'match' || page === 'pbecast') return { page, calls: [`matches/${params[0]}`] };
   if (page === 'team') return { page, calls: [`teams/${params[0]}`] };
   if (page === 'player') return { page, calls: [`players/${params[0]}`] };
   if (page === 'news') return { page, calls: ['news?limit=10'] };
@@ -201,6 +210,7 @@ export function buildMeta(pathname, page, results = []) {
   if (!first || first.notFound) return notFoundMeta(pathname, page);
   if (page === 'competition') return competitionMeta(pathname, first, second && !second.notFound ? second : null);
   if (page === 'match') return matchMeta(pathname, first);
+  if (page === 'pbecast') return castMeta(pathname, first);
   if (page === 'team') return teamMeta(pathname, first);
   if (page === 'player') return playerMeta(pathname, first);
   if (page === 'news') return newsMeta(pathname, first);
