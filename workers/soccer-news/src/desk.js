@@ -61,6 +61,15 @@ lead into a rout, while a 23-3 edge in shots showed how little room Union had to
 - Summarise recent form as a pattern ("unbeaten in their opening four", "a draw and two defeats before this trip")
   instead of listing every previous score; name one earlier result only when it adds something.
 - Do not stack statistics: no more than two numbers-heavy paragraphs in a row. Interpret, then move on.
+- Never speculate about what was or was not possible, likely or decisive in a counterfactual sense ("removed any
+  possibility", "could have", "would have"); state the concrete sourced consequence instead (the lead it created,
+  the shots or goals that followed).
+- Write league records in plain newsroom English from the packet: "three wins and a draw from four league matches",
+  "unbeaten through four", never "third win in four unbeaten matches".
+- For a rich match report with table context, give the competitive consequence (table movement and recent form) its
+  own final section; do not fold it into a statistics section. Five sections usually suit a rich recap: how the first
+  half developed, the second-half sequence and substitutions, the decisive players, the statistical contrast, and the
+  consequence. Headings stay specific to the story, never those labels.
 - Prefer a concrete sourced consequence over an interpretive summary: "their goal difference fell from minus six to
   minus 13", not "the defensive cost grew sharply". A time relationship ("shortly after", "within minutes") must be
   true of the minutes and phases in the packet.
