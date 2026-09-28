@@ -1,0 +1,876 @@
+{
+  "event": {
+    "key": "match_recap:c1ae9955-8b7d-5c35-b451-7b3cff1cb891",
+    "kind": "match_recap",
+    "as_of": "2026-09-18T18:30:00.000Z",
+    "profile": "domestic_european_league",
+    "event_id": "9fb8c496-339a-5918-91c1-8fc0bd31f037"
+  },
+  "goals": [
+    {
+      "team": "home",
+      "minute": 18,
+      "scorer": {
+        "id": "bbf566f8-29c6-5368-9bb7-95a889fe7d81",
+        "name": "Jamal Musiala",
+        "slug": "jamal-musiala"
+      },
+      "penalty": false,
+      "own_goal": false,
+      "running_score": "1-0",
+      "display_minute": "18'"
+    },
+    {
+      "team": "home",
+      "minute": 39,
+      "scorer": {
+        "id": "b610f5cd-cb1a-5452-9a5c-9be80fab4e7a",
+        "name": "Harry Kane",
+        "slug": "harry-kane"
+      },
+      "penalty": true,
+      "own_goal": false,
+      "running_score": "2-0",
+      "display_minute": "39'"
+    },
+    {
+      "team": "home",
+      "minute": 43,
+      "scorer": {
+        "id": "4bafff58-73ee-52e1-971b-4159dfdd4d52",
+        "name": "Michael Olise",
+        "slug": "michael-olise"
+      },
+      "penalty": false,
+      "own_goal": false,
+      "running_score": "3-0",
+      "display_minute": "43'"
+    },
+    {
+      "team": "home",
+      "minute": 54,
+      "scorer": {
+        "id": "b610f5cd-cb1a-5452-9a5c-9be80fab4e7a",
+        "name": "Harry Kane",
+        "slug": "harry-kane"
+      },
+      "penalty": false,
+      "own_goal": false,
+      "running_score": "4-0",
+      "display_minute": "54'"
+    },
+    {
+      "team": "home",
+      "minute": 70,
+      "scorer": {
+        "id": "7572a107-fffc-565a-b55b-726edec6f615",
+        "name": "Ismael Saibari",
+        "slug": "ismael-saibari"
+      },
+      "penalty": false,
+      "own_goal": false,
+      "running_score": "5-0",
+      "display_minute": "70'"
+    },
+    {
+      "team": "home",
+      "minute": 73,
+      "scorer": {
+        "id": "4bafff58-73ee-52e1-971b-4159dfdd4d52",
+        "name": "Michael Olise",
+        "slug": "michael-olise"
+      },
+      "penalty": false,
+      "own_goal": false,
+      "running_score": "6-0",
+      "display_minute": "73'"
+    },
+    {
+      "team": "home",
+      "minute": 76,
+      "scorer": {
+        "id": "4bafff58-73ee-52e1-971b-4159dfdd4d52",
+        "name": "Michael Olise",
+        "slug": "michael-olise"
+      },
+      "penalty": false,
+      "own_goal": false,
+      "running_score": "7-0",
+      "display_minute": "76'"
+    }
+  ],
+  "match": {
+    "id": "c1ae9955-8b7d-5c35-b451-7b3cff1cb891",
+    "score": {
+      "away": 0,
+      "home": 7,
+      "final": "7-0",
+      "away_ht": 0,
+      "home_ht": 3
+    },
+    "venue": null,
+    "margin": 7,
+    "status": "finished",
+    "winner": "home",
+    "kickoff_utc": "2026-09-18T18:30:00.000Z",
+    "league_stage": true
+  },
+  "stats": {
+    "away": {
+      "saves": 6,
+      "shots": 3,
+      "corners": 2,
+      "fouls_committed": 9,
+      "shots_on_target": 2
+    },
+    "home": {
+      "saves": 2,
+      "shots": 23,
+      "corners": 9,
+      "fouls_committed": 12,
+      "shots_on_target": 15
+    },
+    "basis": "source",
+    "provider": "espn"
+  },
+  "teams": {
+    "away": {
+      "id": "6cc66022-daed-5556-84ac-f3c81cb0a736",
+      "name": "1. FC Union Berlin",
+      "slug": "1-fc-union-berlin",
+      "form_before": [
+        "L",
+        "L",
+        "D"
+      ],
+      "table_after": {
+        "won": 0,
+        "lost": 3,
+        "drawn": 1,
+        "played": 4,
+        "points": 1,
+        "position": 16,
+        "goals_for": 4,
+        "goal_difference": -13
+      },
+      "table_before": {
+        "won": 0,
+        "lost": 2,
+        "drawn": 1,
+        "played": 3,
+        "points": 1,
+        "position": 16,
+        "goals_for": 4,
+        "goal_difference": -6
+      }
+    },
+    "home": {
+      "id": "9c2ce181-7bf4-55cf-b770-949389bb8797",
+      "name": "Bayern München",
+      "slug": "bayern-munchen",
+      "form_before": [
+        "W",
+        "D",
+        "W"
+      ],
+      "table_after": {
+        "won": 3,
+        "lost": 0,
+        "drawn": 1,
+        "played": 4,
+        "points": 10,
+        "position": 1,
+        "goals_for": 14,
+        "goal_difference": 12
+      },
+      "table_before": {
+        "won": 2,
+        "lost": 0,
+        "drawn": 1,
+        "played": 3,
+        "points": 7,
+        "position": 4,
+        "goals_for": 7,
+        "goal_difference": 5
+      }
+    }
+  },
+  "angles": [
+    {
+      "key": "multi_goal_scorer",
+      "detail": {
+        "goals": 2,
+        "player": {
+          "id": "b610f5cd-cb1a-5452-9a5c-9be80fab4e7a",
+          "name": "Harry Kane",
+          "slug": "harry-kane"
+        },
+        "player_id": "b610f5cd-cb1a-5452-9a5c-9be80fab4e7a"
+      },
+      "weight": 0.6
+    },
+    {
+      "key": "multi_goal_scorer",
+      "detail": {
+        "goals": 3,
+        "player": {
+          "id": "4bafff58-73ee-52e1-971b-4159dfdd4d52",
+          "name": "Michael Olise",
+          "slug": "michael-olise"
+        },
+        "player_id": "4bafff58-73ee-52e1-971b-4159dfdd4d52"
+      },
+      "weight": 1.2
+    },
+    {
+      "key": "high_scoring",
+      "detail": {
+        "goals": 7
+      },
+      "weight": 0.6
+    },
+    {
+      "key": "heavy_margin",
+      "detail": {
+        "margin": 7
+      },
+      "weight": 0.6
+    }
+  ],
+  "engine": "soccer-news-engine/2.0.0",
+  "version": "soccer-packet/3.0.0",
+  "provenance": {
+    "attributions": [
+      "Fixtures and results: OpenLigaDB (Open Database License).",
+      "Structured facts: ESPN (secondary source)."
+    ]
+  },
+  "competition": {
+    "id": "b66f80c5-850a-5288-aa54-b63df47d131b",
+    "name": "Bundesliga",
+    "slug": "bundesliga",
+    "season": "2026/27"
+  },
+  "materiality": {
+    "score": 3,
+    "angles": [
+      {
+        "key": "multi_goal_scorer",
+        "detail": {
+          "goals": 2,
+          "player_id": "b610f5cd-cb1a-5452-9a5c-9be80fab4e7a"
+        },
+        "weight": 0.6
+      },
+      {
+        "key": "multi_goal_scorer",
+        "detail": {
+          "goals": 3,
+          "player_id": "4bafff58-73ee-52e1-971b-4159dfdd4d52"
+        },
+        "weight": 1.2
+      },
+      {
+        "key": "high_scoring",
+        "detail": {
+          "goals": 7
+        },
+        "weight": 0.6
+      },
+      {
+        "key": "heavy_margin",
+        "detail": {
+          "margin": 7
+        },
+        "weight": 0.6
+      }
+    ],
+    "profile": "domestic_european_league",
+    "material": true,
+    "profiles_version": "soccer-news-profiles/1.0.0"
+  },
+  "unavailable": [
+    "quotes (none sourced)",
+    "injuries (no legitimate source ingested)",
+    "odds (not part of this product)",
+    "xG (PBE xG not validated)"
+  ],
+  "shots_located": {
+    "away": 3,
+    "home": 23,
+    "source": "espn",
+    "avg_distance_m": {
+      "away": 17.6,
+      "home": 17.9
+    }
+  },
+  "teams_in_table": 18,
+  "depth": {
+    "version": "soccer-depth/1.0.0",
+    "phases": {
+      "first_half": {
+        "home": {
+          "shots": 10,
+          "shots_on_target": 7,
+          "goals": 3
+        },
+        "away": {
+          "shots": 0,
+          "shots_on_target": 0,
+          "goals": 0
+        }
+      },
+      "second_half": {
+        "home": {
+          "shots": 13,
+          "shots_on_target": 6,
+          "goals": 4
+        },
+        "away": {
+          "shots": 3,
+          "shots_on_target": 2,
+          "goals": 0
+        }
+      },
+      "buckets": {
+        "0-15": {
+          "home": {
+            "shots": 1,
+            "shots_on_target": 1,
+            "goals": 0
+          },
+          "away": {
+            "shots": 0,
+            "shots_on_target": 0,
+            "goals": 0
+          }
+        },
+        "16-30": {
+          "home": {
+            "shots": 6,
+            "shots_on_target": 4,
+            "goals": 1
+          },
+          "away": {
+            "shots": 0,
+            "shots_on_target": 0,
+            "goals": 0
+          }
+        },
+        "31-45+": {
+          "home": {
+            "shots": 3,
+            "shots_on_target": 2,
+            "goals": 2
+          },
+          "away": {
+            "shots": 0,
+            "shots_on_target": 0,
+            "goals": 0
+          }
+        },
+        "46-60": {
+          "home": {
+            "shots": 3,
+            "shots_on_target": 2,
+            "goals": 1
+          },
+          "away": {
+            "shots": 2,
+            "shots_on_target": 2,
+            "goals": 0
+          }
+        },
+        "61-75": {
+          "home": {
+            "shots": 6,
+            "shots_on_target": 3,
+            "goals": 2
+          },
+          "away": {
+            "shots": 0,
+            "shots_on_target": 0,
+            "goals": 0
+          }
+        },
+        "76-90+": {
+          "home": {
+            "shots": 4,
+            "shots_on_target": 1,
+            "goals": 1
+          },
+          "away": {
+            "shots": 1,
+            "shots_on_target": 0,
+            "goals": 0
+          }
+        }
+      },
+      "shot_events_source": "espn"
+    },
+    "goal_sequence": {
+      "goals_total": 7,
+      "opening_goal": {
+        "minute": "18'",
+        "team": "home",
+        "scorer": "Jamal Musiala"
+      },
+      "halftime_score": "3-0",
+      "first_second_half_goal": {
+        "minute": "54'",
+        "team": "home",
+        "scorer": "Harry Kane"
+      },
+      "goal_intervals_minutes": [
+        21,
+        4,
+        11,
+        16,
+        3,
+        3
+      ],
+      "goals_after_60": {
+        "home": 3,
+        "away": 0
+      },
+      "goals_after_70": {
+        "home": 2,
+        "away": 0
+      },
+      "second_half_goals": {
+        "home": 4,
+        "away": 0
+      }
+    },
+    "player_lines": [
+      {
+        "player": {
+          "id": "4bafff58-73ee-52e1-971b-4159dfdd4d52",
+          "name": "Michael Olise",
+          "slug": "michael-olise"
+        },
+        "team": "home",
+        "goals": 3,
+        "assists": 0,
+        "shots": 6,
+        "shots_on_target": 5,
+        "shots_inside_box": 2
+      },
+      {
+        "player": {
+          "id": "b610f5cd-cb1a-5452-9a5c-9be80fab4e7a",
+          "name": "Harry Kane",
+          "slug": "harry-kane"
+        },
+        "team": "home",
+        "goals": 2,
+        "assists": 0,
+        "shots": 5,
+        "shots_on_target": 2,
+        "shots_inside_box": 4
+      },
+      {
+        "player": {
+          "id": "7572a107-fffc-565a-b55b-726edec6f615",
+          "name": "Ismael Saibari",
+          "slug": "ismael-saibari"
+        },
+        "team": "home",
+        "goals": 1,
+        "assists": 0,
+        "shots": 4,
+        "shots_on_target": 2,
+        "shots_inside_box": 4
+      },
+      {
+        "player": {
+          "id": "bbf566f8-29c6-5368-9bb7-95a889fe7d81",
+          "name": "Jamal Musiala",
+          "slug": "jamal-musiala"
+        },
+        "team": "home",
+        "goals": 1,
+        "assists": 0,
+        "shots": 2,
+        "shots_on_target": 1,
+        "shots_inside_box": 0
+      },
+      {
+        "player": {
+          "id": "b623e2ed-6924-53e8-863b-92f4eb03ccd7",
+          "name": "Luis Díaz",
+          "slug": "luis-diaz"
+        },
+        "team": "home",
+        "goals": 0,
+        "assists": 0,
+        "shots": 2,
+        "shots_on_target": 1,
+        "shots_inside_box": 1
+      },
+      {
+        "player": {
+          "id": "a6008906-92e7-5f6d-8a84-605acc21e46c",
+          "name": "Janik Haberer",
+          "slug": "janik-haberer"
+        },
+        "team": "away",
+        "goals": 0,
+        "assists": 0,
+        "shots": 1,
+        "shots_on_target": 1,
+        "shots_inside_box": 1
+      },
+      {
+        "player": {
+          "id": "229463b4-2bf6-5189-bca8-8363af39055a",
+          "name": "Josip Stanisic",
+          "slug": "josip-stanisic"
+        },
+        "team": "home",
+        "goals": 0,
+        "assists": 0,
+        "shots": 1,
+        "shots_on_target": 1,
+        "shots_inside_box": 1
+      },
+      {
+        "player": {
+          "id": "8f4cc805-1b0d-5a1e-9fcb-ea86d6a9dffd",
+          "name": "Tom Rothe",
+          "slug": "tom-rothe"
+        },
+        "team": "away",
+        "goals": 0,
+        "assists": 0,
+        "shots": 1,
+        "shots_on_target": 1,
+        "shots_inside_box": 1
+      },
+      {
+        "player": {
+          "id": "d6646c70-7cd1-5bf2-a381-765f07dda61d",
+          "name": "Derrick Köhn",
+          "slug": "derrick-kohn"
+        },
+        "team": "away",
+        "goals": 0,
+        "assists": 0,
+        "shots": 1,
+        "shots_on_target": 0,
+        "shots_inside_box": 0
+      },
+      {
+        "player": {
+          "id": "7db444d3-4b70-5e29-9b02-2c899eb4ef5e",
+          "name": "Tom Bischof",
+          "slug": "tom-bischof"
+        },
+        "team": "home",
+        "goals": 0,
+        "assists": 0,
+        "shots": 1,
+        "shots_on_target": 0,
+        "shots_inside_box": 0
+      }
+    ],
+    "shot_profile": {
+      "basis": "source",
+      "total_shots": 26,
+      "located_total": 26,
+      "home": {
+        "shots": 23,
+        "shots_on_target": 15,
+        "on_target_pct": 65,
+        "share_of_total_shots_pct": 88,
+        "goals": 7,
+        "goals_per_shot": 0.3,
+        "goals_per_shot_on_target": 0.47,
+        "located_shots": 23,
+        "located_inside_box": 14,
+        "located_outside_box": 9,
+        "avg_located_distance_m": 17.9,
+        "first_half_shot_events": 10,
+        "second_half_shot_events": 13
+      },
+      "away": {
+        "shots": 3,
+        "shots_on_target": 2,
+        "on_target_pct": 67,
+        "share_of_total_shots_pct": 12,
+        "goals": 0,
+        "goals_per_shot": 0,
+        "goals_per_shot_on_target": 0,
+        "located_shots": 3,
+        "located_inside_box": 2,
+        "located_outside_box": 1,
+        "avg_located_distance_m": 17.6,
+        "first_half_shot_events": 0,
+        "second_half_shot_events": 3
+      },
+      "box_rule": "penalty area from event coordinates (x >= 88.5 m, |y - 34| <= 20.16 m)"
+    },
+    "table_move": {
+      "teams_in_table": 18,
+      "home": {
+        "position_before": 4,
+        "position_after": 1,
+        "position_change": 3,
+        "points_after": 10,
+        "played_after": 4,
+        "goal_difference_after": 12
+      },
+      "away": {
+        "position_before": 16,
+        "position_after": 16,
+        "position_change": 0,
+        "points_after": 1,
+        "played_after": 4,
+        "goal_difference_after": -13
+      }
+    },
+    "recent_league_results": {
+      "home": [
+        {
+          "date": "2026-09-13",
+          "opponent": {
+            "name": "SV 07 Elversberg",
+            "slug": "sv-07-elversberg"
+          },
+          "venue": "away",
+          "score": "2-1",
+          "result": "W"
+        },
+        {
+          "date": "2026-09-05",
+          "opponent": {
+            "name": "Schalke 04",
+            "slug": "schalke-04"
+          },
+          "venue": "away",
+          "score": "0-0",
+          "result": "D"
+        },
+        {
+          "date": "2026-08-28",
+          "opponent": {
+            "name": "Stuttgart",
+            "slug": "stuttgart"
+          },
+          "venue": "home",
+          "score": "5-1",
+          "result": "W"
+        }
+      ],
+      "away": [
+        {
+          "date": "2026-09-11",
+          "opponent": {
+            "name": "Schalke 04",
+            "slug": "schalke-04"
+          },
+          "venue": "home",
+          "score": "1-3",
+          "result": "L"
+        },
+        {
+          "date": "2026-09-05",
+          "opponent": {
+            "name": "Bayer Leverkusen",
+            "slug": "bayer-leverkusen"
+          },
+          "venue": "away",
+          "score": "0-4",
+          "result": "L"
+        },
+        {
+          "date": "2026-08-29",
+          "opponent": {
+            "name": "Eintracht Frankfurt",
+            "slug": "eintracht-frankfurt"
+          },
+          "venue": "home",
+          "score": "3-3",
+          "result": "D"
+        }
+      ]
+    },
+    "discipline": [
+      {
+        "minute": 38,
+        "team": "away",
+        "player": {
+          "id": "d4fc7226-dbf9-5a1c-b628-2f2c751821f6",
+          "name": "Felix Uduokhai",
+          "slug": "felix-uduokhai"
+        },
+        "card": "yellow"
+      },
+      {
+        "minute": 42,
+        "team": "away",
+        "player": {
+          "id": "7fde0769-f744-5289-9afa-01c054425ee9",
+          "name": "Rani Khedira",
+          "slug": "rani-khedira"
+        },
+        "card": "yellow"
+      },
+      {
+        "minute": 46,
+        "team": "home",
+        "player": {
+          "id": "c6488465-24d9-5449-8ee2-1d7ab8ca1be5",
+          "name": "Dayot Upamecano",
+          "slug": "dayot-upamecano"
+        },
+        "card": "yellow"
+      },
+      {
+        "minute": 78,
+        "team": "away",
+        "player": {
+          "id": "ec77705a-bf69-5ffa-aad7-2319c962b954",
+          "name": "Livan Burcu",
+          "slug": "livan-burcu"
+        },
+        "card": "yellow"
+      }
+    ],
+    "substitutions": [
+      {
+        "minute": 46,
+        "team": "away",
+        "player_in": {
+          "id": "39fb45ba-612c-5082-a75f-7544c5f5d5a3",
+          "name": "Tim Skarke",
+          "slug": "tim-skarke"
+        },
+        "player_out": {
+          "id": "262891c5-f600-5bc7-a45b-836efd296dca",
+          "name": "Emmanuel Latte Lath",
+          "slug": "emmanuel-latte-lath"
+        }
+      },
+      {
+        "minute": 46,
+        "team": "home",
+        "player_in": {
+          "id": "b5621c3c-fe8d-5cbf-a060-ed2729cc42fb",
+          "name": "Kim Min-Jae",
+          "slug": "kim-min-jae"
+        },
+        "player_out": {
+          "id": "c6488465-24d9-5449-8ee2-1d7ab8ca1be5",
+          "name": "Dayot Upamecano",
+          "slug": "dayot-upamecano"
+        }
+      },
+      {
+        "minute": 60,
+        "team": "away",
+        "player_in": {
+          "id": "e87aa04b-695a-5373-83fe-293b43ee218b",
+          "name": "Aljoscha Kemlein",
+          "slug": "aljoscha-kemlein"
+        },
+        "player_out": {
+          "id": "a6008906-92e7-5f6d-8a84-605acc21e46c",
+          "name": "Janik Haberer",
+          "slug": "janik-haberer"
+        }
+      },
+      {
+        "minute": 60,
+        "team": "away",
+        "player_in": {
+          "id": "ec77705a-bf69-5ffa-aad7-2319c962b954",
+          "name": "Livan Burcu",
+          "slug": "livan-burcu"
+        },
+        "player_out": {
+          "id": "7d4c5cc3-e776-5cb8-b4f6-304ed68069ad",
+          "name": "Jeong Woo-Yeong",
+          "slug": "jeong-woo-yeong"
+        }
+      },
+      {
+        "minute": 63,
+        "team": "home",
+        "player_in": {
+          "id": "7572a107-fffc-565a-b55b-726edec6f615",
+          "name": "Ismael Saibari",
+          "slug": "ismael-saibari"
+        },
+        "player_out": {
+          "id": "b623e2ed-6924-53e8-863b-92f4eb03ccd7",
+          "name": "Luis Díaz",
+          "slug": "luis-diaz"
+        }
+      },
+      {
+        "minute": 63,
+        "team": "home",
+        "player_in": {
+          "id": "7db444d3-4b70-5e29-9b02-2c899eb4ef5e",
+          "name": "Tom Bischof",
+          "slug": "tom-bischof"
+        },
+        "player_out": {
+          "id": "29f64067-1298-5bdf-b0c1-fc9b7c4c16b9",
+          "name": "Aleksandar Pavlovic",
+          "slug": "aleksandar-pavlovic"
+        }
+      },
+      {
+        "minute": 71,
+        "team": "away",
+        "player_in": {
+          "id": "97e11af0-9b80-5aed-95e9-23bd874fd547",
+          "name": "Zeno Van Den Bosch",
+          "slug": "zeno-van-den-bosch"
+        },
+        "player_out": {
+          "id": "728ad0fe-7c5a-54f2-8b71-1e2b75794c49",
+          "name": "Christopher Trimmel",
+          "slug": "christopher-trimmel"
+        }
+      },
+      {
+        "minute": 82,
+        "team": "away",
+        "player_in": {
+          "id": "d6646c70-7cd1-5bf2-a381-765f07dda61d",
+          "name": "Derrick Köhn",
+          "slug": "derrick-kohn"
+        },
+        "player_out": {
+          "id": "063dd114-eabd-5305-ba45-839b62a11390",
+          "name": "András Schäfer",
+          "slug": "andras-schafer"
+        }
+      },
+      {
+        "minute": 83,
+        "team": "home",
+        "player_in": {
+          "id": "3f0b0fac-318e-594f-a88c-2e1bbb3ab3a5",
+          "name": "Nathaniel Brown",
+          "slug": "nathaniel-brown"
+        },
+        "player_out": {
+          "id": "b89ab651-4469-5751-9f2a-7e2c6b21f828",
+          "name": "Alphonso Davies",
+          "slug": "alphonso-davies"
+        }
+      }
+    ]
+  },
+  "derived_from": {
+    "packet_hash": "3ce080b7ececc67e44363b79e41f6ec2e17a4b4f35c74aa818031f4b3767a787",
+    "version": "soccer-packet/2.0.0",
+    "rebuilt_at": "2026-09-28T22:00:00.000Z",
+    "method": "as-of-safe rebuild: original packet + depth from the match's own events and results before kickoff"
+  },
+  "hash": "39c1a99872f2312c7998bcca543f20f1d2f7d68c13df14a223f7b206b05531e8"
+}

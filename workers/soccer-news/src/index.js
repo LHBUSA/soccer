@@ -34,7 +34,7 @@ export default {
     if (url.pathname === '/health') {
       const last = env.SOCCER_STATE ? await env.SOCCER_STATE.get('news:last_run', 'json') : null;
       const fresh = last && Date.now() - Date.parse(last.at) < 2 * 3600e3;
-      return json({ ok: !!fresh, version: 'soccer-news/1.2.0', desk: { version: DESK_VERSION, required: deskRequired(env), available: deskAvailable(env) }, last_run: last }, fresh ? 200 : 503);
+      return json({ ok: !!fresh, version: 'soccer-news/1.3.0', desk: { version: DESK_VERSION, required: deskRequired(env), available: deskAvailable(env) }, last_run: last }, fresh ? 200 : 503);
     }
     if (url.pathname === '/v1/run' && req.method === 'POST') {
       if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);

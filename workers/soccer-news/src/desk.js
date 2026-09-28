@@ -9,7 +9,8 @@ import { packetNumbers2 } from './gates2.js';
 import { stripIdentifiers } from './gates.js';
 import { PROFILES } from './profiles.js';
 
-export const DESK_VERSION = 'soccer-desk/1.1.0';
+export const DESK_VERSION = 'soccer-desk/2.0.0'; // 2.0.0: depth contract (packet v3), evidence-family + repetition gates
+export const QUALITY_VERSION = 'soccer-quality/2.0.0';
 export const DESK_MODEL = 'gpt-5.6-sol'; // OpenAI Responses API; override with NEWS_DESK_MODEL
 export const DESK_API = 'https://api.openai.com/v1/responses';
 export const deskRequired = env => env?.NEWS_DESK !== 'off'; // default: required for every new story
@@ -19,12 +20,39 @@ export const SYSTEM = `You are the senior editor of PropBetEdge Soccer, a premiu
 Write like a top-tier sports and data magazine, not a database template.
 
 You receive a FROZEN FACT PACKET (the only source of truth) and a mechanical DRAFT built from it.
-Rewrite the story from scratch for readers who love football:
-- Open with what actually defined the match or the story, in a direct lead sentence.
-- Turn evidence into football meaning: connect the numbers to what happened. Do not recite numbers one after another.
-- Choose your own structure: 3 to 5 sections with specific, story-led headings (never generic labels such as "Result", "Goals", "Why it matters", "Shots", "The numbers", "Table and form", "What happened").
-- Short, varied paragraphs. Natural transitions. A concise sharp story beats padded copy.
-- Match reports with a rich packet (several goals, shots, table movement, form) should run roughly 550-900 words; thin packets can be shorter. Never pad: a clean 500-word report beats filler written to reach a length.
+Rewrite the story from scratch for readers who love football. Synthesise; never recite.
+
+The packet's "depth" block is structured match texture you should use: phases (goals and shot events by half and
+by 15-minute bucket), goal_sequence (opening goal, half-time score, first second-half goal, intervals, goals after
+60 and 70 minutes), player_lines (goals, assists, shots, shots on target, shots inside the box per player),
+shot_profile (totals, on-target %, share of shots, goals per shot, located shots inside/outside the box, average
+located distance), table_move (position before/after, change, points, played), recent_league_results (up to five),
+discipline and substitutions (use only when they matter to the story). These are counts and sequences, not
+judgements: never call them momentum, dominance, pressure, chance quality or xG.
+
+For a rich match report, cover these editorial objectives in whatever order and structure serves the story:
+A. the lead: who won, the main player or match angle, and how the match became that story;
+B. how the match developed, told through the actual event sequence (when the goals came, the half-time position,
+   what changed after the break);
+C. the decisive players, using their sourced contributions (goals, assists, shots, shots on target);
+D. the meaningful statistical contrast (shots, on target, corners, saves, shot locations/distance);
+E. what the result changed: table movement, recent form, and the next fixture when the packet carries one
+   (opponent, competition, date only; no preview analysis).
+Do not use A-E as headings. Write 3 to 5 sections with specific, story-led headings (never generic labels such as
+"Result", "Goals", "Why it matters", "Shots", "The numbers", "Table and form", "What happened"), normally two or more
+paragraphs each. Rich packets usually support 650-950 useful words; write less when the packet is thinner. Never pad.
+
+Synthesis, not recitation. Weak: "Harry Kane scored 2. Michael Olise scored 3. Bayern had 23 shots. Union had 3."
+Better: "Olise supplied three of Bayern's seven goals and Kane added two, their finishing turning a 3-0 half-time
+lead into a rout, while a 23-3 edge in shots showed how little room Union had to change the scoreline."
+- State the final score in the headline or dek and at most once more in the body. Do not restate each player's goal
+  total in several sections. Never write "The match produced X goals" or "The winning margin was X goals".
+- Lead: not "Team A beat Team B X-Y on DATE." Name the winner, the main angle and why the match became the story.
+  The date belongs in metadata unless it matters editorially.
+- Dek: add information beyond the headline (player angle, how the match developed, table consequence) in one sentence.
+- Headline: the material angle when one exists ("Olise hat-trick powers Bayern past Union Berlin in 7-0 rout"),
+  not the bare "Team A beat Team B 7-0".
+- Short, varied paragraphs. Natural transitions.
 - Write natural newsroom prose with complete noun phrases: "Bayern's goalkeeper made two saves", never "with Bayern goalkeeper required to make 2 saves". Spell out numbers one to nine in running prose, as a newspaper would ("two goals", "fourth to first"); keep digits for scores, minutes and larger figures.
 - No empty verdicts ("clearest statement yet", "sent a message", "a night to remember"); let specific match evidence carry the point.
 
@@ -96,7 +124,9 @@ export function deskArticle(edited, draft) {
 
 // ---------------------------------------------------------------- grounded validation
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-const ALWAYS_OK = new Set([...MONTHS, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'MLS', 'Premier', 'League', 'Champions', 'Bundesliga', 'UEFA', 'Europe', 'European', 'Eastern', 'Western', 'Conference', 'Cup', 'FC', 'SC', 'CF', 'AFC', 'The', 'A', 'An', 'In', 'On', 'At', 'For', 'With', 'After', 'Before', 'By', 'From', 'Of', 'And', 'But', 'It', 'Its', 'This', 'That', 'Their', 'They', 'He', 'His', 'When', 'Then', 'Yet', 'Still', 'Only', 'No', 'Not', 'All', 'Both', 'Neither', 'Each', 'Every', 'Half', 'Full', 'Round', 'Matchday', 'Week', 'Table', 'Top']);
+const ALWAYS_OK = new Set([...MONTHS, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'MLS', 'Premier', 'League', 'Champions', 'Bundesliga', 'UEFA', 'Europe', 'European', 'Eastern', 'Western', 'Conference', 'Cup', 'FC', 'SC', 'CF', 'AFC', 'The', 'A', 'An', 'In', 'On', 'At', 'For', 'With', 'After', 'Before', 'By', 'From', 'Of', 'And', 'But', 'It', 'Its', 'This', 'That', 'Their', 'They', 'He', 'His', 'When', 'Then', 'Yet', 'Still', 'Only', 'No', 'Not', 'All', 'Both', 'Neither', 'Each', 'Every', 'Half', 'Full', 'Round', 'Matchday', 'Week', 'Table', 'Top',
+  // sentence-initial prepositions / connectives before a name ("Against Bayern, ...") are not names
+  'Against', 'Despite', 'Without', 'Under', 'Between', 'Behind', 'Beyond', 'Unlike', 'Across', 'Through', 'Since', 'Until', 'During', 'Over', 'Into', 'Inside', 'Outside', 'Among', 'Amid', 'Following', 'Like', 'Beside', 'Versus', 'Once', 'While', 'Where', 'Although', 'Though', 'With', 'Nor', 'Both', 'Neither']);
 const WORD_NUM = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20 };
 const BANNED = [
   ['unsupported_quote', /[“”"]|\b(said|says|told reporters|admitted|insisted|according to)\b/i],
@@ -216,6 +246,65 @@ export function packetRichness(p) {
   return goals >= 3 && p.stats && (p.teams?.home?.table_after || p.teams?.home?.group) ? 'rich' : 'standard';
 }
 
+// ---- depth: which EVIDENCE FAMILIES the prose actually uses (text evidence of packet facts, not word count)
+const ORD = ['zeroth', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 'eighteenth', 'nineteenth', 'twentieth'];
+const NUMW = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty'];
+const ordinalRe = n => `(?:${n}(?:st|nd|rd|th)|${ORD[n] || 'x^'})`;
+const numRe = n => `(?:${String(n).replace('.', '\\.')}${NUMW[n] ? `|${NUMW[n]}` : ''})`;
+const esc = s => String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const lastName = n => String(n || '').trim().split(/\s+/).pop();
+
+export function evidenceFamilies(article, packet) {
+  const t = article.sections.flatMap(s => [s.heading, ...s.paragraphs]).join('\n');
+  const lower = t.toLowerCase();
+  const ss = sentences(t);
+  const d = packet.depth || {};
+  const available = new Set(); const used = new Set();
+  const goals = packet.goals || [];
+  // GOAL_SEQUENCE: at least two goal minutes, or the half-time score with a half-time word
+  if (goals.length >= 2 || d.goal_sequence?.halftime_score) available.add('GOAL_SEQUENCE');
+  const mins = new Set(goals.map(g => g.minute));
+  const minHits = [...t.matchAll(/\b(\d{1,3})(?:st|nd|rd|th)?(?:[- ]minute|')/g)].filter(m => mins.has(Number(m[1]))).length;
+  const ht = d.goal_sequence?.halftime_score || (packet.match?.score?.home_ht !== null && packet.match?.score?.home_ht !== undefined ? `${packet.match.score.home_ht}-${packet.match.score.away_ht}` : null);
+  if (minHits >= 2 || (ht && /half-?time|interval|the break/i.test(t) && (t.includes(ht) || t.includes(ht.replace('-', '–'))))) used.add('GOAL_SEQUENCE');
+  // PLAYER_CONTRIBUTIONS: two or more contributing players named
+  const contributors = (d.player_lines?.length ? d.player_lines : packet.decisive || []).filter(r => r.player?.name && (r.goals || r.assists || r.shots_on_target));
+  if (contributors.length) available.add('PLAYER_CONTRIBUTIONS');
+  if (contributors.filter(r => new RegExp(`\\b${esc(lastName(r.player.name))}\\b`).test(t)).length >= Math.min(2, contributors.length)) used.add('PLAYER_CONTRIBUTIONS');
+  // TEAM_STATS: two stat values stated next to their stat word
+  const st = packet.stats;
+  if (st) {
+    available.add('TEAM_STATS');
+    const pairs = [['shots', /shots?|attempts?|efforts?/i], ['shots_on_target', /on target|tested|saves?/i], ['corners', /corners?/i], ['saves', /saves?/i], ['fouls_committed', /fouls?/i], ['possession_pct', /possession|of the ball/i]];
+    let hits = 0;
+    for (const [k, word] of pairs) for (const side of ['home', 'away']) { const v = st[side]?.[k]; if (v === undefined || v === null) continue; const re = new RegExp(`\\b${numRe(Number(v))}\\b`, 'i'); if (ss.some(s => re.test(s) && word.test(s))) { hits += 1; break; } }
+    if (hits >= 2) used.add('TEAM_STATS');
+  }
+  // SHOT_LOCATIONS: located distance / inside-outside the box
+  const sp = d.shot_profile; const sl = packet.shots_located;
+  if ((sp?.located_total || 0) > 0 || ((sl?.home || 0) + (sl?.away || 0)) > 0) available.add('SHOT_LOCATIONS');
+  const dists = [sp?.home?.avg_located_distance_m, sp?.away?.avg_located_distance_m, sl?.avg_distance_m?.home, sl?.avg_distance_m?.away].filter(v => v !== null && v !== undefined).map(String);
+  if (dists.some(v => t.includes(v)) || /\b(inside|outside) the (penalty )?(area|box)\b/i.test(t) || /\blocated\b/i.test(t)) used.add('SHOT_LOCATIONS');
+  // TABLE_CONTEXT: a table position or points total stated with a table word
+  const tm = d.table_move || null; const tA = packet.teams;
+  if (tA?.home?.table_after || tA?.home?.group) available.add('TABLE_CONTEXT');
+  const posts = [tA?.home?.table_after, tA?.away?.table_after, tA?.home?.group, tA?.away?.group].filter(Boolean);
+  if (posts.some(r => ss.some(s => /\b(table|standings|place|position|top|bottom|summit|points|leaders?|conference|league phase)\b/i.test(s) && (new RegExp(`\\b${ordinalRe(r.position)}\\b`, 'i').test(s) || new RegExp(`\\b${numRe(r.points)} points\\b`, 'i').test(s) || (r.position === 1 && /\btop\b/i.test(s)))))) used.add('TABLE_CONTEXT');
+  void tm;
+  // FORM_CONTEXT
+  if ((tA?.home?.form_before?.length || 0) + (tA?.away?.form_before?.length || 0) > 0 || d.recent_league_results?.home?.length) available.add('FORM_CONTEXT');
+  if (/\b(unbeaten|without a win|winless|in a row|consecutive|straight (wins|defeats|draws|league)|run of|recent|form|last (two|three|four|five|\d) (league )?(matches|games|outings)|had (won|lost|drawn) (two|three|four|five|\d))\b/i.test(t)) used.add('FORM_CONTEXT');
+  // NEXT_FIXTURE
+  const nexts = [tA?.home?.next, tA?.away?.next].filter(Boolean);
+  if (nexts.length) available.add('NEXT_FIXTURE');
+  if (nexts.some(n => n.opponent?.name && ss.some(s => /\b(next|face|faces|host|hosts|visit|visits|travel|travels|meet|meets|trip)\b/i.test(s) && s.includes(lastName(n.opponent.name))))) used.add('NEXT_FIXTURE');
+  if (d.discipline?.length) available.add('DISCIPLINE');
+  if (/\b(yellow card|red card|booked|booking|sent off)\b/i.test(lower)) used.add('DISCIPLINE');
+  if (d.substitutions?.length) available.add('SUBSTITUTIONS');
+  if (/\b(substitute|came on|off the bench|replaced|introduced)\b/i.test(lower)) used.add('SUBSTITUTIONS');
+  return { available: [...available], used: [...used].filter(f => available.has(f)) };
+}
+
 export function qualityGates(article, packet) {
   const results = []; const gate = (name, pass, detail = null) => results.push({ gate: name, pass, detail });
   const body = article.sections.flatMap(s => s.paragraphs).join('\n');
@@ -224,7 +313,50 @@ export function qualityGates(article, packet) {
   const min = rich ? 450 : packet.event.kind === 'match_recap' ? 220 : 160;
   gate('thin_output', n >= min, { words: n, min });
   gate('too_long', n <= 1100, { words: n });
-  gate('sections', article.sections.length >= (rich ? 3 : 2) && article.sections.length <= 6, article.sections.length);
+  gate('sections', article.sections.length >= (rich ? 3 : 2) && article.sections.length <= (rich ? 5 : 6), article.sections.length);
+  // DEPTH (v2): evidence families, repetition, section depth, lead + dek quality
+  if (packet.event.kind === 'match_recap') {
+    const fam = evidenceFamilies(article, packet);
+    const has = f => fam.used.includes(f); const avail = f => fam.available.includes(f);
+    const need = rich ? Math.min(fam.available.length, 3) : Math.min(fam.available.length, 2);
+    gate('evidence_families', fam.used.length >= need, { used: fam.used, available: fam.available, need });
+    if (rich) {
+      const missing = [];
+      if (avail('GOAL_SEQUENCE') && !has('GOAL_SEQUENCE')) missing.push('match progression (goal sequence / half-time)');
+      if (avail('PLAYER_CONTRIBUTIONS') && !has('PLAYER_CONTRIBUTIONS')) missing.push('decisive players');
+      if ((avail('TEAM_STATS') || avail('SHOT_LOCATIONS')) && !has('TEAM_STATS') && !has('SHOT_LOCATIONS')) missing.push('match stats / shot profile');
+      if (avail('TABLE_CONTEXT') && !has('TABLE_CONTEXT')) missing.push('table / competitive context');
+      gate('evidence_coverage', !missing.length, missing.length ? missing : null);
+      const thinSections = article.sections.filter(s => s.paragraphs.length < 2);
+      gate('section_depth', thinSections.length <= 1, thinSections.map(s => s.heading));
+    }
+    const sc = packet.match.score; const fin = [`${sc.home}-${sc.away}`, `${sc.home}–${sc.away}`, `${sc.away}-${sc.home}`, `${sc.away}–${sc.home}`];
+    const scoreHits = fin.reduce((n, f) => n + body.split(f).length - 1, 0);
+    gate('score_repetition', scoreHits <= 2, scoreHits);
+    const mech = body.match(/\bthe match produced \w+ goals\b|\bthe winning margin was\b/i);
+    gate('mechanical_phrasing', !mech, mech ? mech[0] : null);
+    const repeatedTotals = (packet.depth?.player_lines || packet.decisive || []).filter(r => r.goals >= 2).map(r => {
+      const re = new RegExp(`\\b${esc(lastName(r.player?.name))}\\b[^.]{0,60}\\b(hat-trick|brace|${NUMW[r.goals]} goals|${r.goals} goals|twice|three times|scored ${NUMW[r.goals]}|scored ${r.goals})\\b`, 'i');
+      return { player: r.player?.name, sections: article.sections.filter(s => re.test(s.paragraphs.join(' '))).length };
+    }).filter(x => x.sections >= 3);
+    gate('goal_totals_repeated', !repeatedTotals.length, repeatedTotals.length ? repeatedTotals : null);
+    // three consecutive paragraphs that mainly restate numbers
+    const paras = article.sections.flatMap(s => s.paragraphs);
+    const dense = p => { const w = words(p); const nums = (p.match(/\b\d+(\.\d+)?\b|\b(two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty)\b/gi) || []).length; return w > 0 && nums / w >= 0.12; };
+    let runP = 0; let worstP = 0; for (const p of paras) { if (dense(p)) { runP += 1; worstP = Math.max(worstP, runP); } else runP = 0; }
+    gate('numeric_paragraph_run', worstP < 3, worstP);
+    // lead: winner + an angle (player, half-time or a goal minute); never the bare template sentence
+    const lead = article.sections[0]?.paragraphs?.[0] || '';
+    if (packet.match.winner !== 'draw') {
+      const W = packet.teams[packet.match.winner];
+      const winnerNamed = [W.name, W.short_name, lastName(W.name)].filter(x => x && x.length >= 3).some(x => lead.includes(x));
+      const angle = (packet.depth?.player_lines || packet.decisive || []).some(r => r.player?.name && lead.includes(lastName(r.player.name))) || /half-?time|interval|\b\d{1,3}(st|nd|rd|th) minute\b/i.test(lead);
+      gate('lead_quality', winnerNamed && angle && !/^[^.]+ (beat|defeated|drew with) [^.]+ \d+[-–]\d+ on \d{1,2} \w+\.?$/.test(sentences(lead)[0] || ''), { winner_named: winnerNamed, angle });
+    }
+    const hw = new Set(article.headline.toLowerCase().match(/[\p{L}\d]+/gu) || []); const dw = article.dek.toLowerCase().match(/[\p{L}\d]+/gu) || [];
+    const overlap = dw.length ? dw.filter(w => hw.has(w)).length / dw.length : 1;
+    gate('dek_adds_information', overlap < 0.7 && dw.length >= 8, { overlap: Math.round(overlap * 100) / 100 });
+  }
   const generic = article.sections.filter(s => GENERIC_HEADINGS.test(s.heading.trim()));
   gate('generic_headings', generic.length === 0, generic.map(s => s.heading));
   gate('why_it_matters_filler', !/\bwhy it matters\b|\bit remains to be seen\b|\bonly time will tell\b/i.test(body));
@@ -263,7 +395,7 @@ export function judge(article, packet) {
   const missing = attributions.filter(a => !(article.disclosure || []).includes(a));
   results.push({ gate: 'attribution_disclosed', pass: !missing.length, detail: missing.length ? missing : null });
   const failed = results.filter(r => !r.pass);
-  return { version: DESK_VERSION, pass: !failed.length, failed: failed.map(r => r.gate), results };
+  return { version: DESK_VERSION, quality_version: QUALITY_VERSION, packet_version: packet.version, evidence: packet.event.kind === 'match_recap' ? evidenceFamilies(article, packet) : null, pass: !failed.length, failed: failed.map(r => r.gate), results };
 }
 
 // Draft -> desk -> judge (-> one repair) -> { article, judgement } or { held }.

@@ -5,6 +5,8 @@
 // Idempotent: the news event id is uuidv5(story key); an existing event is skipped,
 // so a story is written once. Evidence rows are append-only (DB trigger).
 import { loadSeason, detect, buildPacket, ENGINE_VERSION } from './engine.js';
+import { depthFromRows, loadDepthRows, packetV3, PACKET_V3 } from './depth.js';
+import { payloadHash } from '../../shared/ids.js';
 import { compose } from './compose2.js';
 import { runGates2, GATE_V2 } from './gates2.js';
 import { editorialPass, llmEnabled } from './editorial.js';
@@ -88,17 +90,36 @@ export async function editorialStage(draft, packet, env, { fetcher } = {}) {
 // Re-edit an existing article through the desk from its frozen evidence packet (held stories, and
 // earlier template articles). Pass: the article is replaced by the desk's story (updated_at moves).
 // Fail: nothing changes unless `holdOnFail` (then a published template story is held).
-export async function reeditArticle(store, slug, env, { dry = false, holdOnFail = false, fetcher } = {}) {
+// The packet a re-edit uses (recorded as packet_path): a v2 match recap is rebuilt as a v3 packet from the
+// ORIGINAL frozen packet + depth from the match's own events and pre-kickoff results (A: as-of-safe
+// rebuild); every other packet is used exactly as frozen (B: original packet only). Never today's state.
+export async function richerPacket(store, original, { now = Date.now() } = {}) {
+  if (original.version === PACKET_V3) return { packet: original, path: 'v3_original' };
+  if (original.event?.kind !== 'match_recap' || !original.match?.id) return { packet: original, path: 'B_original_packet_only' };
+  const S = await loadSeason(store, original.competition.slug);
+  if (!S || !S.matches.some(m => m.id === original.match.id)) return { packet: original, path: 'B_original_packet_only (match not in the loaded season)' };
+  const depth = depthFromRows(original, await loadDepthRows(store, S, original));
+  const p = packetV3(original, depth, { derivedFrom: original.hash, rebuiltAt: new Date(now).toISOString() });
+  p.hash = payloadHash(p);
+  return { packet: p, path: 'A_asof_safe_rebuild' };
+}
+
+export async function reeditArticle(store, slug, env, { dry = false, holdOnFail = false, fetcher, now = Date.now() } = {}) {
   const [a] = await store.select('soccer_articles', { columns: ['id', 'slug', 'status', 'packet_hash', 'composer', 'desk', 'story_class', 'entities', 'headline', 'dek', 'body'], eq: { slug }, limit: 1 });
   if (!a) return { slug, error: 'not found' };
-  const [ev] = await store.select('soccer_article_evidence', { columns: ['packet'], eq: { packet_hash: a.packet_hash }, limit: 1 });
-  const packet = ev.packet;
+  const [ev] = await store.select('soccer_article_evidence', { columns: ['packet', 'news_event_id'], eq: { packet_hash: a.packet_hash }, limit: 1 });
+  const { packet, path } = await richerPacket(store, ev.packet, { now });
   const draft = compose(packet);
   const r = await editorialStage(draft, packet, { ...env, NEWS_DESK: 'on' }, { fetcher });
-  const res = { slug, before: { status: a.status, composer: a.composer, headline: a.headline }, result: r.status, holds: r.holdReasons, headline: r.article.headline };
-  if (dry) return { ...res, article: r.article, judgement: r.editorial };
+  const res = { slug, story_class: a.story_class, packet_path: path, packet_version: packet.version, before: { status: a.status, composer: a.composer, headline: a.headline }, result: r.status, holds: r.holdReasons, headline: r.article.headline };
+  if (dry) return { ...res, article: r.article, judgement: r.editorial, packet };
   if (r.status === 'published') {
-    await store.update('soccer_articles', { headline: r.article.headline, dek: r.article.dek, body: articleBody(r.article, r.editorial), composer: r.article.composer, gate_version: `${r.gates.version}+${r.editorial.version}`, gate_results: { draft: r.gates.results, desk: r.editorial.results }, status: 'published', hold_reasons: [], published_at: a.status === 'published' ? undefined : new Date().toISOString(), updated_at: new Date().toISOString() }, { eq: { id: a.id } });
+    // The richer packet is a NEW append-only evidence row; the original stays untouched (derived_from).
+    if (packet.hash !== a.packet_hash) {
+      const [have] = await store.select('soccer_article_evidence', { columns: ['packet_hash'], eq: { packet_hash: packet.hash }, limit: 1 });
+      if (!have) await store.insert('soccer_article_evidence', [{ packet_hash: packet.hash, news_event_id: ev.news_event_id, packet_version: packet.version, packet, capture_ids: [] }]);
+    }
+    await store.update('soccer_articles', { packet_hash: packet.hash, headline: r.article.headline, dek: r.article.dek, body: articleBody(r.article, { ...r.editorial, packet_path: path }), composer: r.article.composer, gate_version: `${r.gates.version}+${r.editorial.version}`, gate_results: { draft: r.gates.results, desk: r.editorial.results }, status: 'published', hold_reasons: [], published_at: a.status === 'published' ? undefined : new Date().toISOString(), updated_at: new Date().toISOString() }, { eq: { id: a.id } });
   } else if (holdOnFail && a.status === 'published') {
     await store.update('soccer_articles', { status: 'held', hold_reasons: r.holdReasons, published_at: null, updated_at: new Date().toISOString() }, { eq: { id: a.id } });
     res.held_now = true;

@@ -10,6 +10,7 @@ import { chunkArr } from '../../soccer-ingest/src/store.js';
 import { verifyGroupStandings } from '../../shared/standings.js';
 import { ownGoalBeneficiary } from '../../shared/own-goals.js';
 import { loadSeasonData, teamDna } from '../../soccer-api/src/dna.js';
+import { depthFromRows, loadDepthRows, packetV3 } from './depth.js';
 
 export const ENGINE_VERSION = 'soccer-news-engine/2.0.0';
 export const PACKET_V2 = 'soccer-packet/2.0.0';
@@ -200,7 +201,10 @@ function freeze(packet) {
 
 export async function buildPacket(store, S, cand) {
   const base = { version: PACKET_V2, engine: ENGINE_VERSION, event: { kind: cand.story_class, key: cand.key, as_of: cand.as_of, profile: cand.profile.key, ...(cand.corrects ? { corrects: cand.corrects } : {}) }, competition: { id: S.comp.id, name: S.comp.name, slug: S.comp.slug, season: S.season.label }, materiality: cand.materiality };
-  if (cand.story_class === 'match_recap') return freeze({ ...base, ...(await recapBody(store, S, cand)) });
+  if (cand.story_class === 'match_recap') {
+    const v2 = { ...base, ...(await recapBody(store, S, cand)) };
+    return freeze(packetV3(v2, depthFromRows(v2, await loadDepthRows(store, S, v2)))); // v3: v2 evidence + depth
+  }
   if (cand.story_class === 'team_trend') return freeze({ ...base, ...(await trendBody(store, S, cand)) });
   if (cand.story_class === 'player_form') return freeze({ ...base, ...(await formBody(store, S, cand)) });
   if (cand.story_class === 'competition_intelligence') return freeze({ ...base, ...raceBody(S, cand) });
