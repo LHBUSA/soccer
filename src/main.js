@@ -11,6 +11,7 @@ import * as players from './pages/players.js';
 import { hub as pbecastHub, cast as pbecast } from './pages/pbecast.js';
 import { FEATURED_COMPS } from './lib/competitions.js';
 import { mountMediaFallbacks } from './components/ui.js';
+import { installPlayerDrawer, close as closeDrawer } from './components/drawer.js';
 
 const PAGES = { home, competition, match, competitions, matches, news, newsDesk, article, sources, tables, team, player, players, pbecastHub, pbecast };
 const NAV = [['/', 'TODAY', 'home'], ['/matches', 'MATCHES', 'matches,match'], ['/pbecast', 'PBECAST', 'pbecastHub,pbecast'], ['/tables', 'TABLES', 'tables'], ['/players', 'PLAYERS', 'players,player'], ['/competitions', 'COMPETITIONS', 'competitions'], ['/news', 'NEWS', 'news,newsDesk,article']];
@@ -84,6 +85,7 @@ export async function render(url = new URL(location.href)) {
 export function navigate(href) {
   const url = new URL(href, location.origin);
   if (url.origin !== location.origin) { location.href = href; return; }
+  closeDrawer();
   history.pushState({}, '', url.pathname + url.search);
   document.body.classList.remove('menu-open');
   document.querySelector('.navtoggle')?.setAttribute('aria-expanded', 'false');
@@ -91,6 +93,7 @@ export function navigate(href) {
   render(url);
 }
 
+installPlayerDrawer(); // before the router: plain clicks on player chips open the drawer
 document.addEventListener('click', e => {
   const a = e.target.closest('a[data-link]');
   if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
@@ -101,5 +104,5 @@ document.querySelector('.navtoggle').addEventListener('click', e => {
   const open = document.body.classList.toggle('menu-open');
   e.currentTarget.setAttribute('aria-expanded', String(open));
 });
-window.addEventListener('popstate', () => render());
+window.addEventListener('popstate', () => { closeDrawer(); render(); });
 render();

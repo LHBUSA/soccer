@@ -754,3 +754,29 @@ body { background: transparent; }
 .cast-links { margin: 18px 0 8px; }
 .btn.ghost.dark { color: var(--ink); border-color: var(--line-2); }
 .cast-body .two { margin-bottom: 8px; }
+
+/* ---------- Player DNA drawer ---------- */
+.drawer { position: fixed; inset: 0; z-index: 90; }
+.drawer[hidden] { display: none; }
+.dr-back { position: absolute; inset: 0; background: rgba(4,9,18,.62); opacity: 0; transition: opacity .2s ease; }
+.dr-sheet { position: absolute; top: 0; right: 0; bottom: 0; width: min(520px, 100%); background: var(--canvas); box-shadow: -24px 0 60px rgba(0,0,0,.4); overflow: auto; overscroll-behavior: contain; transform: translateX(24px); opacity: 0; transition: transform .22s ease, opacity .22s ease; outline: none; padding: 18px 18px 28px; }
+.drawer.on .dr-back { opacity: 1; }
+.drawer.on .dr-sheet { transform: none; opacity: 1; }
+@media (max-width: 640px) {
+  .dr-sheet { top: auto; left: 0; width: 100%; max-height: 88vh; border-radius: 18px 18px 0 0; transform: translateY(24px); box-shadow: 0 -18px 50px rgba(0,0,0,.4); }
+}
+@media (prefers-reduced-motion: reduce) { .dr-back, .dr-sheet { transition: none; } }
+body.dr-open { overflow: hidden; }
+.dr-x { position: sticky; top: 0; float: right; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line-2); background: #fff; font-size: 16px; cursor: pointer; z-index: 1; }
+.dr-head { display: flex; gap: 14px; align-items: center; margin: 4px 0 10px; padding-right: 48px; }
+.dr-id { min-width: 0; }
+.dr-id .kicker { margin: 0 0 4px; }
+.dr-id h2 { font: 800 clamp(24px, 6vw, 32px)/1.05 var(--display); text-transform: uppercase; margin: 0; overflow-wrap: anywhere; outline: none; }
+.dr-facts { margin: 6px 0 0; font-size: 13.5px; color: var(--ink-2); }
+.dr-team { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; margin: 6px 0 0; font-size: 13.5px; font-weight: 600; }
+.dr-team .muted { white-space: nowrap; font-weight: 500; }
+.credit.dark { color: var(--muted); margin: 0 0 12px; }
+.dr-dna .dna-intro { font-size: 13px; }
+.dr-dna .dna-sig { height: 110px; }
+.dr-cta { margin: 16px 0 0; }
+.dr-cta .btn { width: 100%; justify-content: center; }
