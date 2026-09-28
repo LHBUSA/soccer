@@ -8,5 +8,12 @@
   "team_identity": "Wikidata club via roster proof (>=60% and >=5 id-matched players share the current club, runner-up <=30%, unique)",
   "crest_trademark": "approve_nominative",
   "crest_trademark_note": "Free-licensed Commons crests are approved and used only to identify the club; set to \"review\" to hold every trademarked crest for owner review.",
-  "thumb_width": 480
+  "thumb_width": 480,
+  "owner_holds": {
+    "Football Club Barcelona Color Update.png": "FC Barcelona: CC0 declared by an uploader who does not own the crest (held-crests-review-2026-09-28: recommend REJECT; owner decision pending)",
+    "Inter Miami CF wordmark-full pink.png": "Inter Miami CF: text-only wordmark, not a crest (KEEP HELD)",
+    "AS ROMA Text Logo 2020 - 2021 .svg": "AS Roma: text-only wordmark, not a crest (KEEP HELD)",
+    "Logo Liverpool FC (2024).png": "Liverpool: text-only mark 'L.F.C.', not a crest (KEEP HELD)"
+  },
+  "owner_holds_note": "Files held by owner decision are never published by any pipeline run, whatever the rights classifier says; change only on an explicit owner decision."
 }

@@ -7,7 +7,8 @@
 //
 // Identity tiers (never a name-only match):
 //   portraits T1  Wikidata item by EXACT ESPN FC player id (P3681); birth date must agree
-//   clubs         roster proof over T1-matched players (current club P54, majority rules)
+//   clubs         deterministic identity paths: roster proof (current club), dated roster proof,
+//                 exact ESPN team id (P13590), exact OpenLigaDB team id -> Commons icon -> P154
 //   portraits T2  inside a PROVEN club: exact name + exact birth date + overlapping club
 //                 spell + unique candidate (the owner's attribute_corroborated rule)
 // Approved files are downloaded once (Commons thumbnail), hashed and written write-once,
@@ -19,7 +20,7 @@ import { storeFromEnv } from '../../workers/shared/postgrest.js';
 import { politeFetch } from '../../workers/shared/http.js';
 import { syncRows, chunkArr } from '../../workers/soccer-ingest/src/store.js';
 import { normName } from '../../workers/soccer-ingest/src/identity.js';
-import { wikidataByEspnIds, playerMatchVerdict, proveClubByRoster, clubFacts, commonsInfo, fileNameOf, mediaRow, clubMembers, corroborateInClub, MEDIA_VERSION } from '../../workers/soccer-ingest/src/media-wikimedia.js';
+import { wikidataByEspnIds, playerMatchVerdict, proveClubByRoster, clubFacts, commonsInfo, fileNameOf, mediaRow, clubMembers, corroborateInClub, clubsAtWindow, clubsByEspnTeamIds, clubsByLogoFiles, commonsFileFromUpload, resolveTeamIdentity, MEDIA_VERSION } from '../../workers/soccer-ingest/src/media-wikimedia.js';
 
 const argv = process.argv.slice(2);
 const arg = (k, d) => { const i = argv.indexOf(k); return i >= 0 ? argv[i + 1] : d; };
@@ -74,35 +75,76 @@ for (const x of xw) {
 }
 log('T1 portrait candidates', portraitJobs.length, JSON.stringify(report.players.t1));
 
-// ---- clubs: roster proof over T1-matched players (sourced lineups)
+// ---- clubs: four deterministic identity paths (media-wikimedia.js header), never by name
 const crestJobs = []; const clubOfTeam = new Map();
 const roster = new Map();
 for (const [pid, byTeam] of windows) for (const tid of byTeam.keys()) { if (!roster.has(tid)) roster.set(tid, new Set()); roster.get(tid).add(pid); }
 const teams = new Map((await selectIn('soccer_teams', 'id', [...roster.keys()], { columns: ['id', 'name', 'slug'] })).map(t => [t.id, t]));
-const allClubs = [...new Set([...qidOfPlayer.values()].flatMap(c => c.teams))];
-const facts = await clubFacts(politeFetch, allClubs);
-const proofs = new Map();
-for (const [teamId, ps] of roster) proofs.set(teamId, proveClubByRoster([...ps].map(pid => qidOfPlayer.get(pid)).filter(Boolean).map(c => c.teams.filter(q => facts.get(q)?.is_club)).filter(c => c.length)));
-const claim = new Map();
-for (const [t, pr] of proofs) if (pr.qid) claim.set(pr.qid, [...(claim.get(pr.qid) || []), t]);
-report.teams.with_lineups = roster.size; report.teams.verdicts = {}; report.teams.proofs = [];
-for (const [teamId, pr] of proofs) {
-  let reason = pr.reason;
-  if (pr.qid && claim.get(pr.qid).length > 1) reason = 'club_claimed_by_several_teams';
-  if (reason === 'roster_proof') clubOfTeam.set(teamId, pr.qid);
-  const f = pr.qid ? facts.get(pr.qid) : null;
-  if (reason === 'roster_proof' && f.logos.length !== 1) reason = f.logos.length ? 'several_logos' : 'club_has_no_logo_on_wikidata';
-  tally(report.teams.verdicts, reason);
-  report.teams.proofs.push({ team: teams.get(teamId)?.name, qid: pr.qid, reason, players_matched: pr.players_matched, top: pr.top, runner_up: pr.runner_up });
-  if (reason !== 'roster_proof') { disc('team', teamId, 'crest', 'not_found', 'wikidata_roster_proof', reason, { external_id: pr.qid || null, evidence: { players_matched: pr.players_matched, top: pr.top, runner_up: pr.runner_up } }); continue; }
-  crestJobs.push({ team: teams.get(teamId), qid: pr.qid, file: fileNameOf(f.logos[0]), proof: pr });
+const teamExt = await selectIn('soccer_team_external_ids', 'team_id', [...roster.keys()], { columns: ['team_id', 'provider', 'external_id'] });
+const extOf = (tid, prov) => teamExt.filter(x => x.team_id === tid && x.provider === prov).map(x => x.external_id);
+// path 3: exact ESPN team id -> P13590
+const espnTeamIds = [...new Set(teamExt.filter(x => x.provider === 'espn').map(x => x.external_id))];
+const byEspnTeam = await clubsByEspnTeamIds(politeFetch, espnTeamIds);
+// path 4: exact OpenLigaDB team id -> current-season teamIconUrl -> Commons file -> P154
+const oldbSeason = new Date().getUTCMonth() >= 6 ? new Date().getUTCFullYear() : new Date().getUTCFullYear() - 1;
+const oldbRes = await politeFetch(`https://api.openligadb.de/getavailableteams/bl1/${oldbSeason}`, { minIntervalMs: 700 });
+const oldbTeams = oldbRes.status === 200 ? JSON.parse(new TextDecoder().decode(oldbRes.bytes)) : [];
+const iconFileOfOldb = new Map(oldbTeams.map(t => [String(t.teamId), { file: commonsFileFromUpload(t.teamIconUrl), url: t.teamIconUrl }]));
+const iconFiles = [...new Set([...iconFileOfOldb.values()].map(x => x.file).filter(Boolean))];
+const byLogoFile = await clubsByLogoFiles(politeFetch, iconFiles);
+report.teams.openligadb_icons = { teams: oldbTeams.length, commons: iconFiles.length, other_hosts: oldbTeams.length - iconFiles.length };
+// facts for every club any path can name
+const pathClubs = new Set([...qidOfPlayer.values()].flatMap(c => [...c.teams, ...(c.spells || []).map(s => s.club)]));
+for (const l of byEspnTeam.values()) l.forEach(q => pathClubs.add(q));
+for (const l of byLogoFile.values()) l.forEach(q => pathClubs.add(q));
+const facts = await clubFacts(politeFetch, [...pathClubs]);
+const isClub = q => facts.get(q)?.is_club;
+const onlyClub = list => { const c = (list || []).filter(isClub); return c.length === 1 ? { qid: c[0] } : { qid: null, reason: c.length ? 'several_club_items' : 'no_club_item' }; };
+const identities = new Map();
+for (const [teamId, ps] of roster) {
+  const matched = [...ps].filter(pid => qidOfPlayer.get(pid));
+  const p1 = proveClubByRoster(matched.map(pid => qidOfPlayer.get(pid).teams.filter(isClub)).filter(c => c.length));
+  const p2 = proveClubByRoster(matched.map(pid => clubsAtWindow(qidOfPlayer.get(pid).spells, windows.get(pid).get(teamId)).filter(isClub)).filter(c => c.length));
+  const e3 = extOf(teamId, 'espn').map(id => onlyClub(byEspnTeam.get(String(id)))); const p3 = e3.find(x => x.qid) || { qid: null, reason: e3[0]?.reason || 'no_espn_team_id_on_wikidata' };
+  const icons = extOf(teamId, 'openligadb').map(id => iconFileOfOldb.get(String(id))).filter(Boolean);
+  // Competition consistency: the OpenLigaDB bl1 team is the senior club in the (2.) Bundesliga on Wikidata
+  // (P118), which separates it from reserve / women's / season items that reuse the same logo file.
+  const BL = new Set(['Q82595', 'Q151011']);
+  const seniorClub = list => { const c = (list || []).filter(q => isClub(q) && (facts.get(q)?.leagues || []).some(l => BL.has(l))); return c.length === 1 ? { qid: c[0] } : { qid: null, reason: c.length ? 'several_bundesliga_club_items' : 'no_bundesliga_club_item' }; };
+  const e4 = icons.map(i => (i.file ? { ...seniorClub(byLogoFile.get(i.file)), file: i.file } : { qid: null, reason: 'icon_not_on_commons' })); const p4 = e4.find(x => x.qid) || { qid: null, reason: icons.length ? e4[0].reason : 'no_openligadb_team' };
+  identities.set(teamId, resolveTeamIdentity([
+    { method: 'wikidata_roster_proof', qid: p1.qid, reason: p1.reason, evidence: { players_matched: p1.players_matched, top: p1.top, runner_up: p1.runner_up } },
+    { method: 'wikidata_dated_roster_proof', qid: p2.qid, reason: p2.reason, evidence: { players_matched: p2.players_matched, top: p2.top, runner_up: p2.runner_up } },
+    { method: 'espn_team_id_P13590', qid: p3.qid, reason: p3.qid ? 'exact' : p3.reason, evidence: { espn_team_ids: extOf(teamId, 'espn') } },
+    { method: 'openligadb_team_icon_P154', qid: p4.qid, reason: p4.qid ? 'exact' : p4.reason, evidence: { openligadb_team_ids: extOf(teamId, 'openligadb'), file: p4.file || null } },
+  ]));
 }
-log('clubs proven', clubOfTeam.size, 'crest candidates', crestJobs.length, JSON.stringify(report.teams.verdicts));
+const claim = new Map();
+for (const [t, id] of identities) if (id.qid) claim.set(id.qid, [...(claim.get(id.qid) || []), t]);
+report.teams.with_lineups = roster.size; report.teams.verdicts = {}; report.teams.methods = {}; report.teams.proofs = [];
+for (const [teamId, id] of identities) {
+  let reason = id.reason;
+  if (id.qid && claim.get(id.qid).length > 1) reason = 'club_claimed_by_several_teams';
+  const ok = reason === 'identity_proven';
+  if (ok) { clubOfTeam.set(teamId, id.qid); for (const m of id.methods) tally(report.teams.methods, m); }
+  const f = ok ? facts.get(id.qid) : null;
+  if (ok && f.logos.length !== 1) reason = f.logos.length ? 'several_current_logos' : 'club_has_no_current_logo_on_wikidata';
+  tally(report.teams.verdicts, reason);
+  const evidence = { identity_methods: id.methods || [], paths: id.paths.map(p => ({ method: p.method, qid: p.qid, reason: p.reason, ...p.evidence })) };
+  report.teams.proofs.push({ team: teams.get(teamId)?.name, qid: id.qid, reason, methods: id.methods || [] });
+  if (reason !== 'identity_proven') { disc('team', teamId, 'crest', 'not_found', ok ? (id.methods || []).join('+') : 'deterministic_team_identity', reason, { external_id: id.qid || null, evidence }); continue; }
+  crestJobs.push({ team: teams.get(teamId), qid: id.qid, file: fileNameOf(f.logos[0]), proof: evidence });
+}
+log('clubs proven', clubOfTeam.size, 'crest candidates', crestJobs.length, JSON.stringify(report.teams.verdicts), JSON.stringify(report.teams.methods));
 
 // ---- T2: attribute corroboration inside proven clubs, for players T1 did not cover
 const covered = new Set(portraitJobs.map(j => j.player.id));
 for (const [teamId, qid] of clubOfTeam) {
-  const members = await clubMembers(politeFetch, qid);
+  const since = [...(roster.get(teamId) || [])].map(pid => windows.get(pid)?.get(teamId)?.from).filter(Boolean).sort()[0] || null;
+  let members;
+  try { members = await clubMembers(politeFetch, qid, { since }); } catch (e) {
+    try { members = await clubMembers(politeFetch, qid, { since }); } catch (e2) { tally(report.players.t2, 'club_members_query_failed'); log('T2 club members failed', qid, String(e2.message).slice(0, 80)); continue; }
+  }
   for (const pid of roster.get(teamId) || []) {
     if (covered.has(pid)) continue;
     const p = players.get(pid); if (!p || p.status !== 'active') continue;
@@ -122,10 +164,14 @@ const info = await commonsInfo(politeFetch, files, { width: policy.thumb_width }
 log('commons files', files.length, 'resolved', [...info.values()].filter(Boolean).length);
 const rows = [];
 const trademark = i => ((i.meta?.Restrictions?.value || '').split('|').includes('trademarked') ? 'trademark_notice' : 'none');
-for (const j of [...portraitJobs.map(x => ({ ...x, entityType: 'player', entityId: x.player.id, mediaType: 'portrait' })), ...crestJobs.map(x => ({ ...x, entityType: 'team', entityId: x.team.id, mediaType: 'crest', evidence: { method: 'wikidata_roster_proof', qid: x.qid, players_matched: x.proof.players_matched, top: x.proof.top, runner_up: x.proof.runner_up } }))]) {
+for (const j of [...portraitJobs.map(x => ({ ...x, entityType: 'player', entityId: x.player.id, mediaType: 'portrait' })), ...crestJobs.map(x => ({ ...x, entityType: 'team', entityId: x.team.id, mediaType: 'crest', evidence: { method: x.proof.identity_methods.join('+'), qid: x.qid, identity: x.proof } }))]) {
   const i = info.get(j.file); if (!i) { tally(report.files, 'commons_file_missing'); disc(j.entityType, j.entityId, j.mediaType, 'not_found', j.evidence.method, 'commons_file_missing', { external_id: j.qid }); continue; }
   const r = mediaRow({ entityType: j.entityType, entityId: j.entityId, mediaType: j.mediaType, info: i, sourceEntity: j.qid, policy, evidence: j.evidence });
   r.trademark_status = trademark(i); r.retrieved_at = new Date().toISOString();
+  // Owner holds (data/media/policy.json owner_holds): never published by a pipeline run.
+  const hold = policy.owner_holds?.[i.title.replace(/^File:/, '')];
+  if (hold && r.rights_status === 'approved') { r.rights_status = 'review_required'; r.rights_notes = `${r.rights_notes} Owner hold: ${hold}`; }
+  if (hold) r.rights_notes = r.rights_notes.includes('Owner hold') ? r.rights_notes : `${r.rights_notes} Owner hold: ${hold}`;
   r.rejection_reason = r.rights_status === 'approved' ? null : (r.rights_notes || '').replace(/^media-rights\/[\d.]+ ?/, '') || r.rights_status;
   rows.push(r);
 }

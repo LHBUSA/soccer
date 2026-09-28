@@ -1,0 +1,880 @@
+{
+  "version": "media-wikimedia/1.1.0",
+  "policy_version": "2026-09-27.1",
+  "started_at": "2026-09-28T17:48:43.975Z",
+  "players": {
+    "espn_linked": 2467,
+    "wikidata_items": 494,
+    "t1": {
+      "no_wikidata_item_for_espn_id": 1973,
+      "ok": 422,
+      "several_images": 15,
+      "no_image": 52,
+      "birth_date_contradiction": 5
+    },
+    "t2": {
+      "no_club_member_with_same_name_and_birth_date": 398,
+      "ok": 382,
+      "several_images": 23,
+      "no_overlapping_club_spell": 1
+    }
+  },
+  "teams": {
+    "openligadb_icons": {
+      "teams": 18,
+      "commons": 9,
+      "other_hosts": 9
+    },
+    "with_lineups": 98,
+    "verdicts": {
+      "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:icon_not_on_commons": 1,
+      "identity_proven": 14,
+      "club_has_no_current_logo_on_wikidata": 19,
+      "wikidata_roster_proof:no_majority_club;wikidata_dated_roster_proof:no_majority_club;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:icon_not_on_commons": 4,
+      "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team": 45,
+      "wikidata_roster_proof:no_majority_club;wikidata_dated_roster_proof:no_majority_club;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_bundesliga_club_item": 1,
+      "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_espn_team_id_on_wikidata;openligadb_team_icon_P154:no_openligadb_team": 3,
+      "wikidata_roster_proof:no_majority_club;wikidata_dated_roster_proof:no_majority_club;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team": 9,
+      "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_bundesliga_club_item": 2
+    },
+    "methods": {
+      "wikidata_dated_roster_proof": 27,
+      "openligadb_team_icon_P154": 5,
+      "wikidata_roster_proof": 22,
+      "espn_team_id_P13590": 6
+    },
+    "proofs": [
+      {
+        "team": "Hoffenheim",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:icon_not_on_commons",
+        "methods": []
+      },
+      {
+        "team": "Borussia M'gladbach",
+        "qid": "Q101959",
+        "reason": "identity_proven",
+        "methods": [
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "Borussia Dortmund",
+        "qid": "Q41420",
+        "reason": "identity_proven",
+        "methods": [
+          "openligadb_team_icon_P154"
+        ]
+      },
+      {
+        "team": "Freiburg",
+        "qid": "Q106394",
+        "reason": "club_has_no_current_logo_on_wikidata",
+        "methods": [
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "Mainz 05",
+        "qid": "Q105254",
+        "reason": "identity_proven",
+        "methods": [
+          "openligadb_team_icon_P154"
+        ]
+      },
+      {
+        "team": "1. FC Union Berlin",
+        "qid": null,
+        "reason": "wikidata_roster_proof:no_majority_club;wikidata_dated_roster_proof:no_majority_club;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:icon_not_on_commons",
+        "methods": []
+      },
+      {
+        "team": "Eintracht Frankfurt",
+        "qid": null,
+        "reason": "wikidata_roster_proof:no_majority_club;wikidata_dated_roster_proof:no_majority_club;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:icon_not_on_commons",
+        "methods": []
+      },
+      {
+        "team": "Toronto FC",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Chicago Fire FC",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Bayern München",
+        "qid": "Q15789",
+        "reason": "identity_proven",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "Real Salt Lake",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Portland Timbers",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "CF Montréal",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Augsburg",
+        "qid": null,
+        "reason": "wikidata_roster_proof:no_majority_club;wikidata_dated_roster_proof:no_majority_club;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:icon_not_on_commons",
+        "methods": []
+      },
+      {
+        "team": "Everton",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Manchester City",
+        "qid": "Q50602",
+        "reason": "club_has_no_current_logo_on_wikidata",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "Seattle Sounders FC",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Brighton & Hove Albion",
+        "qid": "Q19453",
+        "reason": "club_has_no_current_logo_on_wikidata",
+        "methods": [
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "Red Bull New York",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "RB Leipzig",
+        "qid": "Q702455",
+        "reason": "identity_proven",
+        "methods": [
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "D.C. United",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Orlando City SC",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Atlanta United FC",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Schalke 04",
+        "qid": null,
+        "reason": "wikidata_roster_proof:no_majority_club;wikidata_dated_roster_proof:no_majority_club;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_bundesliga_club_item",
+        "methods": []
+      },
+      {
+        "team": "LASK Linz",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "St. Louis CITY SC",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Wolfsburg",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_espn_team_id_on_wikidata;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Stuttgart",
+        "qid": null,
+        "reason": "wikidata_roster_proof:no_majority_club;wikidata_dated_roster_proof:no_majority_club;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:icon_not_on_commons",
+        "methods": []
+      },
+      {
+        "team": "Vancouver Whitecaps",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Bayer Leverkusen",
+        "qid": "Q104761",
+        "reason": "club_has_no_current_logo_on_wikidata",
+        "methods": [
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "Fulham",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Arsenal",
+        "qid": "Q9617",
+        "reason": "club_has_no_current_logo_on_wikidata",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "Werder Bremen",
+        "qid": "Q51976",
+        "reason": "identity_proven",
+        "methods": [
+          "openligadb_team_icon_P154"
+        ]
+      },
+      {
+        "team": "Köln",
+        "qid": "Q104770",
+        "reason": "identity_proven",
+        "methods": [
+          "openligadb_team_icon_P154"
+        ]
+      },
+      {
+        "team": "Internazionale",
+        "qid": "Q631",
+        "reason": "identity_proven",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof",
+          "espn_team_id_P13590"
+        ]
+      },
+      {
+        "team": "LA Galaxy",
+        "qid": null,
+        "reason": "wikidata_roster_proof:no_majority_club;wikidata_dated_roster_proof:no_majority_club;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "New England Revolution",
+        "qid": null,
+        "reason": "wikidata_roster_proof:no_majority_club;wikidata_dated_roster_proof:no_majority_club;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Villarreal",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "San Jose Earthquakes",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Real Madrid",
+        "qid": "Q8682",
+        "reason": "club_has_no_current_logo_on_wikidata",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "New York City FC",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Sporting Kansas City",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "San Diego FC",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Colorado Rapids",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Inter Miami CF",
+        "qid": "Q16844931",
+        "reason": "identity_proven",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof",
+          "espn_team_id_P13590"
+        ]
+      },
+      {
+        "team": "Nashville SC",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Charlotte FC",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Hull City",
+        "qid": null,
+        "reason": "wikidata_roster_proof:no_majority_club;wikidata_dated_roster_proof:no_majority_club;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Houston Dynamo FC",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Leeds United",
+        "qid": null,
+        "reason": "wikidata_roster_proof:no_majority_club;wikidata_dated_roster_proof:no_majority_club;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Club Brugge",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Lens",
+        "qid": null,
+        "reason": "wikidata_roster_proof:no_majority_club;wikidata_dated_roster_proof:no_majority_club;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "FC Cincinnati",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Crystal Palace",
+        "qid": "Q19467",
+        "reason": "club_has_no_current_logo_on_wikidata",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "Hertha BSC",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_espn_team_id_on_wikidata;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Minnesota United FC",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Hamburger SV",
+        "qid": "Q51974",
+        "reason": "identity_proven",
+        "methods": [
+          "openligadb_team_icon_P154"
+        ]
+      },
+      {
+        "team": "PSV Eindhoven",
+        "qid": "Q11938",
+        "reason": "club_has_no_current_logo_on_wikidata",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "FC Dallas",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Austin FC",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Columbus Crew",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "LAFC",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Hannover 96",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_espn_team_id_on_wikidata;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "SC Paderborn 07",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_bundesliga_club_item",
+        "methods": []
+      },
+      {
+        "team": "Lille",
+        "qid": null,
+        "reason": "wikidata_roster_proof:no_majority_club;wikidata_dated_roster_proof:no_majority_club;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Ipswich Town",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Como",
+        "qid": null,
+        "reason": "wikidata_roster_proof:no_majority_club;wikidata_dated_roster_proof:no_majority_club;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Philadelphia Union",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "AEK Athens",
+        "qid": null,
+        "reason": "wikidata_roster_proof:no_majority_club;wikidata_dated_roster_proof:no_majority_club;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Tottenham Hotspur",
+        "qid": "Q18741",
+        "reason": "club_has_no_current_logo_on_wikidata",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "Newcastle United",
+        "qid": "Q18716",
+        "reason": "club_has_no_current_logo_on_wikidata",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "Coventry City",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Brentford",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Manchester United",
+        "qid": "Q18656",
+        "reason": "club_has_no_current_logo_on_wikidata",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof",
+          "espn_team_id_P13590"
+        ]
+      },
+      {
+        "team": "Galatasaray",
+        "qid": null,
+        "reason": "wikidata_roster_proof:no_majority_club;wikidata_dated_roster_proof:no_majority_club;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Sunderland",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Barcelona",
+        "qid": "Q7156",
+        "reason": "identity_proven",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "Aston Villa",
+        "qid": "Q18711",
+        "reason": "club_has_no_current_logo_on_wikidata",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "SV 07 Elversberg",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_bundesliga_club_item",
+        "methods": []
+      },
+      {
+        "team": "Chelsea",
+        "qid": "Q9616",
+        "reason": "club_has_no_current_logo_on_wikidata",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "Liverpool",
+        "qid": "Q1130849",
+        "reason": "identity_proven",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "Sabah FK",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "AFC Bournemouth",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Viking FK",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Slavia Prague",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Nottingham Forest",
+        "qid": "Q19490",
+        "reason": "club_has_no_current_logo_on_wikidata",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "Fenerbahce",
+        "qid": "Q6601875",
+        "reason": "club_has_no_current_logo_on_wikidata",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "AS Roma",
+        "qid": "Q2739",
+        "reason": "identity_proven",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof",
+          "espn_team_id_P13590"
+        ]
+      },
+      {
+        "team": "Slovan Bratislava",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Paris Saint-Germain",
+        "qid": "Q483020",
+        "reason": "club_has_no_current_logo_on_wikidata",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "Atlético Madrid",
+        "qid": "Q8701",
+        "reason": "club_has_no_current_logo_on_wikidata",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "Real Betis",
+        "qid": "Q8723",
+        "reason": "club_has_no_current_logo_on_wikidata",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof"
+        ]
+      },
+      {
+        "team": "Sporting CP",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "FC Porto",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Shakhtar Donetsk",
+        "qid": "Q172969",
+        "reason": "club_has_no_current_logo_on_wikidata",
+        "methods": [
+          "espn_team_id_P13590"
+        ]
+      },
+      {
+        "team": "Bodo/Glimt",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      },
+      {
+        "team": "Napoli",
+        "qid": "Q2641",
+        "reason": "identity_proven",
+        "methods": [
+          "wikidata_roster_proof",
+          "wikidata_dated_roster_proof",
+          "espn_team_id_P13590"
+        ]
+      },
+      {
+        "team": "Feyenoord Rotterdam",
+        "qid": null,
+        "reason": "wikidata_roster_proof:too_few_matched_players;wikidata_dated_roster_proof:too_few_matched_players;espn_team_id_P13590:no_club_item;openligadb_team_icon_P154:no_openligadb_team",
+        "methods": []
+      }
+    ]
+  },
+  "files": {},
+  "rows": {
+    "player:approved": 803,
+    "player:review_required": 1,
+    "team:approved": 8,
+    "team:review_required": 6
+  },
+  "rows_after_cache": {
+    "player:approved": 803,
+    "player:review_required": 1,
+    "team:approved": 8,
+    "team:review_required": 6
+  },
+  "cached": 0,
+  "reused": 0,
+  "discovery": {
+    "player:not_found": 2123,
+    "player:approved": 803,
+    "player:rejected": 5,
+    "team:not_found": 84,
+    "player:held_review": 1,
+    "team:approved": 8,
+    "team:held_review": 6
+  },
+  "coverage": {
+    "bundesliga:historical": {
+      "players": 535,
+      "with_photo": 218,
+      "pct": 40.7
+    },
+    "mls:active": {
+      "players": 971,
+      "with_photo": 73,
+      "pct": 7.5
+    },
+    "bundesliga:active": {
+      "players": 402,
+      "with_photo": 127,
+      "pct": 31.6
+    },
+    "premier-league:active": {
+      "players": 500,
+      "with_photo": 230,
+      "pct": 46
+    },
+    "uefa-champions-league:active": {
+      "players": 781,
+      "with_photo": 329,
+      "pct": 42.1
+    }
+  },
+  "coverage_by_club_active": {
+    "Arsenal": "24/25",
+    "Barcelona": "21/23",
+    "Paris Saint-Germain": "21/23",
+    "Manchester City": "24/30",
+    "Bayern München": "17/22",
+    "Tottenham Hotspur": "20/26",
+    "Chelsea": "19/25",
+    "Liverpool": "18/24",
+    "Real Madrid": "16/22",
+    "Atlético Madrid": "16/23",
+    "Fenerbahce": "15/22",
+    "Manchester United": "17/25",
+    "Nottingham Forest": "15/23",
+    "PSV Eindhoven": "14/22",
+    "Bayer Leverkusen": "15/24",
+    "Internazionale": "13/21",
+    "Crystal Palace": "18/30",
+    "AS Roma": "13/22",
+    "Newcastle United": "17/29",
+    "Borussia Dortmund": "14/24",
+    "Aston Villa": "14/27",
+    "RB Leipzig": "14/27",
+    "Napoli": "10/20",
+    "Brighton & Hove Albion": "12/27",
+    "Real Betis": "10/23",
+    "Leeds United": "11/27",
+    "Hamburger SV": "8/22",
+    "Borussia M'gladbach": "8/23",
+    "Shakhtar Donetsk": "8/23",
+    "Freiburg": "7/21",
+    "Mainz 05": "7/21",
+    "Como": "7/21",
+    "Inter Miami CF": "10/31",
+    "Köln": "7/23",
+    "1. FC Union Berlin": "7/23",
+    "AEK Athens": "6/20",
+    "Schalke 04": "6/21",
+    "Lens": "6/23",
+    "Fulham": "5/25",
+    "Brentford": "5/25",
+    "Red Bull New York": "6/31",
+    "Galatasaray": "4/21",
+    "Werder Bremen": "4/22",
+    "Sunderland": "4/23",
+    "Lille": "4/23",
+    "Slovan Bratislava": "4/23",
+    "FC Porto": "4/23",
+    "Stuttgart": "4/24",
+    "New England Revolution": "6/36",
+    "Everton": "4/25",
+    "Chicago Fire FC": "5/35",
+    "Hull City": "4/28",
+    "LA Galaxy": "5/38",
+    "Augsburg": "3/23",
+    "SC Paderborn 07": "3/23",
+    "AFC Bournemouth": "3/23",
+    "Hoffenheim": "3/23",
+    "Ipswich Town": "3/24",
+    "Eintracht Frankfurt": "3/24",
+    "Charlotte FC": "3/26",
+    "Austin FC": "3/30",
+    "Colorado Rapids": "4/41",
+    "Villarreal": "2/22",
+    "CF Montréal": "3/34",
+    "Club Brugge": "2/23",
+    "Sporting CP": "2/23",
+    "Orlando City SC": "3/35",
+    "Columbus Crew": "3/36",
+    "St. Louis CITY SC": "3/36",
+    "Minnesota United FC": "2/31",
+    "Atlanta United FC": "2/34",
+    "Vancouver Whitecaps": "2/34",
+    "New York City FC": "2/35",
+    "Bodo/Glimt": "1/18",
+    "Seattle Sounders FC": "2/37",
+    "LAFC": "2/37",
+    "Toronto FC": "2/41",
+    "Feyenoord Rotterdam": "1/22",
+    "Viking FK": "1/23",
+    "Coventry City": "1/26",
+    "D.C. United": "1/28",
+    "San Jose Earthquakes": "1/30",
+    "Houston Dynamo FC": "1/31",
+    "FC Dallas": "1/31",
+    "Portland Timbers": "1/32",
+    "Philadelphia Union": "1/33",
+    "San Diego FC": "1/35",
+    "Sporting Kansas City": "1/36",
+    "Real Salt Lake": "1/38",
+    "Nashville SC": "0/28",
+    "FC Cincinnati": "0/30",
+    "SV 07 Elversberg": "0/20",
+    "Sabah FK": "0/21",
+    "Slavia Prague": "0/20",
+    "LASK Linz": "0/21"
+  },
+  "finished_at": "2026-09-28T17:50:45.290Z",
+  "elapsed_s": 121
+}

@@ -14,7 +14,25 @@ published by *per-file rights*. Nothing else is ever shown.
 | Player portrait, tier 2 | Only inside a club already proven by roster proof: the club's Wikidata members (P54 with start/end dates) are matched on **exact normalized name (label or alias) + exact birth date + a club spell overlapping the dates we observed the player at that club + exactly one candidate**. This mirrors the owner-approved attribute_corroborated identity rule. Ambiguity is recorded (held_review), never attached. | name-only or partial names |
 | Club crest | **Roster proof**: the current club (P54, no end date) shared by at least 60% (and at least 5) of the team's id-matched players, runner-up at most 30%, the item is a football club, and no two canonical teams claim it. The club's logo (P154) is the file. | name matching, random CDN/logo sites |
 
-The evidence (property, id, QID, player counts) is stored on every row in `match_evidence`.
+**Club identity paths (media-wikimedia 1.1.0, 2026-09-28).** Any of four deterministic paths may prove a
+club; paths that yield a club must agree, and a club claimed by two canonical teams is refused:
+1. roster proof (current club, thresholds above);
+2. dated roster proof: the same thresholds over the P54 spell that overlaps the dates we observed each
+   player at this team (recovers clubs that fail on transfers);
+3. exact ESPN team id on Wikidata P13590 (exactly one football-club item);
+4. exact OpenLigaDB team id -> its current-season `teamIconUrl` -> only when that URL is an exact
+   Wikimedia Commons upload -> the item whose logo (P154) is that exact file -> exactly one football club
+   whose league (P118) is the Bundesliga or 2. Bundesliga (separates the senior club from reserve,
+   women's and season items that reuse the logo). Imgur and club / federation hosts are never trusted.
+The crest file is the club's CURRENT logo: deprecated and ended P154 statements are ignored, preferred
+rank wins, exactly one is required. The rights verifier runs on every file regardless of the path.
+UEFA and ESPN logo URLs are identity evidence only, never licensed artwork.
+
+**Owner holds** (`data/media/policy.json` `owner_holds`): files listed there are never published by any
+pipeline run, whatever the classifier says (2026-09-28: Barcelona third-party CC0; Inter Miami, AS Roma,
+Liverpool text wordmarks; review in docs/evidence/media/held-crests-review-2026-09-28.md).
+
+The evidence (property, id, QID, player counts, every identity path) is stored on every row in `match_evidence`.
 
 ## Rights: may we publish this file?
 

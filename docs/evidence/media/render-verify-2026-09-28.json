@@ -1,0 +1,567 @@
+{
+  "at": "2026-09-28T18:05:31.753Z",
+  "site": "https://soccer.propbetedge.ai",
+  "crests_checked": 8,
+  "portraits_checked": 52,
+  "failures": [],
+  "by_competition": {
+    "mls": {
+      "crests": 0,
+      "portraits": 13
+    },
+    "premier-league": {
+      "crests": 0,
+      "portraits": 13
+    },
+    "bundesliga": {
+      "crests": 4,
+      "portraits": 13
+    },
+    "uefa-champions-league": {
+      "crests": 4,
+      "portraits": 13
+    }
+  },
+  "results": [
+    {
+      "path": "/teams/bayern-munchen",
+      "ok": true,
+      "status": 304,
+      "h1": "Bayern München",
+      "src": "/api/soccer/media/0194b333159b363a07b32999ff3a493b9fe57ed6483bfc39f67bcbe385ae4e71",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/teams/borussia-dortmund",
+      "ok": true,
+      "status": 304,
+      "h1": "Borussia Dortmund",
+      "src": "/api/soccer/media/9de88c1c0986d88e17882c9f6a256cc6bd5bf5835641bd638112fe2d7388b2e2",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/teams/borussia-m-gladbach",
+      "ok": true,
+      "status": 304,
+      "h1": "Borussia M'gladbach",
+      "src": "/api/soccer/media/b33d0d2bb987f9ad2880c5d9905819425978fce9fd6d19880231bdbef91b0ca4",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/teams/hamburger-sv",
+      "ok": true,
+      "status": 304,
+      "h1": "Hamburger SV",
+      "src": "/api/soccer/media/acbbcaf66bea956440f961962d11e7c1e19a8d6a2a375ba923b384d87d6c0a93",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/teams/mainz-05",
+      "ok": true,
+      "status": 304,
+      "h1": "Mainz 05",
+      "src": "/api/soccer/media/98f3419af6a51c71090e72ad1646446405fad6a18471667427cacb1094df3ae1",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/teams/werder-bremen",
+      "ok": true,
+      "status": 304,
+      "h1": "Werder Bremen",
+      "src": "/api/soccer/media/ccf3637306e5382bd83465ac0f17deb10fa73bace686ab3507de38d83fc281a9",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/teams/internazionale",
+      "ok": true,
+      "status": 304,
+      "h1": "Internazionale",
+      "src": "/api/soccer/media/0550f0243839674a90014ff4e6ab7cb98f90c3dd3abd03ac734aa809a1393c7f",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/teams/napoli",
+      "ok": true,
+      "status": 304,
+      "h1": "Napoli",
+      "src": "/api/soccer/media/bfe46ddaed78827b02c7b6b2e91ea367c78fd4456f1e55216cb67fd2f8a95ae7",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/matt-turner",
+      "ok": true,
+      "status": 304,
+      "h1": "Matt Turner",
+      "src": "/api/soccer/media/230130ae6f838e73867a0402d78190dca049220d9803d9e8a38986fc42348194",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/carles-gil",
+      "ok": true,
+      "status": 304,
+      "h1": "Carles Gil",
+      "src": "/api/soccer/media/ef1abeaf7a4acd89acde832cd978ada552665e3c857b6cfa8156af2f8a28f8ef",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/maxime-crepeau",
+      "ok": true,
+      "status": 304,
+      "h1": "Maxime Crépeau",
+      "src": "/api/soccer/media/a08a5d2d726797373730c389d9fd4bb92cb8f1ad7cf9b3734220d207c61b648e",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/timo-baumgartl",
+      "ok": true,
+      "status": 304,
+      "h1": "Timo Baumgartl",
+      "src": "/api/soccer/media/3ce5cff68e6e13b80bf7ce0fac45f0263a45cb2d810dad1d0636bbdd5047c9b9",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/brad-stuver",
+      "ok": true,
+      "status": 304,
+      "h1": "Brad Stuver",
+      "src": "/api/soccer/media/fb874fb57bd0b2556e18c959d0f96229b91f7ed1f62d0aeb5353d6ab2747f9e2",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/yohei-takaoka",
+      "ok": true,
+      "status": 304,
+      "h1": "Yohei Takaoka",
+      "src": "/api/soccer/media/902c047b85f37bad946686459e47cc6bf564a3dfff9a7af29984202fbfbb0714",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/hugo-lloris",
+      "ok": true,
+      "status": 304,
+      "h1": "Hugo Lloris",
+      "src": "/api/soccer/media/59b536c27e8a5f68e4372ce91ed73aeecd3750a886c3a3ee809693c1142c6fec",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/roman-burki",
+      "ok": true,
+      "status": 304,
+      "h1": "Roman Bürki",
+      "src": "/api/soccer/media/68cf3b3ab39561aa0c1400510f2abfa570408027baab4e9d8ade97f31365243b",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/nouhou-tolo",
+      "ok": true,
+      "status": 304,
+      "h1": "Nouhou Tolo",
+      "src": "/api/soccer/media/e4747c4dbf9109a9ee667be07dc3a11cfad80d3a33845afd484607bda4296d90",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/dor-turgeman",
+      "ok": true,
+      "status": 304,
+      "h1": "Dor Turgeman",
+      "src": "/api/soccer/media/3b1df73ee5906696b421702f4c646ff52af53e5d96e0ae1a541f4df3dc6b75d3",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/son-heung-min",
+      "ok": true,
+      "status": 304,
+      "h1": "Son Heung-Min",
+      "src": "/api/soccer/media/38f4405ceef502fab1940b6c0cb26e01798f4a2eaf0d6c3bc1e8f54681a3f980",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/rob-holding",
+      "ok": true,
+      "status": 304,
+      "h1": "Rob Holding",
+      "src": "/api/soccer/media/5c3a6963956df64dcf5c0b641e4f2d21982b4cd64c74f343e73a8d1109bef606",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/lionel-messi",
+      "ok": true,
+      "status": 304,
+      "h1": "Lionel Messi",
+      "src": "/api/soccer/media/cf678f4c9c9903789bfb655b5ff22717f18c75e200affac6ea7e98e4989b6e1c",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/adrien-truffert",
+      "ok": true,
+      "status": 304,
+      "h1": "Adrien Truffert",
+      "src": "/api/soccer/media/e397fa8d53729c3a67a9d860c218ae60a058922e1debcaee0ccac68ad56f077f",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/alisson-becker",
+      "ok": true,
+      "status": 304,
+      "h1": "Alisson Becker",
+      "src": "/api/soccer/media/fc5c3aa748a0a1d0b36cb2b0171b349c1a50dfa7a33bb078f3d61a6b4a68c5f7",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/antoine-semenyo",
+      "ok": true,
+      "status": 304,
+      "h1": "Antoine Semenyo",
+      "src": "/api/soccer/media/bc660b0931739b572948754939a3761a5ef33ce258856f20a726132ef9e37f8e",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/bart-verbruggen",
+      "ok": true,
+      "status": 304,
+      "h1": "Bart Verbruggen",
+      "src": "/api/soccer/media/c2e592d6160f560e7b9544a8e2e69336456720b682ec455565427cc829eb1f00",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/bernd-leno",
+      "ok": true,
+      "status": 304,
+      "h1": "Bernd Leno",
+      "src": "/api/soccer/media/43d828ab741b6d98f5bde21a5d3e837b8b61411c82b2e379c68c4723759a5ec8",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/bruno-fernandes",
+      "ok": true,
+      "status": 304,
+      "h1": "Bruno Fernandes",
+      "src": "/api/soccer/media/1b42b8e1d4728762215d7f0c98ec4679d89f8f8c0d77de2448c06b4b7a2cfa40",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/bryan-mbeumo",
+      "ok": true,
+      "status": 304,
+      "h1": "Bryan Mbeumo",
+      "src": "/api/soccer/media/42568cfea9dcee18fae1c3292eb755d604ab46ab6aeab8cf11a545fb24390b81",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/caoimhin-kelleher",
+      "ok": true,
+      "status": 304,
+      "h1": "Caoimhín Kelleher",
+      "src": "/api/soccer/media/bb82b071b33b226bc55420cfa721fe640092833da4646c3e98b06782365fdd9c",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/chris-richards",
+      "ok": true,
+      "status": 304,
+      "h1": "Chris Richards",
+      "src": "/api/soccer/media/b5f89650d651dfa0fc7003f2535bc5402e6d9a29f69aa1c1ccc4cc81c88b6dac",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/david-raya",
+      "ok": true,
+      "status": 304,
+      "h1": "David Raya",
+      "src": "/api/soccer/media/b96f0d846c9453dbd5ae296503dee78d3d3f0fc0ef4aa12e7b6e715dfb513501",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/erling-haaland",
+      "ok": true,
+      "status": 304,
+      "h1": "Erling Haaland",
+      "src": "/api/soccer/media/c87c9ec03db8fe465fd22a8093e693c371f21df72f3f8433e5246676da4eb2de",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/gabriel-magalhaes",
+      "ok": true,
+      "status": 304,
+      "h1": "Gabriel Magalhães",
+      "src": "/api/soccer/media/ab81f780c5afa537cb201e9e22ca39f1ab1a895153de3338931ebd9934569e54",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/gianluigi-donnarumma",
+      "ok": true,
+      "status": 304,
+      "h1": "Gianluigi Donnarumma",
+      "src": "/api/soccer/media/d8db856a506305cc37065038a2096854f8297ce95b17ed1186a216237af0e381",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/aleix-garcia",
+      "ok": true,
+      "status": 304,
+      "h1": "Aleix García",
+      "src": "/api/soccer/media/49e6a10efcbd08efdd25db8099e44aa64ac0f28b34034323a07e19e0a34f8956",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/daniel-heuer-fernandes",
+      "ok": true,
+      "status": 304,
+      "h1": "Daniel Heuer Fernandes",
+      "src": "/api/soccer/media/df22a2d15bf4d4b4b7352586df700b5b497238b1d5e47381397975d34d052b32",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/daniel-svensson",
+      "ok": true,
+      "status": 304,
+      "h1": "Daniel Svensson",
+      "src": "/api/soccer/media/86ee7044e4a46522258fad08322a4b74cb3ce641a1e22bbef13da0302d2a10f5",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/david-raum",
+      "ok": true,
+      "status": 304,
+      "h1": "David Raum",
+      "src": "/api/soccer/media/22457c267cca6659ae7c38ead8bfac79cca4fa0477d9cb3dae935b585086bed4",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/edmond-tapsoba",
+      "ok": true,
+      "status": 304,
+      "h1": "Edmond Tapsoba",
+      "src": "/api/soccer/media/9093103862ef18d309c1def638ce9786f5f7a184341775ff76c28a7de51c00ef",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/gregor-kobel",
+      "ok": true,
+      "status": 304,
+      "h1": "Gregor Kobel",
+      "src": "/api/soccer/media/ebd243d37836b6b8dd82e76cf1b1e1e825e9462314642e10c6129264f59c55ce",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/ibrahim-maza",
+      "ok": true,
+      "status": 304,
+      "h1": "Ibrahim Maza",
+      "src": "/api/soccer/media/b990939e291e718ee1d9de491ee1ba201a00a326a6d2d64634f2465228194780",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/karl-hein",
+      "ok": true,
+      "status": 304,
+      "h1": "Karl Hein",
+      "src": "/api/soccer/media/e19b3de56fa65b549349071baabb2e9e33fe2b73052c51688b35c7825722c7c7",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/loris-karius",
+      "ok": true,
+      "status": 304,
+      "h1": "Loris Karius",
+      "src": "/api/soccer/media/be492c0db48b5c40f8e3aba306d64fefe4a6b26e28a07264c91100d614d4a7e9",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/maarten-vandevoordt",
+      "ok": true,
+      "status": 304,
+      "h1": "Maarten Vandevoordt",
+      "src": "/api/soccer/media/523ee64d4dd2e4f6da4df8edee81e2a2c6d3fc610ca5b57d2e3d8a54971974e1",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/marco-friedl",
+      "ok": true,
+      "status": 304,
+      "h1": "Marco Friedl",
+      "src": "/api/soccer/media/f2a15cc83e9673e98d69d21426fc0a8e7004f73802c4af39a3c01b7362f1af89",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/mark-flekken",
+      "ok": true,
+      "status": 304,
+      "h1": "Mark Flekken",
+      "src": "/api/soccer/media/9749f2ec1a1f1481183542fcb64b882d4524a53b645b06e8cff8402fdc6223a8",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/marvin-schwabe",
+      "ok": true,
+      "status": 304,
+      "h1": "Marvin Schwäbe",
+      "src": "/api/soccer/media/fc0d5774de15794a71652a7b96ee22e706bff58ab7ec3821c873bd84247a70a4",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/aleksandar-pavlovic",
+      "ok": true,
+      "status": 304,
+      "h1": "Aleksandar Pavlovic",
+      "src": "/api/soccer/media/fa66dcdebf24ba505e091e20f896aa1e8dc244cd78ed531301b8a40eb3d653d8",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/alessandro-bastoni",
+      "ok": true,
+      "status": 304,
+      "h1": "Alessandro Bastoni",
+      "src": "/api/soccer/media/286bb2a7d832735dd162553e3ffc50de7c07f440fbad248dfc39c3a8ae0ca0f3",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/alisson-becker",
+      "ok": true,
+      "status": 304,
+      "h1": "Alisson Becker",
+      "src": "/api/soccer/media/fc5c3aa748a0a1d0b36cb2b0171b349c1a50dfa7a33bb078f3d61a6b4a68c5f7",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/andreas-christensen",
+      "ok": true,
+      "status": 304,
+      "h1": "Andreas Christensen",
+      "src": "/api/soccer/media/4603e3b7af71325b5e2513fcb25fb1df8a64e8aad0657885b72171d330890946",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/angelo-stiller",
+      "ok": true,
+      "status": 304,
+      "h1": "Angelo Stiller",
+      "src": "/api/soccer/media/dbd6eb1da43c7ba32f9b11410e77e85245815d6686e371af0585367e3123892c",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/antonio-nusa",
+      "ok": true,
+      "status": 304,
+      "h1": "Antonio Nusa",
+      "src": "/api/soccer/media/90d36571f7c9800a405c2c5329a19ec62783365daa6dee19f8a8d2ade7c2ffee",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/antony",
+      "ok": true,
+      "status": 304,
+      "h1": "Antony",
+      "src": "/api/soccer/media/a2832c3bc368dfd90ac2a8da06ce82ae7832915c5e63599daa8a5ea6a44c1ebf",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/archie-brown",
+      "ok": true,
+      "status": 304,
+      "h1": "Archie Brown",
+      "src": "/api/soccer/media/98d8584d57f6f1a11d666f2a5732deaf13f312250da8562dfeeb3e76c01e50fb",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/armando-obispo",
+      "ok": true,
+      "status": 304,
+      "h1": "Armando Obispo",
+      "src": "/api/soccer/media/1264fad7a63d2b7bd7275067cd0b3099f9fc7c21c9725fbe796e756af5f3af32",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/billy-gilmour",
+      "ok": true,
+      "status": 304,
+      "h1": "Billy Gilmour",
+      "src": "/api/soccer/media/8f7532a9cc96b8cc40cd7fda8e954b0f2f7d46b44c038282c288f9051a739c13",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/bruno-fernandes",
+      "ok": true,
+      "status": 304,
+      "h1": "Bruno Fernandes",
+      "src": "/api/soccer/media/1b42b8e1d4728762215d7f0c98ec4679d89f8f8c0d77de2448c06b4b7a2cfa40",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/bryan-cristante",
+      "ok": true,
+      "status": 304,
+      "h1": "Bryan Cristante",
+      "src": "/api/soccer/media/21b0efbc70a2768ebca26212507a4cba1086545dba6848c4d608341cd53de25d",
+      "loaded": true,
+      "csp_errors": 0
+    },
+    {
+      "path": "/players/castello-lukeba",
+      "ok": true,
+      "status": 304,
+      "h1": "Castello Lukeba",
+      "src": "/api/soccer/media/631f0018514d6791187ee31e180670490fc0a69e00520529d5107bde8c00e932",
+      "loaded": true,
+      "csp_errors": 0
+    }
+  ]
+}

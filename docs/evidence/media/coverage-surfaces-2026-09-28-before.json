@@ -1,0 +1,84 @@
+{
+  "at": "2026-09-28T17:43:34.418Z",
+  "api": "https://soccer-api.sales-fd3.workers.dev/v1",
+  "method": "production API responses (approved media present in the payload the page renders)",
+  "portraits": {
+    "home_key_players": {
+      "with_media": 1,
+      "total": 3,
+      "pct": 33.3
+    },
+    "current_pbecast_starters": {
+      "with_media": 20,
+      "total": 285,
+      "pct": 7
+    },
+    "current_pbecast_bench": {
+      "with_media": 7,
+      "total": 223,
+      "pct": 3.1
+    },
+    "current_pbecast_matches": 14,
+    "current_news_subjects": {
+      "with_media": 15,
+      "total": 59,
+      "pct": 25.4
+    },
+    "player_dna_top100_active": {
+      "with_media": 12,
+      "total": 100,
+      "pct": 12
+    },
+    "by_competition_active": {
+      "mls": {
+        "with_media": 69,
+        "total": 839,
+        "pct": 8.2
+      },
+      "premier-league": {
+        "with_media": 207,
+        "total": 419,
+        "pct": 49.4
+      },
+      "bundesliga": {
+        "with_media": 76,
+        "total": 347,
+        "pct": 21.9
+      },
+      "uefa-champions-league": {
+        "with_media": 245,
+        "total": 552,
+        "pct": 44.4
+      }
+    }
+  },
+  "crests": {
+    "by_competition_active": {
+      "mls": {
+        "with_media": 0,
+        "total": 30,
+        "pct": 0
+      },
+      "premier-league": {
+        "with_media": 0,
+        "total": 20,
+        "pct": 0
+      },
+      "bundesliga": {
+        "with_media": 1,
+        "total": 18,
+        "pct": 5.6
+      },
+      "uefa-champions-league": {
+        "with_media": 3,
+        "total": 36,
+        "pct": 8.3
+      }
+    },
+    "overall_distinct_active_teams": {
+      "with_media": 3,
+      "total": 95,
+      "pct": 3.2
+    }
+  }
+}
