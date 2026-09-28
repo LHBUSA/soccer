@@ -1,0 +1,434 @@
+{
+  "stage": "dev",
+  "generated_at": "2026-09-28T01:07:48.716Z",
+  "protocol_id": "soccer-calibration-phase4-protocol-v1",
+  "protocol_sha256": "a350982598d2bad6e7318d61418b44998e808e255151655536d8abc407d467b4",
+  "protocol": {
+    "id": "soccer-calibration-phase4-protocol-v1",
+    "declared_at": "2026-09-28",
+    "frozen_model": {
+      "id": "soccer-research-bundesliga-v1.2-dc",
+      "card": "docs/evidence/research/frozen/model-card-v1.2-dc.json",
+      "rho": -0.1099,
+      "prediction_hash": "19b72fedee9a60268c4d554d2c8e20adefa6e311b5c73cd7b654b5ff1dfbb13b"
+    },
+    "splits": {
+      "train": "2004/05-2013/14",
+      "dev": "2014/15-2018/19",
+      "holdout": "2019/20-2025/26"
+    },
+    "calibrators": {
+      "note": "every calibrator maps the raw log-probabilities l = log p to logits z = W l + b and returns softmax(z): outputs are always valid home/draw/away probabilities summing to 1. Home is the reference class for intercepts.",
+      "none": "identity (raw v1.2-dc)",
+      "temperature": "1 parameter: z = l / T",
+      "bias": "2 parameters: z = l + (0, b_draw, b_away)",
+      "vector": "5 parameters: z = diag(w_h, w_d, w_a) l + (0, b_draw, b_away)",
+      "matrix": "11 parameters: z = W l + (0, b_draw, b_away), W full 3x3, L2 penalty 0.01 x mean squared deviation of all parameters from the identity (as in Phase 2)",
+      "excluded": "isotonic (per-class maps break the simplex; no principled multiclass version at ~1,530 DEV matches); no other method added",
+      "fitting": "multiclass log loss (plus the declared L2 for matrix) minimised by deterministic gradient descent with analytic gradients from the stated initial values (identity); fitted on DEV rows only"
+    },
+    "simplicity_order": [
+      "none",
+      "temperature",
+      "bias",
+      "vector",
+      "matrix"
+    ],
+    "dev_selection": {
+      "validation": "leave-one-season-out within DEV: for each of the 5 DEV seasons, fit on the other 4, score the held-out season; the LOSO score is the mean of the 5 per-season scores",
+      "primary": "LOSO multiclass log loss",
+      "tie_rule": "walk the simplicity order starting from none; move to a more complex method only if its LOSO log loss is lower than the current choice by more than 0.0005 (the Phase 2 rule)",
+      "secondary_guard": "the tie-rule winner is kept only if (a) its LOSO Brier is not worse than none by more than 0.0005 and (b) no more than 1 of the 5 held-out DEV seasons has log loss worse than none by more than 0.002; otherwise none is selected",
+      "reported_not_used": [
+        "LOSO Brier",
+        "LOSO mean classwise ECE",
+        "per-season LOSO log loss"
+      ],
+      "final_fit": "the selected method is re-fitted on all 5 DEV seasons; that fit is frozen (parameters and calibrated prediction hash) before any holdout evaluation"
+    },
+    "keep_rule": {
+      "note": "applies to the DEV-selected calibrator only, calibrated (X) vs raw v1.2-dc (R) on the pooled 2019/20-2025/26 holdout; other calibrators are reported as diagnostics and cannot be adopted",
+      "K1_log_loss": "pooled log loss delta <= -0.0005",
+      "K2_brier": "pooled Brier delta <= +0.0005",
+      "K3_ece": "pooled mean classwise ECE (10 equal bins) decreases",
+      "K4_seasons": "at most 1 of 7 holdout seasons has log loss worse by more than 0.002",
+      "K5_ranking": "one-vs-rest AUC change < 0.005 for home, draw and away, and Spearman rank correlation with raw >= 0.99 for each class probability",
+      "K6_ordering": "favourite identity changes in <= 2% of holdout matches; favourite accuracy change < 1 point; top-10% and top-20% confidence accuracy not lower by more than 2 points",
+      "K7_pathology": "every calibrated probability within [0.02, 0.95]; every draw probability within [0.05, 0.45]; no single probability moved by more than 0.10 in any match",
+      "accepted": "K1-K7 all pass"
+    },
+    "verdict": {
+      "MORE RESEARCH": "any reproduction or leakage gate fails (the run is invalid until fixed)",
+      "REJECT": "raw v1.2-dc does not beat the train-frequency baseline in every holdout season on log loss and Brier",
+      "CALIBRATED MODEL READY FOR SHADOW": "gates pass and the DEV-selected calibrator is not none and is accepted",
+      "RAW DIXON-COLES READY FOR SHADOW": "gates pass and the DEV selection is none, or the selected calibrator is not accepted (owner direction: no calibration is a valid winning result; the Phase 2 raw-ECE <= 0.01 condition is superseded by that direction)"
+    },
+    "fixed_bins": {
+      "ece": "10 equal-width bins per class",
+      "reliability_home_away": [
+        0,
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9,
+        1.0001
+      ],
+      "reliability_draw": [
+        0,
+        0.15,
+        0.18,
+        0.21,
+        0.24,
+        0.27,
+        0.3,
+        0.35,
+        1.0001
+      ],
+      "favourite_strength_raw": [
+        "<0.45",
+        "0.45-0.55",
+        "0.55-0.65",
+        ">=0.65"
+      ],
+      "home_team_strength": "pre-match Elo of the home team, tertiles of the DEV distribution (weak / mid / strong), as in Phases 2-3"
+    },
+    "drift": {
+      "note": "diagnostic only, never part of the verdict; no rolling or season-adaptive calibrator is built in Phase 4",
+      "statistic": "per holdout season and class, z = (mean predicted - observed) / SE with SE = sqrt(sum p(1-p)) / n; chi-square = sum of the 7 z^2 (7 df) per class",
+      "static_sufficient": "a single static calibrator (or raw, if none is selected) is judged sufficient if every class has chi-square p >= 0.05"
+    },
+    "forbidden": [
+      "any structural change (Dixon-Coles rho, team strength, home advantage)",
+      "new features, Player/Team DNA, odds, injuries, transfers",
+      "bucket-specific calibrators",
+      "rolling or season-adaptive calibration",
+      "any production change or shadow"
+    ]
+  },
+  "frozen_model": "soccer-research-bundesliga-v1.2-dc",
+  "frozen_card_sha256": "c79116e69537b4633b91dac44b8388fa510ae39cb2aa120f0835f913c5fbd3c8",
+  "data_sha256": "6bff57c0000fa1fbfdbb4686235f40a90df13b74c4dd2defb23e89e9ff05f028",
+  "script_sha256": {
+    "scripts/research/phase4-protocol.mjs": "a350982598d2bad6e7318d61418b44998e808e255151655536d8abc407d467b4",
+    "scripts/research/calibration-v12-research.mjs": "e48f5076e87b2b41fa9ea5f7bf02e5386e8839a5362c768c630a8c93db77f0d6",
+    "scripts/research/structural-core.mjs": "c6f296eb3dd397ecec366a36fc28909527d3b2dc97cc834a5987d34f5f727746",
+    "scripts/research/metrics.mjs": "dfe37abcdf40770d02aa8e0809a85efbdd8ddd4549419e741be779bab5a31536",
+    "scripts/research/model-core.mjs": "33a1b4b842dc27ec3877c64aa4debc5f810ba7b08487b0badee1616c828c2cdf"
+  },
+  "gates": {
+    "G1_frozen_reproduction": {
+      "lambdas_vs_model_core_strict_bitwise_failures": 0,
+      "probabilities_bitwise_failures": 0,
+      "raw_prediction_hash": "19b72fedee9a60268c4d554d2c8e20adefa6e311b5c73cd7b654b5ff1dfbb13b",
+      "card_prediction_hash": "19b72fedee9a60268c4d554d2c8e20adefa6e311b5c73cd7b654b5ff1dfbb13b",
+      "pass": true
+    },
+    "G2_truncation": {
+      "phase2_gate_60": {
+        "cases": 60,
+        "failures": 0
+      },
+      "expanded_300": {
+        "cases": 300,
+        "failures": 0
+      },
+      "pass": true
+    },
+    "G3_future_score_mutation": {
+      "cutoffs": 20,
+      "predictions_compared": 91623,
+      "failures": 0,
+      "pass": true
+    },
+    "G4_same_kickoff_permutation": {
+      "failures": 0,
+      "max_abs_diff": 1.7763568394002505e-15,
+      "pass": true
+    },
+    "G5_dev_only_calibration": {
+      "fit_input_seasons": [
+        "2014/15",
+        "2015/16",
+        "2016/17",
+        "2017/18",
+        "2018/19"
+      ],
+      "fit_input_rows": 1530,
+      "non_dev_outcomes_scrambled": 4626,
+      "identical_after_scramble": true,
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "selection": {
+    "fit_input_seasons": [
+      "2014/15",
+      "2015/16",
+      "2016/17",
+      "2017/18",
+      "2018/19"
+    ],
+    "fit_input_rows": 1530,
+    "loso": {
+      "none": {
+        "log_loss": 0.996006,
+        "brier": 0.594609,
+        "ece": 0.051457,
+        "per_season": [
+          {
+            "season": "2014/15",
+            "log_loss": 1.010622,
+            "brier": 0.60225,
+            "ece": 0.05849
+          },
+          {
+            "season": "2015/16",
+            "log_loss": 0.98252,
+            "brier": 0.585176,
+            "ece": 0.0503
+          },
+          {
+            "season": "2016/17",
+            "log_loss": 0.999698,
+            "brier": 0.600696,
+            "ece": 0.05002
+          },
+          {
+            "season": "2017/18",
+            "log_loss": 1.010947,
+            "brier": 0.604112,
+            "ece": 0.0507
+          },
+          {
+            "season": "2018/19",
+            "log_loss": 0.976241,
+            "brier": 0.580809,
+            "ece": 0.04778
+          }
+        ]
+      },
+      "temperature": {
+        "log_loss": 0.996243,
+        "brier": 0.594743,
+        "ece": 0.050426,
+        "per_season": [
+          {
+            "season": "2014/15",
+            "log_loss": 1.011439,
+            "brier": 0.602573,
+            "ece": 0.05497
+          },
+          {
+            "season": "2015/16",
+            "log_loss": 0.982237,
+            "brier": 0.585021,
+            "ece": 0.04831
+          },
+          {
+            "season": "2016/17",
+            "log_loss": 0.999782,
+            "brier": 0.600934,
+            "ece": 0.04996
+          },
+          {
+            "season": "2017/18",
+            "log_loss": 1.011788,
+            "brier": 0.604586,
+            "ece": 0.05422
+          },
+          {
+            "season": "2018/19",
+            "log_loss": 0.975967,
+            "brier": 0.580597,
+            "ece": 0.04467
+          }
+        ]
+      },
+      "bias": {
+        "log_loss": 0.996826,
+        "brier": 0.595269,
+        "ece": 0.047826,
+        "per_season": [
+          {
+            "season": "2014/15",
+            "log_loss": 1.010178,
+            "brier": 0.601908,
+            "ece": 0.05221
+          },
+          {
+            "season": "2015/16",
+            "log_loss": 0.98613,
+            "brier": 0.587673,
+            "ece": 0.04344
+          },
+          {
+            "season": "2016/17",
+            "log_loss": 0.998073,
+            "brier": 0.599631,
+            "ece": 0.05166
+          },
+          {
+            "season": "2017/18",
+            "log_loss": 1.011433,
+            "brier": 0.604571,
+            "ece": 0.04324
+          },
+          {
+            "season": "2018/19",
+            "log_loss": 0.978316,
+            "brier": 0.582563,
+            "ece": 0.04858
+          }
+        ]
+      },
+      "vector": {
+        "log_loss": 0.998892,
+        "brier": 0.596276,
+        "ece": 0.049615,
+        "per_season": [
+          {
+            "season": "2014/15",
+            "log_loss": 1.013934,
+            "brier": 0.603361,
+            "ece": 0.06231
+          },
+          {
+            "season": "2015/16",
+            "log_loss": 0.987724,
+            "brier": 0.588359,
+            "ece": 0.04475
+          },
+          {
+            "season": "2016/17",
+            "log_loss": 1.000118,
+            "brier": 0.6014,
+            "ece": 0.05358
+          },
+          {
+            "season": "2017/18",
+            "log_loss": 1.011304,
+            "brier": 0.604332,
+            "ece": 0.03982
+          },
+          {
+            "season": "2018/19",
+            "log_loss": 0.98138,
+            "brier": 0.58393,
+            "ece": 0.04761
+          }
+        ]
+      },
+      "matrix": {
+        "log_loss": 0.997526,
+        "brier": 0.595691,
+        "ece": 0.045901,
+        "per_season": [
+          {
+            "season": "2014/15",
+            "log_loss": 1.010657,
+            "brier": 0.601988,
+            "ece": 0.0566
+          },
+          {
+            "season": "2015/16",
+            "log_loss": 0.987023,
+            "brier": 0.588184,
+            "ece": 0.04137
+          },
+          {
+            "season": "2016/17",
+            "log_loss": 0.999177,
+            "brier": 0.600645,
+            "ece": 0.04853
+          },
+          {
+            "season": "2017/18",
+            "log_loss": 1.009228,
+            "brier": 0.603268,
+            "ece": 0.03652
+          },
+          {
+            "season": "2018/19",
+            "log_loss": 0.981546,
+            "brier": 0.584369,
+            "ece": 0.04648
+          }
+        ]
+      }
+    },
+    "tie_rule_winner": "none",
+    "secondary_guard": {},
+    "selected": "none",
+    "fitted": {
+      "none": {
+        "params": [],
+        "dev_loss": 0.99600575,
+        "iterations": 0,
+        "max_abs_gradient": 0
+      },
+      "temperature": {
+        "params": [
+          0.96289311
+        ],
+        "dev_loss": 0.99588453,
+        "iterations": 63,
+        "max_abs_gradient": 8.364587887469706e-9
+      },
+      "bias": {
+        "params": [
+          -0.05413728,
+          -0.08572857
+        ],
+        "dev_loss": 0.99539509,
+        "iterations": 62,
+        "max_abs_gradient": 1.631404473765061e-8
+      },
+      "vector": {
+        "params": [
+          0.82402242,
+          1.03492684,
+          1.16078201,
+          0.14506071,
+          0.26248508
+        ],
+        "dev_loss": 0.99500416,
+        "iterations": 3391,
+        "max_abs_gradient": 4.253416571266765e-8
+      },
+      "matrix": {
+        "params": [
+          0.8692036,
+          0.06784234,
+          -0.07808507,
+          0.35638194,
+          0.69516971,
+          0.23249657,
+          -0.22558554,
+          0.23698795,
+          0.8455885,
+          0.26831713,
+          -0.05451087
+        ],
+        "dev_loss": 0.99422762,
+        "iterations": 3819,
+        "max_abs_gradient": 3.5498079101192737e-8
+      }
+    }
+  },
+  "prediction_hashes": {
+    "raw": "19b72fedee9a60268c4d554d2c8e20adefa6e311b5c73cd7b654b5ff1dfbb13b",
+    "cal_none": "19b72fedee9a60268c4d554d2c8e20adefa6e311b5c73cd7b654b5ff1dfbb13b",
+    "cal_temperature": "ce95ebb2153732c33f77bb97dd4aae69b0c63e4206bbc99d560b8e5a677280aa",
+    "cal_bias": "aa7830869fd7c7e189173a7d628b113bbb4583c03326a53ebad82a169c8dd9e0",
+    "cal_vector": "9dffd50199006d5311c249427afd3a247f8a0b0165f6ebb7ff2847816ea78b75",
+    "cal_matrix": "74abda7706a9cf65211670619546cda85b6d155c8ec463759047447d38598776",
+    "rows": 6156
+  },
+  "holdout_metrics_computed": false,
+  "runtime_s": 85.3
+}
