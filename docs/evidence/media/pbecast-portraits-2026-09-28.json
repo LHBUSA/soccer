@@ -1,13 +1,13 @@
 {
-  "at": "2026-09-28T20:46:09.436Z",
+  "at": "2026-09-28T21:10:26.294Z",
   "matches": [
     {
       "id": "d4ad8521-0307-54bc-b612-ca070741c9ac",
       "match": "Dallas v LAFC",
       "competition": "mls",
       "visible_players": 40,
-      "real_portraits": 15,
-      "fallbacks": 25
+      "real_portraits": 20,
+      "fallbacks": 20
     },
     {
       "id": "4be85c94-7cea-5d4a-b037-99e33e9e6a83",
@@ -22,109 +22,111 @@
       "match": "San Jose v Portland",
       "competition": "mls",
       "visible_players": 40,
-      "real_portraits": 18,
-      "fallbacks": 22
+      "real_portraits": 19,
+      "fallbacks": 21
     },
     {
       "id": "e96ba5a9-11f5-5598-9ac9-395525de2034",
       "match": "LA Galaxy v Colorado",
       "competition": "mls",
       "visible_players": 40,
-      "real_portraits": 20,
-      "fallbacks": 20
+      "real_portraits": 25,
+      "fallbacks": 15
     },
     {
       "id": "4ad3c11c-0e39-555a-bfd4-ca6e98e22fb7",
       "match": "Vancouver v D.C. United",
       "competition": "mls",
       "visible_players": 38,
-      "real_portraits": 16,
-      "fallbacks": 22
+      "real_portraits": 22,
+      "fallbacks": 16
     },
     {
       "id": "3c48ff86-1a83-5a3c-b77b-d93b0bbb5be7",
       "match": "Salt Lake v New England",
       "competition": "mls",
       "visible_players": 39,
-      "real_portraits": 17,
-      "fallbacks": 22
+      "real_portraits": 22,
+      "fallbacks": 17
     },
     {
       "id": "37b98de3-6fb3-512c-9172-96b654807098",
       "match": "Nashville v Toronto",
       "competition": "mls",
       "visible_players": 40,
-      "real_portraits": 18,
-      "fallbacks": 22
+      "real_portraits": 25,
+      "fallbacks": 15
     },
     {
       "id": "8f80d473-5519-5725-85ac-e60cbf545285",
       "match": "Houston v Kansas City",
       "competition": "mls",
       "visible_players": 40,
-      "real_portraits": 14,
-      "fallbacks": 26
+      "real_portraits": 18,
+      "fallbacks": 22
     },
     {
       "id": "5737c9e0-6ae2-5335-9aab-a2f83adacd9b",
       "match": "Seattle v Minnesota",
       "competition": "mls",
       "visible_players": 40,
-      "real_portraits": 22,
-      "fallbacks": 18
+      "real_portraits": 26,
+      "fallbacks": 14
     },
     {
       "id": "c06c657e-4f81-57f8-bc34-fe1fe2f55573",
       "match": "Austin v San Diego",
       "competition": "mls",
       "visible_players": 38,
-      "real_portraits": 14,
-      "fallbacks": 24
+      "real_portraits": 20,
+      "fallbacks": 18
     },
     {
       "id": "9b7cc6a6-8330-5cf2-ab61-d80cc9bd78e6",
       "match": "CF Montréal v Cincinnati",
       "competition": "mls",
       "visible_players": 36,
-      "real_portraits": 17,
-      "fallbacks": 19
+      "real_portraits": 24,
+      "fallbacks": 12
     },
     {
       "id": "83114354-06b3-5983-b6df-151521cfa14b",
       "match": "Atlanta v NYCFC",
       "competition": "mls",
       "visible_players": 40,
-      "real_portraits": 12,
-      "fallbacks": 28
+      "real_portraits": 21,
+      "fallbacks": 19
     },
     {
       "id": "18107bdd-5c6e-5aa0-a84b-de697ef3f970",
       "match": "Charlotte v Chicago",
       "competition": "mls",
       "visible_players": 37,
-      "real_portraits": 18,
-      "fallbacks": 19
+      "real_portraits": 25,
+      "fallbacks": 12
     },
     {
       "id": "61426ae9-e82b-574a-96ae-61bfd39c845a",
       "match": "Philadelphia v Orlando",
       "competition": "mls",
       "visible_players": 40,
-      "real_portraits": 18,
-      "fallbacks": 22
+      "real_portraits": 19,
+      "fallbacks": 21
     }
   ],
   "distinct_players": 508,
-  "real": 219,
-  "silhouettes": 289,
-  "no_approved_photo": 289,
+  "real": 286,
+  "silhouettes": 222,
+  "no_approved_photo": 222,
   "api_bugs": [],
   "ui_bugs": [],
   "no_photo_reasons": {
-    "wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id": 283,
-    "wikidata_espn_fc_player_id / birth_date_contradiction": 1,
-    "wikidata_espn_fc_player_id / no_image": 4,
-    "espn_exact_provider_id / birth_date_contradiction": 1
+    "espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id": 134,
+    "espn_tsdb_wikidata_crosswalk / no_image": 39,
+    "espn_tsdb_wikidata_crosswalk / several_images": 1,
+    "espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id": 40,
+    "espn_tsdb_wikidata_crosswalk / birth_date_contradiction": 6,
+    "espn_tsdb_wikidata_crosswalk / no_day_precision_birth_date_on_wikidata": 2
   },
   "no_photo": [
     {
@@ -136,18 +138,7 @@
         "player_impact"
       ],
       "espn_id": "283864",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "logan-farrington",
-      "name": "Logan Farrington",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "348870",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "armindo-sieb",
@@ -158,7 +149,7 @@
         "player_impact"
       ],
       "espn_id": "308843",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "tyler-boyd",
@@ -169,7 +160,7 @@
         "player_impact"
       ],
       "espn_id": "179237",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "herman-johansson",
@@ -180,7 +171,7 @@
         "player_impact"
       ],
       "espn_id": "312876",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / several_images"
     },
     {
       "slug": "kaick",
@@ -191,18 +182,7 @@
         "player_impact"
       ],
       "espn_id": "380441",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "osaze-urhoghide",
-      "name": "Osaze Urhoghide",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "268731",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "joaquin-valiente",
@@ -213,7 +193,7 @@
         "player_impact"
       ],
       "espn_id": "359922",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "ryan-porteous",
@@ -224,7 +204,7 @@
         "player_impact"
       ],
       "espn_id": "239175",
-      "ledger": "rejected: wikidata_espn_fc_player_id / birth_date_contradiction"
+      "ledger": "rejected: espn_tsdb_wikidata_crosswalk / birth_date_contradiction"
     },
     {
       "slug": "sergio-vasquez",
@@ -235,7 +215,7 @@
         "player_impact"
       ],
       "espn_id": "359716",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "tommy-mihalic",
@@ -246,7 +226,7 @@
         "player_impact"
       ],
       "espn_id": "315967",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "igor-jesus-2003",
@@ -257,7 +237,7 @@
         "player_impact"
       ],
       "espn_id": "322658",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_image"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "samuel-sarver",
@@ -268,18 +248,7 @@
         "player_impact"
       ],
       "espn_id": "348652",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "patrickson-delgado",
-      "name": "Patrickson Delgado",
-      "surfaces": [
-        "feed",
-        "bench",
-        "player_impact"
-      ],
-      "espn_id": "297142",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "daniel-job",
@@ -290,7 +259,7 @@
         "player_impact"
       ],
       "espn_id": "381038",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "marius-aiyenero",
@@ -301,16 +270,7 @@
         "player_impact"
       ],
       "espn_id": "399932",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "nicholas-simmonds",
-      "name": "Nicholas Simmonds",
-      "surfaces": [
-        "bench"
-      ],
-      "espn_id": "365850",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "clay-holstad",
@@ -319,7 +279,7 @@
         "bench"
       ],
       "espn_id": "279821",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "michael-collodi",
@@ -328,7 +288,7 @@
         "bench"
       ],
       "espn_id": "379566",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "caleb-swann",
@@ -337,17 +297,7 @@
         "bench"
       ],
       "espn_id": "417400",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "yevhen-cheberko",
-      "name": "Yevhen Cheberko",
-      "surfaces": [
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "264469",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "kenny-nielsen",
@@ -356,7 +306,7 @@
         "bench"
       ],
       "espn_id": "319023",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "charlie-kosakoff",
@@ -365,7 +315,7 @@
         "bench"
       ],
       "espn_id": "401830",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "cabral-carter",
@@ -374,7 +324,7 @@
         "bench"
       ],
       "espn_id": "337443",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "christian-diaz",
@@ -383,18 +333,7 @@
         "bench"
       ],
       "espn_id": "371457",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "kristoffer-velde",
-      "name": "Kristoffer Velde",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "255418",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "vincent-janssen",
@@ -405,7 +344,7 @@
         "player_impact"
       ],
       "espn_id": "188402",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "david-da-costa",
@@ -416,7 +355,7 @@
         "player_impact"
       ],
       "espn_id": "303579",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "beau-leroux",
@@ -427,7 +366,7 @@
         "player_impact"
       ],
       "espn_id": "382638",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "reid-roberts",
@@ -438,7 +377,7 @@
         "player_impact"
       ],
       "espn_id": "398860",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "vitor-costa",
@@ -449,7 +388,7 @@
         "player_impact"
       ],
       "espn_id": "223355",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_day_precision_birth_date_on_wikidata"
     },
     {
       "slug": "ian-smith",
@@ -460,7 +399,7 @@
         "player_impact"
       ],
       "espn_id": "29447",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "jimer-fory",
@@ -471,7 +410,7 @@
         "player_impact"
       ],
       "espn_id": "301463",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "eric-izoita",
@@ -482,7 +421,7 @@
         "player_impact"
       ],
       "espn_id": "386932",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "antony-2001",
@@ -493,7 +432,7 @@
         "player_impact"
       ],
       "espn_id": "315294",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "nick-fernandez",
@@ -504,7 +443,7 @@
         "player_impact"
       ],
       "espn_id": "400722",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "luka-jovanovic",
@@ -515,7 +454,7 @@
         "player_impact"
       ],
       "espn_id": "346468",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "jamar-ricketts",
@@ -526,7 +465,7 @@
         "player_impact"
       ],
       "espn_id": "380800",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "gage-guerra",
@@ -537,7 +476,7 @@
         "player_impact"
       ],
       "espn_id": "391712",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "alexander-aravena",
@@ -548,7 +487,7 @@
         "player_impact"
       ],
       "espn_id": "297127",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "max-floriani",
@@ -557,7 +496,7 @@
         "bench"
       ],
       "espn_id": "331616",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "jonathan-gonzalez",
@@ -566,7 +505,7 @@
         "bench"
       ],
       "espn_id": "66955",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "francesco-montali",
@@ -575,7 +514,7 @@
         "bench"
       ],
       "espn_id": "279112",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "jack-jasinski",
@@ -584,7 +523,7 @@
         "bench"
       ],
       "espn_id": "304134",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "alex-bonetig",
@@ -593,7 +532,7 @@
         "bench"
       ],
       "espn_id": "340652",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "sawyer-jura",
@@ -602,7 +541,7 @@
         "bench"
       ],
       "espn_id": "371458",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "joao-ortiz",
@@ -611,7 +550,7 @@
         "bench"
       ],
       "espn_id": "156564",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "donavan-phillip",
@@ -622,7 +561,7 @@
         "player_impact"
       ],
       "espn_id": "385082",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "harbor-miller",
@@ -633,18 +572,7 @@
         "player_impact"
       ],
       "espn_id": "366047",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "morgan-whittaker",
-      "name": "Morgan Whittaker",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "292002",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "calegari",
@@ -655,18 +583,7 @@
         "player_impact"
       ],
       "espn_id": "290135",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "hamzat-ojediran",
-      "name": "Hamzat Ojediran",
-      "surfaces": [
-        "feed",
-        "bench",
-        "player_impact"
-      ],
-      "espn_id": "298078",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "lucas-sanabria",
@@ -677,18 +594,7 @@
         "player_impact"
       ],
       "espn_id": "230580",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "sergi-roberto",
-      "name": "Sergi Roberto",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "150225",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "alex-harris",
@@ -699,18 +605,7 @@
         "player_impact"
       ],
       "espn_id": "179245",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "jackson-travis",
-      "name": "Jackson Travis",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "380895",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "novak-micovic",
@@ -719,7 +614,7 @@
         "bench"
       ],
       "espn_id": "322058",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "troy-elgersma",
@@ -728,7 +623,7 @@
         "bench"
       ],
       "espn_id": "421655",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "julian-aude",
@@ -737,16 +632,7 @@
         "bench"
       ],
       "espn_id": "297050",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "elijah-wynder",
-      "name": "Elijah Wynder",
-      "surfaces": [
-        "bench"
-      ],
-      "espn_id": "287568",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "carlos-garces",
@@ -755,7 +641,7 @@
         "bench"
       ],
       "espn_id": "133963",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "rejected: espn_tsdb_wikidata_crosswalk / birth_date_contradiction"
     },
     {
       "slug": "nico-hansen",
@@ -765,7 +651,7 @@
         "player_impact"
       ],
       "espn_id": "293342",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "loic-williams",
@@ -775,7 +661,7 @@
         "player_impact"
       ],
       "espn_id": "324001",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "chris-aquino",
@@ -784,7 +670,7 @@
         "bench"
       ],
       "espn_id": "371456",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "kimani-stewart-baynes",
@@ -793,7 +679,7 @@
         "bench"
       ],
       "espn_id": "380601",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "adam-beaudry",
@@ -802,7 +688,7 @@
         "bench"
       ],
       "espn_id": "360855",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "jonathan-de-la-fuente",
@@ -811,7 +697,7 @@
         "bench"
       ],
       "espn_id": "422285",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "kimito-nono",
@@ -822,29 +708,7 @@
         "player_impact"
       ],
       "espn_id": "379749",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "kye-rowles",
-      "name": "Kye Rowles",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "228416",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "hosei-kijima",
-      "name": "Hosei Kijima",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "308772",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "tate-johnson",
@@ -855,7 +719,7 @@
         "player_impact"
       ],
       "espn_id": "338836",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "joao-peglow",
@@ -866,7 +730,7 @@
         "player_impact"
       ],
       "espn_id": "297079",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "bruno-caicedo",
@@ -877,7 +741,7 @@
         "player_impact"
       ],
       "espn_id": "365154",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "nikola-markovic",
@@ -888,18 +752,7 @@
         "player_impact"
       ],
       "espn_id": "418069",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "emmanuel-sabbi",
-      "name": "Emmanuel Sabbi",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "256209",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "keisuke-kurokawa",
@@ -910,29 +763,7 @@
         "player_impact"
       ],
       "espn_id": "288348",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "andre-dozzell",
-      "name": "Andre Dozzell",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "227789",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "silvan-hefti",
-      "name": "Silvan Hefti",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "227891",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "sam-adekugbe",
@@ -943,7 +774,7 @@
         "player_impact"
       ],
       "espn_id": "193452",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "rui-modesto",
@@ -954,7 +785,7 @@
         "player_impact"
       ],
       "espn_id": "322100",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "johnny-selemani",
@@ -965,7 +796,7 @@
         "player_impact"
       ],
       "espn_id": "403773",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "conner-antley",
@@ -976,18 +807,7 @@
         "player_impact"
       ],
       "espn_id": "273974",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "mathias-laborda",
-      "name": "Mathías Laborda",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "286523",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "valter-sedin",
@@ -996,7 +816,7 @@
         "bench"
       ],
       "espn_id": "363704",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "kwasi-poku",
@@ -1005,7 +825,7 @@
         "bench"
       ],
       "espn_id": "328734",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "nikola-djordjevic",
@@ -1014,7 +834,7 @@
         "bench"
       ],
       "espn_id": "391991",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "sebastian-ramirez",
@@ -1023,7 +843,7 @@
         "bench"
       ],
       "espn_id": "384244",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "grant-leveille",
@@ -1032,7 +852,7 @@
         "bench"
       ],
       "espn_id": "410619",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "gavin-turner",
@@ -1041,7 +861,7 @@
         "bench"
       ],
       "espn_id": "336970",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "aiden-hezarkhani",
@@ -1052,7 +872,7 @@
         "player_impact"
       ],
       "espn_id": "399190",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "joshua-wynder",
@@ -1063,7 +883,7 @@
         "player_impact"
       ],
       "espn_id": "318374",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "sergi-solans",
@@ -1074,40 +894,7 @@
         "player_impact"
       ],
       "espn_id": "418187",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "morgan-guilavogui",
-      "name": "Morgan Guilavogui",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "305777",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "dominik-marczuk",
-      "name": "Dominik Marczuk",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "364658",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "luca-langoni",
-      "name": "Luca Langoni",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "338883",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "cody-baker",
@@ -1118,18 +905,7 @@
         "player_impact"
       ],
       "espn_id": "318520",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "wilson-harris",
-      "name": "Wilson Harris",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "272161",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "javaun-mussenden",
@@ -1140,7 +916,7 @@
         "player_impact"
       ],
       "espn_id": "419597",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "rafael",
@@ -1151,7 +927,7 @@
         "player_impact"
       ],
       "espn_id": "134307",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "colin-guske",
@@ -1162,7 +938,7 @@
         "player_impact"
       ],
       "espn_id": "388445",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "ethan-kohler",
@@ -1173,7 +949,7 @@
         "player_impact"
       ],
       "espn_id": "360133",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "lineker-rodrigues",
@@ -1184,7 +960,7 @@
         "player_impact"
       ],
       "espn_id": "401803",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "marcos-zambrano-delgado",
@@ -1195,7 +971,7 @@
         "player_impact"
       ],
       "espn_id": "404655",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "jason-shokalook",
@@ -1206,7 +982,7 @@
         "player_impact"
       ],
       "espn_id": "314665",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "kobi-henry",
@@ -1216,16 +992,7 @@
         "player_impact"
       ],
       "espn_id": "304126",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "emeka-eneli",
-      "name": "Emeka Eneli",
-      "surfaces": [
-        "bench"
-      ],
-      "espn_id": "296109",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "liam-o-gara",
@@ -1234,7 +1001,7 @@
         "bench"
       ],
       "espn_id": "377091",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "max-kerkvliet",
@@ -1243,7 +1010,7 @@
         "bench"
       ],
       "espn_id": "400330",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "mamadou-fofana",
@@ -1253,7 +1020,7 @@
         "player_impact"
       ],
       "espn_id": "164551",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "tylon-smith",
@@ -1262,7 +1029,7 @@
         "bench"
       ],
       "espn_id": "381619",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "makai-wells",
@@ -1271,18 +1038,7 @@
         "bench"
       ],
       "espn_id": "412089",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "sam-surridge",
-      "name": "Sam Surridge",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "227627",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "elias-saad",
@@ -1293,7 +1049,7 @@
         "player_impact"
       ],
       "espn_id": "323950",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "jeisson-palacios",
@@ -1304,18 +1060,7 @@
         "player_impact"
       ],
       "espn_id": "167061",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "edvard-tagseth",
-      "name": "Edvard Tagseth",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "290109",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "theo-corbeanu",
@@ -1326,18 +1071,7 @@
         "player_impact"
       ],
       "espn_id": "290190",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_image"
-    },
-    {
-      "slug": "josh-sargent",
-      "name": "Josh Sargent",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "256613",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "alonso-coello",
@@ -1348,7 +1082,7 @@
         "player_impact"
       ],
       "espn_id": "359272",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "jackson-gilman",
@@ -1359,7 +1093,7 @@
         "player_impact"
       ],
       "espn_id": "353137",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "matheus-pereira",
@@ -1370,18 +1104,7 @@
         "player_impact"
       ],
       "espn_id": "301819",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "kobe-franklin",
-      "name": "Kobe Franklin",
-      "surfaces": [
-        "feed",
-        "bench",
-        "player_impact"
-      ],
-      "espn_id": "298072",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "nickseon-gomis",
@@ -1392,7 +1115,7 @@
         "player_impact"
       ],
       "espn_id": "337361",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "alejandro-piedrahita",
@@ -1403,7 +1126,7 @@
         "player_impact"
       ],
       "espn_id": "301726",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "emilio-aristizabal",
@@ -1414,18 +1137,7 @@
         "player_impact"
       ],
       "espn_id": "366744",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "matthew-corcoran",
-      "name": "Matthew Corcoran",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "318341",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "maxwell-woledzi",
@@ -1435,7 +1147,7 @@
         "player_impact"
       ],
       "espn_id": "290031",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "owen-presthus",
@@ -1444,7 +1156,7 @@
         "bench"
       ],
       "espn_id": "391430",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "william-mackay",
@@ -1453,7 +1165,7 @@
         "bench"
       ],
       "espn_id": "399973",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "jordan-knight",
@@ -1462,17 +1174,7 @@
         "bench"
       ],
       "espn_id": "388342",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "luka-gavran",
-      "name": "Luka Gavran",
-      "surfaces": [
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "294040",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "zane-monlouis",
@@ -1482,7 +1184,7 @@
         "player_impact"
       ],
       "espn_id": "310293",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "lazar-stefanovic",
@@ -1491,16 +1193,7 @@
         "bench"
       ],
       "espn_id": "364702",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "jules-anthony-vilsaint",
-      "name": "Jules-Anthony Vilsaint",
-      "surfaces": [
-        "bench"
-      ],
-      "espn_id": "323130",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "guilherme-augusto",
@@ -1511,18 +1204,7 @@
         "player_impact"
       ],
       "espn_id": "233578",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "lawrence-ennali",
-      "name": "Lawrence Ennali",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "323199",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "andre-luiz",
@@ -1533,7 +1215,7 @@
         "player_impact"
       ],
       "espn_id": "324574",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "stephen-afrifa",
@@ -1544,7 +1226,7 @@
         "player_impact"
       ],
       "espn_id": "362459",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "agustin-bouzat",
@@ -1555,18 +1237,7 @@
         "player_impact"
       ],
       "espn_id": "233725",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "mateusz-bogusz",
-      "name": "Mateusz Bogusz",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "287841",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "taylor-calheira",
@@ -1577,7 +1248,7 @@
         "player_impact"
       ],
       "espn_id": "381688",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "felipe-andrade",
@@ -1588,7 +1259,7 @@
         "player_impact"
       ],
       "espn_id": "315455",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "lasse-berg-johnsen",
@@ -1599,7 +1270,7 @@
         "player_impact"
       ],
       "espn_id": "286434",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "ruben-ramos",
@@ -1610,7 +1281,7 @@
         "player_impact"
       ],
       "espn_id": "321370",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "lucas-halter",
@@ -1621,7 +1292,7 @@
         "player_impact"
       ],
       "espn_id": "266281",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_image"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "ibrahim-aliyu",
@@ -1632,18 +1303,7 @@
         "player_impact"
       ],
       "espn_id": "287444",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "lyle-foster",
-      "name": "Lyle Foster",
-      "surfaces": [
-        "feed",
-        "bench",
-        "player_impact"
-      ],
-      "espn_id": "264751",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "matthew-arana",
@@ -1654,7 +1314,7 @@
         "player_impact"
       ],
       "espn_id": "419255",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "marcelo-saracchi",
@@ -1665,7 +1325,7 @@
         "player_impact"
       ],
       "espn_id": "219270",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "jacob-bartlett",
@@ -1676,7 +1336,7 @@
         "player_impact"
       ],
       "espn_id": "395357",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "seymour-reid",
@@ -1687,7 +1347,7 @@
         "player_impact"
       ],
       "espn_id": "402322",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "nicholas-markanich",
@@ -1696,7 +1356,7 @@
         "bench"
       ],
       "espn_id": "333738",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "blake-gillingham",
@@ -1705,16 +1365,7 @@
         "bench"
       ],
       "espn_id": "331136",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "duane-holmes",
-      "name": "Duane Holmes",
-      "surfaces": [
-        "bench"
-      ],
-      "espn_id": "182070",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "wyatt-meyer",
@@ -1724,7 +1375,7 @@
         "player_impact"
       ],
       "espn_id": "389905",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "kwaku-agyabeng",
@@ -1734,7 +1385,7 @@
         "player_impact"
       ],
       "espn_id": "417725",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "jansen-miller",
@@ -1744,7 +1395,7 @@
         "player_impact"
       ],
       "espn_id": "286804",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "emir-karic",
@@ -1754,7 +1405,7 @@
         "player_impact"
       ],
       "espn_id": "274906",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "ian-james",
@@ -1763,7 +1414,7 @@
         "bench"
       ],
       "espn_id": "217816",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "shapi-suleymanov",
@@ -1772,18 +1423,7 @@
         "bench"
       ],
       "espn_id": "259070",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "kelvin-yeboah",
-      "name": "Kelvin Yeboah",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "289941",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "jefferson-diaz",
@@ -1794,7 +1434,7 @@
         "player_impact"
       ],
       "espn_id": "358517",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "marcus-caldeira",
@@ -1805,18 +1445,7 @@
         "player_impact"
       ],
       "espn_id": "324297",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "tomas-chancalay",
-      "name": "Tomás Chancalay",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "261168",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "owen-gene",
@@ -1827,7 +1456,7 @@
         "player_impact"
       ],
       "espn_id": "327355",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "sebastian-gomez",
@@ -1838,7 +1467,7 @@
         "player_impact"
       ],
       "espn_id": "399948",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "caden-clark",
@@ -1849,7 +1478,7 @@
         "player_impact"
       ],
       "espn_id": "302991",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "mauricio-gonzalez",
@@ -1860,7 +1489,7 @@
         "player_impact"
       ],
       "espn_id": "353246",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "kalani-kossa-rienzi",
@@ -1871,7 +1500,7 @@
         "player_impact"
       ],
       "espn_id": "319045",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "maurice-malone",
@@ -1882,18 +1511,7 @@
         "player_impact"
       ],
       "espn_id": "265927",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "stuart-hawkins",
-      "name": "Stuart Hawkins",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "371080",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "snyder-brunell",
@@ -1904,16 +1522,7 @@
         "player_impact"
       ],
       "espn_id": "384356",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "peter-kingston",
-      "name": "Peter Kingston",
-      "surfaces": [
-        "bench"
-      ],
-      "espn_id": "272039",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "antino-lopez",
@@ -1922,7 +1531,7 @@
         "bench"
       ],
       "espn_id": "299188",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "morris-duggan",
@@ -1932,7 +1541,7 @@
         "player_impact"
       ],
       "espn_id": "337922",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "nicolas-romero",
@@ -1941,7 +1550,7 @@
         "bench"
       ],
       "espn_id": "313955",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "rejected: espn_tsdb_wikidata_crosswalk / birth_date_contradiction"
     },
     {
       "slug": "cherrion-valerius",
@@ -1950,7 +1559,7 @@
         "bench"
       ],
       "espn_id": "379184",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "kayne-rizvanovich",
@@ -1959,29 +1568,7 @@
         "bench"
       ],
       "espn_id": "399962",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "oleksandr-svatok",
-      "name": "Oleksandr Svatok",
-      "surfaces": [
-        "feed",
-        "bench",
-        "player_impact"
-      ],
-      "espn_id": "196666",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "cedric-bakambu",
-      "name": "Cédric Bakambu",
-      "surfaces": [
-        "feed",
-        "bench",
-        "player_impact"
-      ],
-      "espn_id": "147193",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "david-vazquez",
@@ -1992,29 +1579,7 @@
         "player_impact"
       ],
       "espn_id": "365854",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "anders-dreyer",
-      "name": "Anders Dreyer",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "250454",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "marcus-ingvartsen",
-      "name": "Marcus Ingvartsen",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "186324",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "jorge-alastuey",
@@ -2025,18 +1590,7 @@
         "player_impact"
       ],
       "espn_id": "374611",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "besard-sabovic",
-      "name": "Besard Sabovic",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "225834",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "ervin-torres",
@@ -2047,7 +1601,7 @@
         "player_impact"
       ],
       "espn_id": "381219",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "oscar-verhoeven",
@@ -2058,7 +1612,7 @@
         "player_impact"
       ],
       "espn_id": "365859",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "alejandro-alvarado-jr",
@@ -2069,7 +1623,7 @@
         "player_impact"
       ],
       "espn_id": "303619",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "kieran-sargeant",
@@ -2080,7 +1634,7 @@
         "player_impact"
       ],
       "espn_id": "380677",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "rejected: espn_tsdb_wikidata_crosswalk / birth_date_contradiction"
     },
     {
       "slug": "bryan-zamble",
@@ -2091,7 +1645,7 @@
         "player_impact"
       ],
       "espn_id": "419201",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "patrick-cayelli",
@@ -2100,7 +1654,7 @@
         "bench"
       ],
       "espn_id": "324274",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "chris-applewhite",
@@ -2109,7 +1663,7 @@
         "bench"
       ],
       "espn_id": "398878",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "micah-burton",
@@ -2118,7 +1672,7 @@
         "bench"
       ],
       "espn_id": "365828",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "mateja-djordjevic",
@@ -2127,7 +1681,7 @@
         "bench"
       ],
       "espn_id": "322966",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "manu-duah",
@@ -2137,7 +1691,7 @@
         "player_impact"
       ],
       "espn_id": "400713",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "ian-pilcher",
@@ -2147,17 +1701,7 @@
         "player_impact"
       ],
       "espn_id": "399756",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "jeppe-tverskov",
-      "name": "Jeppe Tverskov",
-      "surfaces": [
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "214371",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "duran-ferree",
@@ -2167,7 +1711,7 @@
         "player_impact"
       ],
       "espn_id": "336963",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "pedro-soma",
@@ -2176,7 +1720,7 @@
         "bench"
       ],
       "espn_id": "371488",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "marcus-ryu-alstrup",
@@ -2185,7 +1729,7 @@
         "bench"
       ],
       "espn_id": "304149",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "osvald-soe",
@@ -2194,7 +1738,7 @@
         "bench"
       ],
       "espn_id": "418058",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "alex-mighten",
@@ -2203,40 +1747,7 @@
         "bench"
       ],
       "espn_id": "291999",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "brayan-ceballos",
-      "name": "Brayan Ceballos",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "322977",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "victor-loturi",
-      "name": "Victor Loturi",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "343641",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "gerardo-valenzuela",
-      "name": "Gerardo Valenzuela",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "362895",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "daniel-rios",
@@ -2247,7 +1758,7 @@
         "player_impact"
       ],
       "espn_id": "351302",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "rejected: espn_tsdb_wikidata_crosswalk / birth_date_contradiction"
     },
     {
       "slug": "matthew-longstaff",
@@ -2258,7 +1769,7 @@
         "player_impact"
       ],
       "espn_id": "279758",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_image"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "prince-owusu",
@@ -2269,18 +1780,7 @@
         "player_impact"
       ],
       "espn_id": "275798",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "ayoub-jabbari",
-      "name": "Ayoub Jabbari",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "305664",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "bryan-ramirez",
@@ -2291,29 +1791,7 @@
         "player_impact"
       ],
       "espn_id": "236049",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "dawid-bugaj",
-      "name": "Dawid Bugaj",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "364675",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "kenji-mboma-dem",
-      "name": "Kenji Mboma Dem",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "388854",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "david-doudera",
@@ -2324,7 +1802,7 @@
         "player_impact"
       ],
       "espn_id": "343937",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "kyle-smith",
@@ -2335,7 +1813,7 @@
         "player_impact"
       ],
       "espn_id": "236641",
-      "ledger": "rejected: espn_exact_provider_id / birth_date_contradiction"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "samuel-gidi",
@@ -2346,7 +1824,7 @@
         "player_impact"
       ],
       "espn_id": "363908",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "ivan-losenko",
@@ -2355,16 +1833,7 @@
         "bench"
       ],
       "espn_id": "370126",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "thomas-gillier",
-      "name": "Thomas Gillier",
-      "surfaces": [
-        "bench"
-      ],
-      "espn_id": "318238",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "emil-gazdov",
@@ -2373,7 +1842,7 @@
         "bench"
       ],
       "espn_id": "342164",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "felix-samson",
@@ -2382,7 +1851,7 @@
         "bench"
       ],
       "espn_id": "416550",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "stefan-chirila",
@@ -2391,7 +1860,7 @@
         "bench"
       ],
       "espn_id": "398300",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "julian-malatini",
@@ -2400,18 +1869,7 @@
         "bench"
       ],
       "espn_id": "309487",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "matt-edwards",
-      "name": "Matt Edwards",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "138636",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "giuliano-galoppo",
@@ -2422,18 +1880,7 @@
         "player_impact"
       ],
       "espn_id": "270889",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "enea-mihaj",
-      "name": "Enea Mihaj",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "243195",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "tomas-jacob",
@@ -2444,18 +1891,7 @@
         "player_impact"
       ],
       "espn_id": "330082",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "benie-traore",
-      "name": "Bénie Traoré",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "312850",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "nicolas-fernandez",
@@ -2466,18 +1902,7 @@
         "player_impact"
       ],
       "espn_id": "108107",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "jonathan-shore",
-      "name": "Jonathan Shore",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "358680",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "mauricio-amaro",
@@ -2488,7 +1913,7 @@
         "player_impact"
       ],
       "espn_id": "359927",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "luke-brennan",
@@ -2499,7 +1924,7 @@
         "player_impact"
       ],
       "espn_id": "308892",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "nico-cavallo",
@@ -2510,7 +1935,7 @@
         "player_impact"
       ],
       "espn_id": "400718",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "daniel-chica",
@@ -2521,18 +1946,7 @@
         "player_impact"
       ],
       "espn_id": "360086",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "agustin-ojeda",
-      "name": "Agustin Ojeda",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "337149",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "luighi-hanri",
@@ -2543,7 +1957,7 @@
         "player_impact"
       ],
       "espn_id": "376480",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "cooper-sanchez",
@@ -2554,7 +1968,7 @@
         "player_impact"
       ],
       "espn_id": "402315",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "tristan-muyumba",
@@ -2565,7 +1979,7 @@
         "player_impact"
       ],
       "espn_id": "255802",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "steven-alzate",
@@ -2576,7 +1990,7 @@
         "player_impact"
       ],
       "espn_id": "243384",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "raul-gustavo",
@@ -2587,7 +2001,7 @@
         "player_impact"
       ],
       "espn_id": "276051",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "elias-baez",
@@ -2597,7 +2011,7 @@
         "player_impact"
       ],
       "espn_id": "361498",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "lucas-hoyos",
@@ -2607,7 +2021,7 @@
         "player_impact"
       ],
       "espn_id": "109193",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "rejected: espn_tsdb_wikidata_crosswalk / birth_date_contradiction"
     },
     {
       "slug": "adrian-gill",
@@ -2616,16 +2030,7 @@
         "bench"
       ],
       "espn_id": "371431",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "jayden-hibbert",
-      "name": "Jayden Hibbert",
-      "surfaces": [
-        "bench"
-      ],
-      "espn_id": "385044",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "will-reilly",
@@ -2634,26 +2039,7 @@
         "bench"
       ],
       "espn_id": "290024",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "cayman-togashi",
-      "name": "Cayman Togashi",
-      "surfaces": [
-        "bench"
-      ],
-      "espn_id": "235093",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "hannes-wolf",
-      "name": "Hannes Wolf",
-      "surfaces": [
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "250852",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "max-murray",
@@ -2662,7 +2048,7 @@
         "bench"
       ],
       "espn_id": "328865",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "kevin-pierre",
@@ -2671,16 +2057,7 @@
         "bench"
       ],
       "espn_id": "419228",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "malachi-jones",
-      "name": "Malachi Jones",
-      "surfaces": [
-        "bench"
-      ],
-      "espn_id": "379908",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "cooper-flax",
@@ -2689,18 +2066,7 @@
         "bench"
       ],
       "espn_id": "301472",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "harry-toffolo",
-      "name": "Harry Toffolo",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "172833",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "johan-gomez",
@@ -2711,40 +2077,7 @@
         "player_impact"
       ],
       "espn_id": "364592",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "djibril-diani",
-      "name": "Djibril Diani",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "282755",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "philip-zinckernagel",
-      "name": "Philip Zinckernagel",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "186466",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "tyger-smalls",
-      "name": "Tyger Smalls",
-      "surfaces": [
-        "feed",
-        "bench",
-        "player_impact"
-      ],
-      "espn_id": "383890",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "archie-goodwin",
@@ -2755,18 +2088,7 @@
         "player_impact"
       ],
       "espn_id": "314343",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "david-schnegg",
-      "name": "David Schnegg",
-      "surfaces": [
-        "feed",
-        "bench",
-        "player_impact"
-      ],
-      "espn_id": "271242",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "pep-biel",
@@ -2777,7 +2099,7 @@
         "player_impact"
       ],
       "espn_id": "268604",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "leonardo-barroso",
@@ -2788,7 +2110,7 @@
         "player_impact"
       ],
       "espn_id": "399516",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "david-poreba",
@@ -2799,7 +2121,7 @@
         "player_impact"
       ],
       "espn_id": "362678",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "mbekezeli-mbokazi",
@@ -2810,7 +2132,7 @@
         "player_impact"
       ],
       "espn_id": "400594",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "will-cleary",
@@ -2821,18 +2143,7 @@
         "player_impact"
       ],
       "espn_id": "419194",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "tim-ream",
-      "name": "Tim Ream",
-      "surfaces": [
-        "feed",
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "146290",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "morrison-agyemang",
@@ -2841,7 +2152,7 @@
         "bench"
       ],
       "espn_id": "419242",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "baye-coulibaly",
@@ -2850,7 +2161,7 @@
         "bench"
       ],
       "espn_id": "372070",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "d-avilla-dje-tah",
@@ -2860,17 +2171,7 @@
         "player_impact"
       ],
       "espn_id": "335605",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "josh-cohen",
-      "name": "Josh Cohen",
-      "surfaces": [
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "254291",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "oscar-pineda",
@@ -2879,7 +2180,7 @@
         "bench"
       ],
       "espn_id": "128041",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "dean-boltz",
@@ -2888,7 +2189,7 @@
         "bench"
       ],
       "espn_id": "400475",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "bernardo-rhein-goncalves",
@@ -2899,7 +2200,7 @@
         "player_impact"
       ],
       "espn_id": "408267",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "bruno-damiani",
@@ -2910,7 +2211,7 @@
         "player_impact"
       ],
       "espn_id": "322680",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "jovan-lukic",
@@ -2921,7 +2222,7 @@
         "player_impact"
       ],
       "espn_id": "322063",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "iago-teodoro",
@@ -2932,7 +2233,7 @@
         "player_impact"
       ],
       "espn_id": "340588",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "joran-gerbet",
@@ -2943,7 +2244,7 @@
         "player_impact"
       ],
       "espn_id": "390621",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "harvey-sarajian",
@@ -2954,7 +2255,7 @@
         "player_impact"
       ],
       "espn_id": "418358",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "vinicius-nogueira",
@@ -2965,7 +2266,7 @@
         "player_impact"
       ],
       "espn_id": "357210",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "zakaria-taifi",
@@ -2976,7 +2277,7 @@
         "player_impact"
       ],
       "espn_id": "401054",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "luis-otavio",
@@ -2987,7 +2288,7 @@
         "player_impact"
       ],
       "espn_id": "382896",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "japhet-sery",
@@ -2998,7 +2299,7 @@
         "player_impact"
       ],
       "espn_id": "288688",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "ezekiel-alladoh",
@@ -3009,7 +2310,7 @@
         "player_impact"
       ],
       "espn_id": "399426",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "tiago",
@@ -3020,7 +2321,7 @@
         "player_impact"
       ],
       "espn_id": "387395",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "jordan-griffin",
@@ -3031,17 +2332,7 @@
         "player_impact"
       ],
       "espn_id": "403770",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
-    },
-    {
-      "slug": "andrew-rick",
-      "name": "Andrew Rick",
-      "surfaces": [
-        "starting_xi",
-        "player_impact"
-      ],
-      "espn_id": "365853",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "rafael-uzcategui",
@@ -3050,7 +2341,7 @@
         "bench"
       ],
       "espn_id": "362911",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / tsdb_record_has_no_wikidata_id"
     },
     {
       "slug": "finn-sundstrom",
@@ -3059,7 +2350,7 @@
         "bench"
       ],
       "espn_id": "384323",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "geiner-martinez",
@@ -3068,7 +2359,7 @@
         "bench"
       ],
       "espn_id": "418595",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "adrian-marin",
@@ -3077,7 +2368,7 @@
         "bench"
       ],
       "espn_id": "210228",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_day_precision_birth_date_on_wikidata"
     },
     {
       "slug": "gustavo-caraballo",
@@ -3086,7 +2377,7 @@
         "bench"
       ],
       "espn_id": "356098",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "nolan-miller",
@@ -3095,7 +2386,7 @@
         "bench"
       ],
       "espn_id": "349254",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     },
     {
       "slug": "javier-otero",
@@ -3104,7 +2395,7 @@
         "bench"
       ],
       "espn_id": "316317",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_image"
     },
     {
       "slug": "justin-hylton",
@@ -3113,7 +2404,7 @@
         "bench"
       ],
       "espn_id": "399945",
-      "ledger": "not_found: wikidata_espn_fc_player_id / no_wikidata_item_for_espn_id"
+      "ledger": "not_found: espn_tsdb_wikidata_crosswalk / no_tsdb_record_with_exact_espn_id"
     }
   ]
 }

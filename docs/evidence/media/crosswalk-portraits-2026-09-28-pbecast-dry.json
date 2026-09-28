@@ -1,0 +1,34 @@
+{
+  "version": "media-crosswalk/1.0.0",
+  "started_at": "2026-09-28T20:47:39.541Z",
+  "dry": true,
+  "scope": "pbecast",
+  "reasons": {
+    "no_tsdb_record_with_exact_espn_id": 6,
+    "tsdb_record_has_no_wikidata_id": 1,
+    "wikidata:no_image": 2,
+    "rights:approved": 3
+  },
+  "matched": [
+    {
+      "player": "Logan Farrington",
+      "slug": "logan-farrington",
+      "qid": "Q124636006",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Morgan Whittaker",
+      "slug": "morgan-whittaker",
+      "qid": "Q66448895",
+      "license": "CC0"
+    },
+    {
+      "player": "Nicholas Simmonds",
+      "slug": "nicholas-simmonds",
+      "qid": "Q139469420",
+      "license": "CC BY-SA 4.0"
+    }
+  ],
+  "cached": 0,
+  "finished_at": "2026-09-28T20:48:24.348Z"
+}
