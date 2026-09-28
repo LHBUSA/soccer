@@ -19,9 +19,9 @@ evidence are the source of truth; nothing here comes only from chat memory.
 
 | Worker | Live version | Rollback |
 |---|---|---|
-| soccer-api | `e8303d82` (1.4.0 + news image subject) | `a12b822d` |
+| soccer-api | `c266dbd7` (article entity media, hero, related) | `e8303d82` |
 | soccer-ingest | `533fb55e` (1.3.0, shadow Bundesliga enrichment + hardening) | `dd868f6f` (same cron) |
-| soccer-news | `a04b2183` | `5c03ee80` |
+| soccer-news | `19925642` (1.1.0, world-class desk REQUIRED, fail closed; NO ANTHROPIC_API_KEY yet = new stories HOLD) | `a04b2183` |
 
 Rollback: `cd workers/<worker> && npx wrangler versions deploy <rollback>@100% --yes`. Web rollback: Vercel instant rollback to the previous production deployment.
 
@@ -83,6 +83,13 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
 - Player DNA V2 (season switcher, signature, grouped percentiles, splits); `/players` directory (per-90 leaders only inside one competition); `/pbecast` hub + `/pbecast/:id` (live / replay / pregame; cast pages canonicalise to `/matches/:id`); Player DNA drawer on player chips and directory cards; homepage PBEcast live rail.
 - Fixed: `/site.webmanifest` had answered 404 HTML since Stage A (middleware file guard capped extensions at 5 chars).
 - **Frontend V3 product pass (2026-09-28, main f38c7e6, bundle index-CIqPeJbJ.js)**: house score ticker in the shell (no native scrollbar; marquee on wide hover screens, swipe on touch); homepage hierarchy (PBECAST primary, featured intelligence, news desk with deterministic `selectHomepageLead`, leagues, per-competition Player DNA leaders); player hero with large portrait + percentile radar; team pages with squad portrait cards; key players on match / PBEcast / home; drawer with this match's sourced line + recent matches; `/players` team filter. soccer-api `e8303d82` (rb `a12b822d`): news card image prefers the headline's subject. Production QA 224/224 (28 routes x 8 widths incl. clipped-content + ticker checks). Portraits: 597 of 2,157 directory players (27.7%). Crest audit (docs/evidence/media/crest-audit-2026-09-28.md): 95 teams, 3 approved, 4 held by owner decision, 15 no free logo, 73 identity not proven.
+
+## Newsroom (2026-09-28, house standard)
+
+- soccer-news 1.1.0: detection -> frozen packet -> deterministic draft (evidence only) -> desk (`workers/soccer-news/src/desk.js`, model `claude-opus-5-5`, override `NEWS_DESK_MODEL`) -> grounded validation + quality gates -> publish, else HOLD. `NEWS_DESK=off` restores the legacy template path (not used).
+- BLOCKER: the Worker has no `ANTHROPIC_API_KEY` secret (owner action: `cd workers/soccer-news && npx wrangler secret put ANTHROPIC_API_KEY`). Until then every new story holds with `editorial_desk_unavailable`, and the 34 earlier template articles stay published as they were.
+- After the key: `POST /v1/admin/reedit?scope=template&limit=40` (admin token; add `dry=1` first) rewrites the earlier template stories from their frozen packets; `scope=held_desk` retries held ones. Canary: the Bayern 7-0 Union Berlin story.
+- Article page V3 (network pattern) is live for every story; SOURCE & METHOD is collapsed.
 
 ## QA (latest, docs/evidence/qa)
 

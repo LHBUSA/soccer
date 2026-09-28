@@ -1,6 +1,6 @@
 {
   "base": "https://soccer.propbetedge.ai",
-  "at": "2026-09-28T17:08:11.211Z",
+  "at": "2026-09-28T18:36:26.960Z",
   "widths": [
     320,
     360,
@@ -142,22 +142,6 @@
     {
       "route": "/",
       "width": 360,
-      "status": 200,
-      "overflow": 0,
-      "marks": 0,
-      "console_errors": 0,
-      "failed_requests": 0,
-      "api_calls": 11,
-      "hosts": [
-        "soccer.propbetedge.ai",
-        "fonts.googleapis.com",
-        "fonts.gstatic.com"
-      ],
-      "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge"
-    },
-    {
-      "route": "/",
-      "width": 390,
       "status": 304,
       "overflow": 0,
       "marks": 0,
@@ -173,6 +157,22 @@
     },
     {
       "route": "/",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 11,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge"
+    },
+    {
+      "route": "/",
       "width": 430,
       "status": 304,
       "overflow": 0,
@@ -387,7 +387,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 7,
+      "api_calls": 11,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -403,7 +403,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 7,
+      "api_calls": 11,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -419,7 +419,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 7,
+      "api_calls": 11,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -435,7 +435,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 7,
+      "api_calls": 11,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -451,7 +451,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 7,
+      "api_calls": 11,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -467,7 +467,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 7,
+      "api_calls": 11,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -483,7 +483,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 7,
+      "api_calls": 11,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -499,7 +499,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 7,
+      "api_calls": 11,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -1155,7 +1155,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 4,
+      "api_calls": 7,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -1171,7 +1171,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 4,
+      "api_calls": 7,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -1187,7 +1187,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 4,
+      "api_calls": 7,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -1203,7 +1203,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 4,
+      "api_calls": 7,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -1219,7 +1219,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 4,
+      "api_calls": 8,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -1235,7 +1235,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 4,
+      "api_calls": 8,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -1251,7 +1251,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 4,
+      "api_calls": 8,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -1267,7 +1267,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 4,
+      "api_calls": 8,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -1539,7 +1539,7 @@
       "marks": 44,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 8,
+      "api_calls": 9,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -1555,7 +1555,7 @@
       "marks": 44,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 8,
+      "api_calls": 9,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -1571,7 +1571,7 @@
       "marks": 44,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 8,
+      "api_calls": 9,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -1587,7 +1587,7 @@
       "marks": 44,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 8,
+      "api_calls": 9,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -1603,7 +1603,7 @@
       "marks": 44,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 8,
+      "api_calls": 9,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -1619,7 +1619,7 @@
       "marks": 44,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 18,
+      "api_calls": 20,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -1635,7 +1635,7 @@
       "marks": 44,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 18,
+      "api_calls": 20,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -1651,7 +1651,7 @@
       "marks": 44,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 18,
+      "api_calls": 20,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -1875,7 +1875,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 15,
+      "api_calls": 18,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -2435,7 +2435,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 6,
+      "api_calls": 7,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -2451,7 +2451,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 6,
+      "api_calls": 7,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -2467,7 +2467,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 6,
+      "api_calls": 7,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -2483,7 +2483,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 6,
+      "api_calls": 7,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -2499,7 +2499,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 6,
+      "api_calls": 7,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -2515,7 +2515,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 6,
+      "api_calls": 7,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -2531,7 +2531,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 6,
+      "api_calls": 7,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -2547,7 +2547,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 6,
+      "api_calls": 7,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -2627,7 +2627,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 4,
+      "api_calls": 5,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -2643,7 +2643,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 8,
+      "api_calls": 13,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -2659,7 +2659,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 8,
+      "api_calls": 13,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -2675,7 +2675,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 8,
+      "api_calls": 13,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -2819,7 +2819,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 2,
+      "api_calls": 3,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -2835,7 +2835,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 2,
+      "api_calls": 3,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -2851,7 +2851,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 2,
+      "api_calls": 3,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -2867,7 +2867,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 2,
+      "api_calls": 3,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -2883,7 +2883,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 2,
+      "api_calls": 3,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -2899,7 +2899,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 2,
+      "api_calls": 3,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -2915,7 +2915,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 2,
+      "api_calls": 3,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -2931,7 +2931,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 2,
+      "api_calls": 3,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -3139,7 +3139,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 6,
+      "api_calls": 7,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -3155,7 +3155,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 8,
+      "api_calls": 9,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -3171,7 +3171,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 9,
+      "api_calls": 10,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -3187,7 +3187,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 9,
+      "api_calls": 10,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -3283,7 +3283,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 3,
+      "api_calls": 7,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -3299,7 +3299,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 3,
+      "api_calls": 7,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
@@ -3315,7 +3315,7 @@
       "marks": 0,
       "console_errors": 0,
       "failed_requests": 0,
-      "api_calls": 3,
+      "api_calls": 7,
       "hosts": [
         "soccer.propbetedge.ai",
         "fonts.googleapis.com",
