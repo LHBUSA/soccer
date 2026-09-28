@@ -24,7 +24,9 @@ Rewrite the story from scratch for readers who love football:
 - Turn evidence into football meaning: connect the numbers to what happened. Do not recite numbers one after another.
 - Choose your own structure: 3 to 5 sections with specific, story-led headings (never generic labels such as "Result", "Goals", "Why it matters", "Shots", "The numbers", "Table and form", "What happened").
 - Short, varied paragraphs. Natural transitions. A concise sharp story beats padded copy.
-- Match reports with a rich packet (several goals, shots, table movement, form) should run roughly 550-900 words; thin packets can be shorter. Never pad.
+- Match reports with a rich packet (several goals, shots, table movement, form) should run roughly 550-900 words; thin packets can be shorter. Never pad: a clean 500-word report beats filler written to reach a length.
+- Write natural newsroom prose with complete noun phrases: "Bayern's goalkeeper made two saves", never "with Bayern goalkeeper required to make 2 saves". Spell out numbers one to nine in running prose, as a newspaper would ("two goals", "fourth to first"); keep digits for scores, minutes and larger figures.
+- No empty verdicts ("clearest statement yet", "sent a message", "a night to remember"); let specific match evidence carry the point.
 
 Hard rules (a violation means the story is not published):
 - Use ONLY facts in the packet. Every number, name, date and score you write must be in the packet.
@@ -100,7 +102,9 @@ const BANNED = [
   ['unsupported_quote', /[“”"]|\b(said|says|told reporters|admitted|insisted|according to)\b/i],
   ['unsupported_injury', /\b(injur\w*|hamstring|knock|fitness doubt|ruled out|sidelined|concussion|suspended|suspension)\b/i],
   ['unsupported_transfer', /\b(transfer|rumou?r\w*|linked with|bid for|signing target|contract talks|loan deal)\b/i],
-  ['unsupported_odds', /\b(odds|bet(s|ting)?|wager|spread|moneyline|bookmaker|sportsbook|favou?rites? to|underdogs?)\b/i],
+  // "spread" only in its wagering sense (point spread / the spread / against the spread); bare
+  // "spread across four scorers" and "the spread of goals" are ordinary English.
+  ['unsupported_odds', /\b(odds|bet(s|ting)?|wager|point spreads?|the spread(?! (of|across|throughout|between|among|around)\b)|moneyline|bookmaker|sportsbook|favou?rites? to|underdogs?)\b/i],
   ['unsupported_xg', /\b(xg|expected goals|xt|expected threat|big chances?|chance quality)\b/i],
   ['unsupported_record', /\b(record|first time|all-time|historic\w*|best ever|worst ever|unprecedented|never before|club history)\b/i],
   ['unsupported_mentality', /\b(wanted it more|hungr\w*|desire|mentality|bottled|choked|confiden\w*|frustrat\w*|nervous|belief|determined|pressure mounts|spirit)\b/i],

@@ -214,3 +214,19 @@ test('openai: no key means unavailable (Anthropic key is not a dependency)', asy
   const r = await editorialStage(draft, B, { ANTHROPIC_API_KEY: 'old' });
   assert.equal(r.status, 'held'); assert.deepEqual(r.holdReasons, ['editorial_desk_unavailable']);
 });
+
+test('odds gate: bare "spread" is ordinary English; wagering "spread" still holds', () => {
+  const add = s => variant(a => { a.sections[1].paragraphs[2] += ` ${s}`; });
+  for (const ok of ['The attacking output was spread across four scorers.', 'Bayern spread the goals across several players.', 'The chances were spread throughout the match.', 'The spread of goals told its own story.']) {
+    const f = add(ok); assert.ok(!f.includes('unsupported_odds'), `${ok} -> ${f}`); assert.deepEqual(f, [], ok);
+  }
+  for (const bad of ['Bayern covered the spread.', 'The point spread moved before kickoff.', 'They are 5-2 against the spread.', 'The spread was Bayern -1.5.', 'The odds on Bayern shortened.', 'Bettors backed the underdogs.']) {
+    assert.ok(add(bad).includes('unsupported_odds'), bad);
+  }
+});
+
+test('desk prompt: natural prose guidance, no padding, no forbidden-word list for "spread"', async () => {
+  const { SYSTEM } = await import('../workers/soccer-news/src/desk.js');
+  assert.match(SYSTEM, /never pad/i); assert.match(SYSTEM, /goalkeeper made two saves/); assert.match(SYSTEM, /clearest statement yet/);
+  assert.doesNotMatch(SYSTEM, /spread/i);
+});
