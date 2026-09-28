@@ -780,3 +780,26 @@ body.dr-open { overflow: hidden; }
 .dr-dna .dna-sig { height: 110px; }
 .dr-cta { margin: 16px 0 0; }
 .dr-cta .btn { width: 100%; justify-content: center; }
+
+/* ---------- homepage live rail (PBEcast) ---------- */
+.lrail { padding: 0 0 14px; }
+.lr-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 8px; }
+.lr-head .kicker { display: inline-flex; align-items: center; gap: 8px; margin: 0; }
+.lr-head .livedot { background: var(--live); }
+.lr-all { color: var(--gold); font: 700 13px/1 var(--display); letter-spacing: .12em; text-decoration: none; text-transform: uppercase; padding: 10px 0; }
+.lr-list { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(176px, 1fr); gap: 10px; list-style: none; margin: 0; padding: 2px 2px 10px; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: thin; }
+@media (max-width: 699px) { .lr-list { grid-auto-columns: minmax(150px, 46%); } }
+@media (min-width: 1100px) { .lr-list { grid-auto-columns: calc((100% - 50px) / 6); } }
+.lr-list > li { scroll-snap-align: start; min-width: 0; }
+.lr-tile { display: flex; flex-direction: column; gap: 7px; height: 100%; padding: 11px 12px; border-radius: 14px; text-decoration: none; color: #fff; background: rgba(14,28,51,.86); border: 1px solid var(--shell-line); backdrop-filter: blur(6px); }
+.lr-tile:hover, .lr-tile:focus-visible { border-color: var(--gold); }
+.lr-tile.k-live { border-color: rgba(200,29,37,.7); box-shadow: inset 0 2px 0 var(--live); }
+.lr-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.lr-live { display: inline-flex; align-items: center; gap: 6px; font: 700 12px/1 var(--mono); color: #ff8a8f; }
+.lr-live .livedot { background: var(--live); }
+.lr-when { font: 600 11.5px/1 var(--mono); color: var(--muted-dark); white-space: nowrap; }
+.lr-row { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 8px; min-width: 0; }
+.lr-row .tmark { color: #fff; background: var(--shell-3); border-color: var(--shell-line); }
+.lr-row .tmark.img { background: #fff; }
+.lr-name { font: 800 15px/1.1 var(--display); text-transform: uppercase; letter-spacing: .02em; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lr-row b { font: 700 17px/1 var(--mono); }

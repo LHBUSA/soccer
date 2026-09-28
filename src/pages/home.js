@@ -1,6 +1,6 @@
 import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
-import { dateShort, num, todayUtc } from '../lib/format.js';
+import { dateShort, num, time, todayUtc } from '../lib/format.js';
 import { FEATURED, FEATURED_COMPS } from '../lib/competitions.js';
 import { compMono, empty, errorState, link, matchGrid, portrait, sectionHead, sourcePanel, teamMark } from '../components/ui.js';
 
@@ -9,14 +9,15 @@ export const title = () => 'Soccer Intelligence, Live Match Data & Player DNA | 
 
 export async function load() {
   const today = todayUtc();
-  const [comps, cov, todays, recent, upcoming, news] = await Promise.allSettled([
+  const [comps, cov, todays, recent, upcoming, news, live] = await Promise.allSettled([
     api('competitions'), api('coverage'),
     api('matches', { date: today, limit: 40 }),
     api('matches', { status: 'finished', to: today, limit: 12 }),
     api('matches', { status: 'scheduled', from: today, order: 'asc', limit: 12 }),
     api('news', { limit: 6 }),
+    api('live', {}, { fresh: true }),
   ]);
-  return { comps, cov, todays, recent, upcoming, news, today };
+  return { comps, cov, todays, recent, upcoming, news, live, today };
 }
 
 const val = r => (r.status === 'fulfilled' ? r.value : null);
@@ -80,6 +81,43 @@ export function newsRail(env) {
   </div></section>`;
 }
 
+// LIVE RAIL (PBEcast): live first (provider clock), then the next kick-offs, then replays.
+// Every tile opens its PBEcast. Empty when the API has nothing to show.
+const RAIL_MAX = 16;
+export function railItems(x) {
+  if (!x) return [];
+  const now = Date.now();
+  const soon = (x.upcoming || []).filter(m => Date.parse(m.kickoff_at) - now < 36 * 3600e3);
+  return [...(x.live || []).map(m => ({ m, k: 'live' })), ...soon.slice(0, 6).map(m => ({ m, k: 'next' })), ...(x.recent || []).map(m => ({ m, k: 'ft' }))].slice(0, RAIL_MAX);
+}
+export function liveRail(env) {
+  const items = railItems(env?.data);
+  if (!items.length) return '';
+  const live = items.filter(i => i.k === 'live').length;
+  const tile = ({ m, k }) => {
+    const sc = m.score && m.score.home !== null && m.score.home !== undefined;
+    const row = (t, s) => `<span class="lr-row">${teamMark(t, 'xs')}<span class="lr-name">${esc(t?.short_name || t?.name || '—')}</span>${sc ? `<b>${esc(String(s))}</b>` : ''}</span>`;
+    const tag = k === 'live' ? `<span class="lr-live"><i class="livedot" aria-hidden="true"></i>${esc(m.live?.display_clock || 'LIVE')}</span>` : k === 'next' ? `<span class="lr-when">${esc(dateShort(m.kickoff_at))} · ${esc(time(m.kickoff_at))}</span>` : `<span class="lr-when">FT · ${esc(dateShort(m.kickoff_at))}</span>`;
+    return `<li><a class="lr-tile k-${k}" href="/pbecast/${esc(m.id)}" data-link aria-label="${esc(`${m.home?.name} ${sc ? `${m.score.home}–${m.score.away}` : 'v'} ${m.away?.name}, ${k === 'live' ? 'live' : k === 'next' ? 'upcoming' : 'full time'}, open PBEcast`)}">
+      <span class="lr-top">${m.competition ? compMono(m.competition.slug, 'xs') : ''}${tag}</span>${row(m.home, m.score?.home)}${row(m.away, m.score?.away)}</a></li>`;
+  };
+  return `<section class="lrail" aria-label="PBEcast live rail" data-live-rail><div class="wrap">
+    <div class="lr-head"><p class="kicker gold">${live ? `<i class="livedot" aria-hidden="true"></i> LIVE NOW · ${num(live)}` : 'PBECAST'}</p>${link('/pbecast', 'All casts →', 'lr-all')}</div>
+    <ol class="lr-list">${join(items, tile)}</ol>
+  </div></section>`;
+}
+
+export function mount(root, d) {
+  // Only the rail refreshes, and only while something is live (hidden tabs skip a beat).
+  const tick = () => setTimeout(async () => {
+    const slot = root.querySelector('[data-live-rail]');
+    if (!slot || !slot.isConnected || location.pathname !== '/') return;
+    if (document.hidden) return tick();
+    try { const env = await api('live', {}, { fresh: true }); const html = liveRail(env); if (html) slot.outerHTML = html; if (env.data.live?.length) tick(); } catch { tick(); }
+  }, 30000);
+  if (d.live?.status === 'fulfilled' && d.live.value.data.live?.length) tick();
+}
+
 export function render(d) {
   const comps = val(d.comps); const cov = val(d.cov);
   const todays = val(d.todays); const recent = val(d.recent); const upcoming = val(d.upcoming);
@@ -92,10 +130,11 @@ export function render(d) {
         <p class="kicker gold">PROPBETEDGE · SOCCER INTELLIGENCE</p>
         <h1 class="display">Soccer intelligence.<br><span>The match is only the start.</span></h1>
         <p class="lede">Live match intelligence, Player DNA, event maps, team profiles and original data-backed soccer news across MLS, Premier League, Champions League and Bundesliga.</p>
-        <p class="hero-cta">${link('/matches', 'MATCHES', 'btn gold')} ${link('/tables', 'TABLES', 'btn ghost')} ${link('/news', 'NEWS', 'btn ghost')}</p>
+        <p class="hero-cta">${link('/matches', 'MATCHES', 'btn gold')} ${link('/pbecast', 'PBECAST', 'btn ghost')} ${link('/players', 'PLAYER DNA', 'btn ghost')} ${link('/news', 'NEWS', 'btn ghost')}</p>
       </div>
     </div>
   </section>
+  ${liveRail(val(d.live))}
   <section class="canvas"><div class="wrap">
     ${sectionHead('LEAGUES', 'Four competitions, one graph')}
     ${d.comps.status === 'rejected' ? errorState(d.comps.reason) : coverageCards(comps, cov)}
