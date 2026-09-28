@@ -56,6 +56,25 @@ export const DNA_GROUPS = [
 const SHORT = { goals_per90: 'G/90', shots_per90: 'Sh/90', shots_on_target_rate: 'SoT%', goals_per_shot: 'G/Sh', assists_per90: 'A/90', key_passes_per90: 'KP/90', goal_contributions_per90: 'G+A', start_rate: 'Start', minutes_per_appearance: 'Min', cards_per90: 'Card' };
 const tier = p => (p >= 90 ? 't5' : p >= 75 ? 't4' : p >= 50 ? 't3' : p >= 25 ? 't2' : 't1');
 
+// Percentile radar: one axis per ranked metric (grouped order), radius = percentile; rings at
+// p25/50/75/100. Only metrics with a percentile are drawn; nothing is imputed.
+export function dnaRadar(metrics, { size = 260 } = {}) {
+  const order = DNA_GROUPS.flatMap(([, keys]) => keys);
+  const pts = order.map(k => metrics.find(m => m.key === k)).filter(m => m && m.percentile !== null && m.percentile !== undefined);
+  if (pts.length < 3) return '';
+  const c = size / 2; const R = c - 34;
+  const at = (i, r) => { const a = -Math.PI / 2 + (2 * Math.PI * i) / pts.length; return [c + r * Math.cos(a), c + r * Math.sin(a)]; };
+  const ring = f => pts.map((_, i) => at(i, R * f).map(v => v.toFixed(1)).join(',')).join(' ');
+  const poly = pts.map((m, i) => at(i, (R * Math.max(2, m.percentile)) / 100).map(v => v.toFixed(1)).join(',')).join(' ');
+  return `<svg class="dna-radar" viewBox="0 0 ${size} ${size}" role="img" aria-label="Percentile profile: ${esc(pts.map(m => `${PLAYER_LABELS[m.key]?.[0] || m.key} p${m.percentile}`).join(', '))}">
+    ${[0.25, 0.5, 0.75, 1].map(f => `<polygon class="rr${f === 1 ? ' outer' : ''}" points="${ring(f)}"/>`).join('')}
+    ${pts.map((_, i) => { const [x, y] = at(i, R); return `<line class="ra" x1="${c}" y1="${c}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>`; }).join('')}
+    <polygon class="rp" points="${poly}"/>
+    ${pts.map((m, i) => { const [x, y] = at(i, (R * Math.max(2, m.percentile)) / 100); return `<circle class="rd ${tier(m.percentile)}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.4"/>`; }).join('')}
+    ${pts.map((m, i) => { const [x, y] = at(i, R + 17); return `<text class="rl" x="${x.toFixed(1)}" y="${(y + 3).toFixed(1)}" text-anchor="middle">${esc(SHORT[m.key] || m.key)}</text>`; }).join('')}
+  </svg>`;
+}
+
 export function dnaSignature(metrics) {
   const order = DNA_GROUPS.flatMap(([, keys]) => keys);
   const cols = order.map(k => metrics.find(m => m.key === k)).filter(m => m && m.percentile !== null && m.percentile !== undefined);
@@ -79,7 +98,7 @@ export function playerSeasonView(s, minMinutes, { compact = false } = {}) {
   const sp = s.splits; const l5 = s.last5;
   return `<div class="dna2${compact ? ' compact' : ''}">
     <div class="dna-vol">${join(compact ? vol.slice(0, 4) : vol, ([k, v, sub]) => `<div><b>${esc(v)}</b><span>${esc(k)}</span>${sub ? `<small>${esc(sub)}</small>` : ''}</div>`)}</div>
-    ${eligible ? `${dnaSignature(s.metrics)}
+    ${eligible ? `${compact ? dnaSignature(s.metrics) : `<div class="dna-viz">${dnaRadar(s.metrics)}${dnaSignature(s.metrics)}</div>`}
       <p class="dna-intro">Percentiles rank against the <b>${num(s.players_compared)}</b> players with at least ${num(minMinutes)} nominal minutes in ${esc(s.competition?.name || 'this competition')} ${esc(s.season || '')} (p100 = best in the group).</p>
       ${compact ? '' : dnaGroups(s.metrics)}`
     : `<p class="dna-intro">${num(s.minutes_nominal)} of the ${num(minMinutes)} nominal minutes needed for percentile ranks in ${esc(s.competition?.name || 'this competition')} ${esc(s.season || '')}, so no ranks yet. Counts above are complete.</p>`}

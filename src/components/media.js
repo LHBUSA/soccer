@@ -18,7 +18,7 @@ export function initials(name) {
   const use = core.length ? core : words;
   if (!use.length) return '?';
   if (use.length === 1) return use[0].slice(0, 3).toUpperCase();
-  return use.slice(0, 3).map(w => w[0]).join('').toUpperCase();
+  return use.slice(0, 4).map(w => w[0]).join('').toUpperCase();
 }
 
 // Club crest (approved, roster-proven) or the typographic initials mark. size: '' | xs | md | xl
@@ -30,7 +30,7 @@ export function crest(t, size = '') {
     const credit = t.crest.attribution ? `${t.crest.attribution}. Used to identify the club.` : 'Used to identify the club.';
     return `<span class="${cls} img"><img src="${esc(t.crest.url)}" alt="" title="${esc(credit)}" loading="lazy" decoding="async" width="64" height="64" data-fallback="${esc(mark)}"></span>`;
   }
-  return `<span class="${cls}" aria-hidden="true">${esc(mark)}</span>`;
+  return `<span class="${cls}${mark.length > 3 ? ' m4' : ''}" aria-hidden="true">${esc(mark)}</span>`;
 }
 
 // The portrait descriptor as the API ships it: lists carry `portrait` ({ url, attribution });

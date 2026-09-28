@@ -611,8 +611,11 @@ export async function news(store, q) {
   const [pm, cm] = await Promise.all([portraitMap(store, personIds), approvedMedia(store, 'team', teamIds, { mediaType: 'crest', primaryOnly: true })]);
   for (const r of rows) {
     const ents = r.entities || [];
-    const person = ents.find(e => e.type === 'Person' && pm.get(e.id));
-    const team = ents.find(e => e.type === 'SportsTeam' && cm.get(e.id));
+    // The subject of the headline first (the hat-trick scorer, the club that goes top), then the
+    // first entity the evidence names; only approved media, never a guess.
+    const inHead = e => e.name && String(r.headline || '').includes(e.name);
+    const person = ents.find(e => e.type === 'Person' && pm.get(e.id) && inHead(e)) || ents.find(e => e.type === 'Person' && pm.get(e.id));
+    const team = ents.find(e => e.type === 'SportsTeam' && cm.get(e.id) && inHead(e)) || ents.find(e => e.type === 'SportsTeam' && cm.get(e.id));
     r.image = person ? { kind: 'portrait', url: pm.get(person.id).url, alt: person.name, attribution: pm.get(person.id).attribution } : team ? { kind: 'crest', url: cm.get(team.id)[0].url, alt: team.name, attribution: cm.get(team.id)[0].attribution } : null;
     r.teams = ents.filter(e => e.type === 'SportsTeam').slice(0, 2).map(e => ({ slug: e.slug, name: e.name }));
     delete r.entities;

@@ -10,7 +10,7 @@ import puppeteer from 'puppeteer-core';
 
 const BASE = (process.argv[2] || 'http://localhost:4173').replace(/\/$/, '');
 const SHOTS = process.argv.includes('--shots');
-const WIDTHS = [320, 360, 390, 430, 768, 1024, 1440];
+const WIDTHS = [320, 360, 390, 430, 768, 1024, 1280, 1440];
 const ORIGIN = new URL(BASE).origin;
 const ALLOWED_HOSTS = new Set([new URL(BASE).host, 'fonts.googleapis.com', 'fonts.gstatic.com']);
 const FORBIDDEN = /espn\.com|openligadb|figshare|wyscout|supabase|workers\.dev/i;
@@ -73,6 +73,10 @@ try {
       await page.waitForFunction(() => !document.querySelector('.state.loading'), { timeout: 30000 }).catch(() => {});
       const info = await page.evaluate(() => ({
         text: document.body.innerText, overflow: document.documentElement.scrollWidth - window.innerWidth,
+        // Clipped content: an element inside #main whose box passes the viewport edge without a
+        // scrolling / clipping ancestor (body hides page overflow, so scrollWidth alone misses it).
+        clipped: [...document.querySelectorAll('#main *')].filter(el => { const r = el.getBoundingClientRect(); if (!r.width || r.right <= window.innerWidth + 1) return false; for (let a = el.parentElement; a && a !== document.body; a = a.parentElement) { const o = getComputedStyle(a).overflowX; if (o !== 'visible') return false; } return true; }).slice(0, 3).map(el => `${el.tagName.toLowerCase()}.${String(el.className).split(' ')[0]}`),
+        ticker: (() => { const v = document.querySelector('.stk-viewport'); if (!v) return 'missing'; const cs = getComputedStyle(v); return cs.scrollbarWidth === 'none' ? 'ok' : `scrollbar ${cs.scrollbarWidth}`; })(),
         marks: document.querySelectorAll('.pitch .mark').length, castMarks: document.querySelectorAll('.pitch.cast .cmark').length, title: document.title, errorState: !!document.querySelector('.state.error'),
       }));
       const tag = `${route.name}@${width}`;
@@ -80,6 +84,8 @@ try {
       if (res.status() >= 400 && route.name !== 'notfound') fail(tag, `HTTP ${res.status()}`);
       if (missing.length) fail(tag, `missing text: ${missing.join(' | ')}`);
       if (info.overflow > 1) fail(tag, `horizontal overflow ${info.overflow}px`);
+      if (info.ticker !== 'ok') fail(tag, `score ticker: ${info.ticker}`);
+      if (info.clipped.length) fail(tag, `content past the viewport edge: ${info.clipped.join(', ')}`);
       // The 404 route's own document is a real 404 (SEO): that single resource error is expected.
       if (route.name === 'notfound') { const i = consoleErrors.findIndex(e => /status of 404/.test(e)); if (i >= 0) consoleErrors.splice(i, 1); }
       if (consoleErrors.length) fail(tag, `console errors: ${consoleErrors.slice(0, 3).join(' || ')}`);
@@ -102,7 +108,7 @@ try {
   await page.click('.pitchwrap.port .mark');
   const detail = await page.$eval('.emap-detail', n => n.innerText);
   if (!/'/.test(detail)) fail('tap-detail', `detail not shown: ${detail}`);
-  await page.goto(`${BASE}/`, { waitUntil: 'networkidle0' });
+  await page.goto(`${BASE}/matches`, { waitUntil: 'networkidle0' });
   await page.click('.mc-cta');
   await page.waitForFunction(() => location.pathname.startsWith('/matches/') && !document.querySelector('.state.loading'), { timeout: 20000 });
   const navOk = await page.evaluate(() => document.body.innerText.toUpperCase().includes('MATCH INTELLIGENCE'));

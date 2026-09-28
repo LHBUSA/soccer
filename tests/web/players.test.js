@@ -19,7 +19,10 @@ test('route + static meta + sitemap', () => {
 });
 
 test('query: unknown values fall back; per-90 sorts need one competition', () => {
-  assert.deepEqual(q(''), { competition: '', sort: 'goals', role: '', q: '', page: 1 });
+  assert.deepEqual(q(''), { competition: '', sort: 'goals', role: '', q: '', team: '', page: 1 });
+  assert.equal(q('team=portland-timbers').team, '', 'a team filter needs one competition');
+  assert.equal(q('competition=mls&team=portland-timbers').team, 'portland-timbers');
+  assert.equal(hrefFor(q('competition=mls&team=portland-timbers'), { competition: 'premier-league' }), '/players?competition=premier-league', 'changing competition drops the team');
   assert.equal(q('sort=goals_per90').sort, 'goals', 'no cross-competition rate leaders');
   assert.equal(q('competition=mls&sort=goals_per90').sort, 'goals_per90');
   assert.equal(q('competition=la-liga').competition, '');

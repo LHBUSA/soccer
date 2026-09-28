@@ -20,6 +20,29 @@ function recordCard(r) {
   </div>`;
 }
 
+// Age from the sourced birth date (whole years, UTC), or null. Never estimated.
+export function ageOn(birth, now = new Date()) {
+  if (!birth) return null;
+  const b = new Date(`${String(birth).slice(0, 10)}T00:00:00Z`);
+  if (Number.isNaN(b.getTime())) return null;
+  let a = now.getUTCFullYear() - b.getUTCFullYear();
+  if (now.getUTCMonth() < b.getUTCMonth() || (now.getUTCMonth() === b.getUTCMonth() && now.getUTCDate() < b.getUTCDate())) a -= 1;
+  return a;
+}
+
+const ordinal = n => { const v = n % 100; return `${n}${v >= 11 && v <= 13 ? 'th' : ['th', 'st', 'nd', 'rd'][n % 10] || 'th'}`; };
+
+// A team's observed players as cards: portrait, role, appearances, and the quick DNA numbers the
+// API attached from the season cache (never computed here, never zero-filled).
+export function squadCard(p) {
+  const dna = p.dna;
+  return `<a class="sq-card" href="/players/${esc(p.slug)}" data-link data-player-slug="${esc(p.slug)}">
+    ${portrait(p, 'md')}
+    <span class="sq-id"><b>${esc(p.name)}</b><small>${esc(ROLE[p.role] || 'Role not stated')}</small></span>
+    <span class="sq-stats"><span><b>${num(p.appearances)}</b>apps</span><span><b>${num(p.starts)}</b>starts</span>${dna ? `<span><b>${num(dna.goals)}</b>G</span><span><b>${num(dna.assists)}</b>A</span>` : ''}${dna && dna.percentile_goal_contributions_per90 !== null && dna.percentile_goal_contributions_per90 !== undefined ? `<span class="sq-pct" title="Goals + assists per 90, percentile within the competition-season">G+A/90 p${esc(String(dna.percentile_goal_contributions_per90))}</span>` : ''}</span>
+  </a>`;
+}
+
 export const team = {
   title: d => `${d.env?.data?.name || 'Team'} Results, Team DNA & Soccer Intelligence | PropBetEdge`,
   async load([slug]) { return { env: await api(`teams/${slug}`) }; },
@@ -29,35 +52,34 @@ export const team = {
     const city = t.city && ![t.name, t.short_name].includes(t.city) ? t.city : null;
     const place = [city, t.country_code].filter(Boolean).join(' · ');
     const obs = t.players_observed || { players: [], lineups_counted: 0 };
-    return `<section class="hero compact"><div class="wrap">
-      <div class="lh-top">${teamMark(t, 'xl')}<div>
-        <p class="kicker gold">TEAM${t.type === 'national' ? ' · NATIONAL TEAM' : ''}</p>
+    const recs = (t.records || []).filter(r => r.record);
+    const next = (t.upcoming || [])[0];
+    return `<section class="hero compact team-hero"><div class="wrap">
+      <div class="th-top">${teamMark(t, 'xl')}<div class="th-id">
+        <p class="kicker gold">TEAM${t.type === 'national' ? ' · NATIONAL TEAM' : ''}${place ? ` · ${esc(place)}` : ''}</p>
         <h1 class="display">${esc(t.name)}</h1>
-        ${when(t.official_name && t.official_name !== t.name, () => `<p class="lede">${esc(t.official_name)}</p>`)}
+        <p class="th-comps">${join(t.records || [], r => r.competition ? `<a class="th-comp" href="/competitions/${esc(r.competition.slug)}" data-link>${compMono(r.competition.slug, 'xs')}<span>${esc(compMeta(r.competition.slug)?.name || r.competition.name)}</span>${r.position ? `<b>${esc(ordinal(r.position))}</b>` : ''}</a>` : '')}</p>
+        <div class="th-form"><span class="muted">Form</span>${formChips(t.form)}${recs[0] ? `<span class="th-rec">${num(recs[0].record.won)}W · ${num(recs[0].record.drawn)}D · ${num(recs[0].record.lost)}L</span>` : ''}</div>
       </div></div>
       ${when(t.crest?.attribution, () => `<p class="credit">Crest: ${t.crest.source_url ? `<a href="${esc(t.crest.source_url)}" rel="noopener" target="_blank">${esc(t.crest.attribution)}</a>` : esc(t.crest.attribution)}. Used to identify the club.</p>`)}
-      <div class="hero-facts">
-        ${when(place, () => `<div><b>${esc(place)}</b><span>location</span></div>`)}
-        <div><b class="formwrap">${formChips(t.form)}</b><span>last five, newest first</span></div>
-      </div>
     </div></section>
     <section class="canvas"><div class="wrap">
-      ${when((t.records || []).length, () => `${sectionHead('RECORD', 'This season')}<div class="rgrid">${join(t.records, recordCard)}</div>`)}
-      <div class="two">
-        <div>${sectionHead('FIXTURES', 'Next matches')}${matchGrid(t.upcoming) || '<p class="muted">No scheduled matches stored for this team.</p>'}</div>
-        <div>${sectionHead('RESULTS', 'Recent results')}${matchGrid(t.recent) || '<p class="muted">No finished matches stored for this team.</p>'}</div>
+      <div class="two th-two">
+        <div>${sectionHead('NEXT MATCH', next ? dateLong(next.kickoff_at) : 'No fixture stored')}${next ? matchGrid([next]) : '<p class="muted">No scheduled matches stored for this team.</p>'}
+          ${when((t.upcoming || []).length > 1, () => `<p class="nrail-h more">THEN</p>${matchGrid(t.upcoming.slice(1, 3))}`)}</div>
+        <div>${sectionHead('RESULTS', 'Recent results')}${matchGrid((t.recent || []).slice(0, 4)) || '<p class="muted">No finished matches stored for this team.</p>'}</div>
       </div>
+      ${when(recs.length, () => `${sectionHead('RECORD', 'This season')}<div class="rgrid">${join(t.records, recordCard)}</div>`)}
       <div data-team-dna class="dna-slot" aria-live="polite"></div>
       ${sectionHead('PLAYERS OBSERVED IN SOURCE DATA', obs.players.length ? `${num(obs.players.length)} players · ${num(obs.lineups_counted)} sourced lineups` : 'No sourced lineups')}
-      ${obs.players.length ? `<div class="tablewrap"><table class="ltable obs"><thead><tr><th class="tm" scope="col">Player</th><th scope="col">Role</th><th scope="col" title="Started or came on">Apps</th><th scope="col">Starts</th><th class="wide" scope="col" title="Named in the matchday squad">Named</th></tr></thead>
-        <tbody>${join(obs.players, p => `<tr><th class="tm" scope="row">${playerChip(p)}</th><td class="role">${esc(ROLE[p.role] || DASH)}</td><td>${num(p.appearances)}</td><td>${num(p.starts)}</td><td class="wide">${num(p.named)}</td></tr>`)}</tbody></table></div>
-        <p class="caveat">Not a squad list: only players named in sourced lineups for this season's stored matches. An appearance means the player started or came on.</p>`
+      ${obs.players.length ? `<div class="sq-grid">${join(obs.players, squadCard)}</div>
+        <p class="caveat">Not a squad list: only players named in sourced lineups for this season's stored matches. An appearance means the player started or came on. Goals, assists and percentiles come from the Player DNA season profile where it is computed.</p>`
         : '<p class="muted">No sourced lineups are stored for this team this season, so no players are listed. Squad lists are never guessed.</p>'}
       <div data-related-news></div>
       ${sourcePanel(d.env.meta)}
     </div></section>`;
   },
-  mount(root, d) { mountTeamDna(root, d.env.data.slug); mountRelatedNews(root, { team: d.env.data.slug }, { title: 'Stories mentioning this club' }); },
+  mount(root, d) { mountTeamDna(root, d.env.data.slug); mountRelatedNews(root, { team: d.env.data.slug }, { title: 'Latest stories about this club' }); },
 };
 
 const STAT_COLS = [
@@ -87,8 +109,10 @@ export const player = {
   async load([slug]) { return { env: await api(`players/${slug}`) }; },
   render(d) {
     const p = d.env.data; const meta = d.env.meta;
+    const age = ageOn(p.birth_date);
     const facts = [
-      ['Role', ROLE[p.role] || DASH], ['Nationality', p.nationality_code || DASH], ['Born', p.birth_date ? dateLong(`${String(p.birth_date).slice(0, 10)}T12:00:00Z`) : DASH],
+      ['Position', ROLE[p.role] || DASH], ['Nationality', p.nationality_code || DASH],
+      ['Age', age !== null ? `${age}` : DASH], ['Born', p.birth_date ? dateLong(`${String(p.birth_date).slice(0, 10)}T12:00:00Z`) : DASH],
       ['Preferred foot', FOOT[p.foot] || DASH], ['Height', p.height_cm ? `${p.height_cm} cm` : DASH],
     ];
     const seasons = p.seasons || [];
@@ -96,15 +120,19 @@ export const player = {
     const cols = STAT_COLS.filter(([k]) => seasons.some(x => x[k] !== null && x[k] !== undefined));
     const pic = portraitOf(p);
     const lt = p.observed?.latest_team;
-    return `<section class="hero compact"><div class="wrap">
-      <div class="lh-top">${portrait(p, 'xl', { alt: pic ? p.name : '' })}<div>
-        <p class="kicker gold">PLAYER INTELLIGENCE</p>
-        <h1 class="display">${esc(p.name)}</h1>
-        ${when(p.first_name || p.last_name, () => `<p class="lede">${esc([p.first_name, p.last_name].filter(Boolean).join(' '))}</p>`)}
-        ${when(lt, () => `<p class="latest-team">${link(`/teams/${lt.slug}`, `${teamMark(lt, 'xs')}<span>${esc(lt.name)}</span>`)}<span class="muted">latest sourced lineup, ${esc(dateShort(lt.as_of))}</span></p>`)}
-      </div></div>
-      ${when(pic?.attribution, () => `<p class="credit">Photo: ${pic.source_url ? `<a href="${esc(pic.source_url)}" rel="noopener" target="_blank">${esc(pic.attribution)}</a>` : esc(pic.attribution)}${pic.license_url ? ` · <a href="${esc(pic.license_url)}" rel="noopener license" target="_blank">licence</a>` : ''}</p>`)}
-      <div class="facts">${join(facts, ([k, v]) => `<div><span>${esc(k)}</span><b>${esc(v)}</b></div>`)}</div>
+    return `<section class="hero compact player-hero"><div class="wrap">
+      <div class="ph-grid">
+        <div class="ph-pic">${portrait(p, 'xl', { alt: pic ? p.name : '' })}</div>
+        <div class="ph-id">
+          <p class="kicker gold">PLAYER INTELLIGENCE</p>
+          <h1 class="display">${esc(p.name)}</h1>
+          ${when((p.first_name || p.last_name) && [p.first_name, p.last_name].filter(Boolean).join(' ') !== p.name, () => `<p class="lede">${esc([p.first_name, p.last_name].filter(Boolean).join(' '))}</p>`)}
+          <p class="ph-line">${lt ? link(`/teams/${lt.slug}`, `${teamMark(lt, 'md')}<span>${esc(lt.name)}</span>`, 'ph-team') : ''}${p.role ? `<span class="ph-pos">${esc((ROLE[p.role] || '').toUpperCase())}</span>` : ''}${lt?.competition ? `<span class="ph-comp">${compMono(lt.competition.slug, 'xs')}${esc(compMeta(lt.competition.slug)?.name || lt.competition.name)}</span>` : ''}</p>
+          ${when(lt, () => `<p class="ph-asof muted">Team of the latest sourced lineup, ${esc(dateShort(lt.as_of))}</p>`)}
+          <div class="facts ph-facts">${join(facts, ([k, v]) => `<div><span>${esc(k)}</span><b>${esc(v)}</b></div>`)}</div>
+          ${when(pic?.attribution, () => `<p class="credit">Photo: ${pic.source_url ? `<a href="${esc(pic.source_url)}" rel="noopener" target="_blank">${esc(pic.attribution)}</a>` : esc(pic.attribution)}${pic.license_url ? ` · <a href="${esc(pic.license_url)}" rel="noopener license" target="_blank">licence</a>` : ''}</p>`)}
+        </div>
+      </div>
     </div></section>
     <section class="canvas"><div class="wrap">
       <div data-player-dna class="dna-slot" aria-live="polite"></div>

@@ -5,7 +5,8 @@ import { esc, join, when } from '../lib/html.js';
 import { dateLong, dateTime } from '../lib/format.js';
 import { FEATURED_COMPS, compByDesk } from '../lib/competitions.js';
 import { compMono, link, sourcePanel } from '../components/ui.js';
-import { newsCard } from './home.js';
+import { newsCard, newsDesk as deskLayout } from './home.js';
+import { latestNews, selectHomepageLead } from '../lib/news.js';
 
 const INDEX = 'index, follow, max-image-preview:large';
 const deskTabs = active => `<nav class="tabs" aria-label="News desks">${link('/news', 'All desks', `tab${!active ? ' on' : ''}`)}${join(FEATURED_COMPS, c => link(`/news/${c.desk}`, `${compMono(c.slug, 'xs')}${esc(c.name)}`, `tab${c.desk === active ? ' on' : ''}`))}</nav>`;
@@ -28,7 +29,9 @@ function listPage(env, desk) {
     <p class="lede">Written from frozen evidence packets and published only after every gate passes: no quotes, injuries, rumours or odds.</p>
     ${deskTabs(desk)}
   </div></section>
-  <section class="canvas"><div class="wrap"><div class="newsgrid">${join(items, newsCard)}</div>${sourcePanel(env.meta, { title: 'HOW THE NEWSROOM WORKS' })}</div></section>`;
+  <section class="canvas"><div class="wrap">${deskLayout(env, { rail: 4 })}
+    ${when(items.length > 5, () => `<p class="nrail-h more">MORE STORIES</p><div class="ngrid2">${join(latestNews(items).filter(a => a.slug !== selectHomepageLead(items).slug).slice(4), newsCard)}</div>`)}
+    ${sourcePanel(env.meta, { title: 'HOW THE NEWSROOM WORKS' })}</div></section>`;
 }
 
 export const news = {

@@ -12,6 +12,7 @@ import { compMeta } from '../lib/competitions.js';
 import { buildTimeline, clockAt, keyMoments, liveStatus, liveView, pctOf, PERIOD_LABEL, stateAt } from '../lib/cast.js';
 import { compMono, empty, link, mountMediaFallbacks, playerChip, sectionHead, sourcePanel, statusPill, teamLink, teamMark } from '../components/ui.js';
 import { L, W, pitchLines } from '../components/pitch.js';
+import { keyPlayers } from '../components/keyplayers.js';
 import { matchTitle } from '../seo/meta.js';
 
 const POLL_LIVE_MS = 30000;   // the API caches the cast 15 s; the ingest lane polls once a minute
@@ -166,11 +167,11 @@ export function castView(env) {
         <div class="ct-score" data-ct-score>${sc || mode === 'replay' ? `<span data-sh>${esc(String(sc?.home ?? 0))}</span><i>–</i><span data-sa>${esc(String(sc?.away ?? 0))}</span>` : '<span class="vs">v</span>'}</div>
         <div class="ct-team away">${teamMark(m.away, 'md')}${teamLink(m.away, 'ct-name')}</div>
       </div>
-      <p class="ct-status">${mode === 'live' ? `<span class="ct-live ${esc(st.tone)}"><i class="livedot" aria-hidden="true"></i>${esc(st.label)}</span>${clock ? `<span class="ct-clock">${esc(clock)}</span>` : ''}` : mode === 'replay' ? `<span class="ct-tag">REPLAY</span><span class="ct-clock" data-ct-clock>${esc(clock)}</span>` : statusPill(m.status)}
+      <p class="ct-status">${mode === 'live' ? `<span class="ct-live ${esc(st.tone)}"><i class="livedot" aria-hidden="true"></i>${esc(st.label)}</span>${clock ? `<span class="ct-clock">${esc(clock)}</span>` : ''}` : mode === 'replay' ? `<span class="ct-tag">PBECAST REPLAY</span><span class="ct-clock" data-ct-clock>${esc(clock)}</span>` : statusPill(m.status)}
         <span class="muted">${esc(dateTime(m.kickoff_at))}${m.venue ? ` · ${esc(m.venue.name)}` : ''}</span></p>
       ${when(st, () => `<p class="ct-fresh" role="status">${esc(st.note)}</p>`)}
     </div></section>
-    <section class="canvas cast-body"><div class="wrap">
+    <section class="canvas cast-body" data-match-id="${esc(m.id)}"><div class="wrap">
       ${mode === 'pregame' ? `<div class="panel pregame">${sectionHead('PREGAME', `Kick-off ${dateTime(m.kickoff_at)}`)}<p>PBEcast goes live at kick-off: the score and the provider's clock, then every sourced shot, goal, card and substitution as the source records it. This page refreshes itself.</p></div>` : ''}
       ${when(tl.items.length, () => `<div class="cast-grid">
         <div class="cast-stage panel">
@@ -191,6 +192,7 @@ export function castView(env) {
         </div>
       </div>`)}
       ${when(!tl.items.length && mode !== 'pregame', () => empty('No sourced events for this match', m.event_source === 'openligadb' ? 'The result source reports the score without an event record, so there is nothing to cast. Nothing is plotted rather than something invented.' : 'No event record is stored for this match yet.'))}
+      ${when(m.players?.rows?.length, () => `<div class="panel kp-panel">${sectionHead('PLAYER IMPACT', 'Who shaped the match · tap a player for Player DNA')}${keyPlayers(m, { title: false })}</div>`)}
       <div class="two">
         <div class="panel">${sectionHead('MATCH STATS', 'By source basis')}${statsCompare(m)}</div>
         <div class="panel">${sectionHead('LINEUPS', 'Starting XI')}${lineupsCompact(m)}</div>

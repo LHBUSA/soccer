@@ -5,12 +5,13 @@
 // button dismiss, focus returns to the link that opened it.
 import { api } from '../lib/api.js';
 import { esc, when } from '../lib/html.js';
-import { dateShort, ROLE } from '../lib/format.js';
+import { dateShort, ROLE, scoreline } from '../lib/format.js';
+import { todayLine } from './keyplayers.js';
 import { link, loading, portrait, teamMark } from './ui.js';
 import { mountMediaFallbacks, portraitOf } from './media.js';
 import { mountDnaSwitch, playerDnaView } from './dna.js';
 
-const TRIGGER = '.pchip a[href^="/players/"], a.pcard[href^="/players/"]';
+const TRIGGER = '.pchip a[href^="/players/"], a.pcard[href^="/players/"], a[data-player-slug][href^="/players/"]';
 let el = null; let opener = null; let seq = 0;
 
 function shell() {
@@ -33,7 +34,7 @@ function shell() {
   return d;
 }
 
-export function drawerContent(p, dnaEnv) {
+export function drawerContent(p, dnaEnv, today = null) {
   const pic = portraitOf(p);
   const lt = p.observed?.latest_team;
   const dna = dnaEnv?.data?.seasons?.length ? playerDnaView(dnaEnv, { compact: true }) : '<p class="muted">No Player DNA season yet: this player has no sourced appearances in a stored competition-season.</p>';
@@ -43,7 +44,9 @@ export function drawerContent(p, dnaEnv) {
       ${when(lt, () => `<p class="dr-team">${teamMark(lt, 'xs')}<span>${esc(lt.name)}</span><span class="muted">latest lineup ${esc(dateShort(lt.as_of))}</span></p>`)}
     </div></header>
     ${when(pic?.attribution, () => `<p class="credit dark">Photo: ${esc(pic.attribution)}</p>`)}
+    ${when(today, () => `<div class="dr-today"><p class="nrail-h">THIS MATCH</p><p class="dr-today-line"><b>${esc(today.label)}</b><span>${esc(todayLine(today.row) || 'Named in the lineup; no sourced counts')}</span></p></div>`)}
     <div class="dr-dna">${dna}</div>
+    ${when(p.observed?.recent?.length, () => `<div class="dr-recent"><p class="nrail-h">RECENT MATCHES</p><ul>${p.observed.recent.slice(0, 5).map(m => `<li>${link(`/pbecast/${m.id}`, `<span class="dr-rd">${esc(dateShort(m.kickoff_at))}</span><span class="dr-rt">${esc(m.home?.short_name || m.home?.name || '')} <b>${esc(scoreline(m.score) || 'v')}</b> ${esc(m.away?.short_name || m.away?.name || '')}</span><span class="dr-rr">${m.started ? 'Started' : m.came_on ? 'Came on' : 'Unused'}${m.goals ? ` · ${m.goals} G` : ''}</span>`)}</li>`).join('')}</ul></div>`)}
     <p class="dr-cta">${link(`/players/${p.slug}`, 'FULL PLAYER PROFILE →', 'btn gold')}</p>`;
 }
 
@@ -57,9 +60,12 @@ export async function open(slug, from) {
   requestAnimationFrame(() => el.classList.add('on'));
   el.querySelector('.dr-sheet').focus();
   try {
-    const [p, dna] = await Promise.all([api(`players/${slug}`), api(`players/${slug}/dna`).catch(() => null)]);
+    const matchId = from?.dataset?.matchId || from?.closest?.('[data-match-id]')?.dataset?.matchId || null;
+    const [p, dna, mt] = await Promise.all([api(`players/${slug}`), api(`players/${slug}/dna`).catch(() => null), matchId ? api(`matches/${matchId}`).catch(() => null) : Promise.resolve(null)]);
+    const row = mt?.data?.players?.rows?.find(r => r.player?.slug === slug) || null;
+    const today = row ? { row, label: `${mt.data.home?.short_name || mt.data.home?.name || ''} ${scoreline(mt.data.score) || 'v'} ${mt.data.away?.short_name || mt.data.away?.name || ''}` } : null;
     if (my !== seq || el.hidden) return;
-    body.innerHTML = drawerContent(p.data, dna);
+    body.innerHTML = drawerContent(p.data, dna, today);
     mountMediaFallbacks(body); mountDnaSwitch(body);
     el.querySelector('#dr-title')?.focus?.();
   } catch {

@@ -6,6 +6,7 @@ import { DASH, STAT_LABELS, ago, dateTime, num, sourceName, statsHeading } from 
 import { link, playerChip, sectionHead, sourcePanel, statusPill, teamLink, teamMark } from '../components/ui.js';
 import { pitchSvg, validShots } from '../components/pitch.js';
 import { mountRelatedNews } from '../components/related.js';
+import { keyPlayers } from '../components/keyplayers.js';
 import { matchTitle } from '../seo/meta.js';
 
 export const title = d => (d?.env?.data ? matchTitle(d.env.data) : 'Match Intelligence | PropBetEdge');
@@ -161,7 +162,7 @@ export function render(d) {
     ${when(m.status === 'live' || (m.timeline || []).length || (m.shots || []).length, () => `<p class="center mh-cast">${link(`/pbecast/${m.id}`, m.status === 'live' ? '<i class="livedot" aria-hidden="true"></i> WATCH THE LIVE PBECAST' : '▶ REPLAY ON PBECAST', 'btn gold')}</p>`)}
     ${freshness(m, meta)}
   </div></section>
-  <section class="canvas"><div class="wrap mgrid2">
+  <section class="canvas" data-match-id="${esc(m.id)}"><div class="wrap mgrid2">
     <div class="col-a">
       <div class="panel">${sectionHead('MATCH STORY', 'Goals, cards and substitutions')}${story(m)}</div>
       <div class="panel map">${sectionHead('EVENT MAP', 'Every shot on the canonical 105 × 68 m pitch')}${eventMap(m)}</div>
@@ -174,7 +175,7 @@ export function render(d) {
       ${sourcePanel(meta, { title: 'SOURCE & FRESHNESS', extra })}
     </div>
   </div></section>
-  ${when(m.players?.rows?.length, () => `<section class="canvas alt"><div class="wrap">${sectionHead('PLAYER IMPACT', 'Who shaped the match')}${playerImpact(m)}${newsSlot()}</div></section>`)}
+  ${when(m.players?.rows?.length, () => `<section class="canvas alt" data-match-id="${esc(m.id)}"><div class="wrap">${sectionHead('PLAYER IMPACT', 'Who shaped the match')}${keyPlayers(m)}${playerImpact(m)}${newsSlot()}</div></section>`)}
   ${when(!m.players?.rows?.length, () => `<section class="canvas alt"><div class="wrap">${newsSlot()}</div></section>`)}`;
 }
 

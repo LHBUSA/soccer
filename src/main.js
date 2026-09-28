@@ -12,6 +12,7 @@ import { hub as pbecastHub, cast as pbecast } from './pages/pbecast.js';
 import { FEATURED_COMPS } from './lib/competitions.js';
 import { mountMediaFallbacks } from './components/ui.js';
 import { installPlayerDrawer, close as closeDrawer } from './components/drawer.js';
+import { mountScoreTicker } from './components/score-ticker.js';
 
 const PAGES = { home, competition, match, competitions, matches, news, newsDesk, article, sources, tables, team, player, players, pbecastHub, pbecast };
 const NAV = [['/', 'TODAY', 'home'], ['/matches', 'MATCHES', 'matches,match'], ['/pbecast', 'PBECAST', 'pbecastHub,pbecast'], ['/tables', 'TABLES', 'tables'], ['/players', 'PLAYERS', 'players,player'], ['/competitions', 'COMPETITIONS', 'competitions'], ['/news', 'NEWS', 'news,newsDesk,article']];
@@ -28,6 +29,7 @@ function shell() {
   </div>
   <nav class="rail" aria-label="Competitions"><div class="wrap railrow">${FEATURED_COMPS.map(c => `<a href="/competitions/${c.slug}" data-link data-comp="${c.slug}" class="a-${c.accent}"><span class="cmono xs a-${c.accent}" aria-hidden="true">${c.mono}</span><span>${c.name.toUpperCase()}</span></a>`).join('')}</div></nav>
   </header>
+  <div id="score-ticker"></div>
   <main id="main" tabindex="-1"></main>
   <footer class="foot"><div class="wrap footgrid">
     <div><div class="brandlock foot-brand">${brandMark()}<p class="brand small"><span class="b1">PROPBETEDGE</span><span class="b2">SOCCER INTELLIGENCE</span></p></div><p class="muted">Football intelligence, rebuilt on the PropBetEdge canonical soccer graph.</p></div>
@@ -39,6 +41,7 @@ function shell() {
 const app = document.getElementById('app');
 app.innerHTML = shell();
 const main = document.getElementById('main');
+mountScoreTicker(document.getElementById('score-ticker'));
 let seq = 0;
 
 let firstLoad = true; // the server already wrote title/canonical/robots for the first response
