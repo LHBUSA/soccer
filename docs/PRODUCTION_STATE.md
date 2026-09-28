@@ -20,14 +20,14 @@ evidence are the source of truth; nothing here comes only from chat memory.
 | Worker | Live version | Rollback |
 |---|---|---|
 | soccer-api | `b7c7fdcb` | `b22668d3` |
-| soccer-ingest | `e15074df` | `21ccb770` |
+| soccer-ingest | `96fd029a` | `e15074df` |
 | soccer-news | `a04b2183` | `5c03ee80` |
 
 Rollback: `cd workers/<worker> && npx wrangler versions deploy <rollback>@100% --yes`. Web rollback: Vercel instant rollback to the previous production deployment.
 
 ## Migrations (all applied, each after a rollback-only proof with an unchanged catalog fingerprint)
 
-`0100` core graph · `0200` events · `0300` newsroom (append-only evidence) · `0400` attribute_corroborated player crosswalk · `0500` governed media registry · `0600` enrichment ledger + season groups/standings + media discovery/trademark status.
+`0100` core graph · `0200` events · `0300` newsroom (append-only evidence) · `0400` attribute_corroborated player crosswalk · `0500` governed media registry · `0600` enrichment ledger + season groups/standings + media discovery/trademark status · `0700` private model shadow (predictions frozen by trigger, append-only events/metrics).
 
 ## Competitions and sources
 
@@ -70,7 +70,8 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
 ## DNA and research
 
 - Player DNA / Team DNA: descriptive, time-safe profiles with percentiles within the competition-season (`workers/soccer-api/src/dna.js`).
-- Prediction research (docs/RESEARCH.md): candidate `soccer-research-bundesliga-v1.2-dc` (Dixon-Coles, rho -0.1099; holdout log loss 0.9952 vs baseline 1.0740, beats baseline every season). Phase 4: no static calibrator beats raw (DEV LOSO or holdout); verdict RAW DIXON-COLES READY FOR SHADOW; residual season-level home/away drift. **Not in production, no shadow table (needs owner approval).**
+- Prediction research (docs/RESEARCH.md): candidate `soccer-research-bundesliga-v1.2-dc` (Dixon-Coles, rho -0.1099, no calibration; holdout log loss 0.9952 vs baseline 1.0740).
+- **Private shadow (docs/SHADOW.md), LIVE 2026-09-28:** soccer-ingest lane `model_shadow_bundesliga_dc` (hourly) issues one frozen pre-kick prediction per Bundesliga league fixture within 7 days into `soccer_model_shadow_predictions` (RLS, no policies, anon revoked, never read by soccer-api). Not a product: no public surface, no promotion gate. First issue expected 2026-10-02 18:30 UTC for the 2026-10-09 fixture.
 
 ## QA (latest, docs/evidence/qa)
 
