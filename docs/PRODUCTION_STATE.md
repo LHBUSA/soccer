@@ -62,7 +62,7 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
 ## Media (docs/MEDIA.md)
 
 - Portraits: **592 approved**, via exact ESPN FC player id (P3681) or attribute corroboration inside a roster-proven club.
-- Crests: **3 approved** (Bayern München, Internazionale, Napoli). 4 held: Barcelona (third-party CC0 on the club crest), plus Inter Miami, AS Roma and Liverpool (wordmarks). Most major club crests are not freely licensed, so no legitimate source exists; the initials mark is the fallback.
+- Crests (2026-09-28): 8 free-licensed Commons crests live (Bayern, Dortmund, Mönchengladbach, Mainz, Hamburger SV, Werder Bremen, Internazionale, Napoli; all render, 0 failures: docs/evidence/media/crest-surfaces-2026-09-28-before.json). OWNER MEDIA DECISION 2026-09-28: crests and player media APPROVED for product identification (no internal holds). Provider path ready (scripts/media/provider-media.mjs): exact ESPN team id -> ESPN default crest for the other 87 clubs (95/95 identity proven by exact id) and 344 exact-athlete-id ESPN headshots; stored as `owner_approved_identification`, never labelled free. PENDING: migration 20260928000800 apply, provider-media run, soccer-api release.
 - Trademark status is stored separately from copyright; free-licensed crests are used only to identify the club.
 
 ## News (docs/NEWS_ENGINE.md)

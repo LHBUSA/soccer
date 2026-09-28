@@ -1,19 +1,30 @@
 {
-  "policy_version": "2026-09-27.1",
+  "policy_version": "2026-09-28.2",
   "sources": {
     "wikimedia_commons": "per-file licence from Commons extmetadata; CC0 / public domain / CC BY / CC BY-SA approved when author + licence URL are stated",
-    "provider_artwork": "not used: no provider image licence permits our use (ESPN headshots are never guessed or hotlinked)"
+    "provider_artwork": "team crests and player media from a provider (ESPN) ONLY when tied to the entity by an exact provider id from our canonical crosswalk and taken from that provider's own API payload (never a guessed URL); displayed under the owner identification policy, never labelled free-licensed"
   },
   "player_identity": "Wikidata item via exact ESPN FC player id (P3681); birth date must not contradict",
   "team_identity": "Wikidata club via roster proof (>=60% and >=5 id-matched players share the current club, runner-up <=30%, unique)",
   "crest_trademark": "approve_nominative",
-  "crest_trademark_note": "Free-licensed Commons crests are approved and used only to identify the club; set to \"review\" to hold every trademarked crest for owner review.",
+  "crest_trademark_note": "Free-licensed Commons crests are approved and used only to identify the club.",
   "thumb_width": 480,
-  "owner_holds": {
-    "Football Club Barcelona Color Update.png": "FC Barcelona: CC0 declared by an uploader who does not own the crest (held-crests-review-2026-09-28: recommend REJECT; owner decision pending)",
-    "Inter Miami CF wordmark-full pink.png": "Inter Miami CF: text-only wordmark, not a crest (KEEP HELD)",
-    "AS ROMA Text Logo 2020 - 2021 .svg": "AS Roma: text-only wordmark, not a crest (KEEP HELD)",
-    "Logo Liverpool FC (2024).png": "Liverpool: text-only mark 'L.F.C.', not a crest (KEEP HELD)"
-  },
-  "owner_holds_note": "Files held by owner decision are never published by any pipeline run, whatever the rights classifier says; change only on an explicit owner decision."
+  "owner_identification": {
+    "decision": "APPROVED FOR PRODUCT IDENTIFICATION USE",
+    "decided_by": "owner, PropBetEdge / PropTechUSA.ai",
+    "decided_at": "2026-09-28",
+    "policy_version": "owner-identification/2026-09-28",
+    "applies_to": [
+      "team crest",
+      "player portrait"
+    ],
+    "rights_status": "owner_approved_identification",
+    "rule": "identity proven by an exact id + current crest/photo identified + owner approval = eligible for rendering. This is an internal product decision, not a licence: provenance (provider, source URL, retrieved_at, copyright/licence text as known, trademark status, this policy version) is stored truthfully and the asset is never described as free, public domain or licensed.",
+    "priority": [
+      "already-governed free-licensed crest (Commons, rights_status approved)",
+      "official club/league asset with deterministic identity",
+      "provider artwork tied to an exact provider team/athlete id",
+      "Commons/Wikidata"
+    ]
+  }
 }

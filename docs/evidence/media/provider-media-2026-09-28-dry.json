@@ -1,0 +1,1381 @@
+{
+  "version": "media-provider/1.0.0",
+  "policy_version": "2026-09-28.2",
+  "owner_policy": "owner-identification/2026-09-28",
+  "started_at": "2026-09-28T19:58:51.194Z",
+  "dry": true,
+  "crests": {
+    "by_competition": {
+      "mls": {
+        "teams": 30,
+        "live_or_candidate": 30,
+        "identity_unresolved": 0,
+        "asset_unavailable": 0
+      },
+      "premier-league": {
+        "teams": 20,
+        "live_or_candidate": 20,
+        "identity_unresolved": 0,
+        "asset_unavailable": 0
+      },
+      "bundesliga": {
+        "teams": 18,
+        "live_or_candidate": 18,
+        "identity_unresolved": 0,
+        "asset_unavailable": 0
+      },
+      "uefa-champions-league": {
+        "teams": 36,
+        "live_or_candidate": 36,
+        "identity_unresolved": 0,
+        "asset_unavailable": 0
+      }
+    },
+    "teams": [
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Seattle Sounders FC",
+        "slug": "seattle-sounders-fc",
+        "canonical_id": "0554d69a-e723-5dfa-b31d-d28d9774e31d",
+        "espn_team_id": "9726",
+        "source": "ESPN team artwork (exact ESPN team id 9726, listed in usa.1 as \"Seattle Sounders FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/9726.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "LAFC",
+        "slug": "lafc",
+        "canonical_id": "06925853-d70b-5e7b-8128-19ed9adae061",
+        "espn_team_id": "18966",
+        "source": "ESPN team artwork (exact ESPN team id 18966, listed in usa.1 as \"LAFC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/18966.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Austin FC",
+        "slug": "austin-fc",
+        "canonical_id": "1823dcb9-2f81-5105-97e5-e9f0cbda7e3c",
+        "espn_team_id": "20906",
+        "source": "ESPN team artwork (exact ESPN team id 20906, listed in usa.1 as \"Austin FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/20906.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Minnesota United FC",
+        "slug": "minnesota-united-fc",
+        "canonical_id": "1b04a97d-3c94-58a7-929a-1346c67ad899",
+        "espn_team_id": "17362",
+        "source": "ESPN team artwork (exact ESPN team id 17362, listed in usa.1 as \"Minnesota United FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/17362.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Chicago Fire FC",
+        "slug": "chicago-fire-fc",
+        "canonical_id": "292c1786-ad90-5638-9c7d-5eb872e293ac",
+        "espn_team_id": "182",
+        "source": "ESPN team artwork (exact ESPN team id 182, listed in usa.1 as \"Chicago Fire FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/182.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "San Diego FC",
+        "slug": "san-diego-fc",
+        "canonical_id": "3d3675b6-12df-59fd-8714-1ab0337f2627",
+        "espn_team_id": "22529",
+        "source": "ESPN team artwork (exact ESPN team id 22529, listed in usa.1 as \"San Diego FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/22529.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Houston Dynamo FC",
+        "slug": "houston-dynamo-fc",
+        "canonical_id": "499477b6-a3d4-5caf-91e1-30e382767b13",
+        "espn_team_id": "6077",
+        "source": "ESPN team artwork (exact ESPN team id 6077, listed in usa.1 as \"Houston Dynamo FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/6077.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Red Bull New York",
+        "slug": "red-bull-new-york",
+        "canonical_id": "5f7c1140-c6ab-575b-92b6-885c6d27e878",
+        "espn_team_id": "190",
+        "source": "ESPN team artwork (exact ESPN team id 190, listed in usa.1 as \"Red Bull New York\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/190.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "LA Galaxy",
+        "slug": "la-galaxy",
+        "canonical_id": "97b593e3-45ac-53a1-ad30-fbe008da4339",
+        "espn_team_id": "187",
+        "source": "ESPN team artwork (exact ESPN team id 187, listed in usa.1 as \"LA Galaxy\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/187.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Real Salt Lake",
+        "slug": "real-salt-lake",
+        "canonical_id": "9dfe9c77-0ca3-5d3b-940d-0d4d05e463f2",
+        "espn_team_id": "4771",
+        "source": "ESPN team artwork (exact ESPN team id 4771, listed in usa.1 as \"Real Salt Lake\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/4771.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "FC Dallas",
+        "slug": "fc-dallas",
+        "canonical_id": "9f046c6e-7822-58d3-8ef1-68395bca1a94",
+        "espn_team_id": "185",
+        "source": "ESPN team artwork (exact ESPN team id 185, listed in usa.1 as \"FC Dallas\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/185.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Portland Timbers",
+        "slug": "portland-timbers",
+        "canonical_id": "a5f8eebc-0ed7-5468-9606-703f76b21fff",
+        "espn_team_id": "9723",
+        "source": "ESPN team artwork (exact ESPN team id 9723, listed in usa.1 as \"Portland Timbers\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/9723.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "San Jose Earthquakes",
+        "slug": "san-jose-earthquakes",
+        "canonical_id": "a6983312-f338-5d70-990a-9eeb3008ef8e",
+        "espn_team_id": "191",
+        "source": "ESPN team artwork (exact ESPN team id 191, listed in usa.1 as \"San Jose Earthquakes\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/191.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Colorado Rapids",
+        "slug": "colorado-rapids",
+        "canonical_id": "cb5d4eb3-8a76-57fa-a3cd-a008311a0313",
+        "espn_team_id": "184",
+        "source": "ESPN team artwork (exact ESPN team id 184, listed in usa.1 as \"Colorado Rapids\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/184.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "St. Louis CITY SC",
+        "slug": "st-louis-city-sc",
+        "canonical_id": "d6a76c3e-88b3-5127-80a1-6dfd6439fe31",
+        "espn_team_id": "21812",
+        "source": "ESPN team artwork (exact ESPN team id 21812, listed in usa.1 as \"St. Louis CITY SC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21812.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Vancouver Whitecaps",
+        "slug": "vancouver-whitecaps",
+        "canonical_id": "d7db905f-742a-5256-9ad4-4e2f6deb3617",
+        "espn_team_id": "9727",
+        "source": "ESPN team artwork (exact ESPN team id 9727, listed in usa.1 as \"Vancouver Whitecaps\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/9727.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Sporting Kansas City",
+        "slug": "sporting-kansas-city",
+        "canonical_id": "e2c42777-a99e-5b8a-a17b-0546d789669d",
+        "espn_team_id": "186",
+        "source": "ESPN team artwork (exact ESPN team id 186, listed in usa.1 as \"Sporting Kansas City\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/186.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "CF Montréal",
+        "slug": "cf-montreal",
+        "canonical_id": "f384bb8b-0c40-585c-8ea7-43f11ba49a05",
+        "espn_team_id": "9720",
+        "source": "ESPN team artwork (exact ESPN team id 9720, listed in usa.1 as \"CF Montréal\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/9720.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Orlando City SC",
+        "slug": "orlando-city-sc",
+        "canonical_id": "afb4a9bd-aa39-53df-a3c1-81a2b7018a28",
+        "espn_team_id": "12011",
+        "source": "ESPN team artwork (exact ESPN team id 12011, listed in usa.1 as \"Orlando City SC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/12011.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Inter Miami CF",
+        "slug": "inter-miami-cf",
+        "canonical_id": "e7ab1df1-d63c-5694-9757-ffa7ce360899",
+        "espn_team_id": "20232",
+        "source": "ESPN team artwork (exact ESPN team id 20232, listed in usa.1 as \"Inter Miami CF\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/20232.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Nashville SC",
+        "slug": "nashville-sc",
+        "canonical_id": "80f1ce21-52a4-5dfb-bb0b-196dfd002bcb",
+        "espn_team_id": "18986",
+        "source": "ESPN team artwork (exact ESPN team id 18986, listed in usa.1 as \"Nashville SC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/18986.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Philadelphia Union",
+        "slug": "philadelphia-union",
+        "canonical_id": "94a30b61-36f9-5c8f-ba86-7ba6150d12be",
+        "espn_team_id": "10739",
+        "source": "ESPN team artwork (exact ESPN team id 10739, listed in usa.1 as \"Philadelphia Union\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/10739.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "D.C. United",
+        "slug": "d-c-united",
+        "canonical_id": "f0229140-8a6d-5fc7-ace0-8bc05b357549",
+        "espn_team_id": "193",
+        "source": "ESPN team artwork (exact ESPN team id 193, listed in usa.1 as \"D.C. United\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/193.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Atlanta United FC",
+        "slug": "atlanta-united-fc",
+        "canonical_id": "73b6b4dd-8d46-543f-a415-b5b058dd9636",
+        "espn_team_id": "18418",
+        "source": "ESPN team artwork (exact ESPN team id 18418, listed in usa.1 as \"Atlanta United FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/18418.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "FC Cincinnati",
+        "slug": "fc-cincinnati",
+        "canonical_id": "e1fcd0c1-4810-5dcb-b408-ac537095108c",
+        "espn_team_id": "18267",
+        "source": "ESPN team artwork (exact ESPN team id 18267, listed in usa.1 as \"FC Cincinnati\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/18267.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Charlotte FC",
+        "slug": "charlotte-fc",
+        "canonical_id": "54c67398-f6dc-505a-a446-9c1dbf5e6424",
+        "espn_team_id": "21300",
+        "source": "ESPN team artwork (exact ESPN team id 21300, listed in usa.1 as \"Charlotte FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21300.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "New York City FC",
+        "slug": "new-york-city-fc",
+        "canonical_id": "5647e9f7-d309-5f10-b266-f5bdc27c143b",
+        "espn_team_id": "17606",
+        "source": "ESPN team artwork (exact ESPN team id 17606, listed in usa.1 as \"New York City FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/17606.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Toronto FC",
+        "slug": "toronto-fc",
+        "canonical_id": "7bee7d37-0089-5902-8c97-9c3256b6fce7",
+        "espn_team_id": "7318",
+        "source": "ESPN team artwork (exact ESPN team id 7318, listed in usa.1 as \"Toronto FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/7318.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "New England Revolution",
+        "slug": "new-england-revolution",
+        "canonical_id": "a7a496a8-05b3-5a14-a990-9ede2c1386f6",
+        "espn_team_id": "189",
+        "source": "ESPN team artwork (exact ESPN team id 189, listed in usa.1 as \"New England Revolution\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/189.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Columbus Crew",
+        "slug": "columbus-crew",
+        "canonical_id": "d07fe503-086c-5a1f-916b-0be0f567c766",
+        "espn_team_id": "183",
+        "source": "ESPN team artwork (exact ESPN team id 183, listed in usa.1 as \"Columbus Crew\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/183.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Brighton & Hove Albion",
+        "slug": "brighton-hove-albion",
+        "canonical_id": "1400baef-5f7b-5c1b-a23d-09c5cca0b905",
+        "espn_team_id": "331",
+        "source": "ESPN team artwork (exact ESPN team id 331, listed in eng.1 as \"Brighton & Hove Albion\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/331.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league",
+          "uefa-champions-league"
+        ],
+        "team": "Liverpool",
+        "slug": "liverpool",
+        "canonical_id": "338c117f-5477-5701-8ca4-fc1e2a35547c",
+        "espn_team_id": "364",
+        "source": "ESPN team artwork (exact ESPN team id 364, listed in eng.1 as \"Liverpool\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/364.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Crystal Palace",
+        "slug": "crystal-palace",
+        "canonical_id": "356baccf-2fde-5932-8239-979727ccba98",
+        "espn_team_id": "384",
+        "source": "ESPN team artwork (exact ESPN team id 384, listed in eng.1 as \"Crystal Palace\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/384.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league",
+          "uefa-champions-league"
+        ],
+        "team": "Manchester City",
+        "slug": "manchester-city",
+        "canonical_id": "3bae7b11-9a30-5e3a-8f88-0151e490ab95",
+        "espn_team_id": "382",
+        "source": "ESPN team artwork (exact ESPN team id 382, listed in eng.1 as \"Manchester City\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/382.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Tottenham Hotspur",
+        "slug": "tottenham-hotspur",
+        "canonical_id": "45399083-97c9-53e2-8eb8-4cf57e467450",
+        "espn_team_id": "367",
+        "source": "ESPN team artwork (exact ESPN team id 367, listed in eng.1 as \"Tottenham Hotspur\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/367.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league",
+          "uefa-champions-league"
+        ],
+        "team": "Aston Villa",
+        "slug": "aston-villa",
+        "canonical_id": "47866b47-12b4-5243-b672-74a5715cd72a",
+        "espn_team_id": "362",
+        "source": "ESPN team artwork (exact ESPN team id 362, listed in eng.1 as \"Aston Villa\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/362.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Everton",
+        "slug": "everton",
+        "canonical_id": "483fcba8-a8f1-5e83-a885-89af5f8c78f8",
+        "espn_team_id": "368",
+        "source": "ESPN team artwork (exact ESPN team id 368, listed in eng.1 as \"Everton\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/368.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Leeds United",
+        "slug": "leeds-united",
+        "canonical_id": "747cff94-7740-5399-826a-7c1c15e9d81f",
+        "espn_team_id": "357",
+        "source": "ESPN team artwork (exact ESPN team id 357, listed in eng.1 as \"Leeds United\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/357.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Coventry City",
+        "slug": "coventry-city",
+        "canonical_id": "8a66ef14-fa1c-5b04-8fbd-3e22f7bb0bb0",
+        "espn_team_id": "388",
+        "source": "ESPN team artwork (exact ESPN team id 388, listed in eng.1 as \"Coventry City\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/388.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Fulham",
+        "slug": "fulham",
+        "canonical_id": "8d019e3c-aea1-5322-8c3b-6f8997cc43ec",
+        "espn_team_id": "370",
+        "source": "ESPN team artwork (exact ESPN team id 370, listed in eng.1 as \"Fulham\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/370.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Newcastle United",
+        "slug": "newcastle-united",
+        "canonical_id": "8e867ba0-2519-5188-bbba-a1f254dfb417",
+        "espn_team_id": "361",
+        "source": "ESPN team artwork (exact ESPN team id 361, listed in eng.1 as \"Newcastle United\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/361.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Ipswich Town",
+        "slug": "ipswich-town",
+        "canonical_id": "96748728-637f-52c6-9f38-c58741ce498c",
+        "espn_team_id": "373",
+        "source": "ESPN team artwork (exact ESPN team id 373, listed in eng.1 as \"Ipswich Town\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/373.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Brentford",
+        "slug": "brentford",
+        "canonical_id": "9dc04d86-20b3-5501-9551-9eeff0e155dc",
+        "espn_team_id": "337",
+        "source": "ESPN team artwork (exact ESPN team id 337, listed in eng.1 as \"Brentford\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/337.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Sunderland",
+        "slug": "sunderland",
+        "canonical_id": "bc2c300a-e720-5419-bbec-24792cb3cb64",
+        "espn_team_id": "366",
+        "source": "ESPN team artwork (exact ESPN team id 366, listed in eng.1 as \"Sunderland\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/366.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league",
+          "uefa-champions-league"
+        ],
+        "team": "Arsenal",
+        "slug": "arsenal",
+        "canonical_id": "be541ba0-e56b-559c-9dbe-f6275f643f84",
+        "espn_team_id": "359",
+        "source": "ESPN team artwork (exact ESPN team id 359, listed in eng.1 as \"Arsenal\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/359.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Nottingham Forest",
+        "slug": "nottingham-forest",
+        "canonical_id": "d148c320-f1e8-55b0-ba51-28920f032bc8",
+        "espn_team_id": "393",
+        "source": "ESPN team artwork (exact ESPN team id 393, listed in eng.1 as \"Nottingham Forest\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/393.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "AFC Bournemouth",
+        "slug": "afc-bournemouth",
+        "canonical_id": "d1e89c71-71e2-58f9-b996-59475d74629b",
+        "espn_team_id": "349",
+        "source": "ESPN team artwork (exact ESPN team id 349, listed in eng.1 as \"AFC Bournemouth\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/349.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Chelsea",
+        "slug": "chelsea",
+        "canonical_id": "d75924d3-73ff-5b8f-93b3-e01ba9b5653d",
+        "espn_team_id": "363",
+        "source": "ESPN team artwork (exact ESPN team id 363, listed in eng.1 as \"Chelsea\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/363.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league",
+          "uefa-champions-league"
+        ],
+        "team": "Manchester United",
+        "slug": "manchester-united",
+        "canonical_id": "e148d6e7-876e-5683-9c12-41479c614885",
+        "espn_team_id": "360",
+        "source": "ESPN team artwork (exact ESPN team id 360, listed in eng.1 as \"Manchester United\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/360.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Hull City",
+        "slug": "hull-city",
+        "canonical_id": "f35b3b09-109b-5ecc-8ed7-90dc999aa0bb",
+        "espn_team_id": "306",
+        "source": "ESPN team artwork (exact ESPN team id 306, listed in eng.1 as \"Hull City\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/306.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga",
+          "uefa-champions-league"
+        ],
+        "team": "RB Leipzig",
+        "slug": "rb-leipzig",
+        "canonical_id": "08e2b4f3-a5fe-58b3-a7a4-7d410e3f7b78",
+        "espn_team_id": "11420",
+        "source": "ESPN team artwork (exact ESPN team id 11420, listed in ger.1 as \"RB Leipzig\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/11420.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "Freiburg",
+        "slug": "freiburg",
+        "canonical_id": "21f0f02a-d5e7-50a2-a789-95fc8161893f",
+        "espn_team_id": "126",
+        "source": "ESPN team artwork (exact ESPN team id 126, listed in ger.1 as \"SC Freiburg\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/126.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga",
+          "uefa-champions-league"
+        ],
+        "team": "Borussia Dortmund",
+        "slug": "borussia-dortmund",
+        "canonical_id": "640424d4-438b-5524-8909-0422f7e8ce97",
+        "espn_team_id": "124",
+        "source": "wikimedia_commons (free-licensed, already governed)",
+        "identity": "governed",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "Hoffenheim",
+        "slug": "hoffenheim",
+        "canonical_id": "6c4c8c4a-fc58-5a85-9b62-a1e98bbf8fb9",
+        "espn_team_id": "7911",
+        "source": "ESPN team artwork (exact ESPN team id 7911, listed in ger.1 as \"TSG Hoffenheim\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/7911.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "1. FC Union Berlin",
+        "slug": "1-fc-union-berlin",
+        "canonical_id": "6cc66022-daed-5556-84ac-f3c81cb0a736",
+        "espn_team_id": "598",
+        "source": "ESPN team artwork (exact ESPN team id 598, listed in ger.1 as \"1. FC Union Berlin\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/598.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "Mainz 05",
+        "slug": "mainz-05",
+        "canonical_id": "6f8a1b01-df4d-597f-918a-42c9176472c3",
+        "espn_team_id": "2950",
+        "source": "wikimedia_commons (free-licensed, already governed)",
+        "identity": "governed",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "Borussia M'gladbach",
+        "slug": "borussia-m-gladbach",
+        "canonical_id": "775d711e-7530-5d32-89e1-40900407af76",
+        "espn_team_id": "268",
+        "source": "wikimedia_commons (free-licensed, already governed)",
+        "identity": "governed",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "Bayer Leverkusen",
+        "slug": "bayer-leverkusen",
+        "canonical_id": "81ea321f-975b-54aa-9897-4e65eb40803d",
+        "espn_team_id": "131",
+        "source": "ESPN team artwork (exact ESPN team id 131, listed in ger.1 as \"Bayer Leverkusen\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/131.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "Schalke 04",
+        "slug": "schalke-04",
+        "canonical_id": "9094b067-50ee-5b54-a7e5-927beaed2466",
+        "espn_team_id": "133",
+        "source": "ESPN team artwork (exact ESPN team id 133, listed in ger.1 as \"Schalke 04\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/133.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "Köln",
+        "slug": "koln",
+        "canonical_id": "97866b04-920a-5c36-bedb-e123f8db3c8c",
+        "espn_team_id": "122",
+        "source": "ESPN team artwork (exact ESPN team id 122, listed in ger.1 as \"FC Cologne\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/122.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga",
+          "uefa-champions-league"
+        ],
+        "team": "Bayern München",
+        "slug": "bayern-munchen",
+        "canonical_id": "9c2ce181-7bf4-55cf-b770-949389bb8797",
+        "espn_team_id": "132",
+        "source": "wikimedia_commons (free-licensed, already governed)",
+        "identity": "governed",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "SV 07 Elversberg",
+        "slug": "sv-07-elversberg",
+        "canonical_id": "b0840b33-9543-5340-a7e5-a812e2f97a16",
+        "espn_team_id": "10388",
+        "source": "ESPN team artwork (exact ESPN team id 10388, listed in ger.1 as \"SV Elversberg\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/10388.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "SC Paderborn 07",
+        "slug": "sc-paderborn-07",
+        "canonical_id": "b4ba53cb-45fb-5370-9e1c-147974073eec",
+        "espn_team_id": "3307",
+        "source": "ESPN team artwork (exact ESPN team id 3307, listed in ger.1 as \"SC Paderborn 07\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/3307.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "Augsburg",
+        "slug": "augsburg",
+        "canonical_id": "b5fe9bde-f06f-5c28-bdf3-594fe981c071",
+        "espn_team_id": "3841",
+        "source": "ESPN team artwork (exact ESPN team id 3841, listed in ger.1 as \"FC Augsburg\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/3841.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "Eintracht Frankfurt",
+        "slug": "eintracht-frankfurt",
+        "canonical_id": "bd55982f-e37d-553b-a5c6-15bca4ee41aa",
+        "espn_team_id": "125",
+        "source": "ESPN team artwork (exact ESPN team id 125, listed in ger.1 as \"Eintracht Frankfurt\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/125.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga",
+          "uefa-champions-league"
+        ],
+        "team": "Stuttgart",
+        "slug": "stuttgart",
+        "canonical_id": "be36e76a-6483-5d73-b14c-d60a7036a7c3",
+        "espn_team_id": "134",
+        "source": "ESPN team artwork (exact ESPN team id 134, listed in ger.1 as \"VfB Stuttgart\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/134.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "Hamburger SV",
+        "slug": "hamburger-sv",
+        "canonical_id": "c4975e20-1bb8-565f-ad0b-22316762e1a0",
+        "espn_team_id": "127",
+        "source": "wikimedia_commons (free-licensed, already governed)",
+        "identity": "governed",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "Werder Bremen",
+        "slug": "werder-bremen",
+        "canonical_id": "e8cd28c3-8517-5be6-a5e8-007cb5e11c93",
+        "espn_team_id": "137",
+        "source": "wikimedia_commons (free-licensed, already governed)",
+        "identity": "governed",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Real Betis",
+        "slug": "real-betis",
+        "canonical_id": "01ce91a9-cbff-512b-ada4-6d52a57e31b0",
+        "espn_team_id": "244",
+        "source": "ESPN team artwork (exact ESPN team id 244, listed in uefa.champions as \"Real Betis\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/244.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Feyenoord Rotterdam",
+        "slug": "feyenoord-rotterdam",
+        "canonical_id": "33f03666-e09c-5f1c-a808-15a85928d33a",
+        "espn_team_id": "142",
+        "source": "ESPN team artwork (exact ESPN team id 142, listed in uefa.champions as \"Feyenoord Rotterdam\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/142.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Como",
+        "slug": "como",
+        "canonical_id": "daa6b39c-b52b-539c-9493-46b048624d4f",
+        "espn_team_id": "2572",
+        "source": "ESPN team artwork (exact ESPN team id 2572, listed in uefa.champions as \"Como\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/2572.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "FC Porto",
+        "slug": "fc-porto",
+        "canonical_id": "eca52be5-5b17-597d-85ed-841c58622de0",
+        "espn_team_id": "437",
+        "source": "ESPN team artwork (exact ESPN team id 437, listed in uefa.champions as \"FC Porto\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/437.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Shakhtar Donetsk",
+        "slug": "shakhtar-donetsk",
+        "canonical_id": "459824c0-9295-51dc-bdc1-6825abbe206a",
+        "espn_team_id": "493",
+        "source": "ESPN team artwork (exact ESPN team id 493, listed in uefa.champions as \"Shakhtar Donetsk\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/493.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Lens",
+        "slug": "lens",
+        "canonical_id": "cb1a2ada-1626-5e66-bee6-b6356b089b29",
+        "espn_team_id": "175",
+        "source": "ESPN team artwork (exact ESPN team id 175, listed in uefa.champions as \"Lens\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/175.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "PSV Eindhoven",
+        "slug": "psv-eindhoven",
+        "canonical_id": "efe960bd-b58b-5add-9cd8-32c8838fa22c",
+        "espn_team_id": "148",
+        "source": "ESPN team artwork (exact ESPN team id 148, listed in uefa.champions as \"PSV Eindhoven\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/148.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Sabah FK",
+        "slug": "sabah-fk",
+        "canonical_id": "2774398e-a0dc-5438-b8d3-2798f71e5e1a",
+        "espn_team_id": "21922",
+        "source": "ESPN team artwork (exact ESPN team id 21922, listed in uefa.champions as \"Sabah FK\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21922.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Napoli",
+        "slug": "napoli",
+        "canonical_id": "7aa9f196-3ecb-5b76-baf7-6cab5cb3d906",
+        "espn_team_id": "114",
+        "source": "wikimedia_commons (free-licensed, already governed)",
+        "identity": "governed",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Barcelona",
+        "slug": "barcelona",
+        "canonical_id": "db302030-0990-55c4-81ee-140bf1222310",
+        "espn_team_id": "83",
+        "source": "ESPN team artwork (exact ESPN team id 83, listed in uefa.champions as \"Barcelona\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/83.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Slavia Prague",
+        "slug": "slavia-prague",
+        "canonical_id": "eb5a0d8e-9fe0-5ded-aa7f-877bcaa698ea",
+        "espn_team_id": "494",
+        "source": "ESPN team artwork (exact ESPN team id 494, listed in uefa.champions as \"Slavia Prague\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/494.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "AEK Athens",
+        "slug": "aek-athens",
+        "canonical_id": "2a5a3ee7-d4b5-5998-90ca-90acf4e7a701",
+        "espn_team_id": "887",
+        "source": "ESPN team artwork (exact ESPN team id 887, listed in uefa.champions as \"AEK Athens\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/887.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Galatasaray",
+        "slug": "galatasaray",
+        "canonical_id": "2ad5fe5f-393f-533d-ac95-9d8086f49fce",
+        "espn_team_id": "432",
+        "source": "ESPN team artwork (exact ESPN team id 432, listed in uefa.champions as \"Galatasaray\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/432.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "AS Roma",
+        "slug": "as-roma",
+        "canonical_id": "45ddf007-64aa-5c34-8057-ad96a2782853",
+        "espn_team_id": "104",
+        "source": "ESPN team artwork (exact ESPN team id 104, listed in uefa.champions as \"AS Roma\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/104.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Real Madrid",
+        "slug": "real-madrid",
+        "canonical_id": "9bd7f49b-04cf-50f6-aafa-acb09078da4c",
+        "espn_team_id": "86",
+        "source": "ESPN team artwork (exact ESPN team id 86, listed in uefa.champions as \"Real Madrid\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "LASK Linz",
+        "slug": "lask-linz",
+        "canonical_id": "a8bda3c7-dd69-52f4-818d-d8e944919269",
+        "espn_team_id": "4411",
+        "source": "ESPN team artwork (exact ESPN team id 4411, listed in uefa.champions as \"LASK Linz\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/4411.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Villarreal",
+        "slug": "villarreal",
+        "canonical_id": "992ba18d-a16f-5bd8-866a-de09d49e7929",
+        "espn_team_id": "102",
+        "source": "ESPN team artwork (exact ESPN team id 102, listed in uefa.champions as \"Villarreal\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/102.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Atlético Madrid",
+        "slug": "atletico-madrid",
+        "canonical_id": "abc6792d-4c7e-50fa-ab91-7e003aafb1a8",
+        "espn_team_id": "1068",
+        "source": "ESPN team artwork (exact ESPN team id 1068, listed in uefa.champions as \"Atlético Madrid\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/1068.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Internazionale",
+        "slug": "internazionale",
+        "canonical_id": "3ca625de-1643-52cc-b8be-2844f801ae3c",
+        "espn_team_id": "110",
+        "source": "wikimedia_commons (free-licensed, already governed)",
+        "identity": "governed",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Bodo/Glimt",
+        "slug": "bodo-glimt",
+        "canonical_id": "394d0950-81c7-5f34-9ac7-bc0d8dcc8463",
+        "espn_team_id": "2980",
+        "source": "ESPN team artwork (exact ESPN team id 2980, listed in uefa.champions as \"Bodo/Glimt\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/2980.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Lille",
+        "slug": "lille",
+        "canonical_id": "b71e1287-3899-5ea3-99c6-45d05e45d2a9",
+        "espn_team_id": "166",
+        "source": "ESPN team artwork (exact ESPN team id 166, listed in uefa.champions as \"Lille\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/166.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Sporting CP",
+        "slug": "sporting-cp",
+        "canonical_id": "7d877650-bbef-50f6-a940-c5e7a0fbb858",
+        "espn_team_id": "2250",
+        "source": "ESPN team artwork (exact ESPN team id 2250, listed in uefa.champions as \"Sporting CP\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/2250.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Paris Saint-Germain",
+        "slug": "paris-saint-germain",
+        "canonical_id": "eb2ab03b-bbd0-5857-bd70-aa375ad3dccc",
+        "espn_team_id": "160",
+        "source": "ESPN team artwork (exact ESPN team id 160, listed in uefa.champions as \"Paris Saint-Germain\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/160.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Club Brugge",
+        "slug": "club-brugge",
+        "canonical_id": "4fccb2bb-1bd1-5f87-a39b-6b91b51b54d7",
+        "espn_team_id": "570",
+        "source": "ESPN team artwork (exact ESPN team id 570, listed in uefa.champions as \"Club Brugge\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/570.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Fenerbahce",
+        "slug": "fenerbahce",
+        "canonical_id": "97d25822-3d08-54db-a91b-32965926f7a5",
+        "espn_team_id": "436",
+        "source": "ESPN team artwork (exact ESPN team id 436, listed in uefa.champions as \"Fenerbahce\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/436.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Slovan Bratislava",
+        "slug": "slovan-bratislava",
+        "canonical_id": "5fdce980-fe2d-5c2e-98dd-9f3494c47ce2",
+        "espn_team_id": "521",
+        "source": "ESPN team artwork (exact ESPN team id 521, listed in uefa.champions as \"Slovan Bratislava\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/521.png",
+        "status": "candidate (dry run)"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Viking FK",
+        "slug": "viking-fk",
+        "canonical_id": "909c8134-7ec0-533f-b139-2a2fbd463ec7",
+        "espn_team_id": "510",
+        "source": "ESPN team artwork (exact ESPN team id 510, listed in uefa.champions as \"Viking FK\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/510.png",
+        "status": "candidate (dry run)"
+      }
+    ]
+  },
+  "portraits": {
+    "reasons": {
+      "candidate": 344,
+      "free_licensed_portrait_kept": 67,
+      "athlete_not_in_crosswalk": 38,
+      "birth_date_contradiction": 1
+    },
+    "espn_headshots_in_payloads": 450
+  },
+  "cached": 0,
+  "reused": 0,
+  "cache_failed": 0,
+  "finished_at": "2026-09-28T19:59:24.773Z"
+}

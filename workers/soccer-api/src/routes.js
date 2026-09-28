@@ -19,14 +19,17 @@ const TEAM_COLS = ['id', 'slug', 'name', 'short_name', 'official_name', 'team_ty
 const PLAYER_COLS = ['id', 'slug', 'display_name', 'first_name', 'last_name', 'birth_date', 'nationality_code', 'foot', 'height_cm', 'primary_role'];
 const MATCH_COLS = ['id', 'competition_id', 'season_id', 'matchday', 'round_label', 'kickoff_at', 'venue_id', 'home_team_id', 'away_team_id', 'status', 'home_score', 'away_score', 'home_score_ht', 'away_score_ht', 'duration', 'winner_team_id', 'result_provider', 'updated_at'];
 
-// Media: ONLY approved rows with a cached copy are ever exposed (rights_status is
-// filtered here, in the one query every media read goes through).
-const MEDIA_COLS = ['entity_id', 'media_type', 'cached_url', 'width', 'height', 'license', 'license_url', 'author', 'attribution', 'source', 'source_url', 'is_primary'];
+// Media: ONLY displayable rows with a cached copy are ever exposed (rights_status is filtered here,
+// in the one query every media read goes through). Displayable = 'approved' (independently
+// free-licensed) or 'owner_approved_identification' (owner product decision 2026-09-28; NOT a
+// licence, provenance kept truthful and exposed as `basis`).
+export const DISPLAYABLE = ['approved', 'owner_approved_identification'];
+const MEDIA_COLS = ['entity_id', 'media_type', 'cached_url', 'width', 'height', 'license', 'license_url', 'author', 'attribution', 'source', 'source_url', 'is_primary', 'rights_status'];
 export async function approvedMedia(store, entityType, ids, { mediaType = null, primaryOnly = false } = {}) {
   const out = new Map();
   for (const part of chunkArr([...new Set(ids.filter(Boolean))], 150)) {
-    const eq = { entity_type: entityType, rights_status: 'approved', ...(mediaType ? { media_type: mediaType } : {}), ...(primaryOnly ? { is_primary: true } : {}) };
-    for (const r of await store.select('soccer_entity_media', { columns: MEDIA_COLS, eq, in: { entity_id: part } })) {
+    const eq = { entity_type: entityType, ...(mediaType ? { media_type: mediaType } : {}), ...(primaryOnly ? { is_primary: true } : {}) };
+    for (const r of await store.select('soccer_entity_media', { columns: MEDIA_COLS, eq, in: { entity_id: part, rights_status: DISPLAYABLE } })) {
       if (!r.cached_url) continue;
       out.set(r.entity_id, [...(out.get(r.entity_id) || []), shapeMedia(r)]);
     }
@@ -39,7 +42,7 @@ export async function portraitMap(store, ids) {
   for (const [id, list] of await approvedMedia(store, 'player', ids, { mediaType: 'portrait', primaryOnly: true })) out.set(id, { url: list[0].url, attribution: list[0].attribution, license: list[0].license });
   return out;
 }
-const shapeMedia = r => ({ media_type: r.media_type, url: r.cached_url, width: r.width, height: r.height, license: r.license, license_url: r.license_url, author: r.author, attribution: r.attribution, source: r.source, source_url: r.source_url, primary: r.is_primary });
+const shapeMedia = r => ({ media_type: r.media_type, url: r.cached_url, width: r.width, height: r.height, license: r.license, license_url: r.license_url, author: r.author, attribution: r.attribution, source: r.source, source_url: r.source_url, primary: r.is_primary, basis: r.rights_status === 'approved' ? 'free_license' : 'owner_approved_identification' });
 
 async function teamsById(store, ids) {
   const out = new Map();
@@ -583,7 +586,7 @@ export async function table(store, q) {
 // this hash (a rejected or unreviewed file can never be fetched by guessing its hash).
 export async function mediaObject(store, bucket, sha) {
   if (!/^[0-9a-f]{64}$/.test(sha) || !bucket) throw new NotFound('media');
-  const [row] = await store.select('soccer_entity_media', { columns: ['object_key', 'mime'], eq: { content_sha256: sha, rights_status: 'approved' }, limit: 1 });
+  const [row] = await store.select('soccer_entity_media', { columns: ['object_key', 'mime'], eq: { content_sha256: sha }, in: { rights_status: DISPLAYABLE }, limit: 1 });
   if (!row?.object_key) throw new NotFound('media');
   const obj = await bucket.get(row.object_key);
   if (!obj) throw new NotFound('media');
@@ -786,7 +789,7 @@ export async function dataHealth(store, env) {
     const heldArticles = await store.select('soccer_articles', { columns: ['hold_reasons'], eq: { status: 'held', desk: rc.desk } });
     const heldBy = {}; for (const a of heldArticles) for (const r of a.hold_reasons || []) heldBy[r] = (heldBy[r] || 0) + 1;
     const [pub] = await store.select('soccer_articles', { columns: ['published_at'], eq: { status: 'published', desk: rc.desk }, order: 'published_at.desc', limit: 1 });
-    const crests = [...teams].length ? (await store.select('soccer_entity_media', { columns: ['entity_id'], eq: { entity_type: 'team', media_type: 'crest', rights_status: 'approved' }, in: { entity_id: [...teams] } })).length : 0;
+    const crests = [...teams].length ? (await store.select('soccer_entity_media', { columns: ['entity_id'], eq: { entity_type: 'team', media_type: 'crest', is_primary: true }, in: { entity_id: [...teams], rights_status: DISPLAYABLE } })).length : 0;
     out.push({
       competition: c.slug, season: s.label,
       teams: { expected: rc.expected_teams ?? null, present: teams.size, ok: rc.expected_teams ? teams.size === rc.expected_teams : null },
@@ -802,7 +805,7 @@ export async function dataHealth(store, env) {
   }
   const queue = await store.select('soccer_identity_queue', { columns: ['entity_type', 'provider'], eq: { status: 'open' } });
   const qBy = {}; for (const q of queue) { const k = `${q.entity_type}/${q.provider}`; qBy[k] = (qBy[k] || 0) + 1; }
-  const [portraits, players] = await Promise.all([store.count('soccer_entity_media', { eq: { entity_type: 'player', rights_status: 'approved' } }), store.count('soccer_players', { eq: { status: 'active' } })]);
+  const [portraits, players] = await Promise.all([store.count('soccer_entity_media', { eq: { entity_type: 'player', media_type: 'portrait', is_primary: true }, in: { rights_status: DISPLAYABLE } }), store.count('soccer_players', { eq: { status: 'active' } })]);
   const news = await kv('news:last_run');
   const standings = await kv('lane:espn_standings');
   return E({

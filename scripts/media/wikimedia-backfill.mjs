@@ -168,10 +168,6 @@ for (const j of [...portraitJobs.map(x => ({ ...x, entityType: 'player', entityI
   const i = info.get(j.file); if (!i) { tally(report.files, 'commons_file_missing'); disc(j.entityType, j.entityId, j.mediaType, 'not_found', j.evidence.method, 'commons_file_missing', { external_id: j.qid }); continue; }
   const r = mediaRow({ entityType: j.entityType, entityId: j.entityId, mediaType: j.mediaType, info: i, sourceEntity: j.qid, policy, evidence: j.evidence });
   r.trademark_status = trademark(i); r.retrieved_at = new Date().toISOString();
-  // Owner holds (data/media/policy.json owner_holds): never published by a pipeline run.
-  const hold = policy.owner_holds?.[i.title.replace(/^File:/, '')];
-  if (hold && r.rights_status === 'approved') { r.rights_status = 'review_required'; r.rights_notes = `${r.rights_notes} Owner hold: ${hold}`; }
-  if (hold) r.rights_notes = r.rights_notes.includes('Owner hold') ? r.rights_notes : `${r.rights_notes} Owner hold: ${hold}`;
   r.rejection_reason = r.rights_status === 'approved' ? null : (r.rights_notes || '').replace(/^media-rights\/[\d.]+ ?/, '') || r.rights_status;
   rows.push(r);
 }
@@ -207,6 +203,8 @@ report.rows_after_cache = {}; for (const r of rows) tally(report.rows_after_cach
 report.cached = cached; report.reused = reused;
 report.discovery = {}; for (const d of discovery.values()) tally(report.discovery, `${d.entity_type}:${d.outcome}`);
 if (!DRY) {
+  // Priority 1 is a free-licensed crest/portrait: it replaces an owner-approved provider primary.
+  for (const r of rows.filter(x => x.is_primary && x.rights_status === 'approved')) await store.update('soccer_entity_media', { is_primary: false }, { eq: { entity_type: r.entity_type, entity_id: r.entity_id, media_type: r.media_type, rights_status: 'owner_approved_identification', is_primary: true } });
   report.sync = await syncRows(store, { table: 'soccer_entity_media', key: ['id'], rows: rows.map(r => ({ is_primary: false, cached_url: null, object_key: null, content_sha256: null, verified_at: null, ...r })), touch: true });
   await store.upsert('soccer_media_discovery', [...discovery.values()], ['entity_type', 'entity_id', 'media_type']);
 }

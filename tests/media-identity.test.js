@@ -35,8 +35,10 @@ test('identity paths must agree; none proven -> reasons kept', () => {
   assert.match(resolveTeamIdentity([{ method: 'a', qid: null, reason: 'too_few' }]).reason, /a:too_few/);
 });
 
-test('owner holds are listed file by file and enforced by the pipeline', () => {
+test('owner media policy: approved for identification, no internal holds, never relabelled free', () => {
   const policy = JSON.parse(readFileSync('data/media/policy.json', 'utf8'));
-  for (const f of ['Football Club Barcelona Color Update.png', 'Inter Miami CF wordmark-full pink.png', 'AS ROMA Text Logo 2020 - 2021 .svg', 'Logo Liverpool FC (2024).png']) assert.ok(policy.owner_holds[f], f);
-  assert.match(readFileSync('scripts/media/wikimedia-backfill.mjs', 'utf8'), /policy\.owner_holds\?\.\[/);
+  assert.equal(policy.owner_holds, undefined); assert.equal(policy.owner_identification.decision, 'APPROVED FOR PRODUCT IDENTIFICATION USE');
+  assert.equal(policy.owner_identification.rights_status, 'owner_approved_identification');
+  assert.doesNotMatch(readFileSync('scripts/media/wikimedia-backfill.mjs', 'utf8'), /owner_holds/);
+  assert.doesNotMatch(JSON.stringify(policy), /pending/i);
 });

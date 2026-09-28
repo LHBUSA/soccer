@@ -26,37 +26,38 @@ club; paths that yield a club must agree, and a club claimed by two canonical te
    women's and season items that reuse the logo). Imgur and club / federation hosts are never trusted.
 The crest file is the club's CURRENT logo: deprecated and ended P154 statements are ignored, preferred
 rank wins, exactly one is required. The rights verifier runs on every file regardless of the path.
-UEFA and ESPN logo URLs are identity evidence only, never licensed artwork.
+UEFA and ESPN logo URLs are never treated as licensed artwork; ESPN artwork is displayed only under the owner identification policy below, recorded as not free-licensed.
 
-**Owner holds** (`data/media/policy.json` `owner_holds`): files listed there are never published by any
-pipeline run, whatever the classifier says (2026-09-28: Barcelona third-party CC0; Inter Miami, AS Roma,
-Liverpool text wordmarks; review in docs/evidence/media/held-crests-review-2026-09-28.md).
+## Owner identification policy (2026-09-28)
 
-The evidence (property, id, QID, player counts, every identity path) is stored on every row in `match_evidence`.
+The owner of PropBetEdge / PropTechUSA.ai has **approved team crests and player media for entity
+identification in the product** (`data/media/policy.json` `owner_identification`, migration
+`20260928000800`). There are no internal owner holds. The rule:
 
-## Rights: may we publish this file?
+**identity proven by an exact id + current crest / photo identified + owner approval = eligible for rendering.**
 
-From the file's own Commons metadata (`extmetadata`):
+This is an internal product decision, not a licence. Rows displayed under it have
+`rights_status = 'owner_approved_identification'` and keep truthful provenance: `provider`, `source_url`,
+`retrieved_at`, the copyright / licence text as known ("Not free-licensed ..."), `trademark_status` and
+`owner_policy_version`. They are never labelled free, public domain or licensed; the API exposes
+`basis: free_license | owner_approved_identification` on every media object.
 
-| Verdict | When |
-|---|---|
-| `approved` | CC0 / public domain / CC BY / CC BY-SA (any version), with author and licence URL stated |
-| `restricted` | NC or ND licences |
-| `rejected` | non-free / fair use |
-| `review_required` | everything else (GFDL-only, unknown licence, missing author, a failed cache) |
+Source priority per entity: (1) an already-governed free-licensed Commons file (`approved`) stays primary;
+(2) an official club / league asset with deterministic identity; (3) provider artwork tied to an exact
+provider id (`scripts/media/provider-media.mjs`, `workers/soccer-ingest/src/media-provider.js`): the ESPN
+team's `default` logo from ESPN's league team listing for the exact ESPN team id in
+`soccer_team_external_ids`, and the athlete headshot from ESPN's team roster payload for the exact ESPN
+athlete id in `soccer_player_external_ids` (a stated birth date must agree); (4) Commons/Wikidata.
+URLs are taken from the provider's own payload, never guessed; bytes are cached write-once in R2 and
+served same-origin. Identity is not loosened: no name matching, no fuzzy logo attachment.
 
-Commons restrictions (personality rights, trademarks) are recorded in `rights_notes`, and **trademark status is stored separately from copyright** (`trademark_status`: none | trademark_notice | unknown). Owner policy (2026-09-28): a trademark notice does not by itself reject an otherwise properly licensed identification image; the crest is used only to identify the club, never to imply endorsement, sponsorship or affiliation, and is never modified in a misleading way. This is not a claim of trademark ownership.
-Free-licensed crests carrying a trademark notice are approved for **identification of the club
-only** (`crest_trademark: "approve_nominative"`); set it to `"review"` to hold every one for owner review.
-
-The database enforces it: an `approved` row must have licence, licence URL, attribution, a
-verified content hash, the cached object and a verification time; only approved rows can be primary;
-at most one primary per entity and media type.
+Text-only wordmarks (Inter Miami, AS Roma, Liverpool on Wikidata P154) are not the current crest, so
+they are not used; those clubs get their current crest through path (3).
 
 ## Discovery ledger
 
 `soccer_media_discovery` records one outcome per entity and media type, with method, external id, source page, reason and evidence:
-`approved` | `held_review` | `rejected` | `not_found`. Held by owner decision (2026-09-28): Barcelona (a third-party CC0 claim is not evidence the uploader could relicense the club crest), Inter Miami, AS Roma and Liverpool (text-only marks, not crests).
+`approved` | `owner_approved_identification` | `held_review` | `rejected` | `not_found`. A hold now always names a real blocker: identity unresolved, asset unavailable, source/provenance issue, current crest not found, or a failed cache.
 
 ## Storage and serving
 

@@ -1,5 +1,8 @@
 # Held crests review (2026-09-28)
 
+> **SUPERSEDED 2026-09-28 (owner media decision).** No owner holds remain. The three text wordmarks are not the current crest and are not used; Inter Miami, AS Roma, Liverpool and Barcelona display their current crest via exact ESPN team id under the owner identification policy (docs/MEDIA.md). Historical record below.
+
+
 Read-only review of the four club crests HELD by owner decision on 2026-09-28 (`docs/MEDIA.md`, "Discovery ledger"). Nothing was written to the database, R2, approvals or code. Source of the held rows: `docs/evidence/media/crest-audit-2026-09-28.md` (rows 4-7, `held_review` / `held_by_owner_decision`, all from the Wikidata P154 of the club item).
 
 Method: Wikimedia Commons API only (`action=query&prop=imageinfo|categories|templates` with `extmetadata`, plus `prop=revisions` for the file-page wikitext), with an honest User-Agent. Images were checked from Commons thumbnails (320 px) so the description below is what the file actually shows. Alternatives come from the club's Commons logo category and a Commons file search.
