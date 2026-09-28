@@ -1,0 +1,91 @@
+     {
+  "route": "/v1/canary/editorial-desk",
+  "slug": "bayern-fixture",
+  "run": 23,
+  "model": "gpt-5.6-sol",
+  "desk": "soccer-desk/2.1.1",
+  "quality": "soccer-quality/2.1.0",
+  "packet_version": "soccer-packet/3.0.0",
+  "packet_path": "fixture v3 (A_asof_safe_rebuild of the original frozen packet)",
+  "story_class": "match_recap",
+  "result": "PASS",
+  "attempt": 2,
+  "hold_reasons": [],
+  "fact_gates": {
+    "total": 18,
+    "failed": []
+  },
+  "quality_gates": {
+    "total": 23,
+    "failed": []
+  },
+  "evidence": {
+    "available": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT",
+      "DISCIPLINE",
+      "SUBSTITUTIONS"
+    ],
+    "used": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT",
+      "SUBSTITUTIONS"
+    ]
+  },
+  "word_count": 810,
+  "sections_count": 5,
+  "headline": "Olise hat-trick drives Bayern München to 7-0 rout of 1. FC Union Berlin",
+  "dek": "Harry Kane added two goals as Bayern München built a three-goal half-time lead, scored four more after the break and climbed to the top of the Bundesliga.",
+  "sections": [
+    {
+      "heading": "Musiala opens the way before a rapid half-time finish",
+      "paragraphs": [
+        "Michael Olise supplied the headline contribution, but Bayern München spread the scoring across four players in a performance that expanded sharply on either side of half-time. Jamal Musiala started the sequence, Kane scored on both sides of the interval and substitute Ismael Saibari joined them before Olise completed his hat-trick late on.",
+        "Musiala opened the scoring in the 18th minute, during a period between the 16th and 30th minutes in which Bayern München took six shots and put four on target. Kane converted a penalty at 39', and Olise followed at 43' to send the home side into half-time leading 3-0.",
+        "The first-half shot pattern gave that lead its clearest context. Bayern München attempted 10 shots and put seven on target before the interval, while 1. FC Union Berlin did not register an attempt in the opening half. Two goals in the closing stages of the half turned Musiala’s opener into a much broader advantage at the break."
+      ]
+    },
+    {
+      "heading": "Kane restarts the scoring before Olise closes in bursts",
+      "paragraphs": [
+        "The interval brought changes for both sides, with Kim Min-Jae replacing Dayot Upamecano for Bayern München and Tim Skarke coming on for Emmanuel Latte Lath for 1. FC Union Berlin. The scoring resumed through Kane rather than one of the new arrivals.",
+        "Kane struck again at 54' to extend the lead. After 1. FC Union Berlin made two further substitutions at 60', Bayern München introduced Saibari and Tom Bischof at 63'. Saibari scored at 70', giving the home side another scorer before Olise took over the closing sequence.",
+        "Olise added his second at 73' and completed his hat-trick at 76'. Those finishes came in a concentrated ending: Saibari’s goal and Olise’s next strike were separated by three minutes, as were Olise’s final two goals. Bayern München scored four times after half-time, including three from the 70th minute onward."
+      ]
+    },
+    {
+      "heading": "Olise and Kane turn volume into goals",
+      "paragraphs": [
+        "Olise’s return came from six shots, five of which were on target. Two of his attempts were recorded from inside the penalty area, and his five accurate efforts represented a third of Bayern München’s team total on target. His late pair also transformed a one-goal first-half contribution into the match’s central individual performance.",
+        "Kane took five shots, with two on target and four from inside the box. Both accurate attempts became goals, beginning with his penalty and continuing with the first goal after the interval. Saibari scored from a four-shot contribution after coming on, while Musiala converted his only shot on target from two attempts.",
+        "Together, those four scorers accounted for the entire Bayern München return, but they arrived through different routes. Musiala began the scoring before the half-hour, Kane added goals across the interval, Saibari made an impact from the bench and Olise supplied the concentrated finish. Luis Díaz also tested the goalkeeper with one of his two shots before being replaced by Saibari."
+      ]
+    },
+    {
+      "heading": "A vast shot gap frames the scoreline",
+      "paragraphs": [
+        "The widest statistical separation was in the amount of shooting each side produced. Bayern München generated attempts throughout both halves, whereas every 1. FC Union Berlin shot came after the interval. The visitors’ two efforts on target were both saved.",
+        "Bayern München finished with 23 shots and 15 on target; 1. FC Union Berlin had three attempts, two of them on target. The home side also led the corner count 9-2. The visiting goalkeeper made six saves, while Bayern München’s goalkeeper made two.",
+        "Location added another layer to that contrast without creating much difference in average distance. Bayern München recorded attempts from both inside and outside the area, while the visitors’ much smaller collection contained two efforts from inside the box. Janik Haberer and Tom Rothe each put an attempt on target for 1. FC Union Berlin; Derrick Köhn’s shot was off target.",
+        "Of Bayern München’s located shots, 14 came from inside the penalty area and nine from outside. Their average located distance was 17.9 metres, compared with 17.6 metres for 1. FC Union Berlin. The defining difference was therefore the supply of attempts and accurate shots rather than the average distance from which they were taken."
+      ]
+    },
+    {
+      "heading": "Bayern rise as Union remain stuck",
+      "paragraphs": [
+        "The result lifted Bayern München from fourth to first in the Bundesliga, leaving them with 10 points from four matches. Their goal difference rose from plus five to plus 12, while their goals scored increased from seven to 14. 1. FC Union Berlin remained 16th with one point from four matches, and their goal difference fell from minus six to minus 13.",
+        "Bayern München are unbeaten through their opening four league games, with three wins and a draw. They entered this match after victories over Stuttgart and SV 07 Elversberg either side of a draw with Schalke 04.",
+        "For 1. FC Union Berlin, the defeat extended a winless start consisting of one draw and three losses. The draw came against Eintracht Frankfurt, followed by defeats to Bayer Leverkusen and Schalke 04 before this trip. They stayed in the same league position, but with seven more goals added to their negative goal difference."
+      ]
+    }
+  ],
+  "elapsed_ms": 76378
+}
