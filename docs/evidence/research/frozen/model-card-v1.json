@@ -1,0 +1,229 @@
+{
+  "model_id": "soccer-research-bundesliga-v1-frozen",
+  "frozen_at": "2026-09-28T00:19:46.261Z",
+  "source": {
+    "commit": "6fdf692",
+    "script": "scripts/research/model-research.mjs",
+    "script_sha256": "9d369da1a695a6dea75227a4a471480d435d39c6f4a130ba96964614e5b51d5e",
+    "core": "scripts/research/model-core.mjs",
+    "core_sha256": "33a1b4b842dc27ec3877c64aa4debc5f810ba7b08487b0badee1616c828c2cdf"
+  },
+  "data": {
+    "file": "docs/evidence/research/frozen/bundesliga-results-snapshot.json",
+    "sha256": "6bff57c0000fa1fbfdbb4686235f40a90df13b74c4dd2defb23e89e9ff05f028",
+    "matches": 6768,
+    "first": "2004-08-06T19:35:00.000Z",
+    "last": "2026-09-20T17:30:00.000Z",
+    "scope": "Bundesliga league-stage finished results (play-offs excluded), canonical graph"
+  },
+  "splits": {
+    "train": "2004/05-2013/14 (first season warm-up, not evaluated)",
+    "dev": "2014/15-2018/19",
+    "holdout": "2019/20-2025/26",
+    "live": "2026/27 (partial, not used for any decision)"
+  },
+  "features": {
+    "elo_ologit": "pre-match Elo difference (K 10, home edge 60, margin multiplier, 2/3 season carry-over) -> ordered logit fitted on train",
+    "poisson": "time-decayed (half-life 540 d, 5 half-life window) home/away league goal rates x team attack and defence ratios shrunk toward the league mean (10 match-equivalents) -> independent Poisson -> 1X2"
+  },
+  "coefficients": {
+    "elo_ologit_theta": [
+      0.008500000000000004,
+      -0.39999999999999875,
+      0.7000000000000015
+    ],
+    "hyper": {
+      "elo": {
+        "K": 10,
+        "home_edge": 60,
+        "carry": 0.6666666666666666
+      },
+      "poisson": {
+        "half_life_days": 540,
+        "shrink": 10,
+        "window_half_lives": 5,
+        "min_weight": 50
+      }
+    },
+    "baseline_train_frequencies": [
+      0.4522875816993464,
+      0.24901960784313726,
+      0.29869281045751633
+    ]
+  },
+  "reproduction": {
+    "reported": {
+      "baseline": {
+        "n": 2142,
+        "log_loss": 1.074,
+        "brier": 0.6502,
+        "accuracy": 0.4323,
+        "calibration_home": [
+          {
+            "bin": "0.4-0.5",
+            "n": 2142,
+            "predicted": 0.452,
+            "observed": 0.432
+          }
+        ]
+      },
+      "elo_ologit": {
+        "n": 2142,
+        "log_loss": 0.9986,
+        "brier": 0.596,
+        "accuracy": 0.5135,
+        "calibration_home": [
+          {
+            "bin": "0-0.1",
+            "n": 9,
+            "predicted": 0.088,
+            "observed": 0.111
+          },
+          {
+            "bin": "0.1-0.2",
+            "n": 126,
+            "predicted": 0.159,
+            "observed": 0.151
+          },
+          {
+            "bin": "0.2-0.3",
+            "n": 283,
+            "predicted": 0.256,
+            "observed": 0.219
+          },
+          {
+            "bin": "0.3-0.4",
+            "n": 399,
+            "predicted": 0.355,
+            "observed": 0.358
+          },
+          {
+            "bin": "0.4-0.5",
+            "n": 470,
+            "predicted": 0.449,
+            "observed": 0.4
+          },
+          {
+            "bin": "0.5-0.6",
+            "n": 413,
+            "predicted": 0.547,
+            "observed": 0.501
+          },
+          {
+            "bin": "0.6-0.7",
+            "n": 233,
+            "predicted": 0.647,
+            "observed": 0.644
+          },
+          {
+            "bin": "0.7-0.8",
+            "n": 166,
+            "predicted": 0.742,
+            "observed": 0.759
+          },
+          {
+            "bin": "0.8-0.9",
+            "n": 42,
+            "predicted": 0.841,
+            "observed": 0.714
+          },
+          {
+            "bin": "0.9-1",
+            "n": 1,
+            "predicted": 0.927,
+            "observed": 0
+          }
+        ]
+      },
+      "poisson": {
+        "n": 2142,
+        "log_loss": 0.9972,
+        "brier": 0.5947,
+        "accuracy": 0.5112,
+        "calibration_home": [
+          {
+            "bin": "0-0.1",
+            "n": 8,
+            "predicted": 0.089,
+            "observed": 0
+          },
+          {
+            "bin": "0.1-0.2",
+            "n": 99,
+            "predicted": 0.155,
+            "observed": 0.182
+          },
+          {
+            "bin": "0.2-0.3",
+            "n": 257,
+            "predicted": 0.253,
+            "observed": 0.218
+          },
+          {
+            "bin": "0.3-0.4",
+            "n": 441,
+            "predicted": 0.353,
+            "observed": 0.32
+          },
+          {
+            "bin": "0.4-0.5",
+            "n": 542,
+            "predicted": 0.45,
+            "observed": 0.402
+          },
+          {
+            "bin": "0.5-0.6",
+            "n": 385,
+            "predicted": 0.545,
+            "observed": 0.512
+          },
+          {
+            "bin": "0.6-0.7",
+            "n": 239,
+            "predicted": 0.645,
+            "observed": 0.703
+          },
+          {
+            "bin": "0.7-0.8",
+            "n": 121,
+            "predicted": 0.747,
+            "observed": 0.727
+          },
+          {
+            "bin": "0.8-0.9",
+            "n": 49,
+            "predicted": 0.839,
+            "observed": 0.796
+          },
+          {
+            "bin": "0.9-1",
+            "n": 1,
+            "predicted": 0.931,
+            "observed": 1
+          }
+        ]
+      }
+    },
+    "recomputed": {
+      "baseline": {
+        "log_loss": 1.074,
+        "brier": 0.6502
+      },
+      "elo_ologit": {
+        "log_loss": 0.9986,
+        "brier": 0.596
+      },
+      "poisson": {
+        "log_loss": 0.9972,
+        "brier": 0.5947
+      }
+    },
+    "reproduced": true
+  },
+  "prediction_hashes": {
+    "baseline": "de2d814110ff035c65f5c7ae913ff87509c73085a7d02f596753e2e74f639321",
+    "elo_ologit": "373e3f14d312637baf11597d03c2107a5cc2a0f8c64969022bd9720d32103890",
+    "poisson": "fb9d04a727dda13564987a29d0cd1b0ef50d3835a3c813a8decfe0de3c924bf3",
+    "rows": 6156
+  }
+}

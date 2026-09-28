@@ -70,7 +70,7 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
 ## DNA and research
 
 - Player DNA / Team DNA: descriptive, time-safe profiles with percentiles within the competition-season (`workers/soccer-api/src/dna.js`).
-- Prediction research (docs/RESEARCH.md): Elo and Poisson models beat the declared baseline on a 7-season Bundesliga holdout; **not in production**.
+- Prediction research (docs/RESEARCH.md): frozen model `soccer-research-bundesliga-v1-frozen` beats the baseline in all 7 Bundesliga holdout seasons; calibration phase verdict MORE RESEARCH (draw deficit + season-level home-advantage drift); **not in production, no shadow table**.
 
 ## QA (latest, docs/evidence/qa)
 
