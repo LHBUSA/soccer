@@ -1,0 +1,1068 @@
+{
+  "at": "2026-09-28T23:12:39.223Z",
+  "site": "https://soccer.propbetedge.ai",
+  "passed": 212,
+  "total": 212,
+  "results": [
+    {
+      "name": "[1440] bayern-munchen-1-fc-union-berlin-2026-09 poster shown before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] bayern-munchen-1-fc-union-berlin-2026-09 no iframe before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] bayern-munchen-1-fc-union-berlin-2026-09 no YouTube player/page request before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] bayern-munchen-1-fc-union-berlin-2026-09 16:9 frame",
+      "ok": true,
+      "detail": "724x407"
+    },
+    {
+      "name": "[1440] bayern-munchen-1-fc-union-berlin-2026-09 click opens the player in place (youtube-nocookie)",
+      "ok": true,
+      "detail": "www.youtube-nocookie.com/embed/E_a2H50YhHU"
+    },
+    {
+      "name": "[1440] bayern-munchen-1-fc-union-berlin-2026-09 enablejsapi + exact origin + referrer policy + fullscreen",
+      "ok": true,
+      "detail": "origin=https://soccer.propbetedge.ai"
+    },
+    {
+      "name": "[1440] bayern-munchen-1-fc-union-berlin-2026-09 the 16:9 box does not shift when the player opens",
+      "ok": true,
+      "detail": "724x407 -> 724x407"
+    },
+    {
+      "name": "[1440] bayern-munchen-1-fc-union-berlin-2026-09 error 150 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[1440] bayern-munchen-1-fc-union-berlin-2026-09 error 150 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] bayern-munchen-1-fc-union-berlin-2026-09 no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] bayern-munchen-1-fc-union-berlin-2026-09 no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] bayern-munchen-1-fc-union-berlin-2026-09 error 100 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[1440] bayern-munchen-1-fc-union-berlin-2026-09 error 100 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] bayern-munchen-1-fc-union-berlin-2026-09 error 101 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[1440] bayern-munchen-1-fc-union-berlin-2026-09 error 101 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] bayern-munchen-1-fc-union-berlin-2026-09 poster shown before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] bayern-munchen-1-fc-union-berlin-2026-09 no iframe before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] bayern-munchen-1-fc-union-berlin-2026-09 no YouTube player/page request before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] bayern-munchen-1-fc-union-berlin-2026-09 16:9 frame",
+      "ok": true,
+      "detail": "932x524"
+    },
+    {
+      "name": "[1024] bayern-munchen-1-fc-union-berlin-2026-09 click opens the player in place (youtube-nocookie)",
+      "ok": true,
+      "detail": "www.youtube-nocookie.com/embed/E_a2H50YhHU"
+    },
+    {
+      "name": "[1024] bayern-munchen-1-fc-union-berlin-2026-09 enablejsapi + exact origin + referrer policy + fullscreen",
+      "ok": true,
+      "detail": "origin=https://soccer.propbetedge.ai"
+    },
+    {
+      "name": "[1024] bayern-munchen-1-fc-union-berlin-2026-09 the 16:9 box does not shift when the player opens",
+      "ok": true,
+      "detail": "932x524 -> 932x524"
+    },
+    {
+      "name": "[1024] bayern-munchen-1-fc-union-berlin-2026-09 error 150 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[1024] bayern-munchen-1-fc-union-berlin-2026-09 error 150 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] bayern-munchen-1-fc-union-berlin-2026-09 no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] bayern-munchen-1-fc-union-berlin-2026-09 no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] bayern-munchen-1-fc-union-berlin-2026-09 error 100 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[1024] bayern-munchen-1-fc-union-berlin-2026-09 error 100 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] bayern-munchen-1-fc-union-berlin-2026-09 error 101 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[1024] bayern-munchen-1-fc-union-berlin-2026-09 error 101 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] bayern-munchen-1-fc-union-berlin-2026-09 poster shown before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] bayern-munchen-1-fc-union-berlin-2026-09 no iframe before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] bayern-munchen-1-fc-union-berlin-2026-09 no YouTube player/page request before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] bayern-munchen-1-fc-union-berlin-2026-09 16:9 frame",
+      "ok": true,
+      "detail": "676x380"
+    },
+    {
+      "name": "[768] bayern-munchen-1-fc-union-berlin-2026-09 click opens the player in place (youtube-nocookie)",
+      "ok": true,
+      "detail": "www.youtube-nocookie.com/embed/E_a2H50YhHU"
+    },
+    {
+      "name": "[768] bayern-munchen-1-fc-union-berlin-2026-09 enablejsapi + exact origin + referrer policy + fullscreen",
+      "ok": true,
+      "detail": "origin=https://soccer.propbetedge.ai"
+    },
+    {
+      "name": "[768] bayern-munchen-1-fc-union-berlin-2026-09 the 16:9 box does not shift when the player opens",
+      "ok": true,
+      "detail": "676x380 -> 676x380"
+    },
+    {
+      "name": "[768] bayern-munchen-1-fc-union-berlin-2026-09 error 150 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[768] bayern-munchen-1-fc-union-berlin-2026-09 error 150 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] bayern-munchen-1-fc-union-berlin-2026-09 no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] bayern-munchen-1-fc-union-berlin-2026-09 no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] bayern-munchen-1-fc-union-berlin-2026-09 error 100 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[768] bayern-munchen-1-fc-union-berlin-2026-09 error 100 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] bayern-munchen-1-fc-union-berlin-2026-09 error 101 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[768] bayern-munchen-1-fc-union-berlin-2026-09 error 101 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] bayern-munchen-1-fc-union-berlin-2026-09 poster shown before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] bayern-munchen-1-fc-union-berlin-2026-09 no iframe before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] bayern-munchen-1-fc-union-berlin-2026-09 no YouTube player/page request before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] bayern-munchen-1-fc-union-berlin-2026-09 16:9 frame",
+      "ok": true,
+      "detail": "346x195"
+    },
+    {
+      "name": "[430] bayern-munchen-1-fc-union-berlin-2026-09 click opens the player in place (youtube-nocookie)",
+      "ok": true,
+      "detail": "www.youtube-nocookie.com/embed/E_a2H50YhHU"
+    },
+    {
+      "name": "[430] bayern-munchen-1-fc-union-berlin-2026-09 enablejsapi + exact origin + referrer policy + fullscreen",
+      "ok": true,
+      "detail": "origin=https://soccer.propbetedge.ai"
+    },
+    {
+      "name": "[430] bayern-munchen-1-fc-union-berlin-2026-09 the 16:9 box does not shift when the player opens",
+      "ok": true,
+      "detail": "346x195 -> 346x195"
+    },
+    {
+      "name": "[430] bayern-munchen-1-fc-union-berlin-2026-09 error 150 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[430] bayern-munchen-1-fc-union-berlin-2026-09 error 150 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] bayern-munchen-1-fc-union-berlin-2026-09 no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] bayern-munchen-1-fc-union-berlin-2026-09 no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] bayern-munchen-1-fc-union-berlin-2026-09 error 100 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[430] bayern-munchen-1-fc-union-berlin-2026-09 error 100 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] bayern-munchen-1-fc-union-berlin-2026-09 error 101 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[430] bayern-munchen-1-fc-union-berlin-2026-09 error 101 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] bayern-munchen-1-fc-union-berlin-2026-09 poster shown before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] bayern-munchen-1-fc-union-berlin-2026-09 no iframe before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] bayern-munchen-1-fc-union-berlin-2026-09 no YouTube player/page request before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] bayern-munchen-1-fc-union-berlin-2026-09 16:9 frame",
+      "ok": true,
+      "detail": "306x172"
+    },
+    {
+      "name": "[390] bayern-munchen-1-fc-union-berlin-2026-09 click opens the player in place (youtube-nocookie)",
+      "ok": true,
+      "detail": "www.youtube-nocookie.com/embed/E_a2H50YhHU"
+    },
+    {
+      "name": "[390] bayern-munchen-1-fc-union-berlin-2026-09 enablejsapi + exact origin + referrer policy + fullscreen",
+      "ok": true,
+      "detail": "origin=https://soccer.propbetedge.ai"
+    },
+    {
+      "name": "[390] bayern-munchen-1-fc-union-berlin-2026-09 the 16:9 box does not shift when the player opens",
+      "ok": true,
+      "detail": "306x172 -> 306x172"
+    },
+    {
+      "name": "[390] bayern-munchen-1-fc-union-berlin-2026-09 error 150 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[390] bayern-munchen-1-fc-union-berlin-2026-09 error 150 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] bayern-munchen-1-fc-union-berlin-2026-09 no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] bayern-munchen-1-fc-union-berlin-2026-09 no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] bayern-munchen-1-fc-union-berlin-2026-09 error 100 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[390] bayern-munchen-1-fc-union-berlin-2026-09 error 100 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] bayern-munchen-1-fc-union-berlin-2026-09 error 101 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[390] bayern-munchen-1-fc-union-berlin-2026-09 error 101 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] bayern-munchen-1-fc-union-berlin-2026-09 poster shown before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] bayern-munchen-1-fc-union-berlin-2026-09 no iframe before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] bayern-munchen-1-fc-union-berlin-2026-09 no YouTube player/page request before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] bayern-munchen-1-fc-union-berlin-2026-09 16:9 frame",
+      "ok": true,
+      "detail": "276x155"
+    },
+    {
+      "name": "[360] bayern-munchen-1-fc-union-berlin-2026-09 click opens the player in place (youtube-nocookie)",
+      "ok": true,
+      "detail": "www.youtube-nocookie.com/embed/E_a2H50YhHU"
+    },
+    {
+      "name": "[360] bayern-munchen-1-fc-union-berlin-2026-09 enablejsapi + exact origin + referrer policy + fullscreen",
+      "ok": true,
+      "detail": "origin=https://soccer.propbetedge.ai"
+    },
+    {
+      "name": "[360] bayern-munchen-1-fc-union-berlin-2026-09 the 16:9 box does not shift when the player opens",
+      "ok": true,
+      "detail": "276x155 -> 276x155"
+    },
+    {
+      "name": "[360] bayern-munchen-1-fc-union-berlin-2026-09 error 150 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[360] bayern-munchen-1-fc-union-berlin-2026-09 error 150 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] bayern-munchen-1-fc-union-berlin-2026-09 no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] bayern-munchen-1-fc-union-berlin-2026-09 no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] bayern-munchen-1-fc-union-berlin-2026-09 error 100 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[360] bayern-munchen-1-fc-union-berlin-2026-09 error 100 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] bayern-munchen-1-fc-union-berlin-2026-09 error 101 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[360] bayern-munchen-1-fc-union-berlin-2026-09 error 101 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] bayern-munchen-1-fc-union-berlin-2026-09 poster shown before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] bayern-munchen-1-fc-union-berlin-2026-09 no iframe before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] bayern-munchen-1-fc-union-berlin-2026-09 no YouTube player/page request before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] bayern-munchen-1-fc-union-berlin-2026-09 16:9 frame",
+      "ok": true,
+      "detail": "236x133"
+    },
+    {
+      "name": "[320] bayern-munchen-1-fc-union-berlin-2026-09 click opens the player in place (youtube-nocookie)",
+      "ok": true,
+      "detail": "www.youtube-nocookie.com/embed/E_a2H50YhHU"
+    },
+    {
+      "name": "[320] bayern-munchen-1-fc-union-berlin-2026-09 enablejsapi + exact origin + referrer policy + fullscreen",
+      "ok": true,
+      "detail": "origin=https://soccer.propbetedge.ai"
+    },
+    {
+      "name": "[320] bayern-munchen-1-fc-union-berlin-2026-09 the 16:9 box does not shift when the player opens",
+      "ok": true,
+      "detail": "236x133 -> 236x133"
+    },
+    {
+      "name": "[320] bayern-munchen-1-fc-union-berlin-2026-09 error 150 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[320] bayern-munchen-1-fc-union-berlin-2026-09 error 150 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] bayern-munchen-1-fc-union-berlin-2026-09 no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] bayern-munchen-1-fc-union-berlin-2026-09 no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] bayern-munchen-1-fc-union-berlin-2026-09 error 100 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[320] bayern-munchen-1-fc-union-berlin-2026-09 error 100 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] bayern-munchen-1-fc-union-berlin-2026-09 error 101 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[320] bayern-munchen-1-fc-union-berlin-2026-09 error 101 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] philadelphia-union-orlando-city-sc-2026- poster shown before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] philadelphia-union-orlando-city-sc-2026- no iframe before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] philadelphia-union-orlando-city-sc-2026- no YouTube player/page request before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] philadelphia-union-orlando-city-sc-2026- 16:9 frame",
+      "ok": true,
+      "detail": "724x407"
+    },
+    {
+      "name": "[1440] philadelphia-union-orlando-city-sc-2026- click opens the player in place (youtube-nocookie)",
+      "ok": true,
+      "detail": "www.youtube-nocookie.com/embed/yKiZQedBb3M"
+    },
+    {
+      "name": "[1440] philadelphia-union-orlando-city-sc-2026- enablejsapi + exact origin + referrer policy + fullscreen",
+      "ok": true,
+      "detail": "origin=https://soccer.propbetedge.ai"
+    },
+    {
+      "name": "[1440] philadelphia-union-orlando-city-sc-2026- the 16:9 box does not shift when the player opens",
+      "ok": true,
+      "detail": "724x407 -> 724x407"
+    },
+    {
+      "name": "[1440] philadelphia-union-orlando-city-sc-2026- error 150 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[1440] philadelphia-union-orlando-city-sc-2026- error 150 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] philadelphia-union-orlando-city-sc-2026- no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] philadelphia-union-orlando-city-sc-2026- no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] philadelphia-union-orlando-city-sc-2026- error 100 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[1440] philadelphia-union-orlando-city-sc-2026- error 100 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] philadelphia-union-orlando-city-sc-2026- error 101 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[1440] philadelphia-union-orlando-city-sc-2026- error 101 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] philadelphia-union-orlando-city-sc-2026- poster shown before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] philadelphia-union-orlando-city-sc-2026- no iframe before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] philadelphia-union-orlando-city-sc-2026- no YouTube player/page request before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] philadelphia-union-orlando-city-sc-2026- 16:9 frame",
+      "ok": true,
+      "detail": "932x524"
+    },
+    {
+      "name": "[1024] philadelphia-union-orlando-city-sc-2026- click opens the player in place (youtube-nocookie)",
+      "ok": true,
+      "detail": "www.youtube-nocookie.com/embed/yKiZQedBb3M"
+    },
+    {
+      "name": "[1024] philadelphia-union-orlando-city-sc-2026- enablejsapi + exact origin + referrer policy + fullscreen",
+      "ok": true,
+      "detail": "origin=https://soccer.propbetedge.ai"
+    },
+    {
+      "name": "[1024] philadelphia-union-orlando-city-sc-2026- the 16:9 box does not shift when the player opens",
+      "ok": true,
+      "detail": "932x524 -> 932x524"
+    },
+    {
+      "name": "[1024] philadelphia-union-orlando-city-sc-2026- error 150 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[1024] philadelphia-union-orlando-city-sc-2026- error 150 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] philadelphia-union-orlando-city-sc-2026- no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] philadelphia-union-orlando-city-sc-2026- no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] philadelphia-union-orlando-city-sc-2026- error 100 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[1024] philadelphia-union-orlando-city-sc-2026- error 100 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] philadelphia-union-orlando-city-sc-2026- error 101 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[1024] philadelphia-union-orlando-city-sc-2026- error 101 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] philadelphia-union-orlando-city-sc-2026- poster shown before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] philadelphia-union-orlando-city-sc-2026- no iframe before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] philadelphia-union-orlando-city-sc-2026- no YouTube player/page request before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] philadelphia-union-orlando-city-sc-2026- 16:9 frame",
+      "ok": true,
+      "detail": "676x380"
+    },
+    {
+      "name": "[768] philadelphia-union-orlando-city-sc-2026- click opens the player in place (youtube-nocookie)",
+      "ok": true,
+      "detail": "www.youtube-nocookie.com/embed/yKiZQedBb3M"
+    },
+    {
+      "name": "[768] philadelphia-union-orlando-city-sc-2026- enablejsapi + exact origin + referrer policy + fullscreen",
+      "ok": true,
+      "detail": "origin=https://soccer.propbetedge.ai"
+    },
+    {
+      "name": "[768] philadelphia-union-orlando-city-sc-2026- the 16:9 box does not shift when the player opens",
+      "ok": true,
+      "detail": "676x380 -> 676x380"
+    },
+    {
+      "name": "[768] philadelphia-union-orlando-city-sc-2026- error 150 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[768] philadelphia-union-orlando-city-sc-2026- error 150 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] philadelphia-union-orlando-city-sc-2026- no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] philadelphia-union-orlando-city-sc-2026- no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] philadelphia-union-orlando-city-sc-2026- error 100 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[768] philadelphia-union-orlando-city-sc-2026- error 100 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] philadelphia-union-orlando-city-sc-2026- error 101 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[768] philadelphia-union-orlando-city-sc-2026- error 101 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] philadelphia-union-orlando-city-sc-2026- poster shown before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] philadelphia-union-orlando-city-sc-2026- no iframe before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] philadelphia-union-orlando-city-sc-2026- no YouTube player/page request before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] philadelphia-union-orlando-city-sc-2026- 16:9 frame",
+      "ok": true,
+      "detail": "346x195"
+    },
+    {
+      "name": "[430] philadelphia-union-orlando-city-sc-2026- click opens the player in place (youtube-nocookie)",
+      "ok": true,
+      "detail": "www.youtube-nocookie.com/embed/yKiZQedBb3M"
+    },
+    {
+      "name": "[430] philadelphia-union-orlando-city-sc-2026- enablejsapi + exact origin + referrer policy + fullscreen",
+      "ok": true,
+      "detail": "origin=https://soccer.propbetedge.ai"
+    },
+    {
+      "name": "[430] philadelphia-union-orlando-city-sc-2026- the 16:9 box does not shift when the player opens",
+      "ok": true,
+      "detail": "346x195 -> 346x195"
+    },
+    {
+      "name": "[430] philadelphia-union-orlando-city-sc-2026- error 150 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[430] philadelphia-union-orlando-city-sc-2026- error 150 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] philadelphia-union-orlando-city-sc-2026- no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] philadelphia-union-orlando-city-sc-2026- no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] philadelphia-union-orlando-city-sc-2026- error 100 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[430] philadelphia-union-orlando-city-sc-2026- error 100 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] philadelphia-union-orlando-city-sc-2026- error 101 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[430] philadelphia-union-orlando-city-sc-2026- error 101 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] philadelphia-union-orlando-city-sc-2026- poster shown before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] philadelphia-union-orlando-city-sc-2026- no iframe before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] philadelphia-union-orlando-city-sc-2026- no YouTube player/page request before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] philadelphia-union-orlando-city-sc-2026- 16:9 frame",
+      "ok": true,
+      "detail": "306x172"
+    },
+    {
+      "name": "[390] philadelphia-union-orlando-city-sc-2026- click opens the player in place (youtube-nocookie)",
+      "ok": true,
+      "detail": "www.youtube-nocookie.com/embed/yKiZQedBb3M"
+    },
+    {
+      "name": "[390] philadelphia-union-orlando-city-sc-2026- enablejsapi + exact origin + referrer policy + fullscreen",
+      "ok": true,
+      "detail": "origin=https://soccer.propbetedge.ai"
+    },
+    {
+      "name": "[390] philadelphia-union-orlando-city-sc-2026- the 16:9 box does not shift when the player opens",
+      "ok": true,
+      "detail": "306x172 -> 306x172"
+    },
+    {
+      "name": "[390] philadelphia-union-orlando-city-sc-2026- error 150 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[390] philadelphia-union-orlando-city-sc-2026- error 150 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] philadelphia-union-orlando-city-sc-2026- no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] philadelphia-union-orlando-city-sc-2026- no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] philadelphia-union-orlando-city-sc-2026- error 100 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[390] philadelphia-union-orlando-city-sc-2026- error 100 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] philadelphia-union-orlando-city-sc-2026- error 101 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[390] philadelphia-union-orlando-city-sc-2026- error 101 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] philadelphia-union-orlando-city-sc-2026- poster shown before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] philadelphia-union-orlando-city-sc-2026- no iframe before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] philadelphia-union-orlando-city-sc-2026- no YouTube player/page request before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] philadelphia-union-orlando-city-sc-2026- 16:9 frame",
+      "ok": true,
+      "detail": "276x155"
+    },
+    {
+      "name": "[360] philadelphia-union-orlando-city-sc-2026- click opens the player in place (youtube-nocookie)",
+      "ok": true,
+      "detail": "www.youtube-nocookie.com/embed/yKiZQedBb3M"
+    },
+    {
+      "name": "[360] philadelphia-union-orlando-city-sc-2026- enablejsapi + exact origin + referrer policy + fullscreen",
+      "ok": true,
+      "detail": "origin=https://soccer.propbetedge.ai"
+    },
+    {
+      "name": "[360] philadelphia-union-orlando-city-sc-2026- the 16:9 box does not shift when the player opens",
+      "ok": true,
+      "detail": "276x155 -> 276x155"
+    },
+    {
+      "name": "[360] philadelphia-union-orlando-city-sc-2026- error 150 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[360] philadelphia-union-orlando-city-sc-2026- error 150 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] philadelphia-union-orlando-city-sc-2026- no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] philadelphia-union-orlando-city-sc-2026- no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] philadelphia-union-orlando-city-sc-2026- error 100 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[360] philadelphia-union-orlando-city-sc-2026- error 100 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] philadelphia-union-orlando-city-sc-2026- error 101 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[360] philadelphia-union-orlando-city-sc-2026- error 101 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] philadelphia-union-orlando-city-sc-2026- poster shown before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] philadelphia-union-orlando-city-sc-2026- no iframe before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] philadelphia-union-orlando-city-sc-2026- no YouTube player/page request before click",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] philadelphia-union-orlando-city-sc-2026- 16:9 frame",
+      "ok": true,
+      "detail": "236x133"
+    },
+    {
+      "name": "[320] philadelphia-union-orlando-city-sc-2026- click opens the player in place (youtube-nocookie)",
+      "ok": true,
+      "detail": "www.youtube-nocookie.com/embed/yKiZQedBb3M"
+    },
+    {
+      "name": "[320] philadelphia-union-orlando-city-sc-2026- enablejsapi + exact origin + referrer policy + fullscreen",
+      "ok": true,
+      "detail": "origin=https://soccer.propbetedge.ai"
+    },
+    {
+      "name": "[320] philadelphia-union-orlando-city-sc-2026- the 16:9 box does not shift when the player opens",
+      "ok": true,
+      "detail": "236x133 -> 236x133"
+    },
+    {
+      "name": "[320] philadelphia-union-orlando-city-sc-2026- error 150 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[320] philadelphia-union-orlando-city-sc-2026- error 150 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] philadelphia-union-orlando-city-sc-2026- no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] philadelphia-union-orlando-city-sc-2026- no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] philadelphia-union-orlando-city-sc-2026- error 100 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[320] philadelphia-union-orlando-city-sc-2026- error 100 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] philadelphia-union-orlando-city-sc-2026- error 101 -> poster fallback, no dead player",
+      "ok": true,
+      "detail": "Not available for embedded playback in your region."
+    },
+    {
+      "name": "[320] philadelphia-union-orlando-city-sc-2026- error 101 -> Watch on YouTube link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] no confident video -> no WATCH module, no player, no VideoObject",
+      "ok": true,
+      "detail": "{\"watch\":0,\"cards\":0,\"ld\":false}"
+    },
+    {
+      "name": "[1440] no console errors (no-video article)",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

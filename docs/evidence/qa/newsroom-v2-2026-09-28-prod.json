@@ -1,0 +1,608 @@
+{
+  "at": "2026-09-28T23:13:40.465Z",
+  "site": "https://soccer.propbetedge.ai",
+  "passed": 119,
+  "total": 120,
+  "results": [
+    {
+      "name": "[1440] /news no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] /news stories render, each once",
+      "ok": true,
+      "detail": "34 cards"
+    },
+    {
+      "name": "[1440] /news no broken images",
+      "ok": true,
+      "detail": "106 images"
+    },
+    {
+      "name": "[1440] /news headlines editorial case, not clipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] /news Latest rail beside and aligned with the lead",
+      "ok": true,
+      "detail": "lead 403 rail 403"
+    },
+    {
+      "name": "[1440] /news active desk filter",
+      "ok": true,
+      "detail": "/news"
+    },
+    {
+      "name": "[1440] /news WATCH shows at most 4 videos, none twice",
+      "ok": true,
+      "detail": "4 videos"
+    },
+    {
+      "name": "[1440] /news no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1280] /news no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1280] /news stories render, each once",
+      "ok": true,
+      "detail": "34 cards"
+    },
+    {
+      "name": "[1280] /news no broken images",
+      "ok": true,
+      "detail": "106 images"
+    },
+    {
+      "name": "[1280] /news headlines editorial case, not clipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1280] /news Latest rail beside and aligned with the lead",
+      "ok": true,
+      "detail": "lead 403 rail 403"
+    },
+    {
+      "name": "[1280] /news active desk filter",
+      "ok": true,
+      "detail": "/news"
+    },
+    {
+      "name": "[1280] /news WATCH shows at most 4 videos, none twice",
+      "ok": true,
+      "detail": "4 videos"
+    },
+    {
+      "name": "[1280] /news no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] /news no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] /news stories render, each once",
+      "ok": true,
+      "detail": "34 cards"
+    },
+    {
+      "name": "[1024] /news no broken images",
+      "ok": true,
+      "detail": "106 images"
+    },
+    {
+      "name": "[1024] /news headlines editorial case, not clipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] /news Latest rail beside and aligned with the lead",
+      "ok": true,
+      "detail": "lead 396 rail 396"
+    },
+    {
+      "name": "[1024] /news active desk filter",
+      "ok": true,
+      "detail": "/news"
+    },
+    {
+      "name": "[1024] /news WATCH shows at most 4 videos, none twice",
+      "ok": true,
+      "detail": "4 videos"
+    },
+    {
+      "name": "[1024] /news no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] /news no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] /news stories render, each once",
+      "ok": true,
+      "detail": "34 cards"
+    },
+    {
+      "name": "[768] /news no broken images",
+      "ok": true,
+      "detail": "106 images"
+    },
+    {
+      "name": "[768] /news headlines editorial case, not clipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] /news active desk filter",
+      "ok": true,
+      "detail": "/news"
+    },
+    {
+      "name": "[768] /news WATCH shows at most 4 videos, none twice",
+      "ok": true,
+      "detail": "4 videos"
+    },
+    {
+      "name": "[768] /news no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] /news no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] /news stories render, each once",
+      "ok": true,
+      "detail": "34 cards"
+    },
+    {
+      "name": "[430] /news no broken images",
+      "ok": true,
+      "detail": "106 images"
+    },
+    {
+      "name": "[430] /news headlines editorial case, not clipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] /news active desk filter",
+      "ok": true,
+      "detail": "/news"
+    },
+    {
+      "name": "[430] /news WATCH shows at most 4 videos, none twice",
+      "ok": true,
+      "detail": "4 videos"
+    },
+    {
+      "name": "[430] /news no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] /news no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] /news stories render, each once",
+      "ok": true,
+      "detail": "34 cards"
+    },
+    {
+      "name": "[390] /news no broken images",
+      "ok": true,
+      "detail": "106 images"
+    },
+    {
+      "name": "[390] /news headlines editorial case, not clipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] /news active desk filter",
+      "ok": true,
+      "detail": "/news"
+    },
+    {
+      "name": "[390] /news WATCH shows at most 4 videos, none twice",
+      "ok": true,
+      "detail": "4 videos"
+    },
+    {
+      "name": "[390] /news no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] /news no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] /news stories render, each once",
+      "ok": true,
+      "detail": "34 cards"
+    },
+    {
+      "name": "[360] /news no broken images",
+      "ok": true,
+      "detail": "106 images"
+    },
+    {
+      "name": "[360] /news headlines editorial case, not clipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] /news active desk filter",
+      "ok": true,
+      "detail": "/news"
+    },
+    {
+      "name": "[360] /news WATCH shows at most 4 videos, none twice",
+      "ok": true,
+      "detail": "4 videos"
+    },
+    {
+      "name": "[360] /news no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] /news no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] /news stories render, each once",
+      "ok": true,
+      "detail": "34 cards"
+    },
+    {
+      "name": "[320] /news no broken images",
+      "ok": true,
+      "detail": "106 images"
+    },
+    {
+      "name": "[320] /news headlines editorial case, not clipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] /news active desk filter",
+      "ok": true,
+      "detail": "/news"
+    },
+    {
+      "name": "[320] /news WATCH shows at most 4 videos, none twice",
+      "ok": true,
+      "detail": "4 videos"
+    },
+    {
+      "name": "[320] /news no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] /news/bundesliga no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] /news/bundesliga stories render, each once",
+      "ok": true,
+      "detail": "9 cards"
+    },
+    {
+      "name": "[1440] /news/bundesliga no broken images",
+      "ok": true,
+      "detail": "31 images"
+    },
+    {
+      "name": "[1440] /news/bundesliga headlines editorial case, not clipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] /news/bundesliga Latest rail beside and aligned with the lead",
+      "ok": true,
+      "detail": "lead 403 rail 403"
+    },
+    {
+      "name": "[1440] /news/bundesliga active desk filter",
+      "ok": true,
+      "detail": "/news/bundesliga"
+    },
+    {
+      "name": "[1440] /news/bundesliga WATCH shows at most 4 videos, none twice",
+      "ok": true,
+      "detail": "4 videos"
+    },
+    {
+      "name": "[1440] /news/bundesliga no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1280] /news/bundesliga no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1280] /news/bundesliga stories render, each once",
+      "ok": true,
+      "detail": "9 cards"
+    },
+    {
+      "name": "[1280] /news/bundesliga no broken images",
+      "ok": true,
+      "detail": "31 images"
+    },
+    {
+      "name": "[1280] /news/bundesliga headlines editorial case, not clipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1280] /news/bundesliga Latest rail beside and aligned with the lead",
+      "ok": true,
+      "detail": "lead 403 rail 403"
+    },
+    {
+      "name": "[1280] /news/bundesliga active desk filter",
+      "ok": true,
+      "detail": "/news/bundesliga"
+    },
+    {
+      "name": "[1280] /news/bundesliga WATCH shows at most 4 videos, none twice",
+      "ok": true,
+      "detail": "4 videos"
+    },
+    {
+      "name": "[1280] /news/bundesliga no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] /news/bundesliga no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] /news/bundesliga stories render, each once",
+      "ok": true,
+      "detail": "9 cards"
+    },
+    {
+      "name": "[1024] /news/bundesliga no broken images",
+      "ok": true,
+      "detail": "31 images"
+    },
+    {
+      "name": "[1024] /news/bundesliga headlines editorial case, not clipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1024] /news/bundesliga Latest rail beside and aligned with the lead",
+      "ok": true,
+      "detail": "lead 396 rail 396"
+    },
+    {
+      "name": "[1024] /news/bundesliga active desk filter",
+      "ok": true,
+      "detail": "/news/bundesliga"
+    },
+    {
+      "name": "[1024] /news/bundesliga WATCH shows at most 4 videos, none twice",
+      "ok": true,
+      "detail": "4 videos"
+    },
+    {
+      "name": "[1024] /news/bundesliga no console errors",
+      "ok": false,
+      "detail": "Loading the image 'https://www.googletagmanager.com/td?id=G-BRS48R8PG9&v=3&t=t&pid=720833594&gtm=45je69p1v9247320150za200zd9247320150xf1&seq=1&exp=115616986~115938465~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121125487&dl=soccer.propbetedge.ai%2Fnews%2Fbundesliga&tdp=G-BRS48R8PG9;247320150;0;0;0&frm=0&rtg=247320150&slo=1&hlo=3&lst=3&bt=0&ct=3&z=0' violates the following Content Security Policy directive: \"img-src 'self' data: https://www.google-analytics.com https://i.ytimg.com\". The action has been blocked."
+    },
+    {
+      "name": "[768] /news/bundesliga no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] /news/bundesliga stories render, each once",
+      "ok": true,
+      "detail": "9 cards"
+    },
+    {
+      "name": "[768] /news/bundesliga no broken images",
+      "ok": true,
+      "detail": "31 images"
+    },
+    {
+      "name": "[768] /news/bundesliga headlines editorial case, not clipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[768] /news/bundesliga active desk filter",
+      "ok": true,
+      "detail": "/news/bundesliga"
+    },
+    {
+      "name": "[768] /news/bundesliga WATCH shows at most 4 videos, none twice",
+      "ok": true,
+      "detail": "4 videos"
+    },
+    {
+      "name": "[768] /news/bundesliga no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] /news/bundesliga no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] /news/bundesliga stories render, each once",
+      "ok": true,
+      "detail": "9 cards"
+    },
+    {
+      "name": "[430] /news/bundesliga no broken images",
+      "ok": true,
+      "detail": "31 images"
+    },
+    {
+      "name": "[430] /news/bundesliga headlines editorial case, not clipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[430] /news/bundesliga active desk filter",
+      "ok": true,
+      "detail": "/news/bundesliga"
+    },
+    {
+      "name": "[430] /news/bundesliga WATCH shows at most 4 videos, none twice",
+      "ok": true,
+      "detail": "4 videos"
+    },
+    {
+      "name": "[430] /news/bundesliga no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] /news/bundesliga no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] /news/bundesliga stories render, each once",
+      "ok": true,
+      "detail": "9 cards"
+    },
+    {
+      "name": "[390] /news/bundesliga no broken images",
+      "ok": true,
+      "detail": "31 images"
+    },
+    {
+      "name": "[390] /news/bundesliga headlines editorial case, not clipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] /news/bundesliga active desk filter",
+      "ok": true,
+      "detail": "/news/bundesliga"
+    },
+    {
+      "name": "[390] /news/bundesliga WATCH shows at most 4 videos, none twice",
+      "ok": true,
+      "detail": "4 videos"
+    },
+    {
+      "name": "[390] /news/bundesliga no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] /news/bundesliga no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] /news/bundesliga stories render, each once",
+      "ok": true,
+      "detail": "9 cards"
+    },
+    {
+      "name": "[360] /news/bundesliga no broken images",
+      "ok": true,
+      "detail": "31 images"
+    },
+    {
+      "name": "[360] /news/bundesliga headlines editorial case, not clipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[360] /news/bundesliga active desk filter",
+      "ok": true,
+      "detail": "/news/bundesliga"
+    },
+    {
+      "name": "[360] /news/bundesliga WATCH shows at most 4 videos, none twice",
+      "ok": true,
+      "detail": "4 videos"
+    },
+    {
+      "name": "[360] /news/bundesliga no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] /news/bundesliga no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] /news/bundesliga stories render, each once",
+      "ok": true,
+      "detail": "9 cards"
+    },
+    {
+      "name": "[320] /news/bundesliga no broken images",
+      "ok": true,
+      "detail": "31 images"
+    },
+    {
+      "name": "[320] /news/bundesliga headlines editorial case, not clipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[320] /news/bundesliga active desk filter",
+      "ok": true,
+      "detail": "/news/bundesliga"
+    },
+    {
+      "name": "[320] /news/bundesliga WATCH shows at most 4 videos, none twice",
+      "ok": true,
+      "detail": "4 videos"
+    },
+    {
+      "name": "[320] /news/bundesliga no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "filter: MLS tab gives a clean MLS newsroom",
+      "ok": true,
+      "detail": "{\"title\":\"MLS newsroom\",\"n\":20,\"other\":0}"
+    },
+    {
+      "name": "story link opens the article",
+      "ok": true,
+      "detail": "/news/mls/philadelphia-union-orlando-city-sc-2026-09-26-2fcde7"
+    }
+  ]
+}
