@@ -1,4 +1,5 @@
-// soccer-ingest Worker. Cron every 5 minutes; each lane decides its own cadence.
+// soccer-ingest Worker. Cron every minute: the live lane every tick, every other lane on
+// the 5-minute boundary; each lane decides its own cadence.
 //
 //   GET  /health                          lane states (no secrets, no raw data)
 //   POST /v1/runs?lane=<name>[&force=1]   admin: run one lane now (Bearer INGEST_ADMIN_TOKEN)
