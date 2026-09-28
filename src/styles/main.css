@@ -513,6 +513,33 @@ button { font: inherit; }
 .dna-intro { color: var(--ink-2); font-size: 14px; margin: 0 0 10px; }
 .dna-intro .form { vertical-align: middle; }
 .dna-season h3 { font: 800 19px/1.2 var(--display); text-transform: uppercase; margin: 22px 0 8px; display: flex; align-items: center; gap: 8px; }
+/* Player DNA V2 */
+.dna-v2 { margin: 0 0 8px; }
+.dna-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+.dna-chip { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px 6px 6px; border-radius: 999px; border: 1px solid var(--line-2); background: #fff; cursor: pointer; font: 700 13px/1 var(--body); color: var(--ink-2); min-height: 36px; }
+.dna-chip[aria-selected="true"] { border-color: var(--gold); background: var(--gold-soft); color: var(--ink); box-shadow: inset 0 0 0 1px var(--gold); }
+.dna-one { display: flex; align-items: center; gap: 8px; font: 800 17px/1.2 var(--display); text-transform: uppercase; margin: 0 0 12px; }
+.dna-vol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0 0 16px; }
+@media (min-width: 760px) { .dna-vol { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.dna2.compact .dna-vol { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.dna-vol > div { background: var(--canvas-alt); border: 1px solid var(--line); border-radius: var(--radius-s); padding: 10px 12px; min-width: 0; }
+.dna-vol b { display: block; font: 700 22px/1.1 var(--mono); color: var(--ink); }
+.dna-vol span { display: block; font: 700 10.5px/1.4 var(--body); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+.dna-vol small { display: block; font-size: 11.5px; color: var(--muted); }
+.dna-sig { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 6px; align-items: end; height: 132px; padding: 12px 12px 0; margin: 0 0 12px; border-radius: var(--radius-s); background: linear-gradient(180deg, var(--shell-2), var(--shell)); background-image: linear-gradient(180deg, var(--shell-2), var(--shell)), repeating-linear-gradient(180deg, transparent 0 23px, rgba(255,255,255,.06) 23px 24px); }
+.sig-col { position: relative; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; min-width: 0; }
+.sig-col i { display: block; width: 100%; border-radius: 4px 4px 0 0; background: #3b5580; transition: height .4s ease; }
+.sig-col.t3 i { background: #6d86ad; } .sig-col.t4 i { background: var(--gold); } .sig-col.t5 i { background: linear-gradient(180deg, var(--gold-2), var(--gold)); box-shadow: 0 0 12px rgba(240,198,90,.45); }
+.sig-col b { display: block; padding: 6px 0 8px; font: 700 9.5px/1 var(--body); letter-spacing: .04em; color: var(--muted-dark); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 520px) { .dna-sig { gap: 4px; padding: 10px 8px 0; } .sig-col b { font-size: 9px; letter-spacing: 0; overflow: visible; } }
+@media (prefers-reduced-motion: reduce) { .sig-col i { transition: none; } }
+.dna-group { margin: 14px 0 0; }
+.dna-gt { margin: 0 0 4px; font: 800 11px/1.4 var(--body); letter-spacing: .16em; color: var(--gold-ink); }
+.dna-group .dna { grid-template-columns: 1fr; }
+@media (min-width: 900px) { .dna2:not(.compact) { display: grid; grid-template-columns: 1fr 1fr; column-gap: 28px; } .dna2 > .dna-vol, .dna2 > .dna-sig, .dna2 > .dna-intro, .dna2 > .dna-splits { grid-column: 1 / -1; } }
+.dna-splits { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 16px 0 0; }
+.dna-splits > div { border: 1px solid var(--line); border-radius: var(--radius-s); padding: 10px 12px; min-width: 0; }
+.dna-splits b { font: 700 20px/1.2 var(--mono); } .dna-splits span { display: block; font-size: 12.5px; color: var(--muted); }
 
 /* ---------- related news ---------- */
 .related { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: var(--radius-s); overflow: hidden; background: #fff; }

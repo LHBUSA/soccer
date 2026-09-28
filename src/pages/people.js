@@ -107,8 +107,8 @@ export const player = {
       <div class="facts">${join(facts, ([k, v]) => `<div><span>${esc(k)}</span><b>${esc(v)}</b></div>`)}</div>
     </div></section>
     <section class="canvas"><div class="wrap">
-      ${observedBlock(p.observed)}
       <div data-player-dna class="dna-slot" aria-live="polite"></div>
+      ${observedBlock(p.observed)}
       <div data-related-news></div>
       ${sectionHead('SEASON HISTORY', 'Event-derived statistics')}
       ${seasons.length ? `<div class="tablewrap"><table class="ltable ptable"><thead><tr><th class="tm" scope="col">Season</th>${join(cols, ([, l]) => `<th scope="col">${esc(l)}</th>`)}</tr></thead>

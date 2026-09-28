@@ -42,17 +42,90 @@ export async function mountTeamDna(root, slug) {
   } catch { slot.innerHTML = ''; }
 }
 
+// ---- PLAYER DNA V2 ----
+// One view for the player page and the Player DNA drawer: per competition-season, a volume
+// strip, the DNA signature (one column per rate, height = percentile), grouped percentile rows,
+// home/away and last-5 splits. Percentiles only when the season is eligible (>= min minutes);
+// the comparison group is always named. Descriptive, not a forecast.
+export const DNA_GROUPS = [
+  ['SCORING', ['goals_per90', 'shots_per90', 'shots_on_target_rate', 'goals_per_shot']],
+  ['CREATION', ['assists_per90', 'key_passes_per90', 'goal_contributions_per90']],
+  ['ROLE', ['start_rate', 'minutes_per_appearance']],
+  ['DISCIPLINE', ['cards_per90']],
+];
+const SHORT = { goals_per90: 'G/90', shots_per90: 'Sh/90', shots_on_target_rate: 'SoT%', goals_per_shot: 'G/Sh', assists_per90: 'A/90', key_passes_per90: 'KP/90', goal_contributions_per90: 'G+A', start_rate: 'Start', minutes_per_appearance: 'Min', cards_per90: 'Card' };
+const tier = p => (p >= 90 ? 't5' : p >= 75 ? 't4' : p >= 50 ? 't3' : p >= 25 ? 't2' : 't1');
+
+export function dnaSignature(metrics) {
+  const order = DNA_GROUPS.flatMap(([, keys]) => keys);
+  const cols = order.map(k => metrics.find(m => m.key === k)).filter(m => m && m.percentile !== null && m.percentile !== undefined);
+  if (!cols.length) return '';
+  return `<div class="dna-sig" role="img" aria-label="DNA signature: ${esc(cols.map(m => `${PLAYER_LABELS[m.key]?.[0] || m.key} p${m.percentile}`).join(', '))}">
+    ${join(cols, m => `<span class="sig-col ${tier(m.percentile)}" title="${esc(PLAYER_LABELS[m.key]?.[0] || m.key)}: p${m.percentile}"><i style="height:${Math.max(4, m.percentile)}%"></i><b>${esc(SHORT[m.key] || m.key)}</b></span>`)}
+  </div>`;
+}
+
+function dnaGroups(metrics) {
+  return join(DNA_GROUPS, ([title, keys]) => {
+    const rows = keys.map(k => metrics.find(m => m.key === k)).filter(Boolean);
+    if (!rows.length) return '';
+    return `<div class="dna-group"><p class="dna-gt">${esc(title)}</p>${metricRows(rows, PLAYER_LABELS)}</div>`;
+  });
+}
+
+export function playerSeasonView(s, minMinutes, { compact = false } = {}) {
+  const vol = [['Apps', `${num(s.appearances)}`, s.starts !== undefined ? `${num(s.starts)} starts` : ''], ['Minutes', num(s.minutes_nominal), 'nominal'], ['Goals', num(s.goals), ''], ['Assists', num(s.assists), ''], ['Shots', num(s.shots), s.shots_on_target !== undefined ? `${num(s.shots_on_target)} on target` : ''], ['Key passes', num(s.key_passes), '']];
+  const eligible = s.eligible_for_percentiles;
+  const sp = s.splits; const l5 = s.last5;
+  return `<div class="dna2${compact ? ' compact' : ''}">
+    <div class="dna-vol">${join(compact ? vol.slice(0, 4) : vol, ([k, v, sub]) => `<div><b>${esc(v)}</b><span>${esc(k)}</span>${sub ? `<small>${esc(sub)}</small>` : ''}</div>`)}</div>
+    ${eligible ? `${dnaSignature(s.metrics)}
+      <p class="dna-intro">Percentiles rank against the <b>${num(s.players_compared)}</b> players with at least ${num(minMinutes)} nominal minutes in ${esc(s.competition?.name || 'this competition')} ${esc(s.season || '')} (p100 = best in the group).</p>
+      ${compact ? '' : dnaGroups(s.metrics)}`
+    : `<p class="dna-intro">${num(s.minutes_nominal)} of the ${num(minMinutes)} nominal minutes needed for percentile ranks in ${esc(s.competition?.name || 'this competition')} ${esc(s.season || '')}, so no ranks yet. Counts above are complete.</p>`}
+    ${when(!compact && (sp || l5), () => `<div class="dna-splits">
+      ${when(sp?.home, () => `<div><p class="dna-gt">HOME</p><b>${num(sp.home.goals)}</b><span>goals in ${num(sp.home.appearances)} apps</span></div>`)}
+      ${when(sp?.away, () => `<div><p class="dna-gt">AWAY</p><b>${num(sp.away.goals)}</b><span>goals in ${num(sp.away.appearances)} apps</span></div>`)}
+      ${when(l5, () => `<div><p class="dna-gt">LAST ${num(l5.appearances)}</p><b>${num(l5.goals)}</b><span>goals · ${num(l5.shots)} shots</span></div>`)}
+    </div>`)}
+  </div>`;
+}
+
+// Season switcher: competition-season chips; the first (latest) is selected.
+export function playerDnaView(env, { compact = false } = {}) {
+  const d = env.data;
+  const seasons = d.seasons || [];
+  if (!seasons.length) return '';
+  const chip = (s, i) => `<button type="button" class="dna-chip" role="tab" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-dna-season="${i}">${s.competition ? compMono(s.competition.slug, 'xs') : ''}<span>${esc(s.season || '')}</span></button>`;
+  return `<div class="dna-v2" data-dna-v2>
+    ${seasons.length > 1 ? `<div class="dna-chips" role="tablist" aria-label="Competition and season">${join(seasons, chip)}</div>` : `<p class="dna-one">${seasons[0].competition ? compMono(seasons[0].competition.slug, 'xs') : ''} ${esc(seasons[0].competition?.name || '')} ${esc(seasons[0].season || '')}</p>`}
+    ${join(seasons, (s, i) => `<div class="dna-panel" role="${seasons.length > 1 ? 'tabpanel' : 'group'}" data-dna-panel="${i}"${i === 0 ? '' : ' hidden'}>${playerSeasonView(s, d.min_minutes_for_percentiles, { compact })}</div>`)}
+  </div>`;
+}
+
+export function mountDnaSwitch(root) {
+  for (const box of root.querySelectorAll('[data-dna-v2]')) {
+    const chips = [...box.querySelectorAll('[data-dna-season]')];
+    const select = (i, focus) => {
+      chips.forEach(c => { const on = c.dataset.dnaSeason === String(i); c.setAttribute('aria-selected', String(on)); c.tabIndex = on ? 0 : -1; if (on && focus) c.focus(); });
+      box.querySelectorAll('[data-dna-panel]').forEach(p => { p.hidden = p.dataset.dnaPanel !== String(i); });
+    };
+    box.addEventListener('click', e => { const c = e.target.closest('[data-dna-season]'); if (c) select(c.dataset.dnaSeason); });
+    box.addEventListener('keydown', e => {
+      const i = chips.findIndex(c => c.getAttribute('aria-selected') === 'true');
+      const n = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : null;
+      if (n === null || i < 0) return; e.preventDefault(); select((n + chips.length) % chips.length, true);
+    });
+  }
+}
+
 export async function mountPlayerDna(root, slug) {
   const slot = root.querySelector('[data-player-dna]'); if (!slot) return;
   try {
     const env = await api(`players/${slug}/dna`);
-    const d = env.data;
-    if (!d.seasons?.length || !slot.isConnected) { slot.innerHTML = ''; return; }
-    slot.innerHTML = `${sectionHead('PLAYER DNA', 'Profile by competition')}
-      ${join(d.seasons, s => `<div class="dna-season"><h3>${s.competition ? compMono(s.competition.slug, 'xs') : ''} ${esc(s.competition?.name || '')} ${esc(s.season || '')}</h3>
-        <p class="dna-intro">${esc(String(s.appearances))} appearances (${esc(String(s.starts))} starts), ${esc(num(s.minutes_nominal))} nominal minutes · ${esc(String(s.goals))} goals, ${esc(String(s.assists))} assists, ${esc(String(s.shots))} shots.
-        ${s.eligible_for_percentiles ? `Percentiles rank against the ${esc(String(s.players_compared))} players with at least ${esc(String(d.min_minutes_for_percentiles))} nominal minutes.` : `Below ${esc(String(d.min_minutes_for_percentiles))} nominal minutes, so no percentile ranks yet.`}</p>
-        ${metricRows(s.metrics, PLAYER_LABELS)}</div>`)}
+    if (!env.data.seasons?.length || !slot.isConnected) { slot.innerHTML = ''; return; }
+    slot.innerHTML = `${sectionHead('PLAYER DNA', 'Profile by competition-season')}${playerDnaView(env)}
       ${sourcePanel(env.meta, { title: 'HOW PLAYER DNA IS BUILT' })}`;
+    mountDnaSwitch(slot);
   } catch { slot.innerHTML = ''; }
 }
