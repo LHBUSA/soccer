@@ -21,7 +21,7 @@ evidence are the source of truth; nothing here comes only from chat memory.
 |---|---|---|
 | soccer-api | `70583790` (displayable media = approved + owner_approved_identification with `basis`; competition team grid crest) | `35e64696` (then `c266dbd7`) |
 | soccer-ingest | `533fb55e` (1.3.0, shadow Bundesliga enrichment + hardening) | `dd868f6f` (same cron) |
-| soccer-news | `19925642` (1.1.0, world-class desk REQUIRED, fail closed; NO ANTHROPIC_API_KEY yet = new stories HOLD) | `a04b2183` |
+| soccer-news | `387d0d5e` (1.3.0: OpenAI desk 2.0.0 gpt-5.6-sol, packet v3 depth, quality 2.0.0; fail closed) | `4fc1486d` |
 
 Rollback: `cd workers/<worker> && npx wrangler versions deploy <rollback>@100% --yes`. Web rollback: Vercel instant rollback to the previous production deployment.
 
@@ -93,6 +93,7 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
 - 2026-09-28: editorial provider switched from Anthropic to OpenAI (desk 1.1.0). The Anthropic key failed with a workspace-scope 400, so it is no longer used by the desk. BLOCKER: the Worker needs an `OPENAI_API_KEY` secret (owner action: `cd workers/soccer-news && npx wrangler secret put OPENAI_API_KEY`). Until then every new story holds with `editorial_desk_unavailable`, and the 34 earlier template articles stay published as they were.
 - 2026-09-28 OpenAI live canary (dark version c115211e, temporary fixed-fixture route never in git, evidence docs/evidence/news/openai-canary-bayern-2026-09-28.json): transport PASS (gpt-5.6-sol, 2 attempts, ~51 s); Bayern rewrite HELD on `unsupported_odds` = the word "spread" ("spread across 4 scorers"), a false positive; 17/18 fact gates, 14/14 quality gates, attribution PASS. Clean candidate 4126864b uploaded dark, NOT deployed; production still 4fc1486d. Gate fix approved and shipped (main c2e4b38).
 - 2026-09-28 canary r2 (dark 4348d9e0, evidence ...-r2.json): transport PASS; HOLD on `new_player_or_team` ["Against"] (sentence-opening preposition before a team name, validator false positive) and `thin_output` 448/450 (a real quality hold). Clean candidate c19584bd (main c2e4b38) uploaded dark, NOT deployed; production still 4fc1486d.
+- NEWS DEPTH V2 LIVE 2026-09-28 (soccer-news 387d0d5e, rb 4fc1486d): packet soccer-packet/3.0.0 (depth soccer-depth/1.0.0: phases, goal sequence, player lines, shot profile, table move, 5 prior results, cards, subs), desk soccer-desk/2.0.0, gates soccer-quality/2.0.0. Bayern canary PASS (docs/evidence/news/depth-v2-bayern-canary-r3.json); QA 8/9 PASS, RSL correctly held. Legacy backlog (34 published templates + 2 held) NOT re-edited yet: waiting for owner inspection of the Bayern rewrite; 16 recaps rebuild as-of-safe (path A), 20 others use their original packet (path B). Re-edit needs POST /v1/admin/reedit (NEWS_ADMIN_TOKEN, owner).
 - After the key: `POST /v1/admin/reedit?scope=template&limit=40` (admin token; add `dry=1` first) rewrites the earlier template stories from their frozen packets; `scope=held_desk` retries held ones. Canary: the Bayern 7-0 Union Berlin story.
 - Article page V3 (network pattern) is live for every story; SOURCE & METHOD is collapsed.
 
