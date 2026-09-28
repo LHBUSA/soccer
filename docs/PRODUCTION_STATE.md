@@ -19,7 +19,7 @@ evidence are the source of truth; nothing here comes only from chat memory.
 
 | Worker | Live version | Rollback |
 |---|---|---|
-| soccer-api | `a12b822d` (1.4.0, rights-gated enrichment contract) | `a6f3631b` |
+| soccer-api | `e8303d82` (1.4.0 + news image subject) | `a12b822d` |
 | soccer-ingest | `533fb55e` (1.3.0, shadow Bundesliga enrichment + hardening) | `dd868f6f` (same cron) |
 | soccer-news | `a04b2183` | `5c03ee80` |
 
@@ -82,6 +82,7 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
 - One identity-image component (`src/components/media.js`): approved crest or initials mark, approved portrait or the raster silhouette (`public/brand/player-silhouette-*.webp`), used on match, team, player, news, directory, PBEcast and drawer.
 - Player DNA V2 (season switcher, signature, grouped percentiles, splits); `/players` directory (per-90 leaders only inside one competition); `/pbecast` hub + `/pbecast/:id` (live / replay / pregame; cast pages canonicalise to `/matches/:id`); Player DNA drawer on player chips and directory cards; homepage PBEcast live rail.
 - Fixed: `/site.webmanifest` had answered 404 HTML since Stage A (middleware file guard capped extensions at 5 chars).
+- **Frontend V3 product pass (2026-09-28, main f38c7e6, bundle index-CIqPeJbJ.js)**: house score ticker in the shell (no native scrollbar; marquee on wide hover screens, swipe on touch); homepage hierarchy (PBECAST primary, featured intelligence, news desk with deterministic `selectHomepageLead`, leagues, per-competition Player DNA leaders); player hero with large portrait + percentile radar; team pages with squad portrait cards; key players on match / PBEcast / home; drawer with this match's sourced line + recent matches; `/players` team filter. soccer-api `e8303d82` (rb `a12b822d`): news card image prefers the headline's subject. Production QA 224/224 (28 routes x 8 widths incl. clipped-content + ticker checks). Portraits: 597 of 2,157 directory players (27.7%). Crest audit (docs/evidence/media/crest-audit-2026-09-28.md): 95 teams, 3 approved, 4 held by owner decision, 15 no free logo, 73 identity not proven.
 
 ## QA (latest, docs/evidence/qa)
 
