@@ -13,9 +13,13 @@ export const config = {
   matcher: ['/((?!api/|assets/|og/|favicon|robots\\.txt|sitemap).*)'],
 };
 
+// Files are served (or 404'd) by the filesystem. Extensions up to 12 characters: `.webmanifest`
+// (11) was routed as a page and answered 404 HTML on every load. Page slugs never contain a dot.
+export const isFilePath = pathname => /\.[a-z0-9]{2,12}$/i.test(pathname);
+
 export default async function middleware(request) {
   const url = new URL(request.url);
-  if (/\.[a-z0-9]{2,5}$/i.test(url.pathname)) return; // files: served (or 404'd) by the filesystem
+  if (isFilePath(url.pathname)) return;
   const pathname = url.pathname.replace(/\/+$/, '') || '/';
   const plan = metaPlan(pathname);
 

@@ -68,3 +68,9 @@ test('head and header carry the identity: icons, manifest, canonical mark linked
   assert.match(main, /href="https:\/\/propbetedge\.ai\/"[^>]*><img src="\/brand\/pbe-mark-64\.webp"/);
   assert.match(main, /PROPBETEDGE<\/span><span class="b2">SOCCER INTELLIGENCE/);
 });
+
+test('middleware hands every static file to the filesystem, including the web manifest', async () => {
+  const { isFilePath } = await import('../../middleware.js');
+  for (const f of ['/site.webmanifest', '/favicon.ico', '/icon-512.png', '/brand/player-silhouette-128.webp', '/robots.txt']) assert.equal(isFilePath(f), true, f);
+  for (const p of ['/', '/players', '/players/lionel-messi', '/pbecast/5b0c8f3e-1111-5222-8333-444455556666', '/news/mls/some-story-abc123']) assert.equal(isFilePath(p), false, p);
+});

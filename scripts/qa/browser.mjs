@@ -24,7 +24,7 @@ const playerSlug = espnDetail.lineups?.home?.starters?.find(Boolean)?.slug;
 const story = ((await getJson('news?limit=1')).data || [])[0];
 
 const ROUTES = [
-  { path: '/', expect: ['SOCCER INTELLIGENCE', 'One canonical field', 'MLS', 'BUNDESLIGA', 'PREMIER LEAGUE', 'CHAMPIONS LEAGUE'], name: 'home' },
+  { path: '/', expect: ['SOCCER INTELLIGENCE', 'Four competitions, one graph', 'PBECAST', 'MLS', 'BUNDESLIGA', 'PREMIER LEAGUE', 'CHAMPIONS LEAGUE'], name: 'home' },
   { path: '/competitions', expect: ['Competitions on the canonical graph'], name: 'competitions' },
   { path: '/competitions/bundesliga', expect: ['Bundesliga', 'TABLE'], name: 'bundesliga' },
   { path: '/competitions/premier-league', expect: ['Premier League', 'TABLE'], name: 'epl' },
@@ -48,6 +48,10 @@ const ROUTES = [
     { path: `/news/${story.desk}`, expect: ['news', story.headline], name: 'news-desk' },
     { path: `/news/${story.desk}/${story.slug}`, expect: [story.headline, 'EVIDENCE AND METHOD', 'Evidence packet'], name: 'article' },
   ] : [{ path: '/news', expect: ['PROPBETEDGE SOCCER NEWSROOM', 'Evidence-backed soccer reporting is coming online.'], name: 'news' }]),
+  { path: '/players', expect: ['Player directory', 'PLAYERS'], name: 'players' },
+  { path: '/players?competition=mls&sort=goal_contributions_per90', expect: ['Player directory', 'Leaders among the 450+'], name: 'players-leaders' },
+  { path: '/pbecast', expect: ['Every match, event by event', 'LIVE NOW', 'REPLAYS'], name: 'pbecast-hub' },
+  { path: `/pbecast/${espnMatch.id}`, expect: ['PBECAST', 'REPLAY FROM KICK-OFF', 'MATCH FEED', 'NOT PLAYER TRACKING'], castMarks: true, name: 'pbecast-replay' },
   { path: '/sources', expect: ['Where every fact comes from'], name: 'sources' },
   { path: '/this-route-does-not-exist', expect: ['Off the pitch'], name: 'notfound' },
 ];
@@ -69,7 +73,7 @@ try {
       await page.waitForFunction(() => !document.querySelector('.state.loading'), { timeout: 30000 }).catch(() => {});
       const info = await page.evaluate(() => ({
         text: document.body.innerText, overflow: document.documentElement.scrollWidth - window.innerWidth,
-        marks: document.querySelectorAll('.pitch .mark').length, title: document.title, errorState: !!document.querySelector('.state.error'),
+        marks: document.querySelectorAll('.pitch .mark').length, castMarks: document.querySelectorAll('.pitch.cast .cmark').length, title: document.title, errorState: !!document.querySelector('.state.error'),
       }));
       const tag = `${route.name}@${width}`;
       const missing = route.expect.filter(t => !info.text.toLowerCase().includes(t.toLowerCase()));
@@ -82,6 +86,7 @@ try {
       if (failed.length) fail(tag, `failed requests: ${failed.slice(0, 3).join(' || ')}`);
       if (info.errorState) fail(tag, 'error state rendered');
       if (route.marks && info.marks < 1) fail(tag, 'event map has no events');
+      if (route.castMarks && info.castMarks < 1) fail(tag, 'PBEcast pitch has no located events');
       for (const h of hosts) if (!ALLOWED_HOSTS.has(h)) fail(tag, `unexpected host ${h}`);
       if (apiCalls.some(p => !p.startsWith('/api/soccer/'))) fail(tag, 'API call outside /api/soccer');
       results.push({ route: route.path, width, status: res.status(), overflow: info.overflow, marks: info.marks, console_errors: consoleErrors.length, failed_requests: failed.length, api_calls: apiCalls.length, hosts: [...hosts], title: info.title });
@@ -102,6 +107,21 @@ try {
   await page.waitForFunction(() => location.pathname.startsWith('/matches/') && !document.querySelector('.state.loading'), { timeout: 20000 });
   const navOk = await page.evaluate(() => document.body.innerText.toUpperCase().includes('MATCH INTELLIGENCE'));
   if (!navOk) fail('internal-nav', 'match page did not render after clicking a card');
+  // V3: PBEcast replay moves the clock and hides future events; the Player DNA drawer opens from
+  // a lineup chip without changing the URL and closes on Escape.
+  await page.goto(`${BASE}/pbecast/${espnMatch.id}`, { waitUntil: 'networkidle0' });
+  const seekOk = await page.evaluate(() => { const b = document.querySelector('.rp-moments [data-seek]'); if (!b) return 'no key moment'; b.click(); const hidden = [...document.querySelectorAll('[data-fi]')].filter(l => l.hidden).length; const clock = document.querySelector('[data-ct-clock]')?.textContent; return hidden > 0 && clock !== 'FT' ? true : `hidden ${hidden} clock ${clock}`; });
+  if (seekOk !== true) fail('pbecast-replay', `seek did not move the replay: ${seekOk}`);
+  await page.goto(`${BASE}/matches/${espnMatch.id}`, { waitUntil: 'networkidle0' });
+  const before = page.url();
+  const chip = await page.$('.lineup .pchip a[href^="/players/"]');
+  if (chip) {
+    await chip.evaluate(a => a.scrollIntoView({ block: 'center' })); await chip.click();
+    const opened = await page.waitForSelector('.drawer.on .dr-cta', { timeout: 15000 }).then(() => true).catch(() => false);
+    if (!opened || page.url() !== before) fail('drawer', `drawer did not open in place (opened ${opened}, url ${page.url()})`);
+    await page.keyboard.press('Escape');
+    if (!(await page.$eval('.drawer', d => d.hidden))) fail('drawer', 'Escape did not close the drawer');
+  } else fail('drawer', 'no lineup chip to open');
   await page.close();
 } finally { await browser.close(); }
 
