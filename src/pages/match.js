@@ -3,7 +3,7 @@
 import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { DASH, STAT_LABELS, ago, dateTime, num, sourceName, statsHeading } from '../lib/format.js';
-import { link, sectionHead, sourcePanel, statusPill, teamLink } from '../components/ui.js';
+import { link, playerChip, sectionHead, sourcePanel, statusPill, teamLink, teamMark } from '../components/ui.js';
 import { pitchSvg, validShots } from '../components/pitch.js';
 import { mountRelatedNews } from '../components/related.js';
 import { matchTitle } from '../seo/meta.js';
@@ -24,8 +24,8 @@ export function story(m) {
   if (!items.length) return '<p class="muted">No goals, cards or substitutions are recorded for this match in the canonical graph.</p>';
   const icon = k => (k === 'goal' ? '<span class="ev goal" role="img" aria-label="Goal">●</span>' : k === 'own_goal' ? '<span class="ev og" role="img" aria-label="Own goal">●</span>'
     : k.startsWith('card_') ? `<span class="ev card ${k === 'card_yellow' ? 'y' : 'r'}" role="img" aria-label="${k === 'card_yellow' ? 'Yellow card' : 'Red card'}"></span>` : '<span class="ev sub" role="img" aria-label="Substitution">⇄</span>');
-  const text = it => (it.kind === 'sub' ? `${personLink(it.inP)} <span class="muted">for</span> ${personLink(it.outP)}`
-    : `${it.player ? (it.player.resolved === false ? `${esc(it.player.name)} <span class="tag">identity pending</span>` : personLink(it.player)) : 'Unidentified player'}${it.kind === 'own_goal' ? ' <span class="muted">(own goal)</span>' : ''}${it.penalty ? ' <span class="muted">(pen)</span>' : ''}`);
+  const text = it => (it.kind === 'sub' ? `${playerChip(it.inP)} <span class="muted">for</span> ${personLink(it.outP)}`
+    : playerChip(it.player, { extra: `${it.kind === 'own_goal' ? ' <span class="muted">(own goal)</span>' : ''}${it.penalty ? ' <span class="muted">(pen)</span>' : ''}` }));
   const teamName = side => (side === 'away' ? m.away : m.home)?.short_name || (side === 'away' ? m.away : m.home)?.name || '';
   return `<ol class="story">${join(items, it => `<li class="${it.team === 'away' ? 'away' : 'home'} k-${esc(it.kind)}${it.kind === 'goal' || it.kind === 'own_goal' ? ' goalrow' : ''}">
     <span class="min">${esc(it.display || (it.minute !== null && it.minute !== undefined ? `${it.minute}'` : DASH))}</span>${icon(it.kind)}<span class="who">${text(it)} <span class="side">${esc(it.kind === 'own_goal' ? '' : teamName(it.team))}</span></span></li>`)}</ol>`;
@@ -49,6 +49,8 @@ export function statsBlock(m) {
   </div>`;
 }
 
+const shirt = p => `<span class="shirt"${p.shirt ? '' : ' aria-hidden="true"'}>${p.shirt ? esc(String(p.shirt)) : ''}</span>`;
+
 export function lineupsBlock(m) {
   if (!m.lineups) return '<p class="muted">Lineups are not available from a legitimate source for this match.</p>';
   const side = (key, team) => {
@@ -56,8 +58,8 @@ export function lineupsBlock(m) {
     if (!l) return `<div class="lineup"><h3>${esc(team?.name || '')}</h3><p class="muted">Not available.</p></div>`;
     return `<div class="lineup ${key}"><h3>${teamLink(team)}</h3>
       <p class="formation">${l.formation ? `Formation <b>${esc(l.formation)}</b>` : 'Formation not stated by the source'}${l.manager ? ` · Manager ${l.manager.slug ? esc(l.manager.name) : esc(l.manager.name)}` : ''}</p>
-      <p class="lu-label">STARTING XI</p><ul>${join((l.starters || []).filter(Boolean), p => `<li>${personLink(p)}</li>`)}</ul>
-      ${when((l.bench || []).filter(Boolean).length, () => `<p class="lu-label">BENCH</p><ul class="bench">${join(l.bench.filter(Boolean), p => `<li>${personLink(p)}</li>`)}</ul>`)}
+      <p class="lu-label">STARTING XI</p><ul>${join((l.starters || []).filter(Boolean), p => `<li>${shirt(p)}${playerChip(p, { size: 'sm' })}</li>`)}</ul>
+      ${when((l.bench || []).filter(Boolean).length, () => `<p class="lu-label">BENCH</p><ul class="bench">${join(l.bench.filter(Boolean), p => `<li>${shirt(p)}${playerChip(p)}</li>`)}</ul>`)}
     </div>`;
   };
   return `<div class="lineups">${side('home', m.home)}${side('away', m.away)}</div>`;
@@ -67,7 +69,7 @@ export function subsBlock(m) {
   if (!m.substitutions?.length) return '<p class="muted">No substitutions recorded.</p>';
   const sorted = [...m.substitutions].sort((a, b) => (a.minute ?? 999) - (b.minute ?? 999));
   return `<div class="subs"><div class="subs-head"><span>Min</span><span>Off</span><span>On</span></div>${join(sorted, s => `<div class="subrow ${s.team}">
-    <span class="min">${s.minute !== null && s.minute !== undefined ? `${esc(s.minute)}'` : DASH}</span><span>${personLink(s.out)}</span><span>${personLink(s.in)}</span></div>`)}</div>`;
+    <span class="min">${s.minute !== null && s.minute !== undefined ? `${esc(s.minute)}'` : DASH}</span><span>${playerChip(s.out)}</span><span>${playerChip(s.in)}</span></div>`)}</div>`;
 }
 
 export function eventMap(m) {
@@ -108,7 +110,7 @@ export function shotTimeline(m) {
     <thead><tr><th scope="col">Min</th><th class="tm" scope="col">Shooter</th><th scope="col" class="tl">Team</th><th scope="col" class="tl">Result</th><th scope="col" class="tl wide">How</th><th scope="col"><abbr title="Score before the shot">Score</abbr></th><th scope="col" class="tl wide">Assist</th>${hasXg ? '<th scope="col" title="Expected goals supplied by ESPN, not PropBetEdge">ESPN xG</th>' : ''}</tr></thead>
     <tbody>${join(shots, s => `<tr class="${s.goal ? 'goalrow' : ''} ${s.team}">
       <td>${esc(s.display_minute || (s.minute !== null && s.minute !== undefined ? `${s.minute}'` : DASH))}</td>
-      <th class="tm" scope="row">${personLink(s.player)}</th><td class="tl">${esc(tn(s.team))}</td>
+      <th class="tm" scope="row">${playerChip(s.player)}</th><td class="tl">${esc(tn(s.team))}</td>
       <td class="tl">${s.goal ? '<b>Goal</b>' : esc(OUTCOME[s.outcome] || 'Shot')}</td>
       <td class="tl wide">${esc([BODY[s.body_part], s.set_piece ? String(s.set_piece).replace(/_/g, ' ') : null, s.situation && s.situation !== 'Regular Play' ? s.situation : null].filter(Boolean).join(' · ') || DASH)}</td>
       <td>${esc(s.score_before || DASH)}</td><td class="tl wide">${s.assist ? personLink(s.assist) : DASH}</td>
@@ -127,7 +129,7 @@ export function playerImpact(m) {
     <h3 class="impact-team">${teamLink(team)}</h3>
     <div class="tablewrap" tabindex="0" role="region" aria-label="${esc(team?.name || key)} player impact (scrolls horizontally)"><table class="ltable impact"><caption class="sr-only">${esc(team?.name || key)} players</caption>
       <thead><tr><th class="tm" scope="col">Player</th>${join(cols, ([, l, t]) => `<th scope="col"><abbr title="${esc(t)}">${esc(l)}</abbr></th>`)}</tr></thead>
-      <tbody>${join(rows, r => `<tr><th class="tm" scope="row">${personLink(r.player)}${r.started ? '' : ' <span class="subtag" title="Came on">sub</span>'}${r.sub_on !== undefined && r.sub_on !== null ? `<span class="sr-only"> on ${esc(r.sub_on)}'</span>` : ''}</th>${join(cols, ([k]) => `<td>${num(r[k])}</td>`)}</tr>`)}</tbody></table></div>`; };
+      <tbody>${join(rows, r => `<tr><th class="tm" scope="row">${playerChip(r.player, { extra: r.started ? '' : ' <span class="subtag" title="Came on">sub</span>' })}${r.sub_on !== undefined && r.sub_on !== null ? `<span class="sr-only"> on ${esc(r.sub_on)}'</span>` : ''}</th>${join(cols, ([k]) => `<td>${num(r[k])}</td>`)}</tr>`)}</tbody></table></div>`; };
   return `<p class="stats-basis"><b>PLAYER IMPACT</b> ${esc(basis)}. Minutes are nominal. A dash means not recorded, not zero.</p>${side('home')}${side('away')}`;
 }
 
@@ -149,10 +151,10 @@ export function render(d) {
     <h1 class="sr-only">${esc(m.home?.name || '')} ${sc ? `${esc(sc.home)}–${esc(sc.away)}` : 'v'} ${esc(m.away?.name || '')}: Match Intelligence</h1>
     <p class="mh-meta">${m.competition ? link(`/competitions/${m.competition.slug}`, esc(m.competition.name)) : ''}${m.season ? ` · ${esc(m.season)}` : ''}${m.round ? ` · ${esc(m.round)}` : ''}</p>
     <div class="scoreboard">
-      <div class="sb-team home">${teamLink(m.home, 'sb-name')}</div>
+      <div class="sb-team home">${teamMark(m.home, 'xl')}${teamLink(m.home, 'sb-name')}</div>
       <div class="sb-score">${sc ? `<span>${esc(sc.home)}</span><i>–</i><span>${esc(sc.away)}</span>` : '<span class="vs">v</span>'}
         ${when(sc && sc.home_ht !== null && sc.home_ht !== undefined, () => `<small>HT ${esc(sc.home_ht)}–${esc(sc.away_ht)}</small>`)}</div>
-      <div class="sb-team away">${teamLink(m.away, 'sb-name')}</div>
+      <div class="sb-team away">${teamMark(m.away, 'xl')}${teamLink(m.away, 'sb-name')}</div>
     </div>
     <p class="mh-sub">${statusPill(m.status)} <span>${esc(dateTime(m.kickoff_at))}</span>${m.venue ? ` <span>· ${esc(m.venue.name)}${m.venue.city ? `, ${esc(m.venue.city)}` : ''}</span>` : ''}</p>
     <p class="kicker gold center">MATCH INTELLIGENCE</p>

@@ -2,7 +2,7 @@ import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { dateShort, num, todayUtc } from '../lib/format.js';
 import { FEATURED, FEATURED_COMPS } from '../lib/competitions.js';
-import { compMono, empty, errorState, link, matchGrid, sectionHead, sourcePanel } from '../components/ui.js';
+import { compMono, empty, errorState, link, matchGrid, portrait, sectionHead, sourcePanel, teamMark } from '../components/ui.js';
 
 export { FEATURED };
 export const title = () => 'Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge';
@@ -60,7 +60,10 @@ export function dataDepth(covEnv) {
 
 export function newsCard(a) {
   const f = FEATURED_COMPS.find(c => c.desk === a.desk);
-  return `<a class="ncard" href="/news/${esc(a.desk)}/${esc(a.slug)}" data-link>
+  // Card image: the approved portrait / crest the API picked for the story, else no image.
+  const img = a.image?.url ? (a.image.kind === 'portrait' ? portrait({ portrait: a.image }, 'lg') : teamMark({ name: a.image.alt, crest: a.image }, 'lg')) : '';
+  return `<a class="ncard${img ? ' has-img' : ''}" href="/news/${esc(a.desk)}/${esc(a.slug)}" data-link>
+    ${img ? `<span class="nc-img">${img}</span>` : ''}
     <span class="nc-top">${f ? compMono(f.slug, 'xs') : ''}<span>${esc(f?.name || a.desk)}</span><span class="nc-kind">${esc(String(a.story_class || '').replace(/_/g, ' ').toUpperCase())}</span></span>
     <b class="nc-head">${esc(a.headline)}</b>
     ${when(a.dek, () => `<span class="nc-dek">${esc(a.dek)}</span>`)}

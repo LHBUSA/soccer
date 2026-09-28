@@ -1,7 +1,8 @@
-// Shared UI pieces (V2). All data rendering reads the API envelope; nothing here
-// invents a value. Missing = shown as missing. No crests or photos are drawn:
-// teams get a typographic initials mark, competitions a typographic monogram.
+// Shared UI pieces (V3). All data rendering reads the API envelope; nothing here
+// invents a value. Missing = shown as missing. Crests and portraits are drawn only from
+// approved media (./media.js); competitions get a typographic monogram.
 import { esc, join, when } from '../lib/html.js';
+import { crest, initials, mountMediaFallbacks, portrait } from './media.js';
 import { ago, coverageOf, dateShort, dateTime, scoreline, sourceName, time } from '../lib/format.js';
 import { compMeta } from '../lib/competitions.js';
 
@@ -58,21 +59,18 @@ export function statusPill(status) {
   return `<span class="status st-${esc(s)}">${s === 'live' ? '<i class="livedot" aria-hidden="true"></i>' : ''}${esc(BADGE[status] || 'AWAITING RESULT')}</span>`;
 }
 
-const SKIP = new Set(['fc', 'cf', 'sc', 'afc', 'ac', 'cd', 'sv', 'vfl', 'vfb', 'tsg', 'fsv', '1.', 'de', 'of', 'the', 'and', '&', 'club']);
-export function initials(name) {
-  const words = String(name || '').replace(/[^\p{L}\p{N}\s.&-]/gu, '').split(/[\s-]+/).filter(Boolean);
-  const core = words.filter(w => !SKIP.has(w.toLowerCase()) && !/^\d/.test(w));
-  const use = core.length ? core : words;
-  if (!use.length) return '?';
-  if (use.length === 1) return use[0].slice(0, 3).toUpperCase();
-  return use.slice(0, 3).map(w => w[0]).join('').toUpperCase();
-}
+// Crests and portraits live in ./media.js (the one identity-image component); teamMark is
+// the crest-or-initials mark under its historical name.
+export const teamMark = crest;
+export { initials, portrait, mountMediaFallbacks };
 
-// Typographic team mark (never a crest). Approved crest media replaces it only
-// when the API exposes one with provenance (t.crest).
-export function teamMark(t, size = '') {
-  if (t?.crest?.url) return `<span class="tmark img${size ? ` ${size}` : ''}"><img src="${esc(t.crest.url)}" alt="" title="${esc(t.crest.attribution || '')}" loading="lazy" decoding="async" width="64" height="64" data-fallback="${esc(initials(t.short_name || t.name))}"></span>`;
-  return `<span class="tmark${size ? ` ${size}` : ''}" aria-hidden="true">${esc(initials(t?.short_name || t?.name))}</span>`;
+// Portrait + name (linked when the player has a PropBetEdge page). Unresolved source names
+// keep their "identity pending" tag and never get a portrait.
+export function playerChip(p, { size = 'xs', extra = '' } = {}) {
+  if (!p) return '<span class="pchip"><span class="muted">Unidentified player</span></span>';
+  if (p.resolved === false) return `<span class="pchip">${portrait(null, size)}<span>${esc(p.name)} <span class="tag">identity pending</span></span></span>`;
+  const name = p.slug ? link(`/players/${p.slug}`, esc(p.name)) : esc(p.name || 'Unidentified player');
+  return `<span class="pchip">${portrait(p, size)}<span class="pc-name">${name}${extra}</span></span>`;
 }
 
 export function compMono(slug, size = '') {
@@ -148,12 +146,4 @@ export function mountTabs(root) {
     if (n === null) return; e.preventDefault(); select(btns[(n + btns.length) % btns.length].dataset.tab, true);
   });
   for (const a of root.querySelectorAll('[data-goto-tab]')) a.addEventListener('click', e => { e.preventDefault(); select(a.dataset.gotoTab); bar.scrollIntoView({ block: 'nearest' }); });
-}
-
-// Broken approved media never shows a broken image: swap to the initials mark.
-export function mountMediaFallbacks(root) {
-  for (const img of root.querySelectorAll('img[data-fallback]')) {
-    const swap = () => { const s = document.createElement('span'); s.className = img.parentElement.className.replace(' img', ''); s.textContent = img.dataset.fallback; s.setAttribute('aria-hidden', 'true'); img.parentElement.replaceWith(s); };
-    if (img.complete && img.naturalWidth === 0) swap(); else img.addEventListener('error', swap, { once: true });
-  }
 }

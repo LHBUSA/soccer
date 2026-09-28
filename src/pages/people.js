@@ -3,7 +3,8 @@ import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { DASH, FOOT, ROLE, dateLong, dateShort, num, scoreline } from '../lib/format.js';
 import { compMeta } from '../lib/competitions.js';
-import { compMono, formChips, link, matchGrid, sectionHead, sourcePanel, teamLink, teamMark } from '../components/ui.js';
+import { compMono, formChips, link, matchGrid, playerChip, portrait, sectionHead, sourcePanel, teamLink, teamMark } from '../components/ui.js';
+import { portraitOf } from '../components/media.js';
 import { pitchSvg, validShots } from '../components/pitch.js';
 import { mountPlayerDna, mountTeamDna } from '../components/dna.js';
 import { mountRelatedNews } from '../components/related.js';
@@ -49,7 +50,7 @@ export const team = {
       <div data-team-dna class="dna-slot" aria-live="polite"></div>
       ${sectionHead('PLAYERS OBSERVED IN SOURCE DATA', obs.players.length ? `${num(obs.players.length)} players · ${num(obs.lineups_counted)} sourced lineups` : 'No sourced lineups')}
       ${obs.players.length ? `<div class="tablewrap"><table class="ltable obs"><thead><tr><th class="tm" scope="col">Player</th><th scope="col">Role</th><th scope="col" title="Started or came on">Apps</th><th scope="col">Starts</th><th class="wide" scope="col" title="Named in the matchday squad">Named</th></tr></thead>
-        <tbody>${join(obs.players, p => `<tr><th class="tm" scope="row">${link(`/players/${p.slug}`, esc(p.name))}</th><td class="role">${esc(ROLE[p.role] || DASH)}</td><td>${num(p.appearances)}</td><td>${num(p.starts)}</td><td class="wide">${num(p.named)}</td></tr>`)}</tbody></table></div>
+        <tbody>${join(obs.players, p => `<tr><th class="tm" scope="row">${playerChip(p)}</th><td class="role">${esc(ROLE[p.role] || DASH)}</td><td>${num(p.appearances)}</td><td>${num(p.starts)}</td><td class="wide">${num(p.named)}</td></tr>`)}</tbody></table></div>
         <p class="caveat">Not a squad list: only players named in sourced lineups for this season's stored matches. An appearance means the player started or came on.</p>`
         : '<p class="muted">No sourced lineups are stored for this team this season, so no players are listed. Squad lists are never guessed.</p>'}
       <div data-related-news></div>
@@ -93,14 +94,16 @@ export const player = {
     const seasons = p.seasons || [];
     // Columns only for counts the ledger actually carries for this player (never a column of dashes).
     const cols = STAT_COLS.filter(([k]) => seasons.some(x => x[k] !== null && x[k] !== undefined));
-    const portrait = p.media?.find?.(m => m.media_type === 'portrait');
+    const pic = portraitOf(p);
+    const lt = p.observed?.latest_team;
     return `<section class="hero compact"><div class="wrap">
-      <div class="lh-top">${portrait ? `<span class="pmark img"><img src="${esc(portrait.url)}" alt="${esc(p.name)}" width="96" height="96" decoding="async" data-fallback="${esc(p.name?.split(' ').map(w => w[0]).slice(0, 2).join('') || '?')}"></span>` : `<span class="pmark" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="18" r="9"/><path d="M8 44c1.8-9.5 8-14 16-14s14.2 4.5 16 14z"/></svg></span>`}<div>
+      <div class="lh-top">${portrait(p, 'xl', { alt: pic ? p.name : '' })}<div>
         <p class="kicker gold">PLAYER INTELLIGENCE</p>
         <h1 class="display">${esc(p.name)}</h1>
         ${when(p.first_name || p.last_name, () => `<p class="lede">${esc([p.first_name, p.last_name].filter(Boolean).join(' '))}</p>`)}
+        ${when(lt, () => `<p class="latest-team">${link(`/teams/${lt.slug}`, `${teamMark(lt, 'xs')}<span>${esc(lt.name)}</span>`)}<span class="muted">latest sourced lineup, ${esc(dateShort(lt.as_of))}</span></p>`)}
       </div></div>
-      ${when(portrait?.attribution, () => `<p class="credit">Photo: ${portrait.source_url ? `<a href="${esc(portrait.source_url)}" rel="noopener" target="_blank">${esc(portrait.attribution)}</a>` : esc(portrait.attribution)}${portrait.license_url ? ` · <a href="${esc(portrait.license_url)}" rel="noopener license" target="_blank">licence</a>` : ''}</p>`)}
+      ${when(pic?.attribution, () => `<p class="credit">Photo: ${pic.source_url ? `<a href="${esc(pic.source_url)}" rel="noopener" target="_blank">${esc(pic.attribution)}</a>` : esc(pic.attribution)}${pic.license_url ? ` · <a href="${esc(pic.license_url)}" rel="noopener license" target="_blank">licence</a>` : ''}</p>`)}
       <div class="facts">${join(facts, ([k, v]) => `<div><span>${esc(k)}</span><b>${esc(v)}</b></div>`)}</div>
     </div></section>
     <section class="canvas"><div class="wrap">

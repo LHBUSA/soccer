@@ -56,8 +56,14 @@ on the team page.
 ## Fallbacks
 
 No approved media means a typographic initials mark for teams and a neutral silhouette for players.
-A broken approved image is swapped for the initials mark in the browser. No generated player art,
+A broken approved image is swapped for the same fallback in the browser. No generated player art,
 no SVG club logos.
+
+Every page draws identity images through ONE component, `src/components/media.js` (`crest`,
+`portrait`, `mountMediaFallbacks`; `playerChip` in ui.js = portrait + name). The silhouette is
+an original raster (`public/brand/player-silhouette-{128,256}.webp`, rendered by
+`scripts/brand/render-silhouette.py`): no face, no likeness, no marks, transparent background.
+Unresolved source names ("identity pending") never get a portrait.
 
 ## Run
 
