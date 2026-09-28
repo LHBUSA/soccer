@@ -347,3 +347,172 @@ No team plays twice on one day. The prediction hash for A (`2de5a94c…`) differ
 - draws still under-predicted by about −2.2 pts for mid-strength home teams.
 
 **Runtime:** DEV stage 61.6 s, holdout stage 19.4 s.
+
+---
+
+# Phase 4 (2026-09-28): calibration of the frozen Dixon–Coles model
+
+## Protocol and discipline
+
+- **Protocol:** `scripts/research/phase4-protocol.mjs` (sha256 `a3509825…67b4`), committed in `a36df3b` before any Phase 4 number existed. It fixes:
+  - the calibrators;
+  - DEV leave-one-season-out selection, with the Phase 2 rule: a more complex method must win by more than 0.0005, plus a Brier/season guard;
+  - keep rule K1–K7;
+  - fixed bins;
+  - the drift statistic;
+  - the verdict mapping.
+- The raw v1.2-dc holdout metrics were already known from Phase 3. The protocol says so.
+- **DEV freeze:** `0bf387a` (`phase4/dev-selection.json`, sha256 `d4387740…e5e7d`). It holds the selection, every full-DEV parameter set and every calibrated prediction hash, with no holdout metric computed.
+- **Holdout stage:** refuses to run unless all of these reproduce exactly:
+  - the protocol hash;
+  - the frozen card;
+  - the raw prediction hash;
+  - the DEV selection and parameters;
+  - all calibrated hashes.
+- **Structural model:** `soccer-research-bundesliga-v1.2-dc` (card sha256 `c79116e6…`, predictions `19b72fed…b13b`), untouched.
+
+## Calibrators
+
+Every calibrator is written as z = W·log p + b, then softmax, so outputs always sum to 1. Each was fitted on the 1,530 DEV matches by deterministic gradient descent with analytic gradients, starting from the identity.
+
+| Method | Parameters | Form |
+|---|---|---|
+| none | 0 | raw v1.2-dc |
+| temperature | 1 | z = l / T |
+| bias | 2 | draw and away intercepts |
+| vector | 5 | diagonal W plus 2 intercepts |
+| matrix | 11 | full W plus 2 intercepts, L2 penalty 0.01 toward the identity |
+
+Isotonic was excluded: it breaks the simplex, and there is too little data.
+
+## DEV leave-one-season-out
+
+| Method | LOSO log loss | LOSO Brier | LOSO ECE | Per-season log loss (2014/15 … 2018/19) |
+|---|---|---|---|---|
+| **none** | **0.996006** | 0.594609 | 0.0515 | 1.0106, 0.9825, 0.9997, 1.0109, 0.9762 |
+| temperature | 0.996243 | 0.594743 | 0.0504 | 1.0114, 0.9822, 0.9998, 1.0118, 0.9760 |
+| bias | 0.996826 | 0.595269 | 0.0478 | 1.0102, 0.9861, 0.9981, 1.0114, 0.9783 |
+| vector | 0.998892 | 0.596276 | 0.0496 | 1.0139, 0.9877, 1.0001, 1.0113, 0.9814 |
+| matrix | 0.997526 | 0.595691 | 0.0459 | 1.0107, 0.9870, 0.9992, 1.0092, 0.9815 |
+
+- **Selected: none.** No calibrator beats raw on DEV, even before the tie rule.
+- Full-DEV parameters (frozen; reported for transparency, never applied to the product):
+  - T = 0.96289311;
+  - bias (draw, away) = (−0.05413728, −0.08572857);
+  - vector = (0.82402242, 1.03492684, 1.16078201; 0.14506071, 0.26248508);
+  - matrix = [0.8692036, 0.06784234, −0.07808507; 0.35638194, 0.69516971, 0.23249657; −0.22558554, 0.23698795, 0.8455885; 0.26831713, −0.05451087].
+
+## Holdout, pooled (none is adoptable except raw)
+
+| | Log loss | Brier | ECE | ECE H/D/A | Bias H/D/A (pts) | AUC H/D/A | Favourite changes | Fav. acc. | Top-10% | Top-20% | Spearman vs raw (draw) |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| **raw v1.2-dc** | **0.9952** | **0.5938** | **0.0171** | .026/.0075/.018 | +1.28/−0.51/−0.78 | .6982/.5529/.7059 | — | 51.1% | 74.8% | 73.6% | 1 |
+| temperature | 0.9952 | 0.5938 | 0.0213 | .032/.013/.019 | +1.68/−0.87/−0.81 | same | 0 | 51.1% | 75.2% | 73.6% | 0.99996 |
+| bias | 0.9967 | 0.5949 | 0.0267 | .045/.011/.025 | +2.85/−0.84/−2.00 | .6981/.5529/.7058 | 76 | 51.0% | 75.2% | 73.8% | 0.9969 |
+| vector | 0.9966 | 0.5948 | 0.0262 | .043/.011/.025 | +2.83/−0.93/−1.90 | .6983/.5495/.7060 | 68 | 51.0% | 74.8% | 73.8% | 0.9726 |
+| matrix | 0.9968 | 0.5951 | 0.0247 | .042/.0053/.027 | +2.71/−0.31/−2.41 | .6985/.5484/.7049 | 90 | 51.0% | 75.7% | 73.8% | 0.9479 |
+
+- **Diagnostic only:** every DEV-fitted calibrator makes the holdout worse.
+- The DEV period had the opposite home bias to the holdout (Phase 2: −0.4 vs +2.4). So intercept, vector and matrix calibrators push home up and away down on the holdout, and worsen 2019/20 and 2024/25 by more than 0.002.
+- Temperature (T < 1 sharpens) is neutral on log loss and worse on ECE.
+
+## Holdout by season (raw v1.2-dc; calibrated = raw, since none was selected)
+
+| Season | Log loss | Brier | ECE | Bias H/D/A (pts) | Baseline LL / Brier |
+|---|---|---|---|---|---|
+| 2019/20 | 0.9906 | 0.5912 | 0.048 | +4.80 / +2.01 / −6.80 | 1.0820 / .6570 |
+| 2020/21 | 1.0077 | 0.6026 | 0.041 | +0.75 / −1.95 / +1.19 | 1.0816 / .6552 |
+| 2021/22 | 0.9970 | 0.5943 | 0.042 | −2.61 / +0.61 / +2.01 | 1.0578 / .6386 |
+| 2022/23 | 0.9961 | 0.5960 | 0.028 | −2.49 / −0.40 / +2.89 | 1.0563 / .6372 |
+| 2023/24 | 0.9844 | 0.5872 | 0.053 | +2.59 / −2.80 / +0.21 | 1.0748 / .6502 |
+| 2024/25 | 1.0205 | 0.6111 | 0.063 | +6.55 / −1.15 / −5.39 | 1.0941 / .6649 |
+| 2025/26 | 0.9698 | 0.5738 | 0.038 | −0.59 / +0.12 / +0.47 | 1.0712 / .6482 |
+
+Per-season figures for every calibrator are in `phase4/holdout-results.json`.
+
+## Classwise reliability (raw, fixed bins; predicted → observed)
+
+- **Home**, bias +1.28, ECE .026:
+  - 0.2–0.3: .253 → .232
+  - 0.3–0.4: .354 → .335
+  - 0.4–0.5: .451 → .413 (n 516)
+  - 0.5–0.6: .546 → .532
+  - 0.6–0.7: .645 → .694
+  - 0.7–0.8: .747 → .757
+  - 0.8–0.9: .836 → .783 (n 46)
+- **Draw**, bias −0.51, ECE .0075:
+  - 0.18–0.21: .196 → .168
+  - 0.21–0.24: .228 → .238
+  - 0.24–0.27: .256 → .277 (n 892)
+  - 0.27–0.30: .280 → .269
+- **Away**, bias −0.78, ECE .018:
+  - 0.1–0.2: .156 → .131
+  - 0.2–0.3: .252 → .270
+  - 0.4–0.5: .445 → .476
+  - 0.6–0.7: .642 → .680
+
+## Balanced matches and home-team strength (raw bias H/D/A, pts)
+
+| Group | Raw bias H/D/A | Temperature | Matrix |
+|---|---|---|---|
+| favourite <0.45 | +2.0 / 0.0 / −2.0 | +2.2 / −0.3 / −1.9 | +3.9 / −0.1 / −3.8 |
+| favourite 0.45–0.55 | **+3.2 / −2.5** / −0.7 | +3.5 / −2.8 / −0.7 | +4.8 / −2.3 / −2.5 |
+| favourite 0.55–0.65 | −2.3 / +1.3 / +1.0 | −1.7 / +0.9 / +0.9 | −1.2 / +1.9 / −0.6 |
+| favourite ≥0.65 | −0.2 / +0.3 / −0.2 | +0.7 / −0.3 / −0.4 | +0.3 / +0.9 / −1.2 |
+| weak home | +2.7 / −0.3 / −2.4 | +2.7 / −0.6 / −2.1 | +4.5 / −0.9 / −3.7 |
+| mid home | **+3.2 / −2.2** / −1.0 | +3.5 / −2.5 / −1.0 | +4.8 / −2.1 / −2.7 |
+| strong home | −1.5 / +0.7 / +0.9 | −0.7 / +0.2 / +0.5 | −0.6 / +1.6 / −1.0 |
+
+- The residual error is concentrated in **balanced matches with a weak or mid-strength home team**: home is over-predicted, and draws (balanced) or away wins (weak hosts) are under-predicted.
+- No global calibrator can fix that without hurting the strong-home and clear-favourite groups.
+
+## Calibration drift (diagnostic; the declared statistic)
+
+| Class | Season z-scores (2019/20 … 2025/26) | χ² (7 df) | p |
+|---|---|---|---|
+| home | 1.78, 0.28, −0.98, −0.93, 0.96, **2.43**, −0.22 | 11.95 | 0.102 |
+| draw | 0.82, −0.79, 0.25, −0.16, −1.16, −0.47, 0.05 | 2.95 | 0.889 |
+| away | **−2.71**, 0.47, 0.80, 1.15, 0.08, **−2.15**, 0.18 | 14.19 | **0.048** |
+
+- **Answer: after Dixon–Coles, a single static calibrator is NOT sufficient.**
+- The draw residual is now consistent with noise.
+- The home/away residual drifts by season, driven by 2019/20 (the empty-stadium period) and 2024/25. In both, home advantage collapsed and the model over-predicted home wins by about 5–7 points.
+- Every static calibrator makes this drift *worse*: away p falls to 0.003–0.043.
+- As directed, no rolling calibrator was built. That remains a separate experiment needing approval.
+
+## Leakage and reproduction (all pass)
+
+| Gate | Result |
+|---|---|
+| G1 frozen reproduction | 6,768 λ bitwise equal to model-core strict; 6,156 probabilities bitwise equal; raw hash equals the card's `19b72fed…` |
+| G2 truncation | 60 + 300 cases, 0 failures |
+| G3 future-score mutation | 20 cutoffs, 91,623 predictions, 0 changed |
+| G4 same-kickoff permutation | 0 failures (max 1.8e-15) |
+| G5 DEV-only calibration | every one of the 4,626 non-DEV outcomes scrambled, then the whole LOSO selection and every fit re-run: identical output |
+
+The holdout stage re-derived the selection, the parameters and all five calibrated hashes before evaluating.
+
+**Calibrated prediction hash:** none was selected, so the shipped candidate is the raw hash `19b72fed…b13b`. The diagnostic hashes are:
+- temperature `ce95ebb2…`
+- bias `aa783086…`
+- vector `9dffd501…`
+- matrix `74abda77…`
+
+## Disclosures
+
+1. **Bug in the first holdout run.** The first run reported REJECT because of a bug. The per-season records omitted the exact Brier field, so the "raw beats baseline in every season" check compared `undefined < undefined` and always failed.
+   - The fix adds that field, and adds raw's own range to the pathology output as a reference.
+   - No rule, threshold, protocol line, DEV selection or parameter changed. The protocol hash is unchanged, and the holdout stage re-verified every freeze.
+   - The printed per-season numbers show raw beating the baseline in all 7 seasons, as Phase 3 found.
+2. **K7 bounds are narrower than raw's own range.** The absolute probability bounds in K7 ([0.02, 0.95]) are narrower than raw v1.2-dc's own range (minimum 0.0193). That contributed to temperature failing K7, but it is immaterial: every calibrator also fails K1 (log loss) and K3 (ECE).
+
+## Verdict: **RAW DIXON-COLES READY FOR SHADOW**
+
+- Gates pass.
+- Raw v1.2-dc beats the baseline in every holdout season.
+- The DEV selection is none.
+- No calibrator beats raw on DEV or, diagnostically, on the holdout.
+
+The remaining residual is season-level home/away drift, which static calibration cannot fix. The shadow is **not built**: it needs owner approval.
+
+**Runtime:** DEV stage 85.3 s, holdout stage 25.9 s.

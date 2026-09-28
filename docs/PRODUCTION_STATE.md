@@ -70,7 +70,7 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
 ## DNA and research
 
 - Player DNA / Team DNA: descriptive, time-safe profiles with percentiles within the competition-season (`workers/soccer-api/src/dna.js`).
-- Prediction research (docs/RESEARCH.md): frozen v1 (`soccer-research-bundesliga-v1-frozen`) beats the baseline in all 7 Bundesliga holdout seasons; Phase 3 kept Dixon-Coles (`soccer-research-bundesliga-v1.2-dc`, rho -0.1099, holdout log loss 0.9952, draw bias -0.5 pts) and rejected the adaptive home half-life; result STRUCTURAL MODEL READY FOR CALIBRATION; **not in production, no shadow table**.
+- Prediction research (docs/RESEARCH.md): candidate `soccer-research-bundesliga-v1.2-dc` (Dixon-Coles, rho -0.1099; holdout log loss 0.9952 vs baseline 1.0740, beats baseline every season). Phase 4: no static calibrator beats raw (DEV LOSO or holdout); verdict RAW DIXON-COLES READY FOR SHADOW; residual season-level home/away drift. **Not in production, no shadow table (needs owner approval).**
 
 ## QA (latest, docs/evidence/qa)
 

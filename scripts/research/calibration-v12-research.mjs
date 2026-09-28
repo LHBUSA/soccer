@@ -189,7 +189,7 @@ function pathology(k) {
   for (const r of ev) { mn = Math.min(mn, ...r[k]); mx = Math.max(mx, ...r[k]); dmn = Math.min(dmn, r[k][1]); dmx = Math.max(dmx, r[k][1]); shift = Math.max(shift, ...r[k].map((v, c) => Math.abs(v - r.raw[c]))); }
   return { min_probability: +mn.toFixed(4), max_probability: +mx.toFixed(4), draw_range: [+dmn.toFixed(4), +dmx.toFixed(4)], max_shift_vs_raw: +shift.toFixed(4) };
 }
-const bySeason = seasons.map(s => { const xs = ev.filter(r => r.season === s); return { season: s, n: xs.length, ...Object.fromEntries(KEYS.map(k => { const m = metrics(xs, k); return [k, { log_loss: m.log_loss, log_loss_exact: m.log_loss_exact, brier: m.brier, ece: m.ece, bias_pts: m.bias_pts }]; })) }; });
+const bySeason = seasons.map(s => { const xs = ev.filter(r => r.season === s); return { season: s, n: xs.length, ...Object.fromEntries(KEYS.map(k => { const m = metrics(xs, k); return [k, { log_loss: m.log_loss, log_loss_exact: m.log_loss_exact, brier: m.brier, brier_exact: m.brier_exact, ece: m.ece, bias_pts: m.bias_pts }]; })) }; });
 function keep(k) {
   const X = pooled[k]; const R = pooled.raw; const rk = ranking(k); const pa = pathology(k);
   const dLL = X.log_loss_exact - R.log_loss_exact; const dBr = X.brier_exact - R.brier_exact; const dEce = ece(ev, k) - ece(ev, 'raw');
@@ -238,7 +238,7 @@ const report = { stage: DRY ? 'dry-run-on-dev (NOT the holdout)' : 'holdout', ev
   pooled: Object.fromEntries(KEYS.map(k => [k, strip(pooled[k])])),
   by_season: bySeason.map(s => ({ season: s.season, n: s.n, ...Object.fromEntries(KEYS.map(k => [k, { log_loss: s[k].log_loss, brier: s[k].brier, ece: s[k].ece, bias_pts: s[k].bias_pts }])) })),
   keep_rule: { selected: sel.selected === 'none' ? 'none selected on DEV: nothing to accept' : keepAll[SELK], diagnostic_only_not_adoptable: Object.fromEntries(Object.entries(keepAll).filter(([k]) => k !== SELK)) },
-  ranking: Object.fromEntries(KEYS.filter(k => k !== 'base').map(k => [k, ranking(k)])), pathology: Object.fromEntries(KEYS.filter(k => k.startsWith('cal_')).map(k => [k, pathology(k)])),
+  ranking: Object.fromEntries(KEYS.filter(k => k !== 'base').map(k => [k, ranking(k)])), pathology: Object.fromEntries(KEYS.filter(k => k !== 'base').map(k => [k, pathology(k)])),
   classwise, buckets, drift: { by_calibrator: driftAll, static_sufficient_for_selected: staticSufficient },
   gates_all_pass: gatesOk, raw_beats_baseline_every_season: baselineEvery, verdict, runtime_s: +((Date.now() - t0) / 1000).toFixed(1) };
 const outFile = arg('--out') || (DRY ? null : `${OUT}/holdout-results.json`);
