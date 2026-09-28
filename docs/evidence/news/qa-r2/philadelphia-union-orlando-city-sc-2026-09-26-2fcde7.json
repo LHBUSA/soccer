@@ -1,0 +1,80 @@
+ {
+  "route": "/v1/canary/desk-qa",
+  "slug": "philadelphia-union-orlando-city-sc-2026-09-26-2fcde7",
+  "run": 14,
+  "model": "gpt-5.6-sol",
+  "desk": "soccer-desk/2.0.0",
+  "quality": "soccer-quality/2.0.0",
+  "packet_version": "soccer-packet/3.0.0",
+  "packet_path": "A_asof_safe_rebuild",
+  "story_class": "match_recap",
+  "result": "PASS",
+  "attempt": 1,
+  "hold_reasons": [],
+  "fact_gates": {
+    "total": 18,
+    "failed": []
+  },
+  "quality_gates": {
+    "total": 23,
+    "failed": []
+  },
+  "evidence": {
+    "available": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT",
+      "DISCIPLINE",
+      "SUBSTITUTIONS"
+    ],
+    "used": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT"
+    ]
+  },
+  "word_count": 489,
+  "sections_count": 4,
+  "headline": "Iloski hat-trick drives Philadelphia Union past Orlando City SC 4-2",
+  "dek": "Philadelphia built a four-goal lead through the 51st minute, then withstood two late replies to secure a sixth consecutive MLS win and climb to 12th.",
+  "sections": [
+    {
+      "heading": "Iloski gives Philadelphia an early hold",
+      "paragraphs": [
+        "Milan Iloski shaped the match before Orlando City SC registered a shot on target. He opened the scoring from the penalty spot in the 11th minute, then struck again at 19 minutes to give Philadelphia Union a two-goal advantage that lasted through halftime.",
+        "The sequence reflected the first-half shooting pattern. Philadelphia recorded 11 shot events, four on target, while Orlando City SC managed three without testing the goalkeeper. Five of Philadelphia’s attempts came between the 16th and 30th minutes, the period in which Iloski added his second goal.",
+        "Iloski’s contribution was concentrated as well as decisive: he scored with each of his three shots on target and finished with five attempts overall. Three of those efforts came from inside the penalty area."
+      ]
+    },
+    {
+      "heading": "Two strikes after the restart settle the contest",
+      "paragraphs": [
+        "Any opening left by the interval disappeared quickly. Indiana Vassilev scored in the 47th minute, and Iloski completed his hat-trick four minutes later. Philadelphia’s first two shot events of the second half were both on target and both became goals.",
+        "Vassilev supplied more than the third goal, finishing with three shots and two on target, all three of his attempts coming from inside the box. Quinn Sullivan and Ezekiel Alladoh also each recorded three shots and put two on target, giving Philadelphia several routes to the Orlando City SC goal.",
+        "Orlando City SC’s response came late. Iván Angulo converted his only shot in the 78th minute, before Martín Ojeda scored in the 90th. Ojeda led his side with four attempts, but his goal was the only one he placed on target."
+      ]
+    },
+    {
+      "heading": "Nine efforts on target underline the separation",
+      "paragraphs": [
+        "Philadelphia finished with 20 shots to Orlando City SC’s 11 and put nine on target to the visitors’ two. Orlando City SC’s goalkeeper made five saves; Philadelphia’s goalkeeper made none because both visiting efforts on target ended in goals.",
+        "The location data added a different layer to that contrast. Of Philadelphia’s 19 located shots, 13 came from inside the penalty area and six from outside, with an average distance of 19.6 metres. Orlando City SC took nine of its 11 located attempts from inside the box and averaged 15.9 metres, but did not register an effort on target until the closing stages.",
+        "Corners were level at seven apiece, yet the shooting totals were not. Philadelphia accounted for 65 per cent of all attempts and directed 45 per cent of its shots on target, compared with 18 per cent for Orlando City SC."
+      ]
+    },
+    {
+      "heading": "A sixth straight win lifts Philadelphia",
+      "paragraphs": [
+        "The victory extended Philadelphia Union’s MLS winning run to six matches. The previous five had included successive 5-0 results against FC Cincinnati and San Diego FC, followed by a 4-3 win away to Sporting Kansas City.",
+        "Philadelphia moved from 13th to 12th in the 30-team standings, reaching 39 points after 27 matches. Its goal difference improved to plus 10.",
+        "Orlando City SC remained 14th with 34 points from 27 matches. The defeat was its second in succession after a run containing three wins and a draw, and its goal difference slipped to minus 16."
+      ]
+    }
+  ],
+  "elapsed_ms": 28621
+}

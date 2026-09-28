@@ -1,0 +1,94 @@
+   {
+  "route": "/v1/canary/desk-qa",
+  "slug": "werder-bremen-augsburg-2026-09-19-aee7b2",
+  "run": 13,
+  "model": "gpt-5.6-sol",
+  "desk": "soccer-desk/2.0.0",
+  "quality": "soccer-quality/2.0.0",
+  "packet_version": "soccer-packet/3.0.0",
+  "packet_path": "A_asof_safe_rebuild",
+  "story_class": "match_recap",
+  "result": "HOLD",
+  "attempt": 2,
+  "hold_reasons": [
+    "editorial:unsupported_record",
+    "editorial:thin_output"
+  ],
+  "fact_gates": {
+    "total": 18,
+    "failed": [
+      {
+        "gate": "unsupported_record",
+        "detail": "their record"
+      }
+    ]
+  },
+  "quality_gates": {
+    "total": 23,
+    "failed": [
+      {
+        "gate": "thin_output",
+        "detail": {
+          "words": 425,
+          "min": 450
+        }
+      }
+    ]
+  },
+  "evidence": {
+    "available": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT",
+      "DISCIPLINE",
+      "SUBSTITUTIONS"
+    ],
+    "used": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT"
+    ]
+  },
+  "word_count": 414,
+  "sections_count": 4,
+  "headline": "Werder Bremen strike twice late to complete 3-2 comeback over Augsburg",
+  "dek": "Marco Grüll began a three-goal second-half recovery before two late finishes lifted Bremen from 10th to sixth in the Bundesliga.",
+  "sections": [
+    {
+      "heading": "Fellhauer gives Augsburg the early advantage",
+      "paragraphs": [
+        "Robin Fellhauer put Augsburg ahead in the 18th minute, converting one of only two away shots in the first half. Werder Bremen had seven attempts before the interval, three on target, but went into half-time trailing 1-0.",
+        "Bremen added four shots between the 31st minute and half-time without finding an equaliser. Augsburg did not record an attempt during that period, yet Fellhauer’s finish remained the difference at the break."
+      ]
+    },
+    {
+      "heading": "A two-goal deficit becomes a stoppage-time win",
+      "paragraphs": [
+        "Calvin Brackelmann extended Augsburg’s lead in the 58th minute, scoring with his only shot. Marco Grüll answered eight minutes later from his only attempt on target, reducing the deficit and beginning Bremen’s recovery.",
+        "The decisive turn came at the end. Bremen equalised in the 86th minute and scored again at 90+1, completing a run of three unanswered goals after the hour. Their second-half output rose to 13 shots, compared with seven before the break, while Augsburg had five attempts after half-time and did not score again following Brackelmann’s goal."
+      ]
+    },
+    {
+      "heading": "Bremen’s volume finally alters the scoreline",
+      "paragraphs": [
+        "Ludovit Reis was Bremen’s most frequent shooter, taking four attempts, all from inside the penalty area, and placing two on target. Chuki also tested Augsburg twice from three shots. Grüll had two attempts overall, with his on-target effort supplying the first Bremen goal.",
+        "The broader contrast was substantial: Bremen took 20 shots to Augsburg’s seven and put 11 on target to four. Fifteen of Bremen’s attempts came from inside the penalty area, against four for Augsburg, although the average distance of their located shots was 17 metres compared with Augsburg’s 15.1. Augsburg recorded seven saves and Bremen two, while both sides won two corners.",
+        "Accuracy alone did not separate them sharply. Augsburg put 57 per cent of their shots on target and Bremen 55 per cent, but Bremen accounted for 74 per cent of all attempts. Fellhauer and Brackelmann each scored from their only shot; Bremen required the larger body of work before the two late goals changed the outcome."
+      ]
+    },
+    {
+      "heading": "Four places gained after four matches",
+      "paragraphs": [
+        "The victory moved Werder Bremen from 10th to sixth, leaving them with seven points from four Bundesliga matches and a goal difference of zero. Augsburg remained fourth on seven points, with a goal difference of five, after taking their first league defeat of the season.",
+        "Bremen have now collected two wins and a draw from their past three league games, following the earlier defeat at Freiburg. Augsburg arrived unbeaten after two wins and a draw, including a 2-2 result against Bayer Leverkusen, but left with their record changed to two wins, one draw and one loss."
+      ]
+    }
+  ],
+  "elapsed_ms": 47482
+}

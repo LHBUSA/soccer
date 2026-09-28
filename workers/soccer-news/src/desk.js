@@ -176,6 +176,7 @@ function packetScores(p) {
 }
 
 const DESCRIPTORS = new Set(['Unbeaten', 'Winless', 'Relentless', 'Ruthless', 'Clinical', 'Early', 'Late', 'Leaders', 'Struggling', 'Bottom', 'Rampant', 'Resurgent', 'Wasteful', 'Promoted', 'Home', 'Away', 'Visiting', 'Hosts', 'Victorious', 'Beaten', 'Second-half', 'First-half', 'Late-season', 'Free-scoring', 'Ten-man', 'High-scoring', 'Goalless', 'Scoreless']);
+const PARTICLES = new Set(['van', 'von', 'de', 'der', 'den', 'da', 'di', 'do', 'dos', 'das', 'del', 'della', 'le', 'la', 'ten', 'ter', 'bin', 'al', 'el']);
 const BUCKET_RANGES = new Set(['0-15', '16-30', '31-45', '46-60', '61-75', '76-90']);
 
 export function validateEditorial(article, packet) {
@@ -197,6 +198,8 @@ export function validateEditorial(article, packet) {
   // a pair next to a stat word ("corners 9-2", "9-2 on shots") is a count pair, grounded by the number gate
   const statPairs = new Set();
   for (const k of Object.keys(packet.stats?.home || {})) { const h = packet.stats.home[k]; const a = packet.stats.away?.[k]; if (Number.isInteger(Number(h)) && Number.isInteger(Number(a))) { statPairs.add(`${Number(h)}-${Number(a)}`); statPairs.add(`${Number(a)}-${Number(h)}`); } }
+  const sp = packet.depth?.shot_profile;
+  if (sp) for (const k of ['shots', 'shots_on_target', 'located_shots', 'located_inside_box', 'located_outside_box']) { const h = sp.home?.[k]; const a = sp.away?.[k]; if (Number.isInteger(h) && Number.isInteger(a)) { statPairs.add(`${h}-${a}`); statPairs.add(`${a}-${h}`); } }
   const STAT_NEAR = /\b(corners?|shots?|saves?|fouls?|on target|cards?|offsides?)\b/i;
   const badScores = [...t.matchAll(/\b(\d{1,2})-(\d{1,2})\b/g)]
     .filter(m => !/\d{4}-$/.test(t.slice(Math.max(0, m.index - 5), m.index))) // part of an ISO date, not a score
@@ -226,6 +229,8 @@ export function validateEditorial(article, packet) {
     toks.forEach((m, i) => {
       const w = m[0].replace(/[’'.]s?$/, '').replace(/\.$/, '');
       if (w.length < 3 || ALWAYS_OK.has(w) || MONTH_ABBR[w]) return;
+      // a surname particle the packet writes lowercase ("van Hecke" -> "Van Hecke")
+      if (PARTICLES.has(w.toLowerCase()) && toks[i + 1] && P.includes(`${w.toLowerCase()} ${toks[i + 1][0].replace(/[’'.]s?$/, '')}`)) return;
       const initial = m.index === 0 || /^["“(]?$/.test(s.slice(0, m.index).trim());
       const nextIsName = toks[i + 1] && toks[i + 1].index === m.index + m[0].length + 1;
       if (initial && !nextIsName) return; // an ordinary sentence opener

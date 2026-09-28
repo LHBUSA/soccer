@@ -1,0 +1,91 @@
+   {
+  "route": "/v1/canary/desk-qa",
+  "slug": "real-salt-lake-new-england-revolution-2026-09-27-af73d8",
+  "run": 15,
+  "model": "gpt-5.6-sol",
+  "desk": "soccer-desk/2.0.0",
+  "quality": "soccer-quality/2.0.0",
+  "packet_version": "soccer-packet/3.0.0",
+  "packet_path": "A_asof_safe_rebuild",
+  "story_class": "match_recap",
+  "result": "HOLD",
+  "attempt": 2,
+  "hold_reasons": [
+    "editorial:numeric_paragraph_run"
+  ],
+  "fact_gates": {
+    "total": 18,
+    "failed": []
+  },
+  "quality_gates": {
+    "total": 23,
+    "failed": [
+      {
+        "gate": "numeric_paragraph_run",
+        "detail": 4
+      }
+    ]
+  },
+  "evidence": {
+    "available": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT",
+      "DISCIPLINE",
+      "SUBSTITUTIONS"
+    ],
+    "used": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT"
+    ]
+  },
+  "word_count": 475,
+  "sections_count": 5,
+  "headline": "Solans double lifts Real Salt Lake past New England in 3-0 upset",
+  "dek": "Aiden Hezarkhani struck in the second minute before Sergi Solans scored twice after halftime, lifting 23rd-placed Real Salt Lake two spots in the MLS table.",
+  "sections": [
+    {
+      "heading": "Hezarkhani changes the match in two minutes",
+      "paragraphs": [
+        "Real Salt Lake arrived at America First Field after four consecutive league defeats and facing a New England Revolution side that began the match fourth in MLS. Within two minutes, Aiden Hezarkhani had given the home side a lead it never surrendered.",
+        "That early goal was the only breakthrough of the first half. Real Salt Lake put three of their five shots on target before the interval, while New England managed two from six, leaving the hosts 1-0 ahead at halftime. The Revolution had taken three shots between the 16th and 30th minutes, but none altered the scoreline."
+      ]
+    },
+    {
+      "heading": "Solans turns a narrow lead into separation",
+      "paragraphs": [
+        "New England opened the second half with three shots between the 46th and 60th minutes, none on target. Real Salt Lake’s next attempt on target brought the second goal, with Solans scoring in the 62nd minute.",
+        "The Revolution continued to accumulate attempts, recording five from the 76th minute onward, but only one tested the goalkeeper. Solans struck again in the 80th minute, 18 minutes after his first, to complete the scoring. Real Salt Lake produced only four second-half shots, yet put three on target and converted two of them."
+      ]
+    },
+    {
+      "heading": "Solans makes five attempts count",
+      "paragraphs": [
+        "Solans accounted for more than half of Real Salt Lake’s nine shots. He took five, directed four on target and attempted four from inside the penalty area, finishing with the two goals that settled the second half. Hezarkhani’s contribution was more economical: his only shot was on target and became the opener.",
+        "New England spread its attempts more widely without finding a scorer. Joshua Wynder led the Revolution with three shots, one on target, while Dániel Gazdag and Luca Langoni each put one of two attempts on target. Jackson Yueill supplied their other effort on target. Real Salt Lake’s goalkeeper saved all four."
+      ]
+    },
+    {
+      "heading": "Fewer shots, far greater return",
+      "paragraphs": [
+        "The statistical contrast ran against the scoreline in volume alone. New England took 16 of the match’s 25 shots and won 11 corners to Real Salt Lake’s one, but only 25 percent of the Revolution’s attempts were on target. The hosts directed six of nine on target, a 67 percent rate, and New England’s goalkeeper made three saves.",
+        "Location added another distinction. Six of Real Salt Lake’s nine located shots came from inside the box, with an average distance of 15 metres. New England had seven inside-box attempts among 15 located shots, while eight came from outside the area; its average distance was 17.6 metres."
+      ]
+    },
+    {
+      "heading": "Real Salt Lake climb after ending their losing run",
+      "paragraphs": [
+        "The victory moved Real Salt Lake from 23rd to 21st in the 30-team MLS table. They now have 32 points from 27 matches, and their goal difference improved from minus-seven to minus-four.",
+        "It also ended a five-match winless sequence that had begun with a draw and continued through four straight defeats. New England had won four of their previous five league matches, but remained fourth on 46 points from 27 games as their goal difference fell from 12 to nine."
+      ]
+    }
+  ],
+  "elapsed_ms": 47615
+}

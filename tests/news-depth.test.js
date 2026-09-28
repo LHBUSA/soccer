@@ -111,3 +111,11 @@ test('QA false positives fixed narrowly: bucket bounds, sourced stat pairs, mont
   assert.equal(g(['Bayern did not record one save of note.'], 'unsupported_record').pass, true);
   for (const bad of ['It was a club record.', 'Bayern set a new record.', 'A record win for Bayern.', 'The result was record-breaking.']) assert.equal(g([bad], 'unsupported_record').pass, false, bad);
 });
+
+test('QA round 2 false positives: shot-profile pairs; a surname particle capitalised in prose', () => {
+  const g = (paras, gate, pk = V3) => validateEditorial(art('Olise hat-trick powers Bayern past Union Berlin in 7-0 rout', 'Michael Olise scored three as Bayern went from fourth to first.', [['X', paras]]), pk).find(r => r.gate === gate);
+  assert.equal(g(['Bayern also took far more shots from inside the penalty area, leading 14-2 over the evening.'], 'wrong_score').pass, true);
+  const pk = { ...V3, extra_people: [{ name: 'Jan Paul van Hecke' }] };
+  assert.equal(g(['Van Hecke scored late on.'], 'new_player_or_team', pk).pass, true);
+  assert.deepEqual(g(['Van Persie scored late on.'], 'new_player_or_team', pk).detail, ['Persie']);
+});
