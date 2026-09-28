@@ -19,7 +19,7 @@ evidence are the source of truth; nothing here comes only from chat memory.
 
 | Worker | Live version | Rollback |
 |---|---|---|
-| soccer-api | `c266dbd7` (article entity media, hero, related) | `e8303d82` |
+| soccer-api | `70583790` (displayable media = approved + owner_approved_identification with `basis`; competition team grid crest) | `35e64696` (then `c266dbd7`) |
 | soccer-ingest | `533fb55e` (1.3.0, shadow Bundesliga enrichment + hardening) | `dd868f6f` (same cron) |
 | soccer-news | `19925642` (1.1.0, world-class desk REQUIRED, fail closed; NO ANTHROPIC_API_KEY yet = new stories HOLD) | `a04b2183` |
 
@@ -27,7 +27,7 @@ Rollback: `cd workers/<worker> && npx wrangler versions deploy <rollback>@100% -
 
 ## Migrations (all applied, each after a rollback-only proof with an unchanged catalog fingerprint)
 
-`0100` core graph · `0200` events · `0300` newsroom (append-only evidence) · `0400` attribute_corroborated player crosswalk · `0500` governed media registry · `0600` enrichment ledger + season groups/standings + media discovery/trademark status · `0700` private model shadow (predictions frozen by trigger, append-only events/metrics).
+`0100` core graph · `0200` events · `0300` newsroom (append-only evidence) · `0400` attribute_corroborated player crosswalk · `0500` governed media registry · `0600` enrichment ledger + season groups/standings + media discovery/trademark status · `0700` private model shadow (predictions frozen by trigger, append-only events/metrics). · `0800` owner-approved identification media (APPLIED 2026-09-28, sha256 12f2ec07…; rollback docs/evidence/storage/rollback-0800-2026-09-28.sql).
 
 ## Competitions and sources
 
@@ -61,8 +61,8 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
 
 ## Media (docs/MEDIA.md)
 
-- Portraits: **592 approved**, via exact ESPN FC player id (P3681) or attribute corroboration inside a roster-proven club.
-- Crests (2026-09-28): 8 free-licensed Commons crests live (Bayern, Dortmund, Mönchengladbach, Mainz, Hamburger SV, Werder Bremen, Internazionale, Napoli; all render, 0 failures: docs/evidence/media/crest-surfaces-2026-09-28-before.json). OWNER MEDIA DECISION 2026-09-28: crests and player media APPROVED for product identification (no internal holds). Provider path ready (scripts/media/provider-media.mjs): exact ESPN team id -> ESPN default crest for the other 87 clubs (95/95 identity proven by exact id) and 344 exact-athlete-id ESPN headshots; stored as `owner_approved_identification`, never labelled free. PENDING: migration 20260928000800 apply, provider-media run, soccer-api release.
+- Portraits: 789 free-licensed (Wikidata/Commons: exact ESPN FC player id P3681 or attribute corroboration in a proven club) + 344 ESPN headshots (exact ESPN athlete id from the team roster payload, birth date checked; owner_approved_identification).
+- Crests LIVE 2026-09-28 (measured in production): 95/95 unique active clubs (MLS 30/30, PL 20/20, BL 18/18, UCL 36/36): 8 free-licensed Commons (`approved`) + 87 ESPN crests by exact ESPN team id (`owner_approved_identification`, licence text "Not free-licensed", provider espn, policy owner-identification/2026-09-28). OWNER MEDIA DECISION 2026-09-28: crests and player media approved for product identification; no internal holds. Portraits: 1,133 unique players (789 free + 344 ESPN by exact athlete id + birth date). Proof: docs/evidence/media/crest-api-2026-09-28.json, crest-ui-2026-09-28.json, provider-media-2026-09-28.json. Re-run: `node scripts/media/provider-media.mjs` (free Commons primaries always win).
 - Trademark status is stored separately from copyright; free-licensed crests are used only to identify the club.
 
 ## News (docs/NEWS_ENGINE.md)
