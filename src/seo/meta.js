@@ -25,6 +25,7 @@ const STATIC = {
   competitions: { title: 'Competitions — Soccer Intelligence | PropBetEdge Soccer', description: 'MLS, Premier League, UEFA Champions League and Bundesliga on the PropBetEdge canonical soccer graph: seasons, results, fixtures and coverage.', h1: 'Competitions' },
   matches: { title: 'Matches — Results, Fixtures & Match Intelligence | PropBetEdge Soccer', description: 'Recent results, today’s matches and upcoming fixtures, each with PropBetEdge Match Intelligence: timelines, event maps, statistics and lineups where sourced.', h1: 'Matches' },
   tables: { title: 'Tables — League Standings | PropBetEdge Soccer', description: 'League tables computed by PropBetEdge from canonical finished league-stage results, with the method shown alongside every table.', h1: 'Tables' },
+  players: { title: 'Player DNA Directory — Soccer Player Stats & Profiles | PropBetEdge Soccer', description: 'Every player named in sourced lineups this season across MLS, Premier League, Champions League and Bundesliga: appearances, minutes, goals, assists and per-competition rate leaders, with Player DNA for each.', h1: 'Player DNA directory' },
   sources: { title: 'Sources & Method — PropBetEdge Soccer Intelligence', description: 'Where every PropBetEdge Soccer fact comes from: sources, attribution, identity rules, event-map semantics and how missing data is shown.', h1: 'Sources' },
 };
 

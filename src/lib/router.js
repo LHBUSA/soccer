@@ -6,6 +6,7 @@ export const ROUTES = [
   [/^\/matches\/?$/, 'matches'],
   [/^\/matches\/([0-9a-f-]{36})\/?$/, 'match'],
   [/^\/teams\/([a-z0-9-]+)\/?$/, 'team'],
+  [/^\/players\/?$/, 'players'],
   [/^\/players\/([a-z0-9-]+)\/?$/, 'player'],
   [/^\/tables\/?$/, 'tables'],
   [/^\/news\/?$/, 'news'],
