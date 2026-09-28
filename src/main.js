@@ -1,4 +1,5 @@
 import './styles/main.css';
+import { initAnalytics } from './analytics.js';
 import { resolve } from './lib/router.js';
 import { errorState, loading, notFoundPage } from './components/ui.js';
 import { competitionMark } from './components/media.js';
@@ -14,6 +15,8 @@ import { FEATURED_COMPS } from './lib/competitions.js';
 import { mountMediaFallbacks } from './components/ui.js';
 import { installPlayerDrawer, close as closeDrawer } from './components/drawer.js';
 import { mountScoreTicker } from './components/score-ticker.js';
+
+initAnalytics();
 
 const PAGES = { home, competition, match, competitions, matches, news, newsDesk, article, sources, tables, team, player, players, pbecastHub, pbecast };
 const NAV = [['/', 'TODAY', 'home'], ['/matches', 'MATCHES', 'matches,match'], ['/pbecast', 'PBECAST', 'pbecastHub,pbecast'], ['/tables', 'TABLES', 'tables'], ['/players', 'PLAYERS', 'players,player'], ['/competitions', 'COMPETITIONS', 'competitions'], ['/news', 'NEWS', 'news,newsDesk,article']];
