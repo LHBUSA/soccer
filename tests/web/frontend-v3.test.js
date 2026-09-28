@@ -59,7 +59,7 @@ test('news imagery: approved portrait -> approved crest -> branded owned fallbac
   assert.match(p, /k-portrait/); assert.match(p, /\/api\/soccer\/media\/ab/);
   assert.match(newsMedia({ desk: 'bundesliga', image: { kind: 'crest', url: '/api/soccer/media/cd', alt: 'Bayern' } }), /k-crest/);
   const fb = newsMedia({ desk: 'mls', image: null });
-  assert.match(fb, /k-brand/); assert.match(fb, /\/brand\/soccer-stadium-1600\.webp/); assert.match(fb, />MLS</);
+  assert.match(fb, /k-brand/); assert.match(fb, /\/brand\/soccer-stadium-1600\.webp/); assert.match(fb, /class="clogo t-dark lg"/, 'the branded fallback carries the real competition logo');
   for (const h of [p, fb]) assert.doesNotMatch(h, /https?:\/\//, 'same-origin only');
   const desk = newsDesk({ data: [art('a', 'team_trend', 'A', 1), art('b', 'match_recap', 'B beat C 5-0', 2)] });
   assert.match(desk, /class="nlead"/); assert.match(desk, /LATEST/);
@@ -117,4 +117,21 @@ test('ticker: one semantic score list; the marquee copy is aria-hidden, inert, u
   const src = readFileSync('src/components/score-ticker.js', 'utf8');
   for (const needle of ["setAttribute('aria-hidden', 'true')", "setAttribute('inert', '')", "setAttribute('data-nosnippet', '')", "removeAttribute('href')", 'a.tabIndex = -1']) assert.ok(src.includes(needle), needle);
   assert.match(readFileSync('src/styles/main.css', 'utf8'), /\.stk-clone \{[^}]*user-select: none/);
+});
+
+test('competitionMark: approved same-origin logo, provider dark variant on dark surfaces, mono fallback', async () => {
+  const { competitionMark } = await import('../../src/components/media.js');
+  const { COMPETITION_MEDIA } = await import('../../src/lib/competition-media.js');
+  for (const slug of ['mls', 'premier-league', 'uefa-champions-league', 'bundesliga']) {
+    const l = COMPETITION_MEDIA[slug]; assert.ok(l?.url, slug);
+    assert.match(l.url, /^\/api\/soccer\/media\/[0-9a-f]{64}$/); assert.equal(l.basis, 'owner_approved_identification');
+    const light = competitionMark(slug, 'lg'); const dark = competitionMark(slug, 'lg', { tone: 'dark' });
+    assert.match(light, /class="clogo t-light lg"/); assert.ok(light.includes(`src="${l.url}"`)); assert.ok(dark.includes(`src="${l.url_dark || l.url}"`));
+    assert.match(light, /data-fallback-comp="[A-Z]+"/, 'a broken file falls back to the mono');
+    assert.doesNotMatch(light + dark, /https?:\/\//);
+  }
+  assert.match(competitionMark('copa-libertadores', 'xs'), /class="cmono a-x xs"/, 'no approved logo -> premium mono');
+  const ui = readFileSync('src/components/ui.js', 'utf8'); assert.doesNotMatch(ui, /function compMono/, 'one competition mark component');
+  assert.match(readFileSync('src/main.js', 'utf8'), /competitionMark\(c\.slug, 'xs', \{ tone: 'dark' \}\)/, 'top competition navigation');
+  assert.match(readFileSync('src/components/score-ticker.js', 'utf8'), /competitionMark\(m\.competition\.slug/, 'score ticker');
 });

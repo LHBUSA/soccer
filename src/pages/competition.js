@@ -6,7 +6,7 @@ import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { num, todayUtc } from '../lib/format.js';
 import { compMeta } from '../lib/competitions.js';
-import { compMono, empty, errorState, link, matchGrid, mountTabs, sectionHead, sourcePanel, tabBar, tabPanel, teamMark } from '../components/ui.js';
+import { competitionMark, empty, errorState, link, matchGrid, mountTabs, sectionHead, sourcePanel, tabBar, tabPanel, teamMark } from '../components/ui.js';
 import { mountTableViews, tableView, tableViews } from '../components/table.js';
 
 export const title = d => { const n = d?.comp?.value?.data?.name; if (!n) return 'Competition Intelligence | PropBetEdge'; const hasTable = d.table?.status === 'fulfilled' && (d.table.value.data.rows || []).length > 0; return hasTable ? `${n} Table, Results & Match Intelligence | PropBetEdge` : `${n} Results & Match Intelligence | PropBetEdge`; };
@@ -82,7 +82,7 @@ export function render(d) {
     : `${sectionHead('TABLE', isLeaguePhase ? `${d.season || ''} league phase` : `${d.season || ''} standings`)}${tableBlock(null)}${when(tableEnv, () => sourcePanel(tableEnv.meta, { title: isLeaguePhase ? 'HOW THE LEAGUE-PHASE TABLE IS VERIFIED' : 'HOW THIS TABLE IS COMPUTED' }))}`;
   return `
   <section class="hero compact league a-${esc(f?.accent || 'x')}"><div class="wrap">
-    <div class="lh-top">${compMono(d.slug, 'xl')}<div>
+    <div class="lh-top">${competitionMark(d.slug, 'xl', { tone: 'dark' })}<div>
       <p class="kicker gold">${esc(c.type === 'league' ? 'LEAGUE' : 'COMPETITION')}${c.country_code ? ` · ${esc(c.country_code)}` : ''}</p>
       <h1 class="display">${esc(f?.long || c.name)}</h1></div></div>
     <div class="hero-facts">

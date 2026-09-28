@@ -6,7 +6,7 @@ import { ago, num } from '../lib/format.js';
 import { FEATURED, FEATURED_COMPS, compByDesk, compMeta } from '../lib/competitions.js';
 import { latestNews, selectHomepageLead, storyLabel } from '../lib/news.js';
 import { liveView } from '../lib/cast.js';
-import { compMono, empty, errorState, link, portrait, sectionHead, sourcePanel, statusPill, teamMark } from '../components/ui.js';
+import { competitionMark, empty, errorState, link, portrait, sectionHead, sourcePanel, statusPill, teamMark } from '../components/ui.js';
 import { keyPlayerRows, todayLine } from '../components/keyplayers.js';
 
 export { FEATURED };
@@ -46,7 +46,7 @@ export function newsMedia(a, size = 'card') {
   const bg = `<img class="nm-bg" src="/brand/soccer-stadium-1600.webp" alt="" loading="lazy" decoding="async" width="1600" height="900">`;
   if (a.image?.url && a.image.kind === 'portrait') return `<span class="nmedia k-portrait s-${size}">${bg}${portrait({ portrait: a.image }, size === 'lead' ? 'xl' : 'lg')}</span>`;
   if (a.image?.url && a.image.kind === 'crest') return `<span class="nmedia k-crest s-${size}">${bg}${teamMark({ name: a.image.alt, crest: a.image }, 'xl')}</span>`;
-  return `<span class="nmedia k-brand s-${size} a-${esc(f?.accent || 'x')}">${bg}${f ? compMono(f.slug, size === 'lead' ? 'xl' : 'lg') : ''}</span>`;
+  return `<span class="nmedia k-brand s-${size} a-${esc(f?.accent || 'x')}">${bg}${f ? competitionMark(f.slug, size === 'lead' ? 'xl' : 'lg', { tone: 'dark' }) : ''}</span>`;
 }
 
 export function newsLead(a) {
@@ -54,7 +54,7 @@ export function newsLead(a) {
   return `<a class="nlead" href="/news/${esc(a.desk)}/${esc(a.slug)}" data-link>
     ${newsMedia(a, 'lead')}
     <span class="nl-body">
-      <span class="nl-kicker">${f ? compMono(f.slug, 'xs') : ''}<span>${esc(f?.name || a.desk)}</span><span class="nl-cat">${esc(storyLabel(a.story_class).toUpperCase())}</span></span>
+      <span class="nl-kicker">${f ? competitionMark(f.slug, 'xs') : ''}<span>${esc(f?.name || a.desk)}</span><span class="nl-cat">${esc(storyLabel(a.story_class).toUpperCase())}</span></span>
       <b class="nl-head">${esc(a.headline)}</b>
       ${when(a.dek, () => `<span class="nl-dek">${esc(a.dek)}</span>`)}
       <span class="nl-foot"><span class="nl-age">${esc(ago(a.published_at))}</span><span class="nl-cta">READ THE STORY →</span></span>
@@ -66,7 +66,7 @@ export function newsCard(a) {
   const f = compByDesk(a.desk);
   return `<a class="ncard2" href="/news/${esc(a.desk)}/${esc(a.slug)}" data-link>
     ${newsMedia(a, 'thumb')}
-    <span class="nc2-body"><span class="nc2-top">${f ? compMono(f.slug, 'xs') : ''}<span>${esc(storyLabel(a.story_class))}</span></span>
+    <span class="nc2-body"><span class="nc2-top">${f ? competitionMark(f.slug, 'xs') : ''}<span>${esc(storyLabel(a.story_class))}</span></span>
       <b class="nc2-head">${esc(a.headline)}</b><span class="nc2-age">${esc(ago(a.published_at))}</span></span>
   </a>`;
 }
@@ -90,7 +90,7 @@ export function featured(d) {
     ${sectionHead('FEATURED INTELLIGENCE', d.feat.kind === 'live' ? 'Live now on PBEcast' : 'The match to replay')}
     <div class="featm">
       <a class="fm-board" href="/pbecast/${esc(m.id)}" data-link>
-        <span class="fm-top">${m.competition ? compMono(m.competition.slug, 'xs') : ''}<span>${esc(compMeta(m.competition?.slug)?.name || m.competition?.name || '')}</span>${d.feat.kind === 'live' ? statusPill('live') : '<span class="fm-tag">PBECAST REPLAY</span>'}</span>
+        <span class="fm-top">${m.competition ? competitionMark(m.competition.slug, 'xs', { tone: 'dark' }) : ''}<span>${esc(compMeta(m.competition?.slug)?.name || m.competition?.name || '')}</span>${d.feat.kind === 'live' ? statusPill('live') : '<span class="fm-tag">PBECAST REPLAY</span>'}</span>
         <span class="fm-teams">
           <span class="fm-t">${teamMark(m.home, 'xl')}<b>${esc(m.home?.short_name || m.home?.name || '')}</b></span>
           <span class="fm-sc">${lv.score ? `${esc(String(lv.score.home))}<i>–</i>${esc(String(lv.score.away))}` : 'v'}</span>
@@ -107,7 +107,7 @@ export function featured(d) {
 function leaderBlock(env, slug) {
   const x = env?.data; if (!x?.players?.length) return '';
   const f = compMeta(slug);
-  return `<div class="dnadisc"><p class="nrail-h">${compMono(slug, 'xs')} ${esc(f?.name || slug)} · goals + assists per 90</p>
+  return `<div class="dnadisc"><p class="nrail-h">${competitionMark(slug, 'xs')} ${esc(f?.name || slug)} · goals + assists per 90</p>
     ${join(x.players, (p, i) => `<a class="dd-row pcard-lite" href="/players/${esc(p.slug)}" data-link data-player-slug="${esc(p.slug)}"><span class="dd-rank">${i + 1}</span>${portrait(p, 'md')}<span class="dd-id"><b>${esc(p.name)}</b><small>${p.team ? `${teamMark(p.team, 'xs')} ${esc(p.team.short_name || p.team.name)}` : ''}</small></span><span class="dd-val"><b>${num(p.value, { dp: 2 })}</b><small>p${esc(String(p.percentile ?? '—'))} of ${num(p.compared_with)}</small></span></a>`)}
     ${link(`/players?competition=${slug}&sort=goal_contributions_per90`, 'ALL LEADERS →', 'nrail-all')}</div>`;
 }
@@ -120,7 +120,7 @@ export function coverageCards(compsEnv, covEnv) {
   return `<div class="compgrid">${join(cards, ({ f, c }) => {
     const k = cov.get(c.slug);
     return `<a class="comptile a-${f.accent}" href="/competitions/${esc(c.slug)}" data-link>
-      <span class="ct-top">${compMono(c.slug, 'lg')}<span class="ct-season">${esc(c.latest_season || '—')}</span></span>
+      <span class="ct-top">${competitionMark(c.slug, 'lg', { tone: 'dark' })}<span class="ct-season">${esc(c.latest_season || '—')}</span></span>
       <span class="ct-name">${esc(f.name)}</span>
       <span class="ct-stats">
         <span><b>${num(c.matches)}</b>matches</span>

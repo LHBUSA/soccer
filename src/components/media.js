@@ -6,6 +6,8 @@
 //
 // Images are decorative next to a visible name (alt=""); the attribution rides on title.
 import { esc } from '../lib/html.js';
+import { compMeta } from '../lib/competitions.js';
+import { COMPETITION_MEDIA } from '../lib/competition-media.js';
 
 export const SILHOUETTE = '/brand/player-silhouette-128.webp';
 export const SILHOUETTE_2X = '/brand/player-silhouette-256.webp';
@@ -47,10 +49,27 @@ export function portrait(p, size = 'sm', { alt = '' } = {}) {
   return `<span class="pic pic-${size} sil" aria-hidden="true"><img src="${SILHOUETTE}" srcset="${SILHOUETTE} 128w, ${SILHOUETTE_2X} 256w" sizes="${px}px" alt="" loading="lazy" decoding="async" width="${px}" height="${px}"></span>`;
 }
 
+// Competition identity: the approved cached logo (src/lib/competition-media.js) or the typographic mono.
+// tone: 'light' = the provider's default logo for light surfaces; 'dark' = the provider's own dark-surface
+// variant (no recolouring by us). size: xs | '' | lg | xl.
+export function competitionMark(slug, size = '', { tone = 'light' } = {}) {
+  const c = compMeta(slug);
+  const cls = `cmono a-${c?.accent || 'x'}${size ? ` ${size}` : ''}`;
+  const mono = c?.mono || initials(String(slug || '').replace(/-/g, ' '));
+  const logo = COMPETITION_MEDIA[slug];
+  if (!logo?.url) return `<span class="${esc(cls)}" aria-hidden="true">${esc(mono)}</span>`;
+  const src = tone === 'dark' && logo.url_dark ? logo.url_dark : logo.url;
+  return `<span class="clogo t-${tone}${size ? ` ${size}` : ''}" title="${esc(logo.attribution)}. Used to identify the competition."><img src="${esc(src)}" alt="" loading="lazy" decoding="async" width="64" height="64" data-fallback-comp="${esc(mono)}" data-fallback-class="${esc(cls)}"></span>`;
+}
+
 // A broken approved file never shows as a broken image.
 export function mountMediaFallbacks(root) {
   for (const img of root.querySelectorAll('img[data-fallback]')) {
     const swap = () => { const s = document.createElement('span'); s.className = img.parentElement.className.replace(' img', ''); s.textContent = img.dataset.fallback; s.setAttribute('aria-hidden', 'true'); img.parentElement.replaceWith(s); };
+    if (img.complete && img.naturalWidth === 0) swap(); else img.addEventListener('error', swap, { once: true });
+  }
+  for (const img of root.querySelectorAll('img[data-fallback-comp]')) {
+    const swap = () => { const s = document.createElement('span'); s.className = img.dataset.fallbackClass; s.textContent = img.dataset.fallbackComp; s.setAttribute('aria-hidden', 'true'); img.parentElement.replaceWith(s); };
     if (img.complete && img.naturalWidth === 0) swap(); else img.addEventListener('error', swap, { once: true });
   }
   for (const img of root.querySelectorAll('img[data-fallback-portrait]')) {

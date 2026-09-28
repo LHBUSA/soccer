@@ -66,6 +66,26 @@ export function stateAt(v, tl) {
   return { seen, score: last ? last.score : { home: 0, away: 0 }, latest: seen[seen.length - 1] || null };
 }
 
+// A located event: the source gave it a pitch location (the pitch plots it; the caption counts it).
+export const isLocated = x => Number.isFinite(x?.x) && Number.isFinite(x?.y);
+
+// THE replay state at virtual minute v: one stateAt() call feeds the score, clock, current event,
+// pitch marks, feed and caption, so no component can show anything the cursor has not reached.
+// Before full time nothing after v exists in the view; at full time the canonical final score wins.
+export function replayView(v, tl, finalScore = null) {
+  const cur = Math.max(0, Math.min(tl.total, Number(v) || 0));
+  const s = stateAt(cur, tl);
+  const atEnd = cur >= tl.total;
+  const clock = atEnd ? 'FT' : clockAt(cur, tl);
+  const located = s.seen.filter(isLocated).length;
+  const anyLocated = tl.items.some(isLocated);
+  const caption = !anyLocated ? 'NO LOCATED EVENTS FROM THIS SOURCE · NOTHING IS PLOTTED'
+    : atEnd ? `${located} LOCATED ${located === 1 ? 'SHOT' : 'SHOTS'} · EVENT LOCATIONS, NOT PLAYER TRACKING`
+    : `${located} LOCATED ${located === 1 ? 'SHOT' : 'SHOTS'} THROUGH ${clock}`;
+  const score = atEnd && finalScore && finalScore.home !== null && finalScore.home !== undefined ? { home: finalScore.home, away: finalScore.away } : s.score;
+  return { v: cur, atEnd, clock, seen: s.seen, current: s.latest, score, located, caption };
+}
+
 // Percent position of a virtual minute on the bar.
 export const pctOf = (v, tl) => Math.max(0, Math.min(100, (100 * v) / (tl.total || 90)));
 

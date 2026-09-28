@@ -8,7 +8,7 @@
 import { api } from '../lib/api.js';
 import { esc } from '../lib/html.js';
 import { liveView } from '../lib/cast.js';
-import { crest } from './media.js';
+import { competitionMark, crest } from './media.js';
 
 const POLL_LIVE = 30000; const POLL_SLATE = 120000; const POLL_IDLE = 600000;
 const MAX_ITEMS = 24;
@@ -37,7 +37,7 @@ export function tickerItem({ m, k }, { stale = false, now = new Date() } = {}) {
     : k === 'ft' ? '<span class="stk-st ft">FINAL</span>' : `<span class="stk-st">${esc(tickerTime(m.kickoff_at, now))}</span>`;
   const label = `${m.home?.name || ''} ${sc ? `${lv.score.home} ` : ''}${sc ? '' : 'v '}${m.away?.name || ''}${sc ? ` ${lv.score.away}` : ''}, ${k === 'live' ? 'live' : k === 'ft' ? 'full time' : `kick-off ${tickerTime(m.kickoff_at, now)}`}. Open PBEcast.`;
   return `<a class="stk-g" data-state="${k}" href="/pbecast/${esc(m.id)}" data-link aria-label="${esc(label)}">
-    ${m.competition ? `<span class="stk-comp a-${esc({ mls: 'mls', 'premier-league': 'epl', 'uefa-champions-league': 'ucl', bundesliga: 'bl' }[m.competition.slug] || 'x')}">${esc({ mls: 'MLS', 'premier-league': 'PL', 'uefa-champions-league': 'UCL', bundesliga: 'BL' }[m.competition.slug] || m.competition.name)}</span>` : ''}
+    ${m.competition ? `<span class="stk-comp">${competitionMark(m.competition.slug, 'xs', { tone: 'dark' })}</span>` : ''}
     ${state}${side(m.home, lv.score?.home)}<span class="stk-vs" aria-hidden="true">${sc ? '–' : 'v'}</span>${side(m.away, lv.score?.away)}
   </a>`;
 }

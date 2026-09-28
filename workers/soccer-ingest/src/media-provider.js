@@ -38,25 +38,38 @@ export function espnHeadshotCandidate(espnAthleteId, roster, birthDate) {
 // A fully provenanced row for display under the owner policy (never 'approved' = free-licensed).
 export function providerMediaRow({ entityType, entityId, mediaType, provider = 'espn', url, sourceUrl, subjectName, evidence, policy }) {
   const oi = policy.owner_identification;
-  const what = mediaType === 'crest' ? `${subjectName} crest` : `Photo of ${subjectName}`;
+  const comp = entityType === 'competition';
+  const what = comp ? `${subjectName} logo` : mediaType === 'crest' ? `${subjectName} crest` : `Photo of ${subjectName}`;
   return {
     id: mediaId(entityType, entityId, mediaType, sourceUrl),
     entity_type: entityType, entity_id: entityId, media_type: mediaType,
     url, source: 'provider_artwork', source_url: sourceUrl, source_entity: evidence.external_id,
     provider, owner_policy_version: oi.policy_version,
     match_evidence: { ...evidence, version: PROVIDER_MEDIA_VERSION },
-    license: mediaType === 'crest'
+    license: comp
+      ? `Not free-licensed. Competition logo: copyright and trademark of the competition organiser (${subjectName}). Provider artwork (${provider.toUpperCase()}); displayed to identify the competition under the owner identification policy.`
+      : mediaType === 'crest'
       ? `Not free-licensed. Club crest: copyright and trademark of ${subjectName}. Provider artwork (${provider.toUpperCase()}); displayed to identify the club under the owner identification policy.`
       : `Not free-licensed. Provider photograph (${provider.toUpperCase()}); copyright of the photographer or provider. Displayed to identify the player under the owner identification policy.`,
     license_url: null,
     author: provider.toUpperCase(),
     attribution: mediaType === 'crest' ? `${what}. Image: ${provider.toUpperCase()}` : `${what}: ${provider.toUpperCase()}`,
     rights_status: oi.rights_status,
-    rights_notes: `${oi.decision} (${oi.policy_version}). Not free-licensed; used only to identify the ${mediaType === 'crest' ? 'club' : 'player'}.`,
+    rights_notes: `${oi.decision} (${oi.policy_version}). Not free-licensed; used only to identify the ${comp ? 'competition' : mediaType === 'crest' ? 'club' : 'player'}.`,
     trademark_status: mediaType === 'crest' ? 'trademark_notice' : 'none',
     rejection_reason: null,
   };
 }
 
 // Which entities need a provider asset: priority 1 is an already-governed free-licensed primary.
+// Competition logo: the league object in ESPN's own scoreboard payload whose slug EXACTLY equals our
+// canonical competition's ESPN external id; `default` and `dark` variants as ESPN publishes them.
+export function espnLeagueLogos(espnCompId, league) {
+  if (!league || String(league.slug) !== String(espnCompId)) return { ok: false, reason: 'espn_league_slug_mismatch' };
+  const pick = rel => (league.logos || []).filter(l => (l.rel || []).includes(rel) && ESPN_HOST.test(l.href || ''));
+  const d = pick('default'); const k = pick('dark');
+  if (d.length !== 1) return { ok: false, reason: d.length ? 'several_default_logos' : 'current_logo_not_found' };
+  return { ok: true, default: d[0].href, dark: k.length === 1 ? k[0].href : null, espn_league_id: league.id, espn_name: league.name };
+}
+
 export const needsProvider = (entityId, freePrimary) => !freePrimary.has(entityId);

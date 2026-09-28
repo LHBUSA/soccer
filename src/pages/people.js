@@ -3,7 +3,7 @@ import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { DASH, FOOT, ROLE, dateLong, dateShort, num, scoreline } from '../lib/format.js';
 import { compMeta } from '../lib/competitions.js';
-import { compMono, formChips, link, matchGrid, playerChip, portrait, sectionHead, sourcePanel, teamLink, teamMark } from '../components/ui.js';
+import { competitionMark, formChips, link, matchGrid, playerChip, portrait, sectionHead, sourcePanel, teamLink, teamMark } from '../components/ui.js';
 import { portraitOf } from '../components/media.js';
 import { pitchSvg, validShots } from '../components/pitch.js';
 import { mountPlayerDna, mountTeamDna } from '../components/dna.js';
@@ -11,7 +11,7 @@ import { mountRelatedNews } from '../components/related.js';
 
 function recordCard(r) {
   const f = compMeta(r.competition?.slug);
-  const head = `<span class="rc-head">${compMono(r.competition?.slug, 'xs')}<span>${esc(f?.name || r.competition?.name || 'Competition')}</span><span class="muted">${esc(r.season || '')}</span></span>`;
+  const head = `<span class="rc-head">${competitionMark(r.competition?.slug, 'xs')}<span>${esc(f?.name || r.competition?.name || 'Competition')}</span><span class="muted">${esc(r.season || '')}</span></span>`;
   if (!r.record) return `<div class="rcard">${head}<p class="muted small">No league-stage record stored for this season${f?.format === 'ucl' ? ' (Champions League matches are stored without a league table)' : ''}.</p></div>`;
   const x = r.record;
   return `<div class="rcard"><div class="rc-top">${head}<div class="rc-pos"><b>${num(r.position)}</b><span>of ${num(r.teams_in_table)}</span></div></div>
@@ -58,7 +58,7 @@ export const team = {
       <div class="th-top">${teamMark(t, 'xl')}<div class="th-id">
         <p class="kicker gold">TEAM${t.type === 'national' ? ' · NATIONAL TEAM' : ''}${place ? ` · ${esc(place)}` : ''}</p>
         <h1 class="display">${esc(t.name)}</h1>
-        <p class="th-comps">${join(t.records || [], r => r.competition ? `<a class="th-comp" href="/competitions/${esc(r.competition.slug)}" data-link>${compMono(r.competition.slug, 'xs')}<span>${esc(compMeta(r.competition.slug)?.name || r.competition.name)}</span>${r.position ? `<b>${esc(ordinal(r.position))}</b>` : ''}</a>` : '')}</p>
+        <p class="th-comps">${join(t.records || [], r => r.competition ? `<a class="th-comp" href="/competitions/${esc(r.competition.slug)}" data-link>${competitionMark(r.competition.slug, 'xs')}<span>${esc(compMeta(r.competition.slug)?.name || r.competition.name)}</span>${r.position ? `<b>${esc(ordinal(r.position))}</b>` : ''}</a>` : '')}</p>
         <div class="th-form"><span class="muted">Form</span>${formChips(t.form)}${recs[0] ? `<span class="th-rec">${num(recs[0].record.won)}W · ${num(recs[0].record.drawn)}D · ${num(recs[0].record.lost)}L</span>` : ''}</div>
       </div></div>
       ${when(t.crest?.attribution, () => `<p class="credit">Crest: ${t.crest.source_url ? `<a href="${esc(t.crest.source_url)}" rel="noopener" target="_blank">${esc(t.crest.attribution)}</a>` : esc(t.crest.attribution)}. Used to identify the club.</p>`)}
@@ -95,7 +95,7 @@ function observedBlock(o) {
   return `${sectionHead('OBSERVED IN SOURCE DATA', 'Appearances, goals and shots')}
     <div class="obsgrid">${join(items, ([k, v]) => `<div><b>${num(v)}</b><span>${esc(k)}</span></div>`)}</div>
     ${when(o.by_competition?.length, () => `<div class="tablewrap"><table class="ltable"><thead><tr><th class="tm" scope="col">Competition</th><th scope="col">Season</th><th class="wide tm2" scope="col">Team</th><th scope="col">Apps</th><th scope="col">Starts</th><th scope="col">Goals</th><th scope="col">Shots</th></tr></thead>
-      <tbody>${join(o.by_competition, r => `<tr><th class="tm" scope="row">${r.competition ? link(`/competitions/${r.competition.slug}`, `${compMono(r.competition.slug, 'xs')}<span>${esc(compMeta(r.competition.slug)?.name || r.competition.name)}</span>`) : DASH}</th><td>${esc(r.season || DASH)}</td><td class="wide tm2">${r.team ? teamLink(r.team) : DASH}</td><td>${num(r.appearances)}</td><td>${num(r.starts)}</td><td>${num(r.goals)}</td><td>${num(r.shots)}</td></tr>`)}</tbody></table></div>`)}
+      <tbody>${join(o.by_competition, r => `<tr><th class="tm" scope="row">${r.competition ? link(`/competitions/${r.competition.slug}`, `${competitionMark(r.competition.slug, 'xs')}<span>${esc(compMeta(r.competition.slug)?.name || r.competition.name)}</span>`) : DASH}</th><td>${esc(r.season || DASH)}</td><td class="wide tm2">${r.team ? teamLink(r.team) : DASH}</td><td>${num(r.appearances)}</td><td>${num(r.starts)}</td><td>${num(r.goals)}</td><td>${num(r.shots)}</td></tr>`)}</tbody></table></div>`)}
     ${when(shots.length, () => `${sectionHead('SHOT LOCATIONS', `${num(shots.length)} located shots`)}
       <div class="panel map"><div class="pitchwrap land">${pitchSvg(shots, { homeName: 'Team', awayName: '' })}</div><div class="pitchwrap port">${pitchSvg(shots, { homeName: 'Team', awayName: '', portrait: true })}</div>
       <p class="legend"><span><i class="lg goal"></i>Goal</span><span><i class="lg on"></i>On target</span><span><i class="lg off"></i>Off target / blocked</span></p>
@@ -127,7 +127,7 @@ export const player = {
           <p class="kicker gold">PLAYER INTELLIGENCE</p>
           <h1 class="display">${esc(p.name)}</h1>
           ${when((p.first_name || p.last_name) && [p.first_name, p.last_name].filter(Boolean).join(' ') !== p.name, () => `<p class="lede">${esc([p.first_name, p.last_name].filter(Boolean).join(' '))}</p>`)}
-          <p class="ph-line">${lt ? link(`/teams/${lt.slug}`, `${teamMark(lt, 'md')}<span>${esc(lt.name)}</span>`, 'ph-team') : ''}${p.role ? `<span class="ph-pos">${esc((ROLE[p.role] || '').toUpperCase())}</span>` : ''}${lt?.competition ? `<span class="ph-comp">${compMono(lt.competition.slug, 'xs')}${esc(compMeta(lt.competition.slug)?.name || lt.competition.name)}</span>` : ''}</p>
+          <p class="ph-line">${lt ? link(`/teams/${lt.slug}`, `${teamMark(lt, 'md')}<span>${esc(lt.name)}</span>`, 'ph-team') : ''}${p.role ? `<span class="ph-pos">${esc((ROLE[p.role] || '').toUpperCase())}</span>` : ''}${lt?.competition ? `<span class="ph-comp">${competitionMark(lt.competition.slug, 'xs')}${esc(compMeta(lt.competition.slug)?.name || lt.competition.name)}</span>` : ''}</p>
           ${when(lt, () => `<p class="ph-asof muted">Team of the latest sourced lineup, ${esc(dateShort(lt.as_of))}</p>`)}
           <div class="facts ph-facts">${join(facts, ([k, v]) => `<div><span>${esc(k)}</span><b>${esc(v)}</b></div>`)}</div>
           ${when(pic?.attribution, () => `<p class="credit">Photo: ${pic.source_url ? `<a href="${esc(pic.source_url)}" rel="noopener" target="_blank">${esc(pic.attribution)}</a>` : esc(pic.attribution)}${pic.license_url ? ` · <a href="${esc(pic.license_url)}" rel="noopener license" target="_blank">licence</a>` : ''}</p>`)}

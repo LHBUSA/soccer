@@ -2,7 +2,7 @@
 import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { num, todayUtc } from '../lib/format.js';
-import { compMono, empty, errorState, link, matchGrid, sectionHead, sourcePanel } from '../components/ui.js';
+import { competitionMark, empty, errorState, link, matchGrid, sectionHead, sourcePanel } from '../components/ui.js';
 import { mountTableViews, tableView, tableViews } from '../components/table.js';
 import { coverageCards } from './home.js';
 import { FEATURED, FEATURED_COMPS, compMeta } from '../lib/competitions.js';
@@ -42,7 +42,7 @@ export const matches = {
     const q = (view, comp) => `/matches?view=${view}${comp ? `&competition=${comp}` : ''}`;
     return `<section class="hero compact"><div class="wrap"><p class="kicker gold">MATCHES</p><h1 class="display">From result to event map</h1>
       <nav class="tabs" aria-label="Match views">${join(Object.entries(VIEWS), ([k, v]) => link(q(k, d.comp), esc(v), `tab${k === d.view ? ' on' : ''}`))}</nav>
-      <nav class="tabs sub" aria-label="Competition filter">${link(q(d.view, ''), 'All', `tab${!d.comp ? ' on' : ''}`)}${join(comps, c => link(q(d.view, c.slug), `${compMono(c.slug, 'xs')}${esc(c.name)}`, `tab${c.slug === d.comp ? ' on' : ''}`))}</nav>
+      <nav class="tabs sub" aria-label="Competition filter">${link(q(d.view, ''), 'All', `tab${!d.comp ? ' on' : ''}`)}${join(comps, c => link(q(d.view, c.slug), `${competitionMark(c.slug, 'xs')}${esc(c.name)}`, `tab${c.slug === d.comp ? ' on' : ''}`))}</nav>
       </div></section>
       <section class="canvas"><div class="wrap">
       ${d.list.status === 'rejected' ? errorState(d.list.reason) : matchGrid(d.list.value.data) || empty(`No ${VIEWS[d.view].toLowerCase()} matches`, d.view === 'today' ? 'Nothing is scheduled today in the covered competitions.' : 'The canonical graph has no matches for this view yet.')}
@@ -74,7 +74,7 @@ export const tables = {
       : withConfs ? `${season}${tableViews([...d.confs, { key: 'overall', label: 'Overall', env: t }], d.confs[0].key)}${sourcePanel(d.confs.find(c => c.env).env.meta, { title: 'HOW CONFERENCE TABLES ARE VERIFIED', open: true })}`
         : `${season}${tableView(t)}${sourcePanel(t.meta, { title: 'HOW THIS TABLE IS COMPUTED', open: true })}`;
     return `<section class="hero compact"><div class="wrap"><p class="kicker gold">TABLES</p><h1 class="display">${esc(name)}</h1>
-      <nav class="tabs" aria-label="Competition">${join(comps, c => link(`/tables?competition=${c.slug}`, `${compMono(c.slug, 'xs')}${esc(c.name)}`, `tab${c.slug === d.comp ? ' on' : ''}`))}</nav></div></section>
+      <nav class="tabs" aria-label="Competition">${join(comps, c => link(`/tables?competition=${c.slug}`, `${competitionMark(c.slug, 'xs')}${esc(c.name)}`, `tab${c.slug === d.comp ? ' on' : ''}`))}</nav></div></section>
       <section class="canvas"><div class="wrap mid">${body}</div></section>`;
   },
   mount(root) { mountTableViews(root); },

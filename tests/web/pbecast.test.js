@@ -80,3 +80,35 @@ test('routes + meta: hub is static; a cast page canonicalises to its match page'
   const h = hub.render({ env: { data: { live: [], recent: [], upcoming: [], lane: null }, meta: { source: 'pbe', coverage: { state: 'ok', notes: [] } } } });
   assert.match(h, /No covered match is in play right now/);
 });
+
+// ---- replay contract: one replayView (stateAt) feeds every component; nothing after the cursor exists
+import { replayView } from '../../src/lib/cast.js';
+import { castPitch, feedItem, nowLine } from '../../src/pages/pbecast.js';
+
+test('replayView: score, clock, current event, caption through the cursor only', () => {
+  const tl = buildTimeline(seq);
+  const at0 = replayView(0, tl, { home: 1, away: 1 });
+  assert.equal(at0.seen.length, 0); assert.deepEqual(at0.score, { home: 0, away: 0 }); assert.equal(at0.current, null);
+  assert.equal(at0.caption, "0 LOCATED SHOTS THROUGH 0'");
+  const at30 = replayView(30, tl, { home: 1, away: 1 });
+  assert.deepEqual(at30.seen.map(x => x.minute), [4, 30]); assert.equal(at30.current.type, 'card_yellow'); assert.equal(at30.clock, "30'");
+  assert.equal(at30.caption, "1 LOCATED SHOT THROUGH 30'");
+  assert.ok(at30.seen.every(x => x.v <= 30), 'no future event');
+  const end = replayView(tl.total, tl, { home: 1, away: 1 });
+  assert.equal(end.seen.length, seq.length); assert.equal(end.clock, 'FT'); assert.equal(end.caption, '3 LOCATED SHOTS · EVENT LOCATIONS, NOT PLAYER TRACKING');
+  assert.equal(replayView(999, tl).v, tl.total, 'clamped'); assert.equal(replayView(-5, tl).v, 0);
+});
+
+test('replay pitch + feed markup contain only the events through the cursor', () => {
+  const tl = buildTimeline(seq); const m = { home: { short_name: 'H' }, away: { short_name: 'A' } };
+  const rv = replayView(30, tl);
+  const pitch = castPitch(tl, m, { items: rv.seen });
+  assert.equal((pitch.match(/class="cmark"/g) || []).length, 1, 'only the 4th-minute located goal');
+  assert.doesNotMatch(pitch, /data-v="92"/);
+  const feed = [...rv.seen].reverse().map(x => feedItem(x, m, { current: x === rv.current, seekable: true })).join('');
+  assert.equal((feed.match(/<li /g) || []).length, 2); assert.match(feed, /class="fi t-card_yellow home cur"/); assert.match(feed, /data-seek="30"/);
+  assert.doesNotMatch(feed, /90\+1/);
+  assert.match(nowLine(rv, m), /^30' Yellow card · Preston Judd · H · H 1–0 A$/);
+  assert.match(nowLine(replayView(tl.total, tl, { home: 1, away: 1 }), m), /^Full time · H 1–1 A$/);
+  assert.match(nowLine(replayView(0, tl), m), /^Kick-off/);
+});

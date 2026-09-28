@@ -9,8 +9,8 @@ import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { ago, dateShort, dateTime, num, sourceName, STAT_LABELS, statsHeading, time } from '../lib/format.js';
 import { compMeta } from '../lib/competitions.js';
-import { buildTimeline, clockAt, keyMoments, liveStatus, liveView, pctOf, PERIOD_LABEL, stateAt } from '../lib/cast.js';
-import { compMono, empty, link, mountMediaFallbacks, playerChip, sectionHead, sourcePanel, statusPill, teamLink, teamMark } from '../components/ui.js';
+import { buildTimeline, clockAt, isLocated, keyMoments, liveStatus, liveView, pctOf, PERIOD_LABEL, replayView } from '../lib/cast.js';
+import { competitionMark, empty, link, mountMediaFallbacks, playerChip, sectionHead, sourcePanel, statusPill, teamLink, teamMark } from '../components/ui.js';
 import { L, W, pitchLines } from '../components/pitch.js';
 import { keyPlayers } from '../components/keyplayers.js';
 import { matchTitle } from '../seo/meta.js';
@@ -46,7 +46,7 @@ function hubCard(m, kind) {
     : kind === 'replay' ? '<span class="hc-tag">REPLAY</span>' : `<span class="hc-tag up">${esc(dateShort(m.kickoff_at))} · ${esc(time(m.kickoff_at))}</span>`;
   const cta = kind === 'live' ? 'OPEN LIVE CAST' : kind === 'replay' ? (hasSequence(m) ? 'REPLAY THE MATCH' : 'RESULT ONLY') : 'PREVIEW';
   return `<a class="hcard k-${kind}" href="/pbecast/${esc(m.id)}" data-link>
-    <span class="hc-top">${f ? compMono(f.slug, 'xs') : ''}<span class="hc-comp">${esc(f?.name || m.competition?.name || '')}</span>${kind === 'live' ? statusPill('live') : ''}${top}</span>
+    <span class="hc-top">${f ? competitionMark(f.slug, 'xs') : ''}<span class="hc-comp">${esc(f?.name || m.competition?.name || '')}</span>${kind === 'live' ? statusPill('live') : ''}${top}</span>
     ${side(m.home, lv.score?.home)}${side(m.away, lv.score?.away)}
     <span class="hc-cta">${esc(cta)} <span aria-hidden="true">→</span></span>
   </a>`;
@@ -89,12 +89,15 @@ function markFor(x, portrait) {
   const p = portrait ? { x: x.y, y: L - x.x } : { x: x.x, y: x.y };
   const kind = x.type === 'goal' ? 'goal' : x.outcome === 'on_target' ? 'on' : 'off';
   const r = portrait ? (kind === 'goal' ? 1.8 : 1.25) : (kind === 'goal' ? 1.55 : 1.05);
-  return `<g class="cmark" data-ci="${x.i}" data-v="${x.v ?? ''}"><circle class="shot ${x.team === 'away' ? 'away' : 'home'} ${kind}" cx="${p.x}" cy="${p.y}" r="${r}"/>${kind === 'goal' ? `<circle class="ring" cx="${p.x}" cy="${p.y}" r="${portrait ? 2.8 : 2.4}"/>` : ''}<circle class="pulse" cx="${p.x}" cy="${p.y}" r="${portrait ? 3.2 : 2.8}"/></g>`;
+  return `<g class="cmark" data-ci="${x.i}" data-v="${x.v ?? ''}"${x.v !== null && x.v !== undefined ? ` data-seek="${x.v}"` : ''}><circle class="shot ${x.team === 'away' ? 'away' : 'home'} ${kind}" cx="${p.x}" cy="${p.y}" r="${r}"/>${kind === 'goal' ? `<circle class="ring" cx="${p.x}" cy="${p.y}" r="${portrait ? 2.8 : 2.4}"/>` : ''}<circle class="pulse" cx="${p.x}" cy="${p.y}" r="${portrait ? 3.2 : 2.8}"/></g>`;
 }
 
-export function castPitch(tl, m, { portrait = false } = {}) {
+// Pitch marks for the events the view may show: the full match live / at full time, only
+// replayView().seen during a replay (a future shot is never in the markup).
+export const pitchMarks = (items, portrait) => join(items, x => markFor(x, portrait));
+export function castPitch(tl, m, { portrait = false, items = tl.items } = {}) {
   const hn = m.home?.short_name || m.home?.name || 'Home'; const an = m.away?.short_name || m.away?.name || 'Away';
-  const marks = join(tl.items, x => markFor(x, portrait));
+  const marks = pitchMarks(items, portrait);
   if (portrait) {
     return `<svg class="pitch portrait cast" viewBox="-3 -7 ${W + 6} ${L + 14}" role="img" aria-label="PBEcast pitch: sourced shot locations. ${esc(hn)} attack up, ${esc(an)} attack down.">
       <g transform="translate(0 ${L}) rotate(-90)">${pitchLines()}</g>
@@ -106,17 +109,30 @@ export function castPitch(tl, m, { portrait = false } = {}) {
     <g class="marks">${marks}</g></svg>`;
 }
 
-function feedItem(x, m) {
+export function feedItem(x, m, { current = false, seekable = false } = {}) {
   const team = x.team === 'away' ? m.away : m.home;
   const who = x.type === 'sub' ? `${playerChip(x.player_in)} <span class="muted">on for</span> ${playerChip(x.player_out)}`
     : `${playerChip(x.player, { extra: x.penalty ? ' <span class="muted">(pen)</span>' : '' })}${x.assist ? ` <span class="muted">assist</span> ${playerChip(x.assist)}` : ''}`;
   const detail = x.type === 'shot' ? OUT[x.outcome] || 'shot' : '';
-  return `<li class="fi t-${esc(x.type)} ${x.team === 'away' ? 'away' : 'home'}" data-fi="${x.i}" data-v="${x.v ?? ''}">
+  const seek = seekable && x.v !== null && x.v !== undefined ? ` data-seek="${x.v}" tabindex="0"` : '';
+  return `<li class="fi t-${esc(x.type)} ${x.team === 'away' ? 'away' : 'home'}${current ? ' cur' : ''}" data-fi="${x.i}" data-v="${x.v ?? ''}"${seek}${current ? ' aria-current="true"' : ''}>
     <span class="fi-min">${esc(x.display_minute || '—')}</span>
     <span class="fi-ic" aria-hidden="true">${ICON[x.type] || '•'}</span>
     <span class="fi-body"><span class="fi-kind">${esc(WORD[x.type] || 'Event')}${detail ? ` · ${esc(detail)}` : ''} · ${esc(team?.short_name || team?.name || '')}</span><span class="fi-who">${who}</span></span>
     ${x.type === 'goal' || x.type === 'own_goal' ? `<span class="fi-score">${esc(String(x.score.home))}–${esc(String(x.score.away))}</span>` : ''}
   </li>`;
+}
+
+// The replay's current event in words: what the scrubber is at (never a later event).
+export function nowLine(rv, m) {
+  const hn = m.home?.short_name || m.home?.name || 'Home'; const an = m.away?.short_name || m.away?.name || 'Away';
+  if (rv.atEnd) return `Full time · ${hn} ${rv.score.home}–${rv.score.away} ${an}`;
+  const x = rv.current;
+  if (!x) return `Kick-off · ${rv.clock} · ${hn} 0–0 ${an}`;
+  const team = x.team === 'away' ? m.away : m.home;
+  const who = x.type === 'sub' ? `${x.player_in?.name || 'Unidentified'} on for ${x.player_out?.name || 'unidentified'}` : x.player?.name || '';
+  const detail = x.type === 'shot' ? ` (${OUT[x.outcome] || 'shot'})` : '';
+  return `${x.display_minute || rv.clock} ${WORD[x.type] || 'Event'}${detail}${who ? ` · ${who}` : ''} · ${team?.short_name || team?.name || ''} · ${hn} ${rv.score.home}–${rv.score.away} ${an}`;
 }
 
 export function timelineBar(tl, m) {
@@ -125,7 +141,7 @@ export function timelineBar(tl, m) {
     <div class="tl-track">
       ${join(tl.segments, s => `<span class="tl-seg" style="left:${pctOf(s.start, tl)}%;width:${pctOf(s.end, tl) - pctOf(s.start, tl)}%" title="${esc(PERIOD_LABEL[s.period])}"></span>`)}
       <span class="tl-fill" data-tl-fill style="width:100%"></span>
-      ${join(tl.items.filter(x => x.v !== null && x.type === 'shot'), x => `<i class="tl-shot ${x.team === 'away' ? 'away' : 'home'}" style="left:${pctOf(x.v, tl)}%"></i>`)}
+      ${join(tl.items.filter(x => x.v !== null && x.type === 'shot'), x => `<i class="tl-shot ${x.team === 'away' ? 'away' : 'home'}" data-v="${x.v}" style="left:${pctOf(x.v, tl)}%"></i>`)}
       ${join(markers, x => `<button type="button" class="tl-m t-${esc(x.type)} ${x.team === 'away' ? 'away' : 'home'}" style="left:${pctOf(x.v, tl)}%" data-seek="${x.v}" aria-label="${esc(`${x.display_minute || ''} ${WORD[x.type] || ''} ${x.type === 'sub' ? x.player_in?.name || '' : x.player?.name || ''}`)}"></button>`)}
     </div>
     <div class="tl-scale"><span>0'</span><span>HT</span><span>${esc(clockAt(tl.total, tl))}</span></div>
@@ -156,11 +172,12 @@ export function castView(env) {
   const st = liveStatus(live);
   const lv = mode === 'live' ? liveView(m) : { score: m.score, clock: null };
   const sc = lv.score && lv.score.home !== null && lv.score.home !== undefined ? lv.score : null;
-  const located = tl.items.filter(x => Number.isFinite(x.x)).length;
+  const rv = replayView(tl.total, tl, m.score); // the replay opens at full time: everything sourced is known
+  const located = tl.items.filter(isLocated).length;
   const moments = keyMoments(tl);
   const clock = mode === 'live' ? (lv.clock || (lv.from === 'canonical' ? live.detail || '' : '')) : mode === 'replay' ? 'FT' : '';
   return `<section class="cast-top ${esc(mode)}"><div class="wrap">
-      <p class="ct-meta">${link('/pbecast', 'PBECAST', 'ct-home')} · ${m.competition ? link(`/competitions/${m.competition.slug}`, esc(m.competition.name)) : ''}${m.round ? ` · ${esc(m.round)}` : ''}</p>
+      <p class="ct-meta">${link('/pbecast', 'PBECAST', 'ct-home')} · ${m.competition ? link(`/competitions/${m.competition.slug}`, `${competitionMark(m.competition.slug, 'xs', { tone: 'dark' })}<span>${esc(m.competition.name)}</span>`, 'ct-comp') : ''}${m.round ? ` · ${esc(m.round)}` : ''}</p>
       <h1 class="sr-only">${esc(m.home?.name || '')} v ${esc(m.away?.name || '')}: PBEcast</h1>
       <div class="ct-board">
         <div class="ct-team">${teamMark(m.home, 'md')}${teamLink(m.home, 'ct-name')}</div>
@@ -179,16 +196,17 @@ export function castView(env) {
             <button type="button" class="btn gold rp-play" data-rp-play aria-pressed="false">▶ REPLAY FROM KICK-OFF</button>
             <label class="rp-speed">Speed <select data-rp-speed><option value="0.5">1 min / 2 s</option><option value="1" selected>1 min / s</option><option value="3">3 min / s</option></select></label>
             <input type="range" class="rp-range" data-rp-range min="0" max="${tl.total}" step="0.25" value="${tl.total}" aria-label="Replay position (match minute)">
-            ${when(moments.length, () => `<div class="rp-moments" aria-label="Key moments">${join(moments, x => `<button type="button" class="chip" data-seek="${x.v}">${esc(x.display_minute || '')} ${esc(x.type === 'card_red' ? 'Red' : 'Goal')} ${esc(x.player?.name?.split(' ').slice(-1)[0] || '')}</button>`)}</div>`)}
+            <p class="rp-now" data-rp-now aria-live="polite"><span class="rp-now-k">NOW</span><span data-rp-now-text>${esc(nowLine(rv, m))}</span></p>
+            ${when(moments.length, () => `<div class="rp-moments" aria-label="Jump to a key moment"><span class="rp-jump">JUMP TO</span>${join(moments, x => `<button type="button" class="chip" data-seek="${x.v}">${esc(x.display_minute || '')} ${esc(x.type === 'card_red' ? 'Red' : 'Goal')} ${esc(x.player?.name?.split(' ').slice(-1)[0] || '')}</button>`)}</div>`)}
           </div>` : ''}
           ${timelineBar(tl, m)}
           <div class="pitchwrap land">${castPitch(tl, m)}</div>
           <div class="pitchwrap port">${castPitch(tl, m, { portrait: true })}</div>
-          <p class="emap-label">${located ? `${num(located)} LOCATED SHOTS · EVENT LOCATIONS, NOT PLAYER TRACKING` : 'NO LOCATED EVENTS FROM THIS SOURCE · NOTHING IS PLOTTED'}</p>
+          <p class="emap-label" data-rp-caption>${mode === 'replay' ? esc(rv.caption) : located ? `${num(located)} LOCATED SHOTS · EVENT LOCATIONS, NOT PLAYER TRACKING` : 'NO LOCATED EVENTS FROM THIS SOURCE · NOTHING IS PLOTTED'}</p>
           <p class="legend"><span><i class="lg goal"></i>Goal</span><span><i class="lg on"></i>On target</span><span><i class="lg off"></i>Off target / blocked</span></p>
         </div>
-        <div class="cast-feed panel">${sectionHead(mode === 'live' ? 'LIVE FEED' : 'MATCH FEED', 'Sourced events, newest first')}
-          <ol class="feed"${mode === 'live' ? ' aria-live="polite"' : ''}>${join([...tl.items].reverse(), x => feedItem(x, m))}</ol>
+        <div class="cast-feed panel">${mode === 'replay' ? '<header class="sec-head"><p class="kicker">REPLAY FEED</p><h2 data-feed-sub>Full match · latest first</h2></header>' : sectionHead(mode === 'live' ? 'LIVE FEED' : 'MATCH FEED', 'Sourced events, newest first')}
+          <ol class="feed" data-feed${mode === 'live' ? ' aria-live="polite"' : ''}>${mode === 'replay' ? join([...rv.seen].reverse(), x => feedItem(x, m, { current: x === rv.current, seekable: true })) : join([...tl.items].reverse(), x => feedItem(x, m))}</ol>
         </div>
       </div>`)}
       ${when(!tl.items.length && mode !== 'pregame', () => empty('No sourced events for this match', m.event_source === 'openligadb' ? 'The result source reports the score without an event record, so there is nothing to cast. Nothing is plotted rather than something invented.' : 'No event record is stored for this match yet.'))}
@@ -202,26 +220,43 @@ export function castView(env) {
     </div></section>`;
 }
 
-// Replay engine: moves a cursor over the virtual minute axis and toggles what is visible.
+// Replay engine: moves a cursor over the virtual minute axis. Every frame is ONE replayView() (built on
+// stateAt): score, clock, current event, pitch marks (future marks are removed from the markup), feed
+// (events through the cursor, current first), timeline markers (future ones dimmed) and caption.
 export function mountReplay(root, env) {
   const box = root.querySelector('[data-replay]'); if (!box) return () => {};
-  const tl = buildTimeline(env.data.sequence || []);
+  const m = env.data; const tl = buildTimeline(m.sequence || []);
   const range = box.querySelector('[data-rp-range]'); const play = box.querySelector('[data-rp-play]'); const speed = box.querySelector('[data-rp-speed]');
   const fill = root.querySelector('[data-tl-fill]'); const clock = root.querySelector('[data-ct-clock]');
   const sh = root.querySelector('[data-sh]'); const sa = root.querySelector('[data-sa]');
-  const marks = [...root.querySelectorAll('.cmark')]; const feed = [...root.querySelectorAll('[data-fi]')];
+  const caption = root.querySelector('[data-rp-caption]'); const nowText = root.querySelector('[data-rp-now-text]');
+  const feed = root.querySelector('[data-feed]'); const feedSub = root.querySelector('[data-feed-sub]');
+  const markGroups = [...root.querySelectorAll('.pitch.cast .marks')];
+  const tlMarks = [...root.querySelectorAll('.tl-m[data-seek], .tl-shot[data-v]')];
   const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-  let v = tl.total; let timer = null; let lastLatest = null;
+  let v = tl.total; let timer = null; let drawn = null;
   const show = (nv, { flash = false } = {}) => {
-    v = Math.max(0, Math.min(tl.total, nv));
-    const s = stateAt(v, tl); const seen = new Set(s.seen.map(x => x.i));
+    const rv = replayView(nv, tl, m.score); v = rv.v;
     range.value = String(v); fill.style.width = `${pctOf(v, tl)}%`;
-    if (clock) clock.textContent = v >= tl.total ? 'FT' : clockAt(v, tl);
-    if (sh) sh.textContent = String(v >= tl.total && env.data.score ? env.data.score.home : s.score.home);
-    if (sa) sa.textContent = String(v >= tl.total && env.data.score ? env.data.score.away : s.score.away);
-    for (const g of marks) { const on = seen.has(Number(g.dataset.ci)); g.classList.toggle('off', !on); g.classList.toggle('now', on && flash && !reduce && s.latest?.i === Number(g.dataset.ci) && lastLatest !== s.latest?.i); }
-    for (const li of feed) li.hidden = !seen.has(Number(li.dataset.fi));
-    lastLatest = s.latest?.i ?? null;
+    if (clock) clock.textContent = rv.clock;
+    if (sh) sh.textContent = String(rv.score.home);
+    if (sa) sa.textContent = String(rv.score.away);
+    if (caption) caption.textContent = rv.caption;
+    if (nowText) nowText.textContent = nowLine(rv, m);
+    if (feedSub) feedSub.textContent = rv.atEnd ? 'Full match · latest first' : `Through ${rv.clock} · latest first`;
+    const key = `${rv.seen.length}:${rv.current?.i ?? ''}`;
+    if (key !== drawn) {
+      for (const g of markGroups) g.innerHTML = pitchMarks(rv.seen, g.closest('svg').classList.contains('portrait'));
+      if (feed) { feed.innerHTML = join([...rv.seen].reverse(), x => feedItem(x, m, { current: x === rv.current, seekable: true })); mountMediaFallbacks(feed); feed.scrollTop = 0; }
+      if (flash && !reduce && rv.current) for (const g of root.querySelectorAll(`.cmark[data-ci="${rv.current.i}"]`)) g.classList.add('now');
+      drawn = key;
+    }
+    for (const el of tlMarks) {
+      const at = Number(el.dataset.seek ?? el.dataset.v);
+      el.classList.toggle('fut', at > v);
+      el.classList.toggle('cur', !!rv.current && el.classList.contains('tl-m') && at === rv.current.v);
+    }
+    root.dataset.replayV = String(v);
   };
   const stop = () => { if (timer) clearInterval(timer); timer = null; play.setAttribute('aria-pressed', 'false'); play.textContent = v >= tl.total ? '▶ REPLAY FROM KICK-OFF' : '▶ RESUME'; };
   const start = () => {
@@ -231,7 +266,10 @@ export function mountReplay(root, env) {
   };
   play.addEventListener('click', () => (timer ? stop() : start()));
   range.addEventListener('input', () => { stop(); show(Number(range.value)); });
-  root.addEventListener('click', e => { const b = e.target.closest('[data-seek]'); if (!b) return; stop(); show(Number(b.dataset.seek), { flash: true }); });
+  const seekFrom = e => { const b = e.target.closest('[data-seek]'); if (!b || !root.contains(b) || e.target.closest('a')) return; stop(); show(Number(b.dataset.seek), { flash: true }); };
+  root.addEventListener('click', seekFrom);
+  root.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target.matches?.('li[data-seek]')) { e.preventDefault(); seekFrom(e); } });
+  show(tl.total);
   return stop;
 }
 

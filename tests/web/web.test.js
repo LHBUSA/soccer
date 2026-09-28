@@ -144,7 +144,7 @@ test('V2: status badges, intel indicators, initials marks (no crests)', () => {
   assert.ok(live.includes('LIVE') && live.includes('LINEUPS') && live.includes('STATS') && !live.includes('EVENT MAP'));
   const fin = matchCard({ ...base, status: 'finished', score: { home: 2, away: 2 }, intel: { lineups: false, stats: false, event_map: false } });
   assert.ok(fin.includes('FINAL') && fin.includes('RESULT ONLY'));
-  assert.ok(!/<img/.test(fin)); // no crest image without approved media
+  assert.ok(!/class="tmark[^"]* img"/.test(fin)); // no crest image without approved media (the competition logo is separate)
   assert.equal(initials('Inter Miami CF'), 'IM'); assert.equal(initials('FC Bayern München'), 'BM'); assert.equal(initials('Arsenal'), 'ARS');
   assert.ok(matchCard({ ...base, status: 'scheduled', score: null }).includes('UPCOMING'));
 });

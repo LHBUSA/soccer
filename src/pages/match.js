@@ -3,7 +3,7 @@
 import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { DASH, STAT_LABELS, ago, dateTime, num, sourceName, statsHeading } from '../lib/format.js';
-import { link, playerChip, sectionHead, sourcePanel, statusPill, teamLink, teamMark } from '../components/ui.js';
+import { competitionMark, link, playerChip, sectionHead, sourcePanel, statusPill, teamLink, teamMark } from '../components/ui.js';
 import { pitchSvg, validShots } from '../components/pitch.js';
 import { mountRelatedNews } from '../components/related.js';
 import { keyPlayers } from '../components/keyplayers.js';
@@ -150,7 +150,7 @@ export function render(d) {
   return `
   <section class="mhero"><div class="wrap">
     <h1 class="sr-only">${esc(m.home?.name || '')} ${sc ? `${esc(sc.home)}–${esc(sc.away)}` : 'v'} ${esc(m.away?.name || '')}: Match Intelligence</h1>
-    <p class="mh-meta">${m.competition ? link(`/competitions/${m.competition.slug}`, esc(m.competition.name)) : ''}${m.season ? ` · ${esc(m.season)}` : ''}${m.round ? ` · ${esc(m.round)}` : ''}</p>
+    <p class="mh-meta">${m.competition ? link(`/competitions/${m.competition.slug}`, `${competitionMark(m.competition.slug, 'xs', { tone: 'dark' })}<span>${esc(m.competition.name)}</span>`, 'mh-comp') : ''}${m.season ? ` · ${esc(m.season)}` : ''}${m.round ? ` · ${esc(m.round)}` : ''}</p>
     <div class="scoreboard">
       <div class="sb-team home">${teamMark(m.home, 'xl')}${teamLink(m.home, 'sb-name')}</div>
       <div class="sb-score">${sc ? `<span>${esc(sc.home)}</span><i>–</i><span>${esc(sc.away)}</span>` : '<span class="vs">v</span>'}

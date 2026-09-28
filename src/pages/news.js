@@ -4,13 +4,13 @@ import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { dateLong, dateTime } from '../lib/format.js';
 import { FEATURED_COMPS, compByDesk } from '../lib/competitions.js';
-import { compMono, link, sourcePanel } from '../components/ui.js';
+import { competitionMark, link, sourcePanel } from '../components/ui.js';
 import { newsCard, newsDesk as deskLayout } from './home.js';
 import { latestNews, selectHomepageLead } from '../lib/news.js';
 import { renderArticle, mountArticle } from './article.js';
 
 const INDEX = 'index, follow, max-image-preview:large';
-const deskTabs = active => `<nav class="tabs" aria-label="News desks">${link('/news', 'All desks', `tab${!active ? ' on' : ''}`)}${join(FEATURED_COMPS, c => link(`/news/${c.desk}`, `${compMono(c.slug, 'xs')}${esc(c.name)}`, `tab${c.desk === active ? ' on' : ''}`))}</nav>`;
+const deskTabs = active => `<nav class="tabs" aria-label="News desks">${link('/news', 'All desks', `tab${!active ? ' on' : ''}`)}${join(FEATURED_COMPS, c => link(`/news/${c.desk}`, `${competitionMark(c.slug, 'xs')}${esc(c.name)}`, `tab${c.desk === active ? ' on' : ''}`))}</nav>`;
 
 const emptyRoom = desk => `<section class="newsroom"><div class="wrap narrow center">
   <p class="kicker gold">PROPBETEDGE SOCCER NEWSROOM${desk ? ` · ${esc(compByDesk(desk)?.name.toUpperCase() || '')}` : ''}</p>

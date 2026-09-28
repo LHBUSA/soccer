@@ -136,10 +136,10 @@ test('the fact gates on the deterministic draft are unchanged (template output i
 // ---- OpenAI Responses transport
 test('openai: request = Responses API, bearer key, strict JSON schema, no tools, not stored; completed response publishes', async () => {
   let call;
-  const r = await runDesk(draft, B, { OPENAI_API_KEY: 'sk-live-SECRET-123456' }, { fetcher: async (url, init) => { call = { url, init }; return reply(GOOD)(); } });
+  const r = await runDesk(draft, B, { OPENAI_API_KEY: 'sk-live-FAKE_KEY-123456' }, { fetcher: async (url, init) => { call = { url, init }; return reply(GOOD)(); } });
   assert.ok(r.article, JSON.stringify(r.held)); assert.equal(r.judgement.model, 'gpt-5.6-sol');
   assert.equal(call.url, 'https://api.openai.com/v1/responses');
-  assert.equal(call.init.method, 'POST'); assert.equal(call.init.headers.authorization, 'Bearer sk-live-SECRET-123456');
+  assert.equal(call.init.method, 'POST'); assert.equal(call.init.headers.authorization, 'Bearer sk-live-FAKE_KEY-123456');
   const body = JSON.parse(call.init.body);
   assert.equal(body.model, 'gpt-5.6-sol'); assert.equal(body.store, false);
   assert.equal(body.tools, undefined, 'no web search, file search or tools'); assert.equal(body.tool_choice, undefined);
@@ -192,21 +192,21 @@ test('openai: corrective retry sends the failed gates in the same input, then pu
 });
 
 test('openai: the secret never appears in hold reasons or errors', async () => {
-  const SECRET = 'sk-proj-VerySecretValue0123456789';
-  const env = { OPENAI_API_KEY: SECRET };
+  const FAKE_KEY = 'sk-proj-VerySecretValue0123456789';
+  const env = { OPENAI_API_KEY: FAKE_KEY };
   const echo = [
-    async () => ({ ok: false, status: 401, json: async () => ({ error: { type: 'invalid_request_error', message: `Incorrect API key provided: ${SECRET}. Header was Bearer ${SECRET}` } }) }),
-    async () => { throw new Error(`fetch failed with Authorization: Bearer ${SECRET}`); },
-    async () => ({ ok: true, json: async () => envelope([{ type: 'refusal', refusal: `echo ${SECRET}` }]) }),
+    async () => ({ ok: false, status: 401, json: async () => ({ error: { type: 'invalid_request_error', message: `Incorrect API key provided: ${FAKE_KEY}. Header was Bearer ${FAKE_KEY}` } }) }),
+    async () => { throw new Error(`fetch failed with Authorization: Bearer ${FAKE_KEY}`); },
+    async () => ({ ok: true, json: async () => envelope([{ type: 'refusal', refusal: `echo ${FAKE_KEY}` }]) }),
   ];
   for (const fetcher of echo) {
     const r = await editorialStage(draft, B, env, { fetcher });
     assert.equal(r.status, 'held');
     const txt = JSON.stringify(r);
-    assert.ok(!txt.includes(SECRET), txt); assert.ok(!/VerySecretValue/.test(txt)); assert.match(r.holdReasons[0], /redacted|HTTP 401/);
+    assert.ok(!txt.includes(FAKE_KEY), txt); assert.ok(!/VerySecretValue/.test(txt)); assert.match(r.holdReasons[0], /redacted|HTTP 401/);
   }
   const { sanitizeDeskError } = await import('../workers/soccer-news/src/desk.js');
-  assert.equal(sanitizeDeskError(`x ${SECRET} y`, env), 'x [redacted] y');
+  assert.equal(sanitizeDeskError(`x ${FAKE_KEY} y`, env), 'x [redacted] y');
   assert.doesNotMatch(sanitizeDeskError('Bearer abc.def', {}), /abc/);
 });
 

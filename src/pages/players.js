@@ -5,7 +5,7 @@ import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { num, ROLE } from '../lib/format.js';
 import { FEATURED_COMPS, compMeta } from '../lib/competitions.js';
-import { compMono, empty, link, portrait, sectionHead, sourcePanel, teamMark } from '../components/ui.js';
+import { competitionMark, empty, link, portrait, sectionHead, sourcePanel, teamMark } from '../components/ui.js';
 
 export const title = () => 'Player DNA Directory — Soccer Player Stats & Profiles | PropBetEdge';
 
@@ -63,7 +63,7 @@ export function playerCard(p, { leaders = false } = {}) {
   return `<a class="pcard" href="/players/${esc(p.slug)}" data-link data-player-slug="${esc(p.slug)}">
     <span class="pc-top">${portrait(p, 'lg')}<span class="pc-id"><b>${esc(p.name)}</b>
       <span class="pc-team">${p.team ? `${teamMark(p.team, 'xs')}<span>${esc(p.team.short_name || p.team.name)}</span>` : '<span class="muted">Team not stated</span>'}</span>
-      <span class="pc-meta">${f ? compMono(f.slug, 'xs') : ''}<span>${esc(ROLE[p.role] || 'Role not stated')}</span></span></span></span>
+      <span class="pc-meta">${f ? competitionMark(f.slug, 'xs') : ''}<span>${esc(ROLE[p.role] || 'Role not stated')}</span></span></span></span>
     ${leaders ? `<span class="pc-lead"><b>${num(p.value, { dp: 2 })}</b>${p.percentile !== null && p.percentile !== undefined ? `<span>p${esc(String(p.percentile))} of ${num(p.compared_with)}</span>` : ''}</span>` : ''}
     <span class="pc-stats"><span><b>${num(p.appearances)}</b>apps</span><span><b>${num(p.minutes_nominal)}</b>min</span><span><b>${num(p.goals)}</b>goals</span><span><b>${num(p.assists)}</b>assists</span><span><b>${quickGA(p)}</b>G+A/90</span></span>
     ${p.qualified ? '' : '<span class="pc-note">Below the minutes needed for percentile ranks</span>'}
@@ -74,11 +74,11 @@ export function render(d) {
   const { s } = d; const x = d.env.data;
   const sorts = s.competition ? [...COUNT_SORTS, ...RATE_SORTS] : COUNT_SORTS;
   const pages = Math.max(1, Math.ceil(x.total / PAGE));
-  const seasonLine = join(x.seasons, z => `<span>${compMono(z.competition.slug, 'xs')} ${esc(z.season)} · ${num(z.players)} players · ${num(z.qualified)} ranked</span>`);
+  const seasonLine = join(x.seasons, z => `<span>${competitionMark(z.competition.slug, 'xs')} ${esc(z.season)} · ${num(z.players)} players · ${num(z.qualified)} ranked</span>`);
   return `<section class="hero compact"><div class="wrap">
     <p class="kicker gold">PLAYER DNA</p><h1 class="display">Player directory</h1>
     <p class="lede">Every player named in sourced lineups this season across MLS, the Premier League, the Champions League and the Bundesliga. Open any player for their full Player DNA.</p>
-    <nav class="tabs" aria-label="Competition">${link(hrefFor(s, { competition: '', page: 1 }), 'All', `tab${!s.competition ? ' on' : ''}`)}${join(FEATURED_COMPS, c => link(hrefFor(s, { competition: c.slug, page: 1 }), `${compMono(c.slug, 'xs')}${esc(c.name)}`, `tab${c.slug === s.competition ? ' on' : ''}`))}</nav>
+    <nav class="tabs" aria-label="Competition">${link(hrefFor(s, { competition: '', page: 1 }), 'All', `tab${!s.competition ? ' on' : ''}`)}${join(FEATURED_COMPS, c => link(hrefFor(s, { competition: c.slug, page: 1 }), `${competitionMark(c.slug, 'xs')}${esc(c.name)}`, `tab${c.slug === s.competition ? ' on' : ''}`))}</nav>
   </div></section>
   <section class="canvas"><div class="wrap">
     <form class="pfilters" data-pfilters role="search" aria-label="Filter players">

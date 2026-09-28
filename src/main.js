@@ -1,6 +1,7 @@
 import './styles/main.css';
 import { resolve } from './lib/router.js';
 import { errorState, loading, notFoundPage } from './components/ui.js';
+import { competitionMark } from './components/media.js';
 import * as home from './pages/home.js';
 import * as competition from './pages/competition.js';
 import * as match from './pages/match.js';
@@ -27,7 +28,7 @@ function shell() {
     <button class="navtoggle" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span></button>
     <nav id="nav" class="nav" aria-label="Primary">${NAV.map(([h, l, p]) => `<a href="${h}" data-link data-pages="${p}">${l}</a>`).join('')}</nav>
   </div>
-  <nav class="rail" aria-label="Competitions"><div class="wrap railrow">${FEATURED_COMPS.map(c => `<a href="/competitions/${c.slug}" data-link data-comp="${c.slug}" class="a-${c.accent}"><span class="cmono xs a-${c.accent}" aria-hidden="true">${c.mono}</span><span>${c.name.toUpperCase()}</span></a>`).join('')}</div></nav>
+  <nav class="rail" aria-label="Competitions"><div class="wrap railrow">${FEATURED_COMPS.map(c => `<a href="/competitions/${c.slug}" data-link data-comp="${c.slug}" class="a-${c.accent}">${competitionMark(c.slug, 'xs', { tone: 'dark' })}<span>${c.name.toUpperCase()}</span></a>`).join('')}</div></nav>
   </header>
   <div id="score-ticker"></div>
   <main id="main" tabindex="-1"></main>

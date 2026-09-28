@@ -3,7 +3,7 @@
 import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { num } from '../lib/format.js';
-import { compMono, sectionHead, sourcePanel, formChips } from './ui.js';
+import { competitionMark, sectionHead, sourcePanel, formChips } from './ui.js';
 
 export const TEAM_LABELS = {
   points_per_match: ['Points per match', 2], goals_for_per_match: ['Goals scored per match', 2], goals_against_per_match: ['Goals conceded per match', 2],
@@ -35,7 +35,7 @@ export async function mountTeamDna(root, slug) {
     const d = env.data;
     if (!d.metrics?.length || !slot.isConnected) { slot.innerHTML = ''; return; }
     slot.innerHTML = `${sectionHead('TEAM DNA', `${d.competition?.name || ''} ${d.season || ''}`)}
-      <p class="dna-intro">${d.competition ? compMono(d.competition.slug, 'xs') : ''} ${esc(String(d.matches))} matches before ${esc(d.as_of.slice(0, 10))}. Percentiles rank against the ${esc(String(d.teams_compared))} teams of the same competition-season (p100 = best).${when(d.form?.length, () => ` Last results: ${formChips(d.form.slice(0, 10))}`)}</p>
+      <p class="dna-intro">${d.competition ? competitionMark(d.competition.slug, 'xs') : ''} ${esc(String(d.matches))} matches before ${esc(d.as_of.slice(0, 10))}. Percentiles rank against the ${esc(String(d.teams_compared))} teams of the same competition-season (p100 = best).${when(d.form?.length, () => ` Last results: ${formChips(d.form.slice(0, 10))}`)}</p>
       ${metricRows(d.metrics, TEAM_LABELS)}
       ${when(d.conceded_first, () => `<p class="caveat">Came back to win ${esc(String(d.comeback_wins))} of ${esc(String(d.conceded_first))} matches after conceding first.</p>`)}
       ${sourcePanel(env.meta, { title: 'HOW TEAM DNA IS BUILT' })}`;
@@ -115,9 +115,9 @@ export function playerDnaView(env, { compact = false } = {}) {
   const d = env.data;
   const seasons = d.seasons || [];
   if (!seasons.length) return '';
-  const chip = (s, i) => `<button type="button" class="dna-chip" role="tab" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-dna-season="${i}">${s.competition ? compMono(s.competition.slug, 'xs') : ''}<span>${esc(s.season || '')}</span></button>`;
+  const chip = (s, i) => `<button type="button" class="dna-chip" role="tab" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-dna-season="${i}">${s.competition ? competitionMark(s.competition.slug, 'xs') : ''}<span>${esc(s.season || '')}</span></button>`;
   return `<div class="dna-v2" data-dna-v2>
-    ${seasons.length > 1 ? `<div class="dna-chips" role="tablist" aria-label="Competition and season">${join(seasons, chip)}</div>` : `<p class="dna-one">${seasons[0].competition ? compMono(seasons[0].competition.slug, 'xs') : ''} ${esc(seasons[0].competition?.name || '')} ${esc(seasons[0].season || '')}</p>`}
+    ${seasons.length > 1 ? `<div class="dna-chips" role="tablist" aria-label="Competition and season">${join(seasons, chip)}</div>` : `<p class="dna-one">${seasons[0].competition ? competitionMark(seasons[0].competition.slug, 'xs') : ''} ${esc(seasons[0].competition?.name || '')} ${esc(seasons[0].season || '')}</p>`}
     ${join(seasons, (s, i) => `<div class="dna-panel" role="${seasons.length > 1 ? 'tabpanel' : 'group'}" data-dna-panel="${i}"${i === 0 ? '' : ' hidden'}>${playerSeasonView(s, d.min_minutes_for_percentiles, { compact })}</div>`)}
   </div>`;
 }

@@ -1,0 +1,129 @@
+{
+  "at": "2026-09-28T20:50:23.243Z",
+  "site": "http://127.0.0.1:4477",
+  "live": 11,
+  "total": 11,
+  "results": [
+    {
+      "surface": "homepage league cards",
+      "path": "/",
+      "ok": true,
+      "logos": 4,
+      "loaded": 4,
+      "sameOrigin": true,
+      "monos": 0,
+      "px": 52,
+      "console_errors": 0
+    },
+    {
+      "surface": "top competition navigation",
+      "path": "/",
+      "ok": true,
+      "logos": 4,
+      "loaded": 4,
+      "sameOrigin": true,
+      "monos": 0,
+      "px": 22,
+      "console_errors": 0
+    },
+    {
+      "surface": "score ticker",
+      "path": "/",
+      "ok": true,
+      "logos": 28,
+      "loaded": 28,
+      "sameOrigin": true,
+      "monos": 0,
+      "px": 18,
+      "console_errors": 0
+    },
+    {
+      "surface": "PBEcast hub",
+      "path": "/pbecast",
+      "ok": true,
+      "logos": 26,
+      "loaded": 26,
+      "sameOrigin": true,
+      "monos": 0,
+      "px": 22,
+      "console_errors": 0
+    },
+    {
+      "surface": "PBEcast match",
+      "path": "/pbecast/d4ad8521-0307-54bc-b612-ca070741c9ac",
+      "ok": true,
+      "logos": 1,
+      "loaded": 1,
+      "sameOrigin": true,
+      "monos": 0,
+      "px": 22,
+      "console_errors": 0
+    },
+    {
+      "surface": "match cards",
+      "path": "/matches",
+      "ok": true,
+      "logos": 40,
+      "loaded": 40,
+      "sameOrigin": true,
+      "monos": 0,
+      "px": 22,
+      "console_errors": 0
+    },
+    {
+      "surface": "match page",
+      "path": "/matches/c1ae9955-8b7d-5c35-b451-7b3cff1cb891",
+      "ok": true,
+      "logos": 1,
+      "loaded": 1,
+      "sameOrigin": true,
+      "monos": 0,
+      "px": 22,
+      "console_errors": 0
+    },
+    {
+      "surface": "competition page",
+      "path": "/competitions/premier-league",
+      "ok": true,
+      "logos": 1,
+      "loaded": 1,
+      "sameOrigin": true,
+      "monos": 0,
+      "px": 76,
+      "console_errors": 0
+    },
+    {
+      "surface": "news kicker",
+      "path": "/news",
+      "ok": true,
+      "logos": 66,
+      "loaded": 66,
+      "sameOrigin": true,
+      "monos": 0,
+      "px": 22,
+      "console_errors": 0
+    },
+    {
+      "surface": "tables",
+      "path": "/tables",
+      "ok": true,
+      "logos": 4,
+      "loaded": 4,
+      "sameOrigin": true,
+      "monos": 0,
+      "px": 22,
+      "console_errors": 0
+    },
+    {
+      "surface": "Player DNA competition labels",
+      "path": "/players",
+      "ok": true,
+      "logos": 88,
+      "loaded": 88,
+      "sameOrigin": true,
+      "monos": 0,
+      "px": 22,
+      "console_errors": 0
+    }
+  ]
+}

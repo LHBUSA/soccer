@@ -9,7 +9,7 @@ import { esc, join, when } from '../lib/html.js';
 import { ago, dateLong, dateTime, num } from '../lib/format.js';
 import { compByDesk } from '../lib/competitions.js';
 import { storyLabel } from '../lib/news.js';
-import { compMono, link, portrait, teamMark } from '../components/ui.js';
+import { competitionMark, link, portrait, teamMark } from '../components/ui.js';
 import { keyPlayers } from '../components/keyplayers.js';
 
 const SITE = 'https://soccer.propbetedge.ai';
@@ -51,7 +51,7 @@ export function inThisStory(entities) {
     ${join(teams, e => chip(e.href, teamMark(e, 'xs'), e.name, 'Team'))}
     ${when(match, () => chip(`/pbecast/${match.href.split('/').pop()}`, '<span class="ent-ico" aria-hidden="true">▶</span>', 'PBEcast replay', match.name))}
     ${when(match, () => chip(match.href, '<span class="ent-ico" aria-hidden="true">◎</span>', 'Match Intelligence', match.name))}
-    ${when(comp, () => chip(comp.href, compMono(comp.slug, 'xs'), comp.name, 'Competition'))}
+    ${when(comp, () => chip(comp.href, competitionMark(comp.slug, 'xs'), comp.name, 'Competition'))}
   </ul></aside>`;
 }
 
@@ -65,13 +65,13 @@ export function heroMedia(a) {
   if (a.hero?.kind === 'portrait') {
     return `<figure class="art-hero-media k-portrait a-${esc(c?.accent || 'x')}">${bg}
       <span class="ah-subject"><img src="${esc(a.hero.url)}" alt="${esc(a.hero.entity?.name || '')}" width="480" height="480" decoding="async" data-fallback-portrait></span>
-      <span class="ah-tag">${c ? compMono(c.slug, 'md') : ''}<b>${esc(a.hero.entity?.name || '')}</b></span>${score}${credit}</figure>`;
+      <span class="ah-tag">${c ? competitionMark(c.slug, 'md') : ''}<b>${esc(a.hero.entity?.name || '')}</b></span>${score}${credit}</figure>`;
   }
   if (a.hero?.kind === 'crest') {
-    return `<figure class="art-hero-media k-crest a-${esc(c?.accent || 'x')}">${bg}${teamMark({ name: a.hero.entity?.name, crest: { url: a.hero.url, attribution: a.hero.attribution } }, 'xl')}<span class="ah-tag">${c ? compMono(c.slug, 'md') : ''}<b>${esc(a.hero.entity?.name || '')}</b></span>${score}${credit}</figure>`;
+    return `<figure class="art-hero-media k-crest a-${esc(c?.accent || 'x')}">${bg}${teamMark({ name: a.hero.entity?.name, crest: { url: a.hero.url, attribution: a.hero.attribution } }, 'xl')}<span class="ah-tag">${c ? competitionMark(c.slug, 'md') : ''}<b>${esc(a.hero.entity?.name || '')}</b></span>${score}${credit}</figure>`;
   }
   const team = a.entities?.find(e => e.type === 'SportsTeam');
-  return `<figure class="art-hero-media k-brand a-${esc(c?.accent || 'x')}">${bg}${team ? teamMark(team, 'xl') : ''}<span class="ah-tag">${c ? compMono(c.slug, 'md') : ''}<b>${esc(c?.long || '')}</b></span>${score}</figure>`;
+  return `<figure class="art-hero-media k-brand a-${esc(c?.accent || 'x')}">${bg}${team ? teamMark(team, 'xl') : ''}<span class="ah-tag">${c ? competitionMark(c.slug, 'md') : ''}<b>${esc(c?.long || '')}</b></span>${score}</figure>`;
 }
 
 function body(sections) {
@@ -99,7 +99,7 @@ function related(a) {
   if (!a.related?.length) return '';
   return `<section class="art-related"><p class="nrail-h">RELATED COVERAGE</p><div class="rel-grid">${join(a.related, r => {
     const c = compByDesk(r.desk);
-    return `<a class="rel-card" href="/news/${esc(r.desk)}/${esc(r.slug)}" data-link><span class="rc-top">${c ? compMono(c.slug, 'xs') : ''}<span>${esc(TYPE[r.story_class] || storyLabel(r.story_class))}</span></span><b>${esc(r.headline)}</b><small>${esc(ago(r.published_at))}</small></a>`;
+    return `<a class="rel-card" href="/news/${esc(r.desk)}/${esc(r.slug)}" data-link><span class="rc-top">${c ? competitionMark(c.slug, 'xs') : ''}<span>${esc(TYPE[r.story_class] || storyLabel(r.story_class))}</span></span><b>${esc(r.headline)}</b><small>${esc(ago(r.published_at))}</small></a>`;
   })}</div></section>`;
 }
 
@@ -113,7 +113,7 @@ export function renderArticle(env) {
   return `<article class="art" data-article>
     <section class="art-top"><div class="wrap art-col">
       <nav class="art-crumbs" aria-label="Breadcrumb">${link('/news', 'News')}<span aria-hidden="true">›</span>${link(`/news/${a.desk}`, esc(c?.name || a.desk))}</nav>
-      <p class="art-meta">${c ? compMono(c.slug, 'xs') : ''}<span class="am-comp">${esc(c?.long || '')}</span><span class="am-type">${esc((TYPE[a.story_class] || storyLabel(a.story_class)).toUpperCase())}</span><time class="am-date" datetime="${esc(a.published_at)}">${esc(dateLong(a.published_at))}</time></p>
+      <p class="art-meta">${c ? competitionMark(c.slug, 'xs') : ''}<span class="am-comp">${esc(c?.long || '')}</span><span class="am-type">${esc((TYPE[a.story_class] || storyLabel(a.story_class)).toUpperCase())}</span><time class="am-date" datetime="${esc(a.published_at)}">${esc(dateLong(a.published_at))}</time></p>
       <h1 class="art-title">${esc(a.headline)}</h1>
       ${when(a.dek, () => `<p class="art-dek">${esc(a.dek)}</p>`)}
       <p class="art-byline">By <b>PropBetEdge Soccer Desk</b><span>·</span><time datetime="${esc(a.published_at)}">${esc(ago(a.published_at))}</time><span>·</span><span>${readingMinutes(parts.sections)} min read</span>${updated ? `<span>·</span><span>Updated <time datetime="${esc(a.updated_at)}">${esc(dateLong(a.updated_at))}</time></span>` : ''}</p>
@@ -160,7 +160,7 @@ export async function mountArticle(root, env) {
   if (rail) {
     try {
       const list = (await api('news', { limit: 8 })).data.filter(x => x.slug !== env.data.slug).slice(0, 5);
-      rail.innerHTML = `<div class="rail-card"><p class="nrail-h">LATEST FROM THE DESK</p>${join(list, x => { const c = compByDesk(x.desk); return `<a class="rail-item" href="/news/${esc(x.desk)}/${esc(x.slug)}" data-link><span class="rc-top">${c ? compMono(c.slug, 'xs') : ''}<span>${esc(TYPE[x.story_class] || storyLabel(x.story_class))}</span></span><b>${esc(x.headline)}</b><small>${esc(ago(x.published_at))}</small></a>`; })}${link('/news', 'ALL NEWS →', 'nrail-all')}</div>`;
+      rail.innerHTML = `<div class="rail-card"><p class="nrail-h">LATEST FROM THE DESK</p>${join(list, x => { const c = compByDesk(x.desk); return `<a class="rail-item" href="/news/${esc(x.desk)}/${esc(x.slug)}" data-link><span class="rc-top">${c ? competitionMark(c.slug, 'xs') : ''}<span>${esc(TYPE[x.story_class] || storyLabel(x.story_class))}</span></span><b>${esc(x.headline)}</b><small>${esc(ago(x.published_at))}</small></a>`; })}${link('/news', 'ALL NEWS →', 'nrail-all')}</div>`;
     } catch { rail.remove(); }
   }
 }

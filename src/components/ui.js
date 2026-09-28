@@ -1,8 +1,8 @@
 // Shared UI pieces (V3). All data rendering reads the API envelope; nothing here
 // invents a value. Missing = shown as missing. Crests and portraits are drawn only from
-// approved media (./media.js); competitions get a typographic monogram.
+// approved media (./media.js); competitions get their approved logo or a typographic monogram (competitionMark).
 import { esc, join, when } from '../lib/html.js';
-import { crest, initials, mountMediaFallbacks, portrait } from './media.js';
+import { competitionMark, crest, initials, mountMediaFallbacks, portrait } from './media.js';
 import { ago, coverageOf, dateShort, dateTime, scoreline, sourceName, time } from '../lib/format.js';
 import { compMeta } from '../lib/competitions.js';
 
@@ -62,7 +62,7 @@ export function statusPill(status) {
 // Crests and portraits live in ./media.js (the one identity-image component); teamMark is
 // the crest-or-initials mark under its historical name.
 export const teamMark = crest;
-export { initials, portrait, mountMediaFallbacks };
+export { competitionMark, initials, portrait, mountMediaFallbacks };
 
 // Portrait + name (linked when the player has a PropBetEdge page). Unresolved source names
 // keep their "identity pending" tag and never get a portrait.
@@ -73,10 +73,6 @@ export function playerChip(p, { size = 'xs', extra = '' } = {}) {
   return `<span class="pchip">${portrait(p, size)}<span class="pc-name">${name}${extra}</span></span>`;
 }
 
-export function compMono(slug, size = '') {
-  const c = compMeta(slug);
-  return `<span class="cmono a-${esc(c?.accent || 'x')}${size ? ` ${size}` : ''}" aria-hidden="true">${esc(c?.mono || initials(String(slug || '').replace(/-/g, ' ')))}</span>`;
-}
 
 export function teamLink(t, cls = 'team') {
   if (!t) return '<span class="team">—</span>';
@@ -97,7 +93,7 @@ export function matchCard(m, { showComp = true } = {}) {
   const row = (t, s, win) => `<div class="mc-row${win ? ' win' : ''}">${teamMark(t)}<span class="mc-name">${teamLink(t)}</span><span class="mc-goals">${sc ? esc(String(s)) : ''}</span></div>`;
   return `<article class="mcard st-${esc(m.status || 'unknown')}">
     <div class="mc-top">
-      ${when(showComp && m.competition, () => `${link(`/competitions/${m.competition.slug}`, `${compMono(m.competition.slug, 'xs')}<span>${esc(compMeta(m.competition.slug)?.name || m.competition.name)}</span>`, 'mc-comp')}`)}
+      ${when(showComp && m.competition, () => `${link(`/competitions/${m.competition.slug}`, `${competitionMark(m.competition.slug, 'xs')}<span>${esc(compMeta(m.competition.slug)?.name || m.competition.name)}</span>`, 'mc-comp')}`)}
       ${statusPill(m.status)}
     </div>
     <div class="mc-body">

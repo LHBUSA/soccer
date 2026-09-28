@@ -5,7 +5,7 @@ import { api } from '../lib/api.js';
 import { esc, join } from '../lib/html.js';
 import { dateShort } from '../lib/format.js';
 import { compByDesk } from '../lib/competitions.js';
-import { compMono, sectionHead } from './ui.js';
+import { competitionMark, sectionHead } from './ui.js';
 
 export async function mountRelatedNews(root, params, { title = 'In the news', kicker = 'NEWSROOM' } = {}) {
   const slot = root.querySelector('[data-related-news]');
@@ -16,7 +16,7 @@ export async function mountRelatedNews(root, params, { title = 'In the news', ki
     if (!items.length || !slot.isConnected) return;
     slot.innerHTML = `${sectionHead(kicker, title)}<ul class="related">${join(items, a => {
       const c = compByDesk(a.desk);
-      return `<li><a href="/news/${esc(a.desk)}/${esc(a.slug)}" data-link>${c ? compMono(c.slug, 'xs') : ''}<span class="rel-head">${esc(a.headline)}</span><span class="rel-date">${esc(dateShort(a.published_at))}</span></a></li>`;
+      return `<li><a href="/news/${esc(a.desk)}/${esc(a.slug)}" data-link>${c ? competitionMark(c.slug, 'xs') : ''}<span class="rel-head">${esc(a.headline)}</span><span class="rel-date">${esc(dateShort(a.published_at))}</span></a></li>`;
     })}</ul>`;
   } catch { /* related stories are optional: never break the page */ }
 }
