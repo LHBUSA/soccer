@@ -1,0 +1,25 @@
+    // TEMPORARY DARK-CANARY ROUTE (never committed to main, never deployed to 100%).
+    // Fixed input: the frozen Bayern fixture. No DB, no publication, no user input.
+    if (url.pathname === '/v1/canary/editorial-desk' && req.method === 'POST') {
+      const KEY = 'canary:editorial-desk:count';
+      const used = Number(env.SOCCER_STATE ? await env.SOCCER_STATE.get(KEY) : 99) || 0;
+      if (!env.SOCCER_STATE || used >= 3) return json({ error: 'canary budget exhausted', used }, 429);
+      await env.SOCCER_STATE.put(KEY, String(used + 1), { expirationTtl: 86400 });
+      const t0 = Date.now();
+      const draft = compose(CANARY_PACKET);
+      const r = await runDesk(draft, CANARY_PACKET, env);
+      const a = r.article || r.rejected || null;
+      const words = a ? a.sections.flatMap(s => s.paragraphs).join(' ').split(/\s+/).filter(Boolean).length : 0;
+      const fact = a ? validateEditorial(a, CANARY_PACKET) : [];
+      const quality = a ? qualityGates(a, CANARY_PACKET) : [];
+      const failedOf = rs => rs.filter(x => !x.pass).map(x => ({ gate: x.gate, detail: x.detail }));
+      return json({
+        canary: 'editorial-desk', run: used + 1, fixture: 'tests/fixtures/news/bayern-packet.json', packet_hash: CANARY_PACKET.packet_hash || null,
+        model: env.NEWS_DESK_MODEL || DESK_MODEL, desk: DESK_VERSION, elapsed_ms: Date.now() - t0,
+        result: r.article ? 'PASS' : 'HOLD', attempt: (r.judgement || {}).attempt || null,
+        hold_reasons: r.held || [], failed_gates: (r.judgement || {}).failed || [],
+        fact_gates: { total: fact.length, failed: failedOf(fact) }, quality_gates: { total: quality.length, failed: failedOf(quality) },
+        attribution_disclosed: a ? judge(a, CANARY_PACKET).results.find(x => x.gate === 'attribution_disclosed') : null,
+        word_count: words, headline: a ? a.headline : null, dek: a ? a.dek : null, sections: a ? a.sections.map(s => ({ heading: s.heading, paragraphs: s.paragraphs })) : [],
+      });
+    }

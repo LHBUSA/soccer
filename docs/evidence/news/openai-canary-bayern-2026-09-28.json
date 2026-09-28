@@ -1,0 +1,72 @@
+{
+  "canary": "editorial-desk",
+  "run": 1,
+  "fixture": "tests/fixtures/news/bayern-packet.json",
+  "packet_hash": null,
+  "model": "gpt-5.6-sol",
+  "desk": "soccer-desk/1.1.0",
+  "elapsed_ms": 50767,
+  "result": "HOLD",
+  "attempt": 2,
+  "hold_reasons": [
+    "editorial:unsupported_odds"
+  ],
+  "failed_gates": [
+    "unsupported_odds"
+  ],
+  "fact_gates": {
+    "total": 18,
+    "failed": [
+      {
+        "gate": "unsupported_odds",
+        "detail": "spread"
+      }
+    ]
+  },
+  "quality_gates": {
+    "total": 14,
+    "failed": []
+  },
+  "attribution_disclosed": {
+    "gate": "attribution_disclosed",
+    "pass": true,
+    "detail": null
+  },
+  "word_count": 510,
+  "headline": "Bayern München crush 1. FC Union Berlin 7-0 as Michael Olise scores hat-trick",
+  "dek": "Harry Kane added 2 goals and Bayern rose from 4th to 1st in the Bundesliga after turning a commanding half-time lead into a rout.",
+  "sections": [
+    {
+      "heading": "Olise puts the finishing touch on a relentless win",
+      "paragraphs": [
+        "Michael Olise’s hat-trick crowned an emphatic Bayern München performance, but the scale of the victory was built across the full match. Bayern led 3-0 at half-time, added 4 more goals after the interval and allowed 1. FC Union Berlin only 3 shots.",
+        "The attacking output was spread across 4 scorers. Olise supplied 3 goals, Kane struck twice, and Jamal Musiala and Ismael Saibari also scored. Union Berlin had no answer at the other end, with Bayern goalkeeper required to make 2 saves in the shutout.",
+        "It was Bayern’s clearest statement yet in the 2026/27 Bundesliga season: 7 goals, a winning margin of 7 and a rise to the top of the table after 4 matches."
+      ]
+    },
+    {
+      "heading": "Musiala starts it, Kane and Olise widen the gap",
+      "paragraphs": [
+        "Musiala opened the scoring in the 18th minute, giving Bayern the breakthrough that set the match on its course. Kane converted a penalty in the 39th minute to double the lead before Olise struck in the 43rd, sending Bayern into half-time 3-0 ahead.",
+        "The scoring resumed in the 54th minute when Kane claimed his second goal. That made it 4-0 and completed his contribution to a forward line that repeatedly turned Bayern’s shooting advantage into goals.",
+        "Saibari added the fifth in the 70th minute. Olise then took over the closing passage, scoring in the 73rd and 76th minutes to complete his hat-trick and carry the final score to 7-0. His 3 goals came on either side of half-time, from Bayern’s third of the match through to its seventh."
+      ]
+    },
+    {
+      "heading": "A gulf in attacking volume",
+      "paragraphs": [
+        "The scoreline was backed by a vast difference in shooting output. Bayern produced 23 attempts and put 15 on target; Union Berlin managed 3 shots, with 2 on target. Bayern also forced 6 saves, even as 7 efforts found the net.",
+        "The teams’ located attempts came from broadly similar average distances: Bayern’s average was 17.9 metres and Union Berlin’s was 17.6 metres. The decisive contrast was therefore not shot distance but volume and outcome. Bayern kept generating attempts and converted enough of them to turn a strong lead into a heavy defeat for the visitors.",
+        "Union Berlin’s limited threat also meant there was no interruption to Bayern’s scoring sequence. Every goal belonged to the home side, from Musiala’s opener to Olise’s final strike."
+      ]
+    },
+    {
+      "heading": "Bayern climb to 1st as Union remain 16th",
+      "paragraphs": [
+        "Bayern began the match in 4th place with 7 points from 3 games. The victory lifted them to 1st on 10 points after 4 matches, with 3 wins, 1 draw and no defeats. Their goals-for total doubled from 7 to 14, while their goal difference rose from 5 to 12.",
+        "The result extended a league sequence that had already contained 2 wins and a draw. More importantly for the table, it converted that unbeaten opening into top position among the Bundesliga’s 18 teams.",
+        "Union Berlin stayed 16th with 1 point from 4 matches. They now have no wins, 1 draw and 3 defeats, while their goal difference fell from minus 6 to minus 13. After entering the game on the back of 2 losses and a draw, they left with their position unchanged but the gap in performance made stark by the final score."
+      ]
+    }
+  ]
+}
