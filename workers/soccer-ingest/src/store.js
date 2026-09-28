@@ -5,6 +5,7 @@
 //   store.insert(table, rows)
 //   store.upsert(table, rows, onConflictCols)      // merge-duplicates on a real unique key
 //   store.count(table, { eq, in })
+//   store.update(table, patch, { eq, is, ... })     // filtered update (shadow settlement only)
 //
 // Nothing in a lane may issue raw SQL: production has no SQL channel for Workers.
 

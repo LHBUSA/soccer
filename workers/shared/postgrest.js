@@ -88,6 +88,12 @@ export function postgrestStore(url, key, f = (...a) => globalThis.fetch(...a)) {
         await store.req('POST', `${table}?on_conflict=${onConflict.join(',')}`, { body: rows.slice(i, i + chunk), prefer: 'resolution=merge-duplicates,return=minimal' });
       }
     },
+    // Filtered PATCH (used for write-once settlement; the database triggers decide what may change).
+    async update(table, patch, opts = {}) {
+      const q = buildQuery({ ...opts, columns: opts.columns || '*' }).replace(/^select=[^&]*&?/, '');
+      if (!q) throw new Error(`update on ${table} needs a filter`);
+      return (await store.req('PATCH', `${table}?${q}`, { body: patch, prefer: 'return=representation', retries: 0 })) || [];
+    },
     async count(table, opts = {}) {
       store.requests += 1;
       const res = await f(`${base}/${table}?${buildQuery({ ...opts, columns: opts.columns || '*' })}`, { method: 'HEAD', headers: headers({ prefer: 'count=exact', range: '0-0' }) });

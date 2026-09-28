@@ -17,14 +17,16 @@ import { ESPN_LANES, runEspnLane } from './espn-jobs.js';
 import { espnLiveCanary, espnStoreCanary } from './canary.js';
 import { STANDINGS_LANE, runEspnStandings } from './espn-standings.js';
 import { LIVE_LANE, runEspnLive } from './espn-live.js';
+import { SHADOW_LANE, runShadow } from './shadow-lane.js';
 
-export const VERSION = 'soccer-ingest/1.0.0';
+export const VERSION = 'soccer-ingest/1.1.0';
 
 const LANES = {
   [OLDB_CURRENT]: ctx => runOpenLigaCurrent(ctx),
   ...Object.fromEntries(ESPN_LANES.map(l => [l.name, ctx => runEspnLane(l, ctx)])),
   [STANDINGS_LANE]: ctx => runEspnStandings(ctx),
   [LIVE_LANE]: ctx => runEspnLive(ctx),
+  [SHADOW_LANE]: ctx => runShadow(ctx),
 };
 // Priority lane runs every tick; ESPN lanes rotate one per tick (one source can
 // never monopolise ticks).
@@ -33,6 +35,9 @@ const PRIORITY = [OLDB_CURRENT, LIVE_LANE];
 // lane joins the rotation and throttles itself to hourly.
 const ENABLED = new Set(registry.competitions.filter(c => c.espn?.enabled).map(c => c.slug));
 const ROTATING = [...ESPN_LANES.filter(l => ENABLED.has(l.competition)).map(l => l.name), STANDINGS_LANE];
+// Self-throttled lanes run after the rest of every tick and decide their own cadence. The
+// private model shadow (Bundesliga only, hourly) is observational and not part of /health ok.
+const SELF_THROTTLED = [SHADOW_LANE];
 
 function context(env) {
   const store = storeFromEnv(env);
@@ -72,6 +77,7 @@ async function tick(env, now = Date.now()) {
     const i = Math.floor(now / 300e3) % ROTATING.length;
     out.push(await runLane(env, ROTATING[i], { now }));
   }
+  for (const name of SELF_THROTTLED) out.push(await runLane(env, name, { now }));
   return out;
 }
 

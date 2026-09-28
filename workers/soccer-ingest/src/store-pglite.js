@@ -52,6 +52,13 @@ export function pgliteStore(db) {
       await db.query(`insert into public.${q(table)} (${cols}) select ${cols} from jsonb_populate_recordset(null::public.${q(table)}, $1::jsonb)
         on conflict (${onConflict.map(q).join(',')}) do ${set ? `update set ${set}` : 'nothing'}`, [JSON.stringify(rows)]);
     },
+    async update(table, patch, opts = {}) {
+      const params = [];
+      const sets = Object.entries(patch).map(([k, v]) => { params.push(v); return `${q(k)} = $${params.length}`; });
+      const w = where(opts, params);
+      if (!w) throw new Error(`update on ${table} needs a filter`);
+      return (await db.query(`update public.${q(table)} set ${sets.join(', ')}${w} returning *`, params)).rows;
+    },
     async count(table, opts = {}) {
       const params = [];
       return Number((await db.query(`select count(*)::int n from public.${q(table)}${where(opts, params)}`, params)).rows[0].n);

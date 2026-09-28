@@ -1,5 +1,5 @@
 # Apply soccer migrations to the SPORTS project, one file at a time, UNMODIFIED.
-# Owner approval required (granted 2026-09-27 for 0100/0200/0300, 0400 attribute_corroborated, 0500 entity media per the MEDIA IDENTITY brief, and 0600 completeness/groups/media ledger per the WORLD-CLASS PRODUCTION PASS brief).
+# Owner approval required (granted 2026-09-27 for 0100/0200/0300, 0400 attribute_corroborated, 0500 entity media per the MEDIA IDENTITY brief, 0600 completeness/groups/media ledger per the WORLD-CLASS PRODUCTION PASS brief, and 0700 model shadow per OWNER APPROVAL BUILD SOCCER DIXON-COLES SHADOW 2026-09-28).
 #   pwsh scripts/db/apply-migrations.ps1 20260927000100_soccer_core.sql 20260927000200_soccer_events.sql ...
 param([Parameter(ValueFromRemainingArguments = $true)][string[]]$Files)
 $ErrorActionPreference = "Stop"

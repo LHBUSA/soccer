@@ -1,0 +1,37 @@
+{
+  "model_id": "soccer-research-bundesliga-v1.2-dc",
+  "model_version": "1.2.0",
+  "calibration_id": "none",
+  "scope": {
+    "competition_slug": "bundesliga",
+    "stage_type": "league"
+  },
+  "rho": -0.1099,
+  "team_strength": {
+    "half_life_days": 540,
+    "shrink": 10,
+    "window_half_lives": 5,
+    "min_weight": 50
+  },
+  "home_half_life_days": 540,
+  "baseline": {
+    "name": "train-set result frequencies 2004/05-2013/14 (declared in Phase 1; unchanged)",
+    "p_home": 0.4522875816993464,
+    "p_draw": 0.24901960784313726,
+    "p_away": 0.29869281045751633
+  },
+  "eligibility": {
+    "window_days": 7,
+    "statuses": [
+      "scheduled"
+    ]
+  },
+  "sources": {
+    "card": "docs/evidence/research/frozen/model-card-v1.2-dc.json",
+    "card_sha256": "c79116e69537b4633b91dac44b8388fa510ae39cb2aa120f0835f913c5fbd3c8",
+    "core": "scripts/research/structural-core.mjs",
+    "core_sha256": "c6f296eb3dd397ecec366a36fc28909527d3b2dc97cc834a5987d34f5f727746",
+    "research_prediction_hash": "19b72fedee9a60268c4d554d2c8e20adefa6e311b5c73cd7b654b5ff1dfbb13b"
+  },
+  "model_hash": "d9cf3320842efacfc0437816fc74131515f71ff8eac51ead8c8a632d5bdcd7f2"
+}
