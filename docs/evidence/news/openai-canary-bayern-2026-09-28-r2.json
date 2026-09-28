@@ -1,0 +1,85 @@
+{
+  "canary": "editorial-desk",
+  "run": 2,
+  "fixture": "tests/fixtures/news/bayern-packet.json",
+  "packet_hash": null,
+  "model": "gpt-5.6-sol",
+  "desk": "soccer-desk/1.1.0",
+  "elapsed_ms": 54974,
+  "result": "HOLD",
+  "attempt": 2,
+  "hold_reasons": [
+    "editorial:new_player_or_team",
+    "editorial:thin_output"
+  ],
+  "failed_gates": [
+    "new_player_or_team",
+    "thin_output"
+  ],
+  "fact_gates": {
+    "total": 18,
+    "failed": [
+      {
+        "gate": "new_player_or_team",
+        "detail": [
+          "Against"
+        ]
+      }
+    ]
+  },
+  "quality_gates": {
+    "total": 14,
+    "failed": [
+      {
+        "gate": "thin_output",
+        "detail": {
+          "words": 448,
+          "min": 450
+        }
+      }
+    ]
+  },
+  "attribution_disclosed": {
+    "gate": "attribution_disclosed",
+    "pass": true,
+    "detail": null
+  },
+  "word_count": 429,
+  "headline": "Bayern München 7-0 1. FC Union Berlin: Olise hat-trick drives rout",
+  "dek": "Michael Olise scored three times and Harry Kane added two as Bayern München climbed from fourth to first in the Bundesliga.",
+  "sections": [
+    {
+      "heading": "Bayern turned pressure into a procession",
+      "paragraphs": [
+        "Bayern München overwhelmed 1. FC Union Berlin with seven unanswered goals, 23 shots and 15 efforts on target, pairing sustained pressure with a ruthless spread of finishing.",
+        "Jamal Musiala opened the scoring in the 18th minute before Harry Kane converted a penalty in the 39th. Michael Olise struck in the 43rd minute to send Bayern into half-time with a 3-0 lead.",
+        "The scoring did not slow after the interval. Kane made it 4-0 in the 54th minute, giving him two goals in the match and leaving Union with an even steeper deficit."
+      ]
+    },
+    {
+      "heading": "Olise completed the rout",
+      "paragraphs": [
+        "Ismael Saibari added Bayern's fifth goal in the 70th minute. Olise then scored in the 73rd and 76th minutes, completing his hat-trick and taking the final score to 7-0.",
+        "Olise's contribution framed both halves of the victory. His first goal closed the first-half scoring, while his next two finished a late sequence in which Bayern struck three times through Saibari and Olise.",
+        "Kane's two goals gave Bayern another multiple scorer, but the seven goals were shared more widely: Musiala began the sequence, Kane and Olise supplied five between them, and Saibari also found the net."
+      ]
+    },
+    {
+      "heading": "The shot count left Union under constant strain",
+      "paragraphs": [
+        "The size of Bayern's advantage was reflected in the shooting. Bayern attempted 23 shots and placed 15 on target; Union managed three attempts, with two on target. Union made six saves but still conceded seven times.",
+        "Bayern also led the corner count by nine to two. The average distances of the located shots were similar — 17.9 metres for Bayern and 17.6 for Union — but the volume was not. Bayern generated far more attempts from broadly comparable average range.",
+        "Union's two shots on target required two Bayern saves, yet the visitors could not interrupt the scoring at the other end. Bayern's 15 on-target efforts ensured that the match kept moving in one direction even after the 3-0 half-time score."
+      ]
+    },
+    {
+      "heading": "Bayern rise as Union remain 16th",
+      "paragraphs": [
+        "The victory lifted Bayern from fourth to first in the Bundesliga. They now have 10 points, with three wins and one draw, while their goal difference climbed from five to 12.",
+        "Bayern's goals-for total doubled from seven to 14. The result followed a league sequence of win, draw and win before this match, extending their unbeaten start to the 2026/27 campaign.",
+        "Union stayed 16th on one point, with no wins, one draw and three defeats. Their goal difference fell from minus six to minus 13, while their goals-for total remained at four.",
+        "The defeat followed a pre-match sequence of loss, loss and draw for Union. Against Bayern, the gap was visible both on the scoreboard and in the 23-3 disparity in shots."
+      ]
+    }
+  ]
+}
