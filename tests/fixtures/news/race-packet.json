@@ -1,0 +1,283 @@
+{
+ "hash": "c1fd71a411b05389325c12d3f9bf59b737a467e1db63d5b6baab24f1b1c5c1b3",
+ "event": {
+  "key": "table_race:b66f80c5-850a-5288-aa54-b63df47d131b:2026-W38",
+  "kind": "competition_intelligence",
+  "as_of": "2026-09-20T17:30:00.000Z",
+  "profile": "domestic_european_league",
+  "event_id": "7d618a11-fe28-5b48-83ad-1066baf7bd80"
+ },
+ "round": {
+  "results": [
+   {
+    "away": {
+     "id": "6cc66022-daed-5556-84ac-f3c81cb0a736",
+     "name": "1. FC Union Berlin",
+     "slug": "1-fc-union-berlin"
+    },
+    "date": "2026-09-18",
+    "home": {
+     "id": "9c2ce181-7bf4-55cf-b770-949389bb8797",
+     "name": "Bayern München",
+     "slug": "bayern-munchen"
+    },
+    "score": "7-0",
+    "match_id": "c1ae9955-8b7d-5c35-b451-7b3cff1cb891"
+   },
+   {
+    "away": {
+     "id": "6f8a1b01-df4d-597f-918a-42c9176472c3",
+     "name": "Mainz 05",
+     "slug": "mainz-05"
+    },
+    "date": "2026-09-19",
+    "home": {
+     "id": "775d711e-7530-5d32-89e1-40900407af76",
+     "name": "Borussia M'gladbach",
+     "slug": "borussia-m-gladbach"
+    },
+    "score": "3-4",
+    "match_id": "3437ee0b-881d-5860-9c5d-11cb6e790103"
+   },
+   {
+    "away": {
+     "id": "b5fe9bde-f06f-5c28-bdf3-594fe981c071",
+     "name": "Augsburg",
+     "slug": "augsburg"
+    },
+    "date": "2026-09-19",
+    "home": {
+     "id": "e8cd28c3-8517-5be6-a5e8-007cb5e11c93",
+     "name": "Werder Bremen",
+     "slug": "werder-bremen"
+    },
+    "score": "3-2",
+    "match_id": "7d5a2e86-38d4-502c-9b82-49c7fe41177c"
+   },
+   {
+    "away": {
+     "id": "97866b04-920a-5c36-bedb-e123f8db3c8c",
+     "name": "Köln",
+     "slug": "koln"
+    },
+    "date": "2026-09-19",
+    "home": {
+     "id": "c4975e20-1bb8-565f-ad0b-22316762e1a0",
+     "name": "Hamburger SV",
+     "slug": "hamburger-sv"
+    },
+    "score": "2-1",
+    "match_id": "c5dbee1b-2719-5571-a14f-f911308f5038"
+   },
+   {
+    "away": {
+     "id": "21f0f02a-d5e7-50a2-a789-95fc8161893f",
+     "name": "Freiburg",
+     "slug": "freiburg"
+    },
+    "date": "2026-09-19",
+    "home": {
+     "id": "bd55982f-e37d-553b-a5c6-15bca4ee41aa",
+     "name": "Eintracht Frankfurt",
+     "slug": "eintracht-frankfurt"
+    },
+    "score": "2-2",
+    "match_id": "e007e4ac-9039-539a-9428-b6cd591f48b5"
+   },
+   {
+    "away": {
+     "id": "640424d4-438b-5524-8909-0422f7e8ce97",
+     "name": "Borussia Dortmund",
+     "slug": "borussia-dortmund"
+    },
+    "date": "2026-09-19",
+    "home": {
+     "id": "be36e76a-6483-5d73-b14c-d60a7036a7c3",
+     "name": "Stuttgart",
+     "slug": "stuttgart"
+    },
+    "score": "0-1",
+    "match_id": "b8138147-3196-5d42-8984-0f35cd0c44e6"
+   },
+   {
+    "away": {
+     "id": "08e2b4f3-a5fe-58b3-a7a4-7d410e3f7b78",
+     "name": "RB Leipzig",
+     "slug": "rb-leipzig"
+    },
+    "date": "2026-09-20",
+    "home": {
+     "id": "81ea321f-975b-54aa-9897-4e65eb40803d",
+     "name": "Bayer Leverkusen",
+     "slug": "bayer-leverkusen"
+    },
+    "score": "2-0",
+    "match_id": "ade439da-0674-5133-88c8-81a27e36a97d"
+   },
+   {
+    "away": {
+     "id": "b0840b33-9543-5340-a7e5-a812e2f97a16",
+     "name": "SV 07 Elversberg",
+     "slug": "sv-07-elversberg"
+    },
+    "date": "2026-09-20",
+    "home": {
+     "id": "9094b067-50ee-5b54-a7e5-927beaed2466",
+     "name": "Schalke 04",
+     "slug": "schalke-04"
+    },
+    "score": "0-0",
+    "match_id": "41d77c07-c522-5d84-a8b0-61c03e2a864e"
+   },
+   {
+    "away": {
+     "id": "6c4c8c4a-fc58-5a85-9b62-a1e98bbf8fb9",
+     "name": "Hoffenheim",
+     "slug": "hoffenheim"
+    },
+    "date": "2026-09-20",
+    "home": {
+     "id": "b4ba53cb-45fb-5370-9e1c-147974073eec",
+     "name": "SC Paderborn 07",
+     "slug": "sc-paderborn-07"
+    },
+    "score": "3-1",
+    "match_id": "24d0b6e4-10ae-55b3-8627-c00fc0aae870"
+   }
+  ],
+  "results_counted": 9
+ },
+ "table": {
+  "top": [
+   {
+    "won": 4,
+    "team": {
+     "id": "640424d4-438b-5524-8909-0422f7e8ce97",
+     "name": "Borussia Dortmund",
+     "slug": "borussia-dortmund"
+    },
+    "played": 4,
+    "points": 12,
+    "position": 1,
+    "goal_difference": 7
+   },
+   {
+    "won": 3,
+    "team": {
+     "id": "9c2ce181-7bf4-55cf-b770-949389bb8797",
+     "name": "Bayern München",
+     "slug": "bayern-munchen"
+    },
+    "played": 4,
+    "points": 10,
+    "position": 2,
+    "goal_difference": 12
+   },
+   {
+    "won": 3,
+    "team": {
+     "id": "21f0f02a-d5e7-50a2-a789-95fc8161893f",
+     "name": "Freiburg",
+     "slug": "freiburg"
+    },
+    "played": 4,
+    "points": 10,
+    "position": 3,
+    "goal_difference": 9
+   },
+   {
+    "won": 2,
+    "team": {
+     "id": "b5fe9bde-f06f-5c28-bdf3-594fe981c071",
+     "name": "Augsburg",
+     "slug": "augsburg"
+    },
+    "played": 4,
+    "points": 7,
+    "position": 4,
+    "goal_difference": 5
+   },
+   {
+    "won": 2,
+    "team": {
+     "id": "81ea321f-975b-54aa-9897-4e65eb40803d",
+     "name": "Bayer Leverkusen",
+     "slug": "bayer-leverkusen"
+    },
+    "played": 4,
+    "points": 7,
+    "position": 5,
+    "goal_difference": 5
+   }
+  ],
+  "teams": 18,
+  "bottom": [
+   {
+    "won": 1,
+    "team": {
+     "id": "c4975e20-1bb8-565f-ad0b-22316762e1a0",
+     "name": "Hamburger SV",
+     "slug": "hamburger-sv"
+    },
+    "played": 4,
+    "points": 3,
+    "position": 16,
+    "goal_difference": -11
+   },
+   {
+    "won": 0,
+    "team": {
+     "id": "6cc66022-daed-5556-84ac-f3c81cb0a736",
+     "name": "1. FC Union Berlin",
+     "slug": "1-fc-union-berlin"
+    },
+    "played": 4,
+    "points": 1,
+    "position": 17,
+    "goal_difference": -13
+   },
+   {
+    "won": 0,
+    "team": {
+     "id": "775d711e-7530-5d32-89e1-40900407af76",
+     "name": "Borussia M'gladbach",
+     "slug": "borussia-m-gladbach"
+    },
+    "played": 4,
+    "points": 0,
+    "position": 18,
+    "goal_difference": -10
+   }
+  ],
+  "tiebreak": "standard",
+  "leader_gap": 2
+ },
+ "engine": "soccer-news-engine/2.0.0",
+ "version": "soccer-packet/2.0.0",
+ "provenance": {
+  "attributions": [
+   "Fixtures and results: OpenLigaDB (Open Database License)."
+  ]
+ },
+ "competition": {
+  "id": "b66f80c5-850a-5288-aa54-b63df47d131b",
+  "name": "Bundesliga",
+  "slug": "bundesliga",
+  "season": "2026/27"
+ },
+ "materiality": {
+  "score": 1,
+  "angles": [
+   {
+    "key": "table_race",
+    "detail": {
+     "week": "2026-W38"
+    },
+    "weight": 1
+   }
+  ]
+ },
+ "unavailable": [
+  "head-to-head and deductions (not applied)"
+ ]
+}

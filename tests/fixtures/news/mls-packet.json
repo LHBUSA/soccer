@@ -1,0 +1,366 @@
+{
+ "hash": "ac300b7e297be3ae99f7d3511b2288b6783b801afb6436faeea79662f96c8073",
+ "event": {
+  "key": "match_recap:c06c657e-4f81-57f8-bc34-fe1fe2f55573:correction",
+  "kind": "match_recap",
+  "as_of": "2026-09-27T00:30:00.000Z",
+  "profile": "mls",
+  "corrects": {
+   "slug": "austin-fc-san-diego-fc-2026-09-27-6ab152",
+   "reason": "withdrawn 2026-09-28: own goal credited to the wrong side (ESPN tags own goals with the benefiting team)"
+  },
+  "event_id": "1058feff-3d38-52dc-8545-f440efe79dce"
+ },
+ "goals": [
+  {
+   "team": "away",
+   "assist": null,
+   "minute": 50,
+   "scorer": {
+    "id": "0950c693-d738-53c6-b45a-b1a49e81da17",
+    "name": "Aníbal Godoy",
+    "slug": "anibal-godoy"
+   },
+   "penalty": false,
+   "own_goal": false,
+   "running_score": "0-1",
+   "display_minute": "50'"
+  },
+  {
+   "team": "away",
+   "assist": {
+    "id": "e1ddd7a8-5252-50a1-9362-b5781bbdafa7",
+    "name": "Anders Dreyer",
+    "slug": "anders-dreyer"
+   },
+   "minute": 64,
+   "scorer": {
+    "id": "328ced2f-2d1e-5805-ad0d-ee5fb83bc971",
+    "name": "Marcus Ingvartsen",
+    "slug": "marcus-ingvartsen"
+   },
+   "penalty": false,
+   "own_goal": false,
+   "running_score": "0-2",
+   "display_minute": "64'"
+  },
+  {
+   "team": "home",
+   "assist": {
+    "id": "31ae52a2-ff26-5a11-a8c5-20b300801c96",
+    "name": "Ervin Torres",
+    "slug": "ervin-torres"
+   },
+   "minute": 73,
+   "scorer": {
+    "id": "8b0b0e2f-c8a0-5f5d-890b-374f31db2288",
+    "name": "Brandon Vázquez",
+    "slug": "brandon-vazquez"
+   },
+   "penalty": false,
+   "own_goal": false,
+   "running_score": "1-2",
+   "display_minute": "73'"
+  },
+  {
+   "team": "home",
+   "assist": {
+    "id": "e661eb3c-5026-5b59-8da5-61118ac0c06b",
+    "name": "Jon Bell",
+    "slug": "jon-bell"
+   },
+   "minute": 82,
+   "scorer": {
+    "id": "b10f932a-63fa-53d8-a693-2e4c022d3531",
+    "name": "Christian Ramírez",
+    "slug": "christian-ramirez"
+   },
+   "penalty": false,
+   "own_goal": false,
+   "running_score": "2-2",
+   "display_minute": "82'"
+  },
+  {
+   "team": "home",
+   "assist": {
+    "id": "d11f4162-b728-5334-a6ab-69089ae95e76",
+    "name": "Jon Gallagher",
+    "slug": "jon-gallagher"
+   },
+   "minute": 86,
+   "scorer": {
+    "id": "b10f932a-63fa-53d8-a693-2e4c022d3531",
+    "name": "Christian Ramírez",
+    "slug": "christian-ramirez"
+   },
+   "penalty": false,
+   "own_goal": false,
+   "running_score": "3-2",
+   "display_minute": "86'"
+  },
+  {
+   "team": "away",
+   "assist": null,
+   "minute": 58,
+   "scorer": {
+    "id": "83d6c81d-ff01-5df0-bc6a-d6072a15aae0",
+    "name": "Mikkel Desler",
+    "slug": "mikkel-desler"
+   },
+   "penalty": false,
+   "own_goal": true,
+   "running_score": "3-3",
+   "display_minute": "58'"
+  }
+ ],
+ "match": {
+  "id": "c06c657e-4f81-57f8-bc34-fe1fe2f55573",
+  "score": {
+   "away": 3,
+   "home": 3,
+   "final": "3-3",
+   "away_ht": null,
+   "home_ht": null
+  },
+  "venue": "Q2 Stadium",
+  "margin": 0,
+  "status": "finished",
+  "winner": "draw",
+  "kickoff_utc": "2026-09-27T00:30:00.000Z",
+  "league_stage": true
+ },
+ "stats": {
+  "away": {
+   "saves": 3,
+   "shots": 15,
+   "corners": 1,
+   "possession_pct": 58.7,
+   "fouls_committed": 6,
+   "shots_on_target": 5
+  },
+  "home": {
+   "saves": 3,
+   "shots": 13,
+   "corners": 4,
+   "possession_pct": 41.3,
+   "fouls_committed": 12,
+   "shots_on_target": 6
+  },
+  "basis": "source",
+  "provider": "espn"
+ },
+ "teams": {
+  "away": {
+   "id": "3d3675b6-12df-59fd-8714-1ab0337f2627",
+   "name": "San Diego FC",
+   "next": {
+    "date": "2026-10-10",
+    "venue": "away",
+    "match_id": "3f1e32db-c91d-5848-b074-ead0ac48806b",
+    "opponent": {
+     "id": "5f7c1140-c6ab-575b-92b6-885c6d27e878",
+     "name": "Red Bull New York",
+     "slug": "red-bull-new-york"
+    }
+   },
+   "slug": "san-diego-fc",
+   "group": null,
+   "form_before": [
+    "D",
+    "L",
+    "L",
+    "L",
+    "W"
+   ],
+   "table_after": {
+    "won": 8,
+    "lost": 11,
+    "drawn": 8,
+    "played": 27,
+    "points": 32,
+    "position": 21,
+    "goals_for": 47,
+    "goal_difference": 0
+   },
+   "table_before": {
+    "won": 8,
+    "lost": 11,
+    "drawn": 7,
+    "played": 26,
+    "points": 31,
+    "position": 21,
+    "goals_for": 44,
+    "goal_difference": 0
+   },
+   "form_before_count": 5
+  },
+  "home": {
+   "id": "1823dcb9-2f81-5105-97e5-e9f0cbda7e3c",
+   "name": "Austin FC",
+   "next": {
+    "date": "2026-10-11",
+    "venue": "home",
+    "match_id": "2711463b-288e-5f7b-b230-d9300d767463",
+    "opponent": {
+     "id": "80f1ce21-52a4-5dfb-bb0b-196dfd002bcb",
+     "name": "Nashville SC",
+     "slug": "nashville-sc"
+    }
+   },
+   "slug": "austin-fc",
+   "group": null,
+   "form_before": [
+    "D",
+    "W",
+    "D",
+    "D",
+    "W"
+   ],
+   "table_after": {
+    "won": 7,
+    "lost": 10,
+    "drawn": 10,
+    "played": 27,
+    "points": 31,
+    "position": 22,
+    "goals_for": 35,
+    "goal_difference": -12
+   },
+   "table_before": {
+    "won": 7,
+    "lost": 10,
+    "drawn": 9,
+    "played": 26,
+    "points": 30,
+    "position": 22,
+    "goals_for": 32,
+    "goal_difference": -12
+   },
+   "form_before_count": 5
+  }
+ },
+ "angles": [
+  {
+   "key": "multi_goal_scorer",
+   "detail": {
+    "goals": 2,
+    "player": {
+     "id": "b10f932a-63fa-53d8-a693-2e4c022d3531",
+     "name": "Christian Ramírez",
+     "slug": "christian-ramirez"
+    },
+    "player_id": "b10f932a-63fa-53d8-a693-2e4c022d3531"
+   },
+   "weight": 0.6
+  },
+  {
+   "key": "high_scoring",
+   "detail": {
+    "goals": 6
+   },
+   "weight": 0.6
+  }
+ ],
+ "engine": "soccer-news-engine/2.0.0",
+ "version": "soccer-packet/2.0.0",
+ "decisive": [
+  {
+   "team": "home",
+   "goals": 2,
+   "shots": 3,
+   "player": {
+    "id": "b10f932a-63fa-53d8-a693-2e4c022d3531",
+    "name": "Christian Ramírez",
+    "slug": "christian-ramirez"
+   },
+   "assists": 0,
+   "shots_on_target": 3
+  },
+  {
+   "team": "home",
+   "goals": 1,
+   "shots": 3,
+   "player": {
+    "id": "8b0b0e2f-c8a0-5f5d-890b-374f31db2288",
+    "name": "Brandon Vázquez",
+    "slug": "brandon-vazquez"
+   },
+   "assists": 0,
+   "shots_on_target": 2
+  },
+  {
+   "team": "away",
+   "goals": 1,
+   "shots": 4,
+   "player": {
+    "id": "328ced2f-2d1e-5805-ad0d-ee5fb83bc971",
+    "name": "Marcus Ingvartsen",
+    "slug": "marcus-ingvartsen"
+   },
+   "assists": 0,
+   "shots_on_target": 1
+  },
+  {
+   "team": "away",
+   "goals": 0,
+   "shots": 2,
+   "player": {
+    "id": "e1ddd7a8-5252-50a1-9362-b5781bbdafa7",
+    "name": "Anders Dreyer",
+    "slug": "anders-dreyer"
+   },
+   "assists": 1,
+   "shots_on_target": 1
+  }
+ ],
+ "provenance": {
+  "attributions": [
+   "Structured facts: ESPN (secondary source)."
+  ]
+ },
+ "competition": {
+  "id": "d370dec9-4da9-5433-b2bc-e32958287728",
+  "name": "MLS",
+  "slug": "mls",
+  "season": "2026"
+ },
+ "materiality": {
+  "score": 1.2,
+  "angles": [
+   {
+    "key": "multi_goal_scorer",
+    "detail": {
+     "goals": 2,
+     "player_id": "b10f932a-63fa-53d8-a693-2e4c022d3531"
+    },
+    "weight": 0.6
+   },
+   {
+    "key": "high_scoring",
+    "detail": {
+     "goals": 6
+    },
+    "weight": 0.6
+   }
+  ],
+  "profile": "mls",
+  "material": true,
+  "profiles_version": "soccer-news-profiles/1.0.0"
+ },
+ "unavailable": [
+  "quotes (none sourced)",
+  "injuries (no legitimate source ingested)",
+  "odds (not part of this product)",
+  "xG (PBE xG not validated)"
+ ],
+ "shots_located": {
+  "away": 14,
+  "home": 13,
+  "source": "espn",
+  "avg_distance_m": {
+   "away": 15.6,
+   "home": 14.3
+  }
+ },
+ "teams_in_table": 30
+}

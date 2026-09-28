@@ -112,3 +112,9 @@ test('premium monogram: up to four initials, never a fake crest', () => {
   assert.match(crest({ name: 'Red Bull New York' }), /class="tmark m4"/);
   assert.doesNotMatch(crest({ name: 'Arsenal' }), /<img/);
 });
+
+test('ticker: one semantic score list; the marquee copy is aria-hidden, inert, unselectable and nosnippet', () => {
+  const src = readFileSync('src/components/score-ticker.js', 'utf8');
+  for (const needle of ["setAttribute('aria-hidden', 'true')", "setAttribute('inert', '')", "setAttribute('data-nosnippet', '')", "removeAttribute('href')", 'a.tabIndex = -1']) assert.ok(src.includes(needle), needle);
+  assert.match(readFileSync('src/styles/main.css', 'utf8'), /\.stk-clone \{[^}]*user-select: none/);
+});

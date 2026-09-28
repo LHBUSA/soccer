@@ -46,7 +46,7 @@ const ROUTES = [
   ...(story ? [
     { path: '/news', expect: ['PROPBETEDGE SOCCER NEWSROOM', 'Soccer news', story.headline], name: 'news' },
     { path: `/news/${story.desk}`, expect: ['news', story.headline], name: 'news-desk' },
-    { path: `/news/${story.desk}/${story.slug}`, expect: [story.headline, 'EVIDENCE AND METHOD', 'Evidence packet'], name: 'article' },
+    { path: `/news/${story.desk}/${story.slug}`, expect: [story.headline, 'IN THIS STORY', 'SOURCE & METHOD', 'min read', 'SHARE'], name: 'article' },
   ] : [{ path: '/news', expect: ['PROPBETEDGE SOCCER NEWSROOM', 'Evidence-backed soccer reporting is coming online.'], name: 'news' }]),
   { path: '/players', expect: ['Player directory', 'PLAYERS'], name: 'players' },
   { path: '/players?competition=mls&sort=goal_contributions_per90', expect: ['Player directory', 'Leaders among the 450+'], name: 'players-leaders' },

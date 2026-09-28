@@ -62,8 +62,12 @@ export function mountScoreTicker(host) {
     track.querySelectorAll('.stk-clone').forEach(n => n.remove());
     track.classList.remove('marquee'); viewport.classList.remove('locked');
     if (!(run.scrollWidth > viewport.clientWidth + 2) || reduce?.matches || !wide?.matches) return;
+    // The visual loop copy: presentation only. One semantic score list exists (the run); the copy is
+    // hidden from assistive tech (aria-hidden), inert (no focus, no clicks), excluded from text
+    // selection / copy (CSS user-select: none) and from search snippets (data-nosnippet).
     const clone = run.cloneNode(true); clone.classList.add('stk-clone'); clone.setAttribute('aria-hidden', 'true');
-    clone.querySelectorAll('a').forEach(a => { a.removeAttribute('href'); a.removeAttribute('data-link'); a.tabIndex = -1; });
+    clone.setAttribute('inert', ''); clone.setAttribute('data-nosnippet', ''); clone.removeAttribute('id');
+    clone.querySelectorAll('a').forEach(a => { a.removeAttribute('href'); a.removeAttribute('data-link'); a.removeAttribute('aria-label'); a.tabIndex = -1; });
     track.append(clone);
     track.style.setProperty('--stk-dur', `${Math.max(30, Math.round(run.scrollWidth / 40))}s`);
     track.classList.add('marquee'); viewport.classList.add('locked');

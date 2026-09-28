@@ -1,0 +1,108 @@
+{
+ "form": {
+  "appearances": [
+   {
+    "date": "2026-09-13",
+    "team": {
+     "id": "e2c42777-a99e-5b8a-a17b-0546d789669d",
+     "name": "Sporting Kansas City",
+     "slug": "sporting-kansas-city"
+    },
+    "goals": 1,
+    "score": "3-1",
+    "started": true,
+    "match_id": "55de91b9-362e-50df-bbf2-c45331aef3ed",
+    "opponent": {
+     "id": "06925853-d70b-5e7b-8128-19ed9adae061",
+     "name": "LAFC",
+     "slug": "lafc"
+    }
+   },
+   {
+    "date": "2026-09-20",
+    "team": {
+     "id": "e2c42777-a99e-5b8a-a17b-0546d789669d",
+     "name": "Sporting Kansas City",
+     "slug": "sporting-kansas-city"
+    },
+    "goals": 2,
+    "score": "3-4",
+    "started": true,
+    "match_id": "5acf3520-ab16-532b-98e6-6f53df705d4d",
+    "opponent": {
+     "id": "94a30b61-36f9-5c8f-ba86-7ba6150d12be",
+     "name": "Philadelphia Union",
+     "slug": "philadelphia-union"
+    }
+   },
+   {
+    "date": "2026-09-27",
+    "team": {
+     "id": "e2c42777-a99e-5b8a-a17b-0546d789669d",
+     "name": "Sporting Kansas City",
+     "slug": "sporting-kansas-city"
+    },
+    "goals": 1,
+    "score": "2-0",
+    "started": true,
+    "match_id": "8f80d473-5519-5725-85ac-e60cbf545285",
+    "opponent": {
+     "id": "499477b6-a3d4-5caf-91e1-30e382767b13",
+     "name": "Houston Dynamo FC",
+     "slug": "houston-dynamo-fc"
+    }
+   }
+  ],
+  "goals_in_run": 4,
+  "consecutive_scoring_appearances": 3
+ },
+ "hash": "26cc9a6343096815c91b32da030856913b2ab7462d3a341a9bdb4cd89e699e72",
+ "team": {
+  "id": "e2c42777-a99e-5b8a-a17b-0546d789669d",
+  "name": "Sporting Kansas City",
+  "slug": "sporting-kansas-city"
+ },
+ "event": {
+  "key": "player_form:837c33c5-6b9a-5279-bab8-3aa39cb3a755:3:8f80d473-5519-5725-85ac-e60cbf545285",
+  "kind": "player_form",
+  "as_of": "2026-09-27T00:30:00.000Z",
+  "profile": "mls",
+  "event_id": "cef17283-f5eb-50d9-a130-43feb5dd7be8"
+ },
+ "engine": "soccer-news-engine/2.0.0",
+ "player": {
+  "id": "837c33c5-6b9a-5279-bab8-3aa39cb3a755",
+  "name": "André Luiz",
+  "slug": "andre-luiz"
+ },
+ "version": "soccer-packet/2.0.0",
+ "provenance": {
+  "attributions": [
+   "Structured facts: ESPN (secondary source)."
+  ]
+ },
+ "competition": {
+  "id": "d370dec9-4da9-5433-b2bc-e32958287728",
+  "name": "MLS",
+  "slug": "mls",
+  "season": "2026"
+ },
+ "materiality": {
+  "score": 1,
+  "angles": [
+   {
+    "key": "scoring_run",
+    "detail": {
+     "matches": 3
+    },
+    "weight": 1
+   }
+  ]
+ },
+ "unavailable": [
+  "quotes (none sourced)",
+  "injuries (no legitimate source ingested)",
+  "odds (not part of this product)",
+  "minutes (not stated per match by the source)"
+ ]
+}

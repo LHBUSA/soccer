@@ -7,6 +7,7 @@ import { FEATURED_COMPS, compByDesk } from '../lib/competitions.js';
 import { compMono, link, sourcePanel } from '../components/ui.js';
 import { newsCard, newsDesk as deskLayout } from './home.js';
 import { latestNews, selectHomepageLead } from '../lib/news.js';
+import { renderArticle, mountArticle } from './article.js';
 
 const INDEX = 'index, follow, max-image-preview:large';
 const deskTabs = active => `<nav class="tabs" aria-label="News desks">${link('/news', 'All desks', `tab${!active ? ' on' : ''}`)}${join(FEATURED_COMPS, c => link(`/news/${c.desk}`, `${compMono(c.slug, 'xs')}${esc(c.name)}`, `tab${c.desk === active ? ' on' : ''}`))}</nav>`;
@@ -57,25 +58,6 @@ export const article = {
     if (env.data.desk !== desk) { const e = new Error('not found'); e.status = 404; throw e; }
     return { env };
   },
-  render(d) {
-    const a = d.env.data; const c = compByDesk(a.desk);
-    const sections = a.body?.sections || [];
-    const entities = (a.entities || []).filter(e => e.href);
-    return `<article>
-    <section class="hero compact"><div class="wrap article">
-      <p class="kicker gold">${link(`/news/${a.desk}`, `${compMono(c?.slug, 'xs')} ${esc(c?.name.toUpperCase() || a.desk)}`, 'deskline')} · ${esc(typeLabel(a.story_class))}</p>
-      <h1 class="display">${esc(a.headline)}</h1>
-      ${when(a.dek, () => `<p class="dek">${esc(a.dek)}</p>`)}
-      <p class="byline">PropBetEdge Soccer newsroom · <time datetime="${esc(a.published_at)}">${esc(dateLong(a.published_at))}</time></p>
-    </div></section>
-    <section class="canvas"><div class="wrap article abody">
-      ${join(sections.filter(s => s.key !== 'method'), s => `<h2>${esc(s.heading)}</h2>${join(s.paragraphs, p => `<p>${esc(p)}</p>`)}`)}
-      ${when(entities.length, () => `<nav class="entities" aria-label="In this story">${join(entities, e => link(e.href, esc(e.name), 'chip'))}</nav>`)}
-      <aside class="evidence"><h2>EVIDENCE AND METHOD</h2>
-        ${join(sections.filter(s => s.key === 'method').flatMap(s => s.paragraphs), p => `<p>${esc(p)}</p>`)}
-        <ul><li>Evidence packet: <code>${esc(String(a.packet_hash).slice(0, 16))}</code> (frozen, append-only)</li><li>Composer: ${esc(a.composer)}</li><li>Gates: ${esc(a.gate_version)}, all passed</li><li>Published ${esc(dateTime(a.published_at))}</li></ul>
-      </aside>
-      ${sourcePanel(d.env.meta)}
-    </div></section></article>`;
-  },
+  render(d) { return renderArticle(d.env); },
+  mount(root, d) { mountArticle(root, d.env); },
 };

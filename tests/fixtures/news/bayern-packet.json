@@ -1,0 +1,309 @@
+{
+ "hash": "3ce080b7ececc67e44363b79e41f6ec2e17a4b4f35c74aa818031f4b3767a787",
+ "event": {
+  "key": "match_recap:c1ae9955-8b7d-5c35-b451-7b3cff1cb891",
+  "kind": "match_recap",
+  "as_of": "2026-09-18T18:30:00.000Z",
+  "profile": "domestic_european_league",
+  "event_id": "9fb8c496-339a-5918-91c1-8fc0bd31f037"
+ },
+ "goals": [
+  {
+   "team": "home",
+   "minute": 18,
+   "scorer": {
+    "id": "bbf566f8-29c6-5368-9bb7-95a889fe7d81",
+    "name": "Jamal Musiala",
+    "slug": "jamal-musiala"
+   },
+   "penalty": false,
+   "own_goal": false,
+   "running_score": "1-0",
+   "display_minute": "18'"
+  },
+  {
+   "team": "home",
+   "minute": 39,
+   "scorer": {
+    "id": "b610f5cd-cb1a-5452-9a5c-9be80fab4e7a",
+    "name": "Harry Kane",
+    "slug": "harry-kane"
+   },
+   "penalty": true,
+   "own_goal": false,
+   "running_score": "2-0",
+   "display_minute": "39'"
+  },
+  {
+   "team": "home",
+   "minute": 43,
+   "scorer": {
+    "id": "4bafff58-73ee-52e1-971b-4159dfdd4d52",
+    "name": "Michael Olise",
+    "slug": "michael-olise"
+   },
+   "penalty": false,
+   "own_goal": false,
+   "running_score": "3-0",
+   "display_minute": "43'"
+  },
+  {
+   "team": "home",
+   "minute": 54,
+   "scorer": {
+    "id": "b610f5cd-cb1a-5452-9a5c-9be80fab4e7a",
+    "name": "Harry Kane",
+    "slug": "harry-kane"
+   },
+   "penalty": false,
+   "own_goal": false,
+   "running_score": "4-0",
+   "display_minute": "54'"
+  },
+  {
+   "team": "home",
+   "minute": 70,
+   "scorer": {
+    "id": "7572a107-fffc-565a-b55b-726edec6f615",
+    "name": "Ismael Saibari",
+    "slug": "ismael-saibari"
+   },
+   "penalty": false,
+   "own_goal": false,
+   "running_score": "5-0",
+   "display_minute": "70'"
+  },
+  {
+   "team": "home",
+   "minute": 73,
+   "scorer": {
+    "id": "4bafff58-73ee-52e1-971b-4159dfdd4d52",
+    "name": "Michael Olise",
+    "slug": "michael-olise"
+   },
+   "penalty": false,
+   "own_goal": false,
+   "running_score": "6-0",
+   "display_minute": "73'"
+  },
+  {
+   "team": "home",
+   "minute": 76,
+   "scorer": {
+    "id": "4bafff58-73ee-52e1-971b-4159dfdd4d52",
+    "name": "Michael Olise",
+    "slug": "michael-olise"
+   },
+   "penalty": false,
+   "own_goal": false,
+   "running_score": "7-0",
+   "display_minute": "76'"
+  }
+ ],
+ "match": {
+  "id": "c1ae9955-8b7d-5c35-b451-7b3cff1cb891",
+  "score": {
+   "away": 0,
+   "home": 7,
+   "final": "7-0",
+   "away_ht": 0,
+   "home_ht": 3
+  },
+  "venue": null,
+  "margin": 7,
+  "status": "finished",
+  "winner": "home",
+  "kickoff_utc": "2026-09-18T18:30:00.000Z",
+  "league_stage": true
+ },
+ "stats": {
+  "away": {
+   "saves": 6,
+   "shots": 3,
+   "corners": 2,
+   "fouls_committed": 9,
+   "shots_on_target": 2
+  },
+  "home": {
+   "saves": 2,
+   "shots": 23,
+   "corners": 9,
+   "fouls_committed": 12,
+   "shots_on_target": 15
+  },
+  "basis": "source",
+  "provider": "espn"
+ },
+ "teams": {
+  "away": {
+   "id": "6cc66022-daed-5556-84ac-f3c81cb0a736",
+   "name": "1. FC Union Berlin",
+   "slug": "1-fc-union-berlin",
+   "form_before": [
+    "L",
+    "L",
+    "D"
+   ],
+   "table_after": {
+    "won": 0,
+    "lost": 3,
+    "drawn": 1,
+    "played": 4,
+    "points": 1,
+    "position": 16,
+    "goals_for": 4,
+    "goal_difference": -13
+   },
+   "table_before": {
+    "won": 0,
+    "lost": 2,
+    "drawn": 1,
+    "played": 3,
+    "points": 1,
+    "position": 16,
+    "goals_for": 4,
+    "goal_difference": -6
+   }
+  },
+  "home": {
+   "id": "9c2ce181-7bf4-55cf-b770-949389bb8797",
+   "name": "Bayern München",
+   "slug": "bayern-munchen",
+   "form_before": [
+    "W",
+    "D",
+    "W"
+   ],
+   "table_after": {
+    "won": 3,
+    "lost": 0,
+    "drawn": 1,
+    "played": 4,
+    "points": 10,
+    "position": 1,
+    "goals_for": 14,
+    "goal_difference": 12
+   },
+   "table_before": {
+    "won": 2,
+    "lost": 0,
+    "drawn": 1,
+    "played": 3,
+    "points": 7,
+    "position": 4,
+    "goals_for": 7,
+    "goal_difference": 5
+   }
+  }
+ },
+ "angles": [
+  {
+   "key": "multi_goal_scorer",
+   "detail": {
+    "goals": 2,
+    "player": {
+     "id": "b610f5cd-cb1a-5452-9a5c-9be80fab4e7a",
+     "name": "Harry Kane",
+     "slug": "harry-kane"
+    },
+    "player_id": "b610f5cd-cb1a-5452-9a5c-9be80fab4e7a"
+   },
+   "weight": 0.6
+  },
+  {
+   "key": "multi_goal_scorer",
+   "detail": {
+    "goals": 3,
+    "player": {
+     "id": "4bafff58-73ee-52e1-971b-4159dfdd4d52",
+     "name": "Michael Olise",
+     "slug": "michael-olise"
+    },
+    "player_id": "4bafff58-73ee-52e1-971b-4159dfdd4d52"
+   },
+   "weight": 1.2
+  },
+  {
+   "key": "high_scoring",
+   "detail": {
+    "goals": 7
+   },
+   "weight": 0.6
+  },
+  {
+   "key": "heavy_margin",
+   "detail": {
+    "margin": 7
+   },
+   "weight": 0.6
+  }
+ ],
+ "engine": "soccer-news-engine/2.0.0",
+ "version": "soccer-packet/2.0.0",
+ "provenance": {
+  "attributions": [
+   "Fixtures and results: OpenLigaDB (Open Database License).",
+   "Structured facts: ESPN (secondary source)."
+  ]
+ },
+ "competition": {
+  "id": "b66f80c5-850a-5288-aa54-b63df47d131b",
+  "name": "Bundesliga",
+  "slug": "bundesliga",
+  "season": "2026/27"
+ },
+ "materiality": {
+  "score": 3,
+  "angles": [
+   {
+    "key": "multi_goal_scorer",
+    "detail": {
+     "goals": 2,
+     "player_id": "b610f5cd-cb1a-5452-9a5c-9be80fab4e7a"
+    },
+    "weight": 0.6
+   },
+   {
+    "key": "multi_goal_scorer",
+    "detail": {
+     "goals": 3,
+     "player_id": "4bafff58-73ee-52e1-971b-4159dfdd4d52"
+    },
+    "weight": 1.2
+   },
+   {
+    "key": "high_scoring",
+    "detail": {
+     "goals": 7
+    },
+    "weight": 0.6
+   },
+   {
+    "key": "heavy_margin",
+    "detail": {
+     "margin": 7
+    },
+    "weight": 0.6
+   }
+  ],
+  "profile": "domestic_european_league",
+  "material": true,
+  "profiles_version": "soccer-news-profiles/1.0.0"
+ },
+ "unavailable": [
+  "quotes (none sourced)",
+  "injuries (no legitimate source ingested)",
+  "odds (not part of this product)",
+  "xG (PBE xG not validated)"
+ ],
+ "shots_located": {
+  "away": 3,
+  "home": 23,
+  "source": "espn",
+  "avg_distance_m": {
+   "away": 17.6,
+   "home": 17.9
+  }
+ },
+ "teams_in_table": 18
+}

@@ -99,11 +99,11 @@ test('pipeline: detects, freezes, publishes gated stories once (idempotent), evi
   const up = upstream(games);
   await runOpenLigaCurrent({ store, storage: up.storage, registry: REG, state: emptyLaneState('x'), now: Date.parse('2026-09-27T00:00:00Z'), fetcher: up.fetcher, force: true });
   const now = Date.parse('2026-09-21T12:00:00Z');
-  const r1 = await runNews(store, { now, competitions: ['bundesliga'] });
+  const r1 = await runNews(store, { now, competitions: ['bundesliga'], env: { NEWS_DESK: 'off' } });
   const b = r1.competitions.bundesliga;
   assert.ok(b.published >= 1, JSON.stringify(b));
   assert.ok(b.stories.some(s => s.story_class === 'match_recap' && s.headline === 'Club 10 beat Club 20 6-0'));
-  const r2 = await runNews(store, { now, competitions: ['bundesliga'] });
+  const r2 = await runNews(store, { now, competitions: ['bundesliga'], env: { NEWS_DESK: 'off' } });
   assert.equal(r2.competitions.bundesliga.new, 0); // written once
   const arts = await store.select('soccer_articles', { columns: ['status', 'packet_hash', 'desk'] });
   assert.ok(arts.every(x => x.desk === 'bundesliga'));
@@ -149,7 +149,7 @@ test('UCL readiness: league-phase recap with a verified table publishes on the c
   await store.insert('soccer_season_groups', [{ id: id(30), season_id: id(2), group_key: 'league-phase', name: 'League phase', group_type: 'league_phase', provider: 'espn', external_id: '1' }]);
   const srow = (t, rank, p, w, d, l, gf, ga, pts, note) => ({ group_id: id(30), team_id: teams[t].id, provider: 'espn', rank, played: p, won: w, drawn: d, lost: l, goals_for: gf, goals_against: ga, goal_difference: gf - ga, points: pts, note, observed_at: '2026-10-02T00:00:00Z' });
   await store.insert('soccer_source_standings', [srow(0, 1, 1, 1, 0, 0, 6, 0, 3, 'Qualifies for round of 16'), srow(2, 2, 1, 0, 1, 0, 1, 1, 1, 'Qualifies for round of 16'), srow(3, 3, 1, 0, 1, 0, 1, 1, 1, 'Knockout phase playoffs - seeded'), srow(1, 4, 1, 0, 0, 1, 0, 6, 0, 'Eliminated')]);
-  const out = await runNews(store, { now: Date.parse('2026-10-02T12:00:00Z'), competitions: ['uefa-champions-league'] });
+  const out = await runNews(store, { now: Date.parse('2026-10-02T12:00:00Z'), competitions: ['uefa-champions-league'], env: { NEWS_DESK: 'off' } });
   const u = out.competitions['uefa-champions-league'];
   const recap = u.stories.find(s => s.story_class === 'match_recap');
   assert.ok(recap && recap.status === 'published', JSON.stringify(u));

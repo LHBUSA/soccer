@@ -626,6 +626,30 @@ export async function news(store, q) {
 export async function article(store, slug) {
   const [a] = await store.select('soccer_articles', { columns: ['slug', 'desk', 'story_class', 'headline', 'dek', 'body', 'entities', 'published_at', 'updated_at', 'packet_hash', 'composer', 'gate_version'], eq: { slug, status: 'published' }, limit: 1 });
   if (!a) throw new NotFound(`article ${slug}`);
+  // Additive (article page V3): approved media on the story's entities, the hero subject, and
+  // related coverage by shared entities. Only approved media; nothing is guessed.
+  const ents = a.entities || [];
+  const personIds = ents.filter(e => e.type === 'Person' && e.id).map(e => e.id);
+  const teamIds = ents.filter(e => e.type === 'SportsTeam' && e.id).map(e => e.id);
+  const [pm, cm] = await Promise.all([portraitMap(store, personIds), approvedMedia(store, 'team', teamIds, { mediaType: 'crest', primaryOnly: true })]);
+  a.entities = ents.map(e => ({ ...e, ...(e.type === 'Person' && pm.get(e.id) ? { portrait: pm.get(e.id) } : {}), ...(e.type === 'SportsTeam' && cm.get(e.id) ? { crest: { url: cm.get(e.id)[0].url, attribution: cm.get(e.id)[0].attribution } } : {}) }));
+  const inHead = e => e.name && String(a.headline || '').includes(e.name.split(' ').pop());
+  const heroPerson = a.entities.find(e => e.portrait && inHead(e)) || a.entities.find(e => e.portrait);
+  const heroTeam = a.entities.find(e => e.crest && inHead(e)) || a.entities.find(e => e.crest);
+  a.hero = heroPerson ? { kind: 'portrait', url: heroPerson.portrait.url, attribution: heroPerson.portrait.attribution, license: heroPerson.portrait.license || null, entity: { name: heroPerson.name, slug: heroPerson.slug } }
+    : heroTeam ? { kind: 'crest', url: heroTeam.crest.url, attribution: heroTeam.crest.attribution, entity: { name: heroTeam.name, slug: heroTeam.slug } } : null;
+  // Related coverage: published stories sharing entities (players > match > teams), recency bonus.
+  const ids = new Set(ents.map(e => e.id).filter(Boolean));
+  const others = (await store.select('soccer_articles', { columns: ['slug', 'desk', 'story_class', 'headline', 'dek', 'published_at', 'entities'], eq: { status: 'published' }, order: 'published_at.desc', limit: 200 })).filter(o => o.slug !== a.slug);
+  const W = { Person: 60, SportsEvent: 40, SportsTeam: 26 };
+  const scored = others.map(o => {
+    let s = 0; for (const e of o.entities || []) if (e.id && ids.has(e.id)) s += W[e.type] || 0;
+    if (o.desk === a.desk) s += 4;
+    const days = Math.abs((Date.parse(a.published_at) - Date.parse(o.published_at)) / 864e5);
+    s += days <= 1 ? 12 : days <= 3 ? 9 : days <= 7 ? 6 : 0;
+    return { o, s };
+  }).filter(x => x.s >= 26).sort((x, y) => y.s - x.s || Date.parse(y.o.published_at) - Date.parse(x.o.published_at)).slice(0, 4);
+  a.related = scored.map(({ o }) => ({ slug: o.slug, desk: o.desk, story_class: o.story_class, headline: o.headline, dek: o.dek, published_at: o.published_at }));
   return E(a, { source: 'pbe', semantics: 'Published article; packet_hash identifies the frozen evidence packet behind every figure.', source_updated_at: a.updated_at });
 }
 

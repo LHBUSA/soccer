@@ -1,0 +1,330 @@
+{
+ "hash": "da838b790f87d1939e035a8b73533c1641f50bce135471051c420fb2cad4c95f",
+ "event": {
+  "key": "match_recap:355212b9-2ab6-573c-98ed-ec6cfbbc9c9a",
+  "kind": "match_recap",
+  "as_of": "2026-09-20T13:00:00.000Z",
+  "profile": "domestic_european_league",
+  "event_id": "b7badb5d-e84a-5b89-afd4-b7244f1a9bf9"
+ },
+ "goals": [
+  {
+   "team": "home",
+   "minute": 9,
+   "scorer": {
+    "id": "3eee21cc-ed51-5e83-9950-40ed10181469",
+    "name": "Enzo Fernández",
+    "slug": "enzo-fernandez"
+   },
+   "penalty": false,
+   "own_goal": false,
+   "running_score": "1-0",
+   "display_minute": "9'"
+  },
+  {
+   "team": "away",
+   "minute": 12,
+   "scorer": {
+    "id": "97ae9fee-7c6c-5c2d-918f-3581c798a189",
+    "name": "Brian Brobbey",
+    "slug": "brian-brobbey"
+   },
+   "penalty": false,
+   "own_goal": false,
+   "running_score": "1-1",
+   "display_minute": "12'"
+  },
+  {
+   "team": "home",
+   "minute": 29,
+   "scorer": {
+    "id": "454a6e19-9c49-5baf-aca1-084956209dde",
+    "name": "Rayan Cherki",
+    "slug": "rayan-cherki"
+   },
+   "penalty": false,
+   "own_goal": false,
+   "running_score": "2-1",
+   "display_minute": "29'"
+  },
+  {
+   "team": "away",
+   "minute": 33,
+   "scorer": {
+    "id": "97ae9fee-7c6c-5c2d-918f-3581c798a189",
+    "name": "Brian Brobbey",
+    "slug": "brian-brobbey"
+   },
+   "penalty": false,
+   "own_goal": false,
+   "running_score": "2-2",
+   "display_minute": "33'"
+  },
+  {
+   "team": "home",
+   "minute": 43,
+   "scorer": {
+    "id": "faa401e9-55d2-54c9-99f0-5232d81d3e08",
+    "name": "Antoine Semenyo",
+    "slug": "antoine-semenyo"
+   },
+   "penalty": false,
+   "own_goal": false,
+   "running_score": "3-2",
+   "display_minute": "43'"
+  },
+  {
+   "team": "home",
+   "minute": 57,
+   "scorer": {
+    "id": "faa401e9-55d2-54c9-99f0-5232d81d3e08",
+    "name": "Antoine Semenyo",
+    "slug": "antoine-semenyo"
+   },
+   "penalty": false,
+   "own_goal": false,
+   "running_score": "4-2",
+   "display_minute": "57'"
+  },
+  {
+   "team": "away",
+   "minute": 59,
+   "scorer": {
+    "id": "97ae9fee-7c6c-5c2d-918f-3581c798a189",
+    "name": "Brian Brobbey",
+    "slug": "brian-brobbey"
+   },
+   "penalty": false,
+   "own_goal": false,
+   "running_score": "4-3",
+   "display_minute": "59'"
+  },
+  {
+   "team": "home",
+   "minute": 81,
+   "scorer": {
+    "id": "5e1e1366-868a-5a47-a342-b96708d0e4d0",
+    "name": "Erling Haaland",
+    "slug": "erling-haaland"
+   },
+   "penalty": false,
+   "own_goal": false,
+   "running_score": "5-3",
+   "display_minute": "81'"
+  }
+ ],
+ "match": {
+  "id": "355212b9-2ab6-573c-98ed-ec6cfbbc9c9a",
+  "score": {
+   "away": 3,
+   "home": 5,
+   "final": "5-3",
+   "away_ht": null,
+   "home_ht": null
+  },
+  "venue": "Etihad Stadium",
+  "margin": 2,
+  "status": "finished",
+  "winner": "home",
+  "kickoff_utc": "2026-09-20T13:00:00.000Z",
+  "league_stage": true
+ },
+ "stats": {
+  "away": {
+   "saves": 1,
+   "shots": 17,
+   "corners": 5,
+   "fouls_committed": 14,
+   "shots_on_target": 9
+  },
+  "home": {
+   "saves": 4,
+   "shots": 16,
+   "corners": 6,
+   "fouls_committed": 14,
+   "shots_on_target": 6
+  },
+  "basis": "source",
+  "provider": "espn"
+ },
+ "teams": {
+  "away": {
+   "id": "bc2c300a-e720-5419-bbec-24792cb3cb64",
+   "name": "Sunderland",
+   "slug": "sunderland",
+   "form_before": [
+    "L",
+    "D",
+    "W",
+    "L"
+   ],
+   "table_after": {
+    "won": 1,
+    "lost": 3,
+    "drawn": 1,
+    "played": 5,
+    "points": 4,
+    "position": 14,
+    "goals_for": 6,
+    "goal_difference": -4
+   },
+   "table_before": {
+    "won": 1,
+    "lost": 2,
+    "drawn": 1,
+    "played": 4,
+    "points": 4,
+    "position": 14,
+    "goals_for": 3,
+    "goal_difference": -2
+   }
+  },
+  "home": {
+   "id": "3bae7b11-9a30-5e3a-8f88-0151e490ab95",
+   "name": "Manchester City",
+   "slug": "manchester-city",
+   "form_before": [
+    "W",
+    "W",
+    "W",
+    "W"
+   ],
+   "table_after": {
+    "won": 5,
+    "lost": 0,
+    "drawn": 0,
+    "played": 5,
+    "points": 15,
+    "position": 1,
+    "goals_for": 13,
+    "goal_difference": 8
+   },
+   "table_before": {
+    "won": 4,
+    "lost": 0,
+    "drawn": 0,
+    "played": 4,
+    "points": 12,
+    "position": 1,
+    "goals_for": 8,
+    "goal_difference": 6
+   }
+  }
+ },
+ "angles": [
+  {
+   "key": "winning_streak",
+   "detail": {
+    "run": 5,
+    "team": {
+     "id": "3bae7b11-9a30-5e3a-8f88-0151e490ab95",
+     "name": "Manchester City",
+     "slug": "manchester-city"
+    },
+    "team_id": "3bae7b11-9a30-5e3a-8f88-0151e490ab95"
+   },
+   "weight": 1
+  },
+  {
+   "key": "multi_goal_scorer",
+   "detail": {
+    "goals": 3,
+    "player": {
+     "id": "97ae9fee-7c6c-5c2d-918f-3581c798a189",
+     "name": "Brian Brobbey",
+     "slug": "brian-brobbey"
+    },
+    "player_id": "97ae9fee-7c6c-5c2d-918f-3581c798a189"
+   },
+   "weight": 1.2
+  },
+  {
+   "key": "multi_goal_scorer",
+   "detail": {
+    "goals": 2,
+    "player": {
+     "id": "faa401e9-55d2-54c9-99f0-5232d81d3e08",
+     "name": "Antoine Semenyo",
+     "slug": "antoine-semenyo"
+    },
+    "player_id": "faa401e9-55d2-54c9-99f0-5232d81d3e08"
+   },
+   "weight": 0.6
+  },
+  {
+   "key": "high_scoring",
+   "detail": {
+    "goals": 8
+   },
+   "weight": 0.6
+  }
+ ],
+ "engine": "soccer-news-engine/2.0.0",
+ "version": "soccer-packet/2.0.0",
+ "provenance": {
+  "attributions": [
+   "Structured facts: ESPN (secondary source)."
+  ]
+ },
+ "competition": {
+  "id": "54822e53-a91c-5d6f-8786-02f9d7212b8b",
+  "name": "Premier League",
+  "slug": "premier-league",
+  "season": "2026/27"
+ },
+ "materiality": {
+  "score": 3.4,
+  "angles": [
+   {
+    "key": "winning_streak",
+    "detail": {
+     "run": 5,
+     "team_id": "3bae7b11-9a30-5e3a-8f88-0151e490ab95"
+    },
+    "weight": 1
+   },
+   {
+    "key": "multi_goal_scorer",
+    "detail": {
+     "goals": 3,
+     "player_id": "97ae9fee-7c6c-5c2d-918f-3581c798a189"
+    },
+    "weight": 1.2
+   },
+   {
+    "key": "multi_goal_scorer",
+    "detail": {
+     "goals": 2,
+     "player_id": "faa401e9-55d2-54c9-99f0-5232d81d3e08"
+    },
+    "weight": 0.6
+   },
+   {
+    "key": "high_scoring",
+    "detail": {
+     "goals": 8
+    },
+    "weight": 0.6
+   }
+  ],
+  "profile": "domestic_european_league",
+  "material": true,
+  "profiles_version": "soccer-news-profiles/1.0.0"
+ },
+ "unavailable": [
+  "quotes (none sourced)",
+  "injuries (no legitimate source ingested)",
+  "odds (not part of this product)",
+  "xG (PBE xG not validated)"
+ ],
+ "shots_located": {
+  "away": 17,
+  "home": 16,
+  "source": "espn",
+  "avg_distance_m": {
+   "away": 13.5,
+   "home": 15.3
+  }
+ },
+ "teams_in_table": 20
+}

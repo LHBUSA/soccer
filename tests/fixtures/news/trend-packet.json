@@ -1,0 +1,171 @@
+{
+ "hash": "c939db443649c721a46dfcb5460ce98e98179fd63c7700daf2ffd034d98f77bc",
+ "team": {
+  "id": "1823dcb9-2f81-5105-97e5-e9f0cbda7e3c",
+  "name": "Austin FC",
+  "slug": "austin-fc",
+  "table_now": {
+   "won": 7,
+   "lost": 10,
+   "drawn": 10,
+   "played": 27,
+   "points": 31,
+   "position": 22,
+   "goals_for": 35,
+   "goal_difference": -12
+  }
+ },
+ "event": {
+  "key": "team_trend:1823dcb9-2f81-5105-97e5-e9f0cbda7e3c:unbeaten_run:8:c06c657e-4f81-57f8-bc34-fe1fe2f55573",
+  "kind": "team_trend",
+  "as_of": "2026-09-27T00:30:00.000Z",
+  "profile": "mls",
+  "event_id": "b238294c-9e12-50be-b39c-7f6b7f16484c"
+ },
+ "trend": {
+  "kind": "unbeaten_run",
+  "wins": 3,
+  "draws": 5,
+  "games": [
+   {
+    "date": "2026-08-20",
+    "venue": "away",
+    "result": "W",
+    "match_id": "82904cfa-86de-5bc7-85a7-3671155041ad",
+    "opponent": {
+     "id": "0554d69a-e723-5dfa-b31d-d28d9774e31d",
+     "name": "Seattle Sounders FC",
+     "slug": "seattle-sounders-fc"
+    },
+    "goals_for": 2,
+    "goals_against": 1
+   },
+   {
+    "date": "2026-08-23",
+    "venue": "home",
+    "result": "D",
+    "match_id": "d0b212bc-5e37-5214-8f85-14bbe99854f1",
+    "opponent": {
+     "id": "94a30b61-36f9-5c8f-ba86-7ba6150d12be",
+     "name": "Philadelphia Union",
+     "slug": "philadelphia-union"
+    },
+    "goals_for": 1,
+    "goals_against": 1
+   },
+   {
+    "date": "2026-08-30",
+    "venue": "away",
+    "result": "W",
+    "match_id": "53cce7ee-c6bf-5f66-bef1-6fac59a1953f",
+    "opponent": {
+     "id": "a5f8eebc-0ed7-5468-9606-703f76b21fff",
+     "name": "Portland Timbers",
+     "slug": "portland-timbers"
+    },
+    "goals_for": 2,
+    "goals_against": 1
+   },
+   {
+    "date": "2026-09-06",
+    "venue": "home",
+    "result": "D",
+    "match_id": "69773cb9-305b-57f9-8230-938ab92225f9",
+    "opponent": {
+     "id": "a6983312-f338-5d70-990a-9eeb3008ef8e",
+     "name": "San Jose Earthquakes",
+     "slug": "san-jose-earthquakes"
+    },
+    "goals_for": 1,
+    "goals_against": 1
+   },
+   {
+    "date": "2026-09-10",
+    "venue": "home",
+    "result": "D",
+    "match_id": "0ddb4c30-f721-564d-a729-fe4e244c6c22",
+    "opponent": {
+     "id": "cb5d4eb3-8a76-57fa-a3cd-a008311a0313",
+     "name": "Colorado Rapids",
+     "slug": "colorado-rapids"
+    },
+    "goals_for": 1,
+    "goals_against": 1
+   },
+   {
+    "date": "2026-09-13",
+    "venue": "away",
+    "result": "W",
+    "match_id": "e2f81269-734d-5bc3-8bca-d0cb5a525826",
+    "opponent": {
+     "id": "d7db905f-742a-5256-9ad4-4e2f6deb3617",
+     "name": "Vancouver Whitecaps",
+     "slug": "vancouver-whitecaps"
+    },
+    "goals_for": 2,
+    "goals_against": 1
+   },
+   {
+    "date": "2026-09-20",
+    "venue": "away",
+    "result": "D",
+    "match_id": "db7a28bc-68dd-5f61-8d28-f3e8e6d29445",
+    "opponent": {
+     "id": "9f046c6e-7822-58d3-8ef1-68395bca1a94",
+     "name": "FC Dallas",
+     "slug": "fc-dallas"
+    },
+    "goals_for": 0,
+    "goals_against": 0
+   },
+   {
+    "date": "2026-09-27",
+    "venue": "home",
+    "result": "D",
+    "match_id": "c06c657e-4f81-57f8-bc34-fe1fe2f55573",
+    "opponent": {
+     "id": "3d3675b6-12df-59fd-8714-1ab0337f2627",
+     "name": "San Diego FC",
+     "slug": "san-diego-fc"
+    },
+    "goals_for": 3,
+    "goals_against": 3
+   }
+  ],
+  "losses": 0,
+  "matches": 8,
+  "goals_for": 12,
+  "goals_against": 9
+ },
+ "engine": "soccer-news-engine/2.0.0",
+ "version": "soccer-packet/2.0.0",
+ "provenance": {
+  "attributions": [
+   "Structured facts: ESPN (secondary source)."
+  ]
+ },
+ "competition": {
+  "id": "d370dec9-4da9-5433-b2bc-e32958287728",
+  "name": "MLS",
+  "slug": "mls",
+  "season": "2026"
+ },
+ "materiality": {
+  "score": 1,
+  "angles": [
+   {
+    "key": "unbeaten_run",
+    "detail": {
+     "run": 8
+    },
+    "weight": 1
+   }
+  ]
+ },
+ "unavailable": [
+  "quotes (none sourced)",
+  "injuries (no legitimate source ingested)",
+  "odds (not part of this product)"
+ ],
+ "teams_in_table": 30
+}
