@@ -76,15 +76,21 @@ test('middleware hands every static file to the filesystem, including the web ma
 });
 
 
-test('network GA4 is production-only and identifies the soccer surface', () => {
+test('network GA4 is bundled, production-only and allowed by the strict CSP', () => {
+  const analytics = readFileSync('src/analytics.js', 'utf8');
+  const main = readFileSync('src/main.js', 'utf8');
   const html = readFileSync('index.html', 'utf8');
-  assert.match(html, /var GA_ID = 'G-BRS48R8PG9'/);
-  assert.match(html, /var SURFACE = 'soccer'/);
-  assert.match(html, /var HASH_ROUTES = false/);
-  assert.match(html, /cookie_domain: '\.propbetedge\.ai'/);
-  assert.match(html, /vercel\.app/);
-  assert.match(html, /workers\.dev/);
-  assert.match(html, /pages\.dev/);
-  assert.match(html, /pbe_network_click/);
-  assert.equal((html.match(/googletagmanager\.com\/gtag\/js/g) || []).length, 1);
+  const vercel = readFileSync('vercel.json', 'utf8');
+
+  assert.match(analytics, /GA_ID = 'G-BRS48R8PG9'/);
+  assert.match(analytics, /GA_SURFACE = 'soccer'/);
+  assert.match(analytics, /PROD_HOST = 'soccer\.propbetedge\.ai'/);
+  assert.match(analytics, /cookie_domain: '\.propbetedge\.ai'/);
+  assert.match(analytics, /pbe_network_click/);
+  assert.match(main, /import \{ initAnalytics \} from '\.\/analytics\.js'/);
+  assert.match(main, /initAnalytics\(\)/);
+  assert.doesNotMatch(html, /googletagmanager|G-BRS48R8PG9/, 'GA bootstrap stays out of inline HTML');
+  assert.match(vercel, /script-src 'self' https:\/\/www\.googletagmanager\.com/);
+  assert.match(vercel, /connect-src 'self' https:\/\/www\.google-analytics\.com https:\/\/analytics\.google\.com https:\/\/region1\.google-analytics\.com/);
+  assert.doesNotMatch(vercel, /script-src[^"]*'unsafe-inline'/, 'strict CSP keeps inline JavaScript blocked');
 });
