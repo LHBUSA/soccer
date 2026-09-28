@@ -1,0 +1,777 @@
+{
+  "stage": "dev",
+  "generated_at": "2026-09-28T00:45:38.033Z",
+  "protocol_id": "soccer-structural-phase3-protocol-v1",
+  "protocol_sha256": "6cc6fa60fd4d51e3cc35a6c637d7a7e18327b076cea06b8176246b52e23350b3",
+  "protocol": {
+    "id": "soccer-structural-phase3-protocol-v1",
+    "declared_at": "2026-09-28",
+    "reference": "A = soccer-research-bundesliga-v1-frozen, strict v1.1 Poisson (model-core.mjs, strict: true). Frozen; not modified.",
+    "splits": {
+      "train": "2004/05-2013/14",
+      "dev": "2014/15-2018/19",
+      "holdout": "2019/20-2025/26"
+    },
+    "candidates": {
+      "A": "frozen Poisson v1.1: lambda_home = muH * att_home * def_away, lambda_away = muA * att_away * def_home; every term a 540-day half-life, strictly-before-kickoff weighted average; independent Poisson scorelines",
+      "B": "A + Dixon-Coles low-score dependence: P(i,j) = tau(i,j) * Pois(i; lh) * Pois(j; la), tau(0,0) = 1 - lh*la*rho, tau(0,1) = 1 + lh*rho, tau(1,0) = 1 + la*rho, tau(1,1) = 1 - rho, otherwise 1 (Dixon & Coles 1997); tau clamped at 0, grid 0..10 goals renormalised; lambdas identical to A",
+      "C": "A with an adaptive league home advantage: league goal level mu and every team attack/defence ratio unchanged (540 d); the home share of league goals s uses its own half-life h (window 5h): muH = 2*mu*s, muA = 2*mu*(1-s). h = 540 reproduces A exactly",
+      "D": "B + the adaptive league home advantage of C (rho re-fitted for the D lambdas)"
+    },
+    "selection": {
+      "team_strength": "half-life 540 d, shrink 10, window 5 half-lives, min weight 50: frozen from Phase 1, not re-selected",
+      "B_rho": "maximum DEV scoreline log-likelihood (the Dixon-Coles objective) with A lambdas fixed; rho grid [-0.30, 0.15] step 0.0025, then refined to 0.0001 around the best grid point",
+      "C_home_half_life": "grid {90, 180, 270, 365, 540} days; argmin DEV 1X2 log loss; if no candidate beats 540 (= A) by more than 0.0005, 540 is selected (no change)",
+      "D": "for each home half-life in the same grid, rho re-fitted by DEV scoreline likelihood on those lambdas; argmin DEV 1X2 log loss; if no candidate beats 540 (= B) by more than 0.0005, 540 is selected (D = B, no change)",
+      "final_candidate": "D if D is KEEP; otherwise the KEEP component among B and C with the lower DEV 1X2 log loss; none if no component is KEEP",
+      "holdout_may_not_influence": [
+        "Dixon-Coles rho",
+        "any decay / half-life",
+        "model selection",
+        "calibration selection",
+        "acceptance thresholds"
+      ]
+    },
+    "comparisons": {
+      "B": [
+        "A"
+      ],
+      "C": [
+        "A"
+      ],
+      "D": [
+        "B",
+        "C"
+      ]
+    },
+    "keep_rule": {
+      "note": "Evaluated on the pooled 2019/20-2025/26 holdout for candidate X vs reference R (delta = X - R). D must pass against BOTH B and C; its verdict is the worse of the two.",
+      "K1_log_loss": "pooled 1X2 log loss delta <= -0.0005 -> pass; -0.0005 < delta < 0 -> INCONCLUSIVE; delta >= 0 -> REJECT",
+      "K2_brier": "pooled Brier delta <= +0.0005 -> pass; +0.0005 < delta <= +0.002 -> INCONCLUSIVE; delta > +0.002 -> REJECT",
+      "K3_targeted_fix": "Dixon-Coles comparisons (B vs A, D vs C): |pooled draw bias| AND draw classwise ECE both decrease. Home comparisons (C vs A, D vs B): the standard deviation across the 7 holdout seasons of the home-win bias decreases. Fail -> INCONCLUSIVE",
+      "K4_durability": "seasons with log loss delta > +0.002: at most 1 (2+ -> REJECT); seasons with log loss delta < 0: at least 4 of 7 (fewer -> INCONCLUSIVE)",
+      "K5_not_one_season": "the pooled log loss delta stays < 0 after removing the single most-improved season (else INCONCLUSIVE)",
+      "K6_ranking": "one-vs-rest AUC change < 0.005 for home, draw and away; favourite accuracy change < 1 point; top-10% confidence accuracy not lower by more than 2 points (any failure -> REJECT)",
+      "dev_no_change": "a component whose DEV selection is the no-change value (C or D at 540) is REJECT",
+      "verdict": "KEEP only if K1-K6 all pass; REJECT if any REJECT condition fires; otherwise INCONCLUSIVE"
+    },
+    "overall": {
+      "leakage": "every leakage test must pass; any failure -> MORE RESEARCH (run invalid until fixed)",
+      "baseline": "the final candidate must beat the train-frequency baseline in every holdout season on log loss and Brier, else REJECT",
+      "STRUCTURAL_MODEL_READY_FOR_CALIBRATION": "a final candidate exists and passes the leakage and baseline conditions",
+      "MORE_RESEARCH": "no component is KEEP and at least one is INCONCLUSIVE",
+      "REJECT": "every component is REJECT (frozen v1.1 stays the reference; the structural hypotheses are rejected)"
+    },
+    "forbidden": [
+      "Platt, temperature, vector, matrix, isotonic or rolling calibration",
+      "new team or player features",
+      "Player DNA / Team DNA inputs",
+      "market data",
+      "any production change"
+    ]
+  },
+  "data_sha256": "6bff57c0000fa1fbfdbb4686235f40a90df13b74c4dd2defb23e89e9ff05f028",
+  "frozen_model": "soccer-research-bundesliga-v1-frozen",
+  "script_sha256": {
+    "scripts/research/phase3-protocol.mjs": "6cc6fa60fd4d51e3cc35a6c637d7a7e18327b076cea06b8176246b52e23350b3",
+    "scripts/research/structural-core.mjs": "c6f296eb3dd397ecec366a36fc28909527d3b2dc97cc834a5987d34f5f727746",
+    "scripts/research/structural-research.mjs": "8f27a462d0ff64303220a27cc42f1b29bf109db26ccb76814124ac6e09c4f3d0",
+    "scripts/research/metrics.mjs": "dfe37abcdf40770d02aa8e0809a85efbdd8ddd4549419e741be779bab5a31536",
+    "scripts/research/model-core.mjs": "33a1b4b842dc27ec3877c64aa4debc5f810ba7b08487b0badee1616c828c2cdf"
+  },
+  "selection": {
+    "fit_input_seasons": [
+      "2014/15",
+      "2015/16",
+      "2016/17",
+      "2017/18",
+      "2018/19"
+    ],
+    "B": {
+      "rho": -0.1099,
+      "dev_scoreline_loglik": -4565.0396,
+      "dev_1x2_log_loss": 0.996006
+    },
+    "C": {
+      "grid_dev_1x2_log_loss": {
+        "90": 0.998455,
+        "180": 0.99768,
+        "270": 0.99744,
+        "365": 0.997363,
+        "540": 0.99723
+      },
+      "selected_home_half_life": 540
+    },
+    "D": {
+      "grid": {
+        "90": {
+          "rho": -0.1111,
+          "dev_scoreline_loglik": -4569.2169,
+          "dev_1x2_log_loss": 0.997287
+        },
+        "180": {
+          "rho": -0.1105,
+          "dev_scoreline_loglik": -4566.7067,
+          "dev_1x2_log_loss": 0.996475
+        },
+        "270": {
+          "rho": -0.1103,
+          "dev_scoreline_loglik": -4565.8518,
+          "dev_1x2_log_loss": 0.996224
+        },
+        "365": {
+          "rho": -0.1101,
+          "dev_scoreline_loglik": -4565.4651,
+          "dev_1x2_log_loss": 0.996144
+        },
+        "540": {
+          "rho": -0.1099,
+          "dev_scoreline_loglik": -4565.0396,
+          "dev_1x2_log_loss": 0.996006
+        }
+      },
+      "selected_home_half_life": 540
+    },
+    "A": {
+      "dev_1x2_log_loss": 0.99723
+    },
+    "sensitivity_not_used": {
+      "rho_minimising_dev_1x2_log_loss_on_A": -0.0975,
+      "its_dev_log_loss": 0.995982
+    }
+  },
+  "dev_results": {
+    "pooled": {
+      "A": {
+        "n": 1530,
+        "log_loss": 0.9972,
+        "log_loss_exact": 0.9972304868979368,
+        "brier": 0.5951,
+        "brier_exact": 0.5951453258836599,
+        "ece": 0.0277,
+        "ece_class": [
+          0.0319,
+          0.0204,
+          0.0308
+        ],
+        "mean_pred": [
+          0.4583,
+          0.2303,
+          0.3114
+        ],
+        "observed": [
+          0.4621,
+          0.2503,
+          0.2876
+        ],
+        "bias_pts": [
+          -0.38,
+          -2,
+          2.38
+        ],
+        "auc": [
+          0.673,
+          0.5409,
+          0.6944
+        ],
+        "favourite_accuracy": 0.5059,
+        "top10_accuracy": 0.8039,
+        "top20_accuracy": 0.7516,
+        "upset_auc": 0.6456
+      },
+      "B": {
+        "n": 1530,
+        "log_loss": 0.996,
+        "log_loss_exact": 0.9960057491712001,
+        "brier": 0.5946,
+        "brier_exact": 0.5946086413382479,
+        "ece": 0.0184,
+        "ece_class": [
+          0.0279,
+          0.0068,
+          0.0204
+        ],
+        "mean_pred": [
+          0.4465,
+          0.2539,
+          0.2996
+        ],
+        "observed": [
+          0.4621,
+          0.2503,
+          0.2876
+        ],
+        "bias_pts": [
+          -1.56,
+          0.36,
+          1.2
+        ],
+        "auc": [
+          0.6729,
+          0.5406,
+          0.6943
+        ],
+        "favourite_accuracy": 0.5052,
+        "top10_accuracy": 0.8039,
+        "top20_accuracy": 0.7549,
+        "upset_auc": 0.6468
+      },
+      "C": {
+        "n": 1530,
+        "log_loss": 0.9972,
+        "log_loss_exact": 0.9972304868979368,
+        "brier": 0.5951,
+        "brier_exact": 0.5951453258836599,
+        "ece": 0.0277,
+        "ece_class": [
+          0.0319,
+          0.0204,
+          0.0308
+        ],
+        "mean_pred": [
+          0.4583,
+          0.2303,
+          0.3114
+        ],
+        "observed": [
+          0.4621,
+          0.2503,
+          0.2876
+        ],
+        "bias_pts": [
+          -0.38,
+          -2,
+          2.38
+        ],
+        "auc": [
+          0.673,
+          0.5409,
+          0.6944
+        ],
+        "favourite_accuracy": 0.5059,
+        "top10_accuracy": 0.8039,
+        "top20_accuracy": 0.7516,
+        "upset_auc": 0.6456
+      },
+      "D": {
+        "n": 1530,
+        "log_loss": 0.996,
+        "log_loss_exact": 0.9960057491712001,
+        "brier": 0.5946,
+        "brier_exact": 0.5946086413382479,
+        "ece": 0.0184,
+        "ece_class": [
+          0.0279,
+          0.0068,
+          0.0204
+        ],
+        "mean_pred": [
+          0.4465,
+          0.2539,
+          0.2996
+        ],
+        "observed": [
+          0.4621,
+          0.2503,
+          0.2876
+        ],
+        "bias_pts": [
+          -1.56,
+          0.36,
+          1.2
+        ],
+        "auc": [
+          0.6729,
+          0.5406,
+          0.6943
+        ],
+        "favourite_accuracy": 0.5052,
+        "top10_accuracy": 0.8039,
+        "top20_accuracy": 0.7549,
+        "upset_auc": 0.6468
+      },
+      "base": {
+        "n": 1530,
+        "log_loss": 1.0621,
+        "log_loss_exact": 1.0621471168122139,
+        "brier": 0.6413,
+        "brier_exact": 0.6413259857319662,
+        "ece": 0.0074,
+        "ece_class": [
+          0.0098,
+          0.0013,
+          0.0111
+        ],
+        "mean_pred": [
+          0.4523,
+          0.249,
+          0.2987
+        ],
+        "observed": [
+          0.4621,
+          0.2503,
+          0.2876
+        ],
+        "bias_pts": [
+          -0.98,
+          -0.13,
+          1.11
+        ],
+        "auc": [
+          0.5,
+          0.5,
+          0.5
+        ],
+        "favourite_accuracy": 0.4621,
+        "top10_accuracy": 0.4641,
+        "top20_accuracy": 0.4739,
+        "upset_auc": 0.5
+      }
+    },
+    "grid": {
+      "C_90": {
+        "n": 1530,
+        "log_loss": 0.9985,
+        "log_loss_exact": 0.9984554929219187,
+        "brier": 0.5959,
+        "brier_exact": 0.5958978202257974,
+        "ece": 0.0273,
+        "ece_class": [
+          0.0356,
+          0.0209,
+          0.0254
+        ],
+        "mean_pred": [
+          0.4627,
+          0.23,
+          0.3073
+        ],
+        "observed": [
+          0.4621,
+          0.2503,
+          0.2876
+        ],
+        "bias_pts": [
+          0.06,
+          -2.03,
+          1.97
+        ],
+        "auc": [
+          0.6718,
+          0.5417,
+          0.6908
+        ],
+        "favourite_accuracy": 0.5059,
+        "top10_accuracy": 0.7908,
+        "top20_accuracy": 0.7386,
+        "upset_auc": 0.6443
+      },
+      "D_90": {
+        "n": 1530,
+        "log_loss": 0.9973,
+        "log_loss_exact": 0.9972874899796388,
+        "brier": 0.5953,
+        "brier_exact": 0.5953480025915135,
+        "ece": 0.0193,
+        "ece_class": [
+          0.0289,
+          0.0069,
+          0.0222
+        ],
+        "mean_pred": [
+          0.4508,
+          0.2538,
+          0.2954
+        ],
+        "observed": [
+          0.4621,
+          0.2503,
+          0.2876
+        ],
+        "bias_pts": [
+          -1.13,
+          0.35,
+          0.78
+        ],
+        "auc": [
+          0.6717,
+          0.5416,
+          0.6908
+        ],
+        "favourite_accuracy": 0.5052,
+        "top10_accuracy": 0.7908,
+        "top20_accuracy": 0.7386,
+        "upset_auc": 0.6455
+      },
+      "C_180": {
+        "n": 1530,
+        "log_loss": 0.9977,
+        "log_loss_exact": 0.9976800213404782,
+        "brier": 0.5954,
+        "brier_exact": 0.595434329331835,
+        "ece": 0.0279,
+        "ece_class": [
+          0.0322,
+          0.0207,
+          0.0309
+        ],
+        "mean_pred": [
+          0.4614,
+          0.2301,
+          0.3085
+        ],
+        "observed": [
+          0.4621,
+          0.2503,
+          0.2876
+        ],
+        "bias_pts": [
+          -0.07,
+          -2.02,
+          2.1
+        ],
+        "auc": [
+          0.6725,
+          0.5412,
+          0.6928
+        ],
+        "favourite_accuracy": 0.5105,
+        "top10_accuracy": 0.7974,
+        "top20_accuracy": 0.7516,
+        "upset_auc": 0.6363
+      },
+      "D_180": {
+        "n": 1530,
+        "log_loss": 0.9965,
+        "log_loss_exact": 0.9964752642683438,
+        "brier": 0.5949,
+        "brier_exact": 0.5948895169338843,
+        "ece": 0.0201,
+        "ece_class": [
+          0.0301,
+          0.0079,
+          0.0223
+        ],
+        "mean_pred": [
+          0.4495,
+          0.2538,
+          0.2967
+        ],
+        "observed": [
+          0.4621,
+          0.2503,
+          0.2876
+        ],
+        "bias_pts": [
+          -1.26,
+          0.35,
+          0.91
+        ],
+        "auc": [
+          0.6725,
+          0.5411,
+          0.6927
+        ],
+        "favourite_accuracy": 0.5098,
+        "top10_accuracy": 0.7974,
+        "top20_accuracy": 0.7516,
+        "upset_auc": 0.6376
+      },
+      "C_270": {
+        "n": 1530,
+        "log_loss": 0.9974,
+        "log_loss_exact": 0.9974396511960564,
+        "brier": 0.5953,
+        "brier_exact": 0.5952841298255183,
+        "ece": 0.0286,
+        "ece_class": [
+          0.0355,
+          0.0207,
+          0.0294
+        ],
+        "mean_pred": [
+          0.4602,
+          0.2302,
+          0.3096
+        ],
+        "observed": [
+          0.4621,
+          0.2503,
+          0.2876
+        ],
+        "bias_pts": [
+          -0.19,
+          -2.02,
+          2.2
+        ],
+        "auc": [
+          0.6726,
+          0.5409,
+          0.6938
+        ],
+        "favourite_accuracy": 0.5085,
+        "top10_accuracy": 0.7974,
+        "top20_accuracy": 0.7549,
+        "upset_auc": 0.6401
+      },
+      "D_270": {
+        "n": 1530,
+        "log_loss": 0.9962,
+        "log_loss_exact": 0.9962236347309535,
+        "brier": 0.5947,
+        "brier_exact": 0.5947428535849094,
+        "ece": 0.0202,
+        "ece_class": [
+          0.0301,
+          0.0072,
+          0.0232
+        ],
+        "mean_pred": [
+          0.4484,
+          0.2539,
+          0.2977
+        ],
+        "observed": [
+          0.4621,
+          0.2503,
+          0.2876
+        ],
+        "bias_pts": [
+          -1.37,
+          0.35,
+          1.02
+        ],
+        "auc": [
+          0.6726,
+          0.5407,
+          0.6936
+        ],
+        "favourite_accuracy": 0.5078,
+        "top10_accuracy": 0.7974,
+        "top20_accuracy": 0.7549,
+        "upset_auc": 0.6414
+      },
+      "C_365": {
+        "n": 1530,
+        "log_loss": 0.9974,
+        "log_loss_exact": 0.9973630512804861,
+        "brier": 0.5952,
+        "brier_exact": 0.5952386282418128,
+        "ece": 0.028,
+        "ece_class": [
+          0.0328,
+          0.0204,
+          0.0307
+        ],
+        "mean_pred": [
+          0.4593,
+          0.2302,
+          0.3104
+        ],
+        "observed": [
+          0.4621,
+          0.2503,
+          0.2876
+        ],
+        "bias_pts": [
+          -0.28,
+          -2.01,
+          2.28
+        ],
+        "auc": [
+          0.6728,
+          0.541,
+          0.6941
+        ],
+        "favourite_accuracy": 0.5085,
+        "top10_accuracy": 0.7974,
+        "top20_accuracy": 0.7549,
+        "upset_auc": 0.6403
+      },
+      "D_365": {
+        "n": 1530,
+        "log_loss": 0.9961,
+        "log_loss_exact": 0.996143822729055,
+        "brier": 0.5947,
+        "brier_exact": 0.5946993258983139,
+        "ece": 0.0189,
+        "ece_class": [
+          0.0307,
+          0.0062,
+          0.0199
+        ],
+        "mean_pred": [
+          0.4475,
+          0.2539,
+          0.2986
+        ],
+        "observed": [
+          0.4621,
+          0.2503,
+          0.2876
+        ],
+        "bias_pts": [
+          -1.46,
+          0.36,
+          1.1
+        ],
+        "auc": [
+          0.6727,
+          0.5406,
+          0.6941
+        ],
+        "favourite_accuracy": 0.5078,
+        "top10_accuracy": 0.7974,
+        "top20_accuracy": 0.7549,
+        "upset_auc": 0.6416
+      },
+      "C_540": {
+        "n": 1530,
+        "log_loss": 0.9972,
+        "log_loss_exact": 0.9972304868979368,
+        "brier": 0.5951,
+        "brier_exact": 0.5951453258836599,
+        "ece": 0.0277,
+        "ece_class": [
+          0.0319,
+          0.0204,
+          0.0308
+        ],
+        "mean_pred": [
+          0.4583,
+          0.2303,
+          0.3114
+        ],
+        "observed": [
+          0.4621,
+          0.2503,
+          0.2876
+        ],
+        "bias_pts": [
+          -0.38,
+          -2,
+          2.38
+        ],
+        "auc": [
+          0.673,
+          0.5409,
+          0.6944
+        ],
+        "favourite_accuracy": 0.5059,
+        "top10_accuracy": 0.8039,
+        "top20_accuracy": 0.7516,
+        "upset_auc": 0.6456
+      },
+      "D_540": {
+        "n": 1530,
+        "log_loss": 0.996,
+        "log_loss_exact": 0.9960057491712001,
+        "brier": 0.5946,
+        "brier_exact": 0.5946086413382479,
+        "ece": 0.0184,
+        "ece_class": [
+          0.0279,
+          0.0068,
+          0.0204
+        ],
+        "mean_pred": [
+          0.4465,
+          0.2539,
+          0.2996
+        ],
+        "observed": [
+          0.4621,
+          0.2503,
+          0.2876
+        ],
+        "bias_pts": [
+          -1.56,
+          0.36,
+          1.2
+        ],
+        "auc": [
+          0.6729,
+          0.5406,
+          0.6943
+        ],
+        "favourite_accuracy": 0.5052,
+        "top10_accuracy": 0.8039,
+        "top20_accuracy": 0.7549,
+        "upset_auc": 0.6468
+      }
+    }
+  },
+  "leakage": {
+    "L1_reproduces_frozen_v1_1": {
+      "compared": 6768,
+      "bitwise_failures": 0,
+      "general_home_share_formula_max_relative_diff": 5.686449629764954e-16,
+      "pass": true
+    },
+    "L2_truncation": {
+      "phase2_gate_60": {
+        "cases": 60,
+        "configs": [
+          540,
+          90
+        ],
+        "failures": 0,
+        "max_abs_diff": 0
+      },
+      "expanded_300": {
+        "cases": 300,
+        "configs": [
+          540,
+          90
+        ],
+        "failures": 0,
+        "max_abs_diff": 0
+      },
+      "pass": true
+    },
+    "L3_mutation": {
+      "cutoffs": 20,
+      "season_start_cutoffs": 12,
+      "configs": [
+        540,
+        90
+      ],
+      "predictions_compared": 183246,
+      "of_which_at_the_cutoff_kickoff": 90,
+      "failures": 0,
+      "pass": true
+    },
+    "L4_same_kickoff_permutation": {
+      "same_kickoff_groups": 960,
+      "configs": [
+        540,
+        90
+      ],
+      "failures": 0,
+      "max_abs_diff": 2.220446049250313e-15,
+      "pass": true
+    },
+    "L5_fit_inputs": {
+      "rho_and_half_life_fitted_on": [
+        "2014/15",
+        "2015/16",
+        "2016/17",
+        "2017/18",
+        "2018/19"
+      ],
+      "pass": true
+    },
+    "team_playing_twice_same_day": 0,
+    "all_pass": true
+  },
+  "prediction_hashes": {
+    "A": "2de5a94c12c2bfb8395a07068e455cdc3d65101a05cd39411ac6020f24392681",
+    "B": "19b72fedee9a60268c4d554d2c8e20adefa6e311b5c73cd7b654b5ff1dfbb13b",
+    "C": "2de5a94c12c2bfb8395a07068e455cdc3d65101a05cd39411ac6020f24392681",
+    "D": "19b72fedee9a60268c4d554d2c8e20adefa6e311b5c73cd7b654b5ff1dfbb13b",
+    "rows": 6156,
+    "frozen_card_poisson": "fb9d04a727dda13564987a29d0cd1b0ef50d3835a3c813a8decfe0de3c924bf3"
+  },
+  "holdout_metrics_computed": false,
+  "runtime_s": 61.6
+}
