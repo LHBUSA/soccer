@@ -9,10 +9,11 @@ import { packetNumbers2 } from './gates2.js';
 import { stripIdentifiers } from './gates.js';
 import { PROFILES } from './profiles.js';
 
-export const DESK_VERSION = 'soccer-desk/1.0.0';
-export const DESK_MODEL = 'claude-opus-5'; // current generally available Opus; override with NEWS_DESK_MODEL
+export const DESK_VERSION = 'soccer-desk/1.1.0';
+export const DESK_MODEL = 'gpt-5.6-sol'; // OpenAI Responses API; override with NEWS_DESK_MODEL
+export const DESK_API = 'https://api.openai.com/v1/responses';
 export const deskRequired = env => env?.NEWS_DESK !== 'off'; // default: required for every new story
-export const deskAvailable = env => !!env?.ANTHROPIC_API_KEY;
+export const deskAvailable = env => !!env?.OPENAI_API_KEY;
 
 export const SYSTEM = `You are the senior editor of PropBetEdge Soccer, a premium football intelligence newsroom.
 Write like a top-tier sports and data magazine, not a database template.
@@ -36,23 +37,51 @@ Return JSON only, no prose around it:
 {"headline": "...", "dek": "...", "sections": [{"heading": "...", "paragraphs": ["...", "..."]}]}`;
 
 // ---------------------------------------------------------------- model call
+// Structured output: the Responses API must return exactly this shape (strict JSON schema).
+export const ARTICLE_SCHEMA = {
+  type: 'object', additionalProperties: false, required: ['headline', 'dek', 'sections'],
+  properties: {
+    headline: { type: 'string' }, dek: { type: 'string' },
+    sections: { type: 'array', items: { type: 'object', additionalProperties: false, required: ['heading', 'paragraphs'], properties: { heading: { type: 'string' }, paragraphs: { type: 'array', items: { type: 'string' } } } } },
+  },
+};
+
+// Error text that may reach a hold reason or a log: the key, any bearer token and any sk- key are redacted.
+export function sanitizeDeskError(s, env) {
+  let t = String(s || '');
+  const key = env?.OPENAI_API_KEY;
+  if (key && key.length >= 4) t = t.split(key).join('[redacted]');
+  return t.replace(/Bearer\s+\S+/gi, 'Bearer [redacted]').replace(/sk-[A-Za-z0-9_*-]{4,}/g, '[redacted]').slice(0, 200);
+}
+
 export async function callDesk(env, packet, draft, { fetcher = fetch, feedback = null, model = env?.NEWS_DESK_MODEL || DESK_MODEL } = {}) {
   const user = `FROZEN FACT PACKET (the only source of truth):\n${JSON.stringify(packet)}\n\nMECHANICAL DRAFT (evidence only; do not copy its structure or wording):\n${JSON.stringify({ headline: draft.headline, dek: draft.dek, sections: draft.sections.filter(s => s.key !== 'method') })}${feedback ? `\n\nCORRECTIVE REWRITE REQUIRED:\nThe previous version was rejected by the deterministic publication gates for exactly these reasons:\n${feedback}\nRewrite the entire JSON response from the SAME FACT PACKET. Fix every failure without adding any fact, number, name, date, URL, quote or outside knowledge. The gates will run again unchanged.` : ''}`;
-  const res = await fetcher('https://api.anthropic.com/v1/messages', {
+  // No tools, no retrieval, not stored: the packet in this request is all the model sees.
+  const res = await fetcher(DESK_API, {
     method: 'POST',
-    headers: { 'content-type': 'application/json', 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
-    body: JSON.stringify({ model, max_tokens: 16000, thinking: { type: 'adaptive' }, system: SYSTEM, messages: [{ role: 'user', content: user }] }),
+    headers: { 'content-type': 'application/json', authorization: `Bearer ${env.OPENAI_API_KEY}` },
+    body: JSON.stringify({ model, store: false, reasoning: { effort: 'medium' }, instructions: SYSTEM, input: user, max_output_tokens: 18000, text: { format: { type: 'json_schema', name: 'soccer_editorial_article', strict: true, schema: ARTICLE_SCHEMA } } }),
     signal: AbortSignal.timeout(120000),
   });
+  const clean = s => sanitizeDeskError(s, env);
   if (!res.ok) {
-    // The API's own error message (never headers or keys), so a hold explains itself.
-    let why = ''; try { const e = await res.json(); why = `${e?.error?.type || ''} ${e?.error?.message || ''}`.trim().slice(0, 160); } catch { /* no body */ }
-    throw new Error(`desk HTTP ${res.status}${why ? `: ${why}` : ''}`);
+    // The API's own error type + message (never headers or keys), so a hold explains itself.
+    let why = ''; try { const e = await res.json(); why = `${e?.error?.type || e?.error?.code || ''} ${e?.error?.message || ''}`.trim(); } catch { /* no body */ }
+    throw new Error(clean(`desk HTTP ${res.status}${why ? `: ${why}` : ''}`));
   }
-  const j = await res.json();
-  if (j.stop_reason === 'refusal' || j.stop_reason === 'max_tokens') throw new Error(`desk stop_reason ${j.stop_reason}`);
-  const txt = (j.content || []).map(c => c.text || '').join('');
-  const out = JSON.parse(txt.slice(txt.indexOf('{'), txt.lastIndexOf('}') + 1));
+  let j; try { j = await res.json(); } catch { throw new Error('desk invalid_response_body'); }
+  if (j?.status === 'incomplete') throw new Error(clean(`desk incomplete: ${j.incomplete_details?.reason || 'unknown'}`));
+  if (j?.status === 'failed') throw new Error(clean(`desk failed: ${j.error?.code || ''} ${j.error?.message || ''}`.trim()));
+  if (j?.status && j.status !== 'completed') throw new Error(clean(`desk status ${j.status}`));
+  const refusals = []; const parts = [];
+  for (const item of j?.output || []) for (const c of item?.content || []) {
+    if (c?.type === 'refusal') refusals.push(String(c.refusal || ''));
+    if (c?.type === 'output_text' && c.text) parts.push(String(c.text));
+  }
+  if (refusals.length) throw new Error(clean(`desk refusal: ${refusals.join(' ')}`));
+  const txt = parts.join('').trim();
+  if (!txt) throw new Error('desk empty_output');
+  let out; try { out = JSON.parse(txt); } catch { throw new Error('desk invalid_json'); }
   if (!out?.headline || !Array.isArray(out.sections)) throw new Error('desk returned no article');
   return { headline: String(out.headline).trim(), dek: String(out.dek || '').trim(), sections: out.sections.map((s, i) => ({ key: `s${i + 1}`, heading: String(s.heading || '').trim(), paragraphs: (s.paragraphs || []).map(p => String(p).trim()).filter(Boolean) })).filter(s => s.paragraphs.length) };
 }
@@ -239,7 +268,7 @@ export async function runDesk(draft, packet, env, { fetcher = fetch } = {}) {
   let feedback = null; let last = null;
   for (let attempt = 1; attempt <= 2; attempt++) {
     let edited;
-    try { edited = await callDesk(env, packet, draft, { fetcher, feedback }); } catch (e) { last = { held: [`editorial_desk_error: ${String(e.message).slice(0, 80)}`] }; continue; }
+    try { edited = await callDesk(env, packet, draft, { fetcher, feedback }); } catch (e) { last = { held: [`editorial_desk_error: ${sanitizeDeskError(e?.message, env).slice(0, 120)}`] }; continue; }
     const article = deskArticle(edited, draft);
     const j = judge(article, packet);
     if (j.pass) return { article, judgement: { ...j, attempt, model: env?.NEWS_DESK_MODEL || DESK_MODEL } };

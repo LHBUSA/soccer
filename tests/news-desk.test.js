@@ -82,7 +82,10 @@ test('quality holds: template opening, stat recitation, generic headings, thin c
 });
 
 // ---- fail-closed publication path with a fake model transport
-const reply = obj => async () => ({ ok: true, json: async () => ({ stop_reason: 'end_turn', content: [{ type: 'text', text: JSON.stringify(obj) }] }) });
+// OpenAI Responses envelopes
+const envelope = (content, extra = {}) => ({ id: 'resp_test', object: 'response', status: 'completed', model: 'gpt-5.6-sol', output: [{ type: 'reasoning', summary: [] }, { type: 'message', role: 'assistant', content }], ...extra });
+const reply = obj => async () => ({ ok: true, json: async () => envelope([{ type: 'output_text', text: JSON.stringify(obj), annotations: [] }]) });
+const KEY = { OPENAI_API_KEY: 'test' };
 
 test('no desk key: a NEW story HOLDS (never the template)', async () => {
   const r = await editorialStage(draft, B, {});
@@ -90,7 +93,7 @@ test('no desk key: a NEW story HOLDS (never the template)', async () => {
 });
 
 test('desk passes: the desk story is published; draft and disclosure stay stored', async () => {
-  const r = await editorialStage(draft, B, { ANTHROPIC_API_KEY: 'test' }, { fetcher: reply(GOOD) });
+  const r = await editorialStage(draft, B, KEY, { fetcher: reply(GOOD) });
   assert.equal(r.status, 'published', JSON.stringify(r.holdReasons));
   assert.equal(r.article.headline, GOOD.headline);
   const body = articleBody(r.article, r.editorial);
@@ -102,8 +105,8 @@ test('desk fails twice: HOLD with the gate reasons; one repair attempt quotes th
   const bad = { ...GOOD, sections: GOOD.sections.map(s => ({ ...s, paragraphs: [...s.paragraphs] })) };
   bad.sections[0].paragraphs[0] += ' Bayern had 31 shots before half-time.';
   const seen = [];
-  const fetcher = async (_u, init) => { seen.push(JSON.parse(init.body).messages[0].content); return reply(bad)(); };
-  const r = await editorialStage(draft, B, { ANTHROPIC_API_KEY: 'test' }, { fetcher });
+  const fetcher = async (_u, init) => { seen.push(JSON.parse(init.body).input); return reply(bad)(); };
+  const r = await editorialStage(draft, B, KEY, { fetcher });
   assert.equal(r.status, 'held'); assert.ok(r.holdReasons.includes('editorial:new_number_not_in_packet'));
   assert.equal(seen.length, 2); assert.match(seen[1], /CORRECTIVE REWRITE REQUIRED[\s\S]*new_number_not_in_packet/);
 });
@@ -112,14 +115,14 @@ test('desk repairs on the second attempt: published with attempt 2', async () =>
   const bad = { ...GOOD, sections: GOOD.sections.map(s => ({ ...s, paragraphs: [...s.paragraphs] })) };
   bad.sections[0].paragraphs[0] += ' Bayern had 31 shots before half-time.';
   let n = 0;
-  const r = await runDesk(draft, B, { ANTHROPIC_API_KEY: 'test' }, { fetcher: async () => (n++ === 0 ? reply(bad)() : reply(GOOD)()) });
+  const r = await runDesk(draft, B, KEY, { fetcher: async () => (n++ === 0 ? reply(bad)() : reply(GOOD)()) });
   assert.ok(r.article); assert.equal(r.judgement.attempt, 2);
 });
 
 test('refusal / truncation / HTTP failure is a hold, never a template', async () => {
-  const r1 = await runDesk(draft, B, { ANTHROPIC_API_KEY: 'test' }, { fetcher: async () => ({ ok: true, json: async () => ({ stop_reason: 'max_tokens', content: [] }) }) });
+  const r1 = await runDesk(draft, B, KEY, { fetcher: async () => ({ ok: true, json: async () => envelope([], { status: 'incomplete', incomplete_details: { reason: 'max_output_tokens' } }) }) });
   assert.ok(r1.held[0].startsWith('editorial_desk_error'));
-  const r2 = await runDesk(draft, B, { ANTHROPIC_API_KEY: 'test' }, { fetcher: async () => ({ ok: false, status: 529 }) });
+  const r2 = await runDesk(draft, B, KEY, { fetcher: async () => ({ ok: false, status: 529 }) });
   assert.ok(r2.held[0].startsWith('editorial_desk_error'));
 });
 
@@ -128,4 +131,86 @@ test('the fact gates on the deterministic draft are unchanged (template output i
   const failed = q.filter(r => !r.pass).map(r => r.gate);
   assert.ok(failed.includes('generic_headings') || failed.includes('thin_output') || failed.includes('template_opening'), `the template would not pass the desk's quality bar: ${failed}`);
   assert.equal(validateEditorial({ ...draft, sections: draft.sections.filter(s => s.key !== 'method') }, B).filter(r => !r.pass && /new_|wrong_/.test(r.gate)).length, 0, 'the draft is factually grounded');
+});
+
+// ---- OpenAI Responses transport
+test('openai: request = Responses API, bearer key, strict JSON schema, no tools, not stored; completed response publishes', async () => {
+  let call;
+  const r = await runDesk(draft, B, { OPENAI_API_KEY: 'sk-live-SECRET-123456' }, { fetcher: async (url, init) => { call = { url, init }; return reply(GOOD)(); } });
+  assert.ok(r.article, JSON.stringify(r.held)); assert.equal(r.judgement.model, 'gpt-5.6-sol');
+  assert.equal(call.url, 'https://api.openai.com/v1/responses');
+  assert.equal(call.init.method, 'POST'); assert.equal(call.init.headers.authorization, 'Bearer sk-live-SECRET-123456');
+  const body = JSON.parse(call.init.body);
+  assert.equal(body.model, 'gpt-5.6-sol'); assert.equal(body.store, false);
+  assert.equal(body.tools, undefined, 'no web search, file search or tools'); assert.equal(body.tool_choice, undefined);
+  assert.equal(body.text.format.type, 'json_schema'); assert.equal(body.text.format.strict, true);
+  assert.deepEqual(body.text.format.schema.required, ['headline', 'dek', 'sections']);
+  assert.match(body.instructions, /senior editor of PropBetEdge Soccer/);
+  assert.match(body.input, /^FROZEN FACT PACKET \(the only source of truth\):/); assert.match(body.input, /MECHANICAL DRAFT \(evidence only/);
+  const r2 = await runDesk(draft, B, { OPENAI_API_KEY: 'k', NEWS_DESK_MODEL: 'gpt-x' }, { fetcher: async (_u, init) => { assert.equal(JSON.parse(init.body).model, 'gpt-x'); return reply(GOOD)(); } });
+  assert.equal(r2.judgement.model, 'gpt-x', 'NEWS_DESK_MODEL overrides');
+});
+
+const holdsWith = async (fetcher, re) => {
+  const r = await editorialStage(draft, B, KEY, { fetcher });
+  assert.equal(r.status, 'held', 'fail closed: never the template');
+  assert.match(r.holdReasons[0], /^editorial_desk_error: /); assert.match(r.holdReasons[0], re);
+  return r;
+};
+
+test('openai: HTTP failure holds with the sanitized API error', async () => {
+  await holdsWith(async () => ({ ok: false, status: 429, json: async () => ({ error: { type: 'rate_limit_exceeded', message: 'Rate limit reached' } }) }), /desk HTTP 429: rate_limit_exceeded Rate limit reached/);
+  await holdsWith(async () => ({ ok: false, status: 500, json: async () => { throw new Error('no body'); } }), /desk HTTP 500/);
+  await holdsWith(async () => { throw new Error('network down'); }, /network down/);
+});
+
+test('openai: refusal holds', async () => {
+  await holdsWith(async () => ({ ok: true, json: async () => envelope([{ type: 'refusal', refusal: 'I cannot help with that.' }]) }), /desk refusal/);
+});
+
+test('openai: incomplete and failed responses hold', async () => {
+  await holdsWith(async () => ({ ok: true, json: async () => envelope([{ type: 'output_text', text: '{"headline":"Half' }], { status: 'incomplete', incomplete_details: { reason: 'max_output_tokens' } }) }), /desk incomplete: max_output_tokens/);
+  await holdsWith(async () => ({ ok: true, json: async () => envelope([], { status: 'failed', error: { code: 'server_error', message: 'boom' } }) }), /desk failed: server_error boom/);
+});
+
+test('openai: malformed JSON, empty output and a wrong shape hold', async () => {
+  await holdsWith(async () => ({ ok: true, json: async () => envelope([{ type: 'output_text', text: 'Here is the story: {headline: nope' }]) }), /desk invalid_json/);
+  await holdsWith(async () => ({ ok: true, json: async () => envelope([]) }), /desk empty_output/);
+  await holdsWith(async () => ({ ok: true, json: async () => envelope([{ type: 'output_text', text: '{"title":"x"}' }]) }), /desk returned no article/);
+  await holdsWith(async () => ({ ok: true, json: async () => { throw new SyntaxError('bad'); } }), /desk invalid_response_body/);
+});
+
+test('openai: corrective retry sends the failed gates in the same input, then publishes', async () => {
+  const bad = { ...GOOD, sections: GOOD.sections.map(s => ({ ...s, paragraphs: [...s.paragraphs] })) };
+  bad.sections[0].paragraphs[0] += ' Bayern had 31 shots before half-time.';
+  const inputs = [];
+  const r = await editorialStage(draft, B, KEY, { fetcher: async (_u, init) => { inputs.push(JSON.parse(init.body).input); return (inputs.length === 1 ? reply(bad) : reply(GOOD))(); } });
+  assert.equal(r.status, 'published', JSON.stringify(r.holdReasons)); assert.equal(r.editorial.attempt, 2);
+  assert.doesNotMatch(inputs[0], /CORRECTIVE REWRITE REQUIRED/);
+  assert.match(inputs[1], /CORRECTIVE REWRITE REQUIRED[\s\S]*new_number_not_in_packet/);
+  assert.match(inputs[1], /^FROZEN FACT PACKET/, 'the retry uses the same frozen packet');
+});
+
+test('openai: the secret never appears in hold reasons or errors', async () => {
+  const SECRET = 'sk-proj-VerySecretValue0123456789';
+  const env = { OPENAI_API_KEY: SECRET };
+  const echo = [
+    async () => ({ ok: false, status: 401, json: async () => ({ error: { type: 'invalid_request_error', message: `Incorrect API key provided: ${SECRET}. Header was Bearer ${SECRET}` } }) }),
+    async () => { throw new Error(`fetch failed with Authorization: Bearer ${SECRET}`); },
+    async () => ({ ok: true, json: async () => envelope([{ type: 'refusal', refusal: `echo ${SECRET}` }]) }),
+  ];
+  for (const fetcher of echo) {
+    const r = await editorialStage(draft, B, env, { fetcher });
+    assert.equal(r.status, 'held');
+    const txt = JSON.stringify(r);
+    assert.ok(!txt.includes(SECRET), txt); assert.ok(!/VerySecretValue/.test(txt)); assert.match(r.holdReasons[0], /redacted|HTTP 401/);
+  }
+  const { sanitizeDeskError } = await import('../workers/soccer-news/src/desk.js');
+  assert.equal(sanitizeDeskError(`x ${SECRET} y`, env), 'x [redacted] y');
+  assert.doesNotMatch(sanitizeDeskError('Bearer abc.def', {}), /abc/);
+});
+
+test('openai: no key means unavailable (Anthropic key is not a dependency)', async () => {
+  const r = await editorialStage(draft, B, { ANTHROPIC_API_KEY: 'old' });
+  assert.equal(r.status, 'held'); assert.deepEqual(r.holdReasons, ['editorial_desk_unavailable']);
 });

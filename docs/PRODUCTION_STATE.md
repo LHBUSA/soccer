@@ -86,8 +86,8 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
 
 ## Newsroom (2026-09-28, house standard)
 
-- soccer-news 1.1.0: detection -> frozen packet -> deterministic draft (evidence only) -> desk (`workers/soccer-news/src/desk.js`, model `claude-opus-5-5`, override `NEWS_DESK_MODEL`) -> grounded validation + quality gates -> publish, else HOLD. `NEWS_DESK=off` restores the legacy template path (not used).
-- BLOCKER: the Worker has no `ANTHROPIC_API_KEY` secret (owner action: `cd workers/soccer-news && npx wrangler secret put ANTHROPIC_API_KEY`). Until then every new story holds with `editorial_desk_unavailable`, and the 34 earlier template articles stay published as they were.
+- soccer-news 1.1.0: detection -> frozen packet -> deterministic draft (evidence only) -> desk (`workers/soccer-news/src/desk.js`, OpenAI Responses API, model `gpt-5.6-sol`, override `NEWS_DESK_MODEL`; strict JSON schema, `store:false`, no tools/retrieval) -> grounded validation + quality gates -> publish, else HOLD. `NEWS_DESK=off` restores the legacy template path (not used).
+- 2026-09-28: editorial provider switched from Anthropic to OpenAI (desk 1.1.0). The Anthropic key failed with a workspace-scope 400, so it is no longer used by the desk. BLOCKER: the Worker needs an `OPENAI_API_KEY` secret (owner action: `cd workers/soccer-news && npx wrangler secret put OPENAI_API_KEY`). Until then every new story holds with `editorial_desk_unavailable`, and the 34 earlier template articles stay published as they were.
 - After the key: `POST /v1/admin/reedit?scope=template&limit=40` (admin token; add `dry=1` first) rewrites the earlier template stories from their frozen packets; `scope=held_desk` retries held ones. Canary: the Bayern 7-0 Union Berlin story.
 - Article page V3 (network pattern) is live for every story; SOURCE & METHOD is collapsed.
 

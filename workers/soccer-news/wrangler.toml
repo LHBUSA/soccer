@@ -1,7 +1,8 @@
 # soccer-news — newsroom runtime: detect -> frozen packet -> compose -> gates -> publish/hold.
 # Deploy: docs/RELEASE.md (scripts/release/deploy-worker.sh soccer-news first|upload|deploy <id>).
 # Secrets (wrangler secret put): SOCCER_MODEL_SUPABASE_URL, SOCCER_MODEL_SUPABASE_SERVICE_ROLE_KEY, NEWS_ADMIN_TOKEN
-# Optional editorial pass (off unless both are set): NEWS_LLM=on (var), ANTHROPIC_API_KEY (secret).
+# Editorial desk (REQUIRED; new stories HOLD without it): OPENAI_API_KEY (secret), model gpt-5.6-sol, override var NEWS_DESK_MODEL.
+# Legacy optional pass, only with NEWS_DESK=off (not used): NEWS_LLM=on (var), ANTHROPIC_API_KEY (secret).
 name = "soccer-news"
 main = "src/index.js"
 compatibility_date = "2026-09-01"
