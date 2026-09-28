@@ -6,21 +6,26 @@
 // shared link never shows a broken preview; the page itself carries the 404.
 import { ImageResponse } from '@vercel/og';
 import { upstreamJson } from '../server/upstream.js';
+import { PBE_MARK_PNG, PBE_MARK_W, PBE_MARK_H } from '../server/brand-mark.js';
 
-const INK = '#07090a'; const INK2 = '#151c1a'; const GOLD = '#d4a73a'; const PITCH = '#16603b'; const MUTED = '#93a19a'; const WHITE = '#ffffff';
+const INK = '#0a1628'; const INK2 = '#152744'; const GOLD = '#d4a73a'; const PITCH = '#1d6b45'; const MUTED = '#a3b2cb'; const WHITE = '#ffffff';
 const h = (type, style, ...children) => ({ type, props: { style: { display: 'flex', ...style }, children: children.flat().filter(c => c !== null && c !== undefined && c !== false) } });
 const day = iso => (iso ? new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }) : '');
 
 function frame(kicker, body, footer) {
-  return h('div', { width: 1200, height: 630, background: INK, color: WHITE, flexDirection: 'column', fontFamily: 'sans-serif', position: 'relative' },
-    h('div', { height: 10, background: GOLD, width: '100%' }),
-    h('div', { position: 'absolute', right: -120, top: 120, width: 520, height: 520, border: `3px solid ${PITCH}`, borderRadius: 260 }),
-    h('div', { position: 'absolute', right: 140, top: 110, width: 3, height: 520, background: PITCH }),
-    h('div', { flexDirection: 'column', padding: '48px 64px 0', flexGrow: 1 },
-      h('div', { fontSize: 26, letterSpacing: 6, color: GOLD, fontWeight: 700 }, 'PROPBETEDGE SOCCER INTELLIGENCE'),
-      h('div', { fontSize: 24, letterSpacing: 4, color: MUTED, marginTop: 14 }, kicker),
+  return h('div', { width: 1200, height: 630, background: 'linear-gradient(135deg, #0a1628 0%, #07101f 60%, #050b16 100%)', color: WHITE, flexDirection: 'column', fontFamily: 'sans-serif', position: 'relative' },
+    h('div', { height: 6, background: `linear-gradient(90deg, ${GOLD}, #f0c65a 45%, ${GOLD})`, width: '100%' }),
+    h('div', { position: 'absolute', right: -140, top: 110, width: 540, height: 540, border: `3px solid ${PITCH}`, borderRadius: 270, opacity: 0.55 }),
+    h('div', { position: 'absolute', right: 128, top: 90, width: 3, height: 560, background: PITCH, opacity: 0.55 }),
+    h('div', { flexDirection: 'column', padding: '40px 64px 0', flexGrow: 1 },
+      h('div', { alignItems: 'center', gap: 18 },
+        { type: 'img', props: { src: PBE_MARK_PNG, width: Math.round(PBE_MARK_W * 0.5), height: Math.round(PBE_MARK_H * 0.5), style: {} } },
+        h('div', { flexDirection: 'column', borderLeft: '2px solid rgba(255,255,255,0.18)', paddingLeft: 18 },
+          h('div', { fontSize: 26, letterSpacing: 6, color: WHITE, fontWeight: 800 }, 'PROPBETEDGE'),
+          h('div', { fontSize: 17, letterSpacing: 5, color: GOLD, fontWeight: 700, marginTop: 4 }, 'SOCCER INTELLIGENCE'))),
+      h('div', { fontSize: 24, letterSpacing: 4, color: MUTED, marginTop: 22 }, kicker),
       body),
-    h('div', { padding: '0 64px 40px', fontSize: 22, color: MUTED, justifyContent: 'space-between' }, h('div', {}, footer || 'soccer.propbetedge.ai'), h('div', { color: GOLD }, 'EVERY EVENT HAS A PLACE ON THE PITCH')));
+    h('div', { padding: '0 64px 40px', fontSize: 22, color: MUTED, justifyContent: 'space-between' }, h('div', { color: GOLD, fontWeight: 700 }, '@PROPBETEDGE'), h('div', {}, footer || 'soccer.propbetedge.ai')));
 }
 
 const big = (text, size = 84) => h('div', { fontSize: size, fontWeight: 800, lineHeight: 1.02, marginTop: 26, maxWidth: 1000 }, text);

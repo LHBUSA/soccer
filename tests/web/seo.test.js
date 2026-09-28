@@ -20,7 +20,8 @@ test('metaPlan: API calls only for entity routes; unknown routes are notfound', 
 test('match meta: sourced facts only, SportsEvent without fabricated fields', () => {
   const m = buildMeta(`/matches/${MATCH.data.id}`, 'match', [MATCH]);
   assert.equal(m.status, 200);
-  assert.equal(m.title, 'Fulham vs Manchester United — Match Intelligence | PropBetEdge Soccer');
+  assert.equal(m.title, 'Fulham vs Manchester United Match Intelligence | PropBetEdge');
+  assert.equal(buildMeta('/matches/x', 'match', [{ data: { ...MATCH.data, status: 'live' } }]).title, 'Fulham vs Manchester United Live Match Intelligence | PropBetEdge'); // LIVE only when live
   assert.equal(m.description, 'Fulham 1–1 Manchester United · Premier League 2026/27 · 20 September 2026. Full time. Match Intelligence: event map (2 shots), source stats, lineups, timeline.');
   assert.equal(m.canonical, `${SITE}/matches/${MATCH.data.id}`);
   const ev = m.jsonld.find(j => j['@type'] === 'SportsEvent');
@@ -36,19 +37,19 @@ test('competition meta claims a table only when one exists', () => {
   const noTable = buildMeta('/competitions/uefa-champions-league', 'competition', [comp, { data: { rows: [] } }]);
   assert.ok(!/table/i.test(noTable.title) && !/table/i.test(noTable.description));
   const withTable = buildMeta('/competitions/uefa-champions-league', 'competition', [comp, { data: { rows: [{}] } }]);
-  assert.match(withTable.title, /Table, Results & Fixtures/);
+  assert.match(withTable.title, /Table, Results & Match Intelligence \| PropBetEdge/);
   assert.match(withTable.description, /1 stored season, 144 canonical matches/);
 });
 
 test('team and player meta: only graph-supported JSON-LD fields', () => {
   const t = buildMeta('/teams/fulham', 'team', [{ data: { slug: 'fulham', name: 'Fulham', official_name: null, city: null, form: ['W', 'D'], recent: [{ id: 'x', home: { name: 'Fulham' }, away: { name: 'B' }, competition: { name: 'Premier League' } }], upcoming: [] } }]);
-  assert.equal(t.title, 'Fulham — Soccer Intelligence | PropBetEdge');
+  assert.equal(t.title, 'Fulham Results, Team DNA & Soccer Intelligence | PropBetEdge');
   const st = t.jsonld.find(j => j['@type'] === 'SportsTeam');
   assert.deepEqual(Object.keys(st).sort(), ['@context', '@type', 'name', 'sport', 'url']);
   const p = buildMeta('/players/x', 'player', [{ data: { slug: 'x', name: 'Test Player', first_name: 'Test', last_name: 'Player', birth_date: null, role: null, seasons: [] } }]);
   const person = p.jsonld.find(j => j['@type'] === 'Person');
   for (const k of ['birthDate', 'nationality', 'image', 'jobTitle', 'memberOf', 'height']) assert.equal(person[k], undefined, k);
-  assert.equal(p.title, 'Test Player — Player Intelligence | PropBetEdge Soccer');
+  assert.equal(p.title, 'Test Player Stats, Player DNA & Match Intelligence | PropBetEdge');
   const full = buildMeta('/players/y', 'player', [{ data: { slug: 'y', name: 'Y', birth_date: '1988-08-21', nationality_code: 'POL', height_cm: 185, seasons: [{ season: '2017/18' }] } }]);
   const pf = full.jsonld[0];
   assert.equal(pf.birthDate, '1988-08-21'); assert.equal(pf.nationality.identifier, 'POL'); assert.equal(pf.height.value, 185);

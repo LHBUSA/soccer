@@ -20,7 +20,7 @@ function recordCard(r) {
 }
 
 export const team = {
-  title: d => `${d.env?.data?.name || 'Team'} · PropBetEdge Soccer`,
+  title: d => `${d.env?.data?.name || 'Team'} Results, Team DNA & Soccer Intelligence | PropBetEdge`,
   async load([slug]) { return { env: await api(`teams/${slug}`) }; },
   render(d) {
     const t = d.env.data;
@@ -82,7 +82,7 @@ function observedBlock(o) {
 }
 
 export const player = {
-  title: d => `${d.env?.data?.name || 'Player'} · Player Intelligence`,
+  title: d => `${d.env?.data?.name || 'Player'} Stats, Player DNA & Match Intelligence | PropBetEdge`,
   async load([slug]) { return { env: await api(`players/${slug}`) }; },
   render(d) {
     const p = d.env.data; const meta = d.env.meta;

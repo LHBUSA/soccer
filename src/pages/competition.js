@@ -9,7 +9,7 @@ import { compMeta } from '../lib/competitions.js';
 import { compMono, empty, errorState, link, matchGrid, mountTabs, sectionHead, sourcePanel, tabBar, tabPanel, teamMark } from '../components/ui.js';
 import { mountTableViews, tableView, tableViews } from '../components/table.js';
 
-export const title = d => (d?.comp?.value?.data?.name ? `${d.comp.value.data.name} · PropBetEdge Soccer` : 'Competition · PropBetEdge Soccer');
+export const title = d => { const n = d?.comp?.value?.data?.name; if (!n) return 'Competition Intelligence | PropBetEdge'; const hasTable = d.table?.status === 'fulfilled' && (d.table.value.data.rows || []).length > 0; return hasTable ? `${n} Table, Results & Match Intelligence | PropBetEdge` : `${n} Results & Match Intelligence | PropBetEdge`; };
 
 const TABS = [['overview', 'OVERVIEW'], ['table', 'TABLE'], ['results', 'RESULTS'], ['upcoming', 'UPCOMING'], ['teams', 'TEAMS']];
 const settled = async p => { try { return { status: 'fulfilled', value: await p }; } catch (reason) { return { status: 'rejected', reason }; } };

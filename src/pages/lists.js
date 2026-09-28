@@ -9,7 +9,7 @@ import { FEATURED, FEATURED_COMPS, compMeta } from '../lib/competitions.js';
 
 // ---- /competitions
 export const competitions = {
-  title: () => 'Competitions · PropBetEdge Soccer',
+  title: () => 'Competitions — Soccer Intelligence | PropBetEdge',
   async load() { const [comps, cov] = await Promise.allSettled([api('competitions'), api('coverage')]); return { comps, cov }; },
   render(d) {
     if (d.comps.status === 'rejected') return `<section class="canvas"><div class="wrap">${errorState(d.comps.reason)}</div></section>`;
@@ -27,7 +27,7 @@ export const competitions = {
 // ---- /matches
 const VIEWS = { recent: 'Recent results', upcoming: 'Upcoming', today: 'Today' };
 export const matches = {
-  title: () => 'Matches · PropBetEdge Soccer',
+  title: () => 'Matches — Results, Fixtures & Match Intelligence | PropBetEdge',
   async load(_p, q) {
     const view = VIEWS[q.get('view')] ? q.get('view') : 'recent';
     const comp = FEATURED.includes(q.get('competition')) ? q.get('competition') : '';
@@ -52,7 +52,7 @@ export const matches = {
 
 // ---- /tables
 export const tables = {
-  title: () => 'Tables · PropBetEdge Soccer',
+  title: () => 'Tables — League Standings | PropBetEdge',
   async load(_p, q) {
     const comps = await Promise.allSettled([api('competitions')]).then(([r]) => r);
     const stored = comps.status === 'fulfilled' ? comps.value.data.map(c => c.slug) : FEATURED;
@@ -85,7 +85,7 @@ export { news } from './news.js';
 
 // ---- /sources (static trust page: attributions and rules, no data claims)
 export const sources = {
-  title: () => 'Sources · PropBetEdge Soccer',
+  title: () => 'Sources & Method — Soccer Intelligence | PropBetEdge',
   async load() { return {}; },
   render() {
     return `<section class="hero compact"><div class="wrap"><p class="kicker gold">SOURCES</p><h1 class="display">Where every fact comes from</h1>

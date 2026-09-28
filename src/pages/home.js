@@ -5,7 +5,7 @@ import { FEATURED, FEATURED_COMPS } from '../lib/competitions.js';
 import { compMono, empty, errorState, link, matchGrid, sectionHead, sourcePanel } from '../components/ui.js';
 
 export { FEATURED };
-export const title = () => 'PropBetEdge Soccer Intelligence';
+export const title = () => 'Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge';
 
 export async function load() {
   const today = todayUtc();
@@ -86,13 +86,11 @@ export function render(d) {
   <section class="hero home">
     <div class="wrap hero-grid">
       <div>
-        <p class="kicker gold">SOCCER INTELLIGENCE</p>
-        <h1 class="display">Every match. Every event.<br><span>One canonical field.</span></h1>
-        <p class="lede">MLS, Premier League, Champions League and Bundesliga: results, lineups, source statistics and event maps, resolved into one PropBetEdge soccer graph.</p>
-        <p class="hero-cta">${link('/matches', 'MATCH INTELLIGENCE', 'btn gold')} ${link('/tables', 'TABLES', 'btn ghost')}</p>
+        <p class="kicker gold">PROPBETEDGE · SOCCER INTELLIGENCE</p>
+        <h1 class="display">Soccer intelligence.<br><span>The match is only the start.</span></h1>
+        <p class="lede">Live match intelligence, Player DNA, event maps, team profiles and original data-backed soccer news across MLS, Premier League, Champions League and Bundesliga.</p>
+        <p class="hero-cta">${link('/matches', 'MATCHES', 'btn gold')} ${link('/tables', 'TABLES', 'btn ghost')} ${link('/news', 'NEWS', 'btn ghost')}</p>
       </div>
-      <div class="hero-pitch" aria-hidden="true"><div class="hp-field"><span class="hp-half"></span><span class="hp-circle"></span><span class="hp-box l"></span><span class="hp-box r"></span></div>
-        <p class="hp-caption">Every event has a place on the pitch.</p></div>
     </div>
   </section>
   <section class="canvas"><div class="wrap">

@@ -32,14 +32,14 @@ function listPage(env, desk) {
 }
 
 export const news = {
-  title: () => 'News · PropBetEdge Soccer',
+  title: () => 'Soccer News — Evidence-Backed Reporting | PropBetEdge',
   robots: d => (d?.env?.data?.length ? INDEX : 'noindex, follow'),
   async load() { return { env: await api('news', { limit: 30 }) }; },
   render(d) { return listPage(d.env, null); },
 };
 
 export const newsDesk = {
-  title: d => `${compByDesk(d?.desk)?.name || ''} News · PropBetEdge Soccer`,
+  title: d => `${compByDesk(d?.desk)?.name || ''} Soccer News | PropBetEdge`,
   robots: d => (d?.env?.data?.length ? INDEX : 'noindex, follow'),
   async load([desk]) { return { desk, env: await api('news', { desk, limit: 30 }) }; },
   render(d) { return listPage(d.env, d.desk); },
@@ -48,7 +48,7 @@ export const newsDesk = {
 const typeLabel = s => String(s || '').replace('competition_intelligence', 'table race').replace(/_/g, ' ').toUpperCase();
 
 export const article = {
-  title: d => `${d?.env?.data?.headline || 'Article'} · PropBetEdge Soccer`,
+  title: d => `${d?.env?.data?.headline || 'Article'} | PropBetEdge Soccer`,
   async load([desk, slug]) {
     const env = await api(`news/${slug}`);
     if (env.data.desk !== desk) { const e = new Error('not found'); e.status = 404; throw e; }

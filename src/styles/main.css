@@ -522,3 +522,54 @@ abbr[title] { text-decoration: none; cursor: help; }
 /* ---------- accessibility: 24px minimum targets for standalone links ---------- */
 .mc-comp, .sec-link { min-height: 24px; display: inline-flex; align-items: center; }
 .ltable .tm a { min-height: 24px; }
+
+/* =====================================================================
+   V3 VISUAL SYSTEM — night-stadium shell (original render, public/brand/),
+   translucent navy chrome, white intelligence canvases floating above it.
+   ===================================================================== */
+html { background: #050b16; }
+body { background: transparent; }
+.backdrop { position: fixed; inset: 0; z-index: -1; background: #050b16 url(/brand/soccer-stadium-portrait-1080.webp) center 20% / cover no-repeat; pointer-events: none; }
+.backdrop::after { content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(130% 55% at 50% -8%, rgba(240,198,90,.07), transparent 60%),
+    linear-gradient(180deg, rgba(5,11,22,.30) 0%, rgba(5,11,22,.18) 28%, rgba(5,11,22,.62) 62%, rgba(5,11,22,.88) 100%),
+    radial-gradient(120% 90% at 50% 40%, transparent 45%, rgba(3,7,15,.65) 100%); }
+@media (min-width: 768px) {
+  .backdrop { background-image: url(/brand/soccer-stadium-1600.webp); background-position: center 30%; }
+}
+@media (min-width: 1600px), (min-width: 1100px) and (min-resolution: 1.5dppx) {
+  .backdrop { background-image: url(/brand/soccer-stadium-2560.webp); }
+}
+
+/* chrome */
+.top { background: rgba(6,13,26,.86); border-bottom-color: rgba(255,255,255,.08); }
+.brandlock { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.pbe-mark { display: inline-flex; flex: 0 0 auto; line-height: 0; border-radius: 6px; }
+.pbe-mark img { width: 73px; height: 36px; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(0,0,0,.45)); }
+.brandlock .brand { padding-left: 12px; border-left: 1px solid rgba(255,255,255,.14); }
+@media (max-width: 380px) { .pbe-mark img { width: 58px; height: 29px; } .brandlock { gap: 9px; } .brandlock .brand { padding-left: 9px; } .brand .b1 { font-size: 16px; } .brand .b2 { font-size: 9px; letter-spacing: .2em; } }
+.foot-brand { margin-bottom: 10px; }
+.rail { background: rgba(10,22,40,.72); border-top-color: rgba(255,255,255,.06); }
+.hero, .hero.league, .mhero { background-color: transparent; }
+.hero { background: radial-gradient(900px 420px at 0% 0%, rgba(212,167,58,.10), transparent 60%), linear-gradient(180deg, rgba(6,13,26,.35), rgba(6,13,26,.05)); }
+.hero.league { background: radial-gradient(900px 460px at 90% -30%, color-mix(in srgb, var(--accent) 34%, transparent), transparent 62%), linear-gradient(180deg, rgba(6,13,26,.45), rgba(6,13,26,.10)); }
+.mhero { background: radial-gradient(900px 380px at 50% -20%, rgba(61,139,253,.18), transparent 65%), linear-gradient(180deg, rgba(6,13,26,.50), rgba(6,13,26,.15)); }
+.hero .display, .mhero .sb-name, .hero .lede { text-shadow: 0 2px 18px rgba(0,0,0,.55); }
+.band.dark { background: rgba(10,22,40,.84); }
+.foot { background: rgba(4,9,18,.94); border-top-color: rgba(255,255,255,.08); }
+
+/* floating intelligence canvases */
+.canvas { background: transparent; padding: 8px 0 18px; }
+.canvas > .wrap { background: var(--canvas); border-radius: 22px; padding-top: 30px; padding-bottom: 34px; box-shadow: 0 1px 0 rgba(255,255,255,.6) inset, 0 24px 70px rgba(0,0,0,.42); }
+.canvas.alt > .wrap { background: var(--canvas-alt); }
+@media (max-width: 767px) { .canvas > .wrap { width: calc(100% - 16px); border-radius: 16px; padding-top: 22px; padding-bottom: 26px; } }
+@media (min-width: 1280px) { .canvas > .wrap { padding-left: 36px; padding-right: 36px; } }
+.canvas.narrow.center { background: none; }
+.ssr { color: #fff; }
+.hero::before, .mhero::before { content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background: linear-gradient(90deg, rgba(4,9,18,.62) 0%, rgba(4,9,18,.38) 42%, rgba(4,9,18,0) 72%); }
+.hero > .wrap, .mhero > .wrap { position: relative; z-index: 1; }
+.mhero { position: relative; }
+.mhero::before { background: radial-gradient(80% 90% at 50% 45%, rgba(4,9,18,.55), rgba(4,9,18,.15) 75%); }
+@media (max-width: 767px) { .hero::before { background: linear-gradient(180deg, rgba(4,9,18,.55), rgba(4,9,18,.35)); } }

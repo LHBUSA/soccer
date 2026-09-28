@@ -6,11 +6,9 @@ import { DASH, STAT_LABELS, ago, dateTime, num, sourceName, statsHeading } from 
 import { link, sectionHead, sourcePanel, statusPill, teamLink } from '../components/ui.js';
 import { pitchSvg, validShots } from '../components/pitch.js';
 import { mountRelatedNews } from '../components/related.js';
+import { matchTitle } from '../seo/meta.js';
 
-export const title = d => {
-  const m = d?.env?.data;
-  return m ? `${m.home?.name} ${m.score ? `${m.score.home}–${m.score.away}` : 'v'} ${m.away?.name} · Match Intelligence` : 'Match Intelligence';
-};
+export const title = d => (d?.env?.data ? matchTitle(d.env.data) : 'Match Intelligence | PropBetEdge');
 
 export async function load([id]) {
   return { env: await api(`matches/${id}`) };

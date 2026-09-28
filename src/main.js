@@ -13,10 +13,13 @@ import { mountMediaFallbacks } from './components/ui.js';
 const PAGES = { home, competition, match, competitions, matches, news, newsDesk, article, sources, tables, team, player };
 const NAV = [['/', 'TODAY', 'home'], ['/matches', 'MATCHES', 'matches,match'], ['/tables', 'TABLES', 'tables'], ['/competitions', 'COMPETITIONS', 'competitions'], ['/news', 'NEWS', 'news,newsDesk,article']];
 
+// The canonical PropBetEdge mark (owned network artwork, docs/BRAND.md) links to the network home.
+const brandMark = () => '<a class="pbe-mark" href="https://propbetedge.ai/" aria-label="PropBetEdge home"><img src="/brand/pbe-mark-64.webp" srcset="/brand/pbe-mark-64.webp 130w, /brand/pbe-mark-96.webp 195w, /brand/pbe-mark-160.webp 325w" sizes="73px" width="73" height="36" alt="PropBetEdge"></a>';
+
 function shell() {
   return `<a class="skip" href="#main">Skip to content</a>
   <header class="top"><div class="wrap topbar">
-    <a class="brand" href="/" data-link aria-label="PropBetEdge Soccer Intelligence home"><span class="b1">PROPBETEDGE</span><span class="b2">SOCCER INTELLIGENCE</span></a>
+    <div class="brandlock">${brandMark()}<a class="brand" href="/" data-link aria-label="PropBetEdge Soccer Intelligence home"><span class="b1">PROPBETEDGE</span><span class="b2">SOCCER INTELLIGENCE</span></a></div>
     <button class="navtoggle" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span></button>
     <nav id="nav" class="nav" aria-label="Primary">${NAV.map(([h, l, p]) => `<a href="${h}" data-link data-pages="${p}">${l}</a>`).join('')}</nav>
   </div>
@@ -24,7 +27,7 @@ function shell() {
   </header>
   <main id="main" tabindex="-1"></main>
   <footer class="foot"><div class="wrap footgrid">
-    <div><p class="brand small"><span class="b1">PROPBETEDGE</span><span class="b2">SOCCER INTELLIGENCE</span></p><p class="muted">Football intelligence, rebuilt on the PropBetEdge canonical soccer graph.</p></div>
+    <div><div class="brandlock foot-brand">${brandMark()}<p class="brand small"><span class="b1">PROPBETEDGE</span><span class="b2">SOCCER INTELLIGENCE</span></p></div><p class="muted">Football intelligence, rebuilt on the PropBetEdge canonical soccer graph.</p></div>
     <nav aria-label="Footer">${FEATURED_COMPS.map(c => `<a href="/competitions/${c.slug}" data-link>${c.name.toUpperCase()}</a>`).join('')}<a href="/matches" data-link>MATCH INTELLIGENCE</a><a href="/tables" data-link>TABLES</a><a href="/news" data-link>NEWS</a><a href="/sources" data-link>SOURCES</a></nav>
     <p class="muted small">Event data: Pappalardo et al. (2019), Wyscout public dataset, CC BY 4.0 · Fixtures/results: OpenLigaDB, ODbL · Structured facts: ESPN (secondary source). Event maps show event locations, not player tracking.</p>
   </div></footer>`;
@@ -39,7 +42,7 @@ let firstLoad = true; // the server already wrote title/canonical/robots for the
 function setMeta(page, data, params = []) {
   const mod = PAGES[page];
   if (!firstLoad) {
-    document.title = (mod?.title && data ? mod.title(data) : null) || 'PropBetEdge Soccer Intelligence';
+    document.title = (mod?.title && data ? mod.title(data) : null) || 'Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge';
     let robots = document.querySelector('meta[name="robots"]');
     if (!robots) { robots = document.createElement('meta'); robots.name = 'robots'; document.head.appendChild(robots); }
     robots.content = page === 'notfound' ? 'noindex, follow' : (typeof mod?.robots === 'function' ? mod.robots(data) : mod?.robots) || 'index, follow, max-image-preview:large';
