@@ -64,8 +64,14 @@ async function reference() {
 async function ingest() {
   const [one, all] = await Promise.all([getJson(`${INGEST}/v1/admin/live?match=${MATCH}`, { authorization: `Bearer ${TOKEN}` }), getJson(`${INGEST}/v1/admin/live`, { authorization: `Bearer ${TOKEN}` })]);
   const ls = one.json?.live_state || null;
-  if (ls) { const k = keyOf(ls.score?.home, ls.score?.away, ls.status === 'live' ? 'in' : ls.status === 'finished' ? 'post' : 'pre'); if (S.ingest?.k !== k) log('ingest_change', { key: k, observed_at: ls.observed_at, changed_at: ls.changed_at, clock: ls.display_clock, role: ls.role, mode: ls.mode }); S.ingest = { k, ls }; }
-  for (const t of all.json?.metrics || []) if (!S.ticks.has(t.at)) { S.ticks.set(t.at, t); log('tick', t); }
+  if (ls) {
+    const k = keyOf(ls.score?.home, ls.score?.away, ls.status === 'live' ? 'in' : ls.status === 'finished' ? 'post' : 'pre');
+    if (S.ingest?.k !== k) log('ingest_change', { key: k, observed_at: ls.observed_at, changed_at: ls.changed_at, canonical_updated_at: one.json?.canonical?.updated_at || null, clock: ls.display_clock, role: ls.role, mode: ls.mode });
+    // every new lane observation of this match: the actual per-match poll interval
+    if (S.ingest?.ls?.observed_at !== ls.observed_at) log('ingest_sample', { observed_at: ls.observed_at, clock: ls.display_clock, status: ls.status });
+    S.ingest = { k, ls };
+  }
+  for (const t of all.json?.metrics || []) if (!S.ticks.has(t.at)) { S.ticks.set(t.at, t); log('tick', { ...t, budget_bound: (t.requests || 0) >= 42 }); }
   log('ingest_state', { canonical: one.json?.canonical, breaker: all.json?.breaker, disagreements: (all.json?.disagreements || []).filter(d => d.match_id === MATCH).length, corrections: (all.json?.corrections || []).filter(c => c.match_id === MATCH), glitches: (all.json?.glitches || []).filter(g => g.match_id === MATCH).length });
   if (ls?.reconciled || (ls?.role !== 'enrichment' && ls?.final_done)) S.done = true;
 }
@@ -91,13 +97,18 @@ const puppeteer = require('puppeteer-core');
 const browser = await puppeteer.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: 'new', userDataDir: 'D:/Temp/soccer-first-live-chrome', args: ['--no-first-run', '--disable-extensions'] });
 const page = await browser.newPage(); await page.setViewport({ width: 1280, height: 900 });
 await page.goto(`${SITE}/pbecast/${MATCH}`, { waitUntil: 'networkidle0', timeout: 60000 });
-const shot = async label => { await page.bringToFront(); await page.screenshot({ path: `${shots}/${Date.now()}-${label}.png` }); log('screenshot', { label }); };
+const mobile = await browser.newPage(); await mobile.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true, deviceScaleFactor: 2 });
+await mobile.goto(`${SITE}/pbecast/${MATCH}`, { waitUntil: 'networkidle0', timeout: 60000 });
+const shot = async label => { const t = Date.now(); for (const [p, v] of [[page, 'desktop'], [mobile, 'mobile']]) { await p.bringToFront(); await p.screenshot({ path: `${shots}/${t}-${label}-${v}.png` }).catch(() => {}); } log('screenshot', { label }); };
 await shot('pregame');
 async function dom() {
-  const v = await page.evaluate(() => ({ score: [...document.querySelectorAll('.ct-score span')].map(s => s.textContent).join('-'), status: document.querySelector('.ct-status')?.innerText || '', mode: document.querySelector('.cast-top')?.className || '' })).catch(() => null);
+  const v = await page.evaluate(() => ({ score: [...document.querySelectorAll('.ct-score span')].map(s => s.textContent).join('-'), status: document.querySelector('.ct-status')?.innerText || '', clock: document.querySelector('.ct-clock')?.textContent || null, fresh: document.querySelector('.ct-fresh')?.textContent || null, mode: document.querySelector('.cast-top')?.className || '' })).catch(() => null);
   if (!v) return;
+  // The clock must be the provider's text verbatim: an mm:ss value the provider did not send is interpolation.
+  if (S.domClock !== v.clock) { log('browser_clock', { clock: v.clock, reference_clock: S.ref?.clock || null, interpolated: !!(v.clock && /\d+:\d{2}/.test(v.clock) && !/\d+:\d{2}/.test(S.ref?.clock || '')) }); S.domClock = v.clock; }
+  if (/DELAYED/.test(v.status) && !S.delayedShot) { S.delayedShot = true; log('browser_delayed', { status: v.status.slice(0, 120), fresh: v.fresh }); await shot('delayed'); }
   const k = `${/live/.test(v.mode) ? 'in' : /replay/.test(v.mode) ? 'post' : 'pre'}|${v.score.replace(/–/g, '-')}`;
-  if (S.dom?.k !== k) { log('browser_change', { key: k, status: v.status.slice(0, 120) }); await shot(`change-${k.replace(/[^a-z0-9-]/gi, '_')}`); }
+  if (S.dom?.k !== k) { log('browser_change', { key: k, status: v.status.slice(0, 120), clock: v.clock }); await shot(S.dom?.k?.startsWith('pre') && k.startsWith('in') ? 'first-live' : `change-${k.replace(/[^a-z0-9-]/gi, '_')}`); }
   if (Date.now() - S.lastShot > 15 * 60e3) { S.lastShot = Date.now(); await shot('periodic'); }
   S.dom = { k };
 }
@@ -112,32 +123,51 @@ while (Date.now() < UNTIL && !S.done) {
   n += 1; await new Promise(r => setTimeout(r, 10000));
 }
 await shot('final'); await ledgerCheck(); await ingest();
+// Replay: a fresh load after the final shows the replay mode.
+for (const p of [page, mobile]) await p.goto(`${SITE}/pbecast/${MATCH}`, { waitUntil: 'networkidle0', timeout: 60000 }).catch(() => {});
+await shot('replay');
 await browser.close();
 
-// Summary: provider change -> ingest -> API -> browser, per observed score/status change.
+// Summary. Every figure is computed from observed timestamps in the JSONL.
 const rows = readFileSync(LOG, 'utf8').trim().split('\n').map(l => JSON.parse(l));
 const first = (kind, key) => rows.find(r => r.kind === kind && r.key === key);
-const chain = S.changes.map(c => {
+const stats = xs => { const s = xs.filter(Number.isFinite).sort((a, b) => a - b); const q = p => (s.length ? s[Math.min(s.length - 1, Math.floor(p * (s.length - 1) + 0.5))] : null); return { n: s.length, median: q(0.5), p95: q(0.95), max: s.length ? s[s.length - 1] : null }; };
+// Only changes the reference saw happen (a previous reference sample exists) carry a bounded time.
+const chain = S.changes.filter(c => c.provider_prev_seen_at).map(c => {
   const ing = first('ingest_change', c.key); const ap = first('api_change', c.key);
-  const br = rows.find(r => r.kind === 'browser_change' && r.key.split('|')[1] === c.key.split('|')[1]);
-  const p = c.provider_seen_at;
-  return { key: c.key, provider_seen_at: new Date(p).toISOString(), provider_change_bound_ms: c.provider_prev_seen_at ? p - c.provider_prev_seen_at : null,
-    ingest_ms: ing?.observed_at ? Date.parse(ing.observed_at) - p : null, api_ms: ap ? ap.res_at - p : null, browser_ms: br ? br.t - p : null };
+  const br = rows.find(r => r.kind === 'browser_change' && r.key === c.key);
+  const p = c.provider_seen_at; const ingAt = ing?.observed_at ? Date.parse(ing.observed_at) : null;
+  return { key: c.key, provider_clock: c.clock, provider_change_observed_at: new Date(p).toISOString(), provider_change_bound_ms: p - c.provider_prev_seen_at,
+    ingest_fetch_at: ing?.observed_at || null, canonical_write_at: ing?.canonical_updated_at || null, api_at: ap ? new Date(ap.res_at).toISOString() : null, browser_at: br ? new Date(br.t).toISOString() : null,
+    provider_to_ingest_ms: ingAt ? ingAt - p : null, provider_to_api_ms: ap ? ap.res_at - p : null, provider_to_browser_ms: br ? br.t - p : null,
+    ingest_to_api_ms: ingAt && ap ? ap.res_at - ingAt : null, api_to_browser_ms: ap && br ? br.t - ap.res_at : null };
 });
 const ticks = [...S.ticks.values()];
-const q = (xs, p) => { const s = xs.filter(Number.isFinite).sort((a, b) => a - b); return s.length ? s[Math.min(s.length - 1, Math.floor(p * (s.length - 1) + 0.5))] : null; };
+const samples = rows.filter(r => r.kind === 'ingest_sample').map(r => Date.parse(r.observed_at));
+const intervals = samples.slice(1).map((t, i) => t - samples[i]);
+const states = rows.filter(r => r.kind === 'ingest_state');
+const clocks = rows.filter(r => r.kind === 'browser_clock');
 const summary = {
-  match: MATCH, competition: comp.slug, kickoff_at: m.kickoff_at, finished_capture_at: new Date().toISOString(), completed: S.done,
-  ticks: ticks.length, cron_start_lag_ms: { median: q(ticks.map(t => t.started_lag_ms), 0.5), p95: q(ticks.map(t => t.started_lag_ms), 0.95) },
-  tick_duration_ms: { median: q(ticks.map(t => t.duration_ms), 0.5), p95: q(ticks.map(t => t.duration_ms), 0.95) },
-  provider_to_ingest_ms: { median: q(chain.map(c => c.ingest_ms), 0.5), p95: q(chain.map(c => c.ingest_ms), 0.95) },
-  provider_to_api_ms: { median: q(chain.map(c => c.api_ms), 0.5), p95: q(chain.map(c => c.api_ms), 0.95) },
-  provider_to_browser_ms: { median: q(chain.map(c => c.browser_ms), 0.5), p95: q(chain.map(c => c.browser_ms), 0.95) },
+  match: MATCH, competition: comp.slug, kickoff_at: m.kickoff_at, capture_ended_at: new Date().toISOString(), completed: S.done,
+  latency_ms: { provider_to_ingest: stats(chain.map(c => c.provider_to_ingest_ms)), provider_to_api: stats(chain.map(c => c.provider_to_api_ms)), provider_to_browser: stats(chain.map(c => c.provider_to_browser_ms)), ingest_to_api: stats(chain.map(c => c.ingest_to_api_ms)), api_to_browser: stats(chain.map(c => c.api_to_browser_ms)) },
+  provider_change_bound_ms: stats(chain.map(c => c.provider_change_bound_ms)),
   changes: chain,
-  api_duplicates: rows.filter(r => r.kind === 'api_duplicates').length,
+  ticks: { n: ticks.length, cron_start_lag_ms: stats(ticks.map(t => t.started_lag_ms)), duration_ms: stats(ticks.map(t => t.duration_ms)), requests: stats(ticks.map(t => t.requests)), active_matches_polled: stats(ticks.map(t => t.polled)), budget_bound_ticks: ticks.filter(t => (t.requests || 0) >= 42).length },
+  target_poll_interval_ms: stats(intervals),
+  rotation_observed: intervals.some(ms => ms > 90e3) || ticks.some(t => (t.requests || 0) >= 42),
+  clock: { distinct_browser_clocks: clocks.length, interpolated: clocks.filter(c => c.interpolated).length, samples: clocks.slice(0, 20).map(c => [c.clock, c.reference_clock]) },
+  api_duplicate_samples: rows.filter(r => r.kind === 'api_duplicates').length,
   ledger_last: rows.filter(r => r.kind === 'ledger').at(-1) || null,
+  ledger_duplicate_source_ids_max: Math.max(0, ...rows.filter(r => r.kind === 'ledger').map(r => r.duplicate_source_ids)),
+  retractions: Math.max(0, ...states.map(s => (s.corrections || []).reduce((a, c) => a + (c.retracted?.length || 0), 0))),
+  resequences: Math.max(0, ...states.map(s => (s.corrections || []).reduce((a, c) => a + (c.resequenced || 0), 0))),
+  glitches: Math.max(0, ...states.map(s => s.glitches || 0)),
+  disagreements: Math.max(0, ...states.map(s => s.disagreements || 0)),
+  breaker_non_closed_samples: states.filter(s => s.breaker && (s.breaker.failed_ticks || s.breaker.open_until)).length,
+  delayed_state_observed: rows.some(r => r.kind === 'browser_delayed'),
+  screenshots: rows.filter(r => r.kind === 'screenshot').map(r => r.label),
   errors: rows.filter(r => r.kind === 'error').length,
-  note: 'Provider change times are bounded by the 10 s reference poll; latency is proven only by a completed real match.',
+  note: 'Provider change times are bounded by the ~10 s reference poll (provider_change_bound_ms). Latency is proven only by a completed real match.',
 };
 writeFileSync(`${dir}/first-live-${MATCH}-${day}-summary.json`, JSON.stringify(summary, null, 2) + '\n');
-console.log(JSON.stringify(summary, null, 2));
+console.log(JSON.stringify({ ...summary, changes: summary.changes.length }, null, 2));
