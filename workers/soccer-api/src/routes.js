@@ -1,3 +1,4 @@
+import { articleVideos, videosFeed } from './video.js';
 // soccer-api route handlers. Pure functions of (store, params) -> envelope, so
 // they are testable against PGlite and served from PostgREST in production.
 // Never exposes: raw captures, the identity queue, source-change ledger,
@@ -627,8 +628,11 @@ export async function news(store, q) {
 }
 
 export async function article(store, slug) {
-  const [a] = await store.select('soccer_articles', { columns: ['slug', 'desk', 'story_class', 'headline', 'dek', 'body', 'entities', 'published_at', 'updated_at', 'packet_hash', 'composer', 'gate_version'], eq: { slug, status: 'published' }, limit: 1 });
+  const [a] = await store.select('soccer_articles', { columns: ['id', 'slug', 'desk', 'story_class', 'headline', 'dek', 'body', 'entities', 'published_at', 'updated_at', 'packet_hash', 'composer', 'gate_version'], eq: { slug, status: 'published' }, limit: 1 });
   if (!a) throw new NotFound(`article ${slug}`);
+  // Official video linked to THIS story by the matcher (docs/VIDEO.md); none when no confident match.
+  a.media = { videos: await articleVideos(store, a.id).catch(() => []) };
+  delete a.id;
   // Additive (article page V3): approved media on the story's entities, the hero subject, and
   // related coverage by shared entities. Only approved media; nothing is guessed.
   const ents = a.entities || [];
@@ -849,4 +853,12 @@ export async function warmDna(store, env) {
   const wy = bl ? (await seasonsOf(store, bl.id)).find(x => x.label === '2017/18') : null;
   if (wy) { const t0 = Date.now(); const r = await seasonProfiles(store, env, wy.id, asOf, 'player'); out.push({ slug: 'bundesliga', season: '2017/18', kind: 'player', cached: r.cached, ms: Date.now() - t0, size: r.profiles.size }); }
   return out;
+}
+
+// Newsroom WATCH module: recent official highlights (verified channels only), optionally per desk.
+export async function videos(store, q = {}) {
+  const desk = ['mls', 'premier-league', 'champions-league', 'bundesliga'].includes(q.desk) ? q.desk : null;
+  const limit = Math.max(1, Math.min(8, Number(q.limit) || 4));
+  const rows = await videosFeed(store, { desk, limit });
+  return E(rows, { source: 'youtube_official', semantics: 'Official videos from verified publisher channels, embedded from YouTube (privacy-enhanced player, loaded on click). Not hosted by PropBetEdge.', coverage: rows.length ? COVERAGE.OK : COVERAGE.UNAVAILABLE, coverage_notes: rows.length ? [] : ['No recent official video for this desk.'] });
 }

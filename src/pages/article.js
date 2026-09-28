@@ -11,9 +11,10 @@ import { compByDesk } from '../lib/competitions.js';
 import { storyLabel } from '../lib/news.js';
 import { competitionMark, link, portrait, teamMark } from '../components/ui.js';
 import { keyPlayers } from '../components/keyplayers.js';
+import { officialVideo, mountOfficialVideos } from '../components/video.js';
 
 const SITE = 'https://soccer.propbetedge.ai';
-const TYPE = { match_recap: 'Match report', player_form: 'Player form', team_trend: 'Team trend', competition_intelligence: 'Table race', match_preview: 'Preview' };
+const TYPE = { match_recap: 'Match report', player_form: 'Player form', team_trend: 'Team trend', competition_intelligence: 'Table watch', match_preview: 'Preview' };
 
 export function readingMinutes(sections) {
   const words = (sections || []).flatMap(s => s.paragraphs || []).join(' ').split(/\s+/).filter(Boolean).length;
@@ -74,8 +75,18 @@ export function heroMedia(a) {
   return `<figure class="art-hero-media k-brand a-${esc(c?.accent || 'x')}">${bg}${team ? teamMark(team, 'xl') : ''}<span class="ah-tag">${c ? competitionMark(c.slug, 'md') : ''}<b>${esc(c?.long || '')}</b></span>${score}</figure>`;
 }
 
-function body(sections) {
-  return `<div class="art-body">${join(sections, (s, i) => `${i > 0 || s.heading ? `<h2>${esc(s.heading)}</h2>` : ''}${join(s.paragraphs, p => `<p>${esc(p)}</p>`)}`)}</div>`;
+// WATCH: a matcher-linked official video (docs/VIDEO.md), after the first editorial section so the reader
+// gets the story first. No linked video -> no module (fail closed).
+export function watchInArticle(a) {
+  const v = (a.media?.videos || []).find(x => x.validated);
+  if (!v) return '';
+  return `<section class="art-watch" aria-label="Watch"><p class="nrail-h">WATCH · ${v.video_type === 'highlights' ? 'OFFICIAL HIGHLIGHTS' : 'OFFICIAL VIDEO'}</p>${officialVideo(v, { feature: true })}</section>`;
+}
+
+function body(sections, watch = '') {
+  // the WATCH module sits between the first section and the rest of the story
+  const html = sections.map((s, i) => `${i > 0 || s.heading ? `<h2>${esc(s.heading)}</h2>` : ''}${join(s.paragraphs, p => `<p>${esc(p)}</p>`)}`);
+  return watch && html.length > 1 ? `<div class="art-body">${html[0]}</div>${watch}<div class="art-body cont">${html.slice(1).join('')}</div>` : `<div class="art-body">${html.join('')}</div>${watch}`;
 }
 
 function sourceMethod(a, parts, meta) {
@@ -123,7 +134,7 @@ export function renderArticle(env) {
       <div class="art-main">
         ${inThisStory(a.entities || [])}
         ${heroMedia(a)}
-        ${body(parts.sections)}
+        ${body(parts.sections, watchInArticle(a))}
         ${when(match, () => `<section class="art-mod" data-art-match="${esc(match.href.split('/').pop())}"><p class="nrail-h">MATCH INTELLIGENCE</p><div class="am-slot"><p class="muted">Loading match intelligence…</p></div></section>`)}
         ${when(people.length, () => `<section class="art-mod"><p class="nrail-h">PLAYER DNA</p><div class="kp-grid">${join(people.slice(0, 4), p => `<a class="kp-card" href="/players/${esc(p.slug)}" data-link data-player-slug="${esc(p.slug)}"${match ? ` data-match-id="${esc(match.href.split('/').pop())}"` : ''}>${portrait(p, 'md')}<span class="kp-id"><b>${esc(p.name)}</b><small>Open Player DNA</small></span></a>`)}</div></section>`)}
         ${related(a)}
@@ -136,6 +147,7 @@ export function renderArticle(env) {
 
 // After render: share controls, the match module, the hero score, the rail.
 export async function mountArticle(root, env) {
+  mountOfficialVideos(root);
   const bar = root.querySelector('[data-share-url]');
   bar?.querySelector('[data-copy]')?.addEventListener('click', async e => {
     const url = bar.dataset.shareUrl; const btn = e.currentTarget; const st = bar.querySelector('[data-share-status]');

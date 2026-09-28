@@ -1,3 +1,4 @@
+import { videoObject } from '../components/video.js';
 // Server-first SEO: pure builders from API envelopes to page metadata.
 // Used by middleware.js (first HTML response) and by the client on navigation.
 // Only fields the canonical graph actually returns are ever emitted.
@@ -62,7 +63,9 @@ export function articleMeta(pathname, env, desk) {
       datePublished: a.published_at, dateModified: a.updated_at || a.published_at, author: org, publisher: org, mainEntityOfPage: url, url,
       articleSection: DESKS[a.desk], image: [SHARE_IMAGE],
       ...(teams.length ? { about: teams.map(t => ({ '@type': 'SportsTeam', name: t.name, url: `${SITE}/teams/${t.slug}` })) } : {}) },
-    breadcrumb([['Soccer', `${SITE}/`], ['News', `${SITE}/news`], [DESKS[a.desk], `${SITE}/news/${a.desk}`], [a.headline, url]])],
+    breadcrumb([['Soccer', `${SITE}/`], ['News', `${SITE}/news`], [DESKS[a.desk], `${SITE}/news/${a.desk}`], [a.headline, url]]),
+    // VideoObject only for a matcher-validated official video linked to this story
+    ...((a.media?.videos || []).filter(v => v.validated).slice(0, 1).map(videoObject).filter(Boolean))],
     ssr: { h1: a.headline, p: a.dek || '', links: [[`/news/${a.desk}`, `${DESKS[a.desk]} news`], ...(a.entities || []).filter(e => e.href).slice(0, 6).map(e => [e.href, e.name])] },
   });
 }

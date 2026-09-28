@@ -30,6 +30,7 @@ const ROUTES = [
   [/^\/v1\/players\/([a-z0-9-]+)$/, (s, m) => R.player(s, m[1]), 600],
   [/^\/v1\/table$/, (s, _m, q) => R.table(s, q), 60],
   [/^\/v1\/news$/, (s, _m, q) => R.news(s, q), 60],
+  [/^\/v1\/videos$/, (s, _m, q) => R.videos(s, q), 300],
   [/^\/v1\/news\/([a-z0-9-]+)$/, (s, m) => R.article(s, m[1]), 120],
 ];
 

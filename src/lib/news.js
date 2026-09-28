@@ -36,5 +36,5 @@ export function selectHomepageLead(items, now = Date.now()) {
 
 export const latestNews = (items, exclude = null) => [...(items || [])].filter(a => !exclude || a.slug !== exclude.slug).sort((x, y) => Date.parse(y.published_at) - Date.parse(x.published_at) || String(x.slug).localeCompare(String(y.slug)));
 
-export const STORY_LABEL = { match_recap: 'Match report', competition_intelligence: 'Table race', player_form: 'Player form', team_trend: 'Team trend', match_preview: 'Preview' };
+export const STORY_LABEL = { match_recap: 'Match report', competition_intelligence: 'Table watch', player_form: 'Player form', team_trend: 'Team trend', match_preview: 'Preview' };
 export const storyLabel = c => STORY_LABEL[c] || String(c || 'Story').replace(/_/g, ' ');
