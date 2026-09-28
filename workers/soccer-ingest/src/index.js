@@ -19,7 +19,7 @@ import { STANDINGS_LANE, runEspnStandings } from './espn-standings.js';
 import { LIVE_LANE, runEspnLive } from './espn-live.js';
 import { SHADOW_LANE, runShadow } from './shadow-lane.js';
 
-export const VERSION = 'soccer-ingest/1.1.0';
+export const VERSION = 'soccer-ingest/1.2.0';
 
 const LANES = {
   [OLDB_CURRENT]: ctx => runOpenLigaCurrent(ctx),
@@ -43,7 +43,7 @@ function context(env) {
   const store = storeFromEnv(env);
   if (!store) throw new Error('SOCCER_MODEL_SUPABASE_URL / _SERVICE_ROLE_KEY not configured');
   if (!env.SOCCER_SOURCE) throw new Error('R2 binding SOCCER_SOURCE missing');
-  return { store, storage: r2Storage(env.SOCCER_SOURCE), registry, reviewed, areas };
+  return { store, storage: r2Storage(env.SOCCER_SOURCE), registry, reviewed, areas, kv: env.SOCCER_STATE || null };
 }
 
 export async function runLane(env, name, { force = false, now = Date.now(), budget = undefined } = {}) {
@@ -70,9 +70,12 @@ export async function runLane(env, name, { force = false, now = Date.now(), budg
   }
 }
 
+// Cron runs every minute. The live lane (PBEcast) runs every minute and only works when an
+// ESPN-owned match is in its live window; every other lane keeps its 5-minute cadence.
 async function tick(env, now = Date.now()) {
-  const out = [];
-  for (const name of PRIORITY) out.push(await runLane(env, name, { now }));
+  const out = [await runLane(env, LIVE_LANE, { now })];
+  if (new Date(now).getUTCMinutes() % 5 !== 0) return out;
+  for (const name of PRIORITY.filter(n => n !== LIVE_LANE)) out.push(await runLane(env, name, { now }));
   if (ROTATING.length) {
     const i = Math.floor(now / 300e3) % ROTATING.length;
     out.push(await runLane(env, ROTATING[i], { now }));

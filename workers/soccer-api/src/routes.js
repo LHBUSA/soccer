@@ -33,6 +33,12 @@ export async function approvedMedia(store, entityType, ids, { mediaType = null, 
   }
   return out;
 }
+// Small portrait descriptor for lists (lineups, impact, directory, news cards): approved primary only.
+export async function portraitMap(store, ids) {
+  const out = new Map();
+  for (const [id, list] of await approvedMedia(store, 'player', ids, { mediaType: 'portrait', primaryOnly: true })) out.set(id, { url: list[0].url, attribution: list[0].attribution, license: list[0].license });
+  return out;
+}
 const shapeMedia = r => ({ media_type: r.media_type, url: r.cached_url, width: r.width, height: r.height, license: r.license, license_url: r.license_url, author: r.author, attribution: r.attribution, source: r.source, source_url: r.source_url, primary: r.is_primary });
 
 async function teamsById(store, ids) {
@@ -197,7 +203,8 @@ export async function match(store, id) {
   for (const part of chunkArr(allPlayers, 150)) for (const p of await store.select('soccer_players', { columns: ['id', 'slug', 'display_name'], in: { id: part } })) people.set(p.id, p);
   const mgrIds = lineups.map(l => l.manager_id).filter(Boolean);
   const mgrs = mgrIds.length ? new Map((await store.select('soccer_managers', { columns: ['id', 'slug', 'display_name'], in: { id: mgrIds } })).map(x => [x.id, x])) : new Map();
-  const person = pid => { const p = people.get(pid); return p ? { id: p.id, slug: p.slug, name: p.display_name } : null; };
+  const portraits = await portraitMap(store, [...people.keys()]);
+  const person = pid => { const p = people.get(pid); return p ? { id: p.id, slug: p.slug, name: p.display_name, ...(portraits.get(p.id) ? { portrait: portraits.get(p.id) } : {}) } : null; };
   const side = tid => (tid === m.home_team_id ? 'home' : tid === m.away_team_id ? 'away' : null);
 
   const timeline = evs.filter(e => e.is_goal || e.is_own_goal || e.card).map(e => ({
@@ -217,14 +224,14 @@ export async function match(store, id) {
   const lineupOut = Object.fromEntries(lineups.map(l => [side(l.team_id), {
     manager: mgrs.get(l.manager_id) ? { slug: mgrs.get(l.manager_id).slug, name: mgrs.get(l.manager_id).display_name } : null,
     formation: l.formation,
-    starters: lp.filter(x => x.lineup_id === l.id && x.is_starter).map(x => person(x.player_id)),
-    bench: lp.filter(x => x.lineup_id === l.id && !x.is_starter).map(x => person(x.player_id)),
+    starters: lp.filter(x => x.lineup_id === l.id && x.is_starter).map(x => (person(x.player_id) ? { ...person(x.player_id), ...(x.shirt_number ? { shirt: x.shirt_number } : {}) } : null)),
+    bench: lp.filter(x => x.lineup_id === l.id && !x.is_starter).map(x => (person(x.player_id) ? { ...person(x.player_id), ...(x.shirt_number ? { shirt: x.shirt_number } : {}) } : null)),
   }]));
   // ---- SHOT INTELLIGENCE: every shot of the chosen event family (located or not), with
   // score state before it, the linked assist where the source tags one, body part,
   // situation and provider xG labelled as the provider's.
   const assistEvents = family === 'espn' ? await store.select('soccer_match_events', { columns: ['sequence', 'team_id', 'player_id', 'subtype'], eq: { match_id: id, source_family: 'espn' }, in: { subtype: ['espn_assist', 'espn_assists_shot'] }, order: 'sequence.asc' }) : [];
-  for (const a of assistEvents) if (a.player_id && !people.has(a.player_id)) for (const p of await store.select('soccer_players', { columns: ['id', 'slug', 'display_name'], eq: { id: a.player_id } })) people.set(p.id, p);
+  for (const a of assistEvents) if (a.player_id && !people.has(a.player_id)) for (const p of await store.select('soccer_players', { columns: ['id', 'slug', 'display_name'], eq: { id: a.player_id } })) { people.set(p.id, p); const pm = await portraitMap(store, [p.id]); if (pm.get(p.id)) portraits.set(p.id, pm.get(p.id)); }
   let hs = 0; let as = 0;
   const shotTimeline = [];
   for (const e of evs) {
@@ -237,6 +244,31 @@ export async function match(store, id) {
     }
     if (e.is_goal) { if (side(e.team_id) === 'home') hs += 1; else as += 1; }
     if (e.is_own_goal) { if (side(ownGoalBeneficiary(e, m.home_team_id, m.away_team_id)) === 'home') hs += 1; else as += 1; }
+  }
+  // ---- SEQUENCE (PBEcast): every sourced goal / own goal / shot / card in source order, plus
+  // substitutions by minute. Coordinates ONLY where the source located the event (shots);
+  // score = running canonical score after the item. Minutes are the source's, never interpolated.
+  const sequence = [];
+  { let h = 0; let a = 0;
+    for (const e of evs) {
+      const type = e.event_type === 'shot' ? (e.is_goal ? 'goal' : 'shot') : e.is_goal ? 'goal' : e.is_own_goal ? 'own_goal' : e.card ? `card_${e.card}` : null;
+      if (!type) continue;
+      const tside = side(e.is_own_goal ? ownGoalBeneficiary(e, m.home_team_id, m.away_team_id) : e.team_id);
+      if (type === 'goal' || type === 'own_goal') { if (tside === 'home') h += 1; else if (tside === 'away') a += 1; }
+      const loc = e.event_type === 'shot' && e.x_m !== null && e.y_m !== null ? toMatchFrame({ x_m: Number(e.x_m), y_m: Number(e.y_m) }, { isHomeTeam: e.team_id === m.home_team_id }) : null;
+      const assist = type === 'goal' ? assistEvents.filter(x => x.subtype === 'espn_assist' && x.team_id === e.team_id && Math.abs(e.sequence - x.sequence) <= 4).sort((x, y) => Math.abs(e.sequence - x.sequence) - Math.abs(e.sequence - y.sequence))[0] || null : null;
+      sequence.push({ minute: e.minute, display_minute: displayMinute(e.period, e.minute), period: e.period, team: tside, type,
+        player: person(e.player_id) || (e.qualifiers?.source_player ? { name: e.qualifiers.source_player.name, resolved: false } : null),
+        ...(e.event_type === 'shot' ? { outcome: e.outcome, body_part: e.body_part || null, provider_xg: e.qualifiers?.provider_xg || null } : {}),
+        ...(assist ? { assist: person(assist.player_id) } : {}), ...(e.set_piece === 'penalty' ? { penalty: true } : {}),
+        ...(loc ? { x: loc.x, y: loc.y } : {}), score: { home: h, away: a } });
+    }
+    for (const sb of subs) {
+      const at = sequence.findIndex(x => (x.minute ?? 0) > (sb.minute ?? 999));
+      const prev = at === -1 ? sequence[sequence.length - 1] : sequence[at - 1];
+      const item = { minute: sb.minute, display_minute: sb.minute !== null && sb.minute !== undefined ? `${sb.minute}'` : null, team: side(sb.team_id), type: 'sub', player_in: person(sb.player_in_id), player_out: person(sb.player_out_id), score: prev ? prev.score : { home: 0, away: 0 } };
+      if (at === -1) sequence.push(item); else sequence.splice(at, 0, item);
+    }
   }
   // ---- PLAYER IMPACT: sourced counts only. ESPN matches count the ESPN event record;
   // Wyscout matches use PBE derived counts from the ledger. Minutes are nominal (from
@@ -285,6 +317,7 @@ export async function match(store, id) {
     substitutions: subs.map(s => ({ minute: s.minute, team: side(s.team_id), in: person(s.player_in_id), out: person(s.player_out_id) })),
     event_source: family,
     shot_timeline: shotTimeline,
+    sequence,
     players: players.length ? { basis: impactBasis, rows: players } : null,
     tactical: lineups.length ? { formations: Object.fromEntries(lineups.map(l => [side(l.team_id), l.formation || null])), source: 'formation as stated by the lineup source; positions are not stored' } : null,
     coordinates: hasLedger ? { system: '105x68 m, match frame: home attacks toward x=105', note: 'Event locations, not player tracking.' } : null,
@@ -296,7 +329,7 @@ export async function match(store, id) {
   });
 }
 
-export async function team(store, slug) {
+export async function team(store, slug, env = null) {
   const [t] = await store.select('soccer_teams', { columns: [...TEAM_COLS, 'updated_at'], eq: { slug, status: 'active' }, limit: 1 });
   if (!t) throw new NotFound(`team ${slug}`);
   const [h, a] = await Promise.all([
@@ -310,7 +343,8 @@ export async function team(store, slug) {
   const form = recent.slice(0, 5).map(x => { const gf = x.home_team_id === t.id ? x.home_score : x.away_score; const ga = x.home_team_id === t.id ? x.away_score : x.home_score; return gf > ga ? 'W' : gf < ga ? 'L' : 'D'; });
   const comps = await compsById(store, [...all].map(r => r.competition_id));
   const intel = await intelFlags(store, [...recent, ...next].map(r => r.id));
-  const { records, observed } = await teamSeasonDepth(store, t, all, comps);
+  const { records, observed, latestSeasons } = await teamSeasonDepth(store, t, all, comps);
+  await attachQuickDna(store, env, observed.players, latestSeasons);
   const media = (await approvedMedia(store, 'team', [t.id])).get(t.id) || [];
   return E({ id: t.id, slug: t.slug, name: t.name, official_name: t.official_name, type: t.team_type, country_code: t.country_code, city: t.city, form, media, crest: media.find(x => x.media_type === 'crest' && x.primary) || null, records, players_observed: observed, recent: recent.map(r => shapeMatch(r, teams, comps, intel)), upcoming: next.map(r => shapeMatch(r, teams, comps, intel)) }, {
     source: 'pbe', semantics: 'Canonical team; form = last 5 finished canonical matches (W/D/L), newest first. records = league-stage record in the latest stored season of each competition (position only where a league table exists). players_observed = players named in sourced lineups for those seasons (appearance = started or came on).', source_updated_at: maxTs(t.updated_at, recent.map(r => r.updated_at)),
@@ -356,9 +390,28 @@ async function teamSeasonDepth(store, t, all, comps) {
   }
   const people = new Map();
   for (const part of chunkArr([...agg.keys()], 150)) for (const p of await store.select('soccer_players', { columns: ['id', 'slug', 'display_name', 'primary_role'], in: { id: part } })) people.set(p.id, p);
-  const observed = [...agg.entries()].filter(([id]) => people.has(id)).map(([id, a]) => ({ slug: people.get(id).slug, name: people.get(id).display_name, role: people.get(id).primary_role, ...a }))
+  const portraits = await portraitMap(store, [...people.keys()]);
+  const observed = [...agg.entries()].filter(([id]) => people.has(id)).map(([id, a]) => ({ id, slug: people.get(id).slug, name: people.get(id).display_name, role: people.get(id).primary_role, ...(portraits.get(id) ? { portrait: portraits.get(id) } : {}), ...a }))
     .sort((x, y) => y.appearances - x.appearances || y.starts - x.starts || (x.name < y.name ? -1 : 1));
-  return { records, observed: { lineups_counted: lineups.length, players: observed } };
+  return { records, observed: { lineups_counted: lineups.length, players: observed }, latestSeasons: [...latest.values()] };
+}
+
+// Quick Player DNA numbers for team player rows, read from the season DNA cache ONLY (a cache
+// miss adds nothing; a team page never pays a cold DNA computation).
+async function cachedSeasonProfiles(store, env, seasonId, kind) {
+  const kv = env?.SOCCER_STATE; if (!kv) return null;
+  const asOf = new Date().toISOString();
+  const [last] = await store.select('soccer_matches', { columns: ['kickoff_at'], eq: { season_id: seasonId, status: 'finished' }, lte: { kickoff_at: asOf }, order: 'kickoff_at.desc', limit: 1 });
+  const cutoff = last ? new Date(last.kickoff_at).toISOString() : 'none';
+  const hit = await kv.get(`dna:${DNA_VERSION}:${kind}:${seasonId}:${cutoff}`, 'json').catch(() => null);
+  return hit ? new Map(hit.profiles) : null;
+}
+async function attachQuickDna(store, env, rows, seasonIds) {
+  if (!rows?.length) return;
+  for (const sid of seasonIds || []) {
+    const prof = await cachedSeasonProfiles(store, env, sid, 'player'); if (!prof) continue;
+    for (const r of rows) { const p = prof.get(r.id); if (!p || r.dna) continue; r.dna = { goals: p.goals, assists: p.assists, shots: p.shots, minutes_nominal: p.minutes_nominal, goal_contributions_per90: p.goal_contributions_per90, percentile_goal_contributions_per90: p.percentiles?.goal_contributions_per90 ?? null }; }
+  }
 }
 
 // Observed player record: lineups (starts / came on) plus goals and shots from the
@@ -415,8 +468,12 @@ async function playerObserved(store, p) {
   const sum = k => { const v = [...rows.values()].map(r => r[k]).filter(x => x !== null); return v.length ? v.reduce((a, b) => a + b, 0) : null; };
   const totals = { appearances: sum('appearances'), starts: sum('starts'), goals: sum('goals'), shots: sum('shots') };
   const recent = ms.filter(m => lineupByMatch.has(m.id) && m.status === 'finished').sort((a, b) => Date.parse(b.kickoff_at) - Date.parse(a.kickoff_at)).slice(0, 10)
-    .map(m => ({ ...shapeMatch(m, teams, comps), started: starterOf.get(lineupByMatch.get(m.id).id) === true, came_on: subIns.has(m.id), goals: count(goals, m.id), shots: count(shots, m.id) }));
+    .map(m => ({ ...shapeMatch(m, teams, comps), side: lineupByMatch.get(m.id).team_id === m.home_team_id ? 'home' : 'away', started: starterOf.get(lineupByMatch.get(m.id).id) === true, came_on: subIns.has(m.id), goals: count(goals, m.id), shots: count(shots, m.id) }));
+  // The team of the player's most recent sourced lineup (identity context for the hero; not a claim of current contract).
+  const lastLineup = ms.filter(m => lineupByMatch.has(m.id)).sort((a, b) => Date.parse(b.kickoff_at) - Date.parse(a.kickoff_at))[0];
+  const lt = lastLineup ? teams.get(lineupByMatch.get(lastLineup.id).team_id) : null;
   return {
+    latest_team: lt ? { slug: lt.slug, name: lt.name, short_name: lt.short_name, ...(lt.crest ? { crest: lt.crest } : {}), as_of: lastLineup.kickoff_at, competition: comps.get(lastLineup.competition_id) || null } : null,
     totals: { ...totals, located_events: located, lineups_named: lineups.length },
     by_competition: [...rows.values()].sort((a, b) => ((b.season || '') < (a.season || '') ? -1 : (b.season || '') > (a.season || '') ? 1 : 0)),
     recent,
@@ -546,7 +603,20 @@ export async function news(store, q) {
     if (!events.length) return E([], { source: 'pbe', semantics: 'Published articles about this entity.', coverage: COVERAGE.UNAVAILABLE, coverage_notes: ['No published story names this entity yet.'] });
     opts.in = { news_event_id: events };
   }
-  const rows = await store.select('soccer_articles', opts);
+  const rows = await store.select('soccer_articles', { ...opts, columns: [...opts.columns, 'entities'] });
+  // Card image: the first person the story names who has an approved portrait, else the first
+  // team with an approved crest; otherwise none (the page draws its branded fallback).
+  const personIds = [...new Set(rows.flatMap(r => (r.entities || []).filter(e => e.type === 'Person' && e.id).map(e => e.id)))];
+  const teamIds = [...new Set(rows.flatMap(r => (r.entities || []).filter(e => e.type === 'SportsTeam' && e.id).map(e => e.id)))];
+  const [pm, cm] = await Promise.all([portraitMap(store, personIds), approvedMedia(store, 'team', teamIds, { mediaType: 'crest', primaryOnly: true })]);
+  for (const r of rows) {
+    const ents = r.entities || [];
+    const person = ents.find(e => e.type === 'Person' && pm.get(e.id));
+    const team = ents.find(e => e.type === 'SportsTeam' && cm.get(e.id));
+    r.image = person ? { kind: 'portrait', url: pm.get(person.id).url, alt: person.name, attribution: pm.get(person.id).attribution } : team ? { kind: 'crest', url: cm.get(team.id)[0].url, alt: team.name, attribution: cm.get(team.id)[0].attribution } : null;
+    r.teams = ents.filter(e => e.type === 'SportsTeam').slice(0, 2).map(e => ({ slug: e.slug, name: e.name }));
+    delete r.entities;
+  }
   return E(rows, { source: 'pbe', semantics: 'Published PropBetEdge articles only; every article is backed by a frozen evidence packet and passed all publication gates.', coverage: rows.length ? COVERAGE.OK : COVERAGE.UNAVAILABLE, coverage_notes: rows.length ? [] : ['No published stories.'], source_updated_at: maxTs(rows.map(r => r.updated_at)) });
 }
 

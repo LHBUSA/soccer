@@ -8,7 +8,7 @@
 import { chunkArr } from '../../soccer-ingest/src/store.js';
 import { ownGoalBeneficiary } from '../../shared/own-goals.js';
 
-export const DNA_VERSION = 'soccer-dna/1.0.0';
+export const DNA_VERSION = 'soccer-dna/1.1.0'; // 1.1.0: + team_id (team of the latest appearance); metrics unchanged
 export const MIN_MINUTES = 450;
 const FAMILY = ['wyscout_figshare', 'espn', 'openligadb'];
 const r2 = v => (v === null || v === undefined || !Number.isFinite(v) ? null : Math.round(v * 100) / 100);
@@ -121,6 +121,7 @@ export async function playerProfiles(store, D) {
   ]);
   const lu = new Map(D.lineups.map(l => [l.id, l]));
   const home = new Map(D.matches.map(m => [m.id, m.home_team_id]));
+  const kick = new Map(D.matches.map(m => [m.id, Date.parse(m.kickoff_at)]));
   const on = new Set(subs.map(s => `${s.match_id}|${s.player_in_id}`)); const off = new Set(subs.map(s => `${s.match_id}|${s.player_out_id}`));
   const mins = new Map(); const dAssist = new Map(); const dKey = new Map();
   for (const x of minutes) { const k = `${x.match_id}|${x.player_id}`; if (x.stat_key === 'minutes_nominal') mins.set(k, Number(x.value)); if (x.stat_key === 'assists') dAssist.set(k, Number(x.value)); if (x.stat_key === 'key_passes') dKey.set(k, Number(x.value)); }
@@ -132,6 +133,7 @@ export async function playerProfiles(store, D) {
     const p = get(x.player_id); p.apps += 1; if (x.is_starter) p.starts += 1; if (on.has(k)) p.sub_on += 1; if (off.has(k)) p.subbed_off += 1;
     p.minutes += mins.get(k) || 0; p.assists += dAssist.get(k) || 0; p.key_passes += dKey.get(k) || 0;
     const isHome = home.get(l.match_id) === l.team_id; if (isHome) p.home_apps += 1; else p.away_apps += 1;
+    if (!(p.team_at >= kick.get(l.match_id))) { p.team_at = kick.get(l.match_id); p.team_id = l.team_id; }
     p.log.push({ match_id: l.match_id, home: isHome });
   }
   const bump = (pid, mid, k) => { if (!P.has(pid)) return; const p = P.get(pid); p[k] += 1; if (k === 'goals') { const m = p.log.find(x => x.match_id === mid); if (m) { if (m.home) p.home_goals += 1; else p.away_goals += 1; m.goals = (m.goals || 0) + 1; } } if (k === 'shots') { const m = p.log.find(x => x.match_id === mid); if (m) m.shots = (m.shots || 0) + 1; } };
@@ -144,7 +146,7 @@ export async function playerProfiles(store, D) {
     const n90 = p.minutes / 90;
     const last5 = p.log.slice(-5);
     out.set(p.player_id, {
-      player_id: p.player_id, appearances: p.apps, starts: p.starts, start_rate: r2(per(p.starts, p.apps)), sub_appearances: p.sub_on, subbed_off: p.subbed_off,
+      player_id: p.player_id, team_id: p.team_id || null, appearances: p.apps, starts: p.starts, start_rate: r2(per(p.starts, p.apps)), sub_appearances: p.sub_on, subbed_off: p.subbed_off,
       minutes_nominal: p.minutes, minutes_per_appearance: r2(per(p.minutes, p.apps)),
       goals: p.goals, assists: p.assists, shots: p.shots, shots_on_target: p.sot, key_passes: p.key_passes, cards: p.cards,
       goals_per90: r2(per(p.goals, n90)), assists_per90: r2(per(p.assists, n90)), goal_contributions_per90: r2(per(p.goals + p.assists, n90)), shots_per90: r2(per(p.shots, n90)),

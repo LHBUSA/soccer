@@ -7,6 +7,7 @@
 
 import { storeFromEnv } from '../../shared/postgrest.js';
 import * as R from './routes.js';
+import * as C from './cast.js';
 
 const LANES = [{ lane: 'openligadb_bl1_current', priority: true }];
 
@@ -20,7 +21,10 @@ const ROUTES = [
   [/^\/v1\/competitions\/([a-z0-9-]+)$/, (s, m) => R.competition(s, m[1]), 300],
   [/^\/v1\/matches$/, (s, _m, q) => R.matches(s, q), 60],
   [/^\/v1\/matches\/([0-9a-f-]{36})$/, (s, m) => R.match(s, m[1]), 60],
-  [/^\/v1\/teams\/([a-z0-9-]+)$/, (s, m) => R.team(s, m[1]), 120],
+  [/^\/v1\/matches\/([0-9a-f-]{36})\/cast$/, (s, m, _q, env) => C.cast(s, m[1], env), 15],
+  [/^\/v1\/live$/, (s, _m, _q, env) => C.live(s, env), 15],
+  [/^\/v1\/players$/, (s, _m, q, env) => C.players(s, q, env), 600],
+  [/^\/v1\/teams\/([a-z0-9-]+)$/, (s, m, _q, env) => R.team(s, m[1], env), 120],
   [/^\/v1\/teams\/([a-z0-9-]+)\/dna$/, (s, m, q, env) => R.teamDnaRoute(s, m[1], q, env), 3600],
   [/^\/v1\/players\/([a-z0-9-]+)\/dna$/, (s, m, q, env) => R.playerDnaRoute(s, m[1], q, env), 3600],
   [/^\/v1\/players\/([a-z0-9-]+)$/, (s, m) => R.player(s, m[1]), 600],
@@ -71,6 +75,7 @@ export default {
       return res;
     } catch (err) {
       if (err.status === 404) return respond({ error: err.message }, 404, 0, origin);
+      if (err.status === 400) return respond({ error: err.message }, 400, 0, origin);
       console.error('soccer-api', url.pathname, err.message);
       return respond({ error: 'upstream error' }, 502, 0, origin);
     }

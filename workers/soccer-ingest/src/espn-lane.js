@@ -247,7 +247,7 @@ export async function reevaluateQueuedEspnAthletes(store, { client, registry, ar
 //   lineups (per side), stats (per side), plays.
 // `only` (Set of 'lineups' | 'stats' | 'plays') re-runs just those components for a
 // match already known to be finished (enrichment retry); the result is not refetched.
-export async function ingestEspnMatch(store, { comp, league, year, eventId, fixture, teamMap, client, now = Date.now(), only = null }) {
+export async function ingestEspnMatch(store, { comp, league, year, eventId, fixture, teamMap, client, now = Date.now(), only = null, recordLedger = true }) {
   const base = `${espn.CORE}/${league}/events/${eventId}/competitions/${eventId}`;
   const summary = { event: eventId };
   let changed = 0;
@@ -380,7 +380,8 @@ export async function ingestEspnMatch(store, { comp, league, year, eventId, fixt
     }
   }
   summary.enrichment = Object.fromEntries(Object.entries(outcomes).map(([k, v]) => [k, v.status]));
-  await recordEnrichment(store, { matchId, outcomes, now });
+  // The live lane refreshes components mid-match without recording them: a half-played match is not complete.
+  if (recordLedger) await recordEnrichment(store, { matchId, outcomes, now });
   return { final: true, changed, summary };
 }
 
