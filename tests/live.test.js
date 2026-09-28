@@ -51,6 +51,6 @@ test('live lane: source clock verbatim, plays every tick, no ledger mid-match, o
   assert.equal(JSON.parse(kvm.get(`live:${id(20)}`)).final_done, true);
   assert.ok((await store.select('soccer_match_enrichment', { columns: ['component'] })).length > 0, 'final pass records the ledger');
   const t4 = await runEspnLive({ store, storage, registry: reg, now: now + 180e3, fetcher, kv });
-  assert.equal(t4.skipped, 'no ESPN-owned match in the live window');
+  assert.equal(t4.skipped, 'no ESPN-owned or enriched match in the live window');
   await store.close();
 });

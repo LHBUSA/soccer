@@ -241,13 +241,67 @@ export async function reevaluateQueuedEspnAthletes(store, { client, registry, ar
   return out;
 }
 
+// ---- ESPN ledger corrections (the live lane re-reads the same match every minute).
+// A COMPLETE play-by-play read is the provider's current record for the match:
+//   * WITHDRAWN: a play that is no longer published (e.g. a goal cancelled after VAR review) is
+//     archived write-once to R2 (soccer-source/espn/retractions/<match>/...) with its full prior
+//     row, source event id, match + ESPN event id, first_seen_at, last_seen_at, withdrawn_at and
+//     reason, THEN removed from the active ledger. No archive, no removal (fail closed).
+//   * MOVED: a play whose position in the list changed is re-written with its new sequence (its
+//     old row is removed first, so the (match, family, sequence) slot never collides; the same
+//     source id means it is never duplicated).
+//   * PROVIDER GLITCH: if more than half of the existing ledger disappears in one read, nothing is
+//     removed or upserted (held: 'provider_glitch_suspected'); the previous ledger stays active.
+//     The live lane counts identical consecutive holds; after GLITCH_CONFIRM_READS identical reads
+//     the withdrawal is treated as genuine (a real VAR correction in a short ledger must not stay
+//     on the pitch forever), reason 'withdrawn_confirmed_after_hold'.
+// (source_family, source_event_id) is unique in the database: a play is never duplicated.
+export const GLITCH_SHARE = 0.5;
+export const GLITCH_CONFIRM_READS = 3;
+export async function reconcileEspnLedger(store, { matchId, eventId = null, rows, storage = null, now = Date.now(), lastSeenAt = null, glitchStreak = null, sourceFlagged = new Set() }) {
+  const existing = await store.select('soccer_match_events', { columns: '*', eq: { match_id: matchId, source_family: P }, order: 'sequence.asc' });
+  if (!existing.length) return { retracted: 0, resequenced: 0 };
+  const next = new Map(rows.map(r => [r.source_event_id, r.sequence]));
+  const gone = existing.filter(x => !next.has(x.source_event_id));
+  const moved = existing.filter(x => next.has(x.source_event_id) && next.get(x.source_event_id) !== x.sequence);
+  const out = { retracted: 0, resequenced: 0 };
+  const signature = gone.map(g => g.source_event_id).sort().join(',');
+  let reason = 'not_present_in_complete_source_read';
+  if (gone.length && gone.length > existing.length * GLITCH_SHARE) {
+    const streak = glitchStreak?.signature === signature ? glitchStreak.reads + 1 : 1;
+    if (streak < GLITCH_CONFIRM_READS) return { ...out, held: 'provider_glitch_suspected', missing: gone.length, existing: existing.length, glitch: { signature, reads: streak } };
+    reason = 'withdrawn_confirmed_after_hold';
+  }
+  const drop = [...gone, ...moved];
+  if (!drop.length) return out;
+  const derived = await store.select('soccer_possessions', { columns: ['id'], eq: { match_id: matchId }, limit: 1 });
+  if (derived.length) return { ...out, held: 'possessions_reference_ledger', missing: gone.length, moved: moved.length };
+  if (gone.length && !storage) return { ...out, held: 'no_archive_available', missing: gone.length };
+  const at = new Date(now).toISOString();
+  const archived = [];
+  for (const g of gone) {
+    const key = `soccer-source/espn/retractions/${matchId}/${g.source_event_id}-${at.replace(/[:.]/g, '')}.json`;
+    await storage.put(key, JSON.stringify({
+      source: P, source_event_id: g.source_event_id, match_id: matchId, provider_event_id: eventId,
+      first_seen_at: g.observed_at, last_seen_at: lastSeenAt, withdrawn_at: at, reason,
+      source_status: sourceFlagged.has(g.source_event_id) ? 'valid:false (published as invalid, e.g. deleted after review)' : null, // otherwise the play simply stopped appearing
+      prior_payload: g, prior_capture_id: g.capture_id, prior_raw_payload_hash: g.raw_payload_hash,
+    }, null, 2), 'application/json');
+    archived.push(key);
+  }
+  for (const part of chunkArr(drop.map(x => x.id), 100)) await store.delete('soccer_match_events', { in: { id: part } });
+  out.retracted = gone.length; out.resequenced = moved.length;
+  if (gone.length) { out.reason = reason; out.archive = archived; out.retracted_events = gone.map(g => ({ source_event_id: g.source_event_id, minute: g.minute, type: g.event_type, goal: !!(g.is_goal || g.is_own_goal), card: g.card || null })); }
+  return out;
+}
+
 // Match detail, split into COMPONENTS so an optional component can fail, be marked
 // unavailable in soccer_match_enrichment and be retried alone:
 //   result (status + scores; always first and never undone by a later component)
 //   lineups (per side), stats (per side), plays.
 // `only` (Set of 'lineups' | 'stats' | 'plays') re-runs just those components for a
 // match already known to be finished (enrichment retry); the result is not refetched.
-export async function ingestEspnMatch(store, { comp, league, year, eventId, fixture, teamMap, client, now = Date.now(), only = null, recordLedger = true }) {
+export async function ingestEspnMatch(store, { comp, league, year, eventId, fixture, teamMap, client, now = Date.now(), only = null, recordLedger = true, ledgerContext = null }) {
   const base = `${espn.CORE}/${league}/events/${eventId}/competitions/${eventId}`;
   const summary = { event: eventId };
   let changed = 0;
@@ -375,7 +429,9 @@ export async function ingestEspnMatch(store, { comp, league, year, eventId, fixt
           observed_at: obs, event_at: null, raw_payload_hash: payloadHash(e.raw), capture_id: capId, parser_version: espn.ESPN_PARSER_VERSION,
         }));
         summary.plays = { events: rows.length, with_coordinates: rows.filter(r => r.x_m !== null).length, unmapped_types: unmapped, goals: rows.filter(r => r.is_goal).length };
-        count(await syncRows(store, { table: 'soccer_match_events', key: ['source_family', 'source_event_id'], rows, compare: ['raw_payload_hash', 'match_id', 'player_id', 'team_id', 'sequence'], provider: P, captureId: capId, chunk: 1000 }));
+        summary.corrections = await reconcileEspnLedger(store, { matchId, eventId, rows, storage: client.storage, now, lastSeenAt: ledgerContext?.lastSeenAt || null, glitchStreak: ledgerContext?.glitchStreak || null, sourceFlagged: new Set(items.filter(p => p?.valid === false && p.id).map(p => String(p.id))) });
+        if (summary.corrections.held) outcomes.plays = { status: 'unavailable', error: `ledger held: ${summary.corrections.held}` };
+        else count(await syncRows(store, { table: 'soccer_match_events', key: ['source_family', 'source_event_id'], rows, compare: ['raw_payload_hash', 'match_id', 'player_id', 'team_id', 'sequence'], provider: P, captureId: capId, chunk: 1000 }));
       }
     }
   }

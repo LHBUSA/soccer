@@ -13,6 +13,21 @@ per source) and wrote one evidence file per probe to
 control was bypassed; every block is recorded as a block. This is an engineering
 rights triage, not legal advice.
 
+## Update — Bundesliga live enrichment is SHADOW only (owner decision 2026-09-28, V3.1)
+
+OpenLigaDB stays the canonical, public source for Bundesliga fixtures and results. ESPN Core may
+poll live Bundesliga matches only as **shadow / internal validation** (`data/registry/competitions.json`
+`espn.live_enrichment: "shadow"`): it writes KV live state and R2 captures only, never
+`soccer_matches`, `soccer_match_source_results` or the event ledger mid-match, and soccer-api never
+serves it. Public ESPN-backed Bundesliga live data needs BOTH an explicit source-rights clearance
+(the Disney terms restrict commercial use) AND a completed real-match live proof; then the registry
+mode becomes `"public"` and the soccer-api Worker var `LIVE_ENRICHMENT_PUBLIC=on`.
+Audit of alternatives (2026-09-28): DFL/bundesliga.com restricts automated access; football-data.org
+needs a token; TheSportsDB restricts commercial use; SofaScore/FBref block at the edge; FotMob's
+terms forbid automated access; OpenLigaDB supplies goals but no clock, cards or substitutions.
+Identity bridge proof: `docs/evidence/live/bundesliga-bridge-2026-09-28.json` (306/306 fixtures,
+18/18 clubs, fixture-graph, zero violations).
+
 ## Update — ESPN Core as a secondary source (owner decision 2026-09-27)
 
 The owner approved ESPN as a **secondary ingestion source**. The terms verdict stays `RESTRICTS_COMMERCIAL_USE`, now with `use_status = OWNER_APPROVED_SECONDARY`.

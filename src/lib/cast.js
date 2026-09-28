@@ -72,9 +72,24 @@ export const pctOf = (v, tl) => Math.max(0, Math.min(100, (100 * v) / (tl.total 
 // Key moments for jump chips: goals and own goals, red cards.
 export const keyMoments = tl => tl.items.filter(x => x.v !== null && (x.type === 'goal' || x.type === 'own_goal' || x.type === 'card_red'));
 
+// Which score / clock a live view shows. A secondary provider's enrichment (served by the API only
+// once source rights are cleared) wins while fresh; stale or missing enrichment falls back to the
+// canonical result with no clock claimed beyond what the canonical lane supplies.
+export function liveView(m) {
+  const e = m?.live?.enrichment;
+  if (e && e.score && e.freshness && !e.freshness.stale) return { score: e.score, clock: e.clock?.display || null, from: 'enrichment', fetched_at: e.fetched_at };
+  return { score: m?.score || null, clock: m?.live?.display_clock || null, from: 'canonical', fetched_at: m?.live?.provider_observed_at || m?.live?.observed_at || null, enrichment_stale: !!e };
+}
+
 // Live freshness wording from the cast envelope's `live` block (never implies real time).
 export function liveStatus(live, now = Date.now()) {
   if (!live || live.mode !== 'live') return null;
+  const e = live.enrichment;
+  if (e) {
+    const age = e.fetched_at ? Math.max(0, Math.round((now - Date.parse(e.fetched_at)) / 1000)) : null;
+    if (e.freshness && !e.freshness.stale && age !== null) return { tone: 'live', label: 'LIVE', note: `Updated ${age < 90 ? `${age}s` : `${Math.round(age / 60)} min`} ago. About one check a minute, plus the provider's own delay.` };
+    return { tone: 'delayed', label: 'LIVE · DELAYED', note: 'Live updates are delayed. Showing the latest confirmed score.' };
+  }
   if (!live.provider_observed_at) return { tone: 'noclock', label: 'LIVE', note: 'Score from the result source; this source supplies no live clock.' };
   const age = Math.max(0, Math.round((now - Date.parse(live.provider_observed_at)) / 1000));
   const ago = age < 90 ? `${age}s ago` : `${Math.round(age / 60)} min ago`;

@@ -94,6 +94,12 @@ export function postgrestStore(url, key, f = (...a) => globalThis.fetch(...a)) {
       if (!q) throw new Error(`update on ${table} needs a filter`);
       return (await store.req('PATCH', `${table}?${q}`, { body: patch, prefer: 'return=representation', retries: 0 })) || [];
     },
+    // Filtered DELETE (live ledger corrections: plays the source withdrew). Never unfiltered.
+    async delete(table, opts = {}) {
+      const q = buildQuery({ ...opts, columns: opts.columns || '*' }).replace(/^select=[^&]*&?/, '');
+      if (!q) throw new Error(`delete on ${table} needs a filter`);
+      return (await store.req('DELETE', `${table}?${q}`, { prefer: 'return=representation', retries: 0 })) || [];
+    },
     async count(table, opts = {}) {
       store.requests += 1;
       const res = await f(`${base}/${table}?${buildQuery({ ...opts, columns: opts.columns || '*' })}`, { method: 'HEAD', headers: headers({ prefer: 'count=exact', range: '0-0' }) });

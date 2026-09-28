@@ -1,6 +1,7 @@
 import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { dateShort, num, time, todayUtc } from '../lib/format.js';
+import { liveView } from '../lib/cast.js';
 import { FEATURED, FEATURED_COMPS } from '../lib/competitions.js';
 import { compMono, empty, errorState, link, matchGrid, portrait, sectionHead, sourcePanel, teamMark } from '../components/ui.js';
 
@@ -95,11 +96,12 @@ export function liveRail(env) {
   if (!items.length) return '';
   const live = items.filter(i => i.k === 'live').length;
   const tile = ({ m, k }) => {
-    const sc = m.score && m.score.home !== null && m.score.home !== undefined;
+    const lv = k === 'live' ? liveView(m) : { score: m.score, clock: null };
+    const sc = lv.score && lv.score.home !== null && lv.score.home !== undefined;
     const row = (t, s) => `<span class="lr-row">${teamMark(t, 'xs')}<span class="lr-name">${esc(t?.short_name || t?.name || '—')}</span>${sc ? `<b>${esc(String(s))}</b>` : ''}</span>`;
-    const tag = k === 'live' ? `<span class="lr-live"><i class="livedot" aria-hidden="true"></i>${esc(m.live?.display_clock || 'LIVE')}</span>` : k === 'next' ? `<span class="lr-when">${esc(dateShort(m.kickoff_at))} · ${esc(time(m.kickoff_at))}</span>` : `<span class="lr-when">FT · ${esc(dateShort(m.kickoff_at))}</span>`;
-    return `<li><a class="lr-tile k-${k}" href="/pbecast/${esc(m.id)}" data-link aria-label="${esc(`${m.home?.name} ${sc ? `${m.score.home}–${m.score.away}` : 'v'} ${m.away?.name}, ${k === 'live' ? 'live' : k === 'next' ? 'upcoming' : 'full time'}, open PBEcast`)}">
-      <span class="lr-top">${m.competition ? compMono(m.competition.slug, 'xs') : ''}${tag}</span>${row(m.home, m.score?.home)}${row(m.away, m.score?.away)}</a></li>`;
+    const tag = k === 'live' ? `<span class="lr-live"><i class="livedot" aria-hidden="true"></i>${esc(lv.clock || 'LIVE')}</span>` : k === 'next' ? `<span class="lr-when">${esc(dateShort(m.kickoff_at))} · ${esc(time(m.kickoff_at))}</span>` : `<span class="lr-when">FT · ${esc(dateShort(m.kickoff_at))}</span>`;
+    return `<li><a class="lr-tile k-${k}" href="/pbecast/${esc(m.id)}" data-link aria-label="${esc(`${m.home?.name} ${sc ? `${lv.score.home}–${lv.score.away}` : 'v'} ${m.away?.name}, ${k === 'live' ? 'live' : k === 'next' ? 'upcoming' : 'full time'}, open PBEcast`)}">
+      <span class="lr-top">${m.competition ? compMono(m.competition.slug, 'xs') : ''}${tag}</span>${row(m.home, lv.score?.home)}${row(m.away, lv.score?.away)}</a></li>`;
   };
   return `<section class="lrail" aria-label="PBEcast live rail" data-live-rail><div class="wrap">
     <div class="lr-head"><p class="kicker gold">${live ? `<i class="livedot" aria-hidden="true"></i> LIVE NOW · ${num(live)}` : 'PBECAST'}</p>${link('/pbecast', 'All casts →', 'lr-all')}</div>

@@ -26,7 +26,7 @@ export const DEFAULT_BUDGET = 30;
 export class BudgetExhausted extends Error { constructor() { super('request budget exhausted'); this.name = 'BudgetExhausted'; } }
 
 export function espnClient({ storage, store, fetcher = politeFetch, budget = DEFAULT_BUDGET, registry = null, areas = null }) {
-  const client = { used: 0, budget, pending: [], registry, areas };
+  const client = { used: 0, budget, pending: [], registry, areas, storage };
   client.get = async (url) => {
     if (client.used >= client.budget) throw new BudgetExhausted();
     client.used += 1;

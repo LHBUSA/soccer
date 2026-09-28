@@ -7,9 +7,9 @@
 // interpolated clock: live shows the provider's own clock; replay shows the source minute.
 import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
-import { ago, dateShort, dateTime, num, STAT_LABELS, statsHeading, time } from '../lib/format.js';
+import { ago, dateShort, dateTime, num, sourceName, STAT_LABELS, statsHeading, time } from '../lib/format.js';
 import { compMeta } from '../lib/competitions.js';
-import { buildTimeline, clockAt, keyMoments, liveStatus, pctOf, PERIOD_LABEL, stateAt } from '../lib/cast.js';
+import { buildTimeline, clockAt, keyMoments, liveStatus, liveView, pctOf, PERIOD_LABEL, stateAt } from '../lib/cast.js';
 import { compMono, empty, link, mountMediaFallbacks, playerChip, sectionHead, sourcePanel, statusPill, teamLink, teamMark } from '../components/ui.js';
 import { L, W, pitchLines } from '../components/pitch.js';
 import { matchTitle } from '../seo/meta.js';
@@ -37,15 +37,16 @@ export function softRefresh(root, load, page, every) {
 
 // ---------------------------------------------------------------- hub
 function hubCard(m, kind) {
-  const sc = m.score && m.score.home !== null && m.score.home !== undefined;
+  const lv = kind === 'live' ? liveView(m) : { score: m.score, clock: null };
+  const sc = lv.score && lv.score.home !== null && lv.score.home !== undefined;
   const f = compMeta(m.competition?.slug);
   const side = (t, s) => `<span class="hc-side">${teamMark(t)}<span class="hc-name">${esc(t?.short_name || t?.name || '—')}</span>${sc ? `<b>${esc(String(s))}</b>` : ''}</span>`;
-  const top = kind === 'live' ? `<span class="hc-clock">${esc(m.live?.display_clock || m.live?.detail || 'LIVE')}</span>`
+  const top = kind === 'live' ? `<span class="hc-clock">${esc(lv.clock || m.live?.detail || 'LIVE')}</span>`
     : kind === 'replay' ? '<span class="hc-tag">REPLAY</span>' : `<span class="hc-tag up">${esc(dateShort(m.kickoff_at))} · ${esc(time(m.kickoff_at))}</span>`;
   const cta = kind === 'live' ? 'OPEN LIVE CAST' : kind === 'replay' ? (hasSequence(m) ? 'REPLAY THE MATCH' : 'RESULT ONLY') : 'PREVIEW';
   return `<a class="hcard k-${kind}" href="/pbecast/${esc(m.id)}" data-link>
     <span class="hc-top">${f ? compMono(f.slug, 'xs') : ''}<span class="hc-comp">${esc(f?.name || m.competition?.name || '')}</span>${kind === 'live' ? statusPill('live') : ''}${top}</span>
-    ${side(m.home, m.score?.home)}${side(m.away, m.score?.away)}
+    ${side(m.home, lv.score?.home)}${side(m.away, lv.score?.away)}
     <span class="hc-cta">${esc(cta)} <span aria-hidden="true">→</span></span>
   </a>`;
 }
@@ -152,10 +153,11 @@ export function castView(env) {
   const tl = buildTimeline(m.sequence || []);
   const mode = live.mode === 'live' ? 'live' : live.mode === 'replay' ? 'replay' : live.mode === 'pregame' ? 'pregame' : 'other';
   const st = liveStatus(live);
-  const sc = m.score && m.score.home !== null && m.score.home !== undefined ? m.score : null;
+  const lv = mode === 'live' ? liveView(m) : { score: m.score, clock: null };
+  const sc = lv.score && lv.score.home !== null && lv.score.home !== undefined ? lv.score : null;
   const located = tl.items.filter(x => Number.isFinite(x.x)).length;
   const moments = keyMoments(tl);
-  const clock = mode === 'live' ? (live.display_clock || live.detail || '') : mode === 'replay' ? 'FT' : '';
+  const clock = mode === 'live' ? (lv.clock || (lv.from === 'canonical' ? live.detail || '' : '')) : mode === 'replay' ? 'FT' : '';
   return `<section class="cast-top ${esc(mode)}"><div class="wrap">
       <p class="ct-meta">${link('/pbecast', 'PBECAST', 'ct-home')} · ${m.competition ? link(`/competitions/${m.competition.slug}`, esc(m.competition.name)) : ''}${m.round ? ` · ${esc(m.round)}` : ''}</p>
       <h1 class="sr-only">${esc(m.home?.name || '')} v ${esc(m.away?.name || '')}: PBEcast</h1>
@@ -194,7 +196,7 @@ export function castView(env) {
         <div class="panel">${sectionHead('LINEUPS', 'Starting XI')}${lineupsCompact(m)}</div>
       </div>
       <p class="cast-links">${link(`/matches/${m.id}`, 'FULL MATCH INTELLIGENCE →', 'btn ghost dark')}</p>
-      ${sourcePanel(env.meta, { title: 'PBECAST SOURCE & FRESHNESS', extra: [['Mode', mode.toUpperCase()], ['Source clock', live.display_clock || (mode === 'live' ? 'Not supplied' : 'Not live')], ['Last source observation', live.provider_observed_at ? `${dateTime(live.provider_observed_at)} (${ago(live.provider_observed_at)})` : 'None']] })}
+      ${sourcePanel(env.meta, { title: 'PBECAST SOURCE & FRESHNESS', extra: [['Mode', mode.toUpperCase()], ['Source clock', live.display_clock || (mode === 'live' ? 'Not supplied' : 'Not live')], ['Last source observation', live.provider_observed_at ? `${dateTime(live.provider_observed_at)} (${ago(live.provider_observed_at)})` : 'None'], ...(live.enrichment ? [['Result of record', sourceName(live.canonical_result_source)], ['Live score', `${sourceName(live.enrichment.source)}, fetched ${live.enrichment.fetched_at ? `${dateTime(live.enrichment.fetched_at)} (${ago(live.enrichment.fetched_at)})` : 'never'}${live.enrichment.freshness?.stale ? ' · delayed' : ''}`]] : [])] })}
     </div></section>`;
 }
 

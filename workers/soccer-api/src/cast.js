@@ -11,7 +11,7 @@ import { seasonProfiles } from './routes.js';
 import { MIN_MINUTES, DNA_VERSION } from './dna.js';
 import { chunkArr } from '../../soccer-ingest/src/store.js';
 
-export const CAST_VERSION = 'soccer-api/1.3.0';
+export const CAST_VERSION = 'soccer-api/1.4.0'; // 1.4.0: live.enrichment (additive, rights-gated), live.canonical_result_source
 const E = (data, o) => envelope(data, { version: CAST_VERSION, ...o });
 export const PRODUCT_COMPS = ['mls', 'premier-league', 'uefa-champions-league', 'bundesliga'];
 export const LIVE_CADENCE_S = 60; // soccer-ingest live lane: one poll per active match per minute (budgeted)
@@ -22,6 +22,35 @@ async function liveState(env, id) {
   if (!env?.SOCCER_STATE) return null;
   return env.SOCCER_STATE.get(`live:${id}`, 'json').catch(() => null);
 }
+// Which live-lane state may be served publicly:
+//   owner       the lane's state for a match whose canonical result ESPN owns (and legacy states
+//               written before roles existed): served as before (display_clock, freshness);
+//   enrichment  a secondary provider's state beside another canonical owner (Bundesliga): served
+//               ONLY as live.enrichment, ONLY when its mode is 'public' AND this Worker's
+//               LIVE_ENRICHMENT_PUBLIC switch is 'on' (owner source-rights gate). Shadow state
+//               (internal validation) is never served.
+export const STALE_AFTER_MS = 5 * 60e3; // no fresh provider observation for 5 minutes = DELAYED
+export function servedLive(ls, env) {
+  if (!ls) return { owner: null, enrichment: null };
+  if (!ls.role || ls.role === 'owner') return { owner: ls, enrichment: null };
+  if (ls.role === 'enrichment' && ls.mode === 'public' && env?.LIVE_ENRICHMENT_PUBLIC === 'on') return { owner: null, enrichment: ls };
+  return { owner: null, enrichment: null };
+}
+// The additive enrichment contract. The canonical result stays in `score` / `status` of the match;
+// this block is the secondary provider's own, fresher view with its provenance and freshness.
+export function enrichmentBlock(ls, now = Date.now()) {
+  if (!ls) return null;
+  const age = ls.observed_at ? Math.max(0, Math.round((now - Date.parse(ls.observed_at)) / 1000)) : null;
+  const stale = age === null || age * 1000 > STALE_AFTER_MS;
+  return {
+    source_role: 'secondary_enrichment', source: ls.source || null, fetched_at: ls.observed_at || null,
+    status: ls.status || null,
+    score: ls.score && ls.score.home !== null && ls.score.home !== undefined ? { home: ls.score.home, away: ls.score.away } : null,
+    clock: { display: ls.display_clock || null, period: ls.period ?? null, detail: ls.detail || null },
+    freshness: { age_seconds: age, stale, stale_after_seconds: STALE_AFTER_MS / 1000, changed_at: ls.changed_at || null },
+  };
+}
+
 async function laneState(env) {
   if (!env?.SOCCER_STATE) return null;
   const st = await env.SOCCER_STATE.get('lane:espn_live', 'json').catch(() => null);
@@ -52,14 +81,14 @@ async function intel(store, ids) {
   return id => ({ lineups: out.lineups.has(id), events: out.events.has(id), event_map: out.located.has(id), stats: out.stats.has(id) });
 }
 
-function shape(m, teams, comps, flags, live) {
+function shape(m, teams, comps, flags, live, enrichment = null) {
   const t = id => { const x = teams.get(id); return x ? { slug: x.slug, name: x.name, short_name: x.short_name, ...(x.crest ? { crest: x.crest } : {}) } : null; };
   return {
     id: m.id, status: m.status, kickoff_at: m.kickoff_at, competition: comps.get(m.competition_id) || null, round: m.round_label,
     home: t(m.home_team_id), away: t(m.away_team_id),
     score: m.home_score === null ? null : { home: m.home_score, away: m.away_score, home_ht: m.home_score_ht, away_ht: m.away_score_ht },
     intel: flags(m.id), updated_at: m.updated_at,
-    ...(live ? { live: { display_clock: live.display_clock || null, detail: live.detail || null, observed_at: live.observed_at || null } } : {}),
+    ...(live || enrichment ? { live: { display_clock: live?.display_clock || null, detail: live?.detail || null, observed_at: live?.observed_at || null, ...(enrichment ? { enrichment } : {}) } } : {}),
   };
 }
 
@@ -75,9 +104,9 @@ export async function live(store, env) {
   ]);
   const all = [...liveRows, ...recent, ...upcoming];
   const [{ teams, comps: compMap }, flags, lane] = await Promise.all([teamsAndComps(store, all), intel(store, all.map(m => m.id)), laneState(env)]);
-  const liveInfo = new Map(await Promise.all(liveRows.map(async m => [m.id, await liveState(env, m.id)])));
+  const liveInfo = new Map(await Promise.all(liveRows.map(async m => [m.id, servedLive(await liveState(env, m.id), env)])));
   return E({
-    live: liveRows.map(m => shape(m, teams, compMap, flags, liveInfo.get(m.id))),
+    live: liveRows.map(m => shape(m, teams, compMap, flags, liveInfo.get(m.id).owner, enrichmentBlock(liveInfo.get(m.id).enrichment, now))),
     recent: recent.map(m => shape(m, teams, compMap, flags)),
     upcoming: upcoming.map(m => shape(m, teams, compMap, flags)),
     lane: lane ? { ...lane, cadence_seconds: LIVE_CADENCE_S } : null,
@@ -91,10 +120,11 @@ export async function live(store, env) {
 export async function cast(store, id, env) {
   const env0 = await match(store, id);
   const m = env0.data;
-  const [ls, lane] = await Promise.all([liveState(env, id), laneState(env)]);
+  const [raw, lane] = await Promise.all([liveState(env, id), laneState(env)]);
+  const { owner: ls, enrichment } = servedLive(raw, env);
   const liveNow = m.status === 'live';
   const observed = ls?.observed_at || null;
-  const staleAfter = 5 * 60e3; // no fresh provider observation for 5 minutes = LIVE · DELAYED
+  const staleAfter = STALE_AFTER_MS;
   const stale = liveNow ? !observed || Date.now() - Date.parse(observed) > staleAfter : false;
   env0.data.live = {
     mode: liveNow ? 'live' : m.status === 'finished' ? 'replay' : m.status === 'scheduled' ? 'pregame' : m.status,
@@ -103,6 +133,8 @@ export async function cast(store, id, env) {
     provider_observed_at: observed,
     stale, stale_after_seconds: staleAfter / 1000,
     lane: lane ? { ...lane, cadence_seconds: LIVE_CADENCE_S } : null,
+    canonical_result_source: m.result_source || null,
+    enrichment: liveNow ? enrichmentBlock(enrichment) : null,
   };
   env0.meta.api_version = CAST_VERSION;
   env0.meta.source_updated_at = maxTs(env0.meta.source_updated_at, observed);

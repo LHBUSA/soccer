@@ -59,6 +59,12 @@ export function pgliteStore(db) {
       if (!w) throw new Error(`update on ${table} needs a filter`);
       return (await db.query(`update public.${q(table)} set ${sets.join(', ')}${w} returning *`, params)).rows;
     },
+    async delete(table, opts = {}) {
+      const params = [];
+      const w = where(opts, params);
+      if (!w) throw new Error(`delete on ${table} needs a filter`);
+      return (await db.query(`delete from public.${q(table)}${w} returning *`, params)).rows;
+    },
     async count(table, opts = {}) {
       const params = [];
       return Number((await db.query(`select count(*)::int n from public.${q(table)}${where(opts, params)}`, params)).rows[0].n);

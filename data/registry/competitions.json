@@ -36,7 +36,9 @@
         "league": "ger.1",
         "id": "720",
         "enabled": true,
-        "may_found": false
+        "may_found": false,
+        "live_enrichment": "shadow",
+        "live_enrichment_note": "V3.1 owner decision 2026-09-28: OpenLigaDB stays canonical; ESPN live enrichment is shadow / internal validation only until source-rights clearance (docs/SOURCE_MATRIX.md, Disney terms restrict commercial use). 'public' requires explicit owner approval."
       },
       "expected_teams": 18
     },

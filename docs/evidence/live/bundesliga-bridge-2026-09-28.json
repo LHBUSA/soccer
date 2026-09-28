@@ -1,0 +1,99 @@
+{
+  "at": "2026-09-28T13:52:30.276Z",
+  "season": "2026/27",
+  "canonical_matches": 306,
+  "result_provider": {
+    "openligadb": 306
+  },
+  "with_openligadb_id": 306,
+  "with_espn_event": 306,
+  "espn_attach_methods": {
+    "fixture_graph": 306
+  },
+  "violations": {
+    "canonical_with_multiple_espn_events": [],
+    "espn_event_on_multiple_canonical": [],
+    "espn_owned_matches_in_openligadb_season": []
+  },
+  "canonical_clubs": 18,
+  "clubs_with_espn_id": 18,
+  "espn_club_methods": {
+    "fixture_graph": 18
+  },
+  "clubs_with_multiple_espn_ids": [],
+  "missing_espn_event": [],
+  "held_espn_identity_items": 52,
+  "held_sample": [
+    {
+      "entity_type": "player",
+      "provider": "espn",
+      "external_id": "154603",
+      "reason": "contradiction_nationality",
+      "status": "open"
+    },
+    {
+      "entity_type": "player",
+      "provider": "espn",
+      "external_id": "159139",
+      "reason": "no_overlapping_club_corroboration",
+      "status": "open"
+    },
+    {
+      "entity_type": "player",
+      "provider": "espn",
+      "external_id": "170257",
+      "reason": "no_overlapping_club_corroboration",
+      "status": "open"
+    },
+    {
+      "entity_type": "player",
+      "provider": "espn",
+      "external_id": "178980",
+      "reason": "contradiction_nationality",
+      "status": "open"
+    },
+    {
+      "entity_type": "player",
+      "provider": "espn",
+      "external_id": "182245",
+      "reason": "contradiction_nationality",
+      "status": "open"
+    },
+    {
+      "entity_type": "player",
+      "provider": "espn",
+      "external_id": "186026",
+      "reason": "no_overlapping_club_corroboration",
+      "status": "open"
+    },
+    {
+      "entity_type": "player",
+      "provider": "espn",
+      "external_id": "188052",
+      "reason": "contradiction_nationality",
+      "status": "open"
+    },
+    {
+      "entity_type": "player",
+      "provider": "espn",
+      "external_id": "188057",
+      "reason": "no_overlapping_club_corroboration",
+      "status": "open"
+    },
+    {
+      "entity_type": "player",
+      "provider": "espn",
+      "external_id": "192943",
+      "reason": "contradiction_nationality",
+      "status": "open"
+    },
+    {
+      "entity_type": "player",
+      "provider": "espn",
+      "external_id": "210818",
+      "reason": "contradiction_nationality",
+      "status": "open"
+    }
+  ],
+  "pass": true
+}

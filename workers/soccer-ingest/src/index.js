@@ -19,8 +19,10 @@ import { espnLiveCanary, espnStoreCanary } from './canary.js';
 import { STANDINGS_LANE, runEspnStandings } from './espn-standings.js';
 import { LIVE_LANE, runEspnLive } from './espn-live.js';
 import { SHADOW_LANE, runShadow } from './shadow-lane.js';
+import { canonicalHealth, enrichmentHealth } from './health.js';
+import { BREAKER } from './espn-live.js';
 
-export const VERSION = 'soccer-ingest/1.2.0';
+export const VERSION = 'soccer-ingest/1.3.0';
 
 const LANES = {
   [OLDB_CURRENT]: ctx => runOpenLigaCurrent(ctx),
@@ -123,6 +125,16 @@ export async function adminRaw(req, env, key) {
   return [{ key, written: true, bytes: body.byteLength, sha256: sha, verified: verified === sha }, verified === sha ? 201 : 500];
 }
 
+// Canonical fixture coverage for health (?detail=1): current-season Bundesliga matches the owner holds.
+async function canonicalCoverage(env) {
+  const store = storeFromEnv(env); if (!store) return {};
+  const [c] = await store.select('soccer_competitions', { columns: ['id'], eq: { slug: 'bundesliga' }, limit: 1 });
+  const seasons = (await store.select('soccer_seasons', { columns: ['id', 'label'], eq: { competition_id: c.id } })).sort((a, b) => (a.label < b.label ? 1 : -1));
+  const sid = seasons[0]?.id;
+  const [total, owned, finished] = await Promise.all([store.count('soccer_matches', { eq: { season_id: sid } }), store.count('soccer_matches', { eq: { season_id: sid, result_provider: 'openligadb' } }), store.count('soccer_matches', { eq: { season_id: sid, status: 'finished' } })]);
+  return { bundesliga: { season: seasons[0]?.label || null, fixtures: total, owned_by_openligadb: owned, finished } };
+}
+
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
@@ -131,7 +143,28 @@ export default {
       // The OpenLigaDB lane must be ok; the live lane only counts once it has failed
       // (with no match in the live window it legitimately never runs).
       const priorityOk = lanes.filter(l => PRIORITY.includes(l.lane)).every(l => l.health === 'ok' || (l.lane === LIVE_LANE && !l.consecutive_failures));
-      return json({ ok: priorityOk, version: VERSION, lanes: lanes.map(({ last_error, ...l }) => ({ ...l, last_error: last_error ? 'present' : null })) }, priorityOk ? 200 : 503);
+      const kvj = k => (env.SOCCER_STATE ? env.SOCCER_STATE.get(k, 'json').catch(() => null) : null);
+      const [metrics, breaker, disagreements, glitches, corrections] = await Promise.all(['live:metrics', BREAKER.key, 'live:disagreements', 'live:glitches', 'live:corrections'].map(kvj));
+      let coverage = {};
+      if (url.searchParams.get('detail') === '1') coverage = await canonicalCoverage(env).catch(err => ({ bundesliga: { error: String(err.message).slice(0, 120) } }));
+      return json({
+        ok: priorityOk, ok_basis: 'canonical lanes only', version: VERSION,
+        canonical: canonicalHealth(lanes, coverage),
+        live_enrichment: enrichmentHealth({ registry, lane: lanes.find(l => l.lane === LIVE_LANE), metrics: metrics || [], breaker, disagreements: disagreements || [], glitches: glitches || [], corrections: corrections || [] }),
+        lanes: lanes.map(({ last_error, ...l }) => ({ ...l, last_error: last_error ? 'present' : null })),
+      }, priorityOk ? 200 : 503);
+    }
+    if (url.pathname === '/v1/admin/live') {
+      // INTERNAL validation view (Bearer INGEST_ADMIN_TOKEN): the canonical row beside the raw live-lane
+      // state, including shadow enrichment that the public API never serves.
+      if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);
+      const id = url.searchParams.get('match');
+      const kvj = k => (env.SOCCER_STATE ? env.SOCCER_STATE.get(k, 'json').catch(() => null) : null);
+      if (!id) return json({ breaker: await kvj(BREAKER.key), metrics: ((await kvj('live:metrics')) || []).slice(-20), disagreements: await kvj('live:disagreements'), glitches: await kvj('live:glitches'), corrections: await kvj('live:corrections') });
+      if (!/^[0-9a-f-]{36}$/.test(id)) return json({ error: 'bad match id' }, 400);
+      const store = storeFromEnv(env);
+      const [canonical] = store ? await store.select('soccer_matches', { columns: ['id', 'status', 'home_score', 'away_score', 'result_provider', 'updated_at'], eq: { id }, limit: 1 }) : [null];
+      return json({ canonical: canonical || null, live_state: await kvj(`live:${id}`) });
     }
     if (url.pathname === '/v1/admin/raw') {
       if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);
