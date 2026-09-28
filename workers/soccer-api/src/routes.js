@@ -135,7 +135,7 @@ export async function competition(store, slug) {
     const n = st => ms.filter(x => x.status === st).length;
     current = {
       season: seasons[0].label, matches: ms.length, finished: n('finished'), scheduled: n('scheduled'), live: n('live'),
-      teams: [...teams.values()].sort((a, b) => (a.name < b.name ? -1 : 1)).map(t => ({ slug: t.slug, name: t.name, short_name: t.short_name })),
+      teams: [...teams.values()].sort((a, b) => (a.name < b.name ? -1 : 1)).map(t => ({ slug: t.slug, name: t.name, short_name: t.short_name, ...(t.crest ? { crest: t.crest } : {}) })),
     };
   }
   return E({ slug: c.slug, name: c.name, type: c.comp_type, country_code: c.country_code, tier: c.tier, seasons: withCounts, current, tiebreak: TIEBREAKS[tiebreakOf(c.slug)] }, {

@@ -186,6 +186,8 @@ test('api routes serve an envelope and hide internals (PGlite)', async () => {
   assert.ok(!JSON.stringify(tm).includes('Unclear.png') && !JSON.stringify(tm).includes('object_key'));
   const lm = await R.matches(store, { competition: 'bundesliga' });
   assert.ok(lm.data.some(m => m.home.crest?.attribution === 'Public domain, via Wikimedia Commons'));
+  const cg = await R.competition(store, 'bundesliga');
+  assert.ok(cg.data.current.teams.some(t => t.crest?.url === '/api/soccer/media/' + 'c'.repeat(64)), 'the competition team grid carries the crest');
   await assert.rejects(R.mediaObject(store, { get: async () => null }, 'd'.repeat(64)), /not found/); // unknown / unapproved hash
   const news = await R.news(store, {});
   assert.equal(news.meta.coverage.state, 'unavailable');
