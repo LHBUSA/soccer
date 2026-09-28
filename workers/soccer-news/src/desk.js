@@ -9,8 +9,8 @@ import { packetNumbers2 } from './gates2.js';
 import { stripIdentifiers } from './gates.js';
 import { PROFILES } from './profiles.js';
 
-export const DESK_VERSION = 'soccer-desk/2.0.0'; // 2.0.0: depth contract (packet v3), evidence-family + repetition gates
-export const QUALITY_VERSION = 'soccer-quality/2.0.0';
+export const DESK_VERSION = 'soccer-desk/2.1.0'; // 2.0.0: depth contract (packet v3), evidence-family + repetition gates
+export const QUALITY_VERSION = 'soccer-quality/2.1.0'; // 2.1.0: evidence-aware depth floor
 export const DESK_MODEL = 'gpt-5.6-sol'; // OpenAI Responses API; override with NEWS_DESK_MODEL
 export const DESK_API = 'https://api.openai.com/v1/responses';
 export const deskRequired = env => env?.NEWS_DESK !== 'off'; // default: required for every new story
@@ -41,6 +41,11 @@ E. what the result changed: table movement, recent form, and the next fixture wh
 Do not use A-E as headings. Write 3 to 5 sections with specific, story-led headings (never generic labels such as
 "Result", "Goals", "Why it matters", "Shots", "The numbers", "Table and form", "What happened"), normally two or more
 paragraphs each. Rich packets usually support 650-950 useful words; write less when the packet is thinner. Never pad.
+The publication gate sets a depth floor from how much evidence the packet carries: with seven or more evidence
+families (goal sequence, player contributions, team stats, shot locations, table, form, next fixture, discipline,
+substitutions) the body must reach at least 625 words (six: 575, five: 525, otherwise 450). Reach it with evidence
+the packet holds (the phases, player shot lines against the team total, table before and after, recent form,
+substitutions that shaped the scoring), never with filler.
 
 Synthesis, not recitation. Weak: "Harry Kane scored 2. Michael Olise scored 3. Bayern had 23 shots. Union had 3."
 Better: "Olise supplied three of Bayern's seven goals and Kane added two, their finishing turning a 3-0 half-time
@@ -56,6 +61,9 @@ lead into a rout, while a 23-3 edge in shots showed how little room Union had to
 - Summarise recent form as a pattern ("unbeaten in their opening four", "a draw and two defeats before this trip")
   instead of listing every previous score; name one earlier result only when it adds something.
 - Do not stack statistics: no more than two numbers-heavy paragraphs in a row. Interpret, then move on.
+- Prefer a concrete sourced consequence over an interpretive summary: "their goal difference fell from minus six to
+  minus 13", not "the defensive cost grew sharply". A time relationship ("shortly after", "within minutes") must be
+  true of the minutes and phases in the packet.
 - Short, varied paragraphs. Natural transitions.
 - Write natural newsroom prose with complete noun phrases: "Bayern's goalkeeper made two saves", never "with Bayern goalkeeper required to make 2 saves". Spell out numbers one to nine in running prose, as a newspaper would ("two goals", "fourth to first"); keep digits for scores, minutes and larger figures.
 - No empty verdicts ("clearest statement yet", "sent a message", "a night to remember"); let specific match evidence carry the point.
@@ -332,17 +340,29 @@ export function evidenceFamilies(article, packet) {
   if (d.discipline?.length) available.add('DISCIPLINE');
   if (/\b(yellow card|red card|booked|booking|sent off)\b/i.test(lower)) used.add('DISCIPLINE');
   if (d.substitutions?.length) available.add('SUBSTITUTIONS');
-  if (/\b(substitute|came on|off the bench|replaced|introduced)\b/i.test(lower)) used.add('SUBSTITUTIONS');
+  if (/\b(substitutes?|substitutions?|came on|coming on|off the bench|replaced|introduced|entered)\b/i.test(lower)) used.add('SUBSTITUTIONS');
   return { available: [...available], used: [...used].filter(f => available.has(f)) };
 }
+
+// Rich-packet depth floor by available evidence families: <=4 -> 450, 5 -> 525, 6 -> 575, 7+ -> 625.
+export const depthFloor = available => (available >= 7 ? 625 : available === 6 ? 575 : available === 5 ? 525 : 450);
 
 export function qualityGates(article, packet) {
   const results = []; const gate = (name, pass, detail = null) => results.push({ gate: name, pass, detail });
   const body = article.sections.flatMap(s => s.paragraphs).join('\n');
   const n = words(body);
   const rich = packetRichness(packet) === 'rich';
-  const min = rich ? 450 : packet.event.kind === 'match_recap' ? 220 : 160;
-  gate('thin_output', n >= min, { words: n, min });
+  // Depth floor: evidence-aware for rich match packets (the more evidence families the packet carries,
+  // the more body copy a complete story needs); unchanged for standard recaps and other story types.
+  // Only the editorial body counts (sections), never the disclosure.
+  if (rich) {
+    const available = evidenceFamilies(article, packet).available;
+    const min = depthFloor(available.length);
+    gate('thin_output', n >= min, { words: n, min, available_count: available.length, available });
+  } else {
+    const min = packet.event.kind === 'match_recap' ? 220 : 160;
+    gate('thin_output', n >= min, { words: n, min });
+  }
   gate('too_long', n <= 1100, { words: n });
   gate('sections', article.sections.length >= (rich ? 3 : 2) && article.sections.length <= (rich ? 5 : 6), article.sections.length);
   // DEPTH (v2): evidence families, repetition, section depth, lead + dek quality

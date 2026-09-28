@@ -1,0 +1,32 @@
+{
+  "note": "A deeper Bayern 7-0 Union story written ONLY from tests/fixtures/news/bayern-packet-v3.json (test input for the evidence-aware depth floor).",
+  "headline": "Olise hat-trick powers Bayern past Union Berlin in 7-0 rout",
+  "dek": "Michael Olise scored three and Harry Kane two as Bayern turned a 3-0 half-time lead into a win that lifted them from fourth to first.",
+  "sections": [
+    { "heading": "Three goals before Union could shoot", "paragraphs": [
+      "Bayern München were three goals clear of 1. FC Union Berlin before the visitors had attempted a shot, and Michael Olise made sure the second half became a rout. Jamal Musiala opened the scoring in the 18th minute, Harry Kane converted a penalty in the 39th and Olise struck in the 43rd.",
+      "The opening quarter of an hour produced a single Bayern attempt. The game changed shape between the 16th and 30th minutes, when Bayern took six shots, put four on target and scored through Musiala. Three more attempts followed before the interval, and two of them went in.",
+      "By half-time Bayern had ten shots, seven of them on target. Union had none at all, so the scoreline reflected a half in which only one side had threatened a goal."
+    ] },
+    { "heading": "Kane restarts it, Saibari and Olise finish it", "paragraphs": [
+      "Union took their first shots early in the second half, and both of them tested the goalkeeper. Bayern answered within that same period, with Kane scoring his second in the 54th minute to make the margin four.",
+      "The substitution that shaped the closing stages came in the 63rd minute, when Ismael Saibari entered. Seven minutes later he scored, and Olise then struck in the 73rd and 76th minutes to complete his hat-trick. Bayern scored three times after the 60th minute and twice after the 70th, while Union did not score at any point.",
+      "Between the 61st and 75th minutes Bayern took six shots, the busiest spell of their evening, and turned that burst of attempts into two goals. Union's only other attempt came in the final quarter of an hour and missed the target."
+    ] },
+    { "heading": "Olise and Kane led a spread of finishers", "paragraphs": [
+      "Olise was the most frequent shooter in the match. He took six of Bayern's attempts and put five of them on target, so his hat-trick came from repeated accurate efforts rather than a single moment.",
+      "Kane's contribution was more concentrated inside the penalty area, where four of his five shots were taken. Two of his attempts were on target and both found the net. Saibari took four shots after coming on, all of them from inside the box, and scored once.",
+      "Musiala needed only two attempts for his goal, and Luis Díaz also tested the goalkeeper. Olise, Kane and Saibari together took 15 of Bayern's 23 shots, which shows how widely the chances were shared once the lead was established."
+    ] },
+    { "heading": "A shot count that told its own story", "paragraphs": [
+      "Across the match Bayern took 23 shots to Union's three and put 15 on target to their two. That gave Bayern 88 per cent of all the attempts in the game. Union's goalkeeper made six saves; Bayern's made two.",
+      "Most of Bayern's attempts came from close range. Fourteen were taken inside the penalty area and nine from outside, while Union's three shots split two inside and one outside. The average distance of the located attempts was similar, 17.9 metres for Bayern and 17.6 for Union, which placed the difference in how often each side shot rather than where from.",
+      "Bayern also won nine corners to Union's two, another measure of how much of the evening was spent near the Union goal."
+    ] },
+    { "heading": "From fourth to first as Union stay 16th", "paragraphs": [
+      "The margin mattered in the standings. Bayern started the day fourth and finished it top of the 18-team Bundesliga table on 10 points after four matches, with their goal difference rising from five to 12.",
+      "They arrived unbeaten in the league, having beaten Stuttgart at home before a goalless draw at Schalke 04 and a win at SV 07 Elversberg. This was their third win in four league matches.",
+      "Union stayed 16th on one point. Their previous three league matches had brought a draw with Eintracht Frankfurt and defeats at Bayer Leverkusen and at home to Schalke 04, and their goal difference fell from minus six to minus 13 after this result."
+    ] }
+  ]
+}

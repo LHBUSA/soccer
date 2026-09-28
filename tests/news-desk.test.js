@@ -31,6 +31,7 @@ const GOOD = {
       'The shot count explains why the scoreline climbed so steadily. Bayern finished with 23 shots, 15 of them on target, while Union Berlin managed three attempts and only two that tested the goalkeeper.',
       'That imbalance meant the visiting goalkeeper was busy all night, with six saves, and still conceded seven. At the other end Bayern were asked to make just two.',
       'Bayern also won nine corners to Union Berlin’s two. The average distance of Bayern’s located shots was 17.9 metres, so this was not a night of speculative efforts from range but of repeated chances close enough to trouble the goal.',
+      'The timing of the goals shaped the evening as well. Three came before the interval and four after it, with Kane’s strike in the 54th minute the first of the second half and Saibari’s in the 70th opening a closing spell in which Olise scored twice. Union Berlin, by contrast, never found a route back into the contest.',
     ] },
     { heading: 'Seven goals take Bayern to the top', paragraphs: [
       'The margin mattered in the standings as much as on the pitch. Bayern started the day fourth and finished it top of the Bundesliga table on 10 points from four matches.',

@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { bucketOf, depthFromRows, packetV3, PACKET_V3 } from '../workers/soccer-news/src/depth.js';
 import { compose } from '../workers/soccer-news/src/compose2.js';
-import { deskArticle, evidenceFamilies, judge, qualityGates, validateEditorial } from '../workers/soccer-news/src/desk.js';
+import { deskArticle, evidenceFamilies, judge, qualityGates, validateEditorial, depthFloor } from '../workers/soccer-news/src/desk.js';
 
 const V2 = JSON.parse(readFileSync('tests/fixtures/news/bayern-packet.json', 'utf8'));
 const V3 = JSON.parse(readFileSync('tests/fixtures/news/bayern-packet-v3.json', 'utf8'));
@@ -118,4 +118,54 @@ test('QA round 2 false positives: shot-profile pairs; a surname particle capital
   const pk = { ...V3, extra_people: [{ name: 'Jan Paul van Hecke' }] };
   assert.equal(g(['Van Hecke scored late on.'], 'new_player_or_team', pk).pass, true);
   assert.deepEqual(g(['Van Persie scored late on.'], 'new_player_or_team', pk).detail, ['Persie']);
+});
+
+// ---- evidence-aware depth floor (quality contract, not a Bayern special case)
+const R3 = JSON.parse(readFileSync('docs/evidence/news/depth-v2-bayern-canary-r3.json', 'utf8'));
+const DEEP = JSON.parse(readFileSync('tests/fixtures/news/bayern-deep-article.json', 'utf8'));
+const asArt = (x, pk = V3) => deskArticle({ headline: x.headline, dek: x.dek, sections: x.sections.map((s, i) => ({ key: `s${i + 1}`, heading: s.heading, paragraphs: [...s.paragraphs] })) }, compose(pk));
+const thin = (a, pk) => qualityGates(a, pk).find(r => r.gate === 'thin_output');
+
+test('depth floor: <=4 families 450, 5 -> 525, 6 -> 575, 7+ -> 625', () => {
+  assert.deepEqual([3, 4, 5, 6, 7, 8, 9].map(depthFloor), [450, 450, 525, 575, 625, 625, 625]);
+});
+
+test('rich packet with 8 available families: the ~500-word canary story HOLDS thin_output with a full report', () => {
+  const t = thin(asArt(R3), V3);
+  assert.equal(t.pass, false);
+  assert.equal(t.detail.min, 625); assert.equal(t.detail.available_count, 8); assert.ok(t.detail.words < 625);
+  assert.deepEqual(t.detail.available, ['GOAL_SEQUENCE', 'PLAYER_CONTRIBUTIONS', 'TEAM_STATS', 'SHOT_LOCATIONS', 'TABLE_CONTEXT', 'FORM_CONTEXT', 'DISCIPLINE', 'SUBSTITUTIONS']);
+  assert.deepEqual(validateEditorial(asArt(R3), V3).filter(r => !r.pass), [], 'the fact gates are unchanged: the shorter story was factually clean');
+});
+
+test('the same packet with a genuinely deeper story (625+ words, all from the packet) PASSES every gate', () => {
+  const j = judge(asArt(DEEP), V3);
+  assert.deepEqual(j.failed, [], JSON.stringify(j.results.filter(r => !r.pass)));
+  assert.ok(thin(asArt(DEEP), V3).detail.words >= 625);
+});
+
+test('a rich packet with only 3-4 evidence families is not forced to 625', () => {
+  const pk = JSON.parse(JSON.stringify(V3));
+  delete pk.depth; pk.shots_located = null; for (const k of ['home', 'away']) { pk.teams[k].form_before = []; pk.teams[k].next = null; }
+  const t = thin(asArt(R3, pk), pk);
+  assert.ok(t.detail.available_count <= 4, JSON.stringify(t.detail)); assert.equal(t.detail.min, 450); assert.equal(t.pass, true);
+});
+
+test('standard recaps and other story types keep their floors (220 / 160)', () => {
+  const pk = JSON.parse(JSON.stringify(V2)); pk.goals = pk.goals.slice(0, 2);
+  const t = thin(asArt(R3, pk), pk); assert.equal(t.detail.min, 220); assert.equal(t.detail.available_count, undefined);
+  const form = JSON.parse(readFileSync('tests/fixtures/news/form-packet.json', 'utf8'));
+  assert.equal(thin(asArt({ headline: 'x', dek: 'y', sections: [{ heading: 'h', paragraphs: ['a b c'] }] }, form), form).detail.min, 160);
+});
+
+test('the disclosure never counts toward editorial depth', () => {
+  const a = asArt(R3); a.disclosure = [...a.disclosure, ...Array(40).fill('Structured facts and every sourced event are listed here for readers who want the method in full detail.')];
+  assert.equal(thin(a, V3).pass, false); assert.equal(thin(a, V3).detail.words, thin(asArt(R3), V3).detail.words);
+});
+
+test('padding is not accepted merely because the word count is high', () => {
+  const pad = asArt(R3); pad.sections[3].paragraphs.push(...pad.sections[0].paragraphs, ...pad.sections[1].paragraphs);
+  const f1 = judge(pad, V3).failed; assert.ok(thin(pad, V3).detail.words >= 625); assert.ok(f1.includes('duplicated_content'), f1);
+  const fill = asArt(R3); fill.sections[3].paragraphs.push('Only time will tell what this means for the rest of the season, and it remains to be seen how both clubs respond over the coming weeks of the campaign as the table takes shape and the months pass by for everyone involved in the league this year, with plenty still to play for, a long way still to go and many twists that could yet follow for both sides before the final day arrives.'.repeat(1), 'Bayern sent a message with a statement win and showed their class, putting on a clinic in style for everyone watching on a night that nobody present will forget any time soon, whatever happens next in a long and demanding season for both of these clubs and their supporters, who will have their own views on how the evening unfolded and on what comes next for each side.');
+  const f2 = judge(fill, V3).failed; assert.ok(f2.includes('why_it_matters_filler') && f2.includes('cliche'), f2);
 });
