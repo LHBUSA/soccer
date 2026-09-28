@@ -1,0 +1,84 @@
+  {
+  "route": "/v1/canary/editorial-desk",
+  "slug": "bayern-fixture",
+  "run": 22,
+  "model": "gpt-5.6-sol",
+  "desk": "soccer-desk/2.1.0",
+  "quality": "soccer-quality/2.1.0",
+  "packet_version": "soccer-packet/3.0.0",
+  "packet_path": "fixture v3 (A_asof_safe_rebuild of the original frozen packet)",
+  "story_class": "match_recap",
+  "result": "PASS",
+  "attempt": 1,
+  "hold_reasons": [],
+  "fact_gates": {
+    "total": 18,
+    "failed": []
+  },
+  "quality_gates": {
+    "total": 23,
+    "failed": []
+  },
+  "evidence": {
+    "available": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT",
+      "DISCIPLINE",
+      "SUBSTITUTIONS"
+    ],
+    "used": [
+      "GOAL_SEQUENCE",
+      "PLAYER_CONTRIBUTIONS",
+      "TEAM_STATS",
+      "SHOT_LOCATIONS",
+      "TABLE_CONTEXT",
+      "FORM_CONTEXT",
+      "DISCIPLINE",
+      "SUBSTITUTIONS"
+    ]
+  },
+  "word_count": 725,
+  "sections_count": 4,
+  "headline": "Olise hat-trick takes Bayern München top in 7-0 rout of 1. FC Union Berlin",
+  "dek": "Harry Kane scored twice as the hosts built a three-goal lead by half-time, before Olise struck twice in three late minutes to lift Bayern München from fourth to first.",
+  "sections": [
+    {
+      "heading": "Musiala opens the route to a three-goal lead",
+      "paragraphs": [
+        "Jamal Musiala began the scoring in the 18th minute, converting the first of a concentrated run of Bayern München attempts. After taking only one shot in the opening 15 minutes, the hosts registered six between the 16th and 30th minutes, four of them on target. Musiala’s goal came from two shots overall and was his only effort on target.",
+        "The gap remained at one until the closing stages of the half. Felix Uduokhai was booked in the 38th minute, and Kane converted a penalty a minute later. Rani Khedira then received a yellow card in the 42nd minute before Olise added the third in the 43rd. Two goals in four minutes left Bayern München with a 3-0 advantage at the interval.",
+        "That score reflected a first half in which Bayern München took 10 shots and put seven on target. 1. FC Union Berlin did not record an attempt before the break, leaving the visitors to begin the second half without having tested the opposing goalkeeper."
+      ]
+    },
+    {
+      "heading": "Kane restarts the scoring before Olise closes it",
+      "paragraphs": [
+        "1. FC Union Berlin made the first change at half-time, sending on Tim Skarke for Emmanuel Latte Lath, while Kim Min-Jae replaced Dayot Upamecano for Bayern München. The visitors then produced two shots between the 46th and 60th minutes, both on target, but Kane scored at the other end in the 54th to extend the lead.",
+        "Kane’s second goal completed an efficient personal return. He took five shots, four from inside the penalty area, and put two on target; both became goals. His penalty had widened the lead late in the first half, and his strike after the restart removed any possibility that the half-time change in 1. FC Union Berlin’s shot output would alter the direction of the match.",
+        "Ismael Saibari entered for Luis Díaz in the 63rd minute and scored seven minutes later from one of his four shots. Olise then struck in the 73rd and 76th minutes, completing his hat-trick as Bayern München scored three times in six minutes. The final two goals arrived after 1. FC Union Berlin had also introduced Aljoscha Kemlein, Livan Burcu and Zeno Van Den Bosch."
+      ]
+    },
+    {
+      "heading": "Olise turns six attempts into the defining contribution",
+      "paragraphs": [
+        "Olise supplied the central individual performance from six shots, the highest total listed for any player. Five were on target and three went in. Only two of his attempts were recorded from inside the penalty area, a notable contrast with Kane and Saibari, who took four shots apiece from inside the box.",
+        "Together, Olise and Kane accounted for 11 of Bayern München’s 23 attempts and seven of their 15 shots on target. Saibari added two efforts on target, while Musiala, Luis Díaz and Josip Stanisic each recorded one. The scorers did not rely on listed assists: none was credited to Olise, Kane, Saibari or Musiala.",
+        "The team-level difference was extensive. Bayern München had 23 shots to the visitors’ three and nine corners to two. The hosts placed 65 per cent of their attempts on target, while 1. FC Union Berlin’s two accurate efforts required two saves. At the other end, the visiting goalkeeper was credited with six saves."
+      ]
+    },
+    {
+      "heading": "Similar shooting distance, radically different volume",
+      "paragraphs": [
+        "Average shot distance did not explain the separation between the sides. Bayern München’s 23 located attempts averaged 17.9 metres from goal, almost identical to 1. FC Union Berlin’s 17.6 metres. Volume and outcome provided the contrast: the hosts took 88 per cent of all shots and scored with 30 per cent of their attempts.",
+        "Fourteen of Bayern München’s shots came from inside the penalty area and nine from outside it. The visitors recorded two inside and one outside, with Janik Haberer and Tom Rothe putting their attempts on target. Derrick Köhn, introduced in the 82nd minute, took the other shot but did not test the goalkeeper.",
+        "Bayern München’s third win in four unbeaten league matches moved them from fourth to first on 10 points. Their goal difference rose from plus five to plus 12, while their goals-for total doubled from seven to 14. The result followed two wins and a draw, including a 5-1 victory over Stuttgart in their opening league match.",
+        "For 1. FC Union Berlin, a draw followed by two defeats before this trip has become one point from four matches. They remained 16th in the 18-team table, but their goal difference fell from minus six to minus 13. They have now lost three consecutive league games after opening with a 3-3 draw against Eintracht Frankfurt."
+      ]
+    }
+  ],
+  "elapsed_ms": 33945
+}
