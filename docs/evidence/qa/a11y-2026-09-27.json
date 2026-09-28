@@ -1,6 +1,6 @@
 {
-  "base": "http://localhost:4199",
-  "at": "2026-09-27T23:40:32.336Z",
+  "base": "https://soccer.propbetedge.ai",
+  "at": "2026-09-27T23:55:49.708Z",
   "standard": "axe-core wcag2a + wcag2aa + wcag21a + wcag21aa + best-practice",
   "pages": [
     {

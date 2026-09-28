@@ -19,7 +19,7 @@ evidence are the source of truth; nothing here comes only from chat memory.
 
 | Worker | Live version | Rollback |
 |---|---|---|
-| soccer-api | `b22668d3` | `991776c5` |
+| soccer-api | `b7c7fdcb` | `b22668d3` |
 | soccer-ingest | `e15074df` | `21ccb770` |
 | soccer-news | `a04b2183` | `5c03ee80` |
 
@@ -77,7 +77,7 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
 - Browser QA: 168/168 checks at 320/360/390/430/768/1024/1440.
 - SEO first-response QA: 0 failures.
 - axe-core: 0 violations on 10 pages × 2 widths.
-- Performance (slow-4G, 4× CPU): JS about 25 KB, CSS about 11 KB, first HTML about 2 KB compressed; CLS below 0.05 after the layout fix.
+- Performance (slow-4G, 4× CPU, cold cache): JS about 25 KB, CSS about 11 KB, first HTML about 2 KB compressed; LCP 1.3–2.7 s; CLS 0–0.041 on every audited page (fonts `display=optional`, main reserves the viewport). DNA season profiles cached in KV (cold Wyscout season 16 s once, then about 1 s) and warmed by a soccer-api cron (`20 */6 * * *`).
 
 ## Known gaps
 
