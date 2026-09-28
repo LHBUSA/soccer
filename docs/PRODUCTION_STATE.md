@@ -52,7 +52,9 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
 ## Enrichment, live and health
 
 - `soccer_match_enrichment` tracks lineups (per side), team stats (per side) and play-by-play per match; failures are retried with backoff; a trigger keeps `complete` from ever being downgraded; results are never refetched on retry.
-- `espn_live` (every tick) updates status and score of ESPN-owned matches in the live window; the page shows freshness and refreshes every minute. Source cadence is about 5 minutes plus ESPN's delay: not real time.
+- `espn_live` (soccer-ingest 1.2.0, cron `* * * * *`) runs every minute for ESPN-owned matches in the live window, within a 45-request budget per tick: status + provider clock + score every tick, play-by-play every tick, team stats every 3 min, lineups every 10 min, one final pass (ledger recorded) at full time. State in KV `live:<matchId>`; one tick at a time (`live:lock`). The enrichment ledger is not written mid-match. Not real time: about one source check a minute plus ESPN's delay.
+- **Bundesliga is NOT on the per-minute lane**: its results are owned by OpenLigaDB (`result_provider = openligadb`), so live Bundesliga scores move at the OpenLigaDB lane cadence (~5 min) with no provider clock, and its ESPN event record lands after the final whistle. PBEcast says so ("no live clock" wording).
+- **Live acceptance PENDING**: the per-minute lane has not yet worked a real match (international break). First window: MLS Red Bull New York v St. Louis, 2026-09-30 23:30Z. Check: `/v1/live` shows `live[].live.display_clock`, `/v1/matches/:id/cast` `live.stale=false`, soccer-ingest `/health` `espn_live` runs advancing each minute, and a final pass (`final_done`) at full time.
 - `/v1/data-health`: per-competition teams, fixtures, result and optional-component gaps, stale live, identity queue, media coverage, lane state, news generation and held reasons.
 
 ## Media (docs/MEDIA.md)
@@ -73,9 +75,15 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
 - Prediction research (docs/RESEARCH.md): candidate `soccer-research-bundesliga-v1.2-dc` (Dixon-Coles, rho -0.1099, no calibration; holdout log loss 0.9952 vs baseline 1.0740).
 - **Private shadow (docs/SHADOW.md), LIVE 2026-09-28:** soccer-ingest lane `model_shadow_bundesliga_dc` (hourly) issues one frozen pre-kick prediction per Bundesliga league fixture within 7 days into `soccer_model_shadow_predictions` (RLS, no policies, anon revoked, never read by soccer-api). Not a product: no public surface, no promotion gate. First issue expected 2026-10-02 18:30 UTC for the 2026-10-09 fixture.
 
+## Web V3 (2026-09-28, main 289bc8f..6a5459b, git-connected Vercel)
+
+- One identity-image component (`src/components/media.js`): approved crest or initials mark, approved portrait or the raster silhouette (`public/brand/player-silhouette-*.webp`), used on match, team, player, news, directory, PBEcast and drawer.
+- Player DNA V2 (season switcher, signature, grouped percentiles, splits); `/players` directory (per-90 leaders only inside one competition); `/pbecast` hub + `/pbecast/:id` (live / replay / pregame; cast pages canonicalise to `/matches/:id`); Player DNA drawer on player chips and directory cards; homepage PBEcast live rail.
+- Fixed: `/site.webmanifest` had answered 404 HTML since Stage A (middleware file guard capped extensions at 5 chars).
+
 ## QA (latest, docs/evidence/qa)
 
-- Browser QA: 168/168 checks at 320/360/390/430/768/1024/1440.
+- Browser QA (2026-09-28, production, after V3): 196/196 checks at 320/360/390/430/768/1024/1440 incl. /players, /pbecast, a PBEcast replay, replay-seek and drawer interactions; exposure + proxy checks pass.
 - SEO first-response QA: 0 failures.
 - axe-core: 0 violations on 10 pages × 2 widths.
 - Performance (slow-4G, 4× CPU, cold cache): JS about 25 KB, CSS about 11 KB, first HTML about 2 KB compressed; LCP 1.3–2.7 s; CLS 0–0.041 on every audited page (fonts `display=optional`, main reserves the viewport). DNA season profiles cached in KV (cold Wyscout season 16 s once, then about 1 s) and warmed by a soccer-api cron (`20 */6 * * *`).
