@@ -6,7 +6,8 @@
 // Optional (off by default): NEWS_LLM=on + ANTHROPIC_API_KEY for the editorial pass.
 import { storeFromEnv } from '../../shared/postgrest.js';
 import { runNews, reeditArticle } from './pipeline.js';
-import { deskAvailable, deskRequired, DESK_VERSION } from './desk.js';
+import { deskAvailable, deskRequired, DESK_VERSION, QUALITY_VERSION } from './desk.js';
+import { PACKET_V3, DEPTH_VERSION } from './depth.js';
 
 const json = (body, status = 200) => new Response(JSON.stringify(body, null, 2), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
 
@@ -34,7 +35,7 @@ export default {
     if (url.pathname === '/health') {
       const last = env.SOCCER_STATE ? await env.SOCCER_STATE.get('news:last_run', 'json') : null;
       const fresh = last && Date.now() - Date.parse(last.at) < 2 * 3600e3;
-      return json({ ok: !!fresh, version: 'soccer-news/1.3.0', desk: { version: DESK_VERSION, required: deskRequired(env), available: deskAvailable(env) }, last_run: last }, fresh ? 200 : 503);
+      return json({ ok: !!fresh, version: 'soccer-news/1.3.0', desk: { version: DESK_VERSION, quality: QUALITY_VERSION, packet: PACKET_V3, depth: DEPTH_VERSION, required: deskRequired(env), available: deskAvailable(env) }, last_run: last }, fresh ? 200 : 503);
     }
     if (url.pathname === '/v1/run' && req.method === 'POST') {
       if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);
