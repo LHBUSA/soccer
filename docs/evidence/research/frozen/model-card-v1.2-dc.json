@@ -1,0 +1,55 @@
+{
+  "model_id": "soccer-research-bundesliga-v1.2-dc",
+  "status": "research only; frozen structural candidate awaiting a separate calibration phase; not in production; no shadow",
+  "parent": "soccer-research-bundesliga-v1-frozen (strict v1.1 Poisson lambdas, unchanged)",
+  "change": "Dixon-Coles low-score dependence on the v1.1 lambdas: tau(0,0) = 1 - lh*la*rho, tau(0,1) = 1 + lh*rho, tau(1,0) = 1 + la*rho, tau(1,1) = 1 - rho; 0..10 grid renormalised",
+  "rho": -0.1099,
+  "rho_selected_by": "maximum DEV (2014/15-2018/19) scoreline log-likelihood, A lambdas fixed",
+  "home_half_life_days": 540,
+  "team_strength": {
+    "half_life_days": 540,
+    "shrink": 10,
+    "window_half_lives": 5,
+    "min_weight": 50
+  },
+  "protocol": {
+    "id": "soccer-structural-phase3-protocol-v1",
+    "sha256": "6cc6fa60fd4d51e3cc35a6c637d7a7e18327b076cea06b8176246b52e23350b3"
+  },
+  "evidence": {
+    "dev_selection": "docs/evidence/research/phase3/dev-selection.json",
+    "dev_selection_sha256": "ea607fee70bcdad2e743ef38ffbf6e0a5481873414eda6fd1de809727a31740a",
+    "holdout_results": "docs/evidence/research/phase3/holdout-results.json",
+    "holdout_results_sha256": "7d71953793d00150315e6e9b96a2d18d0a7cb3a70c619a770c6e3c9b7a108e41"
+  },
+  "data_sha256": "6bff57c0000fa1fbfdbb4686235f40a90df13b74c4dd2defb23e89e9ff05f028",
+  "code_sha256": {
+    "scripts/research/phase3-protocol.mjs": "6cc6fa60fd4d51e3cc35a6c637d7a7e18327b076cea06b8176246b52e23350b3",
+    "scripts/research/structural-core.mjs": "c6f296eb3dd397ecec366a36fc28909527d3b2dc97cc834a5987d34f5f727746",
+    "scripts/research/structural-research.mjs": "8f27a462d0ff64303220a27cc42f1b29bf109db26ccb76814124ac6e09c4f3d0",
+    "scripts/research/metrics.mjs": "dfe37abcdf40770d02aa8e0809a85efbdd8ddd4549419e741be779bab5a31536",
+    "scripts/research/model-core.mjs": "33a1b4b842dc27ec3877c64aa4debc5f810ba7b08487b0badee1616c828c2cdf"
+  },
+  "prediction_hash": "19b72fedee9a60268c4d554d2c8e20adefa6e311b5c73cd7b654b5ff1dfbb13b",
+  "rows": 6156,
+  "holdout": {
+    "log_loss": 0.9952,
+    "brier": 0.5938,
+    "ece": 0.0171,
+    "ece_class": [
+      0.0261,
+      0.0075,
+      0.0178
+    ],
+    "bias_pts": [
+      1.28,
+      -0.51,
+      -0.78
+    ]
+  },
+  "known_residuals": [
+    "home win over-predicted +1.28 pts pooled and season-dependent (sd 3.27 pts)",
+    "away win under-predicted -0.78 pts (away ECE 0.0137 -> 0.0178)",
+    "draws still under-predicted in mid-strength home teams (-2.19 pts) and the 0.21-0.24 draw band (-2.57 pts)"
+  ]
+}
