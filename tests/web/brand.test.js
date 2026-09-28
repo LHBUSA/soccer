@@ -74,3 +74,17 @@ test('middleware hands every static file to the filesystem, including the web ma
   for (const f of ['/site.webmanifest', '/favicon.ico', '/icon-512.png', '/brand/player-silhouette-128.webp', '/robots.txt']) assert.equal(isFilePath(f), true, f);
   for (const p of ['/', '/players', '/players/lionel-messi', '/pbecast/5b0c8f3e-1111-5222-8333-444455556666', '/news/mls/some-story-abc123']) assert.equal(isFilePath(p), false, p);
 });
+
+
+test('network GA4 is production-only and identifies the soccer surface', () => {
+  const html = readFileSync('index.html', 'utf8');
+  assert.match(html, /var GA_ID = 'G-BRS48R8PG9'/);
+  assert.match(html, /var SURFACE = 'soccer'/);
+  assert.match(html, /var HASH_ROUTES = false/);
+  assert.match(html, /cookie_domain: '\.propbetedge\.ai'/);
+  assert.match(html, /vercel\.app/);
+  assert.match(html, /workers\.dev/);
+  assert.match(html, /pages\.dev/);
+  assert.match(html, /pbe_network_click/);
+  assert.equal((html.match(/googletagmanager\.com\/gtag\/js/g) || []).length, 1);
+});
