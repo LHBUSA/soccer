@@ -1065,9 +1065,9 @@ body.dr-open { overflow: hidden; }
 
 .art-body { font: 400 19px/1.75 var(--read); color: #1c2536; max-width: 700px; }
 .art-body p { margin: 0 0 22px; }
-.art-body > p:first-child::first-letter { float: left; font: italic 900 68px/.85 var(--serif); color: var(--gold); margin: 8px 12px 0 0; }
+.art-body > p:first-of-type::first-letter { float: left; font: italic 900 68px/.85 var(--serif); color: var(--gold); margin: 8px 12px 0 0; }
 .art-body h2 { font: 800 27px/1.2 var(--serif); letter-spacing: -.01em; color: var(--ink); margin: 34px 0 12px; }
-@media (max-width: 880px) { .art-body { font-size: 17.5px; line-height: 1.7; } .art-body h2 { font-size: 23px; } .art-body > p:first-child::first-letter { font-size: 54px; } }
+@media (max-width: 880px) { .art-body { font-size: 17.5px; line-height: 1.7; } .art-body h2 { font-size: 23px; } .art-body > p:first-of-type::first-letter { font-size: 54px; } }
 
 .art-mod { margin: 30px 0 0; padding: 18px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); }
 .am-board { display: grid; grid-template-columns: auto 1fr auto 1fr auto; align-items: center; gap: 10px; margin: 6px 0 14px; }
