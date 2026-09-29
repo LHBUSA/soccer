@@ -9,6 +9,7 @@
 import { storeFromEnv } from '../../shared/postgrest.js';
 import * as R from './routes.js';
 import * as C from './cast.js';
+import * as A from './algo.js';
 import { handlePro, PRO_HEADERS } from './pro/routes.js';
 import { readLiveSnapshotInputs, snapshotRefreshReason } from '../../shared/live-snapshot.js';
 
@@ -35,6 +36,9 @@ const ROUTES = [
   [/^\/v1\/news$/, (s, _m, q) => R.news(s, q), 300, ['desk', 'team', 'player', 'match', 'limit']],
   [/^\/v1\/videos$/, (s, _m, q) => R.videos(s, q), 300, ['desk', 'limit']],
   [/^\/v1\/news\/([a-z0-9-]+)$/, (s, m) => R.article(s, m[1]), 600, []],
+  [/^\/v1\/algo\/picks$/, s => A.picks(s), 120, []],
+  [/^\/v1\/algo\/record$/, (s, _m, q) => A.record(s, q), 300, A.RECORD_QUERY],
+  [/^\/v1\/algo\/research$/, () => A.researchSummary(), 3600, []],
 ];
 
 const ALLOWED_ORIGIN = /^https:\/\/([a-z0-9-]+\.)*propbetedge\.ai$/;

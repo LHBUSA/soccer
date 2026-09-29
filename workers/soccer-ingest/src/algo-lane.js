@@ -12,7 +12,7 @@
 //      abandoned -> void; kickoff moved by more than 48 h -> void; otherwise they stay pending.
 //   3. alerts: every issue and settlement is an append-only soccer_algo_events row; Slack is an optional second
 //      channel (SLACK_WEBHOOK_URL secret), never carrying secrets.
-// The ledger triggers (migration 1100) enforce lock, immutability and write-once settlement.
+// The ledger triggers (migration 1200) enforce lock, immutability and write-once settlement.
 import spec from './algo-v1.json' with { type: 'json' };
 import { predictFrom, dcGrid } from '../../../scripts/research/structural-core.mjs';
 import { payloadKey } from '../../shared/archive.js';

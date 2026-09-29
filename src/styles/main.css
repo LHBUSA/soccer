@@ -1564,3 +1564,34 @@ dialog.acct::backdrop { background: rgba(4,10,20,.6); }
   .vz-form { grid-template-columns: 1fr; gap: 4px; }
   .vz-tile b { font-size: 24px; }
 }
+
+/* Soccer Algo V1 (/picks, /track-record): Official Picks, Game Best and HISTORICAL VALIDATION stay visually distinct. */
+.algo-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+.algo-banner { border: 1px solid var(--gold); background: var(--gold-soft); color: var(--gold-ink); border-radius: var(--radius-s); padding: 12px 14px; margin: 0 0 18px; }
+.algo-banner.warn { border-color: var(--line-2); background: var(--canvas-alt); color: var(--ink-2); }
+.algo-table td { vertical-align: top; }
+.algo-table .num, .ltable td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.algo-st { display: inline-block; font: 800 10.5px/1 var(--body); letter-spacing: .14em; padding: 5px 8px; border-radius: 999px; background: #e9edf4; color: var(--ink-2); }
+.algo-win { background: #dff3e6; color: #13653a; }
+.algo-loss { background: #fbe3e3; color: #8f1d1d; }
+.algo-pending { background: var(--gold-soft); color: var(--gold-ink); }
+.algo-gbgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.algo-gb { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius-s); background: #fff; padding: 12px 14px; }
+.algo-gb.is-official { border-color: var(--gold); box-shadow: inset 3px 0 0 var(--gold); }
+.algo-gb p { margin: 0 0 6px; }
+.algo-gb-when { font-size: 12.5px; color: var(--muted); }
+.algo-gb-fx { font-weight: 700; }
+.algo-gb-pick .kicker { display: block; margin: 0 0 2px; }
+.algo-gb-pick span:last-child { font: 800 18px/1 var(--display); margin-left: 6px; }
+.algo-gb-probs { color: var(--muted); }
+.algo-next { margin: 0; padding-left: 18px; }
+.algo-next li { margin: 0 0 6px; }
+.algo-policy { border: 1px solid var(--line); border-radius: var(--radius-s); padding: 12px 16px; background: var(--canvas-alt); }
+.algo-policy ul { margin: 8px 0; padding-left: 18px; }
+.algo-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+.algo-kpis > div { border: 1px solid var(--line); border-radius: var(--radius-s); padding: 10px 12px; background: #fff; }
+.algo-kpis .kicker { margin: 0 0 4px; }
+.algo-kpi { margin: 0; font: 800 28px/1 var(--display); }
+.algo-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0 0 8px; }
+.algo-research { margin: 40px 0 24px; padding: 18px 16px; border: 1px dashed var(--line-2); border-radius: var(--radius); background: var(--canvas-alt); }
+.algo-research h2 { font: 800 clamp(20px, 3vw, 26px)/1.1 var(--display); margin: 0 0 12px; letter-spacing: .02em; }

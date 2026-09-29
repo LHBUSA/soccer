@@ -17,6 +17,8 @@ export const ROUTES = [
   [/^\/news\/(mls|premier-league|champions-league|bundesliga|international)\/?$/, 'newsDesk'],
   [/^\/news\/(mls|premier-league|champions-league|bundesliga|international)\/([a-z0-9-]{3,200})\/?$/, 'article'],
   [/^\/sources\/?$/, 'sources'],
+  [/^\/picks\/?$/, 'algoPicks'],
+  [/^\/track-record\/?$/, 'trackRecord'],
 ];
 
 export function resolve(pathname) {

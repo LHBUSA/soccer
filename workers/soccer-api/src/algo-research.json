@@ -1,0 +1,418 @@
+{
+  "label": "HISTORICAL VALIDATION",
+  "disclaimer": "Model research on past seasons, evaluated after the fact under a pre-registered protocol. Not picks, not a track record, and never counted in the Official Pick record.",
+  "algo_version": "soccer-algo-v1.0.0",
+  "spec_hash": "3156f6f9e3f217fbdd8732363a89ff289d831b695de3be5583691d8966bbc1e6",
+  "model_hash": "d9cf3320842efacfc0437816fc74131515f71ff8eac51ead8c8a632d5bdcd7f2",
+  "pick_policy_version": "soccer-algo-pick-policy/1.1",
+  "protocol_sha256": "8f73a080e63fcf2385094a099521e40830b90de10d8ff34370373d0f5c13bd21",
+  "select_freeze_sha256": "9e4cf217a2b06624ddcda4512dde7f1b56f6f922e6202ac1449af1731bef6b16",
+  "holdout_sha256": "2a0d324eb24f2678baad5c0bc5ef0028abd6548187f766b23e485e294e233005",
+  "holdout_evaluated_at": "2026-09-29T17:46:14.050Z",
+  "select": {
+    "seasons": [
+      "2006/07",
+      "2007/08",
+      "2008/09",
+      "2009/10",
+      "2010/11",
+      "2011/12",
+      "2012/13",
+      "2013/14",
+      "2014/15",
+      "2015/16",
+      "2016/17",
+      "2017/18",
+      "2018/19"
+    ],
+    "matches": 3978,
+    "combined": {
+      "matches": 3978,
+      "official_picks": 729,
+      "coverage": 0.1833,
+      "hit_rate": 0.7558,
+      "mean_probability": 0.707,
+      "wilson_lower_95": 0.7234,
+      "by_market": {
+        "1x2": 653,
+        "home_to_score": 76
+      }
+    }
+  },
+  "holdout": {
+    "seasons": [
+      "2019/20",
+      "2020/21",
+      "2021/22",
+      "2022/23",
+      "2023/24",
+      "2024/25",
+      "2025/26"
+    ],
+    "matches": 2142,
+    "combined": {
+      "matches": 2142,
+      "official_picks": 548,
+      "coverage": 0.2558,
+      "hit_rate": 0.7573,
+      "mean_probability": 0.7394,
+      "wilson_lower_95": 0.7197,
+      "by_market": {
+        "1x2": 436,
+        "home_to_score": 112
+      }
+    }
+  },
+  "markets": {
+    "1x2": {
+      "official_market": true,
+      "select_reason": "lowest eligible threshold with combined coverage <= 0.2",
+      "validation_holdout": {
+        "matches": 2142,
+        "log_loss": 0.9952,
+        "baseline_log_loss": 1.074,
+        "brier": 0.5938,
+        "baseline_brier": 0.6502,
+        "seasons_beating_baseline": 7,
+        "seasons": 7
+      },
+      "select_picks": {
+        "threshold": 0.6,
+        "picks": 677,
+        "coverage": 0.1702,
+        "hits": 500,
+        "hit_rate": 0.7386,
+        "mean_probability": 0.6833,
+        "wilson_lower_95": 0.7042,
+        "per_season": [
+          {
+            "season": "2006/07",
+            "picks": 32,
+            "hit_rate": 0.5625,
+            "mean_probability": 0.6614
+          },
+          {
+            "season": "2007/08",
+            "picks": 36,
+            "hit_rate": 0.75,
+            "mean_probability": 0.6602
+          },
+          {
+            "season": "2008/09",
+            "picks": 52,
+            "hit_rate": 0.6923,
+            "mean_probability": 0.6676
+          },
+          {
+            "season": "2009/10",
+            "picks": 50,
+            "hit_rate": 0.72,
+            "mean_probability": 0.6613
+          },
+          {
+            "season": "2010/11",
+            "picks": 47,
+            "hit_rate": 0.6596,
+            "mean_probability": 0.644
+          },
+          {
+            "season": "2011/12",
+            "picks": 44,
+            "hit_rate": 0.7727,
+            "mean_probability": 0.6628
+          },
+          {
+            "season": "2012/13",
+            "picks": 49,
+            "hit_rate": 0.7755,
+            "mean_probability": 0.6866
+          },
+          {
+            "season": "2013/14",
+            "picks": 56,
+            "hit_rate": 0.8036,
+            "mean_probability": 0.7087
+          },
+          {
+            "season": "2014/15",
+            "picks": 61,
+            "hit_rate": 0.7213,
+            "mean_probability": 0.7013
+          },
+          {
+            "season": "2015/16",
+            "picks": 63,
+            "hit_rate": 0.8254,
+            "mean_probability": 0.6951
+          },
+          {
+            "season": "2016/17",
+            "picks": 67,
+            "hit_rate": 0.6866,
+            "mean_probability": 0.6913
+          },
+          {
+            "season": "2017/18",
+            "picks": 59,
+            "hit_rate": 0.7797,
+            "mean_probability": 0.7046
+          },
+          {
+            "season": "2018/19",
+            "picks": 61,
+            "hit_rate": 0.7705,
+            "mean_probability": 0.6991
+          }
+        ]
+      },
+      "holdout_picks": {
+        "threshold": 0.6,
+        "picks": 483,
+        "coverage": 0.2255,
+        "hits": 348,
+        "hit_rate": 0.7205,
+        "mean_probability": 0.6918,
+        "wilson_lower_95": 0.6789,
+        "per_season": [
+          {
+            "season": "2019/20",
+            "picks": 64,
+            "hit_rate": 0.7188,
+            "mean_probability": 0.6986
+          },
+          {
+            "season": "2020/21",
+            "picks": 64,
+            "hit_rate": 0.6875,
+            "mean_probability": 0.6913
+          },
+          {
+            "season": "2021/22",
+            "picks": 73,
+            "hit_rate": 0.7534,
+            "mean_probability": 0.6978
+          },
+          {
+            "season": "2022/23",
+            "picks": 72,
+            "hit_rate": 0.6528,
+            "mean_probability": 0.6869
+          },
+          {
+            "season": "2023/24",
+            "picks": 74,
+            "hit_rate": 0.7162,
+            "mean_probability": 0.696
+          },
+          {
+            "season": "2024/25",
+            "picks": 76,
+            "hit_rate": 0.7237,
+            "mean_probability": 0.6789
+          },
+          {
+            "season": "2025/26",
+            "picks": 60,
+            "hit_rate": 0.8,
+            "mean_probability": 0.6948
+          }
+        ]
+      }
+    },
+    "over_2_5": {
+      "official_market": false,
+      "select_reason": "market fails the SELECT validation gate",
+      "validation_holdout": {
+        "matches": 2142,
+        "log_loss": 0.6554,
+        "baseline_log_loss": 0.6745,
+        "brier": 0.2317,
+        "baseline_brier": 0.2407,
+        "seasons_beating_baseline": 7,
+        "seasons": 7
+      }
+    },
+    "home_to_score": {
+      "official_market": true,
+      "select_reason": "lowest eligible threshold with combined coverage <= 0.2",
+      "validation_holdout": {
+        "matches": 2142,
+        "log_loss": 0.4679,
+        "baseline_log_loss": 0.4934,
+        "brier": 0.1495,
+        "baseline_brier": 0.1569,
+        "seasons_beating_baseline": 7,
+        "seasons": 7
+      },
+      "select_picks": {
+        "threshold": 0.875,
+        "picks": 499,
+        "coverage": 0.1254,
+        "hits": 459,
+        "hit_rate": 0.9198,
+        "mean_probability": 0.9057,
+        "wilson_lower_95": 0.8927,
+        "per_season": [
+          {
+            "season": "2006/07",
+            "picks": 31,
+            "hit_rate": 0.9032,
+            "mean_probability": 0.8974
+          },
+          {
+            "season": "2007/08",
+            "picks": 21,
+            "hit_rate": 0.8571,
+            "mean_probability": 0.9048
+          },
+          {
+            "season": "2008/09",
+            "picks": 40,
+            "hit_rate": 0.925,
+            "mean_probability": 0.9051
+          },
+          {
+            "season": "2009/10",
+            "picks": 41,
+            "hit_rate": 0.878,
+            "mean_probability": 0.8988
+          },
+          {
+            "season": "2010/11",
+            "picks": 32,
+            "hit_rate": 0.9375,
+            "mean_probability": 0.8983
+          },
+          {
+            "season": "2011/12",
+            "picks": 30,
+            "hit_rate": 0.9,
+            "mean_probability": 0.9
+          },
+          {
+            "season": "2012/13",
+            "picks": 35,
+            "hit_rate": 0.9429,
+            "mean_probability": 0.9046
+          },
+          {
+            "season": "2013/14",
+            "picks": 44,
+            "hit_rate": 0.9318,
+            "mean_probability": 0.9097
+          },
+          {
+            "season": "2014/15",
+            "picks": 45,
+            "hit_rate": 0.8667,
+            "mean_probability": 0.9102
+          },
+          {
+            "season": "2015/16",
+            "picks": 43,
+            "hit_rate": 1,
+            "mean_probability": 0.9091
+          },
+          {
+            "season": "2016/17",
+            "picks": 42,
+            "hit_rate": 0.881,
+            "mean_probability": 0.9057
+          },
+          {
+            "season": "2017/18",
+            "picks": 43,
+            "hit_rate": 0.9535,
+            "mean_probability": 0.9112
+          },
+          {
+            "season": "2018/19",
+            "picks": 52,
+            "hit_rate": 0.9423,
+            "mean_probability": 0.9108
+          }
+        ]
+      },
+      "holdout_picks": {
+        "threshold": 0.875,
+        "picks": 419,
+        "coverage": 0.1956,
+        "hits": 386,
+        "hit_rate": 0.9212,
+        "mean_probability": 0.9148,
+        "wilson_lower_95": 0.8915,
+        "per_season": [
+          {
+            "season": "2019/20",
+            "picks": 58,
+            "hit_rate": 0.9138,
+            "mean_probability": 0.9139
+          },
+          {
+            "season": "2020/21",
+            "picks": 48,
+            "hit_rate": 0.9375,
+            "mean_probability": 0.9141
+          },
+          {
+            "season": "2021/22",
+            "picks": 55,
+            "hit_rate": 0.9091,
+            "mean_probability": 0.9195
+          },
+          {
+            "season": "2022/23",
+            "picks": 63,
+            "hit_rate": 0.9365,
+            "mean_probability": 0.9131
+          },
+          {
+            "season": "2023/24",
+            "picks": 71,
+            "hit_rate": 0.8732,
+            "mean_probability": 0.9172
+          },
+          {
+            "season": "2024/25",
+            "picks": 68,
+            "hit_rate": 0.9118,
+            "mean_probability": 0.9148
+          },
+          {
+            "season": "2025/26",
+            "picks": 56,
+            "hit_rate": 0.9821,
+            "mean_probability": 0.9105
+          }
+        ]
+      }
+    },
+    "away_to_score": {
+      "official_market": false,
+      "select_reason": "no eligible threshold",
+      "validation_holdout": {
+        "matches": 2142,
+        "log_loss": 0.5418,
+        "baseline_log_loss": 0.5747,
+        "brier": 0.1811,
+        "baseline_brier": 0.1929,
+        "seasons_beating_baseline": 7,
+        "seasons": 7
+      }
+    },
+    "btts": {
+      "official_market": false,
+      "select_reason": "not eligible for V1 picks under the protocol",
+      "validation_holdout": {
+        "matches": 2142,
+        "log_loss": 0.6696,
+        "baseline_log_loss": 0.677,
+        "brier": 0.2384,
+        "baseline_brier": 0.242,
+        "seasons_beating_baseline": 5,
+        "seasons": 7
+      }
+    }
+  },
+  "prices": "No sportsbook prices exist for these seasons in the research data: no ROI, units or CLV are stated."
+}

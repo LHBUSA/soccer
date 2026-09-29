@@ -49,7 +49,7 @@ export async function portraitMap(store, ids) {
 }
 const shapeMedia = r => ({ media_type: r.media_type, url: r.cached_url, width: r.width, height: r.height, license: r.license, license_url: r.license_url, author: r.author, attribution: r.attribution, source: r.source, source_url: r.source_url, primary: r.is_primary, basis: r.rights_status === 'approved' ? 'free_license' : 'owner_approved_identification' });
 
-async function teamsById(store, ids) {
+export async function teamsById(store, ids) {
   const out = new Map();
   for (const part of chunkArr([...new Set(ids.filter(Boolean))], 150)) for (const t of await store.select('soccer_teams', { columns: ['id', 'slug', 'name', 'short_name', 'team_type'], in: { id: part } })) out.set(t.id, t);
   const crests = await approvedMedia(store, 'team', [...out.keys()], { mediaType: 'crest', primaryOnly: true });

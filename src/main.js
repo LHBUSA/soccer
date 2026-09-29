@@ -12,6 +12,7 @@ import { player, team } from './pages/people.js';
 import * as players from './pages/players.js';
 import { hub as pbecastHub, cast as pbecast } from './pages/pbecast.js';
 import { pro, proMatch } from './pages/pro.js';
+import { picks as algoPicks, trackRecord } from './pages/algo.js';
 import { networkFooter, applyFooterMembership } from './components/footer.js';
 import { accountButtonLabel, handleVerifiedReturn, openAccount } from './components/account.js';
 import { proAccess } from './lib/pro.js';
@@ -23,7 +24,7 @@ import { mountScoreTicker } from './components/score-ticker.js';
 
 initAnalytics();
 
-const PAGES = { home, competition, match, competitions, matches, news, newsDesk, article, sources, tables, team, player, players, pbecastHub, pbecast, pro, proMatch };
+const PAGES = { home, competition, match, competitions, matches, news, newsDesk, article, sources, tables, team, player, players, pbecastHub, pbecast, pro, proMatch, algoPicks, trackRecord };
 // Primary navigation (Soccer Pro V1). Every existing public URL keeps working; INTELLIGENCE groups them.
 const NAV = [['/', 'TODAY', 'home'], ['/matches', 'MATCHES', 'matches,match'], ['/pbecast', 'PBECAST', 'pbecastHub,pbecast']];
 const INTEL = [['/players', 'PLAYER DNA'], ['/competitions', 'TEAM INTELLIGENCE'], ['/tables', 'TABLES'], ['/competitions', 'COMPETITIONS'], ['/pro#matchup', 'MATCHUP LAB'], ['/pro#fatigue', 'FATIGUE'], ['/pro#model-lab', 'MODEL LAB']];

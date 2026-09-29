@@ -96,6 +96,10 @@
       "destination": "https://soccer-api.sales-fd3.workers.dev/v1/videos"
     },
     {
+      "source": "/api/soccer/algo/:kind(picks|record|research)",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/algo/:kind"
+    },
+    {
       "source": "/sitemap.xml",
       "destination": "/api/sitemap?kind=index"
     },

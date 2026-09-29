@@ -29,7 +29,29 @@ enforces part of this: `soccer_metric_definitions` refuses `validated` or
 | finishing_delta | design | pbe_xg |
 | goalkeeper_impact | design | no legitimate shot-placement data |
 
-**Predictions and Track Record routes stay hidden.** There is no model. The
-prediction work starts after the descriptive layer is trusted and current-season
-event data exists; today no legitimate free source provides it
-(`docs/SOURCE_MATRIX.md`).
+**Predictions and Track Record routes stay hidden** until the gates below pass
+and the owner signs off (G7).
+
+## Soccer Algo V1 (2026-09-29): built, hidden, not live
+
+`soccer-algo-v1.0.0` (spec `workers/soccer-ingest/src/algo-v1.json`, spec hash
+`3156f6f9…`): Bundesliga league matches, frozen model
+`soccer-research-bundesliga-v1.2-dc`, Official Picks for 1X2 ≥ 0.60 and home team
+to score ≥ 0.875 (pick policy 1.1).
+
+| Gate | Status |
+|---|---|
+| G1 Formula | Frozen spec + model card (`docs/evidence/research/frozen/`), protocol `scripts/research/algo-v1_1-protocol.mjs` |
+| G2 Inputs | Canonical finished Bundesliga results only (OpenLigaDB ODbL / ESPN secondary); no research-only data |
+| G3 Sample | SELECT 3,978 matches (2006/07–2018/19), holdout 2,142 (2019/20–2025/26) |
+| G4 Backtest | `docs/evidence/research/algo-v1_1/holdout-results.json`, evaluated once after the SELECT freeze |
+| G5 Calibration | One-sided pick calibration passed on SELECT and holdout (pick hit rate ≥ stated probability − tolerance) |
+| G6 Stability | Version pinned; input list archived write-once in R2 under `input_hash`; forecast reproduced bit-for-bit in tests |
+| G7 Review | **Pending owner sign-off.** |
+
+Deployed: ledger migration 1200 (applied), the ingest lane (off: `ALGO_OFFICIAL`
+unset), the read-only API `/v1/algo/{picks,record,research}` and the pages
+`/picks` and `/track-record`, reachable by URL only: no navigation link, noindex,
+not in the sitemap. Go-live = owner sign-off, then `ALGO_OFFICIAL=on`, navigation
+links and indexing. The record starts with the first pick after go-live; history
+is never seeded into it.

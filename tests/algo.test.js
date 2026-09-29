@@ -147,3 +147,41 @@ test('ledger guards: no pick after lock, no price after lock, price once, profit
   assert.equal(v.status, 'void');
   await store.close();
 });
+
+test('public API: empty before go-live; Official Picks, Game Best and the record come from the ledger only; research is labelled and separate', async () => {
+  const A = await import('../workers/soccer-api/src/algo.js');
+  const now = Date.now();
+  const store = await world(now);
+  const pre = await A.record(store, {});
+  assert.equal(pre.data.live, false); assert.equal(pre.data.totals.picks, 0); assert.equal(pre.data.totals.hit_rate, null); assert.equal(pre.meta.coverage.state, 'unavailable');
+  const [fh, fa] = unplayed(TEAMS[0]); const fx = await match(store, { t: now + 3 * DAY, h: fh, a: fa });
+  const [nh, na] = unplayed(TEAMS[3]); await match(store, { t: now + 4 * DAY, h: nh, a: na });
+  await match(store, { t: now + 12 * DAY, h: unplayed(TEAMS[5])[0], a: unplayed(TEAMS[5])[1] }); // outside the 7-day window
+  const prePicks = await A.picks(store, now);
+  assert.equal(prePicks.data.official_picks.open.length, 0); assert.equal(prePicks.data.game_best.length, 0);
+  assert.ok(prePicks.data.awaiting_forecast.length >= 1 && prePicks.data.awaiting_forecast.every(m => m.forecast_window_opens_at && m.lock_at));
+  await runAlgo({ store, storage: memStorage(), now, env: { ALGO_OFFICIAL: 'on' }, force: true });
+  const p = await A.picks(store, now);
+  assert.equal(p.data.live, true);
+  assert.equal(p.data.official_picks.open.length, 1);
+  const op = p.data.official_picks.open[0];
+  assert.equal(op.match_id, fx); assert.equal(op.record_no, 1); assert.equal(op.label, 'Team 0 to win'); assert.equal(op.price, null);
+  assert.ok(p.data.game_best.length >= 2, 'every forecast match has a Game Best');
+  assert.ok(p.data.game_best.some(g => !g.game_best.qualifies && g.official_pick === null), 'a non-qualifying Game Best is shown but is not an Official Pick');
+  assert.equal(p.data.game_best.find(g => g.match_id === fx).official_pick.record_no, 1);
+  assert.ok(p.data.awaiting_forecast.some(m => Date.parse(m.kickoff_at) > now + 7 * DAY));
+  await store.query("update soccer_matches set status = 'finished', home_score = 2, away_score = 0 where id = $1", [fx]);
+  await runAlgo({ store, storage: memStorage(), now: now + 4 * DAY, env: { ALGO_OFFICIAL: 'on' }, force: true });
+  const r = await A.record(store, {});
+  assert.equal(r.data.totals.wins, 1); assert.equal(r.data.totals.losses, 0); assert.equal(r.data.totals.hit_rate, 1);
+  assert.equal(r.data.picks[0].final_score, '2-0'); assert.equal(r.data.picks[0].status, 'win');
+  assert.equal(r.data.prices.roi, null); assert.equal(r.data.prices.units, null); assert.match(r.data.prices.reason, /No default odds/);
+  assert.equal(r.data.windows.last_30.graded, 1);
+  assert.equal((await A.record(store, { market: 'home_to_score' })).data.totals.picks, 0);
+  await assert.rejects(A.record(store, { market: 'btts' }), e => e.status === 400);
+  await assert.rejects(A.record(store, { last: '50' }), e => e.status === 400);
+  const res = A.researchSummary().data;
+  assert.equal(res.label, 'HISTORICAL VALIDATION'); assert.equal(res.holdout.combined.official_picks, 548); assert.equal(res.spec_hash, spec.spec_hash);
+  execFileSync(process.execPath, ['scripts/algo/build-research-summary.mjs', '--check'], { stdio: 'pipe' });
+  await store.close();
+});
