@@ -1,0 +1,686 @@
+{
+  "generated_at": "2026-09-29T01:19:30.317Z",
+  "mode": "local-pglite (production untouched)",
+  "competition": "uefa-nations-league",
+  "espn": {
+    "league": "uefa.nations",
+    "id": "2395",
+    "season_year": 2026,
+    "types": {
+      "1": {
+        "name": "League Phase",
+        "role": "league"
+      },
+      "2": {
+        "name": "Quarterfinals",
+        "role": "playoff"
+      },
+      "3": {
+        "name": "Relegation Playoffs",
+        "role": "playoff"
+      },
+      "4": {
+        "name": "Semifinals",
+        "role": "playoff"
+      },
+      "5": {
+        "name": "3rd-Place Match",
+        "role": "playoff"
+      },
+      "6": {
+        "name": "Final",
+        "role": "playoff"
+      }
+    },
+    "index": 156,
+    "fixtures_seen": 156,
+    "by_type": {
+      "League Phase": 156
+    }
+  },
+  "runs": [
+    {
+      "requests": 200,
+      "fixtures_new": 156,
+      "detailed": 0,
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 2,
+      "team_identity": {
+        "espn_teams": 54,
+        "resolved_before": 0,
+        "teams_founded": 54,
+        "team_crosswalk": {
+          "inserted": 54,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "resolved_after": 54
+      },
+      "fixtures": {
+        "considered": 156,
+        "attached_to_existing": 0,
+        "founded": 156,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 156,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 156,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 54,
+        "resolved_before": 54
+      },
+      "fixtures": {
+        "considered": 156,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 54,
+        "resolved_before": 54
+      },
+      "fixtures": {
+        "considered": 156,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 54,
+        "resolved_before": 54
+      },
+      "fixtures": {
+        "considered": 156,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 54,
+        "resolved_before": 54
+      },
+      "fixtures": {
+        "considered": 156,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 54,
+        "resolved_before": 54
+      },
+      "fixtures": {
+        "considered": 156,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 54,
+        "resolved_before": 54
+      },
+      "fixtures": {
+        "considered": 156,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 54,
+        "resolved_before": 54
+      },
+      "fixtures": {
+        "considered": 156,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 198,
+      "fixtures_new": 0,
+      "detailed": 4,
+      "team_identity": {
+        "espn_teams": 54,
+        "resolved_before": 54
+      },
+      "fixtures": {
+        "considered": 156,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 13,
+      "team_identity": {
+        "espn_teams": 54,
+        "resolved_before": 54
+      },
+      "fixtures": {
+        "considered": 156,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 23,
+      "fixtures_new": 0,
+      "detailed": 2,
+      "team_identity": {
+        "espn_teams": 54,
+        "resolved_before": 54
+      },
+      "fixtures": {
+        "considered": 156,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": null
+    },
+    {
+      "requests": 0,
+      "fixtures_new": 0,
+      "detailed": 0,
+      "team_identity": {
+        "espn_teams": 54,
+        "resolved_before": 54
+      },
+      "fixtures": {
+        "considered": 156,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": null
+    }
+  ],
+  "requests_used": 2221,
+  "teams": {
+    "total": 54,
+    "national": 54,
+    "club": 0,
+    "with_country_code": 0,
+    "espn_crosswalk_by_method": {
+      "founding": 54
+    },
+    "duplicate_espn_team_ids": 0
+  },
+  "matches": {
+    "total": 156,
+    "by_status": {
+      "scheduled": 114,
+      "finished": 42
+    },
+    "by_stage": [
+      {
+        "name": "League phase",
+        "type": "league",
+        "matches": 156
+      },
+      {
+        "name": "Knockouts and play-offs",
+        "type": "playoff",
+        "matches": 0
+      }
+    ]
+  },
+  "enrichment": {
+    "finished": 42,
+    "lineups_both": 42,
+    "stats_any": 42,
+    "plays": 42,
+    "events": 61225,
+    "located_events": 57178,
+    "matches_with_coordinates": 42
+  },
+  "identity": {
+    "players_in_lineups": 1296,
+    "duplicate_espn_player_ids": 0,
+    "production": {
+      "unl_athletes_seen_locally": 1296,
+      "already_canonical_in_production_by_espn_id": 361,
+      "by_method": {
+        "founding": 344,
+        "attribute_corroborated": 17
+      },
+      "already_queued_in_production": 6,
+      "would_be_new": 929,
+      "national_teams_already_in_production": 0
+    },
+    "queue_open": {
+      "player/athlete_without_dob_or_name": 10
+    }
+  },
+  "standings_lane": [
+    {
+      "competition": "uefa-nations-league",
+      "groups": 14,
+      "rows": 54,
+      "groups_in_source": 14
+    }
+  ],
+  "table_api": {
+    "view": "groups",
+    "rows_in_index": 0,
+    "tiers": [
+      {
+        "key": "league-a",
+        "name": "League A",
+        "groups": [
+          "a1",
+          "a2",
+          "a3",
+          "a4"
+        ]
+      },
+      {
+        "key": "league-b",
+        "name": "League B",
+        "groups": [
+          "b1",
+          "b2",
+          "b3",
+          "b4"
+        ]
+      },
+      {
+        "key": "league-c",
+        "name": "League C",
+        "groups": [
+          "c1",
+          "c2",
+          "c3",
+          "c4"
+        ]
+      },
+      {
+        "key": "league-d",
+        "name": "League D",
+        "groups": [
+          "d1",
+          "d2"
+        ]
+      }
+    ],
+    "verified_groups": 14,
+    "withheld_groups": 0,
+    "overall_probe": {
+      "view": "groups",
+      "rows": 0
+    },
+    "groups": [
+      {
+        "key": "a1",
+        "name": "Group A1",
+        "tier": "League A",
+        "teams": 4,
+        "verified": true,
+        "rows": 4,
+        "mismatches": [],
+        "zones": [
+          "Qualifies for QFs",
+          "Relegation playoffs",
+          "Relegation"
+        ]
+      },
+      {
+        "key": "a2",
+        "name": "Group A2",
+        "tier": "League A",
+        "teams": 4,
+        "verified": true,
+        "rows": 4,
+        "mismatches": [],
+        "zones": []
+      },
+      {
+        "key": "a3",
+        "name": "Group A3",
+        "tier": "League A",
+        "teams": 4,
+        "verified": true,
+        "rows": 4,
+        "mismatches": [],
+        "zones": []
+      },
+      {
+        "key": "a4",
+        "name": "Group A4",
+        "tier": "League A",
+        "teams": 4,
+        "verified": true,
+        "rows": 4,
+        "mismatches": [],
+        "zones": []
+      },
+      {
+        "key": "b1",
+        "name": "Group B1",
+        "tier": "League B",
+        "teams": 4,
+        "verified": true,
+        "rows": 4,
+        "mismatches": [],
+        "zones": []
+      },
+      {
+        "key": "b2",
+        "name": "Group B2",
+        "tier": "League B",
+        "teams": 4,
+        "verified": true,
+        "rows": 4,
+        "mismatches": [],
+        "zones": []
+      },
+      {
+        "key": "b3",
+        "name": "Group B3",
+        "tier": "League B",
+        "teams": 4,
+        "verified": true,
+        "rows": 4,
+        "mismatches": [],
+        "zones": []
+      },
+      {
+        "key": "b4",
+        "name": "Group B4",
+        "tier": "League B",
+        "teams": 4,
+        "verified": true,
+        "rows": 4,
+        "mismatches": [],
+        "zones": []
+      },
+      {
+        "key": "c1",
+        "name": "Group C1",
+        "tier": "League C",
+        "teams": 4,
+        "verified": true,
+        "rows": 4,
+        "mismatches": [],
+        "zones": []
+      },
+      {
+        "key": "c2",
+        "name": "Group C2",
+        "tier": "League C",
+        "teams": 4,
+        "verified": true,
+        "rows": 4,
+        "mismatches": [],
+        "zones": []
+      },
+      {
+        "key": "c3",
+        "name": "Group C3",
+        "tier": "League C",
+        "teams": 4,
+        "verified": true,
+        "rows": 4,
+        "mismatches": [],
+        "zones": []
+      },
+      {
+        "key": "c4",
+        "name": "Group C4",
+        "tier": "League C",
+        "teams": 4,
+        "verified": true,
+        "rows": 4,
+        "mismatches": [],
+        "zones": []
+      },
+      {
+        "key": "d1",
+        "name": "Group D1",
+        "tier": "League D",
+        "teams": 3,
+        "verified": true,
+        "rows": 3,
+        "mismatches": [],
+        "zones": []
+      },
+      {
+        "key": "d2",
+        "name": "Group D2",
+        "tier": "League D",
+        "teams": 3,
+        "verified": true,
+        "rows": 3,
+        "mismatches": [],
+        "zones": []
+      }
+    ],
+    "coverage": {
+      "state": "ok",
+      "notes": []
+    }
+  },
+  "competition_api": {
+    "team_kind": "national",
+    "teams": 54,
+    "finished": 42,
+    "scheduled": 114
+  },
+  "team_page": {
+    "slug": "italy",
+    "type": "national",
+    "records": [
+      {
+        "competition": "uefa-nations-league",
+        "position": 3,
+        "group": "a1",
+        "teams_in_table": 4
+      }
+    ]
+  },
+  "finished_match_proof": {
+    "match_id": "96fdfa45-cde7-5a8d-887a-b9620fb7b0e7",
+    "fixture": "Türkiye 1-4 Italy",
+    "kickoff": "2026-09-28T18:45:00.000Z",
+    "venue": "Yüzüncü Yil Atatürk Stadyumu",
+    "lineups": [
+      "home",
+      "away"
+    ],
+    "substitutions": 10,
+    "stats": "present",
+    "shots": 28,
+    "timeline": 8,
+    "events": 1587,
+    "located_events": 1499,
+    "coverage": {
+      "state": "ok",
+      "notes": []
+    },
+    "cast": {
+      "mode": "replay",
+      "sequence": 41,
+      "located": 28
+    }
+  },
+  "scheduled_match_proof": {
+    "match_id": "61fe9681-6486-51b8-9cf3-fd1905d57d21",
+    "fixture": "Finland v Belarus",
+    "kickoff": "2026-09-29T16:00:00.000Z",
+    "status": "scheduled",
+    "score": null,
+    "cast_mode": "pregame",
+    "cast_sequence": 0
+  },
+  "elapsed_s": 1602
+}

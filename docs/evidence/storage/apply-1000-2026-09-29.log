@@ -1,0 +1,37 @@
+FINGERPRINT_BEFORE:
+{
+  "fingerprint": "68415f571946f357654bd1f8b1785930",
+  "objects": 1530
+}
+APPLY 20260929001000_soccer_groups_generic_channel_scope.sql sha256=1fdb78cb2a64f8c619e9e7458359621714c2965669415e9ae627d1fb0e4e82c1
+FINGERPRINT_AFTER:
+{
+  "fingerprint": "68415f571946f357654bd1f8b1785930",
+  "objects": 1530
+}
+
+PRE (MLS/UCL + grants + RLS):
+{
+  "mls_ucl_groups_hash": "de0d37b3379f138d5a5e0fb0f80bdf17",
+  "mls_ucl_groups": 3,
+  "mls_ucl_standings_hash": "d6f3c038dd43071c285719aa371bc339",
+  "grants_hash": "1331b31d8a98508a721814056becddf2",
+  "rls": "soccer_season_groups:true,soccer_video_channels:true",
+  "policies": 0,
+  "group_type_check": "CHECK ((group_type = ANY (ARRAY['conference'::text, 'league_phase'::text])))",
+  "new_columns": null,
+  "channels_with_competition": 4
+}
+
+POST:
+{
+  "mls_ucl_groups_hash": "de0d37b3379f138d5a5e0fb0f80bdf17",
+  "mls_ucl_groups": 3,
+  "mls_ucl_standings_hash": "d6f3c038dd43071c285719aa371bc339",
+  "grants_hash": "1331b31d8a98508a721814056becddf2",
+  "rls": "soccer_season_groups:true,soccer_video_channels:true",
+  "policies": 0,
+  "group_type_check": "CHECK ((group_type = ANY (ARRAY['conference'::text, 'league_phase'::text, 'group'::text])))",
+  "new_columns": "parent_group_key:YES:text,parent_name:YES:text,scope_competition_ids:NO:ARRAY,sort_order:YES:integer",
+  "channels_with_competition": 4
+}

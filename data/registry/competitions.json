@@ -265,7 +265,7 @@
       "espn": {
         "league": "uefa.nations",
         "id": "2395",
-        "enabled": false,
+        "enabled": true,
         "may_found": true,
         "stage_by_type": true,
         "playoff_stage_name": "Knockouts and play-offs",
@@ -275,7 +275,7 @@
           "parent_from_code": "League",
           "expected_groups": 14
         },
-        "enable_note": "ESPN lane stays disabled until the canary sequence (docs/evidence/espn/uefa-nations-*) passes; see docs/PRODUCTION_STATE.md."
+        "enable_note": "Enabled 2026-09-29 after the canary (docs/evidence/espn/uefa-nations-canary-2026-09-29.json: 54/54 national teams, 42/42 finished matches enriched, 14/14 groups verified) and migration 1000."
       },
       "external_ids": [
         {
