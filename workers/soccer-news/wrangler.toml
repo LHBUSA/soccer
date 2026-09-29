@@ -15,6 +15,9 @@ crons = ["7,37 * * * *"] # the only schedule; the temporary */10 backlog migrati
 [vars]
 NEWS_ENABLED = "on"
 NEWS_LLM = "off"
+# Desk output cap (reasoning + story). Evidence 2026-09-29 canary on the richest packet (Bayern 7-0 recap): 2,252 output
+# tokens incl. 1,234 reasoning -> 4000 per the owner cost brief (5000 only if a legitimate story is shown to exceed it).
+NEWS_DESK_MAX_OUTPUT_TOKENS = "4000"
 UCL_LEAGUE_PHASE_END = "2027-02-01T00:00:00Z"
 
 [[kv_namespaces]]

@@ -266,7 +266,7 @@ test('usage ledger: one row per request with the API usage; failures and billed 
   assert.deepEqual([log[2].trigger, log[2].status, log[2].error_code, log[2].input_tokens, log[2].estimated_usd], ['cron_new_story', 'timeout', 'timeout', null, null]);
   assert.throws(() => ledgerRow({ trigger: 'backlog_cron', attempt: 1 }), /unknown desk trigger/);
   const rep = costReport(log, 'today');
-  assert.equal(rep.totals.calls, 3); assert.equal(rep.totals.stories, 1, 'the same draft (slug) is one story'); assert.equal(rep.totals.calls_per_story, 3); assert.equal(rep.totals.failed_calls, 2);
+  assert.equal(rep.totals.calls, 3); assert.equal(rep.totals.stories, 3, 'each call names its own story (article slug for re-edits)'); assert.equal(rep.totals.calls_per_story, 1); assert.equal(rep.totals.failed_calls, 2);
   assert.equal(rep.by_trigger.admin_reedit.calls, 1); assert.equal(rep.by_trigger.canary.calls, 1); assert.equal(rep.by_trigger.cron_new_story.calls, 1);
 });
 

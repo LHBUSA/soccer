@@ -510,7 +510,7 @@ export async function runDesk(draft, packet, env, { fetcher = fetch, attempts = 
     let edited;
     // ONE usage-ledger row per request (openai-cost.js), under the parent trigger; attempt 2 is a repair.
     const started = new Date().toISOString();
-    const rec = (m, errorCode) => recordCall(env, { trigger, attempt, started_at: started, finished_at: new Date().toISOString(), slug: draft?.slug || storyId || null, article_id: articleId, news_event_id: packet?.event?.event_id || null,
+    const rec = (m, errorCode) => recordCall(env, { trigger, attempt, started_at: started, finished_at: new Date().toISOString(), slug: storyId && !/^[0-9a-f]{64}$/.test(storyId) ? storyId : draft?.slug || null, // a re-edit's article slug, else the new story's slug article_id: articleId, news_event_id: packet?.event?.event_id || null,
       model: m?.model || model, response_id: m?.response_id || null, ...(m?.usage || {}), status: m?.status || 'error', error_code: errorCode ?? m?.error_code ?? null, desk_version: DESK_VERSION }).catch(err => console.error('openai usage record failed', String(err?.message || err).slice(0, 200)));
     try { edited = await callDesk(env, packet, draft, { fetcher, feedback }); } catch (e) {
       await rec(e?.meta, e?.meta ? undefined : 'no_response');
