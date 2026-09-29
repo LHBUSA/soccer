@@ -10,7 +10,7 @@ compatibility_flags = ["nodejs_compat"]
 workers_dev = true
 
 [triggers]
-crons = ["7,37 * * * *", "*/10 * * * *"] # */10 = TEMPORARY backlog migration (src/migration.js), no-op without the KV control key
+crons = ["7,37 * * * *"] # the only schedule; the temporary */10 backlog migration is retired (no automatic OpenAI backlog processing)
 
 [vars]
 NEWS_ENABLED = "on"

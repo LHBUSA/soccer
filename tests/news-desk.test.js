@@ -107,7 +107,7 @@ test('desk fails twice: HOLD with the gate reasons; one repair attempt quotes th
   bad.sections[0].paragraphs[0] += ' Bayern had 31 shots before half-time.';
   const seen = [];
   const fetcher = async (_u, init) => { seen.push(JSON.parse(init.body).input); return reply(bad)(); };
-  const r = await editorialStage(draft, B, KEY, { fetcher });
+  const r = await editorialStage(draft, B, KEY, { fetcher, attempts: 2 });
   assert.equal(r.status, 'held'); assert.ok(r.holdReasons.includes('editorial:new_number_not_in_packet'));
   assert.equal(seen.length, 2); assert.match(seen[1], /CORRECTIVE REWRITE REQUIRED[\s\S]*new_number_not_in_packet/);
 });
@@ -116,7 +116,7 @@ test('desk repairs on the second attempt: published with attempt 2', async () =>
   const bad = { ...GOOD, sections: GOOD.sections.map(s => ({ ...s, paragraphs: [...s.paragraphs] })) };
   bad.sections[0].paragraphs[0] += ' Bayern had 31 shots before half-time.';
   let n = 0;
-  const r = await runDesk(draft, B, KEY, { fetcher: async () => (n++ === 0 ? reply(bad)() : reply(GOOD)()) });
+  const r = await runDesk(draft, B, KEY, { attempts: 2, fetcher: async () => (n++ === 0 ? reply(bad)() : reply(GOOD)()) });
   assert.ok(r.article); assert.equal(r.judgement.attempt, 2);
 });
 
@@ -185,7 +185,7 @@ test('openai: corrective retry sends the failed gates in the same input, then pu
   const bad = { ...GOOD, sections: GOOD.sections.map(s => ({ ...s, paragraphs: [...s.paragraphs] })) };
   bad.sections[0].paragraphs[0] += ' Bayern had 31 shots before half-time.';
   const inputs = [];
-  const r = await editorialStage(draft, B, KEY, { fetcher: async (_u, init) => { inputs.push(JSON.parse(init.body).input); return (inputs.length === 1 ? reply(bad) : reply(GOOD))(); } });
+  const r = await editorialStage(draft, B, KEY, { attempts: 2, fetcher: async (_u, init) => { inputs.push(JSON.parse(init.body).input); return (inputs.length === 1 ? reply(bad) : reply(GOOD))(); } });
   assert.equal(r.status, 'published', JSON.stringify(r.holdReasons)); assert.equal(r.editorial.attempt, 2);
   assert.doesNotMatch(inputs[0], /CORRECTIVE REWRITE REQUIRED/);
   assert.match(inputs[1], /CORRECTIVE REWRITE REQUIRED[\s\S]*new_number_not_in_packet/);
@@ -230,4 +230,27 @@ test('desk prompt: natural prose guidance, no padding, no forbidden-word list fo
   const { SYSTEM } = await import('../workers/soccer-news/src/desk.js');
   assert.match(SYSTEM, /never pad/i); assert.match(SYSTEM, /goalkeeper made two saves/); assert.match(SYSTEM, /clearest statement yet/);
   assert.doesNotMatch(SYSTEM, /spread/i);
+});
+
+test('cost: automatic desk pays for ONE attempt, 6000 output tokens, and records every call', async () => {
+  const bad = { ...GOOD, sections: GOOD.sections.map(s => ({ ...s, paragraphs: [...s.paragraphs] })) };
+  bad.sections[0].paragraphs[0] += ' Bayern had 31 shots before half-time.';
+  const kv = new Map(); const SOCCER_STATE = { get: async (k) => (kv.has(k) ? JSON.parse(kv.get(k)) : null), put: async (k, v) => { kv.set(k, v); } };
+  const bodies = [];
+  const r = await editorialStage(draft, B, { ...KEY, SOCCER_STATE }, { fetcher: async (_u, init) => { bodies.push(JSON.parse(init.body)); return reply(bad)(); } });
+  assert.equal(r.status, 'held'); assert.equal(bodies.length, 1, 'no automatic second paid attempt');
+  assert.equal(bodies[0].max_output_tokens, 6000);
+  const log = JSON.parse([...kv.values()][0]);
+  assert.equal(log.length, 1); assert.equal(log[0].worker, 'soccer-news'); assert.equal(log[0].trigger, 'new_story'); assert.equal(log[0].attempt, 1);
+  // a provider error is not retried either
+  let n = 0; await runDesk(draft, B, { ...KEY, SOCCER_STATE }, { fetcher: async () => { n++; throw new Error('network down'); } });
+  assert.equal(n, 1);
+});
+
+test('cost: past SOCCER_OPENAI_DAILY_MAX_USD the desk holds without calling the model', async () => {
+  const day = new Date().toISOString().slice(0, 10);
+  const SOCCER_STATE = { get: async (k) => (k === `openai:v1:calls:${day}` ? [{ estimated_usd: 5.01 }] : null), put: async () => {} };
+  let called = 0;
+  const r = await runDesk(draft, B, { ...KEY, SOCCER_STATE }, { fetcher: async () => { called++; return reply(GOOD)(); } });
+  assert.deepEqual(r.held, ['editorial_budget_ceiling']); assert.equal(called, 0);
 });

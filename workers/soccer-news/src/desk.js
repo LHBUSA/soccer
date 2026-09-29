@@ -6,6 +6,7 @@
 //   -> PUBLISH, or HOLD. There is no template fallback for public copy: quality over volume.
 // One repair attempt: the failed gates are quoted back to the desk once; a second failure holds.
 import { EXEMPT_WITH_VERIFIED_GROUP, packetNumbers2, PREVIEW_BANNED, verifiedGroupIn } from './gates2.js';
+import { recordCall, overCeiling } from './openai-cost.js';
 import { stripIdentifiers } from './gates.js';
 import { PROFILES, unsupportedGroupClaims } from './profiles.js';
 
@@ -128,7 +129,9 @@ export async function callDesk(env, packet, draft, { fetcher = fetch, feedback =
   const res = await fetcher(DESK_API, {
     method: 'POST',
     headers: { 'content-type': 'application/json', authorization: `Bearer ${env.OPENAI_API_KEY}` },
-    body: JSON.stringify({ model, store: false, reasoning: { effort: 'medium' }, instructions: SYSTEM, input: user, max_output_tokens: 18000, text: { format: { type: 'json_schema', name: 'soccer_editorial_article', strict: true, schema: ARTICLE_SCHEMA } } }),
+    // 6000 output tokens (was 18000): a 450-1100 word story plus reasoning fits well inside it; an incomplete response
+    // fails closed (the story holds). NEWS_DESK_MAX_OUTPUT_TOKENS overrides.
+    body: JSON.stringify({ model, store: false, reasoning: { effort: 'medium' }, instructions: SYSTEM, input: user, max_output_tokens: Math.max(1000, Math.min(18000, Number(env?.NEWS_DESK_MAX_OUTPUT_TOKENS ?? 6000))), text: { format: { type: 'json_schema', name: 'soccer_editorial_article', strict: true, schema: ARTICLE_SCHEMA } } }),
     signal: AbortSignal.timeout(120000),
   });
   const clean = s => sanitizeDeskError(s, env);
@@ -151,7 +154,7 @@ export async function callDesk(env, packet, draft, { fetcher = fetch, feedback =
   if (!txt) throw new Error('desk empty_output');
   let out; try { out = JSON.parse(txt); } catch { throw new Error('desk invalid_json'); }
   if (!out?.headline || !Array.isArray(out.sections)) throw new Error('desk returned no article');
-  return { headline: String(out.headline).trim(), dek: String(out.dek || '').trim(), emphasis: Array.isArray(out.emphasis) ? out.emphasis.map(String).slice(0, 3) : [], sections: out.sections.map((s, i) => ({ key: `s${i + 1}`, heading: String(s.heading || '').trim(), paragraphs: (s.paragraphs || []).map(p => String(p).trim()).filter(Boolean) })).filter(s => s.paragraphs.length) };
+  return { usage: { input_tokens: j?.usage?.input_tokens || 0, output_tokens: j?.usage?.output_tokens || 0 }, headline: String(out.headline).trim(), dek: String(out.dek || '').trim(), emphasis: Array.isArray(out.emphasis) ? out.emphasis.map(String).slice(0, 3) : [], sections: out.sections.map((s, i) => ({ key: `s${i + 1}`, heading: String(s.heading || '').trim(), paragraphs: (s.paragraphs || []).map(p => String(p).trim()).filter(Boolean) })).filter(s => s.paragraphs.length) };
 }
 
 // The public article: the desk's story; the draft's method + attributions become the disclosure.
@@ -483,12 +486,25 @@ export function judge(article, packet) {
 }
 
 // Draft -> desk -> judge (-> one repair) -> { article, judgement } or { held }.
-export async function runDesk(draft, packet, env, { fetcher = fetch } = {}) {
+// Automatic passes pay for ONE attempt (NEWS_DESK_ATTEMPTS, default 1): a failed rewrite holds under the existing
+// policy instead of buying a corrective second call. Admin re-edit / canary may request the repair (attempts: 2).
+export const deskAttempts = (env) => Math.max(1, Math.min(2, Number(env?.NEWS_DESK_ATTEMPTS ?? 1)));
+
+export async function runDesk(draft, packet, env, { fetcher = fetch, attempts = deskAttempts(env), trigger = 'new_story', storyId = null } = {}) {
   if (!deskAvailable(env)) return { held: ['editorial_desk_unavailable'] };
+  // Emergency ceiling (openai-cost.js): past today's limit no paid call is made; the story holds.
+  if (await overCeiling(env).catch(() => false)) return { held: ['editorial_budget_ceiling'] };
   let feedback = null; let last = null;
-  for (let attempt = 1; attempt <= 2; attempt++) {
+  const id = storyId || packet?.hash || packet?.event?.event_id || null;
+  const model = env?.NEWS_DESK_MODEL || DESK_MODEL;
+  for (let attempt = 1; attempt <= attempts; attempt++) {
     let edited;
-    try { edited = await callDesk(env, packet, draft, { fetcher, feedback }); } catch (e) { last = { held: [`editorial_desk_error: ${sanitizeDeskError(e?.message, env).slice(0, 120)}`] }; continue; }
+    const t = attempt > 1 ? 'repair' : trigger;
+    try { edited = await callDesk(env, packet, draft, { fetcher, feedback }); } catch (e) {
+      await recordCall(env?.SOCCER_STATE, { id, model, trigger: t, attempt, input_tokens: 0, output_tokens: 0, error: sanitizeDeskError(e?.message, env).slice(0, 120) }).catch(() => {});
+      last = { held: [`editorial_desk_error: ${sanitizeDeskError(e?.message, env).slice(0, 120)}`] }; continue;
+    }
+    await recordCall(env?.SOCCER_STATE, { id, model, trigger: t, attempt, input_tokens: edited.usage?.input_tokens || 0, output_tokens: edited.usage?.output_tokens || 0, error: null }).catch(() => {});
     const article = deskArticle(edited, draft);
     const j = judge(article, packet);
     if (j.pass) return { article, judgement: { ...j, attempt, model: env?.NEWS_DESK_MODEL || DESK_MODEL } };

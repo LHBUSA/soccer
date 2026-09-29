@@ -8,7 +8,11 @@ import { storeFromEnv } from '../../shared/postgrest.js';
 import { runNews, reeditArticle } from './pipeline.js';
 import { deskAvailable, deskRequired, DESK_VERSION, QUALITY_VERSION } from './desk.js';
 import { PACKET_V3, DEPTH_VERSION } from './depth.js';
-import { migrationTick, MIGRATION_CRON } from './migration.js';
+import { readCallLog, costReport } from './openai-cost.js';
+
+// The only production schedule. The temporary backlog-migration cron (*/10) is retired: there is no automatic OpenAI
+// backlog processing. Re-edits are manual only (POST /v1/admin/reedit, scripts/news/reedit-backlog.mjs).
+export const NEWS_CRON = '7,37 * * * *';
 
 const json = (body, status = 200) => new Response(JSON.stringify(body, null, 2), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
 
@@ -56,14 +60,20 @@ export default {
       }
       const limit = Math.max(1, Math.min(40, Number(url.searchParams.get('limit')) || 10));
       const out = [];
-      for (const s of slugs.slice(0, limit)) { try { out.push(await reeditArticle(store, s, env, { dry: url.searchParams.get('dry') === '1', holdOnFail: url.searchParams.get('hold_on_fail') === '1' })); } catch (e) { out.push({ slug: s, error: String(e.message).slice(0, 200) }); } }
+      // One paid attempt unless the operator explicitly asks for the corrective repair (?repair=1).
+      for (const s of slugs.slice(0, limit)) { try { out.push(await reeditArticle(store, s, env, { dry: url.searchParams.get('dry') === '1', holdOnFail: url.searchParams.get('hold_on_fail') === '1', attempts: url.searchParams.get('repair') === '1' ? 2 : 1, trigger: url.searchParams.get('canary') === '1' ? 'canary' : 'manual_reedit' })); } catch (e) { out.push({ slug: s, error: String(e.message).slice(0, 200) }); } }
       return json({ desk: DESK_VERSION, available: deskAvailable(env), total_candidates: slugs.length, processed: out.length, results: out });
+    }
+    if (url.pathname === '/v1/admin/openai-cost') {
+      if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);
+      const day = /^\d{4}-\d{2}-\d{2}$/.test(url.searchParams.get('date') || '') ? url.searchParams.get('date') : new Date().toISOString().slice(0, 10);
+      return json(costReport(await readCallLog(env.SOCCER_STATE, `${day}T00:00:00Z`), day));
     }
     return json({ error: 'not found' }, 404);
   },
   async scheduled(event, env, ctx) {
-    // TEMPORARY: the backlog migration has its own cron and never runs the news pipeline (docs/NEWS_ENGINE.md).
-    if (event.cron === MIGRATION_CRON) { ctx.waitUntil(migrationTick(env).then(r => console.log('backlog migration', JSON.stringify(r))).catch(e => console.error('backlog migration failed', e?.message))); return; }
+    // Only the newsroom schedule runs anything; any other trigger (a stale cron left on the Worker) is a no-op.
+    if (event.cron && event.cron !== NEWS_CRON) { console.log('ignored cron', event.cron); return; }
     // Every tick leaves a trace (news:last_tick), so health can tell "cron not firing" from
     // "NEWS_ENABLED off" from "run failing". The summary of a SUCCESSFUL run is news:last_run.
     const tick = outcome => env.SOCCER_STATE?.put('news:last_tick', JSON.stringify({ at: new Date(event.scheduledTime).toISOString(), news_enabled: env.NEWS_ENABLED === 'on', outcome }));

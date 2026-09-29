@@ -108,11 +108,11 @@ export const withVisualMenu = (draft, vis) => ({ ...draft, visual_menu: (vis?.vi
 
 // Fact gates on the draft (evidence integrity), then the desk. Desk required (default): the
 // public story is the desk's or nothing. Desk off (NEWS_DESK=off): legacy behaviour.
-export async function editorialStage(draft, packet, env, { fetcher } = {}) {
+export async function editorialStage(draft, packet, env, { fetcher, attempts, trigger, storyId } = {}) {
   const gates = runGates2(draft, packet);
   if (!gates.pass) return { article: draft, status: 'held', holdReasons: gates.failed, gates, editorial: null };
   if (deskRequired(env)) {
-    const d = await runDesk(draft, packet, env, fetcher ? { fetcher } : {});
+    const d = await runDesk(draft, packet, env, { ...(fetcher ? { fetcher } : {}), ...(attempts ? { attempts } : {}), ...(trigger ? { trigger } : {}), ...(storyId ? { storyId } : {}) });
     if (d.article) return { article: d.article, status: 'published', holdReasons: [], gates, editorial: d.judgement };
     return { article: d.rejected ? { ...d.rejected } : draft, status: 'held', holdReasons: d.held, gates, editorial: d.judgement || { version: DESK_VERSION, held: d.held } };
   }
@@ -139,14 +139,14 @@ export async function richerPacket(store, original, { now = Date.now() } = {}) {
   return { packet: p, path: 'A_asof_safe_rebuild' };
 }
 
-export async function reeditArticle(store, slug, env, { dry = false, holdOnFail = false, fetcher, now = Date.now() } = {}) {
+export async function reeditArticle(store, slug, env, { dry = false, holdOnFail = false, fetcher, now = Date.now(), attempts, trigger = 'manual_reedit' } = {}) {
   const [a] = await store.select('soccer_articles', { columns: ['id', 'slug', 'status', 'packet_hash', 'composer', 'desk', 'story_class', 'entities', 'headline', 'dek', 'body'], eq: { slug }, limit: 1 });
   if (!a) return { slug, error: 'not found' };
   const [ev] = await store.select('soccer_article_evidence', { columns: ['packet', 'news_event_id'], eq: { packet_hash: a.packet_hash }, limit: 1 });
   const { packet, path } = await richerPacket(store, ev.packet, { now });
   const vis = await articleVisuals(store, packet, now);
   const draft = withVisualMenu(compose(packet), vis);
-  const r = await editorialStage(draft, packet, { ...env, NEWS_DESK: 'on' }, { fetcher });
+  const r = await editorialStage(draft, packet, { ...env, NEWS_DESK: 'on' }, { fetcher, attempts, trigger, storyId: slug });
   const res = { slug, story_class: a.story_class, packet_path: path, packet_version: packet.version, before: { status: a.status, composer: a.composer, headline: a.headline }, result: r.status, holds: r.holdReasons, headline: r.article.headline };
   if (dry) return { ...res, article: r.article, judgement: r.editorial, packet, visuals: vis };
   if (r.status === 'published') {
