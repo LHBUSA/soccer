@@ -1,0 +1,35 @@
+{
+  "source": "youtube_rss",
+  "probe": "terms",
+  "kind": "terms",
+  "url": "https://www.youtube.com/t/terms",
+  "captured_at": "2026-09-29T22:32:17.092Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.youtube.com/t/terms",
+  "elapsed_ms": 108,
+  "bytes": 33844,
+  "sha256": "0622206a0b2748b06db98c3b48c55618d5ee38dda349f50b7022dfd4abfd054b",
+  "headers": {
+    "content-type": "text/html; charset=utf-8",
+    "server": "ESF",
+    "cache-control": "no-cache, no-store, max-age=0, must-revalidate"
+  },
+  "access_fingerprint": [],
+  "terms_excerpts": [
+    "nd use the Service as made available to you, as long as you comply with this Agreement and applicable law. You may view or listen to Content for your personal, non-commercial use. You may also show YouTube videos through the embeddable YouTube player. The following restrictions apply to your use of the Service. You are not allowed to: access, reproduce, down",
+    "e following restrictions apply to your use of the Service. You are not allowed to: access, reproduce, download, distribute, transmit, broadcast, display, sell, license, alter, modify or otherwise use any part of the Service or any Content except: (a) as expressly authorized by the Service; or (b) with prior written permission from YouTube and, if applicable,",
+    "tures or features that (a) prevent or restrict the copying or other use of Content or (b) limit the use of the Service or Content; access the Service using any automated means (such as robots, botnets or scrapers) except (a) in the case of public search engines, in accordance with YouTube’s robots.txt file; or (b) with YouTube’s prior written permission; col",
+    "pers) except (a) in the case of public search engines, in accordance with YouTube’s robots.txt file; or (b) with YouTube’s prior written permission; collect or harvest any information that might identify a person (for example, usernames or faces), unless permitted by that person or allowed under section (3) above; use the Service to distribute unsolicited pr",
+    "r through the Service that do not comply with YouTube’s contest policies and guidelines ; use the Service to view or listen to Content other than for personal, non-commercial use (for example, you may not publicly screen videos or stream music from the Service); or use the Service to (a) sell any advertising, sponsorships, or promotions placed on, around, or",
+    "u have permission from that party or are otherwise legally entitled to do so. You are legally responsible for the Content you submit to the Service. We may use automated systems that analyze your Content to help detect infringement and abuse, such as spam, malware, and illegal content. Rights you Grant You retain ownership rights in your Content. However, we",
+    "You retain ownership rights in your Content. However, we do require you to grant certain rights to YouTube and other users of the Service, as described below. License to YouTube By providing Content to the Service, you grant to YouTube a worldwide, non-exclusive, royalty-free, sublicensable and transferable license to use that Content (including to reproduc",
+    "display and perform it) in connection with the Service and YouTube’s (and its successors' and Affiliates') business, including for the purpose of promoting and redistributing part or all of the Service. License to Other Users You also grant each other user of the Service a worldwide, non-exclusive, royalty-free license to access your Content through the Serv",
+    "ng and redistributing part or all of the Service. License to Other Users You also grant each other user of the Service a worldwide, non-exclusive, royalty-free license to access your Content through the Service, and to use that Content, including to reproduce, distribute, prepare derivative works, display, and perform it, only as enabled by a feature of the",
+    "k or embeds). For clarity, this license does not grant any rights or permissions for a user to make use of your Content independent of the Service. Duration of License The licenses granted by you continue for a commercially reasonable period of time after you remove or delete your Content from the Service. You understand and agree, however, that YouTube may",
+    "rvice requires or includes downloadable software (such as the YouTube Studio application), unless that software is governed by additional terms which provide a license, YouTube gives you a personal, worldwide, royalty-free, non-assignable and non-exclusive license to use the software provided to you by YouTube as part of the Service. This license is for the",
+    "ner permitted by this Agreement. You are not allowed to copy, modify, distribute, sell, or lease any part of the software, or to reverse-engineer or attempt to extract the source code of that software, unless laws prohibit these restrictions or you have YouTube’s written permission. Open Source Some software used in our Service may be offered under an open s",
+    "ss laws prohibit these restrictions or you have YouTube’s written permission. Open Source Some software used in our Service may be offered under an open source license that we make available to you. There may be provisions in an open source license that expressly override some of these terms, so please be sure to read those licenses. Other Legal Terms Warran",
+    "ment If your use of the Service ends, the following terms of this Agreement will continue to apply to you: “Other Legal Terms”, “About This Agreement”, and the licenses granted by you will continue as described under “Duration of License”. Severance If it turns out that a particular term of this Agreement is not enforceable for any reason, this will not affe"
+  ]
+}

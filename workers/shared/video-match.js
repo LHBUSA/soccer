@@ -13,10 +13,16 @@
 //   -50 conflicting opponent: another club named in the title
 //   -40 wrong competition named in the title
 //   -30 stale or premature: published before kickoff or more than 7 days after it
+// Player form (1.2.0): the player named in the title (+25), OR official highlights / goals of the exact match of
+// the story's latest appearance when the canonical appearance records that the player SCORED in it (0 points,
+// reason recorded) -- the video then shows the goal the story is about. Otherwise a player-form story takes no video.
+// Match preview (1.2.0): the timing rule inverts -- +20 published within the 7 days BEFORE kickoff, -30 after
+// kickoff (a pre-match story never takes post-match footage) -- and only preview / press conference / interview /
+// analysis videos can attach (+10); highlights never attach to a preview.
 // THRESHOLD 75, and any conflicting-opponent or wrong-competition penalty rejects outright. A single-team
 // title can reach at most 20+20+15+10 = 65 (never attaches); both teams alone (40) or both teams + keyword
 // (50) do not attach; a match video needs both teams plus competition/date context (40+20+20 = 80).
-export const MATCHER_VERSION = 'soccer-video-match/1.1.0';
+export const MATCHER_VERSION = 'soccer-video-match/1.2.0';
 export const THRESHOLD = 75;
 
 export const fold = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ß/g, 'ss').replace(/ø/g, 'o').replace(/æ/g, 'ae')
@@ -67,9 +73,12 @@ const COMP_WORDS = { 'mls': /\b(mls|major league soccer)\b/, 'premier-league': /
 // National-team football outside our competitions (qualifiers, friendlies, finals tournaments) is another competition too.
 const OTHER_COMP = /\b(europa league|conference league|fa cup|carabao|efl cup|dfb pokal|pokal|leagues cup|us open cup|concacaf|copa|friendly|friendlies|preseason|women|u19|u21|u23|youth|academy|nwsl|mls next|legends|world cup|qualifier|qualifiers|qualifying|euro 20\d\d|euro qualifiers?)\b/;
 export const HIGHLIGHT_TYPES = new Set(['highlights', 'match_recap', 'goals']);
+export const PREVIEW_TYPES = new Set(['preview', 'press_conference', 'interview', 'analysis']);
 
 export function classifyVideo(title) {
   const t = fold(title);
+  // Live shows and streams are never highlights, whatever else the title says ("Matchday Live | FIVE GOALS ...").
+  if (/\b(matchday live|live stream|livestream|watch live|live show|watchalong|watch along)\b/.test(t)) return 'other';
   if (/\bpress conference\b|\bpresser\b/.test(t)) return 'press_conference';
   if (/\b(all goals|every goal|goals)\b/.test(t) && !/\bhighlights\b/.test(t)) return 'goals';
   if (/\b(extended highlights|highlights|hl)\b/.test(t)) return 'highlights';
@@ -96,8 +105,10 @@ export function scoreVideo(video, channel, ctx, index) {
   if (both) add(40, 'both teams named');
   else if (found.includes(H) || found.includes(A)) reasons.push({ points: 0, why: 'only one team named (weak)' });
   const playerNamed = !!ctx.player?.name && has(t, fold(ctx.player.name));
+  const scoredHighlights = !playerNamed && !!ctx.player?.name && ctx.player.goals_in_match >= 1 && HIGHLIGHT_TYPES.has(video.video_type);
   if (playerNamed) add(25, `player named: ${ctx.player.name}`);
-  else if (ctx.player?.name) reasons.push({ points: 0, why: `player form: ${ctx.player.name} is not named (required)` });
+  else if (scoredHighlights) reasons.push({ points: 0, why: `player form: official ${video.video_type} of the match in which ${ctx.player.name} scored (${ctx.player.goals_in_match} goal${ctx.player.goals_in_match === 1 ? '' : 's'}, canonical appearance)` });
+  else if (ctx.player?.name) reasons.push({ points: 0, why: `player form: ${ctx.player.name} is not named and did not score in that match (required)` });
   const others = found.filter(id => id !== H && id !== A);
   if (others.length) add(-50, 'conflicting opponent named');
   const scope = channel.scope_competition_ids?.length ? channel.scope_competition_ids : channel.competition_id ? [channel.competition_id] : [];
@@ -113,13 +124,21 @@ export function scoreVideo(video, channel, ctx, index) {
   const pub = Date.parse(video.published_at || ''); const ko = Date.parse(ctx.match.kickoff);
   if (Number.isFinite(pub) && Number.isFinite(ko)) {
     const h = (pub - ko) / 3600e3;
-    if (h >= 0 && h <= 72) add(20, 'published within 72 h after kickoff');
+    if (ctx.preview) {
+      if (h < 0 && h >= -168) add(20, 'published within 7 days before kickoff');
+      else add(-30, h >= 0 ? 'published after kickoff (a preview never takes post-match video)' : 'published more than 7 days before kickoff');
+    } else if (h >= 0 && h <= 72) add(20, 'published within 72 h after kickoff');
     else if (h < 0 || h > 168) add(-30, h < 0 ? 'published before kickoff' : 'published more than 7 days after kickoff');
   }
   const sc = ctx.match.score;
   if (sc && Number.isInteger(sc.home) && Number.isInteger(sc.away) && [`${sc.home} ${sc.away}`, `${sc.away} ${sc.home}`].some(p => t.includes(p))) add(15, 'final score in title');
-  if (HIGHLIGHT_TYPES.has(video.video_type)) add(10, `${video.video_type} video`);
-  const status = score >= THRESHOLD && !others.length && !wrongComp && (!ctx.player?.name || playerNamed) ? 'linked' : 'rejected';
+  if (ctx.preview) {
+    if (PREVIEW_TYPES.has(video.video_type)) add(10, `${video.video_type} video (pre-match)`);
+    else reasons.push({ points: 0, why: `${video.video_type} video cannot attach to a preview` });
+  } else if (HIGHLIGHT_TYPES.has(video.video_type)) add(10, `${video.video_type} video`);
+  const typeOk = ctx.preview ? PREVIEW_TYPES.has(video.video_type) : true;
+  const playerOk = !ctx.player?.name || playerNamed || scoredHighlights;
+  const status = score >= THRESHOLD && !others.length && !wrongComp && playerOk && typeOk ? 'linked' : 'rejected';
   return { score, reasons, status };
 }
 
@@ -133,11 +152,14 @@ export function articleContext(article, packet) {
   if (packet.event?.kind === 'player_form' && packet.form?.appearances?.length) {
     const a = packet.form.appearances[packet.form.appearances.length - 1];
     const [gf, ga] = String(a.score || '').split('-').map(Number);
-    return { ...comp, match: { id: a.match_id, home_id: a.team.id, away_id: a.opponent.id, kickoff: `${a.date}T00:00:00Z`, score: Number.isInteger(gf) ? { home: gf, away: ga } : null }, player: packet.player || null };
+    return { ...comp, match: { id: a.match_id, home_id: a.team.id, away_id: a.opponent.id, kickoff: `${a.date}T00:00:00Z`, score: Number.isInteger(gf) ? { home: gf, away: ga } : null }, player: packet.player ? { ...packet.player, goals_in_match: Number.isInteger(a.goals) ? a.goals : 0 } : null };
   }
   if (packet.event?.kind === 'team_trend' && packet.trend?.games?.length) {
     const g = packet.trend.games[packet.trend.games.length - 1];
     return { ...comp, match: { id: g.match_id, home_id: packet.team.id, away_id: g.opponent.id, kickoff: `${g.date}T00:00:00Z`, score: { home: g.goals_for, away: g.goals_against } }, player: null };
+  }
+  if (packet.event?.kind === 'match_preview' && packet.fixture?.id && packet.teams?.home?.id && packet.teams?.away?.id) {
+    return { ...comp, preview: true, match: { id: packet.fixture.id, home_id: packet.teams.home.id, away_id: packet.teams.away.id, kickoff: packet.fixture.kickoff_utc, score: null }, player: null };
   }
   return { ...comp, match: null, player: null };
 }

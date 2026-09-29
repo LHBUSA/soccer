@@ -16,6 +16,10 @@ import { buildAliasIndex, teamsInTitle, classifyVideo, scoreVideo, articleContex
 
 const argv = process.argv.slice(2); const arg = (k, d) => { const i = argv.indexOf(k); return i >= 0 ? argv[i + 1] : d; };
 const DRY = argv.includes('--dry'); const LINK_ONLY = argv.includes('--link-only');
+// DISCOVERY SUSPENDED (2026-09-29, data/source-registry youtube_rss): the public-page discovery below uses
+// /youtubei/ (disallowed by YouTube's robots.txt) and automated watch-page reads (YouTube Terms: no automated
+// access). Only --link-only (our database, no YouTube request) may run until discovery moves to the YouTube Data API.
+if (!LINK_ONLY) { console.error('refused: video discovery via public YouTube pages is suspended (robots.txt / Terms). Use --link-only.'); process.exit(1); }
 const DAYS = Number(arg('--days', '21')); const LEAGUE_PAGES = Number(arg('--league-pages', '3')); const CLUB_PAGES = Number(arg('--club-pages', '1'));
 const envText = readFileSync('D:/Workers/secrets/soccer-supabase.env', 'utf8');
 const store = storeFromEnv(Object.fromEntries(envText.split(/\r?\n/).filter(l => l.includes('=')).map(l => [l.slice(0, l.indexOf('=')).trim(), l.slice(l.indexOf('=') + 1).trim()])));
@@ -88,7 +92,8 @@ for (const a of articles) {
   const ctx = articleContext(a, p);
   if (ctx.match?.id) { const [m] = await store.select('soccer_matches', { columns: ['kickoff_at'], eq: { id: ctx.match.id }, limit: 1 }); if (m) ctx.match.kickoff = new Date(m.kickoff_at).toISOString(); }
   report.links.articles += 1;
-  const scored = videos.filter(v => !v.is_short).map(v => ({ v, r: scoreVideo(v, byChannel.get(v.channel_id) || {}, ctx, index) })).sort((x, y) => y.r.score - x.r.score);
+  // video_type is re-derived from the title at link time, so classifier fixes apply to already-stored videos
+  const scored = videos.filter(v => !v.is_short).map(v => ({ v, r: scoreVideo({ ...v, video_type: classifyVideo(v.title) }, byChannel.get(v.channel_id) || {}, ctx, index) })).sort((x, y) => y.r.score - x.r.score);
   const linked = scored.filter(s => s.r.status === 'linked');
   const keep = [...linked, ...scored.filter(s => s.r.status !== 'linked' && s.r.score >= 30).slice(0, 3)];
   for (const s of keep) links.push({ provider_video_id: s.v.provider_video_id, article_id: a.id, match_id: ctx.match?.id || null, team_ids: ctx.match ? [ctx.match.home_id, ctx.match.away_id].filter(Boolean) : [], player_ids: ctx.player?.id ? [ctx.player.id] : [], competition_id: ctx.competition_id || null, score: s.r.score, reasons: s.r.reasons, status: s.r.status, matcher_version: MATCHER_VERSION, updated_at: new Date().toISOString() });
@@ -96,6 +101,10 @@ for (const a of articles) {
   report.per_article.push({ slug: a.slug, story_class: a.story_class, linked: linked.slice(0, 3).map(s => ({ id: s.v.provider_video_id, title: s.v.title, score: s.r.score })), best_rejected: scored.find(s => s.r.status !== 'linked') ? { title: scored.find(s => s.r.status !== 'linked').v.title, score: scored.find(s => s.r.status !== 'linked').r.score } : null });
 }
 report.links.linked = links.filter(l => l.status === 'linked').length; report.links.rejected = links.filter(l => l.status === 'rejected').length;
+// stored video_type follows the current classifier (derived from the title; DB only, no provider request)
+const retyped = videos.filter(v => classifyVideo(v.title) !== v.video_type).map(v => ({ id: v.provider_video_id, from: v.video_type, to: classifyVideo(v.title) }));
+report.videos.retyped = retyped;
+if (!DRY) for (const r of retyped) await store.update('soccer_videos', { video_type: r.to, updated_at: new Date().toISOString() }, { eq: { provider_video_id: r.id } });
 if (!DRY) {
   // replace this matcher version's links for the scored articles (links are derived data, recomputed each run)
   for (const part of chunkArr(articles.map(a => a.id), 100)) await store.delete('soccer_video_links', { in: { article_id: part } });

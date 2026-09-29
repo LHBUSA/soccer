@@ -84,10 +84,48 @@ test('WRONG OPPONENT: Team A v Team B article never takes Team A v Team C, whate
   assert.equal(scoreVideo(v('Bayern Munich vs. Borussia Dortmund | Highlights'), BL, ctx, idx).status, 'rejected');
 });
 
-test('player form requires the player named: the right match without the player stays unlinked', () => {
-  const pctx = { ...ctx, player: { id: 'p', name: 'Jamal Musiala' } };
-  const r = scoreVideo(v('Bayern Munich - Union Berlin 7-0 | Highlights | Matchday 4'), BL, pctx, idx);
-  assert.equal(r.status, 'rejected'); assert.ok(r.score >= THRESHOLD, 'score alone would pass'); assert.ok(r.reasons.some(x => /not named \(required\)/.test(x.why)));
+test('player form: the right match without the player named stays unlinked unless the player scored in it', () => {
+  const noGoal = { ...ctx, player: { id: 'p', name: 'Jamal Musiala', goals_in_match: 0 } };
+  const r = scoreVideo(v('Bayern Munich - Union Berlin 7-0 | Highlights | Matchday 4'), BL, noGoal, idx);
+  assert.equal(r.status, 'rejected'); assert.ok(r.score >= THRESHOLD, 'score alone would pass'); assert.ok(r.reasons.some(x => /not named and did not score in that match \(required\)/.test(x.why)));
+  assert.equal(scoreVideo(v('Bayern Munich - Union Berlin 7-0 | Highlights | Matchday 4'), BL, { ...ctx, player: { id: 'p', name: 'Jamal Musiala' } }, idx).status, 'rejected', 'unknown goals = did not score');
+  // scored in that exact match: its official highlights show the goal the story is about
+  const scored = { ...ctx, player: { id: 'p', name: 'Jamal Musiala', goals_in_match: 2 } };
+  const ok = scoreVideo(v('Bayern Munich - Union Berlin 7-0 | Highlights | Matchday 4'), BL, scored, idx);
+  assert.equal(ok.status, 'linked', JSON.stringify(ok)); assert.ok(ok.reasons.some(x => /highlights of the match in which Jamal Musiala scored \(2 goals/.test(x.why)));
+  // ...but only highlight-type video: an interview or press conference about the match does not attach unnamed
+  assert.equal(scoreVideo(v('Bayern Munich - Union Berlin | Kompany press conference'), BL, scored, idx).status, 'rejected');
+  // a different match stays rejected whoever scored
+  assert.equal(scoreVideo(v('Bayern Munich vs. Borussia Dortmund | Highlights'), BL, scored, idx).status, 'rejected');
+});
+
+test('live shows are never highlights ("Matchday Live | FIVE GOALS ...")', () => {
+  assert.equal(classifyVideo('Matchday Live | FIVE GOALS, FIVE LEAGUE WINS, CITY ARE TOP! Man City 5-3 Sunderland'), 'other');
+  assert.equal(classifyVideo('LIVE STREAM | Bayern Munich v Union Berlin'), 'other');
+  assert.equal(classifyVideo('Bayern Munich - Union Berlin 7-0 | Highlights | Matchday 4'), 'highlights');
+});
+
+test('match preview: pre-match preview / press conference within 7 days before kickoff; never highlights or post-match video', () => {
+  const pre = { ...ctx, preview: true, match: { ...ctx.match, score: null } };
+  const at = (title, when) => ({ title, published_at: when, video_type: classifyVideo(title) });
+  const conf = scoreVideo(at('Bayern Munich v Union Berlin | Press conference with Vincent Kompany', '2026-09-17T11:00:00Z'), BL, pre, idx);
+  assert.equal(conf.status, 'linked', JSON.stringify(conf)); assert.ok(conf.reasons.some(x => /within 7 days before kickoff/.test(x.why)));
+  assert.equal(scoreVideo(at('Bayern Munich v Union Berlin | Matchday 4 Preview', '2026-09-16T09:00:00Z'), BL, pre, idx).status, 'linked');
+  // highlights never attach to a preview, even of the same fixture and in the window
+  const hl = scoreVideo(at('Bayern Munich - Union Berlin 7-0 | Highlights', '2026-09-17T11:00:00Z'), BL, pre, idx);
+  assert.equal(hl.status, 'rejected'); assert.ok(hl.reasons.some(x => /cannot attach to a preview/.test(x.why)));
+  // post-kickoff and stale pre-match videos are rejected
+  assert.equal(scoreVideo(at('Bayern Munich v Union Berlin | Press conference', '2026-09-18T21:00:00Z'), BL, pre, idx).status, 'rejected');
+  assert.equal(scoreVideo(at('Bayern Munich v Union Berlin | Press conference', '2026-09-05T11:00:00Z'), BL, pre, idx).status, 'rejected');
+  // a preview of a different fixture is rejected
+  assert.equal(scoreVideo(at('Bayern Munich v Borussia Dortmund | Press conference', '2026-09-17T11:00:00Z'), BL, pre, idx).status, 'rejected');
+});
+
+test('articleContext: preview packet -> fixture context; player form carries the canonical goals of the latest appearance', () => {
+  const preview = articleContext({}, { event: { kind: 'match_preview' }, competition: { slug: 'uefa-nations-league', id: 'c-unl' }, fixture: { id: 'f1', kickoff_utc: '2026-09-29T18:45:00Z' }, teams: { home: { id: 'esp' }, away: { id: 'cro' } } });
+  assert.deepEqual([preview.preview, preview.match.id, preview.match.home_id, preview.match.away_id, preview.match.kickoff, preview.match.score], [true, 'f1', 'esp', 'cro', '2026-09-29T18:45:00Z', null]);
+  const form = articleContext({}, { event: { kind: 'player_form' }, competition: {}, player: { id: 'p', name: 'A' }, form: { appearances: [{ match_id: 'm0', team: { id: 't' }, opponent: { id: 'o' }, date: '2026-09-20', score: '1-0', goals: 0 }, { match_id: 'm1', team: { id: 't' }, opponent: { id: 'o' }, date: '2026-09-27', score: '2-0', goals: 1 }] } });
+  assert.equal(form.match.id, 'm1'); assert.equal(form.player.goals_in_match, 1);
 });
 
 test('governing body scope (UEFA): serves Champions League AND Nations League, never the wrong one', () => {

@@ -21,7 +21,17 @@ on the competition / governing body / club item equals the channel id exactly, a
 pipeline already proved. Never a handle guess or a name search. Fan channels, compilations and re-uploads are
 never added; broadcaster channels need explicit owner approval (none enabled).
 
-## Discovery (`scripts/videos/ingest.mjs`, keyless)
+## Discovery: SUSPENDED (2026-09-29)
+
+YouTube's robots.txt disallows `/youtubei/` and `/feeds/videos.xml`, and its Terms of Service forbid automated
+access except public search engines following robots.txt or with written permission (evidence:
+`docs/evidence/source-audit/2026-09-29/youtube_rss__*.json`, registry key `youtube_rss`). The public-page discovery
+below used `/youtubei/v1/browse` and automated watch-page reads, so `scripts/videos/ingest.mjs` now refuses to run
+anything except `--link-only` (our database only, no YouTube request). The compliant replacement is the
+**YouTube Data API v3** (YouTube API Services Terms; owner-created API key). Embedding through the official
+player is unaffected.
+
+### Former public-page discovery (not run)
 
 Each channel's public uploads listing (newest first). A candidate is a title naming one of our clubs (league
 channels) or two clubs / a highlights title (club channels). Its public watch page gives the exact publish
@@ -29,7 +39,17 @@ time, uploading channel (must equal the listing channel), duration, `playableInE
 oEmbed confirms the embed page exists. oEmbed 200 is not region playability: the page's player falls back at
 runtime (below).
 
-## Matching (`workers/shared/video-match.js`, `soccer-video-match/1.0.0`)
+## Matching (`workers/shared/video-match.js`, `soccer-video-match/1.2.0`)
+
+1.2.0 (2026-09-29):
+- **Player form:** besides the player named in the title, official highlights / goals of the exact match of the
+  story's latest appearance attach when the canonical appearance records that the player scored in it (reason
+  recorded). Not named and did not score = no video.
+- **Match preview:** timing inverts (+20 within the 7 days before kickoff, -30 after kickoff) and only preview /
+  press conference / interview / analysis videos attach; highlights never attach to a preview.
+- **Live shows** ("Matchday Live", streams, watch-alongs) are never highlights or previews; `video_type` is
+  re-derived from the title at link time.
+- Table / competition stories still take no video (no single match fits a league-wide story).
 
 | points | rule |
 |---|---|
@@ -74,5 +94,5 @@ nocookie URL, publisher = channel) only for a matcher-validated video linked to 
 ## Run
 
     node scripts/videos/channels.mjs          # re-prove the allowlist
-    node scripts/videos/ingest.mjs            # discover + link (also --link-only)
+    node scripts/videos/ingest.mjs --link-only   # re-score stored videos against articles (DB only); discovery is suspended
     node scripts/qa/video.mjs --site <url> --article /news/<desk>/<slug> --none /news/<desk>/<slug>

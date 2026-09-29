@@ -80,6 +80,10 @@ export const PROBES = [
   ['fifa', 'robots', 'robots', 'https://www.fifa.com/robots.txt'],
   ['fifa', 'terms', 'terms', 'https://www.fifa.com/en/legal/terms-of-service'],
   ['fifa', 'api_matches', 'data', 'https://api.fifa.com/api/v3/calendar/matches?idCompetition=17&idSeason=285023&count=5&language=en'],
+  // YouTube channel feeds for the official-video lane (owner decision 2026-09-29: scheduled Worker lane via RSS).
+  ['youtube_rss', 'robots', 'robots', 'https://www.youtube.com/robots.txt'],
+  ['youtube_rss', 'terms', 'terms', 'https://www.youtube.com/t/terms'],
+  ['youtube_rss', 'channel_feed', 'data', 'https://www.youtube.com/feeds/videos.xml?channel_id=UC6UL29enLNe4mqwTfAyeNuw'],
 ];
 
 const TERMS_KEYWORDS = /(scrap|crawl|spider|robot|automated|data ?mining|harvest|extract|database|commercial|resell|redistribut|betting|gambling|wager|licen[cs]e|creative commons|cc[- ]by|cc0|public domain|attribution|non-commercial|api key|rate limit)/gi;

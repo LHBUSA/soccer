@@ -1,0 +1,20 @@
+{
+  "source": "youtube_rss",
+  "probe": "channel_feed",
+  "kind": "data",
+  "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC6UL29enLNe4mqwTfAyeNuw",
+  "captured_at": "2026-09-29T22:32:17.207Z",
+  "user_agent": "PropBetEdgeSourceAudit/0.1 (+https://propbetedge.ai/sources)",
+  "status": 200,
+  "final_url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC6UL29enLNe4mqwTfAyeNuw",
+  "elapsed_ms": 182,
+  "bytes": 23639,
+  "sha256": "3b280fa6afbfb068654aa12332ecb97e93a255836f9d2584d23d9576d68c47af",
+  "headers": {
+    "content-type": "text/xml; charset=UTF-8",
+    "server": "YouTube RSS Feeds server",
+    "cache-control": "public, max-age=900"
+  },
+  "access_fingerprint": [],
+  "body_head": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<feed xmlns:yt=\"http://www.youtube.com/xml/schemas/2015\" xmlns:media=\"http://search.yahoo.com/mrss/\" xmlns=\"http://www.w3.org/2005/Atom\">\n <link rel=\"self\" href=\"http://www.youtube.com/feeds/videos.xml?channel_id=UC6UL29enLNe4mqwTfAyeNuw\"/>\n <id>yt:channel:6UL29enLNe4mqwTfAyeNuw</id>\n <yt:channelId>6UL29enLNe4mqwTfAyeNuw</yt:channelId>\n <title>Bundesliga</title>\n <link rel=\"alternate\" href=\"https://www.youtube.com/channel/UC6UL29enLNe4mqwTfAyeNuw\"/>\n <author>\n  <name>Bundesliga</name>\n  <uri>https://www.youtube.com/channel/UC6UL29enLNe4mqwTfAyeNuw</uri>\n </author>\n <published>2006-04-01T22:10:07+00:00</published>\n <entry>\n  <id>yt:video:x7WEh4AAKt0</id>"
+}

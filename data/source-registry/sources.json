@@ -954,6 +954,32 @@
         "docs/evidence/source-audit/2026-09-27/fifa__terms.json",
         "docs/evidence/source-audit/2026-09-27/fifa__api_matches.json"
       ]
+    },
+    {
+      "key": "youtube_rss",
+      "name": "YouTube public pages and channel RSS feeds (www.youtube.com)",
+      "tier": "official_publisher_platform",
+      "url": "https://www.youtube.com/feeds/videos.xml",
+      "licence": "proprietary",
+      "verdict": "RESTRICTS_AUTOMATED_ACCESS",
+      "production_ready": false,
+      "production_note": "Probed 2026-09-29 for a scheduled official-video lane. robots.txt disallows /feeds/videos.xml and /youtubei/ for all user agents, and the Terms of Service forbid automated access except public search engines following robots.txt or with written permission. Not used for automated discovery. The compliant route is the YouTube Data API v3 under the YouTube API Services Terms (owner-created API key required). Embedding through the official YouTube player remains permitted by the Terms.",
+      "capabilities": {},
+      "access": "Public HTML pages and Atom feeds",
+      "robots": "Disallows /feeds/videos.xml and /youtubei/",
+      "terms": {
+        "status": "RESTRICTS_AUTOMATED_ACCESS",
+        "quote": "You are not allowed to: ... access the Service using any automated means (such as robots, botnets or scrapers) except (a) in the case of public search engines, in accordance with YouTube’s robots.txt file; or (b) with YouTube’s prior written permission"
+      },
+      "obligations": [
+        "Embed only through the official YouTube (youtube-nocookie) player",
+        "No automated discovery via public pages, /youtubei/ or /feeds/videos.xml"
+      ],
+      "evidence": [
+        "docs/evidence/source-audit/2026-09-29/youtube_rss__robots.json",
+        "docs/evidence/source-audit/2026-09-29/youtube_rss__terms.json",
+        "docs/evidence/source-audit/2026-09-29/youtube_rss__channel_feed.json"
+      ]
     }
   ]
 }

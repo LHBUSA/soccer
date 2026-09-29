@@ -1,0 +1,635 @@
+{
+  "at": "2026-09-29T22:35:12.093Z",
+  "matcher": "soccer-video-match/1.2.0",
+  "threshold": 75,
+  "dry": false,
+  "channels": {},
+  "videos": {
+    "stored": 419,
+    "candidates": 0,
+    "retyped": [
+      {
+        "id": "4quFxwWrjfU",
+        "from": "goals",
+        "to": "other"
+      },
+      {
+        "id": "VkSRNQ4bp-4",
+        "from": "preview",
+        "to": "other"
+      }
+    ]
+  },
+  "links": {
+    "linked": 52,
+    "rejected": 23,
+    "articles_with_video": 31,
+    "articles": 37
+  },
+  "per_article": [
+    {
+      "slug": "tottenham-hotspur-aston-villa-2026-09-19-ce492a",
+      "story_class": "match_recap",
+      "linked": [
+        {
+          "id": "AgVaYZbzkpE",
+          "title": "MANZAMBI, JACKSON & BUENDÍA ON TARGET | Tottenham Hotspur 2-3 Villa | Premier League Highlights",
+          "score": 105
+        },
+        {
+          "id": "RjT2bUORnfc",
+          "title": "Spurs 2-3 Aston Villa | Premier League Highlights",
+          "score": 105
+        },
+        {
+          "id": "NfSDCJEPofQ",
+          "title": "Buendía scores at Spurs AGAIN 🤩 | Spurs v Villa | PITCHSIDE",
+          "score": 80
+        }
+      ],
+      "best_rejected": {
+        "title": "Fast Start, Outrageous Goals! | Spurs v Aston Villa 25/26",
+        "score": 40
+      }
+    },
+    {
+      "slug": "jonathan-burkardt-scoring-run-2026-09-19-00f521",
+      "story_class": "player_form",
+      "linked": [
+        {
+          "id": "WbiJbk0MJX4",
+          "title": "Ebnoutalib Scores Again! | EINTRACHT FRANKFURT - SC FREIBURG | Highlights | Matchday 4 – Bundesliga",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "1. FC Kaiserslautern vs. Eintracht Braunschweig | Matchday 6 - Bundesliga 2 2026/27",
+        "score": 55
+      }
+    },
+    {
+      "slug": "werder-bremen-augsburg-2026-09-19-aee7b2",
+      "story_class": "match_recap",
+      "linked": [
+        {
+          "id": "2dQlyDgvTFY",
+          "title": "BEAUTIFUL Comeback! | WERDER BREMEN - FC AUGSBURG | Highlights | Matchday 4 – Bundesliga 2026/27",
+          "score": 90
+        },
+        {
+          "id": "CLjNENcsl4U",
+          "title": "DER WERDER-WAHNSINN I HIGHLIGHTS UND STIMMEN I SV Werder Bremen vs. FC Augsburg",
+          "score": 90
+        },
+        {
+          "id": "HyZ2N13qras",
+          "title": "SV WERDER BREMEN VS. FC AUGSBURG I Pressekonferenz",
+          "score": 80
+        }
+      ],
+      "best_rejected": {
+        "title": "Pressekonferenz vor dem Heimspiel gegen Augsburg I SV Werder Bremen",
+        "score": 30
+      }
+    },
+    {
+      "slug": "philadelphia-union-6-league-wins-in-a-row-2026-09-26-035aa6",
+      "story_class": "team_trend",
+      "linked": [
+        {
+          "id": "yKiZQedBb3M",
+          "title": "Philadelphia Union vs. Orlando City | Full Match Highlights | Milan Iloski Hat Trick!",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Milan Iloski Hat Trick Powers Dominant Philadelphia Union Win!",
+        "score": 40
+      }
+    },
+    {
+      "slug": "stuttgart-borussia-dortmund-2026-09-19-83a022",
+      "story_class": "match_recap",
+      "linked": [
+        {
+          "id": "XYuDYSfK6PQ",
+          "title": "Beier ballert BVB an die Spitze | VfB Stuttgart - BVB 0:1 | Highlights",
+          "score": 105
+        },
+        {
+          "id": "dmE_gTw-Ukc",
+          "title": "Top Of The Table! | VFB STUTTGART - BORUSSIA DORTMUND | Highlights | Matchday 4 – Bundesliga 2026/27",
+          "score": 90
+        },
+        {
+          "id": "ofUcybZlWBE",
+          "title": "Beier Fires BVB To The Top! | VFB STUTTGART - BORUSSIA DORTMUND | Highlights | MD 4 – Bundesliga",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "\"Wir fahren mit breiter Brust nach Stuttgart\" | PK mit Niko Kovac | VfB Stuttgart - BVB",
+        "score": 30
+      }
+    },
+    {
+      "slug": "brian-white-scoring-run-2026-09-27-837334",
+      "story_class": "player_form",
+      "linked": [
+        {
+          "id": "OwN4Br6JJRA",
+          "title": "Vancouver Whitecaps vs. D.C. United | Full Match Highlights | Müller BANGER & 6-GOAL THRILLER!",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Кривбас – Шахтар – 0:1. Огляд матчу жіночих команд (27.09.2026)",
+        "score": 20
+      }
+    },
+    {
+      "slug": "phillip-tietz-scoring-run-2026-09-19-3312c7",
+      "story_class": "player_form",
+      "linked": [
+        {
+          "id": "AYZojA8qXYw",
+          "title": "Spectacular Goal Festival! | BORUSSIA M'GLADBACH - MAINZ 05 | Highlights | Matchday 4 – Bundesliga",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Шахтар – ЛНЗ – 3:0. Голи та огляд матчу (20.09.2026)",
+        "score": 20
+      }
+    },
+    {
+      "slug": "sporting-kansas-city-philadelphia-union-2026-09-20-29f034",
+      "story_class": "match_recap",
+      "linked": [
+        {
+          "id": "O_FMm1oKR0Q",
+          "title": "Sporting Kansas City vs. Philadelphia Union | Full Match Highlights | Insane 4-Goal Comeback!",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Philadelphia Union Score 4 GOALS in 10 Minutes to Complete Insane 3-0 Comeback!",
+        "score": 50
+      }
+    },
+    {
+      "slug": "charlotte-fc-chicago-fire-fc-2026-09-26-545408",
+      "story_class": "match_recap",
+      "linked": [
+        {
+          "id": "ykripQS-7fo",
+          "title": "Charlotte FC vs. Chicago Fire FC | Full Match Highlights | BIG-TIME GOAL-LINE CLEARANCE!",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Кривбас – Шахтар – 0:1. Огляд матчу жіночих команд (27.09.2026)",
+        "score": 35
+      }
+    },
+    {
+      "slug": "scotland-switzerland-preview-2026-09-29-f97fa4",
+      "story_class": "match_preview",
+      "linked": [],
+      "best_rejected": {
+        "title": "Кривбас – Шахтар – 0:1. Огляд матчу жіночих команд (27.09.2026)",
+        "score": 20
+      }
+    },
+    {
+      "slug": "bayern-munchen-1-fc-union-berlin-2026-09-18-3ce080",
+      "story_class": "match_recap",
+      "linked": [
+        {
+          "id": "E_a2H50YhHU",
+          "title": "Olise HATTRICK & Kane milestone | FC Bayern München – 1. FC Union Berlin | Highlights Bundesliga",
+          "score": 90
+        },
+        {
+          "id": "v_7N6u8DvtU",
+          "title": "The Kane and Olise Late Night Show 🔥  | FC BAYERN - UNION BERLIN | Highlights | MD 4 – Bundesliga",
+          "score": 90
+        },
+        {
+          "id": "YyRS82WiIog",
+          "title": "OLISE is Unstoppable 🔥 Hattrick & Assist | FC BAYERN - UNION BERLIN | Highlights | MD 4 - Bundesliga",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Pressekonferenz vor FC Bayern - Union Berlin | 4. Spieltag Bundesliga",
+        "score": 30
+      }
+    },
+    {
+      "slug": "manchester-city-5-league-wins-in-a-row-2026-09-20-3d5328",
+      "story_class": "team_trend",
+      "linked": [
+        {
+          "id": "dVFiXhUKXmI",
+          "title": "EXTENDED HIGHLIGHTS | Man City 5-3 Sunderland | A Premier League Classic at the Etihad!",
+          "score": 105
+        },
+        {
+          "id": "hgIaOCoVsDQ",
+          "title": "HIGHLIGHTS | Man City 5-3 Sunderland | A sensational game at the Etihad!",
+          "score": 105
+        },
+        {
+          "id": "4quFxwWrjfU",
+          "title": "Matchday Live | FIVE GOALS, FIVE LEAGUE WINS, CITY ARE TOP! Man City 5-3 Sunderland | Premier League",
+          "score": 95
+        }
+      ],
+      "best_rejected": {
+        "title": "Every Goal of 2026/27 So Far | Fernández, Haaland & Cherki amongst the 20 Man City goals!",
+        "score": 50
+      }
+    },
+    {
+      "slug": "premier-league-table-2026-09-20-fb92ec",
+      "story_class": "competition_intelligence",
+      "linked": [],
+      "best_rejected": {
+        "title": "New England Revolution vs. Orlando City | Full Match Highlights | Twin Braces in New England!",
+        "score": 0
+      }
+    },
+    {
+      "slug": "bundesliga-table-2026-09-20-c1fd71",
+      "story_class": "competition_intelligence",
+      "linked": [],
+      "best_rejected": {
+        "title": "New England Revolution vs. Orlando City | Full Match Highlights | Twin Braces in New England!",
+        "score": 0
+      }
+    },
+    {
+      "slug": "seattle-sounders-fc-7-league-matches-unbeaten-2026-09-27-640861",
+      "story_class": "team_trend",
+      "linked": [
+        {
+          "id": "XKFtmuDAGEo",
+          "title": "Seattle Sounders FC vs. Minnesota United | Full Match Highlights",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Кривбас – Шахтар – 0:1. Огляд матчу жіночих команд (27.09.2026)",
+        "score": 20
+      }
+    },
+    {
+      "slug": "cf-montreal-fc-cincinnati-2026-09-26-ae550e",
+      "story_class": "match_recap",
+      "linked": [
+        {
+          "id": "hCCgLfaZCWU",
+          "title": "CF Montréal vs. FC Cincinnati | Full Match Highlights",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Кривбас – Шахтар – 0:1. Огляд матчу жіночих команд (27.09.2026)",
+        "score": 20
+      }
+    },
+    {
+      "slug": "erling-haaland-scoring-run-2026-09-20-be6e54",
+      "story_class": "player_form",
+      "linked": [
+        {
+          "id": "dVFiXhUKXmI",
+          "title": "EXTENDED HIGHLIGHTS | Man City 5-3 Sunderland | A Premier League Classic at the Etihad!",
+          "score": 105
+        },
+        {
+          "id": "hgIaOCoVsDQ",
+          "title": "HIGHLIGHTS | Man City 5-3 Sunderland | A sensational game at the Etihad!",
+          "score": 105
+        }
+      ],
+      "best_rejected": {
+        "title": "Matchday Live | FIVE GOALS, FIVE LEAGUE WINS, CITY ARE TOP! Man City 5-3 Sunderland | Premier League",
+        "score": 95
+      }
+    },
+    {
+      "slug": "borussia-dortmund-4-league-wins-in-a-row-2026-09-19-3216ff",
+      "story_class": "team_trend",
+      "linked": [
+        {
+          "id": "XYuDYSfK6PQ",
+          "title": "Beier ballert BVB an die Spitze | VfB Stuttgart - BVB 0:1 | Highlights",
+          "score": 105
+        },
+        {
+          "id": "dmE_gTw-Ukc",
+          "title": "Top Of The Table! | VFB STUTTGART - BORUSSIA DORTMUND | Highlights | Matchday 4 – Bundesliga 2026/27",
+          "score": 90
+        },
+        {
+          "id": "ofUcybZlWBE",
+          "title": "Beier Fires BVB To The Top! | VFB STUTTGART - BORUSSIA DORTMUND | Highlights | MD 4 – Bundesliga",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "\"Wir fahren mit breiter Brust nach Stuttgart\" | PK mit Niko Kovac | VfB Stuttgart - BVB",
+        "score": 30
+      }
+    },
+    {
+      "slug": "ivan-angulo-scoring-run-2026-09-26-0e2dbf",
+      "story_class": "player_form",
+      "linked": [
+        {
+          "id": "yKiZQedBb3M",
+          "title": "Philadelphia Union vs. Orlando City | Full Match Highlights | Milan Iloski Hat Trick!",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Milan Iloski Hat Trick Powers Dominant Philadelphia Union Win!",
+        "score": 40
+      }
+    },
+    {
+      "slug": "austin-fc-8-league-matches-unbeaten-2026-09-27-c939db",
+      "story_class": "team_trend",
+      "linked": [
+        {
+          "id": "Eyk-ZLNrzzY",
+          "title": "Austin FC vs. San Diego FC | Full Match Highlights | 6-Goal Nail-Biter!",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Кривбас – Шахтар – 0:1. Огляд матчу жіночих команд (27.09.2026)",
+        "score": 20
+      }
+    },
+    {
+      "slug": "patrik-schick-scoring-run-2026-09-20-0ea0ef",
+      "story_class": "player_form",
+      "linked": [
+        {
+          "id": "8YSqJ7qaMVI",
+          "title": "Highlights: Leverkusen beat Leipzig 2-0 | Goals by Patrik Schick + Miguel Gutierrez",
+          "score": 130
+        },
+        {
+          "id": "G0Ax1HeP9EY",
+          "title": "Crucial Win In Top-Match! | BAYER 04 LEVERKUSEN - RB LEIPZIG | Highlights | Matchday 4 – Bundesliga",
+          "score": 90
+        },
+        {
+          "id": "Yh8an_9wou8",
+          "title": "Schick Leads Bayer To Glory! | BAYER 04 LEVERKUSEN - RB LEIPZIG | Highlights | MD 4 – Bundesliga",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Шахтар – ЛНЗ – 3:0. Голи та огляд матчу (20.09.2026)",
+        "score": 35
+      }
+    },
+    {
+      "slug": "minnesota-united-fc-5-league-defeats-in-a-row-2026-09-27-f9992c",
+      "story_class": "team_trend",
+      "linked": [
+        {
+          "id": "XKFtmuDAGEo",
+          "title": "Seattle Sounders FC vs. Minnesota United | Full Match Highlights",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Кривбас – Шахтар – 0:1. Огляд матчу жіночих команд (27.09.2026)",
+        "score": 20
+      }
+    },
+    {
+      "slug": "real-salt-lake-new-england-revolution-2026-09-27-af73d8",
+      "story_class": "match_recap",
+      "linked": [
+        {
+          "id": "S4Wq474RtHo",
+          "title": "Real Salt Lake vs. New England Revolution | Full Match Highlights | Sergi Solans BRACE!",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Кривбас – Шахтар – 0:1. Огляд матчу жіночих команд (27.09.2026)",
+        "score": 20
+      }
+    },
+    {
+      "slug": "philadelphia-union-12-league-matches-unbeaten-2026-09-26-c00f1a",
+      "story_class": "team_trend",
+      "linked": [
+        {
+          "id": "yKiZQedBb3M",
+          "title": "Philadelphia Union vs. Orlando City | Full Match Highlights | Milan Iloski Hat Trick!",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Milan Iloski Hat Trick Powers Dominant Philadelphia Union Win!",
+        "score": 40
+      }
+    },
+    {
+      "slug": "andre-luiz-scoring-run-2026-09-27-26cc9a",
+      "story_class": "player_form",
+      "linked": [
+        {
+          "id": "fL2PNuJTonE",
+          "title": "Houston Dynamo vs. Sporting Kansas City | Full Match Highlights | Upset Drama!",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Кривбас – Шахтар – 0:1. Огляд матчу жіночих команд (27.09.2026)",
+        "score": 20
+      }
+    },
+    {
+      "slug": "philadelphia-union-orlando-city-sc-2026-09-26-2fcde7",
+      "story_class": "match_recap",
+      "linked": [
+        {
+          "id": "yKiZQedBb3M",
+          "title": "Philadelphia Union vs. Orlando City | Full Match Highlights | Milan Iloski Hat Trick!",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Milan Iloski Hat Trick Powers Dominant Philadelphia Union Win!",
+        "score": 40
+      }
+    },
+    {
+      "slug": "houston-dynamo-fc-sporting-kansas-city-2026-09-27-4daff8",
+      "story_class": "match_recap",
+      "linked": [
+        {
+          "id": "fL2PNuJTonE",
+          "title": "Houston Dynamo vs. Sporting Kansas City | Full Match Highlights | Upset Drama!",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Кривбас – Шахтар – 0:1. Огляд матчу жіночих команд (27.09.2026)",
+        "score": 20
+      }
+    },
+    {
+      "slug": "vancouver-whitecaps-d-c-united-2026-09-27-aa2e30",
+      "story_class": "match_recap",
+      "linked": [
+        {
+          "id": "OwN4Br6JJRA",
+          "title": "Vancouver Whitecaps vs. D.C. United | Full Match Highlights | Müller BANGER & 6-GOAL THRILLER!",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Кривбас – Шахтар – 0:1. Огляд матчу жіночих команд (27.09.2026)",
+        "score": 20
+      }
+    },
+    {
+      "slug": "uefa-nations-league-groups-2026-09-29-f65a7a",
+      "story_class": "competition_intelligence",
+      "linked": [],
+      "best_rejected": {
+        "title": "New England Revolution vs. Orlando City | Full Match Highlights | Twin Braces in New England!",
+        "score": 0
+      }
+    },
+    {
+      "slug": "new-england-revolution-orlando-city-sc-2026-09-19-a88530",
+      "story_class": "match_recap",
+      "linked": [
+        {
+          "id": "_1OfuMhi-rE",
+          "title": "New England Revolution vs. Orlando City | Full Match Highlights | Twin Braces in New England!",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Шахтар – ЛНЗ – 3:0. Голи та огляд матчу (20.09.2026)",
+        "score": 20
+      }
+    },
+    {
+      "slug": "austin-fc-san-diego-fc-2026-09-27-ac300b",
+      "story_class": "match_recap",
+      "linked": [
+        {
+          "id": "Eyk-ZLNrzzY",
+          "title": "Austin FC vs. San Diego FC | Full Match Highlights | 6-Goal Nail-Biter!",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Кривбас – Шахтар – 0:1. Огляд матчу жіночих команд (27.09.2026)",
+        "score": 20
+      }
+    },
+    {
+      "slug": "borussia-m-gladbach-4-league-defeats-in-a-row-2026-09-19-3de7ac",
+      "story_class": "team_trend",
+      "linked": [
+        {
+          "id": "AYZojA8qXYw",
+          "title": "Spectacular Goal Festival! | BORUSSIA M'GLADBACH - MAINZ 05 | Highlights | Matchday 4 – Bundesliga",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Шахтар – ЛНЗ – 3:0. Голи та огляд матчу (20.09.2026)",
+        "score": 20
+      }
+    },
+    {
+      "slug": "st-louis-city-sc-16-league-matches-unbeaten-2026-09-20-56a270",
+      "story_class": "team_trend",
+      "linked": [
+        {
+          "id": "-yfq0Kjyb-8",
+          "title": "St. Louis CITY vs. Toronto FC | Full Match Highlights | LONGEST UNBEATEN STREAK in club history!",
+          "score": 90
+        }
+      ],
+      "best_rejected": {
+        "title": "Шахтар – ЛНЗ – 3:0. Голи та огляд матчу (20.09.2026)",
+        "score": 20
+      }
+    },
+    {
+      "slug": "preston-judd-scoring-run-2026-09-27-8c317c",
+      "story_class": "player_form",
+      "linked": [
+        {
+          "id": "XHEVJA0HF84",
+          "title": "San Jose Earthquakes vs. Portland Timbers | Full Match Highlights | Preston Judd BRACE!",
+          "score": 115
+        }
+      ],
+      "best_rejected": {
+        "title": "Кривбас – Шахтар – 0:1. Огляд матчу жіночих команд (27.09.2026)",
+        "score": 20
+      }
+    },
+    {
+      "slug": "manchester-city-sunderland-2026-09-20-da838b",
+      "story_class": "match_recap",
+      "linked": [
+        {
+          "id": "dVFiXhUKXmI",
+          "title": "EXTENDED HIGHLIGHTS | Man City 5-3 Sunderland | A Premier League Classic at the Etihad!",
+          "score": 105
+        },
+        {
+          "id": "hgIaOCoVsDQ",
+          "title": "HIGHLIGHTS | Man City 5-3 Sunderland | A sensational game at the Etihad!",
+          "score": 105
+        },
+        {
+          "id": "4quFxwWrjfU",
+          "title": "Matchday Live | FIVE GOALS, FIVE LEAGUE WINS, CITY ARE TOP! Man City 5-3 Sunderland | Premier League",
+          "score": 95
+        }
+      ],
+      "best_rejected": {
+        "title": "Every Goal of 2026/27 So Far | Fernández, Haaland & Cherki amongst the 20 Man City goals!",
+        "score": 50
+      }
+    },
+    {
+      "slug": "spain-croatia-preview-2026-09-29-edbf1c",
+      "story_class": "match_preview",
+      "linked": [],
+      "best_rejected": {
+        "title": "Кривбас – Шахтар – 0:1. Огляд матчу жіночих команд (27.09.2026)",
+        "score": 20
+      }
+    },
+    {
+      "slug": "mls-table-2026-09-27-c0405b",
+      "story_class": "competition_intelligence",
+      "linked": [],
+      "best_rejected": {
+        "title": "New England Revolution vs. Orlando City | Full Match Highlights | Twin Braces in New England!",
+        "score": 0
+      }
+    }
+  ]
+}
