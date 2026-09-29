@@ -7,6 +7,9 @@ export class ApiError extends Error {
 }
 
 const cache = new Map(); // per page-load memo (the edge caches across users)
+const cachedAt = new Map();
+const inflight = new Set();
+const FRESH_REUSE_MS = new Map([['live', 30000]]); // shell/home/PBEcast may request the same live snapshot together
 
 export function apiPath(path, params = {}) {
   const q = new URLSearchParams(Object.entries(params).filter(([, v]) => v !== undefined && v !== null && v !== ''));
@@ -16,7 +19,8 @@ export function apiPath(path, params = {}) {
 
 export async function api(path, params = {}, { fresh = false } = {}) {
   const url = apiPath(path, params);
-  if (!fresh && cache.has(url)) return cache.get(url);
+  const reuseMs = FRESH_REUSE_MS.get(path) || 0;
+  if (cache.has(url) && (!fresh || inflight.has(url) || (reuseMs && Date.now() - (cachedAt.get(url) || 0) < reuseMs))) return cache.get(url);
   const p = (async () => {
     let res;
     try { res = await fetch(url, { headers: { accept: 'application/json' } }); } catch { throw new ApiError(0, 'Network unavailable'); }
@@ -26,6 +30,7 @@ export async function api(path, params = {}, { fresh = false } = {}) {
     return body;
   })();
   cache.set(url, p);
-  p.catch(() => cache.delete(url));
+  inflight.add(url);
+  p.then(() => { inflight.delete(url); cachedAt.set(url, Date.now()); }, () => { inflight.delete(url); cache.delete(url); cachedAt.delete(url); });
   return p;
 }

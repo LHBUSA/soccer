@@ -6,7 +6,7 @@ import { playerLoad, rotationPressure, squadStructure, teamFatigueIndex, teamLoa
 import { matchup, teamProfile, inBox, channelOf } from '../workers/soccer-api/src/pro/matchup.js';
 import { proAccess, sessionCookie } from '../workers/soccer-api/src/pro/access.js';
 import { handlePro } from '../workers/soccer-api/src/pro/routes.js';
-import worker from '../workers/soccer-api/src/index.js';
+import worker, { canonicalQuery } from '../workers/soccer-api/src/index.js';
 
 const T = 'team-a'; const O = 'team-b';
 const at = d => `2026-09-${String(d).padStart(2, '0')}T19:00:00Z`;
@@ -80,6 +80,14 @@ const authBinding = state => ({ fetch: async (url, init) => {
 } });
 const TOKEN = 'test-session-token-not-a-real-jwt-0123456789';
 const req = (path, cookie = `pbe_session=${TOKEN}`) => new Request(`https://soccer-api.example/v1/pro/${path}`, { headers: cookie ? { cookie } : {} });
+
+test('public cache query keys are canonical and reject fragmentation inputs', () => {
+  assert.equal(canonicalQuery(new URLSearchParams('limit=5&competition=bundesliga'), ['competition', 'limit']), 'competition=bundesliga&limit=5');
+  assert.equal(canonicalQuery(new URLSearchParams('token=x&limit=5'), ['limit']), null);
+  assert.equal(canonicalQuery(new URLSearchParams('limit=5&limit=6'), ['limit']), null);
+  assert.equal(canonicalQuery(new URLSearchParams(''), []), '');
+  assert.equal(canonicalQuery(new URLSearchParams(`q=${'x'.repeat(65)}`), ['q']), null);
+});
 
 test('access: only all_access and owner are Pro; sport-only, lapsed, anonymous, auth down -> FREE (fail closed)', async () => {
   assert.equal(sessionCookie(req('access', `a=1; pbe_session=${TOKEN}; b=2`)), TOKEN);

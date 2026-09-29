@@ -32,6 +32,24 @@ test('browser API client only targets the same-origin proxy', () => {
   assert.equal(apiPath('matches', { competition: 'bundesliga', status: '', limit: 5 }), '/api/soccer/matches?competition=bundesliga&limit=5');
 });
 
+test('public soccer reads bypass the Vercel function; authenticated Pro stays private', () => {
+  const v = JSON.parse(readFileSync('vercel.json', 'utf8'));
+  const rw = v.rewrites || [];
+  const bySource = source => rw.find(x => x.source === source);
+  assert.equal(bySource('/api/soccer/matches')?.destination, 'https://soccer-api.sales-fd3.workers.dev/v1/matches');
+  assert.equal(bySource('/api/soccer/news')?.destination, 'https://soccer-api.sales-fd3.workers.dev/v1/news');
+  assert.equal(bySource('/api/soccer/live')?.destination, 'https://soccer-api.sales-fd3.workers.dev/v1/live');
+  assert.equal(bySource('/api/soccer/media/:sha')?.destination, 'https://soccer-api.sales-fd3.workers.dev/v1/media/:sha');
+  assert.equal(bySource('/api/soccer/pro/:path*')?.destination, '/api/soccer?path=pro/:path*');
+  const anon = bySource('/api/soccer/pro/access');
+  assert.equal(anon?.destination, '/soccer-free-access.json');
+  assert.deepEqual(anon?.missing, [{ type: 'cookie', key: 'pbe_session' }]);
+  const cacheHeader = (v.headers || []).find(x => x.source === '/api/soccer/:path*')?.headers?.find(h => h.key === 'x-vercel-enable-rewrite-caching');
+  assert.equal(cacheHeader?.value, '1');
+  const free = JSON.parse(readFileSync('public/soccer-free-access.json', 'utf8'));
+  assert.deepEqual([free.data.pro, free.data.membership.state, free.data.check], [false, 'free', 'ok']);
+});
+
 test('browser source never calls a provider, the Worker host or Supabase directly', () => {
   const walk = d => readdirSync(d).flatMap(f => (statSync(join(d, f)).isDirectory() ? walk(join(d, f)) : [join(d, f)]));
   for (const f of walk('src')) {

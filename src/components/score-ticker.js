@@ -10,7 +10,7 @@ import { esc } from '../lib/html.js';
 import { liveView } from '../lib/cast.js';
 import { competitionMark, crest } from './media.js';
 
-const POLL_LIVE = 30000; const POLL_SLATE = 120000; const POLL_IDLE = 600000;
+const POLL_LIVE = 60000; const POLL_SLATE = 300000; const POLL_IDLE = 900000;
 const MAX_ITEMS = 24;
 const STALE_MS = 5 * 60e3;
 
