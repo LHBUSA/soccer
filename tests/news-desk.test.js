@@ -252,5 +252,5 @@ test('cost: past SOCCER_OPENAI_DAILY_MAX_USD the desk holds without calling the 
   const SOCCER_STATE = { get: async (k) => (k === `openai:v1:calls:${day}` ? [{ estimated_usd: 5.01 }] : null), put: async () => {} };
   let called = 0;
   const r = await runDesk(draft, B, { ...KEY, SOCCER_STATE }, { fetcher: async () => { called++; return reply(GOOD)(); } });
-  assert.deepEqual(r.held, ['editorial_budget_ceiling']); assert.equal(called, 0);
+  assert.deepEqual(r.held, ['editorial_daily_budget_reached']); assert.equal(called, 0);
 });

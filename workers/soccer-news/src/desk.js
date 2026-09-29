@@ -493,7 +493,7 @@ export const deskAttempts = (env) => Math.max(1, Math.min(2, Number(env?.NEWS_DE
 export async function runDesk(draft, packet, env, { fetcher = fetch, attempts = deskAttempts(env), trigger = 'new_story', storyId = null } = {}) {
   if (!deskAvailable(env)) return { held: ['editorial_desk_unavailable'] };
   // Emergency ceiling (openai-cost.js): past today's limit no paid call is made; the story holds.
-  if (await overCeiling(env).catch(() => false)) return { held: ['editorial_budget_ceiling'] };
+  if (await overCeiling(env).catch(() => false)) return { held: ['editorial_daily_budget_reached'] };
   let feedback = null; let last = null;
   const id = storyId || packet?.hash || packet?.event?.event_id || null;
   const model = env?.NEWS_DESK_MODEL || DESK_MODEL;

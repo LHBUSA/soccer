@@ -129,8 +129,15 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
   competition / FIFA coverage matrix: docs/evidence/news/newsroom-baseline-2026-09-29.md.
 - The hand-deployed soccer-news `abc1fe23` (an uncommitted TEMP backfill route authenticated by a header value in
   source) was replaced by the committed build; its source is kept in `git stash`. Legacy re-edits remain available
-  through the authenticated `POST /v1/admin/reedit` and the KV-controlled `*/10` migration cron (a no-op while
-  `migration:control` is unset). 16 legacy template stories are still not re-edited.
+  through the authenticated `POST /v1/admin/reedit` (and scripts/news/reedit-backlog.mjs) ONLY. 16 legacy template
+  stories are still not re-edited.
+- **OpenAI cost controls (2026-09-29, main ce399b0):** the temporary `*/10` backlog-migration cron and src/migration.js
+  are REMOVED (migration:control never existed; only one dry story ran). The only schedule is `7,37 * * * *`; the
+  scheduled handler ignores any other cron. Automatic desk = ONE paid attempt (`NEWS_DESK_ATTEMPTS`, default 1, no
+  retry on provider error); the two-attempt repair only via `POST /v1/admin/reedit?repair=1`. `max_output_tokens` 6000
+  (was 18000). Every call is logged to KV `openai:v1:calls:<UTC day>` (src/openai-cost.js); cost today =
+  `GET /v1/admin/openai-cost` (NEWS_ADMIN_TOKEN). Breaker `SOCCER_OPENAI_DAILY_MAX_USD` (default $5): past it the desk
+  holds (`editorial_daily_budget_reached`) without calling the model.
 - **Article data visuals (main 7d48824, soccer-visuals/1.0.0):** every article carries code-built visual specs frozen
   in `body.visuals` (match flow, goal timeline, shot profile, static shot map with stated coverage, player focus,
   table move / group position, form; scoring run; run results; standings; verified group tables; preview matchup
