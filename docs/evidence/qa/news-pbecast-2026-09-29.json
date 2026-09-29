@@ -1,5 +1,5 @@
 {
-  "at": "2026-09-29T13:06:27.694Z",
+  "at": "2026-09-29T13:14:52.760Z",
   "site": "https://soccer.propbetedge.ai",
   "match": "4ad3c11c-0e39-555a-bfd4-ca6e98e22fb7",
   "story": "bayern-munchen-1-fc-union-berlin-2026-09-18-3ce080",
@@ -13,11 +13,11 @@
   "expected": {
     "pitch_markers": 37,
     "goal_rings": 6,
-    "lead": "Olise hat-trick drives Bayern München to 7-0 rout of 1. FC Union Berlin",
-    "lead_published_at": "2026-09-27T21:52:16.69+00:00",
-    "latest": "Nashville SC build a 10-point lead atop the overall MLS standings",
-    "newest_api": "Nashville SC build a 10-point lead atop the overall MLS standings",
-    "newest_api_at": "2026-09-28T01:37:14+00:00",
+    "lead": "Scotland host Group B1 leaders Switzerland at Hampden Park",
+    "lead_published_at": "2026-09-29T13:13:56.929+00:00",
+    "latest": "Spain and Croatia take winning starts into Group A3 meeting",
+    "newest_api": "Scotland host Group B1 leaders Switzerland at Hampden Park",
+    "newest_api_at": "2026-09-29T13:13:56.929+00:00",
     "subject": {
       "type": "Person",
       "name": "Michael Olise",
@@ -113,16 +113,16 @@
       "name": "[360] homepage lead = selectHomepageLead(API)",
       "ok": true,
       "detail": {
-        "page": "Olise hat-trick drives Bayern München to 7-0 rout of 1. FC Union Berlin",
-        "expected": "Olise hat-trick drives Bayern München to 7-0 rout of 1. FC Union Berlin"
+        "page": "Scotland host Group B1 leaders Switzerland at Hampden Park",
+        "expected": "Scotland host Group B1 leaders Switzerland at Hampden Park"
       }
     },
     {
       "name": "[360] homepage latest = newest non-lead story",
       "ok": true,
       "detail": {
-        "page": "Nashville SC build a 10-point lead atop the overall MLS standings",
-        "expected": "Nashville SC build a 10-point lead atop the overall MLS standings"
+        "page": "Spain and Croatia take winning starts into Group A3 meeting",
+        "expected": "Spain and Croatia take winning starts into Group A3 meeting"
       }
     },
     {
@@ -215,16 +215,16 @@
       "name": "[390] homepage lead = selectHomepageLead(API)",
       "ok": true,
       "detail": {
-        "page": "Olise hat-trick drives Bayern München to 7-0 rout of 1. FC Union Berlin",
-        "expected": "Olise hat-trick drives Bayern München to 7-0 rout of 1. FC Union Berlin"
+        "page": "Scotland host Group B1 leaders Switzerland at Hampden Park",
+        "expected": "Scotland host Group B1 leaders Switzerland at Hampden Park"
       }
     },
     {
       "name": "[390] homepage latest = newest non-lead story",
       "ok": true,
       "detail": {
-        "page": "Nashville SC build a 10-point lead atop the overall MLS standings",
-        "expected": "Nashville SC build a 10-point lead atop the overall MLS standings"
+        "page": "Spain and Croatia take winning starts into Group A3 meeting",
+        "expected": "Spain and Croatia take winning starts into Group A3 meeting"
       }
     },
     {
@@ -317,16 +317,16 @@
       "name": "[768] homepage lead = selectHomepageLead(API)",
       "ok": true,
       "detail": {
-        "page": "Olise hat-trick drives Bayern München to 7-0 rout of 1. FC Union Berlin",
-        "expected": "Olise hat-trick drives Bayern München to 7-0 rout of 1. FC Union Berlin"
+        "page": "Scotland host Group B1 leaders Switzerland at Hampden Park",
+        "expected": "Scotland host Group B1 leaders Switzerland at Hampden Park"
       }
     },
     {
       "name": "[768] homepage latest = newest non-lead story",
       "ok": true,
       "detail": {
-        "page": "Nashville SC build a 10-point lead atop the overall MLS standings",
-        "expected": "Nashville SC build a 10-point lead atop the overall MLS standings"
+        "page": "Spain and Croatia take winning starts into Group A3 meeting",
+        "expected": "Spain and Croatia take winning starts into Group A3 meeting"
       }
     },
     {
@@ -419,16 +419,16 @@
       "name": "[1024] homepage lead = selectHomepageLead(API)",
       "ok": true,
       "detail": {
-        "page": "Olise hat-trick drives Bayern München to 7-0 rout of 1. FC Union Berlin",
-        "expected": "Olise hat-trick drives Bayern München to 7-0 rout of 1. FC Union Berlin"
+        "page": "Scotland host Group B1 leaders Switzerland at Hampden Park",
+        "expected": "Scotland host Group B1 leaders Switzerland at Hampden Park"
       }
     },
     {
       "name": "[1024] homepage latest = newest non-lead story",
       "ok": true,
       "detail": {
-        "page": "Nashville SC build a 10-point lead atop the overall MLS standings",
-        "expected": "Nashville SC build a 10-point lead atop the overall MLS standings"
+        "page": "Spain and Croatia take winning starts into Group A3 meeting",
+        "expected": "Spain and Croatia take winning starts into Group A3 meeting"
       }
     },
     {
@@ -521,16 +521,16 @@
       "name": "[1440] homepage lead = selectHomepageLead(API)",
       "ok": true,
       "detail": {
-        "page": "Olise hat-trick drives Bayern München to 7-0 rout of 1. FC Union Berlin",
-        "expected": "Olise hat-trick drives Bayern München to 7-0 rout of 1. FC Union Berlin"
+        "page": "Scotland host Group B1 leaders Switzerland at Hampden Park",
+        "expected": "Scotland host Group B1 leaders Switzerland at Hampden Park"
       }
     },
     {
       "name": "[1440] homepage latest = newest non-lead story",
       "ok": true,
       "detail": {
-        "page": "Nashville SC build a 10-point lead atop the overall MLS standings",
-        "expected": "Nashville SC build a 10-point lead atop the overall MLS standings"
+        "page": "Spain and Croatia take winning starts into Group A3 meeting",
+        "expected": "Spain and Croatia take winning starts into Group A3 meeting"
       }
     },
     {

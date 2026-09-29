@@ -19,9 +19,9 @@ evidence are the source of truth; nothing here comes only from chat memory.
 
 | Worker | Live version | Rollback |
 |---|---|---|
-| soccer-api | `70583790` (displayable media = approved + owner_approved_identification with `basis`; competition team grid crest) | `35e64696` (then `c266dbd7`) |
-| soccer-ingest | `533fb55e` (1.3.0, shadow Bundesliga enrichment + hardening) | `dd868f6f` (same cron) |
-| soccer-news | `387d0d5e` (1.3.0: OpenAI desk 2.0.0 gpt-5.6-sol, packet v3 depth, quality 2.0.0; fail closed) | `4fc1486d` |
+| soccer-api | `2fd0e5e9` (2026-09-29, main 21376b2: one news-subject rule for cards + article hero; `/v1/data-health` newsroom block) | `2f8a5b0d` |
+| soccer-ingest | unchanged by the 2026-09-29 newsroom / PBEcast release (see docs/deployments.jsonl) | — |
+| soccer-news | `8e03520d` (1.4.0, main fb9a2b7: previews, matchday briefs, group watch, readiness-based recaps, registry enablement, news:last_tick) | `204dd215` (then `abc1fe23`, the hand-deployed backfill build) |
 
 Rollback: `cd workers/<worker> && npx wrangler versions deploy <rollback>@100% --yes`. Web rollback: Vercel instant rollback to the previous production deployment.
 
@@ -112,3 +112,22 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
 - MLS West table withholds itself whenever a just-finished match is in ESPN's standings before our lane details it (minutes to about 2 h).
 - Only the Bundesliga has long history; other competitions have one ESPN season.
 - No injury, transfer or quote sources (by design).
+
+## Newsroom + PBEcast release (2026-09-29, main 78c5cf7..fb9a2b7)
+
+- **PBEcast phantom circles fixed.** Every pitch mark carried a hidden `circle.pulse`; the page loading-dot rule
+  (`.pulse` + `@keyframes pulse`, opacity .25 / scale .7) animated it, so each located shot showed a pale halo
+  displaced toward the SVG origin. Marks are now shot / goal / own goal with a source location only (`pitchKind`,
+  `pitchItems` in src/lib/cast.js), one per source event, solid miss markers, goal rings, and only the current
+  replay event highlighted (`cpulse`, once). Production QA: docs/evidence/qa/news-pbecast-2026-09-29.json (50/50 at
+  360/390/768/1024/1440); replay contract 163/163 (Dallas 1-0 LAFC).
+- **News imagery:** one subject rule (workers/shared/news-subject.js) for cards and heroes, never another player's
+  face. 37/37 existing stories carry the primary-subject marker (scripts/news/backfill-subjects.mjs). Olise 7-0
+  Union Berlin: subject Michael Olise (hat_trick), his own portrait on card and hero.
+- **Newsroom:** registry-driven enablement (`news` in data/registry/competitions.json), match previews, matchday
+  briefs, verified group watch, readiness-based recaps, and the `/v1/data-health` newsroom block. Diagnosis plus the
+  competition / FIFA coverage matrix: docs/evidence/news/newsroom-baseline-2026-09-29.md.
+- The hand-deployed soccer-news `abc1fe23` (an uncommitted TEMP backfill route authenticated by a header value in
+  source) was replaced by the committed build; its source is kept in `git stash`. Legacy re-edits remain available
+  through the authenticated `POST /v1/admin/reedit` and the KV-controlled `*/10` migration cron (a no-op while
+  `migration:control` is unset). 16 legacy template stories are still not re-edited.

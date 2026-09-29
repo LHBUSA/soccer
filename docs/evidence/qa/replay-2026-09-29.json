@@ -1,0 +1,838 @@
+{
+  "at": "2026-09-29T13:03:42.891Z",
+  "site": "https://soccer.propbetedge.ai",
+  "match": "d4ad8521-0307-54bc-b612-ca070741c9ac",
+  "widths": [
+    1440,
+    390
+  ],
+  "events": 38,
+  "located_total": 24,
+  "passed": 163,
+  "total": 163,
+  "portraits": {
+    "rendered": 39,
+    "real": 23,
+    "silhouettes": 16,
+    "distinct_players": 28,
+    "distinct_real": 19,
+    "broken": 0
+  },
+  "results": [
+    {
+      "name": "[1440] full time: no future feed rows",
+      "ok": true,
+      "detail": "v=92 rows=38 future=0"
+    },
+    {
+      "name": "[1440] full time: no future pitch marks",
+      "ok": true,
+      "detail": "marks=24 future=0"
+    },
+    {
+      "name": "[1440] full time: feed = every event through V",
+      "ok": true,
+      "detail": "38/38"
+    },
+    {
+      "name": "[1440] full time: pitch = located shots through V",
+      "ok": true,
+      "detail": "land 24 port 0 expected 24"
+    },
+    {
+      "name": "[1440] full time: score through V",
+      "ok": true,
+      "detail": "1-0"
+    },
+    {
+      "name": "[1440] full time: caption counts through V",
+      "ok": true,
+      "detail": "24 LOCATED SHOTS · EVENT LOCATIONS, NOT PLAYER TRACKING"
+    },
+    {
+      "name": "[1440] full time: timeline markers split at V",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] full time: all sourced events",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] reset: no future feed rows",
+      "ok": true,
+      "detail": "v=0 rows=0 future=0"
+    },
+    {
+      "name": "[1440] reset: no future pitch marks",
+      "ok": true,
+      "detail": "marks=0 future=0"
+    },
+    {
+      "name": "[1440] reset: feed = every event through V",
+      "ok": true,
+      "detail": "0/0"
+    },
+    {
+      "name": "[1440] reset: pitch = located shots through V",
+      "ok": true,
+      "detail": "land 0 port 0 expected 0"
+    },
+    {
+      "name": "[1440] reset: score through V",
+      "ok": true,
+      "detail": "0-0"
+    },
+    {
+      "name": "[1440] reset: caption counts through V",
+      "ok": true,
+      "detail": "0 LOCATED SHOTS THROUGH 0'"
+    },
+    {
+      "name": "[1440] reset: timeline markers split at V",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] reset: 0' / 0-0 / empty feed + pitch",
+      "ok": true,
+      "detail": "v=0"
+    },
+    {
+      "name": "[1440] 34' chip: no future feed rows",
+      "ok": true,
+      "detail": "v=34 rows=10 future=0"
+    },
+    {
+      "name": "[1440] 34' chip: no future pitch marks",
+      "ok": true,
+      "detail": "marks=9 future=0"
+    },
+    {
+      "name": "[1440] 34' chip: feed = every event through V",
+      "ok": true,
+      "detail": "10/10"
+    },
+    {
+      "name": "[1440] 34' chip: pitch = located shots through V",
+      "ok": true,
+      "detail": "land 9 port 0 expected 9"
+    },
+    {
+      "name": "[1440] 34' chip: score through V",
+      "ok": true,
+      "detail": "1-0"
+    },
+    {
+      "name": "[1440] 34' chip: caption counts through V",
+      "ok": true,
+      "detail": "9 LOCATED SHOTS THROUGH 34'"
+    },
+    {
+      "name": "[1440] 34' chip: timeline markers split at V",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] 34': clock, current event, current feed row",
+      "ok": true,
+      "detail": "34' | 34' Goal · Osaze Urhoghide · Dallas · Dallas 1–0 LAFC"
+    },
+    {
+      "name": "acceptance-34",
+      "ok": true,
+      "detail": "{\"clock\":\"34'\",\"future_feed\":0,\"future_pitch\":0,\"shot_count\":\"9 LOCATED SHOTS THROUGH 34'\",\"score\":{\"home\":1,\"away\":0},\"current\":\"34' Goal · Osaze Urhoghide · Dallas · Dallas 1–0 LAFC\",\"portraits\":{\"rendered\":39,\"real\":23,\"silhouettes\":16,\"distinct_players\":28,\"distinct_real\":19,\"broken\":0}}"
+    },
+    {
+      "name": "[1440] scrubber 60: no future feed rows",
+      "ok": true,
+      "detail": "v=60 rows=20 future=0"
+    },
+    {
+      "name": "[1440] scrubber 60: no future pitch marks",
+      "ok": true,
+      "detail": "marks=17 future=0"
+    },
+    {
+      "name": "[1440] scrubber 60: feed = every event through V",
+      "ok": true,
+      "detail": "20/20"
+    },
+    {
+      "name": "[1440] scrubber 60: pitch = located shots through V",
+      "ok": true,
+      "detail": "land 17 port 0 expected 17"
+    },
+    {
+      "name": "[1440] scrubber 60: score through V",
+      "ok": true,
+      "detail": "1-0"
+    },
+    {
+      "name": "[1440] scrubber 60: caption counts through V",
+      "ok": true,
+      "detail": "17 LOCATED SHOTS THROUGH 59'"
+    },
+    {
+      "name": "[1440] scrubber 60: timeline markers split at V",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] scrubber: clock follows",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] timeline click: no future feed rows",
+      "ok": true,
+      "detail": "v=23 rows=8 future=0"
+    },
+    {
+      "name": "[1440] timeline click: no future pitch marks",
+      "ok": true,
+      "detail": "marks=7 future=0"
+    },
+    {
+      "name": "[1440] timeline click: feed = every event through V",
+      "ok": true,
+      "detail": "8/8"
+    },
+    {
+      "name": "[1440] timeline click: pitch = located shots through V",
+      "ok": true,
+      "detail": "land 7 port 0 expected 7"
+    },
+    {
+      "name": "[1440] timeline click: score through V",
+      "ok": true,
+      "detail": "0-0"
+    },
+    {
+      "name": "[1440] timeline click: caption counts through V",
+      "ok": true,
+      "detail": "7 LOCATED SHOTS THROUGH 23'"
+    },
+    {
+      "name": "[1440] timeline click: timeline markers split at V",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] timeline click selects that event",
+      "ok": true,
+      "detail": "marker 23 -> v 23"
+    },
+    {
+      "name": "[1440] feed click: no future feed rows",
+      "ok": true,
+      "detail": "v=87 rows=33 future=0"
+    },
+    {
+      "name": "[1440] feed click: no future pitch marks",
+      "ok": true,
+      "detail": "marks=21 future=0"
+    },
+    {
+      "name": "[1440] feed click: feed = every event through V",
+      "ok": true,
+      "detail": "33/33"
+    },
+    {
+      "name": "[1440] feed click: pitch = located shots through V",
+      "ok": true,
+      "detail": "land 21 port 0 expected 21"
+    },
+    {
+      "name": "[1440] feed click: score through V",
+      "ok": true,
+      "detail": "1-0"
+    },
+    {
+      "name": "[1440] feed click: caption counts through V",
+      "ok": true,
+      "detail": "21 LOCATED SHOTS THROUGH 86'"
+    },
+    {
+      "name": "[1440] feed click: timeline markers split at V",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] feed click seeks to that event",
+      "ok": true,
+      "detail": "row 87 -> v 87"
+    },
+    {
+      "name": "[1440] pitch click: no future feed rows",
+      "ok": true,
+      "detail": "v=5 rows=1 future=0"
+    },
+    {
+      "name": "[1440] pitch click: no future pitch marks",
+      "ok": true,
+      "detail": "marks=1 future=0"
+    },
+    {
+      "name": "[1440] pitch click: feed = every event through V",
+      "ok": true,
+      "detail": "1/1"
+    },
+    {
+      "name": "[1440] pitch click: pitch = located shots through V",
+      "ok": true,
+      "detail": "land 1 port 0 expected 1"
+    },
+    {
+      "name": "[1440] pitch click: score through V",
+      "ok": true,
+      "detail": "0-0"
+    },
+    {
+      "name": "[1440] pitch click: caption counts through V",
+      "ok": true,
+      "detail": "1 LOCATED SHOT THROUGH 5'"
+    },
+    {
+      "name": "[1440] pitch click: timeline markers split at V",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] pitch click seeks to that shot",
+      "ok": true,
+      "detail": "mark 5 -> v 5"
+    },
+    {
+      "name": "[1440] autoplay (running): no future feed rows",
+      "ok": true,
+      "detail": "v=16 rows=4 future=0"
+    },
+    {
+      "name": "[1440] autoplay (running): no future pitch marks",
+      "ok": true,
+      "detail": "marks=4 future=0"
+    },
+    {
+      "name": "[1440] autoplay (running): feed = every event through V",
+      "ok": true,
+      "detail": "4/4"
+    },
+    {
+      "name": "[1440] autoplay (running): pitch = located shots through V",
+      "ok": true,
+      "detail": "land 4 port 0 expected 4"
+    },
+    {
+      "name": "[1440] autoplay (running): score through V",
+      "ok": true,
+      "detail": "0-0"
+    },
+    {
+      "name": "[1440] autoplay (running): caption counts through V",
+      "ok": true,
+      "detail": "4 LOCATED SHOTS THROUGH 16'"
+    },
+    {
+      "name": "[1440] autoplay (running): timeline markers split at V",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] autoplay paused: no future feed rows",
+      "ok": true,
+      "detail": "v=19 rows=6 future=0"
+    },
+    {
+      "name": "[1440] autoplay paused: no future pitch marks",
+      "ok": true,
+      "detail": "marks=6 future=0"
+    },
+    {
+      "name": "[1440] autoplay paused: feed = every event through V",
+      "ok": true,
+      "detail": "6/6"
+    },
+    {
+      "name": "[1440] autoplay paused: pitch = located shots through V",
+      "ok": true,
+      "detail": "land 6 port 0 expected 6"
+    },
+    {
+      "name": "[1440] autoplay paused: score through V",
+      "ok": true,
+      "detail": "0-0"
+    },
+    {
+      "name": "[1440] autoplay paused: caption counts through V",
+      "ok": true,
+      "detail": "6 LOCATED SHOTS THROUGH 19'"
+    },
+    {
+      "name": "[1440] autoplay paused: timeline markers split at V",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] play / speed / pause: advanced ~3 min/s then held",
+      "ok": true,
+      "detail": "10 -> 16 -> 19"
+    },
+    {
+      "name": "[1440] pause holds position",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] final: no future feed rows",
+      "ok": true,
+      "detail": "v=92 rows=38 future=0"
+    },
+    {
+      "name": "[1440] final: no future pitch marks",
+      "ok": true,
+      "detail": "marks=24 future=0"
+    },
+    {
+      "name": "[1440] final: feed = every event through V",
+      "ok": true,
+      "detail": "38/38"
+    },
+    {
+      "name": "[1440] final: pitch = located shots through V",
+      "ok": true,
+      "detail": "land 24 port 0 expected 24"
+    },
+    {
+      "name": "[1440] final: score through V",
+      "ok": true,
+      "detail": "1-0"
+    },
+    {
+      "name": "[1440] final: caption counts through V",
+      "ok": true,
+      "detail": "24 LOCATED SHOTS · EVENT LOCATIONS, NOT PLAYER TRACKING"
+    },
+    {
+      "name": "[1440] final: timeline markers split at V",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] final: all events visible",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[1440] no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] full time: no future feed rows",
+      "ok": true,
+      "detail": "v=92 rows=38 future=0"
+    },
+    {
+      "name": "[390] full time: no future pitch marks",
+      "ok": true,
+      "detail": "marks=24 future=0"
+    },
+    {
+      "name": "[390] full time: feed = every event through V",
+      "ok": true,
+      "detail": "38/38"
+    },
+    {
+      "name": "[390] full time: pitch = located shots through V",
+      "ok": true,
+      "detail": "land 0 port 24 expected 24"
+    },
+    {
+      "name": "[390] full time: score through V",
+      "ok": true,
+      "detail": "1-0"
+    },
+    {
+      "name": "[390] full time: caption counts through V",
+      "ok": true,
+      "detail": "24 LOCATED SHOTS · EVENT LOCATIONS, NOT PLAYER TRACKING"
+    },
+    {
+      "name": "[390] full time: timeline markers split at V",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] full time: all sourced events",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] reset: no future feed rows",
+      "ok": true,
+      "detail": "v=0 rows=0 future=0"
+    },
+    {
+      "name": "[390] reset: no future pitch marks",
+      "ok": true,
+      "detail": "marks=0 future=0"
+    },
+    {
+      "name": "[390] reset: feed = every event through V",
+      "ok": true,
+      "detail": "0/0"
+    },
+    {
+      "name": "[390] reset: pitch = located shots through V",
+      "ok": true,
+      "detail": "land 0 port 0 expected 0"
+    },
+    {
+      "name": "[390] reset: score through V",
+      "ok": true,
+      "detail": "0-0"
+    },
+    {
+      "name": "[390] reset: caption counts through V",
+      "ok": true,
+      "detail": "0 LOCATED SHOTS THROUGH 0'"
+    },
+    {
+      "name": "[390] reset: timeline markers split at V",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] reset: 0' / 0-0 / empty feed + pitch",
+      "ok": true,
+      "detail": "v=0"
+    },
+    {
+      "name": "[390] 34' chip: no future feed rows",
+      "ok": true,
+      "detail": "v=34 rows=10 future=0"
+    },
+    {
+      "name": "[390] 34' chip: no future pitch marks",
+      "ok": true,
+      "detail": "marks=9 future=0"
+    },
+    {
+      "name": "[390] 34' chip: feed = every event through V",
+      "ok": true,
+      "detail": "10/10"
+    },
+    {
+      "name": "[390] 34' chip: pitch = located shots through V",
+      "ok": true,
+      "detail": "land 0 port 9 expected 9"
+    },
+    {
+      "name": "[390] 34' chip: score through V",
+      "ok": true,
+      "detail": "1-0"
+    },
+    {
+      "name": "[390] 34' chip: caption counts through V",
+      "ok": true,
+      "detail": "9 LOCATED SHOTS THROUGH 34'"
+    },
+    {
+      "name": "[390] 34' chip: timeline markers split at V",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] 34': clock, current event, current feed row",
+      "ok": true,
+      "detail": "34' | 34' Goal · Osaze Urhoghide · Dallas · Dallas 1–0 LAFC"
+    },
+    {
+      "name": "[390] scrubber 60: no future feed rows",
+      "ok": true,
+      "detail": "v=60 rows=20 future=0"
+    },
+    {
+      "name": "[390] scrubber 60: no future pitch marks",
+      "ok": true,
+      "detail": "marks=17 future=0"
+    },
+    {
+      "name": "[390] scrubber 60: feed = every event through V",
+      "ok": true,
+      "detail": "20/20"
+    },
+    {
+      "name": "[390] scrubber 60: pitch = located shots through V",
+      "ok": true,
+      "detail": "land 0 port 17 expected 17"
+    },
+    {
+      "name": "[390] scrubber 60: score through V",
+      "ok": true,
+      "detail": "1-0"
+    },
+    {
+      "name": "[390] scrubber 60: caption counts through V",
+      "ok": true,
+      "detail": "17 LOCATED SHOTS THROUGH 59'"
+    },
+    {
+      "name": "[390] scrubber 60: timeline markers split at V",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] scrubber: clock follows",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] timeline click: no future feed rows",
+      "ok": true,
+      "detail": "v=23 rows=8 future=0"
+    },
+    {
+      "name": "[390] timeline click: no future pitch marks",
+      "ok": true,
+      "detail": "marks=7 future=0"
+    },
+    {
+      "name": "[390] timeline click: feed = every event through V",
+      "ok": true,
+      "detail": "8/8"
+    },
+    {
+      "name": "[390] timeline click: pitch = located shots through V",
+      "ok": true,
+      "detail": "land 0 port 7 expected 7"
+    },
+    {
+      "name": "[390] timeline click: score through V",
+      "ok": true,
+      "detail": "0-0"
+    },
+    {
+      "name": "[390] timeline click: caption counts through V",
+      "ok": true,
+      "detail": "7 LOCATED SHOTS THROUGH 23'"
+    },
+    {
+      "name": "[390] timeline click: timeline markers split at V",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] timeline click selects that event",
+      "ok": true,
+      "detail": "marker 23 -> v 23"
+    },
+    {
+      "name": "[390] feed click: no future feed rows",
+      "ok": true,
+      "detail": "v=87 rows=33 future=0"
+    },
+    {
+      "name": "[390] feed click: no future pitch marks",
+      "ok": true,
+      "detail": "marks=21 future=0"
+    },
+    {
+      "name": "[390] feed click: feed = every event through V",
+      "ok": true,
+      "detail": "33/33"
+    },
+    {
+      "name": "[390] feed click: pitch = located shots through V",
+      "ok": true,
+      "detail": "land 0 port 21 expected 21"
+    },
+    {
+      "name": "[390] feed click: score through V",
+      "ok": true,
+      "detail": "1-0"
+    },
+    {
+      "name": "[390] feed click: caption counts through V",
+      "ok": true,
+      "detail": "21 LOCATED SHOTS THROUGH 86'"
+    },
+    {
+      "name": "[390] feed click: timeline markers split at V",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] feed click seeks to that event",
+      "ok": true,
+      "detail": "row 87 -> v 87"
+    },
+    {
+      "name": "[390] pitch click: no future feed rows",
+      "ok": true,
+      "detail": "v=5 rows=1 future=0"
+    },
+    {
+      "name": "[390] pitch click: no future pitch marks",
+      "ok": true,
+      "detail": "marks=1 future=0"
+    },
+    {
+      "name": "[390] pitch click: feed = every event through V",
+      "ok": true,
+      "detail": "1/1"
+    },
+    {
+      "name": "[390] pitch click: pitch = located shots through V",
+      "ok": true,
+      "detail": "land 0 port 1 expected 1"
+    },
+    {
+      "name": "[390] pitch click: score through V",
+      "ok": true,
+      "detail": "0-0"
+    },
+    {
+      "name": "[390] pitch click: caption counts through V",
+      "ok": true,
+      "detail": "1 LOCATED SHOT THROUGH 5'"
+    },
+    {
+      "name": "[390] pitch click: timeline markers split at V",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] pitch click seeks to that shot",
+      "ok": true,
+      "detail": "mark 5 -> v 5"
+    },
+    {
+      "name": "[390] autoplay (running): no future feed rows",
+      "ok": true,
+      "detail": "v=16 rows=4 future=0"
+    },
+    {
+      "name": "[390] autoplay (running): no future pitch marks",
+      "ok": true,
+      "detail": "marks=4 future=0"
+    },
+    {
+      "name": "[390] autoplay (running): feed = every event through V",
+      "ok": true,
+      "detail": "4/4"
+    },
+    {
+      "name": "[390] autoplay (running): pitch = located shots through V",
+      "ok": true,
+      "detail": "land 0 port 4 expected 4"
+    },
+    {
+      "name": "[390] autoplay (running): score through V",
+      "ok": true,
+      "detail": "0-0"
+    },
+    {
+      "name": "[390] autoplay (running): caption counts through V",
+      "ok": true,
+      "detail": "4 LOCATED SHOTS THROUGH 16'"
+    },
+    {
+      "name": "[390] autoplay (running): timeline markers split at V",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] autoplay paused: no future feed rows",
+      "ok": true,
+      "detail": "v=19 rows=6 future=0"
+    },
+    {
+      "name": "[390] autoplay paused: no future pitch marks",
+      "ok": true,
+      "detail": "marks=6 future=0"
+    },
+    {
+      "name": "[390] autoplay paused: feed = every event through V",
+      "ok": true,
+      "detail": "6/6"
+    },
+    {
+      "name": "[390] autoplay paused: pitch = located shots through V",
+      "ok": true,
+      "detail": "land 0 port 6 expected 6"
+    },
+    {
+      "name": "[390] autoplay paused: score through V",
+      "ok": true,
+      "detail": "0-0"
+    },
+    {
+      "name": "[390] autoplay paused: caption counts through V",
+      "ok": true,
+      "detail": "6 LOCATED SHOTS THROUGH 19'"
+    },
+    {
+      "name": "[390] autoplay paused: timeline markers split at V",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] play / speed / pause: advanced ~3 min/s then held",
+      "ok": true,
+      "detail": "10 -> 16 -> 19"
+    },
+    {
+      "name": "[390] pause holds position",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] final: no future feed rows",
+      "ok": true,
+      "detail": "v=92 rows=38 future=0"
+    },
+    {
+      "name": "[390] final: no future pitch marks",
+      "ok": true,
+      "detail": "marks=24 future=0"
+    },
+    {
+      "name": "[390] final: feed = every event through V",
+      "ok": true,
+      "detail": "38/38"
+    },
+    {
+      "name": "[390] final: pitch = located shots through V",
+      "ok": true,
+      "detail": "land 0 port 24 expected 24"
+    },
+    {
+      "name": "[390] final: score through V",
+      "ok": true,
+      "detail": "1-0"
+    },
+    {
+      "name": "[390] final: caption counts through V",
+      "ok": true,
+      "detail": "24 LOCATED SHOTS · EVENT LOCATIONS, NOT PLAYER TRACKING"
+    },
+    {
+      "name": "[390] final: timeline markers split at V",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] final: all events visible",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "[390] no console errors",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}
