@@ -1089,6 +1089,9 @@ body.dr-open { overflow: hidden; }
 
 .art-body { font: 400 19px/1.75 var(--read); color: #1c2536; max-width: 700px; }
 .art-body p { margin: 0 0 22px; }
+.art-body .story-link { color: #0b4f8a; font-weight: 650; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: rgba(11,79,138,.35); }
+.art-body .story-link:hover { color: #082f52; text-decoration-color: currentColor; }
+.art-body .story-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 2px; }
 .art-body > p:first-of-type::first-letter { float: left; font: italic 900 68px/.85 var(--serif); color: var(--gold); margin: 8px 12px 0 0; }
 .art-body h2 { font: 800 27px/1.2 var(--serif); letter-spacing: -.01em; color: var(--ink); margin: 34px 0 12px; }
 @media (max-width: 880px) { .art-body { font-size: 17.5px; line-height: 1.7; } .art-body h2 { font-size: 23px; } .art-body > p:first-of-type::first-letter { font-size: 54px; } }
