@@ -32,11 +32,14 @@ export function storyParts(a) {
 }
 
 export function shareBar(url, title) {
-  const u = encodeURIComponent(url); const t = encodeURIComponent(title);
-  return `<div class="share-bar" data-share-url="${esc(url)}"><span class="share-h">SHARE</span>
+  const u = encodeURIComponent(url);
+  const shareText = `${title} — PropBetEdge Soccer`;
+  const t = encodeURIComponent(`${shareText}\n\n@PROPBETEDGE`);
+  return `<div class="share-bar" data-share-url="${esc(url)}" data-share-title="${esc(title)}" data-share-text="${esc(shareText)}"><span class="share-h">SHARE</span>
+    <button type="button" class="share-btn share-native" data-native-share>Share</button>
+    <a class="share-btn" href="https://x.com/intent/tweet?text=${t}&url=${u}" target="_blank" rel="noopener noreferrer nofollow" aria-label="Share on X">X</a>
+    <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=${u}" target="_blank" rel="noopener noreferrer nofollow" aria-label="Share on LinkedIn">LinkedIn</a>
     <button type="button" class="share-btn" data-copy>Copy link</button>
-    <a class="share-btn" href="https://x.com/intent/tweet?text=${t}&url=${u}" target="_blank" rel="noopener noreferrer nofollow">X</a>
-    <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=${u}" target="_blank" rel="noopener noreferrer nofollow">LinkedIn</a>
     <span class="sr-only" aria-live="polite" data-share-status></span></div>`;
 }
 
@@ -83,9 +86,40 @@ export function watchInArticle(a) {
   return `<section class="art-watch" aria-label="Watch"><p class="nrail-h">WATCH · ${v.video_type === 'highlights' ? 'OFFICIAL HIGHLIGHTS' : 'OFFICIAL VIDEO'}</p>${officialVideo(v, { feature: true })}</section>`;
 }
 
-function body(sections, watch = '') {
+function storyLinkables(entities = []) {
+  return entities
+    .filter(e => e?.href && e?.name && ['Person', 'SportsTeam', 'SportsOrganization'].includes(e.type))
+    .sort((a, b) => b.name.length - a.name.length);
+}
+
+export function linkStoryText(text, entities = [], seen = new Set()) {
+  const src = String(text ?? '');
+  const candidates = storyLinkables(entities);
+  let cursor = 0; let html = '';
+  while (cursor < src.length) {
+    let best = null;
+    for (const e of candidates) {
+      const key = e.href;
+      if (seen.has(key)) continue;
+      const at = src.indexOf(e.name, cursor);
+      if (at < 0) continue;
+      if (!best || at < best.at || (at === best.at && e.name.length > best.e.name.length)) best = { at, e };
+    }
+    if (!best) { html += esc(src.slice(cursor)); break; }
+    html += esc(src.slice(cursor, best.at));
+    html += `<a class="story-link" href="${esc(best.e.href)}" data-link>${esc(best.e.name)}</a>`;
+    seen.add(best.e.href);
+    cursor = best.at + best.e.name.length;
+  }
+  return html;
+}
+
+function body(sections, watch = '', entities = []) {
+  // Link only canonical entities already attached to the story, once each, so prose gains useful
+  // internal navigation without turning every repeated name into SEO-style link spam.
+  const seen = new Set();
   // the WATCH module sits between the first section and the rest of the story
-  const html = sections.map((s, i) => `${i > 0 || s.heading ? `<h2>${esc(s.heading)}</h2>` : ''}${join(s.paragraphs, p => `<p>${esc(p)}</p>`)}`);
+  const html = sections.map((s, i) => `${i > 0 || s.heading ? `<h2>${esc(s.heading)}</h2>` : ''}${join(s.paragraphs, p => `<p>${linkStoryText(p, entities, seen)}</p>`)}`);
   return watch && html.length > 1 ? `<div class="art-body">${html[0]}</div>${watch}<div class="art-body cont">${html.slice(1).join('')}</div>` : `<div class="art-body">${html.join('')}</div>${watch}`;
 }
 
@@ -134,7 +168,7 @@ export function renderArticle(env) {
       <div class="art-main">
         ${inThisStory(a.entities || [])}
         ${heroMedia(a)}
-        ${body(parts.sections, watchInArticle(a))}
+        ${body(parts.sections, watchInArticle(a), a.entities || [])}
         ${when(match, () => `<section class="art-mod" data-art-match="${esc(match.href.split('/').pop())}"><p class="nrail-h">MATCH INTELLIGENCE</p><div class="am-slot"><p class="muted">Loading match intelligence…</p></div></section>`)}
         ${when(people.length, () => `<section class="art-mod"><p class="nrail-h">PLAYER DNA</p><div class="kp-grid">${join(people.slice(0, 4), p => `<a class="kp-card" href="/players/${esc(p.slug)}" data-link data-player-slug="${esc(p.slug)}"${match ? ` data-match-id="${esc(match.href.split('/').pop())}"` : ''}>${portrait(p, 'md')}<span class="kp-id"><b>${esc(p.name)}</b><small>Open Player DNA</small></span></a>`)}</div></section>`)}
         ${related(a)}
@@ -149,6 +183,16 @@ export function renderArticle(env) {
 export async function mountArticle(root, env) {
   mountOfficialVideos(root);
   const bar = root.querySelector('[data-share-url]');
+  bar?.querySelector('[data-native-share]')?.addEventListener('click', async e => {
+    const btn = e.currentTarget; const st = bar.querySelector('[data-share-status]');
+    const payload = { title: bar.dataset.shareTitle || document.title, text: bar.dataset.shareText || '', url: bar.dataset.shareUrl };
+    if (!navigator.share) {
+      try { await navigator.clipboard.writeText(payload.url); btn.textContent = 'Copied'; if (st) st.textContent = 'Link copied'; } catch { btn.textContent = 'Copy failed'; }
+      setTimeout(() => { btn.textContent = 'Share'; }, 2200);
+      return;
+    }
+    try { await navigator.share(payload); if (st) st.textContent = 'Share sheet opened'; } catch (err) { if (err?.name !== 'AbortError' && st) st.textContent = 'Share cancelled'; }
+  });
   bar?.querySelector('[data-copy]')?.addEventListener('click', async e => {
     const url = bar.dataset.shareUrl; const btn = e.currentTarget; const st = bar.querySelector('[data-share-status]');
     try { await navigator.clipboard.writeText(url); btn.textContent = 'Copied'; if (st) st.textContent = 'Link copied'; } catch { btn.textContent = 'Copy failed'; }
