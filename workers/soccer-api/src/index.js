@@ -13,26 +13,26 @@ import { handlePro, PRO_HEADERS } from './pro/routes.js';
 const LANES = [{ lane: 'openligadb_bl1_current', priority: true }];
 
 const ROUTES = [
-  [/^\/v1\/health$/, async (s, _m, _q, env) => R.health(s, { lanes: await Promise.all(LANES.map(async l => ({ ...l, ...((env.SOCCER_STATE && await env.SOCCER_STATE.get(`lane:${l.lane}`, 'json')) || {}) }))) }), 0],
-  [/^\/v1\/competitions$/, s => R.competitions(s), 300],
-  [/^\/v1\/coverage$/, s => R.coverage(s), 3600],
-  [/^\/v1\/data-health$/, (s, _m, _q, env) => R.dataHealth(s, env), 120],
-  [/^\/v1\/sitemap\/(competitions|teams|players|matches)$/, (s, m) => R.sitemap(s, m[1]), 3600],
-  [/^\/v1\/sitemap\/news$/, s => R.sitemap(s, 'news'), 300],
-  [/^\/v1\/competitions\/([a-z0-9-]+)$/, (s, m) => R.competition(s, m[1]), 300],
-  [/^\/v1\/matches$/, (s, _m, q) => R.matches(s, q), 60],
-  [/^\/v1\/matches\/([0-9a-f-]{36})$/, (s, m) => R.match(s, m[1]), 60],
-  [/^\/v1\/matches\/([0-9a-f-]{36})\/cast$/, (s, m, _q, env) => C.cast(s, m[1], env), 15],
-  [/^\/v1\/live$/, (s, _m, _q, env) => C.live(s, env), 15],
-  [/^\/v1\/players$/, (s, _m, q, env) => C.players(s, q, env), 600],
-  [/^\/v1\/teams\/([a-z0-9-]+)$/, (s, m, _q, env) => R.team(s, m[1], env), 120],
-  [/^\/v1\/teams\/([a-z0-9-]+)\/dna$/, (s, m, q, env) => R.teamDnaRoute(s, m[1], q, env), 3600],
-  [/^\/v1\/players\/([a-z0-9-]+)\/dna$/, (s, m, q, env) => R.playerDnaRoute(s, m[1], q, env), 3600],
-  [/^\/v1\/players\/([a-z0-9-]+)$/, (s, m) => R.player(s, m[1]), 600],
-  [/^\/v1\/table$/, (s, _m, q) => R.table(s, q), 60],
-  [/^\/v1\/news$/, (s, _m, q) => R.news(s, q), 60],
-  [/^\/v1\/videos$/, (s, _m, q) => R.videos(s, q), 300],
-  [/^\/v1\/news\/([a-z0-9-]+)$/, (s, m) => R.article(s, m[1]), 120],
+  [/^\/v1\/health$/, async (s, _m, _q, env) => R.health(s, { lanes: await Promise.all(LANES.map(async l => ({ ...l, ...((env.SOCCER_STATE && await env.SOCCER_STATE.get(`lane:${l.lane}`, 'json')) || {}) }))) }), 0, []],
+  [/^\/v1\/competitions$/, s => R.competitions(s), 600, []],
+  [/^\/v1\/coverage$/, s => R.coverage(s), 3600, []],
+  [/^\/v1\/data-health$/, (s, _m, _q, env) => R.dataHealth(s, env), 300, []],
+  [/^\/v1\/sitemap\/(competitions|teams|players|matches)$/, (s, m) => R.sitemap(s, m[1]), 3600, []],
+  [/^\/v1\/sitemap\/news$/, s => R.sitemap(s, 'news'), 300, []],
+  [/^\/v1\/competitions\/([a-z0-9-]+)$/, (s, m) => R.competition(s, m[1]), 600, []],
+  [/^\/v1\/matches$/, (s, _m, q) => R.matches(s, q), 120, ['competition', 'season', 'status', 'date', 'from', 'to', 'order', 'team', 'limit']],
+  [/^\/v1\/matches\/([0-9a-f-]{36})$/, (s, m) => R.match(s, m[1]), 120, []],
+  [/^\/v1\/matches\/([0-9a-f-]{36})\/cast$/, (s, m, _q, env) => C.cast(s, m[1], env), 60, []],
+  [/^\/v1\/live$/, (s, _m, _q, env) => C.live(s, env), 60, []],
+  [/^\/v1\/players$/, (s, _m, q, env) => C.players(s, q, env), 600, ['competition', 'season', 'sort', 'role', 'q', 'team', 'limit', 'offset']],
+  [/^\/v1\/teams\/([a-z0-9-]+)$/, (s, m, _q, env) => R.team(s, m[1], env), 300, []],
+  [/^\/v1\/teams\/([a-z0-9-]+)\/dna$/, (s, m, q, env) => R.teamDnaRoute(s, m[1], q, env), 3600, ['as_of']],
+  [/^\/v1\/players\/([a-z0-9-]+)\/dna$/, (s, m, q, env) => R.playerDnaRoute(s, m[1], q, env), 3600, ['as_of']],
+  [/^\/v1\/players\/([a-z0-9-]+)$/, (s, m) => R.player(s, m[1]), 600, []],
+  [/^\/v1\/table$/, (s, _m, q) => R.table(s, q), 300, ['competition', 'season', 'group', 'expand']],
+  [/^\/v1\/news$/, (s, _m, q) => R.news(s, q), 300, ['desk', 'team', 'player', 'match', 'limit']],
+  [/^\/v1\/videos$/, (s, _m, q) => R.videos(s, q), 300, ['desk', 'limit']],
+  [/^\/v1\/news\/([a-z0-9-]+)$/, (s, m) => R.article(s, m[1]), 600, []],
 ];
 
 const ALLOWED_ORIGIN = /^https:\/\/([a-z0-9-]+\.)*propbetedge\.ai$/;
@@ -51,6 +51,7 @@ export default {
     if (req.method !== 'GET') return respond({ error: 'method not allowed' }, 405, 0, origin);
     const media = url.pathname.match(/^\/v1\/media\/([0-9a-f]{64})$/);
     if (media) {
+      if ([...url.searchParams].length) return respond({ error: 'unknown query parameter' }, 400, 0, origin);
       const store = storeFromEnv(env);
       try {
         const o = await R.mediaObject(store, env.SOCCER_SOURCE, media[1]);
@@ -76,9 +77,17 @@ export default {
     }
     const hit = ROUTES.map(([re, fn, ttl]) => [url.pathname.match(re), fn, ttl]).find(([m]) => m);
     if (!hit) return respond({ error: 'not found' }, 404, 0, origin);
-    const [m, fn, ttl] = hit;
+    const [m, fn, ttl, allowedQuery = []] = hit;
+    const allowed = new Set(allowedQuery);
+    const seen = new Set();
+    for (const [k, v] of url.searchParams) {
+      if (!allowed.has(k) || seen.has(k) || v.length > 64) return respond({ error: 'unknown or invalid query parameter' }, 400, 0, origin);
+      seen.add(k);
+    }
     const cache = caches.default;
-    const cacheKey = new Request(`${url.origin}${url.pathname}?${[...url.searchParams].sort().map(([k, v]) => `${k}=${v}`).join('&')}`);
+    const canonical = new URLSearchParams(url.searchParams); canonical.sort();
+    const qs = canonical.toString();
+    const cacheKey = new Request(`${url.origin}${url.pathname}${qs ? `?${qs}` : ''}`);
     if (ttl) { const c = await cache.match(cacheKey); if (c) { const r = new Response(c.body, c); r.headers.set('x-cache', 'HIT'); return r; } }
     const store = storeFromEnv(env);
     if (!store) return respond({ error: 'store not configured' }, 503, 0, origin);
