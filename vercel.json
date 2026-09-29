@@ -146,6 +146,10 @@
       "source": "/api/soccer/media/:sha",
       "headers": [
         {
+          "key": "x-vercel-enable-rewrite-caching",
+          "value": "1"
+        },
+        {
           "key": "CDN-Cache-Control",
           "value": "max-age=31536000"
         }
@@ -154,6 +158,10 @@
     {
       "source": "/api/soccer/matches/:id/cast",
       "headers": [
+        {
+          "key": "x-vercel-enable-rewrite-caching",
+          "value": "1"
+        },
         {
           "key": "CDN-Cache-Control",
           "value": "max-age=60"
@@ -164,6 +172,10 @@
       "source": "/api/soccer/live",
       "headers": [
         {
+          "key": "x-vercel-enable-rewrite-caching",
+          "value": "1"
+        },
+        {
           "key": "CDN-Cache-Control",
           "value": "max-age=60"
         }
@@ -172,6 +184,10 @@
     {
       "source": "/api/soccer/news",
       "headers": [
+        {
+          "key": "x-vercel-enable-rewrite-caching",
+          "value": "1"
+        },
         {
           "key": "CDN-Cache-Control",
           "value": "max-age=300"
