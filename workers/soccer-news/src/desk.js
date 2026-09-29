@@ -126,35 +126,45 @@ export function storyBrief(p) {
 export async function callDesk(env, packet, draft, { fetcher = fetch, feedback = null, model = env?.NEWS_DESK_MODEL || DESK_MODEL } = {}) {
   const user = `${storyBrief(packet)}FROZEN FACT PACKET (the only source of truth):\n${JSON.stringify(packet)}\n\nMECHANICAL DRAFT (evidence only; do not copy its structure or wording):\n${JSON.stringify({ headline: draft.headline, dek: draft.dek, sections: draft.sections.filter(s => s.key !== 'method') })}${draft.visual_menu?.length ? `\n\nDATA VISUALS (built by code from the same packet and published with the story; you cannot change them): ${JSON.stringify(draft.visual_menu)}\nIn "emphasis", list up to three of these ids, most important first: the visuals that best prove why this story matters. Use only ids from this list; return [] if none fits.` : '\n\nThere are no data visuals for this story: return "emphasis": [].'}${feedback ? `\n\nCORRECTIVE REWRITE REQUIRED:\nThe previous version was rejected by the deterministic publication gates for exactly these reasons:\n${feedback}\nRewrite the entire JSON response from the SAME FACT PACKET. Fix every failure without adding any fact, number, name, date, URL, quote or outside knowledge. The gates will run again unchanged.` : ''}`;
   // No tools, no retrieval, not stored: the packet in this request is all the model sees.
-  const res = await fetcher(DESK_API, {
+  // Telemetry: every exit (success or failure) carries the API's own response id, model and usage, plus a status
+  // (completed | failed | incomplete | refused | timeout | error) and error code for the usage ledger.
+  const meta = { response_id: null, model, usage: null, status: 'completed', error_code: null };
+  const fail = (msg, status, code) => { const e = new Error(sanitizeDeskError(msg, env)); e.meta = { ...meta, status, error_code: code }; return e; };
+  let res;
+  try { res = await fetcher(DESK_API, {
     method: 'POST',
     headers: { 'content-type': 'application/json', authorization: `Bearer ${env.OPENAI_API_KEY}` },
     // 6000 output tokens (was 18000): a 450-1100 word story plus reasoning fits well inside it; an incomplete response
     // fails closed (the story holds). NEWS_DESK_MAX_OUTPUT_TOKENS overrides.
     body: JSON.stringify({ model, store: false, reasoning: { effort: 'medium' }, instructions: SYSTEM, input: user, max_output_tokens: Math.max(1000, Math.min(18000, Number(env?.NEWS_DESK_MAX_OUTPUT_TOKENS ?? 6000))), text: { format: { type: 'json_schema', name: 'soccer_editorial_article', strict: true, schema: ARTICLE_SCHEMA } } }),
     signal: AbortSignal.timeout(120000),
-  });
-  const clean = s => sanitizeDeskError(s, env);
+  }); } catch (e) {
+    const timeout = e?.name === 'TimeoutError' || e?.name === 'AbortError' || /timed? ?out|abort/i.test(String(e?.message));
+    throw fail(`desk ${timeout ? 'timeout' : 'network error'}: ${e?.message || e}`, timeout ? 'timeout' : 'error', timeout ? 'timeout' : 'network_error');
+  }
   if (!res.ok) {
     // The API's own error type + message (never headers or keys), so a hold explains itself.
-    let why = ''; try { const e = await res.json(); why = `${e?.error?.type || e?.error?.code || ''} ${e?.error?.message || ''}`.trim(); } catch { /* no body */ }
-    throw new Error(clean(`desk HTTP ${res.status}${why ? `: ${why}` : ''}`));
+    let why = ''; let code = `http_${res.status}`; try { const e = await res.json(); why = `${e?.error?.type || e?.error?.code || ''} ${e?.error?.message || ''}`.trim(); if (e?.error?.code) code = `http_${res.status}:${e.error.code}`; } catch { /* no body */ }
+    throw fail(`desk HTTP ${res.status}${why ? `: ${why}` : ''}`, 'failed', code);
   }
-  let j; try { j = await res.json(); } catch { throw new Error('desk invalid_response_body'); }
-  if (j?.status === 'incomplete') throw new Error(clean(`desk incomplete: ${j.incomplete_details?.reason || 'unknown'}`));
-  if (j?.status === 'failed') throw new Error(clean(`desk failed: ${j.error?.code || ''} ${j.error?.message || ''}`.trim()));
-  if (j?.status && j.status !== 'completed') throw new Error(clean(`desk status ${j.status}`));
+  let j; try { j = await res.json(); } catch { throw fail('desk invalid_response_body', 'error', 'invalid_response_body'); }
+  // From here the API answered: record its own id, model and usage (never estimated).
+  meta.response_id = j?.id || null; meta.model = j?.model || model;
+  meta.usage = { input_tokens: j?.usage?.input_tokens ?? null, cached_input_tokens: j?.usage?.input_tokens_details?.cached_tokens ?? null, output_tokens: j?.usage?.output_tokens ?? null, reasoning_tokens: j?.usage?.output_tokens_details?.reasoning_tokens ?? null };
+  if (j?.status === 'incomplete') throw fail(`desk incomplete: ${j.incomplete_details?.reason || 'unknown'}`, 'incomplete', j.incomplete_details?.reason || 'incomplete');
+  if (j?.status === 'failed') throw fail(`desk failed: ${j.error?.code || ''} ${j.error?.message || ''}`.trim(), 'failed', j.error?.code || 'failed');
+  if (j?.status && j.status !== 'completed') throw fail(`desk status ${j.status}`, 'error', `status_${j.status}`);
   const refusals = []; const parts = [];
   for (const item of j?.output || []) for (const c of item?.content || []) {
     if (c?.type === 'refusal') refusals.push(String(c.refusal || ''));
     if (c?.type === 'output_text' && c.text) parts.push(String(c.text));
   }
-  if (refusals.length) throw new Error(clean(`desk refusal: ${refusals.join(' ')}`));
+  if (refusals.length) throw fail(`desk refusal: ${refusals.join(' ')}`, 'refused', 'refusal');
   const txt = parts.join('').trim();
-  if (!txt) throw new Error('desk empty_output');
-  let out; try { out = JSON.parse(txt); } catch { throw new Error('desk invalid_json'); }
-  if (!out?.headline || !Array.isArray(out.sections)) throw new Error('desk returned no article');
-  return { usage: { input_tokens: j?.usage?.input_tokens || 0, output_tokens: j?.usage?.output_tokens || 0 }, headline: String(out.headline).trim(), dek: String(out.dek || '').trim(), emphasis: Array.isArray(out.emphasis) ? out.emphasis.map(String).slice(0, 3) : [], sections: out.sections.map((s, i) => ({ key: `s${i + 1}`, heading: String(s.heading || '').trim(), paragraphs: (s.paragraphs || []).map(p => String(p).trim()).filter(Boolean) })).filter(s => s.paragraphs.length) };
+  if (!txt) throw fail('desk empty_output', 'completed', 'empty_output');
+  let out; try { out = JSON.parse(txt); } catch { throw fail('desk invalid_json', 'completed', 'invalid_json'); }
+  if (!out?.headline || !Array.isArray(out.sections)) throw fail('desk returned no article', 'completed', 'no_article');
+  return { meta, usage: meta.usage, headline: String(out.headline).trim(), dek: String(out.dek || '').trim(), emphasis: Array.isArray(out.emphasis) ? out.emphasis.map(String).slice(0, 3) : [], sections: out.sections.map((s, i) => ({ key: `s${i + 1}`, heading: String(s.heading || '').trim(), paragraphs: (s.paragraphs || []).map(p => String(p).trim()).filter(Boolean) })).filter(s => s.paragraphs.length) };
 }
 
 // The public article: the desk's story; the draft's method + attributions become the disclosure.
@@ -490,21 +500,23 @@ export function judge(article, packet) {
 // policy instead of buying a corrective second call. Admin re-edit / canary may request the repair (attempts: 2).
 export const deskAttempts = (env) => Math.max(1, Math.min(2, Number(env?.NEWS_DESK_ATTEMPTS ?? 1)));
 
-export async function runDesk(draft, packet, env, { fetcher = fetch, attempts = deskAttempts(env), trigger = 'new_story', storyId = null } = {}) {
+export async function runDesk(draft, packet, env, { fetcher = fetch, attempts = deskAttempts(env), trigger = 'new_story', storyId = null, articleId = null } = {}) {
   if (!deskAvailable(env)) return { held: ['editorial_desk_unavailable'] };
   // Emergency ceiling (openai-cost.js): past today's limit no paid call is made; the story holds.
   if (await overCeiling(env).catch(() => false)) return { held: ['editorial_daily_budget_reached'] };
   let feedback = null; let last = null;
-  const id = storyId || packet?.hash || packet?.event?.event_id || null;
   const model = env?.NEWS_DESK_MODEL || DESK_MODEL;
   for (let attempt = 1; attempt <= attempts; attempt++) {
     let edited;
-    const t = attempt > 1 ? 'repair' : trigger;
+    // ONE usage-ledger row per request (openai-cost.js), under the parent trigger; attempt 2 is a repair.
+    const started = new Date().toISOString();
+    const rec = (m, errorCode) => recordCall(env, { trigger, attempt, started_at: started, finished_at: new Date().toISOString(), slug: draft?.slug || storyId || null, article_id: articleId, news_event_id: packet?.event?.event_id || null,
+      model: m?.model || model, response_id: m?.response_id || null, ...(m?.usage || {}), status: m?.status || 'error', error_code: errorCode ?? m?.error_code ?? null, desk_version: DESK_VERSION }).catch(err => console.error('openai usage record failed', String(err?.message || err).slice(0, 200)));
     try { edited = await callDesk(env, packet, draft, { fetcher, feedback }); } catch (e) {
-      await recordCall(env?.SOCCER_STATE, { id, model, trigger: t, attempt, input_tokens: 0, output_tokens: 0, error: sanitizeDeskError(e?.message, env).slice(0, 120) }).catch(() => {});
+      await rec(e?.meta, e?.meta ? undefined : 'no_response');
       last = { held: [`editorial_desk_error: ${sanitizeDeskError(e?.message, env).slice(0, 120)}`] }; continue;
     }
-    await recordCall(env?.SOCCER_STATE, { id, model, trigger: t, attempt, input_tokens: edited.usage?.input_tokens || 0, output_tokens: edited.usage?.output_tokens || 0, error: null }).catch(() => {});
+    await rec(edited.meta);
     const article = deskArticle(edited, draft);
     const j = judge(article, packet);
     if (j.pass) return { article, judgement: { ...j, attempt, model: env?.NEWS_DESK_MODEL || DESK_MODEL } };

@@ -8,7 +8,7 @@ import { storeFromEnv } from '../../shared/postgrest.js';
 import { runNews, reeditArticle } from './pipeline.js';
 import { deskAvailable, deskRequired, DESK_VERSION, QUALITY_VERSION } from './desk.js';
 import { PACKET_V3, DEPTH_VERSION } from './depth.js';
-import { readCallLog, costReport } from './openai-cost.js';
+import { callsForDay, costReport, WORKER_VERSION } from './openai-cost.js';
 
 // The only production schedule. The temporary backlog-migration cron (*/10) is retired: there is no automatic OpenAI
 // backlog processing. Re-edits are manual only (POST /v1/admin/reedit, scripts/news/reedit-backlog.mjs).
@@ -41,7 +41,7 @@ export default {
       const last = env.SOCCER_STATE ? await env.SOCCER_STATE.get('news:last_run', 'json') : null;
       const fresh = last && Date.now() - Date.parse(last.at) < 2 * 3600e3;
       const tick = env.SOCCER_STATE ? await env.SOCCER_STATE.get('news:last_tick', 'json') : null;
-      return json({ ok: !!fresh, version: 'soccer-news/1.4.0', news_enabled: env.NEWS_ENABLED === 'on', last_tick: tick, desk: { version: DESK_VERSION, quality: QUALITY_VERSION, packet: PACKET_V3, depth: DEPTH_VERSION, required: deskRequired(env), available: deskAvailable(env) }, last_run: last }, fresh ? 200 : 503);
+      return json({ ok: !!fresh, version: WORKER_VERSION, news_enabled: env.NEWS_ENABLED === 'on', last_tick: tick, desk: { version: DESK_VERSION, quality: QUALITY_VERSION, packet: PACKET_V3, depth: DEPTH_VERSION, required: deskRequired(env), available: deskAvailable(env) }, last_run: last }, fresh ? 200 : 503);
     }
     if (url.pathname === '/v1/run' && req.method === 'POST') {
       if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);
@@ -67,7 +67,7 @@ export default {
     if (url.pathname === '/v1/admin/openai-cost') {
       if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);
       const day = /^\d{4}-\d{2}-\d{2}$/.test(url.searchParams.get('date') || '') ? url.searchParams.get('date') : new Date().toISOString().slice(0, 10);
-      return json(costReport(await readCallLog(env.SOCCER_STATE, `${day}T00:00:00Z`), day));
+      return json(costReport(await callsForDay(env, day), day)); // durable ledger (KV fallback)
     }
     return json({ error: 'not found' }, 404);
   },

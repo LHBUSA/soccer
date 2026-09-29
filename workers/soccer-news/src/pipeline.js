@@ -61,7 +61,7 @@ export async function runNews(store, { now = Date.now(), env = {}, windowDays = 
       const packet = await buildPacket(store, S, cand);
       const vis = await articleVisuals(store, packet, now);
       const draft = withVisualMenu(compose(packet), vis);
-      const r = await editorialStage(draft, packet, env);
+      const r = await editorialStage(draft, packet, env, { trigger: 'new_story', articleId: uuidv5(`article:${packet.hash}`) });
       const { article, status, holdReasons, gates, editorial } = r;
       out[status] += 1;
       for (const f of holdReasons) out.holds[f] = (out.holds[f] || 0) + 1;
@@ -108,11 +108,11 @@ export const withVisualMenu = (draft, vis) => ({ ...draft, visual_menu: (vis?.vi
 
 // Fact gates on the draft (evidence integrity), then the desk. Desk required (default): the
 // public story is the desk's or nothing. Desk off (NEWS_DESK=off): legacy behaviour.
-export async function editorialStage(draft, packet, env, { fetcher, attempts, trigger, storyId } = {}) {
+export async function editorialStage(draft, packet, env, { fetcher, attempts, trigger, storyId, articleId } = {}) {
   const gates = runGates2(draft, packet);
   if (!gates.pass) return { article: draft, status: 'held', holdReasons: gates.failed, gates, editorial: null };
   if (deskRequired(env)) {
-    const d = await runDesk(draft, packet, env, { ...(fetcher ? { fetcher } : {}), ...(attempts ? { attempts } : {}), ...(trigger ? { trigger } : {}), ...(storyId ? { storyId } : {}) });
+    const d = await runDesk(draft, packet, env, { ...(fetcher ? { fetcher } : {}), ...(attempts ? { attempts } : {}), ...(trigger ? { trigger } : {}), ...(storyId ? { storyId } : {}), ...(articleId ? { articleId } : {}) });
     if (d.article) return { article: d.article, status: 'published', holdReasons: [], gates, editorial: d.judgement };
     return { article: d.rejected ? { ...d.rejected } : draft, status: 'held', holdReasons: d.held, gates, editorial: d.judgement || { version: DESK_VERSION, held: d.held } };
   }
@@ -146,7 +146,7 @@ export async function reeditArticle(store, slug, env, { dry = false, holdOnFail 
   const { packet, path } = await richerPacket(store, ev.packet, { now });
   const vis = await articleVisuals(store, packet, now);
   const draft = withVisualMenu(compose(packet), vis);
-  const r = await editorialStage(draft, packet, { ...env, NEWS_DESK: 'on' }, { fetcher, attempts, trigger, storyId: slug });
+  const r = await editorialStage(draft, packet, { ...env, NEWS_DESK: 'on' }, { fetcher, attempts, trigger, storyId: slug, articleId: a.id });
   const res = { slug, story_class: a.story_class, packet_path: path, packet_version: packet.version, before: { status: a.status, composer: a.composer, headline: a.headline }, result: r.status, holds: r.holdReasons, headline: r.article.headline };
   if (dry) return { ...res, article: r.article, judgement: r.editorial, packet, visuals: vis };
   if (r.status === 'published') {

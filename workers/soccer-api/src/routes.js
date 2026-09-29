@@ -7,6 +7,7 @@ import { articleVideos, videosFeed } from './video.js';
 import { computeTable, TIEBREAKS } from '../../soccer-news/src/packet.js';
 import { selectSubject, subjectMedia } from '../../shared/news-subject.js';
 import { visualIntact } from '../../soccer-news/src/visuals.js';
+import { costReport } from '../../soccer-news/src/openai-cost.js';
 import { toMatchFrame } from '../../shared/coords.js';
 import { displayMinute } from '../../shared/clock.js';
 import { COVERAGE, envelope, maxTs } from './envelope.js';
@@ -924,12 +925,17 @@ export async function newsroomHealth(store, last, lastTick, now = Date.now()) {
     });
   }
   const lastAt = last?.at || null;
+  // "How much did Soccer OpenAI cost today and why?": the durable per-request ledger (soccer_news_openai_usage).
+  const day = new Date(now).toISOString().slice(0, 10);
+  const calls = await store.select('soccer_news_openai_usage', { columns: ['slug', 'news_event_id', 'trigger', 'attempt', 'input_tokens', 'cached_input_tokens', 'output_tokens', 'reasoning_tokens', 'estimated_usd', 'status'], gte: { occurred_at: `${day}T00:00:00Z` } }).catch(() => null);
+  const openaiToday = calls ? (({ totals, by_trigger }) => ({ day, ...totals, stories_generated: totals.stories, breakdown: Object.fromEntries(Object.entries(by_trigger).map(([k, v]) => [k, { calls: v.calls, input_tokens: v.input_tokens, cached_input_tokens: v.cached_input_tokens, output_tokens: v.output_tokens, estimated_usd: v.estimated_usd }])), source: 'soccer_news_openai_usage (one row per OpenAI request; estimated_usd from the API usage fields)' }))(costReport(calls, day)) : { day, unavailable: 'usage ledger not readable' };
   return {
     // fresh = a successful run within 45 min (cron every 30). last_tick tells WHY it is not fresh:
     // no recent tick = cron not firing; outcome 'disabled' = NEWS_ENABLED off; 'failed' = the run errors.
     cron: { schedule: '7,37 * * * *', last_successful_run_at: lastAt, minutes_since: lastAt ? Math.round((now - Date.parse(lastAt)) / 6e4) : null, fresh: !!lastAt && now - Date.parse(lastAt) < 45 * 60e3, last_tick_at: lastTick?.at || null, last_tick_outcome: lastTick?.outcome || null },
     news_enabled: lastTick ? lastTick.news_enabled : last?.news_enabled ?? null,
     editorial_desk: last?.desk ? { available: !!last.desk.available, required: !!last.desk.required, version: last.desk.version } : null,
+    openai_today: openaiToday,
     published_24h: pubs.filter(p => now - Date.parse(p.published_at) <= 24 * 3600e3).length,
     published_72h: pubs.length,
     newest_published_at: pubs.map(p => p.published_at).sort().pop() || (await store.select('soccer_articles', { columns: ['published_at'], eq: { status: 'published' }, order: 'published_at.desc', limit: 1 }))[0]?.published_at || null,

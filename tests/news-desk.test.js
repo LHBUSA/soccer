@@ -241,10 +241,33 @@ test('cost: automatic desk pays for ONE attempt, 6000 output tokens, and records
   assert.equal(r.status, 'held'); assert.equal(bodies.length, 1, 'no automatic second paid attempt');
   assert.equal(bodies[0].max_output_tokens, 6000);
   const log = JSON.parse([...kv.values()][0]);
-  assert.equal(log.length, 1); assert.equal(log[0].worker, 'soccer-news'); assert.equal(log[0].trigger, 'new_story'); assert.equal(log[0].attempt, 1);
+  assert.equal(log.length, 1); assert.equal(log[0].worker, 'soccer-news'); assert.equal(log[0].trigger, 'cron_new_story'); assert.equal(log[0].attempt, 1); assert.equal(log[0].status, 'completed'); assert.equal(log[0].desk_version, 'soccer-desk/2.1.1');
   // a provider error is not retried either
   let n = 0; await runDesk(draft, B, { ...KEY, SOCCER_STATE }, { fetcher: async () => { n++; throw new Error('network down'); } });
   assert.equal(n, 1);
+});
+
+test('usage ledger: one row per request with the API usage; failures and billed incomplete responses are recorded', async () => {
+  const { ledgerRow, costReport } = await import('../workers/soccer-news/src/openai-cost.js');
+  const kv = new Map(); const SOCCER_STATE = { get: async (k) => (kv.has(k) ? JSON.parse(kv.get(k)) : null), put: async (k, v) => { kv.set(k, v); } };
+  const env = { ...KEY, SOCCER_STATE };
+  const usage = { input_tokens: 9000, input_tokens_details: { cached_tokens: 3000 }, output_tokens: 2400, output_tokens_details: { reasoning_tokens: 1100 } };
+  // 1. completed call: the real usage fields are kept
+  await runDesk(draft, B, env, { fetcher: async () => ({ ok: true, json: async () => ({ id: 'resp_1', model: 'gpt-5.6-sol', status: 'completed', usage, output: [{ content: [{ type: 'output_text', text: JSON.stringify(GOOD) }] }] }) }), trigger: 'manual_reedit', storyId: 'story-a' });
+  // 2. an incomplete response is billed: its usage is recorded with status incomplete
+  await runDesk(draft, B, env, { fetcher: async () => ({ ok: true, json: async () => ({ id: 'resp_2', model: 'gpt-5.6-sol', status: 'incomplete', incomplete_details: { reason: 'max_output_tokens' }, usage }) }), trigger: 'canary', storyId: 'story-b' });
+  // 3. no response at all: recorded, no tokens invented
+  await runDesk(draft, B, env, { fetcher: async () => { const e = new Error('The operation was aborted due to timeout'); e.name = 'TimeoutError'; throw e; }, storyId: 'story-c' });
+  const log = JSON.parse([...kv.values()][0]);
+  assert.equal(log.length, 3, 'one row per request');
+  assert.deepEqual([log[0].trigger, log[0].status, log[0].response_id, log[0].input_tokens, log[0].cached_input_tokens, log[0].output_tokens, log[0].reasoning_tokens], ['admin_reedit', 'completed', 'resp_1', 9000, 3000, 2400, 1100]);
+  assert.ok(log[0].estimated_usd > 0 && log[0].finished_at >= log[0].occurred_at);
+  assert.deepEqual([log[1].trigger, log[1].status, log[1].error_code, log[1].output_tokens], ['canary', 'incomplete', 'max_output_tokens', 2400]);
+  assert.deepEqual([log[2].trigger, log[2].status, log[2].error_code, log[2].input_tokens, log[2].estimated_usd], ['cron_new_story', 'timeout', 'timeout', null, null]);
+  assert.throws(() => ledgerRow({ trigger: 'backlog_cron', attempt: 1 }), /unknown desk trigger/);
+  const rep = costReport(log, 'today');
+  assert.equal(rep.totals.calls, 3); assert.equal(rep.totals.stories, 1, 'the same draft (slug) is one story'); assert.equal(rep.totals.calls_per_story, 3); assert.equal(rep.totals.failed_calls, 2);
+  assert.equal(rep.by_trigger.admin_reedit.calls, 1); assert.equal(rep.by_trigger.canary.calls, 1); assert.equal(rep.by_trigger.cron_new_story.calls, 1);
 });
 
 test('cost: past SOCCER_OPENAI_DAILY_MAX_USD the desk holds without calling the model', async () => {
