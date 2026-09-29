@@ -1,5 +1,5 @@
 {
-  "at": "2026-09-29T01:46:46.936Z",
+  "at": "2026-09-29T02:08:03.062Z",
   "candidates": 1,
   "stories": [
     {
@@ -16,8 +16,30 @@
         "format": "National teams, not clubs. League phase in Leagues A, B, C and D; groups A1-A4, B1-B4, C1-C4 (four teams) and D1-D2 (three teams). There is no overall table: position is only ever a group position."
       },
       "groups": {
-        "home": null,
-        "away": null
+        "home": {
+          "group": "Group C1",
+          "group_type": "group",
+          "tier": "League C",
+          "position": 4,
+          "teams_in_group": 4,
+          "points": 0,
+          "played": 1,
+          "zone": null,
+          "verified": true,
+          "observed_at": "2026-09-29T01:51:26.255+00:00"
+        },
+        "away": {
+          "group": "Group C1",
+          "group_type": "group",
+          "tier": "League C",
+          "position": 1,
+          "teams_in_group": 4,
+          "points": 3,
+          "played": 1,
+          "zone": null,
+          "verified": true,
+          "observed_at": "2026-09-29T01:51:26.255+00:00"
+        }
       },
       "entities": [
         "SportsTeam:San Marino",
@@ -44,10 +66,11 @@
         "Why it mattered",
         "The numbers",
         "Decisive players",
+        "Where it leaves them",
         "What comes next",
         "Evidence and method"
       ],
-      "words": 256
+      "words": 306
     }
   ]
 }
