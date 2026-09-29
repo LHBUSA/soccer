@@ -15,8 +15,8 @@ import { L, W, pitchLines } from '../components/pitch.js';
 import { keyPlayers } from '../components/keyplayers.js';
 import { matchTitle } from '../seo/meta.js';
 
-const POLL_LIVE_MS = 30000;   // the API caches the cast 15 s; the ingest lane polls once a minute
-const POLL_HUB_MS = 30000;
+const POLL_LIVE_MS = 60000;   // the ingest lane polls about once a minute; do not poll faster than the source can change
+const POLL_HUB_MS = 60000;
 const hasSequence = m => m?.intel?.events || m?.intel?.event_map;
 
 // In-place refresh for live views: same URL, no history entry, no scroll jump, no loading flash.
