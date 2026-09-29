@@ -107,7 +107,7 @@ export function costReport(calls, day) {
     totals: { calls: calls.length, input_tokens: sum('input_tokens'), cached_input_tokens: sum('cached_input_tokens'), output_tokens: sum('output_tokens'), reasoning_tokens: sum('reasoning_tokens'), estimated_usd: spentUsd(calls), failed_calls: calls.filter((c) => c.status && c.status !== 'completed').length, stories: stories.size, calls_per_story: stories.size ? Math.round((calls.length / stories.size) * 100) / 100 : null },
     eligible_tokens_today: sum('input_tokens') + sum('output_tokens'),
     premium_tokens_today: calls.filter(c => (c.pool || 'premium') === 'premium').reduce((s, c) => s + (c.input_tokens || 0) + (c.output_tokens || 0), 0),
-    nominal_note: 'estimated_usd is the standard-rate equivalent, not the billed amount: eligible tokens inside the complimentary data-sharing allowance may bill nothing',
+    nominal_note: 'Nominal standard-rate estimate only; not evidence of actual billing. Complimentary shared-token usage may apply subject to eligibility and remaining daily allowance.',
     by_trigger: { ...Object.fromEntries(['cron_new_story', 'admin_reedit', 'manual_backfill', 'canary'].map(t => [t, { calls: 0, input_tokens: 0, cached_input_tokens: 0, output_tokens: 0, reasoning_tokens: 0, estimated_usd: 0 }])), ...by((c) => c.trigger) },
     by_lane: by((c) => c.routing_lane || 'unrouted'), by_pool: by((c) => c.pool || 'unrouted'), by_model: by((c) => c.model || 'unknown'),
     by_story: by((c) => c.slug || c.news_event_id || c.id), calls

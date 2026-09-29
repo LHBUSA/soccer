@@ -9,8 +9,9 @@
 -- pool                      the shared OpenAI pool the model draws on (premium | volume)
 -- router_version            e.g. soccer-ai-router/1.0.0
 -- latency_ms                request wall time
--- nominal_standard_cost     standard-rate equivalent (same value as estimated_usd; the name says what it is — never a
---                           billed amount: eligible traffic inside the complimentary data-sharing allowance may bill nothing)
+-- nominal_standard_cost     standard-rate equivalent (same value as estimated_usd). Nominal standard-rate estimate only;
+--                           not evidence of actual billing. Complimentary shared-token usage may apply subject to
+--                           eligibility and remaining daily allowance.
 
 begin;
 

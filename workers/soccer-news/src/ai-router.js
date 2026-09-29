@@ -30,7 +30,7 @@ export const DEFAULT_POOLS = Object.freeze({
   'gpt-5.4-mini': 'volume', 'gpt-5.4-nano': 'volume'
 });
 
-// Nominal STANDARD list rates (USD per 1M tokens) — reporting only, never a billed amount. Only gpt-5.6-sol has a
+// Nominal STANDARD list rates (USD per 1M tokens) — reporting only; not evidence of actual billing. Only gpt-5.6-sol has a
 // default; any other model reports null until SOCCER_AI_RATES (JSON { model: { input, cached_input, output } }) sets it.
 export const DEFAULT_RATES = Object.freeze({ 'gpt-5.6-sol': Object.freeze({ input: 1.25, cached_input: 0.125, output: 10 }) });
 
@@ -106,7 +106,7 @@ export function route({ packet = {}, trigger = 'new_story', attempt = 1, parentT
 /** True when the routing decision may reach a model transport at all. */
 export const reachesTransport = r => Boolean(r && r.model && (r.lane === LANES.STANDARD || r.lane === LANES.FLAGSHIP || r.lane === LANES.VOLUME));
 
-/** Nominal standard-rate cost (USD) of one call; null when the model's rate is not configured. Never a billed amount. */
+/** Nominal standard-rate cost (USD) of one call; null when the model's rate is not configured. Nominal standard-rate estimate only; not evidence of actual billing. */
 export function nominalStandardCost(model, u = {}, cfg = aiConfig()) {
   const r = cfg.rates[model];
   if (!r) return null;
