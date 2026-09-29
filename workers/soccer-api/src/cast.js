@@ -14,7 +14,8 @@ import { PUBLIC_LIVE_COMPETITIONS, readLiveSnapshot, refreshLiveEnvelope, snapsh
 
 export const CAST_VERSION = 'soccer-api/1.4.0'; // 1.4.0: live.enrichment (additive, rights-gated), live.canonical_result_source
 const E = (data, o) => envelope(data, { version: CAST_VERSION, ...o });
-export const PRODUCT_COMPS = PUBLIC_LIVE_COMPETITIONS;
+export const PRODUCT_COMPS = ['mls', 'premier-league', 'uefa-champions-league', 'bundesliga'];
+export const LIVE_COMPS = PUBLIC_LIVE_COMPETITIONS;
 export const LIVE_CADENCE_S = 60; // soccer-ingest live lane: one poll per active match per minute (budgeted)
 
 const MATCH_COLS = ['id', 'competition_id', 'season_id', 'matchday', 'round_label', 'kickoff_at', 'home_team_id', 'away_team_id', 'status', 'home_score', 'away_score', 'home_score_ht', 'away_score_ht', 'result_provider', 'updated_at'];
@@ -95,7 +96,7 @@ function shape(m, teams, comps, flags, live, enrichment = null) {
 
 export async function buildLiveEnvelope(store, env, now = Date.now()) {
   const iso = t => new Date(t).toISOString();
-  const comps = await store.select('soccer_competitions', { columns: ['id', 'slug'], in: { slug: PRODUCT_COMPS } });
+  const comps = await store.select('soccer_competitions', { columns: ['id', 'slug'], in: { slug: LIVE_COMPS } });
   const compIds = comps.map(c => c.id);
   const [liveRows, recent, upcoming] = await Promise.all([
     store.select('soccer_matches', { columns: MATCH_COLS, eq: { status: 'live' }, in: { competition_id: compIds }, order: 'kickoff_at.asc', limit: 40 }),
