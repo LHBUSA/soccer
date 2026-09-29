@@ -19,6 +19,11 @@ export const PUBLIC_LIVE_DIRTY_LANES = Object.freeze([
   ...PUBLIC_LIVE_COMPETITIONS.map(slug => `espn_${slug.replace(/-/g, '_')}`),
 ]);
 
+export function publicLiveDirtyChanges(results = []) {
+  const lanes = new Set(PUBLIC_LIVE_DIRTY_LANES);
+  return results.filter(x => Number(x?.changed) > 0 && lanes.has(x?.lane));
+}
+
 export const LIVE_SNAPSHOT_KEY = 'public:live:v1';
 export const LIVE_SNAPSHOT_DIRTY_KEY = 'public:live:dirty:v1';
 export const LIVE_SNAPSHOT_STATUS_KEY = 'public:live:status:v1';
