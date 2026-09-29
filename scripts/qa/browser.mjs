@@ -53,6 +53,8 @@ const ROUTES = [
   { path: '/pbecast', expect: ['Every match, event by event', 'LIVE NOW', 'REPLAYS'], name: 'pbecast-hub' },
   { path: `/pbecast/${espnMatch.id}`, expect: ['PBECAST', 'REPLAY FROM KICK-OFF', 'MATCH FEED', 'NOT PLAYER TRACKING'], castMarks: true, name: 'pbecast-replay' },
   { path: '/sources', expect: ['Where every fact comes from'], name: 'sources' },
+  { path: '/picks', expect: ['OFFICIAL PICKS', 'GAME BEST', 'FROZEN BEFORE ANY OUTCOME'], name: 'algo-picks' },
+  { path: '/track-record', expect: ['OFFICIAL RECORD', 'HISTORICAL VALIDATION', 'No default odds'], name: 'algo-track-record' },
   { path: '/this-route-does-not-exist', expect: ['Off the pitch'], name: 'notfound' },
 ];
 

@@ -54,7 +54,7 @@ export const picks = {
     const d = env.data;
     const open = d.official_picks.open; const recent = d.official_picks.recent;
     return `${hero('SOCCER ALGO V1 · BUNDESLIGA', 'Official <span>Picks</span>', 'Frozen model, frozen thresholds, picks locked before kickoff and graded from the final score. Every Official Pick counts, forever.')}
-    <section class="canvas"><div class="wrap">
+    <section class="canvas algo-canvas"><div class="wrap">
       ${d.live ? '' : `<div class="algo-banner"><b>Not live yet.</b> No Official Pick has been issued. The public record starts with the first pick after go-live and is never back-filled.</div>`}
       ${sectionHead('OFFICIAL PICKS', 'Open picks')}
       ${open.length ? pickTable(open, 'Open Official Picks') : empty('No open Official Picks', d.live ? 'No upcoming Bundesliga match currently meets a frozen threshold.' : 'Official Picks have not gone live.')}
@@ -105,7 +105,7 @@ export const trackRecord = {
     const d = rec.data;
     const f = (k, v, l) => { const on = (k === 'market' ? market : last) === v; const q = new URLSearchParams({ ...(market ? { market } : {}), ...(last ? { last } : {}) }); if (v) q.set(k, v); else q.delete(k); return link(`/track-record${q.toString() ? `?${q}` : ''}`, esc(l), `btn${on ? ' gold' : ''}`); };
     return `${hero('SOCCER ALGO V1 · PUBLIC RECORD', 'Track <span>record</span>', 'Every Official Pick issued after go-live, straight from the append-only ledger. Wins, losses, voids and pending picks. Nothing is removed and nothing from before go-live is counted.')}
-    <section class="canvas"><div class="wrap">
+    <section class="canvas algo-canvas"><div class="wrap">
       ${d.live ? '' : `<div class="algo-banner"><b>The record is empty.</b> Official Picks have not gone live. The first pick after go-live becomes record #1.</div>`}
       <p class="algo-filters">${f('market', undefined, 'All markets')} ${f('market', '1x2', 'Match result')} ${f('market', 'home_to_score', 'Home to score')} <span class="muted">·</span> ${f('last', undefined, 'All')} ${f('last', '30', 'Last 30')} ${f('last', '60', 'Last 60')} ${f('last', '100', 'Last 100')}</p>
       ${sectionHead('OFFICIAL RECORD', 'Results')}

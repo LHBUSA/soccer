@@ -1599,3 +1599,10 @@ dialog.acct::backdrop { background: rgba(4,10,20,.6); }
 .algo-gb-tag { margin: 0 0 6px; }
 .algo-official { background: var(--gold); color: #0a0a0a; }
 .algo-forecast { background: #e9edf4; color: var(--ink-2); border: 1px dashed var(--line-2); }
+.algo-canvas .ltable td:first-child { white-space: normal; font-family: var(--body); text-align: left; min-width: 120px; }
+.algo-canvas .ltable thead th { white-space: normal; line-height: 1.25; }
+.algo-canvas .ltable thead th:first-child { text-align: left; }
+@media (max-width: 600px) {
+  .algo-canvas .ltable th, .algo-canvas .ltable td { padding: 8px 6px; font-size: 12.5px; }
+  .algo-canvas .ltable thead th { font-size: 10px; letter-spacing: .06em; }
+}
