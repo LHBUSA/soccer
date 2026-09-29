@@ -47,11 +47,29 @@ test('news: lead = materiality x freshness (deterministic); latest is chronologi
     art('d', 'match_recap', 'Big old result 6-0: someone hat-trick', 200),
   ];
   assert.ok(materiality(items[1]) > materiality(items[2]));
-  assert.equal(selectHomepageLead(items, NOW).slug, 'b', 'a big, fresh, illustrated result beats a generic trend');
-  assert.equal(selectHomepageLead([...items].reverse(), NOW).slug, 'b', 'order-independent');
+  // Freshness buckets: stories exist inside 12 h, so the 19 h hat-trick cannot lead; inside the bucket
+  // the result (materiality) beats the generic trend.
+  assert.equal(selectHomepageLead(items, NOW).slug, 'c', 'freshest bucket first, then materiality');
+  assert.equal(selectHomepageLead([...items].reverse(), NOW).slug, 'c', 'order-independent');
+  assert.equal(selectHomepageLead(items.filter(a => a.slug !== 'a' && a.slug !== 'c'), NOW).slug, 'b', 'nothing inside 12 h: the 19 h story leads from the 24 h bucket');
   assert.ok(leadScore(items[3], NOW) < leadScore(items[2], NOW), 'a stale recap loses to a fresh one');
-  assert.deepEqual(latestNews(items, items[1]).map(a => a.slug), ['a', 'c', 'd']);
+  assert.deepEqual(latestNews(items, items[2]).map(a => a.slug), ['a', 'b', 'd']);
   assert.equal(selectHomepageLead([], NOW), null);
+});
+
+test('news curation buckets: stale spectacle never beats fresh solid news; older best story when nothing is fresh', () => {
+  const hat = art('hat', 'match_recap', 'Olise hat-trick drives Bayern München to 7-0 rout of 1. FC Union Berlin', 38, { kind: 'portrait', url: '/api/soccer/media/o' });
+  const solid = art('solid', 'match_recap', 'Chicago Fire FC win 1-0 at Charlotte FC', 2);
+  assert.equal(selectHomepageLead([hat, solid], NOW).slug, 'solid', 'a 38 h hat-trick cannot beat a solid 2 h story');
+  const major = art('major', 'match_recap', 'Manchester City beat Sunderland 5-0: Erling Haaland hat-trick', 4);
+  const minor = art('minor', 'team_trend', 'Fulham make it 4 Premier League matches unbeaten', 3);
+  assert.equal(selectHomepageLead([minor, major], NOW).slug, 'major', 'a 4 h major result beats a 3 h minor trend');
+  const oldTrend = art('old-trend', 'team_trend', 'Everton make it 4 Premier League defeats in a row', 60);
+  const oldHat = { ...hat, slug: 'old-hat', published_at: new Date(NOW - 70 * 3600e3).toISOString() };
+  assert.equal(selectHomepageLead([oldTrend, oldHat], NOW).slug, 'old-hat', 'no story inside 48 h: the best older story still leads');
+  const tie = [art('y', 'match_recap', 'Aston Villa win 3-2 at Tottenham Hotspur', 5), art('x', 'match_recap', 'Aston Villa win 3-2 at Tottenham Hotspur', 5)];
+  assert.equal(selectHomepageLead(tie, NOW).slug, 'x');
+  assert.equal(selectHomepageLead([...tie].reverse(), NOW).slug, 'x', 'deterministic tie-break');
 });
 
 test('news imagery: approved portrait -> approved crest -> branded owned fallback; never a remote hotlink', () => {

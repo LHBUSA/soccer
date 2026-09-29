@@ -1,6 +1,7 @@
 // Homepage news curation (deterministic; tested in tests/web/news-desk.test.js).
 //   Latest News : chronological (newest first).
-//   Top Story   : selectHomepageLead() = materiality x freshness, no randomness, no rotation.
+//   Top Story   : selectHomepageLead() = freshest populated bucket (12 / 24 / 48 h), then materiality x
+//                 freshness inside it; no randomness, no rotation.
 // Materiality uses only what the published article states: its story class and the facts the
 // composer writes into the headline from its fixed templates (a margin, a hat-trick, a table lead,
 // a streak length). Nothing is inferred beyond the article; ties break by recency, then slug.
@@ -29,9 +30,19 @@ export function freshness(a, now = Date.now()) {
 
 export const leadScore = (a, now = Date.now()) => materiality(a) * freshness(a, now);
 
+// Freshness buckets: the lead comes from the FRESHEST populated bucket (<= 12 h, else <= 24 h, else
+// <= 48 h, else everything), then materiality x freshness decides inside that bucket. A spectacular
+// result from yesterday cannot hold the lead over a solid story from this morning; with nothing
+// fresh, the best older story still leads.
+export const LEAD_BUCKETS_H = [12, 24, 48];
+export function leadPool(items, now = Date.now()) {
+  const age = a => (now - Date.parse(a.published_at)) / 3600e3;
+  return LEAD_BUCKETS_H.map(h => items.filter(a => age(a) <= h)).find(b => b.length) || items;
+}
+
 export function selectHomepageLead(items, now = Date.now()) {
   if (!items?.length) return null;
-  return [...items].sort((x, y) => leadScore(y, now) - leadScore(x, now) || Date.parse(y.published_at) - Date.parse(x.published_at) || String(x.slug).localeCompare(String(y.slug)))[0];
+  return [...leadPool(items, now)].sort((x, y) => leadScore(y, now) - leadScore(x, now) || Date.parse(y.published_at) - Date.parse(x.published_at) || String(x.slug).localeCompare(String(y.slug)))[0];
 }
 
 export const latestNews = (items, exclude = null) => [...(items || [])].filter(a => !exclude || a.slug !== exclude.slug).sort((x, y) => Date.parse(y.published_at) - Date.parse(x.published_at) || String(x.slug).localeCompare(String(y.slug)));
