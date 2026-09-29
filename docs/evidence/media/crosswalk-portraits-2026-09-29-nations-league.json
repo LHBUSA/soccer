@@ -1,0 +1,1213 @@
+{
+  "version": "media-crosswalk/1.0.0",
+  "started_at": "2026-09-29T17:28:52.661Z",
+  "dry": false,
+  "scope": "nations-league",
+  "reasons": {
+    "tsdb_record_has_no_wikidata_id": 522,
+    "no_tsdb_record_with_exact_espn_id": 233,
+    "wikidata:no_image": 85,
+    "wikidata:several_images": 21,
+    "wikidata:birth_date_contradiction": 2,
+    "wikidata:no_day_precision_birth_date_on_wikidata": 1,
+    "rights:approved": 198,
+    "rights:review_required": 4
+  },
+  "matched": [
+    {
+      "player": "Nuno Tavares",
+      "slug": "nuno-tavares",
+      "qid": "Q60676459",
+      "license": "CC BY 3.0"
+    },
+    {
+      "player": "Renato Veiga",
+      "slug": "renato-veiga",
+      "qid": "Q116700351",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Alexander Nübel",
+      "slug": "alexander-nubel",
+      "qid": "Q20435178",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Aron Gunnarsson",
+      "slug": "aron-gunnarsson",
+      "qid": "Q781755",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Marco Pasalic",
+      "slug": "marco-pasalic",
+      "qid": "Q107641804",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Ianis Hagi",
+      "slug": "ianis-hagi",
+      "qid": "Q17045723",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Djibril Sow",
+      "slug": "djibril-sow",
+      "qid": "Q27995699",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Bauyrzhan Islamkhan",
+      "slug": "bauyrzhan-islamkhan",
+      "qid": "Q4120867",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Myrto Uzuni",
+      "slug": "myrto-uzuni",
+      "qid": "Q19578160",
+      "license": "CC BY 4.0"
+    },
+    {
+      "player": "Josh Magennis",
+      "slug": "josh-magennis",
+      "qid": "Q3185990",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Paul Smyth",
+      "slug": "paul-smyth",
+      "qid": "Q47476880",
+      "license": "CC0"
+    },
+    {
+      "player": "Aleksejs Saveljevs",
+      "slug": "aleksejs-saveljevs",
+      "qid": "Q56515117",
+      "license": "CC BY-SA 2.0"
+    },
+    {
+      "player": "Edon Zhegrova",
+      "slug": "edon-zhegrova",
+      "qid": "Q42303600",
+      "license": "CC0"
+    },
+    {
+      "player": "Ivan Sunjic",
+      "slug": "ivan-sunjic",
+      "qid": "Q19662444",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "João Félix",
+      "slug": "joao-felix",
+      "qid": "Q27049064",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Jack Hendry",
+      "slug": "jack-hendry",
+      "qid": "Q20027858",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Jimmy Dunne",
+      "slug": "jimmy-dunne",
+      "qid": "Q48812485",
+      "license": "CC0"
+    },
+    {
+      "player": "Carl Starfelt",
+      "slug": "carl-starfelt",
+      "qid": "Q16633442",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Viljami Sinisalo",
+      "slug": "viljami-sinisalo",
+      "qid": "Q100533279",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Gylfi Sigurdsson",
+      "slug": "gylfi-sigurdsson",
+      "qid": "Q59105",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "João Palhinha",
+      "slug": "joao-palhinha",
+      "qid": "Q16236952",
+      "license": "CC BY 3.0"
+    },
+    {
+      "player": "Patrick Dorgu",
+      "slug": "patrick-dorgu",
+      "qid": "Q121903982",
+      "license": "CC0"
+    },
+    {
+      "player": "Radu Dragusin",
+      "slug": "radu-dragusin",
+      "qid": "Q86835512",
+      "license": "CC0"
+    },
+    {
+      "player": "Lewis Ferguson",
+      "slug": "lewis-ferguson",
+      "qid": "Q47467341",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Davide Frattesi",
+      "slug": "davide-frattesi",
+      "qid": "Q55366763",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Otto Hindrich",
+      "slug": "otto-hindrich",
+      "qid": "Q97028500",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Eray Cömert",
+      "slug": "eray-comert",
+      "qid": "Q24052364",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Peter Pokorny",
+      "slug": "peter-pokorny",
+      "qid": "Q55944900",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Zhirayr Shaghoyan",
+      "slug": "zhirayr-shaghoyan",
+      "qid": "Q106186450",
+      "license": "CC BY 4.0"
+    },
+    {
+      "player": "Andreas Schjelderup",
+      "slug": "andreas-schjelderup",
+      "qid": "Q106099213",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Kristjan Asllani",
+      "slug": "kristjan-asllani",
+      "qid": "Q106313163",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Kevin Schade",
+      "slug": "kevin-schade",
+      "qid": "Q103845834",
+      "license": "CC0"
+    },
+    {
+      "player": "Thomas Cannon",
+      "slug": "thomas-cannon",
+      "qid": "Q115208158",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Dimitar Mitov",
+      "slug": "dimitar-mitov",
+      "qid": "Q36398784",
+      "license": "CC BY 4.0"
+    },
+    {
+      "player": "Luka Sucic",
+      "slug": "luka-sucic",
+      "qid": "Q67999144",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Ivan Basic",
+      "slug": "ivan-basic",
+      "qid": "Q111536418",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Gonçalo Inácio",
+      "slug": "goncalo-inacio",
+      "qid": "Q99955331",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Mikel Oyarzabal",
+      "slug": "mikel-oyarzabal",
+      "qid": "Q21195147",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Nemanja Gudelj",
+      "slug": "nemanja-gudelj",
+      "qid": "Q644989",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Nico Williams",
+      "slug": "nico-williams",
+      "qid": "Q104414736",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Gianluca Scamacca",
+      "slug": "gianluca-scamacca",
+      "qid": "Q22237703",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Adam Hlozek",
+      "slug": "adam-hlozek",
+      "qid": "Q59782306",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Vladyslav Vanat",
+      "slug": "vladyslav-vanat",
+      "qid": "Q106781889",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Enes Mahmutovic",
+      "slug": "enes-mahmutovic",
+      "qid": "Q28058586",
+      "license": "CC BY 4.0"
+    },
+    {
+      "player": "Pavel Bucha",
+      "slug": "pavel-bucha",
+      "qid": "Q49163401",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Ajdin Hasic",
+      "slug": "ajdin-hasic",
+      "qid": "Q97236836",
+      "license": "CC BY 2.0"
+    },
+    {
+      "player": "Hjalmar Ekdal",
+      "slug": "hjalmar-ekdal",
+      "qid": "Q56641379",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Odisseas Vlachodimos",
+      "slug": "odisseas-vlachodimos",
+      "qid": "Q91531",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Scott Bain",
+      "slug": "scott-bain",
+      "qid": "Q16204445",
+      "license": "Public domain"
+    },
+    {
+      "player": "Josip Misic",
+      "slug": "josip-misic",
+      "qid": "Q6290914",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Aymeric Laporte",
+      "slug": "aymeric-laporte",
+      "qid": "Q3855340",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Ben Gannon-Doak",
+      "slug": "ben-gannon-doak",
+      "qid": "Q110739094",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Adam Idah",
+      "slug": "adam-idah",
+      "qid": "Q64759162",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Justin Devenny",
+      "slug": "justin-devenny",
+      "qid": "Q122089959",
+      "license": "CC BY 4.0"
+    },
+    {
+      "player": "Trai Hume",
+      "slug": "trai-hume",
+      "qid": "Q110425651",
+      "license": "CC BY 4.0"
+    },
+    {
+      "player": "Benjamin Büchel",
+      "slug": "benjamin-buchel",
+      "qid": "Q168498",
+      "license": "CC BY-SA 2.0"
+    },
+    {
+      "player": "Nathaniel Brown",
+      "slug": "nathaniel-brown",
+      "qid": "Q122351097",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Enis Bardhi",
+      "slug": "enis-bardhi",
+      "qid": "Q18391941",
+      "license": "CC0"
+    },
+    {
+      "player": "Lubomir Satka",
+      "slug": "lubomir-satka",
+      "qid": "Q17505907",
+      "license": "CC BY 4.0"
+    },
+    {
+      "player": "Gonçalo Ramos",
+      "slug": "goncalo-ramos",
+      "qid": "Q60621615",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Danny Ward",
+      "slug": "danny-ward",
+      "qid": "Q19281946",
+      "license": "CC BY 2.0"
+    },
+    {
+      "player": "Adrian Kapralik",
+      "slug": "adrian-kapralik",
+      "qid": "Q97481704",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Topi Keskinen",
+      "slug": "topi-keskinen",
+      "qid": "Q120874127",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Sasa Lukic",
+      "slug": "sasa-lukic",
+      "qid": "Q19594166",
+      "license": "CC0"
+    },
+    {
+      "player": "Nicola Nanni",
+      "slug": "nicola-nanni",
+      "qid": "Q56488891",
+      "license": "CC BY 4.0"
+    },
+    {
+      "player": "Dmitrijs Zelenkovs",
+      "slug": "dmitrijs-zelenkovs",
+      "qid": "Q107096259",
+      "license": "CC BY-SA 2.0"
+    },
+    {
+      "player": "Finn Azaz",
+      "slug": "finn-azaz",
+      "qid": "Q98959095",
+      "license": "CC0"
+    },
+    {
+      "player": "Benjamin Kallman",
+      "slug": "benjamin-kallman",
+      "qid": "Q23869556",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Strahinja Pavlovic",
+      "slug": "strahinja-pavlovic",
+      "qid": "Q61899299",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Luka Modric",
+      "slug": "luka-modric",
+      "qid": "Q483837",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Ryan Manning",
+      "slug": "ryan-manning",
+      "qid": "Q28101945",
+      "license": "CC0"
+    },
+    {
+      "player": "Risto Radunovic",
+      "slug": "risto-radunovic",
+      "qid": "Q3937086",
+      "license": "CC BY 2.0"
+    },
+    {
+      "player": "Stephen Welsh",
+      "slug": "stephen-welsh",
+      "qid": "Q67200400",
+      "license": "CC0"
+    },
+    {
+      "player": "Mads Bidstrup",
+      "slug": "mads-bidstrup",
+      "qid": "Q66433337",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Vladimír Coufal",
+      "slug": "vladimir-coufal",
+      "qid": "Q15113326",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "James Garner",
+      "slug": "james-garner",
+      "qid": "Q61908191",
+      "license": "CC BY 3.0"
+    },
+    {
+      "player": "Mike Maignan",
+      "slug": "mike-maignan",
+      "qid": "Q17274709",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Georgiy Sudakov",
+      "slug": "georgiy-sudakov",
+      "qid": "Q100708799",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Nicolas Raskin",
+      "slug": "nicolas-raskin",
+      "qid": "Q48525779",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Luka Lochoshvili",
+      "slug": "luka-lochoshvili",
+      "qid": "Q31355135",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Andrej Kramarić",
+      "slug": "andrej-kramaric",
+      "qid": "Q502898",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Rey Manaj",
+      "slug": "rey-manaj",
+      "qid": "Q18637686",
+      "license": "CC BY 3.0"
+    },
+    {
+      "player": "Etrit Berisha",
+      "slug": "etrit-berisha",
+      "qid": "Q1523030",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Filippo Fabbri",
+      "slug": "filippo-fabbri",
+      "qid": "Q106188004",
+      "license": "CC BY 4.0"
+    },
+    {
+      "player": "Lukáš Hradecky",
+      "slug": "lukas-hradecky",
+      "qid": "Q713627",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Vitaliy Mykolenko",
+      "slug": "vitaliy-mykolenko",
+      "qid": "Q37875995",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Elliot Stroud",
+      "slug": "elliot-stroud",
+      "qid": "Q117789805",
+      "license": "CC0"
+    },
+    {
+      "player": "Diego Coppola",
+      "slug": "diego-coppola",
+      "qid": "Q110607238",
+      "license": "CC BY 4.0"
+    },
+    {
+      "player": "Petar Sucic",
+      "slug": "petar-sucic",
+      "qid": "Q120907522",
+      "license": "CC BY 3.0"
+    },
+    {
+      "player": "Rihards Matrevics",
+      "slug": "rihards-matrevics",
+      "qid": "Q43775009",
+      "license": "CC BY-SA 2.0"
+    },
+    {
+      "player": "Onni Valakari",
+      "slug": "onni-valakari",
+      "qid": "Q55106177",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Arthur Theate",
+      "slug": "arthur-theate",
+      "qid": "Q97724521",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Joel Pohjanpalo",
+      "slug": "joel-pohjanpalo",
+      "qid": "Q127797",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Berat Djimsiti",
+      "slug": "berat-djimsiti",
+      "qid": "Q15197300",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Kosta Nedeljkovic",
+      "slug": "kosta-nedeljkovic",
+      "qid": "Q119719443",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Guillaume Restes",
+      "slug": "guillaume-restes",
+      "qid": "Q121423825",
+      "license": "CC0"
+    },
+    {
+      "player": "Joachim Andersen",
+      "slug": "joachim-andersen",
+      "qid": "Q15943423",
+      "license": "CC0"
+    },
+    {
+      "player": "Liam Scales",
+      "slug": "liam-scales",
+      "qid": "Q102277109",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Andraz Sporar",
+      "slug": "andraz-sporar",
+      "qid": "Q4754719",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Omri Glazer",
+      "slug": "omri-glazer",
+      "qid": "Q24053865",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Jayson Molumby",
+      "slug": "jayson-molumby",
+      "qid": "Q40617840",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Conor Coventry",
+      "slug": "conor-coventry",
+      "qid": "Q56809198",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Jordan James",
+      "slug": "jordan-james",
+      "qid": "Q109638024",
+      "license": "CC0"
+    },
+    {
+      "player": "Guglielmo Vicario",
+      "slug": "guglielmo-vicario",
+      "qid": "Q44083681",
+      "license": "CC BY 4.0"
+    },
+    {
+      "player": "Georges Mikautadze",
+      "slug": "georges-mikautadze",
+      "qid": "Q78541955",
+      "license": "CC0"
+    },
+    {
+      "player": "Maximilian Wöber",
+      "slug": "maximilian-wober",
+      "qid": "Q22951388",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Sead Kolasinac",
+      "slug": "sead-kolasinac",
+      "qid": "Q127914",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Marc-André ter Stegen",
+      "slug": "marc-andre-ter-stegen",
+      "qid": "Q160472",
+      "license": "CC0"
+    },
+    {
+      "player": "Zeki Çelik",
+      "slug": "zeki-celik",
+      "qid": "Q50628268",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Kristoffer Ajer",
+      "slug": "kristoffer-ajer",
+      "qid": "Q18157457",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Eduard Spertsyan",
+      "slug": "eduard-spertsyan",
+      "qid": "Q52635110",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Conor Hazard",
+      "slug": "conor-hazard",
+      "qid": "Q47996666",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Ezgjan Alioski",
+      "slug": "ezgjan-alioski",
+      "qid": "Q15936571",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Nikola Vlasic",
+      "slug": "nikola-vlasic",
+      "qid": "Q17501875",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "John Egan",
+      "slug": "john-egan",
+      "qid": "Q150332",
+      "license": "CC BY 2.0"
+    },
+    {
+      "player": "Graeme Torrilla",
+      "slug": "graeme-torrilla",
+      "qid": "Q98918639",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Igor Vujacic",
+      "slug": "igor-vujacic",
+      "qid": "Q16236642",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Mads Hermansen",
+      "slug": "mads-hermansen",
+      "qid": "Q65229910",
+      "license": "CC0"
+    },
+    {
+      "player": "Rhys Norrington-Davies",
+      "slug": "rhys-norrington-davies",
+      "qid": "Q57025378",
+      "license": "CC0"
+    },
+    {
+      "player": "Angus Gunn",
+      "slug": "angus-gunn",
+      "qid": "Q20807705",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Glen Kamara",
+      "slug": "glen-kamara",
+      "qid": "Q11860513",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Jani Atanasov",
+      "slug": "jani-atanasov",
+      "qid": "Q55436489",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Dara O'Shea",
+      "slug": "dara-o-shea",
+      "qid": "Q56331751",
+      "license": "CC BY 3.0"
+    },
+    {
+      "player": "Konstantinos Tzolakis",
+      "slug": "konstantinos-tzolakis",
+      "qid": "Q67228775",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "David Affengruber",
+      "slug": "david-affengruber",
+      "qid": "Q65948590",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Lumbardh Dellova",
+      "slug": "lumbardh-dellova",
+      "qid": "Q107139948",
+      "license": "CC BY 4.0"
+    },
+    {
+      "player": "Lucas Bergstrom",
+      "slug": "lucas-bergstrom",
+      "qid": "Q108044559",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Bartosz Slisz",
+      "slug": "bartosz-slisz",
+      "qid": "Q63247177",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Adam Karabec",
+      "slug": "adam-karabec",
+      "qid": "Q83695618",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Thelo Aasgaard",
+      "slug": "thelo-aasgaard",
+      "qid": "Q100711783",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Francisco Trincão",
+      "slug": "francisco-trincao",
+      "qid": "Q24084271",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Williot Swedberg",
+      "slug": "williot-swedberg",
+      "qid": "Q107485012",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Mario Pasalic",
+      "slug": "mario-pasalic",
+      "qid": "Q14625183",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Hákon Valdimarsson",
+      "slug": "hakon-valdimarsson",
+      "qid": "Q107863326",
+      "license": "Public domain"
+    },
+    {
+      "player": "Chris Mepham",
+      "slug": "chris-mepham",
+      "qid": "Q40351320",
+      "license": "CC BY 3.0"
+    },
+    {
+      "player": "Ramazan Karimov",
+      "slug": "ramazan-karimov",
+      "qid": "Q58196938",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Alex Král",
+      "slug": "alex-kral",
+      "qid": "Q29963119",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Gjoko Zajkov",
+      "slug": "gjoko-zajkov",
+      "qid": "Q17152630",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Matti Peltola",
+      "slug": "matti-peltola",
+      "qid": "Q109016557",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Lukas Petkov",
+      "slug": "lukas-petkov",
+      "qid": "Q106938641",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Tihomir Kostadinov",
+      "slug": "tihomir-kostadinov",
+      "qid": "Q25999719",
+      "license": "CC0"
+    },
+    {
+      "player": "Marcin Bulka",
+      "slug": "marcin-bulka",
+      "qid": "Q65159598",
+      "license": "CC0"
+    },
+    {
+      "player": "Charalambos Kostoulas",
+      "slug": "charalambos-kostoulas",
+      "qid": "Q117360254",
+      "license": "CC0"
+    },
+    {
+      "player": "Cristiano Ronaldo",
+      "slug": "cristiano-ronaldo",
+      "qid": "Q11571",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Dion Charles",
+      "slug": "dion-charles",
+      "qid": "Q28054097",
+      "license": "CC0"
+    },
+    {
+      "player": "Daniel James",
+      "slug": "daniel-james",
+      "qid": "Q30689579",
+      "license": "CC BY 2.0"
+    },
+    {
+      "player": "Vincent Sierro",
+      "slug": "vincent-sierro",
+      "qid": "Q23707676",
+      "license": "CC0"
+    },
+    {
+      "player": "Cameron Congreve",
+      "slug": "cameron-congreve",
+      "qid": "Q111206274",
+      "license": "CC0"
+    },
+    {
+      "player": "Ognjen Cancarevic",
+      "slug": "ognjen-cancarevic",
+      "qid": "Q7080168",
+      "license": "CC BY 4.0"
+    },
+    {
+      "player": "Kaan Kairinen",
+      "slug": "kaan-kairinen",
+      "qid": "Q18632885",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Jason Knight",
+      "slug": "jason-knight",
+      "qid": "Q66305702",
+      "license": "CC0"
+    },
+    {
+      "player": "Daniel Peretz",
+      "slug": "daniel-peretz",
+      "qid": "Q100272666",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Roberts Savalnieks",
+      "slug": "roberts-savalnieks",
+      "qid": "Q15714981",
+      "license": "CC BY-SA 2.0"
+    },
+    {
+      "player": "Sander Berge",
+      "slug": "sander-berge",
+      "qid": "Q20675980",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Tudor Baluta",
+      "slug": "tudor-baluta",
+      "qid": "Q27107068",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Ben Cabango",
+      "slug": "ben-cabango",
+      "qid": "Q66428065",
+      "license": "CC BY 4.0"
+    },
+    {
+      "player": "Ozan Kabak",
+      "slug": "ozan-kabak",
+      "qid": "Q53280628",
+      "license": "CC BY 3.0"
+    },
+    {
+      "player": "Leo Walta",
+      "slug": "leo-walta",
+      "qid": "Q109094289",
+      "license": "Public domain"
+    },
+    {
+      "player": "Konstantinos Mavropanos",
+      "slug": "konstantinos-mavropanos",
+      "qid": "Q47015833",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Brennan Johnson",
+      "slug": "brennan-johnson",
+      "qid": "Q66108160",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Rasmus Kristensen",
+      "slug": "rasmus-kristensen",
+      "qid": "Q27064176",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Marcus Edwards",
+      "slug": "marcus-edwards",
+      "qid": "Q26972992",
+      "license": "CC0"
+    },
+    {
+      "player": "Adrien Rabiot",
+      "slug": "adrien-rabiot",
+      "qid": "Q18962",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Jordan Pickford",
+      "slug": "jordan-pickford",
+      "qid": "Q13014035",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Armin Gigovic",
+      "slug": "armin-gigovic",
+      "qid": "Q70251271",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Eduardo Camavinga",
+      "slug": "eduardo-camavinga",
+      "qid": "Q62960177",
+      "license": "CC BY 2.0"
+    },
+    {
+      "player": "Strahinja Erakovic",
+      "slug": "strahinja-erakovic",
+      "qid": "Q81187581",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Michael Kayode",
+      "slug": "michael-kayode",
+      "qid": "Q120668096",
+      "license": "CC0"
+    },
+    {
+      "player": "Ante Budimir",
+      "slug": "ante-budimir",
+      "qid": "Q17505049",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "David Brekalo",
+      "slug": "david-brekalo",
+      "qid": "Q73023077",
+      "license": "CC BY 4.0"
+    },
+    {
+      "player": "Yarden Shua",
+      "slug": "yarden-shua",
+      "qid": "Q64010616",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Mikkel Damsgaard",
+      "slug": "mikkel-damsgaard",
+      "qid": "Q45034698",
+      "license": "CC0"
+    },
+    {
+      "player": "Ethan Ampadu",
+      "slug": "ethan-ampadu",
+      "qid": "Q26250324",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Louis Munteanu",
+      "slug": "louis-munteanu",
+      "qid": "Q77977211",
+      "license": "Public domain"
+    },
+    {
+      "player": "Fabiano",
+      "slug": "fabiano",
+      "qid": "Q5427726",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Nathan Patterson",
+      "slug": "nathan-patterson",
+      "qid": "Q83264648",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Filip Jørgensen",
+      "slug": "filip-jorgensen",
+      "qid": "Q108776426",
+      "license": "CC0"
+    },
+    {
+      "player": "Lewis Koumas",
+      "slug": "lewis-koumas",
+      "qid": "Q118725657",
+      "license": "CC0"
+    },
+    {
+      "player": "Jamie Donley",
+      "slug": "jamie-donley",
+      "qid": "Q123652463",
+      "license": "CC0"
+    },
+    {
+      "player": "Crysencio Summerville",
+      "slug": "crysencio-summerville",
+      "qid": "Q60664537",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Pierre Kalulu",
+      "slug": "pierre-kalulu",
+      "qid": "Q98815671",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Thomas Jørgensen",
+      "slug": "thomas-jorgensen",
+      "qid": "Q127260116",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Rúben Neves",
+      "slug": "ruben-neves",
+      "qid": "Q17486599",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Arda Güler",
+      "slug": "arda-guler",
+      "qid": "Q108159340",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "David Strelec",
+      "slug": "david-strelec",
+      "qid": "Q56043497",
+      "license": "CC BY 4.0"
+    },
+    {
+      "player": "Rocco Vata",
+      "slug": "rocco-vata",
+      "qid": "Q114831606",
+      "license": "CC0"
+    },
+    {
+      "player": "Remo Freuler",
+      "slug": "remo-freuler",
+      "qid": "Q16595441",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Kieffer Moore",
+      "slug": "kieffer-moore",
+      "qid": "Q16234832",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Ilia Gruev",
+      "slug": "ilia-gruev",
+      "qid": "Q66433945",
+      "license": "CC0"
+    },
+    {
+      "player": "Mateusz Zukowski",
+      "slug": "mateusz-zukowski",
+      "qid": "Q47088413",
+      "license": "CC0"
+    },
+    {
+      "player": "Petar Sukacev",
+      "slug": "petar-sukacev",
+      "qid": "Q129559918",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Ricardo Rodríguez",
+      "slug": "ricardo-rodriguez",
+      "qid": "Q666506",
+      "license": "CC BY-SA 3.0"
+    },
+    {
+      "player": "Chiedozie Ogbene",
+      "slug": "chiedozie-ogbene",
+      "qid": "Q51727160",
+      "license": "CC0"
+    },
+    {
+      "player": "Mërgim Vojvoda",
+      "slug": "mergim-vojvoda",
+      "qid": "Q18589243",
+      "license": "CC0"
+    },
+    {
+      "player": "Danel Sinani",
+      "slug": "danel-sinani",
+      "qid": "Q38306003",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Bernardo Silva",
+      "slug": "bernardo-silva",
+      "qid": "Q15521306",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Marko Jankovic",
+      "slug": "marko-jankovic",
+      "qid": "Q17811642",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "player": "Vladislavs Gutkovskis",
+      "slug": "vladislavs-gutkovskis",
+      "qid": "Q1702826",
+      "license": "CC BY-SA 4.0"
+    }
+  ],
+  "sync": {
+    "inserted": 202,
+    "updated": 0,
+    "unchanged": 0
+  },
+  "cached": 198,
+  "finished_at": "2026-09-29T18:44:41.964Z"
+}
