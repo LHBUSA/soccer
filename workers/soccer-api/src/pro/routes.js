@@ -125,7 +125,7 @@ export async function proCatalog(store) {
 export async function handlePro(req, env, store, path) {
   if (path === 'catalog') return proCatalog(store); // public: no session lookup
   const access = await proAccess(req, env);
-  if (path === 'access') return { status: 200, body: { data: { membership: access.membership, check: access.check, pro: access.granted } } };
+  if (path === 'access') return { status: 200, body: E({ membership: access.membership, check: access.check, pro: access.granted }, { source: 'propbetedge-auth', semantics: 'The Soccer membership of this reader, decided server-side by the PropBetEdge network auth (All Access or owner = Pro).' }) };
   if (path === 'board') return proBoard(store, access);
   let m = path.match(/^matches\/([0-9a-f-]{36})$/);
   if (m) return proMatch(store, m[1], access);
