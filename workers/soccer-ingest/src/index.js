@@ -21,6 +21,7 @@ import { LIVE_LANE, runEspnLive } from './espn-live.js';
 import { SHADOW_LANE, runShadow } from './shadow-lane.js';
 import { canonicalHealth, enrichmentHealth } from './health.js';
 import { BREAKER } from './espn-live.js';
+import { LIVE_SNAPSHOT_DIRTY_KEY } from '../../shared/live-snapshot.js';
 
 export const VERSION = 'soccer-ingest/1.3.0';
 
@@ -75,15 +76,28 @@ export async function runLane(env, name, { force = false, now = Date.now(), budg
 
 // Cron runs every minute. The live lane (PBEcast) runs every minute and only works when an
 // ESPN-owned match is in its live window; every other lane keeps its 5-minute cadence.
+async function markLiveSnapshotDirty(env, out, now) {
+  if (!env.SOCCER_STATE) return;
+  const changed = out.filter(x => Number(x?.changed) > 0);
+  if (!changed.length) return;
+  await env.SOCCER_STATE.put(LIVE_SNAPSHOT_DIRTY_KEY, JSON.stringify({
+    at: new Date(now).toISOString(),
+    lanes: changed.map(x => x.lane).filter(Boolean),
+    changed: changed.reduce((n, x) => n + (Number(x.changed) || 0), 0),
+  }), { expirationTtl: 7 * 86400 });
+}
+
 async function tick(env, now = Date.now()) {
   const out = [await runLane(env, LIVE_LANE, { now })];
-  if (new Date(now).getUTCMinutes() % 5 !== 0) return out;
-  for (const name of PRIORITY.filter(n => n !== LIVE_LANE)) out.push(await runLane(env, name, { now }));
-  if (ROTATING.length) {
-    const i = Math.floor(now / 300e3) % ROTATING.length;
-    out.push(await runLane(env, ROTATING[i], { now }));
+  if (new Date(now).getUTCMinutes() % 5 === 0) {
+    for (const name of PRIORITY.filter(n => n !== LIVE_LANE)) out.push(await runLane(env, name, { now }));
+    if (ROTATING.length) {
+      const i = Math.floor(now / 300e3) % ROTATING.length;
+      out.push(await runLane(env, ROTATING[i], { now }));
+    }
+    for (const name of SELF_THROTTLED) out.push(await runLane(env, name, { now }));
   }
-  for (const name of SELF_THROTTLED) out.push(await runLane(env, name, { now }));
+  await markLiveSnapshotDirty(env, out, now);
   return out;
 }
 
