@@ -103,7 +103,7 @@ test('replay pitch + feed markup contain only the events through the cursor', ()
   const tl = buildTimeline(seq); const m = { home: { short_name: 'H' }, away: { short_name: 'A' } };
   const rv = replayView(30, tl);
   const pitch = castPitch(tl, m, { items: rv.seen });
-  assert.equal((pitch.match(/class="cmark"/g) || []).length, 1, 'only the 4th-minute located goal');
+  assert.equal((pitch.match(/class="cmark[ "]/g) || []).length, 1, 'only the 4th-minute located goal');
   assert.doesNotMatch(pitch, /data-v="92"/);
   const feed = [...rv.seen].reverse().map(x => feedItem(x, m, { current: x === rv.current, seekable: true })).join('');
   assert.equal((feed.match(/<li /g) || []).length, 2); assert.match(feed, /class="fi t-card_yellow home cur"/); assert.match(feed, /data-seek="30"/);

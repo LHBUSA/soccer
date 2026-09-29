@@ -363,7 +363,7 @@ button { font: inherit; }
 .state-title { font: 800 20px/1.1 var(--display); text-transform: uppercase; margin: 0 0 6px; }
 .state p { margin: 0 0 6px; }
 .state.loading { display: flex; align-items: center; gap: 12px; border-style: solid; margin: 40px 0; background: var(--shell-2); border-color: var(--shell-line); color: var(--muted-dark); }
-.pulse { width: 12px; height: 12px; border-radius: 50%; background: var(--gold); animation: pulse 1s ease-in-out infinite; }
+span.pulse { width: 12px; height: 12px; border-radius: 50%; background: var(--gold); animation: pulse 1s ease-in-out infinite; }
 @keyframes pulse { 50% { opacity: .25; transform: scale(.7); } }
 .state.error { border-color: #f0c3bd; background: #fff7f6; }
 .canvas.narrow.center { padding: 80px var(--gutter); max-width: 720px; margin: 0 auto; color: #fff; background: none; }
@@ -431,9 +431,12 @@ button { font: inherit; }
 .pitch .shot { stroke-width: .28; }
 .pitch .shot.home { fill: var(--home); stroke: #1b1405; }
 .pitch .shot.away { fill: var(--away); stroke: var(--away-ink); }
-.pitch .shot.off { fill: rgba(0,0,0,.25); stroke-width: .42; }
-.pitch .shot.off.home { stroke: var(--home); } .pitch .shot.off.away { stroke: var(--away); }
+/* Missed / blocked shots: a small, deliberate solid marker (never a translucent halo). */
+.pitch .shot.off, .pitch .shot.blocked, .pitch .shot.post { stroke-width: .3; }
+.pitch .shot.off.home, .pitch .shot.blocked.home, .pitch .shot.post.home { fill: #a88a3c; stroke: #1b1405; }
+.pitch .shot.off.away, .pitch .shot.blocked.away, .pitch .shot.post.away { fill: #b9c2d0; stroke: var(--away-ink); }
 .pitch .ring { fill: none; stroke: #fff; stroke-width: .3; }
+.pitch .ring.og { stroke-dasharray: .7 .5; }
 .pitch .mark.sel .shot, .pitch .mark:focus-visible .shot { stroke: #fff; stroke-width: .7; }
 .emap-label { font: 800 12px/1.2 var(--body); letter-spacing: .2em; color: var(--pitch); margin: 10px 0 6px; text-align: center; }
 .emap-detail { min-height: 44px; padding: 10px 12px; background: var(--canvas-alt); border-radius: 9px; font-size: 14px; }
@@ -441,7 +444,7 @@ button { font: inherit; }
 .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12.5px; color: var(--muted); margin: 10px 0 0; }
 .lg { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
 .lg.goal { background: var(--gold); box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--ink); }
-.lg.on { background: var(--gold); } .lg.off { border: 2px solid var(--gold); background: transparent; }
+.lg.on { background: var(--gold); } .lg.off { width: 8px; height: 8px; background: #a88a3c; box-shadow: 0 0 0 1px #1b1405; margin-left: 2px; }
 
 .stats-basis { font-size: 12.5px; color: var(--muted); margin: 0 0 12px; padding: 10px 12px; border-radius: 9px; background: var(--canvas-alt); }
 .stats-basis b { display: block; font: 800 12px/1.3 var(--body); letter-spacing: .16em; color: var(--ink); }
@@ -773,12 +776,11 @@ body { background: transparent; }
 .rp-now-k { flex: none; padding: 4px 7px; border-radius: 6px; background: var(--gold); color: #1b1405; font: 800 10.5px/1 var(--display); letter-spacing: .14em; }
 .rp-now [data-rp-now-text] { min-width: 0; overflow-wrap: anywhere; }
 .rp-jump { font: 800 10.5px/1 var(--display); letter-spacing: .14em; color: var(--muted); align-self: center; }
-.pitch.cast .cmark.off { display: none; }
-.pitch.cast .pulse { fill: none; stroke: #fff; stroke-width: .35; opacity: 0; }
-.pitch.cast .cmark.now .pulse { animation: castpulse 1.1s ease-out 2; }
-.pitch.cast .cmark.now .shot { stroke: #fff; stroke-width: .6; }
-@keyframes castpulse { 0% { opacity: .9; r: 1.4; } 100% { opacity: 0; r: 5.5; } }
-@media (prefers-reduced-motion: reduce) { .pitch.cast .cmark.now .pulse { animation: none; } }
+/* Only the CURRENT replay event is highlighted; only it pulses (once). Historical marks are static. */
+.pitch.cast .cmark.cur .shot { stroke: #fff; stroke-width: .6; }
+.pitch.cast .cpulse { fill: none; stroke: #fff; stroke-width: .35; opacity: 0; animation: castpulse 1.1s ease-out 1; }
+@keyframes castpulse { 0% { opacity: .9; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .pitch.cast .cpulse { animation: none; } }
 .feed { list-style: none; margin: 0; padding: 0; max-height: 640px; overflow: auto; overscroll-behavior: contain; }
 .fi { display: grid; grid-template-columns: 48px 18px 1fr auto; align-items: center; gap: 8px; padding: 9px 4px 9px 8px; border-top: 1px solid var(--line); border-left: 3px solid var(--home); }
 .fi.away { border-left-color: var(--away-ink); background: linear-gradient(90deg, transparent, rgba(36,59,92,.04)); }

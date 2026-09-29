@@ -9,7 +9,7 @@ import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { ago, dateShort, dateTime, num, sourceName, STAT_LABELS, statsHeading, time } from '../lib/format.js';
 import { compMeta } from '../lib/competitions.js';
-import { buildTimeline, clockAt, isLocated, keyMoments, liveStatus, liveView, pctOf, PERIOD_LABEL, replayView } from '../lib/cast.js';
+import { buildTimeline, clockAt, keyMoments, liveStatus, liveView, pctOf, PERIOD_LABEL, pitchItems, pitchKind, replayView } from '../lib/cast.js';
 import { competitionMark, empty, link, mountMediaFallbacks, playerChip, sectionHead, sourcePanel, statusPill, teamLink, teamMark } from '../components/ui.js';
 import { L, W, pitchLines } from '../components/pitch.js';
 import { keyPlayers } from '../components/keyplayers.js';
@@ -84,20 +84,28 @@ const ICON = { goal: '●', own_goal: '●', shot: '○', card_yellow: '▮', ca
 const WORD = { goal: 'Goal', own_goal: 'Own goal', shot: 'Shot', card_yellow: 'Yellow card', card_red: 'Red card', sub: 'Substitution' };
 const OUT = { goal: 'goal', on_target: 'on target', off_target: 'off target', blocked: 'blocked', post: 'woodwork' };
 
-function markFor(x, portrait) {
-  if (!Number.isFinite(x.x) || !Number.isFinite(x.y) || x.x < 0 || x.x > L || x.y < 0 || x.y > W) return '';
+// One marker per eligible pitch event (pitchItems: shots, goals, own goals with a source location;
+// never cards, substitutions or other timeline items). Goals carry a ring; ONLY the current replay
+// event is highlighted, and only it gets the one-shot pulse (`cpulse`, never the page's `.pulse`
+// loading-dot class, whose infinite keyframes would light every hidden halo).
+const R = { goal: [1.5, 1.75], og: [1.5, 1.75], on: [1.05, 1.25], off: [0.8, 0.95], blocked: [0.8, 0.95], post: [0.8, 0.95] };
+function markFor(x, portrait, { current = false, pulse = false } = {}) {
+  const kind = pitchKind(x);
+  if (!kind || x.x < 0 || x.x > L || x.y < 0 || x.y > W) return '';
   const p = portrait ? { x: x.y, y: L - x.x } : { x: x.x, y: x.y };
-  const kind = x.type === 'goal' ? 'goal' : x.outcome === 'on_target' ? 'on' : 'off';
-  const r = portrait ? (kind === 'goal' ? 1.8 : 1.25) : (kind === 'goal' ? 1.55 : 1.05);
-  return `<g class="cmark" data-ci="${x.i}" data-v="${x.v ?? ''}"${x.v !== null && x.v !== undefined ? ` data-seek="${x.v}"` : ''}><circle class="shot ${x.team === 'away' ? 'away' : 'home'} ${kind}" cx="${p.x}" cy="${p.y}" r="${r}"/>${kind === 'goal' ? `<circle class="ring" cx="${p.x}" cy="${p.y}" r="${portrait ? 2.8 : 2.4}"/>` : ''}<circle class="pulse" cx="${p.x}" cy="${p.y}" r="${portrait ? 3.2 : 2.8}"/></g>`;
+  const r = R[kind][portrait ? 1 : 0];
+  const ring = kind === 'goal' || kind === 'og' ? `<circle class="ring${kind === 'og' ? ' og' : ''}" cx="${p.x}" cy="${p.y}" r="${r + (portrait ? 1 : 0.85)}"/>` : '';
+  return `<g class="cmark k-${kind}${current ? ' cur' : ''}" data-ci="${x.i}" data-v="${x.v ?? ''}"${x.v !== null && x.v !== undefined ? ` data-seek="${x.v}"` : ''}>${ring}<circle class="shot ${x.team === 'away' ? 'away' : 'home'} ${kind}" cx="${p.x}" cy="${p.y}" r="${r}"/>${current && pulse ? `<circle class="cpulse" cx="${p.x}" cy="${p.y}" r="${r + 1.6}"/>` : ''}</g>`;
 }
 
 // Pitch marks for the events the view may show: the full match live / at full time, only
-// replayView().seen during a replay (a future shot is never in the markup).
-export const pitchMarks = (items, portrait) => join(items, x => markFor(x, portrait));
-export function castPitch(tl, m, { portrait = false, items = tl.items } = {}) {
+// replayView().seen during a replay (a future shot is never in the markup). `current` is the
+// replay's current event (the only one highlighted); none at full time or live.
+export const pitchMarks = (items, portrait, { current = null, pulse = false } = {}) =>
+  join(pitchItems(items), x => markFor(x, portrait, { current: !!current && x.i === current.i, pulse }));
+export function castPitch(tl, m, { portrait = false, items = tl.items, current = null } = {}) {
   const hn = m.home?.short_name || m.home?.name || 'Home'; const an = m.away?.short_name || m.away?.name || 'Away';
-  const marks = pitchMarks(items, portrait);
+  const marks = pitchMarks(items, portrait, { current });
   if (portrait) {
     return `<svg class="pitch portrait cast" viewBox="-3 -7 ${W + 6} ${L + 14}" role="img" aria-label="PBEcast pitch: sourced shot locations. ${esc(hn)} attack up, ${esc(an)} attack down.">
       <g transform="translate(0 ${L}) rotate(-90)">${pitchLines()}</g>
@@ -173,7 +181,7 @@ export function castView(env) {
   const lv = mode === 'live' ? liveView(m) : { score: m.score, clock: null };
   const sc = lv.score && lv.score.home !== null && lv.score.home !== undefined ? lv.score : null;
   const rv = replayView(tl.total, tl, m.score); // the replay opens at full time: everything sourced is known
-  const located = tl.items.filter(isLocated).length;
+  const located = pitchItems(tl.items).length;
   const moments = keyMoments(tl);
   const clock = mode === 'live' ? (lv.clock || (lv.from === 'canonical' ? live.detail || '' : '')) : mode === 'replay' ? 'FT' : '';
   return `<section class="cast-top ${esc(mode)}"><div class="wrap">
@@ -203,7 +211,7 @@ export function castView(env) {
           <div class="pitchwrap land">${castPitch(tl, m)}</div>
           <div class="pitchwrap port">${castPitch(tl, m, { portrait: true })}</div>
           <p class="emap-label" data-rp-caption>${mode === 'replay' ? esc(rv.caption) : located ? `${num(located)} LOCATED SHOTS · EVENT LOCATIONS, NOT PLAYER TRACKING` : 'NO LOCATED EVENTS FROM THIS SOURCE · NOTHING IS PLOTTED'}</p>
-          <p class="legend"><span><i class="lg goal"></i>Goal</span><span><i class="lg on"></i>On target</span><span><i class="lg off"></i>Off target / blocked</span></p>
+          <p class="legend"><span><i class="lg goal"></i>Goal</span><span><i class="lg on"></i>On target</span><span><i class="lg off"></i>Off target / blocked</span><span class="muted">Shots only · cards and substitutions are in the feed</span></p>
         </div>
         <div class="cast-feed panel">${mode === 'replay' ? '<header class="sec-head"><p class="kicker">REPLAY FEED</p><h2 data-feed-sub>Full match · latest first</h2></header>' : sectionHead(mode === 'live' ? 'LIVE FEED' : 'MATCH FEED', 'Sourced events, newest first')}
           <ol class="feed" data-feed${mode === 'live' ? ' aria-live="polite"' : ''}>${mode === 'replay' ? join([...rv.seen].reverse(), x => feedItem(x, m, { current: x === rv.current, seekable: true })) : join([...tl.items].reverse(), x => feedItem(x, m))}</ol>
@@ -244,11 +252,11 @@ export function mountReplay(root, env) {
     if (caption) caption.textContent = rv.caption;
     if (nowText) nowText.textContent = nowLine(rv, m);
     if (feedSub) feedSub.textContent = rv.atEnd ? 'Full match · latest first' : `Through ${rv.clock} · latest first`;
-    const key = `${rv.seen.length}:${rv.current?.i ?? ''}`;
+    const key = `${rv.seen.length}:${rv.current?.i ?? ''}:${rv.atEnd}`;
     if (key !== drawn) {
-      for (const g of markGroups) g.innerHTML = pitchMarks(rv.seen, g.closest('svg').classList.contains('portrait'));
+      const current = rv.atEnd ? null : rv.current;
+      for (const g of markGroups) g.innerHTML = pitchMarks(rv.seen, g.closest('svg').classList.contains('portrait'), { current, pulse: flash && !reduce });
       if (feed) { feed.innerHTML = join([...rv.seen].reverse(), x => feedItem(x, m, { current: x === rv.current, seekable: true })); mountMediaFallbacks(feed); feed.scrollTop = 0; }
-      if (flash && !reduce && rv.current) for (const g of root.querySelectorAll(`.cmark[data-ci="${rv.current.i}"]`)) g.classList.add('now');
       drawn = key;
     }
     for (const el of tlMarks) {

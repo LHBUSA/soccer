@@ -66,8 +66,46 @@ export function stateAt(v, tl) {
   return { seen, score: last ? last.score : { home: 0, away: 0 }, latest: seen[seen.length - 1] || null };
 }
 
-// A located event: the source gave it a pitch location (the pitch plots it; the caption counts it).
+// A located event: the source gave it a pitch location.
 export const isLocated = x => Number.isFinite(x?.x) && Number.isFinite(x?.y);
+
+// PITCH ELIGIBILITY. The pitch is a SHOT MAP: only shots, goals and own goals are drawn, and only
+// where the source located them. Coordinates alone never make an event a shot: a card, a
+// substitution or any other timeline item with coordinates is never plotted.
+export const PITCH_TYPES = new Set(['shot', 'goal', 'own_goal']);
+export const isPitchEvent = x => PITCH_TYPES.has(x?.type) && isLocated(x);
+
+// Marker class of a pitch event, from its TYPE first, then (shots only) its outcome.
+//   goal / shot with outcome goal -> 'goal'; own_goal -> 'og'; on_target -> 'on';
+//   blocked -> 'blocked'; post -> 'post'; every other legitimate shot -> 'off'. Not a pitch event -> null.
+export function pitchKind(x) {
+  if (!isPitchEvent(x)) return null;
+  if (x.type === 'own_goal') return 'og';
+  if (x.type === 'goal' || x.outcome === 'goal') return 'goal';
+  if (x.outcome === 'on_target') return 'on';
+  if (x.outcome === 'blocked') return 'blocked';
+  if (x.outcome === 'post') return 'post';
+  return 'off';
+}
+
+// The markers a view draws: pitch events only, one per source event. A goal the source also
+// recorded as a shot at the same minute, side and location is drawn once (as the goal).
+export function pitchItems(items = []) {
+  const scoring = x => ['goal', 'og'].includes(pitchKind(x));
+  const out = []; const at = new Map();
+  for (const x of items) {
+    if (!pitchKind(x)) continue;
+    const key = `${x.minute}|${x.team}|${x.x}|${x.y}`;
+    const prev = at.get(key);
+    if (prev && (scoring(x) || scoring(prev))) {
+      // keep the goal: a scoring event beats a non-scoring one; an explicit goal/own_goal type beats a shot record
+      if ((scoring(x) && !scoring(prev)) || (scoring(x) && x.type !== 'shot' && prev.type === 'shot')) { out[out.indexOf(prev)] = x; at.set(key, x); }
+      continue;
+    }
+    at.set(key, x); out.push(x);
+  }
+  return out;
+}
 
 // THE replay state at virtual minute v: one stateAt() call feeds the score, clock, current event,
 // pitch marks, feed and caption, so no component can show anything the cursor has not reached.
@@ -77,8 +115,8 @@ export function replayView(v, tl, finalScore = null) {
   const s = stateAt(cur, tl);
   const atEnd = cur >= tl.total;
   const clock = atEnd ? 'FT' : clockAt(cur, tl);
-  const located = s.seen.filter(isLocated).length;
-  const anyLocated = tl.items.some(isLocated);
+  const located = pitchItems(s.seen).length;
+  const anyLocated = tl.items.some(isPitchEvent);
   const caption = !anyLocated ? 'NO LOCATED EVENTS FROM THIS SOURCE · NOTHING IS PLOTTED'
     : atEnd ? `${located} LOCATED ${located === 1 ? 'SHOT' : 'SHOTS'} · EVENT LOCATIONS, NOT PLAYER TRACKING`
     : `${located} LOCATED ${located === 1 ? 'SHOT' : 'SHOTS'} THROUGH ${clock}`;
