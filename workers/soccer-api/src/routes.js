@@ -12,6 +12,7 @@ import { displayMinute } from '../../shared/clock.js';
 import { COVERAGE, envelope, maxTs } from './envelope.js';
 import { chunkArr } from '../../soccer-ingest/src/store.js';
 import { ownGoalBeneficiary } from '../../shared/own-goals.js';
+import { LIVE_SNAPSHOT_STATUS_KEY, LIVE_SNAPSHOT_DIRTY_KEY } from '../../shared/live-snapshot.js';
 
 export const API_VERSION = 'soccer-api/1.2.0';
 const E = (data, o) => envelope(data, { version: API_VERSION, ...o });
@@ -875,13 +876,20 @@ export async function dataHealth(store, env) {
   const [portraits, players] = await Promise.all([store.count('soccer_entity_media', { eq: { entity_type: 'player', media_type: 'portrait', is_primary: true }, in: { rights_status: DISPLAYABLE } }), store.count('soccer_players', { eq: { status: 'active' } })]);
   const news = await kv('news:last_run');
   const standings = await kv('lane:espn_standings');
+  const [liveSnapshot, liveDirty] = await Promise.all([kv(LIVE_SNAPSHOT_STATUS_KEY), kv(LIVE_SNAPSHOT_DIRTY_KEY)]);
   const newsroom = await newsroomHealth(store, news, await kv('news:last_tick'), now);
   return E({
     at: new Date(now).toISOString(), competitions: out, newsroom,
     identity_queue_open: qBy, media: { portraits_approved: portraits, active_players: players },
     standings_lane: standings ? { last_success_at: standings.last_success_at, health: standings.health } : null,
+    live_snapshot: liveSnapshot ? {
+      ...liveSnapshot,
+      age_seconds: liveSnapshot.built_at ? Math.max(0, Math.round((now - Date.parse(liveSnapshot.built_at)) / 1000)) : null,
+      dirty_at: liveDirty?.at || null,
+      dirty_newer_than_snapshot: !!(liveDirty?.at && liveSnapshot.built_at && Date.parse(liveDirty.at) > Date.parse(liveSnapshot.built_at)),
+    } : { built_at: null, age_seconds: null, dirty_at: liveDirty?.at || null, missing: true },
     news_worker: news ? { last_run_at: news.at, llm: news.llm, by_competition: Object.fromEntries(Object.entries(news.competitions || {}).map(([k, v]) => [k, { candidates: v.candidates, new: v.new, published: v.published, held: v.held }])) } : null,
-  }, { source: 'pbe', semantics: 'Production data health computed live from the canonical graph and lane state. Result gaps and optional-component gaps (lineup, stats, play-by-play) are separate: a failed optional component never marks the result or the lane dead.', source_updated_at: new Date(now).toISOString() });
+  }, { source: 'pbe', semantics: 'Production data health computed live from the canonical graph and lane state. Result gaps and optional-component gaps (lineup, stats, play-by-play) are separate: a failed optional component never marks the result or the lane dead. live_snapshot reports the materialized public /live state and the PostgREST reads used to build it.', source_updated_at: new Date(now).toISOString() });
 }
 
 // NEWSROOM HEALTH: one view that explains a quiet newsroom in 30 seconds. Global: is the cron fresh
