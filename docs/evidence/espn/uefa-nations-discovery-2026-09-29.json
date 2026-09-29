@@ -1,0 +1,2268 @@
+{
+  "generated_at": "2026-09-29T00:45:01.022Z",
+  "source": "ESPN Core API (secondary source)",
+  "league": "uefa.nations",
+  "league_detail": {
+    "id": "2395",
+    "uid": "s:600~l:2395",
+    "name": "UEFA Nations League",
+    "abbreviation": "UEFA Nations League",
+    "slug": "uefa.nations",
+    "is_tournament": true,
+    "season_ref": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026?lang=en&region=us",
+    "keys": [
+      "$ref",
+      "id",
+      "guid",
+      "uid",
+      "alternateId",
+      "name",
+      "displayName",
+      "abbreviation",
+      "shortName",
+      "midsizeName",
+      "slug",
+      "isTournament",
+      "season",
+      "seasons",
+      "franchises",
+      "teams",
+      "group",
+      "groups",
+      "events",
+      "notes",
+      "rankings",
+      "links",
+      "logos",
+      "calendar",
+      "transactions",
+      "gender"
+    ]
+  },
+  "season": {
+    "year": 2026,
+    "display_name": "2026-27 UEFA Nations League",
+    "start": "2026-06-01T04:00Z",
+    "end": "2028-04-01T03:59Z",
+    "type_ref": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/1?lang=en&region=us"
+  },
+  "types": [
+    {
+      "id": "1",
+      "name": "League Phase",
+      "abbreviation": "League Phase",
+      "start": "2026-04-02T04:00Z",
+      "end": "2026-11-19T04:59Z",
+      "has_groups": true,
+      "has_standings": true,
+      "keys": [
+        "$ref",
+        "id",
+        "type",
+        "name",
+        "abbreviation",
+        "startDate",
+        "endDate",
+        "hasGroups",
+        "hasStandings",
+        "hasLiveStandings",
+        "hasLegs",
+        "hasStats",
+        "isFinal",
+        "isThirdPlace",
+        "groups",
+        "leaders",
+        "slug"
+      ],
+      "event_count": 156,
+      "top_groups": [
+        {
+          "id": "1",
+          "name": "Group A1",
+          "abbreviation": "Group A1",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "standings"
+          ],
+          "parent_ref": null,
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/1/groups/1/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 4,
+            "rows": [
+              {
+                "team": "162",
+                "note": "A, B: Relegation playoffs",
+                "rank": 3,
+                "gp": 2,
+                "w": 1,
+                "d": 0,
+                "l": 1,
+                "gf": 4,
+                "ga": 3,
+                "pts": 3,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "459",
+                "note": "A: Qualifies for QFs; B-D: Promotion playoffs",
+                "rank": 2,
+                "gp": 2,
+                "w": 1,
+                "d": 0,
+                "l": 1,
+                "gf": 2,
+                "ga": 1,
+                "pts": 3,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "465",
+                "note": "A, B: Relegation; C: Relegation or playoffs",
+                "rank": 4,
+                "gp": 2,
+                "w": 0,
+                "d": 0,
+                "l": 2,
+                "gf": 1,
+                "ga": 5,
+                "pts": 0,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "478",
+                "note": "A: Qualifies for QFs; B-D: Promotion",
+                "rank": 1,
+                "gp": 2,
+                "w": 2,
+                "d": 0,
+                "l": 0,
+                "gf": 2,
+                "ga": 0,
+                "pts": 6,
+                "record_types": [
+                  "total"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "name": "Group A2",
+          "abbreviation": "Group A2",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "parent",
+            "standings"
+          ],
+          "parent_ref": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/1/groups/8019?lang=en&region=us",
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/1/groups/2/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 4,
+            "rows": [
+              {
+                "team": "449",
+                "note": null,
+                "rank": 2,
+                "gp": 2,
+                "w": 1,
+                "d": 1,
+                "l": 0,
+                "gf": 3,
+                "ga": 2,
+                "pts": 4,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "455",
+                "note": null,
+                "rank": 1,
+                "gp": 2,
+                "w": 2,
+                "d": 0,
+                "l": 0,
+                "gf": 3,
+                "ga": 1,
+                "pts": 6,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "481",
+                "note": null,
+                "rank": 3,
+                "gp": 2,
+                "w": 0,
+                "d": 1,
+                "l": 1,
+                "gf": 1,
+                "ga": 2,
+                "pts": 1,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "6757",
+                "note": null,
+                "rank": 4,
+                "gp": 2,
+                "w": 0,
+                "d": 0,
+                "l": 2,
+                "gf": 2,
+                "ga": 4,
+                "pts": 0,
+                "record_types": [
+                  "total"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "name": "Group A3",
+          "abbreviation": "Group A3",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "parent",
+            "standings"
+          ],
+          "parent_ref": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/1/groups/8019?lang=en&region=us",
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/1/groups/3/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 4,
+            "rows": [
+              {
+                "team": "164",
+                "note": null,
+                "rank": 1,
+                "gp": 1,
+                "w": 1,
+                "d": 0,
+                "l": 0,
+                "gf": 3,
+                "ga": 2,
+                "pts": 3,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "448",
+                "note": null,
+                "rank": 3,
+                "gp": 1,
+                "w": 0,
+                "d": 0,
+                "l": 1,
+                "gf": 2,
+                "ga": 3,
+                "pts": 0,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "450",
+                "note": null,
+                "rank": 4,
+                "gp": 1,
+                "w": 0,
+                "d": 0,
+                "l": 1,
+                "gf": 1,
+                "ga": 2,
+                "pts": 0,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "477",
+                "note": null,
+                "rank": 2,
+                "gp": 1,
+                "w": 1,
+                "d": 0,
+                "l": 0,
+                "gf": 2,
+                "ga": 1,
+                "pts": 3,
+                "record_types": [
+                  "total"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "4",
+          "name": "Group A4",
+          "abbreviation": "Group A4",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "parent",
+            "standings"
+          ],
+          "parent_ref": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/1/groups/8019?lang=en&region=us",
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/1/groups/4/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 4,
+            "rows": [
+              {
+                "team": "464",
+                "note": null,
+                "rank": 2,
+                "gp": 2,
+                "w": 1,
+                "d": 0,
+                "l": 1,
+                "gf": 4,
+                "ga": 4,
+                "pts": 3,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "479",
+                "note": null,
+                "rank": 3,
+                "gp": 2,
+                "w": 1,
+                "d": 0,
+                "l": 1,
+                "gf": 4,
+                "ga": 3,
+                "pts": 3,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "482",
+                "note": null,
+                "rank": 1,
+                "gp": 2,
+                "w": 2,
+                "d": 0,
+                "l": 0,
+                "gf": 3,
+                "ga": 1,
+                "pts": 6,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "578",
+                "note": null,
+                "rank": 4,
+                "gp": 2,
+                "w": 0,
+                "d": 0,
+                "l": 2,
+                "gf": 0,
+                "ga": 3,
+                "pts": 0,
+                "record_types": [
+                  "total"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "5",
+          "name": "Group B1",
+          "abbreviation": "Group B1",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "standings"
+          ],
+          "parent_ref": null,
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/1/groups/5/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 4,
+            "rows": [
+              {
+                "team": "463",
+                "note": null,
+                "rank": 4,
+                "gp": 1,
+                "w": 0,
+                "d": 0,
+                "l": 1,
+                "gf": 0,
+                "ga": 3,
+                "pts": 0,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "472",
+                "note": null,
+                "rank": 3,
+                "gp": 1,
+                "w": 0,
+                "d": 1,
+                "l": 0,
+                "gf": 0,
+                "ga": 0,
+                "pts": 1,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "475",
+                "note": null,
+                "rank": 1,
+                "gp": 1,
+                "w": 1,
+                "d": 0,
+                "l": 0,
+                "gf": 3,
+                "ga": 0,
+                "pts": 3,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "580",
+                "note": null,
+                "rank": 2,
+                "gp": 1,
+                "w": 0,
+                "d": 1,
+                "l": 0,
+                "gf": 0,
+                "ga": 0,
+                "pts": 1,
+                "record_types": [
+                  "total"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "6",
+          "name": "Group B2",
+          "abbreviation": "Group B2",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "standings"
+          ],
+          "parent_ref": null,
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/1/groups/6/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 4,
+            "rows": [
+              {
+                "team": "457",
+                "note": null,
+                "rank": 2,
+                "gp": 2,
+                "w": 1,
+                "d": 1,
+                "l": 0,
+                "gf": 1,
+                "ga": 0,
+                "pts": 4,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "480",
+                "note": null,
+                "rank": 4,
+                "gp": 2,
+                "w": 0,
+                "d": 1,
+                "l": 1,
+                "gf": 0,
+                "ga": 1,
+                "pts": 1,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "584",
+                "note": null,
+                "rank": 3,
+                "gp": 2,
+                "w": 0,
+                "d": 1,
+                "l": 1,
+                "gf": 0,
+                "ga": 1,
+                "pts": 1,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "586",
+                "note": null,
+                "rank": 1,
+                "gp": 2,
+                "w": 1,
+                "d": 1,
+                "l": 0,
+                "gf": 1,
+                "ga": 0,
+                "pts": 4,
+                "record_types": [
+                  "total"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "7",
+          "name": "Group B3",
+          "abbreviation": "Group B3",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "standings"
+          ],
+          "parent_ref": null,
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/1/groups/7/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 4,
+            "rows": [
+              {
+                "team": "461",
+                "note": null,
+                "rank": 4,
+                "gp": 2,
+                "w": 0,
+                "d": 0,
+                "l": 2,
+                "gf": 1,
+                "ga": 6,
+                "pts": 0,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "474",
+                "note": null,
+                "rank": 1,
+                "gp": 2,
+                "w": 2,
+                "d": 0,
+                "l": 0,
+                "gf": 6,
+                "ga": 2,
+                "pts": 6,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "476",
+                "note": null,
+                "rank": 3,
+                "gp": 2,
+                "w": 1,
+                "d": 0,
+                "l": 1,
+                "gf": 3,
+                "ga": 1,
+                "pts": 3,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "18272",
+                "note": null,
+                "rank": 2,
+                "gp": 2,
+                "w": 1,
+                "d": 0,
+                "l": 1,
+                "gf": 2,
+                "ga": 3,
+                "pts": 3,
+                "record_types": [
+                  "total"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "8",
+          "name": "Group B4",
+          "abbreviation": "Group B4",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "standings"
+          ],
+          "parent_ref": null,
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/1/groups/8/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 4,
+            "rows": [
+              {
+                "team": "452",
+                "note": null,
+                "rank": 2,
+                "gp": 2,
+                "w": 1,
+                "d": 1,
+                "l": 0,
+                "gf": 4,
+                "ga": 2,
+                "pts": 4,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "466",
+                "note": null,
+                "rank": 1,
+                "gp": 2,
+                "w": 2,
+                "d": 0,
+                "l": 0,
+                "gf": 5,
+                "ga": 2,
+                "pts": 6,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "471",
+                "note": null,
+                "rank": 3,
+                "gp": 2,
+                "w": 0,
+                "d": 1,
+                "l": 1,
+                "gf": 1,
+                "ga": 3,
+                "pts": 1,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "473",
+                "note": null,
+                "rank": 4,
+                "gp": 2,
+                "w": 0,
+                "d": 0,
+                "l": 2,
+                "gf": 3,
+                "ga": 6,
+                "pts": 0,
+                "record_types": [
+                  "total"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "9",
+          "name": "Group C1",
+          "abbreviation": "Group C1",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "standings"
+          ],
+          "parent_ref": null,
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/1/groups/9/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 4,
+            "rows": [
+              {
+                "team": "458",
+                "note": null,
+                "rank": 1,
+                "gp": 1,
+                "w": 1,
+                "d": 0,
+                "l": 0,
+                "gf": 7,
+                "ga": 0,
+                "pts": 3,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "583",
+                "note": null,
+                "rank": 3,
+                "gp": 1,
+                "w": 0,
+                "d": 0,
+                "l": 1,
+                "gf": 0,
+                "ga": 2,
+                "pts": 0,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "585",
+                "note": null,
+                "rank": 2,
+                "gp": 1,
+                "w": 1,
+                "d": 0,
+                "l": 0,
+                "gf": 2,
+                "ga": 0,
+                "pts": 3,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "588",
+                "note": null,
+                "rank": 4,
+                "gp": 1,
+                "w": 0,
+                "d": 0,
+                "l": 1,
+                "gf": 0,
+                "ga": 7,
+                "pts": 0,
+                "record_types": [
+                  "total"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "10",
+          "name": "Group C2",
+          "abbreviation": "Group C2",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "standings"
+          ],
+          "parent_ref": null,
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/1/groups/10/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 4,
+            "rows": [
+              {
+                "team": "445",
+                "note": null,
+                "rank": 3,
+                "gp": 2,
+                "w": 0,
+                "d": 1,
+                "l": 1,
+                "gf": 1,
+                "ga": 2,
+                "pts": 1,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "456",
+                "note": null,
+                "rank": 4,
+                "gp": 2,
+                "w": 0,
+                "d": 1,
+                "l": 1,
+                "gf": 0,
+                "ga": 2,
+                "pts": 1,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "579",
+                "note": null,
+                "rank": 2,
+                "gp": 2,
+                "w": 1,
+                "d": 0,
+                "l": 1,
+                "gf": 4,
+                "ga": 3,
+                "pts": 3,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "6775",
+                "note": null,
+                "rank": 1,
+                "gp": 2,
+                "w": 2,
+                "d": 0,
+                "l": 0,
+                "gf": 5,
+                "ga": 3,
+                "pts": 6,
+                "record_types": [
+                  "total"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "11",
+          "name": "Group C3",
+          "abbreviation": "Group C3",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "standings"
+          ],
+          "parent_ref": null,
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/1/groups/11/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 4,
+            "rows": [
+              {
+                "team": "447",
+                "note": null,
+                "rank": 3,
+                "gp": 1,
+                "w": 0,
+                "d": 1,
+                "l": 0,
+                "gf": 1,
+                "ga": 1,
+                "pts": 1,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "468",
+                "note": null,
+                "rank": 1,
+                "gp": 1,
+                "w": 1,
+                "d": 0,
+                "l": 0,
+                "gf": 2,
+                "ga": 0,
+                "pts": 3,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "483",
+                "note": null,
+                "rank": 4,
+                "gp": 1,
+                "w": 0,
+                "d": 0,
+                "l": 1,
+                "gf": 0,
+                "ga": 2,
+                "pts": 0,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "2619",
+                "note": null,
+                "rank": 2,
+                "gp": 1,
+                "w": 0,
+                "d": 1,
+                "l": 0,
+                "gf": 1,
+                "ga": 1,
+                "pts": 1,
+                "record_types": [
+                  "total"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "12",
+          "name": "Group C4",
+          "abbreviation": "Group C4",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "standings"
+          ],
+          "parent_ref": null,
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/1/groups/12/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 4,
+            "rows": [
+              {
+                "team": "444",
+                "note": null,
+                "rank": 2,
+                "gp": 1,
+                "w": 0,
+                "d": 1,
+                "l": 0,
+                "gf": 1,
+                "ga": 1,
+                "pts": 1,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "462",
+                "note": null,
+                "rank": 4,
+                "gp": 1,
+                "w": 0,
+                "d": 0,
+                "l": 1,
+                "gf": 1,
+                "ga": 2,
+                "pts": 0,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "470",
+                "note": null,
+                "rank": 3,
+                "gp": 1,
+                "w": 0,
+                "d": 1,
+                "l": 0,
+                "gf": 1,
+                "ga": 1,
+                "pts": 1,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "582",
+                "note": null,
+                "rank": 1,
+                "gp": 1,
+                "w": 1,
+                "d": 0,
+                "l": 0,
+                "gf": 2,
+                "ga": 1,
+                "pts": 3,
+                "record_types": [
+                  "total"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "13",
+          "name": "Group D1",
+          "abbreviation": "Group D1",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "standings"
+          ],
+          "parent_ref": null,
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/1/groups/13/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 3,
+            "rows": [
+              {
+                "team": "453",
+                "note": null,
+                "rank": 1,
+                "gp": 1,
+                "w": 1,
+                "d": 0,
+                "l": 0,
+                "gf": 2,
+                "ga": 1,
+                "pts": 3,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "587",
+                "note": null,
+                "rank": 3,
+                "gp": 2,
+                "w": 0,
+                "d": 1,
+                "l": 1,
+                "gf": 1,
+                "ga": 2,
+                "pts": 1,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "16721",
+                "note": null,
+                "rank": 2,
+                "gp": 1,
+                "w": 0,
+                "d": 1,
+                "l": 0,
+                "gf": 0,
+                "ga": 0,
+                "pts": 1,
+                "record_types": [
+                  "total"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "14",
+          "name": "Group D2",
+          "abbreviation": "Group D2",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "standings"
+          ],
+          "parent_ref": null,
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/1/groups/14/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 3,
+            "rows": [
+              {
+                "team": "460",
+                "note": null,
+                "rank": 1,
+                "gp": 2,
+                "w": 1,
+                "d": 1,
+                "l": 0,
+                "gf": 3,
+                "ga": 1,
+                "pts": 4,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "581",
+                "note": null,
+                "rank": 2,
+                "gp": 1,
+                "w": 0,
+                "d": 1,
+                "l": 0,
+                "gf": 1,
+                "ga": 1,
+                "pts": 1,
+                "record_types": [
+                  "total"
+                ]
+              },
+              {
+                "team": "589",
+                "note": null,
+                "rank": 3,
+                "gp": 1,
+                "w": 0,
+                "d": 0,
+                "l": 1,
+                "gf": 0,
+                "ga": 2,
+                "pts": 0,
+                "record_types": [
+                  "total"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Quarterfinals",
+      "abbreviation": "Quarterfinals",
+      "start": "2026-11-19T05:00Z",
+      "end": "2027-04-01T03:59Z",
+      "has_groups": true,
+      "has_standings": false,
+      "keys": [
+        "$ref",
+        "id",
+        "type",
+        "name",
+        "abbreviation",
+        "startDate",
+        "endDate",
+        "hasGroups",
+        "hasStandings",
+        "hasLiveStandings",
+        "hasLegs",
+        "hasStats",
+        "isFinal",
+        "isThirdPlace",
+        "groups",
+        "slug"
+      ],
+      "event_count": 0,
+      "top_groups": [
+        {
+          "id": "1",
+          "name": "2026-27 UEFA Nations League - Quarterfinals",
+          "abbreviation": "2026-27 UEFA Nations League - Qu",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "parent",
+            "standings"
+          ],
+          "parent_ref": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/2/groups/8020?lang=en&region=us",
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/2/groups/1/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 0,
+            "rows": []
+          }
+        },
+        {
+          "id": "2",
+          "name": "2026-27 UEFA Nations League - Quarterfinals",
+          "abbreviation": "2026-27 UEFA Nations League - Qu",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "parent",
+            "standings"
+          ],
+          "parent_ref": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/2/groups/12464?lang=en&region=us",
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/2/groups/2/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 0,
+            "rows": []
+          }
+        },
+        {
+          "id": "3",
+          "name": "2026-27 UEFA Nations League - Quarterfinals",
+          "abbreviation": "2026-27 UEFA Nations League - Qu",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "parent",
+            "standings"
+          ],
+          "parent_ref": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/2/groups/12464?lang=en&region=us",
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/2/groups/3/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 0,
+            "rows": []
+          }
+        },
+        {
+          "id": "4",
+          "name": "2026-27 UEFA Nations League - Quarterfinals",
+          "abbreviation": "2026-27 UEFA Nations League - Qu",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "parent",
+            "standings"
+          ],
+          "parent_ref": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/2/groups/12464?lang=en&region=us",
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/2/groups/4/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 0,
+            "rows": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Relegation Playoffs",
+      "abbreviation": "Relegation Playoffs",
+      "start": "2026-11-19T05:00Z",
+      "end": "2028-04-03T03:59Z",
+      "has_groups": true,
+      "has_standings": false,
+      "keys": [
+        "$ref",
+        "id",
+        "type",
+        "name",
+        "abbreviation",
+        "startDate",
+        "endDate",
+        "hasGroups",
+        "hasStandings",
+        "hasLiveStandings",
+        "hasLegs",
+        "hasStats",
+        "isFinal",
+        "isThirdPlace",
+        "groups",
+        "slug"
+      ],
+      "event_count": 0,
+      "top_groups": [
+        {
+          "id": "1",
+          "name": "2026-27 UEFA Nations League - Relegation Playoffs",
+          "abbreviation": "2026-27 UEFA Nations League - Re",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "parent",
+            "standings"
+          ],
+          "parent_ref": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/3/groups/8021?lang=en&region=us",
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/3/groups/1/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 0,
+            "rows": []
+          }
+        },
+        {
+          "id": "2",
+          "name": "2026-27 UEFA Nations League - Relegation Playoffs",
+          "abbreviation": "2026-27 UEFA Nations League - Re",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "parent",
+            "standings"
+          ],
+          "parent_ref": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/3/groups/12463?lang=en&region=us",
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/3/groups/2/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 0,
+            "rows": []
+          }
+        },
+        {
+          "id": "3",
+          "name": "2026-27 UEFA Nations League - Relegation Playoffs",
+          "abbreviation": "2026-27 UEFA Nations League - Re",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "parent",
+            "standings"
+          ],
+          "parent_ref": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/3/groups/12463?lang=en&region=us",
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/3/groups/3/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 0,
+            "rows": []
+          }
+        },
+        {
+          "id": "4",
+          "name": "2026-27 UEFA Nations League - Relegation Playoffs",
+          "abbreviation": "2026-27 UEFA Nations League - Re",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "parent",
+            "standings"
+          ],
+          "parent_ref": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/3/groups/12463?lang=en&region=us",
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/3/groups/4/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 0,
+            "rows": []
+          }
+        },
+        {
+          "id": "5",
+          "name": "2026-27 UEFA Nations League - Relegation Playoffs",
+          "abbreviation": "2026-27 UEFA Nations League - Re",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "parent",
+            "standings"
+          ],
+          "parent_ref": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/3/groups/12463?lang=en&region=us",
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/3/groups/5/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 0,
+            "rows": []
+          }
+        },
+        {
+          "id": "6",
+          "name": "2026-27 UEFA Nations League - Relegation Playoffs",
+          "abbreviation": "2026-27 UEFA Nations League - Re",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "parent",
+            "standings"
+          ],
+          "parent_ref": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/3/groups/12463?lang=en&region=us",
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/3/groups/6/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 0,
+            "rows": []
+          }
+        },
+        {
+          "id": "7",
+          "name": "2026-27 UEFA Nations League - Relegation Playoffs",
+          "abbreviation": "2026-27 UEFA Nations League - Re",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "parent",
+            "standings"
+          ],
+          "parent_ref": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/3/groups/12463?lang=en&region=us",
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/3/groups/7/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 0,
+            "rows": []
+          }
+        },
+        {
+          "id": "8",
+          "name": "2026-27 UEFA Nations League - Relegation Playoffs",
+          "abbreviation": "2026-27 UEFA Nations League - Re",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "parent",
+            "standings"
+          ],
+          "parent_ref": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/3/groups/12463?lang=en&region=us",
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/3/groups/8/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 0,
+            "rows": []
+          }
+        },
+        {
+          "id": "9",
+          "name": "2026-27 UEFA Nations League - Relegation Playoffs",
+          "abbreviation": "2026-27 UEFA Nations League - Re",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "parent",
+            "standings"
+          ],
+          "parent_ref": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/3/groups/12463?lang=en&region=us",
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/3/groups/9/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 0,
+            "rows": []
+          }
+        },
+        {
+          "id": "10",
+          "name": "2026-27 UEFA Nations League - Relegation Playoffs",
+          "abbreviation": "2026-27 UEFA Nations League - Re",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "parent",
+            "standings"
+          ],
+          "parent_ref": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/3/groups/12463?lang=en&region=us",
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/3/groups/10/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 0,
+            "rows": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Semifinals",
+      "abbreviation": "Semifinals",
+      "start": "2027-04-01T04:00Z",
+      "end": "2027-06-12T03:59Z",
+      "has_groups": true,
+      "has_standings": false,
+      "keys": [
+        "$ref",
+        "id",
+        "type",
+        "name",
+        "abbreviation",
+        "startDate",
+        "endDate",
+        "hasGroups",
+        "hasStandings",
+        "hasLiveStandings",
+        "hasLegs",
+        "hasStats",
+        "isFinal",
+        "isThirdPlace",
+        "groups",
+        "slug"
+      ],
+      "event_count": 0,
+      "top_groups": [
+        {
+          "id": "1",
+          "name": "Semifinals",
+          "abbreviation": "Semifinals",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "parent",
+            "standings"
+          ],
+          "parent_ref": "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/4/groups/8022?lang=en&region=us",
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/4/groups/1/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 0,
+            "rows": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "3rd-Place Match",
+      "abbreviation": "3rd-Place Match",
+      "start": "2027-06-12T04:00Z",
+      "end": "2027-06-15T03:59Z",
+      "has_groups": true,
+      "has_standings": false,
+      "keys": [
+        "$ref",
+        "id",
+        "type",
+        "name",
+        "abbreviation",
+        "startDate",
+        "endDate",
+        "hasGroups",
+        "hasStandings",
+        "hasLiveStandings",
+        "hasLegs",
+        "hasStats",
+        "isFinal",
+        "isThirdPlace",
+        "groups",
+        "slug"
+      ],
+      "event_count": 0,
+      "top_groups": [
+        {
+          "id": "1",
+          "name": "3rd-Place Match",
+          "abbreviation": "3rd-Place Match",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "standings"
+          ],
+          "parent_ref": null,
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/5/groups/1/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 0,
+            "rows": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Final",
+      "abbreviation": "Final",
+      "start": "2027-06-12T04:00Z",
+      "end": "2027-06-15T03:59Z",
+      "has_groups": true,
+      "has_standings": false,
+      "keys": [
+        "$ref",
+        "id",
+        "type",
+        "name",
+        "abbreviation",
+        "startDate",
+        "endDate",
+        "hasGroups",
+        "hasStandings",
+        "hasLiveStandings",
+        "hasLegs",
+        "hasStats",
+        "isFinal",
+        "isThirdPlace",
+        "groups",
+        "slug"
+      ],
+      "event_count": 0,
+      "top_groups": [
+        {
+          "id": "1",
+          "name": "Final",
+          "abbreviation": "Final",
+          "short_name": null,
+          "is_conference": null,
+          "status": 200,
+          "keys": [
+            "$ref",
+            "uid",
+            "id",
+            "name",
+            "abbreviation",
+            "season",
+            "standings"
+          ],
+          "parent_ref": null,
+          "has_children": false,
+          "has_standings": true,
+          "has_teams": false,
+          "children": [],
+          "standings_list": {
+            "status": 200,
+            "count": 1,
+            "items": [
+              "https://sports.core.api.espn.com/v2/sports/soccer/leagues/uefa.nations/seasons/2026/types/6/groups/1/standings/0?lang=en&region=us"
+            ]
+          },
+          "standings": {
+            "status": 200,
+            "name": "overall",
+            "entries": 0,
+            "rows": []
+          }
+        }
+      ]
+    }
+  ],
+  "teams": {
+    "count": 54,
+    "ids": [
+      "162",
+      "164",
+      "444",
+      "445",
+      "447",
+      "448",
+      "449",
+      "450",
+      "452",
+      "453",
+      "455",
+      "456",
+      "457",
+      "458",
+      "459",
+      "460",
+      "461",
+      "462",
+      "463",
+      "464",
+      "465",
+      "466",
+      "468",
+      "470",
+      "471",
+      "472",
+      "473",
+      "474",
+      "475",
+      "476",
+      "477",
+      "478",
+      "479",
+      "480",
+      "481",
+      "482",
+      "483",
+      "578",
+      "579",
+      "580",
+      "581",
+      "582",
+      "583",
+      "584",
+      "585",
+      "586",
+      "587",
+      "588",
+      "589",
+      "2619",
+      "6757",
+      "6775",
+      "16721",
+      "18272"
+    ]
+  },
+  "sample_team": {
+    "id": "162",
+    "displayName": "Italy",
+    "abbreviation": "ITA",
+    "isNational": true,
+    "keys": [
+      "$ref",
+      "id",
+      "guid",
+      "uid",
+      "alternateIds",
+      "slug",
+      "location",
+      "name",
+      "abbreviation",
+      "displayName",
+      "shortDisplayName",
+      "color",
+      "alternateColor",
+      "isActive",
+      "isAllStar",
+      "logos",
+      "record",
+      "athletes",
+      "venue",
+      "groups",
+      "statistics",
+      "leaders",
+      "links",
+      "injuries",
+      "notes",
+      "franchise",
+      "events",
+      "coaches",
+      "seasons",
+      "summary",
+      "isNational",
+      "form",
+      "defaultLeague"
+    ],
+    "country_like": {
+      "alternateIds": {
+        "sdr": "17219"
+      },
+      "alternateColor": "ffffff",
+      "isNational": true
+    }
+  },
+  "requests": 116,
+  "blocked": []
+}

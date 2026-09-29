@@ -19,7 +19,7 @@ import * as espn from '../../providers/espn.js';
 import { captureRow } from './openligadb-lane.js';
 import { alignOpenLigaScorersToEspn, ensureCompetitionSeason, ingestEspnMatch, resolveEspnTeams, retryEnrichment, upsertEspnFixtures } from './espn-lane.js';
 
-export const ESPN_COMPETITIONS = ['bundesliga', 'premier-league', 'uefa-champions-league', 'uefa-europa-league', 'la-liga', 'serie-a', 'ligue-1', 'mls'];
+export const ESPN_COMPETITIONS = ['bundesliga', 'premier-league', 'uefa-champions-league', 'uefa-europa-league', 'la-liga', 'serie-a', 'ligue-1', 'mls', 'uefa-nations-league'];
 export const ESPN_LANES = ESPN_COMPETITIONS.map(slug => ({ name: `espn_${slug.replace(/-/g, '_')}`, competition: slug }));
 export const DEFAULT_BUDGET = 30;
 

@@ -52,7 +52,7 @@ export async function ensureCompetitionSeason(store, { comp, year }) {
   const leaguePhase = comp.comp_type !== 'league' && comp.espn?.stage_by_type;
   const stages = [{ id: stageId, season_id: seasonId, name: comp.comp_type === 'league' ? 'Regular Season' : leaguePhase ? 'League phase' : 'All rounds (ESPN)', stage_type: comp.comp_type === 'league' || leaguePhase ? 'league' : 'group', stage_order: 1 }];
   const playoffStageId = comp.espn?.stage_by_type ? childId('stage', seasonId, 'playoffs') : null;
-  if (playoffStageId) stages.push({ id: playoffStageId, season_id: seasonId, name: leaguePhase ? 'Knockout rounds' : 'Playoffs', stage_type: 'playoff', stage_order: 2 });
+  if (playoffStageId) stages.push({ id: playoffStageId, season_id: seasonId, name: comp.espn?.playoff_stage_name || (leaguePhase ? 'Knockout rounds' : 'Playoffs'), stage_type: 'playoff', stage_order: 2 });
   await syncRows(store, { table: 'soccer_stages', key: ['id'], rows: stages });
   return { compId, seasonId, stageId, playoffStageId };
 }

@@ -80,6 +80,8 @@ test('season-type roles: MLS regular season is the league, playoffs separate, Al
   assert.equal(espn.seasonTypeRole(undefined), 'excluded');
   assert.equal(espn.seasonTypeRole('League Phase'), 'league'); // UCL 2024+ format
   for (const k of ['Knockout Round Playoffs', 'Round of 16', 'Quarterfinals', 'Semifinals', 'Final']) assert.equal(espn.seasonTypeRole(k), 'playoff', k);
+  // UEFA Nations League 2026/27 types (docs/evidence/espn/uefa-nations-discovery-2026-09-29.json)
+  for (const k of ['Relegation Playoffs', '3rd-Place Match']) assert.equal(espn.seasonTypeRole(k), 'playoff', k);
 });
 
 test('All-Star exhibition sides are flagged and never treated as league teams', () => {

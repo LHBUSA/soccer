@@ -45,7 +45,7 @@ export function seasonLabel(year, format) {
 export function seasonTypeRole(name) {
   const n = String(name || '');
   if (/^(Regular Season|League Phase)$/i.test(n)) return 'league';
-  if (/playoff|final|cup|knockout|round of \d+/i.test(n) && !/all-star/i.test(n)) return 'playoff';
+  if (/playoff|final|cup|knockout|round of \d+|place match|third place/i.test(n) && !/all-star/i.test(n)) return 'playoff';
   return 'excluded';
 }
 

@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026-09-28.1",
+  "registry_version": "2026-09-29.1",
   "note": "Reviewed canonical metadata for competitions and the provider ids proven to denote them. Provider ids here are crosswalks, not identity.",
   "competitions": [
     {
@@ -252,6 +252,40 @@
         }
       ],
       "expected_teams": 36
+    },
+    {
+      "slug": "uefa-nations-league",
+      "name": "UEFA Nations League",
+      "comp_type": "international_tournament",
+      "gender": "men",
+      "country_code": null,
+      "tier": null,
+      "desk": "international",
+      "season_format": "split",
+      "espn": {
+        "league": "uefa.nations",
+        "id": "2395",
+        "enabled": false,
+        "may_found": true,
+        "stage_by_type": true,
+        "playoff_stage_name": "Knockouts and play-offs",
+        "standings": {
+          "group_type": "group",
+          "season_type": 1,
+          "parent_from_code": "League",
+          "expected_groups": 14
+        },
+        "enable_note": "ESPN lane stays disabled until the canary sequence (docs/evidence/espn/uefa-nations-*) passes; see docs/PRODUCTION_STATE.md."
+      },
+      "external_ids": [
+        {
+          "provider": "espn",
+          "external_id": "uefa.nations",
+          "method": "founding",
+          "evidence": "ESPN Core league detail (docs/evidence/espn/uefa-nations-discovery-2026-09-29.json): uefa.nations id 2395 'UEFA Nations League', season 2026 '2026-27 UEFA Nations League', 6 season types, 14 league-phase groups, 54 teams all isNational=true; slug also in the league listing (docs/evidence/espn-soccer-discovery-latest.json)"
+        }
+      ],
+      "expected_teams": 54
     },
     {
       "slug": "uefa-europa-league",

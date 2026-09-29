@@ -47,7 +47,7 @@ const shapeMedia = r => ({ media_type: r.media_type, url: r.cached_url, width: r
 
 async function teamsById(store, ids) {
   const out = new Map();
-  for (const part of chunkArr([...new Set(ids.filter(Boolean))], 150)) for (const t of await store.select('soccer_teams', { columns: ['id', 'slug', 'name', 'short_name'], in: { id: part } })) out.set(t.id, t);
+  for (const part of chunkArr([...new Set(ids.filter(Boolean))], 150)) for (const t of await store.select('soccer_teams', { columns: ['id', 'slug', 'name', 'short_name', 'team_type'], in: { id: part } })) out.set(t.id, t);
   const crests = await approvedMedia(store, 'team', [...out.keys()], { mediaType: 'crest', primaryOnly: true });
   for (const [id, m] of crests) out.get(id).crest = m[0];
   return out;
@@ -136,8 +136,10 @@ export async function competition(store, slug) {
     const n = st => ms.filter(x => x.status === st).length;
     current = {
       season: seasons[0].label, matches: ms.length, finished: n('finished'), scheduled: n('scheduled'), live: n('live'),
-      teams: [...teams.values()].sort((a, b) => (a.name < b.name ? -1 : 1)).map(t => ({ slug: t.slug, name: t.name, short_name: t.short_name, ...(t.crest ? { crest: t.crest } : {}) })),
+      teams: [...teams.values()].sort((a, b) => (a.name < b.name ? -1 : 1)).map(t => ({ slug: t.slug, name: t.name, short_name: t.short_name, ...(t.team_type === 'national' ? { type: 'national' } : {}), ...(t.crest ? { crest: t.crest } : {}) })),
     };
+    // A competition whose every team is a national team (Nations League, World Cup ...): copy says nations, not clubs.
+    if (teams.size && [...teams.values()].every(t => t.team_type === 'national')) current.team_kind = 'national';
   }
   return E({ slug: c.slug, name: c.name, type: c.comp_type, country_code: c.country_code, tier: c.tier, seasons: withCounts, current, tiebreak: TIEBREAKS[tiebreakOf(c.slug)] }, {
     source: 'pbe', semantics: 'Competition, the seasons stored for it, and the teams appearing in canonical matches of the latest stored season.', source_updated_at: c.updated_at,
@@ -375,8 +377,21 @@ async function teamSeasonDepth(store, t, all, comps) {
     const tbl = computeTable(full.filter(x => x.home_score !== null && x.away_score !== null), { tiebreak: tb });
     const i = tbl.findIndex(r => r.team_id === t.id);
     const r = tbl[i];
-    records.push({ competition: comp, season: seasonRow?.label || null, position: i + 1, teams_in_table: tbl.length,
-      record: { played: r.played, won: r.won, drawn: r.drawn, lost: r.lost, goals_for: r.gf, goals_against: r.ga, goal_difference: r.gd, points: r.points, form: r.form } });
+    const record = { played: r.played, won: r.won, drawn: r.drawn, lost: r.lost, goals_for: r.gf, goals_against: r.ga, goal_difference: r.gd, points: r.points, form: r.form };
+    const groups = await seasonGroups(store, seasonId);
+    if (groups.some(g => g.group_type === 'group')) {
+      // Group competition: no rank across groups. Position = the verified group position, else none.
+      const member = (await store.select('soccer_season_group_members', { columns: ['group_id'], eq: { team_id: t.id }, in: { group_id: groups.map(g => g.id) }, limit: 1 }))[0];
+      const g = member && groups.find(x => x.id === member.group_id);
+      let position = null; let size = null;
+      if (g) {
+        const source = await store.select('soccer_source_standings', { columns: STANDING_COLS, eq: { group_id: g.id, provider: 'espn' } });
+        if (verifyGroupStandings(source, new Map(tbl.map(x => [x.team_id, x]))).verified) { position = source.find(s => s.team_id === t.id)?.rank ?? null; size = source.length; }
+      }
+      records.push({ competition: comp, season: seasonRow?.label || null, position, teams_in_table: size, group: g ? groupMeta(g) : null, record });
+      continue;
+    }
+    records.push({ competition: comp, season: seasonRow?.label || null, position: i + 1, teams_in_table: tbl.length, record });
   }
   // Players observed in sourced lineups for those seasons.
   const lineups = [];
@@ -522,7 +537,25 @@ export async function player(store, slug) {
 
 // Season groups for a season: MLS conferences, UCL league phase (from the standings lane).
 async function seasonGroups(store, seasonId) {
-  return store.select('soccer_season_groups', { columns: ['id', 'group_key', 'name', 'abbreviation', 'group_type', 'updated_at'], eq: { season_id: seasonId }, order: 'group_key.asc' });
+  const rows = await store.select('soccer_season_groups', { columns: ['id', 'group_key', 'name', 'abbreviation', 'group_type', 'updated_at'], eq: { season_id: seasonId }, order: 'group_key.asc' });
+  if (!rows.some(g => g.group_type === 'group')) return rows;
+  // Tournament groups carry their tier (League A..D) and display order (columns from migration 1000).
+  const extra = new Map((await store.select('soccer_season_groups', { columns: ['id', 'parent_group_key', 'parent_name', 'sort_order'], eq: { season_id: seasonId, group_type: 'group' } })).map(g => [g.id, g]));
+  return rows.map(g => ({ ...g, ...(extra.get(g.id) || {}) })).sort((a, b) => (a.sort_order ?? 1e9) - (b.sort_order ?? 1e9) || (a.group_key < b.group_key ? -1 : 1));
+}
+const STANDING_COLS = ['team_id', 'rank', 'played', 'won', 'drawn', 'lost', 'goals_for', 'goals_against', 'goal_difference', 'points', 'deductions', 'note', 'note_rank', 'observed_at'];
+const groupMeta = g => ({ key: g.group_key, name: g.name, type: g.group_type, ...(g.group_type === 'group' ? { abbreviation: g.abbreviation || null, parent: g.parent_group_key ? { key: g.parent_group_key, name: g.parent_name } : null } : {}) });
+
+// One verified group table: the provider's rows in official order, with every count taken from
+// our canonical recomputation, or no rows at all when any count disagrees.
+function verifiedGroupRows(source, byId, teams) {
+  const check = verifyGroupStandings(source, byId);
+  const shapeTeam = t => ({ slug: t?.slug, name: t?.name, short_name: t?.short_name, ...(t?.team_type === 'national' ? { type: 'national' } : {}), ...(t?.crest ? { crest: t.crest } : {}) });
+  const rows = check.verified ? source.map(s => { const r = byId.get(s.team_id); return {
+    position: s.rank, team: shapeTeam(teams.get(s.team_id)), played: r.played, won: r.won, drawn: r.drawn, lost: r.lost, points: r.points - (s.deductions || 0), goals_for: r.gf, goals_against: r.ga, goal_difference: r.gd, form: r.form,
+    ...(s.deductions ? { deductions: s.deductions } : {}), zone: s.note ? { label: s.note, rank: s.note_rank } : null,
+  }; }) : [];
+  return { check, rows };
 }
 
 // Verified group table. The provider (ESPN) supplies membership, official rank (its
@@ -544,25 +577,47 @@ export async function table(store, q) {
   const computed = computeTable(valid, { tiebreak: tb });
   const groups = await seasonGroups(store, season.id);
   const leaguePhase = groups.find(g => g.group_type === 'league_phase');
-  const groupKey = leaguePhase ? leaguePhase.group_key : (q.group && q.group !== 'overall' ? q.group : null);
-  const groupList = groups.map(g => ({ key: g.group_key, name: g.name, type: g.group_type }));
+  // Tournament groups (Nations League A1..D2, later World Cup / EURO groups): there is NO
+  // meaningful overall table across groups, so none is computed or ranked.
+  const grouped = groups.some(g => g.group_type === 'group');
+  const groupKey = leaguePhase ? leaguePhase.group_key : (q.group && q.group !== 'overall' ? String(q.group).toLowerCase() : null);
+  const groupList = groups.map(groupMeta);
   const shapeTeam = t => ({ slug: t?.slug, name: t?.name, short_name: t?.short_name, ...(t?.crest ? { crest: t.crest } : {}) });
+  const byId = new Map(computed.map(r => [r.team_id, r]));
+
+  if (grouped && !groupKey) {
+    // Groups index: every group with its tier and verification state; with expand=groups each
+    // verified group's rows are included (each verified on its own; still no cross-group ranking).
+    const all = [];
+    for (const part of chunkArr(groups.map(g => g.id), 100)) all.push(...await store.select('soccer_source_standings', { columns: ['group_id', ...STANDING_COLS], eq: { provider: 'espn' }, in: { group_id: part } }));
+    const teams = await teamsById(store, all.map(s => s.team_id));
+    const expand = q.expand === 'groups';
+    const out = groups.map(g => {
+      const source = all.filter(s => s.group_id === g.id).sort((a, b) => (a.rank ?? 999) - (b.rank ?? 999));
+      const { check, rows } = verifiedGroupRows(source, byId, teams);
+      return { ...groupMeta(g), teams: source.length, verified: check.verified, ...(check.verified ? {} : { withheld_reason: source.length ? 'published standings disagree with canonical results' : 'no published standings stored yet' }), ...(expand ? { rows } : {}) };
+    });
+    const tiers = [];
+    for (const g of out) { const k = g.parent?.key || null; let t = tiers.find(x => x.key === k); if (!t) tiers.push(t = { key: k, name: g.parent?.name || null, groups: [] }); t.groups.push(g.key); }
+    const verified = out.filter(g => g.verified).length;
+    return E({ competition: c.slug, season: season.label, view: 'groups', groups: out, tiers, matches_counted: valid.length, rows: [], verified_groups: verified, withheld_groups: out.length - verified }, {
+      source: 'pbe', semantics: "Group competition: no overall table exists and none is computed. Each group table uses ESPN's published membership, official position (tie-breakers as applied by the provider) and zone notes, and is shown only when every played/won/drawn/lost/goals/points figure equals the table PropBetEdge computes from its own canonical results; a group that does not verify is withheld on its own.",
+      source_updated_at: maxTs([...valid.map(x => x.updated_at), ...all.map(s => s.observed_at)]), attribution: [...new Set([...valid.map(x => x.result_provider), 'Standings: ESPN (secondary source)'])],
+      coverage: verified === out.length && out.length ? COVERAGE.OK : verified ? COVERAGE.PARTIAL : COVERAGE.UNAVAILABLE,
+      coverage_notes: out.filter(g => !g.verified).map(g => `${g.name}: withheld (${g.withheld_reason}).`),
+    });
+  }
 
   if (groupKey) {
     const g = groups.find(x => x.group_key === groupKey);
     if (!g) throw new NotFound(`group ${groupKey}`);
-    const source = (await store.select('soccer_source_standings', { columns: ['team_id', 'rank', 'played', 'won', 'drawn', 'lost', 'goals_for', 'goals_against', 'goal_difference', 'points', 'deductions', 'note', 'note_rank', 'observed_at'], eq: { group_id: g.id, provider: 'espn' } }))
+    const source = (await store.select('soccer_source_standings', { columns: STANDING_COLS, eq: { group_id: g.id, provider: 'espn' } }))
       .sort((a, b) => (a.rank ?? 999) - (b.rank ?? 999));
-    const byId = new Map(computed.map(r => [r.team_id, r]));
-    const check = verifyGroupStandings(source, byId);
     const teams = await teamsById(store, source.map(s => s.team_id));
-    const rows = check.verified ? source.map(s => { const r = byId.get(s.team_id); return {
-      position: s.rank, team: shapeTeam(teams.get(s.team_id)), played: r.played, won: r.won, drawn: r.drawn, lost: r.lost, points: r.points - (s.deductions || 0), goals_for: r.gf, goals_against: r.ga, goal_difference: r.gd, form: r.form,
-      ...(s.deductions ? { deductions: s.deductions } : {}), zone: s.note ? { label: s.note, rank: s.note_rank } : null,
-    }; }) : [];
-    const kind = g.group_type === 'league_phase' ? 'league phase' : 'conference';
+    const { check, rows } = verifiedGroupRows(source, byId, teams);
+    const kind = g.group_type === 'league_phase' ? 'league phase' : g.group_type === 'group' ? 'group' : 'conference';
     return E({
-      competition: c.slug, season: season.label, group: { key: g.group_key, name: g.name, type: g.group_type }, groups: groupList, view: g.group_key,
+      competition: c.slug, season: season.label, group: groupMeta(g), groups: groupList, view: g.group_key,
       matches_counted: valid.length, tiebreak: `official ${c.slug === 'mls' ? 'MLS' : 'UEFA'} order as published by the provider`, rows,
       verification: { verified: check.verified, provider: 'espn', teams: source.length, mismatches: check.mismatches.slice(0, 20), provider_observed_at: maxTs(source.map(s => s.observed_at)) },
     }, {
