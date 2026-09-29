@@ -43,7 +43,7 @@ const out = {
   free_portrait: free.size, provider_portrait: [...prov].filter(p => !free.has(p)).length, total_usable_portrait: both.size,
   silhouette_fallback: players.length - both.size,
   espn_players_open_in_identity_queue: queue.length,
-  guards: { dob_contradiction_provider_rows_written: heldRows.length, free_portraits_primary_network_wide: freeAll, provider_portraits_primary_network_wide: providerAll,
+  guards: { dob_contradiction_provider_rows_written: heldRows.length, dob_contradiction_provider_rows_displayable: heldRows.filter(r => DISPLAYABLE.includes(r.rights_status)).length, free_portraits_primary_network_wide: freeAll, provider_portraits_primary_network_wide: providerAll,
     displayable_primary_not_served_from_media_cache: nonCached, players_with_two_primary_portraits: dupPrimary, duplicate_espn_player_ids_in_nations_league: dupEspn },
 };
 writeFileSync(`docs/evidence/media/nations-coverage-${out.at.slice(0, 10)}.json`, JSON.stringify(out, null, 2) + '\n');

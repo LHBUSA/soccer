@@ -25,6 +25,8 @@ let lastAt = 0;
 async function espnFetch(url, headers = {}) { const wait = lastAt + 300 - Date.now(); if (wait > 0) await new Promise(r => setTimeout(r, wait)); lastAt = Date.now(); const res = await fetch(url, { headers, signal: AbortSignal.timeout(30000) }); return { status: res.status, contentType: res.headers.get('content-type'), bytes: new Uint8Array(await res.arrayBuffer()) }; }
 const json = async url => { const r = await espnFetch(url); if (r.status !== 200) throw new Error(`${url} HTTP ${r.status}`); return JSON.parse(new TextDecoder().decode(r.bytes)); };
 async function selectIn(table, col, vals, opts) { const out = []; for (const p of chunkArr([...new Set(vals)], 150)) out.push(...await store.select(table, { ...opts, in: { ...(opts.in || {}), [col]: p } })); return out; }
+// players whose ESPN payload birth date now contradicts ours: an earlier provider portrait must come down
+const contradicted = new Map();
 const report = { version: PROVIDER_MEDIA_VERSION, policy_version: policy.policy_version, owner_policy: policy.owner_identification.policy_version, started_at: new Date().toISOString(), dry: DRY, crests: { by_competition: {}, teams: [] }, portraits: { reasons: {} } };
 
 // ---- active teams per competition (latest season), in customer priority order
@@ -93,7 +95,7 @@ if (!CRESTS_ONLY) {
     const urls = new Set(entries.map(e => e.headshot.href));
     if (urls.size !== 1) { tally('conflicting_headshots'); continue; }
     const c = espnHeadshotCandidate(espnAthlete, [entries[0]], p.birth_date);
-    if (!c.ok) { tally(c.reason); ledger('player', p.id, 'portrait', c.reason === 'birth_date_contradiction' ? 'rejected' : 'not_found', c.reason, { external_id: espnAthlete }); continue; }
+    if (!c.ok) { tally(c.reason); if (c.reason === 'birth_date_contradiction') contradicted.set(p.id, espnAthlete); ledger('player', p.id, 'portrait', c.reason === 'birth_date_contradiction' ? 'rejected' : 'not_found', c.reason, { external_id: espnAthlete }); continue; }
     tally('candidate');
     rows.push(providerMediaRow({ entityType: 'player', entityId: p.id, mediaType: 'portrait', url: c.url, sourceUrl: `https://www.espn.com/soccer/player/_/id/${espnAthlete}`, subjectName: p.display_name, evidence: { method: 'espn_exact_athlete_id', external_id: espnAthlete, provider: 'espn', crosswalk: 'soccer_player_external_ids', espn_display_name: c.espn_name, birth_date_checked: c.dob_checked }, policy }));
   }
@@ -127,6 +129,17 @@ for (const r of rows) ledger(r.entity_type, r.entity_id, r.media_type, r.rights_
 for (const line of report.crests.teams) if (line.status === 'pending_cache') { const r = rows.find(x => x.entity_type === 'team' && x.entity_id === line.canonical_id); line.status = DRY ? 'candidate (dry run)' : r.rights_status === 'owner_approved_identification' ? 'live' : `cache_failed: ${r.rejection_reason}`; }
 for (const slug of order) { const ls = report.crests.teams.filter(l => memberships.get(l.canonical_id)?.has(slug)); report.crests.by_competition[slug] = { teams: ls.length, live_or_candidate: ls.filter(l => l.status === 'live' || l.status.startsWith('candidate')).length, identity_unresolved: ls.filter(l => l.status === 'identity_unresolved').length, asset_unavailable: ls.filter(l => l.status === 'asset_unavailable').length }; }
 report.cached = cached; report.reused = reused; report.cache_failed = failed;
+// Identity is exact or nothing: a provider portrait written by an earlier run for a player whose ESPN payload now
+// contradicts our birth date is demoted to review (never deleted; the row and its provenance stay).
+report.demoted_on_contradiction = [];
+if (contradicted.size) {
+  const live = await selectIn('soccer_entity_media', 'entity_id', [...contradicted.keys()], { columns: ['id', 'entity_id', 'rights_status', 'is_primary'], eq: { entity_type: 'player', media_type: 'portrait', source: 'provider_artwork' } });
+  for (const r of live.filter(x => x.is_primary || x.rights_status === 'owner_approved_identification')) {
+    report.demoted_on_contradiction.push({ media_id: r.id, player_id: r.entity_id, espn_athlete_id: contradicted.get(r.entity_id) });
+    if (!DRY) await store.update('soccer_entity_media', { rights_status: 'review_required', is_primary: false, rejection_reason: 'birth_date_contradiction: ESPN payload birth date no longer matches the canonical player' }, { eq: { id: r.id } });
+  }
+  log('provider portraits demoted on birth-date contradiction', report.demoted_on_contradiction.length);
+}
 if (!DRY) {
   // Only primaries for entities without a free-licensed primary are written; never demote an approved row.
   report.sync = await syncRows(store, { table: 'soccer_entity_media', key: ['id'], rows: rows.map(r => ({ is_primary: false, cached_url: null, object_key: null, content_sha256: null, verified_at: null, mime: null, width: null, height: null, ...r })), touch: true });

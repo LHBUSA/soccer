@@ -2,7 +2,7 @@
   "version": "media-provider/1.0.0",
   "policy_version": "2026-09-28.2",
   "owner_policy": "owner-identification/2026-09-28",
-  "started_at": "2026-09-29T02:42:46.021Z",
+  "started_at": "2026-09-29T17:31:45.298Z",
   "dry": false,
   "crests": {
     "by_competition": {
@@ -2136,13 +2136,20 @@
     },
     "espn_headshots_in_payloads": 483
   },
-  "cached": 33,
-  "reused": 484,
+  "cached": 0,
+  "reused": 517,
   "cache_failed": 0,
+  "demoted_on_contradiction": [
+    {
+      "media_id": "ac242757-da33-5b0d-b772-6157a3c624e3",
+      "player_id": "3c5660e7-39d2-57a8-b6e8-cc3cd80c7774",
+      "espn_athlete_id": "237164"
+    }
+  ],
   "sync": {
-    "inserted": 33,
-    "updated": 484,
+    "inserted": 0,
+    "updated": 517,
     "unchanged": 0
   },
-  "finished_at": "2026-09-29T02:44:02.350Z"
+  "finished_at": "2026-09-29T17:32:37.118Z"
 }

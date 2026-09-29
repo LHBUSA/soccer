@@ -4,7 +4,7 @@
 // order people see them: the PBEcast audit list first (docs/evidence/media/pbecast-portraits-*.json),
 // or every active player with --active. The P18 file goes through the unchanged Commons rights
 // classifier; only 'approved' (free-licensed) files are cached (write-once R2) and made primary.
-//   node scripts/media/crosswalk-portraits.mjs [--audit <file>] [--active] [--limit N] [--dry]
+//   node scripts/media/crosswalk-portraits.mjs [--audit <file>] [--scope <label for the evidence file>] [--active] [--limit N] [--dry]
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { storeFromEnv } from '../../workers/shared/postgrest.js';
@@ -43,7 +43,7 @@ const players = new Map((await selectIn('soccer_players', 'id', todo, { columns:
 const espn = new Map((await selectIn('soccer_player_external_ids', 'player_id', todo, { columns: ['player_id', 'external_id'], eq: { provider: 'espn' } })).map(x => [x.player_id, String(x.external_id)]));
 log('players without a portrait', todo.length, 'with ESPN id', espn.size);
 
-const report = { version: CROSSWALK_VERSION, started_at: new Date().toISOString(), dry: DRY, scope: ACTIVE ? 'active' : 'pbecast', reasons: {}, matched: [] };
+const report = { version: CROSSWALK_VERSION, started_at: new Date().toISOString(), dry: DRY, scope: ACTIVE ? 'active' : arg('--scope', 'pbecast'), reasons: {}, matched: [] };
 const tally = k => { report.reasons[k] = (report.reasons[k] || 0) + 1; };
 const disc = [];
 const ledger = (pid, outcome, reason, extra = {}) => disc.push({ entity_type: 'player', entity_id: pid, media_type: 'portrait', outcome, method: 'espn_tsdb_wikidata_crosswalk', reason, external_id: extra.qid || null, source_url: extra.source_url || null, evidence: extra.evidence || {}, checked_at: new Date().toISOString() });
