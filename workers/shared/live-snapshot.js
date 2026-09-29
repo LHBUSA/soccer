@@ -3,10 +3,31 @@
 // soccer-api owns snapshot construction, stores the complete public envelope in SOCCER_STATE,
 // and public /v1/live reads that snapshot instead of rebuilding ~11 PostgREST reads per cache miss.
 
+export const PUBLIC_LIVE_COMPETITIONS = Object.freeze([
+  'mls',
+  'premier-league',
+  'uefa-champions-league',
+  'bundesliga',
+  'uefa-nations-league',
+]);
+
+// Only lanes capable of changing the public /live envelope may invalidate it.
+// Standings and the private model-shadow lane are deliberately absent.
+export const PUBLIC_LIVE_DIRTY_LANES = Object.freeze([
+  'espn_live',
+  'openligadb_bl1_current',
+  ...PUBLIC_LIVE_COMPETITIONS.map(slug => `espn_${slug.replace(/-/g, '_')}`),
+]);
+
+export function publicLiveDirtyChanges(results = []) {
+  const lanes = new Set(PUBLIC_LIVE_DIRTY_LANES);
+  return results.filter(x => Number(x?.changed) > 0 && lanes.has(x?.lane));
+}
+
 export const LIVE_SNAPSHOT_KEY = 'public:live:v1';
 export const LIVE_SNAPSHOT_DIRTY_KEY = 'public:live:dirty:v1';
 export const LIVE_SNAPSHOT_STATUS_KEY = 'public:live:status:v1';
-export const LIVE_SNAPSHOT_VERSION = 'soccer-live-snapshot/1.0.0';
+export const LIVE_SNAPSHOT_VERSION = 'soccer-live-snapshot/1.1.0';
 
 export const LIVE_SNAPSHOT_IDLE_REFRESH_MS = 15 * 60e3;
 export const LIVE_SNAPSHOT_ACTIVE_REFRESH_MS = 55e3;
