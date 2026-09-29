@@ -26,8 +26,8 @@ initAnalytics();
 
 const PAGES = { home, competition, match, competitions, matches, news, newsDesk, article, sources, tables, team, player, players, pbecastHub, pbecast, pro, proMatch, algoPicks, trackRecord };
 // Primary navigation (Soccer Pro V1). Every existing public URL keeps working; INTELLIGENCE groups them.
-const NAV = [['/', 'TODAY', 'home'], ['/matches', 'MATCHES', 'matches,match'], ['/pbecast', 'PBECAST', 'pbecastHub,pbecast']];
-const INTEL = [['/players', 'PLAYER DNA'], ['/competitions', 'TEAM INTELLIGENCE'], ['/tables', 'TABLES'], ['/competitions', 'COMPETITIONS'], ['/pro#matchup', 'MATCHUP LAB'], ['/pro#fatigue', 'FATIGUE'], ['/pro#model-lab', 'MODEL LAB']];
+const NAV = [['/', 'TODAY', 'home'], ['/matches', 'MATCHES', 'matches,match'], ['/pbecast', 'PBECAST', 'pbecastHub,pbecast'], ['/picks', 'PICKS', 'algoPicks,trackRecord']];
+const INTEL = [['/track-record', 'ALGO TRACK RECORD'],['/players', 'PLAYER DNA'], ['/competitions', 'TEAM INTELLIGENCE'], ['/tables', 'TABLES'], ['/competitions', 'COMPETITIONS'], ['/pro#matchup', 'MATCHUP LAB'], ['/pro#fatigue', 'FATIGUE'], ['/pro#model-lab', 'MODEL LAB']];
 const INTEL_PAGES = 'players,player,tables,competitions,competition,team';
 const BOTTOM = [['/', 'TODAY', 'home'], ['/matches', 'MATCHES', 'matches,match'], ['/pbecast', 'PBECAST', 'pbecastHub,pbecast'], ['/pro', 'PRO', 'pro,proMatch']];
 

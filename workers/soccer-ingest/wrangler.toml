@@ -23,3 +23,8 @@ cpu_ms = 60000
 
 [observability]
 enabled = true
+
+[vars]
+# Soccer Algo V1 Official Picks. Owner G7 sign-off 2026-09-29 (docs/evidence/algo/ACCEPTANCE.md).
+# "on" issues forecasts/picks from the frozen spec; anything else = off. Kill switch: set to "off" and release.
+ALGO_OFFICIAL = "on"

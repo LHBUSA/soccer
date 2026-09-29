@@ -1,12 +1,16 @@
-// Soccer Algo V1 GO-LIVE PREFLIGHT (read-only; every database write happens inside a transaction that is rolled back).
-// Encodes the owner's conditional G7 approval (2026-09-29). All seven must pass on/after 2026-10-02 18:30 UTC:
+// Soccer Algo V1 POST-ACTIVATION VERIFICATION (read-only; every database write happens inside a transaction that is
+// rolled back). V1 went live on owner G7 sign-off 2026-09-29; this is a production verification requirement, not a
+// publication gate. Run on/after 2026-10-02 18:30 UTC once the first real forecast exists:
 //   1. the production shadow lane has >= 1 real forecast
-//   2. reproduction-canary --source shadow = PASS
-//   3. every archived input hash matches        (inside the canary)
-//   4. every recomputed forecast is bit-for-bit (inside the canary)
+//   2. reproduction-canary --source shadow = PASS (and --source algo once Algo forecasts exist)
+//   3. every archived input hash matches        (inside the canaries)
+//   4. every recomputed forecast is bit-for-bit (inside the canaries)
 //   5. no spec / model / pick-policy drift from the frozen versions
 //   6. all ledger guards intact (checks-1200 re-run against production, rolled back)
-//   7. no Official Pick, forecast or Algo event exists yet (nothing seeded)
+//   7. nothing seeded: no forecast/pick issued before activation, record numbers start at #1 with no gaps,
+//      every pick issued before its lock
+// FAIL -> immediately set ALGO_OFFICIAL = "off" in workers/soccer-ingest/wrangler.toml, release soccer-ingest,
+// and report the exact mismatch (docs/evidence/algo/golive-preflight.json).
 // Writes docs/evidence/algo/golive-preflight.json. Exit 1 unless every condition passes.
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { execFileSync, spawnSync } from 'node:child_process';
@@ -29,9 +33,15 @@ c['1_shadow_forecast'] = { ok: shadowRows.length >= 1, detail: `${shadowRows.len
 
 const can = node(['scripts/algo/reproduction-canary.mjs', '--source', 'shadow']);
 const report = JSON.parse(readFileSync('docs/evidence/algo/reproduction-canary-shadow.json', 'utf8'));
-c['2_canary_pass'] = { ok: can.status === 0 && report.verdict === 'PASS', detail: can.stdout.trim().split('\n')[0] };
-c['3_input_hash'] = { ok: report.results.length > 0 && report.results.every(r => r.checks.archive_hash && r.checks.input_count), detail: `${report.results.filter(r => r.checks.archive_hash).length}/${report.results.length} archive hashes match` };
-c['4_bit_for_bit'] = { ok: report.results.length > 0 && report.results.every(r => r.checks.lambdas && r.checks.probabilities), detail: `${report.results.filter(r => r.checks.lambdas && r.checks.probabilities).length}/${report.results.length} recomputed exactly` };
+// The live Algo ledger's own forecasts are verified the same way as soon as any exist (NO_FORECASTS = not yet due).
+const canA = node(['scripts/algo/reproduction-canary.mjs', '--source', 'algo']);
+const reportA = JSON.parse(readFileSync('docs/evidence/algo/reproduction-canary-algo.json', 'utf8'));
+const algoOk = reportA.verdict === 'PASS' || reportA.verdict === 'NO_FORECASTS';
+const both = [...report.results, ...reportA.results];
+const mismatches = both.filter(r => !r.ok).map(r => ({ match_id: r.match_id, input_hash: r.input_hash, checks: r.checks }));
+c['2_canary_pass'] = { ok: can.status === 0 && report.verdict === 'PASS' && canA.status === 0 && algoOk, detail: `shadow: ${can.stdout.trim().split('\n')[0]} | algo: ${canA.stdout.trim().split('\n')[0]}`, mismatches };
+c['3_input_hash'] = { ok: report.results.length > 0 && both.every(r => r.checks.archive_hash && r.checks.input_count), detail: `${both.filter(r => r.checks.archive_hash).length}/${both.length} archive hashes match` };
+c['4_bit_for_bit'] = { ok: report.results.length > 0 && both.every(r => Object.entries(r.checks).filter(([k]) => !['archive_hash', 'input_count'].includes(k)).every(([, v]) => v)), detail: `${both.filter(r => r.ok).length}/${both.length} recomputed exactly` };
 
 const specCheck = node(['scripts/algo/build-spec.mjs', '--check']); const resCheck = node(['scripts/algo/build-research-summary.mjs', '--check']);
 const coreSha = createHash('sha256').update(readFileSync('scripts/research/structural-core.mjs')).digest('hex');
@@ -47,12 +57,19 @@ let guards = '';
 try { guards = execFileSync('pwsh', ['-NoProfile', '-File', 'scripts/db/run_sql_file.ps1', '-File', tmp], { encoding: 'utf8' }); } catch (e) { guards = String(e.stdout || e.message); }
 c['6_ledger_guards'] = { ok: /ALL_CHECKS_PASSED/.test(guards), detail: /ALL_CHECKS_PASSED/.test(guards) ? 'checks-1200 passed against production (rolled back)' : guards.slice(0, 300) };
 
-const counts = {};
-for (const t of ['soccer_algo_picks', 'soccer_algo_forecasts', 'soccer_algo_events']) counts[t] = (await store.select(t, { columns: ['id'] })).length;
-c['7_nothing_seeded'] = { ok: Object.values(counts).every(n => n === 0), detail: JSON.stringify(counts) };
+// Nothing seeded: activation = the first 'started' event; every forecast and pick was issued at/after it, record
+// numbers are 1..n with no gap, and every pick was issued at or before its lock (lock = kickoff - 60 min).
+const [started] = await store.select('soccer_algo_events', { columns: ['at'], eq: { algo_version: spec.algo_version, event: 'started' }, order: 'at.asc', limit: 1 });
+const fcs = await store.select('soccer_algo_forecasts', { columns: ['issued_at'] });
+const pks = await store.select('soccer_algo_picks', { columns: ['record_no', 'issued_at', 'lock_at', 'kickoff_at'], order: 'record_no.asc' });
+const t0 = started ? Date.parse(started.at) : Infinity;
+const seeded = [...fcs, ...pks].filter(r => Date.parse(r.issued_at) < t0).length;
+const gapless = pks.every((p, i) => Number(p.record_no) === i + 1);
+const lockOk = pks.every(p => Date.parse(p.issued_at) <= Date.parse(p.lock_at) && Date.parse(p.kickoff_at) - Date.parse(p.lock_at) === 60 * 60e3);
+c['7_nothing_seeded'] = { ok: seeded === 0 && gapless && lockOk && (fcs.length === 0 || Boolean(started)), detail: `activated ${started?.at || 'n/a'}; ${fcs.length} forecasts, ${pks.length} picks; issued before activation: ${seeded}; record numbers 1..n: ${gapless}; issued <= lock = kickoff-60m: ${lockOk}` };
 
 const pass = Object.values(c).every(x => x.ok);
-const out = { preflight: 'soccer-algo-v1-golive', approval: 'owner conditional G7 approval 2026-09-29', ran_at: new Date().toISOString(), verdict: pass ? 'PASS' : 'FAIL', conditions: c };
+const out = { preflight: 'soccer-algo-v1-post-activation-verification', approval: 'owner G7 sign-off 2026-09-29 (canary = post-activation verification, not a publication gate)', ran_at: new Date().toISOString(), verdict: pass ? 'PASS' : 'FAIL', conditions: c };
 mkdirSync('docs/evidence/algo', { recursive: true });
 writeFileSync('docs/evidence/algo/golive-preflight.json', `${JSON.stringify(out, null, 2)}\n`);
 for (const [k, v] of Object.entries(c)) console.log(`${v.ok ? 'PASS' : 'FAIL'}  ${k}  ${v.detail}`);

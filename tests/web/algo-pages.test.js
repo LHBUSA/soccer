@@ -1,4 +1,4 @@
-// Soccer Algo V1 pages (hidden until go-live): labelling, separation, empty states, no prices, privacy, discoverability.
+// Soccer Algo V1 pages: labelling, separation, empty states, no prices, privacy, discoverability after activation.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -52,12 +52,16 @@ test('the internal model id stays private on every Algo surface', () => {
   for (const s of [html, JSON.stringify(policy()), JSON.stringify(research)]) assert.doesNotMatch(s, /soccer-research-bundesliga|v1\.2-dc|model_id/);
 });
 
-test('hidden until activation: noindex, no navigation link, not in the sitemap', () => {
+test('activated (owner G7 sign-off 2026-09-29): indexable, canonical, in navigation, footer and sitemap', async () => {
   for (const path of ['/picks', '/track-record']) {
     const { page } = resolve(path); assert.ok(page !== 'notfound');
-    assert.equal(buildMeta(path, metaPlan(path).page).robots, 'noindex, follow');
+    const m = buildMeta(path, metaPlan(path).page);
+    assert.doesNotMatch(m.robots, /noindex/); assert.equal(m.canonical, `https://soccer.propbetedge.ai${path}`);
   }
   const main = readFileSync('src/main.js', 'utf8');
-  assert.doesNotMatch(main.slice(main.indexOf('const NAV'), main.indexOf('const brandMark')), /\/picks|\/track-record/);
-  assert.doesNotMatch(readFileSync('api/sitemap.js', 'utf8') + readFileSync('src/components/footer.js', 'utf8'), /['"`]\/(picks|track-record)['"`#?/]/);
+  const nav = main.slice(main.indexOf('const NAV'), main.indexOf('const brandMark'));
+  assert.match(nav, /'\/picks', 'PICKS'/); assert.match(nav, /'\/track-record', 'ALGO TRACK RECORD'/);
+  assert.match(readFileSync('src/components/footer.js', 'utf8'), /'\/picks', 'Official Picks'\], \['\/track-record', 'Algo Track Record'\]/);
+  const { STATIC_PATHS } = await import('../../api/sitemap.js');
+  assert.ok(STATIC_PATHS.includes('/picks') && STATIC_PATHS.includes('/track-record'));
 });

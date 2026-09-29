@@ -1,5 +1,4 @@
-// Soccer Algo V1 pages. HIDDEN until go-live (docs/MODEL_READINESS.md: owner sign-off G7): no navigation
-// link, noindex, not in the sitemap. Three surfaces that never mix:
+// Soccer Algo V1 pages (live since owner G7 sign-off 2026-09-29). Three surfaces that never mix:
 //   OFFICIAL PICKS         frozen-policy picks from the append-only ledger (the only thing in the record)
 //   GAME BEST              the model's strongest selection for every forecast match (a model forecast)
 //   HISTORICAL VALIDATION  research on past seasons (committed evidence), never part of the record
@@ -48,7 +47,6 @@ function gameBestCard(g) {
 
 export const picks = {
   title: () => 'Soccer Algo Official Picks | PropBetEdge Soccer',
-  robots: 'noindex, follow',
   async load() { return api('algo/picks'); },
   render(env) {
     const d = env.data;
@@ -94,7 +92,6 @@ function researchPanel(r) {
 
 export const trackRecord = {
   title: () => 'Soccer Algo Track Record | PropBetEdge Soccer',
-  robots: 'noindex, follow',
   async load(_p, sp) {
     const market = ['1x2', 'home_to_score'].includes(sp?.get('market')) ? sp.get('market') : undefined;
     const last = ['30', '60', '100'].includes(sp?.get('last')) ? sp.get('last') : undefined;

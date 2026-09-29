@@ -32,7 +32,7 @@ enforces part of this: `soccer_metric_definitions` refuses `validated` or
 **Predictions and Track Record routes stay hidden** until the gates below pass
 and the owner signs off (G7).
 
-## Soccer Algo V1 (2026-09-29): built, hidden, not live
+## Soccer Algo V1 (2026-09-29): LIVE
 
 `soccer-algo-v1.0.0` (spec `workers/soccer-ingest/src/algo-v1.json`, spec hash
 `3156f6f9…`): Bundesliga league matches, frozen model
@@ -47,11 +47,10 @@ to score ≥ 0.875 (pick policy 1.1).
 | G4 Backtest | `docs/evidence/research/algo-v1_1/holdout-results.json`, evaluated once after the SELECT freeze |
 | G5 Calibration | One-sided pick calibration passed on SELECT and holdout (pick hit rate ≥ stated probability − tolerance) |
 | G6 Stability | Version pinned; input list archived write-once in R2 under `input_hash`; forecast reproduced bit-for-bit in tests |
-| G7 Review | **CONDITIONAL owner approval (2026-09-29)**: becomes PASS when `scripts/algo/golive-preflight.mjs` passes on/after 2026-10-02 18:30 UTC (see `docs/evidence/algo/ACCEPTANCE.md`). Not yet PASS. |
+| G7 Review | **PASS: explicit owner sign-off 2026-09-29.** The production reproduction canary is a post-activation verification requirement, not a publication gate (`docs/evidence/algo/ACCEPTANCE.md`). |
 
-Deployed: ledger migration 1200 (applied), the ingest lane (off: `ALGO_OFFICIAL`
-unset), the read-only API `/v1/algo/{picks,record,research}` and the pages
-`/picks` and `/track-record`, reachable by URL only: no navigation link, noindex,
-not in the sitemap. Go-live = owner sign-off, then `ALGO_OFFICIAL=on`, navigation
-links and indexing. The record starts with the first pick after go-live; history
-is never seeded into it.
+Live since 2026-09-29: ledger migration 1200 (applied), the ingest lane with
+`ALGO_OFFICIAL = "on"`, the read-only API `/v1/algo/{picks,record,research}` and the
+pages `/picks` and `/track-record` (in navigation, indexed, in the sitemap). The
+record starts with the first qualifying Official Pick issued after activation
+(record #1); history is never seeded into it.

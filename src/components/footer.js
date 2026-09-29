@@ -10,7 +10,7 @@ export const DISCORD_URL = 'https://discord.gg/kb5zCTHbME';
 export const X_URL = 'https://x.com/PROPBETEDGE';
 const ORDER = ['nfl', 'mlb', 'nba', 'wnba', 'nhl', 'ufc', 'tennis', 'soccer'];
 
-const INTELLIGENCE = [['/', 'Today'], ['/matches', 'Matches'], ['/pbecast', 'PBEcast'], ['/players', 'Player DNA'], ['/competitions', 'Team Intelligence'], ['/tables', 'Tables'], ['/competitions', 'Competitions'], ['/news', 'News'], ['/sources', 'Sources & Method']];
+const INTELLIGENCE = [['/', 'Today'], ['/matches', 'Matches'], ['/pbecast', 'PBEcast'], ['/picks', 'Official Picks'], ['/track-record', 'Algo Track Record'], ['/players', 'Player DNA'], ['/competitions', 'Team Intelligence'], ['/tables', 'Tables'], ['/competitions', 'Competitions'], ['/news', 'News'], ['/sources', 'Sources & Method']];
 const PRO = [['/pro#matchup', 'Matchup Lab'], ['/pro#fatigue', 'Fatigue Intelligence'], ['/pro#rotation', 'Rotation / XI Stability'], ['/pro#model-lab', 'Model Lab'], ['/pro#match-center', 'Pro Match Center'], ['/pro#track-record', 'Track Record']];
 const NET = [[OFFER.url, 'All Access'], ['https://propbetedge.ai/', 'Sports News'], ['https://learn.propbetedge.ai/', 'Learn'], ['https://propsports.proptechusa.ai', 'PropSports API'], ['https://proptechusa.ai', 'PropTechUSA.ai'], [DISCORD_URL, 'Discord'], [X_URL, 'X @PROPBETEDGE']];
 
