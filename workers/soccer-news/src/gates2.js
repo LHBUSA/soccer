@@ -66,7 +66,9 @@ export const EXEMPT_WITH_VERIFIED_GROUP = new Set(['mls_conference_claim', 'ucl_
 // A preview is written before kick-off: it may never forecast, rate chances or pick a side.
 export const PREVIEW_BANNED = [
   ['preview_prediction', /\b(will (win|beat|lose|draw|score|claim|take)|(is|are) (expected|likely|set|tipped|poised) to|should (win|beat|edge)|predict\w*|prediction|forecast\w*|favou?rites?|underdogs?|chances? of (winning|victory)|probabilit\w*|projected|must-win|expect(s|ed)? (a|an|the)? ?(win|victory|result))\b/i],
-  ['preview_team_news', /\b(team news|line-?ups? (is|are) (expected|likely)|predicted (xi|line-?up)|starting (xi|line-?up) (will|is expected)|doubts?|available again|return(s)? from)\b/i],
+  // team news / selection claims; injury words themselves are held by the global medical gate. "return from"
+  // is ordinary English ("they return from a draw"), so it is not in this list.
+  ['preview_team_news', /\b(team news|line-?ups? (is|are) (expected|likely)|predicted (xi|line-?up)|starting (xi|line-?up) (will|is expected)|(fitness|selection|injury) doubts?|available again|(miss|misses|missing) (the|this) (match|game|fixture))\b/i],
 ];
 // Verified group context anywhere in the packet (recap / trend teams, preview teams, matchday fixtures, group watch).
 export const verifiedGroupIn = packet => [packet?.teams?.home?.group, packet?.teams?.away?.group, packet?.team?.group, ...(packet?.groups || []), ...(packet?.fixtures || []).flatMap(f => [f.home?.group, f.away?.group])].some(g => g?.verified);

@@ -124,11 +124,16 @@ test('national-team preview: nations never clubs, verified group language, gates
 
 test('preview gate: predictions, favourites and team news are held (fact gates and desk validation)', () => {
   const p = nlPreview();
-  for (const bad of ['Czechia will win this one.', 'Ukraine are favourites on the road.', 'Czechia are expected to take the points.', 'Team news: two doubts for Ukraine.']) {
+  for (const bad of ['Czechia will win this one.', 'Ukraine are favourites on the road.', 'Czechia are expected to take the points.', 'Team news: two doubts for Ukraine.', 'Ukraine have selection doubts.', 'Czechia will miss the match without their captain.']) {
     const a = compose(p); a.sections = [{ key: 's1', heading: 'The meeting', paragraphs: [bad] }, ...a.sections];
     const failed = runGates2(a, p).failed;
     assert.ok(failed.some(f => /^preview_/.test(f)), `${bad} -> ${failed}`);
     assert.ok(validateEditorial(a, p).some(r => !r.pass && /^preview_/.test(r.gate)), `desk: ${bad}`);
+  }
+  // ordinary English is not team news (production false positive 2026-09-29: "return from")
+  for (const ok of ['Scotland return from a goalless opening round.', 'There is no doubt about the stakes in Group B2.']) {
+    const a = compose(p); a.sections = [{ key: 's1', heading: 'The meeting', paragraphs: [ok] }, ...a.sections];
+    assert.ok(!runGates2(a, p).failed.some(f => /^preview_/.test(f)), ok);
   }
   // recaps are untouched by the preview gate
   assert.ok(!PROFILES.domestic_european_league.banned.some(([n]) => /^preview_/.test(n)));
