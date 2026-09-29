@@ -40,7 +40,19 @@
         "live_enrichment": "shadow",
         "live_enrichment_note": "V3.1 owner decision 2026-09-28: OpenLigaDB stays canonical; ESPN live enrichment is shadow / internal validation only until source-rights clearance (docs/SOURCE_MATRIX.md, Disney terms restrict commercial use). 'public' requires explicit owner approval."
       },
-      "expected_teams": 18
+      "expected_teams": 18,
+      "news": {
+        "enabled": true,
+        "stories": [
+          "match_recap",
+          "match_preview",
+          "matchday_brief",
+          "player_form",
+          "team_trend",
+          "table_watch"
+        ],
+        "note": "Canonical results OpenLigaDB (ODbL) + ESPN enrichment; domestic_european_league profile."
+      }
     },
     {
       "slug": "premier-league",
@@ -71,7 +83,19 @@
         "enabled": true,
         "may_found": true
       },
-      "expected_teams": 20
+      "expected_teams": 20,
+      "news": {
+        "enabled": true,
+        "stories": [
+          "match_recap",
+          "match_preview",
+          "matchday_brief",
+          "player_form",
+          "team_trend",
+          "table_watch"
+        ],
+        "note": "ESPN lane certified; domestic_european_league profile."
+      }
     },
     {
       "slug": "la-liga",
@@ -101,6 +125,10 @@
         "id": "740",
         "enabled": false,
         "may_found": true
+      },
+      "news": {
+        "enabled": false,
+        "blocker": "No canonical competition row, season or matches in production: ESPN lane disabled (registry espn.enabled=false); needs lane canary + identity certification."
       }
     },
     {
@@ -131,6 +159,10 @@
         "id": "730",
         "enabled": false,
         "may_found": true
+      },
+      "news": {
+        "enabled": false,
+        "blocker": "No canonical competition row, season or matches in production: ESPN lane disabled; needs lane canary + identity certification."
       }
     },
     {
@@ -161,6 +193,10 @@
         "id": "710",
         "enabled": false,
         "may_found": true
+      },
+      "news": {
+        "enabled": false,
+        "blocker": "No canonical competition row, season or matches in production: ESPN lane disabled; needs lane canary + identity certification."
       }
     },
     {
@@ -191,6 +227,10 @@
         "id": "606",
         "enabled": false,
         "may_found": true
+      },
+      "news": {
+        "enabled": false,
+        "blocker": "No canonical competition row in production (the Wyscout 2018 World Cup and ESPN fifa.world are crosswalks in the registry only; nothing ingested). No current season: the 2026 tournament ended in July 2026; next is 2030. Needs ESPN fifa.world lane canary + national-team identity certification for historical seasons."
       }
     },
     {
@@ -221,6 +261,10 @@
         "id": "781",
         "enabled": false,
         "may_found": true
+      },
+      "news": {
+        "enabled": false,
+        "blocker": "No canonical competition row in production; ESPN lane disabled. No current tournament (next EURO 2028)."
       }
     },
     {
@@ -251,7 +295,18 @@
           "evidence": "ESPN Core league listing + league detail (docs/evidence/espn-soccer-discovery-latest.json): uefa.champions id 775"
         }
       ],
-      "expected_teams": 36
+      "expected_teams": 36,
+      "news": {
+        "enabled": true,
+        "stories": [
+          "match_recap",
+          "match_preview",
+          "matchday_brief",
+          "player_form",
+          "table_watch"
+        ],
+        "note": "ESPN lane certified; ucl_league_phase profile until 2027-02-01 then knockout. table_watch = verified league-phase table only; no team_trend (not a domestic league run)."
+      }
     },
     {
       "slug": "uefa-nations-league",
@@ -285,7 +340,18 @@
           "evidence": "ESPN Core league detail (docs/evidence/espn/uefa-nations-discovery-2026-09-29.json): uefa.nations id 2395 'UEFA Nations League', season 2026 '2026-27 UEFA Nations League', 6 season types, 14 league-phase groups, 54 teams all isNational=true; slug also in the league listing (docs/evidence/espn-soccer-discovery-latest.json)"
         }
       ],
-      "expected_teams": 54
+      "expected_teams": 54,
+      "news": {
+        "enabled": true,
+        "stories": [
+          "match_recap",
+          "match_preview",
+          "matchday_brief",
+          "player_form",
+          "table_watch"
+        ],
+        "note": "ESPN lane certified 2026-09-29 (54/54 nations, 14/14 groups verified); nations_league profile (national teams, never clubs). table_watch = verified groups only."
+      }
     },
     {
       "slug": "uefa-europa-league",
@@ -309,7 +375,11 @@
           "method": "founding",
           "evidence": "ESPN Core league listing + league detail (docs/evidence/espn-soccer-discovery-latest.json): uefa.europa id 776"
         }
-      ]
+      ],
+      "news": {
+        "enabled": false,
+        "blocker": "No canonical competition row, season or matches in production: ESPN lane disabled; needs lane canary + identity certification."
+      }
     },
     {
       "slug": "mls",
@@ -339,7 +409,19 @@
           "evidence": "ESPN Core league listing + league detail (docs/evidence/espn-soccer-discovery-latest.json): usa.1 id 770"
         }
       ],
-      "expected_teams": 30
+      "expected_teams": 30,
+      "news": {
+        "enabled": true,
+        "stories": [
+          "match_recap",
+          "match_preview",
+          "matchday_brief",
+          "player_form",
+          "team_trend",
+          "table_watch"
+        ],
+        "note": "ESPN lane certified; mls profile (overall standings; conference tables only when verified)."
+      }
     }
   ]
 }

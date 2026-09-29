@@ -5,6 +5,7 @@ import { articleVideos, videosFeed } from './video.js';
 // provider disagreement tooling, service-role data, or bulk dumps (lists cap at 100).
 
 import { computeTable, TIEBREAKS } from '../../soccer-news/src/packet.js';
+import { selectSubject, subjectMedia } from '../../shared/news-subject.js';
 import { toMatchFrame } from '../../shared/coords.js';
 import { displayMinute } from '../../shared/clock.js';
 import { COVERAGE, envelope, maxTs } from './envelope.js';
@@ -670,12 +671,12 @@ export async function news(store, q) {
   const [pm, cm] = await Promise.all([portraitMap(store, personIds), approvedMedia(store, 'team', teamIds, { mediaType: 'crest', primaryOnly: true })]);
   for (const r of rows) {
     const ents = r.entities || [];
-    // The subject of the headline first (the hat-trick scorer, the club that goes top), then the
-    // first entity the evidence names; only approved media, never a guess.
-    const inHead = e => e.name && String(r.headline || '').includes(e.name);
-    const person = ents.find(e => e.type === 'Person' && pm.get(e.id) && inHead(e)) || ents.find(e => e.type === 'Person' && pm.get(e.id));
-    const team = ents.find(e => e.type === 'SportsTeam' && cm.get(e.id) && inHead(e)) || ents.find(e => e.type === 'SportsTeam' && cm.get(e.id));
-    r.image = person ? { kind: 'portrait', url: pm.get(person.id).url, alt: person.name, attribution: pm.get(person.id).attribution } : team ? { kind: 'crest', url: cm.get(team.id)[0].url, alt: team.name, attribution: cm.get(team.id)[0].attribution } : null;
+    // ONE subject rule for cards and article pages (workers/shared/news-subject.js): the newsroom's
+    // primary subject, else the person/team the headline names; its own media or none, never a teammate.
+    const subject = selectSubject(r);
+    const media = subjectMedia(subject, pm, cm, ents);
+    r.image = media ? { kind: media.kind, url: media.url, alt: media.alt, attribution: media.attribution } : null;
+    r.subject = subject.entity ? { type: subject.entity.type, name: subject.entity.name, slug: subject.entity.slug || null, reason: subject.reason } : null;
     r.teams = ents.filter(e => e.type === 'SportsTeam').slice(0, 2).map(e => ({ slug: e.slug, name: e.name }));
     delete r.entities;
   }
@@ -695,11 +696,11 @@ export async function article(store, slug) {
   const teamIds = ents.filter(e => e.type === 'SportsTeam' && e.id).map(e => e.id);
   const [pm, cm] = await Promise.all([portraitMap(store, personIds), approvedMedia(store, 'team', teamIds, { mediaType: 'crest', primaryOnly: true })]);
   a.entities = ents.map(e => ({ ...e, ...(e.type === 'Person' && pm.get(e.id) ? { portrait: pm.get(e.id) } : {}), ...(e.type === 'SportsTeam' && cm.get(e.id) ? { crest: { url: cm.get(e.id)[0].url, attribution: cm.get(e.id)[0].attribution } } : {}) }));
-  const inHead = e => e.name && String(a.headline || '').includes(e.name.split(' ').pop());
-  const heroPerson = a.entities.find(e => e.portrait && inHead(e)) || a.entities.find(e => e.portrait);
-  const heroTeam = a.entities.find(e => e.crest && inHead(e)) || a.entities.find(e => e.crest);
-  a.hero = heroPerson ? { kind: 'portrait', url: heroPerson.portrait.url, attribution: heroPerson.portrait.attribution, license: heroPerson.portrait.license || null, entity: { name: heroPerson.name, slug: heroPerson.slug } }
-    : heroTeam ? { kind: 'crest', url: heroTeam.crest.url, attribution: heroTeam.crest.attribution, entity: { name: heroTeam.name, slug: heroTeam.slug } } : null;
+  // Hero: the same subject rule as the news cards (news-subject.js), so a card and its article agree.
+  const subject = selectSubject({ headline: a.headline, story_class: a.story_class, entities: ents });
+  const media = subjectMedia(subject, pm, cm, ents);
+  a.hero = media ? { kind: media.kind, url: media.url, attribution: media.attribution, license: media.license || null, entity: { name: media.entity.name, slug: media.entity.slug }, ...(media.fallback ? { fallback: media.fallback } : {}) } : null;
+  a.subject = subject.entity ? { type: subject.entity.type, name: subject.entity.name, slug: subject.entity.slug || null, reason: subject.reason } : null;
   // Related coverage: published stories sharing entities (players > match > teams), recency bonus.
   const ids = new Set(ents.map(e => e.id).filter(Boolean));
   const others = (await store.select('soccer_articles', { columns: ['slug', 'desk', 'story_class', 'headline', 'dek', 'published_at', 'entities'], eq: { status: 'published' }, order: 'published_at.desc', limit: 200 })).filter(o => o.slug !== a.slug);
@@ -867,12 +868,58 @@ export async function dataHealth(store, env) {
   const [portraits, players] = await Promise.all([store.count('soccer_entity_media', { eq: { entity_type: 'player', media_type: 'portrait', is_primary: true }, in: { rights_status: DISPLAYABLE } }), store.count('soccer_players', { eq: { status: 'active' } })]);
   const news = await kv('news:last_run');
   const standings = await kv('lane:espn_standings');
+  const newsroom = await newsroomHealth(store, news, await kv('news:last_tick'), now);
   return E({
-    at: new Date(now).toISOString(), competitions: out,
+    at: new Date(now).toISOString(), competitions: out, newsroom,
     identity_queue_open: qBy, media: { portraits_approved: portraits, active_players: players },
     standings_lane: standings ? { last_success_at: standings.last_success_at, health: standings.health } : null,
     news_worker: news ? { last_run_at: news.at, llm: news.llm, by_competition: Object.fromEntries(Object.entries(news.competitions || {}).map(([k, v]) => [k, { candidates: v.candidates, new: v.new, published: v.published, held: v.held }])) } : null,
   }, { source: 'pbe', semantics: 'Production data health computed live from the canonical graph and lane state. Result gaps and optional-component gaps (lineup, stats, play-by-play) are separate: a failed optional component never marks the result or the lane dead.', source_updated_at: new Date(now).toISOString() });
+}
+
+// NEWSROOM HEALTH: one view that explains a quiet newsroom in 30 seconds. Global: is the cron fresh
+// (a run every 30 min), is the editorial desk available, is NEWS_ENABLED on, publications in 24/72 h.
+// Per news-enabled competition (registry `news`): season, last canonical match update, the last run's
+// candidates / duplicates / new / published / held and its detection diagnostics (finished in window,
+// eligible, awaiting enrichment, preview-window fixtures), the newest story and its age, the main hold
+// reasons, and fixtures in the next 24 h. Public-safe: counts and reasons only (no error text, no ids).
+export async function newsroomHealth(store, last, lastTick, now = Date.now()) {
+  const hours = iso => (iso ? Math.round((now - Date.parse(iso)) / 36e5 * 10) / 10 : null);
+  const pubs = await store.select('soccer_articles', { columns: ['desk', 'published_at'], eq: { status: 'published' }, gte: { published_at: new Date(now - 72 * 3600e3).toISOString() } });
+  const held = await store.select('soccer_articles', { columns: ['desk', 'hold_reasons', 'updated_at'], eq: { status: 'held' } });
+  const comps = [];
+  for (const rc of registryData.competitions.filter(c => c.news?.enabled)) {
+    const [c] = await store.select('soccer_competitions', { columns: ['id'], eq: { slug: rc.slug }, limit: 1 });
+    const s = c ? (await seasonsOf(store, c.id))[0] : null;
+    const [lastMatch] = s ? await store.select('soccer_matches', { columns: ['updated_at'], eq: { season_id: s.id }, order: 'updated_at.desc', limit: 1 }) : [];
+    const upcoming = s ? await store.count('soccer_matches', { eq: { season_id: s.id, status: 'scheduled' }, gte: { kickoff_at: new Date(now).toISOString() }, lte: { kickoff_at: new Date(now + 24 * 3600e3).toISOString() } }) : 0;
+    const [newest] = await store.select('soccer_articles', { columns: ['headline', 'story_class', 'published_at'], eq: { status: 'published', desk: rc.desk }, order: 'published_at.desc', limit: 1 });
+    const holds = {}; for (const a of held.filter(x => x.desk === rc.desk)) for (const r of a.hold_reasons || []) holds[r] = (holds[r] || 0) + 1;
+    const run = last?.competitions?.[rc.slug] || null;
+    comps.push({
+      competition: rc.slug, desk: rc.desk, stories: rc.news.stories, season: s?.label || null,
+      last_canonical_match_update: lastMatch?.updated_at || null,
+      last_run: run ? { candidates: run.candidates, duplicates: run.duplicates ?? null, new: run.new, published: run.published, held: run.held, by_class: run.by_class || null, detection: run.diagnostics || null, skipped: run.skipped || null } : null,
+      newest_story: newest ? { headline: newest.headline, story_class: newest.story_class, published_at: newest.published_at, age_hours: hours(newest.published_at) } : null,
+      published_24h: pubs.filter(p => p.desk === rc.desk && now - Date.parse(p.published_at) <= 24 * 3600e3).length,
+      held_open: held.filter(x => x.desk === rc.desk).length,
+      primary_hold_reasons: Object.entries(holds).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([reason, n]) => ({ reason, n })),
+      fixtures_next_24h: upcoming,
+      preview_eligible_last_run: run?.diagnostics?.preview_eligible ?? null,
+    });
+  }
+  const lastAt = last?.at || null;
+  return {
+    // fresh = a successful run within 45 min (cron every 30). last_tick tells WHY it is not fresh:
+    // no recent tick = cron not firing; outcome 'disabled' = NEWS_ENABLED off; 'failed' = the run errors.
+    cron: { schedule: '7,37 * * * *', last_successful_run_at: lastAt, minutes_since: lastAt ? Math.round((now - Date.parse(lastAt)) / 6e4) : null, fresh: !!lastAt && now - Date.parse(lastAt) < 45 * 60e3, last_tick_at: lastTick?.at || null, last_tick_outcome: lastTick?.outcome || null },
+    news_enabled: lastTick ? lastTick.news_enabled : last?.news_enabled ?? null,
+    editorial_desk: last?.desk ? { available: !!last.desk.available, required: !!last.desk.required, version: last.desk.version } : null,
+    published_24h: pubs.filter(p => now - Date.parse(p.published_at) <= 24 * 3600e3).length,
+    published_72h: pubs.length,
+    newest_published_at: pubs.map(p => p.published_at).sort().pop() || (await store.select('soccer_articles', { columns: ['published_at'], eq: { status: 'published' }, order: 'published_at.desc', limit: 1 }))[0]?.published_at || null,
+    competitions: comps,
+  };
 }
 
 // Season-level DNA cache (KV). The key is the DATA CUTOFF (the last finished match that

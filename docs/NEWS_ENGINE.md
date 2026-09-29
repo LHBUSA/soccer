@@ -4,7 +4,7 @@
 story links into its teams, players, match and competition, and every figure traces to a
 frozen evidence packet.
 
-Runtime: Cloudflare Worker `soccer-news` (`workers/soccer-news`), cron `7,37 * * * *`, gated
+Runtime: Cloudflare Worker `soccer-news` (`workers/soccer-news`), cron `7,37 * * * *` (competitions from the registry `news` block), gated
 by the `NEWS_ENABLED` var. GitHub Actions are not a runtime. The Worker never calls a provider:
 it reads only the canonical graph.
 
@@ -38,8 +38,37 @@ top at 15:30 and was overtaken at 17:30 is not "top".
 | `team_trend` | league run: 4+ wins, 7+ unbeaten (not all wins), 4+ defeats, 7+ winless (not all defeats) | `team_trend:<team>:<kind>:<length>:<last match>` |
 | `player_form` | scored in 3+ consecutive appearances (sourced lineups: started or came on) | `player_form:<player>:<length>:<last match>` |
 | `competition_intelligence` (table race) | once per ISO week with 6+ league results and no league match within 12 h | `table_race:<competition>:<week>` |
+| `competition_intelligence` (group watch, `previews.js`) | profiles without a single table (Nations League groups, UCL league phase): once per ISO week after 6+ results and no match within 12 h; ONLY groups whose ESPN standings verify against canonical results | `group_watch:<competition>:<week>` |
+| `match_preview` (fixture, `previews.js`) | a scheduled fixture kicking off in 1-24 h with materiality >= 1.0: top-of-table meeting (top 4; MLS top 6), bottom meeting, leader in action, verified group top-two meeting / group leader, winning (3+) / unbeaten (6+) / losing (3+) run, a player on a 3+ scoring run. Max 3 per competition per run | `match_preview:<match>` |
+| `match_preview` (matchday brief) | a UTC day with 3+ fixtures in the next 1-24 h, 2+ of them with table or verified group context | `matchday:<competition>:<date>` |
 
-Previews and data features stay off (no injury source; model gates not passed).
+Previews state only facts known before kick-off (kick-off, venue, table / verified group position, last five
+results, sourced scoring runs, earlier meetings this season). The `preview_prediction` and `preview_team_news`
+gates (fact gates and desk validation) hold any forecast, favourite, probability, odds, team news or lineup claim.
+Data features stay off (model gates not passed); no injury source exists.
+
+**Enablement (one source of truth).** `data/registry/competitions.json` `news`: `enabled`, the `stories` a
+competition supports, and for a disabled competition its exact `blocker`. `NEWS_COMPETITIONS` is derived from it;
+it is not coupled to a provider lane flag.
+
+**Recap readiness (`recapReadiness`).** A finished match becomes a candidate as soon as its enrichment ledger
+is final (every component complete / not applicable), with no blind delay. While a component is still retrying
+(within 6 h of kick-off) the match waits (`awaiting_enrichment`): a story's event id is written once, so a recap
+built before its goal sequence arrived would hold for good. Without a ledger (OpenLigaDB-only) the old rule
+applies: kick-off 2 h ago.
+
+**Primary subject (`workers/shared/news-subject.js`).** The composer marks one entity as the story's subject from
+the packet's material event (hat-trick scorer > new leader > two-goal scorer > winner; the player of a form
+story; the team of a trend; the table leader; for previews the in-form player, the leader or the home side).
+soccer-api's news cards and article hero resolve the subject through the same `selectSubject()` (marker, else
+the person the headline names by full name or unambiguous surname, else the headline team) and show only
+that subject's approved photo, else its own team's crest, else the competition graphic: never another
+player's face. Backfill: `node scripts/news/backfill-subjects.mjs [--apply]`.
+
+**Health.** `GET /v1/data-health` -> `newsroom`: cron freshness and the last tick's outcome (ran / disabled /
+failed), NEWS_ENABLED, desk availability, publications in 24 / 72 h, and per competition the last run's
+candidates, duplicates, new, published, held, detection diagnostics, newest story and age, hold reasons and
+fixtures in the next 24 h.
 
 ## Packet (`soccer-packet/2.0.0`)
 
@@ -76,7 +105,7 @@ Failed gates become `hold_reasons`; the schema refuses `published` while any rem
 
 ## Desks, pages, SEO
 
-Desks: `/news/mls`, `/news/premier-league`, `/news/champions-league`, `/news/bundesliga`; articles at
+Desks: `/news/mls`, `/news/premier-league`, `/news/champions-league`, `/news/bundesliga`, `/news/international`; articles at
 `/news/:desk/:slug` (a slug under the wrong desk is a 404). `/news` and each desk are `noindex` until
 they hold published stories, then `index`. Articles carry `NewsArticle` JSON-LD (headline, dates,
 publisher, section, `about` teams) and a breadcrumb. `sitemap-news.xml` lists published articles and

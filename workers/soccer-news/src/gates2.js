@@ -56,8 +56,20 @@ function packetEntities(p) {
   };
   walk(p);
   if (p.match && p.teams) known.set(p.match.id, `${p.teams.home.name} v ${p.teams.away.name}`);
+  if (p.fixture && p.teams) known.set(p.fixture.id, `${p.teams.home.name} v ${p.teams.away.name}`);
+  for (const f of p.fixtures || []) known.set(f.match_id, `${f.home.name} v ${f.away.name}`);
   return known;
 }
+
+// Conference / league-phase / qualification-zone language is allowed ONLY with a group verified against canonical results.
+export const EXEMPT_WITH_VERIFIED_GROUP = new Set(['mls_conference_claim', 'ucl_table_claim', 'ucl_qualification_claim']);
+// A preview is written before kick-off: it may never forecast, rate chances or pick a side.
+export const PREVIEW_BANNED = [
+  ['preview_prediction', /\b(will (win|beat|lose|draw|score|claim|take)|(is|are) (expected|likely|set|tipped|poised) to|should (win|beat|edge)|predict\w*|prediction|forecast\w*|favou?rites?|underdogs?|chances? of (winning|victory)|probabilit\w*|projected|must-win|expect(s|ed)? (a|an|the)? ?(win|victory|result))\b/i],
+  ['preview_team_news', /\b(team news|line-?ups? (is|are) (expected|likely)|predicted (xi|line-?up)|starting (xi|line-?up) (will|is expected)|doubts?|available again|return(s)? from)\b/i],
+];
+// Verified group context anywhere in the packet (recap / trend teams, preview teams, matchday fixtures, group watch).
+export const verifiedGroupIn = packet => [packet?.teams?.home?.group, packet?.teams?.away?.group, packet?.team?.group, ...(packet?.groups || []), ...(packet?.fixtures || []).flatMap(f => [f.home?.group, f.away?.group])].some(g => g?.verified);
 
 function claims(t, p) {
   const wrong = [];
@@ -121,9 +133,9 @@ export function runGates2(article, packet) {
   const profile = PROFILES[packet.event.profile];
   // Conference / league-phase / qualification-zone language is allowed ONLY when the
   // packet carries a group position verified against canonical results. "Top four" never.
-  const verifiedGroup = [packet.teams?.home?.group, packet.teams?.away?.group, packet.team?.group].some(g => g?.verified);
-  const EXEMPT_WITH_VERIFIED_GROUP = new Set(['mls_conference_claim', 'ucl_table_claim', 'ucl_qualification_claim']);
+  const verifiedGroup = verifiedGroupIn(packet);
   for (const [name, re] of profile?.banned || []) { if (verifiedGroup && EXEMPT_WITH_VERIFIED_GROUP.has(name)) continue; const m = editorial.match(re); gate(name, !m, m ? m[0] : null); }
+  if (packet.event?.kind === 'match_preview') for (const [name, re] of PREVIEW_BANNED) { const m = editorial.match(re); gate(name, !m, m ? m[0] : null); }
   // Group / quarter-final / promotion / relegation wording only with verified, source-supported group context.
   const unsupported = new Map(unsupportedGroupClaims(profile, editorial, packet));
   for (const [name] of profile?.verified_claims || []) gate(name, !unsupported.has(name), unsupported.get(name) || null);

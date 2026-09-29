@@ -5,7 +5,7 @@
 //   -> editorial quality gates (no template opening, no stat recitation, depth, no filler)
 //   -> PUBLISH, or HOLD. There is no template fallback for public copy: quality over volume.
 // One repair attempt: the failed gates are quoted back to the desk once; a second failure holds.
-import { packetNumbers2 } from './gates2.js';
+import { EXEMPT_WITH_VERIFIED_GROUP, packetNumbers2, PREVIEW_BANNED, verifiedGroupIn } from './gates2.js';
 import { stripIdentifiers } from './gates.js';
 import { PROFILES, unsupportedGroupClaims } from './profiles.js';
 
@@ -105,8 +105,23 @@ export function sanitizeDeskError(s, env) {
   return t.replace(/Bearer\s+\S+/gi, 'Bearer [redacted]').replace(/sk-[A-Za-z0-9_*-]{4,}/g, '[redacted]').slice(0, 200);
 }
 
+// What kind of story this packet supports. The SYSTEM prompt is written for match reports; every other
+// class gets its brief here, and the same grounded validation + quality gates judge the result.
+const NO_FORECAST = 'Never state or imply a result, a prediction, a favourite, chances, probabilities or odds; never mention team news, expected lineups, injuries, suspensions or quotes.';
+export function storyBrief(p) {
+  const k = p?.event?.kind;
+  const brief = s => `STORY TYPE: ${s}\n\n`;
+  if (k === 'match_preview' && p.preview_kind === 'matchday') return brief(`MATCHDAY BRIEF for fixtures that have NOT been played. Tell readers what is at stake across the day using only the packet: kick-off times (UTC), venues, current table or verified group positions, teams on runs and players on scoring runs. ${NO_FORECAST} Write 3 to 4 sections with specific headings, 250-500 words.`);
+  if (k === 'match_preview') return brief(`MATCH PREVIEW of a fixture that has NOT been played. Use only the packet: kick-off (date, UTC time), venue, current table or verified group position, the recent results listed, sourced scoring runs and earlier meetings this season. ${NO_FORECAST} There is no final score: do not put one in the headline or dek. Write 3 to 4 sections with specific headings, 250-550 words.`);
+  if (k === 'competition_intelligence' && p.brief === 'group_watch') return brief('GROUP WATCH. Where the verified group tables stand after this week’s results, using only the packet: group positions, points, matches played, the gaps at the top and the results listed. Groups not in the packet are not verified: do not mention them. National teams are nations, never clubs. 3 to 4 sections, 250-550 words.');
+  if (k === 'competition_intelligence') return brief('TABLE WATCH. The state of the league table after this week’s results, using only the packet. 3 to 4 sections, 250-550 words.');
+  if (k === 'team_trend') return brief('TEAM FORM. The run in the packet, its results and where it leaves the team, using only the packet. 3 to 4 sections, 220-500 words.');
+  if (k === 'player_form') return brief('PLAYER FORM. The player’s sourced scoring run, match by match, using only the packet. 3 to 4 sections, 220-450 words.');
+  return '';
+}
+
 export async function callDesk(env, packet, draft, { fetcher = fetch, feedback = null, model = env?.NEWS_DESK_MODEL || DESK_MODEL } = {}) {
-  const user = `FROZEN FACT PACKET (the only source of truth):\n${JSON.stringify(packet)}\n\nMECHANICAL DRAFT (evidence only; do not copy its structure or wording):\n${JSON.stringify({ headline: draft.headline, dek: draft.dek, sections: draft.sections.filter(s => s.key !== 'method') })}${feedback ? `\n\nCORRECTIVE REWRITE REQUIRED:\nThe previous version was rejected by the deterministic publication gates for exactly these reasons:\n${feedback}\nRewrite the entire JSON response from the SAME FACT PACKET. Fix every failure without adding any fact, number, name, date, URL, quote or outside knowledge. The gates will run again unchanged.` : ''}`;
+  const user = `${storyBrief(packet)}FROZEN FACT PACKET (the only source of truth):\n${JSON.stringify(packet)}\n\nMECHANICAL DRAFT (evidence only; do not copy its structure or wording):\n${JSON.stringify({ headline: draft.headline, dek: draft.dek, sections: draft.sections.filter(s => s.key !== 'method') })}${feedback ? `\n\nCORRECTIVE REWRITE REQUIRED:\nThe previous version was rejected by the deterministic publication gates for exactly these reasons:\n${feedback}\nRewrite the entire JSON response from the SAME FACT PACKET. Fix every failure without adding any fact, number, name, date, URL, quote or outside knowledge. The gates will run again unchanged.` : ''}`;
   // No tools, no retrieval, not stored: the packet in this request is all the model sees.
   const res = await fetcher(DESK_API, {
     method: 'POST',
@@ -262,7 +277,11 @@ export function validateEditorial(article, packet) {
     const m = t.match(re); gate(name, !m, m ? m[0] : null);
   }
   if (/\bpossession\b/i.test(t) && !(packet.stats?.home?.possession_pct !== undefined && packet.stats?.away?.possession_pct !== undefined)) gate('unsupported_possession', false, 'possession');
-  for (const [name, re] of PROFILES[packet.event.profile]?.banned || []) { const m = t.match(re); if (m) gate(name, false, m[0]); }
+  // Profile bans with the SAME verified-group exemption as the fact gates (gates2): conference / league-phase
+  // wording is only allowed when the packet carries a group verified against canonical results.
+  const verifiedGroup = verifiedGroupIn(packet);
+  for (const [name, re] of PROFILES[packet.event.profile]?.banned || []) { if (verifiedGroup && EXEMPT_WITH_VERIFIED_GROUP.has(name)) continue; const m = t.match(re); if (m) gate(name, false, m[0]); }
+  if (packet.event.kind === 'match_preview') for (const [name, re] of PREVIEW_BANNED) { const m = t.match(re); gate(name, !m, m ? m[0] : null); }
   for (const [name, m] of unsupportedGroupClaims(PROFILES[packet.event.profile], t, packet)) gate(name, false, m);
   // match integrity
   if (packet.match) {

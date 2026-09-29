@@ -11,6 +11,7 @@ import { verifyGroupStandings } from '../../shared/standings.js';
 import { ownGoalBeneficiary } from '../../shared/own-goals.js';
 import { loadSeasonData, teamDna } from '../../soccer-api/src/dna.js';
 import { depthFromRows, loadDepthRows, packetV3 } from './depth.js';
+import { groupWatchBody, previewBody, PREVIEW_VERSION } from './previews.js';
 
 export const ENGINE_VERSION = 'soccer-news-engine/2.0.0';
 export const PACKET_V2 = 'soccer-packet/2.0.0';
@@ -63,23 +64,86 @@ async function peopleById(store, ids) {
 
 const tableUntil = (S, profile, until, excludeId = null) => computeTable(S.finished.filter(m => S.leagueStages.has(m.stage_id) && Date.parse(m.kickoff_at) <= Date.parse(until) && m.id !== excludeId), { tiebreak: profile.tiebreak || 'standard' });
 
+// ---------- RECAP READINESS ----------
+// A finished match may become a story as soon as its evidence is FINAL, not after a blind delay:
+//   ledger rows exist and every component is complete / not_applicable  -> ready now
+//   a component is still retrying (unavailable/empty with a retry scheduled) within 6 h of kick-off
+//     -> awaiting_enrichment (a recap built now would lack the goal sequence / lineups and HOLD for
+//        good, because a story's event id is written once)
+//   otherwise (no ledger, e.g. OpenLigaDB-only, or retries exhausted) -> ready once kick-off is 2 h old
+export const RECAP_FALLBACK_MS = 2 * 3600e3;
+export function recapReadiness(m, ledger, now) {
+  const age = now - Date.parse(m.kickoff_at);
+  const rows = ledger || [];
+  if (rows.length) {
+    if (rows.some(r => (r.status === 'unavailable' || r.status === 'empty') && r.next_retry_at && age < 6 * 3600e3)) return 'awaiting_enrichment';
+    if (rows.every(r => r.status === 'complete' || r.status === 'not_applicable')) return 'ready';
+  }
+  return age >= RECAP_FALLBACK_MS ? 'ready' : 'too_soon';
+}
+async function ledgerFor(store, ids) {
+  const out = new Map();
+  for (const part of chunkArr(ids, 100)) for (const r of await store.select('soccer_match_enrichment', { columns: ['match_id', 'component', 'status', 'next_retry_at'], in: { match_id: part } })) out.set(r.match_id, [...(out.get(r.match_id) || []), r]);
+  return out;
+}
+
+// Sourced appearances (started or came on) with goals per appearance, per player, in kick-off order.
+// Cached on the season object: detection and previews share one read.
+export async function appearanceGoals(store, S) {
+  if (S._apps) return S._apps;
+  const apps = new Map();
+  const lineups = [];
+  for (const part of chunkArr(S.finished.map(m => m.id), 100)) lineups.push(...await store.select('soccer_lineups', { columns: ['id', 'match_id', 'team_id'], in: { match_id: part } }));
+  if (lineups.length) {
+    const lps = [];
+    for (const part of chunkArr(lineups.map(l => l.id), 100)) lps.push(...await store.select('soccer_lineup_players', { columns: ['lineup_id', 'player_id', 'is_starter'], in: { lineup_id: part }, order: 'lineup_id.asc,player_id.asc' }));
+    const subs = [];
+    for (const part of chunkArr(lineups.map(l => l.match_id), 100)) subs.push(...await store.select('soccer_substitutions', { columns: ['match_id', 'player_in_id'], in: { match_id: part } }));
+    const cameOn = new Set(subs.map(s => `${s.match_id}|${s.player_in_id}`));
+    const lu = new Map(lineups.map(l => [l.id, l]));
+    for (const x of lps) {
+      const l = lu.get(x.lineup_id);
+      if (!(x.is_starter || cameOn.has(`${l.match_id}|${x.player_id}`))) continue;
+      apps.set(x.player_id, [...(apps.get(x.player_id) || []), { match_id: l.match_id, team_id: l.team_id, started: x.is_starter }]);
+    }
+    const allGoals = await goalsFor(store, lineups.map(l => l.match_id));
+    const kick = new Map(S.finished.map(m => [m.id, m]));
+    for (const [pid, list] of apps) {
+      const seq = list.filter(x => kick.has(x.match_id)).sort((a, b) => byKick(kick.get(a.match_id), kick.get(b.match_id)));
+      apps.set(pid, seq.map(x => ({ ...x, goals: (allGoals.get(x.match_id) || []).filter(e => e.is_goal && e.player_id === pid).length })));
+    }
+  }
+  S._apps = apps;
+  return apps;
+}
+// Consecutive scoring appearances ending with the player's latest appearance.
+export const scoringStreak = seq => { let n = 0; for (let i = seq.length - 1; i >= 0 && seq[i].goals > 0; i--) n += 1; return n; };
+
 // ---------- DETECTION ----------
-// window: only matches finished within [now - windowDays, now] can create stories.
-export async function detect(store, S, { now = Date.now(), windowDays = 4, cfg = {} } = {}) {
+// window: only matches finished within [now - windowDays, now] can create stories, once
+// recapReadiness() says their evidence is final. `stories` (registry news.stories) switches
+// story types per competition; `diag` receives the counts the newsroom health view reports.
+export const RECAP_STORIES = ['match_recap', 'team_trend', 'player_form', 'table_watch'];
+export async function detect(store, S, { now = Date.now(), windowDays = 4, cfg = {}, stories = RECAP_STORIES, diag = {} } = {}) {
   const since = now - windowDays * 86400e3;
-  const recent = S.finished.filter(m => Date.parse(m.kickoff_at) >= since && Date.parse(m.kickoff_at) <= now - 2 * 3600e3);
+  const inWindow = S.finished.filter(m => Date.parse(m.kickoff_at) >= since && Date.parse(m.kickoff_at) <= now);
+  const ledger = inWindow.length ? await ledgerFor(store, inWindow.map(m => m.id)) : new Map();
+  const state = new Map(inWindow.map(m => [m.id, recapReadiness(m, ledger.get(m.id), now)]));
+  const recent = inWindow.filter(m => state.get(m.id) === 'ready');
+  Object.assign(diag, { finished_in_window: inWindow.length, eligible: recent.length, awaiting_enrichment: [...state.values()].filter(s => s === 'awaiting_enrichment').length, too_soon: [...state.values()].filter(s => s === 'too_soon').length });
   if (!recent.length) return [];
+  const on = k => stories.includes(k);
   const goals = await goalsFor(store, recent.map(m => m.id));
   const out = [];
-  for (const m of recent) {
+  for (const m of on('match_recap') ? recent : []) {
     const profile = profileFor(S.comp.slug, m.kickoff_at, cfg); if (!profile) continue;
     const a = assess(S, m, profile, goals.get(m.id) || []);
     if (a.material) out.push({ story_class: 'match_recap', key: `match_recap:${m.id}`, as_of: m.kickoff_at, match: m, profile, materiality: a });
   }
   // Team trends: a streak reaching a threshold with its latest match in the window.
   const TRENDS = [['winning_run', r => r === 'W', 4], ['unbeaten_run', r => r !== 'L', 7], ['losing_run', r => r === 'L', 4], ['winless_run', r => r !== 'W', 7]];
-  for (const [tid] of S.teams) {
-    const games = S.finished.filter(m => (m.home_team_id === tid || m.away_team_id === tid) && S.leagueStages.has(m.stage_id)).sort(byKick);
+  for (const [tid] of on('team_trend') ? S.teams : []) {
+    const games =S.finished.filter(m => (m.home_team_id === tid || m.away_team_id === tid) && S.leagueStages.has(m.stage_id)).sort(byKick);
     const last = games[games.length - 1];
     if (!last || !recent.some(r => r.id === last.id)) continue;
     const profile = profileFor(S.comp.slug, last.kickoff_at, cfg); if (!profile?.table) continue;
@@ -92,32 +156,15 @@ export async function detect(store, S, { now = Date.now(), windowDays = 4, cfg =
   }
   // Player form: scored in >= 3 consecutive appearances (sourced lineups), latest in window.
   const recentIds = new Set(recent.map(m => m.id));
-  const lineups = [];
-  for (const part of chunkArr(S.finished.map(m => m.id), 100)) lineups.push(...await store.select('soccer_lineups', { columns: ['id', 'match_id', 'team_id'], in: { match_id: part } }));
-  if (lineups.length) {
-    const lps = [];
-    for (const part of chunkArr(lineups.map(l => l.id), 100)) lps.push(...await store.select('soccer_lineup_players', { columns: ['lineup_id', 'player_id', 'is_starter'], in: { lineup_id: part }, order: 'lineup_id.asc,player_id.asc' }));
-    const subs = [];
-    for (const part of chunkArr(lineups.map(l => l.match_id), 100)) subs.push(...await store.select('soccer_substitutions', { columns: ['match_id', 'player_in_id'], in: { match_id: part } }));
-    const cameOn = new Set(subs.map(s => `${s.match_id}|${s.player_in_id}`));
-    const lu = new Map(lineups.map(l => [l.id, l]));
-    const apps = new Map();
-    for (const x of lps) {
-      const l = lu.get(x.lineup_id);
-      if (!(x.is_starter || cameOn.has(`${l.match_id}|${x.player_id}`))) continue;
-      apps.set(x.player_id, [...(apps.get(x.player_id) || []), { match_id: l.match_id, team_id: l.team_id, started: x.is_starter }]);
-    }
-    const allGoals = await goalsFor(store, lineups.map(l => l.match_id));
+  if (on('player_form')) {
     const kick = new Map(S.finished.map(m => [m.id, m]));
-    for (const [pid, list] of apps) {
-      const seq = list.filter(x => kick.has(x.match_id)).sort((a, b) => byKick(kick.get(a.match_id), kick.get(b.match_id)));
+    for (const [pid, seq] of await appearanceGoals(store, S)) {
       const lastApp = seq[seq.length - 1];
       if (!lastApp || !recentIds.has(lastApp.match_id)) continue;
-      const g = seq.map(x => (allGoals.get(x.match_id) || []).filter(e => e.is_goal && e.player_id === pid).length);
-      let n = 0; for (let i = g.length - 1; i >= 0 && g[i] > 0; i--) n += 1;
+      const n = scoringStreak(seq);
       if (n >= 3) {
         const profile = profileFor(S.comp.slug, kick.get(lastApp.match_id).kickoff_at, cfg);
-        out.push({ story_class: 'player_form', key: `player_form:${pid}:${n}:${lastApp.match_id}`, as_of: kick.get(lastApp.match_id).kickoff_at, player_id: pid, apps: seq.slice(-Math.max(n, 3)).map((x, i, arr) => ({ ...x, goals: g[g.length - arr.length + i] })), streak: n, profile, materiality: { score: 1.0 + (n - 3) * 0.2, angles: [{ key: 'scoring_run', weight: 1, detail: { matches: n } }] } });
+        out.push({ story_class: 'player_form', key: `player_form:${pid}:${n}:${lastApp.match_id}`, as_of: kick.get(lastApp.match_id).kickoff_at, player_id: pid, apps: seq.slice(-Math.max(n, 3)), streak: n, profile, materiality: { score: 1.0 + (n - 3) * 0.2, angles: [{ key: 'scoring_run', weight: 1, detail: { matches: n } }] } });
       }
     }
   }
@@ -125,7 +172,7 @@ export async function detect(store, S, { now = Date.now(), windowDays = 4, cfg =
   // league match in the last 12 hours (the round is settled). Table profiles only.
   const lastLeague = recent.filter(m => S.leagueStages.has(m.stage_id));
   const profile = profileFor(S.comp.slug, new Date(now).toISOString(), cfg);
-  if (profile?.table && lastLeague.length >= 6 && !S.matches.some(m => m.status !== 'finished' && S.leagueStages.has(m.stage_id) && Math.abs(Date.parse(m.kickoff_at) - now) < 12 * 3600e3)) {
+  if (on('table_watch') && profile?.table && lastLeague.length >= 6 && !S.matches.some(m => m.status !== 'finished' && S.leagueStages.has(m.stage_id) && Math.abs(Date.parse(m.kickoff_at) - now) < 12 * 3600e3)) {
     const latest = lastLeague[lastLeague.length - 1];
     const week = isoWeek(new Date(latest.kickoff_at));
     out.push({ story_class: 'competition_intelligence', key: `table_race:${S.comp.id}:${week}`, as_of: latest.kickoff_at, profile, round: lastLeague, materiality: { score: 1.0, angles: [{ key: 'table_race', weight: 1, detail: { week } }] } });
@@ -207,6 +254,8 @@ export async function buildPacket(store, S, cand) {
   }
   if (cand.story_class === 'team_trend') return freeze({ ...base, ...(await trendBody(store, S, cand)) });
   if (cand.story_class === 'player_form') return freeze({ ...base, ...(await formBody(store, S, cand)) });
+  if (cand.story_class === 'match_preview') return freeze({ ...base, version: PREVIEW_VERSION, ...(await previewBody(store, S, cand)) });
+  if (cand.story_class === 'competition_intelligence' && cand.brief === 'group_watch') return freeze({ ...base, ...groupWatchBody(S, cand) });
   if (cand.story_class === 'competition_intelligence') return freeze({ ...base, ...raceBody(S, cand) });
   throw new Error(`unknown story class ${cand.story_class}`);
 }

@@ -1,0 +1,708 @@
+{
+  "at": "2026-09-29T12:41:20.600Z",
+  "subject_version": "news-subject/1.0.0",
+  "apply": true,
+  "articles": 37,
+  "changed": 37,
+  "unmarked": [],
+  "subject_changed": [
+    {
+      "slug": "stuttgart-borussia-dortmund-2026-09-19-83a022",
+      "from": "Maximilian Beier",
+      "to": "Borussia Dortmund"
+    },
+    {
+      "slug": "houston-dynamo-fc-sporting-kansas-city-2026-09-27-4daff8",
+      "from": "André Luiz",
+      "to": "Sporting Kansas City"
+    }
+  ],
+  "results": [
+    {
+      "slug": "tottenham-hotspur-aston-villa-2026-09-19-ce492a",
+      "status": "published",
+      "story_class": "match_recap",
+      "headline": "Aston Villa win 3-2 at Tottenham Hotspur",
+      "primary": {
+        "id": "47866b47-12b4-5243-b672-74a5715cd72a",
+        "type": "SportsTeam",
+        "reason": "match_winner"
+      },
+      "marked": true,
+      "subject_before": "Aston Villa",
+      "subject_before_reason": "headline_team",
+      "subject_after": "Aston Villa",
+      "subject_after_reason": "primary:match_winner",
+      "changed": true,
+      "applied": true
+    },
+    {
+      "slug": "jonathan-burkardt-scoring-run-2026-09-19-00f521",
+      "status": "published",
+      "story_class": "player_form",
+      "headline": "Jonathan Burkardt has scored in 3 straight Bundesliga appearances",
+      "primary": {
+        "id": "3713dbce-8a2e-5cd1-b8db-06b6c6ced337",
+        "type": "Person",
+        "reason": "player_form",
+        "team_id": "bd55982f-e37d-553b-a5c6-15bca4ee41aa"
+      },
+      "marked": true,
+      "subject_before": "Jonathan Burkardt",
+      "subject_before_reason": "headline_full_name",
+      "subject_after": "Jonathan Burkardt",
+      "subject_after_reason": "primary:player_form",
+      "changed": true,
+      "applied": false
+    },
+    {
+      "slug": "werder-bremen-augsburg-2026-09-19-aee7b2",
+      "status": "published",
+      "story_class": "match_recap",
+      "headline": "Werder Bremen overturn two-goal deficit to beat Augsburg 3-2",
+      "primary": {
+        "id": "e8cd28c3-8517-5be6-a5e8-007cb5e11c93",
+        "type": "SportsTeam",
+        "reason": "match_winner"
+      },
+      "marked": true,
+      "subject_before": "Werder Bremen",
+      "subject_before_reason": "headline_team",
+      "subject_after": "Werder Bremen",
+      "subject_after_reason": "primary:match_winner",
+      "changed": true,
+      "applied": true
+    },
+    {
+      "slug": "philadelphia-union-6-league-wins-in-a-row-2026-09-26-035aa6",
+      "status": "published",
+      "story_class": "team_trend",
+      "headline": "Philadelphia Union make it 6 MLS wins in a row",
+      "primary": {
+        "id": "94a30b61-36f9-5c8f-ba86-7ba6150d12be",
+        "type": "SportsTeam",
+        "reason": "team_trend"
+      },
+      "marked": true,
+      "subject_before": "Philadelphia Union",
+      "subject_before_reason": "headline_team",
+      "subject_after": "Philadelphia Union",
+      "subject_after_reason": "primary:team_trend",
+      "changed": true,
+      "applied": true
+    },
+    {
+      "slug": "stuttgart-borussia-dortmund-2026-09-19-83a022",
+      "status": "published",
+      "story_class": "match_recap",
+      "headline": "Beier sends Borussia Dortmund top with 1-0 win at Stuttgart",
+      "primary": {
+        "id": "640424d4-438b-5524-8909-0422f7e8ce97",
+        "type": "SportsTeam",
+        "reason": "leader_change"
+      },
+      "marked": true,
+      "subject_before": "Maximilian Beier",
+      "subject_before_reason": "headline_surname",
+      "subject_after": "Borussia Dortmund",
+      "subject_after_reason": "primary:leader_change",
+      "changed": true,
+      "applied": true
+    },
+    {
+      "slug": "brian-white-scoring-run-2026-09-27-837334",
+      "status": "published",
+      "story_class": "player_form",
+      "headline": "Brian White scores in fourth straight MLS appearance for Vancouver Whitecaps",
+      "primary": {
+        "id": "6fe0b52d-bcbc-5a76-9fd8-da3548362faf",
+        "type": "Person",
+        "reason": "player_form",
+        "team_id": "d7db905f-742a-5256-9ad4-4e2f6deb3617"
+      },
+      "marked": true,
+      "subject_before": "Brian White",
+      "subject_before_reason": "headline_full_name",
+      "subject_after": "Brian White",
+      "subject_after_reason": "primary:player_form",
+      "changed": true,
+      "applied": false
+    },
+    {
+      "slug": "phillip-tietz-scoring-run-2026-09-19-3312c7",
+      "status": "published",
+      "story_class": "player_form",
+      "headline": "Tietz scores in third straight Bundesliga appearance as Mainz edge Borussia M'gladbach 4-3",
+      "primary": {
+        "id": "563f8361-3f25-51ba-98bd-e81304491b84",
+        "type": "Person",
+        "reason": "player_form",
+        "team_id": "6f8a1b01-df4d-597f-918a-42c9176472c3"
+      },
+      "marked": true,
+      "subject_before": "Phillip Tietz",
+      "subject_before_reason": "headline_surname",
+      "subject_after": "Phillip Tietz",
+      "subject_after_reason": "primary:player_form",
+      "changed": true,
+      "applied": false
+    },
+    {
+      "slug": "sporting-kansas-city-philadelphia-union-2026-09-20-29f034",
+      "status": "published",
+      "story_class": "match_recap",
+      "headline": "Philadelphia Union win 4-3 at Sporting Kansas City: André Luiz scores 2",
+      "primary": {
+        "id": "837c33c5-6b9a-5279-bab8-3aa39cb3a755",
+        "type": "Person",
+        "reason": "multi_goal_scorer",
+        "team_id": "e2c42777-a99e-5b8a-a17b-0546d789669d"
+      },
+      "marked": true,
+      "subject_before": "André Luiz",
+      "subject_before_reason": "headline_full_name",
+      "subject_after": "André Luiz",
+      "subject_after_reason": "primary:multi_goal_scorer",
+      "changed": true,
+      "applied": false
+    },
+    {
+      "slug": "charlotte-fc-chicago-fire-fc-2026-09-26-545408",
+      "status": "published",
+      "story_class": "match_recap",
+      "headline": "Chicago Fire FC win 1-0 at Charlotte FC",
+      "primary": {
+        "id": "292c1786-ad90-5638-9c7d-5eb872e293ac",
+        "type": "SportsTeam",
+        "reason": "match_winner"
+      },
+      "marked": true,
+      "subject_before": "Chicago Fire FC",
+      "subject_before_reason": "headline_team",
+      "subject_after": "Chicago Fire FC",
+      "subject_after_reason": "primary:match_winner",
+      "changed": true,
+      "applied": true
+    },
+    {
+      "slug": "bayern-munchen-1-fc-union-berlin-2026-09-18-3ce080",
+      "status": "published",
+      "story_class": "match_recap",
+      "headline": "Olise hat-trick drives Bayern München to 7-0 rout of 1. FC Union Berlin",
+      "primary": {
+        "id": "4bafff58-73ee-52e1-971b-4159dfdd4d52",
+        "type": "Person",
+        "reason": "hat_trick",
+        "team_id": "9c2ce181-7bf4-55cf-b770-949389bb8797"
+      },
+      "marked": true,
+      "subject_before": "Michael Olise",
+      "subject_before_reason": "headline_surname",
+      "subject_after": "Michael Olise",
+      "subject_after_reason": "primary:hat_trick",
+      "changed": true,
+      "applied": false
+    },
+    {
+      "slug": "manchester-city-5-league-wins-in-a-row-2026-09-20-3d5328",
+      "status": "published",
+      "story_class": "team_trend",
+      "headline": "Manchester City’s five-win opening puts them top of the Premier League",
+      "primary": {
+        "id": "3bae7b11-9a30-5e3a-8f88-0151e490ab95",
+        "type": "SportsTeam",
+        "reason": "team_trend"
+      },
+      "marked": true,
+      "subject_before": "Manchester City",
+      "subject_before_reason": "headline_team",
+      "subject_after": "Manchester City",
+      "subject_after_reason": "primary:team_trend",
+      "changed": true,
+      "applied": true
+    },
+    {
+      "slug": "colorado-rapids-seattle-sounders-fc-2026-09-20-e73724",
+      "status": "held",
+      "story_class": "match_recap",
+      "headline": "Colorado Rapids and Seattle Sounders FC draw 3-3: Morgan Whittaker scores 2",
+      "primary": {
+        "id": "0ed1f659-6e7e-5a06-a584-804fb474b70e",
+        "type": "Person",
+        "reason": "multi_goal_scorer",
+        "team_id": "cb5d4eb3-8a76-57fa-a3cd-a008311a0313"
+      },
+      "marked": true,
+      "subject_before": "Morgan Whittaker",
+      "subject_before_reason": "headline_full_name",
+      "subject_after": "Morgan Whittaker",
+      "subject_after_reason": "primary:multi_goal_scorer",
+      "changed": true,
+      "applied": false
+    },
+    {
+      "slug": "premier-league-table-2026-09-20-fb92ec",
+      "status": "published",
+      "story_class": "competition_intelligence",
+      "headline": "Manchester City lead the Premier League by 3 points",
+      "primary": {
+        "id": "3bae7b11-9a30-5e3a-8f88-0151e490ab95",
+        "type": "SportsTeam",
+        "reason": "table_leader"
+      },
+      "marked": true,
+      "subject_before": "Manchester City",
+      "subject_before_reason": "headline_team",
+      "subject_after": "Manchester City",
+      "subject_after_reason": "primary:table_leader",
+      "changed": true,
+      "applied": true
+    },
+    {
+      "slug": "bundesliga-table-2026-09-20-c1fd71",
+      "status": "published",
+      "story_class": "competition_intelligence",
+      "headline": "Borussia Dortmund lead the Bundesliga by 2 points",
+      "primary": {
+        "id": "640424d4-438b-5524-8909-0422f7e8ce97",
+        "type": "SportsTeam",
+        "reason": "table_leader"
+      },
+      "marked": true,
+      "subject_before": "Borussia Dortmund",
+      "subject_before_reason": "headline_team",
+      "subject_after": "Borussia Dortmund",
+      "subject_after_reason": "primary:table_leader",
+      "changed": true,
+      "applied": true
+    },
+    {
+      "slug": "seattle-sounders-fc-7-league-matches-unbeaten-2026-09-27-640861",
+      "status": "published",
+      "story_class": "team_trend",
+      "headline": "Seattle Sounders FC make it 7 MLS matches unbeaten",
+      "primary": {
+        "id": "0554d69a-e723-5dfa-b31d-d28d9774e31d",
+        "type": "SportsTeam",
+        "reason": "team_trend"
+      },
+      "marked": true,
+      "subject_before": "Seattle Sounders FC",
+      "subject_before_reason": "headline_team",
+      "subject_after": "Seattle Sounders FC",
+      "subject_after_reason": "primary:team_trend",
+      "changed": true,
+      "applied": true
+    },
+    {
+      "slug": "cf-montreal-fc-cincinnati-2026-09-26-ae550e",
+      "status": "published",
+      "story_class": "match_recap",
+      "headline": "CF Montréal beat FC Cincinnati 3-1: Prince Owusu scores 2",
+      "primary": {
+        "id": "27c16931-f693-5745-a802-e04c09c7254d",
+        "type": "Person",
+        "reason": "multi_goal_scorer",
+        "team_id": "f384bb8b-0c40-585c-8ea7-43f11ba49a05"
+      },
+      "marked": true,
+      "subject_before": "Prince Owusu",
+      "subject_before_reason": "headline_full_name",
+      "subject_after": "Prince Owusu",
+      "subject_after_reason": "primary:multi_goal_scorer",
+      "changed": true,
+      "applied": false
+    },
+    {
+      "slug": "erling-haaland-scoring-run-2026-09-20-be6e54",
+      "status": "published",
+      "story_class": "player_form",
+      "headline": "Haaland extends Premier League scoring run as Manchester City beat Sunderland 5-3",
+      "primary": {
+        "id": "5e1e1366-868a-5a47-a342-b96708d0e4d0",
+        "type": "Person",
+        "reason": "player_form",
+        "team_id": "3bae7b11-9a30-5e3a-8f88-0151e490ab95"
+      },
+      "marked": true,
+      "subject_before": "Erling Haaland",
+      "subject_before_reason": "headline_surname",
+      "subject_after": "Erling Haaland",
+      "subject_after_reason": "primary:player_form",
+      "changed": true,
+      "applied": false
+    },
+    {
+      "slug": "borussia-dortmund-4-league-wins-in-a-row-2026-09-19-3216ff",
+      "status": "published",
+      "story_class": "team_trend",
+      "headline": "Borussia Dortmund make it 4 Bundesliga wins in a row",
+      "primary": {
+        "id": "640424d4-438b-5524-8909-0422f7e8ce97",
+        "type": "SportsTeam",
+        "reason": "team_trend"
+      },
+      "marked": true,
+      "subject_before": "Borussia Dortmund",
+      "subject_before_reason": "headline_team",
+      "subject_after": "Borussia Dortmund",
+      "subject_after_reason": "primary:team_trend",
+      "changed": true,
+      "applied": true
+    },
+    {
+      "slug": "ivan-angulo-scoring-run-2026-09-26-0e2dbf",
+      "status": "published",
+      "story_class": "player_form",
+      "headline": "Iván Angulo extends Orlando City scoring run to four straight MLS appearances",
+      "primary": {
+        "id": "2775e73c-f66a-560a-be39-63ecd33445c2",
+        "type": "Person",
+        "reason": "player_form",
+        "team_id": "afb4a9bd-aa39-53df-a3c1-81a2b7018a28"
+      },
+      "marked": true,
+      "subject_before": "Iván Angulo",
+      "subject_before_reason": "headline_full_name",
+      "subject_after": "Iván Angulo",
+      "subject_after_reason": "primary:player_form",
+      "changed": true,
+      "applied": false
+    },
+    {
+      "slug": "austin-fc-8-league-matches-unbeaten-2026-09-27-c939db",
+      "status": "published",
+      "story_class": "team_trend",
+      "headline": "Austin FC stretch unbeaten MLS run to eight with San Diego draw",
+      "primary": {
+        "id": "1823dcb9-2f81-5105-97e5-e9f0cbda7e3c",
+        "type": "SportsTeam",
+        "reason": "team_trend"
+      },
+      "marked": true,
+      "subject_before": "Austin FC",
+      "subject_before_reason": "headline_team",
+      "subject_after": "Austin FC",
+      "subject_after_reason": "primary:team_trend",
+      "changed": true,
+      "applied": true
+    },
+    {
+      "slug": "patrik-schick-scoring-run-2026-09-20-0ea0ef",
+      "status": "published",
+      "story_class": "player_form",
+      "headline": "Patrik Schick scores in four straight Bundesliga appearances for Bayer Leverkusen",
+      "primary": {
+        "id": "40fbc365-3d43-5dce-a6ff-9a129ddfccee",
+        "type": "Person",
+        "reason": "player_form",
+        "team_id": "81ea321f-975b-54aa-9897-4e65eb40803d"
+      },
+      "marked": true,
+      "subject_before": "Patrik Schick",
+      "subject_before_reason": "headline_full_name",
+      "subject_after": "Patrik Schick",
+      "subject_after_reason": "primary:player_form",
+      "changed": true,
+      "applied": false
+    },
+    {
+      "slug": "minnesota-united-fc-5-league-defeats-in-a-row-2026-09-27-f9992c",
+      "status": "published",
+      "story_class": "team_trend",
+      "headline": "Minnesota United FC’s slide reaches five MLS defeats",
+      "primary": {
+        "id": "1b04a97d-3c94-58a7-929a-1346c67ad899",
+        "type": "SportsTeam",
+        "reason": "team_trend"
+      },
+      "marked": true,
+      "subject_before": "Minnesota United FC",
+      "subject_before_reason": "headline_team",
+      "subject_after": "Minnesota United FC",
+      "subject_after_reason": "primary:team_trend",
+      "changed": true,
+      "applied": true
+    },
+    {
+      "slug": "columbus-crew-inter-miami-cf-2026-09-27-0487e3",
+      "status": "held",
+      "story_class": "match_recap",
+      "headline": "Columbus Crew beat Inter Miami CF 2-1",
+      "primary": {
+        "id": "d07fe503-086c-5a1f-916b-0be0f567c766",
+        "type": "SportsTeam",
+        "reason": "match_winner"
+      },
+      "marked": true,
+      "subject_before": "Columbus Crew",
+      "subject_before_reason": "headline_team",
+      "subject_after": "Columbus Crew",
+      "subject_after_reason": "primary:match_winner",
+      "changed": true,
+      "applied": true
+    },
+    {
+      "slug": "real-salt-lake-new-england-revolution-2026-09-27-af73d8",
+      "status": "published",
+      "story_class": "match_recap",
+      "headline": "Solans double carries Real Salt Lake past New England in 3-0 upset",
+      "primary": {
+        "id": "be7814ca-7cc9-5f8e-b0f8-db6fc8e7bd76",
+        "type": "Person",
+        "reason": "multi_goal_scorer",
+        "team_id": "9dfe9c77-0ca3-5d3b-940d-0d4d05e463f2"
+      },
+      "marked": true,
+      "subject_before": "Sergi Solans",
+      "subject_before_reason": "headline_surname",
+      "subject_after": "Sergi Solans",
+      "subject_after_reason": "primary:multi_goal_scorer",
+      "changed": true,
+      "applied": false
+    },
+    {
+      "slug": "philadelphia-union-12-league-matches-unbeaten-2026-09-26-c00f1a",
+      "status": "published",
+      "story_class": "team_trend",
+      "headline": "Philadelphia Union make it 12 MLS matches unbeaten",
+      "primary": {
+        "id": "94a30b61-36f9-5c8f-ba86-7ba6150d12be",
+        "type": "SportsTeam",
+        "reason": "team_trend"
+      },
+      "marked": true,
+      "subject_before": "Philadelphia Union",
+      "subject_before_reason": "headline_team",
+      "subject_after": "Philadelphia Union",
+      "subject_after_reason": "primary:team_trend",
+      "changed": true,
+      "applied": true
+    },
+    {
+      "slug": "andre-luiz-scoring-run-2026-09-27-26cc9a",
+      "status": "published",
+      "story_class": "player_form",
+      "headline": "André Luiz extends Sporting Kansas City scoring run to three MLS appearances",
+      "primary": {
+        "id": "837c33c5-6b9a-5279-bab8-3aa39cb3a755",
+        "type": "Person",
+        "reason": "player_form",
+        "team_id": "e2c42777-a99e-5b8a-a17b-0546d789669d"
+      },
+      "marked": true,
+      "subject_before": "André Luiz",
+      "subject_before_reason": "headline_full_name",
+      "subject_after": "André Luiz",
+      "subject_after_reason": "primary:player_form",
+      "changed": true,
+      "applied": false
+    },
+    {
+      "slug": "philadelphia-union-orlando-city-sc-2026-09-26-2fcde7",
+      "status": "published",
+      "story_class": "match_recap",
+      "headline": "Milan Iloski hat-trick drives Philadelphia Union past Orlando City SC 4-2",
+      "primary": {
+        "id": "1c338144-c8d1-5fa4-9867-7fc695176ba7",
+        "type": "Person",
+        "reason": "hat_trick",
+        "team_id": "94a30b61-36f9-5c8f-ba86-7ba6150d12be"
+      },
+      "marked": true,
+      "subject_before": "Milan Iloski",
+      "subject_before_reason": "headline_full_name",
+      "subject_after": "Milan Iloski",
+      "subject_after_reason": "primary:hat_trick",
+      "changed": true,
+      "applied": false
+    },
+    {
+      "slug": "houston-dynamo-fc-sporting-kansas-city-2026-09-27-4daff8",
+      "status": "published",
+      "story_class": "match_recap",
+      "headline": "André Luiz and Calvin Harris lift Sporting Kansas City past Houston 2-0",
+      "primary": {
+        "id": "e2c42777-a99e-5b8a-a17b-0546d789669d",
+        "type": "SportsTeam",
+        "reason": "match_winner"
+      },
+      "marked": true,
+      "subject_before": "André Luiz",
+      "subject_before_reason": "headline_full_name",
+      "subject_after": "Sporting Kansas City",
+      "subject_after_reason": "primary:match_winner",
+      "changed": true,
+      "applied": true
+    },
+    {
+      "slug": "vancouver-whitecaps-d-c-united-2026-09-27-aa2e30",
+      "status": "published",
+      "story_class": "match_recap",
+      "headline": "Vancouver Whitecaps and D.C. United draw 3-3: Kimito Nono scores 2",
+      "primary": {
+        "id": "cac1bbc3-a93d-53b3-999d-b4369f9aaf96",
+        "type": "Person",
+        "reason": "multi_goal_scorer",
+        "team_id": "f0229140-8a6d-5fc7-ace0-8bc05b357549"
+      },
+      "marked": true,
+      "subject_before": "Kimito Nono",
+      "subject_before_reason": "headline_full_name",
+      "subject_after": "Kimito Nono",
+      "subject_after_reason": "primary:multi_goal_scorer",
+      "changed": true,
+      "applied": false
+    },
+    {
+      "slug": "new-england-revolution-orlando-city-sc-2026-09-19-a88530",
+      "status": "published",
+      "story_class": "match_recap",
+      "headline": "New England Revolution beat Orlando City SC 4-2: Carles Gil scores 2",
+      "primary": {
+        "id": "68ce76bd-9a2b-5f7e-805c-957d72faf73e",
+        "type": "Person",
+        "reason": "multi_goal_scorer",
+        "team_id": "a7a496a8-05b3-5a14-a990-9ede2c1386f6"
+      },
+      "marked": true,
+      "subject_before": "Carles Gil",
+      "subject_before_reason": "headline_full_name",
+      "subject_after": "Carles Gil",
+      "subject_after_reason": "primary:multi_goal_scorer",
+      "changed": true,
+      "applied": false
+    },
+    {
+      "slug": "austin-fc-san-diego-fc-2026-09-27-ac300b",
+      "status": "published",
+      "story_class": "match_recap",
+      "headline": "Austin FC and San Diego FC draw 3-3: Christian Ramírez scores 2",
+      "primary": {
+        "id": "b10f932a-63fa-53d8-a693-2e4c022d3531",
+        "type": "Person",
+        "reason": "multi_goal_scorer",
+        "team_id": "1823dcb9-2f81-5105-97e5-e9f0cbda7e3c"
+      },
+      "marked": true,
+      "subject_before": "Christian Ramírez",
+      "subject_before_reason": "headline_full_name",
+      "subject_after": "Christian Ramírez",
+      "subject_after_reason": "primary:multi_goal_scorer",
+      "changed": true,
+      "applied": false
+    },
+    {
+      "slug": "borussia-m-gladbach-4-league-defeats-in-a-row-2026-09-19-3de7ac",
+      "status": "published",
+      "story_class": "team_trend",
+      "headline": "Borussia M'gladbach make it 4 Bundesliga defeats in a row",
+      "primary": {
+        "id": "775d711e-7530-5d32-89e1-40900407af76",
+        "type": "SportsTeam",
+        "reason": "team_trend"
+      },
+      "marked": true,
+      "subject_before": "Borussia M'gladbach",
+      "subject_before_reason": "headline_team",
+      "subject_after": "Borussia M'gladbach",
+      "subject_after_reason": "primary:team_trend",
+      "changed": true,
+      "applied": true
+    },
+    {
+      "slug": "st-louis-city-sc-16-league-matches-unbeaten-2026-09-20-56a270",
+      "status": "published",
+      "story_class": "team_trend",
+      "headline": "St. Louis CITY SC beat Toronto 3-1 to stretch unbeaten MLS run to 16 matches",
+      "primary": {
+        "id": "d6a76c3e-88b3-5127-80a1-6dfd6439fe31",
+        "type": "SportsTeam",
+        "reason": "team_trend"
+      },
+      "marked": true,
+      "subject_before": "St. Louis CITY SC",
+      "subject_before_reason": "headline_team",
+      "subject_after": "St. Louis CITY SC",
+      "subject_after_reason": "primary:team_trend",
+      "changed": true,
+      "applied": true
+    },
+    {
+      "slug": "preston-judd-scoring-run-2026-09-27-8c317c",
+      "status": "published",
+      "story_class": "player_form",
+      "headline": "Preston Judd extends MLS scoring run to three appearances with Portland double",
+      "primary": {
+        "id": "2597aa1a-6d5c-5748-869d-192f052e85a8",
+        "type": "Person",
+        "reason": "player_form",
+        "team_id": "a6983312-f338-5d70-990a-9eeb3008ef8e"
+      },
+      "marked": true,
+      "subject_before": "Preston Judd",
+      "subject_before_reason": "headline_full_name",
+      "subject_after": "Preston Judd",
+      "subject_after_reason": "primary:player_form",
+      "changed": true,
+      "applied": false
+    },
+    {
+      "slug": "manchester-city-sunderland-2026-09-20-da838b",
+      "status": "published",
+      "story_class": "match_recap",
+      "headline": "Manchester City beat Sunderland 5-3: Brian Brobbey hat-trick",
+      "primary": {
+        "id": "97ae9fee-7c6c-5c2d-918f-3581c798a189",
+        "type": "Person",
+        "reason": "hat_trick",
+        "team_id": "bc2c300a-e720-5419-bbec-24792cb3cb64"
+      },
+      "marked": true,
+      "subject_before": "Brian Brobbey",
+      "subject_before_reason": "headline_full_name",
+      "subject_after": "Brian Brobbey",
+      "subject_after_reason": "primary:hat_trick",
+      "changed": true,
+      "applied": false
+    },
+    {
+      "slug": "mls-table-2026-09-27-c0405b",
+      "status": "published",
+      "story_class": "competition_intelligence",
+      "headline": "Nashville SC build a 10-point lead atop the overall MLS standings",
+      "primary": {
+        "id": "80f1ce21-52a4-5dfb-bb0b-196dfd002bcb",
+        "type": "SportsTeam",
+        "reason": "table_leader"
+      },
+      "marked": true,
+      "subject_before": "Nashville SC",
+      "subject_before_reason": "headline_team",
+      "subject_after": "Nashville SC",
+      "subject_after_reason": "primary:table_leader",
+      "changed": true,
+      "applied": true
+    },
+    {
+      "slug": "san-marino-finland-2026-09-26-8d0a2a",
+      "status": "held",
+      "story_class": "match_recap",
+      "headline": "Pohjanpalo hat-trick drives Finland to 7-0 rout of San Marino",
+      "primary": {
+        "id": "6c971acb-95cc-536d-a611-045423dc899d",
+        "type": "Person",
+        "reason": "hat_trick",
+        "team_id": "a36fb76e-ea15-5956-a752-98a4041e2c95"
+      },
+      "marked": true,
+      "subject_before": "Joel Pohjanpalo",
+      "subject_before_reason": "headline_surname",
+      "subject_after": "Joel Pohjanpalo",
+      "subject_after_reason": "primary:hat_trick",
+      "changed": true,
+      "applied": false
+    }
+  ],
+  "note": "Run 1 (apply). 19 rows show applied:false because the verification compared raw JSON strings and jsonb reorders object keys; the rows WERE written (re-checked in run 2, subject-backfill-2026-09-29-verify.json, with a key-order-insensitive comparison)."
+}

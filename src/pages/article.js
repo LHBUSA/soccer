@@ -209,7 +209,7 @@ export async function mountArticle(root, env) {
       slot.querySelector('.am-slot').innerHTML = `<div class="am-board">${teamMark(m.home, 'md')}<b class="am-name">${esc(m.home?.short_name || m.home?.name || '')}</b><span class="am-sc">${sc ? `${esc(String(sc.home))}<i>–</i>${esc(String(sc.away))}` : 'v'}</span><b class="am-name">${esc(m.away?.short_name || m.away?.name || '')}</b>${teamMark(m.away, 'md')}</div>
         ${s ? `<div class="am-shots"><p class="am-h">SHOT PROFILE${s.basis === 'source' ? ' · source statistics' : ' · PBE counts'}</p>${bar2('shots', 'Shots')}${bar2('shots_on_target', 'On target')}${bar2('corners', 'Corners')}</div>` : ''}
         ${keyPlayers(m, { n: 4 })}
-        <p class="am-cta">${link(`/pbecast/${m.id}`, '▶ PBECAST REPLAY', 'btn gold')} ${link(`/matches/${m.id}`, 'FULL MATCH INTELLIGENCE →', 'btn ghost dark')}</p>`;
+        <p class="am-cta">${link(`/pbecast/${m.id}`, m.status === 'finished' ? '▶ PBECAST REPLAY' : '▶ PBECAST', 'btn gold')} ${link(`/matches/${m.id}`, 'FULL MATCH INTELLIGENCE →', 'btn ghost dark')}</p>`;
     } catch { slot.remove(); }
   }
   const rail = root.querySelector('[data-art-rail]');

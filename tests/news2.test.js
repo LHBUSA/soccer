@@ -163,6 +163,13 @@ test('UCL readiness: league-phase recap with a verified table publishes on the c
   assert.ok(sm.data.some(r => r.key === `champions-league/${art.slug}`));
   assert.equal((await R.news(store, { desk: 'champions-league' })).data.length >= 1, true);
   assert.equal((await R.article(store, art.slug)).data.desk, 'champions-league');
+  // One subject rule: the newsroom marked the winner (no resolved scorers) and list + article agree.
+  const listed = (await R.news(store, { desk: 'champions-league' })).data.find(r => r.slug === art.slug);
+  const page = (await R.article(store, art.slug)).data;
+  assert.deepEqual(listed.subject, page.subject);
+  assert.equal(page.subject.name, 'Alpha FC'); assert.equal(page.subject.reason, 'primary:match_winner');
+  assert.equal(listed.image?.url ?? null, page.hero?.url ?? null);
+  assert.equal(page.entities.filter(e => e.primary).length, 1);
   const tbl = await R.table(store, { competition: 'uefa-champions-league' });
   assert.equal(tbl.data.verification.verified, true); assert.equal(tbl.data.rows[0].zone.label, 'Qualifies for round of 16');
   await store.close();

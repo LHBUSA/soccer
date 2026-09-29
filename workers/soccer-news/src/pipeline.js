@@ -4,7 +4,9 @@
 // unavailable or fails its gates HOLDS the story (quality over volume).
 // Idempotent: the news event id is uuidv5(story key); an existing event is skipped,
 // so a story is written once. Evidence rows are append-only (DB trigger).
-import { loadSeason, detect, buildPacket, ENGINE_VERSION } from './engine.js';
+import { loadSeason, detect, buildPacket, ENGINE_VERSION, RECAP_STORIES } from './engine.js';
+import { detectGroupWatch, detectPreviews } from './previews.js';
+import registryData from '../../../data/registry/competitions.json' with { type: 'json' };
 import { depthFromRows, loadDepthRows, packetV3, PACKET_V3 } from './depth.js';
 import { payloadHash } from '../../shared/ids.js';
 import { compose } from './compose2.js';
@@ -14,18 +16,30 @@ import { runDesk, deskRequired, deskAvailable, DESK_VERSION } from './desk.js';
 import { uuidv5 } from '../../shared/ids.js';
 import { chunkArr } from '../../soccer-ingest/src/store.js';
 
-// uefa-nations-league: eligible once its canonical coverage is certified in production (docs/PRODUCTION_STATE.md);
-// until its season exists loadSeason() returns null and the competition is skipped.
-export const NEWS_COMPETITIONS = ['mls', 'premier-league', 'uefa-champions-league', 'bundesliga', 'uefa-nations-league'];
+// NEWS ENABLEMENT has ONE source of truth: data/registry/competitions.json `news` (enabled + the story
+// types each competition supports). Not coupled to a provider lane flag: a competition can be canonical
+// through any certified lane. A disabled competition carries its exact `news.blocker`.
+export const NEWS_REGISTRY = registryData.competitions.filter(c => c.news?.enabled).map(c => ({ slug: c.slug, stories: c.news.stories || [] }));
+export const NEWS_COMPETITIONS = NEWS_REGISTRY.map(c => c.slug);
+export const storiesFor = slug => NEWS_REGISTRY.find(c => c.slug === slug)?.stories || RECAP_STORIES;
 
 export async function runNews(store, { now = Date.now(), env = {}, windowDays = 4, maxPerCompetition = 12, dry = false, competitions = NEWS_COMPETITIONS, cfg = {} } = {}) {
-  const summary = { engine: ENGINE_VERSION, gates: GATE_V2, at: new Date(now).toISOString(), llm: llmEnabled(env), desk: { required: deskRequired(env), available: deskAvailable(env), version: DESK_VERSION }, competitions: {} };
+  const summary = { engine: ENGINE_VERSION, gates: GATE_V2, at: new Date(now).toISOString(), news_enabled: env.NEWS_ENABLED ?? null, llm: llmEnabled(env), desk: { required: deskRequired(env), available: deskAvailable(env), version: DESK_VERSION }, competitions: {} };
   for (const slug of competitions) {
-    const out = summary.competitions[slug] = { candidates: 0, new: 0, published: 0, held: 0, holds: {}, stories: [] };
+    const out = summary.competitions[slug] = { candidates: 0, new: 0, duplicates: 0, published: 0, held: 0, holds: {}, by_class: {}, stories: [] };
     const S = await loadSeason(store, slug);
     if (!S) { out.skipped = 'no season'; continue; }
-    const cands = await detect(store, S, { now, windowDays, cfg });
+    out.season = S.season.label;
+    out.last_match_update = S.matches.reduce((x, m) => (m.updated_at && (!x || String(m.updated_at) > x) ? String(m.updated_at) : x), null);
+    const stories = storiesFor(slug); const diag = {};
+    const cands = [
+      ...await detect(store, S, { now, windowDays, cfg, stories, diag }),
+      ...await detectPreviews(store, S, { now, cfg, stories, diag }),
+      ...await detectGroupWatch(store, S, { now, windowDays, cfg, stories }),
+    ];
+    Object.assign(out, { diagnostics: diag });
     out.candidates = cands.length;
+    for (const c of cands) out.by_class[c.preview_kind === 'matchday' ? 'matchday_brief' : c.brief || c.story_class] = (out.by_class[c.preview_kind === 'matchday' ? 'matchday_brief' : c.brief || c.story_class] || 0) + 1;
     let ids = cands.map(c => uuidv5(`news_event:${c.key}`));
     const existing = new Set();
     for (const part of chunkArr(ids, 100)) for (const r of await store.select('soccer_news_events', { columns: ['id'], in: { id: part } })) existing.add(r.id);
@@ -40,6 +54,7 @@ export async function runNews(store, { now = Date.now(), env = {}, windowDays = 
     }
     for (const part of chunkArr(ids.filter(i => !existing.has(i)), 100)) for (const r of await store.select('soccer_news_events', { columns: ['id'], in: { id: part } })) existing.add(r.id);
     const fresh = cands.filter((c, i) => !existing.has(ids[i])).sort((a, b) => b.materiality.score - a.materiality.score).slice(0, maxPerCompetition);
+    out.duplicates = cands.length - cands.filter((c, i) => !existing.has(ids[i])).length;
     out.new = fresh.length;
     for (const cand of fresh) {
       const packet = await buildPacket(store, S, cand);
@@ -52,7 +67,7 @@ export async function runNews(store, { now = Date.now(), env = {}, windowDays = 
       if (dry) continue;
       const eventId = packet.event.event_id;
       await store.insert('soccer_news_events', [{
-        id: eventId, story_class: packet.event.kind, desk: article.desk, match_id: packet.match?.id || null,
+        id: eventId, story_class: packet.event.kind, desk: article.desk, match_id: packet.match?.id || packet.fixture?.id || null,
         team_ids: article.entities.filter(e => e.type === 'SportsTeam').map(e => e.id), player_ids: article.entities.filter(e => e.type === 'Person').map(e => e.id),
         competition_id: S.comp.id, materiality: Math.min(99, cand.materiality.score), as_of: new Date(cand.as_of).toISOString(), status,
       }]);

@@ -106,8 +106,9 @@ export const PROFILES = {
 
 // Claims a profile allows only with verified, source-supported group context (see verified_claims).
 export function unsupportedGroupClaims(profile, text, packet) {
-  const groups = [packet?.teams?.home?.group, packet?.teams?.away?.group, packet?.team?.group].filter(g => g?.verified);
-  const zones = groups.map(g => g.zone).filter(Boolean);
+  // every verified group the packet carries: recap/trend/preview teams, matchday fixtures, group-watch tables
+  const groups = [packet?.teams?.home?.group, packet?.teams?.away?.group, packet?.team?.group, ...(packet?.groups || []), ...(packet?.fixtures || []).flatMap(f => [f.home?.group, f.away?.group])].filter(g => g?.verified);
+  const zones = groups.flatMap(g => [g.zone, ...(g.rows || []).map(r => r.zone)]).filter(Boolean);
   const out = [];
   for (const [name, re, support] of profile?.verified_claims || []) {
     const m = String(text || '').match(re);
