@@ -13,14 +13,21 @@ import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { SPLIT } from './model-core.mjs';
 import { structuralSeries, dc1x2, dcGrid } from './structural-core.mjs';
 import { brier as brier3 } from './metrics.mjs';
-import { PROTOCOL } from './algo-v1-protocol.mjs';
+import { PROTOCOL as P10 } from './algo-v1-protocol.mjs';
+import { PROTOCOL as P11 } from './algo-v1_1-protocol.mjs';
 
 const arg = k => { const i = process.argv.indexOf(k); return i < 0 ? null : process.argv[i + 1] ?? true; };
 const STAGE = arg('--stage');
+const VERSION = arg('--protocol') || 'v1.1';
+if (!['v1.0', 'v1.1'].includes(VERSION)) throw new Error('--protocol v1.0|v1.1');
+const PROTOCOL = VERSION === 'v1.0' ? P10 : P11;
+const PROTOCOL_FILE = VERSION === 'v1.0' ? 'scripts/research/algo-v1-protocol.mjs' : 'scripts/research/algo-v1_1-protocol.mjs';
+// v1.0 parameters are the ones written in prose in algo-v1-protocol.mjs; v1.1 declares them in params.
+const PARAMS = PROTOCOL.params || { calibration: 'two_sided', cal_tol: 0.025, lift_min: 0.05, coverage_min: 0.05, max_combined_coverage: null, holdout: { calibration: 'two_sided', cal_tol: 0.04, lift_min: 0.03 } };
 if (!['select', 'holdout'].includes(STAGE)) throw new Error('--stage select|holdout');
-const OUT = 'docs/evidence/research/algo-v1';
+const OUT = VERSION === 'v1.0' ? 'docs/evidence/research/algo-v1' : 'docs/evidence/research/algo-v1_1';
 const sha = s => createHash('sha256').update(s).digest('hex');
-const PROTOCOL_SHA = sha(readFileSync('scripts/research/algo-v1-protocol.mjs'));
+const PROTOCOL_SHA = sha(readFileSync(PROTOCOL_FILE));
 const SNAP = 'docs/evidence/research/frozen/bundesliga-results-snapshot.json';
 const raw = readFileSync(SNAP, 'utf8');
 const card = JSON.parse(readFileSync(PROTOCOL.frozen_model.card, 'utf8'));
@@ -82,14 +89,15 @@ function pickStats(market, xs, t) {
     selections: Object.fromEntries([...new Set(ps.map(x => x.sel))].map(s => [s, ps.filter(x => x.sel === s).length])), per_season: per };
 }
 const grid = market => { const [lo, hi] = market === '1x2' ? [0.5, 0.8] : [0.6, 0.9]; const out = []; for (let k = 0; lo + k * 0.025 <= hi + 1e-9; k++) out.push(+(lo + k * 0.025).toFixed(3)); return out; };
+const calOk = (s, mode, tol) => (mode === 'one_sided' ? s.hit_rate >= s.mean_prob - tol : Math.abs(s.hit_rate - s.mean_prob) <= tol);
 function eligibility(s, nRows) {
   const valid = s.per_season.filter(x => x.picks >= 10);
   const e = {
-    E1_coverage: s.picks >= 0.05 * nRows,
-    E2_calibration: s.picks > 0 && Math.abs(s.hit_rate - s.mean_prob) <= 0.025,
+    E1_coverage: s.picks >= PARAMS.coverage_min * nRows,
+    E2_calibration: s.picks > 0 && calOk(s, PARAMS.calibration, PARAMS.cal_tol),
     E3_durability: valid.every(x => x.hit_rate >= x.mean_prob - 0.10) && valid.filter(x => x.hit_rate < x.mean_prob - 0.05).length <= 2,
     E4_floor: s.wilson_lo !== null && s.wilson_lo >= 0.5,
-    E5_lift: s.picks > 0 && s.hit_rate - s.baseline_rate >= 0.05,
+    E5_lift: s.picks > 0 && s.hit_rate - s.baseline_rate >= PARAMS.lift_min,
   };
   return { ...e, eligible: Object.values(e).every(Boolean) };
 }
@@ -97,14 +105,19 @@ function eligibility(s, nRows) {
 // ---------------------------------------------------------------- SELECT stage (no holdout number is computed)
 function selectStage() {
   const sel = inScope.filter(r => r.split === 'train' || r.split === 'dev');
-  const out = { protocol: PROTOCOL.id, protocol_sha256: PROTOCOL_SHA, snapshot_sha256: sha(raw), frozen_prediction_hash_reproduced: reproduced, rows: { select: sel.length, seasons: seasons(sel) }, baselines: { '1x2': FREQ.map(r4), binary_rates: Object.fromEntries(Object.entries(RATE).map(([k, v]) => [k, r4(v)])) }, markets: {} };
+  const out = { protocol: PROTOCOL.id, protocol_sha256: PROTOCOL_SHA, ...(PROTOCOL.params ? { params: PROTOCOL.params } : {}), snapshot_sha256: sha(raw), frozen_prediction_hash_reproduced: reproduced, rows: { select: sel.length, seasons: seasons(sel) }, baselines: { '1x2': FREQ.map(r4), binary_rates: Object.fromEntries(Object.entries(RATE).map(([k, v]) => [k, r4(v)])) }, markets: {} };
   for (const market of Object.keys(PROTOCOL.markets)) {
     const v = validate(market, sel);
     const gateSelect = v._pass && v.seasons_beating_baseline_log_loss >= 11; delete v._pass;
     const table = grid(market).map(t => { const s = pickStats(market, sel, t); return { ...s, eligibility: eligibility(s, sel.length) }; });
     const eligible = table.filter(x => x.eligibility.eligible);
-    const chosen = PROTOCOL.markets[market].eligible_for_v1_picks && gateSelect && eligible.length ? eligible[0].threshold : null;
-    out.markets[market] = { eligible_for_v1_picks: PROTOCOL.markets[market].eligible_for_v1_picks, validation_select: v, gate_select: gateSelect, thresholds: table, selected_threshold: chosen, reason: chosen !== null ? 'lowest eligible threshold' : !PROTOCOL.markets[market].eligible_for_v1_picks ? 'not eligible for V1 picks under the protocol' : !gateSelect ? 'market fails the SELECT validation gate' : 'no eligible threshold' };
+    let chosen = PROTOCOL.markets[market].eligible_for_v1_picks && gateSelect && eligible.length ? eligible[0].threshold : null;
+    if (chosen !== null && PARAMS.max_combined_coverage) {
+      // v1.1: the lowest eligible threshold keeping the combined policy (markets chosen so far + this one) within the cap
+      const cap = eligible.find(x => combined(sel, { markets: { ...Object.fromEntries(Object.entries(out.markets).filter(([, m]) => m.selected_threshold !== null).map(([k, m]) => [k, { selected_threshold: m.selected_threshold }])), [market]: { selected_threshold: x.threshold } } }).coverage <= PARAMS.max_combined_coverage);
+      chosen = cap ? cap.threshold : null;
+    }
+    out.markets[market] = { eligible_for_v1_picks: PROTOCOL.markets[market].eligible_for_v1_picks, validation_select: v, gate_select: gateSelect, thresholds: table, selected_threshold: chosen, reason: chosen !== null ? (PARAMS.max_combined_coverage ? `lowest eligible threshold with combined coverage <= ${PARAMS.max_combined_coverage}` : 'lowest eligible threshold') : PARAMS.max_combined_coverage && gateSelect && eligible.length && PROTOCOL.markets[market].eligible_for_v1_picks ? 'no eligible threshold within the combined coverage cap' : !PROTOCOL.markets[market].eligible_for_v1_picks ? 'not eligible for V1 picks under the protocol' : !gateSelect ? 'market fails the SELECT validation gate' : 'no eligible threshold' };
   }
   out.combined_select = combined(sel, out);
   out.freeze_sha256 = sha(JSON.stringify(out));
@@ -142,7 +155,7 @@ if (STAGE === 'select') {
     if (m.selected_threshold !== null) {
       const s = pickStats(market, ho, m.selected_threshold);
       const valid = s.per_season.filter(x => x.picks >= 10);
-      const H = { H1_calibration: s.picks > 0 && Math.abs(s.hit_rate - s.mean_prob) <= 0.04, H2_floor: s.wilson_lo !== null && s.wilson_lo >= 0.5, H3_lift: s.picks > 0 && s.hit_rate - s.baseline_rate >= 0.03, H4_durability: valid.filter(x => x.hit_rate >= x.mean_prob - 0.08).length >= 5 };
+      const H = { H1_calibration: s.picks > 0 && calOk(s, PARAMS.holdout.calibration, PARAMS.holdout.cal_tol), H2_floor: s.wilson_lo !== null && s.wilson_lo >= 0.5, H3_lift: s.picks > 0 && s.hit_rate - s.baseline_rate >= PARAMS.holdout.lift_min, H4_durability: valid.filter(x => x.hit_rate >= x.mean_prob - 0.08).length >= 5 };
       entry.picks_holdout = s; entry.holdout_rule = H; entry.in_v1 = gateHoldout && Object.values(H).every(Boolean);
       if (entry.in_v1) res.v1_markets.push({ market, threshold: m.selected_threshold });
     }
