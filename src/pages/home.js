@@ -6,7 +6,7 @@ import { ago, num } from '../lib/format.js';
 import { FEATURED, FEATURED_COMPS, compByDesk, compMeta } from '../lib/competitions.js';
 import { latestNews, selectHomepageLead, storyLabel } from '../lib/news.js';
 import { liveView } from '../lib/cast.js';
-import { competitionMark, empty, errorState, link, portrait, sectionHead, sourcePanel, statusPill, teamMark } from '../components/ui.js';
+import { competitionMark, empty, errorState, link, pctPill, portrait, sectionHead, sourcePanel, statusPill, teamMark } from '../components/ui.js';
 import { keyPlayerRows, todayLine } from '../components/keyplayers.js';
 
 export { FEATURED };
@@ -86,7 +86,7 @@ export function featured(d) {
   const lv = d.feat.kind === 'live' ? liveView(d.feat.m) : { score: m.score, clock: null };
   const kp = keyPlayerRows(m, 3);
   const facts = todayLine;
-  return `<section class="canvas"><div class="wrap">
+  return `<section class="canvas feat-dark"><div class="wrap">
     ${sectionHead('FEATURED INTELLIGENCE', d.feat.kind === 'live' ? 'Live now on PBEcast' : 'The match to replay')}
     <div class="featm">
       <a class="fm-board" href="/pbecast/${esc(m.id)}" data-link>
@@ -108,7 +108,7 @@ function leaderBlock(env, slug) {
   const x = env?.data; if (!x?.players?.length) return '';
   const f = compMeta(slug);
   return `<div class="dnadisc"><p class="nrail-h">${competitionMark(slug, 'xs')} ${esc(f?.name || slug)} · goals + assists per 90</p>
-    ${join(x.players, (p, i) => `<a class="dd-row pcard-lite" href="/players/${esc(p.slug)}" data-link data-player-slug="${esc(p.slug)}"><span class="dd-rank">${i + 1}</span>${portrait(p, 'md')}<span class="dd-id"><b>${esc(p.name)}</b><small>${p.team ? `${teamMark(p.team, 'xs')} ${esc(p.team.short_name || p.team.name)}` : ''}</small></span><span class="dd-val"><b>${num(p.value, { dp: 2 })}</b><small>p${esc(String(p.percentile ?? '—'))} of ${num(p.compared_with)}</small></span></a>`)}
+    ${join(x.players, (p, i) => `<a class="dd-row pcard-lite" href="/players/${esc(p.slug)}" data-link data-player-slug="${esc(p.slug)}"><span class="dd-rank">${i + 1}</span>${portrait(p, 'md')}<span class="dd-id"><b>${esc(p.name)}</b><small>${p.team ? `${teamMark(p.team, 'xs')} ${esc(p.team.short_name || p.team.name)}` : ''}</small></span><span class="dd-val"><b>${num(p.value, { dp: 2 })}</b>${pctPill(p.percentile, num(p.compared_with))}</span></a>`)}
     ${link(`/players?competition=${slug}&sort=goal_contributions_per90`, 'ALL LEADERS →', 'nrail-all')}</div>`;
 }
 

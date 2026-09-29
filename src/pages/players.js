@@ -5,7 +5,7 @@ import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { num, ROLE } from '../lib/format.js';
 import { FEATURED_COMPS, compMeta } from '../lib/competitions.js';
-import { competitionMark, empty, link, portrait, sectionHead, sourcePanel, teamMark } from '../components/ui.js';
+import { competitionMark, empty, link, pctPill, portrait, sectionHead, sourcePanel, teamMark } from '../components/ui.js';
 
 export const title = () => 'Player DNA Directory — Soccer Player Stats & Profiles | PropBetEdge';
 
@@ -64,7 +64,7 @@ export function playerCard(p, { leaders = false } = {}) {
     <span class="pc-top">${portrait(p, 'lg')}<span class="pc-id"><b>${esc(p.name)}</b>
       <span class="pc-team">${p.team ? `${teamMark(p.team, 'xs')}<span>${esc(p.team.short_name || p.team.name)}</span>` : '<span class="muted">Team not stated</span>'}</span>
       <span class="pc-meta">${f ? competitionMark(f.slug, 'xs') : ''}<span>${esc(ROLE[p.role] || 'Role not stated')}</span></span></span></span>
-    ${leaders ? `<span class="pc-lead"><b>${num(p.value, { dp: 2 })}</b>${p.percentile !== null && p.percentile !== undefined ? `<span>p${esc(String(p.percentile))} of ${num(p.compared_with)}</span>` : ''}</span>` : ''}
+    ${leaders ? `<span class="pc-lead"><b>${num(p.value, { dp: 2 })}</b>${pctPill(p.percentile, num(p.compared_with))}</span>` : ''}
     <span class="pc-stats"><span><b>${num(p.appearances)}</b>apps</span><span><b>${num(p.minutes_nominal)}</b>min</span><span><b>${num(p.goals)}</b>goals</span><span><b>${num(p.assists)}</b>assists</span><span><b>${quickGA(p)}</b>G+A/90</span></span>
     ${p.qualified ? '' : '<span class="pc-note">Below the minutes needed for percentile ranks</span>'}
   </a>`;

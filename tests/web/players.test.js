@@ -35,7 +35,8 @@ test('query: unknown values fall back; per-90 sorts need one competition', () =>
 test('cards: leaders show value + named pool; missing values stay missing', () => {
   const p = { slug: 'x', name: 'X', role: 'forward', team: null, competition: { slug: 'mls' }, appearances: 3, minutes_nominal: 200, goals: 1, assists: null, qualified: false, value: 1.4, percentile: 100, compared_with: 554 };
   const lead = playerCard(p, { leaders: true });
-  assert.match(lead, /p100 of 554/);
+  assert.match(lead.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' '), /p100 of 554/); // visible text: percentile pill + named pool
+  assert.match(lead, /pct-pill pct-elite/);
   assert.match(lead, /Team not stated/);
   assert.match(lead, /<b>—<\/b>assists/);
   assert.match(lead, /Below the minutes needed/);

@@ -1606,3 +1606,52 @@ dialog.acct::backdrop { background: rgba(4,10,20,.6); }
   .algo-canvas .ltable th, .algo-canvas .ltable td { padding: 8px 6px; font-size: 12.5px; }
   .algo-canvas .ltable thead th { font-size: 10px; letter-spacing: .06em; }
 }
+
+/* ---------- UI tightening 2026-09-29: compact header/hero, LEAGUES menu, ticker skeleton, dark featured panel,
+   percentile pills, data-depth widgets ---------- */
+/* LEAGUES menu (replaces the competition rail row) */
+.lg-panel { min-width: 280px; }
+.lg-h { margin: 8px 12px 4px; font: 800 10.5px/1 var(--body); letter-spacing: .22em; color: var(--gold); }
+.lg-h:first-child { margin-top: 4px; }
+.navpanel a.lg-link { display: flex; align-items: center; gap: 10px; padding: 9px 12px; }
+.navpanel a.lg-link.on { background: var(--shell-3); color: var(--gold-2); box-shadow: inset 3px 0 0 var(--gold); }
+@media (min-width: 1100px) { .lg-panel { display: grid; grid-template-columns: 1fr 1fr; column-gap: 4px; min-width: 460px; } .lg-panel[hidden] { display: none; } .lg-h { grid-column: 1 / -1; } }
+/* compact home hero: the intelligence starts above the fold */
+.hero.home { padding: 26px 0 22px; }
+.hero.home .display { font-size: clamp(30px, 4.6vw, 50px); margin-bottom: 10px; }
+.hero.home .lede { font-size: clamp(14.5px, 1.5vw, 16.5px); margin-bottom: 14px; }
+.hero.home .btn.btn-hero { min-height: 46px; padding: 12px 22px; font-size: 15px; }
+/* ticker skeleton while scores load */
+.stk-skel { display: inline-flex; align-items: center; gap: 22px; height: 100%; padding-left: 4px; }
+.stk-skel-g { display: inline-flex; align-items: center; gap: 8px; }
+.stk-skel-g i, .stk-skel-g b { display: block; border-radius: 6px; background: linear-gradient(90deg, #17263f 0%, #22385c 50%, #17263f 100%); background-size: 200% 100%; animation: stk-shimmer 1.4s ease-in-out infinite; }
+.stk-skel-g i { width: 16px; height: 16px; border-radius: 50%; }
+.stk-skel-g b { width: 74px; height: 10px; }
+@keyframes stk-shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+@media (prefers-reduced-motion: reduce) { .stk-skel-g i, .stk-skel-g b { animation: none; } }
+/* featured intelligence: deep charcoal panel with gold accents (no bright white break under the hero) */
+.canvas.feat-dark > .wrap { background: linear-gradient(180deg, #121b2a, #0d1522); border: 1px solid var(--shell-line); box-shadow: 0 24px 70px rgba(0,0,0,.45); }
+.feat-dark .sec-head .kicker { color: var(--gold); }
+.feat-dark .sec-head h2 { color: #f1f4fa; }
+.feat-dark .nrail-h { color: var(--gold); }
+.feat-dark .fm-key { background: #172234; border-color: #26344d; box-shadow: inset 3px 0 0 var(--gold); }
+.feat-dark .fm-key:hover { border-color: var(--gold); background: #1b2940; }
+.feat-dark .fm-key b { color: #f1f4fa; }
+.feat-dark .fm-key small { color: var(--muted-dark); }
+/* percentile pills: bold value, colour-coded percentile, group size */
+.pct { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.pct small { font-size: 11.5px; color: var(--muted); }
+.pct-pill { display: inline-block; padding: 3px 7px; border-radius: 999px; font: 800 11px/1 var(--mono); letter-spacing: .02em; }
+.pct-elite { background: #e4f5ea; color: #0f6b39; border: 1px solid #b7e2c6; }
+.pct-strong { background: var(--gold-soft); color: var(--gold-ink); border: 1px solid #f0d99a; }
+.pct-mid { background: #e8eef8; color: #2c4166; border: 1px solid #cfdaeb; }
+.pct-low { background: #f1f3f6; color: var(--muted); border: 1px solid var(--line); }
+.dd-val, .pc-lead { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
+.dd-val b, .pc-lead b { font: 800 20px/1 var(--mono); color: var(--ink); }
+/* data depth: distinct metric widgets (big number, label beneath), 3 x 2 on desktop */
+.depth .depthgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (min-width: 760px) { .depth .depthgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; } }
+.depth .depth-item { display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; min-height: 118px; padding: 18px 20px; background: linear-gradient(180deg, #16263f, #101d33); border-top: 2px solid var(--gold); }
+.depth .depth-item b { font-size: clamp(28px, 3.6vw, 42px); line-height: 1; color: #fff; }
+.depth .depth-item span { font: 800 11px/1.3 var(--body); letter-spacing: .16em; text-transform: uppercase; color: var(--gold-2); }
+@media (max-width: 759px) { .depth .depth-item { min-height: 96px; padding: 14px 14px; } .depth .depth-item b { font-size: clamp(19px, 5.6vw, 28px); white-space: nowrap; overflow-wrap: normal; } .depth .depth-item span { font-size: 10px; letter-spacing: .12em; } }

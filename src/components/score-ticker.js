@@ -50,7 +50,7 @@ export function mountScoreTicker(host) {
     <div class="wrap stk-in">
       <a class="stk-brand" href="/pbecast" data-link><b>SCORES</b><span class="stk-status">PBEcast</span></a>
       <div class="stk-viewport" tabindex="0" role="group" aria-label="Soccer scores, scrollable">
-        <div class="stk-track"><div class="stk-run"><span class="stk-empty">Loading scores…</span></div></div>
+        <div class="stk-track"><div class="stk-run"><span class="stk-skel" role="status"><span class="sr-only">Loading scores</span>${'<span class="stk-skel-g" aria-hidden="true"><i></i><b></b><i></i></span>'.repeat(5)}</span></div></div>
       </div>
     </div>
   </section>`;
@@ -97,8 +97,11 @@ export function mountScoreTicker(host) {
   };
   const onResize = () => layout();
   window.addEventListener('resize', onResize, { passive: true });
+  // A page opened in a background tab skips its first poll; load as soon as it is shown (never-loaded only).
+  const onVisible = () => { if (!document.hidden && !lastAt && !stopped) { clearTimeout(timer); poll(); } };
+  document.addEventListener('visibilitychange', onVisible);
   reduce?.addEventListener?.('change', () => { sig = ''; paint(); });
   wide?.addEventListener?.('change', () => { sig = ''; paint(); });
   poll();
-  return () => { stopped = true; clearTimeout(timer); window.removeEventListener('resize', onResize); };
+  return () => { stopped = true; clearTimeout(timer); window.removeEventListener('resize', onResize); document.removeEventListener('visibilitychange', onVisible); };
 }

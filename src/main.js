@@ -34,14 +34,18 @@ const BOTTOM = [['/', 'TODAY', 'home'], ['/matches', 'MATCHES', 'matches,match']
 // The canonical PropBetEdge mark (owned network artwork, docs/BRAND.md) links to the network home.
 const brandMark = () => '<a class="pbe-mark" href="https://propbetedge.ai/" aria-label="PropBetEdge home"><img src="/brand/pbe-mark-64.webp" srcset="/brand/pbe-mark-64.webp 130w, /brand/pbe-mark-96.webp 195w, /brand/pbe-mark-160.webp 325w" sizes="73px" width="73" height="36" alt="PropBetEdge"></a>';
 
-// Club competitions are chips in the rail; national-team competitions live in the INTERNATIONAL panel
-// (one place to add World Cup / EURO / Copa America / Gold Cup without another navigation rewrite).
-const railChip = c => `<a href="/competitions/${c.slug}" data-link data-comp="${c.slug}" class="a-${c.accent}">${competitionMark(c.slug, 'xs', { tone: 'dark' })}<span>${c.name.toUpperCase()}</span></a>`;
-const setIntl = open => {
-  const b = document.querySelector('[data-intl-toggle]'); const p = document.getElementById('rail-intl-panel');
-  if (!b || !p) return;
-  b.setAttribute('aria-expanded', String(open)); p.hidden = !open;
-};
+// Competitions live in the LEAGUES menu of the main nav (club, then international), one header row instead of a
+// separate rail: the page's intelligence starts higher. New competitions only need an entry in competitions.js.
+const leagueLink = c => `<a href="/competitions/${c.slug}" data-link data-comp="${c.slug}" class="lg-link a-${c.accent}">${competitionMark(c.slug, 'xs', { tone: 'dark' })}<span>${c.name.toUpperCase()}</span></a>`;
+const MENUS = ['intel-panel', 'leagues-panel'];
+// One open menu at a time; `id = null` closes all.
+function setMenuOpen(id) {
+  for (const m of MENUS) {
+    const p = document.getElementById(m); const b = document.querySelector(`[aria-controls="${m}"]`);
+    if (!p || !b) continue;
+    b.setAttribute('aria-expanded', String(m === id)); p.hidden = m !== id;
+  }
+}
 
 function shell() {
   return `<a class="skip" href="#main">Skip to content</a>
@@ -49,16 +53,15 @@ function shell() {
     <div class="brandlock">${brandMark()}<a class="brand" href="/" data-link aria-label="PropBetEdge Soccer Intelligence home"><span class="b1">PROPBETEDGE</span><span class="b2">SOCCER INTELLIGENCE</span></a></div>
     <button class="navtoggle" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span></button>
     <nav id="nav" class="nav" aria-label="Primary">${NAV.map(([h, l, p]) => `<a href="${h}" data-link data-pages="${p}">${l}</a>`).join('')}
-      <div class="navmenu"><button type="button" class="navdrop" aria-expanded="false" aria-controls="intel-panel" data-intel-toggle data-pages="${INTEL_PAGES}">INTELLIGENCE<i aria-hidden="true"></i></button>
+      <div class="navmenu"><button type="button" class="navdrop" aria-expanded="false" aria-controls="leagues-panel" data-menu-toggle data-leagues-toggle data-pages="competition">LEAGUES<i aria-hidden="true"></i></button>
+        <div id="leagues-panel" class="navpanel lg-panel" hidden><p class="lg-h">CLUB</p>${CLUB_COMPS.map(leagueLink).join('')}${INTERNATIONAL_COMPS.length ? `<p class="lg-h">INTERNATIONAL</p>${INTERNATIONAL_COMPS.map(leagueLink).join('')}` : ''}</div></div>
+      <div class="navmenu"><button type="button" class="navdrop" aria-expanded="false" aria-controls="intel-panel" data-menu-toggle data-intel-toggle data-pages="${INTEL_PAGES}">INTELLIGENCE<i aria-hidden="true"></i></button>
         <div id="intel-panel" class="navpanel" hidden>${INTEL.map(([h, l]) => `<a href="${h}" data-link>${l}</a>`).join('')}</div></div>
       <a href="/news" data-link data-pages="news,newsDesk,article">NEWS</a>
       <span class="navsep" aria-hidden="true"></span>
       <a class="nav-aa" href="/pro" data-link data-pages="pro,proMatch">ALL ACCESS</a>
       <button type="button" class="nav-acct" data-account-open>SIGN IN</button></nav>
   </div>
-  <nav class="rail" aria-label="Competitions"><div class="wrap railrow"><span class="rail-label" aria-hidden="true">CLUB</span>${CLUB_COMPS.map(railChip).join('')}${INTERNATIONAL_COMPS.length ? `<button type="button" class="rail-intl" aria-expanded="false" aria-controls="rail-intl-panel" data-intl-toggle><span>INTERNATIONAL</span><i aria-hidden="true"></i></button>` : ''}</div>
-    ${INTERNATIONAL_COMPS.length ? `<div id="rail-intl-panel" class="rail-panel" hidden><div class="wrap"><p class="rail-panel-h">INTERNATIONAL FOOTBALL</p><div class="railrow rail-panel-row">${INTERNATIONAL_COMPS.map(railChip).join('')}</div></div></div>` : ''}
-  </nav>
   </header>
   <div id="score-ticker"></div>
   <main id="main" tabindex="-1"></main>
@@ -84,13 +87,10 @@ function setMeta(page, data, params = []) {
     const own = typeof mod?.canonical === 'function' && data ? mod.canonical(data) : null; // e.g. a PBEcast page canonicalises to its match page
     if (canon && page !== 'notfound') canon.href = `https://soccer.propbetedge.ai${own || (location.pathname === '/' ? '/' : location.pathname.replace(/\/+$/, ''))}`;
   }
-  document.querySelectorAll('.nav a[data-pages], .nav [data-intel-toggle], .botnav a').forEach(a => a.classList.toggle('on', a.dataset.pages.split(',').includes(page)));
-  setIntel(false);
+  document.querySelectorAll('.nav a[data-pages], .nav [data-menu-toggle], .botnav a').forEach(a => a.classList.toggle('on', a.dataset.pages.split(',').includes(page)));
+  setMenuOpen(null);
   const comp = page === 'competition' ? params[0] : null;
-  document.querySelectorAll('.rail a').forEach(a => { const on = a.dataset.comp === comp; a.classList.toggle('on', on); if (on) { a.setAttribute('aria-current', 'page'); a.parentElement.scrollLeft = Math.max(0, a.offsetLeft - 16); } else a.removeAttribute('aria-current'); });
-  const intl = INTERNATIONAL_COMPS.some(c => c.slug === comp);
-  document.querySelector('[data-intl-toggle]')?.classList.toggle('on', intl);
-  setIntl(false);
+  document.querySelectorAll('#leagues-panel a[data-comp]').forEach(a => { const on = a.dataset.comp === comp; a.classList.toggle('on', on); if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
 }
 
 export async function render(url = new URL(location.href)) {
@@ -138,10 +138,14 @@ document.addEventListener('click', e => {
 const setMenu = open => { document.body.classList.toggle('menu-open', open); for (const b of document.querySelectorAll('.navtoggle, [data-more]')) b.setAttribute('aria-expanded', String(open)); };
 document.querySelector('.navtoggle').addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
 document.querySelector('[data-more]')?.addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
-function setIntel(open) { const b = document.querySelector('[data-intel-toggle]'); const p = document.getElementById('intel-panel'); if (!b || !p) return; b.setAttribute('aria-expanded', String(open)); p.hidden = !open; }
-document.querySelector('[data-intel-toggle]')?.addEventListener('click', e => setIntel(e.currentTarget.getAttribute('aria-expanded') !== 'true'));
-document.addEventListener('click', e => { if (!e.target.closest('.navmenu')) setIntel(false); const acct = e.target.closest('[data-account-open]'); if (acct) { e.preventDefault(); openAccount(); } });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') setIntel(false); });
+for (const b of document.querySelectorAll('[data-menu-toggle]')) b.addEventListener('click', e => { const id = e.currentTarget.getAttribute('aria-controls'); setMenuOpen(e.currentTarget.getAttribute('aria-expanded') === 'true' ? null : id); });
+document.addEventListener('click', e => { if (!e.target.closest('.navmenu')) setMenuOpen(null); const acct = e.target.closest('[data-account-open]'); if (acct) { e.preventDefault(); openAccount(); } });
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  const open = MENUS.find(m => document.getElementById(m) && !document.getElementById(m).hidden);
+  setMenuOpen(null);
+  if (open) document.querySelector(`[aria-controls="${open}"]`)?.focus();
+});
 // Membership comes from the server only (never inferred in the browser): label the account button,
 // then the footer card (no purchase CTA for All Access / owner; manage only where the contract says).
 handleVerifiedReturn();
@@ -150,8 +154,5 @@ proAccess().then(a => {
   if (a.pro) document.querySelector('.nav-aa')?.classList.add('is-member');
   applyFooterMembership(document, a.membership);
 });
-document.querySelector('[data-intl-toggle]')?.addEventListener('click', e => setIntl(e.currentTarget.getAttribute('aria-expanded') !== 'true'));
-document.addEventListener('keydown', e => { if (e.key === 'Escape' && !document.getElementById('rail-intl-panel')?.hidden) { setIntl(false); document.querySelector('[data-intl-toggle]')?.focus(); } });
-document.addEventListener('click', e => { if (!e.target.closest('.rail')) setIntl(false); });
 window.addEventListener('popstate', () => { closeDrawer(); render(); });
 render();

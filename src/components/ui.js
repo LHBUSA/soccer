@@ -8,6 +8,14 @@ import { compMeta } from '../lib/competitions.js';
 
 export const link = (href, inner, cls = '') => `<a href="${esc(href)}" data-link${cls ? ` class="${cls}"` : ''}>${inner}</a>`;
 
+// Percentile as a colour-coded pill (p90+ elite, p75+ strong, p50+ above median, below that neutral), with the
+// comparison group size beside it. The metric value itself is rendered bold by the caller.
+export function pctPill(p, of = null) {
+  if (p === null || p === undefined || !Number.isFinite(Number(p))) return '';
+  const n = Number(p); const tier = n >= 90 ? 'elite' : n >= 75 ? 'strong' : n >= 50 ? 'mid' : 'low';
+  return `<span class="pct"><span class="pct-pill pct-${tier}" title="Percentile ${esc(String(n))} of 100">p${esc(String(n))}</span>${of !== null && of !== undefined ? `<small>of ${esc(String(of))}</small>` : ''}</span>`;
+}
+
 export const sectionHead = (kicker, title, extra = '') =>
   `<header class="sec-head"><p class="kicker">${esc(kicker)}</p><h2>${esc(title)}</h2>${extra}</header>`;
 
