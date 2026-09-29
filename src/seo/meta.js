@@ -55,18 +55,46 @@ export function articleMeta(pathname, env, desk) {
   const a = env.data;
   if (a.desk !== desk) return notFoundMeta(pathname, 'article');
   const url = canonicalFor(pathname);
-  const teams = (a.entities || []).filter(e => e.type === 'SportsTeam');
+  const entities = a.entities || [];
+  const teams = entities.filter(e => e.type === 'SportsTeam');
+  const people = entities.filter(e => e.type === 'Person');
+  const match = entities.find(e => e.type === 'SportsEvent');
+  const competition = entities.find(e => e.type === 'SportsOrganization');
   const org = ORG;
+  const image = `${SITE}/og/article/${a.slug}.png`;
+  const about = [
+    ...teams.map(t => ({ '@type': 'SportsTeam', name: t.name, url: `${SITE}${t.href || `/teams/${t.slug}`}` })),
+    ...people.slice(0, 8).map(p => ({ '@type': 'Person', name: p.name, url: `${SITE}${p.href || `/players/${p.slug}`}` })),
+  ];
+  const mentions = [
+    ...(competition ? [{ '@type': 'SportsOrganization', name: competition.name, url: `${SITE}${competition.href}` }] : []),
+    ...(match ? [{ '@type': 'SportsEvent', name: match.name, url: `${SITE}${match.href}` }] : []),
+  ];
   return base(pathname, {
-    title: `${a.headline} | ${BRAND}`, description: a.dek || a.headline, ogType: 'article',
-    jsonld: [{ '@context': 'https://schema.org', '@type': 'NewsArticle', headline: a.headline.slice(0, 110), ...(a.dek ? { description: a.dek } : {}),
-      datePublished: a.published_at, dateModified: a.updated_at || a.published_at, author: org, publisher: org, mainEntityOfPage: url, url,
-      articleSection: DESKS[a.desk], image: [SHARE_IMAGE],
-      ...(teams.length ? { about: teams.map(t => ({ '@type': 'SportsTeam', name: t.name, url: `${SITE}/teams/${t.slug}` })) } : {}) },
+    title: `${a.headline} | ${BRAND}`,
+    description: a.dek || a.headline,
+    image,
+    imageAlt: `${a.headline} — PropBetEdge Soccer`,
+    ogType: 'article',
+    jsonld: [{ '@context': 'https://schema.org', '@type': 'NewsArticle',
+      headline: a.headline.slice(0, 110),
+      ...(a.dek ? { description: a.dek } : {}),
+      datePublished: a.published_at,
+      dateModified: a.updated_at || a.published_at,
+      author: { '@type': 'Organization', name: 'PropBetEdge Soccer Desk', url: `${SITE}/news` },
+      publisher: org,
+      mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+      url,
+      isPartOf: { '@type': 'WebSite', name: 'PropBetEdge Soccer Intelligence', url: `${SITE}/` },
+      articleSection: DESKS[a.desk],
+      image: [{ '@type': 'ImageObject', url: image, width: 1200, height: 630 }],
+      ...(about.length ? { about } : {}),
+      ...(mentions.length ? { mentions } : {}),
+    },
     breadcrumb([['Soccer', `${SITE}/`], ['News', `${SITE}/news`], [DESKS[a.desk], `${SITE}/news/${a.desk}`], [a.headline, url]]),
-    // VideoObject only for a matcher-validated official video linked to this story
+    // VideoObject only for a matcher-validated official video linked to this story.
     ...((a.media?.videos || []).filter(v => v.validated).slice(0, 1).map(videoObject).filter(Boolean))],
-    ssr: { h1: a.headline, p: a.dek || '', links: [[`/news/${a.desk}`, `${DESKS[a.desk]} news`], ...(a.entities || []).filter(e => e.href).slice(0, 6).map(e => [e.href, e.name])] },
+    ssr: { h1: a.headline, p: a.dek || '', links: [[`/news/${a.desk}`, `${DESKS[a.desk]} news`], ...entities.filter(e => e.href).slice(0, 10).map(e => [e.href, e.name])] },
   });
 }
 
@@ -242,6 +270,7 @@ export function headTags(meta) {
     `<meta name="twitter:title" content="${esc(meta.title)}">`,
     `<meta name="twitter:description" content="${esc(meta.description)}">`,
     meta.image ? `<meta name="twitter:image" content="${esc(meta.image)}">` : '',
+    meta.image ? `<meta name="twitter:image:alt" content="${esc(meta.imageAlt || meta.title)}">` : '',
     ...(meta.jsonld || []).map(j => `<script type="application/ld+json">${JSON.stringify(j).replace(/</g, '\\u003c')}</script>`),
   ];
   return t.filter(Boolean).join('\n  ');
