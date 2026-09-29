@@ -7,7 +7,7 @@
 import { mediaId } from './media-wikimedia.js';
 
 export const PROVIDER_MEDIA_VERSION = 'media-provider/1.0.0';
-export const ESPN_LEAGUE = { mls: 'usa.1', 'premier-league': 'eng.1', bundesliga: 'ger.1', 'uefa-champions-league': 'uefa.champions' };
+export const ESPN_LEAGUE = { mls: 'usa.1', 'premier-league': 'eng.1', bundesliga: 'ger.1', 'uefa-champions-league': 'uefa.champions', 'uefa-nations-league': 'uefa.nations' };
 const ESPN_HOST = /^https:\/\/a\.espncdn\.com\//;
 
 // Crest: the team's DEFAULT logo from ESPN's league team listing, for the exact ESPN team id.
@@ -36,10 +36,12 @@ export function espnHeadshotCandidate(espnAthleteId, roster, birthDate) {
 }
 
 // A fully provenanced row for display under the owner policy (never 'approved' = free-licensed).
-export function providerMediaRow({ entityType, entityId, mediaType, provider = 'espn', url, sourceUrl, subjectName, evidence, policy }) {
+// national: a national team's badge (same exact-id rule; wording says national team, never club).
+export function providerMediaRow({ entityType, entityId, mediaType, provider = 'espn', url, sourceUrl, subjectName, evidence, policy, national = false }) {
   const oi = policy.owner_identification;
   const comp = entityType === 'competition';
-  const what = comp ? `${subjectName} logo` : mediaType === 'crest' ? `${subjectName} crest` : `Photo of ${subjectName}`;
+  const who = national ? 'national team' : 'club';
+  const what = comp ? `${subjectName} logo` : mediaType === 'crest' ? `${subjectName} ${national ? 'badge' : 'crest'}` : `Photo of ${subjectName}`;
   return {
     id: mediaId(entityType, entityId, mediaType, sourceUrl),
     entity_type: entityType, entity_id: entityId, media_type: mediaType,
@@ -49,13 +51,15 @@ export function providerMediaRow({ entityType, entityId, mediaType, provider = '
     license: comp
       ? `Not free-licensed. Competition logo: copyright and trademark of the competition organiser (${subjectName}). Provider artwork (${provider.toUpperCase()}); displayed to identify the competition under the owner identification policy.`
       : mediaType === 'crest'
-      ? `Not free-licensed. Club crest: copyright and trademark of ${subjectName}. Provider artwork (${provider.toUpperCase()}); displayed to identify the club under the owner identification policy.`
+      ? national
+        ? `Not free-licensed. National team badge: copyright and trademark of the national football association of ${subjectName}. Provider artwork (${provider.toUpperCase()}); displayed to identify the national team under the owner identification policy.`
+        : `Not free-licensed. Club crest: copyright and trademark of ${subjectName}. Provider artwork (${provider.toUpperCase()}); displayed to identify the club under the owner identification policy.`
       : `Not free-licensed. Provider photograph (${provider.toUpperCase()}); copyright of the photographer or provider. Displayed to identify the player under the owner identification policy.`,
     license_url: null,
     author: provider.toUpperCase(),
     attribution: mediaType === 'crest' ? `${what}. Image: ${provider.toUpperCase()}` : `${what}: ${provider.toUpperCase()}`,
     rights_status: oi.rights_status,
-    rights_notes: `${oi.decision} (${oi.policy_version}). Not free-licensed; used only to identify the ${comp ? 'competition' : mediaType === 'crest' ? 'club' : 'player'}.`,
+    rights_notes: `${oi.decision} (${oi.policy_version}). Not free-licensed; used only to identify the ${comp ? 'competition' : mediaType === 'crest' ? who : 'player'}.`,
     trademark_status: mediaType === 'crest' ? 'trademark_notice' : 'none',
     rejection_reason: null,
   };

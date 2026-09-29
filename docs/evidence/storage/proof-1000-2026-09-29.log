@@ -1,0 +1,10 @@
+Rollback-only proof: supabase/migrations/20260929001000_soccer_groups_generic_channel_scope.sql
+checks: supabase/proofs/20260929001000_checks.sql
+runner: node scripts/db/build-single-rollback-proof.mjs <migration> <checks>; pwsh scripts/db/run-rollback-proof.ps1
+target: SPORTS project tkmlnhmylqnttmnsnief (2026-09-29 ~00:50Z)
+
+BEFORE: fingerprint 68415f571946f357654bd1f8b1785930, objects 1530
+PROOF:  ERROR P0001: PROOF_OK 1000 checks passed (rolled back)
+AFTER:  fingerprint 68415f571946f357654bd1f8b1785930, objects 1530
+RESIDUE: soccer_relations 125, soccer_functions 6 (unchanged); new columns present after proof: 0
+         (parent_group_key / parent_name / sort_order / scope_competition_ids)

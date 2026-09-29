@@ -29,7 +29,7 @@ const report = { version: PROVIDER_MEDIA_VERSION, policy_version: policy.policy_
 
 // ---- active teams per competition (latest season), in customer priority order
 const comps = await store.select('soccer_competitions', { columns: ['id', 'slug'] });
-const order = ['mls', 'premier-league', 'bundesliga', 'uefa-champions-league'];
+const order = ['mls', 'premier-league', 'bundesliga', 'uefa-champions-league', 'uefa-nations-league'];
 const teamComp = new Map(); // team -> first (highest-priority) competition
 const memberships = new Map(); // team -> every active competition
 for (const slug of order) {
@@ -38,7 +38,7 @@ for (const slug of order) {
   const ms = await store.select('soccer_matches', { columns: ['home_team_id', 'away_team_id'], eq: { season_id: season.id } });
   for (const m of ms) for (const t of [m.home_team_id, m.away_team_id]) { if (!t) continue; if (!teamComp.has(t)) teamComp.set(t, slug); memberships.set(t, new Set([...(memberships.get(t) || []), slug])); }
 }
-const teams = new Map((await selectIn('soccer_teams', 'id', [...teamComp.keys()], { columns: ['id', 'slug', 'name'] })).map(t => [t.id, t]));
+const teams = new Map((await selectIn('soccer_teams', 'id', [...teamComp.keys()], { columns: ['id', 'slug', 'name', 'team_type'] })).map(t => [t.id, t]));
 const ext = await selectIn('soccer_team_external_ids', 'team_id', [...teamComp.keys()], { columns: ['team_id', 'provider', 'external_id'] });
 const espnOfTeam = new Map(ext.filter(x => x.provider === 'espn').map(x => [x.team_id, String(x.external_id)]));
 const primaries = await selectIn('soccer_entity_media', 'entity_id', [...teamComp.keys()], { columns: ['entity_id', 'rights_status', 'is_primary', 'media_type'], eq: { entity_type: 'team', media_type: 'crest', is_primary: true } });
@@ -62,7 +62,7 @@ for (const [teamId, slug] of teamComp) {
   if (!c.ok) { Object.assign(line, { status: c.reason === 'current_crest_not_found' ? 'asset_unavailable' : 'identity_unresolved', reason: c.reason }); ledger('team', teamId, 'crest', 'not_found', c.reason, { external_id: espnId }); report.crests.teams.push(line); continue; }
   const sourceUrl = `https://www.espn.com/soccer/team/_/id/${espnId}`;
   const evidence = { method: 'espn_exact_team_id', external_id: espnId, provider: 'espn', crosswalk: 'soccer_team_external_ids', espn_league: ESPN_LEAGUE[listedIn], espn_display_name: c.espn_name, logo_rel: 'default', logo_last_updated: c.last_updated, api: `https://site.api.espn.com/apis/site/v2/sports/soccer/${ESPN_LEAGUE[listedIn]}/teams` };
-  rows.push({ ...providerMediaRow({ entityType: 'team', entityId: teamId, mediaType: 'crest', url: c.url, sourceUrl, subjectName: t.name, evidence, policy }), width: c.width, height: c.height });
+  rows.push({ ...providerMediaRow({ entityType: 'team', entityId: teamId, mediaType: 'crest', url: c.url, sourceUrl, subjectName: t.name, evidence, policy, national: t.team_type === 'national' }), width: c.width, height: c.height });
   Object.assign(line, { source: `ESPN team artwork (exact ESPN team id ${espnId}, listed in ${ESPN_LEAGUE[listedIn]} as "${c.espn_name}")`, identity: 'exact_espn_team_id', url: c.url, status: 'pending_cache' });
   report.crests.teams.push(line);
 }
