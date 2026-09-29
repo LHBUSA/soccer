@@ -78,7 +78,7 @@ const authBinding = state => ({ fetch: async (url, init) => {
   const entitled = state === 'all_access' || state === 'owner';
   return Response.json({ authenticated: state !== 'anon', membership: { sport: 'soccer', state: entitled ? state : 'free', label: state.toUpperCase(), entitled, email: 'r@example.com', show_purchase_cta: !entitled, show_manage: state === 'all_access', manage_url: 'https://billing.stripe.com/p/login/x' } });
 } });
-const TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InJAZXhhbXBsZS5jb20ifQ.c2lnbmF0dXJlLXZhbHVl';
+const TOKEN = 'test-session-token-not-a-real-jwt-0123456789';
 const req = (path, cookie = `pbe_session=${TOKEN}`) => new Request(`https://soccer-api.example/v1/pro/${path}`, { headers: cookie ? { cookie } : {} });
 
 test('access: only all_access and owner are Pro; sport-only, lapsed, anonymous, auth down -> FREE (fail closed)', async () => {
