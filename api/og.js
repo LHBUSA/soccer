@@ -67,6 +67,26 @@ export async function cardFor(type, key) {
           (p.seasons || []).length ? h('div', { fontSize: 28, color: GOLD, marginTop: 26 }, `Event-derived statistics: ${p.seasons.map(s => s.season).join(', ')}`) : null));
       }
     }
+    if (type === 'article' && /^[a-z0-9-]+$/.test(key)) {
+      const env = await upstreamJson(`news/${key}`);
+      if (!env.notFound) {
+        const a = env.data;
+        const comp = (a.entities || []).find(e => e.type === 'SportsOrganization');
+        const teams = (a.entities || []).filter(e => e.type === 'SportsTeam').slice(0, 2);
+        const people = (a.entities || []).filter(e => e.type === 'Person').slice(0, 3);
+        const kicker = `${(comp?.name || a.desk || 'SOCCER NEWS').toUpperCase()} · ${String(a.story_class || 'ARTICLE').replaceAll('_', ' ').toUpperCase()}`;
+        const context = [
+          teams.length ? teams.map(t => t.name).join(' · ') : null,
+          people.length ? people.map(p => p.name).join(' · ') : null,
+        ].filter(Boolean).join('   •   ');
+        return frame(kicker,
+          h('div', { flexDirection: 'column', maxWidth: 1030 },
+            big(a.headline, a.headline.length > 78 ? 62 : a.headline.length > 52 ? 70 : 80),
+            a.dek ? h('div', { fontSize: 29, lineHeight: 1.25, color: MUTED, marginTop: 22, maxWidth: 1000 }, a.dek) : null,
+            context ? h('div', { fontSize: 22, color: GOLD, marginTop: 24, letterSpacing: 1 }, context) : null),
+          'Evidence-backed reporting · soccer.propbetedge.ai');
+      }
+    }
     if (type === 'competition' && /^[a-z0-9-]+$/.test(key)) {
       const env = await upstreamJson(`competitions/${key}`);
       if (!env.notFound) {
