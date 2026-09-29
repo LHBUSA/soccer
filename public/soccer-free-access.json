@@ -1,0 +1,26 @@
+{
+  "data": {
+    "membership": {
+      "state": "free",
+      "label": "FREE",
+      "sport": "soccer",
+      "show_purchase_cta": true,
+      "show_manage": false,
+      "email": null
+    },
+    "check": "ok",
+    "pro": false
+  },
+  "meta": {
+    "source": "propbetedge-auth",
+    "source_updated_at": null,
+    "semantics": "Anonymous reader with no pbe_session cookie; Soccer Pro remains server-authoritative for authenticated readers.",
+    "coverage": {
+      "state": "ok",
+      "notes": []
+    },
+    "attribution": [],
+    "generated_at": null,
+    "api_version": "soccer-pro/1.0.0"
+  }
+}
