@@ -122,11 +122,21 @@ test('newsroom SEO: index only with published stories, NewsArticle for articles,
   const full = buildMeta('/news', 'news', [{ data: items }]);
   assert.match(full.robots, /^index/); assert.ok(full.jsonld.some(j => j['@type'] === 'ItemList'));
   assert.equal(buildMeta('/news/mls', 'newsDesk', [{ data: [] }]).robots, NOINDEX);
-  const art = { data: { desk: 'mls', slug: 'a-story', headline: 'Inter Miami CF beat Toronto FC 6-0', dek: 'MLS 2026.', published_at: '2026-09-21T12:00:00Z', updated_at: '2026-09-21T12:00:00Z', entities: [{ type: 'SportsTeam', name: 'Inter Miami CF', slug: 'inter-miami-cf', href: '/teams/inter-miami-cf' }] } };
+  const art = { data: { desk: 'mls', slug: 'a-story', headline: 'Inter Miami CF beat Toronto FC 6-0', dek: 'MLS 2026.', published_at: '2026-09-21T12:00:00Z', updated_at: '2026-09-21T12:00:00Z', entities: [
+    { type: 'SportsTeam', name: 'Inter Miami CF', slug: 'inter-miami-cf', href: '/teams/inter-miami-cf' },
+    { type: 'Person', name: 'Test Player', slug: 'test-player', href: '/players/test-player' },
+    { type: 'SportsEvent', name: 'Inter Miami CF v Toronto FC', href: '/matches/5b0c8f3e-1111-5222-8333-444455556666' },
+    { type: 'SportsOrganization', name: 'MLS', slug: 'mls', href: '/competitions/mls' },
+  ] } };
   const m = buildMeta('/news/mls/a-story', 'article', [art]);
   const na = m.jsonld.find(j => j['@type'] === 'NewsArticle');
   assert.equal(m.status, 200); assert.equal(m.ogType, 'article'); assert.equal(na.datePublished, '2026-09-21T12:00:00Z'); assert.equal(na.articleSection, 'MLS');
-  assert.equal(na.about[0].name, 'Inter Miami CF'); assert.equal(m.canonical, `${SITE}/news/mls/a-story`);
+  assert.equal(na.about[0].name, 'Inter Miami CF'); assert.equal(na.about[1].name, 'Test Player');
+  assert.equal(na.mentions[0].name, 'MLS'); assert.equal(na.mentions[1].name, 'Inter Miami CF v Toronto FC');
+  assert.equal(na.mainEntityOfPage['@id'], `${SITE}/news/mls/a-story`);
+  assert.equal(m.image, `${SITE}/og/article/a-story.png`);
+  assert.equal(na.image[0].url, m.image); assert.equal(na.image[0].width, 1200); assert.equal(na.image[0].height, 630);
+  assert.equal(m.canonical, `${SITE}/news/mls/a-story`);
   assert.equal(buildMeta('/news/bundesliga/a-story', 'article', [art]).status, 404); // desk mismatch
   assert.equal(buildMeta('/news/mls/nope', 'article', [{ notFound: true }]).status, 404);
   assert.ok(KINDS.includes('news'));
