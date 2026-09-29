@@ -19,6 +19,9 @@ NEWS_LLM = "off"
 # tokens incl. 1,234 reasoning -> 4000 per the owner cost brief (5000 only if a legitimate story is shown to exceed it).
 NEWS_DESK_MAX_OUTPUT_TOKENS = "4000"
 UCL_LEAGUE_PHASE_END = "2027-02-01T00:00:00Z"
+# Migration 20260929001300 (routing columns on soccer_news_openai_usage) APPLIED 2026-09-29 (sha 4e7ef213): the ledger
+# rows carry the V4 routing fields. Off = routing fields in KV only.
+SOCCER_LEDGER_ROUTING = "on"
 
 [[kv_namespaces]]
 binding = "SOCCER_STATE"
