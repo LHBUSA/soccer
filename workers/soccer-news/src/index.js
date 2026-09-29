@@ -8,6 +8,7 @@ import { storeFromEnv } from '../../shared/postgrest.js';
 import { runNews, reeditArticle } from './pipeline.js';
 import { deskAvailable, deskRequired, DESK_VERSION, QUALITY_VERSION } from './desk.js';
 import { PACKET_V3, DEPTH_VERSION } from './depth.js';
+import { migrationTick, MIGRATION_CRON } from './migration.js';
 
 const json = (body, status = 200) => new Response(JSON.stringify(body, null, 2), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
 
@@ -60,6 +61,8 @@ export default {
     return json({ error: 'not found' }, 404);
   },
   async scheduled(event, env, ctx) {
+    // TEMPORARY: the backlog migration has its own cron and never runs the news pipeline (docs/NEWS_ENGINE.md).
+    if (event.cron === MIGRATION_CRON) { ctx.waitUntil(migrationTick(env).then(r => console.log('backlog migration', JSON.stringify(r))).catch(e => console.error('backlog migration failed', e?.message))); return; }
     if (env.NEWS_ENABLED !== 'on') return; // launch switch (wrangler.toml var)
     ctx.waitUntil(run(env, { now: event.scheduledTime }).catch(e => console.error('soccer-news run failed', e?.message)));
   },

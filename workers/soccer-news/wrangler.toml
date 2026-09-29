@@ -10,7 +10,7 @@ compatibility_flags = ["nodejs_compat"]
 workers_dev = true
 
 [triggers]
-crons = ["7,37 * * * *"]
+crons = ["7,37 * * * *", "*/10 * * * *"] # */10 = TEMPORARY backlog migration (src/migration.js), no-op without the KV control key
 
 [vars]
 NEWS_ENABLED = "on"
