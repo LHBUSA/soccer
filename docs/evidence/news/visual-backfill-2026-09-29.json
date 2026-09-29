@@ -1,0 +1,537 @@
+{
+  "at": "2026-09-29T14:44:17.469Z",
+  "visuals_version": "soccer-visuals/1.0.0",
+  "apply": true,
+  "articles": 41,
+  "built": 41,
+  "skipped": 0,
+  "rejected": [],
+  "results": [
+    {
+      "slug": "tottenham-hotspur-aston-villa-2026-09-19-ce492a",
+      "status": "published",
+      "story_class": "match_recap",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "goal_timeline:e69da81755",
+        "shot_profile:b7067edaef",
+        "shot_map:de8f7f1766"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "jonathan-burkardt-scoring-run-2026-09-19-00f521",
+      "status": "published",
+      "story_class": "player_form",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "scoring_run:f715a1c0ce"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "werder-bremen-augsburg-2026-09-19-aee7b2",
+      "status": "published",
+      "story_class": "match_recap",
+      "packet_version": "soccer-packet/3.0.0",
+      "visuals": [
+        "match_flow:1e4c6bfc35",
+        "goal_timeline:2e31ce76c1",
+        "shot_profile:e890580708",
+        "shot_map:cd4205f751",
+        "table_move:7421eb6825",
+        "form_strip:8428d5ae99"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "philadelphia-union-6-league-wins-in-a-row-2026-09-26-035aa6",
+      "status": "published",
+      "story_class": "team_trend",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "run_results:5f9e4e3fc5",
+        "team_standing:fd9830951a"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "stuttgart-borussia-dortmund-2026-09-19-83a022",
+      "status": "published",
+      "story_class": "match_recap",
+      "packet_version": "soccer-packet/3.0.0",
+      "visuals": [
+        "match_flow:cd675e7401",
+        "goal_timeline:0265d9d095",
+        "shot_profile:6375866955",
+        "shot_map:d11b999bc0",
+        "table_move:d2f8625bab",
+        "form_strip:e18260600f"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "brian-white-scoring-run-2026-09-27-837334",
+      "status": "published",
+      "story_class": "player_form",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "scoring_run:58c21a875a"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "phillip-tietz-scoring-run-2026-09-19-3312c7",
+      "status": "published",
+      "story_class": "player_form",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "scoring_run:5903e5d49e"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "sporting-kansas-city-philadelphia-union-2026-09-20-29f034",
+      "status": "published",
+      "story_class": "match_recap",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "goal_timeline:604be2b206",
+        "shot_profile:0f2e5a0907",
+        "shot_map:dfda28747c",
+        "player_focus:21b29c0641",
+        "group_position:d1593c631c"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "charlotte-fc-chicago-fire-fc-2026-09-26-545408",
+      "status": "published",
+      "story_class": "match_recap",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "goal_timeline:6b2382d47f",
+        "shot_profile:27aa34b22c",
+        "shot_map:a767ccf1ed",
+        "group_position:c6116d7829"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "scotland-switzerland-preview-2026-09-29-f97fa4",
+      "status": "published",
+      "story_class": "match_preview",
+      "packet_version": "soccer-packet-preview/1.0.0",
+      "visuals": [
+        "matchup:f2085437c9",
+        "form_strip:2417738da4"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "bayern-munchen-1-fc-union-berlin-2026-09-18-3ce080",
+      "status": "published",
+      "story_class": "match_recap",
+      "packet_version": "soccer-packet/3.0.0",
+      "visuals": [
+        "match_flow:4ae611e86b",
+        "goal_timeline:becf327d45",
+        "shot_profile:97f2c0594e",
+        "shot_map:53c7c283ed",
+        "player_focus:6ff8420f02",
+        "table_move:9cdb065724",
+        "form_strip:39f096ea18"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "manchester-city-5-league-wins-in-a-row-2026-09-20-3d5328",
+      "status": "published",
+      "story_class": "team_trend",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "run_results:6bc10b4be3",
+        "team_standing:6c09927243"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "colorado-rapids-seattle-sounders-fc-2026-09-20-e73724",
+      "status": "held",
+      "story_class": "match_recap",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "goal_timeline:89f21876d8",
+        "shot_profile:d6bbacbf93",
+        "shot_map:df5befa145",
+        "player_focus:5579bd5818"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "premier-league-table-2026-09-20-fb92ec",
+      "status": "published",
+      "story_class": "competition_intelligence",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "standings:be335fd4d8"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "bundesliga-table-2026-09-20-c1fd71",
+      "status": "published",
+      "story_class": "competition_intelligence",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "standings:3c38cbbbb9"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "seattle-sounders-fc-7-league-matches-unbeaten-2026-09-27-640861",
+      "status": "published",
+      "story_class": "team_trend",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "run_results:7f170a0a9a",
+        "team_standing:c2fb69ec59"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "cf-montreal-fc-cincinnati-2026-09-26-ae550e",
+      "status": "published",
+      "story_class": "match_recap",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "goal_timeline:427bf09be8",
+        "shot_profile:870cc80727",
+        "shot_map:4816cb87e8",
+        "player_focus:95ee545e95"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "erling-haaland-scoring-run-2026-09-20-be6e54",
+      "status": "published",
+      "story_class": "player_form",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "scoring_run:d2b90b0048"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "borussia-dortmund-4-league-wins-in-a-row-2026-09-19-3216ff",
+      "status": "published",
+      "story_class": "team_trend",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "run_results:553fd8dadf",
+        "team_standing:473b159347"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "ivan-angulo-scoring-run-2026-09-26-0e2dbf",
+      "status": "published",
+      "story_class": "player_form",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "scoring_run:ea9be8e50b"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "austin-fc-8-league-matches-unbeaten-2026-09-27-c939db",
+      "status": "published",
+      "story_class": "team_trend",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "run_results:287bad9155",
+        "team_standing:d31b2fa4eb"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "uefa-nations-league-matchday-2026-09-29-c14d93",
+      "status": "held",
+      "story_class": "match_preview",
+      "packet_version": "soccer-packet-preview/1.0.0",
+      "visuals": [
+        "fixtures_board:afd890e8e0"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "patrik-schick-scoring-run-2026-09-20-0ea0ef",
+      "status": "published",
+      "story_class": "player_form",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "scoring_run:db61354731"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "minnesota-united-fc-5-league-defeats-in-a-row-2026-09-27-f9992c",
+      "status": "published",
+      "story_class": "team_trend",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "run_results:cf1cdd3c30",
+        "team_standing:6ca880486a"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "columbus-crew-inter-miami-cf-2026-09-27-0487e3",
+      "status": "held",
+      "story_class": "match_recap",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "real-salt-lake-new-england-revolution-2026-09-27-af73d8",
+      "status": "published",
+      "story_class": "match_recap",
+      "packet_version": "soccer-packet/3.0.0",
+      "visuals": [
+        "match_flow:276bd71425",
+        "goal_timeline:4af07cb699",
+        "shot_profile:5f0fcbcd0c",
+        "shot_map:34f5606a93",
+        "player_focus:39f51ec24f",
+        "table_move:f78a3e686a",
+        "form_strip:74cf75d98b"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "philadelphia-union-12-league-matches-unbeaten-2026-09-26-c00f1a",
+      "status": "published",
+      "story_class": "team_trend",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "run_results:a3cfe1a410",
+        "team_standing:fd9830951a"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "andre-luiz-scoring-run-2026-09-27-26cc9a",
+      "status": "published",
+      "story_class": "player_form",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "scoring_run:51d7e5d3f3"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "philadelphia-union-orlando-city-sc-2026-09-26-2fcde7",
+      "status": "published",
+      "story_class": "match_recap",
+      "packet_version": "soccer-packet/3.0.0",
+      "visuals": [
+        "match_flow:64a9ff702b",
+        "goal_timeline:e5303b34df",
+        "shot_profile:0e49aa3c86",
+        "shot_map:6f7e743a36",
+        "player_focus:e7f544021f",
+        "table_move:e055e7d769",
+        "form_strip:789ba96baf"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "houston-dynamo-fc-sporting-kansas-city-2026-09-27-4daff8",
+      "status": "published",
+      "story_class": "match_recap",
+      "packet_version": "soccer-packet/3.0.0",
+      "visuals": [
+        "match_flow:47a90ee9df",
+        "goal_timeline:4072b0adfe",
+        "shot_profile:020acee71a",
+        "shot_map:3a354189f5",
+        "table_move:999094a05f",
+        "form_strip:ef14174973"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "slovakia-kazakhstan-preview-2026-09-29-9042c4",
+      "status": "held",
+      "story_class": "match_preview",
+      "packet_version": "soccer-packet-preview/1.0.0",
+      "visuals": [
+        "matchup:c61d3ac8f7",
+        "form_strip:dd152a310f"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "vancouver-whitecaps-d-c-united-2026-09-27-aa2e30",
+      "status": "published",
+      "story_class": "match_recap",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "goal_timeline:fe55886fde",
+        "shot_profile:566648bf22",
+        "shot_map:df71cd53b9",
+        "player_focus:403a60da16"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "new-england-revolution-orlando-city-sc-2026-09-19-a88530",
+      "status": "published",
+      "story_class": "match_recap",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "goal_timeline:1a106b3d4c",
+        "shot_profile:2a62ff48fc",
+        "shot_map:d046f8e5b0",
+        "player_focus:dfaeda8f5a"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "austin-fc-san-diego-fc-2026-09-27-ac300b",
+      "status": "published",
+      "story_class": "match_recap",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "goal_timeline:5f888c58cf",
+        "shot_profile:e62f35fc36",
+        "shot_map:8118db100c",
+        "player_focus:9a88aa6b52"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "borussia-m-gladbach-4-league-defeats-in-a-row-2026-09-19-3de7ac",
+      "status": "published",
+      "story_class": "team_trend",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "run_results:39ce093d85",
+        "team_standing:96714eee16"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "st-louis-city-sc-16-league-matches-unbeaten-2026-09-20-56a270",
+      "status": "published",
+      "story_class": "team_trend",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "run_results:f231513037",
+        "team_standing:09dfee41fd"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "preston-judd-scoring-run-2026-09-27-8c317c",
+      "status": "published",
+      "story_class": "player_form",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "scoring_run:b6016e10d1"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "manchester-city-sunderland-2026-09-20-da838b",
+      "status": "published",
+      "story_class": "match_recap",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "goal_timeline:017c495785",
+        "shot_profile:9d4d67dd55",
+        "shot_map:3a269f50ca",
+        "player_focus:f38af6bf41"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "spain-croatia-preview-2026-09-29-edbf1c",
+      "status": "published",
+      "story_class": "match_preview",
+      "packet_version": "soccer-packet-preview/1.0.0",
+      "visuals": [
+        "matchup:1dc70ab074",
+        "form_strip:528e820044"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "mls-table-2026-09-27-c0405b",
+      "status": "published",
+      "story_class": "competition_intelligence",
+      "packet_version": "soccer-packet/2.0.0",
+      "visuals": [
+        "standings:50793ec974"
+      ],
+      "rejected": [],
+      "applied": true
+    },
+    {
+      "slug": "san-marino-finland-2026-09-26-8d0a2a",
+      "status": "held",
+      "story_class": "match_recap",
+      "packet_version": "soccer-packet/3.0.0",
+      "visuals": [
+        "match_flow:8120cb583d",
+        "goal_timeline:f4e5c64ac2",
+        "shot_profile:d4e053033b",
+        "shot_map:71831d7956",
+        "player_focus:892e02cd35",
+        "group_position:608922685d"
+      ],
+      "rejected": [],
+      "applied": true
+    }
+  ]
+}

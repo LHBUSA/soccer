@@ -19,9 +19,9 @@ evidence are the source of truth; nothing here comes only from chat memory.
 
 | Worker | Live version | Rollback |
 |---|---|---|
-| soccer-api | `2fd0e5e9` (2026-09-29, main 21376b2: one news-subject rule for cards + article hero; `/v1/data-health` newsroom block) | `2f8a5b0d` |
+| soccer-api | `a9970370` (2026-09-29, main 7d48824: serves frozen article visuals only while intact; + news-subject rule, newsroom health) | `2fd0e5e9` (then `2f8a5b0d`) |
 | soccer-ingest | unchanged by the 2026-09-29 newsroom / PBEcast release (see docs/deployments.jsonl) | — |
-| soccer-news | `8e03520d` (1.4.0, main fb9a2b7: previews, matchday briefs, group watch, readiness-based recaps, registry enablement, news:last_tick) | `204dd215` (then `abc1fe23`, the hand-deployed backfill build) |
+| soccer-news | `ebc8ca19` (main 7d48824: soccer-visuals/1.0.0 code-built article visuals + desk emphasis; 1.4.0 previews, matchday briefs, group watch, readiness-based recaps, registry enablement) | `8e03520d` (then `204dd215`, `abc1fe23`) |
 
 Rollback: `cd workers/<worker> && npx wrangler versions deploy <rollback>@100% --yes`. Web rollback: Vercel instant rollback to the previous production deployment.
 
@@ -131,3 +131,9 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
   source) was replaced by the committed build; its source is kept in `git stash`. Legacy re-edits remain available
   through the authenticated `POST /v1/admin/reedit` and the KV-controlled `*/10` migration cron (a no-op while
   `migration:control` is unset). 16 legacy template stories are still not re-edited.
+- **Article data visuals (main 7d48824, soccer-visuals/1.0.0):** every article carries code-built visual specs frozen
+  in `body.visuals` (match flow, goal timeline, shot profile, static shot map with stated coverage, player focus,
+  table move / group position, form; scoring run; run results; standings; verified group tables; preview matchup
+  dashboard, form, players in form; matchday fixtures board). The desk may only choose `emphasis` ids (live dry
+  re-edit 2026-09-29: `["matchup","recent_form"]`). Backfill applied to all 41 published + held articles, 0 rejected
+  (docs/evidence/news/visual-backfill-2026-09-29.json). Production QA 60/60 at 360-1440 (docs/evidence/qa/news-pbecast-2026-09-29.json).

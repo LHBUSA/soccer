@@ -1,5 +1,5 @@
 {
-  "at": "2026-09-29T13:14:52.760Z",
+  "at": "2026-09-29T14:45:18.283Z",
   "site": "https://soccer.propbetedge.ai",
   "match": "4ad3c11c-0e39-555a-bfd4-ca6e98e22fb7",
   "story": "bayern-munchen-1-fc-union-berlin-2026-09-18-3ce080",
@@ -25,8 +25,8 @@
       "reason": "primary:hat_trick"
     }
   },
-  "passed": 50,
-  "total": 50,
+  "passed": 60,
+  "total": 60,
   "results": [
     {
       "name": "[360] pbecast full time: 37 markers on the portrait pitch",
@@ -82,6 +82,42 @@
         "v": 25,
         "hscroll": false,
         "nonShot": 0
+      }
+    },
+    {
+      "name": "[360] article data visuals: 7 rendered (match_flow, goal_timeline, shot_profile, shot_map, player_focus, table_move, form_strip)",
+      "ok": true,
+      "detail": {
+        "types": [
+          "goal_timeline",
+          "player_focus",
+          "shot_map",
+          "match_flow",
+          "shot_profile",
+          "table_move",
+          "form_strip"
+        ],
+        "overflow": [],
+        "frozen": true,
+        "hscroll": false
+      }
+    },
+    {
+      "name": "[360] article visuals fit the width",
+      "ok": true,
+      "detail": {
+        "types": [
+          "goal_timeline",
+          "player_focus",
+          "shot_map",
+          "match_flow",
+          "shot_profile",
+          "table_move",
+          "form_strip"
+        ],
+        "overflow": [],
+        "frozen": true,
+        "hscroll": false
       }
     },
     {
@@ -187,6 +223,42 @@
       }
     },
     {
+      "name": "[390] article data visuals: 7 rendered (match_flow, goal_timeline, shot_profile, shot_map, player_focus, table_move, form_strip)",
+      "ok": true,
+      "detail": {
+        "types": [
+          "goal_timeline",
+          "player_focus",
+          "shot_map",
+          "match_flow",
+          "shot_profile",
+          "table_move",
+          "form_strip"
+        ],
+        "overflow": [],
+        "frozen": true,
+        "hscroll": false
+      }
+    },
+    {
+      "name": "[390] article visuals fit the width",
+      "ok": true,
+      "detail": {
+        "types": [
+          "goal_timeline",
+          "player_focus",
+          "shot_map",
+          "match_flow",
+          "shot_profile",
+          "table_move",
+          "form_strip"
+        ],
+        "overflow": [],
+        "frozen": true,
+        "hscroll": false
+      }
+    },
+    {
       "name": "[390] article hero subject = Michael Olise",
       "ok": true,
       "detail": {
@@ -286,6 +358,42 @@
         "v": 25,
         "hscroll": false,
         "nonShot": 0
+      }
+    },
+    {
+      "name": "[768] article data visuals: 7 rendered (match_flow, goal_timeline, shot_profile, shot_map, player_focus, table_move, form_strip)",
+      "ok": true,
+      "detail": {
+        "types": [
+          "goal_timeline",
+          "player_focus",
+          "shot_map",
+          "match_flow",
+          "shot_profile",
+          "table_move",
+          "form_strip"
+        ],
+        "overflow": [],
+        "frozen": true,
+        "hscroll": false
+      }
+    },
+    {
+      "name": "[768] article visuals fit the width",
+      "ok": true,
+      "detail": {
+        "types": [
+          "goal_timeline",
+          "player_focus",
+          "shot_map",
+          "match_flow",
+          "shot_profile",
+          "table_move",
+          "form_strip"
+        ],
+        "overflow": [],
+        "frozen": true,
+        "hscroll": false
       }
     },
     {
@@ -391,6 +499,42 @@
       }
     },
     {
+      "name": "[1024] article data visuals: 7 rendered (match_flow, goal_timeline, shot_profile, shot_map, player_focus, table_move, form_strip)",
+      "ok": true,
+      "detail": {
+        "types": [
+          "goal_timeline",
+          "player_focus",
+          "shot_map",
+          "match_flow",
+          "shot_profile",
+          "table_move",
+          "form_strip"
+        ],
+        "overflow": [],
+        "frozen": true,
+        "hscroll": false
+      }
+    },
+    {
+      "name": "[1024] article visuals fit the width",
+      "ok": true,
+      "detail": {
+        "types": [
+          "goal_timeline",
+          "player_focus",
+          "shot_map",
+          "match_flow",
+          "shot_profile",
+          "table_move",
+          "form_strip"
+        ],
+        "overflow": [],
+        "frozen": true,
+        "hscroll": false
+      }
+    },
+    {
       "name": "[1024] article hero subject = Michael Olise",
       "ok": true,
       "detail": {
@@ -490,6 +634,42 @@
         "v": 25,
         "hscroll": false,
         "nonShot": 0
+      }
+    },
+    {
+      "name": "[1440] article data visuals: 7 rendered (match_flow, goal_timeline, shot_profile, shot_map, player_focus, table_move, form_strip)",
+      "ok": true,
+      "detail": {
+        "types": [
+          "goal_timeline",
+          "player_focus",
+          "shot_map",
+          "match_flow",
+          "shot_profile",
+          "table_move",
+          "form_strip"
+        ],
+        "overflow": [],
+        "frozen": true,
+        "hscroll": false
+      }
+    },
+    {
+      "name": "[1440] article visuals fit the width",
+      "ok": true,
+      "detail": {
+        "types": [
+          "goal_timeline",
+          "player_focus",
+          "shot_map",
+          "match_flow",
+          "shot_profile",
+          "table_move",
+          "form_strip"
+        ],
+        "overflow": [],
+        "frozen": true,
+        "hscroll": false
       }
     },
     {
