@@ -1,0 +1,61 @@
+{
+  "at": "2026-09-29T01:48:58.089Z",
+  "dry": false,
+  "competitions": [
+    {
+      "slug": "uefa-champions-league",
+      "canonical_id": "4c592bbf-7911-5cf2-9ee8-c31872b4689f",
+      "espn_id": "uefa.champions",
+      "espn_league_id": "775",
+      "espn_name": "UEFA Champions League",
+      "default": "https://a.espncdn.com/i/leaguelogos/soccer/500/2.png",
+      "dark": "https://a.espncdn.com/i/leaguelogos/soccer/500-dark/2.png",
+      "status": "live"
+    },
+    {
+      "slug": "premier-league",
+      "canonical_id": "54822e53-a91c-5d6f-8786-02f9d7212b8b",
+      "espn_id": "eng.1",
+      "espn_league_id": "700",
+      "espn_name": "English Premier League",
+      "default": "https://a.espncdn.com/i/leaguelogos/soccer/500/23.png",
+      "dark": "https://a.espncdn.com/i/leaguelogos/soccer/500-dark/23.png",
+      "status": "live"
+    },
+    {
+      "slug": "bundesliga",
+      "canonical_id": "b66f80c5-850a-5288-aa54-b63df47d131b",
+      "espn_id": "ger.1",
+      "espn_league_id": "720",
+      "espn_name": "German Bundesliga",
+      "default": "https://a.espncdn.com/i/leaguelogos/soccer/500/10.png",
+      "dark": "https://a.espncdn.com/i/leaguelogos/soccer/500-dark/10.png",
+      "status": "live"
+    },
+    {
+      "slug": "uefa-nations-league",
+      "canonical_id": "d1f49cf0-a292-58fc-b3cd-d3b8e1dc7fad",
+      "espn_id": "uefa.nations",
+      "espn_league_id": "2395",
+      "espn_name": "UEFA Nations League",
+      "default": "https://a.espncdn.com/i/leaguelogos/soccer/500/2395.png",
+      "dark": "https://a.espncdn.com/i/leaguelogos/soccer/500-dark/2395.png",
+      "status": "live"
+    },
+    {
+      "slug": "mls",
+      "canonical_id": "d370dec9-4da9-5433-b2bc-e32958287728",
+      "espn_id": "usa.1",
+      "espn_league_id": "770",
+      "espn_name": "MLS",
+      "default": "https://a.espncdn.com/i/leaguelogos/soccer/500/19.png",
+      "dark": "https://a.espncdn.com/i/leaguelogos/soccer/500-dark/19.png",
+      "status": "live"
+    }
+  ],
+  "sync": {
+    "inserted": 2,
+    "updated": 8,
+    "unchanged": 0
+  }
+}
