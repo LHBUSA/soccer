@@ -20,7 +20,8 @@ export function proCookie(header) {
   for (const part of String(header || '').split(';')) { const [k, ...v] = part.trim().split('='); if (k === 'pbe_session') { const val = v.join('='); return /^[A-Za-z0-9_\-.]{20,4096}$/.test(val) ? `pbe_session=${val}` : null; } }
   return null;
 }
-const QUERY_KEYS = new Set(['competition', 'season', 'status', 'date', 'from', 'to', 'order', 'team', 'limit', 'desk', 'group', 'player', 'match', 'as_of', 'q', 'sort', 'offset', 'role']);
+// 'expand' carries expand=groups (group tables in one call); without it the group rows never reach the page.
+const QUERY_KEYS = new Set(['competition', 'season', 'status', 'date', 'from', 'to', 'order', 'team', 'limit', 'desk', 'group', 'player', 'match', 'as_of', 'q', 'sort', 'offset', 'role', 'expand']);
 
 export function isAllowedPath(path) {
   return typeof path === 'string' && ROUTES.some(re => re.test(path));

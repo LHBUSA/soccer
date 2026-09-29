@@ -1,0 +1,594 @@
+{
+  "at": "2026-09-29T02:45:14.821Z",
+  "teams": {
+    "Netherlands": {
+      "lineup_players": 26,
+      "also_in_club_lineups": 20
+    },
+    "Norway": {
+      "lineup_players": 24,
+      "also_in_club_lineups": 16
+    },
+    "Germany": {
+      "lineup_players": 22,
+      "also_in_club_lineups": 21
+    },
+    "Portugal": {
+      "lineup_players": 24,
+      "also_in_club_lineups": 13
+    },
+    "Spain": {
+      "lineup_players": 22,
+      "also_in_club_lineups": 18
+    },
+    "England": {
+      "lineup_players": 23,
+      "also_in_club_lineups": 23
+    },
+    "France": {
+      "lineup_players": 23,
+      "also_in_club_lineups": 17
+    },
+    "Italy": {
+      "lineup_players": 29,
+      "also_in_club_lineups": 15
+    }
+  },
+  "totals": {
+    "players": 193,
+    "with_club_apps": 143,
+    "duplicate_espn_ids": 0,
+    "duplicate_name_dob": 0,
+    "multi_primary_portrait": 0
+  },
+  "samples": [
+    {
+      "nation": "Netherlands",
+      "player": "Virgil van Dijk",
+      "slug": "virgil-van-dijk",
+      "player_id": "04c7c00d-8566-532c-a68e-15eced8fc57d",
+      "espn_ids": [
+        "157892"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 6,
+      "club_teams": [
+        "Liverpool"
+      ],
+      "club_competitions": [
+        "uefa-champions-league",
+        "premier-league"
+      ],
+      "national_appearances": 2,
+      "portrait_primaries": [
+        "approved"
+      ]
+    },
+    {
+      "nation": "Netherlands",
+      "player": "Guus Til",
+      "slug": "guus-til",
+      "player_id": "0d8310b3-9094-55d7-bdd8-a32730553f6a",
+      "espn_ids": [
+        "240965"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 1,
+      "club_teams": [
+        "PSV Eindhoven"
+      ],
+      "club_competitions": [
+        "uefa-champions-league"
+      ],
+      "national_appearances": 2,
+      "portrait_primaries": [
+        "approved"
+      ]
+    },
+    {
+      "nation": "Netherlands",
+      "player": "Jorrel Hato",
+      "slug": "jorrel-hato",
+      "player_id": "35c5a6b5-1e63-5390-95eb-b25297594b71",
+      "espn_ids": [
+        "353951"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 5,
+      "club_teams": [
+        "Chelsea"
+      ],
+      "club_competitions": [
+        "premier-league"
+      ],
+      "national_appearances": 2,
+      "portrait_primaries": [
+        "approved"
+      ]
+    },
+    {
+      "nation": "Norway",
+      "player": "Julian Ryerson",
+      "slug": "julian-ryerson",
+      "player_id": "034766d7-162b-5e51-8c28-b8303fe0b585",
+      "espn_ids": [
+        "222991"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 5,
+      "club_teams": [
+        "Borussia Dortmund"
+      ],
+      "club_competitions": [
+        "bundesliga",
+        "uefa-champions-league"
+      ],
+      "national_appearances": 2,
+      "portrait_primaries": [
+        "approved"
+      ]
+    },
+    {
+      "nation": "Norway",
+      "player": "Odin Bjørtuft",
+      "slug": "odin-bjortuft",
+      "player_id": "41fa0740-b519-5581-8c88-d34103e846c9",
+      "espn_ids": [
+        "269732"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 1,
+      "club_teams": [
+        "Bodo/Glimt"
+      ],
+      "club_competitions": [
+        "uefa-champions-league"
+      ],
+      "national_appearances": 2,
+      "portrait_primaries": []
+    },
+    {
+      "nation": "Norway",
+      "player": "Sander Tangvik",
+      "slug": "sander-tangvik",
+      "player_id": "4354196f-1a22-5eb3-ae11-bc2ec04f384b",
+      "espn_ids": [
+        "304258"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 4,
+      "club_teams": [
+        "Hamburger SV"
+      ],
+      "club_competitions": [
+        "bundesliga"
+      ],
+      "national_appearances": 2,
+      "portrait_primaries": [
+        "approved"
+      ]
+    },
+    {
+      "nation": "Germany",
+      "player": "Alexander Nübel",
+      "slug": "alexander-nubel",
+      "player_id": "035347ec-96f5-52f2-88a6-4c5b12b9e922",
+      "espn_ids": [
+        "205750"
+      ],
+      "crosswalks": [
+        "espn:attribute_corroborated",
+        "wyscout:founding"
+      ],
+      "club_appearances": 34,
+      "club_teams": [
+        "Schalke 04"
+      ],
+      "club_competitions": [
+        "bundesliga"
+      ],
+      "national_appearances": 2,
+      "portrait_primaries": []
+    },
+    {
+      "nation": "Germany",
+      "player": "Kevin Schade",
+      "slug": "kevin-schade",
+      "player_id": "1fec6298-27cd-5f44-9a1a-8e277f120878",
+      "espn_ids": [
+        "310958"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 5,
+      "club_teams": [
+        "Brentford"
+      ],
+      "club_competitions": [
+        "premier-league"
+      ],
+      "national_appearances": 2,
+      "portrait_primaries": []
+    },
+    {
+      "nation": "Germany",
+      "player": "Chris Führich",
+      "slug": "chris-fuhrich",
+      "player_id": "236b3cdd-3076-548c-992a-2149ec6148fd",
+      "espn_ids": [
+        "268951"
+      ],
+      "crosswalks": [
+        "espn:attribute_corroborated",
+        "wyscout:founding"
+      ],
+      "club_appearances": 6,
+      "club_teams": [
+        "Stuttgart",
+        "Köln"
+      ],
+      "club_competitions": [
+        "bundesliga",
+        "uefa-champions-league"
+      ],
+      "national_appearances": 2,
+      "portrait_primaries": [
+        "approved"
+      ]
+    },
+    {
+      "nation": "Portugal",
+      "player": "Renato Veiga",
+      "slug": "renato-veiga",
+      "player_id": "01c4d486-002d-5cfd-a795-74cdf98ee08a",
+      "espn_ids": [
+        "337011"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 1,
+      "club_teams": [
+        "Villarreal"
+      ],
+      "club_competitions": [
+        "uefa-champions-league"
+      ],
+      "national_appearances": 2,
+      "portrait_primaries": []
+    },
+    {
+      "nation": "Portugal",
+      "player": "João Cancelo",
+      "slug": "joao-cancelo",
+      "player_id": "2133d303-c29a-52da-b2fd-70c5820c46ee",
+      "espn_ids": [
+        "176399"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 1,
+      "club_teams": [
+        "Barcelona"
+      ],
+      "club_competitions": [
+        "uefa-champions-league"
+      ],
+      "national_appearances": 2,
+      "portrait_primaries": [
+        "approved"
+      ]
+    },
+    {
+      "nation": "Portugal",
+      "player": "Gonçalo Inácio",
+      "slug": "goncalo-inacio",
+      "player_id": "239025ee-e43e-5f03-a20b-6c57efd5f0d3",
+      "espn_ids": [
+        "304106"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 1,
+      "club_teams": [
+        "Sporting CP"
+      ],
+      "club_competitions": [
+        "uefa-champions-league"
+      ],
+      "national_appearances": 1,
+      "portrait_primaries": []
+    },
+    {
+      "nation": "Spain",
+      "player": "Pau Cubarsí",
+      "slug": "pau-cubarsi",
+      "player_id": "0346dd23-525d-5172-ae72-708398968d43",
+      "espn_ids": [
+        "368992"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 1,
+      "club_teams": [
+        "Barcelona"
+      ],
+      "club_competitions": [
+        "uefa-champions-league"
+      ],
+      "national_appearances": 1,
+      "portrait_primaries": [
+        "approved"
+      ]
+    },
+    {
+      "nation": "Spain",
+      "player": "Pedri",
+      "slug": "pedri",
+      "player_id": "10232e78-679b-5d50-9981-b9a84bd111af",
+      "espn_ids": [
+        "250465"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 1,
+      "club_teams": [
+        "Barcelona"
+      ],
+      "club_competitions": [
+        "uefa-champions-league"
+      ],
+      "national_appearances": 1,
+      "portrait_primaries": [
+        "approved"
+      ]
+    },
+    {
+      "nation": "Spain",
+      "player": "Ferran Torres",
+      "slug": "ferran-torres",
+      "player_id": "252b6a39-e50d-593d-8a47-e4e503b80b3c",
+      "espn_ids": [
+        "265869"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 1,
+      "club_teams": [
+        "Paris Saint-Germain"
+      ],
+      "club_competitions": [
+        "uefa-champions-league"
+      ],
+      "national_appearances": 1,
+      "portrait_primaries": [
+        "approved"
+      ]
+    },
+    {
+      "nation": "England",
+      "player": "Trent Alexander-Arnold",
+      "slug": "trent-alexander-arnold",
+      "player_id": "02ea2f75-e465-58bc-8783-d01b5cd76709",
+      "espn_ids": [
+        "223532"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 1,
+      "club_teams": [
+        "Real Madrid"
+      ],
+      "club_competitions": [
+        "uefa-champions-league"
+      ],
+      "national_appearances": 1,
+      "portrait_primaries": [
+        "approved"
+      ]
+    },
+    {
+      "nation": "England",
+      "player": "Jason Steele",
+      "slug": "jason-steele",
+      "player_id": "1c4d57ba-418b-5a06-86bf-0a12b94baedf",
+      "espn_ids": [
+        "111114"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 5,
+      "club_teams": [
+        "Brighton & Hove Albion"
+      ],
+      "club_competitions": [
+        "premier-league"
+      ],
+      "national_appearances": 1,
+      "portrait_primaries": [
+        "approved"
+      ]
+    },
+    {
+      "nation": "England",
+      "player": "Nico O'Reilly",
+      "slug": "nico-o-reilly",
+      "player_id": "2b1839fa-376d-54c5-91ed-7b769b09f0c7",
+      "espn_ids": [
+        "328464"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 4,
+      "club_teams": [
+        "Manchester City"
+      ],
+      "club_competitions": [
+        "premier-league"
+      ],
+      "national_appearances": 1,
+      "portrait_primaries": [
+        "approved"
+      ]
+    },
+    {
+      "nation": "France",
+      "player": "Jérémy Jacquet",
+      "slug": "jeremy-jacquet",
+      "player_id": "12d82df1-a58b-5d53-a9a7-31e15fedd89c",
+      "espn_ids": [
+        "355980"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 6,
+      "club_teams": [
+        "Liverpool"
+      ],
+      "club_competitions": [
+        "uefa-champions-league",
+        "premier-league"
+      ],
+      "national_appearances": 2,
+      "portrait_primaries": [
+        "approved"
+      ]
+    },
+    {
+      "nation": "France",
+      "player": "Andy Diouf",
+      "slug": "andy-diouf",
+      "player_id": "1404080b-c439-576b-b5e8-30f73a5d39c8",
+      "espn_ids": [
+        "319167"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 1,
+      "club_teams": [
+        "Internazionale"
+      ],
+      "club_competitions": [
+        "uefa-champions-league"
+      ],
+      "national_appearances": 2,
+      "portrait_primaries": []
+    },
+    {
+      "nation": "France",
+      "player": "Maghnes Akliouche",
+      "slug": "maghnes-akliouche",
+      "player_id": "1d4b081f-7e55-5177-9576-df50a7fb36a3",
+      "espn_ids": [
+        "329690"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 1,
+      "club_teams": [
+        "Paris Saint-Germain"
+      ],
+      "club_competitions": [
+        "uefa-champions-league"
+      ],
+      "national_appearances": 2,
+      "portrait_primaries": [
+        "approved"
+      ]
+    },
+    {
+      "nation": "Italy",
+      "player": "Nicolò Barella",
+      "slug": "nicolo-barella",
+      "player_id": "10141d11-08bf-5341-87a3-7b3f403a4396",
+      "espn_ids": [
+        "204441"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 1,
+      "club_teams": [
+        "Internazionale"
+      ],
+      "club_competitions": [
+        "uefa-champions-league"
+      ],
+      "national_appearances": 1,
+      "portrait_primaries": [
+        "approved"
+      ]
+    },
+    {
+      "nation": "Italy",
+      "player": "Alessandro Bastoni",
+      "slug": "alessandro-bastoni",
+      "player_id": "35ee6660-bdbf-59b9-b5ff-93d2e1a27a11",
+      "espn_ids": [
+        "249280"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 1,
+      "club_teams": [
+        "Internazionale"
+      ],
+      "club_competitions": [
+        "uefa-champions-league"
+      ],
+      "national_appearances": 1,
+      "portrait_primaries": [
+        "approved"
+      ]
+    },
+    {
+      "nation": "Italy",
+      "player": "Gianluigi Donnarumma",
+      "slug": "gianluigi-donnarumma",
+      "player_id": "435925cf-e894-5bca-8d98-1596895affe5",
+      "espn_ids": [
+        "217092"
+      ],
+      "crosswalks": [
+        "espn:founding"
+      ],
+      "club_appearances": 6,
+      "club_teams": [
+        "Manchester City"
+      ],
+      "club_competitions": [
+        "premier-league",
+        "uefa-champions-league"
+      ],
+      "national_appearances": 2,
+      "portrait_primaries": [
+        "approved"
+      ]
+    }
+  ]
+}

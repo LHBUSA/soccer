@@ -1,0 +1,275 @@
+{
+  "at": "2026-09-29T02:42:37.930Z",
+  "note": "READ-ONLY. Held per entity by provider-media.mjs; identities and DOBs untouched.",
+  "birth_date_contradictions": [
+    {
+      "canonical_player_id": "1119052b-51c2-552e-b836-644b531dcc68",
+      "canonical_name": "Kyle Smith",
+      "slug": "kyle-smith",
+      "canonical_dob": "2004-06-07",
+      "espn_athlete_id": "236641",
+      "espn_name": "Kyle Smith",
+      "espn_dob": "1992-01-09",
+      "difference_days": -4533,
+      "roster_team": "FC Cincinnati",
+      "roster_competition": "mls",
+      "teams_in_sourced_lineups": [
+        "FC Cincinnati (club)"
+      ],
+      "crosswalks": [
+        "espn:236641:founding"
+      ]
+    },
+    {
+      "canonical_player_id": "3c5660e7-39d2-57a8-b6e8-cc3cd80c7774",
+      "canonical_name": "Raheem Edwards",
+      "slug": "raheem-edwards",
+      "canonical_dob": "1995-07-17",
+      "espn_athlete_id": "237164",
+      "espn_name": "Raheem Edwards",
+      "espn_dob": "2002-08-14",
+      "difference_days": 2585,
+      "roster_team": "Toronto FC",
+      "roster_competition": "mls",
+      "teams_in_sourced_lineups": [
+        "Toronto FC (club)"
+      ],
+      "crosswalks": [
+        "espn:237164:founding"
+      ]
+    }
+  ],
+  "athlete_not_in_crosswalk": {
+    "count": 38,
+    "athletes": [
+      {
+        "espn_athlete_id": "323247",
+        "espn_name": "Nelson Quiñones",
+        "team": "Houston Dynamo FC",
+        "competition": "mls"
+      },
+      {
+        "espn_athlete_id": "318476",
+        "espn_name": "Anthony Marcucci",
+        "team": "Red Bull New York",
+        "competition": "mls"
+      },
+      {
+        "espn_athlete_id": "256614",
+        "espn_name": "Brady Scott",
+        "team": "LA Galaxy",
+        "competition": "mls"
+      },
+      {
+        "espn_athlete_id": "270611",
+        "espn_name": "Ricard Puig",
+        "team": "LA Galaxy",
+        "competition": "mls"
+      },
+      {
+        "espn_athlete_id": "73591",
+        "espn_name": "Luis Rivera",
+        "team": "Real Salt Lake",
+        "competition": "mls"
+      },
+      {
+        "espn_athlete_id": "314829",
+        "espn_name": "Geovane Jesus",
+        "team": "FC Dallas",
+        "competition": "mls"
+      },
+      {
+        "espn_athlete_id": "354887",
+        "espn_name": "Caden Glover",
+        "team": "St. Louis CITY SC",
+        "competition": "mls"
+      },
+      {
+        "espn_athlete_id": "256444",
+        "espn_name": "Luis Barraza",
+        "team": "Inter Miami CF",
+        "competition": "mls"
+      },
+      {
+        "espn_athlete_id": "286719",
+        "espn_name": "Julian Gaines",
+        "team": "Nashville SC",
+        "competition": "mls"
+      },
+      {
+        "espn_athlete_id": "304435",
+        "espn_name": "Isaiah LeFlore",
+        "team": "Nashville SC",
+        "competition": "mls"
+      },
+      {
+        "espn_athlete_id": "289300",
+        "espn_name": "Gabriel Segal",
+        "team": "D.C. United",
+        "competition": "mls"
+      },
+      {
+        "espn_athlete_id": "259863",
+        "espn_name": "Tyrell Malacia",
+        "team": "FC Cincinnati",
+        "competition": "mls"
+      },
+      {
+        "espn_athlete_id": "355456",
+        "espn_name": "Nimfasha Berchimas",
+        "team": "Charlotte FC",
+        "competition": "mls"
+      },
+      {
+        "espn_athlete_id": "348787",
+        "espn_name": "Yankuba Minteh",
+        "team": "Brighton & Hove Albion",
+        "competition": "premier-league"
+      },
+      {
+        "espn_athlete_id": "332962",
+        "espn_name": "Xavi Simons",
+        "team": "Tottenham Hotspur",
+        "competition": "premier-league"
+      },
+      {
+        "espn_athlete_id": "246825",
+        "espn_name": "Azor Matusiwa",
+        "team": "Ipswich Town",
+        "competition": "premier-league"
+      },
+      {
+        "espn_athlete_id": "321081",
+        "espn_name": "Antoni Milambo",
+        "team": "Brentford",
+        "competition": "premier-league"
+      },
+      {
+        "espn_athlete_id": "280764",
+        "espn_name": "Julián Araujo",
+        "team": "AFC Bournemouth",
+        "competition": "premier-league"
+      },
+      {
+        "espn_athlete_id": "286774",
+        "espn_name": "Gaga Slonina",
+        "team": "Chelsea",
+        "competition": "premier-league"
+      },
+      {
+        "espn_athlete_id": "304871",
+        "espn_name": "Emmanuel Emegha",
+        "team": "Chelsea",
+        "competition": "premier-league"
+      },
+      {
+        "espn_athlete_id": "290412",
+        "espn_name": "Immanuel Pherai",
+        "team": "Hamburger SV",
+        "competition": "bundesliga"
+      },
+      {
+        "espn_athlete_id": "345509",
+        "espn_name": "Mannou Berger",
+        "team": "Feyenoord Rotterdam",
+        "competition": "uefa-champions-league"
+      },
+      {
+        "espn_athlete_id": "215172",
+        "espn_name": "Bart Nieuwkoop",
+        "team": "Feyenoord Rotterdam",
+        "competition": "uefa-champions-league"
+      },
+      {
+        "espn_athlete_id": "240911",
+        "espn_name": "Gijs Smal",
+        "team": "Feyenoord Rotterdam",
+        "competition": "uefa-champions-league"
+      },
+      {
+        "espn_athlete_id": "324952",
+        "espn_name": "Thomas Beelen",
+        "team": "Feyenoord Rotterdam",
+        "competition": "uefa-champions-league"
+      },
+      {
+        "espn_athlete_id": "3102195",
+        "espn_name": "Tijme Wessels",
+        "team": "Feyenoord Rotterdam",
+        "competition": "uefa-champions-league"
+      },
+      {
+        "espn_athlete_id": "287461",
+        "espn_name": "Jakub Moder",
+        "team": "Feyenoord Rotterdam",
+        "competition": "uefa-champions-league"
+      },
+      {
+        "espn_athlete_id": "406923",
+        "espn_name": "Jivayno Zinhagel",
+        "team": "Feyenoord Rotterdam",
+        "competition": "uefa-champions-league"
+      },
+      {
+        "espn_athlete_id": "259136",
+        "espn_name": "Mauro Júnior",
+        "team": "PSV Eindhoven",
+        "competition": "uefa-champions-league"
+      },
+      {
+        "espn_athlete_id": "301279",
+        "espn_name": "Kiliann Sildillia",
+        "team": "PSV Eindhoven",
+        "competition": "uefa-champions-league"
+      },
+      {
+        "espn_athlete_id": "239998",
+        "espn_name": "Jerdy Schouten",
+        "team": "PSV Eindhoven",
+        "competition": "uefa-champions-league"
+      },
+      {
+        "espn_athlete_id": "168318",
+        "espn_name": "Alassane Pléa",
+        "team": "PSV Eindhoven",
+        "competition": "uefa-champions-league"
+      },
+      {
+        "espn_athlete_id": "224042",
+        "espn_name": "Sam Lammers",
+        "team": "PSV Eindhoven",
+        "competition": "uefa-champions-league"
+      },
+      {
+        "espn_athlete_id": "318956",
+        "espn_name": "Samuel Adeniran",
+        "team": "LASK Linz",
+        "competition": "uefa-champions-league"
+      },
+      {
+        "espn_athlete_id": "271088",
+        "espn_name": "Hakon Evjen",
+        "team": "Bodo/Glimt",
+        "competition": "uefa-champions-league"
+      },
+      {
+        "espn_athlete_id": "328745",
+        "espn_name": "Milan Robberechts",
+        "team": "Club Brugge",
+        "competition": "uefa-champions-league"
+      },
+      {
+        "espn_athlete_id": "304866",
+        "espn_name": "Jayden Oosterwolde",
+        "team": "Fenerbahce",
+        "competition": "uefa-champions-league"
+      },
+      {
+        "espn_athlete_id": "191945",
+        "espn_name": "Matús Bero",
+        "team": "Slovakia",
+        "competition": "uefa-nations-league"
+      }
+    ]
+  }
+}

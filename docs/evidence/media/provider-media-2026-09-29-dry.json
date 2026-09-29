@@ -2,8 +2,8 @@
   "version": "media-provider/1.0.0",
   "policy_version": "2026-09-28.2",
   "owner_policy": "owner-identification/2026-09-28",
-  "started_at": "2026-09-29T02:42:46.021Z",
-  "dry": false,
+  "started_at": "2026-09-29T02:25:46.579Z",
+  "dry": true,
   "crests": {
     "by_competition": {
       "mls": {
@@ -50,7 +50,7 @@
         "source": "ESPN team artwork (exact ESPN team id 9726, listed in usa.1 as \"Seattle Sounders FC\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/9726.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -64,7 +64,7 @@
         "source": "ESPN team artwork (exact ESPN team id 18966, listed in usa.1 as \"LAFC\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/18966.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -78,7 +78,7 @@
         "source": "ESPN team artwork (exact ESPN team id 20906, listed in usa.1 as \"Austin FC\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/20906.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -92,7 +92,7 @@
         "source": "ESPN team artwork (exact ESPN team id 17362, listed in usa.1 as \"Minnesota United FC\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/17362.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -106,7 +106,7 @@
         "source": "ESPN team artwork (exact ESPN team id 182, listed in usa.1 as \"Chicago Fire FC\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/182.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -120,7 +120,7 @@
         "source": "ESPN team artwork (exact ESPN team id 22529, listed in usa.1 as \"San Diego FC\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/22529.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -134,7 +134,7 @@
         "source": "ESPN team artwork (exact ESPN team id 6077, listed in usa.1 as \"Houston Dynamo FC\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/6077.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -148,7 +148,7 @@
         "source": "ESPN team artwork (exact ESPN team id 190, listed in usa.1 as \"Red Bull New York\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/190.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -162,7 +162,7 @@
         "source": "ESPN team artwork (exact ESPN team id 187, listed in usa.1 as \"LA Galaxy\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/187.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -176,7 +176,7 @@
         "source": "ESPN team artwork (exact ESPN team id 4771, listed in usa.1 as \"Real Salt Lake\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/4771.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -190,7 +190,7 @@
         "source": "ESPN team artwork (exact ESPN team id 185, listed in usa.1 as \"FC Dallas\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/185.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -204,7 +204,7 @@
         "source": "ESPN team artwork (exact ESPN team id 9723, listed in usa.1 as \"Portland Timbers\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/9723.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -218,7 +218,7 @@
         "source": "ESPN team artwork (exact ESPN team id 191, listed in usa.1 as \"San Jose Earthquakes\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/191.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -232,7 +232,7 @@
         "source": "ESPN team artwork (exact ESPN team id 184, listed in usa.1 as \"Colorado Rapids\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/184.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -246,7 +246,7 @@
         "source": "ESPN team artwork (exact ESPN team id 21812, listed in usa.1 as \"St. Louis CITY SC\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21812.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -260,7 +260,7 @@
         "source": "ESPN team artwork (exact ESPN team id 9727, listed in usa.1 as \"Vancouver Whitecaps\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/9727.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -274,7 +274,7 @@
         "source": "ESPN team artwork (exact ESPN team id 186, listed in usa.1 as \"Sporting Kansas City\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/186.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -288,7 +288,7 @@
         "source": "ESPN team artwork (exact ESPN team id 9720, listed in usa.1 as \"CF Montréal\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/9720.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -302,7 +302,7 @@
         "source": "ESPN team artwork (exact ESPN team id 12011, listed in usa.1 as \"Orlando City SC\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/12011.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -316,7 +316,7 @@
         "source": "ESPN team artwork (exact ESPN team id 20232, listed in usa.1 as \"Inter Miami CF\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/20232.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -330,7 +330,7 @@
         "source": "ESPN team artwork (exact ESPN team id 18986, listed in usa.1 as \"Nashville SC\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/18986.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -344,7 +344,7 @@
         "source": "ESPN team artwork (exact ESPN team id 10739, listed in usa.1 as \"Philadelphia Union\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/10739.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -358,7 +358,7 @@
         "source": "ESPN team artwork (exact ESPN team id 193, listed in usa.1 as \"D.C. United\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/193.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -372,7 +372,7 @@
         "source": "ESPN team artwork (exact ESPN team id 18418, listed in usa.1 as \"Atlanta United FC\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/18418.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -386,7 +386,7 @@
         "source": "ESPN team artwork (exact ESPN team id 18267, listed in usa.1 as \"FC Cincinnati\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/18267.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -400,7 +400,7 @@
         "source": "ESPN team artwork (exact ESPN team id 21300, listed in usa.1 as \"Charlotte FC\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21300.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -414,7 +414,7 @@
         "source": "ESPN team artwork (exact ESPN team id 17606, listed in usa.1 as \"New York City FC\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/17606.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -428,7 +428,7 @@
         "source": "ESPN team artwork (exact ESPN team id 7318, listed in usa.1 as \"Toronto FC\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/7318.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -442,7 +442,7 @@
         "source": "ESPN team artwork (exact ESPN team id 189, listed in usa.1 as \"New England Revolution\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/189.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "mls",
@@ -456,7 +456,7 @@
         "source": "ESPN team artwork (exact ESPN team id 183, listed in usa.1 as \"Columbus Crew\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/183.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "premier-league",
@@ -470,7 +470,7 @@
         "source": "ESPN team artwork (exact ESPN team id 331, listed in eng.1 as \"Brighton & Hove Albion\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/331.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "premier-league",
@@ -485,7 +485,7 @@
         "source": "ESPN team artwork (exact ESPN team id 364, listed in eng.1 as \"Liverpool\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/364.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "premier-league",
@@ -499,7 +499,7 @@
         "source": "ESPN team artwork (exact ESPN team id 384, listed in eng.1 as \"Crystal Palace\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/384.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "premier-league",
@@ -514,7 +514,7 @@
         "source": "ESPN team artwork (exact ESPN team id 382, listed in eng.1 as \"Manchester City\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/382.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "premier-league",
@@ -528,7 +528,7 @@
         "source": "ESPN team artwork (exact ESPN team id 367, listed in eng.1 as \"Tottenham Hotspur\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/367.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "premier-league",
@@ -543,7 +543,7 @@
         "source": "ESPN team artwork (exact ESPN team id 362, listed in eng.1 as \"Aston Villa\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/362.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "premier-league",
@@ -557,7 +557,7 @@
         "source": "ESPN team artwork (exact ESPN team id 368, listed in eng.1 as \"Everton\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/368.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "premier-league",
@@ -571,7 +571,7 @@
         "source": "ESPN team artwork (exact ESPN team id 357, listed in eng.1 as \"Leeds United\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/357.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "premier-league",
@@ -585,7 +585,7 @@
         "source": "ESPN team artwork (exact ESPN team id 388, listed in eng.1 as \"Coventry City\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/388.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "premier-league",
@@ -599,7 +599,7 @@
         "source": "ESPN team artwork (exact ESPN team id 370, listed in eng.1 as \"Fulham\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/370.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "premier-league",
@@ -613,7 +613,7 @@
         "source": "ESPN team artwork (exact ESPN team id 361, listed in eng.1 as \"Newcastle United\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/361.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "premier-league",
@@ -627,7 +627,7 @@
         "source": "ESPN team artwork (exact ESPN team id 373, listed in eng.1 as \"Ipswich Town\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/373.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "premier-league",
@@ -641,7 +641,7 @@
         "source": "ESPN team artwork (exact ESPN team id 337, listed in eng.1 as \"Brentford\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/337.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "premier-league",
@@ -655,7 +655,7 @@
         "source": "ESPN team artwork (exact ESPN team id 366, listed in eng.1 as \"Sunderland\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/366.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "premier-league",
@@ -670,7 +670,7 @@
         "source": "ESPN team artwork (exact ESPN team id 359, listed in eng.1 as \"Arsenal\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/359.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "premier-league",
@@ -684,7 +684,7 @@
         "source": "ESPN team artwork (exact ESPN team id 393, listed in eng.1 as \"Nottingham Forest\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/393.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "premier-league",
@@ -698,7 +698,7 @@
         "source": "ESPN team artwork (exact ESPN team id 349, listed in eng.1 as \"AFC Bournemouth\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/349.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "premier-league",
@@ -712,7 +712,7 @@
         "source": "ESPN team artwork (exact ESPN team id 363, listed in eng.1 as \"Chelsea\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/363.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "premier-league",
@@ -727,7 +727,7 @@
         "source": "ESPN team artwork (exact ESPN team id 360, listed in eng.1 as \"Manchester United\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/360.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "premier-league",
@@ -741,7 +741,7 @@
         "source": "ESPN team artwork (exact ESPN team id 306, listed in eng.1 as \"Hull City\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/306.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "bundesliga",
@@ -756,7 +756,7 @@
         "source": "ESPN team artwork (exact ESPN team id 11420, listed in ger.1 as \"RB Leipzig\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/11420.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "bundesliga",
@@ -770,7 +770,7 @@
         "source": "ESPN team artwork (exact ESPN team id 126, listed in ger.1 as \"SC Freiburg\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/126.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "bundesliga",
@@ -798,7 +798,7 @@
         "source": "ESPN team artwork (exact ESPN team id 7911, listed in ger.1 as \"TSG Hoffenheim\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/7911.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "bundesliga",
@@ -812,7 +812,7 @@
         "source": "ESPN team artwork (exact ESPN team id 598, listed in ger.1 as \"1. FC Union Berlin\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/598.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "bundesliga",
@@ -852,7 +852,7 @@
         "source": "ESPN team artwork (exact ESPN team id 131, listed in ger.1 as \"Bayer Leverkusen\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/131.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "bundesliga",
@@ -866,7 +866,7 @@
         "source": "ESPN team artwork (exact ESPN team id 133, listed in ger.1 as \"Schalke 04\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/133.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "bundesliga",
@@ -880,7 +880,7 @@
         "source": "ESPN team artwork (exact ESPN team id 122, listed in ger.1 as \"FC Cologne\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/122.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "bundesliga",
@@ -908,7 +908,7 @@
         "source": "ESPN team artwork (exact ESPN team id 10388, listed in ger.1 as \"SV Elversberg\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/10388.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "bundesliga",
@@ -922,7 +922,7 @@
         "source": "ESPN team artwork (exact ESPN team id 3307, listed in ger.1 as \"SC Paderborn 07\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/3307.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "bundesliga",
@@ -936,7 +936,7 @@
         "source": "ESPN team artwork (exact ESPN team id 3841, listed in ger.1 as \"FC Augsburg\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/3841.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "bundesliga",
@@ -950,7 +950,7 @@
         "source": "ESPN team artwork (exact ESPN team id 125, listed in ger.1 as \"Eintracht Frankfurt\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/125.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "bundesliga",
@@ -965,7 +965,7 @@
         "source": "ESPN team artwork (exact ESPN team id 134, listed in ger.1 as \"VfB Stuttgart\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/134.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "bundesliga",
@@ -1005,7 +1005,7 @@
         "source": "ESPN team artwork (exact ESPN team id 244, listed in uefa.champions as \"Real Betis\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/244.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1019,7 +1019,7 @@
         "source": "ESPN team artwork (exact ESPN team id 142, listed in uefa.champions as \"Feyenoord Rotterdam\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/142.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1033,7 +1033,7 @@
         "source": "ESPN team artwork (exact ESPN team id 2572, listed in uefa.champions as \"Como\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/2572.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1047,7 +1047,7 @@
         "source": "ESPN team artwork (exact ESPN team id 437, listed in uefa.champions as \"FC Porto\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/437.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1061,7 +1061,7 @@
         "source": "ESPN team artwork (exact ESPN team id 493, listed in uefa.champions as \"Shakhtar Donetsk\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/493.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1075,7 +1075,7 @@
         "source": "ESPN team artwork (exact ESPN team id 175, listed in uefa.champions as \"Lens\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/175.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1089,7 +1089,7 @@
         "source": "ESPN team artwork (exact ESPN team id 148, listed in uefa.champions as \"PSV Eindhoven\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/148.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1103,7 +1103,7 @@
         "source": "ESPN team artwork (exact ESPN team id 21922, listed in uefa.champions as \"Sabah FK\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21922.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1130,7 +1130,7 @@
         "source": "ESPN team artwork (exact ESPN team id 83, listed in uefa.champions as \"Barcelona\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/83.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1144,7 +1144,7 @@
         "source": "ESPN team artwork (exact ESPN team id 494, listed in uefa.champions as \"Slavia Prague\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/494.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1158,7 +1158,7 @@
         "source": "ESPN team artwork (exact ESPN team id 887, listed in uefa.champions as \"AEK Athens\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/887.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1172,7 +1172,7 @@
         "source": "ESPN team artwork (exact ESPN team id 432, listed in uefa.champions as \"Galatasaray\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/432.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1186,7 +1186,7 @@
         "source": "ESPN team artwork (exact ESPN team id 104, listed in uefa.champions as \"AS Roma\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/104.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1200,7 +1200,7 @@
         "source": "ESPN team artwork (exact ESPN team id 86, listed in uefa.champions as \"Real Madrid\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1214,7 +1214,7 @@
         "source": "ESPN team artwork (exact ESPN team id 4411, listed in uefa.champions as \"LASK Linz\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/4411.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1228,7 +1228,7 @@
         "source": "ESPN team artwork (exact ESPN team id 102, listed in uefa.champions as \"Villarreal\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/102.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1242,7 +1242,7 @@
         "source": "ESPN team artwork (exact ESPN team id 1068, listed in uefa.champions as \"Atlético Madrid\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/1068.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1269,7 +1269,7 @@
         "source": "ESPN team artwork (exact ESPN team id 2980, listed in uefa.champions as \"Bodo/Glimt\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/2980.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1283,7 +1283,7 @@
         "source": "ESPN team artwork (exact ESPN team id 166, listed in uefa.champions as \"Lille\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/166.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1297,7 +1297,7 @@
         "source": "ESPN team artwork (exact ESPN team id 2250, listed in uefa.champions as \"Sporting CP\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/2250.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1311,7 +1311,7 @@
         "source": "ESPN team artwork (exact ESPN team id 160, listed in uefa.champions as \"Paris Saint-Germain\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/160.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1325,7 +1325,7 @@
         "source": "ESPN team artwork (exact ESPN team id 570, listed in uefa.champions as \"Club Brugge\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/570.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1339,7 +1339,7 @@
         "source": "ESPN team artwork (exact ESPN team id 436, listed in uefa.champions as \"Fenerbahce\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/436.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1353,7 +1353,7 @@
         "source": "ESPN team artwork (exact ESPN team id 521, listed in uefa.champions as \"Slovan Bratislava\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/521.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-champions-league",
@@ -1367,7 +1367,7 @@
         "source": "ESPN team artwork (exact ESPN team id 510, listed in uefa.champions as \"Viking FK\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/soccer/500/510.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1381,7 +1381,7 @@
         "source": "ESPN team artwork (exact ESPN team id 474, listed in uefa.nations as \"Austria\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/aut.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1395,7 +1395,7 @@
         "source": "ESPN team artwork (exact ESPN team id 18272, listed in uefa.nations as \"Kosovo\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/kosovo.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1409,7 +1409,7 @@
         "source": "ESPN team artwork (exact ESPN team id 476, listed in uefa.nations as \"Republic of Ireland\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/irl.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1423,7 +1423,7 @@
         "source": "ESPN team artwork (exact ESPN team id 461, listed in uefa.nations as \"Israel\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/isr.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1437,7 +1437,7 @@
         "source": "ESPN team artwork (exact ESPN team id 449, listed in uefa.nations as \"Netherlands\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/ned.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1451,7 +1451,7 @@
         "source": "ESPN team artwork (exact ESPN team id 481, listed in uefa.nations as \"Germany\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/ger.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1465,7 +1465,7 @@
         "source": "ESPN team artwork (exact ESPN team id 455, listed in uefa.nations as \"Greece\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/gre.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1479,7 +1479,7 @@
         "source": "ESPN team artwork (exact ESPN team id 6757, listed in uefa.nations as \"Serbia\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/sba.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1493,7 +1493,7 @@
         "source": "ESPN team artwork (exact ESPN team id 2619, listed in uefa.nations as \"Kazakhstan\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/kaz.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1507,7 +1507,7 @@
         "source": "ESPN team artwork (exact ESPN team id 468, listed in uefa.nations as \"Slovakia\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/svk.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1521,7 +1521,7 @@
         "source": "ESPN team artwork (exact ESPN team id 447, listed in uefa.nations as \"Faroe Islands\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/fro.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1535,7 +1535,7 @@
         "source": "ESPN team artwork (exact ESPN team id 483, listed in uefa.nations as \"Moldova\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/mda.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1549,7 +1549,7 @@
         "source": "ESPN team artwork (exact ESPN team id 460, listed in uefa.nations as \"Lithuania\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/ltu.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1563,7 +1563,7 @@
         "source": "ESPN team artwork (exact ESPN team id 581, listed in uefa.nations as \"Azerbaijan\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/aze.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1577,7 +1577,7 @@
         "source": "ESPN team artwork (exact ESPN team id 589, listed in uefa.nations as \"Liechtenstein\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/lie.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1591,7 +1591,7 @@
         "source": "ESPN team artwork (exact ESPN team id 479, listed in uefa.nations as \"Denmark\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/den.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1605,7 +1605,7 @@
         "source": "ESPN team artwork (exact ESPN team id 464, listed in uefa.nations as \"Norway\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/nor.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1619,7 +1619,7 @@
         "source": "ESPN team artwork (exact ESPN team id 482, listed in uefa.nations as \"Portugal\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/por.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1633,7 +1633,7 @@
         "source": "ESPN team artwork (exact ESPN team id 578, listed in uefa.nations as \"Wales\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/wal.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1647,7 +1647,7 @@
         "source": "ESPN team artwork (exact ESPN team id 473, listed in uefa.nations as \"Romania\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/rom.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1661,7 +1661,7 @@
         "source": "ESPN team artwork (exact ESPN team id 471, listed in uefa.nations as \"Poland\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/pol.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1675,7 +1675,7 @@
         "source": "ESPN team artwork (exact ESPN team id 452, listed in uefa.nations as \"Bosnia-Herzegovina\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/bih.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1689,7 +1689,7 @@
         "source": "ESPN team artwork (exact ESPN team id 466, listed in uefa.nations as \"Sweden\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/swe.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1703,7 +1703,7 @@
         "source": "ESPN team artwork (exact ESPN team id 480, listed in uefa.nations as \"Hungary\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/hun.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1717,7 +1717,7 @@
         "source": "ESPN team artwork (exact ESPN team id 457, listed in uefa.nations as \"Ukraine\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/ukr.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1731,7 +1731,7 @@
         "source": "ESPN team artwork (exact ESPN team id 586, listed in uefa.nations as \"Northern Ireland\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/nir.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1745,7 +1745,7 @@
         "source": "ESPN team artwork (exact ESPN team id 584, listed in uefa.nations as \"Georgia\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/geo.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1759,7 +1759,7 @@
         "source": "ESPN team artwork (exact ESPN team id 580, listed in uefa.nations as \"Scotland\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/sco.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1773,7 +1773,7 @@
         "source": "ESPN team artwork (exact ESPN team id 463, listed in uefa.nations as \"North Macedonia\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/mkd.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1787,7 +1787,7 @@
         "source": "ESPN team artwork (exact ESPN team id 472, listed in uefa.nations as \"Slovenia\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/svn.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1801,7 +1801,7 @@
         "source": "ESPN team artwork (exact ESPN team id 475, listed in uefa.nations as \"Switzerland\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/sui.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1815,7 +1815,7 @@
         "source": "ESPN team artwork (exact ESPN team id 462, listed in uefa.nations as \"Bulgaria\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/bul.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1829,7 +1829,7 @@
         "source": "ESPN team artwork (exact ESPN team id 582, listed in uefa.nations as \"Luxembourg\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/lux.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1843,7 +1843,7 @@
         "source": "ESPN team artwork (exact ESPN team id 470, listed in uefa.nations as \"Iceland\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/isl.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1857,7 +1857,7 @@
         "source": "ESPN team artwork (exact ESPN team id 444, listed in uefa.nations as \"Estonia\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/est.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1871,7 +1871,7 @@
         "source": "ESPN team artwork (exact ESPN team id 6775, listed in uefa.nations as \"Montenegro\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/mtg.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1885,7 +1885,7 @@
         "source": "ESPN team artwork (exact ESPN team id 445, listed in uefa.nations as \"Cyprus\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/cyp.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1899,7 +1899,7 @@
         "source": "ESPN team artwork (exact ESPN team id 579, listed in uefa.nations as \"Armenia\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/fifa.armenia.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1913,7 +1913,7 @@
         "source": "ESPN team artwork (exact ESPN team id 456, listed in uefa.nations as \"Latvia\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/lva.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1927,7 +1927,7 @@
         "source": "ESPN team artwork (exact ESPN team id 588, listed in uefa.nations as \"San Marino\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/smr.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1941,7 +1941,7 @@
         "source": "ESPN team artwork (exact ESPN team id 585, listed in uefa.nations as \"Albania\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/alb.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1955,7 +1955,7 @@
         "source": "ESPN team artwork (exact ESPN team id 458, listed in uefa.nations as \"Finland\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/fin.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1969,7 +1969,7 @@
         "source": "ESPN team artwork (exact ESPN team id 583, listed in uefa.nations as \"Belarus\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/blr.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1983,7 +1983,7 @@
         "source": "ESPN team artwork (exact ESPN team id 465, listed in uefa.nations as \"Türkiye\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/tur.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -1997,7 +1997,7 @@
         "source": "ESPN team artwork (exact ESPN team id 459, listed in uefa.nations as \"Belgium\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/bel.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -2011,7 +2011,7 @@
         "source": "ESPN team artwork (exact ESPN team id 478, listed in uefa.nations as \"France\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/fra.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -2025,7 +2025,7 @@
         "source": "ESPN team artwork (exact ESPN team id 162, listed in uefa.nations as \"Italy\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/ita.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -2039,7 +2039,7 @@
         "source": "ESPN team artwork (exact ESPN team id 477, listed in uefa.nations as \"Croatia\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/cro.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -2053,7 +2053,7 @@
         "source": "ESPN team artwork (exact ESPN team id 450, listed in uefa.nations as \"Czechia\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/cze.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -2067,7 +2067,7 @@
         "source": "ESPN team artwork (exact ESPN team id 164, listed in uefa.nations as \"Spain\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/esp.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -2081,7 +2081,7 @@
         "source": "ESPN team artwork (exact ESPN team id 448, listed in uefa.nations as \"England\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/eng.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -2095,7 +2095,7 @@
         "source": "ESPN team artwork (exact ESPN team id 453, listed in uefa.nations as \"Malta\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/mlt.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -2109,7 +2109,7 @@
         "source": "ESPN team artwork (exact ESPN team id 16721, listed in uefa.nations as \"Gibraltar\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/gib.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       },
       {
         "competition": "uefa-nations-league",
@@ -2123,7 +2123,7 @@
         "source": "ESPN team artwork (exact ESPN team id 587, listed in uefa.nations as \"Andorra\")",
         "identity": "exact_espn_team_id",
         "url": "https://a.espncdn.com/i/teamlogos/countries/500/and.png",
-        "status": "live"
+        "status": "candidate (dry run)"
       }
     ]
   },
@@ -2136,13 +2136,8 @@
     },
     "espn_headshots_in_payloads": 483
   },
-  "cached": 33,
-  "reused": 484,
+  "cached": 0,
+  "reused": 0,
   "cache_failed": 0,
-  "sync": {
-    "inserted": 33,
-    "updated": 484,
-    "unchanged": 0
-  },
-  "finished_at": "2026-09-29T02:44:02.350Z"
+  "finished_at": "2026-09-29T02:26:37.909Z"
 }

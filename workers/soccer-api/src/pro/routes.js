@@ -10,6 +10,7 @@ import { proAccess } from './access.js';
 import { FATIGUE_VERSION, playerLoad, rotationPressure, squadStructure, teamFatigueIndex, teamLoad, xiLoad } from './fatigue.js';
 import { MATCHUP_VERSION, matchup, teamProfile } from './matchup.js';
 import { compSlugs, matchupGames, playerApps, teamWindow, teamXis } from './load.js';
+import { approvedMedia } from '../routes.js';
 
 const API_VERSION = 'soccer-pro/1.0.0';
 const DAY = 864e5;
@@ -52,12 +53,19 @@ async function people(store, ids) {
   if (!ids.length) return new Map();
   return new Map((await store.select('soccer_players', { columns: ['id', 'slug', 'display_name'], in: { id: ids.slice(0, 150) } })).map(p => [p.id, p]));
 }
-const teamRef = t => (t ? { slug: t.slug, name: t.name, short_name: t.short_name, type: t.team_type === 'national' ? 'national' : 'club' } : null);
+const teamRef = t => (t ? { slug: t.slug, name: t.name, short_name: t.short_name, type: t.team_type === 'national' ? 'national' : 'club', ...(t.crest ? { crest: t.crest } : {}) } : null);
+// The same governed crest/badge every public surface shows (displayable rows with a cached copy only).
+async function withCrests(store, teams) {
+  const crests = await approvedMedia(store, 'team', [...teams.keys()], { mediaType: 'crest', primaryOnly: true });
+  for (const [id, m] of crests) if (teams.get(id)) teams.get(id).crest = m[0];
+  return teams;
+}
 
 export async function proTeam(store, slug, access, asOf = new Date().toISOString()) {
   if (!access.granted) return denied(access);
   const [t] = await store.select('soccer_teams', { columns: ['id', 'slug', 'name', 'short_name', 'team_type'], eq: { slug, status: 'active' }, limit: 1 });
   if (!t) return { status: 404, body: { error: `team ${slug}` } };
+  await withCrests(store, new Map([[t.id, t]]));
   const comps = await compSlugs(store);
   const b = await teamBlock(store, t.id, asOf, comps);
   const ppl = await people(store, b.squad.last_xi);
@@ -75,7 +83,7 @@ export async function proMatch(store, id, access) {
   const comps = await compSlugs(store);
   // As of kickoff for an upcoming match; as of the instant before kickoff for a played one (no hindsight).
   const asOf = new Date(Math.min(Date.now(), Date.parse(m.kickoff_at) - 60e3)).toISOString();
-  const teams = new Map((await store.select('soccer_teams', { columns: ['id', 'slug', 'name', 'short_name', 'team_type'], in: { id: [m.home_team_id, m.away_team_id] } })).map(t => [t.id, t]));
+  const teams = await withCrests(store, new Map((await store.select('soccer_teams', { columns: ['id', 'slug', 'name', 'short_name', 'team_type'], in: { id: [m.home_team_id, m.away_team_id] } })).map(t => [t.id, t])));
   const [H, A] = await Promise.all([teamBlock(store, m.home_team_id, asOf, comps), teamBlock(store, m.away_team_id, asOf, comps)]);
   const [gh, ga] = await Promise.all([matchupGames(store, m.home_team_id, H.ms.filter(x => Date.parse(x.kickoff_at) < Date.parse(asOf))), matchupGames(store, m.away_team_id, A.ms.filter(x => Date.parse(x.kickoff_at) < Date.parse(asOf)))]);
   const ph = teamProfile(gh); const pa = teamProfile(ga);
@@ -99,7 +107,7 @@ export async function proBoard(store, access) {
   const upcoming = await store.select('soccer_matches', { columns: ['id', 'competition_id', 'kickoff_at', 'status', 'home_team_id', 'away_team_id'], eq: { status: 'scheduled' }, gte: { kickoff_at: now }, lte: { kickoff_at: new Date(Date.now() + 7 * DAY).toISOString() }, order: 'kickoff_at.asc', limit: 16 });
   const comps = await compSlugs(store);
   const teamIds = [...new Set(upcoming.flatMap(m => [m.home_team_id, m.away_team_id]))];
-  const teams = new Map((await store.select('soccer_teams', { columns: ['id', 'slug', 'name', 'short_name', 'team_type'], in: teamIds.length ? { id: teamIds } : { id: ['00000000-0000-0000-0000-000000000000'] } })).map(t => [t.id, t]));
+  const teams = await withCrests(store, new Map((await store.select('soccer_teams', { columns: ['id', 'slug', 'name', 'short_name', 'team_type'], in: teamIds.length ? { id: teamIds } : { id: ['00000000-0000-0000-0000-000000000000'] } })).map(t => [t.id, t])));
   const loadOf = new Map();
   for (const tid of teamIds) {
     const ms = (await teamWindow(store, tid, now, { backDays: 21, aheadDays: 8 })).map(m => ({ ...m, competition_slug: comps.get(m.competition_id) || null }));

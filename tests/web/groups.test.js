@@ -6,6 +6,7 @@ import { CLUB_COMPS, INTERNATIONAL_COMPS, compMeta, isNationalComp } from '../..
 import { groupTables, tableView } from '../../src/components/table.js';
 import { tables } from '../../src/pages/lists.js';
 import { team } from '../../src/pages/people.js';
+import { upstreamUrl } from '../../api/soccer.js';
 
 const nation = (slug, name) => ({ slug, name, short_name: name, type: 'national' });
 const row = (pos, t, pts) => ({ position: pos, team: t, played: 2, won: pts / 3, drawn: 0, lost: 2 - pts / 3, points: pts, goals_for: 2, goals_against: 1, goal_difference: 1, form: [] });
@@ -52,4 +53,10 @@ test('national team page: nation language, group position only, no club wording'
   const h = team.render({ env });
   assert.ok(h.includes('NATIONAL TEAM') && h.includes('SQUAD') && h.includes('of 4 · Group A1') && h.includes('Group D1 · table withheld'));
   assert.ok(!/\bclubs?\b/i.test(h.replace(/club football|club-league/gi, '')), 'no club wording on a national team page');
+});
+
+test('the same-origin proxy forwards expand=groups (group rows reach the page in production)', () => {
+  const u = upstreamUrl('https://soccer.propbetedge.ai/api/soccer/table?competition=uefa-nations-league&expand=groups&evil=1');
+  assert.equal(u.searchParams.get('expand'), 'groups');
+  assert.equal(u.searchParams.get('evil'), null);
 });
