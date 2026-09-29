@@ -8,6 +8,7 @@
 import { storeFromEnv } from '../../shared/postgrest.js';
 import * as R from './routes.js';
 import * as C from './cast.js';
+import { handlePro, PRO_HEADERS } from './pro/routes.js';
 
 const LANES = [{ lane: 'openligadb_bl1_current', priority: true }];
 
@@ -56,6 +57,21 @@ export default {
         return new Response(o.body, { status: 200, headers: { 'content-type': o.contentType, 'cache-control': 'public, max-age=31536000, s-maxage=31536000, immutable', 'x-content-type-options': 'nosniff', 'content-security-policy': "default-src 'none'" } });
       } catch (err) {
         return respond({ error: err.status === 404 ? 'not found' : 'upstream error' }, err.status === 404 ? 404 : 502, 0, origin);
+      }
+    }
+    // Soccer Pro: per-reader, decided server-side (auth-magic via the AUTH binding); never cached.
+    const pro = url.pathname.match(/^\/v1\/pro\/([a-z0-9/-]{1,160})$/);
+    if (pro) {
+      const store = storeFromEnv(env);
+      if (!store) return respond({ error: 'store not configured' }, 503, 0, origin);
+      try {
+        const r = await handlePro(req, env, store, pro[1]);
+        const res = respond(r.body, r.status, 0, origin);
+        for (const [k, v] of Object.entries(PRO_HEADERS)) res.headers.set(k, v);
+        return res;
+      } catch (err) {
+        console.error('soccer-api pro', url.pathname, err.message);
+        return respond({ error: 'upstream error' }, 502, 0, origin);
       }
     }
     const hit = ROUTES.map(([re, fn, ttl]) => [url.pathname.match(re), fn, ttl]).find(([m]) => m);

@@ -18,5 +18,11 @@ id = "3e665f75414849578249f5aed979b868"
 binding = "SOCCER_SOURCE"
 bucket_name = "soccer-source"
 
+# Soccer Pro: the network auth authority (propbetedge-auth-magic) answers GET /membership?sport=soccer
+# for the forwarded pbe_session. A Service Binding (a workers.dev -> workers.dev fetch fails, CF 1042).
+[[services]]
+binding = "AUTH"
+service = "propbetedge-auth-magic"
+
 [observability]
 enabled = true
