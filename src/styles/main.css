@@ -1595,3 +1595,4 @@ dialog.acct::backdrop { background: rgba(4,10,20,.6); }
 .algo-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0 0 8px; }
 .algo-research { margin: 40px 0 24px; padding: 18px 16px; border: 1px dashed var(--line-2); border-radius: var(--radius); background: var(--canvas-alt); }
 .algo-research h2 { font: 800 clamp(20px, 3vw, 26px)/1.1 var(--display); margin: 0 0 12px; letter-spacing: .02em; }
+.algo-research .ltable th:first-child, .algo-research .ltable td:first-child { text-align: left; }
