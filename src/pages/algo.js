@@ -39,8 +39,9 @@ function gameBestCard(g) {
   return `<article class="algo-gb${b.qualifies ? ' is-official' : ''}">
     <p class="algo-gb-when">${esc(dateTime(g.kickoff_at))}</p>
     <p class="algo-gb-fx">${fixture(g)}</p>
+    <p class="algo-gb-tag">${b.qualifies && g.official_pick ? `<span class="algo-st algo-official">OFFICIAL PICK #${esc(g.official_pick.record_no)}</span>` : '<span class="algo-st algo-forecast">MODEL FORECAST</span>'}</p>
     <p class="algo-gb-pick"><span class="kicker">GAME BEST</span><b>${esc(b.label)}</b> <span>${pc(b.probability)}</span></p>
-    <p class="muted small">${b.qualifies && g.official_pick ? `OFFICIAL PICK #${esc(g.official_pick.record_no)}` : `Model forecast only: below the ${pc(b.threshold, 1)} Official Pick threshold`}</p>
+    ${b.qualifies && g.official_pick ? '' : `<p class="muted small">Not an Official Pick: below the ${pc(b.threshold, 1)} threshold. Not counted in the record.</p>`}
     <p class="algo-gb-probs small">Home ${pc(g.probabilities.home_win)} · Draw ${pc(g.probabilities.draw)} · Away ${pc(g.probabilities.away_win)} · Home scores ${pc(g.probabilities.home_to_score)}</p>
   </article>`;
 }

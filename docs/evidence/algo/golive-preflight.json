@@ -1,0 +1,40 @@
+{
+  "preflight": "soccer-algo-v1-golive",
+  "approval": "owner conditional G7 approval 2026-09-29",
+  "ran_at": "2026-09-29T20:09:27.181Z",
+  "verdict": "FAIL",
+  "conditions": {
+    "time": {
+      "ok": false,
+      "detail": "now 2026-09-29T20:09:23.405Z; not before 2026-10-02T18:30:00Z"
+    },
+    "1_shadow_forecast": {
+      "ok": false,
+      "detail": "0 production shadow forecast(s)"
+    },
+    "2_canary_pass": {
+      "ok": false,
+      "detail": "NO_FORECASTS: 0/0 forecasts reproduced bit-for-bit from 0 archived input lists (shadow)"
+    },
+    "3_input_hash": {
+      "ok": false,
+      "detail": "0/0 archive hashes match"
+    },
+    "4_bit_for_bit": {
+      "ok": false,
+      "detail": "0/0 recomputed exactly"
+    },
+    "5_no_drift": {
+      "ok": true,
+      "detail": "spec 3156f6f9, model d9cf3320, core c6f296eb, policy soccer-algo-pick-policy/1.1, build-spec --check ok, research --check ok"
+    },
+    "6_ledger_guards": {
+      "ok": true,
+      "detail": "checks-1200 passed against production (rolled back)"
+    },
+    "7_nothing_seeded": {
+      "ok": true,
+      "detail": "{\"soccer_algo_picks\":0,\"soccer_algo_forecasts\":0,\"soccer_algo_events\":0}"
+    }
+  }
+}

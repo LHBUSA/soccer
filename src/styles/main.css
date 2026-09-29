@@ -1596,3 +1596,6 @@ dialog.acct::backdrop { background: rgba(4,10,20,.6); }
 .algo-research { margin: 40px 0 24px; padding: 18px 16px; border: 1px dashed var(--line-2); border-radius: var(--radius); background: var(--canvas-alt); }
 .algo-research h2 { font: 800 clamp(20px, 3vw, 26px)/1.1 var(--display); margin: 0 0 12px; letter-spacing: .02em; }
 .algo-research .ltable th:first-child, .algo-research .ltable td:first-child { text-align: left; }
+.algo-gb-tag { margin: 0 0 6px; }
+.algo-official { background: var(--gold); color: #0a0a0a; }
+.algo-forecast { background: #e9edf4; color: var(--ink-2); border: 1px dashed var(--line-2); }

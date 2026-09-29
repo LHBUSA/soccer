@@ -47,7 +47,7 @@ to score ≥ 0.875 (pick policy 1.1).
 | G4 Backtest | `docs/evidence/research/algo-v1_1/holdout-results.json`, evaluated once after the SELECT freeze |
 | G5 Calibration | One-sided pick calibration passed on SELECT and holdout (pick hit rate ≥ stated probability − tolerance) |
 | G6 Stability | Version pinned; input list archived write-once in R2 under `input_hash`; forecast reproduced bit-for-bit in tests |
-| G7 Review | **Pending owner sign-off.** |
+| G7 Review | **CONDITIONAL owner approval (2026-09-29)**: becomes PASS when `scripts/algo/golive-preflight.mjs` passes on/after 2026-10-02 18:30 UTC (see `docs/evidence/algo/ACCEPTANCE.md`). Not yet PASS. |
 
 Deployed: ledger migration 1200 (applied), the ingest lane (off: `ALGO_OFFICIAL`
 unset), the read-only API `/v1/algo/{picks,record,research}` and the pages
