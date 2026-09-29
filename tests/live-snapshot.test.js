@@ -5,6 +5,8 @@ import {
   LIVE_SNAPSHOT_DIRTY_KEY,
   LIVE_SNAPSHOT_KEY,
   LIVE_SNAPSHOT_VERSION,
+  PUBLIC_LIVE_COMPETITIONS,
+  publicLiveDirtyChanges,
   refreshLiveEnvelope,
   snapshotRefreshReason,
   snapshotServeable,
@@ -104,6 +106,19 @@ test('failover: a missing or stale snapshot serves database_fallback from the ca
   // no KV binding at all: still available from the database
   assert.equal((await live(store, {})).meta.snapshot.source, 'database_fallback');
   await store.close();
+});
+
+test('public live scope includes Nations League and excludes private shadow invalidation', () => {
+  assert.ok(PUBLIC_LIVE_COMPETITIONS.includes('uefa-nations-league'));
+  const changed = publicLiveDirtyChanges([
+    { lane: 'espn_live', changed: 2 },
+    { lane: 'espn_uefa_nations_league', changed: 3 },
+    { lane: 'openligadb_bl1_current', changed: 1 },
+    { lane: 'model_shadow_bundesliga_dc', changed: 9 },
+    { lane: 'espn_standings', changed: 4 },
+    { lane: 'espn_premier_league', changed: 0 },
+  ]);
+  assert.deepEqual(changed.map(x => x.lane), ['espn_live', 'espn_uefa_nations_league', 'openligadb_bl1_current']);
 });
 
 test('snapshot KV keys are stable and public snapshot status is separate from dirty state', async () => {
