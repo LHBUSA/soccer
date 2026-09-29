@@ -14,7 +14,11 @@ function recordCard(r) {
   const head = `<span class="rc-head">${competitionMark(r.competition?.slug, 'xs')}<span>${esc(f?.name || r.competition?.name || 'Competition')}</span><span class="muted">${esc(r.season || '')}</span></span>`;
   if (!r.record) return `<div class="rcard">${head}<p class="muted small">No league-stage record stored for this season${f?.format === 'ucl' ? ' (Champions League matches are stored without a league table)' : ''}.</p></div>`;
   const x = r.record;
-  return `<div class="rcard"><div class="rc-top">${head}<div class="rc-pos"><b>${num(r.position)}</b><span>of ${num(r.teams_in_table)}</span></div></div>
+  // Group competitions (Nations League): the position is the verified GROUP position, never a rank across groups.
+  const g = r.group ? (r.group.abbreviation || r.group.name).replace(/^Group\s+/i, 'Group ') : null;
+  const pos = g ? (r.position ? `<b>${num(r.position)}</b><span>of ${num(r.teams_in_table)} · ${esc(g)}</span>` : `<b>${DASH}</b><span>${esc(g)} · table withheld</span>`)
+    : `<b>${num(r.position)}</b><span>of ${num(r.teams_in_table)}</span>`;
+  return `<div class="rcard"><div class="rc-top">${head}<div class="rc-pos">${pos}</div></div>
     <dl class="rc-grid">${join([['P', x.played], ['W', x.won], ['D', x.drawn], ['L', x.lost], ['GD', x.goal_difference > 0 ? `+${x.goal_difference}` : x.goal_difference], ['PTS', x.points]], ([k, v]) => `<div><dt>${k}</dt><dd>${typeof v === 'string' ? esc(v) : num(v)}</dd></div>`)}</dl>
     ${when(x.form?.length, () => `<div class="rc-form">${formChips(x.form)}</div>`)}
   </div>`;
@@ -54,26 +58,27 @@ export const team = {
     const obs = t.players_observed || { players: [], lineups_counted: 0 };
     const recs = (t.records || []).filter(r => r.record);
     const next = (t.upcoming || [])[0];
+    const national = t.type === 'national';
     return `<section class="hero compact team-hero"><div class="wrap">
       <div class="th-top">${teamMark(t, 'xl')}<div class="th-id">
-        <p class="kicker gold">TEAM${t.type === 'national' ? ' · NATIONAL TEAM' : ''}${place ? ` · ${esc(place)}` : ''}</p>
+        <p class="kicker gold">${national ? 'NATIONAL TEAM' : 'TEAM'}${place ? ` · ${esc(place)}` : ''}</p>
         <h1 class="display">${esc(t.name)}</h1>
         <p class="th-comps">${join(t.records || [], r => r.competition ? `<a class="th-comp" href="/competitions/${esc(r.competition.slug)}" data-link>${competitionMark(r.competition.slug, 'xs')}<span>${esc(compMeta(r.competition.slug)?.name || r.competition.name)}</span>${r.position ? `<b>${esc(ordinal(r.position))}</b>` : ''}</a>` : '')}</p>
         <div class="th-form"><span class="muted">Form</span>${formChips(t.form)}${recs[0] ? `<span class="th-rec">${num(recs[0].record.won)}W · ${num(recs[0].record.drawn)}D · ${num(recs[0].record.lost)}L</span>` : ''}</div>
       </div></div>
-      ${when(t.crest?.attribution, () => `<p class="credit">Crest: ${t.crest.source_url ? `<a href="${esc(t.crest.source_url)}" rel="noopener" target="_blank">${esc(t.crest.attribution)}</a>` : esc(t.crest.attribution)}. Used to identify the club.</p>`)}
+      ${when(t.crest?.attribution, () => `<p class="credit">${national ? 'Badge' : 'Crest'}: ${t.crest.source_url ? `<a href="${esc(t.crest.source_url)}" rel="noopener" target="_blank">${esc(t.crest.attribution)}</a>` : esc(t.crest.attribution)}. Used to identify the ${national ? 'national team' : 'club'}.</p>`)}
     </div></section>
     <section class="canvas"><div class="wrap">
       <div class="two th-two">
         <div>${sectionHead('NEXT MATCH', next ? dateLong(next.kickoff_at) : 'No fixture stored')}${next ? matchGrid([next]) : '<p class="muted">No scheduled matches stored for this team.</p>'}
           ${when((t.upcoming || []).length > 1, () => `<p class="nrail-h more">THEN</p>${matchGrid(t.upcoming.slice(1, 3))}`)}</div>
-        <div>${sectionHead('RESULTS', 'Recent results')}${matchGrid((t.recent || []).slice(0, 4)) || '<p class="muted">No finished matches stored for this team.</p>'}</div>
+        <div>${sectionHead('RESULTS', national ? 'Recent matches' : 'Recent results')}${matchGrid((t.recent || []).slice(0, 4)) || '<p class="muted">No finished matches stored for this team.</p>'}</div>
       </div>
       ${when(recs.length, () => `${sectionHead('RECORD', 'This season')}<div class="rgrid">${join(t.records, recordCard)}</div>`)}
       <div data-team-dna class="dna-slot" aria-live="polite"></div>
-      ${sectionHead('PLAYERS OBSERVED IN SOURCE DATA', obs.players.length ? `${num(obs.players.length)} players · ${num(obs.lineups_counted)} sourced lineups` : 'No sourced lineups')}
+      ${sectionHead(national ? 'SQUAD' : 'PLAYERS OBSERVED IN SOURCE DATA', obs.players.length ? `${num(obs.players.length)} players · ${num(obs.lineups_counted)} sourced lineups` : 'No sourced lineups')}
       ${obs.players.length ? `<div class="sq-grid">${join(obs.players, squadCard)}</div>
-        <p class="caveat">Not a squad list: only players named in sourced lineups for this season's stored matches. An appearance means the player started or came on. Goals, assists and percentiles come from the Player DNA season profile where it is computed.</p>`
+        <p class="caveat">${national ? 'Players named in sourced lineups for this national team\'s stored matches this season, not an official squad announcement. Each player is the same canonical person as in club football; Player DNA percentiles stay within each competition-season (national-team matches never enter club-league percentiles).' : 'Not a squad list: only players named in sourced lineups for this season\'s stored matches.'} An appearance means the player started or came on. Goals, assists and percentiles come from the Player DNA season profile where it is computed.</p>`
         : '<p class="muted">No sourced lineups are stored for this team this season, so no players are listed. Squad lists are never guessed.</p>'}
       <div data-related-news></div>
       ${sourcePanel(d.env.meta)}

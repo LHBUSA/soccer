@@ -23,7 +23,7 @@ const STATIC = {
     description: 'Live match intelligence, Player DNA, event maps, team intelligence and data-backed soccer news from PropBetEdge across MLS, Premier League, Champions League and Bundesliga, with every source shown.',
     h1: 'PropBetEdge Soccer Intelligence',
   },
-  competitions: { title: 'Competitions — Soccer Intelligence | PropBetEdge Soccer', description: 'MLS, Premier League, UEFA Champions League and Bundesliga on the PropBetEdge canonical soccer graph: seasons, results, fixtures and coverage.', h1: 'Competitions' },
+  competitions: { title: 'Competitions — Soccer Intelligence | PropBetEdge Soccer', description: 'MLS, Premier League, UEFA Champions League, Bundesliga and UEFA Nations League on the PropBetEdge canonical soccer graph: seasons, results, fixtures, verified tables and coverage.', h1: 'Competitions' },
   matches: { title: 'Matches — Results, Fixtures & Match Intelligence | PropBetEdge Soccer', description: 'Recent results, today’s matches and upcoming fixtures, each with PropBetEdge Match Intelligence: timelines, event maps, statistics and lineups where sourced.', h1: 'Matches' },
   tables: { title: 'Tables — League Standings | PropBetEdge Soccer', description: 'League tables computed by PropBetEdge from canonical finished league-stage results, with the method shown alongside every table.', h1: 'Tables' },
   pbecastHub: { title: 'PBEcast — Live Soccer Match Tracker & Replays | PropBetEdge Soccer', description: 'Live soccer scores with the provider clock, then replays of every sourced shot, goal, card and substitution on the canonical pitch, across MLS, Premier League, Champions League and Bundesliga.', h1: 'PBEcast' },
@@ -33,7 +33,7 @@ const STATIC = {
 
 // Newsroom desks (URL segment -> display). The index and each desk are indexable
 // only once they contain real published stories.
-export const DESKS = { mls: 'MLS', 'premier-league': 'Premier League', 'champions-league': 'Champions League', bundesliga: 'Bundesliga' };
+export const DESKS = { mls: 'MLS', 'premier-league': 'Premier League', 'champions-league': 'Champions League', bundesliga: 'Bundesliga', international: 'International' };
 
 export function newsMeta(pathname, env, desk = null) {
   const items = env?.data || [];
@@ -123,13 +123,20 @@ export function competitionMeta(pathname, compEnv, tableEnv) {
   const total = seasons.reduce((n, s) => n + (s.matches || 0), 0);
   const hasTable = (tableEnv?.data?.rows || []).length > 0;
   const latest = seasons[0]?.label;
-  const title = hasTable ? `${c.name} Table, Results & Match Intelligence | PropBetEdge` : `${c.name} Results & Match Intelligence | PropBetEdge`;
-  const description = `${c.name}${latest ? ` ${latest}` : ''}: ${hasTable ? 'table, results and fixtures' : 'results and fixtures'} — ${seasons.length} stored ${seasons.length === 1 ? 'season' : 'seasons'}, ${total.toLocaleString('en-US')} canonical matches on the PropBetEdge soccer graph.`;
+  // Group competitions (Nations League): claim tables only for groups that VERIFIED; never an overall table.
+  const grouped = tableEnv?.data?.view === 'groups';
+  const verified = grouped ? tableEnv.data.verified_groups || 0 : 0;
+  const title = grouped ? `${c.name}${latest ? ` ${latest}` : ''} — ${verified ? 'Tables, ' : ''}Fixtures & Match Intelligence | PropBetEdge`
+    : hasTable ? `${c.name} Table, Results & Match Intelligence | PropBetEdge` : `${c.name} Results & Match Intelligence | PropBetEdge`;
+  const description = grouped
+    ? `${c.name}${latest ? ` ${latest}` : ''}: ${verified ? `${verified} verified group ${verified === 1 ? 'table' : 'tables'}, ` : ''}results and fixtures for ${(c.current?.teams || []).length || 'every'} national teams — ${total.toLocaleString('en-US')} canonical matches on the PropBetEdge soccer graph.`
+    : `${c.name}${latest ? ` ${latest}` : ''}: ${hasTable ? 'table, results and fixtures' : 'results and fixtures'} — ${seasons.length} stored ${seasons.length === 1 ? 'season' : 'seasons'}, ${total.toLocaleString('en-US')} canonical matches on the PropBetEdge soccer graph.`;
   const url = canonicalFor(pathname);
   return base(pathname, {
     title, description, image: `${SITE}/og/competition/${c.slug}.png`,
     jsonld: [breadcrumb([['Soccer', `${SITE}/`], ['Competitions', `${SITE}/competitions`], [c.name, url]]),
-      { '@context': 'https://schema.org', '@type': 'SportsOrganization', name: c.name, sport: 'Soccer', url }],
+      { '@context': 'https://schema.org', '@type': 'SportsOrganization', name: c.name, sport: 'Soccer', url,
+        ...(grouped ? { description: 'International football competition between national teams.' } : {}) }],
     ssr: { h1: c.name, p: description, links: [['/competitions', 'All competitions'], [`/tables?competition=${c.slug}`, `${c.name} table`], ['/matches', 'Matches']] },
   });
 }

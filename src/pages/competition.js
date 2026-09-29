@@ -2,14 +2,22 @@
 // All panels come from one load; tabs switch in place (?tab= keeps the state).
 // MLS: conference tables (verified against canonical results) are the primary view,
 // the overall table stays available. UCL: the verified league-phase table.
+// GROUPS (Nations League; later World Cup / EURO): tier -> group tables, each verified on its own,
+// group leaders on the overview, and NO overall table anywhere.
 import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { num, todayUtc } from '../lib/format.js';
 import { compMeta } from '../lib/competitions.js';
 import { competitionMark, empty, errorState, link, matchGrid, mountTabs, sectionHead, sourcePanel, tabBar, tabPanel, teamMark } from '../components/ui.js';
-import { mountTableViews, tableView, tableViews } from '../components/table.js';
+import { groupTables, mountGroupTables, mountTableViews, tableView, tableViews } from '../components/table.js';
+import { mountRelatedNews } from '../components/related.js';
 
-export const title = d => { const n = d?.comp?.value?.data?.name; if (!n) return 'Competition Intelligence | PropBetEdge'; const hasTable = d.table?.status === 'fulfilled' && (d.table.value.data.rows || []).length > 0; return hasTable ? `${n} Table, Results & Match Intelligence | PropBetEdge` : `${n} Results & Match Intelligence | PropBetEdge`; };
+export const title = d => {
+  const n = d?.comp?.value?.data?.name; if (!n) return 'Competition Intelligence | PropBetEdge';
+  if (compMeta(d.slug)?.format === 'groups') return `${n}${d.season ? ` ${d.season}` : ''} — ${d.table?.status === 'fulfilled' && d.table.value.data.verified_groups > 0 ? 'Tables, ' : ''}Fixtures & Match Intelligence | PropBetEdge`;
+  const hasTable = d.table?.status === 'fulfilled' && (d.table.value.data.rows || []).length > 0;
+  return hasTable ? `${n} Table, Results & Match Intelligence | PropBetEdge` : `${n} Results & Match Intelligence | PropBetEdge`;
+};
 
 const TABS = [['overview', 'OVERVIEW'], ['table', 'TABLE'], ['results', 'RESULTS'], ['upcoming', 'UPCOMING'], ['teams', 'TEAMS']];
 const settled = async p => { try { return { status: 'fulfilled', value: await p }; } catch (reason) { return { status: 'rejected', reason }; } };
@@ -21,24 +29,37 @@ export async function load([slug], query) {
   const season = seasons.some(s => s.label === query.get('season')) ? query.get('season') : current;
   const isCurrent = season === current;
   const today = todayUtc();
-  const [table, recent, upcoming, cov] = await Promise.allSettled([
-    api('table', { competition: slug, season }),
+  const grouped = compMeta(slug)?.format === 'groups';
+  const [table, recent, upcoming, cov, live] = await Promise.allSettled([
+    api('table', { competition: slug, season, ...(grouped ? { expand: 'groups' } : {}) }),
     api('matches', { competition: slug, season, status: 'finished', ...(isCurrent ? { to: today } : {}), limit: 30 }),
     isCurrent ? api('matches', { competition: slug, season, status: 'scheduled', from: today, order: 'asc', limit: 30 }) : Promise.resolve(null),
     api('coverage'),
+    isCurrent && comp.data.current?.live ? api('matches', { competition: slug, season, status: 'live', limit: 12 }) : Promise.resolve(null),
   ]);
   // Conference tables (only where the API lists conference groups for the season).
   const groups = table.status === 'fulfilled' ? (table.value.data.groups || []).filter(g => g.type === 'conference') : [];
   const confs = await Promise.all(groups.map(async g => ({ key: g.key, label: g.name, res: await settled(api('table', { competition: slug, season, group: g.key })) })));
   const tab = TABS.some(([k]) => k === query.get('tab')) ? query.get('tab') : 'overview';
-  return { slug, comp: { status: 'fulfilled', value: comp }, season, current, isCurrent, table, confs, recent, upcoming, cov, tab };
+  return { slug, comp: { status: 'fulfilled', value: comp }, season, current, isCurrent, table, confs, recent, upcoming, cov, live, tab, grouped };
 }
 
 function teamsPanel(c) {
   const teams = c.current?.teams || [];
-  if (!teams.length) return empty('No teams stored for this season');
+  const national = c.current?.team_kind === 'national';
+  if (!teams.length) return empty(national ? 'No nations stored for this season' : 'No teams stored for this season');
   return `<ul class="teamgrid">${join(teams, t => `<li>${link(`/teams/${t.slug}`, `${teamMark(t)}<span>${esc(t.name)}</span>`)}</li>`)}</ul>
-    <p class="caveat">Teams appearing in canonical matches of ${esc(c.current.season)}. Initials marks unless an approved crest with provenance exists.</p>`;
+    <p class="caveat">${national ? 'National teams' : 'Teams'} appearing in canonical matches of ${esc(c.current.season)}. Initials marks unless an approved ${national ? 'badge' : 'crest'} with provenance exists.</p>`;
+}
+
+// Group leaders: position 1 of every VERIFIED group (a withheld group says so). Not a ranking across groups.
+function groupLeaders(env) {
+  const groups = env?.data?.groups || [];
+  if (!groups.length) return '<p class="muted">No group standings are stored for this season yet.</p>';
+  return `<ul class="gleaders">${join(groups, g => {
+    const top = g.verified ? (g.rows || [])[0] : null;
+    return `<li><span class="gl-g">${esc((g.abbreviation || g.name || g.key).replace(/^Group\s+/i, ''))}</span>${top ? `${link(`/teams/${top.team.slug}`, `${teamMark(top.team, 'xs')}<span>${esc(top.team.short_name || top.team.name)}</span>`)}<b class="gl-pts">${num(top.points)} pts</b>` : '<span class="gl-na">Table withheld</span>'}</li>`;
+  })}</ul>`;
 }
 
 export function render(d) {
@@ -76,6 +97,7 @@ export function render(d) {
     <div class="depth-item"><b>${num(covRow.coordinate_backed_matches)}</b><span>with an event map</span></div>
   </div>` : '<p class="muted">Coverage counts unavailable right now.</p>'}
   ${sourcePanel(d.comp.value.meta, { title: 'COMPETITION SOURCE' })}`;
+  if (d.grouped) return renderGroups(d, c, f, covRow, tableEnv, results, upcoming);
   const tablePanel = confEnvs.length
     ? `${sectionHead('TABLE', `${d.season || ''} standings`)}${tableViews([...confEnvs, ...(tableEnv ? [{ key: 'overall', label: 'Overall', env: tableEnv }] : [])], confEnvs[0].key)}
        ${sourcePanel((verifiedConfs[0] || confEnvs[0]).env.meta, { title: 'HOW CONFERENCE TABLES ARE VERIFIED' })}${when(tableEnv, () => sourcePanel(tableEnv.meta, { title: 'HOW THE OVERALL TABLE IS COMPUTED' }))}`
@@ -104,8 +126,65 @@ export function render(d) {
   </div></section>`;
 }
 
+// Group tournament hub (format 'groups'): INTERNATIONAL hero, live / upcoming / results, group leaders,
+// tier -> group tables, nations. There is no overall table on this page or behind it.
+function renderGroups(d, c, f, covRow, tableEnv, results, upcoming) {
+  const cur = c.current;
+  const national = cur?.team_kind === 'national';
+  const liveRows = d.live?.status === 'fulfilled' ? d.live.value?.data || [] : [];
+  const verified = tableEnv?.data?.verified_groups ?? 0; const total = tableEnv?.data?.groups?.length ?? 0;
+  const overview = `${when(liveRows.length, () => `${sectionHead('LIVE NOW', 'In play')}${matchGrid(liveRows, { showComp: false })}`)}
+  <div class="two">
+    <div>${sectionHead('GROUP STANDINGS', total ? `Group leaders · ${num(verified)} of ${num(total)} tables verified · ${d.season}` : 'Group standings')}
+      ${d.table.status === 'rejected' ? errorState(d.table.reason) : groupLeaders(tableEnv)}
+      ${when(total, () => `<p><a href="?tab=table" class="sec-link" data-goto-tab="table">All group tables →</a></p>`)}
+    </div>
+    <div>
+      ${when(d.isCurrent, () => `${sectionHead('UPCOMING', 'Next fixtures')}${d.upcoming.status === 'fulfilled' ? matchGrid(d.upcoming.value?.data?.slice(0, 4), { showComp: false }) || '<p class="muted">No scheduled fixtures stored.</p>' : ''}`)}
+      ${sectionHead('RESULTS', 'Latest results')}
+      ${d.recent.status === 'fulfilled' ? matchGrid(d.recent.value?.data?.slice(0, 4), { showComp: false }) || '<p class="muted">No finished matches in this season.</p>' : ''}
+    </div>
+  </div>
+  <div data-related-news></div>
+  ${sectionHead('DATA COVERAGE', 'What the graph holds for this competition')}
+  ${covRow ? `<div class="depthgrid light">
+    <div class="depth-item"><b>${num(covRow.matches)}</b><span>canonical matches</span></div>
+    <div class="depth-item"><b>${num(covRow.finished)}</b><span>finished</span></div>
+    <div class="depth-item"><b>${num(covRow.matches_with_lineups)}</b><span>with sourced lineups</span></div>
+    <div class="depth-item"><b>${num(covRow.coordinate_backed_matches)}</b><span>with an event map</span></div>
+  </div>` : '<p class="muted">Coverage counts unavailable right now.</p>'}
+  ${sourcePanel(d.comp.value.meta, { title: 'COMPETITION SOURCE' })}`;
+  const tablePanel = `${sectionHead('TABLES', `${d.season || ''} league phase · groups`)}
+    ${d.table.status === 'rejected' ? errorState(d.table.reason) : groupTables(tableEnv)}
+    ${when(tableEnv, () => sourcePanel(tableEnv.meta, { title: 'HOW GROUP TABLES ARE VERIFIED' }))}`;
+  return `
+  <section class="hero compact league a-${esc(f?.accent || 'x')}"><div class="wrap">
+    <div class="lh-top">${competitionMark(d.slug, 'xl', { tone: 'dark' })}<div>
+      <p class="kicker gold">INTERNATIONAL</p>
+      <h1 class="display">${esc(f?.long || c.name)}</h1></div></div>
+    <div class="hero-facts">
+      <div><b>${esc(d.season || '—')}</b><span>season</span></div>
+      ${cur && d.isCurrent ? `<div><b>${num(cur.teams?.length)}</b><span>${national ? 'nations' : 'teams'}</span></div><div><b>${num(cur.finished)}</b><span>played</span></div><div><b>${num(cur.scheduled)}</b><span>to play</span></div>` : ''}
+      ${when(cur?.live, () => `<div><b class="live">${num(cur.live)}</b><span>live now</span></div>`)}
+    </div>
+    <label class="season-select">SEASON
+      <select data-season>${join(c.seasons, s => `<option value="${esc(s.label)}"${s.label === d.season ? ' selected' : ''}>${esc(s.label)} · ${num(s.matches)} matches</option>`)}</select>
+    </label>
+  </div>
+  <div class="wrap">${tabBar(TABS, d.tab, `${c.name} sections`)}</div></section>
+  <section class="canvas"><div class="wrap">
+    ${tabPanel('overview', d.tab, overview)}
+    ${tabPanel('table', d.tab, tablePanel)}
+    ${tabPanel('results', d.tab, `${sectionHead('RESULTS', d.isCurrent ? 'Recent results' : `Results · ${d.season}`)}${results}`)}
+    ${tabPanel('upcoming', d.tab, `${sectionHead('UPCOMING', 'Fixtures')}${upcoming}`)}
+    ${tabPanel('teams', d.tab, `${sectionHead(national ? 'NATIONS' : 'TEAMS', `${cur?.season || ''} ${national ? 'national teams' : 'teams'}`)}${teamsPanel(c)}`)}
+  </div></section>`;
+}
+
 export function mount(root, d, { navigate }) {
   root.querySelector('[data-season]')?.addEventListener('change', e => navigate(`/competitions/${d.slug}?season=${encodeURIComponent(e.target.value)}`));
   mountTabs(root);
   mountTableViews(root);
+  mountGroupTables(root);
+  if (d.grouped) { const desk = compMeta(d.slug)?.desk; if (desk) mountRelatedNews(root, { desk }, { kicker: 'NEWS', title: 'From the International desk' }); }
 }

@@ -3,7 +3,7 @@ import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { num, todayUtc } from '../lib/format.js';
 import { competitionMark, empty, errorState, link, matchGrid, sectionHead, sourcePanel } from '../components/ui.js';
-import { mountTableViews, tableView, tableViews } from '../components/table.js';
+import { groupTables, mountGroupTables, mountTableViews, tableView, tableViews } from '../components/table.js';
 import { coverageCards } from './home.js';
 import { FEATURED, FEATURED_COMPS, compMeta } from '../lib/competitions.js';
 
@@ -58,7 +58,7 @@ export const tables = {
     const stored = comps.status === 'fulfilled' ? comps.value.data.map(c => c.slug) : FEATURED;
     // Default to the first product competition the graph actually holds.
     const comp = FEATURED.includes(q.get('competition')) ? q.get('competition') : FEATURED.find(s => stored.includes(s)) || FEATURED[0];
-    const [table] = await Promise.allSettled([api('table', { competition: comp })]);
+    const [table] = await Promise.allSettled([api('table', { competition: comp, ...(compMeta(comp)?.format === 'groups' ? { expand: 'groups' } : {}) })]);
     const groups = table.status === 'fulfilled' ? (table.value.data.groups || []).filter(g => g.type === 'conference') : [];
     const confs = (await Promise.allSettled(groups.map(g => api('table', { competition: comp, group: g.key })))).map((r, i) => ({ key: groups[i].key, label: groups[i].name, env: r.status === 'fulfilled' ? r.value : null }));
     return { comp, table, comps, confs };
@@ -71,13 +71,14 @@ export const tables = {
     const season = t?.data?.season ? `<p class="kicker">SEASON ${esc(t.data.season)}</p>` : '';
     const withConfs = (d.confs || []).some(c => c.env);
     const body = d.table.status === 'rejected' ? errorState(d.table.reason)
+      : t?.data?.view === 'groups' ? `${season}${groupTables(t)}${sourcePanel(t.meta, { title: 'HOW GROUP TABLES ARE VERIFIED', open: true })}`
       : withConfs ? `${season}${tableViews([...d.confs, { key: 'overall', label: 'Overall', env: t }], d.confs[0].key)}${sourcePanel(d.confs.find(c => c.env).env.meta, { title: 'HOW CONFERENCE TABLES ARE VERIFIED', open: true })}`
         : `${season}${tableView(t)}${sourcePanel(t.meta, { title: 'HOW THIS TABLE IS COMPUTED', open: true })}`;
     return `<section class="hero compact"><div class="wrap"><p class="kicker gold">TABLES</p><h1 class="display">${esc(name)}</h1>
       <nav class="tabs" aria-label="Competition">${join(comps, c => link(`/tables?competition=${c.slug}`, `${competitionMark(c.slug, 'xs')}${esc(c.name)}`, `tab${c.slug === d.comp ? ' on' : ''}`))}</nav></div></section>
       <section class="canvas"><div class="wrap mid">${body}</div></section>`;
   },
-  mount(root) { mountTableViews(root); },
+  mount(root) { mountTableViews(root); mountGroupTables(root); },
 };
 
 // ---- /news lives in ./news.js (re-exported for existing imports)

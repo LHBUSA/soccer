@@ -1,4 +1,4 @@
-// League table from /v1/table: POS · CLUB · P · W · D · L · GD · PTS (+ GF/GA and
+// League table from /v1/table: POS · CLUB (NATION for national teams) · P · W · D · L · GD · PTS (+ GF/GA and
 // FORM on wider screens, FORM only when the API supplies real results).
 // The club column is sticky so the numbers scroll under it on phones.
 // Zones (qualification lines) are shown ONLY when the source states them per row
@@ -13,6 +13,7 @@ const ZONE_CLASSES = ['z1', 'z2', 'z3', 'z4', 'z5'];
 
 export function tableView(env, { limit = null, highlight = null, reason = null, caption = null } = {}) {
   const t = env?.data;
+  const teamCol = t?.rows?.length && t.rows.every(r => r.team?.type === 'national') ? 'Nation' : 'Club';
   if (!t || !t.rows?.length) {
     const notes = env?.meta?.coverage?.notes || [];
     return `<div class="state empty"><p class="state-title">Table not available</p><p>${esc(reason || notes[0] || 'No finished league-stage matches are stored for this competition and season, so PropBetEdge does not compute a table here.')}</p></div>`;
@@ -26,7 +27,7 @@ export function tableView(env, { limit = null, highlight = null, reason = null, 
   const cap = caption || (t.group ? `${t.group.name} ${t.season || ''}` : `${t.season || ''} standings`);
   return `<div class="tablewrap" tabindex="0" role="region" aria-label="${esc(cap)} (scrolls horizontally)"><table class="ltable">
     <caption class="sr-only">${esc(cap)}</caption>
-    <thead><tr><th class="pos" scope="col">Pos</th><th class="tm" scope="col">Club</th><th scope="col"><abbr title="Played">P</abbr></th>${hasWdl ? '<th scope="col"><abbr title="Won">W</abbr></th><th scope="col"><abbr title="Drawn">D</abbr></th><th scope="col"><abbr title="Lost">L</abbr></th>' : ''}<th class="wide" scope="col"><abbr title="Goals for">GF</abbr></th><th class="wide" scope="col"><abbr title="Goals against">GA</abbr></th><th scope="col"><abbr title="Goal difference">GD</abbr></th><th class="pts" scope="col"><abbr title="Points">PTS</abbr></th>${hasForm ? '<th class="formcol wide" scope="col">Form</th>' : ''}</tr></thead>
+    <thead><tr><th class="pos" scope="col">Pos</th><th class="tm" scope="col">${teamCol}</th><th scope="col"><abbr title="Played">P</abbr></th>${hasWdl ? '<th scope="col"><abbr title="Won">W</abbr></th><th scope="col"><abbr title="Drawn">D</abbr></th><th scope="col"><abbr title="Lost">L</abbr></th>' : ''}<th class="wide" scope="col"><abbr title="Goals for">GF</abbr></th><th class="wide" scope="col"><abbr title="Goals against">GA</abbr></th><th scope="col"><abbr title="Goal difference">GD</abbr></th><th class="pts" scope="col"><abbr title="Points">PTS</abbr></th>${hasForm ? '<th class="formcol wide" scope="col">Form</th>' : ''}</tr></thead>
     <tbody>${join(rows, r => `<tr class="${[highlight && r.team?.slug === highlight ? 'hl' : '', r.zone ? `zone ${zoneClass(r.zone.label)}` : ''].filter(Boolean).join(' ')}"${r.zone ? ` title="${esc(r.zone.label)}"` : ''}>
       <td class="pos">${num(r.position)}${r.zone ? `<span class="sr-only"> (${esc(r.zone.label)})</span>` : ''}</td>
       <th class="tm" scope="row">${r.team?.slug ? link(`/teams/${r.team.slug}`, `${teamMark(r.team, 'xs')}<span>${esc(r.team.short_name || r.team.name)}</span>`) : esc(r.team?.name || '—')}</th>
@@ -43,6 +44,42 @@ export function tableViews(views, active) {
   if (!ok.length) return '';
   return `<div class="subtabs" role="tablist" aria-label="Table view">${join(ok, v => `<button role="tab" type="button" data-view="${esc(v.key)}" aria-selected="${v.key === active}" tabindex="${v.key === active ? 0 : -1}">${esc(v.label)}</button>`)}</div>
   ${join(ok, v => `<div class="tview" data-view-panel="${esc(v.key)}"${v.key === active ? '' : ' hidden'}>${tableView(v.env, { reason: v.reason })}</div>`)}`;
+}
+
+// Group tournament (format 'groups', e.g. Nations League): the tier selector (League A..D) is the
+// first level; inside a tier every group is its own verified table. Wide screens show the tier's
+// groups side by side; phones pick one group at a time (group chips), so there is never a row of
+// 14 tiny tabs. A group that did not verify says so on its own card. No overall table exists.
+export function groupTables(env, { active = null } = {}) {
+  const d = env?.data;
+  if (!d?.groups?.length) return `<div class="state empty"><p class="state-title">Group tables not available yet</p><p>No published group standings are stored for this season yet. PropBetEdge never computes an overall table for a group competition.</p></div>`;
+  const byKey = new Map(d.groups.map(g => [g.key, g]));
+  const tiers = (d.tiers?.length ? d.tiers : [{ key: null, name: null, groups: d.groups.map(g => g.key) }]).map(t => ({ ...t, id: t.key || 'all' }));
+  const on = tiers.find(t => t.id === active) || tiers[0];
+  const card = (g, i) => {
+    const env1 = { data: { rows: g.rows || [], group: { name: g.name }, season: d.season }, meta: { semantics: '' } };
+    return `<article class="gcard${i === 0 ? ' gshow' : ''}" data-gcard="${esc(g.key)}"><header class="gcard-h"><h3>${esc(g.name)}</h3>${g.verified ? `<span class="gbadge ok" title="Every figure matches PropBetEdge's canonical results">VERIFIED</span>` : '<span class="gbadge">WITHHELD</span>'}</header>
+      ${g.verified ? tableView(env1, { caption: `${g.name}${g.parent?.name ? ` · ${g.parent.name}` : ''} ${d.season || ''}` }) : `<div class="state empty"><p class="state-title">Table withheld</p><p>${esc(g.withheld_reason === 'no published standings stored yet' ? 'No published standings are stored for this group yet.' : 'The published standings for this group do not yet match the results in the canonical graph, so no table is shown until they agree.')}</p></div>`}
+    </article>`;
+  };
+  return `<div class="gtables">
+    ${tiers.length > 1 ? `<div class="subtabs gtiers" role="tablist" aria-label="League">${join(tiers, t => `<button role="tab" type="button" data-view="${esc(t.id)}" aria-selected="${t.id === on.id}" tabindex="${t.id === on.id ? 0 : -1}">${esc(t.name || 'Groups')}</button>`)}</div>` : ''}
+    ${join(tiers, t => `<div class="tview gtier" data-view-panel="${esc(t.id)}"${t.id === on.id ? '' : ' hidden'}>
+      ${t.groups.length > 1 ? `<div class="gpick" role="group" aria-label="${esc(t.name || 'Group')} group">${join(t.groups, (k, i) => `<button type="button" data-gpick="${esc(k)}" aria-pressed="${i === 0}">${esc(byKey.get(k)?.abbreviation?.replace(/^Group\s+/i, '') || byKey.get(k)?.name || k)}</button>`)}</div>` : ''}
+      <div class="ggrid">${join(t.groups.map(k => byKey.get(k)).filter(Boolean), card)}</div>
+    </div>`)}
+  </div>`;
+}
+
+export function mountGroupTables(root) {
+  for (const pick of root.querySelectorAll('.gpick')) {
+    const grid = pick.parentElement.querySelector('.ggrid');
+    pick.addEventListener('click', e => {
+      const b = e.target.closest('[data-gpick]'); if (!b) return;
+      for (const x of pick.querySelectorAll('[data-gpick]')) x.setAttribute('aria-pressed', String(x === b));
+      for (const c of grid.querySelectorAll('[data-gcard]')) c.classList.toggle('gshow', c.dataset.gcard === b.dataset.gpick);
+    });
+  }
 }
 
 export function mountTableViews(root) {

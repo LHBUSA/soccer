@@ -29,7 +29,8 @@ export function crest(t, size = '') {
   const cls = `tmark${size ? ` ${size}` : ''}`;
   const mark = initials(t?.short_name || t?.name);
   if (t?.crest?.url) {
-    const credit = t.crest.attribution ? `${t.crest.attribution}. Used to identify the club.` : 'Used to identify the club.';
+    const who = t.type === 'national' ? 'national team' : 'club';
+    const credit = t.crest.attribution ? `${t.crest.attribution}. Used to identify the ${who}.` : `Used to identify the ${who}.`;
     return `<span class="${cls} img"><img src="${esc(t.crest.url)}" alt="" title="${esc(credit)}" loading="lazy" decoding="async" width="64" height="64" data-fallback="${esc(mark)}"></span>`;
   }
   return `<span class="${cls}${mark.length > 3 ? ' m4' : ''}" aria-hidden="true">${esc(mark)}</span>`;

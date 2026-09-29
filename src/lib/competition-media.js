@@ -20,6 +20,12 @@ export const COMPETITION_MEDIA = {
     "attribution": "Bundesliga logo. Image: ESPN",
     "basis": "owner_approved_identification"
   },
+  "uefa-nations-league": {
+    "url": "/api/soccer/media/105291b28134e6b377795fd80d0d5c8c561f02257bfb1a5b243b87df0ebe6b19",
+    "url_dark": "/api/soccer/media/105291b28134e6b377795fd80d0d5c8c561f02257bfb1a5b243b87df0ebe6b19",
+    "attribution": "UEFA Nations League logo. Image: ESPN",
+    "basis": "owner_approved_identification"
+  },
   "mls": {
     "url": "/api/soccer/media/9e4b7c06391ad3742294dc761e7b951d0bf8603fd2b360370e1299832f602a9e",
     "url_dark": "/api/soccer/media/9e4b7c06391ad3742294dc761e7b951d0bf8603fd2b360370e1299832f602a9e",

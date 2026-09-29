@@ -126,7 +126,7 @@ export function coverageCards(compsEnv, covEnv) {
         <span><b>${num(c.matches)}</b>matches</span>
         ${k ? `<span><b>${num(k.matches_with_lineups)}</b>with lineups</span><span><b>${num(k.coordinate_backed_matches)}</b>event-mapped</span>` : `<span><b>${num(c.seasons)}</b>${c.seasons === 1 ? 'season' : 'seasons'}</span>`}
       </span>
-      <span class="ct-cta">OPEN LEAGUE HUB →</span>
+      <span class="ct-cta">${f.format === 'groups' ? 'OPEN COMPETITION HUB' : 'OPEN LEAGUE HUB'} →</span>
     </a>`;
   })}</div>`;
 }

@@ -11,7 +11,7 @@ import { news, newsDesk, article } from './pages/news.js';
 import { player, team } from './pages/people.js';
 import * as players from './pages/players.js';
 import { hub as pbecastHub, cast as pbecast } from './pages/pbecast.js';
-import { FEATURED_COMPS } from './lib/competitions.js';
+import { CLUB_COMPS, FEATURED_COMPS, INTERNATIONAL_COMPS } from './lib/competitions.js';
 import { mountMediaFallbacks } from './components/ui.js';
 import { installPlayerDrawer, close as closeDrawer } from './components/drawer.js';
 import { mountScoreTicker } from './components/score-ticker.js';
@@ -24,6 +24,15 @@ const NAV = [['/', 'TODAY', 'home'], ['/matches', 'MATCHES', 'matches,match'], [
 // The canonical PropBetEdge mark (owned network artwork, docs/BRAND.md) links to the network home.
 const brandMark = () => '<a class="pbe-mark" href="https://propbetedge.ai/" aria-label="PropBetEdge home"><img src="/brand/pbe-mark-64.webp" srcset="/brand/pbe-mark-64.webp 130w, /brand/pbe-mark-96.webp 195w, /brand/pbe-mark-160.webp 325w" sizes="73px" width="73" height="36" alt="PropBetEdge"></a>';
 
+// Club competitions are chips in the rail; national-team competitions live in the INTERNATIONAL panel
+// (one place to add World Cup / EURO / Copa America / Gold Cup without another navigation rewrite).
+const railChip = c => `<a href="/competitions/${c.slug}" data-link data-comp="${c.slug}" class="a-${c.accent}">${competitionMark(c.slug, 'xs', { tone: 'dark' })}<span>${c.name.toUpperCase()}</span></a>`;
+const setIntl = open => {
+  const b = document.querySelector('[data-intl-toggle]'); const p = document.getElementById('rail-intl-panel');
+  if (!b || !p) return;
+  b.setAttribute('aria-expanded', String(open)); p.hidden = !open;
+};
+
 function shell() {
   return `<a class="skip" href="#main">Skip to content</a>
   <header class="top"><div class="wrap topbar">
@@ -31,7 +40,9 @@ function shell() {
     <button class="navtoggle" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span></button>
     <nav id="nav" class="nav" aria-label="Primary">${NAV.map(([h, l, p]) => `<a href="${h}" data-link data-pages="${p}">${l}</a>`).join('')}</nav>
   </div>
-  <nav class="rail" aria-label="Competitions"><div class="wrap railrow">${FEATURED_COMPS.map(c => `<a href="/competitions/${c.slug}" data-link data-comp="${c.slug}" class="a-${c.accent}">${competitionMark(c.slug, 'xs', { tone: 'dark' })}<span>${c.name.toUpperCase()}</span></a>`).join('')}</div></nav>
+  <nav class="rail" aria-label="Competitions"><div class="wrap railrow"><span class="rail-label" aria-hidden="true">CLUB</span>${CLUB_COMPS.map(railChip).join('')}${INTERNATIONAL_COMPS.length ? `<button type="button" class="rail-intl" aria-expanded="false" aria-controls="rail-intl-panel" data-intl-toggle><span>INTERNATIONAL</span><i aria-hidden="true"></i></button>` : ''}</div>
+    ${INTERNATIONAL_COMPS.length ? `<div id="rail-intl-panel" class="rail-panel" hidden><div class="wrap"><p class="rail-panel-h">INTERNATIONAL FOOTBALL</p><div class="railrow rail-panel-row">${INTERNATIONAL_COMPS.map(railChip).join('')}</div></div></div>` : ''}
+  </nav>
   </header>
   <div id="score-ticker"></div>
   <main id="main" tabindex="-1"></main>
@@ -63,6 +74,9 @@ function setMeta(page, data, params = []) {
   document.querySelectorAll('.nav a').forEach(a => a.classList.toggle('on', a.dataset.pages.split(',').includes(page)));
   const comp = page === 'competition' ? params[0] : null;
   document.querySelectorAll('.rail a').forEach(a => { const on = a.dataset.comp === comp; a.classList.toggle('on', on); if (on) { a.setAttribute('aria-current', 'page'); a.parentElement.scrollLeft = Math.max(0, a.offsetLeft - 16); } else a.removeAttribute('aria-current'); });
+  const intl = INTERNATIONAL_COMPS.some(c => c.slug === comp);
+  document.querySelector('[data-intl-toggle]')?.classList.toggle('on', intl);
+  setIntl(false);
 }
 
 export async function render(url = new URL(location.href)) {
@@ -111,5 +125,8 @@ document.querySelector('.navtoggle').addEventListener('click', e => {
   const open = document.body.classList.toggle('menu-open');
   e.currentTarget.setAttribute('aria-expanded', String(open));
 });
+document.querySelector('[data-intl-toggle]')?.addEventListener('click', e => setIntl(e.currentTarget.getAttribute('aria-expanded') !== 'true'));
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !document.getElementById('rail-intl-panel')?.hidden) { setIntl(false); document.querySelector('[data-intl-toggle]')?.focus(); } });
+document.addEventListener('click', e => { if (!e.target.closest('.rail')) setIntl(false); });
 window.addEventListener('popstate', () => { closeDrawer(); render(); });
 render();
