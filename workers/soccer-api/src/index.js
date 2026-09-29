@@ -37,6 +37,17 @@ const ROUTES = [
 
 const ALLOWED_ORIGIN = /^https:\/\/([a-z0-9-]+\.)*propbetedge\.ai$/;
 
+export function canonicalQuery(params, allowedQuery = []) {
+  const allowed = new Set(allowedQuery);
+  const seen = new Set();
+  for (const [k, v] of params) {
+    if (!allowed.has(k) || seen.has(k) || v.length > 64) return null;
+    seen.add(k);
+  }
+  const canonical = new URLSearchParams(params); canonical.sort();
+  return canonical.toString();
+}
+
 function respond(body, status, maxAge, origin) {
   const h = { 'content-type': 'application/json; charset=utf-8', 'cache-control': status === 200 && maxAge ? `public, max-age=${maxAge}, s-maxage=${maxAge}` : 'no-store', 'x-content-type-options': 'nosniff' };
   if (origin && ALLOWED_ORIGIN.test(origin)) { h['access-control-allow-origin'] = origin; h.vary = 'origin'; }
@@ -51,7 +62,7 @@ export default {
     if (req.method !== 'GET') return respond({ error: 'method not allowed' }, 405, 0, origin);
     const media = url.pathname.match(/^\/v1\/media\/([0-9a-f]{64})$/);
     if (media) {
-      if ([...url.searchParams].length) return respond({ error: 'unknown query parameter' }, 400, 0, origin);
+      if (canonicalQuery(url.searchParams, []) === null) return respond({ error: 'unknown query parameter' }, 400, 0, origin);
       const store = storeFromEnv(env);
       try {
         const o = await R.mediaObject(store, env.SOCCER_SOURCE, media[1]);
@@ -78,15 +89,9 @@ export default {
     const hit = ROUTES.map(([re, fn, ttl]) => [url.pathname.match(re), fn, ttl]).find(([m]) => m);
     if (!hit) return respond({ error: 'not found' }, 404, 0, origin);
     const [m, fn, ttl, allowedQuery = []] = hit;
-    const allowed = new Set(allowedQuery);
-    const seen = new Set();
-    for (const [k, v] of url.searchParams) {
-      if (!allowed.has(k) || seen.has(k) || v.length > 64) return respond({ error: 'unknown or invalid query parameter' }, 400, 0, origin);
-      seen.add(k);
-    }
+    const qs = canonicalQuery(url.searchParams, allowedQuery);
+    if (qs === null) return respond({ error: 'unknown or invalid query parameter' }, 400, 0, origin);
     const cache = caches.default;
-    const canonical = new URLSearchParams(url.searchParams); canonical.sort();
-    const qs = canonical.toString();
     const cacheKey = new Request(`${url.origin}${url.pathname}${qs ? `?${qs}` : ''}`);
     if (ttl) { const c = await cache.match(cacheKey); if (c) { const r = new Response(c.body, c); r.headers.set('x-cache', 'HIT'); return r; } }
     const store = storeFromEnv(env);
