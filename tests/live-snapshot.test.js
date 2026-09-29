@@ -65,8 +65,11 @@ test('/live reads the materialized KV envelope with zero PostgREST calls', async
     async get(k) { return mem.has(k) ? JSON.parse(mem.get(k)) : null; },
     async put(k, v) { mem.set(k, v); },
   };
-  const env0 = envelope({ upcoming: [{ id: 'm2', kickoff_at: new Date(T + 2 * 3600e3).toISOString() }] });
-  await writeLiveSnapshot(kv, env0, { now: T, reason: 'test', storeRequests: 11 });
+  // live() reads the wall clock, so the snapshot is built relative to it (a fixed T only passed within the
+  // 20-minute idle serve window of 2026-09-29 15:00Z).
+  const now = Date.now();
+  const env0 = envelope({ upcoming: [{ id: 'm2', kickoff_at: new Date(now + 2 * 3600e3).toISOString() }] });
+  await writeLiveSnapshot(kv, env0, { now, reason: 'test', storeRequests: 11 });
   const store = {
     requests: 0,
     async select() { throw new Error('PostgREST must not be called on snapshot hit'); },
@@ -76,6 +79,31 @@ test('/live reads the materialized KV envelope with zero PostgREST calls', async
   assert.deepEqual(out.data, env0.data);
   assert.equal(out.meta.snapshot.source, 'kv');
   assert.equal(out.meta.snapshot.version, LIVE_SNAPSHOT_VERSION);
+});
+
+test('failover: a missing or stale snapshot serves database_fallback from the canonical builder and rewrites the snapshot', async () => {
+  const { openPglite, applyMigrations } = await import('../workers/soccer-ingest/src/store-pglite.js');
+  const { readLiveSnapshot, LIVE_SNAPSHOT_STATUS_KEY } = await import('../workers/shared/live-snapshot.js');
+  const store = await openPglite(); await applyMigrations(store);
+  const mem = new Map();
+  const kv = { async get(k, t) { const v = mem.get(k); return v === undefined ? null : t === 'json' ? JSON.parse(v) : v; }, async put(k, v) { mem.set(k, v); } };
+  // missing snapshot
+  const a = await live(store, { SOCCER_STATE: kv });
+  assert.equal(a.meta.snapshot.source, 'database_fallback');
+  const written = await readLiveSnapshot(kv);
+  assert.equal(written.reason, 'api_fallback'); assert.deepEqual(written.envelope.data, a.data);
+  assert.equal(JSON.parse(mem.get(LIVE_SNAPSHOT_STATUS_KEY)).reason, 'api_fallback');
+  // stale (idle, 21 minutes old): not served; rebuilt from the database and rewritten
+  await writeLiveSnapshot(kv, envelope(), { now: Date.now() - 21 * 60e3, reason: 'old' });
+  const b = await live(store, { SOCCER_STATE: kv });
+  assert.equal(b.meta.snapshot.source, 'database_fallback');
+  assert.equal((await readLiveSnapshot(kv)).reason, 'api_fallback');
+  // the rewritten snapshot now serves from KV
+  const c = await live(store, { SOCCER_STATE: kv });
+  assert.equal(c.meta.snapshot.source, 'kv');
+  // no KV binding at all: still available from the database
+  assert.equal((await live(store, {})).meta.snapshot.source, 'database_fallback');
+  await store.close();
 });
 
 test('snapshot KV keys are stable and public snapshot status is separate from dirty state', async () => {
