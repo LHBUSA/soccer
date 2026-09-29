@@ -21,7 +21,7 @@ import { LIVE_LANE, runEspnLive } from './espn-live.js';
 import { SHADOW_LANE, runShadow } from './shadow-lane.js';
 import { canonicalHealth, enrichmentHealth } from './health.js';
 import { BREAKER } from './espn-live.js';
-import { LIVE_SNAPSHOT_DIRTY_KEY } from '../../shared/live-snapshot.js';
+import { LIVE_SNAPSHOT_DIRTY_KEY, PUBLIC_LIVE_DIRTY_LANES } from '../../shared/live-snapshot.js';
 
 export const VERSION = 'soccer-ingest/1.3.0';
 
@@ -78,7 +78,8 @@ export async function runLane(env, name, { force = false, now = Date.now(), budg
 // ESPN-owned match is in its live window; every other lane keeps its 5-minute cadence.
 async function markLiveSnapshotDirty(env, out, now) {
   if (!env.SOCCER_STATE) return;
-  const changed = out.filter(x => Number(x?.changed) > 0);
+  const publicLanes = new Set(PUBLIC_LIVE_DIRTY_LANES);
+  const changed = out.filter(x => Number(x?.changed) > 0 && publicLanes.has(x?.lane));
   if (!changed.length) return;
   await env.SOCCER_STATE.put(LIVE_SNAPSHOT_DIRTY_KEY, JSON.stringify({
     at: new Date(now).toISOString(),
