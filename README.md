@@ -44,7 +44,7 @@ tests/                  node --test
 
 ```
 npm install
-npm run check                       # truth guard + 41 tests
+npm run check                       # fail-closed gate: truth guard + full test suite
 node scripts/backfill/fetch-wyscout.mjs          # capture Wyscout into .raw/ (md5-verified)
 npm run proof                       # Bundesliga 2017/18 end to end in PGlite + OpenLigaDB 2017 & 2026
 npm run proof:article               # packet -> article -> gates -> match page

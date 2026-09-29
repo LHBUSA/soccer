@@ -63,7 +63,12 @@ The public frontend and an indexable newsroom stay off until the production data
 
 ## Gates
 
-- **Before any push:** `npm run check` (truth guard + tests).
+- **Before any push:** `npm run check` (truth guard + tests), run ON ITS OWN. Its exit status is the verdict: never
+  chain it through `grep`, `tail`, `|` or `&&` into a commit/push, because a pipeline reports the last command's
+  status and can hide a failing suite. `npm run check` = `scripts/release/gate.mjs` (each step a direct child process,
+  exit status read directly; PGlite test files run with bounded concurrency).
+- **Every release is gated:** `release-worker.mjs` runs the same gate before building or uploading anything (also
+  under `--dry`); any non-zero exit refuses the release and production is untouched.
 - **Migrations:**
   - run the rollback-only proof first (`scripts/db/build-rollback-proof.mjs` + `run-rollback-proof.ps1`);
   - verify the target's applied chain, not repo HEAD;

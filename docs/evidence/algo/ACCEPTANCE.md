@@ -53,7 +53,7 @@ SELECT freeze.
 | soccer-api `75fe0458` | `/v1/algo/picks`, `/v1/algo/record`, `/v1/algo/research` (read-only; internal model id not exposed); rollback `f71ba1b6` |
 | Web `/picks`, `/track-record` (commit `bd92675`) | PICKS in primary navigation, ALGO TRACK RECORD in Intelligence, both in the footer; `index, follow` + canonical; both in `sitemap-static.xml` |
 | Reproduction canary | `scripts/algo/reproduction-canary.mjs` (R2 archive → input hash → frozen forecast recomputed bit-for-bit; `--source shadow` and `--source algo`) |
-| Post-activation verification | `scripts/algo/golive-preflight.mjs` (the seven conditions below, adapted for a live ledger) |
+| Post-activation verification | `scripts/algo/golive-preflight.mjs` (see ACTIVE PROCEDURE) |
 
 ### Activation proof (2026-09-29 21:00–21:05 UTC)
 
@@ -71,50 +71,27 @@ SELECT freeze.
 
 Frozen and unchanged by activation: model, thresholds, markets, pick policy, holdout interpretation.
 
-## G7: PASS by explicit owner sign-off (2026-09-29)
+## ACTIVE PROCEDURE (the only operational instructions in this document)
 
-**G7 is PASS by explicit owner sign-off dated 2026-09-29.** The owner activated V1 without waiting for the canary
-date. **The production reproduction canary is a post-activation verification requirement, not a publication gate.**
+- **V1 is live since 2026-09-29 21:00:37 UTC. G7 is PASS** (explicit owner sign-off, 2026-09-29).
+- **`ALGO_OFFICIAL` is on.** No further owner approval step exists.
+- The first qualifying future Official Pick is **record #1**. **No seeding, no backfill**, ever.
+- On or after **2026-10-02 18:30 UTC**, once the first real forecast exists, run the post-activation verification:
+  `node scripts/algo/golive-preflight.mjs` and `node scripts/algo/reproduction-canary.mjs --source shadow`
+  (archived input hash + bit-for-bit recomputation must pass). This is a verification requirement, not a
+  publication gate.
+  - **PASS** → record the evidence in this document and continue normally.
+  - **FAIL** → immediately set `ALGO_OFFICIAL = "off"` in `workers/soccer-ingest/wrangler.toml`, release
+    soccer-ingest (`node scripts/release/release-worker.mjs soccer-ingest`), and report the exact mismatch
+    (`docs/evidence/algo/golive-preflight.json`).
+- Never change the model, thresholds, markets, pick policy or holdout interpretation. V2 is a separate challenger.
 
-On or after 2026-10-02 18:30 UTC, once the first real forecast exists, run
-`node scripts/algo/golive-preflight.mjs` and `node scripts/algo/reproduction-canary.mjs --source shadow`. The archived
-input hash and the bit-for-bit recomputation must pass. **If the verification FAILS: immediately set
-`ALGO_OFFICIAL = "off"` and release soccer-ingest, then report the exact mismatch.** If it passes: record the evidence
-and continue normally.
+## History (not operational)
 
-History: the owner first gave conditional approval with these conditions, required on or after
-**2026-10-02 18:30 UTC** before go-live:
-
-1. the production shadow lane has at least one real forecast;
-2. `scripts/algo/reproduction-canary.mjs --source shadow` returns PASS;
-3. the archived input hash matches;
-4. the recomputed forecast matches bit-for-bit;
-5. there is no spec / model / pick-policy drift from the frozen versions;
-6. all ledger guards remain intact;
-7. no previous Official Picks or seeded historical record exist.
-
-*Superseded the same day by the explicit G7 sign-off above (activation now; these conditions became the
-post-activation verification). Kept for the record:* owner clarification (2026-09-29): the conditional approval already stands; nothing about the model, thresholds,
-markets or pick policy is revisited or retuned on Oct 2. Procedure: wait for the first real shadow forecast → run
-`scripts/algo/golive-preflight.mjs` → if all 7 PASS, report the evidence to the owner → ask for a one-line
-operational "go". That "go" is **deployment authorization only**, not another model gate. Until then V1 stays
-frozen as-is: `ALGO_OFFICIAL` off, pages hidden/noindex, record empty, V2/expansion parked.
-
-If all pass, G7 becomes PASS with no further model or threshold decision. After the operational "go": mark G7 PASS, set
-`ALGO_OFFICIAL=on`, add the navigation links, enable indexing and the sitemap, verify the production API and pages,
-and capture the first official forecast/pick evidence. V2 and expansion research wait until V1 go-live acceptance
-is closed.
-
-### Preflight 2026-09-29 20:09 UTC (before the canary date): FAIL as expected
-
-| Condition | Result |
-|---|---|
-| time ≥ 2026-10-02 18:30 UTC | not yet |
-| 1 shadow forecast | 0 (international break; the first window opens 2026-10-02 18:30 UTC for Dortmund v Bremen) |
-| 2–4 canary / hash / bit-for-bit | NO_FORECASTS |
-| 5 no drift | PASS |
-| 6 ledger guards | PASS (checks-1200 against production, rolled back) |
-| 7 nothing seeded | PASS (0 picks, 0 forecasts, 0 events) |
+Before activation the owner gave a conditional G7 approval (seven conditions checked on/after 2026-10-02), with
+V1 held hidden until then. The same day the owner replaced it with an explicit sign-off and activated V1; those
+seven conditions became the post-activation verification above. A pre-activation preflight at 2026-09-29 20:09 UTC
+showed conditions 5–7 PASS (no drift, ledger guards intact, nothing seeded) and 1–4 not yet due (no forecasts).
 
 ## Pre-activation page review (2026-09-29)
 
@@ -125,4 +102,4 @@ Verified by `tests/web/algo-pages.test.js` and in production (desktop 1568 px an
 - empty record: "The record is empty", Record 0–0, hit rate "—", no NaN/undefined/null;
 - no ROI, units or CLV value appears; the reason is shown;
 - the internal model id appears on no Algo surface (page, API policy, research summary);
-- `noindex, follow`, no navigation or footer link, not in the sitemap.
+- (historical, before activation) the pages were `noindex`, unlinked and not in the sitemap; all three were reversed at activation.

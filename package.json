@@ -8,9 +8,9 @@
     "node": ">=22"
   },
   "scripts": {
-    "test": "node --test \"tests/**/*.test.js\"",
+    "test": "node scripts/release/gate.mjs --tests-only",
     "guard": "node scripts/guard-truth.mjs",
-    "check": "npm run guard && npm test",
+    "check": "node scripts/release/gate.mjs",
     "audit:sources": "node scripts/evidence/source-audit.mjs",
     "proof": "node scripts/backfill/proof-bundesliga-2017.mjs",
     "matrix": "node scripts/matrix.mjs",

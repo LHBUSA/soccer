@@ -9,7 +9,11 @@
 // 6. verifies the live deployment is that version (never "deployed" because upload worked),
 //    then deploys + verifies cron triggers (not versioned, so `versions deploy` skips them)
 // 7. canaries production, appends the ledger row, and prints the rollback command
+// FAIL-CLOSED: before anything is built or uploaded (and before --dry stops), the check gate
+// (scripts/release/gate.mjs: truth guard + full test suite, each exit status read directly, no shell/pipe)
+// must pass. Any non-zero exit refuses the release; production is untouched.
 import { execSync, spawnSync } from 'node:child_process';
+import { gate } from './gate.mjs';
 import { appendFileSync, mkdirSync, readFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -27,6 +31,13 @@ const log = (...a) => console.log('[release]', ...a);
 sh('git fetch -q origin');
 const head = sh('git rev-parse HEAD').trim();
 if (head !== sh('git rev-parse origin/main').trim()) throw new Error('HEAD != origin/main: push first');
+const checked = gate();
+if (!checked.ok) {
+  const bad = checked.steps.find(s => !s.ok);
+  console.error(`[release] REFUSED: check gate failed at "${bad.label}" (exit ${bad.status}${bad.signal ? `, signal ${bad.signal}` : ''}${bad.error ? `, ${bad.error}` : ''}). Nothing was built or uploaded; production unchanged.`);
+  process.exit(1);
+}
+log('check gate passed:', checked.steps.map(s => s.label).join('; '));
 // The model shadow lane imports the frozen research core directly (single source of truth).
 if (sh('git status --porcelain -- workers data scripts/research/structural-core.mjs').trim()) throw new Error('uncommitted changes under workers/, data/ or the frozen research core');
 const short = head.slice(0, 7);
