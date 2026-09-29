@@ -91,7 +91,8 @@ test('network GA4 is bundled, production-only and allowed by the strict CSP', ()
   assert.match(main, /initAnalytics\(\)/);
   assert.doesNotMatch(html, /googletagmanager|G-BRS48R8PG9/, 'GA bootstrap stays out of inline HTML');
   assert.match(vercel, /script-src 'self' https:\/\/www\.googletagmanager\.com/);
-  assert.match(vercel, /connect-src 'self' https:\/\/www\.google-analytics\.com https:\/\/analytics\.google\.com https:\/\/region1\.google-analytics\.com/);
+  // Soccer Pro sign-in posts to the network auth origin (magic link); nothing else is added.
+  assert.match(vercel, /connect-src 'self' https:\/\/auth\.propbetedge\.ai https:\/\/www\.google-analytics\.com https:\/\/analytics\.google\.com https:\/\/region1\.google-analytics\.com/);
   // stop at the directive boundary: style-src may legitimately allow inline styles
   assert.doesNotMatch(vercel, /script-src[^;"]*'unsafe-inline'/, 'strict CSP keeps inline JavaScript blocked');
   assert.match(vercel, /style-src 'self' 'unsafe-inline'/, 'the directive after script-src is style-src (so the boundary check is meaningful)');

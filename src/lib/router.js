@@ -11,6 +11,8 @@ export const ROUTES = [
   [/^\/players\/?$/, 'players'],
   [/^\/players\/([a-z0-9-]+)\/?$/, 'player'],
   [/^\/tables\/?$/, 'tables'],
+  [/^\/pro\/?$/, 'pro'],
+  [/^\/pro\/matches\/([0-9a-f-]{36})\/?$/, 'proMatch'],
   [/^\/news\/?$/, 'news'],
   [/^\/news\/(mls|premier-league|champions-league|bundesliga|international)\/?$/, 'newsDesk'],
   [/^\/news\/(mls|premier-league|champions-league|bundesliga|international)\/([a-z0-9-]{3,200})\/?$/, 'article'],

@@ -35,7 +35,7 @@ const ROUTES = [
   ] : []),
 ];
 
-const browser = await puppeteer.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: 'new', userDataDir: 'D:/Temp/soccer-qa-chrome-unl', args: ['--no-first-run', '--disable-extensions'] });
+const browser = await puppeteer.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: 'new', userDataDir: process.env.QA_PROFILE || 'D:/Temp/soccer-qa-chrome-unl', args: ['--no-first-run', '--disable-extensions'] });
 const failures = []; const results = [];
 if (SHOTS) mkdirSync('D:/Temp/nations/shots', { recursive: true });
 try {
