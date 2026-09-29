@@ -1,0 +1,772 @@
+{
+  "protocol_sha256": "8f73a080e63fcf2385094a099521e40830b90de10d8ff34370373d0f5c13bd21",
+  "select_freeze_sha256": "9e4cf217a2b06624ddcda4512dde7f1b56f6f922e6202ac1449af1731bef6b16",
+  "evaluated_at": "2026-09-29T17:46:14.050Z",
+  "rows": {
+    "holdout": 2142,
+    "seasons": [
+      "2019/20",
+      "2020/21",
+      "2021/22",
+      "2022/23",
+      "2023/24",
+      "2024/25",
+      "2025/26"
+    ]
+  },
+  "markets": {
+    "1x2": {
+      "validation_holdout": {
+        "n": 2142,
+        "log_loss": 0.9952,
+        "baseline_log_loss": 1.074,
+        "brier": 0.5938,
+        "baseline_brier": 0.6502,
+        "seasons_beating_baseline_log_loss": 7,
+        "seasons": 7,
+        "per_season": [
+          {
+            "season": "2019/20",
+            "n": 306,
+            "log_loss": 0.9906,
+            "baseline_log_loss": 1.082,
+            "brier": 0.5912,
+            "baseline_brier": 0.657,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2020/21",
+            "n": 306,
+            "log_loss": 1.0077,
+            "baseline_log_loss": 1.0816,
+            "brier": 0.6026,
+            "baseline_brier": 0.6552,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2021/22",
+            "n": 306,
+            "log_loss": 0.997,
+            "baseline_log_loss": 1.0578,
+            "brier": 0.5943,
+            "baseline_brier": 0.6386,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2022/23",
+            "n": 306,
+            "log_loss": 0.9961,
+            "baseline_log_loss": 1.0563,
+            "brier": 0.596,
+            "baseline_brier": 0.6372,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2023/24",
+            "n": 306,
+            "log_loss": 0.9844,
+            "baseline_log_loss": 1.0748,
+            "brier": 0.5872,
+            "baseline_brier": 0.6502,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2024/25",
+            "n": 306,
+            "log_loss": 1.0205,
+            "baseline_log_loss": 1.0941,
+            "brier": 0.6111,
+            "baseline_brier": 0.6649,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2025/26",
+            "n": 306,
+            "log_loss": 0.9698,
+            "baseline_log_loss": 1.0712,
+            "brier": 0.5738,
+            "baseline_brier": 0.6482,
+            "beats_log_loss": true
+          }
+        ],
+        "reliability": {
+          "class": "home",
+          "bands": [
+            {
+              "band": "0-0.1",
+              "n": 11,
+              "predicted": 0.0864,
+              "observed": 0.0909
+            },
+            {
+              "band": "0.1-0.2",
+              "n": 115,
+              "predicted": 0.1555,
+              "observed": 0.1739
+            },
+            {
+              "band": "0.2-0.3",
+              "n": 280,
+              "predicted": 0.2528,
+              "observed": 0.2321
+            },
+            {
+              "band": "0.3-0.4",
+              "n": 483,
+              "predicted": 0.3538,
+              "observed": 0.3354
+            },
+            {
+              "band": "0.4-0.5",
+              "n": 516,
+              "predicted": 0.4513,
+              "observed": 0.4128
+            },
+            {
+              "band": "0.5-0.6",
+              "n": 357,
+              "predicted": 0.5455,
+              "observed": 0.5322
+            },
+            {
+              "band": "0.6-0.7",
+              "n": 222,
+              "predicted": 0.6445,
+              "observed": 0.6937
+            },
+            {
+              "band": "0.7-0.8",
+              "n": 111,
+              "predicted": 0.7469,
+              "observed": 0.7568
+            },
+            {
+              "band": "0.8-0.9",
+              "n": 46,
+              "predicted": 0.8364,
+              "observed": 0.7826
+            },
+            {
+              "band": "0.9-1",
+              "n": 1,
+              "predicted": 0.9291,
+              "observed": 1
+            }
+          ]
+        }
+      },
+      "gate_holdout": true,
+      "picks_holdout": {
+        "threshold": 0.6,
+        "picks": 483,
+        "coverage": 0.2255,
+        "hits": 348,
+        "hit_rate": 0.7205,
+        "mean_prob": 0.6918,
+        "wilson_lo": 0.6789,
+        "baseline_rate": 0.4195,
+        "brier": 0.2004,
+        "log_loss": 0.5901,
+        "selections": {
+          "home": 380,
+          "away": 103
+        },
+        "per_season": [
+          {
+            "season": "2019/20",
+            "picks": 64,
+            "hit_rate": 0.7188,
+            "mean_prob": 0.6986
+          },
+          {
+            "season": "2020/21",
+            "picks": 64,
+            "hit_rate": 0.6875,
+            "mean_prob": 0.6913
+          },
+          {
+            "season": "2021/22",
+            "picks": 73,
+            "hit_rate": 0.7534,
+            "mean_prob": 0.6978
+          },
+          {
+            "season": "2022/23",
+            "picks": 72,
+            "hit_rate": 0.6528,
+            "mean_prob": 0.6869
+          },
+          {
+            "season": "2023/24",
+            "picks": 74,
+            "hit_rate": 0.7162,
+            "mean_prob": 0.696
+          },
+          {
+            "season": "2024/25",
+            "picks": 76,
+            "hit_rate": 0.7237,
+            "mean_prob": 0.6789
+          },
+          {
+            "season": "2025/26",
+            "picks": 60,
+            "hit_rate": 0.8,
+            "mean_prob": 0.6948
+          }
+        ]
+      },
+      "holdout_rule": {
+        "H1_calibration": true,
+        "H2_floor": true,
+        "H3_lift": true,
+        "H4_durability": true
+      },
+      "in_v1": true
+    },
+    "over_2_5": {
+      "validation_holdout": {
+        "n": 2142,
+        "log_loss": 0.6554,
+        "baseline_log_loss": 0.6745,
+        "brier": 0.2317,
+        "baseline_brier": 0.2407,
+        "seasons_beating_baseline_log_loss": 7,
+        "seasons": 7,
+        "per_season": [
+          {
+            "season": "2019/20",
+            "n": 306,
+            "log_loss": 0.6537,
+            "baseline_log_loss": 0.6662,
+            "brier": 0.2307,
+            "baseline_brier": 0.2366,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2020/21",
+            "n": 306,
+            "log_loss": 0.6595,
+            "baseline_log_loss": 0.6798,
+            "brier": 0.2337,
+            "baseline_brier": 0.2433,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2021/22",
+            "n": 306,
+            "log_loss": 0.655,
+            "baseline_log_loss": 0.6805,
+            "brier": 0.2318,
+            "baseline_brier": 0.2437,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2022/23",
+            "n": 306,
+            "log_loss": 0.6715,
+            "baseline_log_loss": 0.6762,
+            "brier": 0.2389,
+            "baseline_brier": 0.2416,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2023/24",
+            "n": 306,
+            "log_loss": 0.6497,
+            "baseline_log_loss": 0.6719,
+            "brier": 0.2288,
+            "baseline_brier": 0.2394,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2024/25",
+            "n": 306,
+            "log_loss": 0.6471,
+            "baseline_log_loss": 0.6777,
+            "brier": 0.2278,
+            "baseline_brier": 0.2423,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2025/26",
+            "n": 306,
+            "log_loss": 0.6512,
+            "baseline_log_loss": 0.6691,
+            "brier": 0.2302,
+            "baseline_brier": 0.238,
+            "beats_log_loss": true
+          }
+        ],
+        "reliability": {
+          "bands": [
+            {
+              "band": "0.3-0.4",
+              "n": 23,
+              "predicted": 0.3755,
+              "observed": 0.3478
+            },
+            {
+              "band": "0.4-0.5",
+              "n": 170,
+              "predicted": 0.4665,
+              "observed": 0.4882
+            },
+            {
+              "band": "0.5-0.6",
+              "n": 940,
+              "predicted": 0.5567,
+              "observed": 0.5755
+            },
+            {
+              "band": "0.6-0.7",
+              "n": 790,
+              "predicted": 0.6416,
+              "observed": 0.6494
+            },
+            {
+              "band": "0.7-0.8",
+              "n": 201,
+              "predicted": 0.7348,
+              "observed": 0.7562
+            },
+            {
+              "band": "0.8-0.9",
+              "n": 18,
+              "predicted": 0.8245,
+              "observed": 0.8333
+            }
+          ]
+        }
+      },
+      "gate_holdout": true
+    },
+    "home_to_score": {
+      "validation_holdout": {
+        "n": 2142,
+        "log_loss": 0.4679,
+        "baseline_log_loss": 0.4934,
+        "brier": 0.1495,
+        "baseline_brier": 0.1569,
+        "seasons_beating_baseline_log_loss": 7,
+        "seasons": 7,
+        "per_season": [
+          {
+            "season": "2019/20",
+            "n": 306,
+            "log_loss": 0.4919,
+            "baseline_log_loss": 0.5128,
+            "brier": 0.1588,
+            "baseline_brier": 0.1654,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2020/21",
+            "n": 306,
+            "log_loss": 0.4644,
+            "baseline_log_loss": 0.5041,
+            "brier": 0.1493,
+            "baseline_brier": 0.1616,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2021/22",
+            "n": 306,
+            "log_loss": 0.4475,
+            "baseline_log_loss": 0.4559,
+            "brier": 0.1395,
+            "baseline_brier": 0.1406,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2022/23",
+            "n": 306,
+            "log_loss": 0.4409,
+            "baseline_log_loss": 0.4734,
+            "brier": 0.1393,
+            "baseline_brier": 0.1482,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2023/24",
+            "n": 306,
+            "log_loss": 0.4612,
+            "baseline_log_loss": 0.4734,
+            "brier": 0.1439,
+            "baseline_brier": 0.1482,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2024/25",
+            "n": 306,
+            "log_loss": 0.5337,
+            "baseline_log_loss": 0.5654,
+            "brier": 0.1783,
+            "baseline_brier": 0.1883,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2025/26",
+            "n": 306,
+            "log_loss": 0.4354,
+            "baseline_log_loss": 0.469,
+            "brier": 0.1374,
+            "baseline_brier": 0.1463,
+            "beats_log_loss": true
+          }
+        ],
+        "reliability": {
+          "bands": [
+            {
+              "band": "0.5-0.6",
+              "n": 18,
+              "predicted": 0.575,
+              "observed": 0.6111
+            },
+            {
+              "band": "0.6-0.7",
+              "n": 196,
+              "predicted": 0.6638,
+              "observed": 0.6582
+            },
+            {
+              "band": "0.7-0.8",
+              "n": 815,
+              "predicted": 0.7578,
+              "observed": 0.7534
+            },
+            {
+              "band": "0.8-0.9",
+              "n": 850,
+              "predicted": 0.8446,
+              "observed": 0.8553
+            },
+            {
+              "band": "0.9-1",
+              "n": 263,
+              "predicted": 0.9312,
+              "observed": 0.9278
+            }
+          ]
+        }
+      },
+      "gate_holdout": true,
+      "picks_holdout": {
+        "threshold": 0.875,
+        "picks": 419,
+        "coverage": 0.1956,
+        "hits": 386,
+        "hit_rate": 0.9212,
+        "mean_prob": 0.9148,
+        "wilson_lo": 0.8915,
+        "baseline_rate": 0.7925,
+        "brier": 0.0717,
+        "log_loss": 0.2686,
+        "selections": {
+          "yes": 419
+        },
+        "per_season": [
+          {
+            "season": "2019/20",
+            "picks": 58,
+            "hit_rate": 0.9138,
+            "mean_prob": 0.9139
+          },
+          {
+            "season": "2020/21",
+            "picks": 48,
+            "hit_rate": 0.9375,
+            "mean_prob": 0.9141
+          },
+          {
+            "season": "2021/22",
+            "picks": 55,
+            "hit_rate": 0.9091,
+            "mean_prob": 0.9195
+          },
+          {
+            "season": "2022/23",
+            "picks": 63,
+            "hit_rate": 0.9365,
+            "mean_prob": 0.9131
+          },
+          {
+            "season": "2023/24",
+            "picks": 71,
+            "hit_rate": 0.8732,
+            "mean_prob": 0.9172
+          },
+          {
+            "season": "2024/25",
+            "picks": 68,
+            "hit_rate": 0.9118,
+            "mean_prob": 0.9148
+          },
+          {
+            "season": "2025/26",
+            "picks": 56,
+            "hit_rate": 0.9821,
+            "mean_prob": 0.9105
+          }
+        ]
+      },
+      "holdout_rule": {
+        "H1_calibration": true,
+        "H2_floor": true,
+        "H3_lift": true,
+        "H4_durability": true
+      },
+      "in_v1": true
+    },
+    "away_to_score": {
+      "validation_holdout": {
+        "n": 2142,
+        "log_loss": 0.5418,
+        "baseline_log_loss": 0.5747,
+        "brier": 0.1811,
+        "baseline_brier": 0.1929,
+        "seasons_beating_baseline_log_loss": 7,
+        "seasons": 7,
+        "per_season": [
+          {
+            "season": "2019/20",
+            "n": 306,
+            "log_loss": 0.5413,
+            "baseline_log_loss": 0.5667,
+            "brier": 0.1812,
+            "baseline_brier": 0.1892,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2020/21",
+            "n": 306,
+            "log_loss": 0.5286,
+            "baseline_log_loss": 0.5723,
+            "brier": 0.1762,
+            "baseline_brier": 0.1918,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2021/22",
+            "n": 306,
+            "log_loss": 0.5626,
+            "baseline_log_loss": 0.5919,
+            "brier": 0.1901,
+            "baseline_brier": 0.201,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2022/23",
+            "n": 306,
+            "log_loss": 0.5756,
+            "baseline_log_loss": 0.5919,
+            "brier": 0.1948,
+            "baseline_brier": 0.201,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2023/24",
+            "n": 306,
+            "log_loss": 0.5085,
+            "baseline_log_loss": 0.5639,
+            "brier": 0.1668,
+            "baseline_brier": 0.1879,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2024/25",
+            "n": 306,
+            "log_loss": 0.547,
+            "baseline_log_loss": 0.5723,
+            "brier": 0.1826,
+            "baseline_brier": 0.1918,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2025/26",
+            "n": 306,
+            "log_loss": 0.5293,
+            "baseline_log_loss": 0.5639,
+            "brier": 0.1761,
+            "baseline_brier": 0.1879,
+            "beats_log_loss": true
+          }
+        ],
+        "reliability": {
+          "bands": [
+            {
+              "band": "0.4-0.5",
+              "n": 9,
+              "predicted": 0.4785,
+              "observed": 0.7778
+            },
+            {
+              "band": "0.5-0.6",
+              "n": 145,
+              "predicted": 0.5682,
+              "observed": 0.5586
+            },
+            {
+              "band": "0.6-0.7",
+              "n": 621,
+              "predicted": 0.6596,
+              "observed": 0.6409
+            },
+            {
+              "band": "0.7-0.8",
+              "n": 861,
+              "predicted": 0.7465,
+              "observed": 0.7724
+            },
+            {
+              "band": "0.8-0.9",
+              "n": 427,
+              "predicted": 0.8409,
+              "observed": 0.8454
+            },
+            {
+              "band": "0.9-1",
+              "n": 79,
+              "predicted": 0.921,
+              "observed": 0.9873
+            }
+          ]
+        }
+      },
+      "gate_holdout": true
+    },
+    "btts": {
+      "validation_holdout": {
+        "n": 2142,
+        "log_loss": 0.6696,
+        "baseline_log_loss": 0.677,
+        "brier": 0.2384,
+        "baseline_brier": 0.242,
+        "seasons_beating_baseline_log_loss": 5,
+        "seasons": 7,
+        "per_season": [
+          {
+            "season": "2019/20",
+            "n": 306,
+            "log_loss": 0.6896,
+            "baseline_log_loss": 0.6808,
+            "brier": 0.248,
+            "baseline_brier": 0.2439,
+            "beats_log_loss": false
+          },
+          {
+            "season": "2020/21",
+            "n": 306,
+            "log_loss": 0.6611,
+            "baseline_log_loss": 0.6762,
+            "brier": 0.2343,
+            "baseline_brier": 0.2416,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2021/22",
+            "n": 306,
+            "log_loss": 0.6588,
+            "baseline_log_loss": 0.6747,
+            "brier": 0.2332,
+            "baseline_brier": 0.2408,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2022/23",
+            "n": 306,
+            "log_loss": 0.6763,
+            "baseline_log_loss": 0.6785,
+            "brier": 0.2416,
+            "baseline_brier": 0.2427,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2023/24",
+            "n": 306,
+            "log_loss": 0.6538,
+            "baseline_log_loss": 0.6724,
+            "brier": 0.2306,
+            "baseline_brier": 0.2397,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2024/25",
+            "n": 306,
+            "log_loss": 0.6707,
+            "baseline_log_loss": 0.6839,
+            "brier": 0.2391,
+            "baseline_brier": 0.2454,
+            "beats_log_loss": true
+          },
+          {
+            "season": "2025/26",
+            "n": 306,
+            "log_loss": 0.6769,
+            "baseline_log_loss": 0.6724,
+            "brier": 0.2418,
+            "baseline_brier": 0.2397,
+            "beats_log_loss": false
+          }
+        ],
+        "reliability": {
+          "bands": [
+            {
+              "band": "0.4-0.5",
+              "n": 90,
+              "predicted": 0.4697,
+              "observed": 0.5111
+            },
+            {
+              "band": "0.5-0.6",
+              "n": 1022,
+              "predicted": 0.565,
+              "observed": 0.5695
+            },
+            {
+              "band": "0.6-0.7",
+              "n": 1001,
+              "predicted": 0.6336,
+              "observed": 0.6334
+            },
+            {
+              "band": "0.7-0.8",
+              "n": 29,
+              "predicted": 0.711,
+              "observed": 0.6552
+            }
+          ]
+        }
+      },
+      "gate_holdout": false
+    }
+  },
+  "v1_markets": [
+    {
+      "market": "1x2",
+      "threshold": 0.6
+    },
+    {
+      "market": "home_to_score",
+      "threshold": 0.875
+    }
+  ],
+  "combined_holdout_v1_markets": {
+    "markets": [
+      "1x2>=0.6",
+      "home_to_score>=0.875"
+    ],
+    "matches": 2142,
+    "game_best": 2142,
+    "official_picks": 548,
+    "coverage": 0.2558,
+    "hit_rate": 0.7573,
+    "mean_prob": 0.7394,
+    "wilson_lo": 0.7197,
+    "baseline_rate": 0.4929,
+    "by_market": {
+      "1x2": 436,
+      "home_to_score": 112
+    }
+  }
+}
