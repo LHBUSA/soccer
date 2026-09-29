@@ -24,7 +24,10 @@ const t0 = Date.now(); const log = (...a) => console.log(`[${Math.round((Date.no
 const now = Date.now(); const since = now - DAYS * 86400e3;
 const report = { at: new Date().toISOString(), matcher: MATCHER_VERSION, threshold: THRESHOLD, dry: DRY, channels: {}, videos: { stored: 0, candidates: 0 }, links: { linked: 0, rejected: 0, articles_with_video: 0, articles: 0 }, per_article: [] };
 
-const channels = await store.select('soccer_video_channels', { columns: ['channel_id', 'channel_name', 'publisher_type', 'competition_id', 'team_id', 'enabled', 'verified'], eq: { enabled: true, verified: true } });
+const CH_COLS = ['channel_id', 'channel_name', 'publisher_type', 'competition_id', 'team_id', 'enabled', 'verified'];
+// scope_competition_ids arrives with migration 1000; before it, a channel's scope is its competition_id.
+const channels = await store.select('soccer_video_channels', { columns: [...CH_COLS, 'scope_competition_ids'], eq: { enabled: true, verified: true } })
+  .catch(() => store.select('soccer_video_channels', { columns: CH_COLS, eq: { enabled: true, verified: true } }));
 const byChannel = new Map(channels.map(c => [c.channel_id, c]));
 const allTeams = await store.select('soccer_teams', { columns: ['id', 'name', 'short_name'] });
 // active teams only (the four competitions' latest seasons) keep the alias index precise

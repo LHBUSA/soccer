@@ -14,7 +14,9 @@ import { runDesk, deskRequired, deskAvailable, DESK_VERSION } from './desk.js';
 import { uuidv5 } from '../../shared/ids.js';
 import { chunkArr } from '../../soccer-ingest/src/store.js';
 
-export const NEWS_COMPETITIONS = ['mls', 'premier-league', 'uefa-champions-league', 'bundesliga'];
+// uefa-nations-league: eligible once its canonical coverage is certified in production (docs/PRODUCTION_STATE.md);
+// until its season exists loadSeason() returns null and the competition is skipped.
+export const NEWS_COMPETITIONS = ['mls', 'premier-league', 'uefa-champions-league', 'bundesliga', 'uefa-nations-league'];
 
 export async function runNews(store, { now = Date.now(), env = {}, windowDays = 4, maxPerCompetition = 12, dry = false, competitions = NEWS_COMPETITIONS, cfg = {} } = {}) {
   const summary = { engine: ENGINE_VERSION, gates: GATE_V2, at: new Date(now).toISOString(), llm: llmEnabled(env), desk: { required: deskRequired(env), available: deskAvailable(env), version: DESK_VERSION }, competitions: {} };

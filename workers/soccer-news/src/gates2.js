@@ -1,7 +1,7 @@
 // Publication gates v2 (all story classes). Gates never edit text: pass/fail with
 // reasons. The SAME gates run on a template article and on any LLM-edited article.
 import { stripIdentifiers } from './gates.js';
-import { PROFILES } from './profiles.js';
+import { PROFILES, unsupportedGroupClaims } from './profiles.js';
 
 export const GATE_V2 = 'soccer-gates/2.0.0';
 const NUMBER_WORDS = { two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12 };
@@ -124,6 +124,9 @@ export function runGates2(article, packet) {
   const verifiedGroup = [packet.teams?.home?.group, packet.teams?.away?.group, packet.team?.group].some(g => g?.verified);
   const EXEMPT_WITH_VERIFIED_GROUP = new Set(['mls_conference_claim', 'ucl_table_claim', 'ucl_qualification_claim']);
   for (const [name, re] of profile?.banned || []) { if (verifiedGroup && EXEMPT_WITH_VERIFIED_GROUP.has(name)) continue; const m = editorial.match(re); gate(name, !m, m ? m[0] : null); }
+  // Group / quarter-final / promotion / relegation wording only with verified, source-supported group context.
+  const unsupported = new Map(unsupportedGroupClaims(profile, editorial, packet));
+  for (const [name] of profile?.verified_claims || []) gate(name, !unsupported.has(name), unsupported.get(name) || null);
 
   const wrong = claims(t, packet);
   gate('claims_consistency', wrong.length === 0, wrong.length ? wrong : null);

@@ -200,7 +200,7 @@ function freeze(packet) {
 }
 
 export async function buildPacket(store, S, cand) {
-  const base = { version: PACKET_V2, engine: ENGINE_VERSION, event: { kind: cand.story_class, key: cand.key, as_of: cand.as_of, profile: cand.profile.key, ...(cand.corrects ? { corrects: cand.corrects } : {}) }, competition: { id: S.comp.id, name: S.comp.name, slug: S.comp.slug, season: S.season.label }, materiality: cand.materiality };
+  const base = { version: PACKET_V2, engine: ENGINE_VERSION, event: { kind: cand.story_class, key: cand.key, as_of: cand.as_of, profile: cand.profile.key, ...(cand.corrects ? { corrects: cand.corrects } : {}) }, competition: { id: S.comp.id, name: S.comp.name, slug: S.comp.slug, season: S.season.label, ...(cand.profile.team_kind === 'national' ? { team_kind: 'national', format: NATIONAL_FORMAT[S.comp.slug] || 'National teams; no overall table.' } : {}) }, materiality: cand.materiality };
   if (cand.story_class === 'match_recap') {
     const v2 = { ...base, ...(await recapBody(store, S, cand)) };
     return freeze(packetV3(v2, depthFromRows(v2, await loadDepthRows(store, S, v2)))); // v3: v2 evidence + depth
@@ -211,12 +211,20 @@ export async function buildPacket(store, S, cand) {
   throw new Error(`unknown story class ${cand.story_class}`);
 }
 
+// Format facts the desk may state for national-team competitions (UEFA's published format; the packet
+// carries them so the desk never calls a nation a club or invents a domestic-league frame).
+const NATIONAL_FORMAT = {
+  'uefa-nations-league': 'National teams, not clubs. League phase in Leagues A, B, C and D; groups A1-A4, B1-B4, C1-C4 (four teams) and D1-D2 (three teams). There is no overall table: position is only ever a group position.',
+};
+
 // Verified group context (MLS conference / UCL league phase) for the given teams, as of
 // NOW (packet build time): only when the provider's standings verify against our own
 // canonical results (same rule as the API). Unverified -> no context, no claims.
 export async function groupContext(store, S, teamIds) {
   const groups = await store.select('soccer_season_groups', { columns: ['id', 'group_key', 'name', 'group_type'], eq: { season_id: S.season.id } });
   if (!groups.length) return {};
+  // Tournament groups carry their tier (Nations League "League A"); read only where such groups exist.
+  const tiers = groups.some(g => g.group_type === 'group') ? new Map((await store.select('soccer_season_groups', { columns: ['id', 'parent_name'], eq: { season_id: S.season.id, group_type: 'group' } })).map(g => [g.id, g.parent_name])) : new Map();
   const byId = new Map(computeTable(S.finished.filter(m => S.leagueStages.has(m.stage_id))).map(r => [r.team_id, r]));
   const out = {};
   for (const g of groups) {
@@ -224,7 +232,7 @@ export async function groupContext(store, S, teamIds) {
     if (!verifyGroupStandings(src, byId).verified) continue;
     for (const tid of teamIds) {
       const r = src.find(x => x.team_id === tid);
-      if (r) out[tid] = { group: g.name, group_type: g.group_type, position: r.rank, teams_in_group: src.length, points: r.points, played: r.played, zone: r.note || null, verified: true, observed_at: r.observed_at };
+      if (r) out[tid] = { group: g.name, group_type: g.group_type, ...(tiers.get(g.id) ? { tier: tiers.get(g.id) } : {}), position: r.rank, teams_in_group: src.length, points: r.points, played: r.played, zone: r.note || null, verified: true, observed_at: r.observed_at };
     }
   }
   return out;

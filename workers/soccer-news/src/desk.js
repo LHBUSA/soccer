@@ -7,7 +7,7 @@
 // One repair attempt: the failed gates are quoted back to the desk once; a second failure holds.
 import { packetNumbers2 } from './gates2.js';
 import { stripIdentifiers } from './gates.js';
-import { PROFILES } from './profiles.js';
+import { PROFILES, unsupportedGroupClaims } from './profiles.js';
 
 export const DESK_VERSION = 'soccer-desk/2.1.1'; // 2.0.0: depth contract (packet v3), evidence-family + repetition gates
 export const QUALITY_VERSION = 'soccer-quality/2.1.0'; // 2.1.0: evidence-aware depth floor
@@ -263,6 +263,7 @@ export function validateEditorial(article, packet) {
   }
   if (/\bpossession\b/i.test(t) && !(packet.stats?.home?.possession_pct !== undefined && packet.stats?.away?.possession_pct !== undefined)) gate('unsupported_possession', false, 'possession');
   for (const [name, re] of PROFILES[packet.event.profile]?.banned || []) { const m = t.match(re); if (m) gate(name, false, m[0]); }
+  for (const [name, m] of unsupportedGroupClaims(PROFILES[packet.event.profile], t, packet)) gate(name, false, m);
   // match integrity
   if (packet.match) {
     const sc = packet.match.score; const fin = `${Math.max(sc.home, sc.away)}-${Math.min(sc.home, sc.away)}`;

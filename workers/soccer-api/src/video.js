@@ -5,7 +5,7 @@
 import { chunkArr } from '../../soccer-ingest/src/store.js';
 
 export const VIDEO_ATTRIBUTION = 'Official video · embedded from YouTube · not hosted by PropBetEdge';
-const DESK_COMP = { mls: 'mls', 'premier-league': 'premier-league', 'champions-league': 'uefa-champions-league', bundesliga: 'bundesliga' };
+const DESK_COMP = { mls: 'mls', 'premier-league': 'premier-league', 'champions-league': 'uefa-champions-league', bundesliga: 'bundesliga', international: 'uefa-nations-league' };
 const V_COLS = ['provider_video_id', 'channel_id', 'channel_name', 'title', 'description', 'published_at', 'duration_sec', 'thumbnail_url', 'url', 'embeddable', 'region_restriction', 'video_type', 'is_short', 'source_metadata'];
 
 export function availability(v) {

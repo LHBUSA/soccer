@@ -4,7 +4,9 @@
 //
 //   +40 both teams of the article's match named in the title
 //   +25 the article's player named in full (player_form; REQUIRED for a player-form story)
-//   +20 competition: the channel is that competition's / governing body's, or a club in the match
+//   +20 competition: the channel is that competition's, a club in the match, or a governing body whose
+//       scope includes the competition (a body serving SEVERAL competitions, e.g. UEFA, earns it only
+//       when the title names the article's competition)
 //   +20 date proximity: published between kickoff and 72 h after it
 //   +15 the final score in the title (either order)
 //   +10 highlights / match recap / goals video
@@ -14,7 +16,7 @@
 // THRESHOLD 75, and any conflicting-opponent or wrong-competition penalty rejects outright. A single-team
 // title can reach at most 20+20+15+10 = 65 (never attaches); both teams alone (40) or both teams + keyword
 // (50) do not attach; a match video needs both teams plus competition/date context (40+20+20 = 80).
-export const MATCHER_VERSION = 'soccer-video-match/1.0.0';
+export const MATCHER_VERSION = 'soccer-video-match/1.1.0';
 export const THRESHOLD = 75;
 
 export const fold = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ß/g, 'ss').replace(/ø/g, 'o').replace(/æ/g, 'ae')
@@ -61,8 +63,9 @@ export function teamsInTitle(title, index) {
   for (const h of hits) { if (taken.some(s => h.start < s.end && s.start < h.end)) continue; taken.push(h); ids.add(h.id); }
   return [...ids];
 }
-const COMP_WORDS = { 'mls': /\b(mls|major league soccer)\b/, 'premier-league': /\bpremier league\b/, bundesliga: /\bbundesliga\b/, 'uefa-champions-league': /\b(champions league|ucl)\b/ };
-const OTHER_COMP = /\b(europa league|conference league|fa cup|carabao|efl cup|dfb pokal|pokal|leagues cup|us open cup|concacaf|copa|friendly|preseason|women|u19|u21|u23|youth|academy|nwsl|mls next|legends)\b/;
+const COMP_WORDS = { 'mls': /\b(mls|major league soccer)\b/, 'premier-league': /\bpremier league\b/, bundesliga: /\bbundesliga\b/, 'uefa-champions-league': /\b(champions league|ucl)\b/, 'uefa-nations-league': /\b(nations league|unl)\b/ };
+// National-team football outside our competitions (qualifiers, friendlies, finals tournaments) is another competition too.
+const OTHER_COMP = /\b(europa league|conference league|fa cup|carabao|efl cup|dfb pokal|pokal|leagues cup|us open cup|concacaf|copa|friendly|friendlies|preseason|women|u19|u21|u23|youth|academy|nwsl|mls next|legends|world cup|qualifier|qualifiers|qualifying|euro 20\d\d|euro qualifiers?)\b/;
 export const HIGHLIGHT_TYPES = new Set(['highlights', 'match_recap', 'goals']);
 
 export function classifyVideo(title) {
@@ -78,7 +81,8 @@ export function classifyVideo(title) {
 }
 
 // ctx: { competition_slug, competition_id, match: { home_id, away_id, kickoff, score:{home,away} } | null,
-//        player: { name } | null, club_channel_team_ids } ; channel: { competition_id, team_id, publisher_type }
+//        player: { name } | null, club_channel_team_ids } ;
+// channel: { competition_id, scope_competition_ids?, team_id, publisher_type }
 export const allowedChannel = c => !!(c && c.verified === true && c.enabled === true && /^UC[A-Za-z0-9_-]{22}$/.test(c.channel_id || ''));
 
 export function scoreVideo(video, channel, ctx, index) {
@@ -96,8 +100,14 @@ export function scoreVideo(video, channel, ctx, index) {
   else if (ctx.player?.name) reasons.push({ points: 0, why: `player form: ${ctx.player.name} is not named (required)` });
   const others = found.filter(id => id !== H && id !== A);
   if (others.length) add(-50, 'conflicting opponent named');
-  const compOk = (channel.competition_id && channel.competition_id === ctx.competition_id) || (channel.team_id && (channel.team_id === H || channel.team_id === A));
-  if (compOk) add(20, channel.team_id ? 'club channel of a team in the match' : 'competition channel');
+  const scope = channel.scope_competition_ids?.length ? channel.scope_competition_ids : channel.competition_id ? [channel.competition_id] : [];
+  const inScope = scope.includes(ctx.competition_id);
+  const clubOk = !!channel.team_id && (channel.team_id === H || channel.team_id === A);
+  // A publisher serving several competitions (UEFA) never vouches for the competition by itself.
+  const namesOwnComp = !!COMP_WORDS[ctx.competition_slug]?.test(t);
+  const compOk = clubOk || (inScope && (scope.length === 1 || namesOwnComp));
+  if (compOk) add(20, clubOk ? 'club channel of a team in the match' : scope.length > 1 ? 'governing body channel; title names this competition' : 'competition channel');
+  else if (inScope) reasons.push({ points: 0, why: 'governing body channel serves several competitions; title does not name this one (no credit)' });
   const wrongComp = Object.entries(COMP_WORDS).some(([slug, re]) => slug !== ctx.competition_slug && re.test(t)) || OTHER_COMP.test(t);
   if (wrongComp) add(-40, 'another competition named');
   const pub = Date.parse(video.published_at || ''); const ko = Date.parse(ctx.match.kickoff);

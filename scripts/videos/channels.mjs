@@ -20,7 +20,9 @@ const COMPETITIONS = [
   { qid: 'Q18543', label: 'Major League Soccer', publisher_type: 'competition', competition: 'mls' },
   { qid: 'Q9448', label: 'Premier League', publisher_type: 'competition', competition: 'premier-league' },
   { qid: 'Q82595', label: 'Bundesliga', publisher_type: 'competition', competition: 'bundesliga' },
-  { qid: 'Q35572', label: 'UEFA', publisher_type: 'governing_body', competition: 'uefa-champions-league' },
+  // A governing body publishes for several competitions: its scope lists them all (the matcher still
+  // decides relevance per video and rejects a title naming another competition).
+  { qid: 'Q35572', label: 'UEFA', publisher_type: 'governing_body', competition: 'uefa-champions-league', scope: ['uefa-champions-league', 'uefa-nations-league'] },
 ];
 const proofs = JSON.parse(readFileSync('docs/evidence/media/wikimedia-2026-09-28.json', 'utf8')).teams.proofs.filter(p => p.qid && !/several|disagree/.test(p.reason));
 const teams = await store.select('soccer_teams', { columns: ['id', 'slug', 'name'], in: { name: proofs.map(p => p.team) } });
@@ -40,10 +42,11 @@ for (const c of all) {
   const ok = page.status === 200 && page.canonical_id === id;
   const row = {
     channel_id: id, provider: 'youtube', channel_name: page.title || c.label, channel_handle: page.handle || null, publisher_type: c.publisher_type,
-    competition_id: c.competition ? comps.get(c.competition) : null, team_id: c.team?.id || null, verified: ok, enabled: ok,
+    competition_id: c.competition ? comps.get(c.competition) : null, scope_competition_ids: (c.scope || (c.competition ? [c.competition] : [])).map(x => comps.get(x)).filter(Boolean),
+    team_id: c.team?.id || null, verified: ok, enabled: ok,
     language: null, region_notes: 'Region availability is per video (watch page availableCountries / player errors 100/101/150).',
     source_url: `https://www.youtube.com/channel/${id}`,
-    verification: { method: 'wikidata_P2397_exact + channel_page_canonical', qid: c.qid, label: c.label, team_slug: c.team?.slug || null, competition: c.competition || null, page_status: page.status, page_canonical: page.canonical_id, page_title: page.title, checked_at: new Date().toISOString() },
+    verification: { method: 'wikidata_P2397_exact + channel_page_canonical', qid: c.qid, label: c.label, team_slug: c.team?.slug || null, competition: c.competition || null, scope: c.scope || null, page_status: page.status, page_canonical: page.canonical_id, page_title: page.title, checked_at: new Date().toISOString() },
     checked_at: new Date().toISOString(),
   };
   out.push(row);

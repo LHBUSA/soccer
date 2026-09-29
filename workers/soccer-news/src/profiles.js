@@ -14,8 +14,22 @@
 //                             "top four" language: match-level angles only.
 //   knockout                  Two-legged or single knockout ties. Aggregate scores are not
 //                             stored, so no "through / eliminated / aggregate" language.
+//   nations_league            UEFA Nations League league phase: 54 NATIONAL teams in Leagues A-D,
+//                             groups A1..D2 (4/4/4/3 teams); no overall table exists. Never
+//                             domestic-league language (title race, relegation zone, top four) and
+//                             never "club". Group lead / quarter-final / promotion / relegation /
+//                             play-off wording only when the packet carries a VERIFIED group whose
+//                             source zone note supports that exact concept (verified_claims).
+//   nations_league_knockout   Quarter-finals, promotion/relegation play-offs and finals: knockout
+//                             rules plus national-team language.
 
-export const PROFILES_VERSION = 'soccer-news-profiles/1.0.0';
+export const PROFILES_VERSION = 'soccer-news-profiles/1.1.0';
+
+// National-team competitions: never domestic-league race language, never "club".
+const NATIONAL_BANNED = [
+  ['nl_domestic_race_language', /\b(title race|title rivals?|top[ -]four|relegation zone|drop zone|bottom three|survival (fight|battle|race)|top of the (table|league)|league table|league leaders?)\b/i],
+  ['nl_club_language', /\bclubs?\b/i],
+];
 
 const COMMON_MATCH_ANGLES = {
   comeback_from_ht: 1.0,   // winner trailed at half-time (needs a stored half-time score)
@@ -63,7 +77,45 @@ export const PROFILES = {
       ['ucl_top_four', /\btop[ -]four\b/i],
     ],
   },
+  nations_league: {
+    table: false, tiebreak: null, team_kind: 'national',
+    angles: { ...COMMON_MATCH_ANGLES },
+    zones: null,
+    banned: [...NATIONAL_BANNED],
+    // [gate, claim pattern, zone support pattern | null]: the claim needs a verified group in the
+    // packet, and (when a support pattern is given) a verified zone note of a team in the packet
+    // that states the same concept. Unverified or unsupported -> the gate fails (HOLD).
+    verified_claims: [
+      ['nl_group_position_claim', /\b(group (lead(ers?)?|winners?|standings|table)|top of (the |their )?group|(lead|leads|leading|led) (the |their )?group|bottom of (the |their )?group|standings)\b/i, null],
+      ['nl_quarterfinal_claim', /\bquarter-?finals?\b|\bqfs?\b/i, /\b(quarter|qfs?)\b/i],
+      ['nl_promotion_claim', /\bpromot\w*/i, /promot/i],
+      ['nl_relegation_claim', /\brelegat\w*/i, /relegat/i],
+      ['nl_playoff_claim', /\bplay-?offs?\b/i, /play-?offs?/i],
+    ],
+  },
+  nations_league_knockout: {
+    table: false, tiebreak: null, team_kind: 'national',
+    angles: { ...COMMON_MATCH_ANGLES },
+    zones: null,
+    banned: [
+      ['knockout_aggregate', /\b(aggregate|through to|eliminated|knocked out|progress(es|ed)? to)\b/i],
+      ...NATIONAL_BANNED,
+    ],
+  },
 };
+
+// Claims a profile allows only with verified, source-supported group context (see verified_claims).
+export function unsupportedGroupClaims(profile, text, packet) {
+  const groups = [packet?.teams?.home?.group, packet?.teams?.away?.group, packet?.team?.group].filter(g => g?.verified);
+  const zones = groups.map(g => g.zone).filter(Boolean);
+  const out = [];
+  for (const [name, re, support] of profile?.verified_claims || []) {
+    const m = String(text || '').match(re);
+    if (!m) continue;
+    if (!groups.length || (support && !zones.some(z => support.test(z)))) out.push([name, m[0]]);
+  }
+  return out;
+}
 
 // Profile selection per competition + match date. UCL league phase ends with
 // matchday 8 (late January); after that every UCL match is a knockout tie.
@@ -72,6 +124,8 @@ export const COMPETITION_PROFILES = {
   bundesliga: () => 'domestic_european_league',
   mls: () => 'mls',
   'uefa-champions-league': (kickoffIso, cfg = {}) => (Date.parse(kickoffIso) < Date.parse(cfg.ucl_league_phase_end || '2027-02-01T00:00:00Z') ? 'ucl_league_phase' : 'knockout'),
+  // League phase = ESPN season type 1, ending 2026-11-19T04:59Z (docs/evidence/espn/uefa-nations-discovery-2026-09-29.json).
+  'uefa-nations-league': (kickoffIso, cfg = {}) => (Date.parse(kickoffIso) < Date.parse(cfg.unl_league_phase_end || '2026-11-19T05:00:00Z') ? 'nations_league' : 'nations_league_knockout'),
 };
 
 export function profileFor(slug, kickoffIso, cfg) {

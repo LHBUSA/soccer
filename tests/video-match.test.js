@@ -89,3 +89,32 @@ test('player form requires the player named: the right match without the player 
   const r = scoreVideo(v('Bayern Munich - Union Berlin 7-0 | Highlights | Matchday 4'), BL, pctx, idx);
   assert.equal(r.status, 'rejected'); assert.ok(r.score >= THRESHOLD, 'score alone would pass'); assert.ok(r.reasons.some(x => /not named \(required\)/.test(x.why)));
 });
+
+test('governing body scope (UEFA): serves Champions League AND Nations League, never the wrong one', () => {
+  const N = buildAliasIndex([{ id: 'fra', name: 'France', short_name: 'France' }, { id: 'ita', name: 'Italy', short_name: 'Italy' }, { id: 'rma', name: 'Real Madrid', short_name: 'Real Madrid' }, { id: 'bay', name: 'Bayern München', short_name: 'Bayern' }]);
+  const UEFA = { channel_id: 'UCyGa1YEx9ST66rYrJTGIKOw', verified: true, enabled: true, competition_id: 'c-ucl', scope_competition_ids: ['c-ucl', 'c-unl'], team_id: null, publisher_type: 'governing_body' };
+  const unl = { competition_slug: 'uefa-nations-league', competition_id: 'c-unl', match: { id: 'n1', home_id: 'fra', away_id: 'ita', kickoff: '2026-10-10T18:45:00Z', score: { home: 2, away: 1 } }, player: null };
+  const ucl = { competition_slug: 'uefa-champions-league', competition_id: 'c-ucl', match: { id: 'u1', home_id: 'rma', away_id: 'bay', kickoff: '2026-10-21T19:00:00Z', score: { home: 2, away: 1 } }, player: null };
+  const at = (title, when) => ({ title, published_at: when, video_type: classifyVideo(title) });
+  // validated Nations League match video
+  const ok = scoreVideo(at('France 2-1 Italy | Highlights | UEFA Nations League 2026/27', '2026-10-10T22:30:00Z'), UEFA, unl, N);
+  assert.equal(ok.status, 'linked'); assert.ok(ok.reasons.some(r => /governing body channel; title names this competition/.test(r.why)));
+  // Champions League highlights never appear on a Nations League article because the publisher is UEFA
+  const wrong = scoreVideo(at('Real Madrid 2-1 Bayern | Highlights | UEFA Champions League', '2026-10-10T22:30:00Z'), UEFA, unl, N);
+  assert.equal(wrong.status, 'rejected');
+  // same nations, wrong UEFA competition named -> reject; a qualifier / friendly between them -> reject
+  assert.equal(scoreVideo(at('France 2-1 Italy | Highlights | Champions League', '2026-10-10T22:30:00Z'), UEFA, unl, N).status, 'rejected');
+  assert.equal(scoreVideo(at('France 2-1 Italy | World Cup Qualifier Highlights', '2026-10-10T22:30:00Z'), UEFA, unl, N).status, 'rejected');
+  assert.equal(scoreVideo(at('France v Italy friendly highlights', '2026-10-10T22:30:00Z'), UEFA, unl, N).status, 'rejected');
+  // a multi-competition publisher earns no competition credit when the title names no competition;
+  // the exact match can still be identified by both nations + final score + publish time (40+20+15+10)
+  const bare = scoreVideo(at('France 2-1 Italy | Highlights', '2026-10-10T22:30:00Z'), UEFA, unl, N);
+  assert.ok(bare.reasons.some(r => /serves several competitions/.test(r.why))); assert.equal(bare.score, 85);
+  // ...but without the score it is weak and stays unlinked
+  assert.equal(scoreVideo(at('France v Italy | Highlights', '2026-10-10T22:30:00Z'), UEFA, unl, N).status, 'rejected');
+  // and a Nations League video never lands on a Champions League article
+  assert.equal(scoreVideo(at('Real Madrid v Bayern | Nations League?', '2026-10-21T22:30:00Z'), UEFA, ucl, N).status, 'rejected');
+  assert.equal(scoreVideo(at('Real Madrid 2-1 Bayern | Highlights | UEFA Champions League', '2026-10-21T22:30:00Z'), UEFA, ucl, N).status, 'linked');
+  // a single-competition channel keeps its credit without naming itself (unchanged behaviour)
+  assert.equal(scoreVideo(at('France 2-1 Italy | Highlights', '2026-10-10T22:30:00Z'), { ...UEFA, scope_competition_ids: ['c-unl'] }, unl, N).status, 'linked');
+});
