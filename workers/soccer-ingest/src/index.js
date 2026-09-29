@@ -19,6 +19,7 @@ import { espnLiveCanary, espnStoreCanary } from './canary.js';
 import { STANDINGS_LANE, runEspnStandings } from './espn-standings.js';
 import { LIVE_LANE, runEspnLive } from './espn-live.js';
 import { SHADOW_LANE, runShadow } from './shadow-lane.js';
+import { ALGO_LANE, runAlgo } from './algo-lane.js';
 import { canonicalHealth, enrichmentHealth } from './health.js';
 import { BREAKER } from './espn-live.js';
 import { LIVE_SNAPSHOT_DIRTY_KEY, publicLiveDirtyChanges } from '../../shared/live-snapshot.js';
@@ -31,6 +32,7 @@ const LANES = {
   [STANDINGS_LANE]: ctx => runEspnStandings(ctx),
   [LIVE_LANE]: ctx => runEspnLive(ctx),
   [SHADOW_LANE]: ctx => runShadow(ctx),
+  [ALGO_LANE]: ctx => runAlgo(ctx),
 };
 // Priority lane runs every tick; ESPN lanes rotate one per tick (one source can
 // never monopolise ticks).
@@ -41,7 +43,7 @@ const ENABLED = new Set(registry.competitions.filter(c => c.espn?.enabled).map(c
 const ROTATING = [...ESPN_LANES.filter(l => ENABLED.has(l.competition)).map(l => l.name), STANDINGS_LANE];
 // Self-throttled lanes run after the rest of every tick and decide their own cadence. The
 // private model shadow (Bundesliga only, hourly) is observational and not part of /health ok.
-const SELF_THROTTLED = [SHADOW_LANE];
+const SELF_THROTTLED = [SHADOW_LANE, ALGO_LANE];
 
 function context(env) {
   const store = storeFromEnv(env);
@@ -61,7 +63,7 @@ export async function runLane(env, name, { force = false, now = Date.now(), budg
   const prev = state;
   state = { ...state, last_attempt_at: new Date(now).toISOString() };
   try {
-    const ctx = { ...context(env), state: prev, now, force, ...(budget ? { budget } : {}) };
+    const ctx = { ...context(env), env, state: prev, now, force, ...(budget ? { budget } : {}) };
     const out = await fn(ctx);
     if (out?.skipped) return { lane: name, ...out };
     state = successState(state, { now, observed: out.observed, changed: out.changed, captureId: out.captureId, parserVersion: out.parserVersion, cursor: out.cursor, changedValue: out.changedValue || null });

@@ -1,0 +1,83 @@
+{
+  "algo_version": "soccer-algo-v1.0.0",
+  "name": "Soccer Algo V1 (Bundesliga)",
+  "model": {
+    "id": "soccer-research-bundesliga-v1.2-dc",
+    "version": "1.2.0",
+    "model_hash": "d9cf3320842efacfc0437816fc74131515f71ff8eac51ead8c8a632d5bdcd7f2",
+    "calibration": "none",
+    "rho": -0.1099,
+    "team_strength": {
+      "half_life_days": 540,
+      "shrink": 10,
+      "window_half_lives": 5,
+      "min_weight": 50
+    },
+    "home_half_life_days": 540,
+    "code": {
+      "path": "scripts/research/structural-core.mjs",
+      "sha256": "c6f296eb3dd397ecec366a36fc28909527d3b2dc97cc834a5987d34f5f727746"
+    },
+    "card": {
+      "path": "docs/evidence/research/frozen/model-card-v1.2-dc.json",
+      "sha256": "c79116e69537b4633b91dac44b8388fa510ae39cb2aa120f0835f913c5fbd3c8"
+    },
+    "research_prediction_hash": "19b72fedee9a60268c4d554d2c8e20adefa6e311b5c73cd7b654b5ff1dfbb13b"
+  },
+  "pick_policy": {
+    "version": "soccer-algo-pick-policy/1.1",
+    "protocol": {
+      "path": "scripts/research/algo-v1_1-protocol.mjs",
+      "sha256": "8f73a080e63fcf2385094a099521e40830b90de10d8ff34370373d0f5c13bd21"
+    },
+    "select_freeze": {
+      "path": "docs/evidence/research/algo-v1_1/select-freeze.json",
+      "freeze_sha256": "9e4cf217a2b06624ddcda4512dde7f1b56f6f922e6202ac1449af1731bef6b16"
+    },
+    "holdout": {
+      "path": "docs/evidence/research/algo-v1_1/holdout-results.json",
+      "sha256": "2a0d324eb24f2678baad5c0bc5ef0028abd6548187f766b23e485e294e233005"
+    },
+    "rule": "Official Pick = the selection of an eligible market whose model probability >= that market's frozen threshold; at most ONE per match (largest probability - threshold; ties by market order 1x2, home_to_score). Game Best = the same argmax whether or not it qualifies; a non-qualifying Game Best never enters the record.",
+    "markets": {
+      "1x2": {
+        "threshold": 0.6,
+        "selections": [
+          "home",
+          "draw",
+          "away"
+        ]
+      },
+      "home_to_score": {
+        "threshold": 0.875,
+        "selections": [
+          "yes",
+          "no"
+        ]
+      }
+    },
+    "market_order": [
+      "1x2",
+      "home_to_score"
+    ]
+  },
+  "competition_scope": {
+    "competition_slug": "bundesliga",
+    "stage_type": "league"
+  },
+  "input_contract": "finished Bundesliga league results (canonical soccer_matches) that kicked off strictly before issued_at; any earlier league match without a result -> HOLD (never guess). input_hash = sha256 of the ordered input list; the list is archived write-once in R2 (algo_inputs/sha256/...).",
+  "lead_time": {
+    "issue_window_days": 7,
+    "lock_minutes_before_kickoff": 60,
+    "rule": "a forecast and its Official Pick are issued once, between kickoff - 7 days and lock_at = kickoff - 60 minutes, and are immutable from issue; nothing is created after lock (enforced by the ledger trigger)"
+  },
+  "settlement": {
+    "finished": "graded from the canonical final score (soccer_algo_grade)",
+    "postponed": "stays pending; graded when finished if the canonical kickoff moved by <= 48 h, otherwise void",
+    "cancelled": "void",
+    "abandoned": "void (no separate settlement policy exists)",
+    "push": "no V1 market can push"
+  },
+  "prices": "none in V1: no sportsbook price is captured, so ROI, units and CLV are unavailable. A price may only ever come from a stored pre-lock quote; there are no default odds.",
+  "spec_hash": "3156f6f9e3f217fbdd8732363a89ff289d831b695de3be5583691d8966bbc1e6"
+}
