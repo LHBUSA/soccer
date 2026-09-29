@@ -6,8 +6,94 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
-      "source": "/api/soccer/:path*",
-      "destination": "/api/soccer?path=:path*"
+      "source": "/api/soccer/pro/access",
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "pbe_session"
+        }
+      ],
+      "destination": "/api/soccer-free-access.json"
+    },
+    {
+      "source": "/api/soccer/pro/catalog",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/pro/catalog"
+    },
+    {
+      "source": "/api/soccer/pro/:path*",
+      "destination": "/api/soccer?path=pro/:path*"
+    },
+    {
+      "source": "/api/soccer/health",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/health"
+    },
+    {
+      "source": "/api/soccer/coverage",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/coverage"
+    },
+    {
+      "source": "/api/soccer/competitions",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/competitions"
+    },
+    {
+      "source": "/api/soccer/competitions/:slug",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/competitions/:slug"
+    },
+    {
+      "source": "/api/soccer/matches",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/matches"
+    },
+    {
+      "source": "/api/soccer/matches/:id/cast",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/matches/:id/cast"
+    },
+    {
+      "source": "/api/soccer/matches/:id",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/matches/:id"
+    },
+    {
+      "source": "/api/soccer/teams/:slug/dna",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/teams/:slug/dna"
+    },
+    {
+      "source": "/api/soccer/teams/:slug",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/teams/:slug"
+    },
+    {
+      "source": "/api/soccer/players",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/players"
+    },
+    {
+      "source": "/api/soccer/players/:slug/dna",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/players/:slug/dna"
+    },
+    {
+      "source": "/api/soccer/players/:slug",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/players/:slug"
+    },
+    {
+      "source": "/api/soccer/table",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/table"
+    },
+    {
+      "source": "/api/soccer/news",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/news"
+    },
+    {
+      "source": "/api/soccer/news/:slug",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/news/:slug"
+    },
+    {
+      "source": "/api/soccer/live",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/live"
+    },
+    {
+      "source": "/api/soccer/media/:sha",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/media/:sha"
+    },
+    {
+      "source": "/api/soccer/videos",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/videos"
     },
     {
       "source": "/sitemap.xml",
@@ -53,6 +139,15 @@
         {
           "key": "Content-Security-Policy",
           "value": "default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://i.ytimg.com; frame-src https://www.youtube-nocookie.com; connect-src 'self' https://auth.propbetedge.ai https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+        }
+      ]
+    },
+    {
+      "source": "/api/soccer/:path*",
+      "headers": [
+        {
+          "key": "x-vercel-enable-rewrite-caching",
+          "value": "1"
         }
       ]
     },
