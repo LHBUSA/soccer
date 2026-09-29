@@ -1,6 +1,6 @@
 {
   "_policy": "Exact YouTube channel ids proven by Wikidata P2397 on the competition / governing body / proven club item AND the canonical channel page, re-checked by scripts/videos/channels.mjs. Fan channels, compilations and re-uploads are never added. Broadcaster channels need explicit owner approval.",
-  "generated_at": "2026-09-28T22:40:28.959Z",
+  "generated_at": "2026-09-29T01:48:00.699Z",
   "channels": [
     {
       "channel_id": "UCSZbXT5TLLW_i-5W8FZpFsg",
@@ -9,23 +9,27 @@
       "channel_handle": "@mls",
       "publisher_type": "competition",
       "competition_id": "d370dec9-4da9-5433-b2bc-e32958287728",
+      "scope_competition_ids": [
+        "d370dec9-4da9-5433-b2bc-e32958287728"
+      ],
       "team_id": null,
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCSZbXT5TLLW_i-5W8FZpFsg",
-      "checked_at": "2026-09-28T22:39:34.057Z",
+      "checked_at": "2026-09-29T01:47:02.902Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q18543",
         "label": "Major League Soccer",
         "team_slug": null,
         "competition": "mls",
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCSZbXT5TLLW_i-5W8FZpFsg",
         "page_title": "Major League Soccer",
-        "checked_at": "2026-09-28T22:39:34.056Z"
+        "checked_at": "2026-09-29T01:47:02.901Z"
       }
     },
     {
@@ -35,23 +39,27 @@
       "channel_handle": "@premierleague",
       "publisher_type": "competition",
       "competition_id": "54822e53-a91c-5d6f-8786-02f9d7212b8b",
+      "scope_competition_ids": [
+        "54822e53-a91c-5d6f-8786-02f9d7212b8b"
+      ],
       "team_id": null,
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCG5qGWdu8nIRZqJ_GgDwQ-w",
-      "checked_at": "2026-09-28T22:39:35.603Z",
+      "checked_at": "2026-09-29T01:47:04.447Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q9448",
         "label": "Premier League",
         "team_slug": null,
         "competition": "premier-league",
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCG5qGWdu8nIRZqJ_GgDwQ-w",
         "page_title": "Premier League",
-        "checked_at": "2026-09-28T22:39:35.603Z"
+        "checked_at": "2026-09-29T01:47:04.447Z"
       }
     },
     {
@@ -61,23 +69,27 @@
       "channel_handle": "@bundesliga",
       "publisher_type": "competition",
       "competition_id": "b66f80c5-850a-5288-aa54-b63df47d131b",
+      "scope_competition_ids": [
+        "b66f80c5-850a-5288-aa54-b63df47d131b"
+      ],
       "team_id": null,
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UC6UL29enLNe4mqwTfAyeNuw",
-      "checked_at": "2026-09-28T22:39:37.254Z",
+      "checked_at": "2026-09-29T01:47:06.149Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q82595",
         "label": "Bundesliga",
         "team_slug": null,
         "competition": "bundesliga",
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UC6UL29enLNe4mqwTfAyeNuw",
         "page_title": "Bundesliga",
-        "checked_at": "2026-09-28T22:39:37.254Z"
+        "checked_at": "2026-09-29T01:47:06.149Z"
       }
     },
     {
@@ -87,23 +99,31 @@
       "channel_handle": "@UEFA",
       "publisher_type": "governing_body",
       "competition_id": "4c592bbf-7911-5cf2-9ee8-c31872b4689f",
+      "scope_competition_ids": [
+        "4c592bbf-7911-5cf2-9ee8-c31872b4689f",
+        "d1f49cf0-a292-58fc-b3cd-d3b8e1dc7fad"
+      ],
       "team_id": null,
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCyGa1YEx9ST66rYrJTGIKOw",
-      "checked_at": "2026-09-28T22:39:38.709Z",
+      "checked_at": "2026-09-29T01:47:07.662Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q35572",
         "label": "UEFA",
         "team_slug": null,
         "competition": "uefa-champions-league",
+        "scope": [
+          "uefa-champions-league",
+          "uefa-nations-league"
+        ],
         "page_status": 200,
         "page_canonical": "UCyGa1YEx9ST66rYrJTGIKOw",
         "page_title": "UEFA",
-        "checked_at": "2026-09-28T22:39:38.709Z"
+        "checked_at": "2026-09-29T01:47:07.662Z"
       }
     },
     {
@@ -113,23 +133,25 @@
       "channel_handle": "@BorussiaM%C3%B6nchengladbach",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "775d711e-7530-5d32-89e1-40900407af76",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCcAV1UxgHz4czIBJp9zwNyg",
-      "checked_at": "2026-09-28T22:39:40.320Z",
+      "checked_at": "2026-09-29T01:47:09.385Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q101959",
         "label": "Borussia M'gladbach",
         "team_slug": "borussia-m-gladbach",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCcAV1UxgHz4czIBJp9zwNyg",
         "page_title": "Borussia Mönchengladbach",
-        "checked_at": "2026-09-28T22:39:40.320Z"
+        "checked_at": "2026-09-29T01:47:09.385Z"
       }
     },
     {
@@ -139,23 +161,25 @@
       "channel_handle": "@BVB",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "640424d4-438b-5524-8909-0422f7e8ce97",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCK8rTVgp3-MebXkmeJcQb1Q",
-      "checked_at": "2026-09-28T22:39:41.916Z",
+      "checked_at": "2026-09-29T01:47:11.049Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q41420",
         "label": "Borussia Dortmund",
         "team_slug": "borussia-dortmund",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCK8rTVgp3-MebXkmeJcQb1Q",
         "page_title": "Borussia Dortmund",
-        "checked_at": "2026-09-28T22:39:41.916Z"
+        "checked_at": "2026-09-29T01:47:11.049Z"
       }
     },
     {
@@ -165,23 +189,25 @@
       "channel_handle": "@SCFreiburg",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "21f0f02a-d5e7-50a2-a789-95fc8161893f",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UC_atVJpGbIdjIa9OC6E3yJA",
-      "checked_at": "2026-09-28T22:39:43.518Z",
+      "checked_at": "2026-09-29T01:47:12.760Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q106394",
         "label": "Freiburg",
         "team_slug": "freiburg",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UC_atVJpGbIdjIa9OC6E3yJA",
         "page_title": "SC Freiburg",
-        "checked_at": "2026-09-28T22:39:43.518Z"
+        "checked_at": "2026-09-29T01:47:12.760Z"
       }
     },
     {
@@ -191,23 +217,25 @@
       "channel_handle": "@1FSVMainz05",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "6f8a1b01-df4d-597f-918a-42c9176472c3",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCMT1hwsDgOEMhS2dIfD3e6A",
-      "checked_at": "2026-09-28T22:39:45.031Z",
+      "checked_at": "2026-09-29T01:47:14.924Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q105254",
         "label": "Mainz 05",
         "team_slug": "mainz-05",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCMT1hwsDgOEMhS2dIfD3e6A",
         "page_title": "1. FSV Mainz 05",
-        "checked_at": "2026-09-28T22:39:45.031Z"
+        "checked_at": "2026-09-29T01:47:14.924Z"
       }
     },
     {
@@ -217,23 +245,25 @@
       "channel_handle": "@fcbayern",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "9c2ce181-7bf4-55cf-b770-949389bb8797",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCZkcxFIsqW5htimoUQKA0iA",
-      "checked_at": "2026-09-28T22:39:46.570Z",
+      "checked_at": "2026-09-29T01:47:16.569Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q15789",
         "label": "Bayern München",
         "team_slug": "bayern-munchen",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCZkcxFIsqW5htimoUQKA0iA",
         "page_title": "FC Bayern Munich",
-        "checked_at": "2026-09-28T22:39:46.570Z"
+        "checked_at": "2026-09-29T01:47:16.569Z"
       }
     },
     {
@@ -243,23 +273,25 @@
       "channel_handle": "@mancity",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "3bae7b11-9a30-5e3a-8f88-0151e490ab95",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCkzCjdRMrW2vXLx8mvPVLdQ",
-      "checked_at": "2026-09-28T22:39:48.088Z",
+      "checked_at": "2026-09-29T01:47:18.319Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q50602",
         "label": "Manchester City",
         "team_slug": "manchester-city",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCkzCjdRMrW2vXLx8mvPVLdQ",
         "page_title": "Man City",
-        "checked_at": "2026-09-28T22:39:48.088Z"
+        "checked_at": "2026-09-29T01:47:18.319Z"
       }
     },
     {
@@ -269,23 +301,25 @@
       "channel_handle": "@officialbhafc",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "1400baef-5f7b-5c1b-a23d-09c5cca0b905",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCf-cpC9WAdOsas19JHipukA",
-      "checked_at": "2026-09-28T22:39:49.755Z",
+      "checked_at": "2026-09-29T01:47:19.849Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q19453",
         "label": "Brighton & Hove Albion",
         "team_slug": "brighton-hove-albion",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCf-cpC9WAdOsas19JHipukA",
         "page_title": "Official Brighton & Hove Albion FC",
-        "checked_at": "2026-09-28T22:39:49.755Z"
+        "checked_at": "2026-09-29T01:47:19.849Z"
       }
     },
     {
@@ -295,23 +329,25 @@
       "channel_handle": "@RBLeipzig",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "08e2b4f3-a5fe-58b3-a7a4-7d410e3f7b78",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCkZwB4IGoNBvRmVT2gaO4XA",
-      "checked_at": "2026-09-28T22:39:51.348Z",
+      "checked_at": "2026-09-29T01:47:21.559Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q702455",
         "label": "RB Leipzig",
         "team_slug": "rb-leipzig",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCkZwB4IGoNBvRmVT2gaO4XA",
         "page_title": "RB Leipzig",
-        "checked_at": "2026-09-28T22:39:51.348Z"
+        "checked_at": "2026-09-29T01:47:21.559Z"
       }
     },
     {
@@ -321,23 +357,25 @@
       "channel_handle": "@bayerleverkusen",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "81ea321f-975b-54aa-9897-4e65eb40803d",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCSMZmPVql528Cph9WPvt0GA",
-      "checked_at": "2026-09-28T22:39:52.850Z",
+      "checked_at": "2026-09-29T01:47:23.238Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q104761",
         "label": "Bayer Leverkusen",
         "team_slug": "bayer-leverkusen",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCSMZmPVql528Cph9WPvt0GA",
         "page_title": "Bayer 04 Leverkusen",
-        "checked_at": "2026-09-28T22:39:52.850Z"
+        "checked_at": "2026-09-29T01:47:23.238Z"
       }
     },
     {
@@ -347,23 +385,25 @@
       "channel_handle": "@arsenal",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "be541ba0-e56b-559c-9dbe-f6275f643f84",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCpryVRk_VDudG8SHXgWcG0w",
-      "checked_at": "2026-09-28T22:39:54.631Z",
+      "checked_at": "2026-09-29T01:47:24.942Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q9617",
         "label": "Arsenal",
         "team_slug": "arsenal",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCpryVRk_VDudG8SHXgWcG0w",
         "page_title": "Arsenal",
-        "checked_at": "2026-09-28T22:39:54.631Z"
+        "checked_at": "2026-09-29T01:47:24.942Z"
       }
     },
     {
@@ -373,23 +413,25 @@
       "channel_handle": "@WerderBremen",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "e8cd28c3-8517-5be6-a5e8-007cb5e11c93",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCdjedrfgyFQEkqbkq1DJf3w",
-      "checked_at": "2026-09-28T22:39:56.275Z",
+      "checked_at": "2026-09-29T01:47:26.991Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q51976",
         "label": "Werder Bremen",
         "team_slug": "werder-bremen",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCdjedrfgyFQEkqbkq1DJf3w",
         "page_title": "Werder Bremen",
-        "checked_at": "2026-09-28T22:39:56.275Z"
+        "checked_at": "2026-09-29T01:47:26.991Z"
       }
     },
     {
@@ -399,23 +441,25 @@
       "channel_handle": "@fckoeln",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "97866b04-920a-5c36-bedb-e123f8db3c8c",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCQZhvmm636X6I5rrnLFBp1w",
-      "checked_at": "2026-09-28T22:39:57.792Z",
+      "checked_at": "2026-09-29T01:47:28.612Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q104770",
         "label": "Köln",
         "team_slug": "koln",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCQZhvmm636X6I5rrnLFBp1w",
         "page_title": "1. FC Köln",
-        "checked_at": "2026-09-28T22:39:57.792Z"
+        "checked_at": "2026-09-29T01:47:28.612Z"
       }
     },
     {
@@ -425,23 +469,25 @@
       "channel_handle": "@inter",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "3ca625de-1643-52cc-b8be-2844f801ae3c",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCvXzEblUa0cfny4HAJ_ZOWw",
-      "checked_at": "2026-09-28T22:39:59.314Z",
+      "checked_at": "2026-09-29T01:47:30.155Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q631",
         "label": "Internazionale",
         "team_slug": "internazionale",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCvXzEblUa0cfny4HAJ_ZOWw",
         "page_title": "Inter",
-        "checked_at": "2026-09-28T22:39:59.314Z"
+        "checked_at": "2026-09-29T01:47:30.155Z"
       }
     },
     {
@@ -451,23 +497,25 @@
       "channel_handle": "@realmadrid",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "9bd7f49b-04cf-50f6-aafa-acb09078da4c",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCWV3obpZVGgJ3j9FVhEjF2Q",
-      "checked_at": "2026-09-28T22:40:00.873Z",
+      "checked_at": "2026-09-29T01:47:32.085Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q8682",
         "label": "Real Madrid",
         "team_slug": "real-madrid",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCWV3obpZVGgJ3j9FVhEjF2Q",
         "page_title": "Real Madrid",
-        "checked_at": "2026-09-28T22:40:00.873Z"
+        "checked_at": "2026-09-29T01:47:32.085Z"
       }
     },
     {
@@ -477,23 +525,25 @@
       "channel_handle": "@intermiamicf",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "e7ab1df1-d63c-5694-9757-ffa7ce360899",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCcFuqX01k0dCBULXl1YvCsA",
-      "checked_at": "2026-09-28T22:40:02.441Z",
+      "checked_at": "2026-09-29T01:47:33.640Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q16844931",
         "label": "Inter Miami CF",
         "team_slug": "inter-miami-cf",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCcFuqX01k0dCBULXl1YvCsA",
         "page_title": "Inter Miami CF",
-        "checked_at": "2026-09-28T22:40:02.441Z"
+        "checked_at": "2026-09-29T01:47:33.640Z"
       }
     },
     {
@@ -503,23 +553,25 @@
       "channel_handle": "@OfficialCPFC",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "356baccf-2fde-5932-8239-979727ccba98",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCWB9N0012fG6bGyj486Qxmg",
-      "checked_at": "2026-09-28T22:40:03.986Z",
+      "checked_at": "2026-09-29T01:47:35.455Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q19467",
         "label": "Crystal Palace",
         "team_slug": "crystal-palace",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCWB9N0012fG6bGyj486Qxmg",
         "page_title": "Crystal Palace FC",
-        "checked_at": "2026-09-28T22:40:03.986Z"
+        "checked_at": "2026-09-29T01:47:35.455Z"
       }
     },
     {
@@ -529,23 +581,25 @@
       "channel_handle": "@HSV",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "c4975e20-1bb8-565f-ad0b-22316762e1a0",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCUegZz1N_lW_5mKORkYykCw",
-      "checked_at": "2026-09-28T22:40:05.568Z",
+      "checked_at": "2026-09-29T01:47:37.151Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q51974",
         "label": "Hamburger SV",
         "team_slug": "hamburger-sv",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCUegZz1N_lW_5mKORkYykCw",
         "page_title": "HSV",
-        "checked_at": "2026-09-28T22:40:05.568Z"
+        "checked_at": "2026-09-29T01:47:37.151Z"
       }
     },
     {
@@ -555,23 +609,25 @@
       "channel_handle": "@PSV",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "efe960bd-b58b-5add-9cd8-32c8838fa22c",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UC_2ynsXrRrKP8zYrU7Hc06A",
-      "checked_at": "2026-09-28T22:40:07.456Z",
+      "checked_at": "2026-09-29T01:47:39.107Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q11938",
         "label": "PSV Eindhoven",
         "team_slug": "psv-eindhoven",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UC_2ynsXrRrKP8zYrU7Hc06A",
         "page_title": "PSV",
-        "checked_at": "2026-09-28T22:40:07.456Z"
+        "checked_at": "2026-09-29T01:47:39.107Z"
       }
     },
     {
@@ -581,23 +637,25 @@
       "channel_handle": "@TottenhamHotspur",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "45399083-97c9-53e2-8eb8-4cf57e467450",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCEg25rdRZXg32iwai6N6l0w",
-      "checked_at": "2026-09-28T22:40:08.972Z",
+      "checked_at": "2026-09-29T01:47:40.841Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q18741",
         "label": "Tottenham Hotspur",
         "team_slug": "tottenham-hotspur",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCEg25rdRZXg32iwai6N6l0w",
         "page_title": "Tottenham Hotspur",
-        "checked_at": "2026-09-28T22:40:08.972Z"
+        "checked_at": "2026-09-29T01:47:40.841Z"
       }
     },
     {
@@ -607,23 +665,25 @@
       "channel_handle": "@NUFC",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "8e867ba0-2519-5188-bbba-a1f254dfb417",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCywGl_BPp9QhD0uAcP2HsJw",
-      "checked_at": "2026-09-28T22:40:10.551Z",
+      "checked_at": "2026-09-29T01:47:42.415Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q18716",
         "label": "Newcastle United",
         "team_slug": "newcastle-united",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCywGl_BPp9QhD0uAcP2HsJw",
         "page_title": "Newcastle United",
-        "checked_at": "2026-09-28T22:40:10.551Z"
+        "checked_at": "2026-09-29T01:47:42.415Z"
       }
     },
     {
@@ -633,23 +693,25 @@
       "channel_handle": "@manutd",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "e148d6e7-876e-5683-9c12-41479c614885",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UC6yW44UGJJBvYTlfC7CRg2Q",
-      "checked_at": "2026-09-28T22:40:12.182Z",
+      "checked_at": "2026-09-29T01:47:43.995Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q18656",
         "label": "Manchester United",
         "team_slug": "manchester-united",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UC6yW44UGJJBvYTlfC7CRg2Q",
         "page_title": "Manchester United",
-        "checked_at": "2026-09-28T22:40:12.182Z"
+        "checked_at": "2026-09-29T01:47:43.994Z"
       }
     },
     {
@@ -659,23 +721,25 @@
       "channel_handle": "@FCBarcelona",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "db302030-0990-55c4-81ee-140bf1222310",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UC14UlmYlSNiQCBe9Eookf_A",
-      "checked_at": "2026-09-28T22:40:13.775Z",
+      "checked_at": "2026-09-29T01:47:45.809Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q7156",
         "label": "Barcelona",
         "team_slug": "barcelona",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UC14UlmYlSNiQCBe9Eookf_A",
         "page_title": "FC Barcelona",
-        "checked_at": "2026-09-28T22:40:13.775Z"
+        "checked_at": "2026-09-29T01:47:45.809Z"
       }
     },
     {
@@ -685,23 +749,25 @@
       "channel_handle": "@avfcofficial",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "47866b47-12b4-5243-b672-74a5715cd72a",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCICNP0mvtr0prFwGUQIABfQ",
-      "checked_at": "2026-09-28T22:40:15.310Z",
+      "checked_at": "2026-09-29T01:47:47.425Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q18711",
         "label": "Aston Villa",
         "team_slug": "aston-villa",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCICNP0mvtr0prFwGUQIABfQ",
         "page_title": "Aston Villa Football Club",
-        "checked_at": "2026-09-28T22:40:15.310Z"
+        "checked_at": "2026-09-29T01:47:47.425Z"
       }
     },
     {
@@ -711,23 +777,25 @@
       "channel_handle": "@chelseafc",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "d75924d3-73ff-5b8f-93b3-e01ba9b5653d",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCU2PacFf99vhb3hNiYDmxww",
-      "checked_at": "2026-09-28T22:40:17.392Z",
+      "checked_at": "2026-09-29T01:47:49.056Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q9616",
         "label": "Chelsea",
         "team_slug": "chelsea",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCU2PacFf99vhb3hNiYDmxww",
         "page_title": "Chelsea Football Club",
-        "checked_at": "2026-09-28T22:40:17.392Z"
+        "checked_at": "2026-09-29T01:47:49.056Z"
       }
     },
     {
@@ -737,23 +805,25 @@
       "channel_handle": "@LiverpoolFC",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "338c117f-5477-5701-8ca4-fc1e2a35547c",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UC9LQwHZoucFT94I2h6JOcjw",
-      "checked_at": "2026-09-28T22:40:19.143Z",
+      "checked_at": "2026-09-29T01:47:50.795Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q1130849",
         "label": "Liverpool",
         "team_slug": "liverpool",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UC9LQwHZoucFT94I2h6JOcjw",
         "page_title": "Liverpool FC",
-        "checked_at": "2026-09-28T22:40:19.143Z"
+        "checked_at": "2026-09-29T01:47:50.795Z"
       }
     },
     {
@@ -763,23 +833,25 @@
       "channel_handle": "@fenerbahce",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "97d25822-3d08-54db-a91b-32965926f7a5",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCgqlho3-8a6FmDqQm7Q6gJw",
-      "checked_at": "2026-09-28T22:40:20.880Z",
+      "checked_at": "2026-09-29T01:47:52.361Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q6601875",
         "label": "Fenerbahce",
         "team_slug": "fenerbahce",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCgqlho3-8a6FmDqQm7Q6gJw",
         "page_title": "Fenerbahce",
-        "checked_at": "2026-09-28T22:40:20.880Z"
+        "checked_at": "2026-09-29T01:47:52.361Z"
       }
     },
     {
@@ -789,23 +861,25 @@
       "channel_handle": "@asroma",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "45ddf007-64aa-5c34-8057-ad96a2782853",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCLttSYJ6kPtlcurY96kXkQw",
-      "checked_at": "2026-09-28T22:40:22.454Z",
+      "checked_at": "2026-09-29T01:47:53.914Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q2739",
         "label": "AS Roma",
         "team_slug": "as-roma",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCLttSYJ6kPtlcurY96kXkQw",
         "page_title": "AS Roma",
-        "checked_at": "2026-09-28T22:40:22.454Z"
+        "checked_at": "2026-09-29T01:47:53.914Z"
       }
     },
     {
@@ -815,23 +889,25 @@
       "channel_handle": "@PSG",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "eb2ab03b-bbd0-5857-bd70-aa375ad3dccc",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCt9a_qP9CqHCNwilf-iULag",
-      "checked_at": "2026-09-28T22:40:24.242Z",
+      "checked_at": "2026-09-29T01:47:55.676Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q483020",
         "label": "Paris Saint-Germain",
         "team_slug": "paris-saint-germain",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCt9a_qP9CqHCNwilf-iULag",
         "page_title": "PSG - Paris Saint-Germain",
-        "checked_at": "2026-09-28T22:40:24.242Z"
+        "checked_at": "2026-09-29T01:47:55.676Z"
       }
     },
     {
@@ -841,23 +917,25 @@
       "channel_handle": "@RealBetis",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "01ce91a9-cbff-512b-ada4-6d52a57e31b0",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCeB7JZwcar2fVoK2w2f9OwA",
-      "checked_at": "2026-09-28T22:40:25.921Z",
+      "checked_at": "2026-09-29T01:47:57.552Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q8723",
         "label": "Real Betis",
         "team_slug": "real-betis",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCeB7JZwcar2fVoK2w2f9OwA",
         "page_title": "Real Betis Balompié",
-        "checked_at": "2026-09-28T22:40:25.921Z"
+        "checked_at": "2026-09-29T01:47:57.552Z"
       }
     },
     {
@@ -867,23 +945,25 @@
       "channel_handle": "@fcshakhtar",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "459824c0-9295-51dc-bdc1-6825abbe206a",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCmPCqUih--EyT2oxUn72MtA",
-      "checked_at": "2026-09-28T22:40:27.567Z",
+      "checked_at": "2026-09-29T01:47:59.206Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q172969",
         "label": "Shakhtar Donetsk",
         "team_slug": "shakhtar-donetsk",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCmPCqUih--EyT2oxUn72MtA",
         "page_title": "FC Shakhtar Donetsk",
-        "checked_at": "2026-09-28T22:40:27.567Z"
+        "checked_at": "2026-09-29T01:47:59.206Z"
       }
     },
     {
@@ -893,23 +973,25 @@
       "channel_handle": "@sscnapoli",
       "publisher_type": "club",
       "competition_id": null,
+      "scope_competition_ids": [],
       "team_id": "7aa9f196-3ecb-5b76-baf7-6cab5cb3d906",
       "verified": true,
       "enabled": true,
       "language": null,
       "region_notes": "Region availability is per video (watch page availableCountries / player errors 100/101/150).",
       "source_url": "https://www.youtube.com/channel/UCTnCzHi0P6MH83er5OfZbzQ",
-      "checked_at": "2026-09-28T22:40:28.948Z",
+      "checked_at": "2026-09-29T01:48:00.697Z",
       "verification": {
         "method": "wikidata_P2397_exact + channel_page_canonical",
         "qid": "Q2641",
         "label": "Napoli",
         "team_slug": "napoli",
         "competition": null,
+        "scope": null,
         "page_status": 200,
         "page_canonical": "UCTnCzHi0P6MH83er5OfZbzQ",
         "page_title": "SSCNapoli",
-        "checked_at": "2026-09-28T22:40:28.948Z"
+        "checked_at": "2026-09-29T01:48:00.697Z"
       }
     }
   ],

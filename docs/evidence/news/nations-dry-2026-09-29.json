@@ -1,0 +1,53 @@
+{
+  "at": "2026-09-29T01:46:46.936Z",
+  "candidates": 1,
+  "stories": [
+    {
+      "kind": "match_recap",
+      "profile": "nations_league",
+      "desk": "international",
+      "headline": "Finland win 7-0 at San Marino: Joel Pohjanpalo hat-trick",
+      "competition": {
+        "id": "d1f49cf0-a292-58fc-b3cd-d3b8e1dc7fad",
+        "name": "UEFA Nations League",
+        "slug": "uefa-nations-league",
+        "season": "2026/27",
+        "team_kind": "national",
+        "format": "National teams, not clubs. League phase in Leagues A, B, C and D; groups A1-A4, B1-B4, C1-C4 (four teams) and D1-D2 (three teams). There is no overall table: position is only ever a group position."
+      },
+      "groups": {
+        "home": null,
+        "away": null
+      },
+      "entities": [
+        "SportsTeam:San Marino",
+        "SportsTeam:Finland",
+        "SportsEvent:San Marino v Finland",
+        "SportsOrganization:UEFA Nations League",
+        "Person:Joel Pohjanpalo",
+        "Person:Adrian Svanbäck",
+        "Person:Leo Walta",
+        "Person:Benjamin Kallman",
+        "Person:Juho Lähteenmäki",
+        "SportsTeam:Albania",
+        "SportsTeam:Belarus"
+      ],
+      "gates": {
+        "pass": true,
+        "failed": []
+      },
+      "banned_hits": [],
+      "unsupported_claims": [],
+      "club_word": false,
+      "sections": [
+        "What happened",
+        "Why it mattered",
+        "The numbers",
+        "Decisive players",
+        "What comes next",
+        "Evidence and method"
+      ],
+      "words": 256
+    }
+  ]
+}
