@@ -57,6 +57,10 @@ for (const width of WIDTHS) {
   // ---- Olise article hero
   await page.goto(`${SITE}/news/${story.desk}/${STORY}`, { waitUntil: 'networkidle0' });
   const hero = await page.evaluate(() => ({ alt: document.querySelector('.art-hero-media .ah-subject img, .art-hero-media .tmark img')?.getAttribute('alt') || null, src: document.querySelector('.art-hero-media .ah-subject img, .art-hero-media .tmark img')?.getAttribute('src') || null, tag: document.querySelector('.art-hero-media .ah-tag b')?.textContent || null }));
+  const viz = await page.evaluate(() => ({ types: [...document.querySelectorAll('figure.viz')].map(f => f.className.replace('viz t-', '')), overflow: [...document.querySelectorAll('figure.viz')].filter(f => f.scrollWidth > f.clientWidth + 1).map(f => f.dataset.viz), frozen: [...document.querySelectorAll('figure.viz .vz-src')].every(x => /Frozen at publication/.test(x.textContent)), hscroll: document.documentElement.scrollWidth > window.innerWidth + 1 }));
+  const expectViz = (story.body?.visuals || []).map(v => v.type);
+  check(`[${width}] article data visuals: ${expectViz.length} rendered (${expectViz.join(', ')})`, expectViz.length > 0 && viz.types.length === expectViz.length && expectViz.every(t => viz.types.includes(t)) && viz.frozen, viz);
+  check(`[${width}] article visuals fit the width`, !viz.overflow.length && !viz.hscroll, viz);
   check(`[${width}] article hero subject = ${story.subject?.name}`, hero.alt === story.subject?.name && hero.tag === story.subject?.name && hero.src === story.hero?.url, hero);
   // ---- /news and the desk: the story's card image is its own subject
   for (const path of ['/news', `/news/${story.desk}`]) {

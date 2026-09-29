@@ -90,9 +90,11 @@ Return JSON only, no prose around it:
 // ---------------------------------------------------------------- model call
 // Structured output: the Responses API must return exactly this shape (strict JSON schema).
 export const ARTICLE_SCHEMA = {
-  type: 'object', additionalProperties: false, required: ['headline', 'dek', 'sections'],
+  type: 'object', additionalProperties: false, required: ['headline', 'dek', 'sections', 'emphasis'],
   properties: {
     headline: { type: 'string' }, dek: { type: 'string' },
+    // ids of the code-built data visuals that best prove the story (order = priority); never values
+    emphasis: { type: 'array', items: { type: 'string' } },
     sections: { type: 'array', items: { type: 'object', additionalProperties: false, required: ['heading', 'paragraphs'], properties: { heading: { type: 'string' }, paragraphs: { type: 'array', items: { type: 'string' } } } } },
   },
 };
@@ -121,7 +123,7 @@ export function storyBrief(p) {
 }
 
 export async function callDesk(env, packet, draft, { fetcher = fetch, feedback = null, model = env?.NEWS_DESK_MODEL || DESK_MODEL } = {}) {
-  const user = `${storyBrief(packet)}FROZEN FACT PACKET (the only source of truth):\n${JSON.stringify(packet)}\n\nMECHANICAL DRAFT (evidence only; do not copy its structure or wording):\n${JSON.stringify({ headline: draft.headline, dek: draft.dek, sections: draft.sections.filter(s => s.key !== 'method') })}${feedback ? `\n\nCORRECTIVE REWRITE REQUIRED:\nThe previous version was rejected by the deterministic publication gates for exactly these reasons:\n${feedback}\nRewrite the entire JSON response from the SAME FACT PACKET. Fix every failure without adding any fact, number, name, date, URL, quote or outside knowledge. The gates will run again unchanged.` : ''}`;
+  const user = `${storyBrief(packet)}FROZEN FACT PACKET (the only source of truth):\n${JSON.stringify(packet)}\n\nMECHANICAL DRAFT (evidence only; do not copy its structure or wording):\n${JSON.stringify({ headline: draft.headline, dek: draft.dek, sections: draft.sections.filter(s => s.key !== 'method') })}${draft.visual_menu?.length ? `\n\nDATA VISUALS (built by code from the same packet and published with the story; you cannot change them): ${JSON.stringify(draft.visual_menu)}\nIn "emphasis", list up to three of these ids, most important first: the visuals that best prove why this story matters. Use only ids from this list; return [] if none fits.` : '\n\nThere are no data visuals for this story: return "emphasis": [].'}${feedback ? `\n\nCORRECTIVE REWRITE REQUIRED:\nThe previous version was rejected by the deterministic publication gates for exactly these reasons:\n${feedback}\nRewrite the entire JSON response from the SAME FACT PACKET. Fix every failure without adding any fact, number, name, date, URL, quote or outside knowledge. The gates will run again unchanged.` : ''}`;
   // No tools, no retrieval, not stored: the packet in this request is all the model sees.
   const res = await fetcher(DESK_API, {
     method: 'POST',
@@ -149,13 +151,15 @@ export async function callDesk(env, packet, draft, { fetcher = fetch, feedback =
   if (!txt) throw new Error('desk empty_output');
   let out; try { out = JSON.parse(txt); } catch { throw new Error('desk invalid_json'); }
   if (!out?.headline || !Array.isArray(out.sections)) throw new Error('desk returned no article');
-  return { headline: String(out.headline).trim(), dek: String(out.dek || '').trim(), sections: out.sections.map((s, i) => ({ key: `s${i + 1}`, heading: String(s.heading || '').trim(), paragraphs: (s.paragraphs || []).map(p => String(p).trim()).filter(Boolean) })).filter(s => s.paragraphs.length) };
+  return { headline: String(out.headline).trim(), dek: String(out.dek || '').trim(), emphasis: Array.isArray(out.emphasis) ? out.emphasis.map(String).slice(0, 3) : [], sections: out.sections.map((s, i) => ({ key: `s${i + 1}`, heading: String(s.heading || '').trim(), paragraphs: (s.paragraphs || []).map(p => String(p).trim()).filter(Boolean) })).filter(s => s.paragraphs.length) };
 }
 
 // The public article: the desk's story; the draft's method + attributions become the disclosure.
 export function deskArticle(edited, draft) {
   const method = draft.sections.find(s => s.key === 'method');
-  return { ...draft, headline: edited.headline, dek: edited.dek, sections: edited.sections, disclosure: method ? method.paragraphs : [], draft: { headline: draft.headline, dek: draft.dek, sections: draft.sections }, composer: `${draft.composer}+${DESK_VERSION}` };
+  // emphasis: only ids of visuals the code built for this packet (validated again in articleBody)
+  const menu = new Set((draft.visual_menu || []).map(v => v.id));
+  return { ...draft, headline: edited.headline, dek: edited.dek, sections: edited.sections, emphasis: (edited.emphasis || []).filter(id => menu.has(id)), disclosure: method ? method.paragraphs : [], draft: { headline: draft.headline, dek: draft.dek, sections: draft.sections }, composer: `${draft.composer}+${DESK_VERSION}` };
 }
 
 // ---------------------------------------------------------------- grounded validation

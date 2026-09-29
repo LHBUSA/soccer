@@ -65,6 +65,21 @@ the person the headline names by full name or unambiguous surname, else the head
 that subject's approved photo, else its own team's crest, else the competition graphic: never another
 player's face. Backfill: `node scripts/news/backfill-subjects.mjs [--apply]`.
 
+**Data visuals (`visuals.js`, `soccer-visuals/1.0.0`).** Every article carries code-built visual specs in
+`body.visuals[]` = `{ id, type, title, subtitle, data, units, entities, source, observed_at, provenance, values_hash }`,
+built from the article's frozen packet (recaps also freeze the match's canonical located shot events: same event
+family and match frame as PBEcast), validated against the packet (goal sequence, phases, team stats, player lines,
+verified group rows, shot coverage label "N of M recorded shots have location data"), and frozen at publication.
+Types: recap `match_flow` (1H v 2H), `goal_timeline` (stoppage, penalties, own goals), `shot_profile`, `shot_map`
+(>= 6 located shots), `player_focus` (hat-trick / brace scorer: sourced line + his located shots), `table_move` or
+`group_position`, `form_strip`; player form `scoring_run`; team trend `run_results` + `team_standing`; table race
+`standings`; group watch `group_table` per verified group; preview `matchup` (descriptive only) + `form_strip` +
+`players_in_form`; matchday `fixtures_board` + `standings`. The desk sees only the menu (id, type, title) and may
+return `emphasis` (ids, most important first); it never supplies a value. A visual that fails validation is dropped
+(`visuals_rejected`), never repaired. soccer-api serves a stored visual only while its values still hash to
+`values_hash` (else `visuals_withheld`). Renderer: `src/components/visuals.js` (static HTML/SVG; no animation).
+Backfill (fills only articles without visuals): `node scripts/news/backfill-visuals.mjs [--apply]`.
+
 **Health.** `GET /v1/data-health` -> `newsroom`: cron freshness and the last tick's outcome (ran / disabled /
 failed), NEWS_ENABLED, desk availability, publications in 24 / 72 h, and per competition the last run's
 candidates, duplicates, new, published, held, detection diagnostics, newest story and age, hold reasons and

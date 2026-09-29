@@ -76,6 +76,17 @@ test('previews: meaningful fixtures 1-24 h out, one per fixture, one matchday br
     assert.doesNotMatch(text, /\b(will win|favourite|predict|odds|likely to)\b/i, a.headline);
     assert.equal(a.entities.filter(e => e.primary).length <= 1, true);
   }
+  // every stored preview carries frozen, code-built visuals (matchup dashboard / fixtures board)
+  for (const a of arts) assert.ok(a.body.visuals?.some(v => ['matchup', 'fixtures_board'].includes(v.type)), a.headline);
+  const R = await import('../workers/soccer-api/src/routes.js');
+  const one = fixtures[0];
+  const served = (await R.article(store, one.slug)).data.body.visuals;
+  assert.deepEqual(served.map(v => v.values_hash), one.body.visuals.map(v => v.values_hash), 'served exactly as frozen');
+  // a published chart can never silently change: a tampered stored value is withheld, not shown
+  const tampered = structuredClone(one.body); tampered.visuals[0].data.rows[0].home = 99;
+  await store.update('soccer_articles', { body: tampered }, { eq: { slug: one.slug } });
+  const after = (await R.article(store, one.slug)).data.body;
+  assert.equal(after.visuals.length, one.body.visuals.length - 1); assert.equal(after.visuals_withheld, 1);
   // linked to its fixture (news?match= works for a preview)
   const ev = await store.select('soccer_news_events', { columns: ['match_id', 'story_class'], eq: { story_class: 'match_preview' } });
   assert.ok(ev.some(e => [id(40), id(41), id(42)].includes(e.match_id)));

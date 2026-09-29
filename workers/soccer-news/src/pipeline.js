@@ -6,6 +6,7 @@
 // so a story is written once. Evidence rows are append-only (DB trigger).
 import { loadSeason, detect, buildPacket, ENGINE_VERSION, RECAP_STORIES } from './engine.js';
 import { detectGroupWatch, detectPreviews } from './previews.js';
+import { buildVisuals, loadShotPoints, validateVisuals, VISUALS_VERSION } from './visuals.js';
 import registryData from '../../../data/registry/competitions.json' with { type: 'json' };
 import { depthFromRows, loadDepthRows, packetV3, PACKET_V3 } from './depth.js';
 import { payloadHash } from '../../shared/ids.js';
@@ -58,7 +59,8 @@ export async function runNews(store, { now = Date.now(), env = {}, windowDays = 
     out.new = fresh.length;
     for (const cand of fresh) {
       const packet = await buildPacket(store, S, cand);
-      const draft = compose(packet);
+      const vis = await articleVisuals(store, packet, now);
+      const draft = withVisualMenu(compose(packet), vis);
       const r = await editorialStage(draft, packet, env);
       const { article, status, holdReasons, gates, editorial } = r;
       out[status] += 1;
@@ -74,7 +76,7 @@ export async function runNews(store, { now = Date.now(), env = {}, windowDays = 
       await store.insert('soccer_article_evidence', [{ packet_hash: packet.hash, news_event_id: eventId, packet_version: packet.version, packet, capture_ids: [] }]);
       await store.insert('soccer_articles', [{
         id: uuidv5(`article:${packet.hash}`), slug: article.slug, news_event_id: eventId, packet_hash: packet.hash, story_class: packet.event.kind, desk: article.desk,
-        headline: article.headline, dek: article.dek, body: articleBody(article, editorial), entities: article.entities, composer: article.composer, gate_version: editorial?.version ? `${gates.version}+${editorial.version}` : gates.version,
+        headline: article.headline, dek: article.dek, body: articleBody(article, editorial, vis), entities: article.entities, composer: article.composer, gate_version: editorial?.version ? `${gates.version}+${editorial.version}` : gates.version,
         gate_results: { draft: gates.results, desk: editorial?.results || null }, status, hold_reasons: holdReasons, hero_media: null, published_at: status === 'published' ? new Date(now).toISOString() : null,
       }]);
     }
@@ -84,9 +86,25 @@ export async function runNews(store, { now = Date.now(), env = {}, windowDays = 
 
 // Stored body: the public story (sections), the disclosure (method + attributions, shown collapsed
 // under the story), the deterministic draft kept as evidence for editors, and the desk's judgement.
-export function articleBody(article, editorial) {
-  return { sections: article.sections, disclosure: article.disclosure || null, draft: article.draft || null, editorial: editorial || null };
+export function articleBody(article, editorial, vis = null) {
+  const out = { sections: article.sections, disclosure: article.disclosure || null, draft: article.draft || null, editorial: editorial || null };
+  if (vis) {
+    // Frozen at publication (soccer-visuals). The desk may only ORDER them (emphasis = known ids).
+    const ids = new Set(vis.visuals.map(v => v.id));
+    const emphasis = (article.emphasis || []).filter(id => ids.has(id)).slice(0, 3);
+    Object.assign(out, { visuals_version: VISUALS_VERSION, visuals: vis.visuals, visual_emphasis: emphasis, ...(vis.rejected.length ? { visuals_rejected: vis.rejected } : {}) });
+  }
+  return out;
 }
+
+// Visuals for a packet: built by code from the frozen packet (+ the match's canonical located shots for a
+// recap), validated against the packet; failures are dropped and recorded, never repaired.
+export async function articleVisuals(store, packet, now = Date.now()) {
+  const shots = packet.event?.kind === 'match_recap' ? await loadShotPoints(store, packet).catch(() => null) : null;
+  return validateVisuals(buildVisuals(packet, { shots, observedAt: new Date(now).toISOString() }), packet);
+}
+// The desk sees WHICH visuals exist (id, type, title) so it can name one to emphasise; never their values.
+export const withVisualMenu = (draft, vis) => ({ ...draft, visual_menu: (vis?.visuals || []).map(v => ({ id: v.id, type: v.type, title: v.title })) });
 
 // Fact gates on the draft (evidence integrity), then the desk. Desk required (default): the
 // public story is the desk's or nothing. Desk off (NEWS_DESK=off): legacy behaviour.
@@ -126,17 +144,18 @@ export async function reeditArticle(store, slug, env, { dry = false, holdOnFail 
   if (!a) return { slug, error: 'not found' };
   const [ev] = await store.select('soccer_article_evidence', { columns: ['packet', 'news_event_id'], eq: { packet_hash: a.packet_hash }, limit: 1 });
   const { packet, path } = await richerPacket(store, ev.packet, { now });
-  const draft = compose(packet);
+  const vis = await articleVisuals(store, packet, now);
+  const draft = withVisualMenu(compose(packet), vis);
   const r = await editorialStage(draft, packet, { ...env, NEWS_DESK: 'on' }, { fetcher });
   const res = { slug, story_class: a.story_class, packet_path: path, packet_version: packet.version, before: { status: a.status, composer: a.composer, headline: a.headline }, result: r.status, holds: r.holdReasons, headline: r.article.headline };
-  if (dry) return { ...res, article: r.article, judgement: r.editorial, packet };
+  if (dry) return { ...res, article: r.article, judgement: r.editorial, packet, visuals: vis };
   if (r.status === 'published') {
     // The richer packet is a NEW append-only evidence row; the original stays untouched (derived_from).
     if (packet.hash !== a.packet_hash) {
       const [have] = await store.select('soccer_article_evidence', { columns: ['packet_hash'], eq: { packet_hash: packet.hash }, limit: 1 });
       if (!have) await store.insert('soccer_article_evidence', [{ packet_hash: packet.hash, news_event_id: ev.news_event_id, packet_version: packet.version, packet, capture_ids: [] }]);
     }
-    await store.update('soccer_articles', { packet_hash: packet.hash, headline: r.article.headline, dek: r.article.dek, body: articleBody(r.article, { ...r.editorial, packet_path: path }), composer: r.article.composer, gate_version: `${r.gates.version}+${r.editorial.version}`, gate_results: { draft: r.gates.results, desk: r.editorial.results }, status: 'published', hold_reasons: [], published_at: a.status === 'published' ? undefined : new Date().toISOString(), updated_at: new Date().toISOString() }, { eq: { id: a.id } });
+    await store.update('soccer_articles', { packet_hash: packet.hash, headline: r.article.headline, dek: r.article.dek, body: articleBody(r.article, { ...r.editorial, packet_path: path }, vis), composer: r.article.composer, gate_version: `${r.gates.version}+${r.editorial.version}`, gate_results: { draft: r.gates.results, desk: r.editorial.results }, status: 'published', hold_reasons: [], published_at: a.status === 'published' ? undefined : new Date().toISOString(), updated_at: new Date().toISOString() }, { eq: { id: a.id } });
   } else if (holdOnFail && a.status === 'published') {
     await store.update('soccer_articles', { status: 'held', hold_reasons: r.holdReasons, published_at: null, updated_at: new Date().toISOString() }, { eq: { id: a.id } });
     res.held_now = true;

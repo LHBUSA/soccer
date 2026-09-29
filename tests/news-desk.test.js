@@ -145,7 +145,7 @@ test('openai: request = Responses API, bearer key, strict JSON schema, no tools,
   assert.equal(body.model, 'gpt-5.6-sol'); assert.equal(body.store, false);
   assert.equal(body.tools, undefined, 'no web search, file search or tools'); assert.equal(body.tool_choice, undefined);
   assert.equal(body.text.format.type, 'json_schema'); assert.equal(body.text.format.strict, true);
-  assert.deepEqual(body.text.format.schema.required, ['headline', 'dek', 'sections']);
+  assert.deepEqual(body.text.format.schema.required, ['headline', 'dek', 'sections', 'emphasis']);
   assert.match(body.instructions, /senior editor of PropBetEdge Soccer/);
   assert.match(body.input, /^FROZEN FACT PACKET \(the only source of truth\):/); assert.match(body.input, /MECHANICAL DRAFT \(evidence only/);
   const r2 = await runDesk(draft, B, { OPENAI_API_KEY: 'k', NEWS_DESK_MODEL: 'gpt-x' }, { fetcher: async (_u, init) => { assert.equal(JSON.parse(init.body).model, 'gpt-x'); return reply(GOOD)(); } });

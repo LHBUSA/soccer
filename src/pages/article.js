@@ -12,6 +12,7 @@ import { storyLabel } from '../lib/news.js';
 import { competitionMark, link, portrait, teamMark } from '../components/ui.js';
 import { keyPlayers } from '../components/keyplayers.js';
 import { officialVideo, mountOfficialVideos } from '../components/video.js';
+import { orderVisuals, renderVisual } from '../components/visuals.js';
 
 const SITE = 'https://soccer.propbetedge.ai';
 const TYPE = { match_recap: 'Match report', player_form: 'Player form', team_trend: 'Team trend', competition_intelligence: 'Table watch', match_preview: 'Preview' };
@@ -114,13 +115,21 @@ export function linkStoryText(text, entities = [], seen = new Set()) {
   return html;
 }
 
-function body(sections, watch = '', entities = []) {
+export function body(sections, watch = '', entities = [], visuals = []) {
   // Link only canonical entities already attached to the story, once each, so prose gains useful
   // internal navigation without turning every repeated name into SEO-style link spam.
   const seen = new Set();
-  // the WATCH module sits between the first section and the rest of the story
   const html = sections.map((s, i) => `${i > 0 || s.heading ? `<h2>${esc(s.heading)}</h2>` : ''}${join(s.paragraphs, p => `<p>${linkStoryText(p, entities, seen)}</p>`)}`);
-  return watch && html.length > 1 ? `<div class="art-body">${html[0]}</div>${watch}<div class="art-body cont">${html.slice(1).join('')}</div>` : `<div class="art-body">${html.join('')}</div>${watch}`;
+  // Data visuals (frozen specs, ordered by orderVisuals): the lead visual after the first section, the next
+  // after the second, the rest in THE NUMBERS block after the story. The WATCH module follows the first section.
+  const after = [[watch, renderVisual(visuals[0])].filter(Boolean).join(''), visuals[1] ? renderVisual(visuals[1]) : ''];
+  const blocks = html.map((h, i) => `<div class="art-body${i ? ' cont' : ''}">${h}</div>${after[i] || ''}`);
+  if (!html.length) blocks.push(after.join(''));
+  const rest = visuals.slice(2).map(renderVisual).filter(Boolean);
+  const numbers = rest.length ? `<section class="art-numbers" aria-label="The numbers behind the story"><p class="nrail-h">THE NUMBERS BEHIND THE STORY</p>${rest.join('')}</section>` : '';
+  // single visual / no second section: whatever was not placed goes to the numbers block
+  const unplaced = html.length < 2 && visuals[1] ? renderVisual(visuals[1]) : '';
+  return `${blocks.join('')}${unplaced ? `<section class="art-numbers">${unplaced}</section>` : ''}${numbers}`;
 }
 
 function sourceMethod(a, parts, meta) {
@@ -168,7 +177,7 @@ export function renderArticle(env) {
       <div class="art-main">
         ${inThisStory(a.entities || [])}
         ${heroMedia(a)}
-        ${body(parts.sections, watchInArticle(a), a.entities || [])}
+        ${body(parts.sections, watchInArticle(a), a.entities || [], orderVisuals(a.body))}
         ${when(match, () => `<section class="art-mod" data-art-match="${esc(match.href.split('/').pop())}"><p class="nrail-h">MATCH INTELLIGENCE</p><div class="am-slot"><p class="muted">Loading match intelligence…</p></div></section>`)}
         ${when(people.length, () => `<section class="art-mod"><p class="nrail-h">PLAYER DNA</p><div class="kp-grid">${join(people.slice(0, 4), p => `<a class="kp-card" href="/players/${esc(p.slug)}" data-link data-player-slug="${esc(p.slug)}"${match ? ` data-match-id="${esc(match.href.split('/').pop())}"` : ''}>${portrait(p, 'md')}<span class="kp-id"><b>${esc(p.name)}</b><small>Open Player DNA</small></span></a>`)}</div></section>`)}
         ${related(a)}

@@ -6,6 +6,7 @@ import { articleVideos, videosFeed } from './video.js';
 
 import { computeTable, TIEBREAKS } from '../../soccer-news/src/packet.js';
 import { selectSubject, subjectMedia } from '../../shared/news-subject.js';
+import { visualIntact } from '../../soccer-news/src/visuals.js';
 import { toMatchFrame } from '../../shared/coords.js';
 import { displayMinute } from '../../shared/clock.js';
 import { COVERAGE, envelope, maxTs } from './envelope.js';
@@ -688,6 +689,12 @@ export async function article(store, slug) {
   if (!a) throw new NotFound(`article ${slug}`);
   // Official video linked to THIS story by the matcher (docs/VIDEO.md); none when no confident match.
   a.media = { videos: await articleVideos(store, a.id).catch(() => []) };
+  // Data visuals are historical records frozen at publication (soccer-visuals): served exactly as stored, and
+  // only while their values still hash to what was published. Nothing is recomputed from today's data.
+  if (Array.isArray(a.body?.visuals)) {
+    const intact = a.body.visuals.filter(visualIntact);
+    a.body = { ...a.body, visuals: intact, ...(intact.length !== a.body.visuals.length ? { visuals_withheld: a.body.visuals.length - intact.length } : {}) };
+  }
   delete a.id;
   // Additive (article page V3): approved media on the story's entities, the hero subject, and
   // related coverage by shared entities. Only approved media; nothing is guessed.
