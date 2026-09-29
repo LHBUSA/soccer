@@ -3,12 +3,14 @@
 // role (RLS has no public policies), never calls a provider, never serves raw
 // captures, identity queue, change ledger or source-conflict tooling.
 //
-// Secrets: SOCCER_MODEL_SUPABASE_URL, SOCCER_MODEL_SUPABASE_SERVICE_ROLE_KEY. KV SOCCER_STATE (read-only use).
+// Secrets: SOCCER_MODEL_SUPABASE_URL, SOCCER_MODEL_SUPABASE_SERVICE_ROLE_KEY. KV SOCCER_STATE
+// stores operational state plus the materialized public /live snapshot.
 
 import { storeFromEnv } from '../../shared/postgrest.js';
 import * as R from './routes.js';
 import * as C from './cast.js';
 import { handlePro, PRO_HEADERS } from './pro/routes.js';
+import { readLiveSnapshotInputs, snapshotRefreshReason } from '../../shared/live-snapshot.js';
 
 const LANES = [{ lane: 'openligadb_bl1_current', priority: true }];
 
@@ -86,7 +88,7 @@ export default {
         return respond({ error: 'upstream error' }, 502, 0, origin);
       }
     }
-    const hit = ROUTES.map(([re, fn, ttl]) => [url.pathname.match(re), fn, ttl]).find(([m]) => m);
+    const hit = ROUTES.map(([re, fn, ttl, allowedQuery]) => [url.pathname.match(re), fn, ttl, allowedQuery]).find(([m]) => m);
     if (!hit) return respond({ error: 'not found' }, 404, 0, origin);
     const [m, fn, ttl, allowedQuery = []] = hit;
     const qs = canonicalQuery(url.searchParams, allowedQuery);
@@ -111,9 +113,26 @@ export default {
       return respond({ error: 'upstream error' }, 502, 0, origin);
     }
   },
-  // Warm the DNA cache every 6 hours so visitors never pay the cold computation.
+  // Every minute: refresh the materialized /live snapshot only when active, dirty or due for
+  // the idle safety refresh. The separate 6-hour cron still warms the expensive DNA cache.
   async scheduled(event, env, ctx) {
     const store = storeFromEnv(env);
-    if (store) ctx.waitUntil(R.warmDna(store, env).then(r => console.log('dna warm', JSON.stringify(r))).catch(e => console.error('dna warm failed', e?.message)));
+    if (!store) return;
+    if (event.cron === '* * * * *') {
+      ctx.waitUntil((async () => {
+        try {
+          const { snapshot, dirty } = await readLiveSnapshotInputs(env.SOCCER_STATE);
+          const reason = snapshotRefreshReason(snapshot, dirty, event.scheduledTime);
+          if (!reason) return;
+          const out = await C.materializeLive(store, env, { now: event.scheduledTime, reason });
+          console.log('live snapshot', JSON.stringify(out.status));
+        } catch (e) {
+          console.error('live snapshot failed', e?.message);
+        }
+      })());
+    }
+    if (event.cron === '20 */6 * * *') {
+      ctx.waitUntil(R.warmDna(store, env).then(r => console.log('dna warm', JSON.stringify(r))).catch(e => console.error('dna warm failed', e?.message)));
+    }
   },
 };

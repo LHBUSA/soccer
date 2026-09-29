@@ -10,6 +10,7 @@ import { envelope, maxTs, COVERAGE } from './envelope.js';
 import { seasonProfiles } from './routes.js';
 import { MIN_MINUTES, DNA_VERSION } from './dna.js';
 import { chunkArr } from '../../soccer-ingest/src/store.js';
+import { readLiveSnapshot, refreshLiveEnvelope, snapshotServeable, writeLiveSnapshot } from '../../shared/live-snapshot.js';
 
 export const CAST_VERSION = 'soccer-api/1.4.0'; // 1.4.0: live.enrichment (additive, rights-gated), live.canonical_result_source
 const E = (data, o) => envelope(data, { version: CAST_VERSION, ...o });
@@ -92,8 +93,7 @@ function shape(m, teams, comps, flags, live, enrichment = null) {
   };
 }
 
-export async function live(store, env) {
-  const now = Date.now();
+export async function buildLiveEnvelope(store, env, now = Date.now()) {
   const iso = t => new Date(t).toISOString();
   const comps = await store.select('soccer_competitions', { columns: ['id', 'slug'], in: { slug: PRODUCT_COMPS } });
   const compIds = comps.map(c => c.id);
@@ -115,6 +115,29 @@ export async function live(store, env) {
     semantics: `Canonical match states. Live scores and clocks come from ESPN (secondary source) through the soccer-ingest live lane, about once a minute per active match plus the provider's own delay. A clock is shown only as the provider states it.`,
     attribution: [...new Set(all.map(m => m.result_provider).filter(Boolean))],
   });
+}
+
+export async function materializeLive(store, env, { now = Date.now(), reason = 'scheduled' } = {}) {
+  const before = store.requests;
+  const envelope = await buildLiveEnvelope(store, env, now);
+  const status = await writeLiveSnapshot(env.SOCCER_STATE, envelope, { now, reason, storeRequests: store.requests - before });
+  return { envelope, status };
+}
+
+export async function live(store, env) {
+  const now = Date.now();
+  const snapshot = await readLiveSnapshot(env?.SOCCER_STATE);
+  if (snapshotServeable(snapshot, now)) {
+    const envelope = refreshLiveEnvelope(snapshot.envelope, now);
+    envelope.meta = { ...envelope.meta, snapshot: { version: snapshot.snapshot_version, built_at: snapshot.built_at, source: 'kv' } };
+    return envelope;
+  }
+  // Fail open to the canonical builder if the snapshot is absent/stale. This preserves availability
+  // during rollout or a cron incident; the normal production path is one KV GET and zero PostgREST reads.
+  const envelope = await buildLiveEnvelope(store, env, now);
+  if (env?.SOCCER_STATE) await writeLiveSnapshot(env.SOCCER_STATE, envelope, { now, reason: 'api_fallback', storeRequests: store.requests }).catch(() => {});
+  envelope.meta = { ...envelope.meta, snapshot: { source: 'database_fallback' } };
+  return envelope;
 }
 
 export async function cast(store, id, env) {
