@@ -1,0 +1,153 @@
+{
+  "generated_at": "2026-09-29T01:52:24.871Z",
+  "competition": {
+    "id": "d1f49cf0-a292-58fc-b3cd-d3b8e1dc7fad",
+    "slug": "uefa-nations-league",
+    "name": "UEFA Nations League",
+    "comp_type": "international_tournament"
+  },
+  "season": "2026/27",
+  "stages": [
+    {
+      "id": "91f55df2-26a2-5cb8-9c11-721982f32f6d",
+      "name": "Knockouts and play-offs",
+      "stage_type": "playoff",
+      "matches": 0
+    },
+    {
+      "id": "cb221705-862e-53a5-9914-9fbc06e7abf1",
+      "name": "League phase",
+      "stage_type": "league",
+      "matches": 156
+    }
+  ],
+  "teams": {
+    "total": 54,
+    "national": 54,
+    "with_country_code": 0,
+    "espn_crosswalk": 54,
+    "duplicate_espn_ids": 0,
+    "by_method": {
+      "founding": 54
+    }
+  },
+  "matches": {
+    "total": 156,
+    "by_status": {
+      "scheduled": 114,
+      "finished": 42
+    },
+    "finished_with_score": 42,
+    "result_provider": [
+      "espn"
+    ]
+  },
+  "enrichment": {
+    "finished": 42,
+    "lineups_both": 42,
+    "stats": 42,
+    "plays": 42,
+    "events": 61225,
+    "located_events": 59344
+  },
+  "groups": [
+    {
+      "key": "a1",
+      "name": "Group A1",
+      "type": "group",
+      "tier": "League A",
+      "members": 4
+    },
+    {
+      "key": "a2",
+      "name": "Group A2",
+      "type": "group",
+      "tier": "League A",
+      "members": 4
+    },
+    {
+      "key": "a3",
+      "name": "Group A3",
+      "type": "group",
+      "tier": "League A",
+      "members": 4
+    },
+    {
+      "key": "a4",
+      "name": "Group A4",
+      "type": "group",
+      "tier": "League A",
+      "members": 4
+    },
+    {
+      "key": "b1",
+      "name": "Group B1",
+      "type": "group",
+      "tier": "League B",
+      "members": 4
+    },
+    {
+      "key": "b2",
+      "name": "Group B2",
+      "type": "group",
+      "tier": "League B",
+      "members": 4
+    },
+    {
+      "key": "b3",
+      "name": "Group B3",
+      "type": "group",
+      "tier": "League B",
+      "members": 4
+    },
+    {
+      "key": "b4",
+      "name": "Group B4",
+      "type": "group",
+      "tier": "League B",
+      "members": 4
+    },
+    {
+      "key": "c1",
+      "name": "Group C1",
+      "type": "group",
+      "tier": "League C",
+      "members": 4
+    },
+    {
+      "key": "c2",
+      "name": "Group C2",
+      "type": "group",
+      "tier": "League C",
+      "members": 4
+    },
+    {
+      "key": "c3",
+      "name": "Group C3",
+      "type": "group",
+      "tier": "League C",
+      "members": 4
+    },
+    {
+      "key": "c4",
+      "name": "Group C4",
+      "type": "group",
+      "tier": "League C",
+      "members": 4
+    },
+    {
+      "key": "d1",
+      "name": "Group D1",
+      "type": "group",
+      "tier": "League D",
+      "members": 3
+    },
+    {
+      "key": "d2",
+      "name": "Group D2",
+      "type": "group",
+      "tier": "League D",
+      "members": 3
+    }
+  ]
+}
