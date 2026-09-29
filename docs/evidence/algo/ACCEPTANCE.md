@@ -65,7 +65,13 @@ The owner approved Soccer Algo V1 for go-live **provided that**, on or after **2
 6. all ledger guards remain intact;
 7. no previous Official Picks or seeded historical record exist.
 
-If all pass, G7 becomes PASS with no further model or threshold decision. Then: mark G7 PASS, set
+Owner clarification (2026-09-29): the conditional approval already stands; nothing about the model, thresholds,
+markets or pick policy is revisited or retuned on Oct 2. Procedure: wait for the first real shadow forecast → run
+`scripts/algo/golive-preflight.mjs` → if all 7 PASS, report the evidence to the owner → ask for a one-line
+operational "go". That "go" is **deployment authorization only**, not another model gate. Until then V1 stays
+frozen as-is: `ALGO_OFFICIAL` off, pages hidden/noindex, record empty, V2/expansion parked.
+
+If all pass, G7 becomes PASS with no further model or threshold decision. After the operational "go": mark G7 PASS, set
 `ALGO_OFFICIAL=on`, add the navigation links, enable indexing and the sitemap, verify the production API and pages,
 and capture the first official forecast/pick evidence. V2 and expansion research wait until V1 go-live acceptance
 is closed.
