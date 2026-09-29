@@ -48,7 +48,9 @@ const results = [];
 async function one(a) {
   const t0 = Date.now();
   try {
-    const r = await reeditArticle(store, a.slug, env, { dry: !APPLY, holdOnFail: false });
+    // Operator backlog = a legacy backfill: DETERMINISTIC under the router (owner spec 2026-09-29), no model call. A paid
+    // re-edit of a named story is the admin route (POST /v1/admin/reedit?slug=).
+    const r = await reeditArticle(store, a.slug, env, { dry: !APPLY, holdOnFail: false, trigger: 'backfill' });
     const j = r.judgement || {};
     const row = {
       slug: a.slug, story_class: a.story_class, packet_path: r.packet_path, packet_version: r.packet_version, before_composer: a.composer,

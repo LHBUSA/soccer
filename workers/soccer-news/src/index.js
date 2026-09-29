@@ -8,7 +8,8 @@ import { storeFromEnv } from '../../shared/postgrest.js';
 import { runNews, reeditArticle } from './pipeline.js';
 import { deskAvailable, deskRequired, DESK_VERSION, QUALITY_VERSION } from './desk.js';
 import { PACKET_V3, DEPTH_VERSION } from './depth.js';
-import { callsForDay, costReport, WORKER_VERSION } from './openai-cost.js';
+import { callsForDay, costReport, readCallLog, WORKER_VERSION } from './openai-cost.js';
+import { ROUTER_VERSION, aiConfig } from './ai-router.js';
 
 // The only production schedule. The temporary backlog-migration cron (*/10) is retired: there is no automatic OpenAI
 // backlog processing. Re-edits are manual only (POST /v1/admin/reedit, scripts/news/reedit-backlog.mjs).
@@ -34,6 +35,14 @@ async function run(env, opts = {}) {
   return summary;
 }
 
+// Admin re-edit trigger (ai-router.js allow-list): canary > dry_run > scope sweep (backfill) > named-slug admin re-edit.
+export function reeditTrigger(url) {
+  if (url.searchParams.get('canary') === '1') return 'canary';
+  if (url.searchParams.get('dry') === '1') return 'dry_run';
+  if (url.searchParams.get('scope') && !url.searchParams.getAll('slug').length) return 'backfill';
+  return 'manual_reedit';
+}
+
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
@@ -41,7 +50,7 @@ export default {
       const last = env.SOCCER_STATE ? await env.SOCCER_STATE.get('news:last_run', 'json') : null;
       const fresh = last && Date.now() - Date.parse(last.at) < 2 * 3600e3;
       const tick = env.SOCCER_STATE ? await env.SOCCER_STATE.get('news:last_tick', 'json') : null;
-      return json({ ok: !!fresh, version: WORKER_VERSION, news_enabled: env.NEWS_ENABLED === 'on', last_tick: tick, desk: { version: DESK_VERSION, quality: QUALITY_VERSION, packet: PACKET_V3, depth: DEPTH_VERSION, required: deskRequired(env), available: deskAvailable(env) }, last_run: last }, fresh ? 200 : 503);
+      return json({ ok: !!fresh, version: WORKER_VERSION, news_enabled: env.NEWS_ENABLED === 'on', last_tick: tick, desk: { version: DESK_VERSION, quality: QUALITY_VERSION, packet: PACKET_V3, depth: DEPTH_VERSION, required: deskRequired(env), available: deskAvailable(env) }, ai: (() => { const c = aiConfig(env); return { router: ROUTER_VERSION, enabled: c.enabled, standard_model: c.standardModel, standard_max_output: c.standardMaxOutput, flagship_enabled: c.flagshipEnabled, flagship_classes: [...c.flagshipClasses] }; })(), last_run: last }, fresh ? 200 : 503);
     }
     if (url.pathname === '/v1/run' && req.method === 'POST') {
       if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);
@@ -60,14 +69,21 @@ export default {
       }
       const limit = Math.max(1, Math.min(40, Number(url.searchParams.get('limit')) || 10));
       const out = [];
-      // One paid attempt unless the operator explicitly asks for the corrective repair (?repair=1).
-      for (const s of slugs.slice(0, limit)) { try { out.push(await reeditArticle(store, s, env, { dry: url.searchParams.get('dry') === '1', holdOnFail: url.searchParams.get('hold_on_fail') === '1', attempts: url.searchParams.get('repair') === '1' ? 2 : 1, trigger: url.searchParams.get('canary') === '1' ? 'canary' : 'manual_reedit' })); } catch (e) { out.push({ slug: s, error: String(e.message).slice(0, 200) }); } }
+      // One paid attempt unless the operator explicitly asks for the corrective repair (?repair=1). ?canary=1 is always
+      // non-publishing (forced dry). ?dry=1 without canary never reaches a model. A ?scope= sweep is a backfill: model-free.
+      const canary = url.searchParams.get('canary') === '1';
+      for (const s of slugs.slice(0, limit)) { try { out.push(await reeditArticle(store, s, env, { dry: canary || url.searchParams.get('dry') === '1', holdOnFail: url.searchParams.get('hold_on_fail') === '1', attempts: url.searchParams.get('repair') === '1' ? 2 : 1, trigger: reeditTrigger(url) })); } catch (e) { out.push({ slug: s, error: String(e.message).slice(0, 200) }); } }
       return json({ desk: DESK_VERSION, available: deskAvailable(env), total_candidates: slugs.length, processed: out.length, results: out });
     }
     if (url.pathname === '/v1/admin/openai-cost') {
       if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);
       const day = /^\d{4}-\d{2}-\d{2}$/.test(url.searchParams.get('date') || '') ? url.searchParams.get('date') : new Date().toISOString().slice(0, 10);
-      return json(costReport(await callsForDay(env, day), day)); // durable ledger (KV fallback)
+      // Durable ledger totals (KV fallback) + the routing view from the KV day log (lane/pool/latency live there until the
+      // ledger routing columns are applied).
+      const rep = costReport(await callsForDay(env, day), day);
+      const kvCalls = await readCallLog(env.SOCCER_STATE, `${day}T00:00:00Z`).catch(() => []);
+      const kv = costReport(kvCalls, day);
+      return json({ ...rep, routing: { router_version: ROUTER_VERSION, calls: kvCalls.length, by_lane: kv.by_lane, by_pool: kv.by_pool, by_model: kv.by_model, premium_tokens_today: kv.premium_tokens_today, latency_ms: kvCalls.map(c => c.latency_ms).filter(Number.isFinite) } });
     }
     return json({ error: 'not found' }, 404);
   },

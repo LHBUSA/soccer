@@ -7,6 +7,7 @@
 // One repair attempt: the failed gates are quoted back to the desk once; a second failure holds.
 import { EXEMPT_WITH_VERIFIED_GROUP, packetNumbers2, PREVIEW_BANNED, verifiedGroupIn } from './gates2.js';
 import { recordCall, overCeiling } from './openai-cost.js';
+import { route, reachesTransport, ELIGIBLE_TRIGGERS } from './ai-router.js';
 import { stripIdentifiers } from './gates.js';
 import { PROFILES, unsupportedGroupClaims } from './profiles.js';
 
@@ -123,7 +124,7 @@ export function storyBrief(p) {
   return '';
 }
 
-export async function callDesk(env, packet, draft, { fetcher = fetch, feedback = null, model = env?.NEWS_DESK_MODEL || DESK_MODEL } = {}) {
+export async function callDesk(env, packet, draft, { fetcher = fetch, feedback = null, model = env?.NEWS_DESK_MODEL || DESK_MODEL, effort = 'medium', maxOutputTokens = Number(env?.NEWS_DESK_MAX_OUTPUT_TOKENS ?? 6000) } = {}) {
   const user = `${storyBrief(packet)}FROZEN FACT PACKET (the only source of truth):\n${JSON.stringify(packet)}\n\nMECHANICAL DRAFT (evidence only; do not copy its structure or wording):\n${JSON.stringify({ headline: draft.headline, dek: draft.dek, sections: draft.sections.filter(s => s.key !== 'method') })}${draft.visual_menu?.length ? `\n\nDATA VISUALS (built by code from the same packet and published with the story; you cannot change them): ${JSON.stringify(draft.visual_menu)}\nIn "emphasis", list up to three of these ids, most important first: the visuals that best prove why this story matters. Use only ids from this list; return [] if none fits.` : '\n\nThere are no data visuals for this story: return "emphasis": [].'}${feedback ? `\n\nCORRECTIVE REWRITE REQUIRED:\nThe previous version was rejected by the deterministic publication gates for exactly these reasons:\n${feedback}\nRewrite the entire JSON response from the SAME FACT PACKET. Fix every failure without adding any fact, number, name, date, URL, quote or outside knowledge. The gates will run again unchanged.` : ''}`;
   // No tools, no retrieval, not stored: the packet in this request is all the model sees.
   // Telemetry: every exit (success or failure) carries the API's own response id, model and usage, plus a status
@@ -134,9 +135,9 @@ export async function callDesk(env, packet, draft, { fetcher = fetch, feedback =
   try { res = await fetcher(DESK_API, {
     method: 'POST',
     headers: { 'content-type': 'application/json', authorization: `Bearer ${env.OPENAI_API_KEY}` },
-    // 6000 output tokens (was 18000): a 450-1100 word story plus reasoning fits well inside it; an incomplete response
-    // fails closed (the story holds). NEWS_DESK_MAX_OUTPUT_TOKENS overrides.
-    body: JSON.stringify({ model, store: false, reasoning: { effort: 'medium' }, instructions: SYSTEM, input: user, max_output_tokens: Math.max(1000, Math.min(18000, Number(env?.NEWS_DESK_MAX_OUTPUT_TOKENS ?? 6000))), text: { format: { type: 'json_schema', name: 'soccer_editorial_article', strict: true, schema: ARTICLE_SCHEMA } } }),
+    // Model, effort and output cap come from the routing decision (ai-router.js). An incomplete response fails closed
+    // (the story holds).
+    body: JSON.stringify({ model, store: false, reasoning: { effort }, instructions: SYSTEM, input: user, max_output_tokens: Math.max(1000, Math.min(18000, Number(maxOutputTokens) || 6000)), text: { format: { type: 'json_schema', name: 'soccer_editorial_article', strict: true, schema: ARTICLE_SCHEMA } } }),
     signal: AbortSignal.timeout(120000),
   }); } catch (e) {
     const timeout = e?.name === 'TimeoutError' || e?.name === 'AbortError' || /timed? ?out|abort/i.test(String(e?.message));
@@ -496,31 +497,50 @@ export function judge(article, packet) {
 }
 
 // Draft -> desk -> judge (-> one repair) -> { article, judgement } or { held }.
-// Automatic passes pay for ONE attempt (NEWS_DESK_ATTEMPTS, default 1): a failed rewrite holds under the existing
-// policy instead of buying a corrective second call. Admin re-edit / canary may request the repair (attempts: 2).
+// Automatic passes pay for ONE attempt: a failed rewrite holds instead of buying a corrective second call. Explicit
+// admin re-edit / canary / operator backfill may request the repair (attempts: 2); NEWS_DESK_ATTEMPTS is ignored for
+// the automatic new_story trigger.
 export const deskAttempts = (env) => Math.max(1, Math.min(2, Number(env?.NEWS_DESK_ATTEMPTS ?? 1)));
 
+// The ONE chokepoint every paid path passes through (cron, /v1/run, admin re-edit, canary, operator backfill).
+// Order: routing (ai-router.js: trigger allow-list, kill switch, lane/model/cap/effort) -> emergency ceiling
+// (fail-CLOSED) -> call -> gates; the ceiling is re-checked before a repair attempt.
 export async function runDesk(draft, packet, env, { fetcher = fetch, attempts = deskAttempts(env), trigger = 'new_story', storyId = null, articleId = null } = {}) {
-  if (!deskAvailable(env)) return { held: ['editorial_desk_unavailable'] };
-  // Emergency ceiling (openai-cost.js): past today's limit no paid call is made; the story holds.
-  if (await overCeiling(env).catch(() => false)) return { held: ['editorial_daily_budget_reached'] };
-  let feedback = null; let last = null;
-  const model = env?.NEWS_DESK_MODEL || DESK_MODEL;
-  for (let attempt = 1; attempt <= attempts; attempt++) {
+  const richness = packetRichness(packet);
+  const routing = route({ packet, trigger, attempt: 1, env, hasKey: deskAvailable(env), richness });
+  if (!reachesTransport(routing)) return { held: [!deskAvailable(env) && ELIGIBLE_TRIGGERS.includes(trigger) ? 'editorial_desk_unavailable' : `routing:${routing.reason}`], routing };
+  const maxAttempts = trigger === 'new_story' ? 1 : Math.max(1, Math.min(2, Number(attempts) || 1));
+  let feedback = null; let last = null; let lane = routing;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    if (attempt > 1) {
+      lane = route({ packet, trigger: 'repair', attempt, parentTrigger: trigger, env, hasKey: deskAvailable(env), richness });
+      if (!reachesTransport(lane)) break;
+    }
+    // Emergency ceiling (openai-cost.js). An unreadable budget holds the story: the breaker never fails open.
+    let over;
+    try { over = await overCeiling(env); } catch { return { held: ['editorial_budget_state_unavailable'], routing: lane }; }
+    if (over) return last && attempt > 1 ? { ...last, routing: lane } : { held: ['editorial_daily_budget_reached'], routing: lane };
     let edited;
     // ONE usage-ledger row per request (openai-cost.js), under the parent trigger; attempt 2 is a repair.
     const started = new Date().toISOString();
-    const rec = (m, errorCode) => recordCall(env, { trigger, attempt, started_at: started, finished_at: new Date().toISOString(), slug: storyId && !/^[0-9a-f]{64}$/.test(storyId) ? storyId : draft?.slug || null, // a re-edit's article slug, else the new story's slug article_id: articleId, news_event_id: packet?.event?.event_id || null,
-      model: m?.model || model, response_id: m?.response_id || null, ...(m?.usage || {}), status: m?.status || 'error', error_code: errorCode ?? m?.error_code ?? null, desk_version: DESK_VERSION }).catch(err => console.error('openai usage record failed', String(err?.message || err).slice(0, 200)));
-    try { edited = await callDesk(env, packet, draft, { fetcher, feedback }); } catch (e) {
+    const t0 = Date.now();
+    const rec = (m, errorCode) => recordCall(env, {
+      trigger, attempt, started_at: started, finished_at: new Date().toISOString(), latency_ms: Date.now() - t0,
+      // a re-edit's article slug, else the new story's slug
+      slug: storyId && !/^[0-9a-f]{64}$/.test(storyId) ? storyId : draft?.slug || null,
+      article_id: articleId, news_event_id: packet?.event?.event_id || null,
+      model: m?.model || lane.model, requested_model: lane.model, response_id: m?.response_id || null, ...(m?.usage || {}), status: m?.status || 'error', error_code: errorCode ?? m?.error_code ?? null, desk_version: DESK_VERSION,
+      routing: lane,
+    }).catch(err => console.error('openai usage record failed', String(err?.message || err).slice(0, 200)));
+    try { edited = await callDesk(env, packet, draft, { fetcher, feedback, model: lane.model, effort: lane.reasoning_effort, maxOutputTokens: lane.max_output_tokens }); } catch (e) {
       await rec(e?.meta, e?.meta ? undefined : 'no_response');
-      last = { held: [`editorial_desk_error: ${sanitizeDeskError(e?.message, env).slice(0, 120)}`] }; continue;
+      last = { held: [`editorial_desk_error: ${sanitizeDeskError(e?.message, env).slice(0, 120)}`], routing: lane }; continue;
     }
     await rec(edited.meta);
     const article = deskArticle(edited, draft);
     const j = judge(article, packet);
-    if (j.pass) return { article, judgement: { ...j, attempt, model: env?.NEWS_DESK_MODEL || DESK_MODEL } };
-    last = { held: j.failed.map(f => `editorial:${f}`), judgement: { ...j, attempt }, rejected: article };
+    if (j.pass) return { article, judgement: { ...j, attempt, model: lane.model, routing: lane }, routing: lane };
+    last = { held: j.failed.map(f => `editorial:${f}`), judgement: { ...j, attempt, routing: lane }, rejected: article, routing: lane };
     feedback = j.results.filter(r => !r.pass).map(r => `- ${r.gate}${r.detail ? `: ${JSON.stringify(r.detail).slice(0, 200)}` : ''}`).join('\n');
   }
   return last;

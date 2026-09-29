@@ -86,7 +86,9 @@ test('quality holds: template opening, stat recitation, generic headings, thin c
 // OpenAI Responses envelopes
 const envelope = (content, extra = {}) => ({ id: 'resp_test', object: 'response', status: 'completed', model: 'gpt-5.6-sol', output: [{ type: 'reasoning', summary: [] }, { type: 'message', role: 'assistant', content }], ...extra });
 const reply = obj => async () => ({ ok: true, json: async () => envelope([{ type: 'output_text', text: JSON.stringify(obj), annotations: [] }]) });
-const KEY = { OPENAI_API_KEY: 'test' };
+// A readable budget state is required (the breaker fails closed): every desk env carries an in-memory KV day log.
+const memKV = () => { const m = new Map(); return { m, get: async (k, t) => (m.has(k) ? (t === 'json' ? JSON.parse(m.get(k)) : m.get(k)) : null), put: async (k, v) => { m.set(k, typeof v === 'string' ? v : JSON.stringify(v)); } }; };
+const KEY = { OPENAI_API_KEY: 'test', SOCCER_STATE: memKV() };
 
 test('no desk key: a NEW story HOLDS (never the template)', async () => {
   const r = await editorialStage(draft, B, {});
@@ -107,7 +109,7 @@ test('desk fails twice: HOLD with the gate reasons; one repair attempt quotes th
   bad.sections[0].paragraphs[0] += ' Bayern had 31 shots before half-time.';
   const seen = [];
   const fetcher = async (_u, init) => { seen.push(JSON.parse(init.body).input); return reply(bad)(); };
-  const r = await editorialStage(draft, B, KEY, { fetcher, attempts: 2 });
+  const r = await editorialStage(draft, B, KEY, { fetcher, attempts: 2, trigger: 'manual_reedit' });
   assert.equal(r.status, 'held'); assert.ok(r.holdReasons.includes('editorial:new_number_not_in_packet'));
   assert.equal(seen.length, 2); assert.match(seen[1], /CORRECTIVE REWRITE REQUIRED[\s\S]*new_number_not_in_packet/);
 });
@@ -116,7 +118,7 @@ test('desk repairs on the second attempt: published with attempt 2', async () =>
   const bad = { ...GOOD, sections: GOOD.sections.map(s => ({ ...s, paragraphs: [...s.paragraphs] })) };
   bad.sections[0].paragraphs[0] += ' Bayern had 31 shots before half-time.';
   let n = 0;
-  const r = await runDesk(draft, B, KEY, { attempts: 2, fetcher: async () => (n++ === 0 ? reply(bad)() : reply(GOOD)()) });
+  const r = await runDesk(draft, B, KEY, { attempts: 2, trigger: 'manual_reedit', fetcher: async () => (n++ === 0 ? reply(bad)() : reply(GOOD)()) });
   assert.ok(r.article); assert.equal(r.judgement.attempt, 2);
 });
 
@@ -137,7 +139,7 @@ test('the fact gates on the deterministic draft are unchanged (template output i
 // ---- OpenAI Responses transport
 test('openai: request = Responses API, bearer key, strict JSON schema, no tools, not stored; completed response publishes', async () => {
   let call;
-  const r = await runDesk(draft, B, { OPENAI_API_KEY: 'sk-live-FAKE_KEY-123456' }, { fetcher: async (url, init) => { call = { url, init }; return reply(GOOD)(); } });
+  const r = await runDesk(draft, B, { OPENAI_API_KEY: 'sk-live-FAKE_KEY-123456', SOCCER_STATE: memKV() }, { fetcher: async (url, init) => { call = { url, init }; return reply(GOOD)(); } });
   assert.ok(r.article, JSON.stringify(r.held)); assert.equal(r.judgement.model, 'gpt-5.6-sol');
   assert.equal(call.url, 'https://api.openai.com/v1/responses');
   assert.equal(call.init.method, 'POST'); assert.equal(call.init.headers.authorization, 'Bearer sk-live-FAKE_KEY-123456');
@@ -148,7 +150,7 @@ test('openai: request = Responses API, bearer key, strict JSON schema, no tools,
   assert.deepEqual(body.text.format.schema.required, ['headline', 'dek', 'sections', 'emphasis']);
   assert.match(body.instructions, /senior editor of PropBetEdge Soccer/);
   assert.match(body.input, /^FROZEN FACT PACKET \(the only source of truth\):/); assert.match(body.input, /MECHANICAL DRAFT \(evidence only/);
-  const r2 = await runDesk(draft, B, { OPENAI_API_KEY: 'k', NEWS_DESK_MODEL: 'gpt-x' }, { fetcher: async (_u, init) => { assert.equal(JSON.parse(init.body).model, 'gpt-x'); return reply(GOOD)(); } });
+  const r2 = await runDesk(draft, B, { OPENAI_API_KEY: 'k', NEWS_DESK_MODEL: 'gpt-x', SOCCER_STATE: memKV() }, { fetcher: async (_u, init) => { assert.equal(JSON.parse(init.body).model, 'gpt-x'); return reply(GOOD)(); } });
   assert.equal(r2.judgement.model, 'gpt-x', 'NEWS_DESK_MODEL overrides');
 });
 
@@ -185,7 +187,7 @@ test('openai: corrective retry sends the failed gates in the same input, then pu
   const bad = { ...GOOD, sections: GOOD.sections.map(s => ({ ...s, paragraphs: [...s.paragraphs] })) };
   bad.sections[0].paragraphs[0] += ' Bayern had 31 shots before half-time.';
   const inputs = [];
-  const r = await editorialStage(draft, B, KEY, { attempts: 2, fetcher: async (_u, init) => { inputs.push(JSON.parse(init.body).input); return (inputs.length === 1 ? reply(bad) : reply(GOOD))(); } });
+  const r = await editorialStage(draft, B, KEY, { attempts: 2, trigger: 'manual_reedit', fetcher: async (_u, init) => { inputs.push(JSON.parse(init.body).input); return (inputs.length === 1 ? reply(bad) : reply(GOOD))(); } });
   assert.equal(r.status, 'published', JSON.stringify(r.holdReasons)); assert.equal(r.editorial.attempt, 2);
   assert.doesNotMatch(inputs[0], /CORRECTIVE REWRITE REQUIRED/);
   assert.match(inputs[1], /CORRECTIVE REWRITE REQUIRED[\s\S]*new_number_not_in_packet/);
@@ -194,7 +196,7 @@ test('openai: corrective retry sends the failed gates in the same input, then pu
 
 test('openai: the secret never appears in hold reasons or errors', async () => {
   const FAKE_KEY = 'sk-proj-VerySecretValue0123456789';
-  const env = { OPENAI_API_KEY: FAKE_KEY };
+  const env = { OPENAI_API_KEY: FAKE_KEY, SOCCER_STATE: memKV() };
   const echo = [
     async () => ({ ok: false, status: 401, json: async () => ({ error: { type: 'invalid_request_error', message: `Incorrect API key provided: ${FAKE_KEY}. Header was Bearer ${FAKE_KEY}` } }) }),
     async () => { throw new Error(`fetch failed with Authorization: Bearer ${FAKE_KEY}`); },

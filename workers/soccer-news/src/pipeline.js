@@ -12,8 +12,8 @@ import { depthFromRows, loadDepthRows, packetV3, PACKET_V3 } from './depth.js';
 import { payloadHash } from '../../shared/ids.js';
 import { compose } from './compose2.js';
 import { runGates2, GATE_V2 } from './gates2.js';
-import { editorialPass, llmEnabled } from './editorial.js';
 import { runDesk, deskRequired, deskAvailable, DESK_VERSION } from './desk.js';
+import { ROUTER_VERSION } from './ai-router.js';
 import { uuidv5 } from '../../shared/ids.js';
 import { chunkArr } from '../../soccer-ingest/src/store.js';
 
@@ -25,7 +25,7 @@ export const NEWS_COMPETITIONS = NEWS_REGISTRY.map(c => c.slug);
 export const storiesFor = slug => NEWS_REGISTRY.find(c => c.slug === slug)?.stories || RECAP_STORIES;
 
 export async function runNews(store, { now = Date.now(), env = {}, windowDays = 4, maxPerCompetition = 12, dry = false, competitions = NEWS_COMPETITIONS, cfg = {} } = {}) {
-  const summary = { engine: ENGINE_VERSION, gates: GATE_V2, at: new Date(now).toISOString(), news_enabled: env.NEWS_ENABLED ?? null, llm: llmEnabled(env), desk: { required: deskRequired(env), available: deskAvailable(env), version: DESK_VERSION }, competitions: {} };
+  const summary = { engine: ENGINE_VERSION, gates: GATE_V2, at: new Date(now).toISOString(), news_enabled: env.NEWS_ENABLED ?? null, desk: { required: deskRequired(env), available: deskAvailable(env), version: DESK_VERSION }, routing: { version: ROUTER_VERSION, lanes: {}, reasons: {} }, competitions: {} };
   for (const slug of competitions) {
     const out = summary.competitions[slug] = { candidates: 0, new: 0, duplicates: 0, published: 0, held: 0, holds: {}, by_class: {}, stories: [] };
     const S = await loadSeason(store, slug);
@@ -44,15 +44,8 @@ export async function runNews(store, { now = Date.now(), env = {}, windowDays = 
     let ids = cands.map(c => uuidv5(`news_event:${c.key}`));
     const existing = new Set();
     for (const part of chunkArr(ids, 100)) for (const r of await store.select('soccer_news_events', { columns: ['id'], in: { id: part } })) existing.add(r.id);
-    // Corrections: a story whose article was WITHDRAWN (and never replaced) is re-issued
-    // once under `<key>:correction`, and the new article says what it replaces and why.
-    const withdrawn = new Map();
-    for (const part of chunkArr(ids.filter(i => existing.has(i)), 100)) for (const a of await store.select('soccer_articles', { columns: ['news_event_id', 'slug', 'status', 'hold_reasons'], in: { news_event_id: part } })) if (a.status === 'withdrawn') withdrawn.set(a.news_event_id, a);
-    for (let i = 0; i < cands.length; i++) {
-      const w = withdrawn.get(ids[i]); if (!w) continue;
-      cands[i] = { ...cands[i], key: `${cands[i].key}:correction`, corrects: { slug: w.slug, reason: (w.hold_reasons || [])[0] || 'withdrawn' } };
-      ids[i] = uuidv5(`news_event:${cands[i].key}`);
-    }
+    // A WITHDRAWN story is terminal for the automatic detector: its event already exists, so it is never re-keyed or
+    // re-issued here (owner spec 2026-09-29). A correction is an explicit lifecycle action with its own provenance.
     for (const part of chunkArr(ids.filter(i => !existing.has(i)), 100)) for (const r of await store.select('soccer_news_events', { columns: ['id'], in: { id: part } })) existing.add(r.id);
     const fresh = cands.filter((c, i) => !existing.has(ids[i])).sort((a, b) => b.materiality.score - a.materiality.score).slice(0, maxPerCompetition);
     out.duplicates = cands.length - cands.filter((c, i) => !existing.has(ids[i])).length;
@@ -61,8 +54,12 @@ export async function runNews(store, { now = Date.now(), env = {}, windowDays = 
       const packet = await buildPacket(store, S, cand);
       const vis = await articleVisuals(store, packet, now);
       const draft = withVisualMenu(compose(packet), vis);
-      const r = await editorialStage(draft, packet, env, { trigger: 'new_story', articleId: uuidv5(`article:${packet.hash}`) });
+      // Paid only for a genuinely NEW canonical story. A dry run makes zero model calls and zero writes (the router
+      // routes `dry_run` DETERMINISTIC; nothing below `if (dry) continue` runs).
+      const trigger = dry ? 'dry_run' : 'new_story';
+      const r = await editorialStage(draft, packet, env, { trigger, articleId: uuidv5(`article:${packet.hash}`) });
       const { article, status, holdReasons, gates, editorial } = r;
+      if (r.routing) { summary.routing.lanes[r.routing.lane] = (summary.routing.lanes[r.routing.lane] || 0) + 1; summary.routing.reasons[r.routing.reason] = (summary.routing.reasons[r.routing.reason] || 0) + 1; }
       out[status] += 1;
       for (const f of holdReasons) out.holds[f] = (out.holds[f] || 0) + 1;
       out.stories.push({ status, story_class: packet.event.kind, headline: article.headline, slug: article.slug, failed: holdReasons });
@@ -113,13 +110,12 @@ export async function editorialStage(draft, packet, env, { fetcher, attempts, tr
   if (!gates.pass) return { article: draft, status: 'held', holdReasons: gates.failed, gates, editorial: null };
   if (deskRequired(env)) {
     const d = await runDesk(draft, packet, env, { ...(fetcher ? { fetcher } : {}), ...(attempts ? { attempts } : {}), ...(trigger ? { trigger } : {}), ...(storyId ? { storyId } : {}), ...(articleId ? { articleId } : {}) });
-    if (d.article) return { article: d.article, status: 'published', holdReasons: [], gates, editorial: d.judgement };
-    return { article: d.rejected ? { ...d.rejected } : draft, status: 'held', holdReasons: d.held, gates, editorial: d.judgement || { version: DESK_VERSION, held: d.held } };
+    if (d.article) return { article: d.article, status: 'published', holdReasons: [], gates, editorial: d.judgement, routing: d.routing };
+    return { article: d.rejected ? { ...d.rejected } : draft, status: 'held', holdReasons: d.held, gates, editorial: d.judgement || { version: DESK_VERSION, held: d.held, routing: d.routing || null }, routing: d.routing };
   }
-  let article = draft; let editorial = null;
-  const edited = await editorialPass(draft, packet, env).catch(() => null);
-  if (edited) { const g2 = runGates2(edited, packet); editorial = { used: g2.pass, failed: g2.failed }; if (g2.pass) article = edited; }
-  return { article, status: 'published', holdReasons: [], gates, editorial };
+  // NEWS_DESK=off: the gated mechanical draft publishes. The legacy Anthropic editorial pass (editorial.js) is no longer
+  // reachable from here — every model call goes through runDesk and the router (Newsroom V4).
+  return { article: draft, status: 'published', holdReasons: [], gates, editorial: null, routing: null };
 }
 
 // Re-edit an existing article through the desk from its frozen evidence packet (held stories, and
