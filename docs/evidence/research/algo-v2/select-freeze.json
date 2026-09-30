@@ -1,0 +1,3066 @@
+{
+  "protocol": "soccer-algo-v2-national-team-protocol",
+  "protocol_sha256": "356a78a3fdd235015573102759b99579499c0a36a926c7d95f4b4f0e13e65a3d",
+  "dataset_sha256": "01e0e8f1c64bbde2cb10f44f0250cd3179fe832378ddcf277158a6dd1bca01c4",
+  "dataset_rows": 943,
+  "neutral_unknown_treated_as_not_neutral": 0,
+  "rows": {
+    "warmup": 206,
+    "select_all": 396,
+    "select_primary": 318,
+    "select_primary_predicted": 318,
+    "select_primary_common_grid_rows": 308,
+    "seasons": [
+      "uefa.nations:2020",
+      "uefa.nations:2022"
+    ]
+  },
+  "grid": [
+    {
+      "half_life_days": 365,
+      "shrink_k": 2,
+      "log_loss_1x2": 1.05
+    },
+    {
+      "half_life_days": 365,
+      "shrink_k": 5,
+      "log_loss_1x2": 1.047
+    },
+    {
+      "half_life_days": 365,
+      "shrink_k": 10,
+      "log_loss_1x2": 1.0521
+    },
+    {
+      "half_life_days": 730,
+      "shrink_k": 2,
+      "log_loss_1x2": 1.0419
+    },
+    {
+      "half_life_days": 730,
+      "shrink_k": 5,
+      "log_loss_1x2": 1.0441
+    },
+    {
+      "half_life_days": 730,
+      "shrink_k": 10,
+      "log_loss_1x2": 1.0499
+    },
+    {
+      "half_life_days": 1460,
+      "shrink_k": 2,
+      "log_loss_1x2": 1.0376
+    },
+    {
+      "half_life_days": 1460,
+      "shrink_k": 5,
+      "log_loss_1x2": 1.0417
+    },
+    {
+      "half_life_days": 1460,
+      "shrink_k": 10,
+      "log_loss_1x2": 1.0477
+    }
+  ],
+  "chosen": {
+    "half_life_days": 1460,
+    "shrink_k": 2,
+    "rho": 0.032
+  },
+  "home_effect_select": {
+    "rows_non_neutral": 318,
+    "mean_home_factor": 1.1168,
+    "loglik_with_H": -916.8746,
+    "loglik_H_equals_1": -918.6287
+  },
+  "baselines": {
+    "1x2": {
+      "non_neutral": [
+        0.466,
+        0.2282,
+        0.3058
+      ],
+      "neutral": [
+        0.3859,
+        0.2282,
+        0.3859
+      ],
+      "neutral_basis": "fewer than 30 neutral matches (0): symmetrised non-neutral"
+    },
+    "binary": {
+      "over_2_5": 0.4417,
+      "home_to_score": 0.733,
+      "away_to_score": 0.6214,
+      "btts": 0.432
+    },
+    "window": {
+      "rows": 206,
+      "non_neutral": 206,
+      "neutral": 0
+    }
+  },
+  "markets": {
+    "1x2": {
+      "eligible": true,
+      "validation_select": {
+        "n": 318,
+        "log_loss": 1.0392,
+        "baseline_log_loss": 1.0913,
+        "brier": 0.6229,
+        "baseline_brier": 0.6622,
+        "beats_pooled": true,
+        "per_season": [
+          {
+            "season": "uefa.nations:2020",
+            "n": 162,
+            "log_loss": 1.0393,
+            "baseline_log_loss": 1.1103,
+            "brier": 0.6221,
+            "baseline_brier": 0.6745,
+            "beats_log_loss": true
+          },
+          {
+            "season": "uefa.nations:2022",
+            "n": 156,
+            "log_loss": 1.0392,
+            "baseline_log_loss": 1.0714,
+            "brier": 0.6237,
+            "baseline_brier": 0.6494,
+            "beats_log_loss": true
+          }
+        ],
+        "reliability": {
+          "class": "home",
+          "bins": [
+            {
+              "n": 31,
+              "predicted": 0.1358,
+              "observed": 0.2258
+            },
+            {
+              "n": 32,
+              "predicted": 0.2336,
+              "observed": 0.2188
+            },
+            {
+              "n": 32,
+              "predicted": 0.2942,
+              "observed": 0.3438
+            },
+            {
+              "n": 32,
+              "predicted": 0.3378,
+              "observed": 0.2813
+            },
+            {
+              "n": 32,
+              "predicted": 0.3946,
+              "observed": 0.3125
+            },
+            {
+              "n": 31,
+              "predicted": 0.4407,
+              "observed": 0.3548
+            },
+            {
+              "n": 32,
+              "predicted": 0.5042,
+              "observed": 0.5
+            },
+            {
+              "n": 32,
+              "predicted": 0.562,
+              "observed": 0.5938
+            },
+            {
+              "n": 32,
+              "predicted": 0.6205,
+              "observed": 0.5313
+            },
+            {
+              "n": 32,
+              "predicted": 0.7453,
+              "observed": 0.6875
+            }
+          ],
+          "ece": 0.056
+        }
+      },
+      "gate_select": true,
+      "thresholds": [
+        {
+          "threshold": 0.5,
+          "picks": 159,
+          "coverage": 0.5,
+          "hits": 92,
+          "hit_rate": 0.5786,
+          "mean_prob": 0.617,
+          "wilson_lo": 0.5009,
+          "baseline_rate": 0.4207,
+          "selections": {
+            "away": 45,
+            "home": 114
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 77,
+              "hit_rate": 0.5714,
+              "mean_prob": 0.6284
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 82,
+              "hit_rate": 0.5854,
+              "mean_prob": 0.6064
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.525,
+          "picks": 140,
+          "coverage": 0.4403,
+          "hits": 82,
+          "hit_rate": 0.5857,
+          "mean_prob": 0.631,
+          "wilson_lo": 0.5029,
+          "baseline_rate": 0.4225,
+          "selections": {
+            "away": 38,
+            "home": 102
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 74,
+              "hit_rate": 0.5676,
+              "mean_prob": 0.633
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 66,
+              "hit_rate": 0.6061,
+              "mean_prob": 0.6288
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.55,
+          "picks": 122,
+          "coverage": 0.3836,
+          "hits": 72,
+          "hit_rate": 0.5902,
+          "mean_prob": 0.6448,
+          "wilson_lo": 0.5014,
+          "baseline_rate": 0.4214,
+          "selections": {
+            "home": 88,
+            "away": 34
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 63,
+              "hit_rate": 0.5714,
+              "mean_prob": 0.6495
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 59,
+              "hit_rate": 0.6102,
+              "mean_prob": 0.6397
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.575,
+          "picks": 95,
+          "coverage": 0.2987,
+          "hits": 58,
+          "hit_rate": 0.6105,
+          "mean_prob": 0.6685,
+          "wilson_lo": 0.51,
+          "baseline_rate": 0.4272,
+          "selections": {
+            "home": 72,
+            "away": 23
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 50,
+              "hit_rate": 0.58,
+              "mean_prob": 0.6719
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 45,
+              "hit_rate": 0.6444,
+              "mean_prob": 0.6646
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.6,
+          "picks": 78,
+          "coverage": 0.2453,
+          "hits": 47,
+          "hit_rate": 0.6026,
+          "mean_prob": 0.6865,
+          "wilson_lo": 0.4916,
+          "baseline_rate": 0.4311,
+          "selections": {
+            "away": 17,
+            "home": 61
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 42,
+              "hit_rate": 0.619,
+              "mean_prob": 0.6882
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 36,
+              "hit_rate": 0.5833,
+              "mean_prob": 0.6846
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": false,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.625,
+          "picks": 61,
+          "coverage": 0.1918,
+          "hits": 39,
+          "hit_rate": 0.6393,
+          "mean_prob": 0.7071,
+          "wilson_lo": 0.5139,
+          "baseline_rate": 0.4293,
+          "selections": {
+            "away": 14,
+            "home": 47
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 32,
+              "hit_rate": 0.6563,
+              "mean_prob": 0.7123
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 29,
+              "hit_rate": 0.6207,
+              "mean_prob": 0.7013
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.65,
+          "picks": 43,
+          "coverage": 0.1352,
+          "hits": 30,
+          "hit_rate": 0.6977,
+          "mean_prob": 0.7376,
+          "wilson_lo": 0.5489,
+          "baseline_rate": 0.4213,
+          "selections": {
+            "away": 12,
+            "home": 31
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 25,
+              "hit_rate": 0.68,
+              "mean_prob": 0.7329
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 18,
+              "hit_rate": 0.7222,
+              "mean_prob": 0.744
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.675,
+          "picks": 33,
+          "coverage": 0.1038,
+          "hits": 24,
+          "hit_rate": 0.7273,
+          "mean_prob": 0.7608,
+          "wilson_lo": 0.5578,
+          "baseline_rate": 0.4369,
+          "selections": {
+            "home": 27,
+            "away": 6
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 17,
+              "hit_rate": 0.7059,
+              "mean_prob": 0.7666
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 16,
+              "hit_rate": 0.75,
+              "mean_prob": 0.7548
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.7,
+          "picks": 26,
+          "coverage": 0.0818,
+          "hits": 18,
+          "hit_rate": 0.6923,
+          "mean_prob": 0.7807,
+          "wilson_lo": 0.5001,
+          "baseline_rate": 0.4352,
+          "selections": {
+            "home": 21,
+            "away": 5
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 15,
+              "hit_rate": 0.7333,
+              "mean_prob": 0.7777
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 11,
+              "hit_rate": 0.6364,
+              "mean_prob": 0.7849
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": false,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.725,
+          "picks": 21,
+          "coverage": 0.066,
+          "hits": 15,
+          "hit_rate": 0.7143,
+          "mean_prob": 0.7984,
+          "wilson_lo": 0.5004,
+          "baseline_rate": 0.4431,
+          "selections": {
+            "home": 18,
+            "away": 3
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 12,
+              "hit_rate": 0.75,
+              "mean_prob": 0.7959
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 9,
+              "hit_rate": 0.6667,
+              "mean_prob": 0.8016
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": false,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.75,
+          "picks": 18,
+          "coverage": 0.0566,
+          "hits": 13,
+          "hit_rate": 0.7222,
+          "mean_prob": 0.8093,
+          "wilson_lo": 0.4913,
+          "baseline_rate": 0.4482,
+          "selections": {
+            "home": 16,
+            "away": 2
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 11,
+              "hit_rate": 0.7273,
+              "mean_prob": 0.8014
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 7,
+              "hit_rate": 0.7143,
+              "mean_prob": 0.8216
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": false,
+            "E4_floor": false,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.775,
+          "picks": 13,
+          "coverage": 0.0409,
+          "hits": 10,
+          "hit_rate": 0.7692,
+          "mean_prob": 0.8265,
+          "wilson_lo": 0.4974,
+          "baseline_rate": 0.4414,
+          "selections": {
+            "home": 11,
+            "away": 2
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 7,
+              "hit_rate": 0.7143,
+              "mean_prob": 0.822
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 6,
+              "hit_rate": 0.8333,
+              "mean_prob": 0.8318
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": false,
+            "E2_calibration": false,
+            "E3_volume": false,
+            "E4_floor": false,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.8,
+          "picks": 8,
+          "coverage": 0.0252,
+          "hits": 6,
+          "hit_rate": 0.75,
+          "mean_prob": 0.8529,
+          "wilson_lo": 0.4093,
+          "baseline_rate": 0.426,
+          "selections": {
+            "home": 6,
+            "away": 2
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 4,
+              "hit_rate": 0.75,
+              "mean_prob": 0.8522
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 4,
+              "hit_rate": 0.75,
+              "mean_prob": 0.8537
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": false,
+            "E2_calibration": false,
+            "E3_volume": false,
+            "E4_floor": false,
+            "E5_lift": true,
+            "eligible": false
+          }
+        }
+      ],
+      "selected_threshold": null,
+      "reason": "no eligible threshold"
+    },
+    "over_2_5": {
+      "eligible": true,
+      "validation_select": {
+        "n": 318,
+        "log_loss": 0.7234,
+        "baseline_log_loss": 0.6823,
+        "brier": 0.261,
+        "baseline_brier": 0.2446,
+        "beats_pooled": false,
+        "per_season": [
+          {
+            "season": "uefa.nations:2020",
+            "n": 162,
+            "log_loss": 0.7064,
+            "baseline_log_loss": 0.674,
+            "brier": 0.2531,
+            "baseline_brier": 0.2404,
+            "beats_log_loss": false
+          },
+          {
+            "season": "uefa.nations:2022",
+            "n": 156,
+            "log_loss": 0.7411,
+            "baseline_log_loss": 0.691,
+            "brier": 0.2692,
+            "baseline_brier": 0.2489,
+            "beats_log_loss": false
+          }
+        ],
+        "reliability": {
+          "class": "event",
+          "bins": [
+            {
+              "n": 31,
+              "predicted": 0.1589,
+              "observed": 0.3871
+            },
+            {
+              "n": 32,
+              "predicted": 0.2281,
+              "observed": 0.375
+            },
+            {
+              "n": 32,
+              "predicted": 0.2877,
+              "observed": 0.3125
+            },
+            {
+              "n": 32,
+              "predicted": 0.3411,
+              "observed": 0.5
+            },
+            {
+              "n": 32,
+              "predicted": 0.3832,
+              "observed": 0.4063
+            },
+            {
+              "n": 31,
+              "predicted": 0.4185,
+              "observed": 0.4516
+            },
+            {
+              "n": 32,
+              "predicted": 0.458,
+              "observed": 0.4688
+            },
+            {
+              "n": 32,
+              "predicted": 0.5019,
+              "observed": 0.4688
+            },
+            {
+              "n": 32,
+              "predicted": 0.5685,
+              "observed": 0.4688
+            },
+            {
+              "n": 32,
+              "predicted": 0.6722,
+              "observed": 0.4063
+            }
+          ],
+          "ece": 0.1023
+        }
+      },
+      "gate_select": false,
+      "thresholds": [
+        {
+          "threshold": 0.6,
+          "picks": 196,
+          "coverage": 0.6164,
+          "hits": 114,
+          "hit_rate": 0.5816,
+          "mean_prob": 0.7087,
+          "wilson_lo": 0.5117,
+          "baseline_rate": 0.5369,
+          "selections": {
+            "under": 160,
+            "over": 36
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 106,
+              "hit_rate": 0.5943,
+              "mean_prob": 0.7111
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 90,
+              "hit_rate": 0.5667,
+              "mean_prob": 0.706
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.625,
+          "picks": 162,
+          "coverage": 0.5094,
+          "hits": 90,
+          "hit_rate": 0.5556,
+          "mean_prob": 0.7291,
+          "wilson_lo": 0.4786,
+          "baseline_rate": 0.5374,
+          "selections": {
+            "under": 133,
+            "over": 29
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 90,
+              "hit_rate": 0.5778,
+              "mean_prob": 0.7287
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 72,
+              "hit_rate": 0.5278,
+              "mean_prob": 0.7295
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": false,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.65,
+          "picks": 138,
+          "coverage": 0.434,
+          "hits": 77,
+          "hit_rate": 0.558,
+          "mean_prob": 0.7448,
+          "wilson_lo": 0.4747,
+          "baseline_rate": 0.5414,
+          "selections": {
+            "under": 118,
+            "over": 20
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 72,
+              "hit_rate": 0.5972,
+              "mean_prob": 0.7511
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 66,
+              "hit_rate": 0.5152,
+              "mean_prob": 0.738
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": false,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.675,
+          "picks": 114,
+          "coverage": 0.3585,
+          "hits": 67,
+          "hit_rate": 0.5877,
+          "mean_prob": 0.7626,
+          "wilson_lo": 0.4959,
+          "baseline_rate": 0.545,
+          "selections": {
+            "under": 101,
+            "over": 13
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 59,
+              "hit_rate": 0.6441,
+              "mean_prob": 0.7709
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 55,
+              "hit_rate": 0.5273,
+              "mean_prob": 0.7537
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": false,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.7,
+          "picks": 91,
+          "coverage": 0.2862,
+          "hits": 57,
+          "hit_rate": 0.6264,
+          "mean_prob": 0.7813,
+          "wilson_lo": 0.5238,
+          "baseline_rate": 0.5506,
+          "selections": {
+            "under": 85,
+            "over": 6
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 50,
+              "hit_rate": 0.68,
+              "mean_prob": 0.7858
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 41,
+              "hit_rate": 0.561,
+              "mean_prob": 0.7758
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.725,
+          "picks": 75,
+          "coverage": 0.2358,
+          "hits": 46,
+          "hit_rate": 0.6133,
+          "mean_prob": 0.7959,
+          "wilson_lo": 0.5002,
+          "baseline_rate": 0.5536,
+          "selections": {
+            "under": 72,
+            "over": 3
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 41,
+              "hit_rate": 0.6829,
+              "mean_prob": 0.8024
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 34,
+              "hit_rate": 0.5294,
+              "mean_prob": 0.788
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.75,
+          "picks": 62,
+          "coverage": 0.195,
+          "hits": 36,
+          "hit_rate": 0.5806,
+          "mean_prob": 0.8083,
+          "wilson_lo": 0.4567,
+          "baseline_rate": 0.5526,
+          "selections": {
+            "under": 59,
+            "over": 3
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 34,
+              "hit_rate": 0.6471,
+              "mean_prob": 0.8163
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 28,
+              "hit_rate": 0.5,
+              "mean_prob": 0.7986
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": false,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.775,
+          "picks": 46,
+          "coverage": 0.1447,
+          "hits": 28,
+          "hit_rate": 0.6087,
+          "mean_prob": 0.8238,
+          "wilson_lo": 0.4646,
+          "baseline_rate": 0.5557,
+          "selections": {
+            "under": 45,
+            "over": 1
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 28,
+              "hit_rate": 0.6786,
+              "mean_prob": 0.8273
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 18,
+              "hit_rate": 0.5,
+              "mean_prob": 0.8183
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": false,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.8,
+          "picks": 31,
+          "coverage": 0.0975,
+          "hits": 19,
+          "hit_rate": 0.6129,
+          "mean_prob": 0.8411,
+          "wilson_lo": 0.4382,
+          "baseline_rate": 0.5583,
+          "selections": {
+            "under": 31
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 20,
+              "hit_rate": 0.65,
+              "mean_prob": 0.8429
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 11,
+              "hit_rate": 0.5455,
+              "mean_prob": 0.8378
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": false,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.825,
+          "picks": 21,
+          "coverage": 0.066,
+          "hits": 15,
+          "hit_rate": 0.7143,
+          "mean_prob": 0.8534,
+          "wilson_lo": 0.5004,
+          "baseline_rate": 0.5583,
+          "selections": {
+            "under": 21
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 14,
+              "hit_rate": 0.7857,
+              "mean_prob": 0.855
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 7,
+              "hit_rate": 0.5714,
+              "mean_prob": 0.8502
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": false,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.85,
+          "picks": 10,
+          "coverage": 0.0314,
+          "hits": 6,
+          "hit_rate": 0.6,
+          "mean_prob": 0.8722,
+          "wilson_lo": 0.3127,
+          "baseline_rate": 0.5583,
+          "selections": {
+            "under": 10
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 7,
+              "hit_rate": 0.7143,
+              "mean_prob": 0.8729
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 3,
+              "hit_rate": 0.3333,
+              "mean_prob": 0.8707
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": false,
+            "E2_calibration": false,
+            "E3_volume": false,
+            "E4_floor": false,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.875,
+          "picks": 4,
+          "coverage": 0.0126,
+          "hits": 2,
+          "hit_rate": 0.5,
+          "mean_prob": 0.8957,
+          "wilson_lo": 0.15,
+          "baseline_rate": 0.5583,
+          "selections": {
+            "under": 4
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 2,
+              "hit_rate": 0.5,
+              "mean_prob": 0.9114
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 2,
+              "hit_rate": 0.5,
+              "mean_prob": 0.88
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": false,
+            "E2_calibration": false,
+            "E3_volume": false,
+            "E4_floor": false,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.9,
+          "picks": 1,
+          "coverage": 0.0031,
+          "hits": 0,
+          "hit_rate": 0,
+          "mean_prob": 0.9343,
+          "wilson_lo": 0,
+          "baseline_rate": 0.5583,
+          "selections": {
+            "under": 1
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 1,
+              "hit_rate": 0,
+              "mean_prob": 0.9343
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 0,
+              "hit_rate": null,
+              "mean_prob": null
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": false,
+            "E2_calibration": false,
+            "E3_volume": false,
+            "E4_floor": false,
+            "E5_lift": false,
+            "eligible": false
+          }
+        }
+      ],
+      "selected_threshold": null,
+      "reason": "market fails the SELECT validation gate"
+    },
+    "home_to_score": {
+      "eligible": true,
+      "validation_select": {
+        "n": 318,
+        "log_loss": 0.5919,
+        "baseline_log_loss": 0.6187,
+        "brier": 0.2018,
+        "baseline_brier": 0.2134,
+        "beats_pooled": true,
+        "per_season": [
+          {
+            "season": "uefa.nations:2020",
+            "n": 162,
+            "log_loss": 0.5786,
+            "baseline_log_loss": 0.6348,
+            "brier": 0.1975,
+            "baseline_brier": 0.2209,
+            "beats_log_loss": true
+          },
+          {
+            "season": "uefa.nations:2022",
+            "n": 156,
+            "log_loss": 0.6057,
+            "baseline_log_loss": 0.6019,
+            "brier": 0.2062,
+            "baseline_brier": 0.2057,
+            "beats_log_loss": false
+          }
+        ],
+        "reliability": {
+          "class": "event",
+          "bins": [
+            {
+              "n": 31,
+              "predicted": 0.3879,
+              "observed": 0.5161
+            },
+            {
+              "n": 32,
+              "predicted": 0.5312,
+              "observed": 0.5
+            },
+            {
+              "n": 32,
+              "predicted": 0.5993,
+              "observed": 0.625
+            },
+            {
+              "n": 32,
+              "predicted": 0.6432,
+              "observed": 0.6875
+            },
+            {
+              "n": 32,
+              "predicted": 0.6851,
+              "observed": 0.75
+            },
+            {
+              "n": 31,
+              "predicted": 0.7275,
+              "observed": 0.7742
+            },
+            {
+              "n": 32,
+              "predicted": 0.7632,
+              "observed": 0.75
+            },
+            {
+              "n": 32,
+              "predicted": 0.7999,
+              "observed": 0.7188
+            },
+            {
+              "n": 32,
+              "predicted": 0.8396,
+              "observed": 0.75
+            },
+            {
+              "n": 32,
+              "predicted": 0.899,
+              "observed": 0.875
+            }
+          ],
+          "ece": 0.0547
+        }
+      },
+      "gate_select": false,
+      "thresholds": [
+        {
+          "threshold": 0.6,
+          "picks": 253,
+          "coverage": 0.7956,
+          "hits": 187,
+          "hit_rate": 0.7391,
+          "mean_prob": 0.7511,
+          "wilson_lo": 0.6817,
+          "baseline_rate": 0.7072,
+          "selections": {
+            "yes": 239,
+            "no": 14
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 126,
+              "hit_rate": 0.746,
+              "mean_prob": 0.7539
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 127,
+              "hit_rate": 0.7323,
+              "mean_prob": 0.7484
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": true,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.625,
+          "picks": 234,
+          "coverage": 0.7358,
+          "hits": 176,
+          "hit_rate": 0.7521,
+          "mean_prob": 0.7624,
+          "wilson_lo": 0.693,
+          "baseline_rate": 0.7131,
+          "selections": {
+            "yes": 224,
+            "no": 10
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 117,
+              "hit_rate": 0.7607,
+              "mean_prob": 0.765
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 117,
+              "hit_rate": 0.7436,
+              "mean_prob": 0.7599
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": true,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.65,
+          "picks": 210,
+          "coverage": 0.6604,
+          "hits": 158,
+          "hit_rate": 0.7524,
+          "mean_prob": 0.7769,
+          "wilson_lo": 0.6898,
+          "baseline_rate": 0.713,
+          "selections": {
+            "yes": 201,
+            "no": 9
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 106,
+              "hit_rate": 0.783,
+              "mean_prob": 0.7786
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 104,
+              "hit_rate": 0.7212,
+              "mean_prob": 0.7752
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": true,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.675,
+          "picks": 189,
+          "coverage": 0.5943,
+          "hits": 143,
+          "hit_rate": 0.7566,
+          "mean_prob": 0.7894,
+          "wilson_lo": 0.6907,
+          "baseline_rate": 0.7182,
+          "selections": {
+            "yes": 183,
+            "no": 6
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 96,
+              "hit_rate": 0.7813,
+              "mean_prob": 0.7905
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 93,
+              "hit_rate": 0.7312,
+              "mean_prob": 0.7882
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.7,
+          "picks": 168,
+          "coverage": 0.5283,
+          "hits": 130,
+          "hit_rate": 0.7738,
+          "mean_prob": 0.8022,
+          "wilson_lo": 0.7048,
+          "baseline_rate": 0.7219,
+          "selections": {
+            "yes": 164,
+            "no": 4
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 83,
+              "hit_rate": 0.7952,
+              "mean_prob": 0.8067
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 85,
+              "hit_rate": 0.7529,
+              "mean_prob": 0.7977
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.725,
+          "picks": 148,
+          "coverage": 0.4654,
+          "hits": 112,
+          "hit_rate": 0.7568,
+          "mean_prob": 0.8143,
+          "wilson_lo": 0.6817,
+          "baseline_rate": 0.7236,
+          "selections": {
+            "yes": 145,
+            "no": 3
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 75,
+              "hit_rate": 0.7867,
+              "mean_prob": 0.8173
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 73,
+              "hit_rate": 0.726,
+              "mean_prob": 0.8112
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.75,
+          "picks": 128,
+          "coverage": 0.4025,
+          "hits": 99,
+          "hit_rate": 0.7734,
+          "mean_prob": 0.8262,
+          "wilson_lo": 0.6936,
+          "baseline_rate": 0.7257,
+          "selections": {
+            "yes": 126,
+            "no": 2
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 66,
+              "hit_rate": 0.7879,
+              "mean_prob": 0.8282
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 62,
+              "hit_rate": 0.7581,
+              "mean_prob": 0.8241
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.775,
+          "picks": 106,
+          "coverage": 0.3333,
+          "hits": 82,
+          "hit_rate": 0.7736,
+          "mean_prob": 0.8402,
+          "wilson_lo": 0.6852,
+          "baseline_rate": 0.7242,
+          "selections": {
+            "yes": 104,
+            "no": 2
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 54,
+              "hit_rate": 0.7963,
+              "mean_prob": 0.8436
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 52,
+              "hit_rate": 0.75,
+              "mean_prob": 0.8366
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.8,
+          "picks": 81,
+          "coverage": 0.2547,
+          "hits": 67,
+          "hit_rate": 0.8272,
+          "mean_prob": 0.8569,
+          "wilson_lo": 0.7305,
+          "baseline_rate": 0.7273,
+          "selections": {
+            "yes": 80,
+            "no": 1
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 40,
+              "hit_rate": 0.85,
+              "mean_prob": 0.8633
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 41,
+              "hit_rate": 0.8049,
+              "mean_prob": 0.8507
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.825,
+          "picks": 57,
+          "coverage": 0.1792,
+          "hits": 47,
+          "hit_rate": 0.8246,
+          "mean_prob": 0.8753,
+          "wilson_lo": 0.7063,
+          "baseline_rate": 0.733,
+          "selections": {
+            "yes": 57
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 31,
+              "hit_rate": 0.871,
+              "mean_prob": 0.878
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 26,
+              "hit_rate": 0.7692,
+              "mean_prob": 0.872
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.85,
+          "picks": 40,
+          "coverage": 0.1258,
+          "hits": 34,
+          "hit_rate": 0.85,
+          "mean_prob": 0.8912,
+          "wilson_lo": 0.7093,
+          "baseline_rate": 0.733,
+          "selections": {
+            "yes": 40
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 25,
+              "hit_rate": 0.88,
+              "mean_prob": 0.8876
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 15,
+              "hit_rate": 0.8,
+              "mean_prob": 0.8971
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.875,
+          "picks": 27,
+          "coverage": 0.0849,
+          "hits": 24,
+          "hit_rate": 0.8889,
+          "mean_prob": 0.904,
+          "wilson_lo": 0.7194,
+          "baseline_rate": 0.733,
+          "selections": {
+            "yes": 27
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 17,
+              "hit_rate": 0.9412,
+              "mean_prob": 0.8994
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 10,
+              "hit_rate": 0.8,
+              "mean_prob": 0.9118
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": true,
+            "E3_volume": false,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.9,
+          "picks": 14,
+          "coverage": 0.044,
+          "hits": 12,
+          "hit_rate": 0.8571,
+          "mean_prob": 0.9242,
+          "wilson_lo": 0.6006,
+          "baseline_rate": 0.733,
+          "selections": {
+            "yes": 14
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 6,
+              "hit_rate": 1,
+              "mean_prob": 0.9299
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 8,
+              "hit_rate": 0.75,
+              "mean_prob": 0.9199
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": false,
+            "E2_calibration": false,
+            "E3_volume": false,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        }
+      ],
+      "selected_threshold": null,
+      "reason": "market fails the SELECT validation gate"
+    },
+    "away_to_score": {
+      "eligible": true,
+      "validation_select": {
+        "n": 318,
+        "log_loss": 0.6109,
+        "baseline_log_loss": 0.6363,
+        "brier": 0.2115,
+        "baseline_brier": 0.222,
+        "beats_pooled": true,
+        "per_season": [
+          {
+            "season": "uefa.nations:2020",
+            "n": 162,
+            "log_loss": 0.6535,
+            "baseline_log_loss": 0.6562,
+            "brier": 0.2301,
+            "baseline_brier": 0.2318,
+            "beats_log_loss": true
+          },
+          {
+            "season": "uefa.nations:2022",
+            "n": 156,
+            "log_loss": 0.5667,
+            "baseline_log_loss": 0.6156,
+            "brier": 0.1922,
+            "baseline_brier": 0.2118,
+            "beats_log_loss": true
+          }
+        ],
+        "reliability": {
+          "class": "event",
+          "bins": [
+            {
+              "n": 31,
+              "predicted": 0.336,
+              "observed": 0.4516
+            },
+            {
+              "n": 32,
+              "predicted": 0.4434,
+              "observed": 0.5938
+            },
+            {
+              "n": 32,
+              "predicted": 0.505,
+              "observed": 0.6563
+            },
+            {
+              "n": 32,
+              "predicted": 0.5541,
+              "observed": 0.5938
+            },
+            {
+              "n": 32,
+              "predicted": 0.5925,
+              "observed": 0.6563
+            },
+            {
+              "n": 31,
+              "predicted": 0.6293,
+              "observed": 0.6452
+            },
+            {
+              "n": 32,
+              "predicted": 0.674,
+              "observed": 0.7188
+            },
+            {
+              "n": 32,
+              "predicted": 0.7235,
+              "observed": 0.8125
+            },
+            {
+              "n": 32,
+              "predicted": 0.7669,
+              "observed": 0.75
+            },
+            {
+              "n": 32,
+              "predicted": 0.854,
+              "observed": 0.875
+            }
+          ],
+          "ece": 0.0708
+        }
+      },
+      "gate_select": true,
+      "thresholds": [
+        {
+          "threshold": 0.6,
+          "picks": 194,
+          "coverage": 0.6101,
+          "hits": 143,
+          "hit_rate": 0.7371,
+          "mean_prob": 0.7173,
+          "wilson_lo": 0.671,
+          "baseline_rate": 0.5888,
+          "selections": {
+            "no": 26,
+            "yes": 168
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 101,
+              "hit_rate": 0.6832,
+              "mean_prob": 0.7146
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 93,
+              "hit_rate": 0.7957,
+              "mean_prob": 0.7202
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": true,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": true
+          }
+        },
+        {
+          "threshold": 0.625,
+          "picks": 165,
+          "coverage": 0.5189,
+          "hits": 124,
+          "hit_rate": 0.7515,
+          "mean_prob": 0.7357,
+          "wilson_lo": 0.6804,
+          "baseline_rate": 0.5949,
+          "selections": {
+            "yes": 147,
+            "no": 18
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 84,
+              "hit_rate": 0.6786,
+              "mean_prob": 0.7352
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 81,
+              "hit_rate": 0.8272,
+              "mean_prob": 0.7362
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": true,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": true
+          }
+        },
+        {
+          "threshold": 0.65,
+          "picks": 139,
+          "coverage": 0.4371,
+          "hits": 110,
+          "hit_rate": 0.7914,
+          "mean_prob": 0.7539,
+          "wilson_lo": 0.7164,
+          "baseline_rate": 0.5969,
+          "selections": {
+            "yes": 125,
+            "no": 14
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 71,
+              "hit_rate": 0.7183,
+              "mean_prob": 0.7528
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 68,
+              "hit_rate": 0.8676,
+              "mean_prob": 0.7549
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": true,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": true
+          }
+        },
+        {
+          "threshold": 0.675,
+          "picks": 120,
+          "coverage": 0.3774,
+          "hits": 97,
+          "hit_rate": 0.8083,
+          "mean_prob": 0.7682,
+          "wilson_lo": 0.7288,
+          "baseline_rate": 0.6032,
+          "selections": {
+            "yes": 111,
+            "no": 9
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 58,
+              "hit_rate": 0.7241,
+              "mean_prob": 0.7731
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 62,
+              "hit_rate": 0.8871,
+              "mean_prob": 0.7636
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": true,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": true
+          }
+        },
+        {
+          "threshold": 0.7,
+          "picks": 106,
+          "coverage": 0.3333,
+          "hits": 86,
+          "hit_rate": 0.8113,
+          "mean_prob": 0.7789,
+          "wilson_lo": 0.7265,
+          "baseline_rate": 0.603,
+          "selections": {
+            "yes": 98,
+            "no": 8
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 49,
+              "hit_rate": 0.6939,
+              "mean_prob": 0.789
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 57,
+              "hit_rate": 0.9123,
+              "mean_prob": 0.7703
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": true,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": true
+          }
+        },
+        {
+          "threshold": 0.725,
+          "picks": 87,
+          "coverage": 0.2736,
+          "hits": 71,
+          "hit_rate": 0.8161,
+          "mean_prob": 0.7936,
+          "wilson_lo": 0.7219,
+          "baseline_rate": 0.599,
+          "selections": {
+            "yes": 79,
+            "no": 8
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 43,
+              "hit_rate": 0.7209,
+              "mean_prob": 0.7997
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 44,
+              "hit_rate": 0.9091,
+              "mean_prob": 0.7877
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": true,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": true
+          }
+        },
+        {
+          "threshold": 0.75,
+          "picks": 62,
+          "coverage": 0.195,
+          "hits": 49,
+          "hit_rate": 0.7903,
+          "mean_prob": 0.8159,
+          "wilson_lo": 0.6736,
+          "baseline_rate": 0.6018,
+          "selections": {
+            "yes": 57,
+            "no": 5
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 31,
+              "hit_rate": 0.7097,
+              "mean_prob": 0.8242
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 31,
+              "hit_rate": 0.871,
+              "mean_prob": 0.8076
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.775,
+          "picks": 46,
+          "coverage": 0.1447,
+          "hits": 36,
+          "hit_rate": 0.7826,
+          "mean_prob": 0.8351,
+          "wilson_lo": 0.6443,
+          "baseline_rate": 0.6003,
+          "selections": {
+            "yes": 42,
+            "no": 4
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 27,
+              "hit_rate": 0.7037,
+              "mean_prob": 0.8334
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 19,
+              "hit_rate": 0.8947,
+              "mean_prob": 0.8376
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.8,
+          "picks": 35,
+          "coverage": 0.1101,
+          "hits": 30,
+          "hit_rate": 0.8571,
+          "mean_prob": 0.8507,
+          "wilson_lo": 0.7062,
+          "baseline_rate": 0.6144,
+          "selections": {
+            "yes": 34,
+            "no": 1
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 20,
+              "hit_rate": 0.8,
+              "mean_prob": 0.8495
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 15,
+              "hit_rate": 0.9333,
+              "mean_prob": 0.8524
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": true,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": true
+          }
+        },
+        {
+          "threshold": 0.825,
+          "picks": 22,
+          "coverage": 0.0692,
+          "hits": 20,
+          "hit_rate": 0.9091,
+          "mean_prob": 0.8712,
+          "wilson_lo": 0.7218,
+          "baseline_rate": 0.6103,
+          "selections": {
+            "yes": 21,
+            "no": 1
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 12,
+              "hit_rate": 0.8333,
+              "mean_prob": 0.8716
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 10,
+              "hit_rate": 1,
+              "mean_prob": 0.8708
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": true,
+            "E2_calibration": true,
+            "E3_volume": false,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.85,
+          "picks": 12,
+          "coverage": 0.0377,
+          "hits": 11,
+          "hit_rate": 0.9167,
+          "mean_prob": 0.8992,
+          "wilson_lo": 0.6461,
+          "baseline_rate": 0.6214,
+          "selections": {
+            "yes": 12
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 7,
+              "hit_rate": 0.8571,
+              "mean_prob": 0.8959
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 5,
+              "hit_rate": 1,
+              "mean_prob": 0.9039
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": false,
+            "E2_calibration": true,
+            "E3_volume": false,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.875,
+          "picks": 9,
+          "coverage": 0.0283,
+          "hits": 8,
+          "hit_rate": 0.8889,
+          "mean_prob": 0.9101,
+          "wilson_lo": 0.565,
+          "baseline_rate": 0.6214,
+          "selections": {
+            "yes": 9
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 4,
+              "hit_rate": 0.75,
+              "mean_prob": 0.9178
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 5,
+              "hit_rate": 1,
+              "mean_prob": 0.9039
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": false,
+            "E2_calibration": true,
+            "E3_volume": false,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.9,
+          "picks": 5,
+          "coverage": 0.0157,
+          "hits": 4,
+          "hit_rate": 0.8,
+          "mean_prob": 0.9226,
+          "wilson_lo": 0.3755,
+          "baseline_rate": 0.6214,
+          "selections": {
+            "yes": 5
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 4,
+              "hit_rate": 0.75,
+              "mean_prob": 0.9178
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 1,
+              "hit_rate": 1,
+              "mean_prob": 0.9417
+            }
+          ],
+          "eligibility": {
+            "E0_market": true,
+            "E1_coverage": false,
+            "E2_calibration": false,
+            "E3_volume": false,
+            "E4_floor": false,
+            "E5_lift": true,
+            "eligible": false
+          }
+        }
+      ],
+      "selected_threshold": 0.8,
+      "reason": "lowest eligible threshold with combined coverage <= 0.20"
+    },
+    "btts": {
+      "eligible": false,
+      "validation_select": {
+        "n": 318,
+        "log_loss": 0.6936,
+        "baseline_log_loss": 0.6913,
+        "brier": 0.2501,
+        "baseline_brier": 0.2491,
+        "beats_pooled": false,
+        "per_season": [
+          {
+            "season": "uefa.nations:2020",
+            "n": 162,
+            "log_loss": 0.6908,
+            "baseline_log_loss": 0.6873,
+            "brier": 0.2481,
+            "baseline_brier": 0.2471,
+            "beats_log_loss": false
+          },
+          {
+            "season": "uefa.nations:2022",
+            "n": 156,
+            "log_loss": 0.6965,
+            "baseline_log_loss": 0.6955,
+            "brier": 0.2522,
+            "baseline_brier": 0.2511,
+            "beats_log_loss": false
+          }
+        ],
+        "reliability": {
+          "class": "event",
+          "bins": [
+            {
+              "n": 31,
+              "predicted": 0.2004,
+              "observed": 0.2258
+            },
+            {
+              "n": 32,
+              "predicted": 0.266,
+              "observed": 0.4688
+            },
+            {
+              "n": 32,
+              "predicted": 0.3217,
+              "observed": 0.4063
+            },
+            {
+              "n": 32,
+              "predicted": 0.3602,
+              "observed": 0.4375
+            },
+            {
+              "n": 32,
+              "predicted": 0.3965,
+              "observed": 0.5
+            },
+            {
+              "n": 31,
+              "predicted": 0.4276,
+              "observed": 0.4839
+            },
+            {
+              "n": 32,
+              "predicted": 0.461,
+              "observed": 0.5313
+            },
+            {
+              "n": 32,
+              "predicted": 0.4931,
+              "observed": 0.5625
+            },
+            {
+              "n": 32,
+              "predicted": 0.5402,
+              "observed": 0.4375
+            },
+            {
+              "n": 32,
+              "predicted": 0.6289,
+              "observed": 0.5313
+            }
+          ],
+          "ece": 0.0893
+        }
+      },
+      "gate_select": false,
+      "thresholds": [
+        {
+          "threshold": 0.6,
+          "picks": 167,
+          "coverage": 0.5252,
+          "hits": 101,
+          "hit_rate": 0.6048,
+          "mean_prob": 0.6931,
+          "wilson_lo": 0.5291,
+          "baseline_rate": 0.5509,
+          "selections": {
+            "no": 146,
+            "yes": 21
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 90,
+              "hit_rate": 0.6111,
+              "mean_prob": 0.6952
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 77,
+              "hit_rate": 0.5974,
+              "mean_prob": 0.6906
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.625,
+          "picks": 142,
+          "coverage": 0.4465,
+          "hits": 86,
+          "hit_rate": 0.6056,
+          "mean_prob": 0.7074,
+          "wilson_lo": 0.5235,
+          "baseline_rate": 0.5536,
+          "selections": {
+            "no": 127,
+            "yes": 15
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 76,
+              "hit_rate": 0.6053,
+              "mean_prob": 0.7104
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 66,
+              "hit_rate": 0.6061,
+              "mean_prob": 0.7039
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.65,
+          "picks": 110,
+          "coverage": 0.3459,
+          "hits": 66,
+          "hit_rate": 0.6,
+          "mean_prob": 0.7277,
+          "wilson_lo": 0.5066,
+          "baseline_rate": 0.5568,
+          "selections": {
+            "no": 101,
+            "yes": 9
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 59,
+              "hit_rate": 0.5932,
+              "mean_prob": 0.7314
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 51,
+              "hit_rate": 0.6078,
+              "mean_prob": 0.7234
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.675,
+          "picks": 86,
+          "coverage": 0.2704,
+          "hits": 54,
+          "hit_rate": 0.6279,
+          "mean_prob": 0.7463,
+          "wilson_lo": 0.5223,
+          "baseline_rate": 0.5601,
+          "selections": {
+            "no": 81,
+            "yes": 5
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 51,
+              "hit_rate": 0.5882,
+              "mean_prob": 0.7428
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 35,
+              "hit_rate": 0.6857,
+              "mean_prob": 0.7515
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.7,
+          "picks": 67,
+          "coverage": 0.2107,
+          "hits": 42,
+          "hit_rate": 0.6269,
+          "mean_prob": 0.7636,
+          "wilson_lo": 0.5072,
+          "baseline_rate": 0.5639,
+          "selections": {
+            "no": 65,
+            "yes": 2
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 39,
+              "hit_rate": 0.5897,
+              "mean_prob": 0.7602
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 28,
+              "hit_rate": 0.6786,
+              "mean_prob": 0.7682
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.725,
+          "picks": 55,
+          "coverage": 0.173,
+          "hits": 37,
+          "hit_rate": 0.6727,
+          "mean_prob": 0.775,
+          "wilson_lo": 0.541,
+          "baseline_rate": 0.563,
+          "selections": {
+            "no": 53,
+            "yes": 2
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 29,
+              "hit_rate": 0.6897,
+              "mean_prob": 0.7766
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 26,
+              "hit_rate": 0.6538,
+              "mean_prob": 0.7733
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.75,
+          "picks": 39,
+          "coverage": 0.1226,
+          "hits": 28,
+          "hit_rate": 0.7179,
+          "mean_prob": 0.7902,
+          "wilson_lo": 0.5622,
+          "baseline_rate": 0.5645,
+          "selections": {
+            "no": 38,
+            "yes": 1
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 23,
+              "hit_rate": 0.7391,
+              "mean_prob": 0.7869
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 16,
+              "hit_rate": 0.6875,
+              "mean_prob": 0.7951
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": true,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.775,
+          "picks": 21,
+          "coverage": 0.066,
+          "hits": 16,
+          "hit_rate": 0.7619,
+          "mean_prob": 0.8159,
+          "wilson_lo": 0.5491,
+          "baseline_rate": 0.568,
+          "selections": {
+            "no": 21
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 12,
+              "hit_rate": 0.6667,
+              "mean_prob": 0.8102
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 9,
+              "hit_rate": 0.8889,
+              "mean_prob": 0.8236
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": true,
+            "E2_calibration": false,
+            "E3_volume": false,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.8,
+          "picks": 11,
+          "coverage": 0.0346,
+          "hits": 9,
+          "hit_rate": 0.8182,
+          "mean_prob": 0.8391,
+          "wilson_lo": 0.523,
+          "baseline_rate": 0.568,
+          "selections": {
+            "no": 11
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 5,
+              "hit_rate": 0.6,
+              "mean_prob": 0.8383
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 6,
+              "hit_rate": 1,
+              "mean_prob": 0.8399
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": false,
+            "E2_calibration": true,
+            "E3_volume": false,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.825,
+          "picks": 7,
+          "coverage": 0.022,
+          "hits": 7,
+          "hit_rate": 1,
+          "mean_prob": 0.8547,
+          "wilson_lo": 0.6457,
+          "baseline_rate": 0.568,
+          "selections": {
+            "no": 7
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 3,
+              "hit_rate": 1,
+              "mean_prob": 0.8555
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 4,
+              "hit_rate": 1,
+              "mean_prob": 0.8541
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": false,
+            "E2_calibration": true,
+            "E3_volume": false,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.85,
+          "picks": 4,
+          "coverage": 0.0126,
+          "hits": 4,
+          "hit_rate": 1,
+          "mean_prob": 0.8657,
+          "wilson_lo": 0.5101,
+          "baseline_rate": 0.568,
+          "selections": {
+            "no": 4
+          },
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 2,
+              "hit_rate": 1,
+              "mean_prob": 0.8654
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 2,
+              "hit_rate": 1,
+              "mean_prob": 0.866
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": false,
+            "E2_calibration": true,
+            "E3_volume": false,
+            "E4_floor": true,
+            "E5_lift": true,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.875,
+          "picks": 0,
+          "coverage": 0,
+          "hits": 0,
+          "hit_rate": null,
+          "mean_prob": null,
+          "wilson_lo": null,
+          "baseline_rate": null,
+          "selections": {},
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 0,
+              "hit_rate": null,
+              "mean_prob": null
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 0,
+              "hit_rate": null,
+              "mean_prob": null
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": false,
+            "E2_calibration": false,
+            "E3_volume": false,
+            "E4_floor": false,
+            "E5_lift": false,
+            "eligible": false
+          }
+        },
+        {
+          "threshold": 0.9,
+          "picks": 0,
+          "coverage": 0,
+          "hits": 0,
+          "hit_rate": null,
+          "mean_prob": null,
+          "wilson_lo": null,
+          "baseline_rate": null,
+          "selections": {},
+          "per_season": [
+            {
+              "season": "uefa.nations:2020",
+              "picks": 0,
+              "hit_rate": null,
+              "mean_prob": null
+            },
+            {
+              "season": "uefa.nations:2022",
+              "picks": 0,
+              "hit_rate": null,
+              "mean_prob": null
+            }
+          ],
+          "eligibility": {
+            "E0_market": false,
+            "E1_coverage": false,
+            "E2_calibration": false,
+            "E3_volume": false,
+            "E4_floor": false,
+            "E5_lift": false,
+            "eligible": false
+          }
+        }
+      ],
+      "selected_threshold": null,
+      "reason": "research only (not eligible)"
+    }
+  },
+  "active_select": {
+    "away_to_score": 0.8
+  },
+  "combined_select": {
+    "markets": [
+      "away_to_score>=0.8"
+    ],
+    "matches": 318,
+    "game_best": 318,
+    "official_picks": 35,
+    "coverage": 0.1101,
+    "hits": 30,
+    "hit_rate": 0.8571,
+    "mean_prob": 0.8507,
+    "wilson_lo": 0.7062,
+    "baseline_rate": 0.6144,
+    "by_market": {
+      "away_to_score": 35
+    }
+  },
+  "secondary_select": {
+    "all_national_rows": 391,
+    "validation_1x2": {
+      "n": 391,
+      "log_loss": 1.064,
+      "baseline_log_loss": 1.0884,
+      "brier": 0.6401,
+      "baseline_brier": 0.6606,
+      "beats_pooled": true,
+      "per_season": [
+        {
+          "season": "fifa.world:2022",
+          "n": 59,
+          "log_loss": 1.1693,
+          "baseline_log_loss": 1.0686,
+          "brier": 0.7128,
+          "baseline_brier": 0.6468,
+          "beats_log_loss": false
+        },
+        {
+          "season": "uefa.nations:2020",
+          "n": 170,
+          "log_loss": 1.0482,
+          "baseline_log_loss": 1.1106,
+          "brier": 0.6287,
+          "baseline_brier": 0.6753,
+          "beats_log_loss": true
+        },
+        {
+          "season": "uefa.nations:2022",
+          "n": 162,
+          "log_loss": 1.0422,
+          "baseline_log_loss": 1.0723,
+          "brier": 0.6257,
+          "baseline_brier": 0.6501,
+          "beats_log_loss": true
+        }
+      ],
+      "reliability": {
+        "class": "home",
+        "bins": [
+          {
+            "n": 39,
+            "predicted": 0.1426,
+            "observed": 0.2821
+          },
+          {
+            "n": 39,
+            "predicted": 0.2401,
+            "observed": 0.2564
+          },
+          {
+            "n": 39,
+            "predicted": 0.2998,
+            "observed": 0.3333
+          },
+          {
+            "n": 39,
+            "predicted": 0.3449,
+            "observed": 0.2821
+          },
+          {
+            "n": 39,
+            "predicted": 0.3987,
+            "observed": 0.3333
+          },
+          {
+            "n": 39,
+            "predicted": 0.4467,
+            "observed": 0.3846
+          },
+          {
+            "n": 39,
+            "predicted": 0.5081,
+            "observed": 0.5385
+          },
+          {
+            "n": 39,
+            "predicted": 0.5607,
+            "observed": 0.5128
+          },
+          {
+            "n": 39,
+            "predicted": 0.6173,
+            "observed": 0.4872
+          },
+          {
+            "n": 40,
+            "predicted": 0.7432,
+            "observed": 0.65
+          }
+        ],
+        "ece": 0.0682
+      }
+    }
+  },
+  "prediction_hash": "43d57eb9cbe8348b9ebc45a3c3a076543bcef2224054c7fe7d169a1d1c4c5583",
+  "elapsed_ms": 32526,
+  "freeze_sha256": "0e542719f31d497bbbffe01d8e3f0c9aff71e653feaec83a882e79734fa213d4"
+}
