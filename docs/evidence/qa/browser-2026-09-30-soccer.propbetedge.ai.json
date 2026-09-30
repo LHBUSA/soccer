@@ -1,0 +1,3705 @@
+{
+  "base": "https://soccer.propbetedge.ai",
+  "at": "2026-09-30T21:50:37.153Z",
+  "widths": [
+    320,
+    360,
+    390,
+    430,
+    768,
+    1024,
+    1440
+  ],
+  "routes": [
+    "/",
+    "/competitions",
+    "/competitions/bundesliga",
+    "/competitions/premier-league",
+    "/competitions/uefa-champions-league",
+    "/competitions/mls",
+    "/competitions/mls?tab=table",
+    "/matches",
+    "/matches?view=upcoming",
+    "/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+    "/matches/df69bc8e-7143-5f4a-888e-afccbd2a90a3",
+    "/matches/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a",
+    "/teams/fulham",
+    "/teams/bayern-munchen",
+    "/players/shea-charles",
+    "/players/robert-lewandowski",
+    "/tables",
+    "/tables?competition=premier-league",
+    "/tables?competition=uefa-champions-league",
+    "/news",
+    "/news/international",
+    "/news/international/uefa-nations-league-matchday-2026-10-01-24ecf8",
+    "/players",
+    "/players?competition=mls&sort=goal_contributions_per90",
+    "/pbecast",
+    "/pbecast/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+    "/sources",
+    "/picks",
+    "/track-record",
+    "/this-route-does-not-exist"
+  ],
+  "checks": 210,
+  "failures": [],
+  "pass": true,
+  "exposure": [
+    {
+      "path": "/workers/soccer-ingest/src/index.js",
+      "status": 404,
+      "leaked": false
+    },
+    {
+      "path": "/supabase/migrations/20260927000100_soccer_core.sql",
+      "status": 404,
+      "leaked": false
+    },
+    {
+      "path": "/package.json",
+      "status": 404,
+      "leaked": false
+    },
+    {
+      "path": "/tests/core.test.js",
+      "status": 404,
+      "leaked": false
+    },
+    {
+      "path": "/scripts/guard-truth.mjs",
+      "status": 404,
+      "leaked": false
+    },
+    {
+      "path": "/docs/RELEASE.md",
+      "status": 404,
+      "leaked": false
+    },
+    {
+      "path": "/data/registry/competitions.json",
+      "status": 404,
+      "leaked": false
+    },
+    {
+      "path": "/api/soccer.js",
+      "status": 404,
+      "leaked": false
+    },
+    {
+      "path": "/.env",
+      "status": 404,
+      "leaked": false
+    },
+    {
+      "path": "/vercel.json",
+      "status": 404,
+      "leaked": false
+    }
+  ],
+  "proxy": [
+    {
+      "path": "/api/soccer/health",
+      "status": 200
+    },
+    {
+      "path": "/api/soccer/competitions",
+      "status": 200
+    },
+    {
+      "path": "/api/soccer/..%2F..%2Fetc%2Fpasswd",
+      "status": 404
+    },
+    {
+      "path": "/api/soccer/https:%2F%2Fevil.example",
+      "status": 404
+    },
+    {
+      "path": "/api/soccer/matches/not-a-uuid",
+      "status": 404
+    },
+    {
+      "path": "POST /api/soccer/competitions",
+      "status": 405
+    }
+  ],
+  "results": [
+    {
+      "route": "/",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 22,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge"
+    },
+    {
+      "route": "/",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 22,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge"
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 23,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge"
+    },
+    {
+      "route": "/",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 24,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge"
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 25,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge"
+    },
+    {
+      "route": "/",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 31,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge"
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 32,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge"
+    },
+    {
+      "route": "/competitions",
+      "width": 320,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 14,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Competitions — Soccer Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions",
+      "width": 360,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 14,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Competitions — Soccer Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 15,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Competitions — Soccer Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 15,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Competitions — Soccer Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 16,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Competitions — Soccer Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 18,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Competitions — Soccer Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 19,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Competitions — Soccer Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/competitions/bundesliga",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 25,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Bundesliga Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/bundesliga",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 25,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Bundesliga Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/bundesliga",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 26,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Bundesliga Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/bundesliga",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 26,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Bundesliga Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/bundesliga",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 31,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Bundesliga Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/bundesliga",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 32,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Bundesliga Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/bundesliga",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 33,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Bundesliga Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/premier-league",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 26,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Premier League Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/premier-league",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 26,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Premier League Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/premier-league",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 27,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Premier League Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/premier-league",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 27,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Premier League Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/premier-league",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 30,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Premier League Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/premier-league",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 31,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Premier League Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/premier-league",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 32,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Premier League Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/uefa-champions-league",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 28,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "UEFA Champions League Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/uefa-champions-league",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 28,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "UEFA Champions League Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/uefa-champions-league",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 29,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "UEFA Champions League Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/uefa-champions-league",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 29,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "UEFA Champions League Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/uefa-champions-league",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 31,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "UEFA Champions League Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/uefa-champions-league",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 32,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "UEFA Champions League Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/uefa-champions-league",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 33,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "UEFA Champions League Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/mls",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 27,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "MLS Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/mls",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 27,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "MLS Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/mls",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 28,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "MLS Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/mls",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 28,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "MLS Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/mls",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 34,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "MLS Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/mls",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 34,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "MLS Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/mls",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 35,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "MLS Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/mls?tab=table",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 30,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "MLS Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/mls?tab=table",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 30,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "MLS Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/mls?tab=table",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 31,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "MLS Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/mls?tab=table",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 31,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "MLS Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/mls?tab=table",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 32,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "MLS Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/mls?tab=table",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 34,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "MLS Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/competitions/mls?tab=table",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 35,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "MLS Table, Results & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 26,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Matches — Results, Fixtures & Match Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 26,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Matches — Results, Fixtures & Match Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 29,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Matches — Results, Fixtures & Match Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 29,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Matches — Results, Fixtures & Match Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 44,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Matches — Results, Fixtures & Match Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 58,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Matches — Results, Fixtures & Match Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 58,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Matches — Results, Fixtures & Match Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches?view=upcoming",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 23,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Matches — Results, Fixtures & Match Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches?view=upcoming",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 23,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Matches — Results, Fixtures & Match Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches?view=upcoming",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 23,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Matches — Results, Fixtures & Match Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches?view=upcoming",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 23,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Matches — Results, Fixtures & Match Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches?view=upcoming",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 41,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Matches — Results, Fixtures & Match Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches?view=upcoming",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 57,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Matches — Results, Fixtures & Match Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches?view=upcoming",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 57,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Matches — Results, Fixtures & Match Intelligence | PropBetEdge Soccer"
+    },
+    {
+      "route": "/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 80,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 21,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Fulham vs Manchester United Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 80,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 21,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Fulham vs Manchester United Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 80,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 22,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Fulham vs Manchester United Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 80,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 22,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Fulham vs Manchester United Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 80,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 23,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Fulham vs Manchester United Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 80,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 38,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Fulham vs Manchester United Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 80,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 39,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Fulham vs Manchester United Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches/df69bc8e-7143-5f4a-888e-afccbd2a90a3",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 88,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 17,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Slavia Prague vs Lens Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches/df69bc8e-7143-5f4a-888e-afccbd2a90a3",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 88,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 17,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Slavia Prague vs Lens Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches/df69bc8e-7143-5f4a-888e-afccbd2a90a3",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 88,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 18,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Slavia Prague vs Lens Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches/df69bc8e-7143-5f4a-888e-afccbd2a90a3",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 88,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 18,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Slavia Prague vs Lens Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches/df69bc8e-7143-5f4a-888e-afccbd2a90a3",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 88,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 19,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Slavia Prague vs Lens Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches/df69bc8e-7143-5f4a-888e-afccbd2a90a3",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 88,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 22,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Slavia Prague vs Lens Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches/df69bc8e-7143-5f4a-888e-afccbd2a90a3",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 88,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 24,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Slavia Prague vs Lens Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 44,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 19,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Bayern München vs Stuttgart Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 44,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 19,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Bayern München vs Stuttgart Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 44,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 20,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Bayern München vs Stuttgart Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 44,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 20,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Bayern München vs Stuttgart Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 44,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 22,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bayern München vs Stuttgart Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 44,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 35,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Bayern München vs Stuttgart Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/matches/f4e13f89-87ab-58f3-98ee-2e6f0d0b595a",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 44,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 36,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Bayern München vs Stuttgart Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/teams/fulham",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 21,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Fulham Results, Team DNA & Soccer Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/teams/fulham",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 21,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Fulham Results, Team DNA & Soccer Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/teams/fulham",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 22,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Fulham Results, Team DNA & Soccer Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/teams/fulham",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 22,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Fulham Results, Team DNA & Soccer Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/teams/fulham",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 23,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Fulham Results, Team DNA & Soccer Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/teams/fulham",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 25,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Fulham Results, Team DNA & Soccer Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/teams/fulham",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 26,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Fulham Results, Team DNA & Soccer Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/teams/bayern-munchen",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 21,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bayern München Results, Team DNA & Soccer Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/teams/bayern-munchen",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 21,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Bayern München Results, Team DNA & Soccer Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/teams/bayern-munchen",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 22,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Bayern München Results, Team DNA & Soccer Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/teams/bayern-munchen",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 23,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Bayern München Results, Team DNA & Soccer Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/teams/bayern-munchen",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 24,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Bayern München Results, Team DNA & Soccer Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/teams/bayern-munchen",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 26,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Bayern München Results, Team DNA & Soccer Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/teams/bayern-munchen",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 27,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Bayern München Results, Team DNA & Soccer Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/players/shea-charles",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 14,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 14,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Shea Charles Stats, Player DNA & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/players/shea-charles",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 14,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 14,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Shea Charles Stats, Player DNA & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/players/shea-charles",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 14,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 15,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Shea Charles Stats, Player DNA & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/players/shea-charles",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 14,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 15,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Shea Charles Stats, Player DNA & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/players/shea-charles",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 14,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 16,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Shea Charles Stats, Player DNA & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/players/shea-charles",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 14,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 18,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Shea Charles Stats, Player DNA & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/players/shea-charles",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 14,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 19,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Shea Charles Stats, Player DNA & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/players/robert-lewandowski",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 288,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 15,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Robert Lewandowski Stats, Player DNA & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/players/robert-lewandowski",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 288,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 15,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Robert Lewandowski Stats, Player DNA & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/players/robert-lewandowski",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 288,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 16,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Robert Lewandowski Stats, Player DNA & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/players/robert-lewandowski",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 288,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 16,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Robert Lewandowski Stats, Player DNA & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/players/robert-lewandowski",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 288,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 17,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Robert Lewandowski Stats, Player DNA & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/players/robert-lewandowski",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 288,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 19,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Robert Lewandowski Stats, Player DNA & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/players/robert-lewandowski",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 288,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 20,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Robert Lewandowski Stats, Player DNA & Match Intelligence | PropBetEdge"
+    },
+    {
+      "route": "/tables",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 30,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 30,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 31,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 31,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 32,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 34,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 35,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=premier-league",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 34,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=premier-league",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 34,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=premier-league",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 35,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=premier-league",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 35,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=premier-league",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 36,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=premier-league",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 38,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=premier-league",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 39,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=uefa-champions-league",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 49,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=uefa-champions-league",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 50,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=uefa-champions-league",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 51,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=uefa-champions-league",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 51,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=uefa-champions-league",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 52,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=uefa-champions-league",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 54,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/tables?competition=uefa-champions-league",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 55,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Tables — League Standings | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 18,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com",
+        "i.ytimg.com"
+      ],
+      "title": "Soccer News — Evidence-Backed Reporting | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 18,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com",
+        "i.ytimg.com"
+      ],
+      "title": "Soccer News — Evidence-Backed Reporting | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 19,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com",
+        "i.ytimg.com"
+      ],
+      "title": "Soccer News — Evidence-Backed Reporting | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 19,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com",
+        "i.ytimg.com"
+      ],
+      "title": "Soccer News — Evidence-Backed Reporting | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 20,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com",
+        "i.ytimg.com"
+      ],
+      "title": "Soccer News — Evidence-Backed Reporting | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 25,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com",
+        "i.ytimg.com"
+      ],
+      "title": "Soccer News — Evidence-Backed Reporting | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 27,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com",
+        "i.ytimg.com"
+      ],
+      "title": "Soccer News — Evidence-Backed Reporting | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news/international",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 17,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "International Soccer News — Evidence-Backed Reporting | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news/international",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 17,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "International Soccer News — Evidence-Backed Reporting | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news/international",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 18,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "International Soccer News — Evidence-Backed Reporting | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news/international",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 18,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "International Soccer News — Evidence-Backed Reporting | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news/international",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 19,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "International Soccer News — Evidence-Backed Reporting | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news/international",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 21,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "International Soccer News — Evidence-Backed Reporting | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news/international",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 22,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "International Soccer News — Evidence-Backed Reporting | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news/international/uefa-nations-league-matchday-2026-10-01-24ecf8",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 14,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Group leaders meet close pursuers across eight-match Nations League slate | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news/international/uefa-nations-league-matchday-2026-10-01-24ecf8",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 14,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Group leaders meet close pursuers across eight-match Nations League slate | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news/international/uefa-nations-league-matchday-2026-10-01-24ecf8",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 15,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Group leaders meet close pursuers across eight-match Nations League slate | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news/international/uefa-nations-league-matchday-2026-10-01-24ecf8",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 15,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Group leaders meet close pursuers across eight-match Nations League slate | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news/international/uefa-nations-league-matchday-2026-10-01-24ecf8",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 16,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Group leaders meet close pursuers across eight-match Nations League slate | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news/international/uefa-nations-league-matchday-2026-10-01-24ecf8",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 18,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Group leaders meet close pursuers across eight-match Nations League slate | PropBetEdge Soccer"
+    },
+    {
+      "route": "/news/international/uefa-nations-league-matchday-2026-10-01-24ecf8",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 19,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Group leaders meet close pursuers across eight-match Nations League slate | PropBetEdge Soccer"
+    },
+    {
+      "route": "/players",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 24,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Player DNA Directory — Soccer Player Stats & Profiles | PropBetEdge Soccer"
+    },
+    {
+      "route": "/players",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 26,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Player DNA Directory — Soccer Player Stats & Profiles | PropBetEdge Soccer"
+    },
+    {
+      "route": "/players",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 27,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Player DNA Directory — Soccer Player Stats & Profiles | PropBetEdge Soccer"
+    },
+    {
+      "route": "/players",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 27,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Player DNA Directory — Soccer Player Stats & Profiles | PropBetEdge Soccer"
+    },
+    {
+      "route": "/players",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 41,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Player DNA Directory — Soccer Player Stats & Profiles | PropBetEdge Soccer"
+    },
+    {
+      "route": "/players",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 53,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Player DNA Directory — Soccer Player Stats & Profiles | PropBetEdge Soccer"
+    },
+    {
+      "route": "/players",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 63,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Player DNA Directory — Soccer Player Stats & Profiles | PropBetEdge Soccer"
+    },
+    {
+      "route": "/players?competition=mls&sort=goal_contributions_per90",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 22,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Player DNA Directory — Soccer Player Stats & Profiles | PropBetEdge Soccer"
+    },
+    {
+      "route": "/players?competition=mls&sort=goal_contributions_per90",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 22,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Player DNA Directory — Soccer Player Stats & Profiles | PropBetEdge Soccer"
+    },
+    {
+      "route": "/players?competition=mls&sort=goal_contributions_per90",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 23,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Player DNA Directory — Soccer Player Stats & Profiles | PropBetEdge Soccer"
+    },
+    {
+      "route": "/players?competition=mls&sort=goal_contributions_per90",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 23,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Player DNA Directory — Soccer Player Stats & Profiles | PropBetEdge Soccer"
+    },
+    {
+      "route": "/players?competition=mls&sort=goal_contributions_per90",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 33,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Player DNA Directory — Soccer Player Stats & Profiles | PropBetEdge Soccer"
+    },
+    {
+      "route": "/players?competition=mls&sort=goal_contributions_per90",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 44,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Player DNA Directory — Soccer Player Stats & Profiles | PropBetEdge Soccer"
+    },
+    {
+      "route": "/players?competition=mls&sort=goal_contributions_per90",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 53,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Player DNA Directory — Soccer Player Stats & Profiles | PropBetEdge Soccer"
+    },
+    {
+      "route": "/pbecast",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 25,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "PBEcast — Live Soccer Match Tracker & Replays | PropBetEdge Soccer"
+    },
+    {
+      "route": "/pbecast",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 26,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "PBEcast — Live Soccer Match Tracker & Replays | PropBetEdge Soccer"
+    },
+    {
+      "route": "/pbecast",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 27,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "PBEcast — Live Soccer Match Tracker & Replays | PropBetEdge Soccer"
+    },
+    {
+      "route": "/pbecast",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 28,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "PBEcast — Live Soccer Match Tracker & Replays | PropBetEdge Soccer"
+    },
+    {
+      "route": "/pbecast",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 47,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "PBEcast — Live Soccer Match Tracker & Replays | PropBetEdge Soccer"
+    },
+    {
+      "route": "/pbecast",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 57,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "PBEcast — Live Soccer Match Tracker & Replays | PropBetEdge Soccer"
+    },
+    {
+      "route": "/pbecast",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 59,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "PBEcast — Live Soccer Match Tracker & Replays | PropBetEdge Soccer"
+    },
+    {
+      "route": "/pbecast/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 18,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Fulham vs Manchester United PBEcast | PropBetEdge"
+    },
+    {
+      "route": "/pbecast/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 19,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Fulham vs Manchester United PBEcast | PropBetEdge"
+    },
+    {
+      "route": "/pbecast/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 21,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Fulham vs Manchester United PBEcast | PropBetEdge"
+    },
+    {
+      "route": "/pbecast/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 21,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Fulham vs Manchester United PBEcast | PropBetEdge"
+    },
+    {
+      "route": "/pbecast/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 26,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Fulham vs Manchester United PBEcast | PropBetEdge"
+    },
+    {
+      "route": "/pbecast/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 37,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Fulham vs Manchester United PBEcast | PropBetEdge"
+    },
+    {
+      "route": "/pbecast/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 38,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Fulham vs Manchester United PBEcast | PropBetEdge"
+    },
+    {
+      "route": "/sources",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 9,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Sources & Method — PropBetEdge Soccer Intelligence"
+    },
+    {
+      "route": "/sources",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 9,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Sources & Method — PropBetEdge Soccer Intelligence"
+    },
+    {
+      "route": "/sources",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 10,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Sources & Method — PropBetEdge Soccer Intelligence"
+    },
+    {
+      "route": "/sources",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 10,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Sources & Method — PropBetEdge Soccer Intelligence"
+    },
+    {
+      "route": "/sources",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 11,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Sources & Method — PropBetEdge Soccer Intelligence"
+    },
+    {
+      "route": "/sources",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 13,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Sources & Method — PropBetEdge Soccer Intelligence"
+    },
+    {
+      "route": "/sources",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 14,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Sources & Method — PropBetEdge Soccer Intelligence"
+    },
+    {
+      "route": "/picks",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 10,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Soccer Algo Official Picks | PropBetEdge Soccer"
+    },
+    {
+      "route": "/picks",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 10,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Soccer Algo Official Picks | PropBetEdge Soccer"
+    },
+    {
+      "route": "/picks",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 11,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Soccer Algo Official Picks | PropBetEdge Soccer"
+    },
+    {
+      "route": "/picks",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 11,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Soccer Algo Official Picks | PropBetEdge Soccer"
+    },
+    {
+      "route": "/picks",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 12,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Soccer Algo Official Picks | PropBetEdge Soccer"
+    },
+    {
+      "route": "/picks",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 14,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Soccer Algo Official Picks | PropBetEdge Soccer"
+    },
+    {
+      "route": "/picks",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 15,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Soccer Algo Official Picks | PropBetEdge Soccer"
+    },
+    {
+      "route": "/track-record",
+      "width": 320,
+      "status": 200,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 11,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Soccer Algo Track Record | PropBetEdge Soccer"
+    },
+    {
+      "route": "/track-record",
+      "width": 360,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 11,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Soccer Algo Track Record | PropBetEdge Soccer"
+    },
+    {
+      "route": "/track-record",
+      "width": 390,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 12,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Soccer Algo Track Record | PropBetEdge Soccer"
+    },
+    {
+      "route": "/track-record",
+      "width": 430,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 12,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Soccer Algo Track Record | PropBetEdge Soccer"
+    },
+    {
+      "route": "/track-record",
+      "width": 768,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 13,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Soccer Algo Track Record | PropBetEdge Soccer"
+    },
+    {
+      "route": "/track-record",
+      "width": 1024,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 15,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Soccer Algo Track Record | PropBetEdge Soccer"
+    },
+    {
+      "route": "/track-record",
+      "width": 1440,
+      "status": 304,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 16,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Soccer Algo Track Record | PropBetEdge Soccer"
+    },
+    {
+      "route": "/this-route-does-not-exist",
+      "width": 320,
+      "status": 404,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 9,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Not found — PropBetEdge Soccer"
+    },
+    {
+      "route": "/this-route-does-not-exist",
+      "width": 360,
+      "status": 404,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 9,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Not found — PropBetEdge Soccer"
+    },
+    {
+      "route": "/this-route-does-not-exist",
+      "width": 390,
+      "status": 404,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 10,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "www.googletagmanager.com",
+        "fonts.gstatic.com"
+      ],
+      "title": "Not found — PropBetEdge Soccer"
+    },
+    {
+      "route": "/this-route-does-not-exist",
+      "width": 430,
+      "status": 404,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 10,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Not found — PropBetEdge Soccer"
+    },
+    {
+      "route": "/this-route-does-not-exist",
+      "width": 768,
+      "status": 404,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 11,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Not found — PropBetEdge Soccer"
+    },
+    {
+      "route": "/this-route-does-not-exist",
+      "width": 1024,
+      "status": 404,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 13,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Not found — PropBetEdge Soccer"
+    },
+    {
+      "route": "/this-route-does-not-exist",
+      "width": 1440,
+      "status": 404,
+      "overflow": 0,
+      "marks": 0,
+      "console_errors": 0,
+      "failed_requests": 0,
+      "api_calls": 14,
+      "hosts": [
+        "soccer.propbetedge.ai",
+        "fonts.googleapis.com",
+        "fonts.gstatic.com",
+        "www.googletagmanager.com"
+      ],
+      "title": "Not found — PropBetEdge Soccer"
+    }
+  ]
+}
