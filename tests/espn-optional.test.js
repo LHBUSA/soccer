@@ -26,7 +26,7 @@ function world({ htmlAt = null } = {}) {
     if (url.includes('/types/2/events')) return { items: [], pageCount: 1 };
     if (url.endsWith(`/events/${EV}`)) return { id: EV, date: '2026-06-20T19:00Z', season: { $ref: `${C}/seasons/2026` }, seasonType: { $ref: `${C}/seasons/2026/types/1` }, competitions: [{ competitors: [{ id: HOME, homeAway: 'home' }, { id: AWAY, homeAway: 'away' }], venue: { id: '9001', fullName: 'Test Stadium', address: { city: 'Test City' } } }] };
     if (url.endsWith(`/teams/${HOME}`)) return { id: HOME, displayName: 'Japan', abbreviation: 'JPN', isNational: true };
-    if (url.endsWith(`/teams/${AWAY}`)) return { id: AWAY, displayName: 'Sweden', abbreviation: 'SWE', isNational: true };
+    if (url.endsWith(`/teams/${AWAY}`)) return { id: AWAY, displayName: 'Sweden', abbreviation: 'SWE', isNational: false }; // provider inconsistency (as ESPN's Curacao record)
     if (url.endsWith('/status')) return { type: { name: 'STATUS_FULL_TIME', state: 'post', completed: true }, period: 2 };
     if (url.endsWith(`/competitors/${HOME}/score`)) return { value: 2 };
     if (url.endsWith(`/competitors/${AWAY}/score`)) return { value: 1 };
@@ -49,7 +49,7 @@ function world({ htmlAt = null } = {}) {
   const storage = { async head(k) { return mem.has(k); }, async put(k, b) { mem.set(k, b); }, async get(k) { return mem.get(k) || null; } };
   const registry = { competitions: [{ slug: 'fifa-world-cup', name: 'FIFA World Cup', comp_type: 'international_tournament', gender: 'men', country_code: null, tier: null, season_format: 'calendar',
     external_ids: [{ provider: 'espn', external_id: 'fifa.world', method: 'reviewed', evidence: 't' }, { provider: 'wyscout', external_id: '28', method: 'founding', evidence: 't' }],
-    espn: { league: 'fifa.world', id: '606', enabled: true, may_found: true, stage_by_type: true, stage_per_type: true, league_stage_name: 'Group stage', type_roles: { 'Group Stage': 'league' } } }] };
+    espn: { league: 'fifa.world', id: '606', enabled: true, may_found: true, stage_by_type: true, stage_per_type: true, team_type: 'national', league_stage_name: 'Group stage', type_roles: { 'Group Stage': 'league' } } }] };
   return { calls, fetcher, storage, mem, registry };
 }
 const lane = { name: 'espn_fifa_world_cup', competition: 'fifa-world-cup' };
@@ -144,4 +144,24 @@ test('history lane: a pinned past season never reads the league (current season)
   assert.deepEqual(historyLane('espn_uefa_nations_league@2018'), { lane: { name: 'espn_uefa_nations_league', competition: 'uefa-nations-league' }, year: 2018 });
   assert.equal(historyLane('espn_uefa_nations_league'), null); assert.equal(historyLane('espn_nope@2018'), null);
   await store.close();
+});
+
+test('national-team competition: an isNational=false entrant is founded national (contract, evidence recorded); an ESPN id mapped to a CLUB is refused', async () => {
+  const store = await openPglite(); await applyMigrations(store);
+  const w = world();
+  await runEspnLane(lane, { store, storage: w.storage, registry: w.registry, areas: { areas: {}, aliases: {} }, state: emptyLaneState(lane.name), now: NOW, fetcher: w.fetcher, budget: 200, force: true });
+  const [x] = await store.select('soccer_team_external_ids', { columns: ['evidence', 'team_id'], eq: { provider: 'espn', external_id: AWAY } });
+  assert.match(x.evidence, /competition contract/); assert.match(x.evidence, /isNational=false/);
+  await store.close();
+  // an existing CLUB crosswalked to ESPN id 208: the lane refuses it and writes no match for it
+  const s2 = await openPglite(); await applyMigrations(s2);
+  const club = { id: '00000000-0000-5000-8000-0000000c1b00', slug: 'club-208', name: 'Some Club', team_type: 'club', founding_provider: 'espn', founding_external_id: AWAY };
+  await s2.insert('soccer_teams', [club]);
+  await s2.insert('soccer_team_external_ids', [{ provider: 'espn', external_id: AWAY, team_id: club.id, method: 'founding', evidence: 't' }]);
+  const w2 = world();
+  await runEspnLane(lane, { store: s2, storage: w2.storage, registry: w2.registry, areas: { areas: {}, aliases: {} }, state: emptyLaneState(lane.name), now: NOW, fetcher: w2.fetcher, budget: 200, force: true });
+  const [q] = await s2.select('soccer_identity_queue', { columns: ['reason', 'status'], eq: { entity_type: 'team', external_id: AWAY } });
+  assert.equal(q.reason, 'club_mapped_in_national_team_competition');
+  assert.equal((await s2.select('soccer_matches', { columns: ['id'] })).length, 0);
+  await s2.close();
 });

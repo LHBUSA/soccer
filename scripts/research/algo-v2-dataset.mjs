@@ -8,9 +8,7 @@
 import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { fsStorage } from '../../workers/shared/archive.js';
-import { storeFromEnv } from '../../workers/shared/postgrest.js';
 import { espnClient } from '../../workers/soccer-ingest/src/espn-jobs.js';
-import { chunkArr } from '../../workers/soccer-ingest/src/store.js';
 import * as espn from '../../workers/providers/espn.js';
 
 const argv = process.argv.slice(2);
@@ -62,17 +60,11 @@ for (const [league, comp, years] of SEASONS) for (const year of years) {
   save(); log(key, 'done', client.used, 'requests');
 }
 
-// Canonical team ids where production holds the ESPN crosswalk (read-only).
-const envFile = 'D:/Workers/secrets/soccer-supabase.env';
-const canon = new Map();
-if (existsSync(envFile)) {
-  const text = readFileSync(envFile, 'utf8').replace(/^\uFEFF/, '');
-  const prod = storeFromEnv(Object.fromEntries(text.split(/\r?\n/).filter(l => l.includes('=')).map(l => [l.slice(0, l.indexOf('=')).trim(), l.slice(l.indexOf('=') + 1).trim()])));
-  for (const p of chunkArr(Object.keys(cache.teams), 150)) for (const x of await prod.select('soccer_team_external_ids', { columns: ['external_id', 'team_id'], eq: { provider: 'espn' }, in: { external_id: p } })) canon.set(x.external_id, x.team_id);
-}
+// Teams are keyed by their stable ESPN team id (the model uses ids as labels only); the production crosswalk is
+// deliberately not part of the frozen research rows.
 const all = Object.values(cache.events);
 const rows = all.filter(r => r.status === 'finished' && r.home_score !== null && r.away_score !== null && cache.teams[r.espn_home]?.is_national && cache.teams[r.espn_away]?.is_national)
-  .map(r => ({ ...r, home_team_id: canon.get(r.espn_home) || `espn:${r.espn_home}`, away_team_id: canon.get(r.espn_away) || `espn:${r.espn_away}` }))
+  .map(r => ({ ...r, home_team_id: `espn:${r.espn_home}`, away_team_id: `espn:${r.espn_away}` }))
   .sort((a, b) => Date.parse(a.kickoff_at) - Date.parse(b.kickoff_at) || a.match_key.localeCompare(b.match_key));
 const excluded = { not_finished: all.filter(r => r.status !== 'finished').length, missing_score: all.filter(r => r.status === 'finished' && (r.home_score == null || r.away_score == null)).length, non_national_side: all.filter(r => r.status === 'finished' && !(cache.teams[r.espn_home]?.is_national && cache.teams[r.espn_away]?.is_national)).length };
 const body = JSON.stringify(rows);
@@ -81,7 +73,7 @@ const manifest = {
   seasons: SEASONS.flatMap(([l, , ys]) => ys.map(y => `${l}:${y}`)), rows: rows.length, excluded,
   by_season: rows.reduce((o, r) => ({ ...o, [r.season_id]: (o[r.season_id] || 0) + 1 }), {}), by_stage: rows.reduce((o, r) => ({ ...o, [r.stage_type]: (o[r.stage_type] || 0) + 1 }), {}),
   neutral_site: { true: rows.filter(r => r.neutral_site === true).length, false: rows.filter(r => r.neutral_site === false).length, unknown: rows.filter(r => r.neutral_site === null).length },
-  teams: { espn_ids: new Set(rows.flatMap(r => [r.espn_home, r.espn_away])).size, with_canonical_id: new Set(rows.flatMap(r => [r.espn_home, r.espn_away]).filter(x => canon.has(x))).size },
+  teams: { espn_ids: new Set(rows.flatMap(r => [r.espn_home, r.espn_away])).size },
   rows_sha256: createHash('sha256').update(body).digest('hex'),
 };
 mkdirSync('docs/evidence/research/algo-v2', { recursive: true });

@@ -51,14 +51,30 @@ if (resume) {
   store = pgliteStore(db);
 } else {
   store = await openPglite(); await applyMigrations(store);
-  // ---- seed production team identities (read-only GETs)
-  const teams = (await prod.select('soccer_teams', { columns: ['id', 'slug', 'name', 'short_name', 'official_name', 'team_type', 'gender', 'country_code', 'city', 'status', 'founding_provider', 'founding_external_id'], eq: { status: 'active' } }));
+  // ---- seed production team identities (read-only GETs), or -- when production is unreachable -- the identical
+  // production identities an earlier run of this script seeded (its crosswalk rows with capture_id null).
+  const seedSnap = arg('--seed-snapshot', null);
+  let teams; let xw;
+  if (seedSnap) {
+    const { PGlite } = await import('@electric-sql/pglite');
+    const old = new PGlite({ loadDataDir: new Blob([readFileSync(seedSnap)]) }); await old.waitReady;
+    xw = (await old.query("select provider, external_id, team_id, method, evidence from soccer_team_external_ids where provider = 'espn' and capture_id is null")).rows;
+    teams = (await old.query("select id, slug, name, short_name, official_name, team_type, gender, country_code, city, status, founding_provider, founding_external_id from soccer_teams where status = 'active' and (founding_provider <> 'espn' or id in (select team_id from soccer_team_external_ids where provider = 'espn' and capture_id is null) or id not in (select team_id from soccer_team_external_ids where provider = 'espn'))")).rows;
+    await old.close();
+    log('seed source', seedSnap, '(production identities read at that run start)');
+  } else {
+    teams = (await prod.select('soccer_teams', { columns: ['id', 'slug', 'name', 'short_name', 'official_name', 'team_type', 'gender', 'country_code', 'city', 'status', 'founding_provider', 'founding_external_id'], eq: { status: 'active' } }));
+    xw = await prod.select('soccer_team_external_ids', { columns: ['provider', 'external_id', 'team_id', 'method', 'evidence'], eq: { provider: 'espn' } });
+  }
   for (const p of chunkArr(teams, 200)) await store.insert('soccer_teams', p);
-  const xw = await prod.select('soccer_team_external_ids', { columns: ['provider', 'external_id', 'team_id', 'method', 'evidence'], eq: { provider: 'espn' } });
   const active = new Set(teams.map(t => t.id));
   for (const p of chunkArr(xw.filter(x => active.has(x.team_id)), 200)) await store.insert('soccer_team_external_ids', p.map(x => ({ ...x, capture_id: null })));
   log('seeded production identities', teams.length, 'teams', xw.length, 'espn team crosswalks');
 }
+// Production reads during the REPORT are bounded: an unreachable production database is recorded, never waited on.
+const bounded = (p, ms = 30000) => Promise.race([p, new Promise((_, rej) => setTimeout(() => rej(new Error(`production read timed out after ${ms} ms`)), ms))]);
+let prodUnreachable = null;
+async function prodSelect(table, opts) { if (prodUnreachable) return null; try { return await bounded(prod.select(table, opts)); } catch (e) { prodUnreachable = String(e.message || e); return null; } }
 const saveSnapshot = async () => writeFileSync(snapshot, Buffer.from(await (await store.db.dumpDataDir('gzip')).arrayBuffer()));
 const registry = JSON.parse(readFileSync('data/registry/competitions.json', 'utf8'));
 const comp = registry.competitions.find(c => c.slug === SLUG);
@@ -68,7 +84,8 @@ const storage = await fsStorage('.raw');
 const lane = ESPN_LANES.find(l => l.competition === SLUG);
 const statePath = `${snapshot}.state.json`;
 let state = resume && existsSync(statePath) ? JSON.parse(readFileSync(statePath, 'utf8')) : emptyLaneState(lane.name);
-const preTeams = new Set((await store.select('soccer_teams', { columns: ['id'] })).map(t => t.id));
+// Production identities = ESPN team crosswalks SEEDED at the start (capture_id null); a lane founding carries its capture.
+const preTeams = new Set((await store.select('soccer_team_external_ids', { columns: ['team_id', 'capture_id'], eq: { provider: 'espn' } })).filter(x => !x.capture_id).map(x => x.team_id));
 
 // ---- ingest
 const runs = []; let aborted = null;
@@ -94,7 +111,7 @@ await saveSnapshot();
 
 // ---- reports
 const sel = (t, o) => store.select(t, o);
-async function selectIn(t, col, vals, o = {}) { const res = []; for (const p of chunkArr([...new Set(vals)], 400)) res.push(...await sel(t, { ...o, in: { ...(o.in || {}), [col]: p } })); return res; }
+async function selectIn(t, col, vals, o = {}) { let res = []; for (const p of chunkArr([...new Set(vals)], 400)) res = res.concat(await sel(t, { ...o, in: { ...(o.in || {}), [col]: p } })); return res; }
 const [c] = await sel('soccer_competitions', { columns: ['id', 'slug', 'name', 'comp_type'], eq: { slug: SLUG } });
 const report = { generated_at: new Date().toISOString(), mode: 'local-pglite (production untouched; production team identities seeded read-only)', competition: SLUG, source: 'ESPN Core (owner-approved secondary source); no FIFA endpoint used', budget: BUDGET, requests_used: BUDGET - budgetLeft, aborted, runs };
 const cursor = state.cursor || {};
@@ -108,13 +125,15 @@ if (c) {
   const teamIds = [...new Set(matches.flatMap(m => [m.home_team_id, m.away_team_id]))];
   const teams = await selectIn('soccer_teams', 'id', teamIds, { columns: ['id', 'slug', 'name', 'team_type', 'country_code', 'founding_provider'] });
   const teamX = await selectIn('soccer_team_external_ids', 'team_id', teamIds, { columns: ['team_id', 'external_id', 'method'], eq: { provider: 'espn' } });
-  const prodX = []; for (const p of chunkArr(teamX.map(x => x.external_id), 150)) prodX.push(...await prod.select('soccer_team_external_ids', { columns: ['external_id', 'team_id'], eq: { provider: 'espn' }, in: { external_id: p } }));
+  // Production team crosswalks: the identities SEEDED from production at the start of this run (pre-ingest state).
+  const seeded = await sel('soccer_team_external_ids', { columns: ['external_id', 'team_id'], eq: { provider: 'espn' } });
+  const prodX = seeded.filter(x => preTeams.has(x.team_id) && teamX.some(t => t.external_id === x.external_id));
   const byNameLower = teams.reduce((o, t) => ({ ...o, [t.name.toLowerCase()]: (o[t.name.toLowerCase()] || 0) + 1 }), {});
   const teamQueue = await sel('soccer_identity_queue', { columns: ['external_id', 'reason'], eq: { entity_type: 'team', provider: 'espn', status: 'open' } });
   report.identity_gate = {
     teams: teams.length, national: teams.filter(t => t.team_type === 'national').length, club: teams.filter(t => t.team_type !== 'national').map(t => t.name),
     reused_existing_canonical_nation: teams.filter(t => preTeams.has(t.id)).length, founded_new_nation: teams.filter(t => !preTeams.has(t.id)).length,
-    espn_ids_already_crosswalked_in_production: prodX.length, espn_id_maps_to_same_canonical_as_production: prodX.every(p => teamX.find(x => x.external_id === p.external_id)?.team_id === p.team_id),
+    espn_ids_already_crosswalked_in_production: prodX.length, production_identity_basis: 'production teams + ESPN crosswalks seeded read-only at the start of this run', espn_id_maps_to_same_canonical_as_production: prodX.every(p => teamX.find(x => x.external_id === p.external_id)?.team_id === p.team_id),
     duplicate_espn_team_ids: teamX.length - new Set(teamX.map(x => x.external_id)).size, teams_with_more_than_one_espn_id: teamIds.filter(id => teamX.filter(x => x.team_id === id).length > 1).length,
     duplicate_names: Object.entries(byNameLower).filter(([, n]) => n > 1).map(([k]) => k), crosswalk_methods: teamX.reduce((o, x) => ({ ...o, [x.method]: (o[x.method] || 0) + 1 }), {}),
     teams_queued: teamQueue.length, teams_queued_by_reason: teamQueue.reduce((o, q) => ({ ...o, [q.reason]: (o[q.reason] || 0) + 1 }), {}),
@@ -139,7 +158,7 @@ if (c) {
   const lps = await selectIn('soccer_lineup_players', 'lineup_id', lineups.map(l => l.id), { columns: ['player_id'] });
   const pq = await sel('soccer_identity_queue', { columns: ['external_id', 'reason'], eq: { entity_type: 'player', provider: 'espn', status: 'open' } });
   const px = await selectIn('soccer_player_external_ids', 'player_id', lps.map(x => x.player_id), { columns: ['external_id', 'method'], eq: { provider: 'espn' } });
-  const known = []; for (const p of chunkArr(px.map(x => x.external_id), 150)) known.push(...await prod.select('soccer_player_external_ids', { columns: ['external_id', 'player_id'], eq: { provider: 'espn' }, in: { external_id: p } }));
+  const known = []; for (const p of chunkArr(px.map(x => x.external_id), 150)) { const r = await prodSelect('soccer_player_external_ids', { columns: ['external_id', 'player_id'], eq: { provider: 'espn' }, in: { external_id: p } }); if (!r) break; known.push(...r); }
   const unresolvedInLineups = enrich.filter(e => e.component.startsWith('lineup') && e.status === 'complete').reduce((n, e) => n + (e.detail?.players_unresolved || 0), 0);
   report.enrichment = {
     finished: finished.length, detailed: finished.filter(m => enrich.some(e => e.match_id === m.id)).length,
@@ -151,7 +170,7 @@ if (c) {
   report.players = {
     in_lineups: new Set(lps.map(x => x.player_id)).size, founded_locally: px.filter(x => x.method === 'founding').length, corroborated: px.filter(x => x.method === 'attribute_corroborated').length,
     queued: pq.length, queued_by_reason: pq.reduce((o, q) => ({ ...o, [q.reason]: (o[q.reason] || 0) + 1 }), {}), unresolved_lineup_slots: unresolvedInLineups,
-    already_canonical_in_production_by_espn_id: known.length,
+    already_canonical_in_production_by_espn_id: prodUnreachable ? null : known.length, production_lookup: prodUnreachable ? `unavailable: ${prodUnreachable}` : 'ok',
     note: 'Players seen here that production already holds by the same ESPN athlete id are reused there (same canonical player as their club Player DNA); a local founding row is a production reuse.',
   };
   // groups: verified tables + fixture membership reconciliation

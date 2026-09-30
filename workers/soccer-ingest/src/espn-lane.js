@@ -73,8 +73,16 @@ export async function resolveEspnTeams(store, { comp, year, cursor, client }) {
   const espnTeams = [...new Set(fixtures.flatMap(f => [f.home, f.away]))];
   const teamMap = await resolveMany(store, 'team', P, espnTeams);
   const summary = { espn_teams: espnTeams.length, resolved_before: teamMap.size };
+  // National-team competitions (registry espn.team_type 'national': World Cup, Nations League): an ESPN id already
+  // mapped to a CLUB is never used here; it waits in the identity queue and its fixtures are not written.
+  const nationalOnly = comp.espn?.team_type === 'national';
+  if (nationalOnly && teamMap.size) {
+    const types = new Map((await store.select('soccer_teams', { columns: ['id', 'team_type'], in: { id: [...new Set(teamMap.values())] } })).map(t => [t.id, t.team_type]));
+    for (const [t, id] of [...teamMap]) if (types.get(id) !== 'national') { teamMap.delete(t); await queueIdentity(store, { entity_type: 'team', provider: P, external_id: t, reason: 'club_mapped_in_national_team_competition', candidate_ids: [id], payload: { competition: comp.slug } }); summary.clubs_refused = (summary.clubs_refused || 0) + 1; }
+  }
   const excluded = new Set(Object.keys(cursor.excluded_teams || {}));
-  const pending = espnTeams.filter(t => !teamMap.has(t) && !excluded.has(t));
+  const refused = new Set(nationalOnly ? (await store.select('soccer_identity_queue', { columns: ['external_id'], eq: { entity_type: 'team', provider: P, reason: 'club_mapped_in_national_team_competition', status: 'open' } })).map(q => q.external_id) : []);
+  const pending = espnTeams.filter(t => !teamMap.has(t) && !excluded.has(t) && !refused.has(t));
   if (excluded.size) summary.all_star_teams_excluded = excluded.size;
   if (!pending.length) return { teamMap, summary };
   const canon = (await store.select('soccer_matches', { columns: ['id', 'kickoff_at', 'home_team_id', 'away_team_id', 'result_provider'], eq: { season_id: seasonId } })).filter(m => m.result_provider !== P);
@@ -113,8 +121,8 @@ export async function resolveEspnTeams(store, { comp, year, cursor, client }) {
     }
     await client.flush();
     const slugs = allocateSlugs(found.map(s => ({ id: mintId('team', P, s.external_id), name: s.name })), found.length ? (await store.select('soccer_teams', { columns: ['slug'] })).map(r => r.slug) : []);
-    await syncRows(store, { table: 'soccer_teams', key: ['id'], rows: found.map(s => ({ id: mintId('team', P, s.external_id), slug: slugs.get(mintId('team', P, s.external_id)), name: s.name, short_name: s.short_name, official_name: null, team_type: s.is_national ? 'national' : 'club', gender: 'men', country_code: null, city: null, founding_provider: P, founding_external_id: s.external_id })) });
-    for (const s of found) { teamMap.set(s.external_id, mintId('team', P, s.external_id)); xw.push({ provider: P, external_id: s.external_id, team_id: mintId('team', P, s.external_id), method: 'founding', evidence: `espn team id${s.sdr ? `; sdr ${s.sdr}` : ''}`, capture_id: s.capture_id }); }
+    await syncRows(store, { table: 'soccer_teams', key: ['id'], rows: found.map(s => ({ id: mintId('team', P, s.external_id), slug: slugs.get(mintId('team', P, s.external_id)), name: s.name, short_name: s.short_name, official_name: null, team_type: s.is_national || nationalOnly ? 'national' : 'club', gender: 'men', country_code: null, city: null, founding_provider: P, founding_external_id: s.external_id })) });
+    for (const s of found) { teamMap.set(s.external_id, mintId('team', P, s.external_id)); xw.push({ provider: P, external_id: s.external_id, team_id: mintId('team', P, s.external_id), method: 'founding', evidence: `espn team id${s.sdr ? `; sdr ${s.sdr}` : ''}${nationalOnly ? `; national team by competition contract (${comp.slug} admits national teams only)${s.is_national ? '' : '; provider record says isNational=false (provider inconsistency recorded, not used)'}` : ''}`, capture_id: s.capture_id }); }
     summary.teams_founded = found.length;
   }
   summary.team_crosswalk = await syncRows(store, { table: 'soccer_team_external_ids', key: ['provider', 'external_id'], compare: ['team_id'], rows: xw });

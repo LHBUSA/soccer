@@ -229,6 +229,8 @@
         "may_found": true,
         "stage_by_type": true,
         "stage_per_type": true,
+        "team_type": "national",
+        "team_type_basis": "Competition contract: the FIFA World Cup admits national teams only. ESPN Core's 2026 record for team 11678 (Curacao) says isNational=false (probed 2026-09-30) while every other entrant says true; a team founded by this lane is national, and an ESPN id already mapped to a club is refused (identity queue).",
         "league_stage_name": "Group stage",
         "type_roles": {
           "Group Stage": "league"
