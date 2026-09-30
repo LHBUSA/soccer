@@ -81,7 +81,11 @@ export async function corroborate(store, { athlete, candidates, client, registry
   evidence.canonical_windows = windows.map(w => ({ competition: w.competition, season: w.season_label, teams: [...w.teams], appearances: w.appearances }));
   for (const w of windows) {
     if (!w.league || !Number.isFinite(w.year)) { evidence.unverifiable_windows.push({ season: w.season_label, competition: w.competition, why: 'no_espn_league_for_competition' }); continue; }
-    const { json } = await client.get(`${espn.CORE}/${w.league}/seasons/${w.year}/athletes/${athlete.external_id}`);
+    const url = `${espn.CORE}/${w.league}/seasons/${w.year}/athletes/${athlete.external_id}`;
+    const res = client.getOptionalJson ? await client.getOptionalJson(url) : await client.get(url);
+    // An unavailable season record (archived non-JSON page) corroborates nothing: never a merge from it.
+    if (res.unavailable) { evidence.unverifiable_windows.push({ season: w.season_label, competition: w.competition, why: 'espn_season_athlete_record_unavailable', capture_id: res.capture?.capture_id || null }); continue; }
+    const { json } = res;
     const seasonDob = json.dateOfBirth ? String(json.dateOfBirth).slice(0, 10) : null;
     if (seasonDob && seasonDob !== athlete.birth_date) { evidence.contradictions.push({ kind: 'dob_season_record', season: w.season_label, espn: seasonDob }); continue; }
     const espnTeam = espn.refId(json.team?.$ref, 'teams');

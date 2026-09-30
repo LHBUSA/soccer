@@ -31,7 +31,7 @@ async function selectIn(store, table, col, values, opts = {}) {
   return out;
 }
 
-export async function ensureCompetitionSeason(store, { comp, year }) {
+export async function ensureCompetitionSeason(store, { comp, year, types = null }) {
   const compId = competitionId(comp);
   if (!(await store.select('soccer_competitions', { columns: ['id'], eq: { id: compId }, limit: 1 })).length) {
     await syncRows(store, { table: 'soccer_competitions', key: ['id'], rows: [{ id: compId, slug: comp.slug, name: comp.name, comp_type: comp.comp_type, gender: comp.gender, country_code: comp.country_code, tier: comp.tier }] });
@@ -50,11 +50,20 @@ export async function ensureCompetitionSeason(store, { comp, year }) {
   // A cup that stages by ESPN season type (UCL: "League Phase" then knockout rounds)
   // keeps its stage id but its first stage IS a league phase; knockouts go to the playoff stage.
   const leaguePhase = comp.comp_type !== 'league' && comp.espn?.stage_by_type;
-  const stages = [{ id: stageId, season_id: seasonId, name: comp.comp_type === 'league' ? 'Regular Season' : leaguePhase ? 'League phase' : 'All rounds (ESPN)', stage_type: comp.comp_type === 'league' || leaguePhase ? 'league' : 'group', stage_order: 1 }];
-  const playoffStageId = comp.espn?.stage_by_type ? childId('stage', seasonId, 'playoffs') : null;
+  const stages = [{ id: stageId, season_id: seasonId, name: comp.comp_type === 'league' ? 'Regular Season' : leaguePhase ? (comp.espn?.league_stage_name || 'League phase') : 'All rounds (ESPN)', stage_type: comp.comp_type === 'league' || leaguePhase ? 'league' : 'group', stage_order: 1 }];
+  // stage_per_type (World Cup): every ESPN knockout season type is its own canonical stage, named
+  // exactly as ESPN names it (Round of 32 ... Final), ordered by the source's type order. Built only
+  // from the discovered types; nothing is assumed about a tournament format.
+  const perType = !!(comp.espn?.stage_by_type && comp.espn?.stage_per_type);
+  const playoffStageId = comp.espn?.stage_by_type && !perType ? childId('stage', seasonId, 'playoffs') : null;
   if (playoffStageId) stages.push({ id: playoffStageId, season_id: seasonId, name: comp.espn?.playoff_stage_name || (leaguePhase ? 'Knockout rounds' : 'Playoffs'), stage_type: 'playoff', stage_order: 2 });
+  const typeStageIds = new Map();
+  if (perType && types) {
+    const ko = Object.entries(types).filter(([, v]) => v.role === 'playoff').sort((a, b) => Number(a[0]) - Number(b[0]));
+    ko.forEach(([t, v], i) => { const id = childId('stage', seasonId, `espn-type-${t}`); typeStageIds.set(String(t), id); stages.push({ id, season_id: seasonId, name: v.name, stage_type: 'knockout', stage_order: 2 + i }); });
+  }
   await syncRows(store, { table: 'soccer_stages', key: ['id'], rows: stages });
-  return { compId, seasonId, stageId, playoffStageId };
+  return { compId, seasonId, stageId, playoffStageId, typeStageIds };
 }
 
 // Team identity for the season's ESPN fixtures.
@@ -118,8 +127,8 @@ export async function resolveEspnTeams(store, { comp, year, cursor, client }) {
 // Fixtures -> canonical matches. Attach to an existing canonical match (same
 // season, same home/away) instead of creating a duplicate; found only when none.
 export async function upsertEspnFixtures(store, { comp, year, cursor, teamMap, now = Date.now() }) {
-  const { compId, seasonId, stageId, playoffStageId } = await ensureCompetitionSeason(store, { comp, year });
-  const stageFor = f => (playoffStageId && cursor.types?.[f.stype]?.role === 'playoff' ? playoffStageId : stageId);
+  const { compId, seasonId, stageId, playoffStageId, typeStageIds } = await ensureCompetitionSeason(store, { comp, year, types: cursor.types });
+  const stageFor = f => (cursor.types?.[f.stype]?.role === 'playoff' ? typeStageIds.get(String(f.stype)) || playoffStageId || stageId : stageId);
   const ids = Object.keys(cursor.fixtures).filter(id => teamMap.has(cursor.fixtures[id].h) && teamMap.has(cursor.fixtures[id].a));
   const known = await resolveMany(store, 'match', P, ids);
   const canon = await store.select('soccer_matches', { columns: ['id', 'home_team_id', 'away_team_id', 'result_provider', 'stage_id'], eq: { season_id: seasonId } });
@@ -166,16 +175,26 @@ export async function resolveAthletes(store, { athleteIds, client, league, year,
   const map = await resolveMany(store, 'player', P, athleteIds);
   const queued = []; const found = []; const corroborated = [];
   for (const aid of athleteIds.filter(a => !map.has(a))) {
-    const [q] = await store.select('soccer_identity_queue', { columns: ['status'], eq: { entity_type: 'player', provider: P, external_id: aid }, limit: 1 });
-    if (q) { queued.push(aid); continue; } // already queued: do not refetch
-    const { json, capture } = await client.get(`${espn.CORE}/${league}/seasons/${year}/athletes/${aid}`);
-    let a;
-    try { a = espn.parseAthlete(json); } catch (err) {
-      if (!(err instanceof espn.EspnShapeError)) throw err;
-      // The athlete record is unavailable (e.g. an ESPN error body): the capture is
-      // archived, the athlete waits in the identity queue, and the match goes on.
+    const [q] = await store.select('soccer_identity_queue', { columns: ['status', 'reason'], eq: { entity_type: 'player', provider: P, external_id: aid }, limit: 1 });
+    // Already queued: do not refetch. Exception: an OPEN 'athlete_record_unavailable' entry (a transient
+    // provider page) is re-read once when the athlete appears again, and resolves only on a real record.
+    if (q && !(q.status === 'open' && q.reason === 'athlete_record_unavailable')) { queued.push(aid); continue; }
+    const url = `${espn.CORE}/${league}/seasons/${year}/athletes/${aid}`;
+    const res = client.getOptionalJson ? await client.getOptionalJson(url) : await client.get(url);
+    const { json, capture } = res;
+    let a = null; let why = res.unavailable ? res.reason : null;
+    if (!why) {
+      try { a = espn.parseAthlete(json); } catch (err) {
+        if (!(err instanceof espn.EspnShapeError)) throw err;
+        why = 'athlete_shape_invalid';
+      }
+    }
+    if (!a) {
+      // The athlete record is unavailable (a non-JSON page or an ESPN error body): the response
+      // is archived, the athlete waits in the identity queue with no invented name, DOB or
+      // nationality, and the match goes on with its other players.
       await client.flush();
-      await queueIdentity(store, { entity_type: 'player', provider: P, external_id: aid, reason: 'athlete_record_unavailable', payload: { capture_id: capture.capture_id, http_status: capture.http_status ?? null } });
+      await queueIdentity(store, { entity_type: 'player', provider: P, external_id: aid, reason: 'athlete_record_unavailable', payload: { capture_id: capture.capture_id, http_status: capture.http_status ?? null, content_type: capture.content_type ?? null, endpoint: capture.request_url || url, detail: why } });
       queued.push(aid); continue;
     }
     const fullName = [a.first_name, a.last_name].filter(Boolean).join(' ') || a.display_name;
@@ -201,6 +220,8 @@ export async function resolveAthletes(store, { athleteIds, client, league, year,
       primary_role: a.primary_role, founding_provider: P, founding_external_id: a.external_id })) });
     await syncRows(store, { table: 'soccer_player_external_ids', key: ['provider', 'external_id'], compare: ['player_id'], rows: found.map(a => ({ provider: P, external_id: a.external_id, player_id: mintId('player', P, a.external_id), method: 'founding', evidence: `espn athlete id; dob ${a.birth_date}`, capture_id: a.capture_id })) });
     for (const a of found) map.set(a.external_id, mintId('player', P, a.external_id));
+    // An athlete queued earlier only because its record page was unavailable is closed now that a real record founded it.
+    for (const a of found) await resolveQueued(store, { entity_type: 'player', provider: P, external_id: a.external_id, resolution: { method: 'founding', player_id: mintId('player', P, a.external_id), after: 'athlete_record_unavailable' } });
   }
   if (corroborated.length) {
     await syncRows(store, { table: 'soccer_player_external_ids', key: ['provider', 'external_id'], compare: ['player_id'], rows: corroborated.map(c => ({ provider: P, external_id: c.aid, player_id: c.player_id, method: 'attribute_corroborated', evidence: JSON.stringify(c.evidence), capture_id: c.capture_id })) });
@@ -223,7 +244,10 @@ export async function reevaluateQueuedEspnAthletes(store, { client, registry, ar
   const rows = [];
   for (const reason of reasons) rows.push(...await store.select('soccer_identity_queue', { columns: ['external_id', 'reason', 'payload'], eq: { entity_type: 'player', provider: P, status: 'open', reason } }));
   for (const q of rows) {
-    const { json, capture } = await client.get(`${espn.CORE}/${league}/seasons/${year}/athletes/${q.external_id}`);
+    const url = `${espn.CORE}/${league}/seasons/${year}/athletes/${q.external_id}`;
+    const res = client.getOptionalJson ? await client.getOptionalJson(url) : await client.get(url);
+    if (res.unavailable) { await client.flush(); out.by_reason.athlete_record_unavailable = (out.by_reason.athlete_record_unavailable || 0) + 1; out.still_queued += 1; continue; }
+    const { json, capture } = res;
     const a = espn.parseAthlete(json);
     const hits = a.birth_date ? await nameDobCandidates(store, a) : [];
     const r = await corroborate(store, { athlete: a, candidates: hits, client, registry, areas });
@@ -311,19 +335,27 @@ export async function ingestEspnMatch(store, { comp, league, year, eventId, fixt
   const [xw] = await store.select('soccer_match_external_ids', { columns: ['match_id'], eq: { provider: P, external_id: eventId }, limit: 1 });
   if (!xw) return { final: false, changed, summary: { ...summary, skipped: 'no canonical match yet' } };
   const matchId = xw.match_id;
-  const [match] = await store.select('soccer_matches', { columns: ['id', 'competition_id', 'season_id', 'stage_id', 'matchday', 'round_label', 'venue_id', 'home_team_id', 'away_team_id', 'result_provider', 'status'], eq: { id: matchId }, limit: 1 });
+  const [match] = await store.select('soccer_matches', { columns: ['id', 'competition_id', 'season_id', 'stage_id', 'matchday', 'round_label', 'venue_id', 'home_team_id', 'away_team_id', 'result_provider', 'status', 'duration'], eq: { id: matchId }, limit: 1 });
   const home = teamMap.get(fixture.h); const away = teamMap.get(fixture.a);
   if (!only) {
     const { json: stJson, capture: stCap } = await client.get(`${base}/status`);
     const status = espn.parseStatus(stJson);
     summary.status = status;
     if (status === 'scheduled' || status === 'live' || status === 'unknown') { await client.flush(); return { final: false, changed, summary }; }
-    const scores = {};
-    if (status === 'finished') for (const side of ['h', 'a']) { const { json } = await client.get(`${base}/competitors/${fixture[side]}/score`); scores[side] = Number.isFinite(Number(json.value)) ? Number(json.value) : null; }
+    const scores = {}; const pens = {};
+    if (status === 'finished') for (const side of ['h', 'a']) { const { json } = await client.get(`${base}/competitors/${fixture[side]}/score`); scores[side] = Number.isFinite(Number(json.value)) ? Number(json.value) : null; pens[side] = Number.isFinite(json.shootoutScore) ? json.shootoutScore : null; }
     await client.flush();
+    // Knockout results: ESPN files a shootout as STATUS_FINAL_PEN with the drawn score in `value` and
+    // the shootout in `shootoutScore`; extra time as STATUS_FINAL_AET / period >= 3. Never guessed.
+    const duration = status === 'finished' ? espn.parseDuration(stJson) : null;
+    const shootout = duration === 'penalties' && pens.h !== null && pens.a !== null;
+    const winner = status !== 'finished' || scores.h == null || scores.a == null ? null
+      : scores.h !== scores.a ? (scores.h > scores.a ? home : away)
+        : shootout && pens.h !== pens.a ? (pens.h > pens.a ? home : away) : null;
+    summary.duration = duration;
     const owned = match.result_provider === P;
     if (owned) {
-      count(await syncRows(store, { table: 'soccer_matches', key: ['id'], provider: P, captureId: stCap.capture_id, touch: true, rows: [{ ...match, kickoff_at: fixture.d, status, home_score: scores.h ?? null, away_score: scores.a ?? null, home_score_ht: null, away_score_ht: null, home_score_et: null, away_score_et: null, home_pens: null, away_pens: null, duration: status === 'finished' ? 'regular' : null, winner_team_id: status === 'finished' && scores.h !== scores.a ? (scores.h > scores.a ? home : away) : null, result_provider: P }] }));
+      count(await syncRows(store, { table: 'soccer_matches', key: ['id'], provider: P, captureId: stCap.capture_id, touch: true, rows: [{ ...match, kickoff_at: fixture.d, status, home_score: scores.h ?? null, away_score: scores.a ?? null, home_score_ht: null, away_score_ht: null, home_score_et: null, away_score_et: null, home_pens: shootout ? pens.h : null, away_pens: shootout ? pens.a : null, duration, winner_team_id: winner, result_provider: P }] }));
     }
     count(await syncRows(store, { table: 'soccer_match_source_results', key: ['match_id', 'provider'], compare: ['status', 'home_score', 'away_score'], provider: P, captureId: stCap.capture_id, rows: [{ match_id: matchId, provider: P, status, home_score: scores.h ?? null, away_score: scores.a ?? null, home_score_ht: null, away_score_ht: null, capture_id: stCap.capture_id, observed_at: stCap.captured_at }] }));
     if (status !== 'finished') return { final: true, changed, summary };
@@ -356,6 +388,11 @@ export async function ingestEspnMatch(store, { comp, league, year, eventId, fixt
     for (const side of ['h', 'a']) for (const e of rosters[side].entries) teamOf.set(e.athlete_id, { match_id: matchId, team_id: side === 'h' ? home : away });
     const ath = await resolveAthletes(store, { athleteIds, client, league, year, registry: client.registry, areas: client.areas, teamOf });
     summary.athletes = { in_rosters: athleteIds.length, founded: ath.founded, corroborated: ath.corroborated, queued: ath.queued };
+    // A lineup is complete as a source fact; players whose identity is not proven are left out of it and counted (partial player coverage, never invented).
+    for (const side of ['h', 'a']) {
+      const key = side === 'h' ? 'lineup_home' : 'lineup_away';
+      if (outcomes[key]?.status === 'complete') outcomes[key].detail.players_unresolved = rosters[side].entries.filter(e => !ath.map.has(e.athlete_id)).length;
+    }
     const lpRows = []; const lineupRows = []; const subRows = []; const lpContext = [];
     for (const side of ['h', 'a']) {
       const teamId = side === 'h' ? home : away;
@@ -378,7 +415,7 @@ export async function ingestEspnMatch(store, { comp, league, year, eventId, fixt
     count(await syncRows(store, { table: 'soccer_lineups', key: ['id'], rows: lineupRows }));
     count(await syncRows(store, { table: 'soccer_lineup_players', key: ['lineup_id', 'player_id'], rows: lpRows }));
     count(await syncRows(store, { table: 'soccer_substitutions', key: ['id'], rows: subRows }));
-    if (lpContext.length) await deriveMatchStats(store, { matches: [{ id: matchId, duration: 'regular' }], events: [], lineupPlayers: lpContext, subs: subRows });
+    if (lpContext.length) await deriveMatchStats(store, { matches: [{ id: matchId, duration: summary.duration || match.duration || 'regular' }], events: [], lineupPlayers: lpContext, subs: subRows });
   }
 
   // ---- team statistics (source facts)

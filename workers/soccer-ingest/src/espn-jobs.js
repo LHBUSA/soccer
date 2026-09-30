@@ -38,6 +38,23 @@ export function espnClient({ storage, store, fetcher = politeFetch, budget = DEF
     client.pending.push(rec);
     return { json: JSON.parse(new TextDecoder().decode(res.bytes)), capture: rec };
   };
+  // OPTIONAL enrichment resources only (athlete identity lookups). The response is ALWAYS archived
+  // first (bytes, status, content type, capture row); a non-JSON body is returned as unavailable
+  // instead of thrown, so one bad athlete page cannot abort a tournament. Core resources (league,
+  // season types, event index, events, status, scores) keep using get() and still fail closed.
+  client.getOptionalJson = async (url) => {
+    if (client.used >= client.budget) throw new BudgetExhausted();
+    client.used += 1;
+    const res = await fetcher(espn.https(url), { minIntervalMs: 700 });
+    const ctype = res.contentType || '';
+    const rec = await archiveCapture(storage, { family: 'espn', sourceKey: 'espn.core', url: espn.https(url), status: res.status, contentType: ctype, bytes: res.bytes, parserVersion: espn.ESPN_PARSER_VERSION, notes: 'optional enrichment resource' });
+    client.pending.push(rec);
+    const text = new TextDecoder().decode(res.bytes);
+    if (/json/.test(ctype) || /^\s*[{[]/.test(text.slice(0, 64))) {
+      try { return { json: JSON.parse(text), capture: rec, unavailable: false }; } catch { /* malformed JSON: unavailable below */ }
+    }
+    return { json: null, capture: rec, unavailable: true, reason: 'non_json_response', http_status: res.status ?? null, content_type: ctype || null, endpoint: espn.https(url) };
+  };
   // Capture rows must exist before rows that reference them (FK).
   client.flush = async () => {
     if (!client.pending.length) return;
@@ -76,7 +93,9 @@ export async function runEspnLane(lane, { store, storage, registry, areas = { ar
         cursor.types = {};
         for (const t of typeIds) {
           const { json: tj } = await client.get(`${espn.CORE}/${league}/seasons/${year}/types/${t}`);
-          cursor.types[t] = { name: tj.name || null, role: espn.seasonTypeRole(tj.name) };
+          // A registry may name a competition's own league-stage type exactly (World Cup: "Group Stage");
+          // anything not named there keeps the generic classification.
+          cursor.types[t] = { name: tj.name || null, role: comp.espn.type_roles?.[tj.name] || espn.seasonTypeRole(tj.name) };
         }
         typeIds = typeIds.filter(t => cursor.types[t].role !== 'excluded');
       }

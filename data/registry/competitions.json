@@ -228,6 +228,12 @@
         "enabled": false,
         "may_found": true,
         "stage_by_type": true,
+        "stage_per_type": true,
+        "league_stage_name": "Group stage",
+        "type_roles": {
+          "Group Stage": "league"
+        },
+        "type_roles_basis": "ESPN Core 2026-09-30: fifa.world 2026 season types 1 'Group Stage' (72 events), 2 'Round of 32' (16), 3 'Round of 16' (8), 4 'Quarterfinals' (4), 5 'Semifinals' (2), 6 '3rd-Place Match' (1), 7 'Final' (1). The generic classifier excluded 'Group Stage', so the first rehearsal indexed only the 32 knockout events. Knockout types each become their own canonical stage named by ESPN (stage_per_type).",
         "playoff_stage_name": "Knockout rounds",
         "standings": {
           "group_type": "group",

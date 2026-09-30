@@ -85,6 +85,16 @@ export function parseStatus(st) {
   return 'unknown';
 }
 
+// Finished-match duration from the ESPN status: STATUS_FINAL_PEN (shootout, period 5),
+// STATUS_FINAL_AET / period 3-4 (extra time), otherwise regular time.
+export function parseDuration(st) {
+  const name = String(st?.type?.name || '');
+  const period = Number(st?.period) || 0;
+  if (/PEN/.test(name) || period >= 5) return 'penalties';
+  if (/AET|EXTRA/.test(name) || period >= 3) return 'extra_time';
+  return 'regular';
+}
+
 export function parseTeam(t) {
   if (!t?.id) throw new EspnShapeError('team without id');
   return {
