@@ -1,0 +1,22 @@
+/* Google Preferred Sources control (src/components/preferred-source.js).
+   Our own grid: the CTA width never depends on a third-party script. */
+.psrc { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 14px 24px; margin-top: 24px; padding: 18px 20px; border-radius: var(--radius-s, 10px); border: 1px solid var(--shell-line, #233a60); background: rgba(255,255,255,.03); }
+.psrc-copy { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.psrc-eyebrow { font: 800 12px/1 var(--display); letter-spacing: .16em; color: var(--gold, #d4a73a); }
+.psrc-copy b { font-size: 16px; line-height: 1.3; color: #fff; }
+.psrc-copy span:not(.psrc-eyebrow) { font-size: 14px; line-height: 1.45; color: var(--muted-dark, #9aa9c2); }
+.psrc-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 20px; border-radius: 999px; background: #fff; color: var(--ink, #0b1526); font: 800 14px/1 var(--display); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: background .15s ease; }
+.psrc-btn:hover { background: var(--gold-2, #f0c65a); color: var(--ink, #0b1526); }
+.psrc-btn:focus-visible { outline: 2px solid var(--gold-2, #f0c65a); outline-offset: 3px; }
+/* Article end sits on the white reading canvas. */
+.psrc--article { margin: 32px 0 8px; border-color: var(--line, #e1e7f0); background: var(--canvas-alt, #f3f6fb); }
+.psrc--article .psrc-copy b { color: var(--ink, #0b1526); }
+.psrc--article .psrc-copy span { color: var(--muted, #5a6780); }
+.psrc--article .psrc-btn { background: var(--ink, #0b1526); color: #fff; }
+.psrc--article .psrc-btn:hover { background: var(--shell-3, #152744); color: #fff; }
+.psrc--article .psrc-btn:focus-visible { outline-color: var(--gold, #d4a73a); }
+@media (max-width: 640px) {
+  .psrc { grid-template-columns: minmax(0, 1fr); padding: 16px; }
+  .psrc-btn { width: 100%; white-space: normal; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) { .psrc-btn { transition: none; } }

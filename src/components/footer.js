@@ -5,6 +5,7 @@
 import { NETWORK } from '../lib/pbe-membership.js';
 import { esc, join } from '../lib/html.js';
 import { OFFER } from '../lib/pro.js';
+import { renderPreferredSource } from './preferred-source.js';
 
 export const DISCORD_URL = 'https://discord.gg/kb5zCTHbME';
 export const X_URL = 'https://x.com/PROPBETEDGE';
@@ -38,6 +39,7 @@ export function networkFooter() {
         </div>
       </aside>
     </div>
+    ${renderPreferredSource({ surface: 'footer' })}
     <p class="muted small fsrc">Event data: Pappalardo et al. (2019), Wyscout public dataset, CC BY 4.0 · Fixtures/results: OpenLigaDB, ODbL · Structured facts: ESPN (secondary source). Event maps show event locations, not player tracking. Workload intelligence is not a medical or fitness assessment.</p>
   </div></footer>`;
 }

@@ -1,6 +1,8 @@
 import './styles/main.css';
 import './styles/sprint.css';
 import { initAnalytics } from './analytics.js';
+import { mountPreferredSource } from './components/preferred-source.js';
+import './styles/preferred-source.css';
 import { resolve } from './lib/router.js';
 import { errorState, routeSkeleton, notFoundPage } from './components/ui.js';
 import { api } from './lib/api.js';
@@ -25,6 +27,7 @@ import { installPlayerDrawer, close as closeDrawer } from './components/drawer.j
 import { mountScoreTicker } from './components/score-ticker.js';
 
 initAnalytics();
+mountPreferredSource();
 
 const PAGES = { home, competition, match, competitions, matches, news, newsDesk, article, sources, tables, team, player, players, pbecastHub, pbecast, pro, proMatch, algoPicks, trackRecord };
 // Primary navigation (Soccer Pro V1). Every existing public URL keeps working; INTELLIGENCE groups them.

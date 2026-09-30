@@ -13,6 +13,7 @@ import { competitionMark, link, portrait, teamMark } from '../components/ui.js';
 import { keyPlayers } from '../components/keyplayers.js';
 import { officialVideo, mountOfficialVideos } from '../components/video.js';
 import { orderVisuals, renderVisual } from '../components/visuals.js';
+import { renderPreferredSource } from '../components/preferred-source.js';
 
 const SITE = 'https://soccer.propbetedge.ai';
 const TYPE = { match_recap: 'Match report', player_form: 'Player form', team_trend: 'Team trend', competition_intelligence: 'Table watch', match_preview: 'Preview' };
@@ -180,6 +181,7 @@ export function renderArticle(env) {
         ${body(parts.sections, watchInArticle(a), a.entities || [], orderVisuals(a.body))}
         ${when(match, () => `<section class="art-mod" data-art-match="${esc(match.href.split('/').pop())}"><p class="nrail-h">MATCH INTELLIGENCE</p><div class="am-slot"><p class="muted">Loading match intelligence…</p></div></section>`)}
         ${when(people.length, () => `<section class="art-mod"><p class="nrail-h">PLAYER DNA</p><div class="kp-grid">${join(people.slice(0, 4), p => `<a class="kp-card" href="/players/${esc(p.slug)}" data-link data-player-slug="${esc(p.slug)}"${match ? ` data-match-id="${esc(match.href.split('/').pop())}"` : ''}>${portrait(p, 'md')}<span class="kp-id"><b>${esc(p.name)}</b><small>Open Player DNA</small></span></a>`)}</div></section>`)}
+        ${renderPreferredSource({ surface: 'article' })}
         ${related(a)}
         ${sourceMethod(a, parts, env.meta)}
       </div>
