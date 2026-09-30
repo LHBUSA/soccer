@@ -337,6 +337,14 @@
         "may_found": true,
         "stage_by_type": true,
         "playoff_stage_name": "Knockouts and play-offs",
+        "type_roles": {
+          "League A": "league",
+          "League B": "league",
+          "League C": "league",
+          "League D": "league",
+          "Group Stage": "league"
+        },
+        "type_roles_basis": "History lanes only (espn_uefa_nations_league@<year>): ESPN Core names the league phase 'League A'..'League D' (2018, one type per league) and 'Group Stage' (2020, 2022, 2024); 2026 uses 'League Phase' (generic). Probed 2026-09-30.",
         "standings": {
           "group_type": "group",
           "season_type": 1,

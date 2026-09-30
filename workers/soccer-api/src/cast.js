@@ -15,6 +15,8 @@ import { PUBLIC_LIVE_COMPETITIONS, readLiveSnapshot, refreshLiveEnvelope, snapsh
 export const CAST_VERSION = 'soccer-api/1.4.0'; // 1.4.0: live.enrichment (additive, rights-gated), live.canonical_result_source
 const E = (data, o) => envelope(data, { version: CAST_VERSION, ...o });
 export const PRODUCT_COMPS = ['mls', 'premier-league', 'uefa-champions-league', 'bundesliga'];
+// National-team competitions: served by /players only when asked for by name (the default directory stays clubs).
+export const INTERNATIONAL_COMPS = ['uefa-nations-league', 'fifa-world-cup'];
 export const LIVE_COMPS = PUBLIC_LIVE_COMPETITIONS;
 export const LIVE_CADENCE_S = 60; // soccer-ingest live lane: one poll per active match per minute (budgeted)
 
@@ -171,7 +173,7 @@ const norm = s => String(s || '').normalize('NFKD').replace(/[̀-ͯ]/g, '').toLo
 export const DIRECTORY_SORTS = ['minutes', 'goals', 'assists', 'goals_per90', 'assists_per90', 'goal_contributions_per90', 'shots_per90', 'key_passes_per90'];
 
 export async function players(store, q, env) {
-  const slugs = q.competition ? PRODUCT_COMPS.filter(s => s === q.competition) : PRODUCT_COMPS;
+  const slugs = q.competition ? [...PRODUCT_COMPS, ...INTERNATIONAL_COMPS].filter(s => s === q.competition) : PRODUCT_COMPS;
   if (q.competition && !slugs.length) throw new NotFound(`competition ${q.competition}`);
   const rows = [];
   const seasonsOut = [];

@@ -65,7 +65,7 @@ export function espnClient({ storage, store, fetcher = politeFetch, budget = DEF
   return client;
 }
 
-export async function runEspnLane(lane, { store, storage, registry, areas = { areas: {}, aliases: {} }, state, now = Date.now(), fetcher = politeFetch, budget = DEFAULT_BUDGET, force = false }) {
+export async function runEspnLane(lane, { store, storage, registry, areas = { areas: {}, aliases: {} }, state, now = Date.now(), fetcher = politeFetch, budget = DEFAULT_BUDGET, force = false, year: pinYear = null }) {
   const comp = registry.competitions.find(c => c.slug === lane.competition);
   if (!comp?.espn) throw new Error(`registry has no ESPN id for ${lane.competition}`);
   if (comp.espn.enabled === false) return { skipped: `espn lane for ${comp.slug} not enabled (registry espn.enabled=false)` };
@@ -75,8 +75,11 @@ export async function runEspnLane(lane, { store, storage, registry, areas = { ar
   const cursor = { fixtures: {}, done: {}, ...(state.cursor || {}) };
   const stats = { competition: comp.slug, observed: 0, changed: 0, matches_detailed: 0, fixtures_new: 0, match_results: [] };
   try {
-    // 1. season
-    if (!cursor.season_year || cursor.season_day !== today || force) {
+    // 1. season (a history lane pins a past season: no league lookup; its index never changes)
+    if (pinYear) {
+      if (cursor.season_year && cursor.season_year !== pinYear) { cursor.fixtures = {}; cursor.done = {}; cursor.index = null; }
+      cursor.season_year = pinYear; cursor.season_day = today; cursor.history = true;
+    } else if (!cursor.season_year || cursor.season_day !== today || force) {
       const { json } = await client.get(espn.urls.league(league));
       const year = espn.seasonYearOf(json.season?.$ref);
       if (!year) throw new espn.EspnShapeError('league without season');
@@ -85,7 +88,7 @@ export async function runEspnLane(lane, { store, storage, registry, areas = { ar
     }
     const year = cursor.season_year;
     // 2. event index (all season types: tournaments have several)
-    if (!cursor.index || cursor.index_day !== today) {
+    if (!cursor.index || (!pinYear && cursor.index_day !== today)) {
       const { json: types } = await client.get(espn.urls.seasonTypes(league, year));
       let typeIds = (types.items || []).map(i => espn.refId(i.$ref, 'types')).filter(Boolean);
       if (comp.espn.stage_by_type) {

@@ -132,3 +132,16 @@ test('knockout results: shootout and extra time come from the ESPN status, never
   assert.equal(espn.parseDuration({ type: { name: 'STATUS_FINAL_AET' }, period: 4 }), 'extra_time');
   assert.equal(espn.parseDuration({ type: { name: 'STATUS_FULL_TIME' }, period: 2 }), 'regular');
 });
+
+test('history lane: a pinned past season never reads the league (current season) and keeps its own cursor', async () => {
+  const store = await openPglite(); await applyMigrations(store);
+  const w = world();
+  const out = await runEspnLane(lane, { store, storage: w.storage, registry: w.registry, areas: { areas: {}, aliases: {} }, state: emptyLaneState(`${lane.name}@2026`), now: NOW, fetcher: w.fetcher, budget: 200, force: true, year: 2026 });
+  assert.equal(w.calls.filter(u => u === C).length, 0, 'no league lookup for a pinned season');
+  assert.equal(out.cursor.season_year, 2026); assert.equal(out.cursor.history, true);
+  assert.equal(out.results[0].matches_detailed, 1);
+  const { historyLane } = await import('../workers/soccer-ingest/src/index.js');
+  assert.deepEqual(historyLane('espn_uefa_nations_league@2018'), { lane: { name: 'espn_uefa_nations_league', competition: 'uefa-nations-league' }, year: 2018 });
+  assert.equal(historyLane('espn_uefa_nations_league'), null); assert.equal(historyLane('espn_nope@2018'), null);
+  await store.close();
+});

@@ -12,6 +12,7 @@ import { toMatchFrame } from '../../shared/coords.js';
 import { displayMinute } from '../../shared/clock.js';
 import { COVERAGE, envelope, maxTs } from './envelope.js';
 import { chunkArr } from '../../soccer-ingest/src/store.js';
+import { provenBracket } from '../../shared/bracket.js';
 import { ownGoalBeneficiary } from '../../shared/own-goals.js';
 import { LIVE_SNAPSHOT_STATUS_KEY, LIVE_SNAPSHOT_DIRTY_KEY } from '../../shared/live-snapshot.js';
 
@@ -22,7 +23,7 @@ const clampLimit = (v, d = 50) => Math.max(1, Math.min(100, Number(v) || d));
 
 const TEAM_COLS = ['id', 'slug', 'name', 'short_name', 'official_name', 'team_type', 'country_code', 'city'];
 const PLAYER_COLS = ['id', 'slug', 'display_name', 'first_name', 'last_name', 'birth_date', 'nationality_code', 'foot', 'height_cm', 'primary_role'];
-const MATCH_COLS = ['id', 'competition_id', 'season_id', 'matchday', 'round_label', 'kickoff_at', 'venue_id', 'home_team_id', 'away_team_id', 'status', 'home_score', 'away_score', 'home_score_ht', 'away_score_ht', 'duration', 'winner_team_id', 'result_provider', 'updated_at'];
+const MATCH_COLS = ['id', 'competition_id', 'season_id', 'stage_id', 'matchday', 'round_label', 'kickoff_at', 'venue_id', 'home_team_id', 'away_team_id', 'status', 'home_score', 'away_score', 'home_score_ht', 'away_score_ht', 'home_pens', 'away_pens', 'duration', 'winner_team_id', 'result_provider', 'updated_at'];
 
 // Media: ONLY displayable rows with a cached copy are ever exposed (rights_status is filtered here,
 // in the one query every media read goes through). Displayable = 'approved' (independently
@@ -82,16 +83,32 @@ async function intelFlags(store, ids) {
 
 const tiebreakOf = slug => (slug === 'mls' ? 'mls' : 'standard');
 
-function shapeMatch(m, teams, comps = null, intel = null) {
+function shapeMatch(m, teams, comps = null, intel = null, stages = null) {
   const t = id => { const x = teams.get(id); return x ? { id: x.id, slug: x.slug, name: x.name, short_name: x.short_name, ...(x.crest ? { crest: x.crest } : {}) } : { id }; };
+  const st = stages && m.stage_id ? stages.get(m.stage_id) : null;
+  // Knockout detail only where stored: after extra time / on penalties, the shootout score and the winner side.
+  const decided = m.duration === 'extra_time' || m.duration === 'penalties';
   return {
     id: m.id, matchday: m.matchday, round: m.round_label, kickoff_at: m.kickoff_at, status: m.status,
     ...(comps && comps.get(m.competition_id) ? { competition: comps.get(m.competition_id) } : {}),
+    ...(st ? { stage: st } : {}),
     home: t(m.home_team_id), away: t(m.away_team_id),
-    score: m.home_score === null ? null : { home: m.home_score, away: m.away_score, home_ht: m.home_score_ht, away_ht: m.away_score_ht },
+    score: m.home_score === null ? null : { home: m.home_score, away: m.away_score, home_ht: m.home_score_ht, away_ht: m.away_score_ht,
+      ...(decided ? { after: m.duration } : {}), ...(m.home_pens != null && m.away_pens != null ? { pens: { home: m.home_pens, away: m.away_pens } } : {}),
+      ...(m.winner_team_id && decided ? { winner: m.winner_team_id === m.home_team_id ? 'home' : 'away' } : {}) },
     result_source: m.result_provider,
     ...(intel ? { intel: intel(m.id) } : {}),
   };
+}
+
+// Stage identity for match rows: key = slug of the stored stage name (Group stage -> group-stage, Round of 32 ->
+// round-of-32), type as stored (league | group | knockout | playoff), order as stored.
+export const stageKey = name => String(name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+async function stagesById(store, rows) {
+  const ids = [...new Set(rows.map(r => r.stage_id).filter(Boolean))];
+  const out = new Map();
+  for (const part of chunkArr(ids, 150)) for (const s of await store.select('soccer_stages', { columns: ['id', 'name', 'stage_type', 'stage_order'], in: { id: part } })) out.set(s.id, { key: stageKey(s.name), name: s.name, type: s.stage_type, order: s.stage_order });
+  return out;
 }
 
 async function competitionBySlug(store, slug) {
@@ -128,25 +145,52 @@ export async function competitions(store) {
   return E(out, { source: 'pbe', semantics: 'Competitions with canonical matches stored by PropBetEdge.', source_updated_at: maxTs(comps.map(c => c.updated_at)) });
 }
 
-export async function competition(store, slug) {
+export async function competition(store, slug, q = {}, now = Date.now()) {
   const c = await competitionBySlug(store, slug);
   const seasons = await seasonsOf(store, c.id);
   const counts = await Promise.all(seasons.map(s => store.count('soccer_matches', { eq: { season_id: s.id } })));
   const withCounts = seasons.map((s, i) => ({ label: s.label, start_date: s.start_date, end_date: s.end_date, matches: counts[i] }));
+  const season = q.season ? seasons.find(s => s.label === q.season) : seasons[0];
+  if (q.season && !season) throw new NotFound(`season ${q.season}`);
   let current = null;
-  if (seasons[0]) {
-    const ms = await store.select('soccer_matches', { columns: ['id', 'home_team_id', 'away_team_id', 'status'], eq: { season_id: seasons[0].id }, order: 'id.asc' });
+  if (season) {
+    const ms = await store.select('soccer_matches', { columns: ['id', 'stage_id', 'kickoff_at', 'home_team_id', 'away_team_id', 'status', 'winner_team_id', 'home_score', 'away_score'], eq: { season_id: season.id }, order: 'id.asc' });
     const teams = await teamsById(store, ms.flatMap(x => [x.home_team_id, x.away_team_id]));
     const n = st => ms.filter(x => x.status === st).length;
+    // Stages of the season with their counts; knockout edges only where proven from canonical results.
+    const stageRows = (await store.select('soccer_stages', { columns: ['id', 'name', 'stage_type', 'stage_order'], eq: { season_id: season.id } })).sort((a, b) => a.stage_order - b.stage_order);
+    const stages = stageRows.map(s => ({ key: stageKey(s.name), name: s.name, type: s.stage_type, order: s.stage_order, matches: ms.filter(m => m.stage_id === s.id).length, finished: ms.filter(m => m.stage_id === s.id && m.status === 'finished').length })).filter(s => s.matches);
+    const ko = stageRows.filter(s => s.stage_type === 'knockout' && ms.some(m => m.stage_id === s.id));
+    let bracket = null;
+    if (ko.length > 1) {
+      const b = provenBracket(ko, ms);
+      bracket = { proven: b.proven, basis: 'an edge exists only where a team\'s previous knockout match is finished with a stored winner and the team won it (or lost it, for a third-place match); nothing is inferred from a format', edges: b.edges.map(e => ({ from: e.from, to: e.to, via: e.via })), unproven_matches: b.unproven.length };
+    }
+    // Completed only when every stored match is settled and nothing is scheduled or live.
+    const open = ms.filter(m => m.status === 'scheduled' || m.status === 'live' || m.status === 'unknown').length;
+    const lastKick = Math.max(...ms.map(m => Date.parse(m.kickoff_at)).filter(Number.isFinite));
+    // Per-component coverage of the season's FINISHED matches (counts only; the page words them as complete / partial).
+    const fin = ms.filter(m => m.status === 'finished');
+    const flags = await intelFlags(store, fin.map(m => m.id));
+    const enr = [];
+    for (const part of chunkArr(fin.map(m => m.id), 150)) enr.push(...await store.select('soccer_match_enrichment', { columns: ['match_id', 'component', 'status', 'detail'], in: { match_id: part } }));
+    const coverage = {
+      finished: fin.length, results: fin.filter(m => m.home_score !== null && m.away_score !== null).length,
+      lineups: fin.filter(m => flags(m.id).lineups).length, team_stats: fin.filter(m => flags(m.id).stats).length, event_maps: fin.filter(m => flags(m.id).event_map).length,
+      lineup_players_unresolved: enr.filter(e => e.component.startsWith('lineup') && e.status === 'complete').reduce((n, e) => n + (Number(e.detail?.players_unresolved) || 0), 0),
+      basis: 'finished matches of the season with each stored component; lineup_players_unresolved = players named by the lineup source whose identity is not proven yet (left out of the lineup, never invented)',
+    };
     current = {
-      season: seasons[0].label, matches: ms.length, finished: n('finished'), scheduled: n('scheduled'), live: n('live'),
+      coverage,
+      season: season.label, state: !ms.length ? 'empty' : open === 0 && lastKick < now ? 'completed' : n('finished') ? 'in_progress' : 'upcoming',
+      matches: ms.length, finished: n('finished'), scheduled: n('scheduled'), live: n('live'), stages, bracket,
       teams: [...teams.values()].sort((a, b) => (a.name < b.name ? -1 : 1)).map(t => ({ slug: t.slug, name: t.name, short_name: t.short_name, ...(t.team_type === 'national' ? { type: 'national' } : {}), ...(t.crest ? { crest: t.crest } : {}) })),
     };
     // A competition whose every team is a national team (Nations League, World Cup ...): copy says nations, not clubs.
     if (teams.size && [...teams.values()].every(t => t.team_type === 'national')) current.team_kind = 'national';
   }
   return E({ slug: c.slug, name: c.name, type: c.comp_type, country_code: c.country_code, tier: c.tier, seasons: withCounts, current, tiebreak: TIEBREAKS[tiebreakOf(c.slug)] }, {
-    source: 'pbe', semantics: 'Competition, the seasons stored for it, and the teams appearing in canonical matches of the latest stored season.', source_updated_at: c.updated_at,
+    source: 'pbe', semantics: 'Competition, the seasons stored for it, and for the requested (default latest) season: the teams appearing in its canonical matches, its stages with match counts, the season state (completed only when no stored match is scheduled or live) and, for knockout stages, bracket edges proven from canonical results only.', source_updated_at: c.updated_at,
   });
 }
 
@@ -159,6 +203,14 @@ export async function matches(store, q) {
     opts.eq.season_id = s.id; delete opts.eq.competition_id;
   }
   if (q.status) opts.eq.status = q.status;
+  if (q.stage) {
+    // stage = a stage key of one competition's season (default: its latest season), e.g. group-stage, round-of-16
+    if (!q.competition) throw new NotFound('stage filter needs competition');
+    const sid = opts.eq.season_id || (await seasonsOf(store, opts.eq.competition_id))[0]?.id;
+    const st = sid ? (await store.select('soccer_stages', { columns: ['id', 'name'], eq: { season_id: sid } })).find(s => stageKey(s.name) === String(q.stage)) : null;
+    if (!st) throw new NotFound(`stage ${q.stage}`);
+    opts.eq.stage_id = st.id;
+  }
   if (q.order === 'asc') opts.order = 'kickoff_at.asc';
   const iso = v => (/^\d{4}-\d{2}-\d{2}(T[\d:.]+Z)?$/.test(String(v || '')) ? v : null);
   if (iso(q.from)) opts.gte = { kickoff_at: q.from.length === 10 ? `${q.from}T00:00:00Z` : q.from };
@@ -169,12 +221,12 @@ export async function matches(store, q) {
     if (!t) throw new NotFound(`team ${q.team}`);
     const [h, a] = await Promise.all([store.select('soccer_matches', { ...opts, eq: { ...opts.eq, home_team_id: t.id } }), store.select('soccer_matches', { ...opts, eq: { ...opts.eq, away_team_id: t.id } })]);
     const rows = [...h, ...a].sort((x, y) => (opts.order === 'kickoff_at.asc' ? 1 : -1) * (Date.parse(x.kickoff_at) - Date.parse(y.kickoff_at))).slice(0, opts.limit);
-    const [teams, comps, intel] = await Promise.all([teamsById(store, rows.flatMap(r => [r.home_team_id, r.away_team_id])), compsById(store, rows.map(r => r.competition_id)), intelFlags(store, rows.map(r => r.id))]);
-    return E(rows.map(r => shapeMatch(r, teams, comps, intel)), { source: 'pbe', semantics: 'Canonical matches (max 100 per page); intel flags which Match Intelligence layers exist.', source_updated_at: maxTs(rows.map(r => r.updated_at)), attribution: [...new Set(rows.map(r => r.result_provider))] });
+    const [teams, comps, intel, stages] = await Promise.all([teamsById(store, rows.flatMap(r => [r.home_team_id, r.away_team_id])), compsById(store, rows.map(r => r.competition_id)), intelFlags(store, rows.map(r => r.id)), stagesById(store, rows)]);
+    return E(rows.map(r => shapeMatch(r, teams, comps, intel, stages)), { source: 'pbe', semantics: 'Canonical matches (max 100 per page); intel flags which Match Intelligence layers exist.', source_updated_at: maxTs(rows.map(r => r.updated_at)), attribution: [...new Set(rows.map(r => r.result_provider))] });
   }
   const rows = await store.select('soccer_matches', opts);
-  const [teams, comps, intel] = await Promise.all([teamsById(store, rows.flatMap(r => [r.home_team_id, r.away_team_id])), compsById(store, rows.map(r => r.competition_id)), intelFlags(store, rows.map(r => r.id))]);
-  return E(rows.map(r => shapeMatch(r, teams, comps, intel)), { source: 'pbe', semantics: 'Canonical matches (max 100 per page); intel flags which Match Intelligence layers exist.', source_updated_at: maxTs(rows.map(r => r.updated_at)), attribution: [...new Set(rows.map(r => r.result_provider))], coverage: rows.length ? COVERAGE.OK : COVERAGE.PARTIAL });
+  const [teams, comps, intel, stages] = await Promise.all([teamsById(store, rows.flatMap(r => [r.home_team_id, r.away_team_id])), compsById(store, rows.map(r => r.competition_id)), intelFlags(store, rows.map(r => r.id)), stagesById(store, rows)]);
+  return E(rows.map(r => shapeMatch(r, teams, comps, intel, stages)), { source: 'pbe', semantics: 'Canonical matches (max 100 per page); intel flags which Match Intelligence layers exist. stage = the canonical stage (key, name, type); score.after / score.pens / score.winner appear only for a match decided after extra time or on penalties.', source_updated_at: maxTs(rows.map(r => r.updated_at)), attribution: [...new Set(rows.map(r => r.result_provider))], coverage: rows.length ? COVERAGE.OK : COVERAGE.PARTIAL });
 }
 
 export async function match(store, id) {
@@ -322,7 +374,7 @@ export async function match(store, id) {
   if (!lineups.length) notes.push('Lineups not available from a legitimate source for this match.');
   if (timeline.some(t => t.player && t.player.resolved === false)) notes.push('Some scorers are awaiting identity resolution.');
   return E({
-    ...shapeMatch(m, teams), competition: comp, season: season?.label, venue,
+    ...shapeMatch(m, teams, null, null, await stagesById(store, [m])), competition: comp, season: season?.label, venue,
     timeline, shots, stats: stats.length ? statsOut : null, lineups: lineups.length ? lineupOut : null,
     substitutions: subs.map(s => ({ minute: s.minute, team: side(s.team_id), in: person(s.player_in_id), out: person(s.player_out_id) })),
     event_source: family,
@@ -550,6 +602,24 @@ async function seasonGroups(store, seasonId) {
 const STANDING_COLS = ['team_id', 'rank', 'played', 'won', 'drawn', 'lost', 'goals_for', 'goals_against', 'goal_difference', 'points', 'deductions', 'note', 'note_rank', 'observed_at'];
 const groupMeta = g => ({ key: g.group_key, name: g.name, type: g.group_type, ...(g.group_type === 'group' ? { abbreviation: g.abbreviation || null, parent: g.parent_group_key ? { key: g.parent_group_key, name: g.parent_name } : null } : {}) });
 
+// Tournament groups (group_type 'group'): every finished league-stage fixture must pair two members of the SAME
+// group. A group touched by a fixture that crosses groups (or involves a team that is in no group) does not
+// reconcile with the canonical fixture graph and is withheld whole; nothing is guessed.
+async function groupFixtureCheck(store, groups, played) {
+  const tg = groups.filter(g => g.group_type === 'group');
+  if (!tg.length) return new Map();
+  const members = [];
+  for (const part of chunkArr(tg.map(g => g.id), 100)) members.push(...await store.select('soccer_season_group_members', { columns: ['group_id', 'team_id'], in: { group_id: part } }));
+  const groupOf = new Map(members.map(m => [m.team_id, m.group_id]));
+  const bad = new Map();
+  for (const m of played) {
+    const gh = groupOf.get(m.home_team_id); const ga = groupOf.get(m.away_team_id);
+    if (gh && gh === ga) continue;
+    for (const g of [gh, ga].filter(Boolean)) bad.set(g, (bad.get(g) || 0) + 1);
+  }
+  return bad; // group id -> fixtures that do not reconcile
+}
+
 // One verified group table: the provider's rows in official order, with every count taken from
 // our canonical recomputation, or no rows at all when any count disagrees.
 function verifiedGroupRows(source, byId, teams) {
@@ -596,9 +666,11 @@ export async function table(store, q) {
     for (const part of chunkArr(groups.map(g => g.id), 100)) all.push(...await store.select('soccer_source_standings', { columns: ['group_id', ...STANDING_COLS], eq: { provider: 'espn' }, in: { group_id: part } }));
     const teams = await teamsById(store, all.map(s => s.team_id));
     const expand = q.expand === 'groups';
+    const crossing = await groupFixtureCheck(store, groups, valid);
     const out = groups.map(g => {
       const source = all.filter(s => s.group_id === g.id).sort((a, b) => (a.rank ?? 999) - (b.rank ?? 999));
       const { check, rows } = verifiedGroupRows(source, byId, teams);
+      if (crossing.has(g.id)) return { ...groupMeta(g), teams: source.length, verified: false, withheld_reason: `${crossing.get(g.id)} group-stage fixture(s) do not reconcile with this group's membership`, ...(expand ? { rows: [] } : {}) };
       return { ...groupMeta(g), teams: source.length, verified: check.verified, ...(check.verified ? {} : { withheld_reason: source.length ? 'published standings disagree with canonical results' : 'no published standings stored yet' }), ...(expand ? { rows } : {}) };
     });
     const tiers = [];
@@ -618,7 +690,9 @@ export async function table(store, q) {
     const source = (await store.select('soccer_source_standings', { columns: STANDING_COLS, eq: { group_id: g.id, provider: 'espn' } }))
       .sort((a, b) => (a.rank ?? 999) - (b.rank ?? 999));
     const teams = await teamsById(store, source.map(s => s.team_id));
-    const { check, rows } = verifiedGroupRows(source, byId, teams);
+    const crossing = await groupFixtureCheck(store, [g], valid);
+    const vr = verifiedGroupRows(source, byId, teams);
+    const { check, rows } = crossing.has(g.id) ? { check: { verified: false, mismatches: [{ reason: `${crossing.get(g.id)} group-stage fixture(s) do not reconcile with this group's membership` }] }, rows: [] } : vr;
     const kind = g.group_type === 'league_phase' ? 'league phase' : g.group_type === 'group' ? 'group' : 'conference';
     return E({
       competition: c.slug, season: season.label, group: groupMeta(g), groups: groupList, view: g.group_key,
@@ -628,7 +702,7 @@ export async function table(store, q) {
       source: 'pbe', semantics: `${g.name}: ${kind} membership, position (the competition's official tie-breakers as applied by the provider) and zone notes come from ESPN's published standings (secondary source); every played/won/drawn/lost/goals/points figure is verified against the table PropBetEdge computes from its own canonical results before anything is shown.${check.verified ? '' : ' Verification failed, so no table is shown.'}`,
       source_updated_at: maxTs([...valid.map(x => x.updated_at), ...source.map(s => s.observed_at)]), attribution: [...new Set([...valid.map(x => x.result_provider), 'Standings: ESPN (secondary source)'])],
       coverage: check.verified ? COVERAGE.OK : COVERAGE.UNAVAILABLE,
-      coverage_notes: check.verified ? [] : [source.length ? `Published standings disagree with canonical results for ${new Set(check.mismatches.map(m => m.team_id).filter(Boolean)).size} team(s); the table is withheld until they agree.` : 'No published standings stored for this group yet.'],
+      coverage_notes: check.verified ? [] : crossing.has(g.id) ? [check.mismatches[0].reason + '; the table is withheld.'] : [source.length ? `Published standings disagree with canonical results for ${new Set(check.mismatches.map(m => m.team_id).filter(Boolean)).size} team(s); the table is withheld until they agree.` : 'No published standings stored for this group yet.'],
     });
   }
   const teams = await teamsById(store, computed.map(r => r.team_id));

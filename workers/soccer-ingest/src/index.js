@@ -52,8 +52,17 @@ function context(env) {
   return { store, storage: r2Storage(env.SOCCER_SOURCE), registry, reviewed, areas, kv: env.SOCCER_STATE || null };
 }
 
+// History lanes: `espn_<competition>@<year>` runs the SAME ESPN lane pinned to one past season (admin runs only;
+// never in the cron rotation). Its cursor is its own lane state, so it never disturbs the current-season lane.
+export function historyLane(name) {
+  const m = String(name || '').match(/^(espn_[a-z_]+)@(\d{4})$/);
+  const l = m && ESPN_LANES.find(x => x.name === m[1]);
+  return l ? { lane: l, year: Number(m[2]) } : null;
+}
+
 export async function runLane(env, name, { force = false, now = Date.now(), budget = undefined } = {}) {
-  const fn = LANES[name];
+  const hist = historyLane(name);
+  const fn = LANES[name] || (hist ? ctx => runEspnLane(hist.lane, { ...ctx, year: hist.year }) : null);
   if (!fn) throw new Error(`unknown lane ${name}`);
   let state = await readLane(env.SOCCER_STATE, name);
   if (!force && inBackoff(state, now)) return { lane: name, skipped: 'backoff', backoff_until: state.backoff_until };
