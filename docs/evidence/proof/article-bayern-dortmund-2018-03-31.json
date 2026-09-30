@@ -56,7 +56,7 @@
         "key": "method",
         "heading": "Evidence and method",
         "paragraphs": [
-          "Every figure above comes from the frozen evidence packet for this match (soccer-packet/1.0.0, hash 72b8b1958999). Counts are derived from the event ledger (pbe-counts/1.0.0); shot distance is euclidean distance to goal centre on the 105x68 canonical pitch. Not reported: possession_pct (no possession clock in source); xg (PBE xG not validated); formation (not stated by source); injuries (no legitimate source ingested); quotes (none sourced).",
+          "Every figure above comes from the frozen evidence packet for this match (soccer-packet/1.0.0, hash f3b51d2eb5ea). Counts are derived from the event ledger (pbe-counts/1.0.0); shot distance is euclidean distance to goal centre on the 105x68 canonical pitch. Not reported: possession_pct (no possession clock in source); xg (PBE xG not validated); formation (not stated by source); injuries (no legitimate source ingested); quotes (none sourced).",
           "Event data: Pappalardo et al. (2019), Wyscout public soccer-logs dataset (figshare 4415000), CC BY 4.0",
           "Fixtures/results: OpenLigaDB (openligadb.de), ODbL"
         ]

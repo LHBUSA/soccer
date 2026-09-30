@@ -48,12 +48,20 @@
       "destination": "https://soccer-api.sales-fd3.workers.dev/v1/matches/:id/cast"
     },
     {
+      "source": "/api/soccer/matches/:id/analyzer-preview",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/matches/:id/analyzer-preview"
+    },
+    {
       "source": "/api/soccer/matches/:id",
       "destination": "https://soccer-api.sales-fd3.workers.dev/v1/matches/:id"
     },
     {
       "source": "/api/soccer/teams/:slug/dna",
       "destination": "https://soccer-api.sales-fd3.workers.dev/v1/teams/:slug/dna"
+    },
+    {
+      "source": "/api/soccer/teams/:slug/history",
+      "destination": "https://soccer-api.sales-fd3.workers.dev/v1/teams/:slug/history"
     },
     {
       "source": "/api/soccer/teams/:slug",

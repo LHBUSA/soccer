@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-09-30",
+  "mode": "local PGlite rehearsal; no production writes",
+  "competition": "fifa-world-cup",
+  "source": "ESPN Core secondary source; existing owner approval",
+  "configured_but_enabled": false,
+  "budget": 1200,
+  "observed_progress": {
+    "first_run_requests": 150,
+    "fixture_identities": 32,
+    "matches_detailed": 1
+  },
+  "result": "stopped",
+  "stop_reason": "Non-JSON ESPN Core response while resolving a season athlete referenced by a World Cup match.",
+  "endpoint_path": "/seasons/2026/athletes/274277",
+  "http_status": null,
+  "response_body_archived": false,
+  "canonical_production_rows_written": 0,
+  "registry_lane_enabled": false,
+  "interpretation": "The source path is not certified. Do not enable or publish World Cup match data from this lane until the non-JSON response is characterized and the complete identity, detail and group standings rehearsal passes."
+}

@@ -9,11 +9,13 @@ import { UPSTREAM } from '../server/upstream.js';
 export { UPSTREAM };
 const ROUTES = [
   /^health$/, /^coverage$/, /^competitions$/, /^competitions\/[a-z0-9-]{1,80}$/,
-  /^matches$/, /^matches\/[0-9a-f-]{36}$/, /^teams\/[a-z0-9-]{1,120}$/, /^players\/[a-z0-9-]{1,120}$/,
+  /^matches$/, /^matches\/[0-9a-f-]{36}$/, /^matches\/[0-9a-f-]{36}\/analyzer-preview$/, /^teams\/[a-z0-9-]{1,120}$/, /^players\/[a-z0-9-]{1,120}$/,
   /^teams\/[a-z0-9-]{1,120}\/dna$/, /^players\/[a-z0-9-]{1,120}\/dna$/,
+  /^teams\/[a-z0-9-]{1,120}\/history$/,
   /^table$/, /^news$/, /^live$/, /^matches\/[0-9a-f-]{36}\/cast$/, /^players$/, /^news\/[a-z0-9-]{1,200}$/, /^media\/[0-9a-f]{64}$/, /^videos$/,
   /^algo\/(picks|record|research)$/,
   /^pro\/(access|catalog|board)$/, /^pro\/matches\/[0-9a-f-]{36}$/, /^pro\/teams\/[a-z0-9-]{1,120}$/,
+  /^pro\/matches\/[0-9a-f-]{36}\/analyzer$/,
 ];
 // Soccer Pro: the ONLY requests that carry a credential upstream, and only the network session cookie.
 export const isProPath = path => /^pro\//.test(path);

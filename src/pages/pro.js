@@ -8,6 +8,7 @@ import { proAccess, proGet } from '../lib/pro.js';
 import { competitionMark, errorState, sectionHead, sourcePanel, teamMark } from '../components/ui.js';
 import { openAccount } from '../components/account.js';
 import { offerCard } from '../components/offer.js';
+import { mountAnalyzer } from '../components/analyzer.js';
 
 const pct = v => (v === null || v === undefined ? '—' : `${Math.round(v * 100)}%`);
 
@@ -113,15 +114,13 @@ export const proMatch = {
     return `<section class="hero compact pro-hero"><div class="wrap"><p class="kicker gold">PRO MATCH CENTER · ${esc(dateLong(x.match.kickoff_at))}</p>
       <h1 class="display">${esc(x.match.home?.name)} v ${esc(x.match.away?.name)}</h1>${stateStrip(d.access)}</div></section>
       <section class="canvas"><div class="wrap">
-        ${sectionHead('MATCHUP LAB', lab.rating_label)}
-        ${lab.rating ? `<div class="pmc-rating"><span>${teamMark(x.match.home, 'md')}<b>${num(lab.rating.home)}</b></span><span class="muted">${num(lab.rating.components_used)} of ${num(lab.rating.components_total)} components with data</span><span><b>${num(lab.rating.away)}</b>${teamMark(x.match.away, 'md')}</span></div>` : '<p class="muted">Not enough canonical history for a rating.</p>'}
-        <div class="tablewrap" tabindex="0" role="region" aria-label="Matchup components"><table class="ltable pmc-table"><thead><tr><th scope="col">Component</th><th scope="col">${esc(x.match.home?.short_name || 'Home')}</th><th scope="col">${esc(x.match.away?.short_name || 'Away')}</th><th scope="col">Edge</th><th class="wide" scope="col">Basis</th></tr></thead>
-        <tbody>${join(lab.components, c => `<tr><th scope="row">${esc(c.label)}</th><td>${c.home === null ? '—' : num(c.home, { dp: 2 })}</td><td>${c.away === null ? '—' : num(c.away, { dp: 2 })}</td><td>${c.edge === null ? '—' : num(c.edge, { dp: 2 })}</td><td class="wide muted">${esc(c.basis)}</td></tr>`)}</tbody></table></div>
+        <div data-analyzer>${x.analyzer_available ? `${sectionHead('PBE MATCHUP ANALYZER', 'Preparing the evidence map')}<div class="module-placeholder" role="status" aria-label="Loading matchup analyzer"><div class="sk-line"></div><div class="sk-line"></div></div>` : ''}</div>
+        ${sectionHead('LOAD CONTEXT', 'Fatigue, rotation and XI continuity')}
         ${when(x.rest_differential, () => `${sectionHead('REST DIFFERENTIAL', `${num(x.rest_differential.home_days, { dp: 1 })} v ${num(x.rest_differential.away_days, { dp: 1 })} days`)}`)}
         <div class="two">${sideBlock(x.match.home?.name, x.home)}${sideBlock(x.match.away?.name, x.away)}</div>
         ${sectionHead('MODEL LAB', x.model_lab.label)}<p class="muted">${esc(x.model_lab.detail)}</p>
         ${sourcePanel(d.res.body.meta, { title: 'METHOD' })}
       </div></section>`;
   },
-  mount(root) { root.querySelectorAll('[data-account-open]').forEach(b => b.addEventListener('click', () => openAccount())); },
+  mount(root, d, ctx) { root.querySelectorAll('[data-account-open]').forEach(b => b.addEventListener('click', () => openAccount())); if (d.res?.status === 200) mountAnalyzer(root, d, ctx); },
 };

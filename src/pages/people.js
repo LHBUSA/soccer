@@ -8,6 +8,7 @@ import { portraitOf } from '../components/media.js';
 import { pitchSvg, validShots } from '../components/pitch.js';
 import { mountPlayerDna, mountTeamDna } from '../components/dna.js';
 import { mountRelatedNews } from '../components/related.js';
+import { mountHistory } from '../components/history.js';
 
 function recordCard(r) {
   const f = compMeta(r.competition?.slug);
@@ -74,7 +75,9 @@ export const team = {
           ${when((t.upcoming || []).length > 1, () => `<p class="nrail-h more">THEN</p>${matchGrid(t.upcoming.slice(1, 3))}`)}</div>
         <div>${sectionHead('RESULTS', national ? 'Recent matches' : 'Recent results')}${matchGrid((t.recent || []).slice(0, 4)) || '<p class="muted">No finished matches stored for this team.</p>'}</div>
       </div>
-      ${when(recs.length, () => `${sectionHead('RECORD', 'This season')}<div class="rgrid">${join(t.records, recordCard)}</div>`)}
+      ${sectionHead('TEAM HISTORY', 'The seasons behind the team')}
+      ${when(recs.length, () => `<p class="kicker">CURRENT SEASON SNAPSHOT</p><div class="rgrid">${join(t.records, recordCard)}</div>`)}
+      <div data-team-history class="history-slot" aria-live="polite"><div class="module-placeholder" role="status" aria-label="Loading team history"><div class="sk-line short"></div><div class="sk-line"></div></div></div>
       <div data-team-dna class="dna-slot" aria-live="polite"></div>
       ${sectionHead(national ? 'SQUAD' : 'PLAYERS OBSERVED IN SOURCE DATA', obs.players.length ? `${num(obs.players.length)} players · ${num(obs.lineups_counted)} sourced lineups` : 'No sourced lineups')}
       ${obs.players.length ? `<div class="sq-grid">${join(obs.players, squadCard)}</div>
@@ -84,7 +87,7 @@ export const team = {
       ${sourcePanel(d.env.meta)}
     </div></section>`;
   },
-  mount(root, d) { mountTeamDna(root, d.env.data.slug); mountRelatedNews(root, { team: d.env.data.slug }, { title: 'Latest stories about this club' }); },
+  mount(root, d, ctx) { mountHistory(root, d.env, ctx); mountTeamDna(root, d.env.data.slug); mountRelatedNews(root, { team: d.env.data.slug }, { title: 'Latest stories about this club' }); },
 };
 
 const STAT_COLS = [

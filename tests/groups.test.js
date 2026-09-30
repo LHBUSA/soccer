@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import { groupKey, parentFromCode, scopedNote } from '../workers/soccer-ingest/src/espn-standings.js';
 import { applyMigrations, openPglite } from '../workers/soccer-ingest/src/store-pglite.js';
 import * as R from '../workers/soccer-api/src/routes.js';
+import { teamHistory } from '../workers/soccer-api/src/history.js';
 
 test('group keys, tier parents from the source code, tier-scoped notes', () => {
   assert.equal(groupKey({ abbreviation: 'Group A1' }, 'group'), 'a1');
@@ -72,4 +73,9 @@ test('grouped tournament table: no overall ranking, per-group verification, tier
   assert.deepEqual([mt.data.records[0].position, mt.data.records[0].group.key, mt.data.records[0].record.points], [null, 'd1', 3]); // D1 withheld -> no position, record still true
   const comp = await R.competition(store, 'uefa-nations-league');
   assert.equal(comp.data.current.team_kind, 'national');
+  const history = await teamHistory(store, 'france');
+  assert.equal(history.data.seasons[0].table_finish, null);
+  assert.equal(history.data.seasons[0].group_position.group, 'a1');
+  assert.equal(history.data.seasons[0].group_position.position, 1);
+  const held = await teamHistory(store, 'malta'); assert.equal(held.data.seasons[0].group_position, null);
 });

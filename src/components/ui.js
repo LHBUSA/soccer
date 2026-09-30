@@ -22,6 +22,8 @@ export const sectionHead = (kicker, title, extra = '') =>
 export const loading = (label = 'Loading intelligence') =>
   `<div class="state loading" role="status" aria-live="polite"><span class="pulse"></span><span>${esc(label)}…</span></div>`;
 
+export const routeSkeleton = (page = '') => `<section class="hero compact route-skeleton" role="status" aria-label="Loading ${esc(page)}"><div class="wrap"><div class="sk-line short"></div><div class="sk-line heading"></div><div class="sk-line"></div></div></section><section class="canvas route-skeleton" aria-hidden="true"><div class="wrap sk-grid"><div class="sk-card"></div><div class="sk-card"></div></div></section>`;
+
 export const empty = (title, body) => `<div class="state empty"><p class="state-title">${esc(title)}</p>${when(body, () => `<p>${esc(body)}</p>`)}</div>`;
 
 export const errorState = (err, retry = true) => `<div class="state error" role="alert">

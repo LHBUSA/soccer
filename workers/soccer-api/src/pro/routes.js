@@ -11,6 +11,8 @@ import { FATIGUE_VERSION, playerLoad, rotationPressure, squadStructure, teamFati
 import { MATCHUP_VERSION, matchup, teamProfile } from './matchup.js';
 import { compSlugs, matchupGames, playerApps, teamWindow, teamXis } from './load.js';
 import { approvedMedia } from '../routes.js';
+import { historyData } from '../history.js';
+import { analyzer } from './analyzer.js';
 
 const API_VERSION = 'soccer-pro/1.0.0';
 const DAY = 864e5;
@@ -28,7 +30,7 @@ export const MODEL_LAB = {
 export const MODULES = [
   { key: 'fatigue', name: 'Fatigue Intelligence', evaluates: ['days since the last match', 'matches in 7 / 14 / 21 days', 'short-rest turnarounds', 'home/away sequence', 'competition switches', 'club → national team → club return load', 'player minutes 7 / 14 / 21 days, starts, consecutive starts, 75+ and 90+ appearances'], outputs: ['TEAM FATIGUE INDEX', 'XI LOAD'] },
   { key: 'rotation', name: 'Rotation / XI Stability', evaluates: ['starting-XI continuity', 'lineup churn', 'top-11 / top-14 minute concentration', 'rotation depth', 'rest differential'], outputs: ['XI STABILITY', 'ROTATION PRESSURE', 'REST DIFFERENTIAL'] },
-  { key: 'matchup', name: 'Matchup Lab', evaluates: ['attack edge', 'defensive edge', 'shot profile (inside the box, channels) where located', 'set pieces where the source marks them', 'form', 'rest', 'XI stability', 'goal timing and home/away splits'], outputs: ['PBE MATCHUP RATING (descriptive, not a win probability)'] },
+  { key: 'matchup', name: 'Matchup Analyzer', evaluates: ['compatible recent results and form', 'paired current-season team statistics', 'rest and schedule load', 'sourced XI continuity', 'same-competition historical baselines', 'canonical head-to-head meetings'], outputs: ['PBE MATCHUP ANALYZER (descriptive, not a prediction)'] },
   { key: 'model_lab', name: 'Model Lab', evaluates: ['prospective model research'], outputs: [MODEL_LAB.label] },
 ];
 
@@ -96,9 +98,59 @@ export async function proMatch(store, id, access) {
     as_of: asOf, versions: { fatigue: FATIGUE_VERSION, matchup: MATCHUP_VERSION },
     home: side(H, ph), away: side(A, pa),
     rest_differential: restH === null || restA === null || restH === undefined || restA === undefined ? null : { home_days: restH, away_days: restA, difference: Math.round((restH - restA) * 100) / 100 },
-    matchup_lab: lab, model_lab: MODEL_LAB,
+    matchup_lab: lab, model_lab: MODEL_LAB, analyzer_available: true,
   }, { source: 'pbe', semantics: `${WORKLOAD_NOTE} Matchup Lab is descriptive: the PBE MATCHUP RATING leans from named components and is not a win probability. Everything is computed as of ${asOf} (no information after kickoff).`,
     coverage: ph.matches && pa.matches ? COVERAGE.OK : COVERAGE.PARTIAL, coverage_notes: [ph.matches ? null : 'Home side: no finished matches in the window.', pa.matches ? null : 'Away side: no finished matches in the window.'].filter(Boolean) }) };
+}
+
+export async function proAnalyzer(store, id, access) {
+  if (!access.granted) return denied(access);
+  const [m] = await store.select('soccer_matches', { columns: ['id', 'season_id', 'competition_id', 'kickoff_at', 'home_team_id', 'away_team_id'], eq: { id }, limit: 1 });
+  if (!m) return { status: 404, body: { error: 'match not found' } };
+  const asOf = new Date(Math.min(Date.now(), Date.parse(m.kickoff_at) - 60000)).toISOString();
+  const comps = await compSlugs(store);
+  const [[season], stages, full, H, A, hh, aa, meetingsH, meetingsA] = await Promise.all([
+    store.select('soccer_seasons', { columns: ['label'], eq: { id: m.season_id }, limit: 1 }),
+    store.select('soccer_stages', { columns: ['id', 'stage_type'], eq: { season_id: m.season_id } }),
+    store.select('soccer_matches', { columns: ['id', 'kickoff_at', 'stage_id', 'home_team_id', 'away_team_id', 'home_score', 'away_score', 'status'], eq: { competition_id: m.competition_id, season_id: m.season_id, status: 'finished' }, lte: { kickoff_at: asOf }, order: 'kickoff_at.desc,id.asc' }),
+    teamBlock(store, m.home_team_id, asOf, comps), teamBlock(store, m.away_team_id, asOf, comps),
+    historyData(store, m.home_team_id, { asOf }), historyData(store, m.away_team_id, { asOf }),
+    ...[[m.home_team_id, m.away_team_id], [m.away_team_id, m.home_team_id]].map(([home, away]) => store.select('soccer_matches', { columns: ['id', 'competition_id', 'kickoff_at', 'home_team_id', 'away_team_id', 'home_score', 'away_score', 'status'], eq: { home_team_id: home, away_team_id: away, status: 'finished' }, lte: { kickoff_at: asOf }, order: 'kickoff_at.desc', limit: 12 })),
+  ]);
+  const league = stages.filter(s => s.stage_type === 'league').map(s => s.id);
+  const done = full.filter(x => league.includes(x.stage_id) && Date.parse(x.kickoff_at) < Date.parse(asOf) && x.home_score !== null && x.away_score !== null);
+  const homeSeason = done.filter(x => x.home_team_id === m.home_team_id || x.away_team_id === m.home_team_id), awaySeason = done.filter(x => x.home_team_id === m.away_team_id || x.away_team_id === m.away_team_id);
+  const [homeGames, awayGames] = await Promise.all([matchupGames(store, m.home_team_id, homeSeason, 10), matchupGames(store, m.away_team_id, awaySeason, 10)]);
+  const h2h = [...meetingsH, ...meetingsA].sort((a,b) => Date.parse(b.kickoff_at)-Date.parse(a.kickoff_at)).slice(0,12).map(x => ({ ...x, competition: comps.get(x.competition_id) || null }));
+  const data = analyzer({ homeGames, awayGames, homeSeason, awaySeason, homeId: m.home_team_id, awayId: m.away_team_id, homeLoad: H.load, awayLoad: A.load, homeSquad: H.squad, awaySquad: A.squad, homeHistory: hh, awayHistory: aa, competition: comps.get(m.competition_id), season: season?.label, h2h, asOf });
+  return { status: 200, body: E({ ...data, home_id: m.home_team_id, away_id: m.away_team_id }, { source: 'pbe', semantics: data.rating_label + ' ' + data.formula, attribution: [...hh.attribution, ...aa.attribution], coverage: data.rating ? COVERAGE.OK : COVERAGE.PARTIAL }) };
+}
+
+// A small public preview shares only three evidence rows; ratings, full edge maps,
+// XI/load detail and historical context remain All Access. This does not call MODEL_LAB.
+export async function publicAnalyzerPreview(store, id) {
+  const [m] = await store.select('soccer_matches', { columns: ['id','season_id','competition_id','kickoff_at','home_team_id','away_team_id'], eq: { id }, limit: 1 });
+  if (!m) return { status: 404, body: { error: 'match not found' } };
+  const asOf = new Date(Math.min(Date.now(), Date.parse(m.kickoff_at) - 60000)).toISOString();
+  const [seasonRows, comps, finished] = await Promise.all([
+    store.select('soccer_seasons', { columns: ['label'], eq: { id: m.season_id }, limit: 1 }),
+    compSlugs(store),
+    store.select('soccer_matches', { columns: ['id','kickoff_at','home_team_id','away_team_id','home_score','away_score','status'], eq: { competition_id: m.competition_id, season_id: m.season_id, status: 'finished' }, lte: { kickoff_at: asOf }, order: 'kickoff_at.desc,id.asc' }),
+  ]);
+  const done = finished.filter(x => Number.isInteger(x.home_score) && Number.isInteger(x.away_score));
+  const [homeGames, awayGames] = await Promise.all([
+    matchupGames(store, m.home_team_id, done.filter(x => x.home_team_id === m.home_team_id || x.away_team_id === m.home_team_id), 10),
+    matchupGames(store, m.away_team_id, done.filter(x => x.home_team_id === m.away_team_id || x.away_team_id === m.away_team_id), 10),
+  ]);
+  const comp = comps.get(m.competition_id) || null;
+  const d = analyzer({ homeGames, awayGames, homeId: m.home_team_id, awayId: m.away_team_id, competition: comp, season: seasonRows[0]?.label, asOf });
+  const components = [...d.components].sort((a, b) => Math.abs(b.edge) - Math.abs(a.edge)).slice(0, 3).map(c => ({
+    label: c.label, unit: c.unit, home: c.home, away: c.away, edge: c.edge, sample: c.sample,
+    coverage: c.coverage, basis: c.basis, explanation: c.explanation,
+  }));
+  return { status: 200, body: E({ competition: d.competition, season: d.season, as_of: d.as_of, coverage: d.coverage, components }, {
+    source: 'pbe', semantics: 'Selected deterministic canonical matchup facts. No composite rating, probability, prediction or private model output.', coverage: d.coverage.label,
+  }) };
 }
 
 export async function proBoard(store, access) {
@@ -135,6 +187,8 @@ export async function handlePro(req, env, store, path) {
   const access = await proAccess(req, env);
   if (path === 'access') return { status: 200, body: E({ membership: access.membership, check: access.check, pro: access.granted }, { source: 'propbetedge-auth', semantics: 'The Soccer membership of this reader, decided server-side by the PropBetEdge network auth (All Access or owner = Pro).' }) };
   if (path === 'board') return proBoard(store, access);
+  const analyzerPath = path.match(/^matches\/([0-9a-f-]{36})\/analyzer$/);
+  if (analyzerPath) return proAnalyzer(store, analyzerPath[1], access);
   let m = path.match(/^matches\/([0-9a-f-]{36})$/);
   if (m) return proMatch(store, m[1], access);
   m = path.match(/^teams\/([a-z0-9-]{1,120})$/);

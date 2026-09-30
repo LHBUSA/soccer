@@ -26,15 +26,30 @@ export function pickFeatured(x) {
 }
 
 export async function load() {
-  const [comps, cov, news, live, leadersA, leadersB] = await Promise.all([
-    settle(api('competitions')), settle(api('coverage')), settle(api('news', { limit: 30 })), settle(api('live', {}, { fresh: true })),
-    settle(api('players', { competition: 'premier-league', sort: 'goal_contributions_per90', limit: 4 })),
-    settle(api('players', { competition: 'mls', sort: 'goal_contributions_per90', limit: 4 })),
-  ]);
+  // The shell starts this same live read; api() coalesces it. No leader/news barrier.
+  const live = await settle(api('live', {}, { fresh: true }));
   const feat = pickFeatured(live.status === 'fulfilled' ? live.value.data : null);
-  const detail = feat ? await settle(api(`matches/${feat.m.id}`)) : null;
-  return { comps, cov, news, live, leadersA, leadersB, feat, detail };
+  return { ...initialData(), live, feat };
 }
+
+const initialData = () => ({ comps: { status: 'pending' }, cov: null, news: null, live: null, leadersA: null, leadersB: null, feat: null, detail: null });
+export const initial = () => render(initialData());
+
+export function mount(root, d, { isCurrent = () => true } = {}) {
+  const put = (key, html) => { const slot = root.querySelector(`[data-home="${key}"]`); if (isCurrent() && slot?.isConnected) { slot.innerHTML = html; slot.classList.remove('module-pending'); } };
+  const loadModule = (key, promise, view) => promise.then(env => put(key, view(env)), err => put(key, errorState(err, false)));
+  // Independent modules commit individually, never re-render the hero or already visible data.
+  loadModule('leagues', api('competitions'), env => coverageCards(env, null));
+  loadModule('depth', api('coverage'), dataDepth);
+  loadModule('news', api('news', { limit: 30 }), env => env.data.length ? `${sectionHead('NEWSROOM', 'Top story and the latest from the desks', link('/news', 'All news →', 'sec-link'))}${newsDesk(env)}` : empty('No published stories'));
+  loadModule('leaders-a', api('players', { competition: 'premier-league', sort: 'goal_contributions_per90', limit: 4 }), env => leaderBlock(env, 'premier-league'));
+  loadModule('leaders-b', api('players', { competition: 'mls', sort: 'goal_contributions_per90', limit: 4 }), env => leaderBlock(env, 'mls'));
+  if (d.feat) loadModule('featured', api(`matches/${d.feat.m.id}`), env => featured({ ...d, detail: { status: 'fulfilled', value: env } }));
+  else if (d.live?.status === 'rejected') put('featured', errorState(d.live.reason, false));
+  else put('featured', empty('No covered replay or live match available'));
+}
+
+const placeholder = label => `<div class="module-placeholder" role="status" aria-label="Loading ${esc(label)}"><div class="sk-line short"></div><div class="sk-line"></div></div>`;
 
 const val = r => (r?.status === 'fulfilled' ? r.value : null);
 
@@ -157,17 +172,17 @@ export function render(d) {
       <div>
         <p class="kicker gold">PROPBETEDGE · SOCCER INTELLIGENCE</p>
         <h1 class="display">Soccer intelligence.<br><span>The match is only the start.</span></h1>
-        <p class="lede">Live match intelligence, Player DNA, event maps, team profiles and original data-backed soccer news across MLS, Premier League, Champions League and Bundesliga.</p>
+        <p class="lede">Live match intelligence, Player DNA, event maps, team profiles and original data-backed soccer news across club and international football.</p>
         <p class="hero-cta"><span class="cta-primary">${link('/pbecast', '▶ PBECAST', 'btn gold btn-hero')}</span><span class="cta-secondary">${link('/matches', 'MATCHES', 'btn ghost')}${link('/players', 'PLAYER DNA', 'btn ghost')}${link('/news', 'NEWS', 'btn ghost')}</span></p>
       </div>
     </div>
   </section>
-  ${featured(d)}
-  ${news?.data?.length ? `<section class="canvas"><div class="wrap">${sectionHead('NEWSROOM', 'Top story and the latest from the desks', link('/news', 'All news →', 'sec-link'))}${newsDesk(news)}</div></section>` : ''}
+  <div data-home="featured" class="home-featured">${featured(d) || placeholder('featured match')}</div>
+  <section class="canvas"><div class="wrap home-news module-pending" data-home="news">${news?.data?.length ? `${sectionHead('NEWSROOM', 'Top story and the latest from the desks', link('/news', 'All news →', 'sec-link'))}${newsDesk(news)}` : placeholder('newsroom')}</div></section>
   <section class="canvas alt"><div class="wrap">
-    ${sectionHead('LEAGUES', 'Four competitions, one graph')}
-    ${d.comps.status === 'rejected' ? errorState(d.comps.reason) : coverageCards(comps, cov)}
+    ${sectionHead('LEAGUES', 'Club and international competitions, one graph')}
+    <div data-home="leagues" class="home-leagues module-pending">${d.comps.status === 'pending' ? placeholder('competitions') : d.comps.status === 'rejected' ? errorState(d.comps.reason) : coverageCards(comps, cov)}</div>
   </div></section>
-  ${disc.length ? `<section class="canvas"><div class="wrap">${sectionHead('PLAYER DNA', 'Rate leaders inside each competition', link('/players', 'Player directory →', 'sec-link'))}<div class="dnadisc-grid">${disc.join('')}</div><p class="caveat">Leaders among players with at least 450 nominal minutes in that competition-season; the percentile ranks against that group. There is no cross-competition ranking.</p></div></section>` : ''}
-  ${cov ? dataDepth(cov) : ''}`;
+  <section class="canvas"><div class="wrap">${sectionHead('PLAYER DNA', 'Rate leaders inside each competition', link('/players', 'Player directory →', 'sec-link'))}<div class="dnadisc-grid"><div data-home="leaders-a" class="home-leaders module-pending">${disc[0] || placeholder('Premier League leaders')}</div><div data-home="leaders-b" class="home-leaders module-pending">${disc[1] || placeholder('MLS leaders')}</div></div><p class="caveat">Leaders among players with at least 450 nominal minutes in that competition-season; the percentile ranks against that group. There is no cross-competition ranking.</p></div></section>
+  <div data-home="depth" class="home-depth module-pending">${cov ? dataDepth(cov) : placeholder('data coverage')}</div>`;
 }

@@ -31,9 +31,9 @@ export function teamProfile(games) {
     matches_with_stats: withStats.length, matches_with_located_shots: games.filter(g => (g.shots || []).length).length,
     goals_for_pg: n ? r2(avg(games.map(g => g.gf))) : null, goals_against_pg: n ? r2(avg(games.map(g => g.ga))) : null,
     shots_for_pg: withStats.length ? r2(avg(withStats.map(g => g.stats.shots))) : null,
-    shots_on_target_for_pg: withStats.length ? r2(avg(withStats.map(g => g.stats.shots_on_target ?? 0))) : null,
+    shots_on_target_for_pg: r2(avg(games.filter(g => Number.isFinite(g.stats?.shots_on_target)).map(g => g.stats.shots_on_target))),
     shots_against_pg: withOpp.length ? r2(avg(withOpp.map(g => g.opp_stats.shots))) : null,
-    shots_on_target_against_pg: withOpp.length ? r2(avg(withOpp.map(g => g.opp_stats.shots_on_target ?? 0))) : null,
+    shots_on_target_against_pg: r2(avg(games.filter(g => Number.isFinite(g.opp_stats?.shots_on_target)).map(g => g.opp_stats.shots_on_target))),
     located_shots: located.length,
     inside_box_share: located.length ? r2(located.filter(inBox).length / located.length) : null,
     channels: located.length ? { left: r2(ch.left / located.length), centre: r2(ch.centre / located.length), right: r2(ch.right / located.length) } : null,
@@ -56,7 +56,7 @@ export function matchup(home, away, { homeFatigue = null, awayFatigue = null, ho
   const exp = (att, def) => (att === null || def === null ? null : (att + def) / 2); // shots a side can expect: its output vs the other's concession
   const comps = [
     { key: 'attack_edge', label: 'Attack edge', weight: 0.2, home: exp(H.shots_for_pg, A.shots_against_pg), away: exp(A.shots_for_pg, H.shots_against_pg), scale: 6, basis: 'shots per match vs the opponent\'s shots conceded per match' },
-    { key: 'defensive_edge', label: 'Defensive edge', weight: 0.2, home: A.goals_for_pg === null ? null : -(H.goals_against_pg ?? 0), away: H.goals_for_pg === null ? null : -(A.goals_against_pg ?? 0), scale: 1.2, basis: 'goals conceded per match (fewer is better)' },
+    { key: 'defensive_edge', label: 'Defensive edge', weight: 0.2, home: H.goals_against_pg === null ? null : -H.goals_against_pg, away: A.goals_against_pg === null ? null : -A.goals_against_pg, scale: 1.2, basis: 'goals conceded per match (fewer is better)' },
     { key: 'shot_profile_edge', label: 'Shot profile edge', weight: 0.15, home: H.inside_box_share, away: A.inside_box_share, scale: 0.25, basis: 'share of located shots taken inside the penalty area' },
     { key: 'set_piece_edge', label: 'Set-piece edge', weight: 0.05, home: H.set_piece_shots_pg, away: A.set_piece_shots_pg, scale: 3, basis: 'set-piece shots per located match (where the source marks the set piece)' },
     { key: 'form_edge', label: 'Form edge', weight: 0.15, home: H.ppg_last5, away: A.ppg_last5, scale: 1.5, basis: 'points per match, last five' },

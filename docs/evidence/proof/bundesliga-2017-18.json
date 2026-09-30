@@ -1,11 +1,21 @@
 {
   "proof": "bundesliga-2017-18",
-  "generated_at": "2026-09-27T13:57:47.732Z",
+  "generated_at": "2026-09-30T21:25:56.323Z",
   "engine": "PGlite (Postgres 17, WASM) running supabase/migrations/*",
   "migrations": [
     "20260927000100_soccer_core.sql",
     "20260927000200_soccer_events.sql",
-    "20260927000300_soccer_news.sql"
+    "20260927000300_soccer_news.sql",
+    "20260927000400_soccer_identity_attribute_corroborated.sql",
+    "20260927000500_soccer_entity_media.sql",
+    "20260928000600_soccer_completeness_groups_media_ledger.sql",
+    "20260928000700_soccer_model_shadow.sql",
+    "20260928000800_soccer_media_owner_identification.sql",
+    "20260929000900_soccer_official_video.sql",
+    "20260929001000_soccer_groups_generic_channel_scope.sql",
+    "20260929001100_soccer_news_openai_usage.sql",
+    "20260929001200_soccer_algo_picks.sql",
+    "20260929001300_soccer_news_openai_usage_routing.sql"
   ],
   "attribution": "Event data: Pappalardo et al. (2019), Wyscout public soccer-logs dataset (figshare 4415000), CC BY 4.0",
   "captures": [
@@ -177,7 +187,7 @@
   },
   "openligadb": {
     "summary": {
-      "capture_id": "40ac5fe6e5115854932110fd",
+      "capture_id": "e0e23bad6eadcf46bc99bd03",
       "sha256": "06bb193248f7419cdf8952d9849a2cb813003095b4f060a8994303e07217f6cf",
       "matches": 306,
       "finished": 306,
@@ -253,7 +263,7 @@
   },
   "current_season": {
     "summary": {
-      "capture_id": "1c2e8b2268b7650a36da7c73",
+      "capture_id": "72f2c68b22d93fd8cb7cdd8c",
       "sha256": "f458ec10905021323619f6a47da1970b23c9b2dc31314acf71fcb56ea6fa0fcb",
       "matches": 306,
       "finished": 36,
@@ -400,5 +410,5 @@
     "soccer_identity_queue": 101,
     "soccer_source_changes": 0
   },
-  "elapsed_s": 124
+  "elapsed_s": 174
 }

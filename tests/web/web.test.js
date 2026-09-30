@@ -19,6 +19,7 @@ import { API_BASE, apiPath } from '../../src/lib/api.js';
 test('proxy: only the public API routes, fixed upstream, known query keys, no traversal', () => {
   assert.equal(isAllowedPath('matches/5b0c8f3e-1111-5222-8333-444455556666'), true);
   assert.equal(isAllowedPath('competitions/bundesliga'), true);
+  assert.equal(isAllowedPath('matches/5b0c8f3e-1111-5222-8333-444455556666/analyzer-preview'), true);
   for (const bad of ['', '../etc/passwd', 'matches/not-a-uuid', 'https://evil.example', 'admin', 'v1/matches', 'teams/../x', 'runs']) assert.equal(isAllowedPath(bad), false, bad);
   const u = upstreamUrl('https://soccer.propbetedge.ai/api/soccer?path=matches&competition=bundesliga&token=x&limit=5');
   assert.equal(u.href, `${UPSTREAM}matches?competition=bundesliga&limit=5`);

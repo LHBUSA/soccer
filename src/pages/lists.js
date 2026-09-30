@@ -33,7 +33,7 @@ export const matches = {
     const comp = FEATURED.includes(q.get('competition')) ? q.get('competition') : '';
     const today = todayUtc();
     const params = view === 'today' ? { date: today } : view === 'upcoming' ? { status: 'scheduled', from: today, order: 'asc' } : { status: 'finished', to: today };
-    const [list, comps] = await Promise.allSettled([api('matches', { ...params, competition: comp || undefined, limit: 40 }), api('competitions')]);
+    const [list, comps] = await Promise.allSettled([api('matches', { ...params, competition: comp || undefined, season: q.get('season'), team: q.get('team'), limit: 40 }), api('competitions')]);
     return { view, comp, list, comps };
   },
   render(d) {

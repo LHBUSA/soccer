@@ -1,0 +1,5945 @@
+{
+  "base": "https://soccer.propbetedge.ai",
+  "at": "2026-09-30T14:50:15.072Z",
+  "definition": "Meaningful paint = first main heading/content DOM insertion (paint proxy); cold = fresh browser context, warm = same-context reload; edge cache not purged. Total includes progressive API modules.",
+  "rows": [
+    {
+      "route": "/",
+      "temperature": "cold",
+      "first_meaningful_paint_ms": 2322,
+      "fcp_ms": 1272,
+      "total_route_data_ms": 2773,
+      "slowest_endpoint": "/api/soccer/players?competition=mls&sort=goal_contributions_per90&limit=4",
+      "endpoint_ttfb_ms": 801,
+      "http_requests": 43,
+      "api_requests": 33,
+      "requests": [
+        {
+          "endpoint": "/api/soccer/live",
+          "start_ms": 987,
+          "ttfb_ms": 364,
+          "total_ms": 369,
+          "end_ms": 1355,
+          "bytes": 7493
+        },
+        {
+          "endpoint": "/api/soccer/pro/access",
+          "start_ms": 987,
+          "ttfb_ms": 49,
+          "total_ms": 50,
+          "end_ms": 1037,
+          "bytes": 900
+        },
+        {
+          "endpoint": "/api/soccer/competitions",
+          "start_ms": 988,
+          "ttfb_ms": 496,
+          "total_ms": 503,
+          "end_ms": 1491,
+          "bytes": 760
+        },
+        {
+          "endpoint": "/api/soccer/coverage",
+          "start_ms": 988,
+          "ttfb_ms": 57,
+          "total_ms": 58,
+          "end_ms": 1047,
+          "bytes": 925
+        },
+        {
+          "endpoint": "/api/soccer/news?limit=30",
+          "start_ms": 988,
+          "ttfb_ms": 366,
+          "total_ms": 370,
+          "end_ms": 1359,
+          "bytes": 6810
+        },
+        {
+          "endpoint": "/api/soccer/players?competition=premier-league&sort=goal_contributions_per90&limit=4",
+          "start_ms": 989,
+          "ttfb_ms": 548,
+          "total_ms": 552,
+          "end_ms": 1540,
+          "bytes": 1879
+        },
+        {
+          "endpoint": "/api/soccer/players?competition=mls&sort=goal_contributions_per90&limit=4",
+          "start_ms": 989,
+          "ttfb_ms": 801,
+          "total_ms": 806,
+          "end_ms": 1794,
+          "bytes": 1924
+        },
+        {
+          "endpoint": "/api/soccer/media/9e4b7c06391ad3742294dc761e7b951d0bf8603fd2b360370e1299832f602a9e",
+          "start_ms": 1414,
+          "ttfb_ms": 230,
+          "total_ms": 230,
+          "end_ms": 1644,
+          "bytes": 42134
+        },
+        {
+          "endpoint": "/api/soccer/media/105291b28134e6b377795fd80d0d5c8c561f02257bfb1a5b243b87df0ebe6b19",
+          "start_ms": 1414,
+          "ttfb_ms": 47,
+          "total_ms": 62,
+          "end_ms": 1476,
+          "bytes": 170842
+        },
+        {
+          "endpoint": "/api/soccer/media/84b94381a47ab86bc72cd9ee9def55c94163b0d9ba162dcbc54ddb56f4e464f8",
+          "start_ms": 1426,
+          "ttfb_ms": 370,
+          "total_ms": 372,
+          "end_ms": 1799,
+          "bytes": 86020
+        },
+        {
+          "endpoint": "/api/soccer/media/b2459c995f0be4c96ed622c21c795b1d53764ea58bb82a3e386ce6b9fb0a3a02",
+          "start_ms": 1426,
+          "ttfb_ms": 52,
+          "total_ms": 58,
+          "end_ms": 1484,
+          "bytes": 42555
+        },
+        {
+          "endpoint": "/api/soccer/media/1e6b69551e573c8ed4fdb3ea5e18d46051e8ad342224168920e89cae0585f562",
+          "start_ms": 1426,
+          "ttfb_ms": 193,
+          "total_ms": 194,
+          "end_ms": 1620,
+          "bytes": 9734
+        },
+        {
+          "endpoint": "/api/soccer/media/be9a2497af4479bd66f9b3277322412b384bbf3a22ed770119fefb686ca6b341",
+          "start_ms": 1426,
+          "ttfb_ms": 220,
+          "total_ms": 221,
+          "end_ms": 1647,
+          "bytes": 3685
+        },
+        {
+          "endpoint": "/api/soccer/media/6cb54837aa5a1fca1113cd73a88de45394393e8704b2d885db4277c051311e89",
+          "start_ms": 1426,
+          "ttfb_ms": 327,
+          "total_ms": 327,
+          "end_ms": 1754,
+          "bytes": 19918
+        },
+        {
+          "endpoint": "/api/soccer/media/31d271d162edab9767033e348d6a47e57cced277fff6cde8df3da87ebe4d6709",
+          "start_ms": 1426,
+          "ttfb_ms": 216,
+          "total_ms": 216,
+          "end_ms": 1643,
+          "bytes": 12994
+        },
+        {
+          "endpoint": "/api/soccer/media/8d68cf0ccd8bdd16960b78510ce86ac2094216c2a6ddfda49b88268a344e883f",
+          "start_ms": 1426,
+          "ttfb_ms": 356,
+          "total_ms": 357,
+          "end_ms": 1783,
+          "bytes": 3579
+        },
+        {
+          "endpoint": "/api/soccer/media/681ad998004cdfb5da21166607c0d021940445bcdaf2d506f08536dcff77e6ef",
+          "start_ms": 1426,
+          "ttfb_ms": 344,
+          "total_ms": 345,
+          "end_ms": 1771,
+          "bytes": 20048
+        },
+        {
+          "endpoint": "/api/soccer/media/8f3107904e8ecc3d934f819b011896d3ab3a97ad1e07b3bedd052fcaa02e1f96",
+          "start_ms": 1426,
+          "ttfb_ms": 352,
+          "total_ms": 353,
+          "end_ms": 1779,
+          "bytes": 38358
+        },
+        {
+          "endpoint": "/api/soccer/media/a2c081bc1712cd908a5e7eae6b72472ebc351778c005e6a7c42ca8fe896ebb35",
+          "start_ms": 1426,
+          "ttfb_ms": 355,
+          "total_ms": 355,
+          "end_ms": 1782,
+          "bytes": 4203
+        },
+        {
+          "endpoint": "/api/soccer/matches/624807c3-a6f7-5c7f-b67b-9e3e8da39a1a",
+          "start_ms": 1795,
+          "ttfb_ms": 514,
+          "total_ms": 518,
+          "end_ms": 2313,
+          "bytes": 8096
+        },
+        {
+          "endpoint": "/api/soccer/media/1656973561bf1fbc912701929a02f0c2455e2e55bb5bf5c093207bb4fdcc1e39",
+          "start_ms": 2399,
+          "ttfb_ms": 53,
+          "total_ms": 55,
+          "end_ms": 2454,
+          "bytes": 86426
+        },
+        {
+          "endpoint": "/api/soccer/media/21c85bf3878dd2982083f46e8b9ede484b0c7b1e6d3bc8595d34d3693d914958",
+          "start_ms": 2400,
+          "ttfb_ms": 40,
+          "total_ms": 41,
+          "end_ms": 2440,
+          "bytes": 47534
+        },
+        {
+          "endpoint": "/api/soccer/media/8eb3b92ab4ae3ad632345922f4d6cac69e7c9ff0f3338feacd9d708920287bfa",
+          "start_ms": 2400,
+          "ttfb_ms": 161,
+          "total_ms": 162,
+          "end_ms": 2562,
+          "bytes": 28354
+        },
+        {
+          "endpoint": "/api/soccer/media/99718f00dfc5a13558d571dfaf9bd58344e9268cd261415bad3d45517e5ba35d",
+          "start_ms": 2400,
+          "ttfb_ms": 336,
+          "total_ms": 337,
+          "end_ms": 2737,
+          "bytes": 16985
+        },
+        {
+          "endpoint": "/api/soccer/media/08c303d430f003a08c8c558071ee41a953777b56e0da0816aa2f76a621388a48",
+          "start_ms": 2400,
+          "ttfb_ms": 66,
+          "total_ms": 68,
+          "end_ms": 2468,
+          "bytes": 59572
+        },
+        {
+          "endpoint": "/api/soccer/media/a34af0a55df761a807dc43d1afff86ffa3d3a7fabf4d952c1364562973c5cff3",
+          "start_ms": 2400,
+          "ttfb_ms": 140,
+          "total_ms": 141,
+          "end_ms": 2541,
+          "bytes": 19291
+        },
+        {
+          "endpoint": "/api/soccer/media/a5278918ad127152ddf24f551073abf2df08a8d7097871bb47c97234d0ee81c4",
+          "start_ms": 2400,
+          "ttfb_ms": 150,
+          "total_ms": 157,
+          "end_ms": 2557,
+          "bytes": 73333
+        },
+        {
+          "endpoint": "/api/soccer/media/a603dfbec53840a728229e2c2c1848e77c096e5018256fe260fa7dafd559deca",
+          "start_ms": 2400,
+          "ttfb_ms": 157,
+          "total_ms": 158,
+          "end_ms": 2557,
+          "bytes": 27377
+        },
+        {
+          "endpoint": "/api/soccer/media/e7f1a617ed094d5d41352388e15dc6e6c791919d96621c6ff6e8c4752195542a",
+          "start_ms": 2400,
+          "ttfb_ms": 194,
+          "total_ms": 207,
+          "end_ms": 2607,
+          "bytes": 3636
+        },
+        {
+          "endpoint": "/api/soccer/media/3fbb077c9331046d0dc96c0bbcc12e3795bdbd9b43a6bbe3a18ab6b6aedc47bf",
+          "start_ms": 2400,
+          "ttfb_ms": 346,
+          "total_ms": 347,
+          "end_ms": 2747,
+          "bytes": 56480
+        },
+        {
+          "endpoint": "/api/soccer/media/2e94271db907c688336a869e40548158b1e5e5d625affd16e1188c4753e1aae5",
+          "start_ms": 2400,
+          "ttfb_ms": 166,
+          "total_ms": 169,
+          "end_ms": 2569,
+          "bytes": 21088
+        },
+        {
+          "endpoint": "/api/soccer/media/b6c149b5cb0699cb5995cec3cb6cf9592222606091834ddad05e42d37f3e8a84",
+          "start_ms": 2400,
+          "ttfb_ms": 54,
+          "total_ms": 63,
+          "end_ms": 2462,
+          "bytes": 49203
+        },
+        {
+          "endpoint": "/api/soccer/media/9a4e56b49a16454d4834e18aa3ec3d67bbdb5d9e4aff284b5d79900a7e2250e0",
+          "start_ms": 2400,
+          "ttfb_ms": 367,
+          "total_ms": 373,
+          "end_ms": 2773,
+          "bytes": 223746
+        }
+      ],
+      "error_state": false,
+      "errors": []
+    },
+    {
+      "route": "/",
+      "temperature": "warm",
+      "first_meaningful_paint_ms": 195,
+      "fcp_ms": 176,
+      "total_route_data_ms": 555,
+      "slowest_endpoint": "/api/soccer/media/21edfde914c500ae1d3ed2b2fdeb8e08131c4e8ce22a20bd88ed7da0f298e446",
+      "endpoint_ttfb_ms": 380,
+      "http_requests": 80,
+      "api_requests": 67,
+      "requests": [
+        {
+          "endpoint": "/api/soccer/media/9e4b7c06391ad3742294dc761e7b951d0bf8603fd2b360370e1299832f602a9e",
+          "start_ms": 133,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 133,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/3fbb077c9331046d0dc96c0bbcc12e3795bdbd9b43a6bbe3a18ab6b6aedc47bf",
+          "start_ms": 133,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 133,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/a603dfbec53840a728229e2c2c1848e77c096e5018256fe260fa7dafd559deca",
+          "start_ms": 134,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 134,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/a34af0a55df761a807dc43d1afff86ffa3d3a7fabf4d952c1364562973c5cff3",
+          "start_ms": 134,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 134,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/105291b28134e6b377795fd80d0d5c8c561f02257bfb1a5b243b87df0ebe6b19",
+          "start_ms": 134,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 134,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/live",
+          "start_ms": 134,
+          "ttfb_ms": 1,
+          "total_ms": 1,
+          "end_ms": 135,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/pro/access",
+          "start_ms": 135,
+          "ttfb_ms": 40,
+          "total_ms": 41,
+          "end_ms": 175,
+          "bytes": 900
+        },
+        {
+          "endpoint": "/api/soccer/competitions",
+          "start_ms": 135,
+          "ttfb_ms": 1,
+          "total_ms": 2,
+          "end_ms": 137,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/coverage",
+          "start_ms": 135,
+          "ttfb_ms": 1,
+          "total_ms": 2,
+          "end_ms": 137,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/news?limit=30",
+          "start_ms": 135,
+          "ttfb_ms": 1,
+          "total_ms": 2,
+          "end_ms": 137,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/players?competition=premier-league&sort=goal_contributions_per90&limit=4",
+          "start_ms": 135,
+          "ttfb_ms": 2,
+          "total_ms": 3,
+          "end_ms": 138,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/players?competition=mls&sort=goal_contributions_per90&limit=4",
+          "start_ms": 135,
+          "ttfb_ms": 3,
+          "total_ms": 3,
+          "end_ms": 138,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/84b94381a47ab86bc72cd9ee9def55c94163b0d9ba162dcbc54ddb56f4e464f8",
+          "start_ms": 165,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 165,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/b2459c995f0be4c96ed622c21c795b1d53764ea58bb82a3e386ce6b9fb0a3a02",
+          "start_ms": 165,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 165,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/1e6b69551e573c8ed4fdb3ea5e18d46051e8ad342224168920e89cae0585f562",
+          "start_ms": 165,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 165,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/6cb54837aa5a1fca1113cd73a88de45394393e8704b2d885db4277c051311e89",
+          "start_ms": 165,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 165,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/be9a2497af4479bd66f9b3277322412b384bbf3a22ed770119fefb686ca6b341",
+          "start_ms": 165,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 165,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8d68cf0ccd8bdd16960b78510ce86ac2094216c2a6ddfda49b88268a344e883f",
+          "start_ms": 165,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 165,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/31d271d162edab9767033e348d6a47e57cced277fff6cde8df3da87ebe4d6709",
+          "start_ms": 165,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 165,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/681ad998004cdfb5da21166607c0d021940445bcdaf2d506f08536dcff77e6ef",
+          "start_ms": 165,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 165,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/a2c081bc1712cd908a5e7eae6b72472ebc351778c005e6a7c42ca8fe896ebb35",
+          "start_ms": 165,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 165,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8f3107904e8ecc3d934f819b011896d3ab3a97ad1e07b3bedd052fcaa02e1f96",
+          "start_ms": 165,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 165,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8eb3b92ab4ae3ad632345922f4d6cac69e7c9ff0f3338feacd9d708920287bfa",
+          "start_ms": 166,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 166,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/21c85bf3878dd2982083f46e8b9ede484b0c7b1e6d3bc8595d34d3693d914958",
+          "start_ms": 166,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 166,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/1656973561bf1fbc912701929a02f0c2455e2e55bb5bf5c093207bb4fdcc1e39",
+          "start_ms": 167,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 167,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/99718f00dfc5a13558d571dfaf9bd58344e9268cd261415bad3d45517e5ba35d",
+          "start_ms": 167,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 167,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/769ccaebf31bbce1cb07172951b8f38ca9405aa395684083dc9b2867beaff451",
+          "start_ms": 171,
+          "ttfb_ms": 125,
+          "total_ms": 126,
+          "end_ms": 297,
+          "bytes": 3616
+        },
+        {
+          "endpoint": "/api/soccer/media/a10d04432facb8650c624dc976e352df9d052065fdfce2f710cba720a4ab25e0",
+          "start_ms": 172,
+          "ttfb_ms": 48,
+          "total_ms": 51,
+          "end_ms": 223,
+          "bytes": 51684
+        },
+        {
+          "endpoint": "/api/soccer/media/e96530adbd35298a4418586343c81e9570d52576c0bc22a145a1d457aa4b24d5",
+          "start_ms": 172,
+          "ttfb_ms": 144,
+          "total_ms": 145,
+          "end_ms": 317,
+          "bytes": 4960
+        },
+        {
+          "endpoint": "/api/soccer/media/43c610c6d9377e57ca662c86a761ac29fdfdc67bf13dd8082423b2d2f38e4a0b",
+          "start_ms": 172,
+          "ttfb_ms": 135,
+          "total_ms": 135,
+          "end_ms": 307,
+          "bytes": 3639
+        },
+        {
+          "endpoint": "/api/soccer/media/a4116449f802b11895298686068c2a2c6ec78d56aeb0658014415f7edbaf5c68",
+          "start_ms": 172,
+          "ttfb_ms": 192,
+          "total_ms": 193,
+          "end_ms": 364,
+          "bytes": 8234
+        },
+        {
+          "endpoint": "/api/soccer/media/d523e0225ec2209e6b8a184a6db1fd90a6b7f00b695eccadc3e6cede77cffc69",
+          "start_ms": 172,
+          "ttfb_ms": 364,
+          "total_ms": 364,
+          "end_ms": 536,
+          "bytes": 17342
+        },
+        {
+          "endpoint": "/api/soccer/media/8ed638af060cafae61514f04dcb3a1e5e0898b0ce990c36cf25300ba14fde9e3",
+          "start_ms": 172,
+          "ttfb_ms": 149,
+          "total_ms": 152,
+          "end_ms": 323,
+          "bytes": 82074
+        },
+        {
+          "endpoint": "/api/soccer/media/a3a5665b88adbb41ee627fd8b13b140fcbd77d478d20ddfb153214808c7e6356",
+          "start_ms": 172,
+          "ttfb_ms": 162,
+          "total_ms": 163,
+          "end_ms": 335,
+          "bytes": 3739
+        },
+        {
+          "endpoint": "/api/soccer/media/2d44906cfcc797aefdc9010ac7d6b1438e54c72c12723384530d4378fc4578b4",
+          "start_ms": 172,
+          "ttfb_ms": 178,
+          "total_ms": 179,
+          "end_ms": 351,
+          "bytes": 55662
+        },
+        {
+          "endpoint": "/api/soccer/media/21edfde914c500ae1d3ed2b2fdeb8e08131c4e8ce22a20bd88ed7da0f298e446",
+          "start_ms": 172,
+          "ttfb_ms": 380,
+          "total_ms": 383,
+          "end_ms": 555,
+          "bytes": 85487
+        },
+        {
+          "endpoint": "/api/soccer/media/85e8317c795135c8094b471563cb37110cc22fa4fe15398e2c31c03690c2b9a9",
+          "start_ms": 172,
+          "ttfb_ms": 145,
+          "total_ms": 145,
+          "end_ms": 317,
+          "bytes": 3223
+        },
+        {
+          "endpoint": "/api/soccer/media/b3e2f9b51d71ca6937926a520aa1bd73f90f0e7d7cd1d3a2f3093944bcbfc49a",
+          "start_ms": 172,
+          "ttfb_ms": 158,
+          "total_ms": 159,
+          "end_ms": 331,
+          "bytes": 15410
+        },
+        {
+          "endpoint": "/api/soccer/media/ff8db39f260d067c8b49c26962a1c7c32f9649a4abc5400f58bc7f2d7b7fcaef",
+          "start_ms": 172,
+          "ttfb_ms": 168,
+          "total_ms": 173,
+          "end_ms": 345,
+          "bytes": 3066
+        },
+        {
+          "endpoint": "/api/soccer/media/8378b286b210cba675524bd9e36bf6211329cddb8e4cd235b64e63881677b06f",
+          "start_ms": 172,
+          "ttfb_ms": 60,
+          "total_ms": 61,
+          "end_ms": 233,
+          "bytes": 3033
+        },
+        {
+          "endpoint": "/api/soccer/media/346aac475c309199dcb36e8472ea808cfce102e4740037ee185f313820d382eb",
+          "start_ms": 172,
+          "ttfb_ms": 151,
+          "total_ms": 152,
+          "end_ms": 324,
+          "bytes": 13986
+        },
+        {
+          "endpoint": "/api/soccer/media/c5e3f8e60b41a6d8a7e025935b105edca5fd7086c9e896454f374eb401f55594",
+          "start_ms": 172,
+          "ttfb_ms": 190,
+          "total_ms": 193,
+          "end_ms": 365,
+          "bytes": 65127
+        },
+        {
+          "endpoint": "/api/soccer/media/4495f8ec7d2d8c71477fc606d6396ed76cc86a1f68f02a8c10df6ed09724f24b",
+          "start_ms": 172,
+          "ttfb_ms": 56,
+          "total_ms": 56,
+          "end_ms": 228,
+          "bytes": 3575
+        },
+        {
+          "endpoint": "/api/soccer/media/cbdf3c2b3157e1c2b4076e157513448315bb014803020029ba73bbf3d820d9ba",
+          "start_ms": 172,
+          "ttfb_ms": 335,
+          "total_ms": 335,
+          "end_ms": 507,
+          "bytes": 13697
+        },
+        {
+          "endpoint": "/api/soccer/media/9d4a7f5d25fc35bb4943e734f24d82c569f84ea590189620e5d547bdf250026b",
+          "start_ms": 172,
+          "ttfb_ms": 338,
+          "total_ms": 340,
+          "end_ms": 513,
+          "bytes": 17189
+        },
+        {
+          "endpoint": "/api/soccer/media/d87f12cbc30e43994847651e2671c58aef4a5fd44ede744d7c121f0c8428fdea",
+          "start_ms": 172,
+          "ttfb_ms": 352,
+          "total_ms": 352,
+          "end_ms": 525,
+          "bytes": 49209
+        },
+        {
+          "endpoint": "/api/soccer/media/ac9866e2f75d59940309098931528f3d67b6927a03ef637626c7ab3e5c71b5f4",
+          "start_ms": 173,
+          "ttfb_ms": 205,
+          "total_ms": 206,
+          "end_ms": 378,
+          "bytes": 29579
+        },
+        {
+          "endpoint": "/api/soccer/media/f1f3a7a853e83c61813e4d9d692bccbbb3d75809768b4bf1b589519cf9705264",
+          "start_ms": 173,
+          "ttfb_ms": 58,
+          "total_ms": 59,
+          "end_ms": 232,
+          "bytes": 3722
+        },
+        {
+          "endpoint": "/api/soccer/media/ebe2517e15785d61e23b4ba7ebf947f67539f0f715e7b10c5a9d2017c050521c",
+          "start_ms": 173,
+          "ttfb_ms": 353,
+          "total_ms": 354,
+          "end_ms": 527,
+          "bytes": 4565
+        },
+        {
+          "endpoint": "/api/soccer/media/9332b75a23a86dccdfdb19d2c0f97b16ad23baf4f94a967038e7e280dc159821",
+          "start_ms": 173,
+          "ttfb_ms": 369,
+          "total_ms": 369,
+          "end_ms": 542,
+          "bytes": 9723
+        },
+        {
+          "endpoint": "/api/soccer/media/0baf599e1cabaaa847145961f17d83f4b1280dbc641b48f4ff5ceea537eb2258",
+          "start_ms": 173,
+          "ttfb_ms": 58,
+          "total_ms": 58,
+          "end_ms": 231,
+          "bytes": 3879
+        },
+        {
+          "endpoint": "/api/soccer/media/ad1d2cc73fa8f1182600a1e6381f08c96d21987387df9bc36c4616a69b989eba",
+          "start_ms": 173,
+          "ttfb_ms": 327,
+          "total_ms": 328,
+          "end_ms": 501,
+          "bytes": 25936
+        },
+        {
+          "endpoint": "/api/soccer/media/e4a3f7baae718bfb83c2f2eaa0e448d862720f63b276346b32077fdb08294bdc",
+          "start_ms": 173,
+          "ttfb_ms": 57,
+          "total_ms": 57,
+          "end_ms": 230,
+          "bytes": 4163
+        },
+        {
+          "endpoint": "/api/soccer/media/8111b1c1520d3d8bb71648d73088ed30227e8f50c4f903d9e47565feda1dfc7a",
+          "start_ms": 173,
+          "ttfb_ms": 56,
+          "total_ms": 57,
+          "end_ms": 230,
+          "bytes": 24278
+        },
+        {
+          "endpoint": "/api/soccer/media/3353eac2f0e3116bbabd30fe8c3fe40d1b1ec796fa76f5dbd776d23449891508",
+          "start_ms": 173,
+          "ttfb_ms": 57,
+          "total_ms": 57,
+          "end_ms": 230,
+          "bytes": 3616
+        },
+        {
+          "endpoint": "/api/soccer/media/0430dedddc3af45cd7207d22507b1e120de8f673e67c9351d227fba8670ae2a2",
+          "start_ms": 173,
+          "ttfb_ms": 58,
+          "total_ms": 58,
+          "end_ms": 231,
+          "bytes": 13667
+        },
+        {
+          "endpoint": "/api/soccer/media/3158ac4e6803d83cf0871e520dab309fb9fe28abf2619acef7669655d6322c19",
+          "start_ms": 173,
+          "ttfb_ms": 335,
+          "total_ms": 335,
+          "end_ms": 508,
+          "bytes": 24781
+        },
+        {
+          "endpoint": "/api/soccer/media/8d2a777cb0f9cde919aaab04c91b561f861f2c96bb1c227d960e6b5a56f38c77",
+          "start_ms": 173,
+          "ttfb_ms": 158,
+          "total_ms": 159,
+          "end_ms": 332,
+          "bytes": 3191
+        },
+        {
+          "endpoint": "/api/soccer/media/991c38ea3794ae19b561a93e526356d57c21f00823c1dbb31d680e20fd2f74e2",
+          "start_ms": 173,
+          "ttfb_ms": 331,
+          "total_ms": 332,
+          "end_ms": 506,
+          "bytes": 3506
+        },
+        {
+          "endpoint": "/api/soccer/media/9bec0055ca32a9e7ab603904aed89a9fa28c6fb2a08b24cffe81b6946a809a1a",
+          "start_ms": 173,
+          "ttfb_ms": 59,
+          "total_ms": 60,
+          "end_ms": 233,
+          "bytes": 3493
+        },
+        {
+          "endpoint": "/api/soccer/matches/624807c3-a6f7-5c7f-b67b-9e3e8da39a1a",
+          "start_ms": 177,
+          "ttfb_ms": 6,
+          "total_ms": 6,
+          "end_ms": 183,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/08c303d430f003a08c8c558071ee41a953777b56e0da0816aa2f76a621388a48",
+          "start_ms": 190,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 190,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/a5278918ad127152ddf24f551073abf2df08a8d7097871bb47c97234d0ee81c4",
+          "start_ms": 191,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 191,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/e7f1a617ed094d5d41352388e15dc6e6c791919d96621c6ff6e8c4752195542a",
+          "start_ms": 191,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 191,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/2e94271db907c688336a869e40548158b1e5e5d625affd16e1188c4753e1aae5",
+          "start_ms": 191,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 191,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/9a4e56b49a16454d4834e18aa3ec3d67bbdb5d9e4aff284b5d79900a7e2250e0",
+          "start_ms": 191,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 191,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/b6c149b5cb0699cb5995cec3cb6cf9592222606091834ddad05e42d37f3e8a84",
+          "start_ms": 192,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 192,
+          "bytes": 0
+        }
+      ],
+      "error_state": false,
+      "errors": []
+    },
+    {
+      "route": "/matches",
+      "temperature": "cold",
+      "first_meaningful_paint_ms": 1336,
+      "fcp_ms": 692,
+      "total_route_data_ms": 1687,
+      "slowest_endpoint": "/api/soccer/matches?status=finished&to=2026-09-30&limit=40",
+      "endpoint_ttfb_ms": 643,
+      "http_requests": 67,
+      "api_requests": 58,
+      "requests": [
+        {
+          "endpoint": "/api/soccer/live",
+          "start_ms": 677,
+          "ttfb_ms": 46,
+          "total_ms": 47,
+          "end_ms": 724,
+          "bytes": 7493
+        },
+        {
+          "endpoint": "/api/soccer/pro/access",
+          "start_ms": 678,
+          "ttfb_ms": 49,
+          "total_ms": 49,
+          "end_ms": 727,
+          "bytes": 900
+        },
+        {
+          "endpoint": "/api/soccer/matches?status=finished&to=2026-09-30&limit=40",
+          "start_ms": 679,
+          "ttfb_ms": 643,
+          "total_ms": 648,
+          "end_ms": 1326,
+          "bytes": 10213
+        },
+        {
+          "endpoint": "/api/soccer/competitions",
+          "start_ms": 679,
+          "ttfb_ms": 44,
+          "total_ms": 45,
+          "end_ms": 723,
+          "bytes": 760
+        },
+        {
+          "endpoint": "/api/soccer/media/9e4b7c06391ad3742294dc761e7b951d0bf8603fd2b360370e1299832f602a9e",
+          "start_ms": 771,
+          "ttfb_ms": 42,
+          "total_ms": 43,
+          "end_ms": 814,
+          "bytes": 42134
+        },
+        {
+          "endpoint": "/api/soccer/media/105291b28134e6b377795fd80d0d5c8c561f02257bfb1a5b243b87df0ebe6b19",
+          "start_ms": 771,
+          "ttfb_ms": 45,
+          "total_ms": 63,
+          "end_ms": 834,
+          "bytes": 170842
+        },
+        {
+          "endpoint": "/api/soccer/media/84b94381a47ab86bc72cd9ee9def55c94163b0d9ba162dcbc54ddb56f4e464f8",
+          "start_ms": 780,
+          "ttfb_ms": 56,
+          "total_ms": 59,
+          "end_ms": 839,
+          "bytes": 86020
+        },
+        {
+          "endpoint": "/api/soccer/media/b2459c995f0be4c96ed622c21c795b1d53764ea58bb82a3e386ce6b9fb0a3a02",
+          "start_ms": 780,
+          "ttfb_ms": 54,
+          "total_ms": 55,
+          "end_ms": 835,
+          "bytes": 42555
+        },
+        {
+          "endpoint": "/api/soccer/media/6cb54837aa5a1fca1113cd73a88de45394393e8704b2d885db4277c051311e89",
+          "start_ms": 780,
+          "ttfb_ms": 55,
+          "total_ms": 56,
+          "end_ms": 836,
+          "bytes": 19918
+        },
+        {
+          "endpoint": "/api/soccer/media/1e6b69551e573c8ed4fdb3ea5e18d46051e8ad342224168920e89cae0585f562",
+          "start_ms": 780,
+          "ttfb_ms": 58,
+          "total_ms": 58,
+          "end_ms": 838,
+          "bytes": 9734
+        },
+        {
+          "endpoint": "/api/soccer/media/8d68cf0ccd8bdd16960b78510ce86ac2094216c2a6ddfda49b88268a344e883f",
+          "start_ms": 780,
+          "ttfb_ms": 56,
+          "total_ms": 56,
+          "end_ms": 836,
+          "bytes": 3579
+        },
+        {
+          "endpoint": "/api/soccer/media/be9a2497af4479bd66f9b3277322412b384bbf3a22ed770119fefb686ca6b341",
+          "start_ms": 780,
+          "ttfb_ms": 57,
+          "total_ms": 57,
+          "end_ms": 837,
+          "bytes": 3685
+        },
+        {
+          "endpoint": "/api/soccer/media/31d271d162edab9767033e348d6a47e57cced277fff6cde8df3da87ebe4d6709",
+          "start_ms": 780,
+          "ttfb_ms": 59,
+          "total_ms": 60,
+          "end_ms": 840,
+          "bytes": 12994
+        },
+        {
+          "endpoint": "/api/soccer/media/a2c081bc1712cd908a5e7eae6b72472ebc351778c005e6a7c42ca8fe896ebb35",
+          "start_ms": 780,
+          "ttfb_ms": 58,
+          "total_ms": 59,
+          "end_ms": 839,
+          "bytes": 4203
+        },
+        {
+          "endpoint": "/api/soccer/media/681ad998004cdfb5da21166607c0d021940445bcdaf2d506f08536dcff77e6ef",
+          "start_ms": 780,
+          "ttfb_ms": 59,
+          "total_ms": 59,
+          "end_ms": 839,
+          "bytes": 20048
+        },
+        {
+          "endpoint": "/api/soccer/media/8f3107904e8ecc3d934f819b011896d3ab3a97ad1e07b3bedd052fcaa02e1f96",
+          "start_ms": 780,
+          "ttfb_ms": 60,
+          "total_ms": 62,
+          "end_ms": 842,
+          "bytes": 38358
+        },
+        {
+          "endpoint": "/api/soccer/media/8eb3b92ab4ae3ad632345922f4d6cac69e7c9ff0f3338feacd9d708920287bfa",
+          "start_ms": 1475,
+          "ttfb_ms": 39,
+          "total_ms": 40,
+          "end_ms": 1515,
+          "bytes": 28354
+        },
+        {
+          "endpoint": "/api/soccer/media/ff8db39f260d067c8b49c26962a1c7c32f9649a4abc5400f58bc7f2d7b7fcaef",
+          "start_ms": 1475,
+          "ttfb_ms": 40,
+          "total_ms": 40,
+          "end_ms": 1515,
+          "bytes": 3066
+        },
+        {
+          "endpoint": "/api/soccer/media/b3e2f9b51d71ca6937926a520aa1bd73f90f0e7d7cd1d3a2f3093944bcbfc49a",
+          "start_ms": 1475,
+          "ttfb_ms": 40,
+          "total_ms": 40,
+          "end_ms": 1515,
+          "bytes": 15410
+        },
+        {
+          "endpoint": "/api/soccer/media/85e8317c795135c8094b471563cb37110cc22fa4fe15398e2c31c03690c2b9a9",
+          "start_ms": 1475,
+          "ttfb_ms": 50,
+          "total_ms": 50,
+          "end_ms": 1525,
+          "bytes": 3223
+        },
+        {
+          "endpoint": "/api/soccer/media/c5e3f8e60b41a6d8a7e025935b105edca5fd7086c9e896454f374eb401f55594",
+          "start_ms": 1475,
+          "ttfb_ms": 47,
+          "total_ms": 48,
+          "end_ms": 1523,
+          "bytes": 65127
+        },
+        {
+          "endpoint": "/api/soccer/media/8378b286b210cba675524bd9e36bf6211329cddb8e4cd235b64e63881677b06f",
+          "start_ms": 1475,
+          "ttfb_ms": 49,
+          "total_ms": 50,
+          "end_ms": 1524,
+          "bytes": 3033
+        },
+        {
+          "endpoint": "/api/soccer/media/346aac475c309199dcb36e8472ea808cfce102e4740037ee185f313820d382eb",
+          "start_ms": 1475,
+          "ttfb_ms": 49,
+          "total_ms": 49,
+          "end_ms": 1524,
+          "bytes": 13986
+        },
+        {
+          "endpoint": "/api/soccer/media/4495f8ec7d2d8c71477fc606d6396ed76cc86a1f68f02a8c10df6ed09724f24b",
+          "start_ms": 1475,
+          "ttfb_ms": 47,
+          "total_ms": 47,
+          "end_ms": 1522,
+          "bytes": 3575
+        },
+        {
+          "endpoint": "/api/soccer/media/21c85bf3878dd2982083f46e8b9ede484b0c7b1e6d3bc8595d34d3693d914958",
+          "start_ms": 1475,
+          "ttfb_ms": 45,
+          "total_ms": 46,
+          "end_ms": 1521,
+          "bytes": 47534
+        },
+        {
+          "endpoint": "/api/soccer/media/9d4a7f5d25fc35bb4943e734f24d82c569f84ea590189620e5d547bdf250026b",
+          "start_ms": 1475,
+          "ttfb_ms": 48,
+          "total_ms": 49,
+          "end_ms": 1524,
+          "bytes": 17189
+        },
+        {
+          "endpoint": "/api/soccer/media/cbdf3c2b3157e1c2b4076e157513448315bb014803020029ba73bbf3d820d9ba",
+          "start_ms": 1475,
+          "ttfb_ms": 49,
+          "total_ms": 50,
+          "end_ms": 1525,
+          "bytes": 13697
+        },
+        {
+          "endpoint": "/api/soccer/media/d87f12cbc30e43994847651e2671c58aef4a5fd44ede744d7c121f0c8428fdea",
+          "start_ms": 1475,
+          "ttfb_ms": 51,
+          "total_ms": 57,
+          "end_ms": 1532,
+          "bytes": 49209
+        },
+        {
+          "endpoint": "/api/soccer/media/ac9866e2f75d59940309098931528f3d67b6927a03ef637626c7ab3e5c71b5f4",
+          "start_ms": 1475,
+          "ttfb_ms": 65,
+          "total_ms": 68,
+          "end_ms": 1543,
+          "bytes": 29579
+        },
+        {
+          "endpoint": "/api/soccer/media/0baf599e1cabaaa847145961f17d83f4b1280dbc641b48f4ff5ceea537eb2258",
+          "start_ms": 1475,
+          "ttfb_ms": 47,
+          "total_ms": 48,
+          "end_ms": 1523,
+          "bytes": 3879
+        },
+        {
+          "endpoint": "/api/soccer/media/ad1d2cc73fa8f1182600a1e6381f08c96d21987387df9bc36c4616a69b989eba",
+          "start_ms": 1475,
+          "ttfb_ms": 47,
+          "total_ms": 48,
+          "end_ms": 1523,
+          "bytes": 25936
+        },
+        {
+          "endpoint": "/api/soccer/media/e4a3f7baae718bfb83c2f2eaa0e448d862720f63b276346b32077fdb08294bdc",
+          "start_ms": 1475,
+          "ttfb_ms": 48,
+          "total_ms": 49,
+          "end_ms": 1524,
+          "bytes": 4163
+        },
+        {
+          "endpoint": "/api/soccer/media/ebe2517e15785d61e23b4ba7ebf947f67539f0f715e7b10c5a9d2017c050521c",
+          "start_ms": 1475,
+          "ttfb_ms": 46,
+          "total_ms": 47,
+          "end_ms": 1522,
+          "bytes": 4565
+        },
+        {
+          "endpoint": "/api/soccer/media/8111b1c1520d3d8bb71648d73088ed30227e8f50c4f903d9e47565feda1dfc7a",
+          "start_ms": 1475,
+          "ttfb_ms": 50,
+          "total_ms": 50,
+          "end_ms": 1526,
+          "bytes": 24278
+        },
+        {
+          "endpoint": "/api/soccer/media/9332b75a23a86dccdfdb19d2c0f97b16ad23baf4f94a967038e7e280dc159821",
+          "start_ms": 1475,
+          "ttfb_ms": 57,
+          "total_ms": 57,
+          "end_ms": 1533,
+          "bytes": 9723
+        },
+        {
+          "endpoint": "/api/soccer/media/f1f3a7a853e83c61813e4d9d692bccbbb3d75809768b4bf1b589519cf9705264",
+          "start_ms": 1475,
+          "ttfb_ms": 58,
+          "total_ms": 58,
+          "end_ms": 1533,
+          "bytes": 3722
+        },
+        {
+          "endpoint": "/api/soccer/media/3353eac2f0e3116bbabd30fe8c3fe40d1b1ec796fa76f5dbd776d23449891508",
+          "start_ms": 1475,
+          "ttfb_ms": 45,
+          "total_ms": 46,
+          "end_ms": 1521,
+          "bytes": 3616
+        },
+        {
+          "endpoint": "/api/soccer/media/0430dedddc3af45cd7207d22507b1e120de8f673e67c9351d227fba8670ae2a2",
+          "start_ms": 1475,
+          "ttfb_ms": 50,
+          "total_ms": 50,
+          "end_ms": 1526,
+          "bytes": 13667
+        },
+        {
+          "endpoint": "/api/soccer/media/1656973561bf1fbc912701929a02f0c2455e2e55bb5bf5c093207bb4fdcc1e39",
+          "start_ms": 1475,
+          "ttfb_ms": 61,
+          "total_ms": 63,
+          "end_ms": 1538,
+          "bytes": 86426
+        },
+        {
+          "endpoint": "/api/soccer/media/99718f00dfc5a13558d571dfaf9bd58344e9268cd261415bad3d45517e5ba35d",
+          "start_ms": 1475,
+          "ttfb_ms": 58,
+          "total_ms": 59,
+          "end_ms": 1535,
+          "bytes": 16985
+        },
+        {
+          "endpoint": "/api/soccer/media/3158ac4e6803d83cf0871e520dab309fb9fe28abf2619acef7669655d6322c19",
+          "start_ms": 1475,
+          "ttfb_ms": 59,
+          "total_ms": 60,
+          "end_ms": 1535,
+          "bytes": 24781
+        },
+        {
+          "endpoint": "/api/soccer/media/8d2a777cb0f9cde919aaab04c91b561f861f2c96bb1c227d960e6b5a56f38c77",
+          "start_ms": 1476,
+          "ttfb_ms": 60,
+          "total_ms": 61,
+          "end_ms": 1536,
+          "bytes": 3191
+        },
+        {
+          "endpoint": "/api/soccer/media/991c38ea3794ae19b561a93e526356d57c21f00823c1dbb31d680e20fd2f74e2",
+          "start_ms": 1476,
+          "ttfb_ms": 63,
+          "total_ms": 63,
+          "end_ms": 1538,
+          "bytes": 3506
+        },
+        {
+          "endpoint": "/api/soccer/media/a3a5665b88adbb41ee627fd8b13b140fcbd77d478d20ddfb153214808c7e6356",
+          "start_ms": 1476,
+          "ttfb_ms": 59,
+          "total_ms": 59,
+          "end_ms": 1535,
+          "bytes": 3739
+        },
+        {
+          "endpoint": "/api/soccer/media/463b74682c9030631d8fc19a1535875496009a8f296775323127e2a2365094d0",
+          "start_ms": 1476,
+          "ttfb_ms": 61,
+          "total_ms": 62,
+          "end_ms": 1537,
+          "bytes": 22693
+        },
+        {
+          "endpoint": "/api/soccer/media/638ba01ea2dc0679766a8a1c4152756108cadb6763b2f016c8ca5f5c9784ebc7",
+          "start_ms": 1476,
+          "ttfb_ms": 62,
+          "total_ms": 62,
+          "end_ms": 1538,
+          "bytes": 30706
+        },
+        {
+          "endpoint": "/api/soccer/media/9bec0055ca32a9e7ab603904aed89a9fa28c6fb2a08b24cffe81b6946a809a1a",
+          "start_ms": 1476,
+          "ttfb_ms": 58,
+          "total_ms": 58,
+          "end_ms": 1533,
+          "bytes": 3493
+        },
+        {
+          "endpoint": "/api/soccer/media/42e2fdced44ff542fa734409667c733841a7bcb903b526c85d12aac78aff2464",
+          "start_ms": 1476,
+          "ttfb_ms": 162,
+          "total_ms": 163,
+          "end_ms": 1638,
+          "bytes": 23852
+        },
+        {
+          "endpoint": "/api/soccer/media/57c869a3f900735a950a166961b56d7170608636c4ceadac2b1a1185638f5653",
+          "start_ms": 1476,
+          "ttfb_ms": 59,
+          "total_ms": 60,
+          "end_ms": 1536,
+          "bytes": 3615
+        },
+        {
+          "endpoint": "/api/soccer/media/e7f1a617ed094d5d41352388e15dc6e6c791919d96621c6ff6e8c4752195542a",
+          "start_ms": 1476,
+          "ttfb_ms": 58,
+          "total_ms": 59,
+          "end_ms": 1534,
+          "bytes": 3636
+        },
+        {
+          "endpoint": "/api/soccer/media/3494e9b292e009a5b51346f9b7302e6afd09e303aecb9f80f1ed8e9278dcf86a",
+          "start_ms": 1476,
+          "ttfb_ms": 63,
+          "total_ms": 63,
+          "end_ms": 1539,
+          "bytes": 14532
+        },
+        {
+          "endpoint": "/api/soccer/media/2d71cd78856bc5ee8b575190b5e44a6ba9ac363ed13454f9f595e51726455f9d",
+          "start_ms": 1476,
+          "ttfb_ms": 63,
+          "total_ms": 63,
+          "end_ms": 1539,
+          "bytes": 3115
+        },
+        {
+          "endpoint": "/api/soccer/media/5ba7edf371fc7d1386f2e7c5c441a5408c5dc264b846c10bc29dbbf3c1ad4596",
+          "start_ms": 1476,
+          "ttfb_ms": 63,
+          "total_ms": 64,
+          "end_ms": 1539,
+          "bytes": 3096
+        },
+        {
+          "endpoint": "/api/soccer/media/5c269f92a7da5f8124c32671f25478203ad34cb55a69c1e523832d3691327eda",
+          "start_ms": 1476,
+          "ttfb_ms": 64,
+          "total_ms": 64,
+          "end_ms": 1540,
+          "bytes": 3549
+        },
+        {
+          "endpoint": "/api/soccer/media/4b6aaf1e9005731034b0a382231d58e8b60fcbbb15aa28bc4308f87c19d9fb7e",
+          "start_ms": 1476,
+          "ttfb_ms": 64,
+          "total_ms": 64,
+          "end_ms": 1540,
+          "bytes": 55422
+        },
+        {
+          "endpoint": "/api/soccer/media/3185ceded9ad221444f357f88f0fbf6abfd0b9f952fd4760fc424f8beab38d95",
+          "start_ms": 1476,
+          "ttfb_ms": 61,
+          "total_ms": 62,
+          "end_ms": 1538,
+          "bytes": 16889
+        },
+        {
+          "endpoint": "/api/soccer/media/a1ea4f53629ee3849d72d928d4c54dadb1c3e4e57dc842aba4dbba59c08d12f4",
+          "start_ms": 1476,
+          "ttfb_ms": 154,
+          "total_ms": 156,
+          "end_ms": 1632,
+          "bytes": 52751
+        },
+        {
+          "endpoint": "/api/soccer/media/bf45239688c9d69144f0d0c3efef4de38f3a0db2c0a2b3a32df054330f707664",
+          "start_ms": 1476,
+          "ttfb_ms": 209,
+          "total_ms": 211,
+          "end_ms": 1687,
+          "bytes": 21240
+        }
+      ],
+      "error_state": false,
+      "errors": []
+    },
+    {
+      "route": "/matches",
+      "temperature": "warm",
+      "first_meaningful_paint_ms": 237,
+      "fcp_ms": 220,
+      "total_route_data_ms": 315,
+      "slowest_endpoint": "/api/soccer/media/21edfde914c500ae1d3ed2b2fdeb8e08131c4e8ce22a20bd88ed7da0f298e446",
+      "endpoint_ttfb_ms": 91,
+      "http_requests": 79,
+      "api_requests": 67,
+      "requests": [
+        {
+          "endpoint": "/api/soccer/media/9e4b7c06391ad3742294dc761e7b951d0bf8603fd2b360370e1299832f602a9e",
+          "start_ms": 183,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 183,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/105291b28134e6b377795fd80d0d5c8c561f02257bfb1a5b243b87df0ebe6b19",
+          "start_ms": 183,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 183,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/live",
+          "start_ms": 184,
+          "ttfb_ms": 0,
+          "total_ms": 1,
+          "end_ms": 184,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/pro/access",
+          "start_ms": 184,
+          "ttfb_ms": 44,
+          "total_ms": 44,
+          "end_ms": 228,
+          "bytes": 900
+        },
+        {
+          "endpoint": "/api/soccer/matches?status=finished&to=2026-09-30&limit=40",
+          "start_ms": 184,
+          "ttfb_ms": 1,
+          "total_ms": 2,
+          "end_ms": 186,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/competitions",
+          "start_ms": 184,
+          "ttfb_ms": 1,
+          "total_ms": 2,
+          "end_ms": 186,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/84b94381a47ab86bc72cd9ee9def55c94163b0d9ba162dcbc54ddb56f4e464f8",
+          "start_ms": 213,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 213,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/b2459c995f0be4c96ed622c21c795b1d53764ea58bb82a3e386ce6b9fb0a3a02",
+          "start_ms": 213,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 213,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/1e6b69551e573c8ed4fdb3ea5e18d46051e8ad342224168920e89cae0585f562",
+          "start_ms": 213,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 213,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/6cb54837aa5a1fca1113cd73a88de45394393e8704b2d885db4277c051311e89",
+          "start_ms": 213,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 213,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/be9a2497af4479bd66f9b3277322412b384bbf3a22ed770119fefb686ca6b341",
+          "start_ms": 214,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 214,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8d68cf0ccd8bdd16960b78510ce86ac2094216c2a6ddfda49b88268a344e883f",
+          "start_ms": 214,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 214,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/31d271d162edab9767033e348d6a47e57cced277fff6cde8df3da87ebe4d6709",
+          "start_ms": 214,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 214,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/681ad998004cdfb5da21166607c0d021940445bcdaf2d506f08536dcff77e6ef",
+          "start_ms": 214,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 214,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/a2c081bc1712cd908a5e7eae6b72472ebc351778c005e6a7c42ca8fe896ebb35",
+          "start_ms": 214,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 214,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8f3107904e8ecc3d934f819b011896d3ab3a97ad1e07b3bedd052fcaa02e1f96",
+          "start_ms": 214,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 214,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/a3a5665b88adbb41ee627fd8b13b140fcbd77d478d20ddfb153214808c7e6356",
+          "start_ms": 214,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 214,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8eb3b92ab4ae3ad632345922f4d6cac69e7c9ff0f3338feacd9d708920287bfa",
+          "start_ms": 214,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 214,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/b3e2f9b51d71ca6937926a520aa1bd73f90f0e7d7cd1d3a2f3093944bcbfc49a",
+          "start_ms": 215,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 215,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/ff8db39f260d067c8b49c26962a1c7c32f9649a4abc5400f58bc7f2d7b7fcaef",
+          "start_ms": 215,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 215,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/85e8317c795135c8094b471563cb37110cc22fa4fe15398e2c31c03690c2b9a9",
+          "start_ms": 215,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 215,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/346aac475c309199dcb36e8472ea808cfce102e4740037ee185f313820d382eb",
+          "start_ms": 215,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 215,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/c5e3f8e60b41a6d8a7e025935b105edca5fd7086c9e896454f374eb401f55594",
+          "start_ms": 215,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 215,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8378b286b210cba675524bd9e36bf6211329cddb8e4cd235b64e63881677b06f",
+          "start_ms": 215,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 215,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/4495f8ec7d2d8c71477fc606d6396ed76cc86a1f68f02a8c10df6ed09724f24b",
+          "start_ms": 215,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 215,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/cbdf3c2b3157e1c2b4076e157513448315bb014803020029ba73bbf3d820d9ba",
+          "start_ms": 215,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 215,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/9d4a7f5d25fc35bb4943e734f24d82c569f84ea590189620e5d547bdf250026b",
+          "start_ms": 215,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 215,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/d87f12cbc30e43994847651e2671c58aef4a5fd44ede744d7c121f0c8428fdea",
+          "start_ms": 215,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 215,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/ac9866e2f75d59940309098931528f3d67b6927a03ef637626c7ab3e5c71b5f4",
+          "start_ms": 215,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 215,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/21c85bf3878dd2982083f46e8b9ede484b0c7b1e6d3bc8595d34d3693d914958",
+          "start_ms": 216,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 216,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/f1f3a7a853e83c61813e4d9d692bccbbb3d75809768b4bf1b589519cf9705264",
+          "start_ms": 216,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 216,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/9332b75a23a86dccdfdb19d2c0f97b16ad23baf4f94a967038e7e280dc159821",
+          "start_ms": 216,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 216,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/ebe2517e15785d61e23b4ba7ebf947f67539f0f715e7b10c5a9d2017c050521c",
+          "start_ms": 216,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 216,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/ad1d2cc73fa8f1182600a1e6381f08c96d21987387df9bc36c4616a69b989eba",
+          "start_ms": 216,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 216,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/0baf599e1cabaaa847145961f17d83f4b1280dbc641b48f4ff5ceea537eb2258",
+          "start_ms": 216,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 216,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/e4a3f7baae718bfb83c2f2eaa0e448d862720f63b276346b32077fdb08294bdc",
+          "start_ms": 216,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 216,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8111b1c1520d3d8bb71648d73088ed30227e8f50c4f903d9e47565feda1dfc7a",
+          "start_ms": 216,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 216,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/0430dedddc3af45cd7207d22507b1e120de8f673e67c9351d227fba8670ae2a2",
+          "start_ms": 216,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 216,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/3353eac2f0e3116bbabd30fe8c3fe40d1b1ec796fa76f5dbd776d23449891508",
+          "start_ms": 217,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 217,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/1656973561bf1fbc912701929a02f0c2455e2e55bb5bf5c093207bb4fdcc1e39",
+          "start_ms": 217,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 217,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/99718f00dfc5a13558d571dfaf9bd58344e9268cd261415bad3d45517e5ba35d",
+          "start_ms": 217,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 217,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/3158ac4e6803d83cf0871e520dab309fb9fe28abf2619acef7669655d6322c19",
+          "start_ms": 217,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 217,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8d2a777cb0f9cde919aaab04c91b561f861f2c96bb1c227d960e6b5a56f38c77",
+          "start_ms": 217,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 217,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/991c38ea3794ae19b561a93e526356d57c21f00823c1dbb31d680e20fd2f74e2",
+          "start_ms": 217,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 217,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/9bec0055ca32a9e7ab603904aed89a9fa28c6fb2a08b24cffe81b6946a809a1a",
+          "start_ms": 217,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 217,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/769ccaebf31bbce1cb07172951b8f38ca9405aa395684083dc9b2867beaff451",
+          "start_ms": 222,
+          "ttfb_ms": 37,
+          "total_ms": 38,
+          "end_ms": 260,
+          "bytes": 3616
+        },
+        {
+          "endpoint": "/api/soccer/media/a10d04432facb8650c624dc976e352df9d052065fdfce2f710cba720a4ab25e0",
+          "start_ms": 222,
+          "ttfb_ms": 47,
+          "total_ms": 50,
+          "end_ms": 272,
+          "bytes": 51684
+        },
+        {
+          "endpoint": "/api/soccer/media/e96530adbd35298a4418586343c81e9570d52576c0bc22a145a1d457aa4b24d5",
+          "start_ms": 223,
+          "ttfb_ms": 46,
+          "total_ms": 47,
+          "end_ms": 269,
+          "bytes": 4960
+        },
+        {
+          "endpoint": "/api/soccer/media/43c610c6d9377e57ca662c86a761ac29fdfdc67bf13dd8082423b2d2f38e4a0b",
+          "start_ms": 223,
+          "ttfb_ms": 47,
+          "total_ms": 49,
+          "end_ms": 272,
+          "bytes": 3639
+        },
+        {
+          "endpoint": "/api/soccer/media/a4116449f802b11895298686068c2a2c6ec78d56aeb0658014415f7edbaf5c68",
+          "start_ms": 223,
+          "ttfb_ms": 49,
+          "total_ms": 50,
+          "end_ms": 273,
+          "bytes": 8234
+        },
+        {
+          "endpoint": "/api/soccer/media/d523e0225ec2209e6b8a184a6db1fd90a6b7f00b695eccadc3e6cede77cffc69",
+          "start_ms": 223,
+          "ttfb_ms": 51,
+          "total_ms": 51,
+          "end_ms": 274,
+          "bytes": 17342
+        },
+        {
+          "endpoint": "/api/soccer/media/2d44906cfcc797aefdc9010ac7d6b1438e54c72c12723384530d4378fc4578b4",
+          "start_ms": 223,
+          "ttfb_ms": 45,
+          "total_ms": 46,
+          "end_ms": 269,
+          "bytes": 55662
+        },
+        {
+          "endpoint": "/api/soccer/media/8ed638af060cafae61514f04dcb3a1e5e0898b0ce990c36cf25300ba14fde9e3",
+          "start_ms": 223,
+          "ttfb_ms": 50,
+          "total_ms": 51,
+          "end_ms": 274,
+          "bytes": 82074
+        },
+        {
+          "endpoint": "/api/soccer/media/21edfde914c500ae1d3ed2b2fdeb8e08131c4e8ce22a20bd88ed7da0f298e446",
+          "start_ms": 223,
+          "ttfb_ms": 91,
+          "total_ms": 92,
+          "end_ms": 315,
+          "bytes": 85487
+        },
+        {
+          "endpoint": "/api/soccer/media/42e2fdced44ff542fa734409667c733841a7bcb903b526c85d12aac78aff2464",
+          "start_ms": 232,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 232,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/638ba01ea2dc0679766a8a1c4152756108cadb6763b2f016c8ca5f5c9784ebc7",
+          "start_ms": 232,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 232,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/463b74682c9030631d8fc19a1535875496009a8f296775323127e2a2365094d0",
+          "start_ms": 232,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 232,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/57c869a3f900735a950a166961b56d7170608636c4ceadac2b1a1185638f5653",
+          "start_ms": 233,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 233,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/e7f1a617ed094d5d41352388e15dc6e6c791919d96621c6ff6e8c4752195542a",
+          "start_ms": 233,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 233,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/3494e9b292e009a5b51346f9b7302e6afd09e303aecb9f80f1ed8e9278dcf86a",
+          "start_ms": 234,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 234,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/5c269f92a7da5f8124c32671f25478203ad34cb55a69c1e523832d3691327eda",
+          "start_ms": 234,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 234,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/2d71cd78856bc5ee8b575190b5e44a6ba9ac363ed13454f9f595e51726455f9d",
+          "start_ms": 234,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 234,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/4b6aaf1e9005731034b0a382231d58e8b60fcbbb15aa28bc4308f87c19d9fb7e",
+          "start_ms": 234,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 234,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/5ba7edf371fc7d1386f2e7c5c441a5408c5dc264b846c10bc29dbbf3c1ad4596",
+          "start_ms": 234,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 234,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/3185ceded9ad221444f357f88f0fbf6abfd0b9f952fd4760fc424f8beab38d95",
+          "start_ms": 234,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 234,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/bf45239688c9d69144f0d0c3efef4de38f3a0db2c0a2b3a32df054330f707664",
+          "start_ms": 234,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 234,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/a1ea4f53629ee3849d72d928d4c54dadb1c3e4e57dc842aba4dbba59c08d12f4",
+          "start_ms": 234,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 234,
+          "bytes": 0
+        }
+      ],
+      "error_state": false,
+      "errors": []
+    },
+    {
+      "route": "/competitions/bundesliga",
+      "temperature": "cold",
+      "first_meaningful_paint_ms": 1723,
+      "fcp_ms": 1144,
+      "total_route_data_ms": 2091,
+      "slowest_endpoint": "/api/soccer/matches?competition=bundesliga&season=2026%2F27&status=finished&to=2026-09-30&limit=30",
+      "endpoint_ttfb_ms": 534,
+      "http_requests": 42,
+      "api_requests": 33,
+      "requests": [
+        {
+          "endpoint": "/api/soccer/live",
+          "start_ms": 1072,
+          "ttfb_ms": 47,
+          "total_ms": 48,
+          "end_ms": 1119,
+          "bytes": 7493
+        },
+        {
+          "endpoint": "/api/soccer/pro/access",
+          "start_ms": 1072,
+          "ttfb_ms": 45,
+          "total_ms": 46,
+          "end_ms": 1118,
+          "bytes": 900
+        },
+        {
+          "endpoint": "/api/soccer/competitions/bundesliga",
+          "start_ms": 1073,
+          "ttfb_ms": 72,
+          "total_ms": 75,
+          "end_ms": 1147,
+          "bytes": 3113
+        },
+        {
+          "endpoint": "/api/soccer/media/9e4b7c06391ad3742294dc761e7b951d0bf8603fd2b360370e1299832f602a9e",
+          "start_ms": 1152,
+          "ttfb_ms": 37,
+          "total_ms": 38,
+          "end_ms": 1189,
+          "bytes": 42134
+        },
+        {
+          "endpoint": "/api/soccer/media/105291b28134e6b377795fd80d0d5c8c561f02257bfb1a5b243b87df0ebe6b19",
+          "start_ms": 1152,
+          "ttfb_ms": 41,
+          "total_ms": 56,
+          "end_ms": 1208,
+          "bytes": 170842
+        },
+        {
+          "endpoint": "/api/soccer/media/84b94381a47ab86bc72cd9ee9def55c94163b0d9ba162dcbc54ddb56f4e464f8",
+          "start_ms": 1161,
+          "ttfb_ms": 46,
+          "total_ms": 49,
+          "end_ms": 1210,
+          "bytes": 86020
+        },
+        {
+          "endpoint": "/api/soccer/media/1e6b69551e573c8ed4fdb3ea5e18d46051e8ad342224168920e89cae0585f562",
+          "start_ms": 1161,
+          "ttfb_ms": 47,
+          "total_ms": 47,
+          "end_ms": 1209,
+          "bytes": 9734
+        },
+        {
+          "endpoint": "/api/soccer/media/b2459c995f0be4c96ed622c21c795b1d53764ea58bb82a3e386ce6b9fb0a3a02",
+          "start_ms": 1161,
+          "ttfb_ms": 47,
+          "total_ms": 48,
+          "end_ms": 1209,
+          "bytes": 42555
+        },
+        {
+          "endpoint": "/api/soccer/media/6cb54837aa5a1fca1113cd73a88de45394393e8704b2d885db4277c051311e89",
+          "start_ms": 1162,
+          "ttfb_ms": 48,
+          "total_ms": 49,
+          "end_ms": 1211,
+          "bytes": 19918
+        },
+        {
+          "endpoint": "/api/soccer/media/be9a2497af4479bd66f9b3277322412b384bbf3a22ed770119fefb686ca6b341",
+          "start_ms": 1162,
+          "ttfb_ms": 50,
+          "total_ms": 50,
+          "end_ms": 1211,
+          "bytes": 3685
+        },
+        {
+          "endpoint": "/api/soccer/media/681ad998004cdfb5da21166607c0d021940445bcdaf2d506f08536dcff77e6ef",
+          "start_ms": 1162,
+          "ttfb_ms": 48,
+          "total_ms": 48,
+          "end_ms": 1210,
+          "bytes": 20048
+        },
+        {
+          "endpoint": "/api/soccer/media/a2c081bc1712cd908a5e7eae6b72472ebc351778c005e6a7c42ca8fe896ebb35",
+          "start_ms": 1162,
+          "ttfb_ms": 49,
+          "total_ms": 49,
+          "end_ms": 1211,
+          "bytes": 4203
+        },
+        {
+          "endpoint": "/api/soccer/media/31d271d162edab9767033e348d6a47e57cced277fff6cde8df3da87ebe4d6709",
+          "start_ms": 1162,
+          "ttfb_ms": 52,
+          "total_ms": 53,
+          "end_ms": 1215,
+          "bytes": 12994
+        },
+        {
+          "endpoint": "/api/soccer/media/8d68cf0ccd8bdd16960b78510ce86ac2094216c2a6ddfda49b88268a344e883f",
+          "start_ms": 1162,
+          "ttfb_ms": 54,
+          "total_ms": 54,
+          "end_ms": 1216,
+          "bytes": 3579
+        },
+        {
+          "endpoint": "/api/soccer/media/8f3107904e8ecc3d934f819b011896d3ab3a97ad1e07b3bedd052fcaa02e1f96",
+          "start_ms": 1162,
+          "ttfb_ms": 57,
+          "total_ms": 58,
+          "end_ms": 1220,
+          "bytes": 38358
+        },
+        {
+          "endpoint": "/api/soccer/table?competition=bundesliga&season=2026%2F27",
+          "start_ms": 1165,
+          "ttfb_ms": 267,
+          "total_ms": 269,
+          "end_ms": 1434,
+          "bytes": 3156
+        },
+        {
+          "endpoint": "/api/soccer/matches?competition=bundesliga&season=2026%2F27&status=finished&to=2026-09-30&limit=30",
+          "start_ms": 1165,
+          "ttfb_ms": 534,
+          "total_ms": 537,
+          "end_ms": 1702,
+          "bytes": 4475
+        },
+        {
+          "endpoint": "/api/soccer/matches?competition=bundesliga&season=2026%2F27&status=scheduled&from=2026-09-30&order=asc&limit=30",
+          "start_ms": 1165,
+          "ttfb_ms": 236,
+          "total_ms": 239,
+          "end_ms": 1404,
+          "bytes": 4313
+        },
+        {
+          "endpoint": "/api/soccer/coverage",
+          "start_ms": 1165,
+          "ttfb_ms": 50,
+          "total_ms": 50,
+          "end_ms": 1216,
+          "bytes": 925
+        },
+        {
+          "endpoint": "/api/soccer/media/a34af0a55df761a807dc43d1afff86ffa3d3a7fabf4d952c1364562973c5cff3",
+          "start_ms": 1861,
+          "ttfb_ms": 36,
+          "total_ms": 36,
+          "end_ms": 1898,
+          "bytes": 19291
+        },
+        {
+          "endpoint": "/api/soccer/media/53e64e30e43ff3c4a7a2f8c8802e439572afae543cf42d5ab70d0b694dfdf95b",
+          "start_ms": 1861,
+          "ttfb_ms": 186,
+          "total_ms": 187,
+          "end_ms": 2048,
+          "bytes": 27797
+        },
+        {
+          "endpoint": "/api/soccer/media/9de88c1c0986d88e17882c9f6a256cc6bd5bf5835641bd638112fe2d7388b2e2",
+          "start_ms": 1861,
+          "ttfb_ms": 188,
+          "total_ms": 189,
+          "end_ms": 2050,
+          "bytes": 35492
+        },
+        {
+          "endpoint": "/api/soccer/media/0194b333159b363a07b32999ff3a493b9fe57ed6483bfc39f67bcbe385ae4e71",
+          "start_ms": 1861,
+          "ttfb_ms": 206,
+          "total_ms": 208,
+          "end_ms": 2069,
+          "bytes": 72394
+        },
+        {
+          "endpoint": "/api/soccer/media/15defdc0576d2d60161d16b685c026e262de42f164a20cc8a191bfc685216581",
+          "start_ms": 1861,
+          "ttfb_ms": 229,
+          "total_ms": 230,
+          "end_ms": 2091,
+          "bytes": 25273
+        },
+        {
+          "endpoint": "/api/soccer/media/ccf3637306e5382bd83465ac0f17deb10fa73bace686ab3507de38d83fc281a9",
+          "start_ms": 1862,
+          "ttfb_ms": 198,
+          "total_ms": 206,
+          "end_ms": 2067,
+          "bytes": 25495
+        },
+        {
+          "endpoint": "/api/soccer/media/e0be43c3d770332d031309e661f127e22bc8202a1211993c467193444481cb4b",
+          "start_ms": 1862,
+          "ttfb_ms": 209,
+          "total_ms": 220,
+          "end_ms": 2081,
+          "bytes": 69038
+        },
+        {
+          "endpoint": "/api/soccer/media/98f3419af6a51c71090e72ad1646446405fad6a18471667427cacb1094df3ae1",
+          "start_ms": 1862,
+          "ttfb_ms": 219,
+          "total_ms": 220,
+          "end_ms": 2082,
+          "bytes": 50342
+        },
+        {
+          "endpoint": "/api/soccer/media/8fe1207f20c067ae8be9f8af4ce4e622824f9d392691df43c2d7c4cfc43b5462",
+          "start_ms": 1862,
+          "ttfb_ms": 206,
+          "total_ms": 206,
+          "end_ms": 2068,
+          "bytes": 26019
+        },
+        {
+          "endpoint": "/api/soccer/media/acbbcaf66bea956440f961962d11e7c1e19a8d6a2a375ba923b384d87d6c0a93",
+          "start_ms": 1862,
+          "ttfb_ms": 170,
+          "total_ms": 170,
+          "end_ms": 2032,
+          "bytes": 2903
+        },
+        {
+          "endpoint": "/api/soccer/media/2875d52faa8e27b811ffe2fa346231bb8006a5cc3f79c2360c26c253f67cb2ce",
+          "start_ms": 1862,
+          "ttfb_ms": 172,
+          "total_ms": 173,
+          "end_ms": 2035,
+          "bytes": 30729
+        },
+        {
+          "endpoint": "/api/soccer/media/8b6d58b3602555fb90065e7cf22b7ebae555363a9549ec060400e44e8c058d9b",
+          "start_ms": 1862,
+          "ttfb_ms": 180,
+          "total_ms": 182,
+          "end_ms": 2043,
+          "bytes": 66716
+        },
+        {
+          "endpoint": "/api/soccer/media/0734f241fe3b1a5c94bd4beb659c186cbb6fcf01592ac00ecbfb2d5bd29ab0c3",
+          "start_ms": 1862,
+          "ttfb_ms": 191,
+          "total_ms": 197,
+          "end_ms": 2059,
+          "bytes": 63207
+        },
+        {
+          "endpoint": "/api/soccer/media/f938aab67187c8f154ad5da75cd41867bc92b5b4c0fbd9de0ac758df42d560a1",
+          "start_ms": 1862,
+          "ttfb_ms": 209,
+          "total_ms": 209,
+          "end_ms": 2071,
+          "bytes": 15389
+        }
+      ],
+      "error_state": false,
+      "errors": []
+    },
+    {
+      "route": "/competitions/bundesliga",
+      "temperature": "warm",
+      "first_meaningful_paint_ms": 235,
+      "fcp_ms": 160,
+      "total_route_data_ms": 230,
+      "slowest_endpoint": "/api/soccer/media/0baf599e1cabaaa847145961f17d83f4b1280dbc641b48f4ff5ceea537eb2258",
+      "endpoint_ttfb_ms": 67,
+      "http_requests": 83,
+      "api_requests": 71,
+      "requests": [
+        {
+          "endpoint": "/api/soccer/media/9e4b7c06391ad3742294dc761e7b951d0bf8603fd2b360370e1299832f602a9e",
+          "start_ms": 122,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 122,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/a34af0a55df761a807dc43d1afff86ffa3d3a7fabf4d952c1364562973c5cff3",
+          "start_ms": 122,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 122,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/105291b28134e6b377795fd80d0d5c8c561f02257bfb1a5b243b87df0ebe6b19",
+          "start_ms": 122,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 122,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/live",
+          "start_ms": 123,
+          "ttfb_ms": 1,
+          "total_ms": 1,
+          "end_ms": 124,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/pro/access",
+          "start_ms": 123,
+          "ttfb_ms": 42,
+          "total_ms": 42,
+          "end_ms": 165,
+          "bytes": 900
+        },
+        {
+          "endpoint": "/api/soccer/competitions/bundesliga",
+          "start_ms": 123,
+          "ttfb_ms": 1,
+          "total_ms": 1,
+          "end_ms": 125,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/84b94381a47ab86bc72cd9ee9def55c94163b0d9ba162dcbc54ddb56f4e464f8",
+          "start_ms": 149,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 149,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/b2459c995f0be4c96ed622c21c795b1d53764ea58bb82a3e386ce6b9fb0a3a02",
+          "start_ms": 149,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 149,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/1e6b69551e573c8ed4fdb3ea5e18d46051e8ad342224168920e89cae0585f562",
+          "start_ms": 149,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 149,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/6cb54837aa5a1fca1113cd73a88de45394393e8704b2d885db4277c051311e89",
+          "start_ms": 150,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 150,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/be9a2497af4479bd66f9b3277322412b384bbf3a22ed770119fefb686ca6b341",
+          "start_ms": 150,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 150,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8d68cf0ccd8bdd16960b78510ce86ac2094216c2a6ddfda49b88268a344e883f",
+          "start_ms": 150,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 150,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/31d271d162edab9767033e348d6a47e57cced277fff6cde8df3da87ebe4d6709",
+          "start_ms": 150,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 150,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/681ad998004cdfb5da21166607c0d021940445bcdaf2d506f08536dcff77e6ef",
+          "start_ms": 150,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 150,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/a2c081bc1712cd908a5e7eae6b72472ebc351778c005e6a7c42ca8fe896ebb35",
+          "start_ms": 150,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 150,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8f3107904e8ecc3d934f819b011896d3ab3a97ad1e07b3bedd052fcaa02e1f96",
+          "start_ms": 150,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 150,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/769ccaebf31bbce1cb07172951b8f38ca9405aa395684083dc9b2867beaff451",
+          "start_ms": 157,
+          "ttfb_ms": 34,
+          "total_ms": 35,
+          "end_ms": 191,
+          "bytes": 3616
+        },
+        {
+          "endpoint": "/api/soccer/media/e96530adbd35298a4418586343c81e9570d52576c0bc22a145a1d457aa4b24d5",
+          "start_ms": 157,
+          "ttfb_ms": 34,
+          "total_ms": 35,
+          "end_ms": 191,
+          "bytes": 4960
+        },
+        {
+          "endpoint": "/api/soccer/media/a10d04432facb8650c624dc976e352df9d052065fdfce2f710cba720a4ab25e0",
+          "start_ms": 157,
+          "ttfb_ms": 40,
+          "total_ms": 41,
+          "end_ms": 197,
+          "bytes": 51684
+        },
+        {
+          "endpoint": "/api/soccer/media/43c610c6d9377e57ca662c86a761ac29fdfdc67bf13dd8082423b2d2f38e4a0b",
+          "start_ms": 157,
+          "ttfb_ms": 42,
+          "total_ms": 43,
+          "end_ms": 200,
+          "bytes": 3639
+        },
+        {
+          "endpoint": "/api/soccer/media/a4116449f802b11895298686068c2a2c6ec78d56aeb0658014415f7edbaf5c68",
+          "start_ms": 157,
+          "ttfb_ms": 67,
+          "total_ms": 67,
+          "end_ms": 224,
+          "bytes": 8234
+        },
+        {
+          "endpoint": "/api/soccer/media/d523e0225ec2209e6b8a184a6db1fd90a6b7f00b695eccadc3e6cede77cffc69",
+          "start_ms": 157,
+          "ttfb_ms": 43,
+          "total_ms": 43,
+          "end_ms": 200,
+          "bytes": 17342
+        },
+        {
+          "endpoint": "/api/soccer/media/8ed638af060cafae61514f04dcb3a1e5e0898b0ce990c36cf25300ba14fde9e3",
+          "start_ms": 157,
+          "ttfb_ms": 59,
+          "total_ms": 61,
+          "end_ms": 219,
+          "bytes": 82074
+        },
+        {
+          "endpoint": "/api/soccer/media/2d44906cfcc797aefdc9010ac7d6b1438e54c72c12723384530d4378fc4578b4",
+          "start_ms": 157,
+          "ttfb_ms": 47,
+          "total_ms": 48,
+          "end_ms": 205,
+          "bytes": 55662
+        },
+        {
+          "endpoint": "/api/soccer/media/a3a5665b88adbb41ee627fd8b13b140fcbd77d478d20ddfb153214808c7e6356",
+          "start_ms": 157,
+          "ttfb_ms": 58,
+          "total_ms": 59,
+          "end_ms": 216,
+          "bytes": 3739
+        },
+        {
+          "endpoint": "/api/soccer/media/21edfde914c500ae1d3ed2b2fdeb8e08131c4e8ce22a20bd88ed7da0f298e446",
+          "start_ms": 157,
+          "ttfb_ms": 43,
+          "total_ms": 48,
+          "end_ms": 205,
+          "bytes": 85487
+        },
+        {
+          "endpoint": "/api/soccer/media/8eb3b92ab4ae3ad632345922f4d6cac69e7c9ff0f3338feacd9d708920287bfa",
+          "start_ms": 158,
+          "ttfb_ms": 48,
+          "total_ms": 48,
+          "end_ms": 206,
+          "bytes": 28354
+        },
+        {
+          "endpoint": "/api/soccer/media/ff8db39f260d067c8b49c26962a1c7c32f9649a4abc5400f58bc7f2d7b7fcaef",
+          "start_ms": 158,
+          "ttfb_ms": 49,
+          "total_ms": 57,
+          "end_ms": 215,
+          "bytes": 3066
+        },
+        {
+          "endpoint": "/api/soccer/media/b3e2f9b51d71ca6937926a520aa1bd73f90f0e7d7cd1d3a2f3093944bcbfc49a",
+          "start_ms": 158,
+          "ttfb_ms": 49,
+          "total_ms": 57,
+          "end_ms": 215,
+          "bytes": 15410
+        },
+        {
+          "endpoint": "/api/soccer/media/85e8317c795135c8094b471563cb37110cc22fa4fe15398e2c31c03690c2b9a9",
+          "start_ms": 158,
+          "ttfb_ms": 56,
+          "total_ms": 58,
+          "end_ms": 215,
+          "bytes": 3223
+        },
+        {
+          "endpoint": "/api/soccer/media/346aac475c309199dcb36e8472ea808cfce102e4740037ee185f313820d382eb",
+          "start_ms": 158,
+          "ttfb_ms": 48,
+          "total_ms": 49,
+          "end_ms": 206,
+          "bytes": 13986
+        },
+        {
+          "endpoint": "/api/soccer/media/c5e3f8e60b41a6d8a7e025935b105edca5fd7086c9e896454f374eb401f55594",
+          "start_ms": 158,
+          "ttfb_ms": 49,
+          "total_ms": 57,
+          "end_ms": 215,
+          "bytes": 65127
+        },
+        {
+          "endpoint": "/api/soccer/media/8378b286b210cba675524bd9e36bf6211329cddb8e4cd235b64e63881677b06f",
+          "start_ms": 158,
+          "ttfb_ms": 48,
+          "total_ms": 48,
+          "end_ms": 206,
+          "bytes": 3033
+        },
+        {
+          "endpoint": "/api/soccer/media/4495f8ec7d2d8c71477fc606d6396ed76cc86a1f68f02a8c10df6ed09724f24b",
+          "start_ms": 158,
+          "ttfb_ms": 58,
+          "total_ms": 58,
+          "end_ms": 216,
+          "bytes": 3575
+        },
+        {
+          "endpoint": "/api/soccer/media/cbdf3c2b3157e1c2b4076e157513448315bb014803020029ba73bbf3d820d9ba",
+          "start_ms": 158,
+          "ttfb_ms": 61,
+          "total_ms": 62,
+          "end_ms": 220,
+          "bytes": 13697
+        },
+        {
+          "endpoint": "/api/soccer/media/9d4a7f5d25fc35bb4943e734f24d82c569f84ea590189620e5d547bdf250026b",
+          "start_ms": 158,
+          "ttfb_ms": 64,
+          "total_ms": 64,
+          "end_ms": 222,
+          "bytes": 17189
+        },
+        {
+          "endpoint": "/api/soccer/media/d87f12cbc30e43994847651e2671c58aef4a5fd44ede744d7c121f0c8428fdea",
+          "start_ms": 158,
+          "ttfb_ms": 63,
+          "total_ms": 64,
+          "end_ms": 222,
+          "bytes": 49209
+        },
+        {
+          "endpoint": "/api/soccer/media/ac9866e2f75d59940309098931528f3d67b6927a03ef637626c7ab3e5c71b5f4",
+          "start_ms": 158,
+          "ttfb_ms": 66,
+          "total_ms": 67,
+          "end_ms": 225,
+          "bytes": 29579
+        },
+        {
+          "endpoint": "/api/soccer/media/f1f3a7a853e83c61813e4d9d692bccbbb3d75809768b4bf1b589519cf9705264",
+          "start_ms": 158,
+          "ttfb_ms": 59,
+          "total_ms": 59,
+          "end_ms": 217,
+          "bytes": 3722
+        },
+        {
+          "endpoint": "/api/soccer/media/21c85bf3878dd2982083f46e8b9ede484b0c7b1e6d3bc8595d34d3693d914958",
+          "start_ms": 158,
+          "ttfb_ms": 59,
+          "total_ms": 61,
+          "end_ms": 219,
+          "bytes": 47534
+        },
+        {
+          "endpoint": "/api/soccer/media/ebe2517e15785d61e23b4ba7ebf947f67539f0f715e7b10c5a9d2017c050521c",
+          "start_ms": 158,
+          "ttfb_ms": 59,
+          "total_ms": 60,
+          "end_ms": 218,
+          "bytes": 4565
+        },
+        {
+          "endpoint": "/api/soccer/media/9332b75a23a86dccdfdb19d2c0f97b16ad23baf4f94a967038e7e280dc159821",
+          "start_ms": 158,
+          "ttfb_ms": 62,
+          "total_ms": 63,
+          "end_ms": 221,
+          "bytes": 9723
+        },
+        {
+          "endpoint": "/api/soccer/media/ad1d2cc73fa8f1182600a1e6381f08c96d21987387df9bc36c4616a69b989eba",
+          "start_ms": 159,
+          "ttfb_ms": 61,
+          "total_ms": 62,
+          "end_ms": 221,
+          "bytes": 25936
+        },
+        {
+          "endpoint": "/api/soccer/media/0baf599e1cabaaa847145961f17d83f4b1280dbc641b48f4ff5ceea537eb2258",
+          "start_ms": 159,
+          "ttfb_ms": 67,
+          "total_ms": 68,
+          "end_ms": 226,
+          "bytes": 3879
+        },
+        {
+          "endpoint": "/api/soccer/media/8111b1c1520d3d8bb71648d73088ed30227e8f50c4f903d9e47565feda1dfc7a",
+          "start_ms": 159,
+          "ttfb_ms": 59,
+          "total_ms": 61,
+          "end_ms": 219,
+          "bytes": 24278
+        },
+        {
+          "endpoint": "/api/soccer/media/e4a3f7baae718bfb83c2f2eaa0e448d862720f63b276346b32077fdb08294bdc",
+          "start_ms": 159,
+          "ttfb_ms": 61,
+          "total_ms": 62,
+          "end_ms": 220,
+          "bytes": 4163
+        },
+        {
+          "endpoint": "/api/soccer/media/0430dedddc3af45cd7207d22507b1e120de8f673e67c9351d227fba8670ae2a2",
+          "start_ms": 159,
+          "ttfb_ms": 64,
+          "total_ms": 64,
+          "end_ms": 223,
+          "bytes": 13667
+        },
+        {
+          "endpoint": "/api/soccer/media/3353eac2f0e3116bbabd30fe8c3fe40d1b1ec796fa76f5dbd776d23449891508",
+          "start_ms": 159,
+          "ttfb_ms": 65,
+          "total_ms": 66,
+          "end_ms": 224,
+          "bytes": 3616
+        },
+        {
+          "endpoint": "/api/soccer/media/1656973561bf1fbc912701929a02f0c2455e2e55bb5bf5c093207bb4fdcc1e39",
+          "start_ms": 159,
+          "ttfb_ms": 62,
+          "total_ms": 63,
+          "end_ms": 222,
+          "bytes": 86426
+        },
+        {
+          "endpoint": "/api/soccer/media/99718f00dfc5a13558d571dfaf9bd58344e9268cd261415bad3d45517e5ba35d",
+          "start_ms": 159,
+          "ttfb_ms": 64,
+          "total_ms": 64,
+          "end_ms": 223,
+          "bytes": 16985
+        },
+        {
+          "endpoint": "/api/soccer/media/8d2a777cb0f9cde919aaab04c91b561f861f2c96bb1c227d960e6b5a56f38c77",
+          "start_ms": 159,
+          "ttfb_ms": 65,
+          "total_ms": 65,
+          "end_ms": 224,
+          "bytes": 3191
+        },
+        {
+          "endpoint": "/api/soccer/media/3158ac4e6803d83cf0871e520dab309fb9fe28abf2619acef7669655d6322c19",
+          "start_ms": 159,
+          "ttfb_ms": 66,
+          "total_ms": 67,
+          "end_ms": 225,
+          "bytes": 24781
+        },
+        {
+          "endpoint": "/api/soccer/media/991c38ea3794ae19b561a93e526356d57c21f00823c1dbb31d680e20fd2f74e2",
+          "start_ms": 159,
+          "ttfb_ms": 62,
+          "total_ms": 62,
+          "end_ms": 221,
+          "bytes": 3506
+        },
+        {
+          "endpoint": "/api/soccer/media/9bec0055ca32a9e7ab603904aed89a9fa28c6fb2a08b24cffe81b6946a809a1a",
+          "start_ms": 159,
+          "ttfb_ms": 63,
+          "total_ms": 63,
+          "end_ms": 223,
+          "bytes": 3493
+        },
+        {
+          "endpoint": "/api/soccer/table?competition=bundesliga&season=2026%2F27",
+          "start_ms": 163,
+          "ttfb_ms": 6,
+          "total_ms": 7,
+          "end_ms": 170,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/matches?competition=bundesliga&season=2026%2F27&status=finished&to=2026-09-30&limit=30",
+          "start_ms": 163,
+          "ttfb_ms": 7,
+          "total_ms": 8,
+          "end_ms": 171,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/matches?competition=bundesliga&season=2026%2F27&status=scheduled&from=2026-09-30&order=asc&limit=30",
+          "start_ms": 163,
+          "ttfb_ms": 7,
+          "total_ms": 8,
+          "end_ms": 171,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/coverage",
+          "start_ms": 163,
+          "ttfb_ms": 8,
+          "total_ms": 8,
+          "end_ms": 172,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/9de88c1c0986d88e17882c9f6a256cc6bd5bf5835641bd638112fe2d7388b2e2",
+          "start_ms": 228,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 228,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/0194b333159b363a07b32999ff3a493b9fe57ed6483bfc39f67bcbe385ae4e71",
+          "start_ms": 229,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 229,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/53e64e30e43ff3c4a7a2f8c8802e439572afae543cf42d5ab70d0b694dfdf95b",
+          "start_ms": 229,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 229,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/15defdc0576d2d60161d16b685c026e262de42f164a20cc8a191bfc685216581",
+          "start_ms": 229,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 229,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/e0be43c3d770332d031309e661f127e22bc8202a1211993c467193444481cb4b",
+          "start_ms": 229,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 229,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/98f3419af6a51c71090e72ad1646446405fad6a18471667427cacb1094df3ae1",
+          "start_ms": 229,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 229,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/ccf3637306e5382bd83465ac0f17deb10fa73bace686ab3507de38d83fc281a9",
+          "start_ms": 229,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 229,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8fe1207f20c067ae8be9f8af4ce4e622824f9d392691df43c2d7c4cfc43b5462",
+          "start_ms": 229,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 229,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/acbbcaf66bea956440f961962d11e7c1e19a8d6a2a375ba923b384d87d6c0a93",
+          "start_ms": 229,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 229,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/2875d52faa8e27b811ffe2fa346231bb8006a5cc3f79c2360c26c253f67cb2ce",
+          "start_ms": 230,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 230,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/f938aab67187c8f154ad5da75cd41867bc92b5b4c0fbd9de0ac758df42d560a1",
+          "start_ms": 230,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 230,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8b6d58b3602555fb90065e7cf22b7ebae555363a9549ec060400e44e8c058d9b",
+          "start_ms": 230,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 230,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/0734f241fe3b1a5c94bd4beb659c186cbb6fcf01592ac00ecbfb2d5bd29ab0c3",
+          "start_ms": 230,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 230,
+          "bytes": 0
+        }
+      ],
+      "error_state": false,
+      "errors": []
+    },
+    {
+      "route": "/teams/bayern-munchen",
+      "temperature": "cold",
+      "first_meaningful_paint_ms": 1500,
+      "fcp_ms": 1460,
+      "total_route_data_ms": 3096,
+      "slowest_endpoint": "/api/soccer/teams/bayern-munchen/dna",
+      "endpoint_ttfb_ms": 1594,
+      "http_requests": 51,
+      "api_requests": 41,
+      "requests": [
+        {
+          "endpoint": "/api/soccer/live",
+          "start_ms": 1378,
+          "ttfb_ms": 49,
+          "total_ms": 50,
+          "end_ms": 1428,
+          "bytes": 7493
+        },
+        {
+          "endpoint": "/api/soccer/pro/access",
+          "start_ms": 1378,
+          "ttfb_ms": 58,
+          "total_ms": 59,
+          "end_ms": 1437,
+          "bytes": 900
+        },
+        {
+          "endpoint": "/api/soccer/teams/bayern-munchen",
+          "start_ms": 1379,
+          "ttfb_ms": 73,
+          "total_ms": 75,
+          "end_ms": 1454,
+          "bytes": 6260
+        },
+        {
+          "endpoint": "/api/soccer/media/9e4b7c06391ad3742294dc761e7b951d0bf8603fd2b360370e1299832f602a9e",
+          "start_ms": 1474,
+          "ttfb_ms": 53,
+          "total_ms": 55,
+          "end_ms": 1528,
+          "bytes": 42134
+        },
+        {
+          "endpoint": "/api/soccer/media/105291b28134e6b377795fd80d0d5c8c561f02257bfb1a5b243b87df0ebe6b19",
+          "start_ms": 1474,
+          "ttfb_ms": 40,
+          "total_ms": 53,
+          "end_ms": 1527,
+          "bytes": 170842
+        },
+        {
+          "endpoint": "/api/soccer/media/84b94381a47ab86bc72cd9ee9def55c94163b0d9ba162dcbc54ddb56f4e464f8",
+          "start_ms": 1482,
+          "ttfb_ms": 46,
+          "total_ms": 51,
+          "end_ms": 1533,
+          "bytes": 86020
+        },
+        {
+          "endpoint": "/api/soccer/media/b2459c995f0be4c96ed622c21c795b1d53764ea58bb82a3e386ce6b9fb0a3a02",
+          "start_ms": 1482,
+          "ttfb_ms": 51,
+          "total_ms": 52,
+          "end_ms": 1534,
+          "bytes": 42555
+        },
+        {
+          "endpoint": "/api/soccer/media/1e6b69551e573c8ed4fdb3ea5e18d46051e8ad342224168920e89cae0585f562",
+          "start_ms": 1483,
+          "ttfb_ms": 51,
+          "total_ms": 51,
+          "end_ms": 1534,
+          "bytes": 9734
+        },
+        {
+          "endpoint": "/api/soccer/media/6cb54837aa5a1fca1113cd73a88de45394393e8704b2d885db4277c051311e89",
+          "start_ms": 1483,
+          "ttfb_ms": 52,
+          "total_ms": 52,
+          "end_ms": 1535,
+          "bytes": 19918
+        },
+        {
+          "endpoint": "/api/soccer/media/be9a2497af4479bd66f9b3277322412b384bbf3a22ed770119fefb686ca6b341",
+          "start_ms": 1483,
+          "ttfb_ms": 54,
+          "total_ms": 54,
+          "end_ms": 1536,
+          "bytes": 3685
+        },
+        {
+          "endpoint": "/api/soccer/media/8d68cf0ccd8bdd16960b78510ce86ac2094216c2a6ddfda49b88268a344e883f",
+          "start_ms": 1483,
+          "ttfb_ms": 52,
+          "total_ms": 52,
+          "end_ms": 1535,
+          "bytes": 3579
+        },
+        {
+          "endpoint": "/api/soccer/media/31d271d162edab9767033e348d6a47e57cced277fff6cde8df3da87ebe4d6709",
+          "start_ms": 1483,
+          "ttfb_ms": 53,
+          "total_ms": 53,
+          "end_ms": 1536,
+          "bytes": 12994
+        },
+        {
+          "endpoint": "/api/soccer/media/a2c081bc1712cd908a5e7eae6b72472ebc351778c005e6a7c42ca8fe896ebb35",
+          "start_ms": 1483,
+          "ttfb_ms": 52,
+          "total_ms": 52,
+          "end_ms": 1535,
+          "bytes": 4203
+        },
+        {
+          "endpoint": "/api/soccer/media/681ad998004cdfb5da21166607c0d021940445bcdaf2d506f08536dcff77e6ef",
+          "start_ms": 1483,
+          "ttfb_ms": 53,
+          "total_ms": 53,
+          "end_ms": 1536,
+          "bytes": 20048
+        },
+        {
+          "endpoint": "/api/soccer/media/8f3107904e8ecc3d934f819b011896d3ab3a97ad1e07b3bedd052fcaa02e1f96",
+          "start_ms": 1483,
+          "ttfb_ms": 53,
+          "total_ms": 53,
+          "end_ms": 1536,
+          "bytes": 38358
+        },
+        {
+          "endpoint": "/api/soccer/teams/bayern-munchen/dna",
+          "start_ms": 1499,
+          "ttfb_ms": 1594,
+          "total_ms": 1597,
+          "end_ms": 3096,
+          "bytes": 1194
+        },
+        {
+          "endpoint": "/api/soccer/news?team=bayern-munchen&limit=6",
+          "start_ms": 1499,
+          "ttfb_ms": 163,
+          "total_ms": 165,
+          "end_ms": 1665,
+          "bytes": 1316
+        },
+        {
+          "endpoint": "/api/soccer/media/463b74682c9030631d8fc19a1535875496009a8f296775323127e2a2365094d0",
+          "start_ms": 1600,
+          "ttfb_ms": 46,
+          "total_ms": 46,
+          "end_ms": 1646,
+          "bytes": 22693
+        },
+        {
+          "endpoint": "/api/soccer/media/638ba01ea2dc0679766a8a1c4152756108cadb6763b2f016c8ca5f5c9784ebc7",
+          "start_ms": 1600,
+          "ttfb_ms": 49,
+          "total_ms": 50,
+          "end_ms": 1650,
+          "bytes": 30706
+        },
+        {
+          "endpoint": "/api/soccer/media/0194b333159b363a07b32999ff3a493b9fe57ed6483bfc39f67bcbe385ae4e71",
+          "start_ms": 1600,
+          "ttfb_ms": 51,
+          "total_ms": 52,
+          "end_ms": 1651,
+          "bytes": 72394
+        },
+        {
+          "endpoint": "/api/soccer/media/15defdc0576d2d60161d16b685c026e262de42f164a20cc8a191bfc685216581",
+          "start_ms": 1600,
+          "ttfb_ms": 45,
+          "total_ms": 46,
+          "end_ms": 1646,
+          "bytes": 25273
+        },
+        {
+          "endpoint": "/api/soccer/media/8b6d58b3602555fb90065e7cf22b7ebae555363a9549ec060400e44e8c058d9b",
+          "start_ms": 1600,
+          "ttfb_ms": 46,
+          "total_ms": 48,
+          "end_ms": 1648,
+          "bytes": 66716
+        },
+        {
+          "endpoint": "/api/soccer/media/0734f241fe3b1a5c94bd4beb659c186cbb6fcf01592ac00ecbfb2d5bd29ab0c3",
+          "start_ms": 1600,
+          "ttfb_ms": 53,
+          "total_ms": 55,
+          "end_ms": 1655,
+          "bytes": 63207
+        },
+        {
+          "endpoint": "/api/soccer/media/f2973a87642765b242fa1797fd64ecfb4c2ad9a0d0338c353afb79c3323a8238",
+          "start_ms": 1600,
+          "ttfb_ms": 157,
+          "total_ms": 158,
+          "end_ms": 1758,
+          "bytes": 61140
+        },
+        {
+          "endpoint": "/api/soccer/media/6326c43acbf2af6d4ecb19e7e15165cef0210b36dc6811f1844c3e9932638cf5",
+          "start_ms": 1600,
+          "ttfb_ms": 253,
+          "total_ms": 254,
+          "end_ms": 1854,
+          "bytes": 20957
+        },
+        {
+          "endpoint": "/api/soccer/media/f938aab67187c8f154ad5da75cd41867bc92b5b4c0fbd9de0ac758df42d560a1",
+          "start_ms": 1600,
+          "ttfb_ms": 47,
+          "total_ms": 48,
+          "end_ms": 1648,
+          "bytes": 15389
+        },
+        {
+          "endpoint": "/api/soccer/media/0f1cbbe6cdcb0c3b670c806bc7e1b9f72f4ee00e0e89f9c4ce802600a6d4e6ae",
+          "start_ms": 1600,
+          "ttfb_ms": 226,
+          "total_ms": 228,
+          "end_ms": 1828,
+          "bytes": 67577
+        },
+        {
+          "endpoint": "/api/soccer/media/fa66dcdebf24ba505e091e20f896aa1e8dc244cd78ed531301b8a40eb3d653d8",
+          "start_ms": 1600,
+          "ttfb_ms": 163,
+          "total_ms": 175,
+          "end_ms": 1775,
+          "bytes": 95013
+        },
+        {
+          "endpoint": "/api/soccer/media/8d6cc223b4bf54b2fbb95eea92090926693d7be9b38a0b8b606f0947f6170987",
+          "start_ms": 1600,
+          "ttfb_ms": 145,
+          "total_ms": 157,
+          "end_ms": 1757,
+          "bytes": 134943
+        },
+        {
+          "endpoint": "/api/soccer/media/719f442ddf652517b5f32fde7c68dc61b05b74df0c0ad80cbd83d98896f47a3d",
+          "start_ms": 1600,
+          "ttfb_ms": 291,
+          "total_ms": 293,
+          "end_ms": 1893,
+          "bytes": 98206
+        },
+        {
+          "endpoint": "/api/soccer/media/61ca6925236fd474069664d2a41bc6d5126f3b56f36e6ff6e04090bc338b27d0",
+          "start_ms": 1600,
+          "ttfb_ms": 166,
+          "total_ms": 169,
+          "end_ms": 1769,
+          "bytes": 89230
+        },
+        {
+          "endpoint": "/api/soccer/media/4f46a08c518eb2cdcd40e6feb74e5fdfa7fa4a7bf1d741bd63de72f3920d4708",
+          "start_ms": 1600,
+          "ttfb_ms": 294,
+          "total_ms": 297,
+          "end_ms": 1897,
+          "bytes": 97908
+        },
+        {
+          "endpoint": "/api/soccer/media/101b433150e4339861632696a67cbeb2a43b6756e8f3f1adf772c040df0810b6",
+          "start_ms": 1600,
+          "ttfb_ms": 312,
+          "total_ms": 315,
+          "end_ms": 1915,
+          "bytes": 116464
+        },
+        {
+          "endpoint": "/api/soccer/media/6173ec7bcc4973188ef0c5b152d5035b8e8429371988c750c2e0d1811e4817d9",
+          "start_ms": 1600,
+          "ttfb_ms": 309,
+          "total_ms": 317,
+          "end_ms": 1917,
+          "bytes": 148998
+        },
+        {
+          "endpoint": "/api/soccer/media/7ace26731d7f1b91874b02a97d25ea68acc323b7baca42859232cd6d3c10a4c9",
+          "start_ms": 1600,
+          "ttfb_ms": 319,
+          "total_ms": 324,
+          "end_ms": 1925,
+          "bytes": 69795
+        },
+        {
+          "endpoint": "/api/soccer/media/cee5412e30db8c9677657f4e3f3815164bfa6188e0629cfde7b7d5f635ede1e7",
+          "start_ms": 1601,
+          "ttfb_ms": 296,
+          "total_ms": 298,
+          "end_ms": 1898,
+          "bytes": 82518
+        },
+        {
+          "endpoint": "/api/soccer/media/80d8369f264e39ea315d5bdf9892f09445ad147dc3253c78995de2f07cb61e9f",
+          "start_ms": 1601,
+          "ttfb_ms": 194,
+          "total_ms": 196,
+          "end_ms": 1796,
+          "bytes": 82002
+        },
+        {
+          "endpoint": "/api/soccer/media/88462a3b3b9612ddd43e910905007b431dc648ad9c0ff0c3718562b5dca63a96",
+          "start_ms": 1601,
+          "ttfb_ms": 308,
+          "total_ms": 314,
+          "end_ms": 1915,
+          "bytes": 113936
+        },
+        {
+          "endpoint": "/api/soccer/media/4205fb6637379810fbb992333f7723d72c552dd448316b339898b77702bcff34",
+          "start_ms": 1601,
+          "ttfb_ms": 168,
+          "total_ms": 174,
+          "end_ms": 1775,
+          "bytes": 111825
+        },
+        {
+          "endpoint": "/api/soccer/media/d8fe4719f70d77bb378cbf4c5869800e556667d754445503cb0a9a59b943467b",
+          "start_ms": 1601,
+          "ttfb_ms": 182,
+          "total_ms": 184,
+          "end_ms": 1785,
+          "bytes": 89896
+        },
+        {
+          "endpoint": "/api/soccer/media/5024def49f168487b15c6947792d591c4d4192b6aed879291ba49320c0c4833c",
+          "start_ms": 1601,
+          "ttfb_ms": 291,
+          "total_ms": 293,
+          "end_ms": 1894,
+          "bytes": 102081
+        }
+      ],
+      "error_state": false,
+      "errors": []
+    },
+    {
+      "route": "/teams/bayern-munchen",
+      "temperature": "warm",
+      "first_meaningful_paint_ms": 163,
+      "fcp_ms": 152,
+      "total_route_data_ms": 242,
+      "slowest_endpoint": "/api/soccer/media/8eb3b92ab4ae3ad632345922f4d6cac69e7c9ff0f3338feacd9d708920287bfa",
+      "endpoint_ttfb_ms": 91,
+      "http_requests": 92,
+      "api_requests": 79,
+      "requests": [
+        {
+          "endpoint": "/api/soccer/media/9e4b7c06391ad3742294dc761e7b951d0bf8603fd2b360370e1299832f602a9e",
+          "start_ms": 115,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 115,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/105291b28134e6b377795fd80d0d5c8c561f02257bfb1a5b243b87df0ebe6b19",
+          "start_ms": 115,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 115,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/live",
+          "start_ms": 115,
+          "ttfb_ms": 1,
+          "total_ms": 1,
+          "end_ms": 116,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/pro/access",
+          "start_ms": 116,
+          "ttfb_ms": 45,
+          "total_ms": 46,
+          "end_ms": 161,
+          "bytes": 900
+        },
+        {
+          "endpoint": "/api/soccer/teams/bayern-munchen",
+          "start_ms": 116,
+          "ttfb_ms": 1,
+          "total_ms": 1,
+          "end_ms": 117,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/84b94381a47ab86bc72cd9ee9def55c94163b0d9ba162dcbc54ddb56f4e464f8",
+          "start_ms": 143,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 143,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/b2459c995f0be4c96ed622c21c795b1d53764ea58bb82a3e386ce6b9fb0a3a02",
+          "start_ms": 143,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 143,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/1e6b69551e573c8ed4fdb3ea5e18d46051e8ad342224168920e89cae0585f562",
+          "start_ms": 143,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 143,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/6cb54837aa5a1fca1113cd73a88de45394393e8704b2d885db4277c051311e89",
+          "start_ms": 143,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 143,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/be9a2497af4479bd66f9b3277322412b384bbf3a22ed770119fefb686ca6b341",
+          "start_ms": 143,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 143,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8d68cf0ccd8bdd16960b78510ce86ac2094216c2a6ddfda49b88268a344e883f",
+          "start_ms": 143,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 143,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/31d271d162edab9767033e348d6a47e57cced277fff6cde8df3da87ebe4d6709",
+          "start_ms": 143,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 143,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/681ad998004cdfb5da21166607c0d021940445bcdaf2d506f08536dcff77e6ef",
+          "start_ms": 143,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 143,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/a2c081bc1712cd908a5e7eae6b72472ebc351778c005e6a7c42ca8fe896ebb35",
+          "start_ms": 143,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 143,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8f3107904e8ecc3d934f819b011896d3ab3a97ad1e07b3bedd052fcaa02e1f96",
+          "start_ms": 143,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 143,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/769ccaebf31bbce1cb07172951b8f38ca9405aa395684083dc9b2867beaff451",
+          "start_ms": 149,
+          "ttfb_ms": 54,
+          "total_ms": 54,
+          "end_ms": 203,
+          "bytes": 3616
+        },
+        {
+          "endpoint": "/api/soccer/media/a10d04432facb8650c624dc976e352df9d052065fdfce2f710cba720a4ab25e0",
+          "start_ms": 149,
+          "ttfb_ms": 42,
+          "total_ms": 53,
+          "end_ms": 202,
+          "bytes": 51684
+        },
+        {
+          "endpoint": "/api/soccer/media/e96530adbd35298a4418586343c81e9570d52576c0bc22a145a1d457aa4b24d5",
+          "start_ms": 149,
+          "ttfb_ms": 72,
+          "total_ms": 73,
+          "end_ms": 222,
+          "bytes": 4960
+        },
+        {
+          "endpoint": "/api/soccer/media/43c610c6d9377e57ca662c86a761ac29fdfdc67bf13dd8082423b2d2f38e4a0b",
+          "start_ms": 149,
+          "ttfb_ms": 69,
+          "total_ms": 69,
+          "end_ms": 218,
+          "bytes": 3639
+        },
+        {
+          "endpoint": "/api/soccer/media/a4116449f802b11895298686068c2a2c6ec78d56aeb0658014415f7edbaf5c68",
+          "start_ms": 149,
+          "ttfb_ms": 87,
+          "total_ms": 87,
+          "end_ms": 236,
+          "bytes": 8234
+        },
+        {
+          "endpoint": "/api/soccer/media/d523e0225ec2209e6b8a184a6db1fd90a6b7f00b695eccadc3e6cede77cffc69",
+          "start_ms": 149,
+          "ttfb_ms": 54,
+          "total_ms": 54,
+          "end_ms": 203,
+          "bytes": 17342
+        },
+        {
+          "endpoint": "/api/soccer/media/2d44906cfcc797aefdc9010ac7d6b1438e54c72c12723384530d4378fc4578b4",
+          "start_ms": 149,
+          "ttfb_ms": 54,
+          "total_ms": 68,
+          "end_ms": 217,
+          "bytes": 55662
+        },
+        {
+          "endpoint": "/api/soccer/media/8ed638af060cafae61514f04dcb3a1e5e0898b0ce990c36cf25300ba14fde9e3",
+          "start_ms": 149,
+          "ttfb_ms": 73,
+          "total_ms": 78,
+          "end_ms": 228,
+          "bytes": 82074
+        },
+        {
+          "endpoint": "/api/soccer/media/a3a5665b88adbb41ee627fd8b13b140fcbd77d478d20ddfb153214808c7e6356",
+          "start_ms": 149,
+          "ttfb_ms": 79,
+          "total_ms": 85,
+          "end_ms": 234,
+          "bytes": 3739
+        },
+        {
+          "endpoint": "/api/soccer/media/8eb3b92ab4ae3ad632345922f4d6cac69e7c9ff0f3338feacd9d708920287bfa",
+          "start_ms": 149,
+          "ttfb_ms": 91,
+          "total_ms": 91,
+          "end_ms": 240,
+          "bytes": 28354
+        },
+        {
+          "endpoint": "/api/soccer/media/21edfde914c500ae1d3ed2b2fdeb8e08131c4e8ce22a20bd88ed7da0f298e446",
+          "start_ms": 149,
+          "ttfb_ms": 85,
+          "total_ms": 86,
+          "end_ms": 236,
+          "bytes": 85487
+        },
+        {
+          "endpoint": "/api/soccer/media/b3e2f9b51d71ca6937926a520aa1bd73f90f0e7d7cd1d3a2f3093944bcbfc49a",
+          "start_ms": 149,
+          "ttfb_ms": 69,
+          "total_ms": 70,
+          "end_ms": 219,
+          "bytes": 15410
+        },
+        {
+          "endpoint": "/api/soccer/media/ff8db39f260d067c8b49c26962a1c7c32f9649a4abc5400f58bc7f2d7b7fcaef",
+          "start_ms": 149,
+          "ttfb_ms": 70,
+          "total_ms": 71,
+          "end_ms": 220,
+          "bytes": 3066
+        },
+        {
+          "endpoint": "/api/soccer/media/85e8317c795135c8094b471563cb37110cc22fa4fe15398e2c31c03690c2b9a9",
+          "start_ms": 149,
+          "ttfb_ms": 89,
+          "total_ms": 90,
+          "end_ms": 239,
+          "bytes": 3223
+        },
+        {
+          "endpoint": "/api/soccer/media/346aac475c309199dcb36e8472ea808cfce102e4740037ee185f313820d382eb",
+          "start_ms": 150,
+          "ttfb_ms": 75,
+          "total_ms": 77,
+          "end_ms": 226,
+          "bytes": 13986
+        },
+        {
+          "endpoint": "/api/soccer/media/c5e3f8e60b41a6d8a7e025935b105edca5fd7086c9e896454f374eb401f55594",
+          "start_ms": 150,
+          "ttfb_ms": 78,
+          "total_ms": 84,
+          "end_ms": 234,
+          "bytes": 65127
+        },
+        {
+          "endpoint": "/api/soccer/media/8378b286b210cba675524bd9e36bf6211329cddb8e4cd235b64e63881677b06f",
+          "start_ms": 150,
+          "ttfb_ms": 71,
+          "total_ms": 71,
+          "end_ms": 221,
+          "bytes": 3033
+        },
+        {
+          "endpoint": "/api/soccer/media/4495f8ec7d2d8c71477fc606d6396ed76cc86a1f68f02a8c10df6ed09724f24b",
+          "start_ms": 150,
+          "ttfb_ms": 71,
+          "total_ms": 71,
+          "end_ms": 221,
+          "bytes": 3575
+        },
+        {
+          "endpoint": "/api/soccer/media/cbdf3c2b3157e1c2b4076e157513448315bb014803020029ba73bbf3d820d9ba",
+          "start_ms": 150,
+          "ttfb_ms": 77,
+          "total_ms": 78,
+          "end_ms": 228,
+          "bytes": 13697
+        },
+        {
+          "endpoint": "/api/soccer/media/d87f12cbc30e43994847651e2671c58aef4a5fd44ede744d7c121f0c8428fdea",
+          "start_ms": 150,
+          "ttfb_ms": 88,
+          "total_ms": 89,
+          "end_ms": 239,
+          "bytes": 49209
+        },
+        {
+          "endpoint": "/api/soccer/media/9d4a7f5d25fc35bb4943e734f24d82c569f84ea590189620e5d547bdf250026b",
+          "start_ms": 150,
+          "ttfb_ms": 87,
+          "total_ms": 88,
+          "end_ms": 237,
+          "bytes": 17189
+        },
+        {
+          "endpoint": "/api/soccer/media/21c85bf3878dd2982083f46e8b9ede484b0c7b1e6d3bc8595d34d3693d914958",
+          "start_ms": 150,
+          "ttfb_ms": 70,
+          "total_ms": 71,
+          "end_ms": 220,
+          "bytes": 47534
+        },
+        {
+          "endpoint": "/api/soccer/media/f1f3a7a853e83c61813e4d9d692bccbbb3d75809768b4bf1b589519cf9705264",
+          "start_ms": 150,
+          "ttfb_ms": 72,
+          "total_ms": 72,
+          "end_ms": 222,
+          "bytes": 3722
+        },
+        {
+          "endpoint": "/api/soccer/media/ac9866e2f75d59940309098931528f3d67b6927a03ef637626c7ab3e5c71b5f4",
+          "start_ms": 150,
+          "ttfb_ms": 88,
+          "total_ms": 89,
+          "end_ms": 238,
+          "bytes": 29579
+        },
+        {
+          "endpoint": "/api/soccer/media/9332b75a23a86dccdfdb19d2c0f97b16ad23baf4f94a967038e7e280dc159821",
+          "start_ms": 150,
+          "ttfb_ms": 90,
+          "total_ms": 90,
+          "end_ms": 240,
+          "bytes": 9723
+        },
+        {
+          "endpoint": "/api/soccer/media/ebe2517e15785d61e23b4ba7ebf947f67539f0f715e7b10c5a9d2017c050521c",
+          "start_ms": 150,
+          "ttfb_ms": 75,
+          "total_ms": 77,
+          "end_ms": 227,
+          "bytes": 4565
+        },
+        {
+          "endpoint": "/api/soccer/media/ad1d2cc73fa8f1182600a1e6381f08c96d21987387df9bc36c4616a69b989eba",
+          "start_ms": 150,
+          "ttfb_ms": 89,
+          "total_ms": 89,
+          "end_ms": 239,
+          "bytes": 25936
+        },
+        {
+          "endpoint": "/api/soccer/media/0baf599e1cabaaa847145961f17d83f4b1280dbc641b48f4ff5ceea537eb2258",
+          "start_ms": 150,
+          "ttfb_ms": 87,
+          "total_ms": 88,
+          "end_ms": 238,
+          "bytes": 3879
+        },
+        {
+          "endpoint": "/api/soccer/media/e4a3f7baae718bfb83c2f2eaa0e448d862720f63b276346b32077fdb08294bdc",
+          "start_ms": 150,
+          "ttfb_ms": 85,
+          "total_ms": 86,
+          "end_ms": 236,
+          "bytes": 4163
+        },
+        {
+          "endpoint": "/api/soccer/media/8111b1c1520d3d8bb71648d73088ed30227e8f50c4f903d9e47565feda1dfc7a",
+          "start_ms": 150,
+          "ttfb_ms": 77,
+          "total_ms": 78,
+          "end_ms": 228,
+          "bytes": 24278
+        },
+        {
+          "endpoint": "/api/soccer/media/3353eac2f0e3116bbabd30fe8c3fe40d1b1ec796fa76f5dbd776d23449891508",
+          "start_ms": 150,
+          "ttfb_ms": 69,
+          "total_ms": 70,
+          "end_ms": 220,
+          "bytes": 3616
+        },
+        {
+          "endpoint": "/api/soccer/media/1656973561bf1fbc912701929a02f0c2455e2e55bb5bf5c093207bb4fdcc1e39",
+          "start_ms": 150,
+          "ttfb_ms": 71,
+          "total_ms": 75,
+          "end_ms": 226,
+          "bytes": 86426
+        },
+        {
+          "endpoint": "/api/soccer/media/0430dedddc3af45cd7207d22507b1e120de8f673e67c9351d227fba8670ae2a2",
+          "start_ms": 150,
+          "ttfb_ms": 77,
+          "total_ms": 78,
+          "end_ms": 228,
+          "bytes": 13667
+        },
+        {
+          "endpoint": "/api/soccer/media/8d2a777cb0f9cde919aaab04c91b561f861f2c96bb1c227d960e6b5a56f38c77",
+          "start_ms": 150,
+          "ttfb_ms": 75,
+          "total_ms": 77,
+          "end_ms": 227,
+          "bytes": 3191
+        },
+        {
+          "endpoint": "/api/soccer/media/99718f00dfc5a13558d571dfaf9bd58344e9268cd261415bad3d45517e5ba35d",
+          "start_ms": 150,
+          "ttfb_ms": 84,
+          "total_ms": 85,
+          "end_ms": 235,
+          "bytes": 16985
+        },
+        {
+          "endpoint": "/api/soccer/media/991c38ea3794ae19b561a93e526356d57c21f00823c1dbb31d680e20fd2f74e2",
+          "start_ms": 150,
+          "ttfb_ms": 86,
+          "total_ms": 87,
+          "end_ms": 238,
+          "bytes": 3506
+        },
+        {
+          "endpoint": "/api/soccer/media/3158ac4e6803d83cf0871e520dab309fb9fe28abf2619acef7669655d6322c19",
+          "start_ms": 150,
+          "ttfb_ms": 91,
+          "total_ms": 91,
+          "end_ms": 242,
+          "bytes": 24781
+        },
+        {
+          "endpoint": "/api/soccer/media/9bec0055ca32a9e7ab603904aed89a9fa28c6fb2a08b24cffe81b6946a809a1a",
+          "start_ms": 151,
+          "ttfb_ms": 90,
+          "total_ms": 90,
+          "end_ms": 240,
+          "bytes": 3493
+        },
+        {
+          "endpoint": "/api/soccer/media/0194b333159b363a07b32999ff3a493b9fe57ed6483bfc39f67bcbe385ae4e71",
+          "start_ms": 157,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 157,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/463b74682c9030631d8fc19a1535875496009a8f296775323127e2a2365094d0",
+          "start_ms": 157,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 157,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/638ba01ea2dc0679766a8a1c4152756108cadb6763b2f016c8ca5f5c9784ebc7",
+          "start_ms": 157,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 157,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/15defdc0576d2d60161d16b685c026e262de42f164a20cc8a191bfc685216581",
+          "start_ms": 157,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 157,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/6326c43acbf2af6d4ecb19e7e15165cef0210b36dc6811f1844c3e9932638cf5",
+          "start_ms": 157,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 157,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/0734f241fe3b1a5c94bd4beb659c186cbb6fcf01592ac00ecbfb2d5bd29ab0c3",
+          "start_ms": 158,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 158,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/f2973a87642765b242fa1797fd64ecfb4c2ad9a0d0338c353afb79c3323a8238",
+          "start_ms": 158,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 158,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8b6d58b3602555fb90065e7cf22b7ebae555363a9549ec060400e44e8c058d9b",
+          "start_ms": 158,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 158,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/0f1cbbe6cdcb0c3b670c806bc7e1b9f72f4ee00e0e89f9c4ce802600a6d4e6ae",
+          "start_ms": 158,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 158,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/f938aab67187c8f154ad5da75cd41867bc92b5b4c0fbd9de0ac758df42d560a1",
+          "start_ms": 159,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 159,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/fa66dcdebf24ba505e091e20f896aa1e8dc244cd78ed531301b8a40eb3d653d8",
+          "start_ms": 159,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 159,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8d6cc223b4bf54b2fbb95eea92090926693d7be9b38a0b8b606f0947f6170987",
+          "start_ms": 159,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 159,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/719f442ddf652517b5f32fde7c68dc61b05b74df0c0ad80cbd83d98896f47a3d",
+          "start_ms": 159,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 159,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/61ca6925236fd474069664d2a41bc6d5126f3b56f36e6ff6e04090bc338b27d0",
+          "start_ms": 159,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 159,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/4f46a08c518eb2cdcd40e6feb74e5fdfa7fa4a7bf1d741bd63de72f3920d4708",
+          "start_ms": 160,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 160,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/101b433150e4339861632696a67cbeb2a43b6756e8f3f1adf772c040df0810b6",
+          "start_ms": 160,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 160,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/6173ec7bcc4973188ef0c5b152d5035b8e8429371988c750c2e0d1811e4817d9",
+          "start_ms": 160,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 160,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/7ace26731d7f1b91874b02a97d25ea68acc323b7baca42859232cd6d3c10a4c9",
+          "start_ms": 160,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 160,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/cee5412e30db8c9677657f4e3f3815164bfa6188e0629cfde7b7d5f635ede1e7",
+          "start_ms": 160,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 160,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/80d8369f264e39ea315d5bdf9892f09445ad147dc3253c78995de2f07cb61e9f",
+          "start_ms": 161,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 161,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/88462a3b3b9612ddd43e910905007b431dc648ad9c0ff0c3718562b5dca63a96",
+          "start_ms": 161,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 161,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/4205fb6637379810fbb992333f7723d72c552dd448316b339898b77702bcff34",
+          "start_ms": 161,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 161,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/5024def49f168487b15c6947792d591c4d4192b6aed879291ba49320c0c4833c",
+          "start_ms": 161,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 161,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/d8fe4719f70d77bb378cbf4c5869800e556667d754445503cb0a9a59b943467b",
+          "start_ms": 161,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 161,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/teams/bayern-munchen/dna",
+          "start_ms": 162,
+          "ttfb_ms": 0,
+          "total_ms": 1,
+          "end_ms": 163,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/news?team=bayern-munchen&limit=6",
+          "start_ms": 162,
+          "ttfb_ms": 1,
+          "total_ms": 1,
+          "end_ms": 163,
+          "bytes": 0
+        }
+      ],
+      "error_state": false,
+      "errors": []
+    },
+    {
+      "route": "/players/robert-lewandowski",
+      "temperature": "cold",
+      "first_meaningful_paint_ms": 1903,
+      "fcp_ms": 1864,
+      "total_route_data_ms": 4029,
+      "slowest_endpoint": "/api/soccer/players/robert-lewandowski/dna",
+      "endpoint_ttfb_ms": 2027,
+      "http_requests": 30,
+      "api_requests": 21,
+      "requests": [
+        {
+          "endpoint": "/api/soccer/live",
+          "start_ms": 1794,
+          "ttfb_ms": 47,
+          "total_ms": 48,
+          "end_ms": 1841,
+          "bytes": 7493
+        },
+        {
+          "endpoint": "/api/soccer/pro/access",
+          "start_ms": 1794,
+          "ttfb_ms": 44,
+          "total_ms": 45,
+          "end_ms": 1839,
+          "bytes": 900
+        },
+        {
+          "endpoint": "/api/soccer/players/robert-lewandowski",
+          "start_ms": 1795,
+          "ttfb_ms": 72,
+          "total_ms": 74,
+          "end_ms": 1869,
+          "bytes": 6630
+        },
+        {
+          "endpoint": "/api/soccer/media/9e4b7c06391ad3742294dc761e7b951d0bf8603fd2b360370e1299832f602a9e",
+          "start_ms": 1880,
+          "ttfb_ms": 37,
+          "total_ms": 37,
+          "end_ms": 1917,
+          "bytes": 42134
+        },
+        {
+          "endpoint": "/api/soccer/media/105291b28134e6b377795fd80d0d5c8c561f02257bfb1a5b243b87df0ebe6b19",
+          "start_ms": 1880,
+          "ttfb_ms": 43,
+          "total_ms": 57,
+          "end_ms": 1937,
+          "bytes": 170842
+        },
+        {
+          "endpoint": "/api/soccer/media/84b94381a47ab86bc72cd9ee9def55c94163b0d9ba162dcbc54ddb56f4e464f8",
+          "start_ms": 1888,
+          "ttfb_ms": 53,
+          "total_ms": 59,
+          "end_ms": 1947,
+          "bytes": 86020
+        },
+        {
+          "endpoint": "/api/soccer/media/1e6b69551e573c8ed4fdb3ea5e18d46051e8ad342224168920e89cae0585f562",
+          "start_ms": 1888,
+          "ttfb_ms": 51,
+          "total_ms": 51,
+          "end_ms": 1939,
+          "bytes": 9734
+        },
+        {
+          "endpoint": "/api/soccer/media/b2459c995f0be4c96ed622c21c795b1d53764ea58bb82a3e386ce6b9fb0a3a02",
+          "start_ms": 1888,
+          "ttfb_ms": 51,
+          "total_ms": 52,
+          "end_ms": 1940,
+          "bytes": 42555
+        },
+        {
+          "endpoint": "/api/soccer/media/6cb54837aa5a1fca1113cd73a88de45394393e8704b2d885db4277c051311e89",
+          "start_ms": 1888,
+          "ttfb_ms": 49,
+          "total_ms": 49,
+          "end_ms": 1938,
+          "bytes": 19918
+        },
+        {
+          "endpoint": "/api/soccer/media/be9a2497af4479bd66f9b3277322412b384bbf3a22ed770119fefb686ca6b341",
+          "start_ms": 1888,
+          "ttfb_ms": 49,
+          "total_ms": 50,
+          "end_ms": 1938,
+          "bytes": 3685
+        },
+        {
+          "endpoint": "/api/soccer/media/8d68cf0ccd8bdd16960b78510ce86ac2094216c2a6ddfda49b88268a344e883f",
+          "start_ms": 1888,
+          "ttfb_ms": 59,
+          "total_ms": 59,
+          "end_ms": 1947,
+          "bytes": 3579
+        },
+        {
+          "endpoint": "/api/soccer/media/31d271d162edab9767033e348d6a47e57cced277fff6cde8df3da87ebe4d6709",
+          "start_ms": 1889,
+          "ttfb_ms": 52,
+          "total_ms": 52,
+          "end_ms": 1941,
+          "bytes": 12994
+        },
+        {
+          "endpoint": "/api/soccer/media/681ad998004cdfb5da21166607c0d021940445bcdaf2d506f08536dcff77e6ef",
+          "start_ms": 1889,
+          "ttfb_ms": 52,
+          "total_ms": 52,
+          "end_ms": 1941,
+          "bytes": 20048
+        },
+        {
+          "endpoint": "/api/soccer/media/8f3107904e8ecc3d934f819b011896d3ab3a97ad1e07b3bedd052fcaa02e1f96",
+          "start_ms": 1889,
+          "ttfb_ms": 49,
+          "total_ms": 51,
+          "end_ms": 1939,
+          "bytes": 38358
+        },
+        {
+          "endpoint": "/api/soccer/media/a2c081bc1712cd908a5e7eae6b72472ebc351778c005e6a7c42ca8fe896ebb35",
+          "start_ms": 1889,
+          "ttfb_ms": 53,
+          "total_ms": 58,
+          "end_ms": 1947,
+          "bytes": 4203
+        },
+        {
+          "endpoint": "/api/soccer/players/robert-lewandowski/dna",
+          "start_ms": 1902,
+          "ttfb_ms": 2027,
+          "total_ms": 2063,
+          "end_ms": 3965,
+          "bytes": 1350
+        },
+        {
+          "endpoint": "/api/soccer/news?player=robert-lewandowski&limit=6",
+          "start_ms": 1903,
+          "ttfb_ms": 98,
+          "total_ms": 102,
+          "end_ms": 2005,
+          "bytes": 546
+        },
+        {
+          "endpoint": "/api/soccer/media/9bec0055ca32a9e7ab603904aed89a9fa28c6fb2a08b24cffe81b6946a809a1a",
+          "start_ms": 1979,
+          "ttfb_ms": 91,
+          "total_ms": 91,
+          "end_ms": 2070,
+          "bytes": 3493
+        },
+        {
+          "endpoint": "/api/soccer/media/463b74682c9030631d8fc19a1535875496009a8f296775323127e2a2365094d0",
+          "start_ms": 1979,
+          "ttfb_ms": 50,
+          "total_ms": 51,
+          "end_ms": 2029,
+          "bytes": 22693
+        },
+        {
+          "endpoint": "/api/soccer/media/ad01b011753544726cb38db27ef289cb965701046c1754aba6660edb4bbdc8bc",
+          "start_ms": 1979,
+          "ttfb_ms": 211,
+          "total_ms": 213,
+          "end_ms": 2191,
+          "bytes": 58255
+        },
+        {
+          "endpoint": "/api/soccer/media/769ccaebf31bbce1cb07172951b8f38ca9405aa395684083dc9b2867beaff451",
+          "start_ms": 3980,
+          "ttfb_ms": 49,
+          "total_ms": 49,
+          "end_ms": 4029,
+          "bytes": 3616
+        }
+      ],
+      "error_state": false,
+      "errors": []
+    },
+    {
+      "route": "/players/robert-lewandowski",
+      "temperature": "warm",
+      "first_meaningful_paint_ms": 186,
+      "fcp_ms": 176,
+      "total_route_data_ms": 269,
+      "slowest_endpoint": "/api/soccer/media/d523e0225ec2209e6b8a184a6db1fd90a6b7f00b695eccadc3e6cede77cffc69",
+      "endpoint_ttfb_ms": 95,
+      "http_requests": 70,
+      "api_requests": 57,
+      "requests": [
+        {
+          "endpoint": "/api/soccer/media/9e4b7c06391ad3742294dc761e7b951d0bf8603fd2b360370e1299832f602a9e",
+          "start_ms": 139,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 139,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/105291b28134e6b377795fd80d0d5c8c561f02257bfb1a5b243b87df0ebe6b19",
+          "start_ms": 140,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 140,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/live",
+          "start_ms": 140,
+          "ttfb_ms": 0,
+          "total_ms": 1,
+          "end_ms": 141,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/pro/access",
+          "start_ms": 141,
+          "ttfb_ms": 67,
+          "total_ms": 68,
+          "end_ms": 208,
+          "bytes": 900
+        },
+        {
+          "endpoint": "/api/soccer/players/robert-lewandowski",
+          "start_ms": 141,
+          "ttfb_ms": 1,
+          "total_ms": 1,
+          "end_ms": 142,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/84b94381a47ab86bc72cd9ee9def55c94163b0d9ba162dcbc54ddb56f4e464f8",
+          "start_ms": 166,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 166,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/b2459c995f0be4c96ed622c21c795b1d53764ea58bb82a3e386ce6b9fb0a3a02",
+          "start_ms": 166,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 166,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/1e6b69551e573c8ed4fdb3ea5e18d46051e8ad342224168920e89cae0585f562",
+          "start_ms": 166,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 166,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/6cb54837aa5a1fca1113cd73a88de45394393e8704b2d885db4277c051311e89",
+          "start_ms": 166,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 166,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/be9a2497af4479bd66f9b3277322412b384bbf3a22ed770119fefb686ca6b341",
+          "start_ms": 166,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 166,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8d68cf0ccd8bdd16960b78510ce86ac2094216c2a6ddfda49b88268a344e883f",
+          "start_ms": 166,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 166,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/31d271d162edab9767033e348d6a47e57cced277fff6cde8df3da87ebe4d6709",
+          "start_ms": 166,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 166,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/681ad998004cdfb5da21166607c0d021940445bcdaf2d506f08536dcff77e6ef",
+          "start_ms": 166,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 166,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/a2c081bc1712cd908a5e7eae6b72472ebc351778c005e6a7c42ca8fe896ebb35",
+          "start_ms": 166,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 166,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8f3107904e8ecc3d934f819b011896d3ab3a97ad1e07b3bedd052fcaa02e1f96",
+          "start_ms": 166,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 166,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/769ccaebf31bbce1cb07172951b8f38ca9405aa395684083dc9b2867beaff451",
+          "start_ms": 167,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 167,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/9bec0055ca32a9e7ab603904aed89a9fa28c6fb2a08b24cffe81b6946a809a1a",
+          "start_ms": 168,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 168,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/a10d04432facb8650c624dc976e352df9d052065fdfce2f710cba720a4ab25e0",
+          "start_ms": 173,
+          "ttfb_ms": 49,
+          "total_ms": 56,
+          "end_ms": 229,
+          "bytes": 51684
+        },
+        {
+          "endpoint": "/api/soccer/media/e96530adbd35298a4418586343c81e9570d52576c0bc22a145a1d457aa4b24d5",
+          "start_ms": 173,
+          "ttfb_ms": 41,
+          "total_ms": 41,
+          "end_ms": 214,
+          "bytes": 4960
+        },
+        {
+          "endpoint": "/api/soccer/media/43c610c6d9377e57ca662c86a761ac29fdfdc67bf13dd8082423b2d2f38e4a0b",
+          "start_ms": 173,
+          "ttfb_ms": 42,
+          "total_ms": 43,
+          "end_ms": 216,
+          "bytes": 3639
+        },
+        {
+          "endpoint": "/api/soccer/media/a4116449f802b11895298686068c2a2c6ec78d56aeb0658014415f7edbaf5c68",
+          "start_ms": 173,
+          "ttfb_ms": 48,
+          "total_ms": 48,
+          "end_ms": 221,
+          "bytes": 8234
+        },
+        {
+          "endpoint": "/api/soccer/media/d523e0225ec2209e6b8a184a6db1fd90a6b7f00b695eccadc3e6cede77cffc69",
+          "start_ms": 173,
+          "ttfb_ms": 95,
+          "total_ms": 95,
+          "end_ms": 268,
+          "bytes": 17342
+        },
+        {
+          "endpoint": "/api/soccer/media/8ed638af060cafae61514f04dcb3a1e5e0898b0ce990c36cf25300ba14fde9e3",
+          "start_ms": 173,
+          "ttfb_ms": 67,
+          "total_ms": 69,
+          "end_ms": 241,
+          "bytes": 82074
+        },
+        {
+          "endpoint": "/api/soccer/media/a3a5665b88adbb41ee627fd8b13b140fcbd77d478d20ddfb153214808c7e6356",
+          "start_ms": 173,
+          "ttfb_ms": 81,
+          "total_ms": 82,
+          "end_ms": 255,
+          "bytes": 3739
+        },
+        {
+          "endpoint": "/api/soccer/media/2d44906cfcc797aefdc9010ac7d6b1438e54c72c12723384530d4378fc4578b4",
+          "start_ms": 173,
+          "ttfb_ms": 83,
+          "total_ms": 85,
+          "end_ms": 258,
+          "bytes": 55662
+        },
+        {
+          "endpoint": "/api/soccer/media/8eb3b92ab4ae3ad632345922f4d6cac69e7c9ff0f3338feacd9d708920287bfa",
+          "start_ms": 173,
+          "ttfb_ms": 67,
+          "total_ms": 78,
+          "end_ms": 252,
+          "bytes": 28354
+        },
+        {
+          "endpoint": "/api/soccer/media/21edfde914c500ae1d3ed2b2fdeb8e08131c4e8ce22a20bd88ed7da0f298e446",
+          "start_ms": 173,
+          "ttfb_ms": 84,
+          "total_ms": 86,
+          "end_ms": 259,
+          "bytes": 85487
+        },
+        {
+          "endpoint": "/api/soccer/media/b3e2f9b51d71ca6937926a520aa1bd73f90f0e7d7cd1d3a2f3093944bcbfc49a",
+          "start_ms": 173,
+          "ttfb_ms": 85,
+          "total_ms": 91,
+          "end_ms": 265,
+          "bytes": 15410
+        },
+        {
+          "endpoint": "/api/soccer/media/ff8db39f260d067c8b49c26962a1c7c32f9649a4abc5400f58bc7f2d7b7fcaef",
+          "start_ms": 173,
+          "ttfb_ms": 56,
+          "total_ms": 65,
+          "end_ms": 238,
+          "bytes": 3066
+        },
+        {
+          "endpoint": "/api/soccer/media/85e8317c795135c8094b471563cb37110cc22fa4fe15398e2c31c03690c2b9a9",
+          "start_ms": 173,
+          "ttfb_ms": 80,
+          "total_ms": 81,
+          "end_ms": 254,
+          "bytes": 3223
+        },
+        {
+          "endpoint": "/api/soccer/media/346aac475c309199dcb36e8472ea808cfce102e4740037ee185f313820d382eb",
+          "start_ms": 173,
+          "ttfb_ms": 82,
+          "total_ms": 83,
+          "end_ms": 256,
+          "bytes": 13986
+        },
+        {
+          "endpoint": "/api/soccer/media/8378b286b210cba675524bd9e36bf6211329cddb8e4cd235b64e63881677b06f",
+          "start_ms": 173,
+          "ttfb_ms": 56,
+          "total_ms": 57,
+          "end_ms": 231,
+          "bytes": 3033
+        },
+        {
+          "endpoint": "/api/soccer/media/c5e3f8e60b41a6d8a7e025935b105edca5fd7086c9e896454f374eb401f55594",
+          "start_ms": 173,
+          "ttfb_ms": 93,
+          "total_ms": 94,
+          "end_ms": 267,
+          "bytes": 65127
+        },
+        {
+          "endpoint": "/api/soccer/media/cbdf3c2b3157e1c2b4076e157513448315bb014803020029ba73bbf3d820d9ba",
+          "start_ms": 174,
+          "ttfb_ms": 57,
+          "total_ms": 65,
+          "end_ms": 239,
+          "bytes": 13697
+        },
+        {
+          "endpoint": "/api/soccer/media/4495f8ec7d2d8c71477fc606d6396ed76cc86a1f68f02a8c10df6ed09724f24b",
+          "start_ms": 174,
+          "ttfb_ms": 95,
+          "total_ms": 95,
+          "end_ms": 269,
+          "bytes": 3575
+        },
+        {
+          "endpoint": "/api/soccer/media/9d4a7f5d25fc35bb4943e734f24d82c569f84ea590189620e5d547bdf250026b",
+          "start_ms": 174,
+          "ttfb_ms": 67,
+          "total_ms": 78,
+          "end_ms": 251,
+          "bytes": 17189
+        },
+        {
+          "endpoint": "/api/soccer/media/d87f12cbc30e43994847651e2671c58aef4a5fd44ede744d7c121f0c8428fdea",
+          "start_ms": 174,
+          "ttfb_ms": 56,
+          "total_ms": 65,
+          "end_ms": 239,
+          "bytes": 49209
+        },
+        {
+          "endpoint": "/api/soccer/media/21c85bf3878dd2982083f46e8b9ede484b0c7b1e6d3bc8595d34d3693d914958",
+          "start_ms": 174,
+          "ttfb_ms": 84,
+          "total_ms": 84,
+          "end_ms": 258,
+          "bytes": 47534
+        },
+        {
+          "endpoint": "/api/soccer/media/ac9866e2f75d59940309098931528f3d67b6927a03ef637626c7ab3e5c71b5f4",
+          "start_ms": 174,
+          "ttfb_ms": 91,
+          "total_ms": 92,
+          "end_ms": 265,
+          "bytes": 29579
+        },
+        {
+          "endpoint": "/api/soccer/media/f1f3a7a853e83c61813e4d9d692bccbbb3d75809768b4bf1b589519cf9705264",
+          "start_ms": 174,
+          "ttfb_ms": 79,
+          "total_ms": 80,
+          "end_ms": 254,
+          "bytes": 3722
+        },
+        {
+          "endpoint": "/api/soccer/media/9332b75a23a86dccdfdb19d2c0f97b16ad23baf4f94a967038e7e280dc159821",
+          "start_ms": 174,
+          "ttfb_ms": 92,
+          "total_ms": 93,
+          "end_ms": 267,
+          "bytes": 9723
+        },
+        {
+          "endpoint": "/api/soccer/media/ebe2517e15785d61e23b4ba7ebf947f67539f0f715e7b10c5a9d2017c050521c",
+          "start_ms": 174,
+          "ttfb_ms": 79,
+          "total_ms": 80,
+          "end_ms": 254,
+          "bytes": 4565
+        },
+        {
+          "endpoint": "/api/soccer/media/ad1d2cc73fa8f1182600a1e6381f08c96d21987387df9bc36c4616a69b989eba",
+          "start_ms": 174,
+          "ttfb_ms": 81,
+          "total_ms": 82,
+          "end_ms": 256,
+          "bytes": 25936
+        },
+        {
+          "endpoint": "/api/soccer/media/0baf599e1cabaaa847145961f17d83f4b1280dbc641b48f4ff5ceea537eb2258",
+          "start_ms": 174,
+          "ttfb_ms": 82,
+          "total_ms": 83,
+          "end_ms": 257,
+          "bytes": 3879
+        },
+        {
+          "endpoint": "/api/soccer/media/e4a3f7baae718bfb83c2f2eaa0e448d862720f63b276346b32077fdb08294bdc",
+          "start_ms": 174,
+          "ttfb_ms": 65,
+          "total_ms": 65,
+          "end_ms": 240,
+          "bytes": 4163
+        },
+        {
+          "endpoint": "/api/soccer/media/8111b1c1520d3d8bb71648d73088ed30227e8f50c4f903d9e47565feda1dfc7a",
+          "start_ms": 174,
+          "ttfb_ms": 91,
+          "total_ms": 92,
+          "end_ms": 266,
+          "bytes": 24278
+        },
+        {
+          "endpoint": "/api/soccer/media/3353eac2f0e3116bbabd30fe8c3fe40d1b1ec796fa76f5dbd776d23449891508",
+          "start_ms": 174,
+          "ttfb_ms": 66,
+          "total_ms": 67,
+          "end_ms": 241,
+          "bytes": 3616
+        },
+        {
+          "endpoint": "/api/soccer/media/0430dedddc3af45cd7207d22507b1e120de8f673e67c9351d227fba8670ae2a2",
+          "start_ms": 174,
+          "ttfb_ms": 91,
+          "total_ms": 92,
+          "end_ms": 266,
+          "bytes": 13667
+        },
+        {
+          "endpoint": "/api/soccer/media/1656973561bf1fbc912701929a02f0c2455e2e55bb5bf5c093207bb4fdcc1e39",
+          "start_ms": 174,
+          "ttfb_ms": 67,
+          "total_ms": 79,
+          "end_ms": 253,
+          "bytes": 86426
+        },
+        {
+          "endpoint": "/api/soccer/media/99718f00dfc5a13558d571dfaf9bd58344e9268cd261415bad3d45517e5ba35d",
+          "start_ms": 174,
+          "ttfb_ms": 94,
+          "total_ms": 94,
+          "end_ms": 268,
+          "bytes": 16985
+        },
+        {
+          "endpoint": "/api/soccer/media/3158ac4e6803d83cf0871e520dab309fb9fe28abf2619acef7669655d6322c19",
+          "start_ms": 175,
+          "ttfb_ms": 81,
+          "total_ms": 83,
+          "end_ms": 257,
+          "bytes": 24781
+        },
+        {
+          "endpoint": "/api/soccer/media/8d2a777cb0f9cde919aaab04c91b561f861f2c96bb1c227d960e6b5a56f38c77",
+          "start_ms": 175,
+          "ttfb_ms": 94,
+          "total_ms": 95,
+          "end_ms": 269,
+          "bytes": 3191
+        },
+        {
+          "endpoint": "/api/soccer/media/991c38ea3794ae19b561a93e526356d57c21f00823c1dbb31d680e20fd2f74e2",
+          "start_ms": 175,
+          "ttfb_ms": 94,
+          "total_ms": 94,
+          "end_ms": 269,
+          "bytes": 3506
+        },
+        {
+          "endpoint": "/api/soccer/media/ad01b011753544726cb38db27ef289cb965701046c1754aba6660edb4bbdc8bc",
+          "start_ms": 181,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 181,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/463b74682c9030631d8fc19a1535875496009a8f296775323127e2a2365094d0",
+          "start_ms": 181,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 181,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/players/robert-lewandowski/dna",
+          "start_ms": 185,
+          "ttfb_ms": 1,
+          "total_ms": 1,
+          "end_ms": 186,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/news?player=robert-lewandowski&limit=6",
+          "start_ms": 185,
+          "ttfb_ms": 1,
+          "total_ms": 1,
+          "end_ms": 187,
+          "bytes": 0
+        }
+      ],
+      "error_state": false,
+      "errors": []
+    },
+    {
+      "route": "/pbecast",
+      "temperature": "cold",
+      "first_meaningful_paint_ms": 484,
+      "fcp_ms": 464,
+      "total_route_data_ms": 645,
+      "slowest_endpoint": "/api/soccer/media/b2459c995f0be4c96ed622c21c795b1d53764ea58bb82a3e386ce6b9fb0a3a02",
+      "endpoint_ttfb_ms": 113,
+      "http_requests": 69,
+      "api_requests": 59,
+      "requests": [
+        {
+          "endpoint": "/api/soccer/live",
+          "start_ms": 395,
+          "ttfb_ms": 42,
+          "total_ms": 43,
+          "end_ms": 438,
+          "bytes": 7493
+        },
+        {
+          "endpoint": "/api/soccer/pro/access",
+          "start_ms": 395,
+          "ttfb_ms": 47,
+          "total_ms": 49,
+          "end_ms": 444,
+          "bytes": 900
+        },
+        {
+          "endpoint": "/api/soccer/media/9e4b7c06391ad3742294dc761e7b951d0bf8603fd2b360370e1299832f602a9e",
+          "start_ms": 475,
+          "ttfb_ms": 49,
+          "total_ms": 51,
+          "end_ms": 525,
+          "bytes": 42134
+        },
+        {
+          "endpoint": "/api/soccer/media/105291b28134e6b377795fd80d0d5c8c561f02257bfb1a5b243b87df0ebe6b19",
+          "start_ms": 475,
+          "ttfb_ms": 54,
+          "total_ms": 78,
+          "end_ms": 553,
+          "bytes": 170842
+        },
+        {
+          "endpoint": "/api/soccer/media/6cb54837aa5a1fca1113cd73a88de45394393e8704b2d885db4277c051311e89",
+          "start_ms": 532,
+          "ttfb_ms": 44,
+          "total_ms": 45,
+          "end_ms": 577,
+          "bytes": 19918
+        },
+        {
+          "endpoint": "/api/soccer/media/84b94381a47ab86bc72cd9ee9def55c94163b0d9ba162dcbc54ddb56f4e464f8",
+          "start_ms": 532,
+          "ttfb_ms": 49,
+          "total_ms": 56,
+          "end_ms": 588,
+          "bytes": 86020
+        },
+        {
+          "endpoint": "/api/soccer/media/1e6b69551e573c8ed4fdb3ea5e18d46051e8ad342224168920e89cae0585f562",
+          "start_ms": 532,
+          "ttfb_ms": 56,
+          "total_ms": 57,
+          "end_ms": 589,
+          "bytes": 9734
+        },
+        {
+          "endpoint": "/api/soccer/media/b2459c995f0be4c96ed622c21c795b1d53764ea58bb82a3e386ce6b9fb0a3a02",
+          "start_ms": 532,
+          "ttfb_ms": 113,
+          "total_ms": 113,
+          "end_ms": 645,
+          "bytes": 42555
+        },
+        {
+          "endpoint": "/api/soccer/media/31d271d162edab9767033e348d6a47e57cced277fff6cde8df3da87ebe4d6709",
+          "start_ms": 532,
+          "ttfb_ms": 47,
+          "total_ms": 48,
+          "end_ms": 580,
+          "bytes": 12994
+        },
+        {
+          "endpoint": "/api/soccer/media/be9a2497af4479bd66f9b3277322412b384bbf3a22ed770119fefb686ca6b341",
+          "start_ms": 532,
+          "ttfb_ms": 66,
+          "total_ms": 67,
+          "end_ms": 599,
+          "bytes": 3685
+        },
+        {
+          "endpoint": "/api/soccer/media/8d68cf0ccd8bdd16960b78510ce86ac2094216c2a6ddfda49b88268a344e883f",
+          "start_ms": 532,
+          "ttfb_ms": 78,
+          "total_ms": 79,
+          "end_ms": 611,
+          "bytes": 3579
+        },
+        {
+          "endpoint": "/api/soccer/media/681ad998004cdfb5da21166607c0d021940445bcdaf2d506f08536dcff77e6ef",
+          "start_ms": 532,
+          "ttfb_ms": 46,
+          "total_ms": 46,
+          "end_ms": 578,
+          "bytes": 20048
+        },
+        {
+          "endpoint": "/api/soccer/media/a2c081bc1712cd908a5e7eae6b72472ebc351778c005e6a7c42ca8fe896ebb35",
+          "start_ms": 532,
+          "ttfb_ms": 69,
+          "total_ms": 70,
+          "end_ms": 602,
+          "bytes": 4203
+        },
+        {
+          "endpoint": "/api/soccer/media/ff8db39f260d067c8b49c26962a1c7c32f9649a4abc5400f58bc7f2d7b7fcaef",
+          "start_ms": 532,
+          "ttfb_ms": 46,
+          "total_ms": 46,
+          "end_ms": 578,
+          "bytes": 3066
+        },
+        {
+          "endpoint": "/api/soccer/media/8eb3b92ab4ae3ad632345922f4d6cac69e7c9ff0f3338feacd9d708920287bfa",
+          "start_ms": 532,
+          "ttfb_ms": 46,
+          "total_ms": 47,
+          "end_ms": 579,
+          "bytes": 28354
+        },
+        {
+          "endpoint": "/api/soccer/media/85e8317c795135c8094b471563cb37110cc22fa4fe15398e2c31c03690c2b9a9",
+          "start_ms": 532,
+          "ttfb_ms": 47,
+          "total_ms": 48,
+          "end_ms": 580,
+          "bytes": 3223
+        },
+        {
+          "endpoint": "/api/soccer/media/8f3107904e8ecc3d934f819b011896d3ab3a97ad1e07b3bedd052fcaa02e1f96",
+          "start_ms": 532,
+          "ttfb_ms": 49,
+          "total_ms": 56,
+          "end_ms": 588,
+          "bytes": 38358
+        },
+        {
+          "endpoint": "/api/soccer/media/b3e2f9b51d71ca6937926a520aa1bd73f90f0e7d7cd1d3a2f3093944bcbfc49a",
+          "start_ms": 532,
+          "ttfb_ms": 72,
+          "total_ms": 72,
+          "end_ms": 605,
+          "bytes": 15410
+        },
+        {
+          "endpoint": "/api/soccer/media/c5e3f8e60b41a6d8a7e025935b105edca5fd7086c9e896454f374eb401f55594",
+          "start_ms": 532,
+          "ttfb_ms": 48,
+          "total_ms": 50,
+          "end_ms": 582,
+          "bytes": 65127
+        },
+        {
+          "endpoint": "/api/soccer/media/346aac475c309199dcb36e8472ea808cfce102e4740037ee185f313820d382eb",
+          "start_ms": 532,
+          "ttfb_ms": 56,
+          "total_ms": 57,
+          "end_ms": 589,
+          "bytes": 13986
+        },
+        {
+          "endpoint": "/api/soccer/media/8378b286b210cba675524bd9e36bf6211329cddb8e4cd235b64e63881677b06f",
+          "start_ms": 532,
+          "ttfb_ms": 45,
+          "total_ms": 45,
+          "end_ms": 577,
+          "bytes": 3033
+        },
+        {
+          "endpoint": "/api/soccer/media/4495f8ec7d2d8c71477fc606d6396ed76cc86a1f68f02a8c10df6ed09724f24b",
+          "start_ms": 532,
+          "ttfb_ms": 50,
+          "total_ms": 56,
+          "end_ms": 588,
+          "bytes": 3575
+        },
+        {
+          "endpoint": "/api/soccer/media/9d4a7f5d25fc35bb4943e734f24d82c569f84ea590189620e5d547bdf250026b",
+          "start_ms": 532,
+          "ttfb_ms": 66,
+          "total_ms": 67,
+          "end_ms": 599,
+          "bytes": 17189
+        },
+        {
+          "endpoint": "/api/soccer/media/cbdf3c2b3157e1c2b4076e157513448315bb014803020029ba73bbf3d820d9ba",
+          "start_ms": 532,
+          "ttfb_ms": 67,
+          "total_ms": 68,
+          "end_ms": 600,
+          "bytes": 13697
+        },
+        {
+          "endpoint": "/api/soccer/media/d87f12cbc30e43994847651e2671c58aef4a5fd44ede744d7c121f0c8428fdea",
+          "start_ms": 533,
+          "ttfb_ms": 57,
+          "total_ms": 64,
+          "end_ms": 597,
+          "bytes": 49209
+        },
+        {
+          "endpoint": "/api/soccer/media/ac9866e2f75d59940309098931528f3d67b6927a03ef637626c7ab3e5c71b5f4",
+          "start_ms": 533,
+          "ttfb_ms": 66,
+          "total_ms": 67,
+          "end_ms": 599,
+          "bytes": 29579
+        },
+        {
+          "endpoint": "/api/soccer/media/f1f3a7a853e83c61813e4d9d692bccbbb3d75809768b4bf1b589519cf9705264",
+          "start_ms": 533,
+          "ttfb_ms": 70,
+          "total_ms": 70,
+          "end_ms": 603,
+          "bytes": 3722
+        },
+        {
+          "endpoint": "/api/soccer/media/9332b75a23a86dccdfdb19d2c0f97b16ad23baf4f94a967038e7e280dc159821",
+          "start_ms": 533,
+          "ttfb_ms": 65,
+          "total_ms": 65,
+          "end_ms": 598,
+          "bytes": 9723
+        },
+        {
+          "endpoint": "/api/soccer/media/ebe2517e15785d61e23b4ba7ebf947f67539f0f715e7b10c5a9d2017c050521c",
+          "start_ms": 533,
+          "ttfb_ms": 65,
+          "total_ms": 67,
+          "end_ms": 599,
+          "bytes": 4565
+        },
+        {
+          "endpoint": "/api/soccer/media/ad1d2cc73fa8f1182600a1e6381f08c96d21987387df9bc36c4616a69b989eba",
+          "start_ms": 533,
+          "ttfb_ms": 67,
+          "total_ms": 68,
+          "end_ms": 600,
+          "bytes": 25936
+        },
+        {
+          "endpoint": "/api/soccer/media/0baf599e1cabaaa847145961f17d83f4b1280dbc641b48f4ff5ceea537eb2258",
+          "start_ms": 533,
+          "ttfb_ms": 68,
+          "total_ms": 68,
+          "end_ms": 601,
+          "bytes": 3879
+        },
+        {
+          "endpoint": "/api/soccer/media/21c85bf3878dd2982083f46e8b9ede484b0c7b1e6d3bc8595d34d3693d914958",
+          "start_ms": 533,
+          "ttfb_ms": 68,
+          "total_ms": 69,
+          "end_ms": 602,
+          "bytes": 47534
+        },
+        {
+          "endpoint": "/api/soccer/media/8111b1c1520d3d8bb71648d73088ed30227e8f50c4f903d9e47565feda1dfc7a",
+          "start_ms": 533,
+          "ttfb_ms": 70,
+          "total_ms": 71,
+          "end_ms": 604,
+          "bytes": 24278
+        },
+        {
+          "endpoint": "/api/soccer/media/99718f00dfc5a13558d571dfaf9bd58344e9268cd261415bad3d45517e5ba35d",
+          "start_ms": 533,
+          "ttfb_ms": 71,
+          "total_ms": 71,
+          "end_ms": 604,
+          "bytes": 16985
+        },
+        {
+          "endpoint": "/api/soccer/media/3353eac2f0e3116bbabd30fe8c3fe40d1b1ec796fa76f5dbd776d23449891508",
+          "start_ms": 533,
+          "ttfb_ms": 71,
+          "total_ms": 72,
+          "end_ms": 604,
+          "bytes": 3616
+        },
+        {
+          "endpoint": "/api/soccer/media/0430dedddc3af45cd7207d22507b1e120de8f673e67c9351d227fba8670ae2a2",
+          "start_ms": 533,
+          "ttfb_ms": 72,
+          "total_ms": 72,
+          "end_ms": 605,
+          "bytes": 13667
+        },
+        {
+          "endpoint": "/api/soccer/media/1656973561bf1fbc912701929a02f0c2455e2e55bb5bf5c093207bb4fdcc1e39",
+          "start_ms": 533,
+          "ttfb_ms": 73,
+          "total_ms": 75,
+          "end_ms": 608,
+          "bytes": 86426
+        },
+        {
+          "endpoint": "/api/soccer/media/e4a3f7baae718bfb83c2f2eaa0e448d862720f63b276346b32077fdb08294bdc",
+          "start_ms": 533,
+          "ttfb_ms": 64,
+          "total_ms": 65,
+          "end_ms": 598,
+          "bytes": 4163
+        },
+        {
+          "endpoint": "/api/soccer/media/3158ac4e6803d83cf0871e520dab309fb9fe28abf2619acef7669655d6322c19",
+          "start_ms": 533,
+          "ttfb_ms": 90,
+          "total_ms": 91,
+          "end_ms": 624,
+          "bytes": 24781
+        },
+        {
+          "endpoint": "/api/soccer/media/991c38ea3794ae19b561a93e526356d57c21f00823c1dbb31d680e20fd2f74e2",
+          "start_ms": 533,
+          "ttfb_ms": 70,
+          "total_ms": 70,
+          "end_ms": 603,
+          "bytes": 3506
+        },
+        {
+          "endpoint": "/api/soccer/media/9bec0055ca32a9e7ab603904aed89a9fa28c6fb2a08b24cffe81b6946a809a1a",
+          "start_ms": 533,
+          "ttfb_ms": 72,
+          "total_ms": 72,
+          "end_ms": 605,
+          "bytes": 3493
+        },
+        {
+          "endpoint": "/api/soccer/media/8d2a777cb0f9cde919aaab04c91b561f861f2c96bb1c227d960e6b5a56f38c77",
+          "start_ms": 533,
+          "ttfb_ms": 68,
+          "total_ms": 68,
+          "end_ms": 601,
+          "bytes": 3191
+        },
+        {
+          "endpoint": "/api/soccer/media/a3a5665b88adbb41ee627fd8b13b140fcbd77d478d20ddfb153214808c7e6356",
+          "start_ms": 533,
+          "ttfb_ms": 72,
+          "total_ms": 72,
+          "end_ms": 606,
+          "bytes": 3739
+        },
+        {
+          "endpoint": "/api/soccer/media/e96530adbd35298a4418586343c81e9570d52576c0bc22a145a1d457aa4b24d5",
+          "start_ms": 533,
+          "ttfb_ms": 73,
+          "total_ms": 73,
+          "end_ms": 606,
+          "bytes": 4960
+        },
+        {
+          "endpoint": "/api/soccer/media/769ccaebf31bbce1cb07172951b8f38ca9405aa395684083dc9b2867beaff451",
+          "start_ms": 533,
+          "ttfb_ms": 69,
+          "total_ms": 69,
+          "end_ms": 602,
+          "bytes": 3616
+        },
+        {
+          "endpoint": "/api/soccer/media/a10d04432facb8650c624dc976e352df9d052065fdfce2f710cba720a4ab25e0",
+          "start_ms": 533,
+          "ttfb_ms": 65,
+          "total_ms": 67,
+          "end_ms": 600,
+          "bytes": 51684
+        },
+        {
+          "endpoint": "/api/soccer/media/43c610c6d9377e57ca662c86a761ac29fdfdc67bf13dd8082423b2d2f38e4a0b",
+          "start_ms": 533,
+          "ttfb_ms": 68,
+          "total_ms": 68,
+          "end_ms": 602,
+          "bytes": 3639
+        },
+        {
+          "endpoint": "/api/soccer/media/a4116449f802b11895298686068c2a2c6ec78d56aeb0658014415f7edbaf5c68",
+          "start_ms": 533,
+          "ttfb_ms": 69,
+          "total_ms": 69,
+          "end_ms": 603,
+          "bytes": 8234
+        },
+        {
+          "endpoint": "/api/soccer/media/d523e0225ec2209e6b8a184a6db1fd90a6b7f00b695eccadc3e6cede77cffc69",
+          "start_ms": 533,
+          "ttfb_ms": 73,
+          "total_ms": 74,
+          "end_ms": 607,
+          "bytes": 17342
+        },
+        {
+          "endpoint": "/api/soccer/media/57c869a3f900735a950a166961b56d7170608636c4ceadac2b1a1185638f5653",
+          "start_ms": 533,
+          "ttfb_ms": 77,
+          "total_ms": 77,
+          "end_ms": 610,
+          "bytes": 3615
+        },
+        {
+          "endpoint": "/api/soccer/media/e7f1a617ed094d5d41352388e15dc6e6c791919d96621c6ff6e8c4752195542a",
+          "start_ms": 533,
+          "ttfb_ms": 73,
+          "total_ms": 73,
+          "end_ms": 607,
+          "bytes": 3636
+        },
+        {
+          "endpoint": "/api/soccer/media/2d71cd78856bc5ee8b575190b5e44a6ba9ac363ed13454f9f595e51726455f9d",
+          "start_ms": 533,
+          "ttfb_ms": 75,
+          "total_ms": 75,
+          "end_ms": 609,
+          "bytes": 3115
+        },
+        {
+          "endpoint": "/api/soccer/media/3494e9b292e009a5b51346f9b7302e6afd09e303aecb9f80f1ed8e9278dcf86a",
+          "start_ms": 533,
+          "ttfb_ms": 75,
+          "total_ms": 75,
+          "end_ms": 609,
+          "bytes": 14532
+        },
+        {
+          "endpoint": "/api/soccer/media/5c269f92a7da5f8124c32671f25478203ad34cb55a69c1e523832d3691327eda",
+          "start_ms": 533,
+          "ttfb_ms": 75,
+          "total_ms": 76,
+          "end_ms": 609,
+          "bytes": 3549
+        },
+        {
+          "endpoint": "/api/soccer/media/4b6aaf1e9005731034b0a382231d58e8b60fcbbb15aa28bc4308f87c19d9fb7e",
+          "start_ms": 534,
+          "ttfb_ms": 74,
+          "total_ms": 76,
+          "end_ms": 609,
+          "bytes": 55422
+        },
+        {
+          "endpoint": "/api/soccer/media/3185ceded9ad221444f357f88f0fbf6abfd0b9f952fd4760fc424f8beab38d95",
+          "start_ms": 534,
+          "ttfb_ms": 74,
+          "total_ms": 74,
+          "end_ms": 608,
+          "bytes": 16889
+        },
+        {
+          "endpoint": "/api/soccer/media/5ba7edf371fc7d1386f2e7c5c441a5408c5dc264b846c10bc29dbbf3c1ad4596",
+          "start_ms": 534,
+          "ttfb_ms": 74,
+          "total_ms": 75,
+          "end_ms": 608,
+          "bytes": 3096
+        },
+        {
+          "endpoint": "/api/soccer/media/bf45239688c9d69144f0d0c3efef4de38f3a0db2c0a2b3a32df054330f707664",
+          "start_ms": 534,
+          "ttfb_ms": 76,
+          "total_ms": 76,
+          "end_ms": 610,
+          "bytes": 21240
+        },
+        {
+          "endpoint": "/api/soccer/media/a1ea4f53629ee3849d72d928d4c54dadb1c3e4e57dc842aba4dbba59c08d12f4",
+          "start_ms": 534,
+          "ttfb_ms": 76,
+          "total_ms": 76,
+          "end_ms": 610,
+          "bytes": 52751
+        }
+      ],
+      "error_state": false,
+      "errors": []
+    },
+    {
+      "route": "/pbecast",
+      "temperature": "warm",
+      "first_meaningful_paint_ms": 145,
+      "fcp_ms": 128,
+      "total_route_data_ms": 189,
+      "slowest_endpoint": "/api/soccer/media/2d44906cfcc797aefdc9010ac7d6b1438e54c72c12723384530d4378fc4578b4",
+      "endpoint_ttfb_ms": 53,
+      "http_requests": 74,
+      "api_requests": 62,
+      "requests": [
+        {
+          "endpoint": "/api/soccer/media/9e4b7c06391ad3742294dc761e7b951d0bf8603fd2b360370e1299832f602a9e",
+          "start_ms": 96,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 96,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/105291b28134e6b377795fd80d0d5c8c561f02257bfb1a5b243b87df0ebe6b19",
+          "start_ms": 96,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 96,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/live",
+          "start_ms": 97,
+          "ttfb_ms": 1,
+          "total_ms": 1,
+          "end_ms": 98,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/pro/access",
+          "start_ms": 97,
+          "ttfb_ms": 39,
+          "total_ms": 41,
+          "end_ms": 137,
+          "bytes": 900
+        },
+        {
+          "endpoint": "/api/soccer/media/84b94381a47ab86bc72cd9ee9def55c94163b0d9ba162dcbc54ddb56f4e464f8",
+          "start_ms": 125,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 125,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/b2459c995f0be4c96ed622c21c795b1d53764ea58bb82a3e386ce6b9fb0a3a02",
+          "start_ms": 125,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 125,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/1e6b69551e573c8ed4fdb3ea5e18d46051e8ad342224168920e89cae0585f562",
+          "start_ms": 125,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 125,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/6cb54837aa5a1fca1113cd73a88de45394393e8704b2d885db4277c051311e89",
+          "start_ms": 125,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 125,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/be9a2497af4479bd66f9b3277322412b384bbf3a22ed770119fefb686ca6b341",
+          "start_ms": 126,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 126,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8d68cf0ccd8bdd16960b78510ce86ac2094216c2a6ddfda49b88268a344e883f",
+          "start_ms": 126,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 126,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/31d271d162edab9767033e348d6a47e57cced277fff6cde8df3da87ebe4d6709",
+          "start_ms": 126,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 126,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/681ad998004cdfb5da21166607c0d021940445bcdaf2d506f08536dcff77e6ef",
+          "start_ms": 126,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 126,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/a2c081bc1712cd908a5e7eae6b72472ebc351778c005e6a7c42ca8fe896ebb35",
+          "start_ms": 126,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 126,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8f3107904e8ecc3d934f819b011896d3ab3a97ad1e07b3bedd052fcaa02e1f96",
+          "start_ms": 126,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 126,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/769ccaebf31bbce1cb07172951b8f38ca9405aa395684083dc9b2867beaff451",
+          "start_ms": 126,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 126,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/a10d04432facb8650c624dc976e352df9d052065fdfce2f710cba720a4ab25e0",
+          "start_ms": 126,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 126,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/e96530adbd35298a4418586343c81e9570d52576c0bc22a145a1d457aa4b24d5",
+          "start_ms": 126,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 126,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/43c610c6d9377e57ca662c86a761ac29fdfdc67bf13dd8082423b2d2f38e4a0b",
+          "start_ms": 126,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 126,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/a4116449f802b11895298686068c2a2c6ec78d56aeb0658014415f7edbaf5c68",
+          "start_ms": 126,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 126,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/d523e0225ec2209e6b8a184a6db1fd90a6b7f00b695eccadc3e6cede77cffc69",
+          "start_ms": 127,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 127,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/a3a5665b88adbb41ee627fd8b13b140fcbd77d478d20ddfb153214808c7e6356",
+          "start_ms": 127,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 127,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8eb3b92ab4ae3ad632345922f4d6cac69e7c9ff0f3338feacd9d708920287bfa",
+          "start_ms": 127,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 127,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/b3e2f9b51d71ca6937926a520aa1bd73f90f0e7d7cd1d3a2f3093944bcbfc49a",
+          "start_ms": 127,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 127,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/ff8db39f260d067c8b49c26962a1c7c32f9649a4abc5400f58bc7f2d7b7fcaef",
+          "start_ms": 127,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 127,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/85e8317c795135c8094b471563cb37110cc22fa4fe15398e2c31c03690c2b9a9",
+          "start_ms": 127,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 127,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/346aac475c309199dcb36e8472ea808cfce102e4740037ee185f313820d382eb",
+          "start_ms": 127,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 127,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/c5e3f8e60b41a6d8a7e025935b105edca5fd7086c9e896454f374eb401f55594",
+          "start_ms": 127,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 127,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8378b286b210cba675524bd9e36bf6211329cddb8e4cd235b64e63881677b06f",
+          "start_ms": 128,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 128,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/4495f8ec7d2d8c71477fc606d6396ed76cc86a1f68f02a8c10df6ed09724f24b",
+          "start_ms": 128,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 128,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/cbdf3c2b3157e1c2b4076e157513448315bb014803020029ba73bbf3d820d9ba",
+          "start_ms": 128,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 128,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/9d4a7f5d25fc35bb4943e734f24d82c569f84ea590189620e5d547bdf250026b",
+          "start_ms": 128,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 128,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/d87f12cbc30e43994847651e2671c58aef4a5fd44ede744d7c121f0c8428fdea",
+          "start_ms": 128,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 128,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/ac9866e2f75d59940309098931528f3d67b6927a03ef637626c7ab3e5c71b5f4",
+          "start_ms": 129,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 129,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/21c85bf3878dd2982083f46e8b9ede484b0c7b1e6d3bc8595d34d3693d914958",
+          "start_ms": 129,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 129,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/f1f3a7a853e83c61813e4d9d692bccbbb3d75809768b4bf1b589519cf9705264",
+          "start_ms": 129,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 129,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/9332b75a23a86dccdfdb19d2c0f97b16ad23baf4f94a967038e7e280dc159821",
+          "start_ms": 129,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 129,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/ebe2517e15785d61e23b4ba7ebf947f67539f0f715e7b10c5a9d2017c050521c",
+          "start_ms": 129,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 129,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/ad1d2cc73fa8f1182600a1e6381f08c96d21987387df9bc36c4616a69b989eba",
+          "start_ms": 129,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 129,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/0baf599e1cabaaa847145961f17d83f4b1280dbc641b48f4ff5ceea537eb2258",
+          "start_ms": 129,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 129,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/e4a3f7baae718bfb83c2f2eaa0e448d862720f63b276346b32077fdb08294bdc",
+          "start_ms": 130,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 130,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8111b1c1520d3d8bb71648d73088ed30227e8f50c4f903d9e47565feda1dfc7a",
+          "start_ms": 130,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 130,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/0430dedddc3af45cd7207d22507b1e120de8f673e67c9351d227fba8670ae2a2",
+          "start_ms": 130,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 130,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/3353eac2f0e3116bbabd30fe8c3fe40d1b1ec796fa76f5dbd776d23449891508",
+          "start_ms": 130,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 130,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/1656973561bf1fbc912701929a02f0c2455e2e55bb5bf5c093207bb4fdcc1e39",
+          "start_ms": 130,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 130,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/99718f00dfc5a13558d571dfaf9bd58344e9268cd261415bad3d45517e5ba35d",
+          "start_ms": 130,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 130,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/3158ac4e6803d83cf0871e520dab309fb9fe28abf2619acef7669655d6322c19",
+          "start_ms": 130,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 130,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8d2a777cb0f9cde919aaab04c91b561f861f2c96bb1c227d960e6b5a56f38c77",
+          "start_ms": 130,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 130,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/991c38ea3794ae19b561a93e526356d57c21f00823c1dbb31d680e20fd2f74e2",
+          "start_ms": 131,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 131,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/9bec0055ca32a9e7ab603904aed89a9fa28c6fb2a08b24cffe81b6946a809a1a",
+          "start_ms": 131,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 131,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8ed638af060cafae61514f04dcb3a1e5e0898b0ce990c36cf25300ba14fde9e3",
+          "start_ms": 135,
+          "ttfb_ms": 38,
+          "total_ms": 50,
+          "end_ms": 186,
+          "bytes": 82074
+        },
+        {
+          "endpoint": "/api/soccer/media/2d44906cfcc797aefdc9010ac7d6b1438e54c72c12723384530d4378fc4578b4",
+          "start_ms": 135,
+          "ttfb_ms": 53,
+          "total_ms": 54,
+          "end_ms": 189,
+          "bytes": 55662
+        },
+        {
+          "endpoint": "/api/soccer/media/21edfde914c500ae1d3ed2b2fdeb8e08131c4e8ce22a20bd88ed7da0f298e446",
+          "start_ms": 136,
+          "ttfb_ms": 37,
+          "total_ms": 38,
+          "end_ms": 174,
+          "bytes": 85487
+        },
+        {
+          "endpoint": "/api/soccer/media/57c869a3f900735a950a166961b56d7170608636c4ceadac2b1a1185638f5653",
+          "start_ms": 142,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 142,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/e7f1a617ed094d5d41352388e15dc6e6c791919d96621c6ff6e8c4752195542a",
+          "start_ms": 142,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 142,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/3494e9b292e009a5b51346f9b7302e6afd09e303aecb9f80f1ed8e9278dcf86a",
+          "start_ms": 142,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 142,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/5c269f92a7da5f8124c32671f25478203ad34cb55a69c1e523832d3691327eda",
+          "start_ms": 142,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 142,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/2d71cd78856bc5ee8b575190b5e44a6ba9ac363ed13454f9f595e51726455f9d",
+          "start_ms": 142,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 142,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/4b6aaf1e9005731034b0a382231d58e8b60fcbbb15aa28bc4308f87c19d9fb7e",
+          "start_ms": 142,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 142,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/5ba7edf371fc7d1386f2e7c5c441a5408c5dc264b846c10bc29dbbf3c1ad4596",
+          "start_ms": 142,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 142,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/3185ceded9ad221444f357f88f0fbf6abfd0b9f952fd4760fc424f8beab38d95",
+          "start_ms": 142,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 142,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/bf45239688c9d69144f0d0c3efef4de38f3a0db2c0a2b3a32df054330f707664",
+          "start_ms": 143,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 143,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/a1ea4f53629ee3849d72d928d4c54dadb1c3e4e57dc842aba4dbba59c08d12f4",
+          "start_ms": 143,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 143,
+          "bytes": 0
+        }
+      ],
+      "error_state": false,
+      "errors": []
+    },
+    {
+      "route": "/pro",
+      "temperature": "cold",
+      "first_meaningful_paint_ms": 505,
+      "fcp_ms": 480,
+      "total_route_data_ms": 566,
+      "slowest_endpoint": "/api/soccer/pro/catalog",
+      "endpoint_ttfb_ms": 84,
+      "http_requests": 24,
+      "api_requests": 15,
+      "requests": [
+        {
+          "endpoint": "/api/soccer/live",
+          "start_ms": 406,
+          "ttfb_ms": 38,
+          "total_ms": 39,
+          "end_ms": 445,
+          "bytes": 7493
+        },
+        {
+          "endpoint": "/api/soccer/pro/access",
+          "start_ms": 406,
+          "ttfb_ms": 53,
+          "total_ms": 54,
+          "end_ms": 460,
+          "bytes": 900
+        },
+        {
+          "endpoint": "/api/soccer/pro/catalog",
+          "start_ms": 407,
+          "ttfb_ms": 84,
+          "total_ms": 85,
+          "end_ms": 492,
+          "bytes": 1673
+        },
+        {
+          "endpoint": "/api/soccer/media/9e4b7c06391ad3742294dc761e7b951d0bf8603fd2b360370e1299832f602a9e",
+          "start_ms": 490,
+          "ttfb_ms": 49,
+          "total_ms": 50,
+          "end_ms": 540,
+          "bytes": 42134
+        },
+        {
+          "endpoint": "/api/soccer/media/105291b28134e6b377795fd80d0d5c8c561f02257bfb1a5b243b87df0ebe6b19",
+          "start_ms": 491,
+          "ttfb_ms": 50,
+          "total_ms": 72,
+          "end_ms": 562,
+          "bytes": 170842
+        },
+        {
+          "endpoint": "/api/soccer/media/84b94381a47ab86bc72cd9ee9def55c94163b0d9ba162dcbc54ddb56f4e464f8",
+          "start_ms": 499,
+          "ttfb_ms": 40,
+          "total_ms": 42,
+          "end_ms": 540,
+          "bytes": 86020
+        },
+        {
+          "endpoint": "/api/soccer/media/be9a2497af4479bd66f9b3277322412b384bbf3a22ed770119fefb686ca6b341",
+          "start_ms": 499,
+          "ttfb_ms": 64,
+          "total_ms": 64,
+          "end_ms": 563,
+          "bytes": 3685
+        },
+        {
+          "endpoint": "/api/soccer/media/1e6b69551e573c8ed4fdb3ea5e18d46051e8ad342224168920e89cae0585f562",
+          "start_ms": 499,
+          "ttfb_ms": 65,
+          "total_ms": 66,
+          "end_ms": 565,
+          "bytes": 9734
+        },
+        {
+          "endpoint": "/api/soccer/media/6cb54837aa5a1fca1113cd73a88de45394393e8704b2d885db4277c051311e89",
+          "start_ms": 499,
+          "ttfb_ms": 64,
+          "total_ms": 64,
+          "end_ms": 563,
+          "bytes": 19918
+        },
+        {
+          "endpoint": "/api/soccer/media/b2459c995f0be4c96ed622c21c795b1d53764ea58bb82a3e386ce6b9fb0a3a02",
+          "start_ms": 499,
+          "ttfb_ms": 67,
+          "total_ms": 67,
+          "end_ms": 566,
+          "bytes": 42555
+        },
+        {
+          "endpoint": "/api/soccer/media/681ad998004cdfb5da21166607c0d021940445bcdaf2d506f08536dcff77e6ef",
+          "start_ms": 499,
+          "ttfb_ms": 65,
+          "total_ms": 65,
+          "end_ms": 565,
+          "bytes": 20048
+        },
+        {
+          "endpoint": "/api/soccer/media/8d68cf0ccd8bdd16960b78510ce86ac2094216c2a6ddfda49b88268a344e883f",
+          "start_ms": 499,
+          "ttfb_ms": 66,
+          "total_ms": 66,
+          "end_ms": 565,
+          "bytes": 3579
+        },
+        {
+          "endpoint": "/api/soccer/media/31d271d162edab9767033e348d6a47e57cced277fff6cde8df3da87ebe4d6709",
+          "start_ms": 499,
+          "ttfb_ms": 66,
+          "total_ms": 67,
+          "end_ms": 566,
+          "bytes": 12994
+        },
+        {
+          "endpoint": "/api/soccer/media/a2c081bc1712cd908a5e7eae6b72472ebc351778c005e6a7c42ca8fe896ebb35",
+          "start_ms": 499,
+          "ttfb_ms": 64,
+          "total_ms": 65,
+          "end_ms": 564,
+          "bytes": 4203
+        },
+        {
+          "endpoint": "/api/soccer/media/8f3107904e8ecc3d934f819b011896d3ab3a97ad1e07b3bedd052fcaa02e1f96",
+          "start_ms": 499,
+          "ttfb_ms": 66,
+          "total_ms": 66,
+          "end_ms": 565,
+          "bytes": 38358
+        }
+      ],
+      "error_state": false,
+      "errors": []
+    },
+    {
+      "route": "/pro",
+      "temperature": "warm",
+      "first_meaningful_paint_ms": 251,
+      "fcp_ms": 136,
+      "total_route_data_ms": 246,
+      "slowest_endpoint": "/api/soccer/pro/catalog",
+      "endpoint_ttfb_ms": 143,
+      "http_requests": 65,
+      "api_requests": 53,
+      "requests": [
+        {
+          "endpoint": "/api/soccer/media/9e4b7c06391ad3742294dc761e7b951d0bf8603fd2b360370e1299832f602a9e",
+          "start_ms": 100,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 100,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/105291b28134e6b377795fd80d0d5c8c561f02257bfb1a5b243b87df0ebe6b19",
+          "start_ms": 100,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 100,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/live",
+          "start_ms": 101,
+          "ttfb_ms": 1,
+          "total_ms": 1,
+          "end_ms": 102,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/pro/access",
+          "start_ms": 101,
+          "ttfb_ms": 51,
+          "total_ms": 51,
+          "end_ms": 152,
+          "bytes": 900
+        },
+        {
+          "endpoint": "/api/soccer/pro/catalog",
+          "start_ms": 101,
+          "ttfb_ms": 143,
+          "total_ms": 143,
+          "end_ms": 245,
+          "bytes": 1673
+        },
+        {
+          "endpoint": "/api/soccer/media/84b94381a47ab86bc72cd9ee9def55c94163b0d9ba162dcbc54ddb56f4e464f8",
+          "start_ms": 125,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 125,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/b2459c995f0be4c96ed622c21c795b1d53764ea58bb82a3e386ce6b9fb0a3a02",
+          "start_ms": 125,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 125,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/1e6b69551e573c8ed4fdb3ea5e18d46051e8ad342224168920e89cae0585f562",
+          "start_ms": 125,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 125,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/6cb54837aa5a1fca1113cd73a88de45394393e8704b2d885db4277c051311e89",
+          "start_ms": 125,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 125,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/be9a2497af4479bd66f9b3277322412b384bbf3a22ed770119fefb686ca6b341",
+          "start_ms": 125,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 125,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8d68cf0ccd8bdd16960b78510ce86ac2094216c2a6ddfda49b88268a344e883f",
+          "start_ms": 125,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 125,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/31d271d162edab9767033e348d6a47e57cced277fff6cde8df3da87ebe4d6709",
+          "start_ms": 125,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 125,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/681ad998004cdfb5da21166607c0d021940445bcdaf2d506f08536dcff77e6ef",
+          "start_ms": 126,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 126,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/a2c081bc1712cd908a5e7eae6b72472ebc351778c005e6a7c42ca8fe896ebb35",
+          "start_ms": 126,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 126,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/8f3107904e8ecc3d934f819b011896d3ab3a97ad1e07b3bedd052fcaa02e1f96",
+          "start_ms": 126,
+          "ttfb_ms": 0,
+          "total_ms": 0,
+          "end_ms": 126,
+          "bytes": 0
+        },
+        {
+          "endpoint": "/api/soccer/media/769ccaebf31bbce1cb07172951b8f38ca9405aa395684083dc9b2867beaff451",
+          "start_ms": 132,
+          "ttfb_ms": 39,
+          "total_ms": 40,
+          "end_ms": 171,
+          "bytes": 3616
+        },
+        {
+          "endpoint": "/api/soccer/media/e96530adbd35298a4418586343c81e9570d52576c0bc22a145a1d457aa4b24d5",
+          "start_ms": 132,
+          "ttfb_ms": 43,
+          "total_ms": 44,
+          "end_ms": 175,
+          "bytes": 4960
+        },
+        {
+          "endpoint": "/api/soccer/media/a10d04432facb8650c624dc976e352df9d052065fdfce2f710cba720a4ab25e0",
+          "start_ms": 132,
+          "ttfb_ms": 53,
+          "total_ms": 54,
+          "end_ms": 186,
+          "bytes": 51684
+        },
+        {
+          "endpoint": "/api/soccer/media/43c610c6d9377e57ca662c86a761ac29fdfdc67bf13dd8082423b2d2f38e4a0b",
+          "start_ms": 132,
+          "ttfb_ms": 53,
+          "total_ms": 53,
+          "end_ms": 185,
+          "bytes": 3639
+        },
+        {
+          "endpoint": "/api/soccer/media/d523e0225ec2209e6b8a184a6db1fd90a6b7f00b695eccadc3e6cede77cffc69",
+          "start_ms": 132,
+          "ttfb_ms": 83,
+          "total_ms": 94,
+          "end_ms": 226,
+          "bytes": 17342
+        },
+        {
+          "endpoint": "/api/soccer/media/a4116449f802b11895298686068c2a2c6ec78d56aeb0658014415f7edbaf5c68",
+          "start_ms": 132,
+          "ttfb_ms": 114,
+          "total_ms": 114,
+          "end_ms": 246,
+          "bytes": 8234
+        },
+        {
+          "endpoint": "/api/soccer/media/a3a5665b88adbb41ee627fd8b13b140fcbd77d478d20ddfb153214808c7e6356",
+          "start_ms": 132,
+          "ttfb_ms": 95,
+          "total_ms": 96,
+          "end_ms": 228,
+          "bytes": 3739
+        },
+        {
+          "endpoint": "/api/soccer/media/8ed638af060cafae61514f04dcb3a1e5e0898b0ce990c36cf25300ba14fde9e3",
+          "start_ms": 132,
+          "ttfb_ms": 97,
+          "total_ms": 97,
+          "end_ms": 230,
+          "bytes": 82074
+        },
+        {
+          "endpoint": "/api/soccer/media/8eb3b92ab4ae3ad632345922f4d6cac69e7c9ff0f3338feacd9d708920287bfa",
+          "start_ms": 132,
+          "ttfb_ms": 44,
+          "total_ms": 52,
+          "end_ms": 185,
+          "bytes": 28354
+        },
+        {
+          "endpoint": "/api/soccer/media/21edfde914c500ae1d3ed2b2fdeb8e08131c4e8ce22a20bd88ed7da0f298e446",
+          "start_ms": 132,
+          "ttfb_ms": 53,
+          "total_ms": 82,
+          "end_ms": 214,
+          "bytes": 85487
+        },
+        {
+          "endpoint": "/api/soccer/media/2d44906cfcc797aefdc9010ac7d6b1438e54c72c12723384530d4378fc4578b4",
+          "start_ms": 132,
+          "ttfb_ms": 96,
+          "total_ms": 96,
+          "end_ms": 228,
+          "bytes": 55662
+        },
+        {
+          "endpoint": "/api/soccer/media/b3e2f9b51d71ca6937926a520aa1bd73f90f0e7d7cd1d3a2f3093944bcbfc49a",
+          "start_ms": 132,
+          "ttfb_ms": 80,
+          "total_ms": 81,
+          "end_ms": 213,
+          "bytes": 15410
+        },
+        {
+          "endpoint": "/api/soccer/media/85e8317c795135c8094b471563cb37110cc22fa4fe15398e2c31c03690c2b9a9",
+          "start_ms": 133,
+          "ttfb_ms": 44,
+          "total_ms": 44,
+          "end_ms": 177,
+          "bytes": 3223
+        },
+        {
+          "endpoint": "/api/soccer/media/ff8db39f260d067c8b49c26962a1c7c32f9649a4abc5400f58bc7f2d7b7fcaef",
+          "start_ms": 133,
+          "ttfb_ms": 82,
+          "total_ms": 82,
+          "end_ms": 215,
+          "bytes": 3066
+        },
+        {
+          "endpoint": "/api/soccer/media/346aac475c309199dcb36e8472ea808cfce102e4740037ee185f313820d382eb",
+          "start_ms": 133,
+          "ttfb_ms": 81,
+          "total_ms": 81,
+          "end_ms": 214,
+          "bytes": 13986
+        },
+        {
+          "endpoint": "/api/soccer/media/c5e3f8e60b41a6d8a7e025935b105edca5fd7086c9e896454f374eb401f55594",
+          "start_ms": 133,
+          "ttfb_ms": 94,
+          "total_ms": 95,
+          "end_ms": 227,
+          "bytes": 65127
+        },
+        {
+          "endpoint": "/api/soccer/media/8378b286b210cba675524bd9e36bf6211329cddb8e4cd235b64e63881677b06f",
+          "start_ms": 133,
+          "ttfb_ms": 112,
+          "total_ms": 112,
+          "end_ms": 244,
+          "bytes": 3033
+        },
+        {
+          "endpoint": "/api/soccer/media/4495f8ec7d2d8c71477fc606d6396ed76cc86a1f68f02a8c10df6ed09724f24b",
+          "start_ms": 133,
+          "ttfb_ms": 96,
+          "total_ms": 96,
+          "end_ms": 229,
+          "bytes": 3575
+        },
+        {
+          "endpoint": "/api/soccer/media/cbdf3c2b3157e1c2b4076e157513448315bb014803020029ba73bbf3d820d9ba",
+          "start_ms": 133,
+          "ttfb_ms": 96,
+          "total_ms": 96,
+          "end_ms": 229,
+          "bytes": 13697
+        },
+        {
+          "endpoint": "/api/soccer/media/9d4a7f5d25fc35bb4943e734f24d82c569f84ea590189620e5d547bdf250026b",
+          "start_ms": 133,
+          "ttfb_ms": 110,
+          "total_ms": 110,
+          "end_ms": 243,
+          "bytes": 17189
+        },
+        {
+          "endpoint": "/api/soccer/media/d87f12cbc30e43994847651e2671c58aef4a5fd44ede744d7c121f0c8428fdea",
+          "start_ms": 133,
+          "ttfb_ms": 81,
+          "total_ms": 81,
+          "end_ms": 214,
+          "bytes": 49209
+        },
+        {
+          "endpoint": "/api/soccer/media/ac9866e2f75d59940309098931528f3d67b6927a03ef637626c7ab3e5c71b5f4",
+          "start_ms": 133,
+          "ttfb_ms": 96,
+          "total_ms": 97,
+          "end_ms": 230,
+          "bytes": 29579
+        },
+        {
+          "endpoint": "/api/soccer/media/f1f3a7a853e83c61813e4d9d692bccbbb3d75809768b4bf1b589519cf9705264",
+          "start_ms": 133,
+          "ttfb_ms": 43,
+          "total_ms": 43,
+          "end_ms": 176,
+          "bytes": 3722
+        },
+        {
+          "endpoint": "/api/soccer/media/21c85bf3878dd2982083f46e8b9ede484b0c7b1e6d3bc8595d34d3693d914958",
+          "start_ms": 133,
+          "ttfb_ms": 82,
+          "total_ms": 93,
+          "end_ms": 226,
+          "bytes": 47534
+        },
+        {
+          "endpoint": "/api/soccer/media/9332b75a23a86dccdfdb19d2c0f97b16ad23baf4f94a967038e7e280dc159821",
+          "start_ms": 133,
+          "ttfb_ms": 97,
+          "total_ms": 97,
+          "end_ms": 230,
+          "bytes": 9723
+        },
+        {
+          "endpoint": "/api/soccer/media/ebe2517e15785d61e23b4ba7ebf947f67539f0f715e7b10c5a9d2017c050521c",
+          "start_ms": 133,
+          "ttfb_ms": 97,
+          "total_ms": 97,
+          "end_ms": 230,
+          "bytes": 4565
+        },
+        {
+          "endpoint": "/api/soccer/media/ad1d2cc73fa8f1182600a1e6381f08c96d21987387df9bc36c4616a69b989eba",
+          "start_ms": 133,
+          "ttfb_ms": 108,
+          "total_ms": 109,
+          "end_ms": 243,
+          "bytes": 25936
+        },
+        {
+          "endpoint": "/api/soccer/media/8111b1c1520d3d8bb71648d73088ed30227e8f50c4f903d9e47565feda1dfc7a",
+          "start_ms": 133,
+          "ttfb_ms": 106,
+          "total_ms": 107,
+          "end_ms": 240,
+          "bytes": 24278
+        },
+        {
+          "endpoint": "/api/soccer/media/e4a3f7baae718bfb83c2f2eaa0e448d862720f63b276346b32077fdb08294bdc",
+          "start_ms": 133,
+          "ttfb_ms": 107,
+          "total_ms": 108,
+          "end_ms": 241,
+          "bytes": 4163
+        },
+        {
+          "endpoint": "/api/soccer/media/0baf599e1cabaaa847145961f17d83f4b1280dbc641b48f4ff5ceea537eb2258",
+          "start_ms": 133,
+          "ttfb_ms": 110,
+          "total_ms": 110,
+          "end_ms": 244,
+          "bytes": 3879
+        },
+        {
+          "endpoint": "/api/soccer/media/0430dedddc3af45cd7207d22507b1e120de8f673e67c9351d227fba8670ae2a2",
+          "start_ms": 134,
+          "ttfb_ms": 110,
+          "total_ms": 111,
+          "end_ms": 244,
+          "bytes": 13667
+        },
+        {
+          "endpoint": "/api/soccer/media/3353eac2f0e3116bbabd30fe8c3fe40d1b1ec796fa76f5dbd776d23449891508",
+          "start_ms": 134,
+          "ttfb_ms": 107,
+          "total_ms": 108,
+          "end_ms": 242,
+          "bytes": 3616
+        },
+        {
+          "endpoint": "/api/soccer/media/1656973561bf1fbc912701929a02f0c2455e2e55bb5bf5c093207bb4fdcc1e39",
+          "start_ms": 134,
+          "ttfb_ms": 97,
+          "total_ms": 108,
+          "end_ms": 242,
+          "bytes": 86426
+        },
+        {
+          "endpoint": "/api/soccer/media/99718f00dfc5a13558d571dfaf9bd58344e9268cd261415bad3d45517e5ba35d",
+          "start_ms": 134,
+          "ttfb_ms": 112,
+          "total_ms": 112,
+          "end_ms": 246,
+          "bytes": 16985
+        },
+        {
+          "endpoint": "/api/soccer/media/991c38ea3794ae19b561a93e526356d57c21f00823c1dbb31d680e20fd2f74e2",
+          "start_ms": 134,
+          "ttfb_ms": 97,
+          "total_ms": 106,
+          "end_ms": 240,
+          "bytes": 3506
+        },
+        {
+          "endpoint": "/api/soccer/media/8d2a777cb0f9cde919aaab04c91b561f861f2c96bb1c227d960e6b5a56f38c77",
+          "start_ms": 134,
+          "ttfb_ms": 106,
+          "total_ms": 107,
+          "end_ms": 241,
+          "bytes": 3191
+        },
+        {
+          "endpoint": "/api/soccer/media/3158ac4e6803d83cf0871e520dab309fb9fe28abf2619acef7669655d6322c19",
+          "start_ms": 134,
+          "ttfb_ms": 111,
+          "total_ms": 111,
+          "end_ms": 245,
+          "bytes": 24781
+        },
+        {
+          "endpoint": "/api/soccer/media/9bec0055ca32a9e7ab603904aed89a9fa28c6fb2a08b24cffe81b6946a809a1a",
+          "start_ms": 134,
+          "ttfb_ms": 111,
+          "total_ms": 112,
+          "end_ms": 246,
+          "bytes": 3493
+        }
+      ],
+      "error_state": false,
+      "errors": []
+    }
+  ]
+}

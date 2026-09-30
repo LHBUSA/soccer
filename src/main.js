@@ -1,7 +1,9 @@
 import './styles/main.css';
+import './styles/sprint.css';
 import { initAnalytics } from './analytics.js';
 import { resolve } from './lib/router.js';
-import { errorState, loading, notFoundPage } from './components/ui.js';
+import { errorState, routeSkeleton, notFoundPage } from './components/ui.js';
+import { api } from './lib/api.js';
 import { competitionMark } from './components/media.js';
 import * as home from './pages/home.js';
 import * as competition from './pages/competition.js';
@@ -96,25 +98,33 @@ function setMeta(page, data, params = []) {
 export async function render(url = new URL(location.href)) {
   const my = ++seq;
   const { page, params } = resolve(url.pathname);
-  if (page === 'notfound') { setMeta('notfound'); firstLoad = false; main.innerHTML = notFoundPage(); return; }
+  if (page === 'notfound') { setMeta('notfound'); firstLoad = false; main.removeAttribute('aria-busy'); main.classList.remove('route-pending'); main.innerHTML = notFoundPage(); return; }
   const mod = PAGES[page];
-  main.innerHTML = `<div class="wrap">${loading()}</div>`;
+  const wasEmpty = !main.innerHTML;
+  main.setAttribute('aria-busy', 'true');
+  if (mod.initial) main.innerHTML = mod.initial();
+  else if (wasEmpty) main.innerHTML = routeSkeleton(page);
+  const delay = setTimeout(() => { if (my === seq) main.classList.add('route-pending'); }, 300);
   setMeta(page, null, params);
   try {
     const data = await mod.load(params, url.searchParams);
     if (my !== seq) return;
     main.innerHTML = mod.render(data);
+    main.dataset.routeSeq = String(my);
+    main.removeAttribute('aria-busy');
+    main.classList.remove('route-pending');
     setMeta(page, data, params);
     firstLoad = false;
     mountMediaFallbacks(main);
-    mod.mount?.(main, data, { navigate });
+    mod.mount?.(main, data, { navigate, isCurrent: () => my === seq });
   } catch (err) {
     if (my !== seq) return;
     firstLoad = false;
+    main.removeAttribute('aria-busy'); main.classList.remove('route-pending');
     main.innerHTML = `<section class="canvas"><div class="wrap narrow">${errorState(err)}</div></section>`;
     main.querySelector('[data-retry]')?.addEventListener('click', () => render(url));
     if (err?.status !== 404) console.warn('load failed', page, err?.message);
-  }
+  } finally { clearTimeout(delay); }
 }
 
 export function navigate(href) {
@@ -129,6 +139,16 @@ export function navigate(href) {
 }
 
 installPlayerDrawer(); // before the router: plain clicks on player chips open the drawer
+// Bounded, inexpensive reads only: never entitlement, DNA computation or a full match ledger.
+const prefetch = e => {
+  const a = e.target.closest('a[data-link]'); if (!a || navigator.connection?.saveData) return;
+  const u = new URL(a.href, location.origin); if (u.origin !== location.origin) return;
+  const { page, params } = resolve(u.pathname);
+  const path = page === 'competition' ? `competitions/${params[0]}` : page === 'team' ? `teams/${params[0]}` : page === 'competitions' ? 'competitions' : page === 'pbecastHub' || page === 'home' ? 'live' : null;
+  if (path) api(path).catch(() => {});
+};
+document.addEventListener('pointerover', prefetch);
+document.addEventListener('focusin', prefetch);
 document.addEventListener('click', e => {
   const a = e.target.closest('a[data-link]');
   if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;

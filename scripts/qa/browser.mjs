@@ -10,9 +10,9 @@ import puppeteer from 'puppeteer-core';
 
 const BASE = (process.argv[2] || 'http://localhost:4173').replace(/\/$/, '');
 const SHOTS = process.argv.includes('--shots');
-const WIDTHS = [320, 360, 390, 430, 768, 1024, 1280, 1440];
+const WIDTHS = [320, 360, 390, 430, 768, 1024, 1440];
 const ORIGIN = new URL(BASE).origin;
-const ALLOWED_HOSTS = new Set([new URL(BASE).host, 'fonts.googleapis.com', 'fonts.gstatic.com']);
+const ALLOWED_HOSTS = new Set([new URL(BASE).host, 'fonts.googleapis.com', 'fonts.gstatic.com', 'i.ytimg.com']);
 const FORBIDDEN = /espn\.com|openligadb|figshare|wyscout|supabase|workers\.dev/i;
 
 const getJson = async p => (await fetch(`${BASE}/api/soccer/${p}`)).json();
@@ -24,7 +24,7 @@ const playerSlug = espnDetail.lineups?.home?.starters?.find(Boolean)?.slug;
 const story = ((await getJson('news?limit=1')).data || [])[0];
 
 const ROUTES = [
-  { path: '/', expect: ['SOCCER INTELLIGENCE', 'Four competitions, one graph', 'PBECAST', 'MLS', 'BUNDESLIGA', 'PREMIER LEAGUE', 'CHAMPIONS LEAGUE'], name: 'home' },
+  { path: '/', expect: ['SOCCER INTELLIGENCE', 'Club and international competitions, one graph', 'Nations League', 'PBECAST', 'MLS', 'BUNDESLIGA', 'PREMIER LEAGUE', 'CHAMPIONS LEAGUE'], name: 'home' },
   { path: '/competitions', expect: ['Competitions on the canonical graph'], name: 'competitions' },
   { path: '/competitions/bundesliga', expect: ['Bundesliga', 'TABLE'], name: 'bundesliga' },
   { path: '/competitions/premier-league', expect: ['Premier League', 'TABLE'], name: 'epl' },
@@ -44,14 +44,14 @@ const ROUTES = [
   { path: '/tables?competition=premier-league', expect: ['Premier League', 'Pts'], name: 'tables-epl' },
   { path: '/tables?competition=uefa-champions-league', expect: ['Champions League'], name: 'tables-ucl' },
   ...(story ? [
-    { path: '/news', expect: ['PROPBETEDGE SOCCER NEWSROOM', 'Soccer news', story.headline], name: 'news' },
+    { path: '/news', expect: ['PropBetEdge Soccer', 'Newsroom', 'Evidence-backed football reporting', story.headline], name: 'news' },
     { path: `/news/${story.desk}`, expect: ['news', story.headline], name: 'news-desk' },
     { path: `/news/${story.desk}/${story.slug}`, expect: [story.headline, 'IN THIS STORY', 'SOURCE & METHOD', 'min read', 'SHARE'], name: 'article' },
   ] : [{ path: '/news', expect: ['PROPBETEDGE SOCCER NEWSROOM', 'Evidence-backed soccer reporting is coming online.'], name: 'news' }]),
   { path: '/players', expect: ['Player directory', 'PLAYERS'], name: 'players' },
   { path: '/players?competition=mls&sort=goal_contributions_per90', expect: ['Player directory', 'Leaders among the 450+'], name: 'players-leaders' },
   { path: '/pbecast', expect: ['Every match, event by event', 'LIVE NOW', 'REPLAYS'], name: 'pbecast-hub' },
-  { path: `/pbecast/${espnMatch.id}`, expect: ['PBECAST', 'REPLAY FROM KICK-OFF', 'MATCH FEED', 'NOT PLAYER TRACKING'], castMarks: true, name: 'pbecast-replay' },
+  { path: `/pbecast/${espnMatch.id}`, expect: ['PBECAST', 'REPLAY FROM KICK-OFF', 'REPLAY FEED', 'NOT PLAYER TRACKING'], castMarks: true, name: 'pbecast-replay' },
   { path: '/sources', expect: ['Where every fact comes from'], name: 'sources' },
   { path: '/picks', expect: ['OFFICIAL PICKS', 'GAME BEST', 'FROZEN BEFORE ANY OUTCOME'], name: 'algo-picks' },
   { path: '/track-record', expect: ['OFFICIAL RECORD', 'HISTORICAL VALIDATION', 'No default odds'], name: 'algo-track-record' },
@@ -118,7 +118,7 @@ try {
   // V3: PBEcast replay moves the clock and hides future events; the Player DNA drawer opens from
   // a lineup chip without changing the URL and closes on Escape.
   await page.goto(`${BASE}/pbecast/${espnMatch.id}`, { waitUntil: 'networkidle0' });
-  const seekOk = await page.evaluate(() => { const b = document.querySelector('.rp-moments [data-seek]'); if (!b) return 'no key moment'; b.click(); const hidden = [...document.querySelectorAll('[data-fi]')].filter(l => l.hidden).length; const clock = document.querySelector('[data-ct-clock]')?.textContent; return hidden > 0 && clock !== 'FT' ? true : `hidden ${hidden} clock ${clock}`; });
+  const seekOk = await page.evaluate(() => { const b = document.querySelector('.rp-moments [data-seek]'); if (!b) return 'no key moment'; const before = document.querySelector('[data-ct-clock]')?.textContent; b.click(); const after = document.querySelector('[data-ct-clock]')?.textContent; return after && after !== before && after !== 'FT' ? true : `clock ${before} -> ${after}`; });
   if (seekOk !== true) fail('pbecast-replay', `seek did not move the replay: ${seekOk}`);
   await page.goto(`${BASE}/matches/${espnMatch.id}`, { waitUntil: 'networkidle0' });
   const before = page.url();

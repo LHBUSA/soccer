@@ -63,14 +63,15 @@ export async function playerApps(store, playerIds, fromIso, comps) {
 
 // Matchup inputs for the team's last `n` finished matches (any competition), newest first.
 export async function matchupGames(store, teamId, matches, n = 8) {
-  const done = matches.filter(m => m.status === 'finished' && m.home_score !== null).slice(0, n);
+  const done = matches.filter(m => m.status === 'finished' && m.home_score !== null && m.away_score !== null).slice(0, n);
   const ids = done.map(m => m.id);
   const stats = await selectIn(store, 'soccer_team_match_stats', 'match_id', ids, { columns: ['match_id', 'team_id', 'stat_key', 'value', 'basis'], in: { stat_key: ['shots', 'shots_on_target'] } });
   const events = await selectIn(store, 'soccer_match_events', 'match_id', ids, { columns: ['match_id', 'team_id', 'event_type', 'x_m', 'y_m', 'set_piece', 'is_goal', 'is_own_goal', 'minute', 'source_family'], in: { event_type: ['shot', 'touch'] } });
   const statOf = (mid, tid) => {
     const rows = stats.filter(s => s.match_id === mid && s.team_id === tid);
     const pick = k => { const r = rows.find(x => x.stat_key === k && x.basis === 'source') || rows.find(x => x.stat_key === k); return r ? Number(r.value) : null; };
-    return pick('shots') === null ? null : { shots: pick('shots'), shots_on_target: pick('shots_on_target') };
+    const shotRow = rows.find(x => x.stat_key === 'shots' && x.basis === 'source') || rows.find(x => x.stat_key === 'shots');
+    return pick('shots') === null ? null : { shots: pick('shots'), shots_on_target: pick('shots_on_target'), basis: shotRow?.basis || null };
   };
   return done.map(m => {
     const home = m.home_team_id === teamId; const opp = home ? m.away_team_id : m.home_team_id;
@@ -83,6 +84,8 @@ export async function matchupGames(store, teamId, matches, n = 8) {
     return {
       id: m.id, kickoff_at: m.kickoff_at, home, gf: home ? m.home_score : m.away_score, ga: home ? m.away_score : m.home_score,
       stats: statOf(m.id, teamId), opp_stats: statOf(m.id, opp),
+      stat_signature: statOf(m.id, teamId)?.basis && statOf(m.id, teamId)?.basis === statOf(m.id, opp)?.basis && fam ? `${fam}:${statOf(m.id, teamId).basis}` : null,
+      event_family: fam || null,
       shots: mine.filter(e => e.event_type === 'shot' && e.team_id === teamId && e.x_m !== null).map(e => ({ x_m: Number(e.x_m), y_m: Number(e.y_m), set_piece: e.set_piece })),
       goals: mine.filter(e => (e.is_goal || e.is_own_goal) && scorer(e) === teamId).map(e => ({ minute: e.minute, set_piece: e.is_own_goal ? null : e.set_piece })),
       conceded: mine.filter(e => (e.is_goal || e.is_own_goal) && scorer(e) === opp).map(e => ({ minute: e.minute })),

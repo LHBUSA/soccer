@@ -8,6 +8,7 @@ import { pitchSvg, validShots } from '../components/pitch.js';
 import { mountRelatedNews } from '../components/related.js';
 import { keyPlayers } from '../components/keyplayers.js';
 import { matchTitle } from '../seo/meta.js';
+import { analyzerPreviewHtml } from '../components/analyzer.js';
 
 export const title = d => (d?.env?.data ? matchTitle(d.env.data) : 'Match Intelligence | PropBetEdge');
 
@@ -162,6 +163,7 @@ export function render(d) {
     ${when(m.status === 'live' || (m.timeline || []).length || (m.shots || []).length, () => `<p class="center mh-cast">${link(`/pbecast/${m.id}`, m.status === 'live' ? '<i class="livedot" aria-hidden="true"></i> WATCH THE LIVE PBECAST' : '▶ REPLAY ON PBECAST', 'btn gold')}</p>`)}
     ${freshness(m, meta)}
   </div></section>
+  <section class="canvas alt" data-analyzer-preview hidden><div class="wrap"></div></section>
   <section class="canvas" data-match-id="${esc(m.id)}"><div class="wrap mgrid2">
     <div class="col-a">
       <div class="panel">${sectionHead('MATCH STORY', 'Goals, cards and substitutions')}${story(m)}</div>
@@ -183,6 +185,12 @@ const newsSlot = () => '<div data-related-news></div>';
 
 export function mount(root, d) {
   mountRelatedNews(root, { match: d.env.data.id }, { title: 'Stories about this match' });
+  const preview = root.querySelector('[data-analyzer-preview]');
+  if (preview && d.env.meta.features?.includes('matchup_analyzer_v2')) api(`matches/${d.env.data.id}/analyzer-preview`).then(env => {
+    if (!preview.isConnected || !env.data) return;
+    preview.hidden = false;
+    preview.innerHTML = `<div class="wrap">${analyzerPreviewHtml(env.data, d.env.data)}<p>${link(`/pro/matches/${d.env.data.id}`, 'OPEN THE FULL MATCHUP ANALYZER · ALL ACCESS →', 'sec-link')}</p></div>`;
+  }).catch(() => {});
   // Live: soft refresh every 60 s while the page is still this match (no history change).
   if (d.env.data.status === 'live') {
     const path = location.pathname;

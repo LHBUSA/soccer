@@ -1,0 +1,700 @@
+{
+  "data": {
+    "version": "soccer-analyzer/2.0.0",
+    "as_of": "2026-09-30T19:51:33.067Z",
+    "competition": "bundesliga",
+    "season": "2026/27",
+    "rating": {
+      "home": 71,
+      "away": 29,
+      "components_used": 14,
+      "components_total": 15
+    },
+    "rating_label": "PBE MATCHUP RATING: descriptive component score. Not a win probability or prediction.",
+    "formula": "Results 50%, compatible shot stats 30%, schedule/XI 20%; equal weights within each available group, groups renormalized when absent. Home = round(50 + 50 × weighted edge), away = round(50 - 50 × weighted edge). Scales are display normalizations, not fitted predictive weights. Rating requires at least three result matches per side.",
+    "components": [
+      {
+        "key": "form5",
+        "label": "Recent form · last 5",
+        "home": 3,
+        "away": 1.75,
+        "edge": 0.83,
+        "scale": 1.5,
+        "lower_is_better": false,
+        "unit": "pts/m",
+        "group": "results",
+        "sample": {
+          "home": 4,
+          "away": 4
+        },
+        "coverage": {
+          "home": {
+            "available": 4,
+            "total": 4
+          },
+          "away": {
+            "available": 4,
+            "total": 4
+          }
+        },
+        "basis": "Canonical results in the same competition-season league/group stages; 3/1/0 result points.",
+        "normalization": "clamp((home - away) / scale, -1, 1), inverted for lower-is-better",
+        "explanation": "Home: 3 pts/m; away: 1.75 pts/m. Samples: 4 / 4. Canonical results in the same competition-season league/group stages; 3/1/0 result points.",
+        "weight": 0.07142857142857142,
+        "contribution": 2.96
+      },
+      {
+        "key": "form10",
+        "label": "Recent form · last 10",
+        "home": 3,
+        "away": 1.75,
+        "edge": 0.83,
+        "scale": 1.5,
+        "lower_is_better": false,
+        "unit": "pts/m",
+        "group": "results",
+        "sample": {
+          "home": 4,
+          "away": 4
+        },
+        "coverage": {
+          "home": {
+            "available": 4,
+            "total": 4
+          },
+          "away": {
+            "available": 4,
+            "total": 4
+          }
+        },
+        "basis": "Canonical results in the same competition-season league/group stages; 3/1/0 result points.",
+        "normalization": "clamp((home - away) / scale, -1, 1), inverted for lower-is-better",
+        "explanation": "Home: 3 pts/m; away: 1.75 pts/m. Samples: 4 / 4. Canonical results in the same competition-season league/group stages; 3/1/0 result points.",
+        "weight": 0.07142857142857142,
+        "contribution": 2.96
+      },
+      {
+        "key": "scoring",
+        "label": "Recent scoring",
+        "home": 2.25,
+        "away": 2,
+        "edge": 0.17,
+        "scale": 1.5,
+        "lower_is_better": false,
+        "unit": "goals/m",
+        "group": "results",
+        "sample": {
+          "home": 4,
+          "away": 4
+        },
+        "coverage": {
+          "home": {
+            "available": 4,
+            "total": 4
+          },
+          "away": {
+            "available": 4,
+            "total": 4
+          }
+        },
+        "basis": "Last ten stored score pairs in the same competition-season league/group stages.",
+        "normalization": "clamp((home - away) / scale, -1, 1), inverted for lower-is-better",
+        "explanation": "Home: 2.25 goals/m; away: 2 goals/m. Samples: 4 / 4. Last ten stored score pairs in the same competition-season league/group stages.",
+        "weight": 0.07142857142857142,
+        "contribution": 0.61
+      },
+      {
+        "key": "conceding",
+        "label": "Recent conceding",
+        "home": 0.5,
+        "away": 2,
+        "edge": 1,
+        "scale": 1.5,
+        "lower_is_better": true,
+        "unit": "goals/m",
+        "group": "results",
+        "sample": {
+          "home": 4,
+          "away": 4
+        },
+        "coverage": {
+          "home": {
+            "available": 4,
+            "total": 4
+          },
+          "away": {
+            "available": 4,
+            "total": 4
+          }
+        },
+        "basis": "Last ten stored score pairs in the same competition-season league/group stages.",
+        "normalization": "clamp((home - away) / scale, -1, 1), inverted for lower-is-better",
+        "explanation": "Home: 0.5 goals/m; away: 2 goals/m. Samples: 4 / 4. Last ten stored score pairs in the same competition-season league/group stages.",
+        "weight": 0.07142857142857142,
+        "contribution": 3.57
+      },
+      {
+        "key": "gd",
+        "label": "Recent goal differential",
+        "home": 1.75,
+        "away": 0,
+        "edge": 0.88,
+        "scale": 2,
+        "lower_is_better": false,
+        "unit": "goals/m",
+        "group": "results",
+        "sample": {
+          "home": 4,
+          "away": 4
+        },
+        "coverage": {
+          "home": {
+            "available": 4,
+            "total": 4
+          },
+          "away": {
+            "available": 4,
+            "total": 4
+          }
+        },
+        "basis": "Last ten stored score pairs in the same competition-season league/group stages.",
+        "normalization": "clamp((home - away) / scale, -1, 1), inverted for lower-is-better",
+        "explanation": "Home: 1.75 goals/m; away: 0 goals/m. Samples: 4 / 4. Last ten stored score pairs in the same competition-season league/group stages.",
+        "weight": 0.07142857142857142,
+        "contribution": 3.14
+      },
+      {
+        "key": "season_scoring",
+        "label": "Season scoring",
+        "home": 2.25,
+        "away": 2,
+        "edge": 0.17,
+        "scale": 1.5,
+        "lower_is_better": false,
+        "unit": "goals/m",
+        "group": "results",
+        "sample": {
+          "home": 4,
+          "away": 4
+        },
+        "coverage": {
+          "home": {
+            "available": 4,
+            "total": 4
+          },
+          "away": {
+            "available": 4,
+            "total": 4
+          }
+        },
+        "basis": "Current competition-season league/group-stage results.",
+        "normalization": "clamp((home - away) / scale, -1, 1), inverted for lower-is-better",
+        "explanation": "Home: 2.25 goals/m; away: 2 goals/m. Samples: 4 / 4. Current competition-season league/group-stage results.",
+        "weight": 0.07142857142857142,
+        "contribution": 0.61
+      },
+      {
+        "key": "season_conceding",
+        "label": "Season conceding",
+        "home": 0.5,
+        "away": 2,
+        "edge": 1,
+        "scale": 1.5,
+        "lower_is_better": true,
+        "unit": "goals/m",
+        "group": "results",
+        "sample": {
+          "home": 4,
+          "away": 4
+        },
+        "coverage": {
+          "home": {
+            "available": 4,
+            "total": 4
+          },
+          "away": {
+            "available": 4,
+            "total": 4
+          }
+        },
+        "basis": "Current competition-season league/group-stage results.",
+        "normalization": "clamp((home - away) / scale, -1, 1), inverted for lower-is-better",
+        "explanation": "Home: 0.5 goals/m; away: 2 goals/m. Samples: 4 / 4. Current competition-season league/group-stage results.",
+        "weight": 0.07142857142857142,
+        "contribution": 3.57
+      },
+      {
+        "key": "shots",
+        "label": "Shot creation",
+        "home": 14.5,
+        "away": 13.75,
+        "edge": 0.13,
+        "scale": 6,
+        "lower_is_better": false,
+        "unit": "shots/m",
+        "group": "style",
+        "sample": {
+          "home": 4,
+          "away": 4
+        },
+        "coverage": {
+          "home": {
+            "available": 4,
+            "total": 4
+          },
+          "away": {
+            "available": 4,
+            "total": 4
+          }
+        },
+        "basis": "Paired team/opponent shots; compatible provider and basis: espn:source.",
+        "normalization": "clamp((home - away) / scale, -1, 1), inverted for lower-is-better",
+        "explanation": "Home: 14.5 shots/m; away: 13.75 shots/m. Samples: 4 / 4. Paired team/opponent shots; compatible provider and basis: espn:source.",
+        "weight": 0.075,
+        "contribution": 0.49
+      },
+      {
+        "key": "suppression",
+        "label": "Shot suppression",
+        "home": 12,
+        "away": 15,
+        "edge": 0.5,
+        "scale": 6,
+        "lower_is_better": true,
+        "unit": "shots/m",
+        "group": "style",
+        "sample": {
+          "home": 4,
+          "away": 4
+        },
+        "coverage": {
+          "home": {
+            "available": 4,
+            "total": 4
+          },
+          "away": {
+            "available": 4,
+            "total": 4
+          }
+        },
+        "basis": "Paired team/opponent shots; compatible provider and basis: espn:source.",
+        "normalization": "clamp((home - away) / scale, -1, 1), inverted for lower-is-better",
+        "explanation": "Home: 12 shots/m; away: 15 shots/m. Samples: 4 / 4. Paired team/opponent shots; compatible provider and basis: espn:source.",
+        "weight": 0.075,
+        "contribution": 1.88
+      },
+      {
+        "key": "shot_diff",
+        "label": "Shot differential",
+        "home": 2.5,
+        "away": -1.25,
+        "edge": 0.63,
+        "scale": 6,
+        "lower_is_better": false,
+        "unit": "shots/m",
+        "group": "style",
+        "sample": {
+          "home": 4,
+          "away": 4
+        },
+        "coverage": {
+          "home": {
+            "available": 4,
+            "total": 4
+          },
+          "away": {
+            "available": 4,
+            "total": 4
+          }
+        },
+        "basis": "Paired team/opponent shots; compatible provider and basis: espn:source.",
+        "normalization": "clamp((home - away) / scale, -1, 1), inverted for lower-is-better",
+        "explanation": "Home: 2.5 shots/m; away: -1.25 shots/m. Samples: 4 / 4. Paired team/opponent shots; compatible provider and basis: espn:source.",
+        "weight": 0.075,
+        "contribution": 2.36
+      },
+      {
+        "key": "sot_diff",
+        "label": "Shots-on-target differential",
+        "home": 1.5,
+        "away": 1.5,
+        "edge": 0,
+        "scale": 3,
+        "lower_is_better": false,
+        "unit": "shots/m",
+        "group": "style",
+        "sample": {
+          "home": 4,
+          "away": 4
+        },
+        "coverage": {
+          "home": {
+            "available": 4,
+            "total": 4
+          },
+          "away": {
+            "available": 4,
+            "total": 4
+          }
+        },
+        "basis": "Paired team/opponent shots_on_target; compatible provider and basis: espn:source.",
+        "normalization": "clamp((home - away) / scale, -1, 1), inverted for lower-is-better",
+        "explanation": "Home: 1.5 shots/m; away: 1.5 shots/m. Samples: 4 / 4. Paired team/opponent shots_on_target; compatible provider and basis: espn:source.",
+        "weight": 0.075,
+        "contribution": 0
+      },
+      {
+        "key": "rest",
+        "label": "Days since last match",
+        "home": 11,
+        "away": 11,
+        "edge": 0,
+        "scale": 7,
+        "lower_is_better": false,
+        "unit": "days",
+        "group": "schedule",
+        "sample": {
+          "home": 1,
+          "away": 1
+        },
+        "coverage": {
+          "home": {
+            "available": 1,
+            "total": 1
+          },
+          "away": {
+            "available": 1,
+            "total": 1
+          }
+        },
+        "basis": "Calendar days at as-of time; all competitions. Rest comparison, not fitness.",
+        "normalization": "clamp((home - away) / scale, -1, 1), inverted for lower-is-better",
+        "explanation": "Home: 11 days; away: 11 days. Samples: 1 / 1. Calendar days at as-of time; all competitions. Rest comparison, not fitness.",
+        "weight": 0.06666666666666667,
+        "contribution": 0
+      },
+      {
+        "key": "load7",
+        "label": "Recent schedule load",
+        "home": 0,
+        "away": 0,
+        "edge": 0,
+        "scale": 3,
+        "lower_is_better": true,
+        "unit": "matches",
+        "group": "schedule",
+        "sample": {
+          "home": 1,
+          "away": 1
+        },
+        "coverage": {
+          "home": {
+            "available": 1,
+            "total": 1
+          },
+          "away": {
+            "available": 1,
+            "total": 1
+          }
+        },
+        "basis": "Canonical matches played in seven days, all competitions; fewer fixtures = lower schedule load.",
+        "normalization": "clamp((home - away) / scale, -1, 1), inverted for lower-is-better",
+        "explanation": "Home: 0 matches; away: 0 matches. Samples: 1 / 1. Canonical matches played in seven days, all competitions; fewer fixtures = lower schedule load.",
+        "weight": 0.06666666666666667,
+        "contribution": 0
+      },
+      {
+        "key": "xi",
+        "label": "XI continuity",
+        "home": 0.7,
+        "away": 0.82,
+        "edge": -0.4,
+        "scale": 0.3,
+        "lower_is_better": false,
+        "unit": "fraction",
+        "group": "schedule",
+        "sample": {
+          "home": 5,
+          "away": 4
+        },
+        "coverage": {
+          "home": {
+            "available": 5,
+            "total": 5
+          },
+          "away": {
+            "available": 4,
+            "total": 4
+          }
+        },
+        "basis": "Consecutive sourced starting XIs; fraction retained. Not a selection forecast.",
+        "normalization": "clamp((home - away) / scale, -1, 1), inverted for lower-is-better",
+        "explanation": "Home: 0.7 fraction; away: 0.82 fraction. Samples: 5 / 4. Consecutive sourced starting XIs; fraction retained. Not a selection forecast.",
+        "weight": 0.06666666666666667,
+        "contribution": -1.33
+      }
+    ],
+    "omitted": [
+      {
+        "key": "venue",
+        "label": "Home / away split",
+        "minimum": 3,
+        "reason": "Missing, incompatible or insufficient paired coverage."
+      }
+    ],
+    "historical_context": {
+      "home": [
+        {
+          "window": 3,
+          "seasons": [
+            "2023/24",
+            "2024/25",
+            "2025/26"
+          ],
+          "matches": 102,
+          "goals_for_pg": 2.05,
+          "goals_against_pg": 1.25,
+          "basis": "Match-weighted canonical league/group-stage goals in stored seasons; event/stat metrics are not compared across eras.",
+          "current_matches": 4,
+          "current_goals_for_pg": 2.25,
+          "current_goals_against_pg": 0.5,
+          "scoring_change": 0.2,
+          "conceding_change": -0.75
+        },
+        {
+          "window": 5,
+          "seasons": [
+            "2021/22",
+            "2022/23",
+            "2023/24",
+            "2024/25",
+            "2025/26"
+          ],
+          "matches": 170,
+          "goals_for_pg": 2.22,
+          "goals_against_pg": 1.32,
+          "basis": "Match-weighted canonical league/group-stage goals in stored seasons; event/stat metrics are not compared across eras.",
+          "current_matches": 4,
+          "current_goals_for_pg": 2.25,
+          "current_goals_against_pg": 0.5,
+          "scoring_change": 0.03,
+          "conceding_change": -0.82
+        }
+      ],
+      "away": [
+        {
+          "window": 3,
+          "seasons": [
+            "2023/24",
+            "2024/25",
+            "2025/26"
+          ],
+          "matches": 102,
+          "goals_for_pg": 1.36,
+          "goals_against_pg": 1.68,
+          "basis": "Match-weighted canonical league/group-stage goals in stored seasons; event/stat metrics are not compared across eras.",
+          "current_matches": 4,
+          "current_goals_for_pg": 2,
+          "current_goals_against_pg": 2,
+          "scoring_change": 0.64,
+          "conceding_change": 0.32
+        },
+        {
+          "window": 5,
+          "seasons": [
+            "2020/21",
+            "2022/23",
+            "2023/24",
+            "2024/25",
+            "2025/26"
+          ],
+          "matches": 170,
+          "goals_for_pg": 1.33,
+          "goals_against_pg": 1.72,
+          "basis": "Match-weighted canonical league/group-stage goals in stored seasons; event/stat metrics are not compared across eras.",
+          "current_matches": 4,
+          "current_goals_for_pg": 2,
+          "current_goals_against_pg": 2,
+          "scoring_change": 0.67,
+          "conceding_change": 0.28
+        }
+      ]
+    },
+    "head_to_head": {
+      "matches": [
+        {
+          "id": "0b3017c3-3731-5743-a833-e4e44b90c633",
+          "competition_id": "b66f80c5-850a-5288-aa54-b63df47d131b",
+          "kickoff_at": "2026-05-16T13:30:00+00:00",
+          "home_team_id": "e8cd28c3-8517-5be6-a5e8-007cb5e11c93",
+          "away_team_id": "640424d4-438b-5524-8909-0422f7e8ce97",
+          "home_score": 0,
+          "away_score": 2,
+          "status": "finished",
+          "competition": "bundesliga"
+        },
+        {
+          "id": "ff18e219-ab3b-5b36-8ce7-f90f1a5f3da6",
+          "competition_id": "b66f80c5-850a-5288-aa54-b63df47d131b",
+          "kickoff_at": "2026-01-13T19:30:00+00:00",
+          "home_team_id": "640424d4-438b-5524-8909-0422f7e8ce97",
+          "away_team_id": "e8cd28c3-8517-5be6-a5e8-007cb5e11c93",
+          "home_score": 3,
+          "away_score": 0,
+          "status": "finished",
+          "competition": "bundesliga"
+        },
+        {
+          "id": "b2e830e7-784e-5b5e-91d4-4e37ef88c4c5",
+          "competition_id": "b66f80c5-850a-5288-aa54-b63df47d131b",
+          "kickoff_at": "2025-01-25T14:30:00+00:00",
+          "home_team_id": "640424d4-438b-5524-8909-0422f7e8ce97",
+          "away_team_id": "e8cd28c3-8517-5be6-a5e8-007cb5e11c93",
+          "home_score": 2,
+          "away_score": 2,
+          "status": "finished",
+          "competition": "bundesliga"
+        },
+        {
+          "id": "ea64b8f5-0617-5fc8-9ee1-e9613ebaf28f",
+          "competition_id": "b66f80c5-850a-5288-aa54-b63df47d131b",
+          "kickoff_at": "2024-08-31T13:30:00+00:00",
+          "home_team_id": "e8cd28c3-8517-5be6-a5e8-007cb5e11c93",
+          "away_team_id": "640424d4-438b-5524-8909-0422f7e8ce97",
+          "home_score": 0,
+          "away_score": 0,
+          "status": "finished",
+          "competition": "bundesliga"
+        },
+        {
+          "id": "365a170e-d87e-51e6-a227-4565e84efb3d",
+          "competition_id": "b66f80c5-850a-5288-aa54-b63df47d131b",
+          "kickoff_at": "2024-03-09T17:30:00+00:00",
+          "home_team_id": "e8cd28c3-8517-5be6-a5e8-007cb5e11c93",
+          "away_team_id": "640424d4-438b-5524-8909-0422f7e8ce97",
+          "home_score": 1,
+          "away_score": 2,
+          "status": "finished",
+          "competition": "bundesliga"
+        },
+        {
+          "id": "cd07dbec-3d8d-5c97-9432-d8e06e09917b",
+          "competition_id": "b66f80c5-850a-5288-aa54-b63df47d131b",
+          "kickoff_at": "2023-10-20T18:30:00+00:00",
+          "home_team_id": "640424d4-438b-5524-8909-0422f7e8ce97",
+          "away_team_id": "e8cd28c3-8517-5be6-a5e8-007cb5e11c93",
+          "home_score": 1,
+          "away_score": 0,
+          "status": "finished",
+          "competition": "bundesliga"
+        },
+        {
+          "id": "8c4856cb-7f3f-5884-b148-2b462f95a24a",
+          "competition_id": "b66f80c5-850a-5288-aa54-b63df47d131b",
+          "kickoff_at": "2023-02-11T14:30:00+00:00",
+          "home_team_id": "e8cd28c3-8517-5be6-a5e8-007cb5e11c93",
+          "away_team_id": "640424d4-438b-5524-8909-0422f7e8ce97",
+          "home_score": 0,
+          "away_score": 2,
+          "status": "finished",
+          "competition": "bundesliga"
+        },
+        {
+          "id": "3a89cb1b-c6f9-55e5-91ba-cade211639e7",
+          "competition_id": "b66f80c5-850a-5288-aa54-b63df47d131b",
+          "kickoff_at": "2022-08-20T13:30:00+00:00",
+          "home_team_id": "640424d4-438b-5524-8909-0422f7e8ce97",
+          "away_team_id": "e8cd28c3-8517-5be6-a5e8-007cb5e11c93",
+          "home_score": 2,
+          "away_score": 3,
+          "status": "finished",
+          "competition": "bundesliga"
+        },
+        {
+          "id": "db7232af-4f86-5f63-ac94-18f6bb9e80d0",
+          "competition_id": "b66f80c5-850a-5288-aa54-b63df47d131b",
+          "kickoff_at": "2021-04-18T13:30:00+00:00",
+          "home_team_id": "640424d4-438b-5524-8909-0422f7e8ce97",
+          "away_team_id": "e8cd28c3-8517-5be6-a5e8-007cb5e11c93",
+          "home_score": 4,
+          "away_score": 1,
+          "status": "finished",
+          "competition": "bundesliga"
+        },
+        {
+          "id": "a4c3aa80-b91e-5139-a447-417fb44b415e",
+          "competition_id": "b66f80c5-850a-5288-aa54-b63df47d131b",
+          "kickoff_at": "2020-12-15T19:30:00+00:00",
+          "home_team_id": "e8cd28c3-8517-5be6-a5e8-007cb5e11c93",
+          "away_team_id": "640424d4-438b-5524-8909-0422f7e8ce97",
+          "home_score": 1,
+          "away_score": 2,
+          "status": "finished",
+          "competition": "bundesliga"
+        },
+        {
+          "id": "3a187262-9f92-575a-977a-c6aedb1d9d43",
+          "competition_id": "b66f80c5-850a-5288-aa54-b63df47d131b",
+          "kickoff_at": "2020-02-22T14:30:00+00:00",
+          "home_team_id": "e8cd28c3-8517-5be6-a5e8-007cb5e11c93",
+          "away_team_id": "640424d4-438b-5524-8909-0422f7e8ce97",
+          "home_score": 0,
+          "away_score": 2,
+          "status": "finished",
+          "competition": "bundesliga"
+        },
+        {
+          "id": "bee2e32c-1b31-5d79-b108-57128cf50f13",
+          "competition_id": "b66f80c5-850a-5288-aa54-b63df47d131b",
+          "kickoff_at": "2019-09-28T16:30:00+00:00",
+          "home_team_id": "640424d4-438b-5524-8909-0422f7e8ce97",
+          "away_team_id": "e8cd28c3-8517-5be6-a5e8-007cb5e11c93",
+          "home_score": 2,
+          "away_score": 2,
+          "status": "finished",
+          "competition": "bundesliga"
+        }
+      ],
+      "home_goals": 24,
+      "away_goals": 10
+    },
+    "coverage": {
+      "home": {
+        "matches": 4,
+        "lineups": 5,
+        "paired_stats": 4,
+        "events": 4,
+        "historical_seasons": 23,
+        "top11_minute_share": 0.86
+      },
+      "away": {
+        "matches": 4,
+        "lineups": 4,
+        "paired_stats": 4,
+        "events": 4,
+        "historical_seasons": 22,
+        "top11_minute_share": 0.93
+      },
+      "label": "RESULTS + COMPATIBLE STATS",
+      "basis": "Coverage of stored observations, never predictive confidence. National-team results never enter club-league comparison samples."
+    },
+    "home_id": "640424d4-438b-5524-8909-0422f7e8ce97",
+    "away_id": "e8cd28c3-8517-5be6-a5e8-007cb5e11c93"
+  },
+  "meta": {
+    "source": "pbe",
+    "source_updated_at": null,
+    "semantics": "PBE MATCHUP RATING: descriptive component score. Not a win probability or prediction. Results 50%, compatible shot stats 30%, schedule/XI 20%; equal weights within each available group, groups renormalized when absent. Home = round(50 + 50 × weighted edge), away = round(50 - 50 × weighted edge). Scales are display normalizations, not fitted predictive weights. Rating requires at least three result matches per side.",
+    "coverage": {
+      "state": "ok",
+      "notes": []
+    },
+    "attribution": [
+      "Fixtures/results: OpenLigaDB (openligadb.de), ODbL 1.0",
+      "Event data: Pappalardo et al. (2019), Wyscout public soccer-logs dataset, CC BY 4.0",
+      "Structured facts: ESPN (secondary source)"
+    ],
+    "generated_at": "2026-09-30T19:51:34.984Z",
+    "api_version": "soccer-pro/1.0.0"
+  }
+}

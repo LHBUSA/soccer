@@ -1,0 +1,365 @@
+{
+  "at": "2026-09-30T19:51:31.085Z",
+  "canonical_competitions": [
+    "uefa-champions-league",
+    "premier-league",
+    "bundesliga",
+    "uefa-nations-league",
+    "mls"
+  ],
+  "world_cup": {
+    "canonical": false,
+    "matches_2026": 0,
+    "matches_2018": 0
+  },
+  "international": [
+    {
+      "competition": "uefa-nations-league",
+      "seasons": [
+        "2026/27"
+      ],
+      "matches": 156,
+      "finished": 52,
+      "scheduled": 104,
+      "national_teams": 54,
+      "team_identities": [
+        {
+          "id": "032c0545-7a43-572d-bd04-6a7384e2b787",
+          "slug": "austria",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "1087c4f3-78c9-51c9-ba00-8795dba79d7d",
+          "slug": "netherlands",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "12701a93-3edd-55bc-b1b8-0407622521c2",
+          "slug": "kazakhstan",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "1c8a0ccc-f77a-5f2c-9dba-e68b1a703124",
+          "slug": "lithuania",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "1fd65c50-f71f-502a-8f98-a2f52ba896a5",
+          "slug": "azerbaijan",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "20cbab3b-6e01-5f0b-a468-ec64865244a3",
+          "slug": "denmark",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "265aaf26-3216-5162-85b6-b635b8e8a28d",
+          "slug": "kosovo",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "2aed88f7-24e0-5d7f-bd37-9803248e0647",
+          "slug": "norway",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "3f3811e0-b100-5f26-b1eb-bc587174f046",
+          "slug": "germany",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "43e485e1-c8e2-555d-8e69-552fbecf72aa",
+          "slug": "romania",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "4ab5ffd5-8490-595d-8446-8d13be1a44f4",
+          "slug": "hungary",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "4cd12482-0dea-58b5-9be9-999208619150",
+          "slug": "scotland",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "4d5990b2-441b-54ac-acee-adec75d8f1e6",
+          "slug": "greece",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "575c430a-ae6b-5bc5-a65c-67d1ba490e90",
+          "slug": "portugal",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "68ec36ed-0520-518f-bba6-4772b96749bb",
+          "slug": "republic-of-ireland",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "6937a830-5113-57dc-8aa6-65b3acc8f6b8",
+          "slug": "israel",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "743f32db-8d9f-5ca8-8240-34bef3d3db6e",
+          "slug": "bulgaria",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "75a7d362-9f70-50e4-8d17-d40a849a47dd",
+          "slug": "north-macedonia",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "7abe5da5-2e54-5fd9-9e52-1089b29dfdf9",
+          "slug": "montenegro",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "7d2960e1-eb9f-5e0f-b12c-fb6acf09d9e1",
+          "slug": "slovakia",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "7f1c8eb0-f450-5af6-8f23-6dcfd458dd70",
+          "slug": "luxembourg",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "8014fb27-2c26-5d77-afa7-f2015b9873f1",
+          "slug": "poland",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "8404470a-b442-5f6a-804a-bea3c687698e",
+          "slug": "san-marino",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "8d67e18d-7b6a-5747-9d82-0a546907f3c8",
+          "slug": "turkiye",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "91323cb1-3b62-5a01-95f6-386388f45383",
+          "slug": "wales",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "9224e0aa-d9ca-5709-a23a-67b232d281dc",
+          "slug": "cyprus",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "94cd4851-9809-568f-94bd-6b2e38e9c321",
+          "slug": "bosnia-herzegovina",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "96cde52d-8fec-57c1-85fe-b57672a55fc1",
+          "slug": "armenia",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "9ae4eb27-1696-51a1-80a2-b84502f53a1d",
+          "slug": "serbia",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "9e5dd405-da41-5ce5-b32b-56f500951ea7",
+          "slug": "albania",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "a36fb76e-ea15-5956-a752-98a4041e2c95",
+          "slug": "finland",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "a59313b6-24d1-5f9b-84ca-745aa7c0f1ea",
+          "slug": "croatia",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "a781bc6a-f1a9-54e0-85e0-377a6bff274c",
+          "slug": "czechia",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "b05117ae-5c75-5256-ab79-f3334765c11a",
+          "slug": "spain",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "b21d599a-7f07-5638-be8d-917612fde9a1",
+          "slug": "faroe-islands",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "b5cd362b-4101-5b2b-a5d3-ebab2a95a40d",
+          "slug": "iceland",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "c563da46-153d-507e-93d5-13e38aaec4b2",
+          "slug": "ukraine",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "cc5ff403-418a-5842-8d91-5c79948bba0c",
+          "slug": "malta",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "d797c98c-55f9-5834-96db-b8f6c49357fa",
+          "slug": "england",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "daeb6e0a-f758-53e9-a84e-540d8b8357e9",
+          "slug": "belgium",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "dbee155d-c825-5246-8678-fb56c9d0fdb7",
+          "slug": "moldova",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "dc5506fa-8eb0-57d1-b5e9-e08918ff9e63",
+          "slug": "gibraltar",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "dc92b06d-6c03-51df-92a7-87080278ba77",
+          "slug": "estonia",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "dda28208-bd2e-592c-880d-042af2bab176",
+          "slug": "slovenia",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "de627920-a6d4-52a4-8400-162b35e47a07",
+          "slug": "belarus",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "e0d81432-d4e2-5459-be33-84a53351b73d",
+          "slug": "switzerland",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "e716c17b-5b1b-574e-ac28-6762a054fe79",
+          "slug": "northern-ireland",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "f27514de-80b7-59a8-94fd-89954e3eff5a",
+          "slug": "liechtenstein",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "f5f982b5-bcd2-5c44-85da-1213a57539a6",
+          "slug": "france",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "f6db69e7-f1d4-5717-a37e-979653d845f0",
+          "slug": "andorra",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "f9e3c595-3777-5a7a-ae3a-c6afda229e22",
+          "slug": "georgia",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "fb7828a7-0ab5-57f9-bf59-7bd71254ad11",
+          "slug": "italy",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "fbd6c5c0-3611-5579-802b-894aa309e8fe",
+          "slug": "latvia",
+          "team_type": "national",
+          "country_code": null
+        },
+        {
+          "id": "ffdec3db-df13-563d-9a28-8c1ab6b6e609",
+          "slug": "sweden",
+          "team_type": "national",
+          "country_code": null
+        }
+      ],
+      "lineups": 104,
+      "canonical_players": 1323,
+      "events": 75692,
+      "team_stat_rows": 1456,
+      "groups": 14,
+      "standings_rows": 54,
+      "first_stored_match": "2026-09-24T16:00:00+00:00",
+      "last_stored_match": "2026-11-17T19:45:00+00:00"
+    }
+  ],
+  "fifa_rankings": {
+    "supported": false,
+    "basis": "No approved FIFA ranking source/ingestion/table contract in repository."
+  }
+}

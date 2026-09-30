@@ -1,0 +1,14 @@
+{
+  "id": "48fdbe3e-8dae-5710-a416-8f58b4d1d474",
+  "kickoff_at": "2026-10-09T18:30:00+00:00",
+  "home": {
+    "slug": "borussia-dortmund",
+    "name": "Borussia Dortmund",
+    "short_name": null
+  },
+  "away": {
+    "slug": "werder-bremen",
+    "name": "Werder Bremen",
+    "short_name": null
+  }
+}

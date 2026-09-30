@@ -10,7 +10,9 @@ import { storeFromEnv } from '../../shared/postgrest.js';
 import * as R from './routes.js';
 import * as C from './cast.js';
 import * as A from './algo.js';
-import { handlePro, PRO_HEADERS } from './pro/routes.js';
+import { teamHistory } from './history.js';
+import { cachedCoverage } from './coverage-cache.js';
+import { handlePro, PRO_HEADERS, publicAnalyzerPreview } from './pro/routes.js';
 import { readLiveSnapshotInputs, snapshotRefreshReason } from '../../shared/live-snapshot.js';
 
 const LANES = [{ lane: 'openligadb_bl1_current', priority: true }];
@@ -18,17 +20,19 @@ const LANES = [{ lane: 'openligadb_bl1_current', priority: true }];
 const ROUTES = [
   [/^\/v1\/health$/, async (s, _m, _q, env) => R.health(s, { lanes: await Promise.all(LANES.map(async l => ({ ...l, ...((env.SOCCER_STATE && await env.SOCCER_STATE.get(`lane:${l.lane}`, 'json')) || {}) }))) }), 0, []],
   [/^\/v1\/competitions$/, s => R.competitions(s), 600, []],
-  [/^\/v1\/coverage$/, s => R.coverage(s), 3600, []],
+  [/^\/v1\/coverage$/, (s, _m, _q, env) => cachedCoverage(s, env), 300, []],
   [/^\/v1\/data-health$/, (s, _m, _q, env) => R.dataHealth(s, env), 300, []],
   [/^\/v1\/sitemap\/(competitions|teams|players|matches)$/, (s, m) => R.sitemap(s, m[1]), 3600, []],
   [/^\/v1\/sitemap\/news$/, s => R.sitemap(s, 'news'), 300, []],
   [/^\/v1\/competitions\/([a-z0-9-]+)$/, (s, m) => R.competition(s, m[1]), 600, []],
   [/^\/v1\/matches$/, (s, _m, q) => R.matches(s, q), 120, ['competition', 'season', 'status', 'date', 'from', 'to', 'order', 'team', 'limit']],
-  [/^\/v1\/matches\/([0-9a-f-]{36})$/, (s, m) => R.match(s, m[1]), 120, []],
-  [/^\/v1\/matches\/([0-9a-f-]{36})\/cast$/, (s, m, _q, env) => C.cast(s, m[1], env), 60, []],
-  [/^\/v1\/live$/, (s, _m, _q, env) => C.live(s, env), 60, []],
+  [/^\/v1\/matches\/([0-9a-f-]{36})\/analyzer-preview$/, (s, m) => publicAnalyzerPreview(s, m[1]), 30, []],
+  [/^\/v1\/matches\/([0-9a-f-]{36})$/, (s, m) => R.match(s, m[1]), 15, []],
+  [/^\/v1\/matches\/([0-9a-f-]{36})\/cast$/, (s, m, _q, env) => C.cast(s, m[1], env), 10, []],
+  [/^\/v1\/live$/, (s, _m, _q, env) => C.live(s, env), 10, []],
   [/^\/v1\/players$/, (s, _m, q, env) => C.players(s, q, env), 600, ['competition', 'season', 'sort', 'role', 'q', 'team', 'limit', 'offset']],
   [/^\/v1\/teams\/([a-z0-9-]+)$/, (s, m, _q, env) => R.team(s, m[1], env), 300, []],
+  [/^\/v1\/teams\/([a-z0-9-]+)\/history$/, (s, m, _q, env) => teamHistory(s, m[1], env), 300, []],
   [/^\/v1\/teams\/([a-z0-9-]+)\/dna$/, (s, m, q, env) => R.teamDnaRoute(s, m[1], q, env), 3600, ['as_of']],
   [/^\/v1\/players\/([a-z0-9-]+)\/dna$/, (s, m, q, env) => R.playerDnaRoute(s, m[1], q, env), 3600, ['as_of']],
   [/^\/v1\/players\/([a-z0-9-]+)$/, (s, m) => R.player(s, m[1]), 600, []],
@@ -94,7 +98,8 @@ export default {
     }
     const hit = ROUTES.map(([re, fn, ttl, allowedQuery]) => [url.pathname.match(re), fn, ttl, allowedQuery]).find(([m]) => m);
     if (!hit) return respond({ error: 'not found' }, 404, 0, origin);
-    const [m, fn, ttl, allowedQuery = []] = hit;
+    const [m, fn, routeTtl, allowedQuery = []] = hit;
+    const ttl = url.pathname === '/v1/matches' && url.searchParams.get('status') !== 'finished' ? 10 : routeTtl;
     const qs = canonicalQuery(url.searchParams, allowedQuery);
     if (qs === null) return respond({ error: 'unknown or invalid query parameter' }, 400, 0, origin);
     const cache = caches.default;
@@ -107,6 +112,7 @@ export default {
       const body = await fn(store, m, Object.fromEntries(url.searchParams), env);
       body.meta.timing_ms = Date.now() - t0;
       body.meta.store_requests = store.requests;
+      body.meta.features = ['team_history', 'matchup_analyzer_v2'];
       const res = respond(body, 200, ttl, origin);
       if (ttl) ctx.waitUntil(cache.put(cacheKey, res.clone()));
       return res;
@@ -123,6 +129,9 @@ export default {
     const store = storeFromEnv(env);
     if (!store) return;
     if (event.cron === '* * * * *') {
+      // Use the actual completion wall clock for generated_at. A delayed cron's scheduledTime can
+      // be older than the materialized row and make a freshly warmed value appear expired.
+      ctx.waitUntil(cachedCoverage(store, env, { warm: true }).catch(e => console.error('coverage warm failed', e?.message)));
       ctx.waitUntil((async () => {
         try {
           const { snapshot, dirty } = await readLiveSnapshotInputs(env.SOCCER_STATE);

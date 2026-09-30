@@ -1,8 +1,17 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as espn from '../workers/providers/espn.js';
+import { ESPN_COMPETITIONS } from '../workers/soccer-ingest/src/espn-jobs.js';
 import { toCanonical } from '../workers/shared/coords.js';
 import { proveTeamsByFixtureSubset } from '../workers/shared/fixture-graph.js';
+
+test('World Cup has an existing ESPN Core lane definition but remains disabled pending the canary', async () => {
+  const registry = JSON.parse((await import('node:fs')).readFileSync('data/registry/competitions.json', 'utf8'));
+  const c = registry.competitions.find(x => x.slug === 'fifa-world-cup');
+  assert.ok(ESPN_COMPETITIONS.includes('fifa-world-cup'));
+  assert.equal(c.espn.league, 'fifa.world'); assert.equal(c.espn.enabled, false);
+  assert.equal(c.espn.standings.group_type, 'group'); assert.equal(c.espn.stage_by_type, true);
+});
 
 test('ESPN coordinates: team-relative, attacking x=100, y=0 = attacking right', () => {
   // A shot "from the left side of the box" has ESPN y > 50 -> canonical left (y_m < 34).

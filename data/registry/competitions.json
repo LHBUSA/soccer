@@ -226,11 +226,18 @@
         "league": "fifa.world",
         "id": "606",
         "enabled": false,
-        "may_found": true
+        "may_found": true,
+        "stage_by_type": true,
+        "playoff_stage_name": "Knockout rounds",
+        "standings": {
+          "group_type": "group",
+          "season_type": 1
+        },
+        "canary_basis": "ESPN Core discovery 2026-09-27: 2026 group stage = type 1 (72 events, groups and standings supported); types 2-7 are named knockout rounds. The group count is sourced at ingest, not assumed. Lane remains disabled pending local canary and national-team identity reconciliation."
       },
       "news": {
         "enabled": false,
-        "blocker": "No canonical competition row in production (the Wyscout 2018 World Cup and ESPN fifa.world are crosswalks in the registry only; nothing ingested). No current season: the 2026 tournament ended in July 2026; next is 2030. Needs ESPN fifa.world lane canary + national-team identity certification for historical seasons."
+        "blocker": "No canonical competition row in production (the Wyscout 2018 World Cup and ESPN fifa.world are crosswalks in the registry only; nothing ingested). ESPN Core is an owner-approved secondary source, but fifa.world remains disabled until its lane canary and national-team identity reconciliation pass. The 2026 tournament is historical; the next is 2030."
       }
     },
     {

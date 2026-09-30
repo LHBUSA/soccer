@@ -14,7 +14,7 @@ export function resetAccess() { accessMemo = null; }
 export function proAccess() {
   if (!accessMemo) accessMemo = (async () => {
     try {
-      const r = await fetch('/api/soccer/pro/access', { headers: { accept: 'application/json' }, credentials: 'same-origin', cache: 'no-store' });
+      const r = await fetch('/api/soccer/pro/access', { headers: { accept: 'application/json' }, credentials: 'same-origin', cache: 'no-store', signal: AbortSignal.timeout(10000) });
       const b = await r.json();
       return r.ok && b?.data ? { pro: b.data.pro === true, membership: b.data.membership || FREE, check: b.data.check } : { pro: false, membership: FREE, check: 'unavailable' };
     } catch { return { pro: false, membership: FREE, check: 'unavailable' }; }
@@ -25,7 +25,7 @@ export function proAccess() {
 // Premium read: { status, body }. 403 = all_access_required (no values in the body).
 export async function proGet(path) {
   try {
-    const r = await fetch(`/api/soccer/pro/${path}`, { headers: { accept: 'application/json' }, credentials: 'same-origin', cache: 'no-store' });
+    const r = await fetch(`/api/soccer/pro/${path}`, { headers: { accept: 'application/json' }, credentials: 'same-origin', cache: 'no-store', signal: AbortSignal.timeout(30000) });
     return { status: r.status, body: await r.json().catch(() => null) };
   } catch { return { status: 0, body: null }; }
 }
