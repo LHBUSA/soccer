@@ -1,0 +1,717 @@
+{
+  "protocol_sha256": "356a78a3fdd235015573102759b99579499c0a36a926c7d95f4b4f0e13e65a3d",
+  "select_freeze_sha256": "0e542719f31d497bbbffe01d8e3f0c9aff71e653feaec83a882e79734fa213d4",
+  "dataset_sha256": "01e0e8f1c64bbde2cb10f44f0250cd3179fe832378ddcf277158a6dd1bca01c4",
+  "evaluated_at": "2026-09-30T23:43:59.574Z",
+  "rows": {
+    "holdout_primary": 208,
+    "holdout_primary_unpredicted": 0,
+    "holdout_all": 330,
+    "seasons": [
+      "uefa.nations:2024",
+      "uefa.nations:2026"
+    ]
+  },
+  "baselines": {
+    "1x2": {
+      "non_neutral": [
+        0.4286,
+        0.2458,
+        0.3256
+      ],
+      "neutral": [
+        0.3771,
+        0.2458,
+        0.3771
+      ]
+    },
+    "binary": {
+      "over_2_5": 0.4385,
+      "home_to_score": 0.7126,
+      "away_to_score": 0.6545,
+      "btts": 0.4551
+    },
+    "window": {
+      "rows": 602,
+      "non_neutral": 602,
+      "neutral": 0
+    }
+  },
+  "home_effect_holdout": {
+    "mean_home_factor": 1.1183
+  },
+  "markets": {
+    "1x2": {
+      "validation_holdout": {
+        "n": 208,
+        "log_loss": 0.9547,
+        "baseline_log_loss": 1.08,
+        "brier": 0.5625,
+        "baseline_brier": 0.6549,
+        "beats_pooled": true,
+        "per_season": [
+          {
+            "season": "uefa.nations:2024",
+            "n": 156,
+            "log_loss": 0.9555,
+            "baseline_log_loss": 1.069,
+            "brier": 0.5622,
+            "baseline_brier": 0.6467,
+            "beats_log_loss": true
+          },
+          {
+            "season": "uefa.nations:2026",
+            "n": 52,
+            "log_loss": 0.9524,
+            "baseline_log_loss": 1.1131,
+            "brier": 0.5632,
+            "baseline_brier": 0.6794,
+            "beats_log_loss": true
+          }
+        ],
+        "reliability": {
+          "class": "home",
+          "bins": [
+            {
+              "n": 20,
+              "predicted": 0.1626,
+              "observed": 0.1
+            },
+            {
+              "n": 21,
+              "predicted": 0.2543,
+              "observed": 0.1905
+            },
+            {
+              "n": 21,
+              "predicted": 0.3101,
+              "observed": 0.0476
+            },
+            {
+              "n": 21,
+              "predicted": 0.3559,
+              "observed": 0.2857
+            },
+            {
+              "n": 21,
+              "predicted": 0.4007,
+              "observed": 0.3333
+            },
+            {
+              "n": 20,
+              "predicted": 0.4449,
+              "observed": 0.5
+            },
+            {
+              "n": 21,
+              "predicted": 0.4903,
+              "observed": 0.4286
+            },
+            {
+              "n": 21,
+              "predicted": 0.5437,
+              "observed": 0.5714
+            },
+            {
+              "n": 21,
+              "predicted": 0.6046,
+              "observed": 0.7143
+            },
+            {
+              "n": 21,
+              "predicted": 0.7357,
+              "observed": 0.8571
+            }
+          ],
+          "ece": 0.0905
+        }
+      },
+      "gate_holdout": true
+    },
+    "over_2_5": {
+      "validation_holdout": {
+        "n": 208,
+        "log_loss": 0.6918,
+        "baseline_log_loss": 0.6972,
+        "brier": 0.2482,
+        "baseline_brier": 0.252,
+        "beats_pooled": true,
+        "per_season": [
+          {
+            "season": "uefa.nations:2024",
+            "n": 156,
+            "log_loss": 0.7014,
+            "baseline_log_loss": 0.6992,
+            "brier": 0.2526,
+            "baseline_brier": 0.253,
+            "beats_log_loss": false
+          },
+          {
+            "season": "uefa.nations:2026",
+            "n": 52,
+            "log_loss": 0.663,
+            "baseline_log_loss": 0.6913,
+            "brier": 0.2349,
+            "baseline_brier": 0.249,
+            "beats_log_loss": true
+          }
+        ],
+        "reliability": {
+          "class": "event",
+          "bins": [
+            {
+              "n": 20,
+              "predicted": 0.2281,
+              "observed": 0.5
+            },
+            {
+              "n": 21,
+              "predicted": 0.3004,
+              "observed": 0.2857
+            },
+            {
+              "n": 21,
+              "predicted": 0.3482,
+              "observed": 0.2381
+            },
+            {
+              "n": 21,
+              "predicted": 0.3937,
+              "observed": 0.5238
+            },
+            {
+              "n": 21,
+              "predicted": 0.4339,
+              "observed": 0.5714
+            },
+            {
+              "n": 20,
+              "predicted": 0.4668,
+              "observed": 0.4
+            },
+            {
+              "n": 21,
+              "predicted": 0.4985,
+              "observed": 0.4286
+            },
+            {
+              "n": 21,
+              "predicted": 0.5405,
+              "observed": 0.6667
+            },
+            {
+              "n": 21,
+              "predicted": 0.5834,
+              "observed": 0.7143
+            },
+            {
+              "n": 21,
+              "predicted": 0.6641,
+              "observed": 0.5238
+            }
+          ],
+          "ece": 0.1194
+        }
+      },
+      "gate_holdout": true
+    },
+    "home_to_score": {
+      "validation_holdout": {
+        "n": 208,
+        "log_loss": 0.5812,
+        "baseline_log_loss": 0.6051,
+        "brier": 0.1971,
+        "baseline_brier": 0.2073,
+        "beats_pooled": true,
+        "per_season": [
+          {
+            "season": "uefa.nations:2024",
+            "n": 156,
+            "log_loss": 0.5432,
+            "baseline_log_loss": 0.5658,
+            "brier": 0.1799,
+            "baseline_brier": 0.1889,
+            "beats_log_loss": true
+          },
+          {
+            "season": "uefa.nations:2026",
+            "n": 52,
+            "log_loss": 0.6951,
+            "baseline_log_loss": 0.723,
+            "brier": 0.2488,
+            "baseline_brier": 0.2625,
+            "beats_log_loss": true
+          }
+        ],
+        "reliability": {
+          "class": "event",
+          "bins": [
+            {
+              "n": 20,
+              "predicted": 0.4789,
+              "observed": 0.5
+            },
+            {
+              "n": 21,
+              "predicted": 0.6027,
+              "observed": 0.5714
+            },
+            {
+              "n": 21,
+              "predicted": 0.6444,
+              "observed": 0.8095
+            },
+            {
+              "n": 21,
+              "predicted": 0.6815,
+              "observed": 0.619
+            },
+            {
+              "n": 21,
+              "predicted": 0.7035,
+              "observed": 0.5714
+            },
+            {
+              "n": 20,
+              "predicted": 0.7346,
+              "observed": 0.75
+            },
+            {
+              "n": 21,
+              "predicted": 0.7738,
+              "observed": 0.7143
+            },
+            {
+              "n": 21,
+              "predicted": 0.8076,
+              "observed": 0.8095
+            },
+            {
+              "n": 21,
+              "predicted": 0.8459,
+              "observed": 0.7619
+            },
+            {
+              "n": 21,
+              "predicted": 0.9048,
+              "observed": 0.9524
+            }
+          ],
+          "ece": 0.0625
+        }
+      },
+      "gate_holdout": true
+    },
+    "away_to_score": {
+      "validation_holdout": {
+        "n": 208,
+        "log_loss": 0.6139,
+        "baseline_log_loss": 0.6604,
+        "brier": 0.2128,
+        "baseline_brier": 0.2338,
+        "beats_pooled": true,
+        "per_season": [
+          {
+            "season": "uefa.nations:2024",
+            "n": 156,
+            "log_loss": 0.6498,
+            "baseline_log_loss": 0.6778,
+            "brier": 0.2286,
+            "baseline_brier": 0.2422,
+            "beats_log_loss": true
+          },
+          {
+            "season": "uefa.nations:2026",
+            "n": 52,
+            "log_loss": 0.5063,
+            "baseline_log_loss": 0.6082,
+            "brier": 0.1654,
+            "baseline_brier": 0.2085,
+            "beats_log_loss": true
+          }
+        ],
+        "reliability": {
+          "class": "event",
+          "bins": [
+            {
+              "n": 20,
+              "predicted": 0.4213,
+              "observed": 0.45
+            },
+            {
+              "n": 21,
+              "predicted": 0.5188,
+              "observed": 0.4762
+            },
+            {
+              "n": 21,
+              "predicted": 0.5617,
+              "observed": 0.4286
+            },
+            {
+              "n": 21,
+              "predicted": 0.5855,
+              "observed": 0.5238
+            },
+            {
+              "n": 21,
+              "predicted": 0.6226,
+              "observed": 0.4762
+            },
+            {
+              "n": 20,
+              "predicted": 0.6589,
+              "observed": 0.8
+            },
+            {
+              "n": 21,
+              "predicted": 0.6956,
+              "observed": 0.8095
+            },
+            {
+              "n": 21,
+              "predicted": 0.745,
+              "observed": 0.7619
+            },
+            {
+              "n": 21,
+              "predicted": 0.791,
+              "observed": 0.7619
+            },
+            {
+              "n": 21,
+              "predicted": 0.8538,
+              "observed": 0.8095
+            }
+          ],
+          "ece": 0.0757
+        }
+      },
+      "gate_holdout": true,
+      "picks_holdout": {
+        "threshold": 0.8,
+        "picks": 26,
+        "coverage": 0.125,
+        "hits": 22,
+        "hit_rate": 0.8462,
+        "mean_prob": 0.8442,
+        "wilson_lo": 0.6647,
+        "baseline_rate": 0.6545,
+        "selections": {
+          "yes": 26
+        },
+        "per_season": [
+          {
+            "season": "uefa.nations:2024",
+            "picks": 19,
+            "hit_rate": 0.7895,
+            "mean_prob": 0.8408
+          },
+          {
+            "season": "uefa.nations:2026",
+            "picks": 7,
+            "hit_rate": 1,
+            "mean_prob": 0.8534
+          }
+        ]
+      },
+      "holdout_rule": {
+        "H0_market": true,
+        "H1_calibration": true,
+        "H2_floor": true,
+        "H3_lift": true,
+        "H4_volume": true,
+        "H5_durability": true
+      },
+      "active_in_v2": true
+    },
+    "btts": {
+      "validation_holdout": {
+        "n": 208,
+        "log_loss": 0.6776,
+        "baseline_log_loss": 0.6877,
+        "brier": 0.2422,
+        "baseline_brier": 0.2473,
+        "beats_pooled": true,
+        "per_season": [
+          {
+            "season": "uefa.nations:2024",
+            "n": 156,
+            "log_loss": 0.6874,
+            "baseline_log_loss": 0.688,
+            "brier": 0.2468,
+            "baseline_brier": 0.2474,
+            "beats_log_loss": true
+          },
+          {
+            "season": "uefa.nations:2026",
+            "n": 52,
+            "log_loss": 0.6481,
+            "baseline_log_loss": 0.6868,
+            "brier": 0.2281,
+            "baseline_brier": 0.2468,
+            "beats_log_loss": true
+          }
+        ],
+        "reliability": {
+          "class": "event",
+          "bins": [
+            {
+              "n": 20,
+              "predicted": 0.2785,
+              "observed": 0.35
+            },
+            {
+              "n": 21,
+              "predicted": 0.3465,
+              "observed": 0.4762
+            },
+            {
+              "n": 21,
+              "predicted": 0.3886,
+              "observed": 0.381
+            },
+            {
+              "n": 21,
+              "predicted": 0.418,
+              "observed": 0.2381
+            },
+            {
+              "n": 21,
+              "predicted": 0.4429,
+              "observed": 0.4286
+            },
+            {
+              "n": 20,
+              "predicted": 0.4656,
+              "observed": 0.35
+            },
+            {
+              "n": 21,
+              "predicted": 0.4935,
+              "observed": 0.4762
+            },
+            {
+              "n": 21,
+              "predicted": 0.5275,
+              "observed": 0.6667
+            },
+            {
+              "n": 21,
+              "predicted": 0.5638,
+              "observed": 0.5238
+            },
+            {
+              "n": 21,
+              "predicted": 0.6292,
+              "observed": 0.5714
+            }
+          ],
+          "ece": 0.0771
+        }
+      },
+      "gate_holdout": true
+    }
+  },
+  "v2_markets": [
+    {
+      "market": "away_to_score",
+      "threshold": 0.8
+    }
+  ],
+  "display_gate": {
+    "rule": "V2 forecasts (Game Best, labelled MODEL FORECAST — NOT OFFICIAL PICK) may be shown publicly for UNL only if the 1X2 market passes BOTH market-validation gates; otherwise V2 stays a private shadow",
+    "select": true,
+    "holdout": true,
+    "pass": true
+  },
+  "combined_holdout_v2_markets": {
+    "markets": [
+      "away_to_score>=0.8"
+    ],
+    "matches": 208,
+    "game_best": 208,
+    "official_picks": 26,
+    "coverage": 0.125,
+    "hits": 22,
+    "hit_rate": 0.8462,
+    "mean_prob": 0.8442,
+    "wilson_lo": 0.6647,
+    "baseline_rate": 0.6545,
+    "by_market": {
+      "away_to_score": 26
+    }
+  },
+  "secondary_holdout": {
+    "rows": 330,
+    "validation_1x2": {
+      "n": 330,
+      "log_loss": 0.9361,
+      "baseline_log_loss": 1.0686,
+      "brier": 0.5514,
+      "baseline_brier": 0.6469,
+      "beats_pooled": true,
+      "per_season": [
+        {
+          "season": "fifa.world:2026",
+          "n": 90,
+          "log_loss": 0.8834,
+          "baseline_log_loss": 1.0502,
+          "brier": 0.5191,
+          "baseline_brier": 0.6337,
+          "beats_log_loss": true
+        },
+        {
+          "season": "uefa.nations:2024",
+          "n": 188,
+          "log_loss": 0.9569,
+          "baseline_log_loss": 1.0651,
+          "brier": 0.5636,
+          "baseline_brier": 0.6442,
+          "beats_log_loss": true
+        },
+        {
+          "season": "uefa.nations:2026",
+          "n": 52,
+          "log_loss": 0.9524,
+          "baseline_log_loss": 1.1131,
+          "brier": 0.5632,
+          "baseline_brier": 0.6794,
+          "beats_log_loss": true
+        }
+      ],
+      "reliability": {
+        "class": "home",
+        "bins": [
+          {
+            "n": 33,
+            "predicted": 0.173,
+            "observed": 0.0909
+          },
+          {
+            "n": 33,
+            "predicted": 0.271,
+            "observed": 0.1515
+          },
+          {
+            "n": 33,
+            "predicted": 0.3267,
+            "observed": 0.2727
+          },
+          {
+            "n": 33,
+            "predicted": 0.3732,
+            "observed": 0.2121
+          },
+          {
+            "n": 33,
+            "predicted": 0.4258,
+            "observed": 0.3939
+          },
+          {
+            "n": 33,
+            "predicted": 0.4672,
+            "observed": 0.4848
+          },
+          {
+            "n": 33,
+            "predicted": 0.5175,
+            "observed": 0.5152
+          },
+          {
+            "n": 33,
+            "predicted": 0.5689,
+            "observed": 0.6667
+          },
+          {
+            "n": 33,
+            "predicted": 0.6389,
+            "observed": 0.7273
+          },
+          {
+            "n": 33,
+            "predicted": 0.752,
+            "observed": 0.8182
+          }
+        ],
+        "ece": 0.0721
+      }
+    },
+    "world_cup_2026_1x2": {
+      "n": 90,
+      "log_loss": 0.8834,
+      "baseline_log_loss": 1.0502,
+      "brier": 0.5191,
+      "baseline_brier": 0.6337,
+      "beats_pooled": true,
+      "per_season": [
+        {
+          "season": "fifa.world:2026",
+          "n": 90,
+          "log_loss": 0.8834,
+          "baseline_log_loss": 1.0502,
+          "brier": 0.5191,
+          "baseline_brier": 0.6337,
+          "beats_log_loss": true
+        }
+      ],
+      "reliability": {
+        "class": "home",
+        "bins": [
+          {
+            "n": 9,
+            "predicted": 0.1801,
+            "observed": 0
+          },
+          {
+            "n": 9,
+            "predicted": 0.2898,
+            "observed": 0.2222
+          },
+          {
+            "n": 9,
+            "predicted": 0.3619,
+            "observed": 0.2222
+          },
+          {
+            "n": 9,
+            "predicted": 0.435,
+            "observed": 0.3333
+          },
+          {
+            "n": 9,
+            "predicted": 0.4878,
+            "observed": 0.6667
+          },
+          {
+            "n": 9,
+            "predicted": 0.5364,
+            "observed": 0.5556
+          },
+          {
+            "n": 9,
+            "predicted": 0.5875,
+            "observed": 0.7778
+          },
+          {
+            "n": 9,
+            "predicted": 0.6409,
+            "observed": 0.6667
+          },
+          {
+            "n": 9,
+            "predicted": 0.6895,
+            "observed": 0.6667
+          },
+          {
+            "n": 9,
+            "predicted": 0.7857,
+            "observed": 0.7778
+          }
+        ],
+        "ece": 0.0934
+      }
+    }
+  },
+  "official_picks": "ACTIVE for the listed markets (UNL group matches)"
+}
