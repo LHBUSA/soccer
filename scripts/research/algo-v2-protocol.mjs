@@ -98,6 +98,17 @@ export const PROTOCOL = {
     grading: 'canonical final score via soccer_algo_grade; postponed stays pending (void if moved > 48 h); cancelled/abandoned void',
     no_backfill: 'no V2 pick is ever created for a match that kicked off before activation; the completed 2026 World Cup is research, replay and intelligence only',
   },
+  amendments: [
+    {
+      at: '2026-09-30T23:45Z',
+      before: 'the SELECT stage: no model had been fitted and no V2 metric existed; only the dataset manifest (row counts) had been read',
+      facts: [
+        'ESPN Core competitions[0].neutralSite is false for all 943 dataset rows, including every World Cup match: the flag carries no information. As declared (unknown/false = not neutral), the home factor H therefore applies to every match as listed. The primary population (UNL group matches) is played at the listed home side, so its gates are unaffected in kind; World Cup rows are secondary only.',
+        'ESPN marks team 11678 (Curacao) isNational=false; under data.identity its 3 World Cup 2026 matches are excluded (secondary population only).',
+      ],
+      changes: 'none to model, grid, splits, populations, gates or code; disclosure only',
+    },
+  ],
   forbidden: [
     'changing the model family, grid, data, splits or gates after this file is committed',
     'looking at any HOLDOUT number before the SELECT freeze is committed',
