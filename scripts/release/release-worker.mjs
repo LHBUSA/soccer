@@ -38,12 +38,12 @@ if (!checked.ok) {
   process.exit(1);
 }
 log('check gate passed:', checked.steps.map(s => s.label).join('; '));
-// The model shadow lane imports the frozen research core directly (single source of truth).
-if (sh('git status --porcelain -- workers data scripts/research/structural-core.mjs').trim()) throw new Error('uncommitted changes under workers/, data/ or the frozen research core');
+// The model shadow lane and the Algo V2 lane import their frozen research cores directly (single source of truth).
+if (sh('git status --porcelain -- workers data scripts/research/structural-core.mjs scripts/research/national-core.mjs').trim()) throw new Error('uncommitted changes under workers/, data/ or the frozen research core');
 const short = head.slice(0, 7);
 const OUT = `D:/Workers/_deploy/soccer-${short}`;
 rmSync(OUT, { recursive: true, force: true }); mkdirSync(OUT, { recursive: true });
-execSync(`git archive HEAD workers data package.json scripts/research/structural-core.mjs | tar -x -C "${OUT}"`, { cwd: ROOT, shell: 'bash' });
+execSync(`git archive HEAD workers data package.json scripts/research/structural-core.mjs scripts/research/national-core.mjs | tar -x -C "${OUT}"`, { cwd: ROOT, shell: 'bash' });
 const wdir = join(OUT, 'workers', worker);
 const wr = args => sh(`npx wrangler ${args}`, wdir);
 const liveVersion = () => { const d = JSON.parse(wr('deployments list --json')); const last = d[d.length - 1]; return { deployment: last.id, versions: last.versions }; };

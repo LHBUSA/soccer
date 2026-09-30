@@ -1,0 +1,755 @@
+{
+  "generated_at": "2026-09-30T23:51:34.415Z",
+  "mode": "local-pglite (production untouched; production team identities seeded read-only)",
+  "competition": "fifa-world-cup",
+  "source": "ESPN Core (owner-approved secondary source); no FIFA endpoint used",
+  "budget": 4500,
+  "requests_used": 2509,
+  "aborted": null,
+  "runs": [
+    {
+      "requests": 200,
+      "fixtures_new": 104,
+      "detailed": 0,
+      "team_identity": {
+        "espn_teams": 48,
+        "resolved_before": 16,
+        "teams_founded": 32,
+        "team_crosswalk": {
+          "inserted": 32,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "resolved_after": 48
+      },
+      "fixtures": {
+        "considered": 104,
+        "attached_to_existing": 0,
+        "founded": 104,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 104,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 104,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 48,
+        "resolved_before": 48
+      },
+      "fixtures": {
+        "considered": 104,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 48,
+        "resolved_before": 48
+      },
+      "fixtures": {
+        "considered": 104,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 48,
+        "resolved_before": 48
+      },
+      "fixtures": {
+        "considered": 104,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 48,
+        "resolved_before": 48
+      },
+      "fixtures": {
+        "considered": 104,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 48,
+        "resolved_before": 48
+      },
+      "fixtures": {
+        "considered": 104,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 48,
+        "resolved_before": 48
+      },
+      "fixtures": {
+        "considered": 104,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 48,
+        "resolved_before": 48
+      },
+      "fixtures": {
+        "considered": 104,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 199,
+      "fixtures_new": 0,
+      "detailed": 5,
+      "team_identity": {
+        "espn_teams": 48,
+        "resolved_before": 48
+      },
+      "fixtures": {
+        "considered": 104,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 192,
+      "fixtures_new": 0,
+      "detailed": 21,
+      "team_identity": {
+        "espn_teams": 48,
+        "resolved_before": 48
+      },
+      "fixtures": {
+        "considered": 104,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 192,
+      "fixtures_new": 0,
+      "detailed": 21,
+      "team_identity": {
+        "espn_teams": 48,
+        "resolved_before": 48
+      },
+      "fixtures": {
+        "considered": 104,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 199,
+      "fixtures_new": 0,
+      "detailed": 22,
+      "team_identity": {
+        "espn_teams": 48,
+        "resolved_before": 48
+      },
+      "fixtures": {
+        "considered": 104,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 127,
+      "fixtures_new": 0,
+      "detailed": 14,
+      "team_identity": {
+        "espn_teams": 48,
+        "resolved_before": 48
+      },
+      "fixtures": {
+        "considered": 104,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": null
+    },
+    {
+      "requests": 0,
+      "fixtures_new": 0,
+      "detailed": 0,
+      "team_identity": {
+        "espn_teams": 48,
+        "resolved_before": 48
+      },
+      "fixtures": {
+        "considered": 104,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "repeated_pairs_skipped": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": null
+    }
+  ],
+  "espn": {
+    "league": "fifa.world",
+    "id": "606",
+    "season_year": 2026,
+    "types": {
+      "1": {
+        "name": "Group Stage",
+        "role": "league"
+      },
+      "2": {
+        "name": "Round of 32",
+        "role": "playoff"
+      },
+      "3": {
+        "name": "Round of 16",
+        "role": "playoff"
+      },
+      "4": {
+        "name": "Quarterfinals",
+        "role": "playoff"
+      },
+      "5": {
+        "name": "Semifinals",
+        "role": "playoff"
+      },
+      "6": {
+        "name": "3rd-Place Match",
+        "role": "playoff"
+      },
+      "7": {
+        "name": "Final",
+        "role": "playoff"
+      }
+    },
+    "fixtures_seen": 104,
+    "detailed": 104,
+    "by_type": {
+      "Group Stage": 72,
+      "Round of 32": 16,
+      "Round of 16": 8,
+      "Quarterfinals": 4,
+      "Semifinals": 2,
+      "3rd-Place Match": 1,
+      "Final": 1
+    }
+  },
+  "identity_gate": {
+    "teams": 48,
+    "national": 48,
+    "club": [],
+    "reused_existing_canonical_nation": 16,
+    "founded_new_nation": 32,
+    "espn_ids_already_crosswalked_in_production": 16,
+    "production_identity_basis": "production teams + ESPN crosswalks seeded read-only at the start of this run",
+    "espn_id_maps_to_same_canonical_as_production": true,
+    "duplicate_espn_team_ids": 0,
+    "teams_with_more_than_one_espn_id": 0,
+    "duplicate_names": [],
+    "crosswalk_methods": {
+      "founding": 48
+    },
+    "teams_queued": 0,
+    "teams_queued_by_reason": {},
+    "flags_or_country_codes_assigned": 0,
+    "pass": true
+  },
+  "matches": {
+    "total": 104,
+    "by_status": {
+      "finished": 104
+    },
+    "by_stage": [
+      {
+        "name": "Group stage",
+        "type": "league",
+        "order": 1,
+        "matches": 72,
+        "finished": 72
+      },
+      {
+        "name": "Round of 32",
+        "type": "knockout",
+        "order": 2,
+        "matches": 16,
+        "finished": 16
+      },
+      {
+        "name": "Round of 16",
+        "type": "knockout",
+        "order": 3,
+        "matches": 8,
+        "finished": 8
+      },
+      {
+        "name": "Quarterfinals",
+        "type": "knockout",
+        "order": 4,
+        "matches": 4,
+        "finished": 4
+      },
+      {
+        "name": "Semifinals",
+        "type": "knockout",
+        "order": 5,
+        "matches": 2,
+        "finished": 2
+      },
+      {
+        "name": "3rd-Place Match",
+        "type": "knockout",
+        "order": 6,
+        "matches": 1,
+        "finished": 1
+      },
+      {
+        "name": "Final",
+        "type": "knockout",
+        "order": 7,
+        "matches": 1,
+        "finished": 1
+      }
+    ],
+    "finished_without_score": 0,
+    "by_duration": {
+      "regular": 95,
+      "penalties": 4,
+      "extra_time": 5
+    },
+    "knockout_without_winner": 0,
+    "shootouts": [
+      {
+        "id": "71034456-e2bc-5e42-9872-95a411a8d13c",
+        "score": "1-1",
+        "pens": "3-4",
+        "winner_set": true
+      },
+      {
+        "id": "b1130b68-af0b-50ae-95d0-313274be10f7",
+        "score": "1-1",
+        "pens": "2-3",
+        "winner_set": true
+      },
+      {
+        "id": "90d92d58-7e01-589d-8afe-d0988db0ddf0",
+        "score": "1-1",
+        "pens": "2-4",
+        "winner_set": true
+      },
+      {
+        "id": "3214a993-5c3a-5cf6-a610-1e72e86edfed",
+        "score": "0-0",
+        "pens": "4-3",
+        "winner_set": true
+      }
+    ]
+  },
+  "knockouts": {
+    "stages": [
+      "Round of 32",
+      "Round of 16",
+      "Quarterfinals",
+      "Semifinals",
+      "3rd-Place Match",
+      "Final"
+    ],
+    "bracket_proven": true,
+    "edges": 32,
+    "later_stage_matches": 16,
+    "unproven": 0,
+    "contradictory_feeders": 0
+  },
+  "enrichment": {
+    "finished": 104,
+    "detailed": 104,
+    "lineups_both": 104,
+    "lineups_rows": 208,
+    "team_stats_both": 104,
+    "team_stat_rows": 3120,
+    "plays": 104,
+    "events": 158109,
+    "located_events": 146393,
+    "gaps": []
+  },
+  "players": {
+    "in_lineups": 1248,
+    "founded_locally": 1248,
+    "corroborated": 0,
+    "queued": 0,
+    "queued_by_reason": {},
+    "unresolved_lineup_slots": 0,
+    "already_canonical_in_production_by_espn_id": 535,
+    "production_lookup": "ok",
+    "note": "Players seen here that production already holds by the same ESPN athlete id are reused there (same canonical player as their club Player DNA); a local founding row is a production reuse."
+  },
+  "groups": {
+    "standings_lane": [
+      {
+        "competition": "fifa-world-cup",
+        "groups": 12,
+        "rows": 48,
+        "groups_in_source": 12
+      }
+    ],
+    "groups": 12,
+    "members": 48,
+    "standings_rows": 48,
+    "group_stage_matches": 72,
+    "group_stage_matches_across_groups_or_unassigned": 0,
+    "table": {
+      "view": "groups",
+      "verified_groups": 12,
+      "withheld_groups": 0,
+      "overall_probe": {
+        "view": "groups",
+        "rows": 0
+      },
+      "groups": [
+        {
+          "key": "a",
+          "name": "Group A",
+          "teams": 4,
+          "verified": true,
+          "rows": 4,
+          "group_stage_matches": 6,
+          "mismatches": []
+        },
+        {
+          "key": "b",
+          "name": "Group B",
+          "teams": 4,
+          "verified": true,
+          "rows": 4,
+          "group_stage_matches": 6,
+          "mismatches": []
+        },
+        {
+          "key": "c",
+          "name": "Group C",
+          "teams": 4,
+          "verified": true,
+          "rows": 4,
+          "group_stage_matches": 6,
+          "mismatches": []
+        },
+        {
+          "key": "d",
+          "name": "Group D",
+          "teams": 4,
+          "verified": true,
+          "rows": 4,
+          "group_stage_matches": 6,
+          "mismatches": []
+        },
+        {
+          "key": "e",
+          "name": "Group E",
+          "teams": 4,
+          "verified": true,
+          "rows": 4,
+          "group_stage_matches": 6,
+          "mismatches": []
+        },
+        {
+          "key": "f",
+          "name": "Group F",
+          "teams": 4,
+          "verified": true,
+          "rows": 4,
+          "group_stage_matches": 6,
+          "mismatches": []
+        },
+        {
+          "key": "g",
+          "name": "Group G",
+          "teams": 4,
+          "verified": true,
+          "rows": 4,
+          "group_stage_matches": 6,
+          "mismatches": []
+        },
+        {
+          "key": "h",
+          "name": "Group H",
+          "teams": 4,
+          "verified": true,
+          "rows": 4,
+          "group_stage_matches": 6,
+          "mismatches": []
+        },
+        {
+          "key": "i",
+          "name": "Group I",
+          "teams": 4,
+          "verified": true,
+          "rows": 4,
+          "group_stage_matches": 6,
+          "mismatches": []
+        },
+        {
+          "key": "j",
+          "name": "Group J",
+          "teams": 4,
+          "verified": true,
+          "rows": 4,
+          "group_stage_matches": 6,
+          "mismatches": []
+        },
+        {
+          "key": "k",
+          "name": "Group K",
+          "teams": 4,
+          "verified": true,
+          "rows": 4,
+          "group_stage_matches": 6,
+          "mismatches": []
+        },
+        {
+          "key": "l",
+          "name": "Group L",
+          "teams": 4,
+          "verified": true,
+          "rows": 4,
+          "group_stage_matches": 6,
+          "mismatches": []
+        }
+      ]
+    }
+  },
+  "finished_match_proof": {
+    "match_id": "565a4c5f-b715-5d04-b398-ef380218f3ab",
+    "fixture": "Belgium 3-2 Senegal",
+    "kickoff": "2026-07-01T20:00:00.000Z",
+    "venue": "Lumen Field",
+    "lineups": [
+      "home",
+      "away"
+    ],
+    "timeline": 8,
+    "shots": 36,
+    "events": 2026,
+    "coverage": {
+      "state": "ok",
+      "notes": []
+    },
+    "cast": {
+      "mode": "replay",
+      "sequence": 51
+    }
+  },
+  "final_proof": {
+    "match_id": "c11c3f33-58a0-558f-9642-6fb4c01a5e43",
+    "fixture": "Spain 1-0 Argentina",
+    "duration": "extra_time",
+    "pens": null,
+    "winner_set": true
+  },
+  "competition_api": {
+    "team_kind": "national",
+    "teams": 48,
+    "finished": 104,
+    "scheduled": 0
+  },
+  "gate": {
+    "lane_completed_without_abort": true,
+    "fixtures_complete": true,
+    "every_finished_match_scored": true,
+    "identity": true,
+    "groups_all_verified": true,
+    "group_fixtures_reconcile": true,
+    "knockout_winners_known": true,
+    "pass": true
+  },
+  "elapsed_s": 1821
+}

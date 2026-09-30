@@ -1,0 +1,147 @@
+{
+  "algo_version": "soccer-algo-v2.0.0",
+  "status": "official",
+  "status_reason": "Markets passing the pre-registered holdout gate: away_to_score >= 0.8.",
+  "protocol_sha256": "356a78a3fdd235015573102759b99579499c0a36a926c7d95f4b4f0e13e65a3d",
+  "select_freeze_sha256": "0e542719f31d497bbbffe01d8e3f0c9aff71e653feaec83a882e79734fa213d4",
+  "holdout_evaluated_at": "2026-09-30T23:43:59.574Z",
+  "disclaimer": "MODEL RESEARCH on past national-team seasons. Not a track record: no pick here was issued before its match. The V2 public record starts with the first V2 Official Pick after activation.",
+  "data": {
+    "source": "ESPN Core (owner-approved secondary source), archived captures",
+    "rows": 943,
+    "splits": {
+      "warmup": "kickoff < 2020-09-01 (UNL 2018/19 league phase + finals, World Cup 2018): history only, never scored",
+      "select": "2020-09-01 <= kickoff < 2024-09-01 (UNL 2020/21, 2022/23 incl. finals and play-offs, World Cup 2022): hyper-parameters, rho and thresholds are chosen here",
+      "holdout": "2024-09-01 <= kickoff <= the research run time (UNL 2024/25 incl. quarter-finals, finals and play-offs, World Cup 2026, UNL 2026/27 matches finished at run time): evaluated ONCE",
+      "live": "matches issued after activation: prospective only; never back-filled",
+      "walk_forward": "every prediction uses only matches that kicked off strictly before it"
+    },
+    "primary_population": "UEFA Nations League group / league-phase matches (stage_type group). All V2 gates are decided on this population."
+  },
+  "model": {
+    "half_life_days": 1460,
+    "shrink_k": 2,
+    "rho": 0.032,
+    "home_effect_select": {
+      "rows_non_neutral": 318,
+      "mean_home_factor": 1.1168,
+      "loglik_with_H": -916.8746,
+      "loglik_H_equals_1": -918.6287
+    },
+    "home_effect_holdout": {
+      "mean_home_factor": 1.1183
+    }
+  },
+  "select": {
+    "rows": 318,
+    "combined": {
+      "markets": [
+        "away_to_score>=0.8"
+      ],
+      "matches": 318,
+      "game_best": 318,
+      "official_picks": 35,
+      "coverage": 0.1101,
+      "hits": 30,
+      "hit_rate": 0.8571,
+      "mean_prob": 0.8507,
+      "wilson_lo": 0.7062,
+      "baseline_rate": 0.6144,
+      "by_market": {
+        "away_to_score": 35
+      }
+    }
+  },
+  "holdout": {
+    "rows": 208,
+    "combined": {
+      "markets": [
+        "away_to_score>=0.8"
+      ],
+      "matches": 208,
+      "game_best": 208,
+      "official_picks": 26,
+      "coverage": 0.125,
+      "hits": 22,
+      "hit_rate": 0.8462,
+      "mean_prob": 0.8442,
+      "wilson_lo": 0.6647,
+      "baseline_rate": 0.6545,
+      "by_market": {
+        "away_to_score": 26
+      }
+    },
+    "secondary_all_national": {
+      "rows": 330,
+      "log_loss_1x2": 0.9361,
+      "baseline": 1.0686
+    }
+  },
+  "markets": [
+    {
+      "market": "1x2",
+      "gate_select": true,
+      "gate_holdout": true,
+      "log_loss_holdout": 0.9547,
+      "baseline_log_loss_holdout": 1.08,
+      "brier_holdout": 0.5625,
+      "baseline_brier_holdout": 0.6549,
+      "selected_threshold": null,
+      "holdout_picks": null,
+      "holdout_rule": null,
+      "active": false
+    },
+    {
+      "market": "over_2_5",
+      "gate_select": false,
+      "gate_holdout": true,
+      "log_loss_holdout": 0.6918,
+      "baseline_log_loss_holdout": 0.6972,
+      "brier_holdout": 0.2482,
+      "baseline_brier_holdout": 0.252,
+      "selected_threshold": null,
+      "holdout_picks": null,
+      "holdout_rule": null,
+      "active": false
+    },
+    {
+      "market": "home_to_score",
+      "gate_select": false,
+      "gate_holdout": true,
+      "log_loss_holdout": 0.5812,
+      "baseline_log_loss_holdout": 0.6051,
+      "brier_holdout": 0.1971,
+      "baseline_brier_holdout": 0.2073,
+      "selected_threshold": null,
+      "holdout_picks": null,
+      "holdout_rule": null,
+      "active": false
+    },
+    {
+      "market": "away_to_score",
+      "gate_select": true,
+      "gate_holdout": true,
+      "log_loss_holdout": 0.6139,
+      "baseline_log_loss_holdout": 0.6604,
+      "brier_holdout": 0.2128,
+      "baseline_brier_holdout": 0.2338,
+      "selected_threshold": 0.8,
+      "holdout_picks": {
+        "picks": 26,
+        "hit_rate": 0.8462,
+        "mean_probability": 0.8442,
+        "wilson_lo": 0.6647,
+        "baseline_rate": 0.6545
+      },
+      "holdout_rule": {
+        "H0_market": true,
+        "H1_calibration": true,
+        "H2_floor": true,
+        "H3_lift": true,
+        "H4_volume": true,
+        "H5_durability": true
+      },
+      "active": true
+    }
+  ]
+}

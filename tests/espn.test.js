@@ -5,11 +5,12 @@ import { ESPN_COMPETITIONS } from '../workers/soccer-ingest/src/espn-jobs.js';
 import { toCanonical } from '../workers/shared/coords.js';
 import { proveTeamsByFixtureSubset } from '../workers/shared/fixture-graph.js';
 
-test('World Cup has an existing ESPN Core lane definition but remains disabled pending the canary', async () => {
+test('World Cup ESPN Core lane: enabled only after canary v2, national-team contract, stage per ESPN type', async () => {
   const registry = JSON.parse((await import('node:fs')).readFileSync('data/registry/competitions.json', 'utf8'));
   const c = registry.competitions.find(x => x.slug === 'fifa-world-cup');
   assert.ok(ESPN_COMPETITIONS.includes('fifa-world-cup'));
-  assert.equal(c.espn.league, 'fifa.world'); assert.equal(c.espn.enabled, false);
+  assert.equal(c.espn.league, 'fifa.world'); assert.equal(c.espn.enabled, true); assert.equal(c.espn.team_type, 'national'); assert.equal(c.espn.stage_per_type, true);
+  assert.match(c.espn.enable_note, /canary-v2/); assert.equal(c.news.enabled, false);
   assert.equal(c.espn.standings.group_type, 'group'); assert.equal(c.espn.stage_by_type, true);
 });
 

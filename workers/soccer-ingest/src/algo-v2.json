@@ -1,0 +1,87 @@
+{
+  "algo_version": "soccer-algo-v2.0.0",
+  "name": "Soccer Algo V2 (International)",
+  "profile": "national_team_group",
+  "status": "official",
+  "status_reason": "Markets passing the pre-registered holdout gate: away_to_score >= 0.8.",
+  "model": {
+    "id": "soccer-research-national-v2-maher-dc",
+    "version": "2.0.0",
+    "half_life_days": 1460,
+    "shrink_k": 2,
+    "rho": 0.032,
+    "calibration": "none",
+    "code": {
+      "path": "scripts/research/national-core.mjs",
+      "sha256": "a6ad149d2e9929078d58b1c568c5ff23761445a52fdbe764bc9ea993db3e1c40"
+    },
+    "model_hash": "4c40fa9c020073c3dfeb42dd8b286940b9989c44035e8d08bb4a46ca8f984002"
+  },
+  "research": {
+    "protocol": {
+      "path": "scripts/research/algo-v2-protocol.mjs",
+      "sha256": "356a78a3fdd235015573102759b99579499c0a36a926c7d95f4b4f0e13e65a3d"
+    },
+    "dataset_sha256": "01e0e8f1c64bbde2cb10f44f0250cd3179fe832378ddcf277158a6dd1bca01c4",
+    "select_freeze": {
+      "path": "docs/evidence/research/algo-v2/select-freeze.json",
+      "freeze_sha256": "0e542719f31d497bbbffe01d8e3f0c9aff71e653feaec83a882e79734fa213d4",
+      "prediction_hash": "43d57eb9cbe8348b9ebc45a3c3a076543bcef2224054c7fe7d169a1d1c4c5583"
+    },
+    "holdout": {
+      "path": "docs/evidence/research/algo-v2/holdout-results.json",
+      "sha256": "79dc533e0b9059dfd432b1fa6eae34110a0dd11d2b10cd1f9e047aab51371ab3",
+      "evaluated_at": "2026-09-30T23:43:59.574Z"
+    },
+    "display_gate": {
+      "rule": "V2 forecasts (Game Best, labelled MODEL FORECAST — NOT OFFICIAL PICK) may be shown publicly for UNL only if the 1X2 market passes BOTH market-validation gates; otherwise V2 stays a private shadow",
+      "select": true,
+      "holdout": true,
+      "pass": true
+    }
+  },
+  "pick_policy": {
+    "version": "soccer-algo-v2-pick-policy/1.0",
+    "markets": {
+      "away_to_score": {
+        "threshold": 0.8
+      }
+    },
+    "market_order": [
+      "1x2",
+      "over_2_5",
+      "home_to_score",
+      "away_to_score"
+    ],
+    "game_best_thresholds": {
+      "1x2": 0.8,
+      "over_2_5": 0.9,
+      "home_to_score": 0.9,
+      "away_to_score": 0.8
+    },
+    "rule": "at most ONE per match: among active markets whose selection meets its frozen threshold, the largest (probability - threshold); ties by market order Game Best: every forecast UNL match gets a GAME BEST: the selection with the largest (probability - threshold) among the four eligible markets (frozen thresholds; a market with no frozen threshold uses the top of its grid, 0.800 for 1X2 and 0.900 binary, so it can never qualify), shown as \"Did not meet Official Pick threshold\" when it does not qualify; never enters the record"
+  },
+  "competition_scope": {
+    "competition_slug": "uefa-nations-league",
+    "stage_type": "league"
+  },
+  "input_competitions": [
+    "uefa-nations-league",
+    "fifa-world-cup"
+  ],
+  "input_contract": "canonical finished national-team matches (competitions uefa-nations-league, fifa-world-cup) that kicked off strictly before issued_at, with neutral_site from the stored ESPN event capture; the live model must reproduce the frozen research predictions on the holdout rows (reproduction canary) before activation",
+  "lead_time": {
+    "issue_window_days": 7,
+    "lock_minutes_before_kickoff": 60,
+    "rule": "issued once between kickoff - 7 days and lock_at = kickoff - 60 minutes; immutable from issue (existing soccer_algo_* ledger triggers)"
+  },
+  "settlement": {
+    "finished": "graded from the canonical final score (soccer_algo_grade)",
+    "postponed": "stays pending; void if the canonical kickoff moved by more than 48 h",
+    "cancelled": "void",
+    "abandoned": "void"
+  },
+  "prices": "none: no sportsbook price is captured, so ROI, units and CLV are unavailable; no default odds.",
+  "no_backfill": "no V2 pick is ever created for a match that kicked off before activation; the completed 2026 World Cup is research, replay and intelligence only",
+  "spec_hash": "eebf33dec7a99caffef25867eca4440d78c419accfd646a258c4bce4b8846e20"
+}

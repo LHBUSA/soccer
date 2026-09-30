@@ -225,7 +225,8 @@
       "espn": {
         "league": "fifa.world",
         "id": "606",
-        "enabled": false,
+        "enabled": true,
+        "enable_note": "Enabled 2026-10-01 (UTC) after local canary v2 PASS (docs/evidence/v4/espn-world-cup-canary-v2.json): 104/104 fixtures (72 group + 32 knockout, 7 ESPN season types), 104/104 finished detailed with no abort (2,509 requests), 0 enrichment gaps; national-team identity 48/48 national (16 reused from Nations League by stable ESPN id, 32 founded, 0 clubs, 0 duplicate ESPN ids, 0 name-only merges, 0 guessed flags; Curacao national by competition contract, ESPN isNational=false recorded); groups 12/12 verified against canonical results and fixtures (48 members, no overall table); knockout stages per ESPN type with bracket progression proven (32 edges); 4 shootouts + 5 extra-time results stored from ESPN status + shootoutScore. Partial components: none in the canary; any athlete page ESPN serves as non-JSON is archived and queued (athlete_record_unavailable), never invented.",
         "may_found": true,
         "stage_by_type": true,
         "stage_per_type": true,
@@ -245,7 +246,7 @@
       },
       "news": {
         "enabled": false,
-        "blocker": "No canonical competition row in production (the Wyscout 2018 World Cup and ESPN fifa.world are crosswalks in the registry only; nothing ingested). ESPN Core is an owner-approved secondary source, but fifa.world remains disabled until its lane canary and national-team identity reconciliation pass. The 2026 tournament is historical; the next is 2030."
+        "blocker": "Canonical World Cup rows exist from 2026-10-01; the International desk maps fifa-world-cup. Automatic publication stays OFF: the 2026 tournament is complete and no historical recap/backfill policy exists (no newsroom spam). Enabling needs a separate, deliberate policy."
       }
     },
     {

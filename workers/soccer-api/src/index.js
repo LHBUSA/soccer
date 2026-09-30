@@ -10,6 +10,7 @@ import { storeFromEnv } from '../../shared/postgrest.js';
 import * as R from './routes.js';
 import * as C from './cast.js';
 import * as A from './algo.js';
+import * as A2 from './algo-v2.js';
 import { teamHistory } from './history.js';
 import { cachedCoverage } from './coverage-cache.js';
 import { handlePro, PRO_HEADERS, publicAnalyzerPreview } from './pro/routes.js';
@@ -43,6 +44,9 @@ const ROUTES = [
   [/^\/v1\/algo\/picks$/, s => A.picks(s), 120, []],
   [/^\/v1\/algo\/record$/, (s, _m, q) => A.record(s, q), 300, A.RECORD_QUERY],
   [/^\/v1\/algo\/research$/, () => A.researchSummary(), 3600, []],
+  [/^\/v1\/algo\/v2\/picks$/, s => A2.picksV2(s), 120, []],
+  [/^\/v1\/algo\/v2\/record$/, (s, _m, q) => A2.recordV2(s, q), 300, A2.RECORD_QUERY_V2],
+  [/^\/v1\/algo\/v2\/research$/, () => A2.researchV2(), 3600, []],
 ];
 
 const ALLOWED_ORIGIN = /^https:\/\/([a-z0-9-]+\.)*propbetedge\.ai$/;

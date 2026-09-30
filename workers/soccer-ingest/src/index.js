@@ -20,6 +20,7 @@ import { STANDINGS_LANE, runEspnStandings } from './espn-standings.js';
 import { LIVE_LANE, runEspnLive } from './espn-live.js';
 import { SHADOW_LANE, runShadow } from './shadow-lane.js';
 import { ALGO_LANE, runAlgo } from './algo-lane.js';
+import { ALGO_V2_LANE, runAlgoV2 } from './algo-v2-lane.js';
 import { canonicalHealth, enrichmentHealth } from './health.js';
 import { BREAKER } from './espn-live.js';
 import { LIVE_SNAPSHOT_DIRTY_KEY, publicLiveDirtyChanges } from '../../shared/live-snapshot.js';
@@ -33,6 +34,7 @@ const LANES = {
   [LIVE_LANE]: ctx => runEspnLive(ctx),
   [SHADOW_LANE]: ctx => runShadow(ctx),
   [ALGO_LANE]: ctx => runAlgo(ctx),
+  [ALGO_V2_LANE]: ctx => runAlgoV2(ctx),
 };
 // Priority lane runs every tick; ESPN lanes rotate one per tick (one source can
 // never monopolise ticks).
@@ -43,7 +45,7 @@ const ENABLED = new Set(registry.competitions.filter(c => c.espn?.enabled).map(c
 const ROTATING = [...ESPN_LANES.filter(l => ENABLED.has(l.competition)).map(l => l.name), STANDINGS_LANE];
 // Self-throttled lanes run after the rest of every tick and decide their own cadence. The
 // private model shadow (Bundesliga only, hourly) is observational and not part of /health ok.
-const SELF_THROTTLED = [SHADOW_LANE, ALGO_LANE];
+const SELF_THROTTLED = [SHADOW_LANE, ALGO_LANE, ALGO_V2_LANE];
 
 function context(env) {
   const store = storeFromEnv(env);

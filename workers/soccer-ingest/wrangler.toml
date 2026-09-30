@@ -28,3 +28,5 @@ enabled = true
 # Soccer Algo V1 Official Picks. Owner G7 sign-off 2026-09-29 (docs/evidence/algo/ACCEPTANCE.md).
 # "on" issues forecasts/picks from the frozen spec; anything else = off. Kill switch: set to "off" and release.
 ALGO_OFFICIAL = "on"
+# Soccer Algo V2 (International): off until the history backfill + reproduction canary pass.
+ALGO_V2 = "off"
