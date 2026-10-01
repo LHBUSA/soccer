@@ -69,9 +69,9 @@ export function teamsInTitle(title, index) {
   for (const h of hits) { if (taken.some(s => h.start < s.end && s.start < h.end)) continue; taken.push(h); ids.add(h.id); }
   return [...ids];
 }
-const COMP_WORDS = { 'mls': /\b(mls|major league soccer)\b/, 'premier-league': /\bpremier league\b/, bundesliga: /\bbundesliga\b/, 'uefa-champions-league': /\b(champions league|ucl)\b/, 'uefa-nations-league': /\b(nations league|unl)\b/ };
+const COMP_WORDS = { 'mls': /\b(mls|major league soccer)\b/, 'premier-league': /\bpremier league\b/, 'la-liga': /\b(la liga|laliga)\b/, 'serie-a': /\bserie a\b/, 'ligue-1': /\bligue 1\b/, bundesliga: /\bbundesliga\b/, 'uefa-champions-league': /\b(champions league|ucl)\b/, 'uefa-europa-league': /\b(europa league|uel)\b/, 'uefa-nations-league': /\b(nations league|unl)\b/, 'fifa-world-cup': /\b(fifa )?world cup\b/ };
 // National-team football outside our competitions (qualifiers, friendlies, finals tournaments) is another competition too.
-const OTHER_COMP = /\b(europa league|conference league|fa cup|carabao|efl cup|dfb pokal|pokal|leagues cup|us open cup|concacaf|copa|friendly|friendlies|preseason|women|u19|u21|u23|youth|academy|nwsl|mls next|legends|world cup|qualifier|qualifiers|qualifying|euro 20\d\d|euro qualifiers?)\b/;
+const OTHER_COMP = /\b(conference league|fa cup|carabao|efl cup|dfb pokal|pokal|leagues cup|us open cup|concacaf|copa|friendly|friendlies|preseason|women|u19|u21|u23|youth|academy|nwsl|mls next|legends|qualifier|qualifiers|qualifying|euro 20\d\d|euro qualifiers?)\b/;
 export const HIGHLIGHT_TYPES = new Set(['highlights', 'match_recap', 'goals']);
 export const PREVIEW_TYPES = new Set(['preview', 'press_conference', 'interview', 'analysis']);
 
