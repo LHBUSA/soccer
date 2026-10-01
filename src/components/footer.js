@@ -1,5 +1,5 @@
 // PropBetEdge NETWORK FOOTER (Soccer). Sport network from the shared membership contract
-// (8 sports, Soccer current), Soccer Intelligence + Soccer Pro links, the network, and the account
+// (9 sports, Soccer current), Soccer Intelligence + Soccer Pro links, the network, and the account
 // card. The card shows the All Access offer only to readers the contract says may buy it; the
 // manage link only where the contract says there is billing to manage (filled after the server answers).
 import { NETWORK } from '../lib/pbe-membership.js';
@@ -9,7 +9,7 @@ import { renderPreferredSource } from './preferred-source.js';
 
 export const DISCORD_URL = 'https://discord.gg/kb5zCTHbME';
 export const X_URL = 'https://x.com/PROPBETEDGE';
-const ORDER = ['nfl', 'mlb', 'nba', 'wnba', 'nhl', 'ufc', 'tennis', 'soccer'];
+const ORDER = ['nfl', 'mlb', 'nba', 'wnba', 'nhl', 'ufc', 'tennis', 'soccer', 'golf'];
 
 const INTELLIGENCE = [['/', 'Today'], ['/matches', 'Matches'], ['/pbecast', 'PBEcast'], ['/picks', 'Official Picks'], ['/track-record', 'Algo Track Record'], ['/players', 'Player DNA'], ['/competitions', 'Team Intelligence'], ['/tables', 'Tables'], ['/competitions', 'Competitions'], ['/news', 'News'], ['/sources', 'Sources & Method']];
 const PRO = [['/pro#matchup', 'Matchup Lab'], ['/pro#fatigue', 'Fatigue Intelligence'], ['/pro#rotation', 'Rotation / XI Stability'], ['/pro#model-lab', 'Model Lab'], ['/pro#match-center', 'Pro Match Center'], ['/pro#track-record', 'Track Record']];
