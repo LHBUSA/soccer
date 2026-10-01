@@ -4,8 +4,8 @@ compatibility_date = "2026-09-01"
 compatibility_flags = ["nodejs_compat"]
 workers_dev = true
 
-# Official-video discovery. Automated YouTube RSS/public-page scraping stays disabled;
-# this Worker uses YouTube Data API v3 only.
+# Official-video discovery. Baseline uses YouTube's public Atom channel feed + oEmbed;
+# YOUTUBE_API_KEY is optional enrichment, not required.
 [triggers]
 crons = ["13,43 * * * *"]
 
@@ -19,5 +19,6 @@ enabled = true
 # Secrets:
 #   SOCCER_MODEL_SUPABASE_URL
 #   SOCCER_MODEL_SUPABASE_SERVICE_ROLE_KEY
-#   VIDEO_ADMIN_TOKEN
-#   YOUTUBE_API_KEY
+# Optional only:
+#   VIDEO_ADMIN_TOKEN   # manual /admin/run only; cron does not need it
+#   YOUTUBE_API_KEY     # richer duration/region metadata; baseline works without it
