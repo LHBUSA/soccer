@@ -21,42 +21,28 @@ on the competition / governing body / club item equals the channel id exactly, a
 pipeline already proved. Never a handle guess or a name search. Fan channels, compilations and re-uploads are
 never added; broadcaster channels need explicit owner approval (none enabled).
 
-## Discovery: scheduled Data API autopilot
+## Discovery: scheduled keyless autopilot
 
-The old keyless public-page discovery remains **suspended**. YouTube's robots.txt disallows
-`/youtubei/` and `/feeds/videos.xml`, and the source audit records the automated-access restriction
-(`docs/evidence/source-audit/2026-09-29/youtube_rss__*.json`, registry key `youtube_rss`).
-`scripts/videos/ingest.mjs` therefore still refuses every provider request and supports only
-`--link-only` against rows we already own.
+Production uses the same baseline pattern already proven by the UFC video lane:
 
-Production-ready replacement: `workers/soccer-video-autopilot`.
+- **no YouTube API key required**
+- verified official channel -> public YouTube Atom channel feed
+- each new video -> YouTube oEmbed check for an embeddable public video
+- poster-first `youtube-nocookie` playback
+- deterministic Soccer entity/article matching
+- cron refresh at `13,43 * * * *`
 
-- cron: `13,43 * * * *`
-- discovery: **YouTube Data API v3 only**
-- inventory: enabled + verified rows from `soccer_video_channels`
-- requests: each channel's uploads playlist via `playlistItems.list`, then `videos.list` in batches
-- stores: title, description, publish time, duration, thumbnail, embeddability, privacy/live state and
-  region restrictions; no video bytes are downloaded or rehosted
-- linking: the existing `soccer-video-match` resolver is rerun against published article packets after
-  discovery, so a new official highlight can attach to an article without rewriting the article
-- fail closed: without `YOUTUBE_API_KEY`, discovery does not fall back to scraping; the worker may only
-  rebuild article links from already stored rows
-- health: `GET /health` states whether the key is configured and records the last scheduled run in
-  `SOCCER_STATE`
+`YOUTUBE_API_KEY` remains optional. When present, the Worker may use Data API v3 for richer duration,
+privacy/live-state and region-restriction metadata. Its absence does not disable discovery.
 
-The YouTube API key is a platform credential, not a paid sports-data feed. Embedding remains through the
-official privacy-enhanced player and does not require the Data API key.
+`VIDEO_ADMIN_TOKEN` is also optional and exists only to protect the manual `/admin/run` endpoint. Scheduled
+cron ingestion does not require or read it. If there is no need for manual triggering, do not configure it.
 
-FIFA is now an explicit governing-body candidate in `scripts/videos/channels.mjs`. Its exact YouTube
-channel id is still resolved from Wikidata P2397 and re-proved against the canonical channel page before
-the database row can be enabled. UEFA remains multi-competition scoped; its videos receive competition
-credit only when the title identifies the correct competition.
+The keyless path stores availability as unverified beyond oEmbed: oEmbed proves that an embed page exists,
+not that it plays in every country. Runtime playback still fails gracefully if YouTube refuses a region.
 
-### Retired public-page implementation
-
-The older implementation used public uploads pages, `/youtubei/v1/browse`, watch-page reads and oEmbed.
-It is retained only as historical code and must not be scheduled. oEmbed may confirm that an embed page
-exists, but does not establish country playability.
+Only enabled + verified channels in `soccer_video_channels` are read. Fan uploads, compilations and
+unverified channels remain excluded.
 
 ## Matching (`workers/shared/video-match.js`, `soccer-video-match/1.2.0`)
 
@@ -115,4 +101,5 @@ nocookie URL, publisher = channel) only for a matcher-validated video linked to 
     node scripts/videos/channels.mjs          # re-prove the allowlist
     node scripts/videos/ingest.mjs --link-only   # DB-only repair / relink
     cd workers/soccer-video-autopilot && npx wrangler deploy --dry-run
+    npx wrangler deploy
     node scripts/qa/video.mjs --site <url> --article /news/<desk>/<slug> --none /news/<desk>/<slug>

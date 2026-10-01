@@ -1,9 +1,11 @@
 /* soccer-video-autopilot — scheduled official-video discovery + article resolution.
  *
- * Automated discovery uses ONLY YouTube Data API v3. The older RSS/public-page
- * path stays disabled by docs/VIDEO.md and data/source-registry/sources.json.
- * Without YOUTUBE_API_KEY the worker fails closed for discovery but may still
- * rebuild links from already stored video rows.
+ * Mirrors the proven UFC pattern:
+ *   no YOUTUBE_API_KEY -> public YouTube Atom channel feed + oEmbed verification
+ *   YOUTUBE_API_KEY    -> optional Data API enrichment (duration, region/status)
+ *
+ * No API key is required for the scheduled baseline. The admin token is also
+ * optional and applies only to the manual /admin/run endpoint, never cron.
  */
 import { storeFromEnv } from '../../shared/postgrest.js';
 import {
@@ -12,7 +14,7 @@ import {
 } from '../../shared/video-match.js';
 
 const WORKER = 'soccer-video-autopilot';
-const VERSION = 'soccer-video-autopilot/1.0.0';
+const VERSION = 'soccer-video-autopilot/1.1.0';
 const PROVIDER = 'youtube';
 const DEFAULT_SINCE_DAYS = 14;
 const MAX_CHANNELS_PER_RUN = 80;
@@ -28,9 +30,11 @@ const json = (body, status = 200) => new Response(JSON.stringify(body, null, 2),
 });
 
 function authorized(req, env) {
+  // Manual trigger only. Cron does not need or read this token.
   const expected = String(env.VIDEO_ADMIN_TOKEN || '');
+  if (!expected) return false;
   const got = String(req.headers.get('x-pbe-admin-token') || '');
-  if (!expected || expected.length !== got.length) return false;
+  if (expected.length !== got.length) return false;
   let d = 0;
   for (let i = 0; i < expected.length; i += 1) d |= expected.charCodeAt(i) ^ got.charCodeAt(i);
   return d === 0;
@@ -44,6 +48,108 @@ function durationSeconds(value) {
 
 function bestThumb(t = {}) {
   return (t.maxres || t.standard || t.high || t.medium || t.default || {}).url || null;
+}
+
+
+function decodeXml(s) {
+  return String(s || '')
+    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+}
+
+function tagText(block, name) {
+  const m = String(block || '').match(new RegExp('<' + name + '(?:\\s[^>]*)?>([\\s\\S]*?)<\\/' + name + '>', 'i'));
+  return m ? decodeXml(m[1].replace(/<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>/g, '$1')).trim() : null;
+}
+
+function tagAttr(block, name, attr) {
+  const m = String(block || '').match(new RegExp('<' + name + '\\b[^>]*\\b' + attr + '\\s*=\\s*"([^"]*)"', 'i'));
+  return m ? decodeXml(m[1]) : null;
+}
+
+function parseAtomFeed(xml) {
+  const text = String(xml || '');
+  const head = text.split(/<entry[\\s>]/i)[0];
+  let channelId = tagText(head, 'yt:channelId');
+  if (channelId && !/^UC/.test(channelId) && channelId.length === 22) channelId = 'UC' + channelId;
+  const entries = [];
+  for (const block of text.match(/<entry[\\s>][\\s\\S]*?<\\/entry>/gi) || []) {
+    const videoId = tagText(block, 'yt:videoId');
+    if (!videoId) continue;
+    const link = tagAttr(block, 'link', 'href');
+    entries.push({
+      video_id: videoId,
+      channel_id: tagText(block, 'yt:channelId') || channelId,
+      title: tagText(block, 'title') || tagText(block, 'media:title') || '',
+      description: tagText(block, 'media:description') || '',
+      published: tagText(block, 'published'),
+      thumbnail_url: tagAttr(block, 'media:thumbnail', 'url'),
+      is_short: /\\/shorts\\//i.test(link || ''),
+    });
+  }
+  return { channel_id: channelId, entries };
+}
+
+async function fetchText(url) {
+  const res = await fetch(url, {
+    headers: { accept: 'application/atom+xml,application/xml,text/xml,*/*' },
+    signal: AbortSignal.timeout(15000),
+  });
+  const text = await res.text();
+  if (!res.ok) throw new Error('youtube_feed_' + res.status + ':' + text.slice(0, 120));
+  return text;
+}
+
+async function checkOEmbed(videoId) {
+  const url = 'https://www.youtube.com/oembed?url=' + encodeURIComponent('https://www.youtube.com/watch?v=' + videoId) + '&format=json';
+  try {
+    const res = await fetch(url, { signal: AbortSignal.timeout(12000) });
+    const body = res.ok ? await res.json().catch(() => ({})) : {};
+    return { embeddable: res.ok, status: res.status, author_name: body.author_name || null };
+  } catch (e) {
+    return { embeddable: null, status: null, error: String(e.message || e).slice(0, 160) };
+  }
+}
+
+async function discoverChannelKeyless(channel, { sinceDays = DEFAULT_SINCE_DAYS } = {}) {
+  const cutoff = Date.now() - sinceDays * 86400e3;
+  const xml = await fetchText('https://www.youtube.com/feeds/videos.xml?channel_id=' + encodeURIComponent(channel.channel_id));
+  const feed = parseAtomFeed(xml);
+  if (feed.channel_id && feed.channel_id !== channel.channel_id) {
+    throw new Error('youtube_feed_channel_mismatch:' + feed.channel_id);
+  }
+  const rows = [];
+  for (const e of feed.entries) {
+    if (e.published && Date.parse(e.published) < cutoff) continue;
+    const embed = await checkOEmbed(e.video_id);
+    rows.push({
+      provider_video_id: e.video_id,
+      provider: PROVIDER,
+      channel_id: e.channel_id || channel.channel_id,
+      channel_name: embed.author_name || channel.channel_name,
+      title: String(e.title || '').slice(0, 500),
+      description: String(e.description || '').slice(0, 4000),
+      published_at: e.published,
+      duration_sec: null,
+      thumbnail_url: e.thumbnail_url || 'https://i.ytimg.com/vi/' + e.video_id + '/hqdefault.jpg',
+      url: 'https://www.youtube.com/watch?v=' + e.video_id,
+      embeddable: embed.embeddable,
+      region_restriction: null,
+      language: null,
+      video_type: classifyVideo(e.title),
+      is_short: e.is_short,
+      source_metadata: {
+        discovery: 'youtube_atom_feed_oembed',
+        oembed_status: embed.status,
+        region_check: { method: 'unverified' },
+        scope_competition_ids: channel.scope_competition_ids || [],
+        retrieved_at: new Date().toISOString(),
+      },
+      retrieved_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    });
+  }
+  return rows;
 }
 
 async function yt(env, resource, params) {
@@ -65,6 +171,7 @@ async function enabledChannels(store) {
 }
 
 async function discoverChannel(env, channel, { sinceDays = DEFAULT_SINCE_DAYS } = {}) {
+  if (!env.YOUTUBE_API_KEY) return discoverChannelKeyless(channel, { sinceDays });
   const cutoff = Date.now() - sinceDays * 86400e3;
   const uploads = `UU${String(channel.channel_id).slice(2)}`;
   const list = await yt(env, 'playlistItems', {
@@ -111,7 +218,7 @@ async function discoverChannel(env, channel, { sinceDays = DEFAULT_SINCE_DAYS } 
         video_type: classifyVideo(sn.title),
         is_short: sec !== null && sec <= 60,
         source_metadata: {
-          discovery: 'youtube_data_api_v3',
+          discovery: env.YOUTUBE_API_KEY ? 'youtube_data_api_v3' : 'youtube_atom_feed_oembed',
           privacy_status: st.privacyStatus || null,
           live_broadcast_content: sn.liveBroadcastContent || null,
           actual_start_time: v.liveStreamingDetails?.actualStartTime || null,
@@ -210,22 +317,6 @@ async function run(env, { dry = false, sinceDays = DEFAULT_SINCE_DAYS, onlyChann
     .filter(c => !onlyChannel || c.channel_id === onlyChannel)
     .slice(0, MAX_CHANNELS_PER_RUN);
 
-  if (!env.YOUTUBE_API_KEY) {
-    const links = dry ? null : await relink(store);
-    const out = {
-      ok: false,
-      status: 'discovery_disabled',
-      reason: 'YOUTUBE_API_KEY is required for compliant automated discovery; public RSS/page scraping remains disabled',
-      discovery: 'youtube_data_api_v3_only',
-      channels: channels.length,
-      relink: links,
-      invoked,
-      elapsed_ms: Date.now() - started,
-    };
-    if (env.SOCCER_STATE) await env.SOCCER_STATE.put('video:last_run', JSON.stringify({ ...out, at: new Date().toISOString() }));
-    return out;
-  }
-
   const discovered = [];
   const failures = [];
   for (const c of channels) {
@@ -265,12 +356,12 @@ export default {
       return json({
         service: WORKER,
         version: VERSION,
-        discovery: env.YOUTUBE_API_KEY ? 'youtube_data_api_v3' : 'disabled_without_youtube_data_api_key',
-        key_configured: Boolean(env.YOUTUBE_API_KEY),
-        public_page_discovery: 'disabled_by_source_policy',
+        discovery: env.YOUTUBE_API_KEY ? 'youtube_data_api_v3' : 'youtube_atom_feed_oembed',
+        youtube_api_key_optional: Boolean(env.YOUTUBE_API_KEY),
+        manual_admin_trigger_configured: Boolean(env.VIDEO_ADMIN_TOKEN),
         cron: '13,43 * * * *',
         last_run: last,
-      }, env.YOUTUBE_API_KEY ? 200 : 503);
+      }, 200);
     }
     if (url.pathname === '/admin/run' && req.method === 'POST') {
       if (!authorized(req, env)) return json({ error: 'not_found' }, 404);
