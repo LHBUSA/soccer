@@ -22,7 +22,10 @@ const COMPETITIONS = [
   { qid: 'Q82595', label: 'Bundesliga', publisher_type: 'competition', competition: 'bundesliga' },
   // A governing body publishes for several competitions: its scope lists them all (the matcher still
   // decides relevance per video and rejects a title naming another competition).
-  { qid: 'Q35572', label: 'UEFA', publisher_type: 'governing_body', competition: 'uefa-champions-league', scope: ['uefa-champions-league', 'uefa-nations-league'] },
+  { qid: 'Q35572', label: 'UEFA', publisher_type: 'governing_body', competition: 'uefa-champions-league', scope: ['uefa-champions-league', 'uefa-nations-league', 'uefa-europa-league'] },
+  // FIFA's own Wikidata item exposes the official YouTube channel through P2397.
+  // The script still verifies the exact channel page before enabling it.
+  { qid: 'Q253414', label: 'FIFA', publisher_type: 'governing_body', competition: 'fifa-world-cup', scope: ['fifa-world-cup'] },
 ];
 const proofs = JSON.parse(readFileSync('docs/evidence/media/wikimedia-2026-09-28.json', 'utf8')).teams.proofs.filter(p => p.qid && !/several|disagree/.test(p.reason));
 const teams = await store.select('soccer_teams', { columns: ['id', 'slug', 'name'], in: { name: proofs.map(p => p.team) } });
