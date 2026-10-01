@@ -122,11 +122,18 @@ export function unsupportedGroupClaims(profile, text, packet) {
 // matchday 8 (late January); after that every UCL match is a knockout tie.
 export const COMPETITION_PROFILES = {
   'premier-league': () => 'domestic_european_league',
+  'la-liga': () => 'domestic_european_league',
+  'serie-a': () => 'domestic_european_league',
+  'ligue-1': () => 'domestic_european_league',
   bundesliga: () => 'domestic_european_league',
   mls: () => 'mls',
   'uefa-champions-league': (kickoffIso, cfg = {}) => (Date.parse(kickoffIso) < Date.parse(cfg.ucl_league_phase_end || '2027-02-01T00:00:00Z') ? 'ucl_league_phase' : 'knockout'),
+  'uefa-europa-league': (kickoffIso, cfg = {}) => (Date.parse(kickoffIso) < Date.parse(cfg.uel_league_phase_end || '2027-02-01T00:00:00Z') ? 'ucl_league_phase' : 'knockout'),
   // League phase = ESPN season type 1, ending 2026-11-19T04:59Z (docs/evidence/espn/uefa-nations-discovery-2026-09-29.json).
   'uefa-nations-league': (kickoffIso, cfg = {}) => (Date.parse(kickoffIso) < Date.parse(cfg.unl_league_phase_end || '2026-11-19T05:00:00Z') ? 'nations_league' : 'nations_league_knockout'),
+  // World Cup publishing is currently disabled in the registry. This profile makes the
+  // engine format-safe for a deliberate FIFA backfill/current-tournament enablement.
+  'fifa-world-cup': (kickoffIso, cfg = {}) => (Date.parse(kickoffIso) < Date.parse(cfg.fifa_group_phase_end || '2026-06-28T00:00:00Z') ? 'nations_league' : 'nations_league_knockout'),
 };
 
 export function profileFor(slug, kickoffIso, cfg) {
