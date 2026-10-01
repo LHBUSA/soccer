@@ -156,3 +156,28 @@ test('governing body scope (UEFA): serves Champions League AND Nations League, n
   // a single-competition channel keeps its credit without naming itself (unchanged behaviour)
   assert.equal(scoreVideo(at('France 2-1 Italy | Highlights', '2026-10-10T22:30:00Z'), { ...UEFA, scope_competition_ids: ['c-unl'] }, unl, N).status, 'linked');
 });
+
+
+test('global competition matcher distinguishes FIFA, Europa, LaLiga, Serie A and Ligue 1', () => {
+  const ix = buildAliasIndex([
+    { id: 'arg', name: 'Argentina', short_name: 'Argentina' },
+    { id: 'fra', name: 'France', short_name: 'France' },
+    { id: 'sev', name: 'Sevilla', short_name: 'Sevilla' },
+    { id: 'rom', name: 'AS Roma', short_name: 'Roma' },
+  ]);
+  const FIFA = { channel_id: 'UCpcTrCXblq78GZrTUTLWeBw', verified: true, enabled: true, competition_id: 'c-fifa', scope_competition_ids: ['c-fifa'], team_id: null, publisher_type: 'governing_body' };
+  const fifaCtx = { competition_slug: 'fifa-world-cup', competition_id: 'c-fifa', match: { id: 'wc', home_id: 'arg', away_id: 'fra', kickoff: '2026-07-19T19:00:00Z', score: { home: 2, away: 1 } }, player: null };
+  const ok = scoreVideo({ title: 'Argentina 2-1 France | FIFA World Cup Highlights', published_at: '2026-07-19T22:00:00Z', video_type: 'highlights' }, FIFA, fifaCtx, ix);
+  assert.equal(ok.status, 'linked', JSON.stringify(ok));
+  const wrong = scoreVideo({ title: 'Argentina 2-1 France | UEFA Nations League Highlights', published_at: '2026-07-19T22:00:00Z', video_type: 'highlights' }, FIFA, fifaCtx, ix);
+  assert.equal(wrong.status, 'rejected');
+
+  const UEFA = { channel_id: 'UCyGa1YEx9ST66rYrJTGIKOw', verified: true, enabled: true, competition_id: 'c-ucl', scope_competition_ids: ['c-ucl', 'c-uel'], team_id: null, publisher_type: 'governing_body' };
+  const uelCtx = { competition_slug: 'uefa-europa-league', competition_id: 'c-uel', match: { id: 'uel', home_id: 'sev', away_id: 'rom', kickoff: '2026-10-22T19:00:00Z', score: { home: 1, away: 0 } }, player: null };
+  const uel = scoreVideo({ title: 'Sevilla 1-0 Roma | UEFA Europa League Highlights', published_at: '2026-10-22T22:00:00Z', video_type: 'highlights' }, UEFA, uelCtx, ix);
+  assert.equal(uel.status, 'linked', JSON.stringify(uel));
+
+  for (const title of ['LaLiga Highlights', 'Serie A Highlights', 'Ligue 1 Highlights']) {
+    assert.equal(classifyVideo(title), 'highlights');
+  }
+});

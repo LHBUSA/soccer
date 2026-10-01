@@ -21,23 +21,42 @@ on the competition / governing body / club item equals the channel id exactly, a
 pipeline already proved. Never a handle guess or a name search. Fan channels, compilations and re-uploads are
 never added; broadcaster channels need explicit owner approval (none enabled).
 
-## Discovery: SUSPENDED (2026-09-29)
+## Discovery: scheduled Data API autopilot
 
-YouTube's robots.txt disallows `/youtubei/` and `/feeds/videos.xml`, and its Terms of Service forbid automated
-access except public search engines following robots.txt or with written permission (evidence:
-`docs/evidence/source-audit/2026-09-29/youtube_rss__*.json`, registry key `youtube_rss`). The public-page discovery
-below used `/youtubei/v1/browse` and automated watch-page reads, so `scripts/videos/ingest.mjs` now refuses to run
-anything except `--link-only` (our database only, no YouTube request). The compliant replacement is the
-**YouTube Data API v3** (YouTube API Services Terms; owner-created API key). Embedding through the official
-player is unaffected.
+The old keyless public-page discovery remains **suspended**. YouTube's robots.txt disallows
+`/youtubei/` and `/feeds/videos.xml`, and the source audit records the automated-access restriction
+(`docs/evidence/source-audit/2026-09-29/youtube_rss__*.json`, registry key `youtube_rss`).
+`scripts/videos/ingest.mjs` therefore still refuses every provider request and supports only
+`--link-only` against rows we already own.
 
-### Former public-page discovery (not run)
+Production-ready replacement: `workers/soccer-video-autopilot`.
 
-Each channel's public uploads listing (newest first). A candidate is a title naming one of our clubs (league
-channels) or two clubs / a highlights title (club channels). Its public watch page gives the exact publish
-time, uploading channel (must equal the listing channel), duration, `playableInEmbed` and US availability;
-oEmbed confirms the embed page exists. oEmbed 200 is not region playability: the page's player falls back at
-runtime (below).
+- cron: `13,43 * * * *`
+- discovery: **YouTube Data API v3 only**
+- inventory: enabled + verified rows from `soccer_video_channels`
+- requests: each channel's uploads playlist via `playlistItems.list`, then `videos.list` in batches
+- stores: title, description, publish time, duration, thumbnail, embeddability, privacy/live state and
+  region restrictions; no video bytes are downloaded or rehosted
+- linking: the existing `soccer-video-match` resolver is rerun against published article packets after
+  discovery, so a new official highlight can attach to an article without rewriting the article
+- fail closed: without `YOUTUBE_API_KEY`, discovery does not fall back to scraping; the worker may only
+  rebuild article links from already stored rows
+- health: `GET /health` states whether the key is configured and records the last scheduled run in
+  `SOCCER_STATE`
+
+The YouTube API key is a platform credential, not a paid sports-data feed. Embedding remains through the
+official privacy-enhanced player and does not require the Data API key.
+
+FIFA is now an explicit governing-body candidate in `scripts/videos/channels.mjs`. Its exact YouTube
+channel id is still resolved from Wikidata P2397 and re-proved against the canonical channel page before
+the database row can be enabled. UEFA remains multi-competition scoped; its videos receive competition
+credit only when the title identifies the correct competition.
+
+### Retired public-page implementation
+
+The older implementation used public uploads pages, `/youtubei/v1/browse`, watch-page reads and oEmbed.
+It is retained only as historical code and must not be scheduled. oEmbed may confirm that an embed page
+exists, but does not establish country playability.
 
 ## Matching (`workers/shared/video-match.js`, `soccer-video-match/1.2.0`)
 
@@ -94,5 +113,6 @@ nocookie URL, publisher = channel) only for a matcher-validated video linked to 
 ## Run
 
     node scripts/videos/channels.mjs          # re-prove the allowlist
-    node scripts/videos/ingest.mjs --link-only   # re-score stored videos against articles (DB only); discovery is suspended
+    node scripts/videos/ingest.mjs --link-only   # DB-only repair / relink
+    cd workers/soccer-video-autopilot && npx wrangler deploy --dry-run
     node scripts/qa/video.mjs --site <url> --article /news/<desk>/<slug> --none /news/<desk>/<slug>

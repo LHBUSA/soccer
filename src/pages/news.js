@@ -3,7 +3,7 @@
 import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { dateLong, dateTime } from '../lib/format.js';
-import { FEATURED_COMPS, compByDesk } from '../lib/competitions.js';
+import { NEWSROOM_COMPS, compByDesk } from '../lib/competitions.js';
 import { competitionMark, link, mountMediaFallbacks, sourcePanel } from '../components/ui.js';
 import { newsCard, mountNewsImages } from '../components/newscard.js';
 import { officialVideo, mountOfficialVideos } from '../components/video.js';
@@ -12,7 +12,7 @@ import { renderArticle, mountArticle } from './article.js';
 
 const INDEX = 'index, follow, max-image-preview:large';
 const tab = (href, inner, on) => `<a href="${esc(href)}" data-link class="nr2-tab${on ? ' on' : ''}"${on ? ' aria-current="page"' : ''}>${inner}</a>`;
-const deskTabs = active => `<nav class="nr2-tabs" aria-label="News desks">${tab('/news', '<span>All news</span>', !active)}${join(FEATURED_COMPS, c => tab(`/news/${c.desk}`, `${competitionMark(c.slug, 'xs', { tone: 'dark' })}<span>${esc(c.name)}</span>`, c.desk === active))}</nav>`;
+const deskTabs = active => `<nav class="nr2-tabs" aria-label="News desks">${tab('/news', '<span>All news</span>', !active)}${join(NEWSROOM_COMPS.filter((c, i, all) => all.findIndex(x => x.desk === c.desk) === i), c => tab(`/news/${c.desk}`, `${competitionMark(c.slug, 'xs', { tone: 'dark' })}<span>${esc(c.name)}</span>`, c.desk === active))}</nav>`;
 
 const emptyRoom = desk => `<section class="newsroom"><div class="wrap narrow center">
   <p class="kicker gold">PROPBETEDGE SOCCER NEWSROOM${desk ? ` · ${esc(compByDesk(desk)?.name.toUpperCase() || '')}` : ''}</p>
@@ -52,7 +52,7 @@ export function newsroomSections(rest) {
 const section = g => `<section class="nr2-mod" aria-label="${esc(g.title)}"><header class="nr2-mh"><p class="nr2-k">${esc(g.kicker)}</p><h2 class="nr2-h">${esc(g.title)}</h2></header><div class="nr2-grid">${join(g.list, a => newsCard(a, 'standard'))}</div></section>`;
 
 function byCompetition(items) {
-  const rows = FEATURED_COMPS.map(c => ({ c, n: items.filter(a => a.desk === c.desk).length })).filter(r => r.n);
+  const rows = NEWSROOM_COMPS.map(c => ({ c, n: items.filter(a => a.desk === c.desk).length })).filter((r, i, all) => r.n && all.findIndex(x => x.c.desk === r.c.desk) === i);
   if (rows.length < 2) return '';
   return `<section class="nr2-mod nr2-bycomp" aria-label="By competition"><header class="nr2-mh"><p class="nr2-k">BY COMPETITION</p><h2 class="nr2-h">Every desk</h2></header>
     <div class="nr2-comps">${join(rows, ({ c, n }) => link(`/news/${c.desk}`, `${competitionMark(c.slug, 'lg')}<span class="nbc-name">${esc(c.name)}</span><span class="nbc-n">${n} ${n === 1 ? 'story' : 'stories'}</span><span class="nbc-go">Open desk →</span>`, `nbc a-${c.accent}`))}</div></section>`;

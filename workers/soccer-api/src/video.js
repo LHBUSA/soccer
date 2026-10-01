@@ -5,12 +5,16 @@
 import { chunkArr } from '../../soccer-ingest/src/store.js';
 
 export const VIDEO_ATTRIBUTION = 'Official video · embedded from YouTube · not hosted by PropBetEdge';
-const DESK_COMP = { mls: 'mls', 'premier-league': 'premier-league', 'champions-league': 'uefa-champions-league', bundesliga: 'bundesliga', international: 'uefa-nations-league' };
+const DESK_COMP = { mls: 'mls', 'premier-league': 'premier-league', 'la-liga': 'la-liga', 'serie-a': 'serie-a', 'ligue-1': 'ligue-1', 'champions-league': 'uefa-champions-league', 'europa-league': 'uefa-europa-league', bundesliga: 'bundesliga', international: 'uefa-nations-league', fifa: 'fifa-world-cup' };
 const V_COLS = ['provider_video_id', 'channel_id', 'channel_name', 'title', 'description', 'published_at', 'duration_sec', 'thumbnail_url', 'url', 'embeddable', 'region_restriction', 'video_type', 'is_short', 'source_metadata'];
 
 export function availability(v) {
   if (v.embeddable === false) return 'unembeddable';
-  if (v.region_restriction?.blocked?.includes('US')) return 'blocked_us';
+  const r = v.region_restriction || {};
+  const blocked = r.blocked_us === true
+    || r.blocked?.includes?.('US')
+    || (Array.isArray(r.allowed) && !r.allowed.includes('US'));
+  if (blocked) return 'blocked_us';
   return v.embeddable === true ? 'embeddable' : 'unverified';
 }
 // The publisher's first description line, unless it is a promo / link line (then the title stands alone).
@@ -47,7 +51,7 @@ export async function videosFeed(store, { desk = null, limit = 4 } = {}) {
   const ch = await enabledChannels(store);
   const since = new Date(Date.now() - 12 * 86400e3).toISOString();
   const recent = (await store.select('soccer_videos', { columns: V_COLS, gte: { published_at: since }, order: 'published_at.desc', limit: 400 }))
-    .filter(v => ch.has(v.channel_id) && v.embeddable !== false && !v.is_short && !v.source_metadata?.is_live && !v.region_restriction?.blocked?.includes('US') && ['highlights', 'goals', 'match_recap'].includes(v.video_type));
+    .filter(v => ch.has(v.channel_id) && v.embeddable !== false && !v.is_short && !v.source_metadata?.is_live && availability(v) !== 'blocked_us' && ['highlights', 'goals', 'match_recap'].includes(v.video_type));
   const linkRows = recent.length ? (await Promise.all(chunkArr(recent.map(v => v.provider_video_id), 100).map(part => store.select('soccer_video_links', { columns: ['provider_video_id', 'article_id', 'competition_id', 'score'], eq: { status: 'linked' }, in: { provider_video_id: part } })))).flat() : [];
   const comps = await store.select('soccer_competitions', { columns: ['id', 'slug'] });
   const compId = desk ? comps.find(c => c.slug === DESK_COMP[desk])?.id : null;

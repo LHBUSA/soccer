@@ -114,7 +114,7 @@ test('newsroom SEO: index only with published stories, NewsArticle for articles,
   const { resolve } = await import('../../src/lib/router.js');
   assert.equal(resolve('/news/mls').page, 'newsDesk');
   assert.deepEqual(resolve('/news/champions-league/some-story-abc123').params, ['champions-league', 'some-story-abc123']);
-  assert.equal(resolve('/news/la-liga').page, 'notfound');
+  for (const desk of ['la-liga', 'serie-a', 'ligue-1', 'europa-league', 'fifa']) assert.equal(resolve(`/news/${desk}`).page, 'newsDesk', desk);
   assert.deepEqual(metaPlan('/news/bundesliga/x-story').calls, ['news/x-story']);
   const empty = buildMeta('/news', 'news', [{ data: [] }]);
   assert.equal(empty.robots, NOINDEX); assert.equal(empty.status, 200);

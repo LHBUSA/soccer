@@ -38,7 +38,7 @@ const STATIC = {
 
 // Newsroom desks (URL segment -> display). The index and each desk are indexable
 // only once they contain real published stories.
-export const DESKS = { mls: 'MLS', 'premier-league': 'Premier League', 'champions-league': 'Champions League', bundesliga: 'Bundesliga', international: 'International' };
+export const DESKS = { mls: 'MLS', 'premier-league': 'Premier League', 'la-liga': 'LaLiga', 'serie-a': 'Serie A', 'ligue-1': 'Ligue 1', 'champions-league': 'Champions League', 'europa-league': 'Europa League', bundesliga: 'Bundesliga', international: 'International', fifa: 'FIFA' };
 
 export function newsMeta(pathname, env, desk = null) {
   const items = env?.data || [];
