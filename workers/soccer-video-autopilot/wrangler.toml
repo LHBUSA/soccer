@@ -1,0 +1,23 @@
+name = "soccer-video-autopilot"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+# Official-video discovery. Automated YouTube RSS/public-page scraping stays disabled;
+# this Worker uses YouTube Data API v3 only.
+[triggers]
+crons = ["13,43 * * * *"]
+
+[[kv_namespaces]]
+binding = "SOCCER_STATE"
+id = "3e665f75414849578249f5aed979b868"
+
+[observability]
+enabled = true
+
+# Secrets:
+#   SOCCER_MODEL_SUPABASE_URL
+#   SOCCER_MODEL_SUPABASE_SERVICE_ROLE_KEY
+#   VIDEO_ADMIN_TOKEN
+#   YOUTUBE_API_KEY
