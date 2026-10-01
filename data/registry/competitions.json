@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026-09-29.1",
+  "registry_version": "2026-10-01.2",
   "note": "Reviewed canonical metadata for competitions and the provider ids proven to denote them. Provider ids here are crosswalks, not identity.",
   "competitions": [
     {
@@ -206,7 +206,7 @@
       "gender": "men",
       "country_code": null,
       "tier": null,
-      "desk": "international",
+      "desk": "fifa",
       "external_ids": [
         {
           "provider": "wyscout",
@@ -384,7 +384,7 @@
       "gender": "men",
       "country_code": null,
       "tier": null,
-      "desk": "international",
+      "desk": "europa-league",
       "season_format": "split",
       "espn": {
         "league": "uefa.europa",
