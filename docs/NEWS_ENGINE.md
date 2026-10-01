@@ -120,7 +120,7 @@ Failed gates become `hold_reasons`; the schema refuses `published` while any rem
 
 ## Desks, pages, SEO
 
-Desks: `/news/mls`, `/news/premier-league`, `/news/champions-league`, `/news/bundesliga`, `/news/international`; articles at
+Desk routes now cover `/news/mls`, `/news/premier-league`, `/news/la-liga`, `/news/serie-a`, `/news/ligue-1`, `/news/champions-league`, `/news/europa-league`, `/news/bundesliga`, `/news/international` and `/news/fifa`. A desk may exist while its competition remains disabled in the registry; empty desks are `noindex` and publish nothing until canonical ingest + newsroom enablement pass. Articles live at
 `/news/:desk/:slug` (a slug under the wrong desk is a 404). `/news` and each desk are `noindex` until
 they hold published stories, then `index`. Articles carry `NewsArticle` JSON-LD (headline, dates,
 publisher, section, `about` teams) and a breadcrumb. `sitemap-news.xml` lists published articles and
@@ -128,6 +128,31 @@ only the desks that have them. The home page shows a news rail when stories exis
 
 No generated story visuals and no AI imagery: an article's hero media stays null unless approved,
 licensed media with provenance exists (docs/MEDIA.md).
+
+## V4 — UFC-quality article surface, global desk contract
+
+Soccer now uses the same product principles as the UFC newsroom while keeping soccer's canonical match
+graph as the source of truth:
+
+- **frozen evidence packet first** — the model never owns a score, player line, table row or chart value
+- **OpenAI Soccer Desk** — new stories pass through the guarded editorial desk; an unavailable model holds
+  a required desk story rather than inventing a replacement
+- **deterministic content modules** — article hero, entity chips, Match Intelligence, PBEcast, Player DNA,
+  frozen data visuals, related coverage, official video and Source & Method are attached only when evidence exists
+- **internal graph links** — players, clubs, matches and competitions link to their canonical Soccer pages
+- **official video is a separate authoritative layer** — the video autopilot owns discovery + matching;
+  the article renderer consumes validated links and never asks the writer to invent a URL
+- **SEO is server-first** — NewsArticle, breadcrumbs, entity references, canonical metadata and VideoObject
+  (validated video only)
+- **all major desk routes + FIFA are represented** — route coverage is not permission to publish. Registry
+  `news.enabled` remains the single publish switch.
+
+Current publish-enabled competitions remain the ones whose canonical lanes and newsroom contracts are
+certified: MLS, Premier League, Bundesliga, Champions League and Nations League. FIFA World Cup has a
+certified ESPN canonical lane but its 2026 tournament is historical; automatic news remains disabled until
+a deliberate historical/current-tournament policy is approved. LaLiga, Serie A, Ligue 1 and Europa League
+remain visible in the newsroom architecture but cannot publish until their ingest canaries and identity
+certification pass. This prevents an attractive empty route from becoming a fabricated content feed.
 
 ## History
 
