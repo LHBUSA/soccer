@@ -14,7 +14,7 @@ import {
 } from '../../shared/video-match.js';
 
 const WORKER = 'soccer-video-autopilot';
-const VERSION = 'soccer-video-autopilot/1.1.0';
+const VERSION = 'soccer-video-autopilot/1.1.1';
 const PROVIDER = 'youtube';
 const DEFAULT_SINCE_DAYS = 14;
 const MAX_CHANNELS_PER_RUN = 80;
@@ -59,7 +59,7 @@ function decodeXml(s) {
 
 function tagText(block, name) {
   const m = String(block || '').match(new RegExp('<' + name + '(?:\\s[^>]*)?>([\\s\\S]*?)<\\/' + name + '>', 'i'));
-  return m ? decodeXml(m[1].replace(/<!\\[CDATA\\[([\\s\\S]*?)\\]\\]>/g, '$1')).trim() : null;
+  return m ? decodeXml(m[1].replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')).trim() : null;
 }
 
 function tagAttr(block, name, attr) {
@@ -69,11 +69,11 @@ function tagAttr(block, name, attr) {
 
 function parseAtomFeed(xml) {
   const text = String(xml || '');
-  const head = text.split(/<entry[\\s>]/i)[0];
+  const head = text.split(/<entry[\s>]/i)[0];
   let channelId = tagText(head, 'yt:channelId');
   if (channelId && !/^UC/.test(channelId) && channelId.length === 22) channelId = 'UC' + channelId;
   const entries = [];
-  for (const block of text.match(/<entry[\\s>][\\s\\S]*?<\\/entry>/gi) || []) {
+  for (const block of text.match(/<entry[\s>][\s\S]*?<\/entry>/gi) || []) {
     const videoId = tagText(block, 'yt:videoId');
     if (!videoId) continue;
     const link = tagAttr(block, 'link', 'href');
@@ -84,7 +84,7 @@ function parseAtomFeed(xml) {
       description: tagText(block, 'media:description') || '',
       published: tagText(block, 'published'),
       thumbnail_url: tagAttr(block, 'media:thumbnail', 'url'),
-      is_short: /\\/shorts\\//i.test(link || ''),
+      is_short: /\/shorts\//i.test(link || ''),
     });
   }
   return { channel_id: channelId, entries };
