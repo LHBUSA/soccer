@@ -209,7 +209,7 @@ export default {
     if (url.pathname === '/v1/runs' && req.method === 'POST') {
       if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);
       const lane = url.searchParams.get('lane');
-      if (!LANES[lane]) return json({ error: 'unknown lane', lanes: Object.keys(LANES) }, 400);
+      if (!LANES[lane] && !historyLane(lane)) return json({ error: 'unknown lane', lanes: Object.keys(LANES), history: 'espn_<competition>@<year>' }, 400);
       const budget = Math.max(1, Math.min(120, Number(url.searchParams.get('budget')) || 0)) || undefined;
       return json(await runLane(env, lane, { force: url.searchParams.get('force') === '1', budget }));
     }
