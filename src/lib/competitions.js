@@ -5,7 +5,7 @@
 //   groups  a tournament of verified group tables and NO overall table (Nations League now;
 //           World Cup / EURO / Copa America / Gold Cup reuse it)
 // `nav` places the competition in the top rail: 'club' chips, or inside the INTERNATIONAL menu.
-export const FEATURED_COMPS = [
+export const ALL_COMPS = [
   { slug: 'mls', name: 'MLS', long: 'Major League Soccer', mono: 'MLS', accent: 'mls', desk: 'mls', format: 'league', nav: 'club', enabled: true },
   { slug: 'premier-league', name: 'Premier League', long: 'Premier League', mono: 'PL', accent: 'epl', desk: 'premier-league', format: 'league', nav: 'club', enabled: true },
   { slug: 'la-liga', name: 'LaLiga', long: 'LaLiga', mono: 'LL', accent: 'laliga', desk: 'la-liga', format: 'league', nav: 'club', enabled: false },
@@ -18,10 +18,13 @@ export const FEATURED_COMPS = [
   { slug: 'fifa-world-cup', name: 'FIFA World Cup', long: 'FIFA World Cup', mono: 'FIFA', accent: 'fifa', desk: 'fifa', format: 'groups', nav: 'international', teams: 'national', enabled: true },
   { slug: 'uefa-european-championship', name: 'European Championship', long: 'UEFA European Championship', mono: 'EURO', accent: 'euro', desk: 'international', format: 'groups', nav: 'international', teams: 'national', enabled: false },
 ]
+// Product navigation only advertises competitions whose canonical graph is live.
+export const FEATURED_COMPS = ALL_COMPS.filter(c => c.enabled);
+export const NEWSROOM_COMPS = ALL_COMPS;
 export const FEATURED = FEATURED_COMPS.map(c => c.slug);
 export const CLUB_COMPS = FEATURED_COMPS.filter(c => c.nav === 'club');
 export const INTERNATIONAL_COMPS = FEATURED_COMPS.filter(c => c.nav === 'international');
-export const compMeta = slug => FEATURED_COMPS.find(c => c.slug === slug) || null;
-export const compByDesk = desk => FEATURED_COMPS.find(c => c.desk === desk && c.enabled) || FEATURED_COMPS.find(c => c.desk === desk) || null;
+export const compMeta = slug => ALL_COMPS.find(c => c.slug === slug) || null;
+export const compByDesk = desk => ALL_COMPS.find(c => c.desk === desk && c.enabled) || ALL_COMPS.find(c => c.desk === desk) || null;
 // Competitions contested by national teams: copy says nations / national teams, never clubs.
 export const isNationalComp = slug => compMeta(slug)?.teams === 'national';
