@@ -33,9 +33,11 @@ export function espnClient({ storage, store, fetcher = politeFetch, budget = DEF
     const res = await fetcher(espn.https(url), { minIntervalMs: 700 });
     const ctype = res.contentType || '';
     const head = new TextDecoder().decode(res.bytes.subarray(0, 64));
-    if (!/json/.test(ctype) && !/^\s*[{[]/.test(head)) throw new espn.EspnShapeError(`non-JSON response for ${url}`);
+    // Raw capture FIRST, also for a body we refuse: a non-JSON reply is archived (and its capture row stored) before
+    // the shape error is raised, so every refused response stays inspectable.
     const rec = await archiveCapture(storage, { family: 'espn', sourceKey: 'espn.core', url: espn.https(url), status: res.status, contentType: ctype, bytes: res.bytes, parserVersion: espn.ESPN_PARSER_VERSION });
     client.pending.push(rec);
+    if (!/json/.test(ctype) && !/^\s*[{[]/.test(head)) { await client.flush().catch(() => {}); throw new espn.EspnShapeError(`non-JSON response for ${url} (capture ${rec.capture_id}, HTTP ${res.status}, ${ctype || 'no content-type'})`); }
     return { json: JSON.parse(new TextDecoder().decode(res.bytes)), capture: rec };
   };
   // OPTIONAL enrichment resources only (athlete identity lookups). The response is ALWAYS archived
