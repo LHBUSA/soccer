@@ -8,7 +8,9 @@ import { computeTable, TIEBREAKS } from '../../soccer-news/src/packet.js';
 import { selectSubject, subjectMedia } from '../../shared/news-subject.js';
 import { visualIntact } from '../../soccer-news/src/visuals.js';
 import { costReport } from '../../soccer-news/src/openai-cost.js';
-import { toMatchFrame } from '../../shared/coords.js';
+import { COORDINATE_SYSTEMS, toMatchFrame } from '../../shared/coords.js';
+// Only verified coordinate systems count as located (espn_unit_unverified keeps source values, never a canonical point).
+const VERIFIED_COORDS = Object.keys(COORDINATE_SYSTEMS);
 import { displayMinute } from '../../shared/clock.js';
 import { COVERAGE, envelope, maxTs } from './envelope.js';
 import { chunkArr } from '../../soccer-ingest/src/store.js';
@@ -508,7 +510,7 @@ async function playerObserved(store, p) {
   const [goalsRaw, shotsRaw, located] = await Promise.all([
     store.select('soccer_match_events', { columns: ['match_id', 'source_family', 'sequence', 'team_id'], eq: { player_id: p.id, is_goal: true }, order: 'match_id.asc,sequence.asc' }),
     store.select('soccer_match_events', { columns: ['match_id', 'source_family', 'sequence', 'team_id', 'minute', 'outcome', 'x_m', 'y_m'], eq: { player_id: p.id, event_type: 'shot' }, order: 'match_id.asc,sequence.asc' }),
-    store.count('soccer_match_events', { eq: { player_id: p.id }, neq: { source_coordinate_system: 'none' } }),
+    store.count('soccer_match_events', { eq: { player_id: p.id }, in: { source_coordinate_system: VERIFIED_COORDS } }),
   ]);
   const goals = perMatchBestFamily(goalsRaw); const shots = perMatchBestFamily(shotsRaw);
   const matchIds = [...new Set([...lineups.map(l => l.match_id), ...goals.map(g => g.match_id), ...shots.map(s => s.match_id)])];
@@ -804,7 +806,7 @@ export async function coverage(store) {
   const comps = await store.select('soccer_competitions', { columns: ['id', 'slug', 'name'] });
   const [matchesTotal, finishedTotal, eventsTotal, eventsXY] = await Promise.all([
     store.count('soccer_public_matches'), store.count('soccer_public_matches', { eq: { status: 'finished' } }),
-    store.count('soccer_match_events'), store.count('soccer_match_events', { neq: { source_coordinate_system: 'none' } }),
+    store.count('soccer_match_events'), store.count('soccer_match_events', { in: { source_coordinate_system: VERIFIED_COORDS } }),
   ]);
   // Matches with at least one located shot = coordinate-backed event ledger.
   const shots = await store.select('soccer_match_events', { columns: ['match_id'], eq: { event_type: 'shot' }, gte: { x_m: 0 }, order: 'match_id.asc' });
