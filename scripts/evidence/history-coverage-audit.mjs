@@ -88,6 +88,8 @@ async function auditMatch(lg, id) {
     out.plays = { count: pl.count ?? items.length, pages: pl.pageCount || 1, located: items.filter(p => Number.isFinite(p.fieldPositionX) && Number.isFinite(p.fieldPositionY) && (p.fieldPositionX !== 0 || p.fieldPositionY !== 0)).length,
       shots: types.filter(t => t?.event_type === 'shot').length, goals: items.filter(p => p.scoringPlay).length, cards: types.filter(t => t?.event_type === 'card').length, subs: types.filter(t => t?.event_type === 'substitution').length,
       passes: types.filter(t => t?.event_type === 'pass').length, xg: items.filter(p => Number.isFinite(p.expectedGoals)).length };
+    const loc = items.filter(p => Number.isFinite(p.fieldPositionX) && Number.isFinite(p.fieldPositionY) && (p.fieldPositionX !== 0 || p.fieldPositionY !== 0));
+    out.plays.coordinate_scale = !loc.length ? 'none' : loc.length >= 5 && loc.every(p => Math.abs(p.fieldPositionX) <= 1 && Math.abs(p.fieldPositionY) <= 1) ? 'unit_unverified' : 'pct_0_100';
   } else out.plays = null;
   return out;
 }
@@ -102,7 +104,7 @@ export function tierOf(m) {
   if (m.roster && m.roster.starters >= 11) t = 'LINEUP';
   if (t === 'LINEUP' && m.team_stats > 0) t = 'STATS';
   if (m.plays && (m.plays.shots + m.plays.goals + m.plays.cards) > 0) t = t === 'STATS' ? 'EVENTS' : t === 'LINEUP' ? 'EVENTS' : t;
-  if (t === 'EVENTS' && m.plays.located > 0) t = 'SPATIAL_EVENTS';
+  if (t === 'EVENTS' && m.plays.coordinate_scale === 'pct_0_100') t = 'SPATIAL_EVENTS'; // unit-scale (unverified frame) locations do not count
   return t;
 }
 
@@ -138,7 +140,7 @@ for (const comp of COMPS.filter(c => !only || only.includes(c.league) || only.in
       venue_pct: share(m => m.venue), lineup_pct: share(m => m.roster?.starters >= 11), formation_pct: share(m => m.roster?.formation), subs_pct: share(m => (m.roster?.subs || 0) > 0),
       player_stats_pct: share(m => (m.roster?.player_stats_refs || 0) > 0), team_stats_pct: share(m => m.team_stats > 0),
       pbp_pct: share(m => (m.plays?.count || 0) > 0), events_pct: share(m => m.plays && (m.plays.shots + m.plays.goals + m.plays.cards) > 0), shots_pct: share(m => (m.plays?.shots || 0) > 0),
-      spatial_pct: share(m => (m.plays?.located || 0) > 0), xg_pct: share(m => (m.plays?.xg || 0) > 0),
+      spatial_pct: share(m => (m.plays?.located || 0) > 0), spatial_verified_pct: share(m => m.plays?.coordinate_scale === 'pct_0_100'), spatial_unit_unverified_pct: share(m => m.plays?.coordinate_scale === 'unit_unverified'), xg_pct: share(m => (m.plays?.xg || 0) > 0),
       plays_median: [...S.sample.map(m => m.plays?.count || 0)].sort((a, b) => a - b)[Math.floor(S.sample.length / 2)] || 0,
       tiers: S.sample.reduce((o, m) => ({ ...o, [m.tier]: (o[m.tier] || 0) + 1 }), {}),
     };
