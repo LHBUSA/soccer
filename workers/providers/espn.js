@@ -14,8 +14,9 @@
 import { toCanonical } from '../shared/coords.js';
 import { footballMinute } from '../shared/clock.js';
 
-export const ESPN_PARSER_VERSION = 'espn-core/1.0.0';
+export const ESPN_PARSER_VERSION = 'espn-core/1.1.0'; // 1.1.0: unit-scale coordinates are kept as source values only
 export const ESPN_COORDS = 'espn_pct_v1';
+export const ESPN_UNIT_COORDS = 'espn_unit_unverified'; // 0-1 scale, frame not verified: never mapped to the canonical pitch
 export const CORE = 'https://sports.core.api.espn.com/v2/sports/soccer/leagues';
 export const ATTRIBUTION = 'Structured facts: ESPN (secondary source)';
 
@@ -177,8 +178,16 @@ export function parsePlays(items, { eventId, sideOfTeam }) {
   const plays = [...items].filter(p => p && p.id && p.valid !== false);
   plays.sort((a, b) => (a.period?.number || 0) - (b.period?.number || 0) || (a.clock?.value ?? 0) - (b.clock?.value ?? 0) || Number(a.id) - Number(b.id));
   const unmapped = {};
+  // COORDINATE SCALE (per match). Matches ESPN published before ~June 2026 (measured 2026-10-02: MLS
+  // 2026-02-21..2026-05-25, Nations League 2024/25) carry fieldPosition values on a 0-1 scale whose frame
+  // is NOT the 0-100 frame: shots sit at x 0..0.43 (a penalty at 0.23, y 0.5) while other plays span 0..1,
+  // and the left/right orientation cannot be verified. Such a match gets NO canonical location (source
+  // values kept, system espn_unit_unverified) instead of a guessed one.
+  const located = plays.filter(p => Number.isFinite(p.fieldPositionX) && Number.isFinite(p.fieldPositionY) && (p.fieldPositionX !== 0 || p.fieldPositionY !== 0));
+  const unitScale = located.length >= 5 && located.every(p => Math.abs(p.fieldPositionX) <= 1 && Math.abs(p.fieldPositionY) <= 1);
   return {
     unmapped,
+    coordinate_scale: unitScale ? ESPN_UNIT_COORDS : located.length ? ESPN_COORDS : 'none',
     events: plays.map((p, i) => {
       const text = p.type?.text || '';
       let m = mapPlayType(text);
@@ -188,11 +197,11 @@ export function parsePlays(items, { eventId, sideOfTeam }) {
       const ownGoal = !!p.ownGoal;
       const actor = (p.participants || []).find(x => x.order === 1) || (p.participants || [])[0];
       const hasXY = Number.isFinite(p.fieldPositionX) && Number.isFinite(p.fieldPositionY);
-      const start = hasXY ? toCanonical(ESPN_COORDS, p.fieldPositionX, p.fieldPositionY) : { x_m: null, y_m: null };
+      const start = hasXY && !unitScale ? toCanonical(ESPN_COORDS, p.fieldPositionX, p.fieldPositionY) : { x_m: null, y_m: null };
       const hasEnd = Number.isFinite(p.fieldPosition2X) && Number.isFinite(p.fieldPosition2Y);
       // End points are kept canonically only for passes (the pass destination);
       // for other plays their meaning is not established, so only the source value is stored.
-      const end = hasEnd && m.event_type === 'pass' ? toCanonical(ESPN_COORDS, p.fieldPosition2X, p.fieldPosition2Y) : { x_m: null, y_m: null };
+      const end = hasEnd && !unitScale && m.event_type === 'pass' ? toCanonical(ESPN_COORDS, p.fieldPosition2X, p.fieldPosition2Y) : { x_m: null, y_m: null };
       const qualifiers = {
         espn_type: text,
         ...(Number.isFinite(p.expectedGoals) ? { provider_xg: { provider: 'espn', value: p.expectedGoals } } : {}),
@@ -214,7 +223,7 @@ export function parsePlays(items, { eventId, sideOfTeam }) {
         card: m.card || (p.redCard ? 'red' : p.yellowCard ? 'yellow' : null),
         source_x: hasXY ? p.fieldPositionX : null, source_y: hasXY ? p.fieldPositionY : null,
         source_end_x: hasEnd ? p.fieldPosition2X : null, source_end_y: hasEnd ? p.fieldPosition2Y : null,
-        source_coordinate_system: hasXY ? ESPN_COORDS : 'none',
+        source_coordinate_system: hasXY ? (unitScale ? ESPN_UNIT_COORDS : ESPN_COORDS) : 'none',
         x_m: start.x_m, y_m: start.y_m, end_x_m: end.x_m, end_y_m: end.y_m,
         qualifiers, sub: text === 'Substitution' ? { in: refId((p.participants || []).find(x => x.order === 1)?.athlete?.$ref, 'athletes'), out: refId((p.participants || []).find(x => x.order === 2)?.athlete?.$ref, 'athletes') } : null,
         // raw is hashed for provenance, but prose fields are stripped first.
