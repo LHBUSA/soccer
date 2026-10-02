@@ -1,0 +1,241 @@
+{
+  "lane": "espn_uefa_nations_league@2024",
+  "base": "https://soccer-ingest.sales-fd3.workers.dev",
+  "runs": [
+    {
+      "lane": "espn_uefa_nations_league@2024",
+      "run": 1,
+      "http": 200,
+      "ms": 163907,
+      "requests": 115,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 14,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 54,
+        "before": 54,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {
+        "in_rosters": 630,
+        "founded": 3,
+        "corroborated": 0,
+        "queued": 7
+      }
+    },
+    {
+      "lane": "espn_uefa_nations_league@2024",
+      "run": 2,
+      "http": 200,
+      "ms": 216516,
+      "requests": 114,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 10,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 54,
+        "before": 54,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {
+        "in_rosters": 458,
+        "founded": 32,
+        "corroborated": 1,
+        "queued": 2
+      }
+    },
+    {
+      "lane": "espn_uefa_nations_league@2024",
+      "run": 3,
+      "http": 200,
+      "ms": 192989,
+      "requests": 115,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 10,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 54,
+        "before": 54,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {
+        "in_rosters": 453,
+        "founded": 33,
+        "corroborated": 1,
+        "queued": 1
+      }
+    },
+    {
+      "lane": "espn_uefa_nations_league@2024",
+      "run": 4,
+      "http": 200,
+      "ms": 226833,
+      "requests": 119,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 12,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 54,
+        "before": 54,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {
+        "in_rosters": 542,
+        "founded": 21,
+        "corroborated": 1,
+        "queued": 10
+      }
+    },
+    {
+      "lane": "espn_uefa_nations_league@2024",
+      "run": 5,
+      "http": 200,
+      "ms": 119968,
+      "requests": 112,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 13,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 54,
+        "before": 54,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {
+        "in_rosters": 584,
+        "founded": 8,
+        "corroborated": 0,
+        "queued": 3
+      }
+    },
+    {
+      "lane": "espn_uefa_nations_league@2024",
+      "run": 6,
+      "http": 200,
+      "ms": 216424,
+      "requests": 114,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 12,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 54,
+        "before": 54,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {
+        "in_rosters": 542,
+        "founded": 18,
+        "corroborated": 0,
+        "queued": 8
+      }
+    },
+    {
+      "lane": "espn_uefa_nations_league@2024",
+      "run": 7,
+      "http": 200,
+      "ms": 222802,
+      "requests": 118,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 11,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 54,
+        "before": 54,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {
+        "in_rosters": 501,
+        "founded": 28,
+        "corroborated": 0,
+        "queued": 7
+      }
+    },
+    {
+      "lane": "espn_uefa_nations_league@2024",
+      "run": 8,
+      "http": 200,
+      "ms": 188918,
+      "requests": 113,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 12,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 54,
+        "before": 54,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {
+        "in_rosters": 564,
+        "founded": 15,
+        "corroborated": 0,
+        "queued": 17
+      }
+    },
+    {
+      "lane": "espn_uefa_nations_league@2024",
+      "run": 9,
+      "http": 200,
+      "ms": 25166,
+      "requests": 27,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 3,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 54,
+        "before": 54,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {
+        "in_rosters": 138,
+        "founded": 3,
+        "corroborated": 0,
+        "queued": 0
+      }
+    },
+    {
+      "lane": "espn_uefa_nations_league@2024",
+      "run": 10,
+      "http": 200,
+      "ms": 801,
+      "requests": 0,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 0,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 54,
+        "before": 54,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    }
+  ]
+}
