@@ -126,9 +126,15 @@ export async function runEspnLane(lane, { store, storage, registry, areas = { ar
       const groups = new Map();
       for (const [id, f] of Object.entries(cursor.fixtures)) { const k = `${role(f)}|${f.h}|${f.a}`; groups.set(k, [...(groups.get(k) || []), id]); }
       for (const ids of groups.values()) if (ids.length > 1) for (const id of ids) {
-        if (cursor.fixtures[id].st) continue;
-        const { json } = await client.get(`${espn.CORE}/${league}/events/${id}/competitions/${id}/status`);
-        cursor.fixtures[id].st = espn.parseStatus(json);
+        const f = cursor.fixtures[id];
+        if (!f.st) { const { json } = await client.get(`${espn.CORE}/${league}/events/${id}/competitions/${id}/status`); f.st = espn.parseStatus(json); }
+        // a finished repeat also needs its score: two finished events of a pairing are two matches only when their
+        // local dates AND results differ (upsertEspnFixtures); a duplicate listing repeats the same result
+        if (f.st === 'finished' && !f.sc) {
+          const sc = {};
+          for (const side of ['h', 'a']) { const { json } = await client.get(`${espn.CORE}/${league}/events/${id}/competitions/${id}/competitors/${f[side]}/score`); sc[side] = Number.isFinite(Number(json.value)) ? Number(json.value) : null; }
+          f.sc = sc;
+        }
       }
       stats.repeated_pairings = [...groups.values()].filter(x => x.length > 1).length;
     }

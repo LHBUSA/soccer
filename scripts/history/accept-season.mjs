@@ -62,7 +62,24 @@ if (wrongType.length) fail.push({ check: 'club_national_contamination', expected
 const league = new Set(stages.filter(s => s.stage_type === 'league').map(s => s.id));
 const lm = ms.filter(m => league.has(m.stage_id) && !noResult.has(m.status));
 let format = null;
-if (comp.comp_type === 'league' && lm.length) {
+// A REVIEWED season format manifest (data/history-review/<slug>-<label>.json) replaces the generic league rules for that
+// season: exact regular-season count, every club's reviewed W/D/L/GF/GA, playoff stages equal to the reviewed fixtures.
+let review = null; try { review = JSON.parse(readFileSync(`data/history-review/${slug}-${label.replace('/', '-')}.json`, 'utf8')); } catch { review = null; }
+if (review?.review_status === 'approved') {
+  const rs = stages.find(x => x.name === review.regular_season.stage);
+  const reg = ms.filter(m => m.stage_id === rs?.id && m.status === 'finished');
+  const slugs = new Map(); for (let i = 0; i < teamIds.length; i += 100) for (const t2 of await get(`soccer_teams?select=id,slug&id=in.(${teamIds.slice(i, i + 100).join(',')})`)) slugs.set(t2.id, t2.slug);
+  const tab = {}; for (const m of reg) for (const [me, gf, ga] of [[m.home_team_id, m.home_score, m.away_score], [m.away_team_id, m.away_score, m.home_score]]) { const r = (tab[slugs.get(me)] ||= { played: 0, won: 0, drawn: 0, lost: 0, goals_for: 0, goals_against: 0 }); r.played++; r.goals_for += gf; r.goals_against += ga; if (gf > ga) r.won++; else if (gf === ga) r.drawn++; else r.lost++; }
+  const bad = Object.entries(review.regular_season.standings).filter(([sl, w]) => ['played', 'won', 'drawn', 'lost', 'goals_for', 'goals_against'].some(k => (tab[sl]?.[k] ?? -1) !== w[k])).map(([sl]) => sl);
+  if (reg.length !== review.regular_season.expected_matches) fail.push({ check: 'reviewed_regular_season_count', expected: review.regular_season.expected_matches, found: reg.length });
+  if (bad.length) fail.push({ check: 'reviewed_standings_mismatch', teams: bad });
+  const want = review.playoffs.fixtures.reduce((o, f) => ({ ...o, [f.stage]: (o[f.stage] || 0) + 1 }), {});
+  for (const [stName, n] of Object.entries(want)) { const st2 = stages.find(x => x.name === stName); const got = st2 ? ms.filter(m => m.stage_id === st2.id && m.status === 'finished').length : 0; if (got !== n) fail.push({ check: 'reviewed_playoff_stage_count', stage: stName, expected: n, found: got }); }
+  const stray = ms.filter(m => m.status === 'finished' && !stages.some(x => (x.id === rs?.id || want[x.name]) && x.id === m.stage_id));
+  if (stray.length) fail.push({ check: 'finished_match_outside_reviewed_stages', count: stray.length });
+  format = { reviewed_manifest: `data/history-review/${slug}-${label.replace('/', '-')}.json`, regular_season: reg.length, playoff_stages: want };
+  notes.push('format from a reviewed season manifest (provider stage metadata insufficient)');
+} else if (comp.comp_type === 'league' && lm.length) {
   const count = new Map(); const home = new Map(); const away = new Map(); const pairs = new Map();
   for (const m of lm) { for (const t of [m.home_team_id, m.away_team_id]) count.set(t, (count.get(t) || 0) + 1); home.set(m.home_team_id, (home.get(m.home_team_id) || 0) + 1); away.set(m.away_team_id, (away.get(m.away_team_id) || 0) + 1); const k = `${m.home_team_id}|${m.away_team_id}`; pairs.set(k, (pairs.get(k) || 0) + 1); }
   const per = [...count.values()]; const dist = per.reduce((o, n) => ({ ...o, [n]: (o[n] || 0) + 1 }), {});

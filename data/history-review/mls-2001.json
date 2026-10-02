@@ -1,0 +1,412 @@
+{
+ "manifest_version": "soccer-format-review/1.0.0",
+ "competition": "mls",
+ "season": "2001",
+ "review_status": "approved",
+ "reviewer": "PropBetEdge history review (Claude, owner-directed 2026-10-02)",
+ "reviewed_at": "2026-10-02T23:28:04.142Z",
+ "rule": "Provider events are classified only when (local date, unordered pairing, per-team goals) all agree with a reviewed fixture (Football box team1/team2 order is not home/away; the stadium is corroboration only); the regular season must reconcile to the reviewed standings; anything unproven stays held.",
+ "evidence": [
+  {
+   "source": "https://en.wikipedia.org/wiki/2001_Major_League_Soccer_season",
+   "file": "docs/evidence/history/review/wikipedia-2001-mls-season.wikitext",
+   "sha256": "3c6612a7fc3388be6a13658e30240ecd01ce83a50e748e594129ed31533af280",
+   "license": "CC BY-SA 4.0 (review evidence only; never a canonical source)"
+  },
+  {
+   "source": "https://en.wikipedia.org/wiki/Template:2001_Major_League_Soccer_season_table",
+   "file": "docs/evidence/history/review/wikipedia-template-2001-mls-season-table.wikitext",
+   "sha256": "5a7be0335297b267b9189d684c8082228762114ee9dce95005443b8212affbda",
+   "license": "CC BY-SA 4.0 (review evidence only)"
+  },
+  {
+   "source": "https://en.wikipedia.org/wiki/MLS_Cup_2001",
+   "file": "docs/evidence/history/review/wikipedia-MLS_Cup_2001.wikitext",
+   "sha256": "2d331ecff084bc2f6d6ac28edc080cee06c66f03966a12ca0b3e1394f54ed09e",
+   "license": "CC BY-SA 4.0 (review evidence only)"
+  }
+ ],
+ "facts": {
+  "teams": 12,
+  "regular_season_matches": 158,
+  "regular_season_end": "2001-09-09",
+  "playoffs_start": "2001-09-20",
+  "mls_cup": "2001-10-21",
+  "note": "Regular season ended prematurely after the September 11 attacks; remaining matches were cancelled; playoff seeding by points per game; best-of-three series decided on points, with sudden-death series overtime when level."
+ },
+ "regular_season": {
+  "stage": "Regular Season",
+  "expected_matches": 158,
+  "expected_team_games": {
+   "26": 8,
+   "27": 4
+  },
+  "standings": {
+   "miami": {
+    "code": "MIA",
+    "won": 16,
+    "drawn": 5,
+    "lost": 5,
+    "goals_for": 57,
+    "goals_against": 36,
+    "played": 26
+   },
+   "chicago-fire-fc": {
+    "code": "CHI",
+    "won": 16,
+    "drawn": 5,
+    "lost": 6,
+    "goals_for": 50,
+    "goals_against": 30,
+    "played": 27
+   },
+   "la-galaxy": {
+    "code": "LA",
+    "won": 14,
+    "drawn": 5,
+    "lost": 7,
+    "goals_for": 52,
+    "goals_against": 36,
+    "played": 26
+   },
+   "columbus-crew": {
+    "code": "CLB",
+    "won": 13,
+    "drawn": 6,
+    "lost": 7,
+    "goals_for": 49,
+    "goals_against": 36,
+    "played": 26
+   },
+   "san-jose-earthquakes": {
+    "code": "SJ",
+    "won": 13,
+    "drawn": 6,
+    "lost": 7,
+    "goals_for": 47,
+    "goals_against": 29,
+    "played": 26
+   },
+   "red-bull-new-york": {
+    "code": "MET",
+    "won": 13,
+    "drawn": 3,
+    "lost": 10,
+    "goals_for": 38,
+    "goals_against": 35,
+    "played": 26
+   },
+   "fc-dallas": {
+    "code": "DAL",
+    "won": 10,
+    "drawn": 5,
+    "lost": 11,
+    "goals_for": 48,
+    "goals_against": 47,
+    "played": 26
+   },
+   "sporting-kansas-city": {
+    "code": "KC",
+    "won": 11,
+    "drawn": 3,
+    "lost": 13,
+    "goals_for": 33,
+    "goals_against": 53,
+    "played": 27
+   },
+   "new-england-revolution": {
+    "code": "NE",
+    "won": 7,
+    "drawn": 6,
+    "lost": 14,
+    "goals_for": 35,
+    "goals_against": 52,
+    "played": 27
+   },
+   "d-c-united": {
+    "code": "DC",
+    "won": 8,
+    "drawn": 2,
+    "lost": 16,
+    "goals_for": 42,
+    "goals_against": 50,
+    "played": 26
+   },
+   "colorado-rapids": {
+    "code": "COL",
+    "won": 5,
+    "drawn": 8,
+    "lost": 13,
+    "goals_for": 36,
+    "goals_against": 47,
+    "played": 26
+   },
+   "tampa-bay": {
+    "code": "TB",
+    "won": 4,
+    "drawn": 2,
+    "lost": 21,
+    "goals_for": 32,
+    "goals_against": 68,
+    "played": 27
+   }
+  }
+ },
+ "playoffs": {
+  "structure": [
+   "Quarterfinals (best of three)",
+   "Semifinals (best of three)",
+   "MLS Cup (single match)"
+  ],
+  "fixtures": [
+   {
+    "round": "Quarterfinals",
+    "date_local": "2001-09-20",
+    "team_a": "fc-dallas",
+    "team_b": "chicago-fire-fc",
+    "goals_a": 0,
+    "goals_b": 2,
+    "aet": false,
+    "stadium": "Soldier Field",
+    "stage": "Quarterfinals"
+   },
+   {
+    "round": "Quarterfinals",
+    "date_local": "2001-09-23",
+    "team_a": "chicago-fire-fc",
+    "team_b": "fc-dallas",
+    "goals_a": 1,
+    "goals_b": 1,
+    "aet": false,
+    "stadium": "Cotton Bowl (stadium)",
+    "stage": "Quarterfinals"
+   },
+   {
+    "round": "Quarterfinals",
+    "date_local": "2001-09-29",
+    "team_a": "fc-dallas",
+    "team_b": "chicago-fire-fc",
+    "goals_a": 0,
+    "goals_b": 2,
+    "aet": false,
+    "stadium": "Soldier Field",
+    "stage": "Quarterfinals"
+   },
+   {
+    "round": "Quarterfinals",
+    "date_local": "2001-09-22",
+    "team_a": "sporting-kansas-city",
+    "team_b": "miami",
+    "goals_a": 0,
+    "goals_b": 2,
+    "aet": false,
+    "stadium": "Lockhart Stadium",
+    "stage": "Quarterfinals"
+   },
+   {
+    "round": "Quarterfinals",
+    "date_local": "2001-09-26",
+    "team_a": "miami",
+    "team_b": "sporting-kansas-city",
+    "goals_a": 0,
+    "goals_b": 3,
+    "aet": false,
+    "stadium": "Arrowhead Stadium",
+    "stage": "Quarterfinals"
+   },
+   {
+    "round": "Quarterfinals",
+    "date_local": "2001-09-29",
+    "team_a": "sporting-kansas-city",
+    "team_b": "miami",
+    "goals_a": 1,
+    "goals_b": 2,
+    "aet": false,
+    "stadium": "Lockhart Stadium",
+    "stage": "Quarterfinals"
+   },
+   {
+    "round": "Quarterfinals",
+    "date_local": "2001-09-23",
+    "team_a": "red-bull-new-york",
+    "team_b": "la-galaxy",
+    "goals_a": 1,
+    "goals_b": 1,
+    "aet": false,
+    "stadium": "Rose Bowl (stadium)",
+    "stage": "Quarterfinals"
+   },
+   {
+    "round": "Quarterfinals",
+    "date_local": "2001-09-26",
+    "team_a": "la-galaxy",
+    "team_b": "red-bull-new-york",
+    "goals_a": 1,
+    "goals_b": 4,
+    "aet": false,
+    "stadium": "Giants Stadium",
+    "stage": "Quarterfinals"
+   },
+   {
+    "round": "Quarterfinals",
+    "date_local": "2001-09-29",
+    "team_a": "red-bull-new-york",
+    "team_b": "la-galaxy",
+    "goals_a": 2,
+    "goals_b": 3,
+    "aet": false,
+    "stadium": "Rose Bowl (stadium)",
+    "stage": "Quarterfinals"
+   },
+   {
+    "round": "Quarterfinals",
+    "date_local": "2001-09-22",
+    "team_a": "san-jose-earthquakes",
+    "team_b": "columbus-crew",
+    "goals_a": 3,
+    "goals_b": 1,
+    "aet": false,
+    "stadium": "Columbus Crew Stadium",
+    "stage": "Quarterfinals"
+   },
+   {
+    "round": "Quarterfinals",
+    "date_local": "2001-09-26",
+    "team_a": "columbus-crew",
+    "team_b": "san-jose-earthquakes",
+    "goals_a": 0,
+    "goals_b": 3,
+    "aet": false,
+    "stadium": "Spartan Stadium (San Jose)",
+    "stage": "Quarterfinals"
+   },
+   {
+    "round": "Semifinals",
+    "date_local": "2001-10-10",
+    "team_a": "la-galaxy",
+    "team_b": "chicago-fire-fc",
+    "goals_a": 1,
+    "goals_b": 1,
+    "aet": false,
+    "stadium": "Soldier Field",
+    "stage": "Semifinals"
+   },
+   {
+    "round": "Semifinals",
+    "date_local": "2001-10-13",
+    "team_a": "chicago-fire-fc",
+    "team_b": "la-galaxy",
+    "goals_a": 0,
+    "goals_b": 1,
+    "aet": true,
+    "stadium": "Rose Bowl (stadium)",
+    "stage": "Semifinals",
+    "provider_date_exception": {
+     "provider": "espn",
+     "event_id": "17679",
+     "provider_local_date": "2001-10-14",
+     "reason": "ESPN kickoff 2001-10-15T02:00Z (Oct 14 local) vs Oct 13 in the season article; the MLS Cup 2001 article independently cites the Los Angeles Times match report \"Hernandez Is Just in Time\" dated October 14, 2001 (the morning after an Oct 13 evening match).",
+     "evidence": [
+      "https://en.wikipedia.org/wiki/2001_Major_League_Soccer_season",
+      "https://en.wikipedia.org/wiki/MLS_Cup_2001",
+      "https://www.latimes.com/archives/la-xpm-2001-oct-14-sp-57224-story.html"
+     ]
+    }
+   },
+   {
+    "round": "Semifinals",
+    "date_local": "2001-10-17",
+    "team_a": "la-galaxy",
+    "team_b": "chicago-fire-fc",
+    "goals_a": 2,
+    "goals_b": 1,
+    "aet": true,
+    "stadium": "Soldier Field",
+    "stage": "Semifinals"
+   },
+   {
+    "round": "Semifinals",
+    "date_local": "2001-10-10",
+    "team_a": "san-jose-earthquakes",
+    "team_b": "miami",
+    "goals_a": 0,
+    "goals_b": 1,
+    "aet": false,
+    "stadium": "Lockhart Stadium",
+    "stage": "Semifinals"
+   },
+   {
+    "round": "Semifinals",
+    "date_local": "2001-10-14",
+    "team_a": "miami",
+    "team_b": "san-jose-earthquakes",
+    "goals_a": 0,
+    "goals_b": 4,
+    "aet": false,
+    "stadium": "Spartan Stadium (San Jose)",
+    "stage": "Semifinals"
+   },
+   {
+    "round": "Semifinals",
+    "date_local": "2001-10-17",
+    "team_a": "san-jose-earthquakes",
+    "team_b": "miami",
+    "goals_a": 1,
+    "goals_b": 0,
+    "aet": true,
+    "stadium": "Lockhart Stadium",
+    "stage": "Semifinals"
+   },
+   {
+    "round": "MLS Cup",
+    "date_local": "2001-10-21",
+    "team_a": "la-galaxy",
+    "team_b": "san-jose-earthquakes",
+    "goals_a": 1,
+    "goals_b": 2,
+    "aet": true,
+    "stadium": "Columbus Crew Stadium",
+    "stage": "MLS Cup"
+   }
+  ],
+  "notes": [
+   {
+    "round": "Quarterfinals",
+    "skipped_box": {
+     "date": "",
+     "score": "0–1 series ([[Extra time|SDET]])"
+    },
+    "reason": "no dated match (e.g. a series tiebreaker / sudden-death series overtime): not a fixture"
+   }
+  ]
+ },
+ "team_map": {
+  "CHI": "chicago-fire-fc",
+  "COL": "colorado-rapids",
+  "CLB": "columbus-crew",
+  "DAL": "fc-dallas",
+  "DC": "d-c-united",
+  "KC": "sporting-kansas-city",
+  "MIA": "miami",
+  "LA": "la-galaxy",
+  "MET": "red-bull-new-york",
+  "NE": "new-england-revolution",
+  "SJ": "san-jose-earthquakes",
+  "TB": "tampa-bay",
+  "Chicago Fire Soccer Club": "chicago-fire-fc",
+  "Chicago Fire FC": "chicago-fire-fc",
+  "FC Dallas": "fc-dallas",
+  "Sporting Kansas City": "sporting-kansas-city",
+  "Miami Fusion": "miami",
+  "New York Red Bulls": "red-bull-new-york",
+  "LA Galaxy": "la-galaxy",
+  "Los Angeles Galaxy": "la-galaxy",
+  "San Jose Earthquakes": "san-jose-earthquakes",
+  "Columbus Crew": "columbus-crew",
+  "Columbus Crew SC": "columbus-crew",
+  "Colorado Rapids": "colorado-rapids",
+  "D.C. United": "d-c-united",
+  "New England Revolution": "new-england-revolution",
+  "Tampa Bay Mutiny": "tampa-bay"
+ }
+}

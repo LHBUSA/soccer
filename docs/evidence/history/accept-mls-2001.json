@@ -1,5 +1,5 @@
 {
- "at": "2026-10-02T23:11:21.777Z",
+ "at": "2026-10-02T23:28:25.009Z",
  "competition": "mls",
  "season": "2001",
  "state_before": "held",
@@ -11,18 +11,12 @@
  ],
  "teams": 12,
  "format": {
-  "teams": 12,
-  "league_matches": 175,
-  "games_per_team": {
-   "25": 1,
-   "26": 1,
-   "27": 2,
-   "28": 1,
-   "29": 2,
-   "30": 1,
-   "31": 1,
-   "32": 1,
-   "33": 2
+  "reviewed_manifest": "data/history-review/mls-2001.json",
+  "regular_season": 175,
+  "playoff_stages": {
+   "Quarterfinals": 11,
+   "Semifinals": 6,
+   "MLS Cup": 1
   }
  },
  "providers": [
@@ -41,22 +35,46 @@
   "event record for 0% of finished matches"
  ],
  "notes": [
-  "3 past match(es) postponed/cancelled/abandoned (listed, not results)"
+  "3 past match(es) postponed/cancelled/abandoned (listed, not results)",
+  "format from a reviewed season manifest (provider stage metadata insufficient)"
  ],
  "checks_failed": [
   {
-   "check": "games_per_team_uneven",
-   "distribution": {
-    "25": 1,
-    "26": 1,
-    "27": 2,
-    "28": 1,
-    "29": 2,
-    "30": 1,
-    "31": 1,
-    "32": 1,
-    "33": 2
-   }
+   "check": "reviewed_regular_season_count",
+   "expected": 158,
+   "found": 175
+  },
+  {
+   "check": "reviewed_standings_mismatch",
+   "teams": [
+    "miami",
+    "chicago-fire-fc",
+    "la-galaxy",
+    "columbus-crew",
+    "san-jose-earthquakes",
+    "red-bull-new-york",
+    "fc-dallas",
+    "sporting-kansas-city",
+    "colorado-rapids"
+   ]
+  },
+  {
+   "check": "reviewed_playoff_stage_count",
+   "stage": "Quarterfinals",
+   "expected": 11,
+   "found": 0
+  },
+  {
+   "check": "reviewed_playoff_stage_count",
+   "stage": "Semifinals",
+   "expected": 6,
+   "found": 0
+  },
+  {
+   "check": "reviewed_playoff_stage_count",
+   "stage": "MLS Cup",
+   "expected": 1,
+   "found": 0
   }
  ],
  "pass": false

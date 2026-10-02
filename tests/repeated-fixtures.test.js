@@ -55,6 +55,23 @@ test('ambiguous: two finished events of a pairing within the tolerance -> one ma
   } finally { await s.close(); }
 });
 
+test('two finished events of a pairing 3 days apart: different dates AND results = two matches; same result = queued', async () => {
+  const { s, teamMap } = await world();
+  try {
+    const sc = (f, h, a) => ({ ...f, sc: { h, a } });
+    const cursor = { history: true, fixtures: {
+      // MLS 2001 shape: San Jose 1-1 Colorado (May 30 local) and San Jose 2-1 Colorado (June 2 local), 71 h apart
+      m1: sc(fx('3', '4', '2001-05-31T02:00:00Z', 'finished'), 1, 1), m2: sc(fx('3', '4', '2001-06-03T01:00:00Z', 'finished'), 2, 1),
+      // a duplicate listing: same pairing, 2 days apart, SAME result -> never a second match
+      d1: sc(fx('1', '2', '2001-07-01T02:00:00Z', 'finished'), 0, 0), d2: sc(fx('1', '2', '2001-07-03T02:00:00Z', 'finished'), 0, 0),
+    } };
+    const r = await upsertEspnFixtures(s, { comp: comp('mls'), year: 2001, cursor, teamMap, now: Date.parse('2026-10-02') });
+    assert.equal(r.founded, 3, JSON.stringify(r)); assert.equal(r.queued, 1);
+    const xw = (await s.select('soccer_match_external_ids', { columns: ['external_id'], eq: { provider: 'espn' } })).map(x => x.external_id).sort();
+    assert.deepEqual(xw, ['d1', 'm1', 'm2']);
+  } finally { await s.close(); }
+});
+
 test('E: foreign-provider match — ESPN attaches within the kickoff tolerance (not exact equality), queues outside it, never founds where may_found is false', async () => {
   const { s, teamMap } = await world();
   try {

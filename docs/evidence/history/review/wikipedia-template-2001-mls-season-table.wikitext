@@ -1,0 +1,47 @@
+{{#invoke:Sports table|main|style=WDL
+|update=complete|source=[https://www.mlssoccer.com/standings/2023/supporters-shield#season=2001&live=true MLS]
+|teamwidth=200|use_tie=y|loss_before_tie=true
+|ranking_style=ppgpts
+
+<!-- Display order is listed below. Change team # to change order. -->
+|team_order=MIA, CHI, LA, CLB, SJ, MET, DAL, KC, NE, DC, COL, TB
+|section=Overall |res_col_header=Q
+
+|win_CHI=16 |draw_CHI=5 |loss_CHI=6|gf_CHI=50|ga_CHI=30|status_CHI= <!-- Chicago Fire -->
+|win_COL=5 |draw_COL=8 |loss_COL=13 |gf_COL=36|ga_COL=47|status_COL= <!-- Colorado Rapids -->
+|win_CLB=13|draw_CLB=6 |loss_CLB=7 |gf_CLB=49|ga_CLB=36|status_CLB= <!-- Columbus Crew -->
+|win_DAL=10 |draw_DAL=5 |loss_DAL=11 |gf_DAL=48|ga_DAL=47|status_DAL= <!-- Dallas Burn -->
+|win_DC=8 |draw_DC=2 |loss_DC=16|gf_DC=42|ga_DC=50|status_DC= <!-- D.C. United --> 
+|win_KC=11|draw_KC=3 |loss_KC=13 |gf_KC=33|ga_KC=53|status_KC= <!-- Kansas City Wizards -->
+|win_MIA=16 |draw_MIA=5 |loss_MIA=5|gf_MIA=57|ga_MIA=36|status_MIA=S <!-- Miami Fusion -->
+|win_LA=14 |draw_LA=5 |loss_LA=7|gf_LA=52|ga_LA=36|status_LA= <!-- Los Angeles Galaxy -->
+|win_MET=13 |draw_MET=3 |loss_MET=10 |gf_MET=38|ga_MET=35|status_MET= <!-- MetroStars -->
+|win_NE=7 |draw_NE=6 |loss_NE=14 |gf_NE=35|ga_NE=52|status_NE= <!-- New England Revolution -->
+|win_SJ=13 |draw_SJ=6 |loss_SJ=7 |gf_SJ=47|ga_SJ=29|status_SJ=C <!-- San Jose Earthquakes -->
+|win_TB=4|draw_TB=2 |loss_TB=21 |gf_TB=32|ga_TB=68|status_TB= <!-- Tampa Bay Mutiny -->
+
+|name_CHI=[[Chicago Fire FC|Chicago Fire]]
+|name_COL=[[Colorado Rapids]] 
+|name_CLB=[[Columbus Crew]]
+|name_DC=[[D.C. United]]
+|name_DAL=[[Dallas Burn]]
+|name_KC=[[Kansas City Wizards]]
+|name_MIA=[[Miami Fusion]]
+|name_LA=[[Los Angeles Galaxy]]
+|name_MET=[[MetroStars]]
+|name_NE=[[New England Revolution]]
+|name_SJ=[[San Jose Earthquakes]]
+|name_TB=[[Tampa Bay Mutiny]]
+
+|col_QPCC=green1|text_QPCC=[[2002 CONCACAF Champions' Cup|CONCACAF Champions' Cup]]
+|result1=QPCC|result5=QPCC
+
+|status_text_S=Supporters' Shield
+|status_text_C=Champion
+
+|class_rules=1) points per game; 2) total goal differential per match played; 3) total goals scored per match played; 4) away record; 5) away goal differential; 6) total goals scored in away matches; 7) home record; 8) home goal differential; 9) total goals scored in home matches; 10) fewest disciplinary points per match played; 6) away goal differential per away match played; 11) coin toss or drawing of lots.
+}}<noinclude>
+----
+{{Major League Soccer standings template}}
+[[Category:Major League Soccer standings templates|2001]]
+</noinclude>

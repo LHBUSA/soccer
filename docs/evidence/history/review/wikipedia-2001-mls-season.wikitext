@@ -1,0 +1,855 @@
+{{Short description|6th season of Major League Soccer}}
+{{Use mdy dates|date=March 2019}}
+{{Use American English|date=June 2017}}
+{{Infobox football league season
+  | season                     = 2001
+  | num_teams                  = 12
+  | mlscup                     = [[San Jose Earthquakes]] (1st title)
+  | shield                     = [[Miami Fusion]] (1st shield)
+  | continentalcup1           = [[2002 CONCACAF Champions' Cup]]
+| continentalcup1 qualifiers= [[San Jose Earthquakes]]
+  | league topscorer           = [[Alex Pineda Chacon]]<br>[[Miami Fusion F.C.]]<br>Goals: 19
+  | matches                    = 158
+  | total goals                = 519
+  | average goals              = 
+  | biggest home win           =
+  | biggest away win           =
+  | highest scoring            =
+  | longest wins               =
+  | longest unbeaten           =
+  | longest losses             =
+  | highest attendance         = [[D.C. United]]<br>Season: 258,213<br>Game Avg.: 21,518
+  | lowest attendance          = [[San Jose Earthquakes]]<br>Season: 125,250<br>Game Avg.: 9,635
+  | attendance                 = 2,363,859
+  | average attendance         = 14,961
+  | prevseason                 = [[2000 Major League Soccer season|2000]]
+  | nextseason                 = [[2002 Major League Soccer season|2002]]
+}}
+{{Location map+ |United States |width=525 |float=right |caption=<div style="text-align: center;">Locations of teams for the 2001 Major League Soccer season<br>[[File:ButtonViolet.svg|8px]] Western Division &nbsp; [[File:ButtonGray.svg|8px]] Central Division &nbsp; [[File:ButtonGreen.svg|8px]] Eastern Division</div>|places=
+{{Location map~ |United States |lat=38.889722 |long=-76.971667 |label='''[[D.C. United]]''' |position=bottom |mark=ButtonGreen.svg}}
+{{Location map~ |United States |lat=40.737411 |long=-74.153763 |label='''[[NY/NJ MetroStars|MetroStars]]''' |position=left |mark=ButtonGreen.svg}}
+{{Location map~ |United States |lat=26.193056 |long=-80.161111 |label='''[[Miami Fusion|Miami]]''' |position=right |mark=ButtonGreen.svg}}
+{{Location map~ |United States |lat=42.090833 |long=-71.264444 |label='''[[New England Revolution|New England]]''' |position=top |mark=ButtonGreen.svg}}
+{{Location map~ |United States |lat=41.742432 |long=-87.806789 |label='''[[Chicago Fire SC|Chicago]]''' |position=top |mark=ButtonGray.svg}}
+{{Location map~ |United States |lat=40.009444 |long=-82.991111 |label='''[[Columbus Crew|Columbus]]''' |position=left |mark=ButtonGray.svg}}
+{{Location map~ |United States |lat=33.154444 |long=-96.835278 |label='''[[Dallas Burn|Dallas]]''' |position=right |mark=ButtonGray.svg}}
+{{Location map~ |United States |lat=27.978889 |long=-82.503611 |label='''[[Tampa Bay Mutiny|Tampa Bay]]''' |position=top |mark=ButtonGray.svg}}
+{{Location map~ |United States |lat=39.35 |long=-104.8918 |label='''[[Colorado Rapids|Colorado]]''' |position=top |mark=ButtonViolet.svg}}
+{{Location map~ |United States |lat=33.864444 |long=-118.261111 |label='''[[Los Angeles Galaxy|Los Angeles]]''' |position=bottom |mark=ButtonViolet.svg}}
+{{Location map~ |United States |lat=39.1218 |long=-94.8237 |label='''[[Kansas City Wizards|Kansas City]]''' |position=bottom |mark=ButtonViolet.svg}}
+{{Location map~ |United States |lat=37.350556 |long=-121.936667 |label='''[[San Jose Earthquakes|San Jose]]''' |position=top |mark=ButtonViolet.svg}}
+}}
+
+The '''2001 Major League Soccer season''' was the sixth season of [[Major League Soccer]]. It was also the 89th season of FIFA-sanctioned soccer in the United States, and the 23rd with a national first-division league.
+
+The season was shortened due to the [[September 11 attacks]], with the final weeks' regular season matches being canceled. Due to the different number of games played, playoff ordering was determined by points per game, instead of total points.<ref name=2001cancel>{{cite web |url=http://mlsnet.com:80/content/01/mls0913teleconference.html |title=MLS Teleconference: September 13, 2001 |website=MLSNET |archive-url=https://web.archive.org/web/20020211203952/http://mlsnet.com/content/01/mls0913teleconference.html |archive-date=February 11, 2002 |access-date=November 25, 2018 |url-status=dead  }}</ref>
+
+The regular season began on April 7, and concluded prematurely on September 9. The 2001 MLS Cup Playoffs began on September 20, and concluded with [[MLS Cup 2001]] on October 21. The [[Miami Fusion]] won their first [[Supporters' Shield]] and the [[San Jose Earthquakes]] defeated the [[Los Angeles Galaxy]] in the final to win their first MLS Cup.
+
+==Overview==
+===Season format===
+The season began on April 7 and concluded with [[MLS Cup 2001|MLS Cup]] on October 21. The 12 teams were split into three divisions. Each team was to play 28 games<ref>{{cite news |last=White |first=Joseph |date=April 5, 2001 |title=Everything but attendance rising for Major League Soccer |page=B4 |work=[[News & Messenger]]] |agency=Associated Press |url=https://www.newspapers.com/article/news-and-messenger-everything-but-attend/159525028/ |via=[[Newspapers.com]] |accessdate=November 21, 2024}}</ref> that were evenly divided between home and away. Each team would play every other team in their division four times, for a total of 12 games. The remaining schedule consisted of three games against four select opponents in one of the other divisions, and two games against the remaining four teams.
+
+The eight teams with the most points per game qualified for the [[MLS Cup Playoffs]]. The quarterfinals and semifinals were played as a best-of-three series, and the winners advanced to [[MLS Cup 2000|MLS Cup]]. In all rounds, draws were broken by penalty shootout if necessary. The [[away goals rule]] was not used in any round.
+
+The team with the most points in the regular season was awarded the [[MLS Supporters' Shield]]. The winner of [[MLS Cup]], and the runner-up, qualified for the [[2002 CONCACAF Champions' Cup|CONCACAF Champions' Cup]].
+
+===Stadiums and locations===
+{{main|List of Major League Soccer stadiums}}
+{| class="wikitable sortable" style="text-align:left"
+|-
+! Team
+! Stadium
+! Capacity
+|-
+| [[Chicago Fire FC|Chicago Fire]]
+| [[Soldier Field]]
+| 66,944
+|-
+|-
+| [[Colorado Rapids]]
+| [[Mile High Stadium]]
+| 76,273
+|-
+| [[Columbus Crew]]
+| [[Historic Crew Stadium|Columbus Crew Stadium]]
+| 22,555
+|-
+| [[D.C. United]]
+| [[RFK Memorial Stadium|RFK Stadium]]
+| 46,000
+|-
+| [[FC Dallas|Dallas Burn]]
+| [[Cotton Bowl (stadium)|Cotton Bowl]]
+| 92,100
+|-
+| [[Sporting Kansas City|Kansas City Wizards]]
+| [[Arrowhead Stadium]]
+| 81,425
+|-
+| [[Los Angeles Galaxy]]
+| [[Rose Bowl (stadium)|Rose Bowl]]
+| 92,542
+|-
+| [[Miami Fusion]]
+| [[Lockhart Stadium]]
+| 20,450
+|-
+|-
+| [[New England Revolution]]
+| [[Foxboro Stadium]]
+| 60,292
+|-
+| [[New York Red Bulls|MetroStars]]
+| [[Giants Stadium]]
+| 80,200
+|-
+| [[San Jose Earthquakes]]
+| [[CEFCU Stadium|Spartan Stadium]]
+| 30,456
+|-
+| [[Tampa Bay Mutiny]]
+| [[Raymond James Stadium]]
+| 69,218
+|}
+
+===Personnel and sponsorships===
+{| class="wikitable sortable" style="text-align: left;"
+|-
+! Team
+! Head coach
+! Captain
+! Shirt sponsor
+|-
+| [[Chicago Fire FC|Chicago Fire]]
+| {{flagicon|USA}} [[Bob Bradley]]
+| 
+| align="center" colspan="1" style="background:#ececec; color:gray |— 
+|-
+|-
+| [[Colorado Rapids]]
+| {{flagicon|USA}} [[Tim Hankinson]]
+| 
+| 
+|-
+| [[Columbus Crew]]
+| {{flagicon|USA}} [[Greg Andrulis]]
+| 
+| align="center" colspan="1" style="background:#ececec; color:gray |— 
+|-
+| [[D.C. United]]
+| {{flagicon|NED}} [[Thomas Rongen]]
+| 
+| [[MasterCard]]
+|-
+| [[FC Dallas|Dallas Burn]]
+| {{flagicon|USA}} [[Mike Jeffries (soccer)|Mike Jeffries]]
+| 
+|
+|-
+| [[Sporting Kansas City|Kansas City Wizards]]
+| {{flagicon|USA}} [[Bob Gansler]]
+| 
+| align="center" colspan="1" style="background:#ececec; color:gray |— 
+|-
+| [[Los Angeles Galaxy]]
+| {{flagicon|USA}} [[Sigi Schmid]]
+| 
+| align="center" colspan="1" style="background:#ececec; color:gray |— 
+|-
+| [[New York Red Bulls|MetroStars]]
+| {{flagicon|ECU}} [[Octavio Zambrano]]
+| {{flagicon|USA}} [[Tab Ramos]]
+| [[New York Life Insurance Company|New York Life]]
+|-
+| [[Miami Fusion]]
+| {{flagicon|ENG}} [[Ray Hudson]]
+| 
+| align="center" colspan="1" style="background:#ececec; color:gray |— 
+|-
+| [[New England Revolution]]
+| {{flagicon|USA}} [[Fernando Clavijo]]
+| 
+| align="center" colspan="1" style="background:#ececec; color:gray |— 
+|-
+| [[San Jose Earthquakes]]
+| {{flagicon|CAN}} [[Frank Yallop]]
+| {{flagicon|USA}} [[Jeff Agoos]]
+| [[Yahoo! Sports]]
+|-
+| [[Tampa Bay Mutiny]]
+| {{flagicon|USA}} [[Perry Van der Beck]]
+| 
+| 
+|}
+
+===Coaching changes===
+{| class="wikitable sortable"
+|-
+! Team!! Outgoing coach!! Manner of departure!! Date of vacancy!! Incoming coach!! Date of appointment
+
+|-
+| [[Columbus Crew]]
+| {{flagicon|USA}} [[Tom Fitzgerald (soccer)|Tom Fitzgerald]]
+| Fired
+| May 17, 2001
+| {{flagicon|USA}} [[Greg Andrulis]]
+| May 17, 2001
+|-
+| [[Tampa Bay Mutiny]]
+| {{flagicon|SPA}} [[Alfonso Mondelo]]
+| Resigned
+| July 5, 2001
+| {{flagicon|USA}} [[Perry Van der Beck]]
+| July 5, 2001
+|-
+|}
+
+==Standings==
+
+===Eastern Division===
+{{2001 Major League Soccer Eastern Conference table}}
+
+===Central Division===
+{{2001 Major League Soccer Central Conference table}}
+
+===Western Division===
+{{2001 Major League Soccer Western Conference table}}
+
+===Overall standings===
+{{2001 Major League Soccer season table}}
+
+==MLS Cup Playoffs==
+
+===Bracket===
+
+{{8TeamBracket|legs=3/3/1
+| RD1=Quarterfinals
+| RD2=Semifinals
+| RD3=[[MLS Cup 2001|MLS Cup]]
+| score-width=20px
+| team-width=260px
+| RD1-seed1=2
+| RD1-team1='''[[Chicago Fire Soccer Club|Chicago Fire]]''' '''(7 Points)'''
+| RD1-score1-1='''2'''
+| RD1-score1-2=1
+| RD1-score1-3='''2'''
+| RD1-seed2=7
+| RD1-team2= [[FC Dallas|Dallas Burn]] '''(1 Points)'''
+| RD1-score2-1=0
+| RD1-score2-2=1
+| RD1-score2-3=0
+| RD1-seed3=3
+| RD1-team3='''[[LA Galaxy|Los Angeles Galaxy]]''' ([[sudden death (sport)|SDET]])* '''(4 Points)'''
+| RD1-score3-1=1
+| RD1-score3-2=1
+| RD1-score3-3='''3'''*
+| RD1-seed4=6
+| RD1-team4=[[New York Red Bulls|MetroStars]] '''(4 Points)'''
+| RD1-score4-1=1
+| RD1-score4-2='''4'''
+| RD1-score4-3=2
+| RD1-seed5=1
+| RD1-team5='''[[Miami Fusion]]''' '''(6 Points)'''
+| RD1-score5-1='''2'''
+| RD1-score5-2=0
+| RD1-score5-3='''2'''
+| RD1-seed6=8
+| RD1-team6=[[Sporting Kansas City|Kansas City Wizards]] '''(3 Points)'''
+| RD1-score6-1=0
+| RD1-score6-2='''3'''
+| RD1-score6-3=1
+| RD1-seed7=4
+| RD1-team7=[[Columbus Crew SC|Columbus Crew]] '''(0 Points)'''
+| RD1-score7-1=1
+| RD1-score7-2=0
+| RD1-score7-3=x
+| RD1-seed8=5
+| RD1-team8='''[[San Jose Earthquakes]]''' '''(6 Points)'''
+| RD1-score8-1='''3'''
+| RD1-score8-2='''3'''
+| RD1-score8-3=x
+| RD2-seed1=2
+| RD2-team1=[[Chicago Fire Soccer Club|Chicago Fire]] '''(1 Points)'''
+| RD2-score1-1=1
+| RD2-score1-2=0
+| RD2-score1-3=1
+| RD2-seed2=3
+| RD2-team2='''[[LA Galaxy|Los Angeles Galaxy]]''' ([[sudden death (sport)|ASDET]])* '''(7 Points)'''
+| RD2-score2-1=1
+| RD2-score2-2='''1'''*
+| RD2-score2-3='''2'''*
+| RD2-seed3=1
+| RD2-team3=[[Miami Fusion]] '''(3 Points)'''
+| RD2-score3-1='''1'''
+| RD2-score3-2=0
+| RD2-score3-3=0
+| RD2-seed4=5
+| RD2-team4='''[[San Jose Earthquakes]]''' ([[sudden death (sport)|SDET]])* '''(6 Points)'''
+| RD2-score4-1=0
+| RD2-score4-2='''4'''
+| RD2-score4-3='''1'''*
+| RD3-seed1=3
+| RD3-team1=[[LA Galaxy|Los Angeles Galaxy]]
+| RD3-score1=1
+| RD3-seed2=5
+| RD3-team2='''[[San Jose Earthquakes]]''' ([[sudden death (sport)|ASDET]])*
+| RD3-score2='''2'''
+}}
+
+*'''Points system'''<br>Win = 3 Pts.<br>Loss = 0 Pts.<br>Draw = 1 Pt.
+*'''ASDET*'''=Added sudden death extra time (game tie breaker)<br>'''SDET**'''=Sudden death extra time (series tie breaker)<br>'''Teams will advance at 5 points.'''
+
+===Quarterfinals===
+
+{{Football box
+|date = September 20, 2001
+|team1 = [[FC Dallas|Dallas Burn]]
+|score = 0–2
+|team2 = [[Chicago Fire Soccer Club|Chicago Fire]]
+|goals1 =
+|goals2 = [[Carlos Bocanegra|Bocanegra]] {{goal|40}} <br> [[Evan Whitfield|Whitfield]] {{goal|90}}+
+|stadium = [[Soldier Field]]<br>[[Chicago, Illinois]]<br>Attendance: 8,314
+}}
+
+{{Football box
+|date = September 23, 2001
+|team1 = [[Chicago Fire Soccer Club|Chicago Fire]]
+|score = 1–1
+|team2 = [[FC Dallas|Dallas Burn]]
+|goals1 = [[Jamar Beasley|J. Beasley]] {{goal|84}}
+|goals2 = [[Chad Deering|Deering]] {{goal|27}}
+|stadium = [[Cotton Bowl (stadium)|Cotton Bowl]]<br>[[Dallas, Texas]]<br>Attendance:: 17,149
+}}
+
+{{Football box
+|date = September 29, 2001
+|team1 = [[FC Dallas|Dallas Burn]]
+|score = 0–2
+|team2 = [[Chicago Fire Soccer Club|Chicago Fire]]
+|goals1 =
+|goals2 = [[Dema Kovalenko|Kovalenko]] {{goal|17}} <br> [[Chris Armas|Armas]] {{goal|55}}
+|stadium = [[Soldier Field]]<br>[[Chicago, Illinois]]<br>Attendance: 12,811
+}}
+
+'''Chicago Fire advance 7–1 on points.'''
+
+----
+
+{{Football box
+|date = September 22, 2001
+|team1 = [[Sporting Kansas City|Kansas City Wizards]]
+|score = 0–2
+|team2 = [[Miami Fusion]]
+|goals1 =
+|goals2 = [[Diego Serna|Serna]] {{goal|28}} <br> [[Alex Pineda Chacón|Pineda Chacón]] {{goal|53}}
+|stadium = [[Lockhart Stadium]]<br>[[Fort Lauderdale, Florida]]<br>Attendance: 6,281
+}}
+
+{{Football box
+|date = September 26, 2001
+|team1 = [[Miami Fusion]]
+|score = 0–3
+|team2 = [[Sporting Kansas City|Kansas City Wizards]]
+|goals1 =
+|goals2 = [[Onandi Lowe|Lowe]] {{goal|24}} <br> [[Matt McKeon|McKeon]] {{goal|31|pen.}} <br> [[Francisco Gomez (soccer player)|Gomez]] {{goal|45}}+
+|stadium = [[Arrowhead Stadium]]<br>[[Kansas City, Missouri]]<br>Attendance: 5,803
+}}
+
+{{Football box
+|date = September 29, 2001
+|team1 = [[Sporting Kansas City|Kansas City Wizards]]
+|score = 1–2
+|team2 = [[Miami Fusion]]
+|goals1 = [[Onandi Lowe|Lowe]] {{goal|13}}
+|goals2 = [[Preki]] {{goal|14}} <br> [[Chris Henderson|Henderson]] {{goal|71}}
+|stadium = [[Lockhart Stadium]]<br>[[Fort Lauderdale, Florida]]<br>Attendance: 8,119
+}}
+
+'''Miami Fusion advance 6–3 on points.'''
+
+----
+
+{{Football box
+|date = September 23, 2001
+|team1 = [[New York Red Bulls|MetroStars]]
+|score = 1–1
+|team2 = [[LA Galaxy|Los Angeles Galaxy]]
+|goals1 = [[Rodrigo Faria|Faria]] {{goal|29}}
+|goals2 = [[Paul Caligiuri|Caligiuri]] {{goal|63}}
+|stadium = [[Rose Bowl (stadium)|Rose Bowl]]<br>[[Pasadena, California]]<br>Attendance: 11,580
+}}
+
+{{Football box
+|date = September 26, 2001
+|team1 = [[LA Galaxy|Los Angeles Galaxy]]
+|score = 1–4
+|team2 = [[New York Red Bulls|MetroStars]]
+|goals1 = [[Sasha Victorine|Victorine]] {{goal|4}}
+|goals2 = [[Rodrigo Faria|Faria]] {{goal|72}}, {{goal|80}} <br> [[Mark Chung (soccer)|Chung]] {{goal|75}} <br> [[Adolfo Valencia|Valencia]] {{goal|83}}
+|stadium = [[Giants Stadium]]<br>[[East Rutherford, New Jersey]]<br>Attendance: 12,817
+}}
+
+{{Football box
+|date = September 29, 2001
+|team1 = [[New York Red Bulls|MetroStars]]
+|score = 2–3
+|team2 = [[LA Galaxy|Los Angeles Galaxy]]
+|goals1 = [[Petter Villegas|Villegas]] {{goal|49}}, {{goal|60}}
+|goals2 = [[Sasha Victorine|Victorine]] {{goal|21}}, {{goal|33}} <br> [[Adam Frye|Frye]] {{goal|56}}
+|stadium = [[Rose Bowl (stadium)|Rose Bowl]]<br>[[Pasadena, California]]<br>Attendance: 6,154
+}}
+{{Football box
+|date =
+|team1 =  &nbsp;
+|score = 0–1 series ([[Extra time|SDET]])
+|team2 =  &nbsp;
+|goals1 =
+|goals2 = [[Mauricio Cienfuegos|Cienfuegos]] {{golden goal|8}}
+|stadium =
+}}
+
+'''Los Angeles Galaxy advance 1-0 in series overtime (SDET) after 4-4 tie on points.'''
+
+----
+
+{{Football box
+|date = September 22, 2001
+|team1 = [[San Jose Earthquakes]]
+|score = 3–1
+|team2 = [[Columbus Crew SC|Columbus Crew]]
+|goals1 = [[Landon Donovan|Donovan]] {{goal|5}} {{goal|45}}+<br> [[Manny Lagos|Lagos]] {{goal|31}}
+|goals2 = [[Robert Warzycha|Warzycha]] {{goal|54|pen.}}
+|stadium = [[Columbus Crew Stadium]]<br>[[Columbus, Ohio]]<br>Attendance: 20,883
+}}
+
+{{Football box
+|date = September 26, 2001
+|team1 = [[Columbus Crew SC|Columbus Crew]]
+|score = 0–3
+|team2 = [[San Jose Earthquakes]]
+|goals1 =
+|goals2 = [[Manny Lagos|Lagos]] {{goal|9}} <br> [[Ronald Cerritos|Cerritos]] {{goal|68}} <br> [[Landon Donovan|Donovan]] {{goal|76}}
+|stadium = [[Spartan Stadium (San Jose)|Spartan Stadium]]<br>[[San Jose, California]]<br>Attendance: 10,419
+}}
+
+'''San Jose Earthquakes advance 6–0 on points.'''
+
+===Semifinals===
+----
+
+{{Football box
+|date = October 10, 2001
+|team1 = [[LA Galaxy|Los Angeles Galaxy]]
+|score = 1–1
+|team2 = [[Chicago Fire Soccer Club|Chicago Fire]]
+|goals1 = [[Luis Hernández (footballer, born 1968)|Hernández]] {{goal|44}}
+|goals2 = [[Eric Wynalda|Wynalda]] {{goal|32}}
+|stadium = [[Soldier Field]]<br>[[Chicago, Illinois]]<br>Attendance: 10,388
+}}
+
+{{Football box
+|date = October 13, 2001
+|team1 = [[Chicago Fire Soccer Club|Chicago Fire]]
+|score = 0–1 ([[Extra time|AET]])
+|team2 = [[LA Galaxy|Los Angeles Galaxy]]
+|goals1 =
+|goals2 = [[Peter Vagenas|Vagenas]] {{golden goal|94}}
+|stadium = [[Rose Bowl (stadium)|Rose Bowl]]<br>[[Pasadena, California]]<br>Attendance: 10,100
+}}
+
+{{Football box
+|date = October 17, 2001
+|team1 = [[LA Galaxy|Los Angeles Galaxy]]
+|score = 2–1 ([[Extra time|AET]])
+|team2 = [[Chicago Fire Soccer Club|Chicago Fire]]
+|goals1 = [[Danny Califf|Califf]] {{goal|44}} <br> [[Mauricio Cienfuegos|Cienfuegos]] {{golden goal|98}}
+|goals2 = [[DaMarcus Beasley|D. Beasley]] {{goal|30}}
+|stadium = [[Soldier Field]]<br>[[Chicago, Illinois]]<br>Attendance: 13,444
+}}
+
+'''Los Angeles Galaxy advance 7–1 on points.'''
+
+----
+
+{{Football box
+|date = October 10, 2001
+|team1 = [[San Jose Earthquakes]]
+|score = 0–1
+|team2 = [[Miami Fusion]]
+|goals1 =
+|goals2 = [[Preki]] {{goal|53}}
+|stadium = [[Lockhart Stadium]]<br>[[Fort Lauderdale, Florida]]<br>Attendance: 9,236
+}}
+
+{{Football box
+|date = October 14, 2001
+|team1 = [[Miami Fusion]]
+|score = 0–4
+|team2 = [[San Jose Earthquakes]]
+|goals1 =
+|goals2 = [[Landon Donovan|Donovan]] {{goal|16}} <br> [[Ian Russell (soccer)|Russell]] {{goal|57}} <br> [[Manny Lagos|Lagos]] {{goal|69}} <br> [[Dwayne De Rosario|De Rosario]] {{goal|89}}
+|stadium = [[Spartan Stadium (San Jose)|Spartan Stadium]]<br>[[San Jose, California]]<br>Attendance: 16,119
+}}
+
+{{Football box
+|date = October 17, 2001
+|team1 = [[San Jose Earthquakes]]
+|score = 1–0 ([[Extra time|AET]])
+|team2 = [[Miami Fusion]]
+|goals1 = [[Troy Dayak|Dayak]] {{golden goal|94}}
+|goals2 =
+|stadium = [[Lockhart Stadium]]<br>[[Fort Lauderdale, Florida]]<br>Attendance: 11,242
+}}
+
+'''San Jose Earthquakes advance 6–3 on points.'''
+
+===MLS Cup===
+{{Main|MLS Cup 2001}}
+
+{{Football box
+|date = October 21, 2001
+|team1 = [[LA Galaxy|Los Angeles Galaxy]]
+|score = 1–2 ([[Extra time|AET]])
+|team2 = [[San Jose Earthquakes]]
+|goals1 = [[Luis Hernández (footballer, born 1968)|Hernández]] {{goal|21}}
+|goals2 = [[Landon Donovan|Donovan]] {{goal|43}} <br> [[Dwayne De Rosario|De Rosario]] {{golden goal|96}}
+|stadium = [[Columbus Crew Stadium]]<br>[[Columbus, Ohio]]<br>Attendance: 21,626
+}}
+
+==Player statistics==
+===Goals===
+{| class="wikitable" style="text-align:center"
+|-
+! Rank !! Player !! Club !! Goals
+|-
+| 1
+| align="left"|{{flagicon|HON|1949}} [[Alex Pineda Chacón]]  
+| align="left"| [[Miami Fusion]]
+| 19
+|-
+| 2
+| align="left"|{{flagicon|COL}} [[Diego Serna]]  
+| align="left"| [[Miami Fusion]]
+| 15
+|-
+| rowspan="2"| 3
+| align="left"|{{flagicon|SCO}} [[John Spencer (Scottish footballer)|John Spencer]]  
+| align="left"| [[Colorado Rapids]]
+| rowspan="2"| 14
+|-
+| align="left"|{{flagicon|SLE}} [[Abdul Thompson Conteh]]  
+| align="left"| [[D.C. United]]
+|-
+| rowspan="2"| 5
+| align="left"|{{flagicon|SLV}} [[Ronald Cerritos]]  
+| align="left"| [[San Jose Earthquakes]]
+| rowspan="2"| 11
+|-
+| align="left"|{{flagicon|ECU|1900}} [[Ariel Graziani]]  
+| align="left"| [[Dallas Burn]]
+|-
+| rowspan="2"| 7
+| align="left"|{{flagicon|USA}} [[Jeff Cunningham]]  
+| align="left"| [[Columbus Crew]]
+| rowspan="2"| 10
+|-
+| align="left"|{{flagicon|USA}} [[Eric Wynalda]]  
+| align="left"| [[New England Revolution]], <br> [[Chicago Fire SC|Chicago Fire]]
+|-
+| rowspan="2"| 9
+| align="left"|{{flagicon|SEN}} [[Mamadou Diallo (footballer, born 1971)|Mamadou Diallo]]  
+| align="left"| [[Tampa Bay Mutiny]]
+| rowspan="2"| 9
+|-
+| align="left"|{{flagicon|BOL}} [[Jaime Moreno (footballer, born 1974)|Jaime Moreno]]  
+| align="left"| [[D.C. United]] 
+|-
+|}
+
+===Hat-tricks===
+{{Main|List of Major League Soccer hat-tricks}}
+{|class="wikitable"
+|-
+! Player !! Club !! Against !! style="text-align:center"| Result !! Date
+|-
+|{{flagicon|USA}} [[Clint Mathis]] || [[NY/NJ MetroStars|MetroStars]]  || [[Kansas City Wizards]] || style="text-align:center;"| 4–1 || {{dts|format=md|2001|5|2}}
+|-
+|{{flagicon|SLE}} [[Abdul Thompson Conteh]] || [[D.C. United]] || [[New England Revolution]] || style="text-align:center;"| 5–0 ||rowspan=2| {{dts|format=md|2001|5|9}}
+|-
+|{{flagicon|SEN}} [[Mamadou Diallo (footballer, born 1971)|Mamadou Diallo]]<sup>4</sup> || [[Tampa Bay Mutiny]]  || [[Los Angeles Galaxy]] || style="text-align:center;"| 4–1 
+|-
+|{{flagicon|COL}} [[Diego Serna]] || [[Miami Fusion]]  || [[Dallas Burn]] || style="text-align:center;"| 6–2 || {{dts|format=md|2001|6|2}}
+|-
+|{{flagicon|USA}} [[Dante Washington]] || [[Columbus Crew]]  || [[Tampa Bay Mutiny]] || style="text-align:center;"| 6–1 || {{dts|format=md|2001|6|16}}
+|-
+|{{flagicon|SCO}} [[John Spencer (Scottish footballer)|John Spencer]] || [[Colorado Rapids]]  || [[D.C. United]] || style="text-align:center;"| 3–1 || {{dts|format=md|2001|7|4}}
+|-
+|{{flagicon|HON|1949}} [[Alex Pineda Chacón]] || [[Miami Fusion]]  || [[D.C. United]] || style="text-align:center;"| 3–1 || {{dts|format=md|2001|9|8}}
+|}
+
+===Assists===
+{| class="wikitable" style="text-align:center"
+|-
+! Rank !! Player !! Club !! Assists
+|-
+| rowspan="2"| 1
+| align="left"|{{flagicon|COL}} [[Diego Serna]]  
+| align="left"| [[Miami Fusion]]
+| rowspan="2"| 11
+|-
+| align="left"|{{flagicon|COL}} [[John Wilmar Pérez]]  
+| align="left"| [[Columbus Crew]]
+|-
+| rowspan="2"| 3
+| align="left"|{{flagicon|USA}} [[Ross Paule]]  
+| align="left"| [[Colorado Rapids]]
+| rowspan="2"| 10
+|-
+| align="left"|{{flagicon|USA}} [[Preki]]  
+| align="left"| [[Miami Fusion]]
+|-
+| rowspan="4"| 5
+| align="left"|{{flagicon|USA}} [[Jeff Cunningham]]  
+| align="left"| [[Columbus Crew]]
+| rowspan="4"| 8
+|-
+| align="left"|{{flagicon|USA}} [[Cobi Jones]]  
+| align="left"| [[Los Angeles Galaxy]]
+|-
+| align="left"|{{flagicon|USA}} [[Manny Lagos]]  
+| align="left"| [[San Jose Earthquakes]]
+|-
+| align="left"|{{flagicon|POL}} [[Piotr Nowak]]  
+| align="left"| [[Chicago Fire SC|Chicago Fire]]
+|-
+| rowspan="4"| 9
+| align="left"|{{flagicon|USA}} [[Landon Donovan]]  
+| align="left"| [[San Jose Earthquakes]]
+| rowspan="4"| 7
+|-
+| align="left"|{{flagicon|BOL}} [[Marco Etcheverry]]  
+| align="left"| [[D.C. United]] 
+|-
+| align="left"|{{flagicon|ECU}} [[Ariel Graziani]]  
+| align="left"| [[Dallas Burn]] 
+|-
+| align="left"|{{flagicon|USA}} [[Eric Quill]]  
+| align="left"| [[Tampa Bay Mutiny]] 
+|-
+|}
+
+===Clean sheets===
+{| class="wikitable" style="text-align:center"
+|-
+!Rank
+!Player
+!Club
+!Clean<br>sheets
+|-
+|rowspan="2"|1
+|align="left"|{{flagicon|USA}} [[Matt Jordan]]
+|align="left"|[[Dallas Burn]]
+|rowspan="2"|9
+|-
+|align="left"|{{flagicon|USA}} [[Zach Thornton]]
+|align="left"|[[Chicago Fire SC|Chicago Fire]]
+|-
+|3
+|align="left"|{{flagicon|USA}} [[Joe Cannon (soccer)|Joe Cannon]]
+|align="left"|[[San Jose Earthquakes]]
+|7
+|-
+|4
+|align="left"|{{flagicon|USA}} [[Matt Reis]]
+|align="left"|[[Los Angeles Galaxy]]
+|6
+|-
+|rowspan="2"|5
+|align="left"|{{flagicon|USA}} [[Tom Presthus]]
+|align="left"|[[Columbus Crew]]
+|rowspan="2"|5
+|-
+|align="left"|{{flagicon|USA}} [[Nick Rimando]]
+|align="left"|[[Miami Fusion]]
+|-
+|rowspan="3"|7
+|align="left"|{{flagicon|USA}} [[Kevin Hartman]]
+|align="left"|[[Los Angeles Galaxy]]
+|rowspan="3"|4
+|-
+|align="left"|{{flagicon|USA}} [[Tim Howard]]
+|align="left"|[[MetroStars]]
+|-
+|align="left"|{{flagicon|USA}} [[Tony Meola]]
+|align="left"|[[Kansas City Wizards]]
+|-
+|10
+|align="left"|{{flagicon|USA}} [[Bo Oshoniyi]]
+|align="left"|[[Kansas City Wizards]]
+|3
+|-
+|}
+
+==Awards==
+===Individual awards===
+{| class="wikitable" style="font-size:100%"
+!Award!!Player!!Club
+|-
+|[[Major League Soccer MVP Award|Most Valuable Player]]||{{flagicon|HON|1949}} [[Alex Pineda Chacón]]||[[Miami Fusion]]
+|-
+|[[MLS Defender of the Year Award|Defender of the Year]]||{{flagicon|USA}} [[Jeff Agoos]]||[[San Jose Earthquakes]]
+|-
+|[[MLS Goalkeeper of the Year Award|Goalkeeper of the Year]]||{{flagicon|USA}} [[Tim Howard]]||[[New York Red Bulls|MetroStars]]
+|-
+|[[MLS Coach of the Year Award|Coach of the Year]]|| {{flagicon|CAN}} [[Frank Yallop]]||[[San Jose Earthquakes]]
+|-
+|[[MLS Rookie of the Year Award|Rookie of the Year]]||{{flagicon|BRA}} [[Rodrigo Faria]]||[[New York Red Bulls|MetroStars]]
+|-
+|[[MLS Comeback Player of the Year Award|Comeback Player of the Year]]||{{flagicon|USA}} [[Troy Dayak]]||[[San Jose Earthquakes]]
+|-
+|[[MLS Scoring Champion Award|Scoring Champion]]||{{flagicon|HON|1949}} [[Alex Pineda Chacón]]||[[Miami Fusion]]
+|-
+|[[MLS Goal of the Year Award|Goal of the Year]]||{{flagicon|USA}} [[Clint Mathis]]||[[New York Red Bulls|MetroStars]]
+|-
+|[[MLS Fair Play Award|Fair Play Award]]||{{flagicon|HON|1949}} [[Alex Pineda Chacón]]||[[Miami Fusion]]
+|-
+|[[MLS Humanitarian of the Year Award|Humanitarian of the Year]]||{{flagicon|USA}} [[Tim Howard]]||[[New York Red Bulls|MetroStars]]
+|}
+
+===Best XI===
+{| class="wikitable"
+!Goalkeeper
+!Defenders
+!Midfielders
+!Forwards
+|-
+|{{flagicon|USA}} [[Tim Howard]], [[MetroStars]]
+|{{flagicon|USA}} [[Jeff Agoos]], [[San Jose Earthquakes|San Jose]] <br>{{flagicon|USA}} [[Carlos Llamosa]], [[Miami Fusion|Miami]]<br>{{flagicon|USA}} [[Pablo Mastroeni]], [[Miami Fusion|Miami]]<br>{{flagicon|USA}} [[Greg Vanney]], [[LA Galaxy]] 
+|{{flagicon|USA}} [[Chris Armas]], [[Chicago Fire FC|Chicago]] <br>{{flagicon|POL}} [[Piotr Nowak]], [[Chicago Fire FC|Chicago]] <br>{{flagicon|USA}} [[Preki]], [[Miami Fusion|Miami]] 
+|{{flagicon|HON|1949}} [[Alex Pineda Chacón]], [[Miami Fusion|Miami]]<br>{{flagicon|COL}} [[Diego Serna]], [[Miami Fusion|Miami]]<br>{{flagicon|SCO}} [[John Spencer (Scottish footballer)|John Spencer]], [[Colorado Rapids|Colorado]]
+|}
+
+===Player of the Month===
+{| class="wikitable"
+|-
+!Week!!Player!!Club
+|-
+|April|| {{flagicon|HON|1949}} [[Alex Pineda Chacón]]|| [[Miami Fusion]]
+|-
+|May|| {{flagicon|USA}} [[Clint Mathis]]|| [[MetroStars]]
+|-
+|June|| {{flagicon|COL}} [[Diego Serna]]|| [[Miami Fusion]]
+|-
+|July|| {{flagicon|BUL}} [[Hristo Stoitchkov]]|| [[Chicago Fire SC|Chicago Fire]]
+|-
+|August|| {{flagicon|USA}} [[Brian Maisonneuve]]|| [[Columbus Crew]]
+|}
+
+==Attendance==
+
+{| class="wikitable" style="font-size:100%"
+!Team
+!Games
+!Total
+!Average
+|-
+|[[D.C. United]]
+|align=center|12
+|align=center|258,213
+|align=center|21,518
+|-
+|[[New York Red Bulls|MetroStars]]
+|align=center|13
+|align=center|270,477
+|align=center|20,806
+|-
+|[[Columbus Crew SC|Columbus Crew]]
+|align=center|13
+|align=center|227,644
+|align=center|17,511
+|-
+|[[LA Galaxy|Los Angeles Galaxy]]
+|align=center|13
+|align=center|226,035
+|align=center|17,387
+|-
+|[[Colorado Rapids]]
+|align=center|13
+|align=center|214,249
+|align=center|16,481
+|-
+|[[Chicago Fire S.C.|Chicago Fire]]
+|align=center|14
+|align=center|229,438
+|align=center|16,388
+|-
+|[[New England Revolution]]
+|align=center|13
+|align=center|203,501
+|align=center|15,654
+|-
+|[[FC Dallas|Dallas Burn]]
+|align=center|13
+|align=center|163,465
+|align=center|12,574
+|-
+|[[Miami Fusion]]
+|align=center|14
+|align=center|156,481
+|align=center|11,177
+|-
+|[[Sporting Kansas City|Kansas City Wizards]]
+|align=center|13
+|align=center|142,402
+|align=center|10,954
+|-
+|[[Tampa Bay Mutiny]]
+|align=center|14
+|align=center|146,704
+|align=center|10,479
+|-
+|[[San Jose Earthquakes]]
+|align=center|13
+|align=center|125,250
+|align=center|9,635
+|-
+|'''Totals'''
+|align=center|'''158'''
+|align=center|'''2,363,859'''
+|align=center|'''14,961'''
+|}
+
+==International Competition==
+
+'''[[CONCACAF Champions' Cup]]'''
+
+*'''[[Sporting Kansas City|Kansas City Wizards]]'''<br>2001 edition canceled; Wizards advanced to [[CONCACAF Champions' Cup 2002]].
+*'''[[Chicago Fire S.C.|Chicago Fire]]'''<br>2001 edition canceled; Fire advance to [[CONCACAF Champions' Cup 2002]].
+
+'''[[Copa Merconorte]]'''
+
+*'''[[New York Red Bulls|MetroStars]]'''<br>Went 3-3-0 in group stage and did not advance.<br>'''Defeated''' {{flagicon|VEN|1954}} [[Deportivo Italia|Deportivo Italchacao]], 2-0 at home.<br>'''Awarded two forfeit wins against'''<BR> {{flagicon|MEX}} [[Club Deportivo Guadalajara]], after the club refused to travel.<br>'''Lost''' {{flagicon|VEN|1954}} [[Deportivo Italia|Deportivo Italchacao]], 2-1 away.<br>'''Lost''' {{flagicon|COL}} [[Millonarios]], 2-1 away and 1-0 at home.
+*'''[[Sporting Kansas City|Kansas City Wizards]]'''<br>Went 1-4-1 in group stage and did not advance.<br>'''Defeated''' {{flagicon|ECU|1900}} [[Barcelona SC|Barcelona]], 3-2 away, Drew 1-1 at home.<br>'''Lost''' {{flagicon|MEX}} [[Santos Laguna]], 4-2 away and 1-0 at home.<br>'''Lost''' {{flagicon|PER}} [[Sporting Cristal]], 2-1 at home and 2-1 away.
+
+'''[[CONCACAF Giants Cup]]'''
+
+*'''[[D.C. United]]'''<br>'''Defeated''' {{flagicon|JAM}} [[Arnett Gardens]], 5-1 on aggregate in quarterfinals.<br>'''Defeated''' {{flagicon|GUA}} [[Comunicaciones]], 2-1 in semifinals.<br>'''Lost''' {{flagicon|MEX}} [[Club América]], 2-0 in final.
+*'''[[Columbus Crew SC|Columbus Crew]]'''<br>'''Lost''' {{flagicon|CRC}} [[Deportivo Saprissa]], 3-1 on aggregate in quarterfinals.
+
+==References==
+{{reflist}}
+
+==External links==
+*[http://www.mlssoccer.com/history/season/2001 MLS Site] {{Webarchive|url=https://web.archive.org/web/20150719210604/http://www.mlssoccer.com/history/season/2001 |date=July 19, 2015 }}
+
+{{Major League Soccer}}
+{{2001 MLS season by team}}
+{{Major League Soccer seasons}}
+
+{{DEFAULTSORT:Major League Soccer season}}
+[[Category:2001 Major League Soccer season| ]]
+[[Category:Major League Soccer seasons|2001]]
+[[Category:2001 in American men's soccer leagues|1]]
+[[Category:2001 in men's top-tier association football leagues|United States]]
+[[Category:Sports events affected by the September 11 attacks]]

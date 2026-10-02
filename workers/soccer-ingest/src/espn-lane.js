@@ -170,7 +170,7 @@ export async function upsertEspnFixtures(store, { comp, year, cursor, teamMap, n
     await syncRows(store, { table: 'soccer_venue_external_ids', key: ['provider', 'external_id'], compare: ['venue_id'], rows: newVenues.map(v => ({ provider: P, external_id: v.external_id, venue_id: mintId('venue', P, v.external_id), method: 'founding', evidence: 'espn venue id', capture_id: null })) });
     for (const v of newVenues) venueMap.set(v.external_id, mintId('venue', P, v.external_id));
   }
-  const inserts = []; const xw = []; let attached = 0; let founded = 0; let pairConflicts = 0; let replaced = 0; const queued = [];
+  const inserts = []; const xw = []; let attached = 0; let founded = 0; let pairConflicts = 0; let replaced = 0; const queued = []; const founds = [];
   for (const id of ids) {
     const f = cursor.fixtures[id];
     const home = teamMap.get(f.h); const away = teamMap.get(f.a);
@@ -189,7 +189,13 @@ export async function upsertEspnFixtures(store, { comp, year, cursor, teamMap, n
     const finished = f.st === 'finished';
     if (own.length) {
       if (f.st && !finished) { replaced += 1; continue; } // a postponed / cancelled listing of a fixture already founded
-      pairConflicts += 1; queued.push({ id, reason: 'fixture_same_pairing_within_tolerance', candidates: own.map(m => m.id) }); continue;
+      // Two FINISHED events of a pairing inside the tolerance are two real matches only when both their local (UTC-1 d)
+      // dates and their results differ (e.g. MLS 2001: San Jose 1-1 Colorado on May 30, 2-1 on June 2). Same date or
+      // same result = a duplicate listing or unprovable: queued, never a second match.
+      const day = iso => new Date(Date.parse(iso) - 864e5 / 4).toISOString().slice(0, 10);
+      const eventOf = m => ids.find(x => mintId('match', P, x) === m.id);
+      const distinct = finished && f.sc && own.every(m => { const o = cursor.fixtures[eventOf(m)]; return o?.st === 'finished' && o.sc && day(o.d) !== day(f.d) && (o.sc.h !== f.sc.h || o.sc.a !== f.sc.a); });
+      if (!distinct) { pairConflicts += 1; queued.push({ id, reason: 'fixture_same_pairing_within_tolerance', candidates: own.map(m => m.id) }); continue; }
     }
     if (f.st && !finished && (finishedInPair.get(pairKey(f)) || 0) > 0) { replaced += 1; continue; }
     if (!mayFound) { queued.push({ id, reason: 'fixture_without_owner_match', candidates: [] }); continue; }
@@ -199,7 +205,10 @@ export async function upsertEspnFixtures(store, { comp, year, cursor, teamMap, n
     canon.push({ ...row });
     inserts.push(row);
     xw.push({ provider: P, external_id: id, match_id: mid, method: 'founding', evidence: `espn event ${id}`, capture_id: f.cap });
+    founds.push(id);
   }
+  // an event queued by an earlier run and founded now (e.g. after its score proved a distinct repeat) closes its entry
+  for (const id of founds) await resolveQueued(store, { entity_type: 'match', provider: P, external_id: id, resolution: { method: 'founding', match_id: mintId('match', P, id) } });
   for (const q of queued) await queueIdentity(store, { entity_type: 'match', provider: P, external_id: q.id, reason: q.reason, candidate_ids: q.candidates, payload: { competition: comp.slug, year, kickoff: cursor.fixtures[q.id].d, status: cursor.fixtures[q.id].st || null } });
   const written = await syncRows(store, { table: 'soccer_matches', key: ['id'], rows: inserts, provider: P });
   const crosswalk = await syncRows(store, { table: 'soccer_match_external_ids', key: ['provider', 'external_id'], compare: ['match_id'], rows: xw });

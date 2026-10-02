@@ -1,0 +1,367 @@
+{{short description|2001 edition of the MLS Cup}}
+{{good article}}
+{{Use American English|date=July 2019}}
+{{Use mdy dates|date=December 2021}}
+{{Infobox football match
+| title = MLS Cup 2001
+| event = [[MLS Cup]]
+| image = MLSCup2001.png
+| image_size = 200
+| team1 = [[San Jose Earthquakes]]
+| team1score = 2
+| team2 = [[LA Galaxy|Los Angeles Galaxy]]
+| team2score = 1
+| details = After [[golden goal]] [[Overtime (sports)#Association football|extra time]]
+| date = October 21, 2001
+| stadium = [[Mapfre Stadium|Columbus Crew Stadium]]
+| city = [[Columbus, Ohio]], US
+| man_of_the_match1a = [[Dwayne De Rosario]]<br />(San Jose Earthquakes)
+| weather = Partly cloudy, {{convert|68|°F|°C}}<ref name="FARB">{{cite web |author1=MLS Communications Department |author2=Elias Sports Bureau |date=February 23, 2024 |title=2024 Fact and Record Book |page=156 |url=https://mlssoccer.app.box.com/s/xvks2sfia70gsowb4qyh61c7ytqpbnht |publisher=[[Major League Soccer]] |ref={{sfnref|Major League Soccer|2024}} |accessdate=December 12, 2024}}</ref>
+| attendance = 21,626
+| referee = [[Kevin Stott]]
+| previous = [[MLS Cup 2000|2000]]
+| next = [[MLS Cup 2002|2002]]
+}}
+
+'''MLS Cup 2001''' was the sixth edition of the [[MLS Cup]], the championship match of [[Major League Soccer]] (MLS), which took place on October 21, 2001, at [[Columbus Crew Stadium]] in [[Columbus, Ohio]]. It was contested by the [[San Jose Earthquakes]] and the [[Los Angeles Galaxy]], a pair of [[California Clásico|in-state rivals]] from [[California]], to decide the champion of the [[2001 Major League Soccer season|2001 season]]. San Jose won their first title, defeating Los Angeles 2–1 in overtime with a [[golden goal]] scored by [[Dwayne De Rosario]] in the 96th minute.
+
+San Jose were appearing in their first MLS Cup, while Los Angeles had lost two previous finals; the two teams finished at the top of the Western Division in regular season play, which was cut short by the [[September 11 attacks]]. The Earthquakes, under their first season with manager [[Frank Yallop]], won their quarterfinals series against the [[Columbus Crew SC|Columbus Crew]] over two legs and defeated the league-leading [[Miami Fusion]] after [[extra time]] in the third leg of the semifinals. The Galaxy defeated the [[MetroStars]] in the quarterfinals and [[Chicago Fire Soccer Club|Chicago Fire]] in the semifinals with a golden goal scored in extra time of the third leg for both series.
+
+It was the first MLS Cup to match two teams from both the same conference and state against each other, and the second MLS Cup to end with a golden goal. Frank Yallop became the first former MLS player to coach a team to an MLS Cup title. Crew Stadium became the first [[soccer-specific stadium]] to host the MLS Cup, which had an attendance of 21,626 spectators.
+
+==Venue==
+[[File:Mapfre Stadium (Columbus, Ohio) - aerial photo.jpg|thumb|left|[[Columbus Crew Stadium]], the league's first [[soccer-specific stadium]], hosted MLS Cup 2001.|alt=A soccer stadium with a grass field, crowds in the stands, a distant scoreboard, and a blimp flying overhead during the game.]]
+
+The match was played at [[Columbus Crew Stadium]] in [[Columbus, Ohio]], and was the first MLS Cup to be hosted at a [[soccer-specific stadium]]. [[Lamar Hunt]], owner of the [[Columbus Crew]], built the $28.5 million stadium with soccer and concerts as its primary uses. It had a capacity of 22,500 seats (lower than most MLS venues of the time) and close-in seating next to the field.<ref>{{cite news |last=Gardner |first=Charles F. |date=June 1, 1999 |title=Field of dreams: MLS sees Columbus stadium as a model for others |page=8 |work=[[Milwaukee Journal Sentinel]]}}</ref> MLS awarded the hosting rights for the [[2000 MLS All-Star Game]] and MLS Cup 2001 to Columbus during the stadium's groundbreaking ceremony on August 14, 1998.<ref>{{cite news |last=Merz |first=Craig |date=August 15, 1998 |title=Workers will stay busy on Crew stadium |page=D1 |work=[[The Columbus Dispatch]]}}</ref> The stadium opened on May 15, 1999, and hosted several [[United States men's national soccer team|national team]] matches in the months before the MLS Cup.<ref>{{cite news |last=Merz |first=Craig |date=April 6, 2001 |title=MLS Cup '01 highlights busy year |page=7 |work=The Columbus Dispatch}}</ref><ref>{{cite news |last=Merz |first=Craig |date=June 6, 2001 |title=Ecuador match will test U.S. players' fitness |page=E3 |work=The Columbus Dispatch}}</ref> The design of Crew Stadium inspired similar soccer-specific stadiums, including the [[Home Depot Center]] for the [[Los Angeles Galaxy]] and [[Toyota Park (Bridgeview, Illinois)|Toyota Park]] for the [[Chicago Fire Soccer Club|Chicago Fire]], which began construction in 2001.<ref>{{cite news |last=Merz |first=Craig |date=June 13, 2001 |title=MLS building boom in works: Stadium set for Los Angeles; Chicago, New York next up |page=E7 |work=The Columbus Dispatch}}</ref>
+
+==Road to the final==
+
+The [[MLS Cup]] is the post-season championship of [[Major League Soccer]], a professional club soccer league based in the United States. The [[2001 Major League Soccer season|2001 season]] was the sixth in the league's history and was contested by twelve teams organized into three divisions (later renamed conferences). Each team was to play a total of 28 matches in the regular season, which ran from April to September, facing teams within their division four times and outside of their division twice.<ref>{{cite web |title=About Major League Soccer: General Overview |url=http://www.mlsnet.com/about/league/overview.html |publisher=Major League Soccer |url-status=dead |archive-url=https://web.archive.org/web/20010602133302/http://mlsnet.com/about/league/overview.html |archive-date=June 2, 2001 |access-date=November 13, 2018}}</ref> The shortened schedule, with four fewer matches, and a smaller roster limited to 18 players under a $1.7 million [[salary cap]] reflected the league's financial troubles at the time.<ref name="WT-Preview">{{cite news |last=Haydon |first=John |date=April 7, 2001 |title=MLS tightens belt for sixth season |page=C8 |work=[[The Washington Times]]}}</ref> The MLS Cup Playoffs ran from mid-September to October and was contested by the winners of the three divisions and five [[wild card (sports)|wild card]] teams with the most points regardless of division, who were then seeded based on overall standings.<ref name="MN-Rules">{{cite news |last=Meacham |first=Jody |date=March 18, 2000 |title=MLS revamps rules, divisions |page=D3 |work=[[The Mercury News]]}}</ref><ref name="MLS-2015">{{cite news |last=Rodriguez |first=Alicia |date=October 21, 2015 |title=Audi MLS Cup Playoffs: Tracing the evolution of the postseason format since 1996 |url=https://www.mlssoccer.com/post/2015/10/21/audi-mls-cup-playoffs-tracing-evolution-postseason-format |work=MLSsoccer.com |access-date=February 6, 2019}}</ref> The playoffs were organized into three rounds, the first two being a [[two-legged tie|home-and-away]] series organized into a best-of-three format with the first team to earn five points advancing, and the single-match MLS Cup final.<ref name="MLS-2015"/>
+
+MLS Cup 2001 was contested between the [[San Jose Earthquakes]] and the [[Los Angeles Galaxy]], both from the Western Division. It was the first MLS Cup with finalists from the same division and the same state.<ref>{{cite news |last=Dell'Apa |first=Frank |date=November 10, 2007 |title=Revolution ride bike to MLS Cup |page=C5 |work=[[The Boston Globe]]}}</ref> San Jose had never appeared in an MLS Cup final, while Los Angeles lost the [[MLS Cup 1996|1996]] and [[MLS Cup 1999|1999]] finals to [[D.C. United]].<ref>{{cite news |last=Robledo |first=Fred J. |date=October 21, 2001 |title=Galaxy are ready to win |page=B9 |work=[[Long Beach Press-Telegram]]}}</ref> The finalists played each other twice during the regular season, both won by the Earthquakes, but two additional matches in the series to be played at the end of the regular season were canceled after the [[September 11 attacks]], which shortened the league's season.<ref>{{cite news |last=Gillespie |first=Charlie |date=October 20, 2001 |title=San Jose tries to go from worst to first |page=D5 |work=[[The Honolulu Advertiser]] |url=https://www.newspapers.com/clip/28163333/san_jose_tries_to_go_from_worst_to_first/ |via=Newspapers.com |access-date=February 7, 2019}}</ref><ref>{{cite news |last=Jones |first=Grahame L. |date=September 13, 2001 |title=MLS Season, Playoffs to Be Adjusted |work=[[Los Angeles Times]] |url=http://www.latimes.com/sports/soccer/la-sp-ussoccer13sep13.story?coll=la-headlines-sports-soccer |url-status=dead |archive-url=https://web.archive.org/web/20010913192714/http://www.latimes.com/sports/soccer/la-sp-ussoccer13sep13.story?coll=la-headlines-sports-soccer |archive-date=September 13, 2001 |access-date=February 7, 2019}}</ref> Due to several teams having already played an extra match, playoff seeding was determined by [[points per game]] and matches began a week later.<ref>{{cite news |last=Dell'Apa |first=Frank |date=September 14, 2001 |title=MLS to omit final games of regular season |page=E9 |work=The Boston Globe |url=https://www.newspapers.com/clip/28124926/mls_to_omit_final_games_of_regular/ |via=Newspapers.com |access-date=February 6, 2019}}</ref><ref>{{cite news |last=Jones |first=Grahame L. |date=September 14, 2001 |title=MLS Cancels Rest of Regular Season |page=D7 |url=https://www.latimes.com/archives/la-xpm-2001-sep-14-sp-45680-story.html |work=Los Angeles Times |access-date=February 7, 2019}}</ref> The Earthquakes and Galaxy also met each other in the quarterfinals of the [[2001 U.S. Open Cup|U.S. Open Cup]] in July, which Los Angeles won 10–9 in a [[penalty shootout (association football)|penalty shootout]] following a 1–1 draw after [[extra time]].<ref>{{cite news |last=Jones |first=Grahame L. |date=July 25, 2001 |title=Galaxy Finally Solves Earthquakes in the Open Cup |page=D3 |url=https://www.latimes.com/archives/la-xpm-2001-jul-25-sp-26301-story.html |work=Los Angeles Times |access-date=February 8, 2019}}</ref>
+
+===San Jose Earthquakes===
+{{further|2001 San Jose Earthquakes season}}
+[[File:LandonDonovan1.jpg|thumb|right|upright=0.8|In his rookie season with San Jose, forward [[Landon Donovan]] scored two goals in the quarterfinals of the playoffs.|alt=Landon Donovan, wearing a blue jersey, uses his body to hold off a defender wearing a red jersey.]]
+
+The San Jose Earthquakes, originally named the San Jose Clash until 2000,<ref name="MN-Rules"/> had historically been among the worst teams in the league and went through four coaching changes in its first six seasons.<ref>{{cite news |last=Smith |first=Michelle |date=October 5, 2001 |title=Longtime Quakes say wins now are sweeter |page=E2 |url=https://www.sfgate.com/sports/article/Longtime-Quakes-say-wins-now-are-sweeter-2871944.php |work=San Francisco Chronicle |access-date=February 8, 2019}}</ref> The Clash finished sixth overall in the [[1996 Major League Soccer season|inaugural season]] and qualified for the playoffs, where they were eliminated in the first round by the Galaxy.<ref>{{cite news |last=Secore |first=Damian |date=October 21, 2001 |title=MLS Cup has SoCal feeling |page=C3 |work=The Press-Enterprise}}</ref> The team then missed the playoffs in the following five seasons, including four with losing records and finishing last in the league twice and second-to-last three times.<ref name="Payne-0201">{{cite news |last=Payne |first=Dave |date=February 13, 2001 |title=Team made several off-season moves: Quakes' shake-up put to test |page=D1 |work=The Mercury News}}</ref> The Earthquakes finished last in the league during the 2000 season with only seven wins and declined to renew the contract of head coach [[Lothar Osiander]].<ref>{{cite news |last=Payne |first=Dave |date=January 13, 2001 |title=Quakes opt not to renew Osiander's contract as coach |page=D1 |work=The Mercury News}}</ref><ref>{{cite news |last=Killion |first=Ann |date=January 23, 2001 |title=Sharks giving Quakes chance in sudden death |page=D1 |work=The Mercury News}}</ref> Despite rumors that the team would fold, the [[San Jose Sharks]] of the [[National Hockey League]] took over business operations from the [[Robert Kraft|Kraft Sports Group]] in January 2001.<ref>{{cite news |last=Oritz |first=Jorge L. |date=January 11, 2001 |title=Sharks Bosses to Run Quakes |page=D8 |work=San Francisco Chronicle}}</ref>
+
+Former [[D.C. United]] assistant coach [[Frank Yallop]] was hired as San Jose's head coach days before the [[2001 MLS SuperDraft|2001 draft]], where he began a series of player moves alongside assistant coach [[Dominic Kinnear]].<ref>{{cite news |last=Giesin |first=Dan |date=February 4, 2001 |title=Earthquakes' Draft Should Shake Up Existing Roster |page=C9 |url=https://www.sfgate.com/sports/article/Earthquakes-Draft-Should-Shake-Up-Existing-Roster-2955688.php |work=San Francisco Chronicle |access-date=February 8, 2019}}</ref> During the first week of Yallop's tenure, the Earthquakes acquired defender [[Jeff Agoos]] from D.C. United, [[Manny Lagos]] from the [[Tampa Bay Mutiny]], and defender [[Zak Ibsen]] from the Los Angeles Galaxy.<ref name="Payne-0201"/> Yallop also used the league's allocation system to sign U.S. forward [[Landon Donovan]] from [[Bayer Leverkusen]] in March and Canadian forward [[Dwayne De Rosario]] from the [[Richmond Kickers]] of the second-division [[A-League (1995–2004)|A-League]].<ref>{{cite news |last=Giesin |first=Dan |date=March 30, 2001 |title=Quakes Get Budding Star |page=E11 |work=San Francisco Chronicle}}</ref><ref>{{cite news |date=February 5, 2001 |title=Earthquakes Trade For United's Agoos |page=C8 |url=https://www.sfgate.com/bayarea/article/SOCCER-Earthquakes-Trade-For-United-s-Agoos-2955597.php |work=San Francisco Chronicle |access-date=February 8, 2019}}</ref> By the end of their preseason preparations in April, the team had also traded with the [[MetroStars]] for defender [[Ramiro Corrales]] and signed Danish midfielder [[Ronnie Ekelund]].<ref>{{cite news |last=Yannis |first=Alex |date=February 23, 2001 |title=MetroStars Trade For Goalie |page=D9 |url=https://www.nytimes.com/2001/02/23/sports/plus-soccer-metrostars-trade-for-goalie.html |work=The New York Times |access-date=February 8, 2019}}</ref><ref>{{cite news |last=Payne |first=Dave |date=April 18, 2001 |title=Preki, Kansas City brace for homecoming |page=D3 |work=The Mercury News}}</ref>
+
+The Earthquakes opened their regular season with a 3–2 win in the [[California Clásico]] over the Los Angeles Galaxy, but lost their next two matches to Dallas and Miami.<ref>{{cite news |last=Jones |first=Grahame L. |date=April 8, 2001 |title=Galaxy Runs Cold and Hot in Opener |page=D5 |url=https://www.latimes.com/archives/la-xpm-2001-apr-08-sp-48590-story.html |work=Los Angeles Times |access-date=February 8, 2019}}</ref><ref>{{cite news |date=April 29, 2001 |title=Stingy Cannon helps 'Quakes tie Wizards |page=B9 |work=[[Contra Costa Times]]}}</ref> The team then went on twelve-match unbeaten streak from late April to early July, winning seven matches and drawing in five, taking a lead in the Western Division standings ahead of Los Angeles.<ref name="SJE-History">{{cite web |title=Club History |url=https://www.sjearthquakes.com/club/history |publisher=San Jose Earthquakes |access-date=February 8, 2019}}</ref><ref>{{cite news |last=Payne |first=Dave |date=July 5, 2001 |title=Holding their ground |page=D1 |work=The Mercury News}}</ref> Yallop relied on a strong central core, consisting of Agoos and [[Troy Dayak]] in defense alongside Ekelund and [[Richard Mulrooney]] in the midfield to support the team's rotating attackers.<ref>{{cite news |date=September 25, 2001 |title=Donovan, Lagos are keys up front for San Jose |url=http://sportsillustrated.cnn.com/soccer/mls/2001/mls_cup/news/2001/09/25/quakes_outlook_sa/ |work=[[Sports Illustrated|CNN/Sports Illustrated]] |url-status=dead |archive-url=https://web.archive.org/web/20020224043724/http://sportsillustrated.cnn.com/soccer/mls/2001/mls_cup/news/2001/09/25/quakes_outlook_sa/ |archive-date=February 24, 2002 |access-date=February 8, 2019}}</ref> Six players from the Earthquakes were named to the league's Western Division roster at the [[2001 MLS All-Star Game]], which was hosted at San Jose's [[Spartan Stadium (San Jose)|Spartan Stadium]].<ref>{{cite news |last=Chapin |first=Dwight |date=July 28, 2001  |title=Quakes a magnitude six on the All-Star pitch |page=D1 |url=https://www.sfgate.com/sports/article/SOCCER-NOTEBOOK-Quakes-a-magnitude-six-on-the-2894453.php |work=San Francisco Chronicle |access-date=February 8, 2019}}</ref>
+
+In the last months of the season, the Earthquakes were defeated in several matches and lost their first-place spot to the Galaxy only to regain it on several occasions.<ref name="SCS-Aug">{{cite news |last=McMorries |first=Ben |date=August 22, 2001 |title=Quakes falling short of their goals |page=D2 |work=Santa Cruz Sentinel |url=https://www.newspapers.com/clip/28201153/quakes_falling_short_of_their_goals/ |via=Newspapers.com |access-date=February 8, 2019}}</ref> San Jose clinched a playoff spot and second place in the Western Division with 45 points after losing to the [[Kansas City Wizards]] prior to the cancellation of the two remaining matches against the Galaxy.<ref>{{cite news |date=September 9, 2001 |title=Quakes fall out of lead in West |page=D7 |work=The Mercury News}}</ref><ref name="SJM-Halt">{{cite news |last=Miedema |first=Laurence |date=September 14, 2001 |title=MLS halts season, prepares for playoffs |page=D2 |work=The Mercury News}}</ref> The Earthquakes finished the season with the best record and winning percentage in club history, while the defense lead the league with only 30 allowed goals.<ref name="SJE-History"/><ref>{{cite news |date=September 23, 2001 |title=Quakes win with defense |page=C3 |work=San Francisco Chronicle}}</ref> Frank Yallop was voted the [[MLS Coach of the Year Award|MLS Coach of the Year]], while Agoos earned [[MLS Defender of the Year Award|Defender of the Year]] honors and Dayak was named the [[MLS Comeback Player of the Year Award|Comeback Player of the Year]].<ref>{{cite news |last=Haydon |first=John |date=October 20, 2001 |title=Agoos, Llamosa are young at heart |page=C5 |work=The Washington Times}}</ref>
+
+San Jose were seeded fifth in the playoffs and faced the fourth-seeded [[Columbus Crew SC|Columbus Crew]], who had earned the same number of points but won a head-to-head tiebreaker.<ref name="SJM-Halt"/><ref>{{cite news |last=Merz |first=Craig |date=September 14, 2001 |title=Crew winds up with home-field advantage |page=E3 |work=The Columbus Dispatch}}</ref> The Earthquakes won 3–1 during the first leg in Columbus, with Donovan scoring two goals and Manny Lagos scoring another after having his [[red card (sports)|red card]] suspension rescinded by the league.<ref>{{cite news |last=Merz |first=Craig |date=September 23, 2001 |title=Earthquakes rock Crew with opening-game win |page=D1 |work=The Columbus Dispatch}}</ref> San Jose defeated Columbus 3–0 in the second leg and advanced with six points to their first-ever MLS Cup semifinal.<ref>{{cite news |last=Gomez |first=Mark |date=September 27, 2001 |title=Quakes sweep series with Crew |page=D8 |work=The Mercury News}}</ref> The Earthquakes fell 1–0 to the [[Supporters' Shield]]-winning Miami Fusion in the first leg of the semifinals, but responded with a 4–0 win at Spartan Stadium to tie the series at three points apiece and force a third match.<ref>{{cite news |last=Smith |first=Michelle |date=October 15, 2001 |title=Quakes shake Fusion; Donovan's goal helps force deciding game |page=D3 |url=https://www.sfgate.com/sports/article/Quakes-shake-Fusion-Donovan-s-goal-helps-force-2868987.php |work=San Francisco Chronicle |access-date=February 9, 2019}}</ref><ref>{{cite news |last=Gomez |first=Mark |date=October 15, 2001 |title=Earthquakes beat back Fusion to force a decisive third game |page=D1 |work=The Mercury News}}</ref> The third match, played in [[Fort Lauderdale, Florida|Fort Lauderdale]], remained scoreless into extra time, where Troy Dayak scored a [[golden goal]] in the 94th minute to clinch a series victory and San Jose's first appearance at an MLS Cup.<ref>{{cite news |date=October 18, 2001 |title=Earthquakes reach MLS title game |page=E1 |work=San Francisco Chronicle}}</ref>
+
+===Los Angeles Galaxy===
+{{further|2001 Los Angeles Galaxy season}}
+
+The Los Angeles Galaxy were one of the most successful teams during the early years of MLS, winning the Western Conference three times and appearing in five consecutive playoffs prior to 2001.<ref name="SeasonReview">{{cite web |title=2001 Season in Review |url=https://www.lagalaxy.com/club/history/2001 |publisher=LA Galaxy |access-date=February 10, 2019 |archive-date=August 4, 2020 |archive-url=https://web.archive.org/web/20200804014617/https://www.lagalaxy.com/club/history/2001 |url-status=dead }}</ref><ref>{{cite web |date=October 2002 |title=MLS Cup Preview: Los Angeles Galaxy |url=http://www.mlsnet.com/special/mlscup/02/teams_la.html |work=MLSnet.com |url-status=dead |archive-url=https://web.archive.org/web/20030214222408/http://www.mlsnet.com/special/mlscup/02/teams_la.html |archive-date=February 14, 2003 |access-date=February 14, 2019}}</ref> The team advanced to the MLS Cup final in 1996 and 1999, losing both times to [[D.C. United]].<ref name="LAT-Preview">{{cite news |last=Jones |first=Grahame L. |date=October 21, 2001 |title=Galaxy Ties It Again |page=D1 |url=https://www.latimes.com/archives/la-xpm-2001-oct-21-sp-59894-story.html |work=Los Angeles Times |access-date=February 10, 2019}}</ref> The Galaxy won the 1998 [[Supporters' Shield]] and the [[2000 CONCACAF Champions' Cup]], becoming the second MLS team to win a continental trophy.<ref>{{cite news |last=Doyle |first=Matthew |date=October 8, 2011 |title=LA clinch 2nd straight Supporters' Shield with Seattle loss |url=https://www.mlssoccer.com/post/2011/10/09/la-clinch-2nd-straight-supporters-shield-seattle-loss |work=MLSsoccer.com |access-date=February 10, 2019}}</ref> [[Sigi Schmid]] was named the team's head coach early in the 1999 season and took the team to the MLS Cup with an emphasis on defensive play.<ref>{{cite news |last=Green |first=Jeff |date=November 20, 1999 |title=One trophy short: L.A. wins individual awards, seeks ultimate team reward |url=http://sportsillustrated.cnn.com/soccer/mls/1999/mls_cup/news/1999/11/20/galaxysaturday_practice/ |work=CNN/Sports Illustrated |url-status=dead |archive-url=https://web.archive.org/web/20110604151112/http://sportsillustrated.cnn.com/soccer/mls/1999/mls_cup/news/1999/11/20/galaxysaturday_practice/ |archive-date=June 4, 2011 |access-date=February 14, 2019}}</ref> The team finished the 2000 season as the second-placed team in the Western Conference and were eliminated in the playoff semifinals by the division-leading [[Kansas City Wizards]], who would go on to win the MLS Cup.<ref>{{cite news |last=Gutierrez |first=Paul |date=October 7, 2000 |title=It's End of the Road for Galaxy |page=D2 |url=https://www.latimes.com/archives/la-xpm-2000-oct-07-sp-32932-story.html |work=Los Angeles Times |access-date=February 10, 2019}}</ref><ref>{{cite news |last=Goff |first=Steven |authorlink=Steven Goff |date=October 16, 2000 |title=Wizards' Meola Saves Best for Last |page=D1 |url=http://www.washingtonpost.com/wp-dyn/articles/A13474-2000Oct15.html |work=[[The Washington Post]] |access-date=February 10, 2019}}</ref>
+
+The Galaxy traded captain and veteran defender [[Robin Fraser]] to the [[Colorado Rapids]] before the 2001 season to meet the league's [[salary cap]] requirements.<ref>{{cite news |last=Jones |first=Grahame L. |date=April 2, 2001 |title=Fraser's Galaxy Days Are Finished |page=D13 |url=https://www.latimes.com/archives/la-xpm-2001-apr-02-sp-45907-story.html |work=Los Angeles Times |access-date=February 10, 2019}}</ref> The team remained mostly unchanged from the 2000 season, with the addition of veteran defender [[Alexi Lalas]] and young forwards [[Brian Ching]] and [[Brian Mullan]] picked during the SuperDraft.<ref>{{cite news |last=Jones |first=Grahame L. |date=April 7, 2001 |title=Start of MLS Season Can't Come Soon Enough for Lalas |page=D2 |url=https://www.latimes.com/archives/la-xpm-2001-apr-07-sp-48012-story.html |work=Los Angeles Times |access-date=February 10, 2019}}</ref> Schmid planned to use a 3–5–2 formation to take advantage of the team's midfield depth, with the ability to switch to a 4–3–3 in certain situations.<ref>{{cite news |last=Jones |first=Grahame L. |date=April 5, 2001 |title=Galaxy Has Big-Time Goals |page=D10 |work=Los Angeles Times |url=https://www.newspapers.com/clip/28242875/galaxy_has_bigtime_goals/ |via=Newspapers.com |access-date=February 10, 2019}}</ref>
+
+Los Angeles lost its opening two matches to San Jose and Kansas City, but a change in several starting positions lead to three consecutive wins and a 4–4 draw with the [[Tampa Bay Mutiny]].<ref>{{cite news |last=Jones |first=Grahame L. |date=April 22, 2001 |title=Galaxy Cures Its Early Troubles |page=D8 |url=https://www.latimes.com/archives/la-xpm-2001-apr-22-sp-54280-story.html |work=Los Angeles Times |access-date=February 10, 2019}}</ref><ref>{{cite news |last=Jones |first=Grahame L. |date=May 10, 2001 |title=Galaxy Salvages 4-4 Tie |page=D9 |url=https://www.latimes.com/archives/la-xpm-2001-may-10-sp-61577-story.html |work=Los Angeles Times |access-date=February 10, 2019}}</ref> The Galaxy used its several wins to reach second in the Western Division standings, passing Kansas City but falling behind the unbeaten San Jose Earthquakes.<ref>{{cite news |last=Jones |first=Grahame L. |date=June 24, 2001 |title=Galaxy Strikes Late in Victory |page=D3 |url=https://www.latimes.com/archives/la-xpm-2001-jun-24-sp-14252-story.html |work=Los Angeles Times |access-date=February 10, 2019}}</ref> The cancellation of the [[2001 FIFA Club World Championship]] left a gap in the team's schedule in late July and early August, which was partially replaced with previously-rescheduled league matches.<ref>{{cite news |last=Jones |first=Grahame L. |date=May 19, 2001 |title=Galaxy's World Is Rocked |page=D11 |url=https://www.latimes.com/archives/la-xpm-2001-may-19-sp-65535-story.html |work=Los Angeles Times |access-date=February 10, 2019}}</ref> By early September, the Galaxy had begun challenging the Earthquakes for first place in the Western Division, winning seven of nine matches before a scheduled two-match series against San Jose to close out the regular season.<ref name="SCS-Aug"/><ref name="SeasonReview"/> After the matches were canceled, Los Angeles was declared the Western Division champion with 47 points and seeded third in the playoffs bracket.<ref name="SJM-Halt"/><ref>{{cite news |last=Balderas |first=Al |date=September 14, 2001 |title=Galaxy given division title by MLS |page=A1 |work=[[Orange County Register]]}}</ref>
+
+The Galaxy played against the sixth-seeded New York/New Jersey [[MetroStars]] in the quarterfinals, coached by former Galaxy manager [[Octavio Zambrano]].<ref>{{cite news |last=Jones |first=Grahame L. |date=September 23, 2001 |title=Apple of His Eye |page=D1 |url=https://www.latimes.com/archives/la-xpm-2001-sep-23-sp-49001-story.html |work=Los Angeles Times |access-date=February 10, 2019}}</ref> The first leg, at the [[Rose Bowl (stadium)|Rose Bowl]], ended in a 1–1 draw after a second-half goal by [[Paul Caligiuri]], who was ejected in the second half alongside MetroStars midfielder [[Gilmar Antônio Batista|Gilmar]].<ref>{{cite news |last=Arkush |first=Michael |date=September 24, 2001 |title=Depleted MetroStars Hang On for Tie |page=D12 |url=https://www.nytimes.com/2001/09/24/sports/soccer-depleted-metrostars-hang-on-for-tie.html |work=The New York Times |access-date=February 10, 2019}}</ref> The second leg, played at [[Giants Stadium]] in New Jersey, was one of the first sporting events in the New York City area following the September 11 attacks;<ref>{{cite news |last=Bolster |first=John |date=September 7, 2011 |title=9/11 Memorial: MLSers recall when soccer returned to NY |url=https://www.newyorkredbulls.com/post/2011/09/07/911-memorial-mlsers-recall-when-soccer-returned-ny |publisher=[[New York Red Bulls]] |access-date=February 10, 2019}}</ref> the MetroStars defeated the Galaxy by a 4–1 scoreline, coming from behind after conceding an early goal to Los Angeles, and took a three-point lead in the quarterfinals series.<ref>{{cite news |last=Jones |first=Grahame L. |date=September 27, 2001 |title=Galaxy on the Brink of Elimination After Loss |page=D3 |url=https://www.latimes.com/archives/la-xpm-2001-sep-27-sp-50414-story.html |work=Los Angeles Times |access-date=February 10, 2019}}</ref> Los Angeles hosted the third match of the series at the Rose Bowl and took a 2–0 lead in the first half on two goals by [[Sasha Victorine]]. After conceding a third goal in the second half, the MetroStars responded with two goals by [[Petter Villegas]], losing 3–2 to the Galaxy in regular time to tie the series at four points apiece. The tie went into [[sudden death (sport)|sudden death]] extra time, which ended after eight minutes when [[Mauricio Cienfuegos]] scored the winning golden goal for Los Angeles.<ref>{{cite news |last=Arkush |first=Michael |date=September 30, 2001 |title=Two Chances to Advance Aren't Enough for MetroStars |page=D6 |url=https://www.nytimes.com/2001/09/30/sports/soccer-two-chances-to-advance-aren-t-enough-for-metrostars.html |work=The New York Times |access-date=February 10, 2019}}</ref><ref>{{cite news |last=Jones |first=Grahame L. |date=September 30, 2001 |title=After Long Day, Galaxy Advances |page=D1 |url=https://www.latimes.com/archives/la-xpm-2001-sep-30-sp-51731-story.html |work=Los Angeles Times |access-date=February 10, 2019}}</ref>
+
+In a rematch of the U.S. Open Cup semifinal, Los Angeles faced the [[Chicago Fire Soccer Club|Chicago Fire]], winners of the Central Division, in the MLS Cup semifinals.<ref>{{cite news |last=Jones |first=Grahame L. |date=October 10, 2001 |title=Galaxy Will Need to Put It Together Against the Fire |page=D3 |url=https://www.latimes.com/archives/la-xpm-2001-oct-10-sp-55471-story.html |work=Los Angeles Times |access-date=February 10, 2019}}</ref> The first leg at Chicago's [[Soldier Field]] ended in a 1–1 draw between the two teams after an overtime goal by Cobi Jones was ruled invalid due to a tackle by Brian Mullan.<ref>{{cite news |last=Jones |first=Grahame L. |date=October 11, 2001 |title=Galaxy Can't Put Out Fire |page=D3 |url=https://www.latimes.com/archives/la-xpm-2001-oct-11-sp-55939-story.html |work=Los Angeles Times |access-date=February 10, 2019}}</ref> The Galaxy won 1–0 overtime in the second leg on a golden goal from [[Peter Vagenas]].<ref>{{cite news |last=Jones |first=Grahame L. |date=October 14, 2001 |title=Hernandez Is Just in Time |page=D1 |url=https://www.latimes.com/archives/la-xpm-2001-oct-14-sp-57224-story.html |work=Los Angeles Times |access-date=February 10, 2019}}</ref> The third and final leg, also hosted at Soldier Field, remained tied at 1–1 after regular time and finished with a golden goal scored by Cienfuegos in the 98th minute of extra time.<ref>{{cite news |last=Foltman |first=Bob |date=October 18, 2001 |title=Fire's season comes to end |page=3 |url=https://www.chicagotribune.com/news/ct-xpm-2001-10-18-0110180351-story.html |work=[[Chicago Tribune]] |access-date=February 10, 2019}}</ref> With their 2–1 victory over Chicago, the Los Angeles Galaxy advanced to their third MLS Cup final in six seasons. The team would also have a chance to be the first American team to win a continental [[treble (association football)|treble]], having already won the [[CONCACAF Champions' Cup]] in January and being scheduled to play in the [[U.S. Open Cup]] final a week after the MLS Cup.<ref>{{cite news |last=Jones |first=Grahame L. |date=October 18, 2001 |title=Galaxy on Target, and in Title Game |page=D3 |url=https://www.latimes.com/archives/la-xpm-2001-oct-18-sp-58694-story.html |work=Los Angeles Times |access-date=February 10, 2019}}</ref>
+
+===Summary of results===
+:''Note: In all results below, the score of the finalist is given first (H: home; A: away). Playoffs were in [[best of three|best-of-three]] format requiring five points to advance and [[sudden death (sport)|sudden death]] extra time as a tiebreaker.''
+{| class="wikitable" style="text-align:center"
+|-
+!colspan=4|[[San Jose Earthquakes]]
+!Round
+!colspan=4|[[Los Angeles Galaxy]]
+|-
+|colspan=4 valign=top align=center|2nd place in [[2001 Major League Soccer season#Western Division|Western Division]]<br />&nbsp;
+
+{| class="wikitable" style="text-align:center; margin:0; font-size: 95%" 
+!{{tooltip|Pos.|Position}}
+!width=195| Club 
+!{{tooltip|Pld.|Games played}}
+!{{tooltip|W|Wins}}
+!{{tooltip|L|Losses}}
+!{{tooltip|D|Draws}}
+!{{tooltip|Pts.|Points}}
+|- style="background:#FFFFCD;"
+|1||align=left|[[Los Angeles Galaxy]]||26||14||7||5||'''47'''
+|- style="background:#FFFFCD;"
+|'''2'''||align=left|'''[[San Jose Earthquakes]]'''||'''26'''||'''13'''||'''7'''||'''6'''||'''45'''
+|- style="background:#FFFFCD;"
+|3||align=left|[[Kansas City Wizards]]||27||11||13||3||'''36'''
+|-
+|4||align=left|[[Colorado Rapids]]||26||5||13||4||'''23'''
+|}
+
+{{small|1=Source: [https://www.mlssoccer.com/standings/conference/#season=2001&live=true MLS]}}
+
+{{legend0|#FFFEBB|Qualified for playoffs|border=1px solid black}}
+|style="background:#c1e0ff"|[[2001 Major League Soccer season|Regular season]]
+|colspan=4 valign=top|1st place in [[2001 Major League Soccer season#Western Division|Western Division]]<br />&nbsp;
+
+{| class="wikitable" style="text-align:center; margin:0; font-size: 95%" 
+!{{tooltip|Pos.|Position}}
+!width=195| Club 
+!{{tooltip|Pld.|Games played}}
+!{{tooltip|W|Wins}}
+!{{tooltip|L|Losses}}
+!{{tooltip|D|Draws}}
+!{{tooltip|Pts.|Points}}
+|- style="background:#FFFFCD;"
+|'''1'''||align=left|'''[[Los Angeles Galaxy]]'''||'''26'''||'''14'''||'''7'''||'''5'''||'''47'''
+|- style="background:#FFFFCD;"
+|2||align=left|[[San Jose Earthquakes]]||26||13||7||6||'''45'''
+|- style="background:#FFFFCD;"
+|3||align=left|[[Kansas City Wizards]]||27||11||13||3||'''36'''
+|-
+|4||align=left|[[Colorado Rapids]]||26||5||13||4||'''23'''
+|}
+
+{{small|1=Source: [https://www.mlssoccer.com/standings/conference/#season=2001&live=true MLS]}}
+
+{{legend0|#FFFEBB|Qualified for playoffs|border=1px solid black}}
+|- style="background:#c1e0ff"
+|Opponent<br />({{tooltip|Pts.|Points}})
+|1st leg
+|2nd leg
+|3rd leg
+|[[2001 MLS Cup Playoffs|MLS Cup Playoffs]]
+|Opponent<br />({{tooltip|Pts.|Points}})
+|1st leg
+|2nd leg
+|3rd leg
+|-
+|align=left|[[Columbus Crew SC|Columbus Crew]] (6–0)
+|3–1 (A)
+|3–0 (H)
+|—
+|style="background:#c1e0ff"|Quarterfinals
+|align=left|[[MetroStars]] (4–4)
+|1–1 (H)
+|1–4 (A)
+|3–2 ([[Sudden death (sport)|SDET]]) (H)
+|-
+|align=left|[[Miami Fusion]] (6–3)
+|0–1 (A)
+|4–0 (H)
+|1–0 {{aet}} (A)
+|style="background:#c1e0ff"|Semifinals
+|align=left|[[Chicago Fire Soccer Club|Chicago Fire]] (7–1)
+|1–1 (A)
+|1–0 {{aet}} (H)
+|2–1 {{aet}} (A)
+|}
+{{clear}}
+
+==Broadcasting==
+
+The MLS Cup final was televised in the United States on [[ESPN on ABC|ABC]] in English and Spanish. The network moved the start time of the match by one hour from 1:30&nbsp;p.m. [[Eastern Time Zone|Eastern Time]] to 12:30&nbsp;p.m. to accommodate scheduling changes caused by the September 11 attacks.<ref name="MLS-Oct">{{cite press release |date=October 1, 2001 |title=MLS Cup Start Time Moved To 12:30ET |url=http://www.mlsnet.com/content/01/mls1001mlscuptime.html |publisher=Major League Soccer |url-status=dead |archive-url=https://web.archive.org/web/20020630191413/http://www.mlsnet.com/content/01/mls1001mlscuptime.html |archive-date=June 30, 2002 |access-date=March 7, 2019}}</ref> The English commentary crew consisted of [[Jack Edwards (sportscaster)|Jack Edwards]] for play-by-play, [[Ty Keough]] with [[Color commentator|color analysis]], and other programming hosted by [[Rob Stone (sportscaster)|Rob Stone]] and [[Dave Dir]].<ref name="MLS-Oct"/> The Spanish broadcast was transmitted over [[Second audio program|secondary audio programming]] on ABC and was headlined by play-by-play commentator [[Hammer Londoño]] and color analyst [[Hernan Pereyra]] of [[Radio Unica]]. The match was also broadcast in 108 other countries by [[ESPN International]].<ref>{{cite press release |date=October 16, 2001 |title=Down To The Wire |url=http://www.mlsnet.com/content/01/weekly1016.html |url-status=dead |archive-url=https://web.archive.org/web/20011109070329/http://www.mlsnet.com/content/01/weekly1016.html |archive-date=November 9, 2001 |access-date=March 7, 2019}}</ref> The ABC broadcast earned a 1.0 [[Nielsen rating]], beating the previous two editions of the cup.<ref>{{cite news |last=Kennedy |first=Paul |date=December 4, 2012 |title=MLS Cup television ratings dip |url=https://www.socceramerica.com/publications/article/49487/mls-cup-television-ratings-dip.html |work=Soccer America |url-access=subscription |access-date=July 29, 2019}}</ref>
+
+==Match==
+
+===Summary===
+[[File:DwayneDeRosario.jpg|thumb|right|upright=1.0|[[Dwayne De Rosario]] scored the [[golden goal]] to win the MLS Cup for San Jose and was named the match MVP.|alt=Dwayne De Rosario, wearing a blue jersey, prepares to strike a soccer ball on the ground with his right foot.]]
+
+The match was played only four days after the MLS Cup semifinals, in front of a predominantly neutral crowd of 21,626 at Columbus Crew Stadium with several thousand no-show ticketholders.<ref name="Goff">{{cite news |last=Goff |first=Steven |date=October 22, 2001 |title=From Bottom to Top |page=D14 |url=http://www.washingtonpost.com/wp-dyn/articles/A30928-2001Oct21.html |work=The Washington Post |access-date=February 10, 2019}}</ref> A group of about 100 Chicago Fire supporters appeared at the match to taunt the Galaxy with chants and drums.<ref>{{cite news |last=Pucin |first=Diane |date=October 22, 2001 |title=He's Just What MLS Needs |page=D11 |url=https://www.latimes.com/archives/la-xpm-2001-oct-22-sp-60186-story.html |work=Los Angeles Times |access-date=February 10, 2019}}</ref> The pregame ceremony included an appearance by six members of the [[New York City Fire Department]] and [[New York City Police Department]] and the national anthem sung by [[Toya (singer)|Toya]].<ref name="Notes">{{cite press release |date=October 18, 2001 |title=MLS Cup 2001 News & Notes |url=https://www.oursportscentral.com/services/releases/mls-cup-2001-news--notes/n-2708532 |publisher=Major League Soccer |via=Our Sports Central |access-date=March 7, 2019}}</ref><ref name="BH">{{cite news |last=Martins |first=Gus |date=October 22, 2001 |title=Schmid, Galaxy must kick back |page=72 |work=[[The Boston Herald]]}}</ref> The match was the first MLS Cup to be refereed by [[Kevin Stott]], who previously served as the fourth official at [[MLS Cup 2000]].<ref name="Notes"/><ref>{{cite web |title=MLS Cup Roll of Honor |url=http://proreferees.com/officials/mls-cup-roll-of-honor/ |publisher=[[Professional Referee Organization]] |access-date=March 7, 2019}}</ref>
+
+The Earthquakes began the match with the majority of possession, which was used to build up to several attacking chances that were cleared away by Galaxy goalkeeper [[Kevin Hartman]]. Los Angeles, however, had a chance of its own in the 14th minute on a cross by [[Cobi Jones]] towards [[Sasha Victorine]] that was passed on to [[Mauricio Cienfuegos]], whose shot was cleared away by San Jose. The Galaxy opened the scoring in 21st minute on a goal by [[Luis Hernández (footballer, born 1968)|Luis Hernández]], who received a {{convert|40|yd|m|adj=mid}} pass from defender [[Greg Vanney]].<ref name="SI">{{cite news |date=October 21, 2001 |title=Worst to first: Golden goal lifts Quakes over Galaxy 2-1 in MLS Cup |url=http://sportsillustrated.cnn.com/soccer/mls/2001/mls_cup/news/2001/10/21/mlscup_gamer/ |work=Sports Illustrated |url-status=dead |archive-url=https://web.archive.org/web/20121113001048/http://sportsillustrated.cnn.com/soccer/mls/2001/mls_cup/news/2001/10/21/mlscup_gamer/ |archive-date=November 13, 2012 |access-date=March 4, 2019}}</ref> Los Angeles then missed an opportunity to take a 2–0 lead in the 35th minute after a shot from Cobi Jones was saved by goalkeeper [[Joe Cannon (soccer)|Joe Cannon]].<ref name="LAT-Report">{{cite news |date=October 22, 2001 |title=MLS Cup Game Report |page=D11 |work=Los Angeles Times |url=https://www.newspapers.com/clip/28281436/mls_cup_game_report/ |via=Newspapers.com |access-date=March 6, 2019}}</ref> The Earthquakes found an equalizing goal shortly before half-time in the 43rd minute on a play started by [[Ian Russell (soccer)|Ian Russell]]'s run down the right wing. He slipped a pass to [[Richard Mulrooney]], whose cross over the box was volleyed by [[Landon Donovan]] into the top-right corner of the goal.<ref name="Goff"/><ref name="SI"/>
+
+San Jose went on to outshoot Los Angeles 12–3 in the second half and created several chances to score, including a free kick taken by [[Jeff Agoos]] that hit the left goalpost.<ref name="Goff"/><ref name="SI"/> After receiving a [[yellow card (sport)|yellow card]] for a challenge on Ian Russell, Galaxy defender [[Paul Caligiuri]] was substituted in the 53rd minute—marking the end of his MLS career.<ref name="LAT-Report"/> Three additional yellow cards were issued in the second half to [[Danny Califf]], [[Ronnie Ekelund]], and [[Zak Ibsen]]; Ibsen had only been substituted a minute before drawing the card.<ref name="BH"/><ref name="LAT-Report"/> [[Dwayne De Rosario]] was substituted into the game in the 85th minute for [[Ronald Cerritos]], shortly before the tied match forced a sudden-death overtime.<ref name="SI"/> De Rosario scored the winning [[golden goal]] in the sixth minute of overtime with a dribble around Califf and a shot from {{convert|17|yd|m}} that Hartman managed to touch, but was unable to save.<ref>{{cite news |last=Payne |first=Dave |date=October 22, 2001 |title=DeRosario's overtime goal lifts Quakes to MLS crown |url=http://www.bayarea.com/c/category/sports_and_recreation/soccer/san_jose_earthquakes/docs/mercurynews/quakes22x.htm |work=The Mercury News |url-status=dead |archive-url=https://web.archive.org/web/20011211224401/http://www.bayarea.com/c/category/sports_and_recreation/soccer/san_jose_earthquakes/docs/mercurynews/quakes22x.htm |archive-date=December 11, 2001 |access-date=March 3, 2019}}</ref><ref>{{cite news |last=Chapin |first=Dwight |date=October 22, 2001 |title=Earthquakes' victory is extra special |url=https://www.sfgate.com/sports/article/Earthquakes-victory-is-extra-special-2866446.php |work=San Francisco Chronicle |access-date=March 7, 2019}}</ref> It was the second time in MLS Cup history that the title was decided by a golden goal, following the [[MLS Cup 1996|inaugural edition]] between D.C. United and the Galaxy.<ref>{{cite news |date=October 21, 2001 |title=DeRosario Stunner Gives San Jose the Title |url=http://www.mlsnet.com/games/01/mlscup2001.html |work=MLSnet.com |url-status=dead |archive-url=https://web.archive.org/web/20011122133507/http://www.mlsnet.com/games/01/mlscup2001.html |archive-date=November 22, 2001 |access-date=March 3, 2019}}</ref>
+
+===Details===
+{{Football box 
+|date = October 21, 2001
+|time = 12:30 [[Eastern Time Zone|EDT]]
+|team1 = [[San Jose Earthquakes]]
+|score = 2–1
+|agget = yes
+|report = https://www.mlssoccer.com/history/mls-cup/2001
+|team2 = [[LA Galaxy|Los Angeles Galaxy]] 
+|goals1 = 
+* [[Landon Donovan|Donovan]] {{goal|43}}
+* [[Dwayne De Rosario|De Rosario]] {{golden goal|96}}
+|goals2 = 
+* [[Luis Hernández (footballer, born 1968)|Hernández]] {{goal|21}}
+|stadium = [[Mapfre Stadium|Columbus Crew Stadium]]
+|location = [[Columbus, Ohio|Columbus]], Ohio
+|attendance = 21,626
+|referee = [[Kevin Stott]]
+}}
+{{col-begin}}
+{{col-2}}
+{{Football kit
+| pattern_la           = _blackborder
+| pattern_b             = _sje00a
+| pattern_ra            = _blackborder
+| pattern_sh            = _sje00ashorts
+| pattern_so            =  
+| leftarm               = ffffff
+| body                 = ffffff 
+| rightarm              = ffffff
+| shorts               = ffffff
+| socks                 = ffffff
+ | title           = {{nowrap|San Jose Earthquakes}}
+}}
+{{col-2}}
+{{Football kit
+| pattern_la        = _GALAXY_00  
+| pattern_b         = _GALAXY_00h
+| pattern_ra        = _GALAXY_00 
+| pattern_sh        = _GALAXY_00h
+| pattern_so        = _gold midband
+| leftarm           = 007576
+| body             = 
+| rightarm           = 007576
+| shorts             = 007576  
+| socks              = 007576
+|title            = {{nowrap|Los Angeles Galaxy}}
+}}
+{{col-end}}
+{| style="width:100%;"
+|-
+|  style="vertical-align:top; width:50%;"|
+{| style="font-size: 90%" cellspacing="0" cellpadding="0"
+|-
+|colspan="4"| 
+|-
+!width=25| !!width=25|
+|-
+|GK ||'''1''' ||{{flagicon|USA}} [[Joe Cannon (soccer)|Joe Cannon]]
+|-
+|DF ||'''12'''||{{flagicon|USA}} [[Jeff Agoos]] ([[Captain (association football)|c]])
+|-
+|DF ||'''17'''||{{flagicon|USA}} [[Jimmy Conrad]] || {{yel|28}}
+|-
+|DF ||'''19'''||{{flagicon|USA}} [[Troy Dayak]]
+|-
+|DF ||'''24'''||{{flagicon|USA}} [[Wade Barrett (soccer)|Wade Barrett]]
+|-
+|MF ||'''5''' ||{{flagicon|USA}} [[Ramiro Corrales]]
+|-
+|MF ||'''6''' ||{{flagicon|DEN}} [[Ronnie Ekelund]] || {{yel|78}}
+|-
+|MF ||'''8''' ||{{flagicon|USA}} [[Richard Mulrooney]]
+|-
+|MF ||'''15'''||{{flagicon|USA}} [[Ian Russell (soccer)|Ian Russell]] || || {{suboff|82}}
+|-
+|FW ||'''10'''||{{flagicon|USA}} [[Landon Donovan]]
+|-
+|FW ||'''20'''||{{flagicon|SLV}} [[Ronald Cerritos]] || || {{suboff|85}}
+|-
+|colspan=3|'''Substitutes:'''
+|-
+|GK ||'''0''' ||{{flagicon|USA}} [[Jon Conway]]
+|-
+|DF ||'''22'''||{{flagicon|USA}} [[Zak Ibsen]] || {{yel|83}} || {{subon|82}}
+|-
+|MF ||'''11'''||{{flagicon|USA}} [[Manny Lagos]]
+|-
+|MF ||'''15'''||{{flagicon|USA}} [[Ian Russell (soccer)|Ian Russell]]
+|-
+|FW ||'''9''' ||{{flagicon|USA}} [[Scott Bower]]
+|-
+|FW ||'''14'''||{{flagicon|CAN}} [[Dwayne De Rosario]] || || {{subon|85}}
+|-
+|FW ||'''15'''||{{flagicon|ENG}} [[Junior Agogo]]
+|-
+|colspan=3|'''Manager:'''
+|-
+|colspan=4|{{flagicon|CAN}} [[Frank Yallop]]
+|}
+|valign="top"|
+|  style="vertical-align:top; width:50%;"|
+{| cellspacing="0" cellpadding="0" style="font-size:90%; margin:auto;"
+|-
+|colspan="4"| 
+|-
+!width=25| !!width=25|
+|-
+|GK ||'''22'''||{{flagicon|USA}} [[Kevin Hartman]]
+|-
+|DF ||'''3''' ||{{flagicon|USA}} [[Greg Vanney]]
+|-
+|DF ||'''17'''||{{flagicon|VIN}} [[Ezra Hendrickson]]
+|-
+|DF ||'''20'''||{{flagicon|USA}} [[Paul Caligiuri]] || {{yel|48}} || {{suboff|53}}
+|-
+|DF ||'''23'''||{{flagicon|USA}} [[Danny Califf]] || {{yel|76}}
+|-
+|MF ||'''8''' ||{{flagicon|USA}} [[Peter Vagenas]]
+|-
+|MF ||'''10'''||{{flagicon|SLV}} [[Mauricio Cienfuegos]]
+|-
+|MF ||'''12'''||{{flagicon|NZL}} [[Simon Elliott]]
+|-
+|MF ||'''13'''||{{flagicon|USA}} [[Cobi Jones]] ([[Captain (association football)|c]])
+|-
+|FW ||'''11'''||{{flagicon|USA}} [[Sasha Victorine]] || || {{suboff|75}}
+|-
+|FW ||'''15'''||{{flagicon|MEX}} [[Luis Hernández (footballer, born 1968)|Luis Hernández]]
+|-
+|colspan=3|'''Substitutes:'''
+|-
+|GK ||'''1''' ||{{flagicon|USA}} [[Matt Reis]]
+|-
+|DF ||'''5''' ||{{flagicon|USA}} [[Craig Waibel]]
+|-
+|DF ||'''18'''||{{flagicon|USA}} [[Adam Frye]] || || {{subon|53}}
+|-
+|FW ||'''7''' ||{{flagicon|USA}} [[Isaias Bardales Jr.]]
+|-
+|FW ||'''9''' ||{{flagicon|USA}} [[Brian Ching]]
+|-
+|FW ||'''16'''||{{flagicon|USA}} [[Brian Mullan]] || || {{subon|75}}
+|-
+|FW ||'''25'''||{{flagicon|SLV}} [[Marvin Quijano]]
+|-
+|colspan=3|'''Manager:'''
+|-
+|colspan=4|{{flagicon|USA}} [[Sigi Schmid]]
+|}
+|}
+{| style="width:100%;font-size:90%"
+|
+'''MLS Cup Most Valuable Player:'''
+<br />[[Dwayne De Rosario]] (San Jose Earthquakes)
+
+'''Assistant referees:'''
+<br />{{flagicon|USA}} Roger Itaya
+<br />{{flagicon|USA}} Daniel Wilson
+<br />'''Fourth official:'''
+<br />{{flagicon|USA}} [[Paul Tamberino]]
+
+|style="width:60%; vertical-align:top"|
+'''Match rules'''
+*90 minutes of regulation time
+*Two 15-minute periods of [[Extra time (association football)|extra time]] with a [[golden goal]] to decide a winner.
+*[[Penalty shoot-out (association football)|Penalty shoot-out]] if scores still tied.
+*Maximum of three substitutions for outfield players and an additional substitution for the goalkeeper.
+|}
+
+==Post-match==
+
+The Earthquakes completed a "worst to first" finish, which was named the greatest turnaround in MLS history.<ref name="AP-Summary">{{cite news |last=Gillespie |first=Charley |date=October 22, 2001 |title=Earthquakes Shake L.A. To Capture MLS Cup |page=B5 |work=[[Albuquerque Journal]] |agency=Associated Press |url=https://www.newspapers.com/clip/28281322/earthquakes_shake_la_to_capture_mls/ |via=Newspapers.com |access-date=February 10, 2019}}</ref> Frank Yallop became the first former MLS player to win the MLS Cup as head coach, as well as the first non-American manager to win the championship.<ref name="Goff"/><ref>{{cite news |last=Wise |first=Mike |date=November 15, 2004 |title=United on Top of Its Game |page=A1 |url=https://www.washingtonpost.com/wp-dyn/articles/A50056-2004Nov14.html |work=The Washington Post |access-date=March 17, 2019}}</ref> Dwayne De Rosario was named the MLS Cup MVP for his golden goal, despite entering the match in the 85th minute.<ref>{{cite news |last=Robledo |first=Fred J. |date=October 22, 2001 |title=This one's just not in the stars for Galaxy |page=B1 |work=Long Beach Press-Telegram}}</ref> The Galaxy lost their third final in six years, with the match against San Jose described as the "most difficult" by coach Sigi Schmid.<ref>{{cite news |last=Znidar |first=Mark |date=October 22, 2001 |title=Galaxy endures yet another cup spill |page=D3 |work=The Columbus Dispatch}}</ref> The Galaxy went on to win the [[2001 U.S. Open Cup]] a week later, defeating the [[New England Revolution]] 2–1 in overtime.<ref>{{cite news |last=Jones |first=Grahame L. |date=October 28, 2001 |title=Redemption Corner for Califf, Galaxy |page=D3 |url=https://www.latimes.com/archives/la-xpm-2001-oct-28-sp-62639-story.html |work=Los Angeles Times |access-date=February 10, 2019}}</ref> Los Angeles met New England again at [[MLS Cup 2002]], winning 1–0 in overtime for their first MLS Cup title.<ref>{{cite news |last=Goff |first=Steven |date=October 21, 2002 |title=Galaxy Sitting on Top of World |page=D6 |url=http://www.washingtonpost.com/wp-dyn/articles/A56525-2002Oct20.html |work=The Washington Post |access-date=February 10, 2019}}</ref> San Jose won their second MLS Cup in the [[MLS Cup 2003|2003 final]] at the Galaxy's newly-constructed [[soccer-specific stadium]], the [[Home Depot Center]] in [[Carson, California]], after eliminating the hosts in the playoffs.<ref>{{cite news |last=Jones |first=Grahame L. |date=November 24, 2003 |title=Earthquakes Win MLS Cup |page=D1 |url=https://www.latimes.com/archives/la-xpm-2003-nov-24-sp-mls24-story.html |work=Los Angeles Times |access-date=February 10, 2019}}</ref>
+
+San Jose qualified for the [[2002 CONCACAF Champions' Cup]] alongside the finalists from [[MLS Cup 2000]], Chicago and Kansas City, due to the cancellation of the previous Champions' Cup and the transition to the new, expanded cup format.<ref>{{cite press release |date=October 10, 2001 |title=Club Competitions in the Football Confederation Reborn as FC Champions' Cup Begins New League Format for 2002 |url=https://www.ussoccer.com/stories/2014/03/17/13/58/club-competitions-in-the-football-confederation-reborn-as-fc-champons-cup-begins-new-league-format-f |publisher=[[United States Soccer Federation]] |url-status=dead |archive-url=https://web.archive.org/web/20181109115202/https://www.ussoccer.com/stories/2014/03/17/13/58/club-competitions-in-the-football-confederation-reborn-as-fc-champons-cup-begins-new-league-format-f |archive-date=November 9, 2018 |access-date=February 10, 2019 }}</ref> The Earthquakes advanced from the first round against [[Club Deportivo Olimpia|C.D. Olimpia]] by winning 1–0 at the [[Miami Orange Bowl]] and 3–1 at a small stadium in [[Sacramento, California|Sacramento]].<ref>{{cite news |last=Voet |first=Gary |date=March 17, 2002 |title=Sellout crowd sees Quakes roll |page=C2 |work=[[Sacramento Bee]]}}</ref> San Jose then faced [[C.F. Pachuca]] in the quarterfinals and lost 3–0 in the away leg played in Mexico.<ref>{{cite news |last=Chapin |first=Dwight |date=April 24, 2002 |title=Pachuca has big edge in series |page=C3 |url=https://www.sfgate.com/sports/article/Pachuca-has-big-edge-in-series-2846379.php |work=San Francisco Chronicle |access-date=February 10, 2019}}</ref> The Earthquakes rallied to win 1–0 the following week in the home leg, but were eliminated from the cup with an [[aggregate score]] of 1–3.<ref>{{cite news |last=Harper |first=Jelani |date=April 25, 2002 |title=Quakes win game, lose series |work=[[The Argus (Fremont)|The Argus]] |location=Fremont, California}}</ref>
+
+The Earthquakes and its players were later relocated to Houston after the 2005 season, becoming the [[Houston Dynamo]]. The Dynamo won consecutive MLS Cup championships in their first two seasons after relocation, while the Earthquakes returned to the league as an [[expansion team]] in the 2008 season.<ref>{{cite news |last=Goff |first=Steven |date=November 19, 2007 |title=The Dynamo's Double Standard |page=E1 |url=http://www.washingtonpost.com/wp-dyn/content/article/2007/11/18/AR2007111800390.html |work=The Washington Post |access-date=February 14, 2019}}</ref> The Galaxy went on to win five MLS Cup titles, including two against the Dynamo in the [[MLS Cup 2011|2011]] and [[MLS Cup 2012|2012]] finals.<ref>{{cite news |last=Powers |first=John |date=December 8, 2014 |title=Galaxy defeat Revolution for record fifth MLS title |url=https://www.bostonglobe.com/sports/2014/12/07/galaxy-defeat-revolution-for-record-fifth-mls-title/QXMrUO8NT5sTEKPW5Un1UL/story.html |work=The Boston Globe |access-date=February 14, 2019}}</ref>
+
+==References==
+{{reflist}}
+
+{{MLS Cup}}
+<!--{{2001 in American soccer}}-->
+{{San Jose Earthquakes matches}}
+{{Los Angeles Galaxy matches}}
+
+{{DEFAULTSORT:2001 Mls Cup}}
+[[Category:MLS Cup]]
+[[Category:2001 Major League Soccer season|*MLS Cup]]
+[[Category:LA Galaxy matches|MLS Cup 2001]]
+[[Category:San Jose Earthquakes matches|MLS Cup 2001]]
+[[Category:Soccer competitions in Columbus, Ohio]]
+[[Category:October 2001 sports events in the United States]]
+[[Category:2001 in sports in Ohio]]
+[[Category:21st century in Columbus, Ohio]]

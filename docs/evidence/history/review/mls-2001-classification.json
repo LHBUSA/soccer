@@ -1,0 +1,125 @@
+{
+ "at": "2026-10-02T23:28:05.183Z",
+ "competition": "mls",
+ "season": "2001",
+ "manifest_sha256": "3880609aa8b4db2172d58c9f8ec6a569a9fc547540efc0d8ba1f22d825d443f0",
+ "canonical_matches": 178,
+ "playoff_matched": 18,
+ "playoff_expected": 18,
+ "regular_finished": 157,
+ "regular_expected": 158,
+ "excluded_listings": [
+  {
+   "match_id": "9cefd17d-2dd5-5b04-b64a-322d40d4d2b8",
+   "espn_event": "13733",
+   "kickoff_at": "2001-09-12T23:30:00+00:00",
+   "status": "cancelled",
+   "home": "d-c-united",
+   "away": "fc-dallas"
+  },
+  {
+   "match_id": "f7a8065b-81e8-5388-8eaa-46fac22db92a",
+   "espn_event": "13735",
+   "kickoff_at": "2001-09-13T01:00:00+00:00",
+   "status": "cancelled",
+   "home": "colorado-rapids",
+   "away": "columbus-crew"
+  },
+  {
+   "match_id": "dca15a70-2c09-5f4f-9f35-56316d47a35a",
+   "espn_event": "13738",
+   "kickoff_at": "2001-09-15T23:30:00+00:00",
+   "status": "cancelled",
+   "home": "new-england-revolution",
+   "away": "red-bull-new-york"
+  }
+ ],
+ "unresolved": [],
+ "fixtures": [
+  {
+   "stage": "Semifinals",
+   "date_local": "2001-10-13",
+   "fixture": "chicago-fire-fc 0-1 la-galaxy",
+   "candidates": [
+    {
+     "match_id": "232cbe9b-0ec6-51c6-913b-c378b4543fce",
+     "espn_event": "17679",
+     "kickoff_at": "2001-10-15T02:00:00+00:00",
+     "home": "la-galaxy"
+    }
+   ],
+   "outcome": "matched_reviewed_date_exception",
+   "exception": {
+    "provider": "espn",
+    "event_id": "17679",
+    "provider_local_date": "2001-10-14",
+    "reason": "ESPN kickoff 2001-10-15T02:00Z (Oct 14 local) vs Oct 13 in the season article; the MLS Cup 2001 article independently cites the Los Angeles Times match report \"Hernandez Is Just in Time\" dated October 14, 2001 (the morning after an Oct 13 evening match).",
+    "evidence": [
+     "https://en.wikipedia.org/wiki/2001_Major_League_Soccer_season",
+     "https://en.wikipedia.org/wiki/MLS_Cup_2001",
+     "https://www.latimes.com/archives/la-xpm-2001-oct-14-sp-57224-story.html"
+    ]
+   }
+  }
+ ],
+ "standings_differences": [
+  {
+   "team": "san-jose-earthquakes",
+   "fields": {
+    "played": {
+     "reviewed": 26,
+     "canonical": 25
+    },
+    "won": {
+     "reviewed": 13,
+     "canonical": 12
+    },
+    "goals_for": {
+     "reviewed": 47,
+     "canonical": 45
+    },
+    "goals_against": {
+     "reviewed": 29,
+     "canonical": 28
+    }
+   }
+  },
+  {
+   "team": "colorado-rapids",
+   "fields": {
+    "played": {
+     "reviewed": 26,
+     "canonical": 25
+    },
+    "lost": {
+     "reviewed": 13,
+     "canonical": 12
+    },
+    "goals_for": {
+     "reviewed": 36,
+     "canonical": 35
+    },
+    "goals_against": {
+     "reviewed": 47,
+     "canonical": 45
+    }
+   }
+  }
+ ],
+ "provider_date_exceptions": [
+  {
+   "fixture": "chicago-fire-fc 0-1 la-galaxy",
+   "stage": "Semifinals",
+   "provider": "espn",
+   "event_id": "17679",
+   "provider_local_date": "2001-10-14",
+   "reason": "ESPN kickoff 2001-10-15T02:00Z (Oct 14 local) vs Oct 13 in the season article; the MLS Cup 2001 article independently cites the Los Angeles Times match report \"Hernandez Is Just in Time\" dated October 14, 2001 (the morning after an Oct 13 evening match).",
+   "evidence": [
+    "https://en.wikipedia.org/wiki/2001_Major_League_Soccer_season",
+    "https://en.wikipedia.org/wiki/MLS_Cup_2001",
+    "https://www.latimes.com/archives/la-xpm-2001-oct-14-sp-57224-story.html"
+   ]
+  }
+ ],
+ "ready": false
+}
