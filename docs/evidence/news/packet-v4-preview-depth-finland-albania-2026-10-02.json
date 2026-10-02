@@ -1,0 +1,647 @@
+{
+ "version": "soccer-preview-depth/1.0.0",
+ "recent_window": {
+  "max_matches": 5,
+  "max_age_days": 400
+ },
+ "home": {
+  "record": {
+   "played": 2,
+   "won": 1,
+   "drawn": 1,
+   "lost": 0,
+   "goals_for": 7,
+   "goals_against": 0,
+   "clean_sheets": 2,
+   "failed_to_score": 1
+  },
+  "home": {
+   "played": 1,
+   "won": 0,
+   "drawn": 1,
+   "lost": 0,
+   "goals_for": 0,
+   "goals_against": 0
+  },
+  "away": {
+   "played": 1,
+   "won": 1,
+   "drawn": 0,
+   "lost": 0,
+   "goals_for": 7,
+   "goals_against": 0
+  },
+  "results": [
+   {
+    "match_id": "61fe9681-6486-51b8-9cf3-fd1905d57d21",
+    "date": "2026-09-29",
+    "competition": {
+     "slug": "uefa-nations-league",
+     "name": "UEFA Nations League"
+    },
+    "venue": "home",
+    "opponent": {
+     "id": "de627920-a6d4-52a4-8400-162b35e47a07",
+     "name": "Belarus",
+     "slug": "belarus"
+    },
+    "score": "0-0",
+    "result": "D"
+   },
+   {
+    "match_id": "68dd119e-bc03-5761-981e-05b335fb02e4",
+    "date": "2026-09-26",
+    "competition": {
+     "slug": "uefa-nations-league",
+     "name": "UEFA Nations League"
+    },
+    "venue": "away",
+    "opponent": {
+     "id": "8404470a-b442-5f6a-804a-bea3c687698e",
+     "name": "San Marino",
+     "slug": "san-marino"
+    },
+    "score": "7-0",
+    "result": "W"
+   }
+  ],
+  "scoring_by_period": {
+   "matches_counted": 2,
+   "of": 2,
+   "halves": {
+    "first_half": {
+     "for": 3,
+     "against": 0
+    },
+    "second_half": {
+     "for": 4,
+     "against": 0
+    }
+   },
+   "buckets": {
+    "0-15": {
+     "for": 2,
+     "against": 0
+    },
+    "31-45+": {
+     "for": 1,
+     "against": 0
+    },
+    "46-60": {
+     "for": 2,
+     "against": 0
+    },
+    "76-90+": {
+     "for": 2,
+     "against": 0
+    }
+   }
+  },
+  "shots": {
+   "matches_counted": 2,
+   "basis": "source",
+   "for": 32,
+   "on_target_for": 13,
+   "against": 10,
+   "on_target_against": 3
+  },
+  "located_shots": {
+   "matches_counted": 2,
+   "shots": 31,
+   "inside_box": 23,
+   "outside_box": 8,
+   "avg_distance_m": 15.2,
+   "basis": "PBE derived from source event coordinates (penalty area x >= 88.5 m, |y - 34| <= 20.16 m)"
+  },
+  "scorers": [
+   {
+    "player": {
+     "id": "6c971acb-95cc-536d-a611-045423dc899d",
+     "name": "Joel Pohjanpalo",
+     "slug": "joel-pohjanpalo"
+    },
+    "goals": 3,
+    "scoring_matches": 1
+   },
+   {
+    "player": {
+     "id": "d1df0720-1305-53fd-981f-898a6ae2c832",
+     "name": "Leo Walta",
+     "slug": "leo-walta"
+    },
+    "goals": 2,
+    "scoring_matches": 1
+   },
+   {
+    "player": {
+     "id": "431eba09-5d16-5926-97ef-e5e5626b9d37",
+     "name": "Adrian Svanbäck",
+     "slug": "adrian-svanback"
+    },
+    "goals": 1,
+    "scoring_matches": 1
+   },
+   {
+    "player": {
+     "id": "4cdc8013-7a2c-57ee-bf60-5a9e27470b4e",
+     "name": "Benjamin Kallman",
+     "slug": "benjamin-kallman"
+    },
+    "goals": 1,
+    "scoring_matches": 1
+   }
+  ],
+  "goals_by_identified_scorers": 7,
+  "contributors": [
+   {
+    "player": {
+     "id": "6c971acb-95cc-536d-a611-045423dc899d",
+     "name": "Joel Pohjanpalo",
+     "slug": "joel-pohjanpalo"
+    },
+    "goals": 3,
+    "assists": 0,
+    "shots": 8,
+    "shots_on_target": 5,
+    "starts": 2,
+    "scoring_matches": 1
+   },
+   {
+    "player": {
+     "id": "d1df0720-1305-53fd-981f-898a6ae2c832",
+     "name": "Leo Walta",
+     "slug": "leo-walta"
+    },
+    "goals": 2,
+    "assists": 0,
+    "shots": 7,
+    "shots_on_target": 4,
+    "starts": 2,
+    "scoring_matches": 1
+   },
+   {
+    "player": {
+     "id": "431eba09-5d16-5926-97ef-e5e5626b9d37",
+     "name": "Adrian Svanbäck",
+     "slug": "adrian-svanback"
+    },
+    "goals": 1,
+    "assists": 0,
+    "shots": 2,
+    "shots_on_target": 1,
+    "starts": 1,
+    "scoring_matches": 1
+   },
+   {
+    "player": {
+     "id": "4cdc8013-7a2c-57ee-bf60-5a9e27470b4e",
+     "name": "Benjamin Kallman",
+     "slug": "benjamin-kallman"
+    },
+    "goals": 1,
+    "assists": 0,
+    "shots": 1,
+    "shots_on_target": 1,
+    "starts": 1,
+    "scoring_matches": 1
+   },
+   {
+    "player": {
+     "id": "e1082579-e228-564b-826d-a00f1d3c5214",
+     "name": "Adam Stahl",
+     "slug": "adam-stahl"
+    },
+    "goals": 0,
+    "assists": 0,
+    "shots": 5,
+    "shots_on_target": 1,
+    "starts": 1,
+    "scoring_matches": 0
+   }
+  ],
+  "formations": [
+   {
+    "match_id": "61fe9681-6486-51b8-9cf3-fd1905d57d21",
+    "date": "2026-09-29",
+    "formation": "4-3-3"
+   },
+   {
+    "match_id": "68dd119e-bc03-5761-981e-05b335fb02e4",
+    "date": "2026-09-26",
+    "formation": "4-3-3"
+   }
+  ],
+  "starting_xi_continuity": {
+   "latest": "2026-09-29",
+   "previous": "2026-09-26",
+   "same_starters": 7,
+   "of": 11
+  },
+  "cards": {
+   "yellow": 3,
+   "red": 0,
+   "matches_counted": 2
+  },
+  "rest_days": 3,
+  "campaign": {
+   "played": 2,
+   "won": 1,
+   "drawn": 1,
+   "lost": 0,
+   "goals_for": 7,
+   "goals_against": 0,
+   "clean_sheets": 2
+  }
+ },
+ "away": {
+  "record": {
+   "played": 2,
+   "won": 2,
+   "drawn": 0,
+   "lost": 0,
+   "goals_for": 5,
+   "goals_against": 0,
+   "clean_sheets": 2,
+   "failed_to_score": 0
+  },
+  "home": {
+   "played": 1,
+   "won": 1,
+   "drawn": 0,
+   "lost": 0,
+   "goals_for": 2,
+   "goals_against": 0
+  },
+  "away": {
+   "played": 1,
+   "won": 1,
+   "drawn": 0,
+   "lost": 0,
+   "goals_for": 3,
+   "goals_against": 0
+  },
+  "results": [
+   {
+    "match_id": "8f3cb723-17b1-53e1-bdde-21c8d66b6b1e",
+    "date": "2026-09-29",
+    "competition": {
+     "slug": "uefa-nations-league",
+     "name": "UEFA Nations League"
+    },
+    "venue": "away",
+    "opponent": {
+     "id": "8404470a-b442-5f6a-804a-bea3c687698e",
+     "name": "San Marino",
+     "slug": "san-marino"
+    },
+    "score": "3-0",
+    "result": "W"
+   },
+   {
+    "match_id": "49219107-2184-5a43-87a5-9137fa48363a",
+    "date": "2026-09-26",
+    "competition": {
+     "slug": "uefa-nations-league",
+     "name": "UEFA Nations League"
+    },
+    "venue": "home",
+    "opponent": {
+     "id": "de627920-a6d4-52a4-8400-162b35e47a07",
+     "name": "Belarus",
+     "slug": "belarus"
+    },
+    "score": "2-0",
+    "result": "W"
+   }
+  ],
+  "scoring_by_period": {
+   "matches_counted": 2,
+   "of": 2,
+   "halves": {
+    "first_half": {
+     "for": 4,
+     "against": 0
+    },
+    "second_half": {
+     "for": 1,
+     "against": 0
+    }
+   },
+   "buckets": {
+    "16-30": {
+     "for": 2,
+     "against": 0
+    },
+    "31-45+": {
+     "for": 2,
+     "against": 0
+    },
+    "61-75": {
+     "for": 1,
+     "against": 0
+    }
+   }
+  },
+  "shots": {
+   "matches_counted": 2,
+   "basis": "source",
+   "for": 34,
+   "on_target_for": 11,
+   "against": 14,
+   "on_target_against": 3
+  },
+  "located_shots": {
+   "matches_counted": 2,
+   "shots": 33,
+   "inside_box": 16,
+   "outside_box": 17,
+   "avg_distance_m": 19.5,
+   "basis": "PBE derived from source event coordinates (penalty area x >= 88.5 m, |y - 34| <= 20.16 m)"
+  },
+  "scorers": [
+   {
+    "player": {
+     "id": "b425def8-a98e-5c09-982e-a3a6dee30541",
+     "name": "Anis Mehmeti",
+     "slug": "anis-mehmeti"
+    },
+    "goals": 1,
+    "scoring_matches": 1
+   },
+   {
+    "player": {
+     "id": "5d8379c8-3aa7-5152-a2d2-31738e82217d",
+     "name": "Ernest Muçi",
+     "slug": "ernest-muci"
+    },
+    "goals": 1,
+    "scoring_matches": 1
+   },
+   {
+    "player": {
+     "id": "1c6a2256-56ec-58ca-aa2b-24cad5b7c3ed",
+     "name": "Kristjan Asllani",
+     "slug": "kristjan-asllani"
+    },
+    "goals": 1,
+    "scoring_matches": 1
+   },
+   {
+    "player": {
+     "id": "0884287a-07a7-518d-80ca-cd311beba1d2",
+     "name": "Myrto Uzuni",
+     "slug": "myrto-uzuni"
+    },
+    "goals": 1,
+    "scoring_matches": 1
+   },
+   {
+    "player": {
+     "id": "5e67748f-0185-53f7-ae62-40226d801a29",
+     "name": "Rey Manaj",
+     "slug": "rey-manaj"
+    },
+    "goals": 1,
+    "scoring_matches": 1
+   }
+  ],
+  "goals_by_identified_scorers": 5,
+  "contributors": [
+   {
+    "player": {
+     "id": "5e67748f-0185-53f7-ae62-40226d801a29",
+     "name": "Rey Manaj",
+     "slug": "rey-manaj"
+    },
+    "goals": 1,
+    "assists": 0,
+    "shots": 6,
+    "shots_on_target": 4,
+    "starts": 2,
+    "scoring_matches": 1
+   },
+   {
+    "player": {
+     "id": "5d8379c8-3aa7-5152-a2d2-31738e82217d",
+     "name": "Ernest Muçi",
+     "slug": "ernest-muci"
+    },
+    "goals": 1,
+    "assists": 0,
+    "shots": 6,
+    "shots_on_target": 2,
+    "starts": 2,
+    "scoring_matches": 1
+   },
+   {
+    "player": {
+     "id": "1c6a2256-56ec-58ca-aa2b-24cad5b7c3ed",
+     "name": "Kristjan Asllani",
+     "slug": "kristjan-asllani"
+    },
+    "goals": 1,
+    "assists": 0,
+    "shots": 3,
+    "shots_on_target": 1,
+    "starts": 2,
+    "scoring_matches": 1
+   },
+   {
+    "player": {
+     "id": "b425def8-a98e-5c09-982e-a3a6dee30541",
+     "name": "Anis Mehmeti",
+     "slug": "anis-mehmeti"
+    },
+    "goals": 1,
+    "assists": 0,
+    "shots": 2,
+    "shots_on_target": 1,
+    "starts": 1,
+    "scoring_matches": 1
+   },
+   {
+    "player": {
+     "id": "0884287a-07a7-518d-80ca-cd311beba1d2",
+     "name": "Myrto Uzuni",
+     "slug": "myrto-uzuni"
+    },
+    "goals": 1,
+    "assists": 0,
+    "shots": 2,
+    "shots_on_target": 1,
+    "starts": 1,
+    "scoring_matches": 1
+   }
+  ],
+  "formations": [
+   {
+    "match_id": "8f3cb723-17b1-53e1-bdde-21c8d66b6b1e",
+    "date": "2026-09-29",
+    "formation": "4-2-3-1"
+   },
+   {
+    "match_id": "49219107-2184-5a43-87a5-9137fa48363a",
+    "date": "2026-09-26",
+    "formation": "4-3-3"
+   }
+  ],
+  "starting_xi_continuity": {
+   "latest": "2026-09-29",
+   "previous": "2026-09-26",
+   "same_starters": 5,
+   "of": 11
+  },
+  "cards": {
+   "yellow": 3,
+   "red": 0,
+   "matches_counted": 2
+  },
+  "rest_days": 3,
+  "campaign": {
+   "played": 2,
+   "won": 2,
+   "drawn": 0,
+   "lost": 0,
+   "goals_for": 5,
+   "goals_against": 0,
+   "clean_sheets": 2
+  }
+ },
+ "h2h": {
+  "meetings": 0,
+  "home_wins": 0,
+  "away_wins": 0,
+  "draws": 0,
+  "home_goals": 0,
+  "away_goals": 0,
+  "coverage_start": "2024",
+  "wording": "in the PropBetEdge record since 2024",
+  "latest": []
+ },
+ "previous_same_season_meeting": null,
+ "next": {
+  "home": {
+   "match_id": "d18078ce-1ffd-5d4b-bd13-e6dce2f9b880",
+   "date": "2026-10-06",
+   "venue": "away",
+   "opponent": {
+    "id": "de627920-a6d4-52a4-8400-162b35e47a07",
+    "name": "Belarus",
+    "slug": "belarus"
+   },
+   "competition": {
+    "slug": "uefa-nations-league",
+    "name": "UEFA Nations League"
+   }
+  },
+  "away": {
+   "match_id": "0371ef4c-8b5c-5e80-8958-d07c5755af28",
+   "date": "2026-10-06",
+   "venue": "home",
+   "opponent": {
+    "id": "8404470a-b442-5f6a-804a-bea3c687698e",
+    "name": "San Marino",
+    "slug": "san-marino"
+   },
+   "competition": {
+    "slug": "uefa-nations-league",
+    "name": "UEFA Nations League"
+   }
+  }
+ },
+ "group_consequences": null,
+ "angles": [
+  {
+   "key": "perfect_start",
+   "weight": 0.9,
+   "detail": {
+    "side": "away",
+    "team_id": "9e5dd405-da41-5ce5-b32b-56f500951ea7",
+    "won": 2,
+    "scope": "campaign"
+   }
+  },
+  {
+   "key": "defensive_run",
+   "weight": 0.8,
+   "detail": {
+    "side": "home",
+    "team_id": "a36fb76e-ea15-5956-a752-98a4041e2c95",
+    "clean_sheets": 2,
+    "scope": "campaign"
+   }
+  },
+  {
+   "key": "defensive_run",
+   "weight": 0.8,
+   "detail": {
+    "side": "away",
+    "team_id": "9e5dd405-da41-5ce5-b32b-56f500951ea7",
+    "clean_sheets": 2,
+    "scope": "campaign"
+   }
+  },
+  {
+   "key": "scoring_run",
+   "weight": 0.7,
+   "detail": {
+    "side": "home",
+    "team_id": "a36fb76e-ea15-5956-a752-98a4041e2c95",
+    "goals_for": 7,
+    "played": 2,
+    "scope": "campaign"
+   }
+  },
+  {
+   "key": "scoring_run",
+   "weight": 0.7,
+   "detail": {
+    "side": "away",
+    "team_id": "9e5dd405-da41-5ce5-b32b-56f500951ea7",
+    "goals_for": 5,
+    "played": 2,
+    "scope": "campaign"
+   }
+  },
+  {
+   "key": "high_shot_volume",
+   "weight": 0.5,
+   "detail": {
+    "side": "home",
+    "team_id": "a36fb76e-ea15-5956-a752-98a4041e2c95",
+    "shots": 32,
+    "matches": 2
+   }
+  },
+  {
+   "key": "high_shot_volume",
+   "weight": 0.5,
+   "detail": {
+    "side": "away",
+    "team_id": "9e5dd405-da41-5ce5-b32b-56f500951ea7",
+    "shots": 34,
+    "matches": 2
+   }
+  }
+ ],
+ "primary_angle": "perfect_start",
+ "evidence_depth": {
+  "score": 12,
+  "rich": true,
+  "word_range": [
+   500,
+   850
+  ],
+  "sections": [
+   3,
+   5
+  ]
+ },
+ "never": [
+  "injuries or suspensions",
+  "predicted or probable lineups",
+  "tactics, intent or game plans",
+  "odds, predictions or probabilities",
+  "quotes"
+ ]
+}

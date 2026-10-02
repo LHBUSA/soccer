@@ -12,6 +12,7 @@ import { appearanceGoals, groupContext, scoringStreak } from './engine.js';
 import { verifyGroupStandings } from '../../shared/standings.js';
 import { profileFor } from './profiles.js';
 import { chunkArr } from '../../soccer-ingest/src/store.js';
+import { loadPreviewDepth, PACKET_V4_PREVIEW } from './preview-depth.js';
 
 export const PREVIEW_VERSION = 'soccer-packet-preview/1.0.0';
 export const PREVIEW_WINDOW = { minMs: 3600e3, maxMs: 24 * 3600e3 }; // eligible 24 h .. 1 h before kick-off
@@ -170,7 +171,22 @@ export async function previewBody(store, S, cand) {
   const leaderTeam = angles.find(a => /leader_in_action/.test(a.key))?.detail?.team;
   const subject = lead ? { id: lead.detail.player.id, type: 'Person', reason: 'preview_scoring_run', team_id: lead.detail.team_id } : leaderTeam ? { id: leaderTeam.id, type: 'SportsTeam', reason: 'preview_leader' } : { id: m.home_team_id, type: 'SportsTeam', reason: 'preview_home' };
   const providers = [...new Set([...S.finished.filter(x => [m.home_team_id, m.away_team_id].some(t => x.home_team_id === t || x.away_team_id === t)).map(x => x.result_provider), Object.keys(cand.groups).length ? 'espn' : null, cand.form.length ? 'espn' : null].filter(Boolean))];
+  // PACKET V4 depth (as-of safe, every canonical competition). Verified groups only: the whole group's
+  // points from canonical results + this round's scheduled group fixtures for provable consequences.
+  let groupTable = null; let roundFixtures = [];
+  const gh = cand.groups[m.home_team_id]; const ga = cand.groups[m.away_team_id];
+  if (gh?.verified && ga?.verified && gh.group === ga.group) {
+    const [g] = await store.select('soccer_season_groups', { columns: ['id'], eq: { season_id: S.season.id, name: gh.group }, limit: 1 });
+    const members = g ? (await store.select('soccer_season_group_members', { columns: ['team_id'], eq: { group_id: g.id } })).map(x => x.team_id) : [];
+    if (members.length >= 2 && members.includes(m.home_team_id) && members.includes(m.away_team_id)) {
+      const t = computeTable(S.finished.filter(x => S.leagueStages.has(x.stage_id) && members.includes(x.home_team_id) && members.includes(x.away_team_id)));
+      groupTable = Object.fromEntries(members.map(id => [id, t.find(r => r.team_id === id)?.points ?? 0]));
+      roundFixtures = S.matches.filter(x => x.status === 'scheduled' && S.leagueStages.has(x.stage_id) && members.includes(x.home_team_id) && members.includes(x.away_team_id) && Math.abs(Date.parse(x.kickoff_at) - Date.parse(m.kickoff_at)) <= 3 * 86400e3);
+    }
+  }
+  const depth = await loadPreviewDepth(store, { match: m, groups: cand.groups, groupTable, roundFixtures, playersInForm: cand.form.map(x => ({ player: x.player, team: x.team_id === m.home_team_id ? 'home' : 'away', consecutive_scoring_appearances: x.consecutive_scoring_appearances })) });
   return {
+    preview_version: PACKET_V4_PREVIEW, depth,
     preview_kind: 'fixture',
     fixture: { id: m.id, kickoff_utc: new Date(m.kickoff_at).toISOString(), kickoff_date: m.kickoff_at.slice(0, 10), kickoff_time_utc: hhmm(m.kickoff_at), timezone: 'UTC', venue: venue?.name || null, league_stage: S.leagueStages.has(m.stage_id), status: 'scheduled' },
     teams: { home: side(m.home_team_id), away: side(m.away_team_id) },
