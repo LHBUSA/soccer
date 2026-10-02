@@ -25,6 +25,7 @@ const get = async q => (await fetch(`${U}/rest/v1/${q}`, { headers: h })).json()
 const cnt = async q => Number(((await fetch(`${U}/rest/v1/${q}`, { method: 'HEAD', headers: { ...h, prefer: 'count=exact' } })).headers.get('content-range') || '').split('/')[1]);
 const node = args => spawnSync(process.execPath, args, { encoding: 'utf8', env: { ...process.env, MSYS_NO_PATHCONV: '1' }, maxBuffer: 64 * 1024 * 1024 });
 const log = row => { appendFileSync(LOG, `${JSON.stringify({ at: new Date().toISOString(), comp: COMP, ...row })}\n`); console.log(JSON.stringify(row)); };
+const HOLD_FOR_REVIEW = new Set((arg('--hold', '') || '').split(',').filter(Boolean).map(Number)); // ingest, never promote
 const STOP_CHECKS = new Set(['unknown_team', 'club_national_contamination', 'repeated_home_away_pair', 'two_valid_sides_and_stage']);
 
 for (let y = y0; y <= y1; y++) {
@@ -49,12 +50,16 @@ for (let y = y0; y <= y1; y++) {
     log({ season: label, lane, outcome: 'RECONCILED', requests, minutes, fixtures_seen: fixtures, results_read: detailed, canonical_matches: ms.length, espn_observations: src.length, disagreements: dis.length, disagreement_ids: dis.slice(0, 10).map(d => d.match_id), state: s.publication_state });
     continue;
   }
-  const acc = node(['scripts/history/accept-season.mjs', COMP, label, ...(EXPECT ? ['--expect-teams', EXPECT] : [])]);
+  // floor: every fixture the lane discovered this time, minus repeated pairings it recorded (0 on a resumed run = 1)
+  const repeated = runs.reduce((a, r) => Math.max(a, r.repeated_pairings || 0), 0);
+  const floor = String(Math.max(1, fixtures - repeated));
+  const acc = node(['scripts/history/accept-season.mjs', COMP, label, '--min-matches', floor, ...(EXPECT ? ['--expect-teams', EXPECT] : [])]);
   let res = null; try { res = JSON.parse(acc.stdout.trim().split('\n').pop()); } catch { /* below */ }
   if (!res) { log({ season: label, lane, outcome: 'HELD_acceptance_error', requests, minutes, stderr: acc.stderr.slice(-400) }); continue; }
   if (res.failed.some(f => STOP_CHECKS.has(f))) { log({ season: label, lane, outcome: 'STOP_integrity', requests, minutes, failed: res.failed, matches: res.matches }); process.exit(4); }
+  if (res.pass && HOLD_FOR_REVIEW.has(y)) { log({ season: label, lane, outcome: 'HELD_for_review', requests, minutes, matches: res.matches, note: 'format needs review before publication' }); continue; }
   if (!res.pass) { log({ season: label, lane, outcome: 'HELD', requests, minutes, failed: res.failed, matches: res.matches, finished: res.finished, teams: res.teams, format: res.format }); continue; }
-  const pro = node(['scripts/history/accept-season.mjs', COMP, label, ...(EXPECT ? ['--expect-teams', EXPECT] : []), '--promote']);
+  const pro = node(['scripts/history/accept-season.mjs', COMP, label, '--min-matches', floor, ...(EXPECT ? ['--expect-teams', EXPECT] : []), '--promote']);
   let p = null; try { p = JSON.parse(pro.stdout.trim().split('\n').pop()); } catch { /* below */ }
   if (!p?.promoted) { log({ season: label, lane, outcome: 'HELD_promote_refused', requests, minutes, stderr: pro.stderr.slice(-400) }); continue; }
   // smoke: the season is public with exactly its canonical matches and complete results; no newsroom event on it

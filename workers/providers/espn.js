@@ -45,7 +45,7 @@ export function seasonLabel(year, format) {
 // table); All-Star / Combined / anything unrecognised -> excluded entirely.
 export function seasonTypeRole(name) {
   const n = String(name || '');
-  if (/^(Regular Season|League Phase)$/i.test(n)) return 'league';
+  if (/^(Regular Season|League Phase)( \d{4})?$/i.test(n)) return 'league'; // MLS 2001-2016: "Regular Season 2001"
   if (/playoff|final|cup|knockout|round of \d+|place match|third place/i.test(n) && !/all-star/i.test(n)) return 'playoff';
   return 'excluded';
 }

@@ -1,0 +1,31 @@
+{
+ "at": "2026-10-02T22:37:37.689Z",
+ "competition": "mls",
+ "season": "2001",
+ "state_before": "held",
+ "matches": 0,
+ "finished": 0,
+ "stages": [
+  "Regular Season:league",
+  "Playoffs:playoff"
+ ],
+ "teams": 0,
+ "format": null,
+ "providers": [],
+ "coverage": {
+  "venue": 0,
+  "lineups": 0,
+  "stats": 0,
+  "events": 0
+ },
+ "coverage_tier": null,
+ "limitations": [
+  "lineups for 0% of finished matches",
+  "team statistics for 0% of finished matches",
+  "event record for 0% of finished matches"
+ ],
+ "notes": [],
+ "checks_failed": [],
+ "pass": true,
+ "promoted": true
+}

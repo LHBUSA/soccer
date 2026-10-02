@@ -16,6 +16,9 @@ const [slug, label] = process.argv.slice(2);
 const arg = (k, d) => { const i = process.argv.indexOf(k); return i >= 0 ? process.argv[i + 1] : d; };
 const PROMOTE = process.argv.includes('--promote');
 const expectTeams = arg('--expect-teams', null);
+// --min-matches: the canonical season must hold at least this many matches (the runner passes the fixtures the lane
+// discovered minus recorded repeated pairings). A season with zero matches never passes.
+const minMatches = Math.max(1, Number(arg('--min-matches', '1')) || 1);
 if (!slug || !label) throw new Error('usage: accept-season.mjs <competition-slug> <season-label> [--expect-teams N] [--promote]');
 const env = Object.fromEntries(readFileSync('D:/Workers/secrets/soccer-supabase.env', 'utf8').split(/\r?\n/).filter(l => l.includes('=')).map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]));
 const U = env.SOCCER_MODEL_SUPABASE_URL; if (!/tkmlnhmylqnttmnsnief/.test(U)) throw new Error('target guard');
@@ -31,6 +34,7 @@ const stages = await get(`soccer_stages?select=id,name,stage_type&season_id=eq.$
 const teamIds = [...new Set(ms.flatMap(m => [m.home_team_id, m.away_team_id]))];
 const teams = []; for (let i = 0; i < teamIds.length; i += 100) teams.push(...await get(`soccer_teams?select=id,name,team_type&id=in.(${teamIds.slice(i, i + 100).join(',')})`));
 const fail = []; const notes = [];
+if (ms.length < minMatches) fail.push({ check: 'too_few_matches', expected_at_least: minMatches, found: ms.length });
 const now = Date.now();
 const y0 = Number(label.slice(0, 4)); const y1 = label.includes('/') ? y0 + 1 : y0;
 // split seasons run into the next summer (play-offs, finals); calendar seasons end by the next January

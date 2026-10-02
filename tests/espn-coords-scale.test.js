@@ -30,3 +30,11 @@ test('a 0-100 match with a few near-corner plays is still 0-100 (needs every loc
   const r = parsePlays([play(1, 'Pass', 0.5, 0.5), play(2, 'Corner Awarded', 100, 0), play(3, 'Shot On Target', 90, 45), play(4, 'Pass', 50, 50), play(5, 'Pass', 1, 1)], { eventId: 1 });
   assert.equal(r.coordinate_scale, ESPN_COORDS);
 });
+
+test('season types: MLS 2001-2016 "Regular Season <year>" is the league stage; non-competitive types stay excluded', async () => {
+  const { seasonTypeRole } = await import('../workers/providers/espn.js');
+  assert.equal(seasonTypeRole('Regular Season 2001'), 'league');
+  assert.equal(seasonTypeRole('Regular Season'), 'league');
+  assert.equal(seasonTypeRole('2002 Playoffs'), 'playoff');
+  for (const t of ['All-Star Game', 'Preseason', 'Combined']) assert.equal(seasonTypeRole(t), 'excluded', t);
+});
