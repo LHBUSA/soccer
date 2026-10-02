@@ -110,7 +110,7 @@ test('premium without entitlement: 403 all_access_required and NO values; never 
   }
   const res = await worker.fetch(req('board'), { AUTH: authBinding('free'), SOCCER_MODEL_SUPABASE_URL: 'https://tkmlnhmylqnttmnsnief.supabase.co', SOCCER_MODEL_SUPABASE_SERVICE_ROLE_KEY: 'x' }, { waitUntil() {} });
   assert.equal(res.status, 403);
-  assert.equal(res.headers.get('cache-control'), 'private, no-store');
+  assert.match(res.headers.get('cache-control'), /^private, no-store(, no-transform)?$/);
   assert.deepEqual(await res.json(), { error: 'all_access_required', membership: 'free', check: 'ok' });
 });
 

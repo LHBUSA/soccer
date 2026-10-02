@@ -15,6 +15,7 @@ import { teamHistory } from './history.js';
 import { cachedCoverage } from './coverage-cache.js';
 import { handlePro, PRO_HEADERS, publicAnalyzerPreview } from './pro/routes.js';
 import { readLiveSnapshotInputs, snapshotRefreshReason } from '../../shared/live-snapshot.js';
+import { noTransform } from './transport.js';
 
 const LANES = [{ lane: 'openligadb_bl1_current', priority: true }];
 
@@ -68,8 +69,7 @@ function respond(body, status, maxAge, origin) {
   return new Response(JSON.stringify(body), { status, headers: h });
 }
 
-export default {
-  async fetch(req, env, ctx) {
+async function route(req, env, ctx) {
     const url = new URL(req.url);
     const origin = req.headers.get('origin');
     if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: origin && ALLOWED_ORIGIN.test(origin) ? { 'access-control-allow-origin': origin, 'access-control-allow-methods': 'GET', 'access-control-max-age': '86400' } : {} });
@@ -126,6 +126,12 @@ export default {
       console.error('soccer-api', url.pathname, err.message);
       return respond({ error: 'upstream error' }, 502, 0, origin);
     }
+}
+
+export default {
+  // Every response leaves with no-transform: see transport.js (Vercel cache vs Accept-Encoding).
+  async fetch(req, env, ctx) {
+    return noTransform(await route(req, env, ctx));
   },
   // Every minute: refresh the materialized /live snapshot only when active, dirty or due for
   // the idle safety refresh. The separate 6-hour cron still warms the expensive DNA cache.
