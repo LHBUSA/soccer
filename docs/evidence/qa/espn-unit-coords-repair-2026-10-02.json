@@ -1,0 +1,115 @@
+{
+ "before": [
+  {
+   "name": "mls-vancouver-rsl",
+   "id": "002a75de-7f93-5fc4-a1c2-bb39c8328c1e",
+   "width": 1440,
+   "api_located": 23,
+   "api_near_corner": 23,
+   "page_marks": 23,
+   "caption": "23 LOCATED SHOTS · EVENT LOCATIONS, NOT PLAYER TRACKING"
+  },
+  {
+   "name": "mls-vancouver-rsl",
+   "id": "002a75de-7f93-5fc4-a1c2-bb39c8328c1e",
+   "width": 390,
+   "api_located": 23,
+   "api_near_corner": 23,
+   "page_marks": 23,
+   "caption": "23 LOCATED SHOTS · EVENT LOCATIONS, NOT PLAYER TRACKING"
+  },
+  {
+   "name": "mls-sanjose-sandiego",
+   "id": "02f997bd-0404-5a9e-af1f-1c0a3ba61607",
+   "width": 1440,
+   "api_located": 30,
+   "api_near_corner": 30,
+   "page_marks": 30,
+   "caption": "30 LOCATED SHOTS · EVENT LOCATIONS, NOT PLAYER TRACKING"
+  },
+  {
+   "name": "mls-sanjose-sandiego",
+   "id": "02f997bd-0404-5a9e-af1f-1c0a3ba61607",
+   "width": 390,
+   "api_located": 30,
+   "api_near_corner": 30,
+   "page_marks": 30,
+   "caption": "30 LOCATED SHOTS · EVENT LOCATIONS, NOT PLAYER TRACKING"
+  },
+  {
+   "name": "unl-iceland-montenegro",
+   "id": "01f32ce3-9535-5103-aae9-0f9e8a1799af",
+   "width": 1440,
+   "api_located": 22,
+   "api_near_corner": 22,
+   "page_marks": 22,
+   "caption": "22 LOCATED SHOTS · EVENT LOCATIONS, NOT PLAYER TRACKING"
+  },
+  {
+   "name": "unl-iceland-montenegro",
+   "id": "01f32ce3-9535-5103-aae9-0f9e8a1799af",
+   "width": 390,
+   "api_located": 22,
+   "api_near_corner": 22,
+   "page_marks": 22,
+   "caption": "22 LOCATED SHOTS · EVENT LOCATIONS, NOT PLAYER TRACKING"
+  }
+ ],
+ "after": [
+  {
+   "name": "mls-vancouver-rsl",
+   "id": "002a75de-7f93-5fc4-a1c2-bb39c8328c1e",
+   "width": 1440,
+   "api_located": 0,
+   "api_near_corner": 0,
+   "page_marks": 0,
+   "caption": "NO LOCATED EVENTS FROM THIS SOURCE · NOTHING IS PLOTTED"
+  },
+  {
+   "name": "mls-vancouver-rsl",
+   "id": "002a75de-7f93-5fc4-a1c2-bb39c8328c1e",
+   "width": 390,
+   "api_located": 0,
+   "api_near_corner": 0,
+   "page_marks": 0,
+   "caption": "NO LOCATED EVENTS FROM THIS SOURCE · NOTHING IS PLOTTED"
+  },
+  {
+   "name": "mls-sanjose-sandiego",
+   "id": "02f997bd-0404-5a9e-af1f-1c0a3ba61607",
+   "width": 1440,
+   "api_located": 0,
+   "api_near_corner": 0,
+   "page_marks": 0,
+   "caption": "NO LOCATED EVENTS FROM THIS SOURCE · NOTHING IS PLOTTED"
+  },
+  {
+   "name": "mls-sanjose-sandiego",
+   "id": "02f997bd-0404-5a9e-af1f-1c0a3ba61607",
+   "width": 390,
+   "api_located": 0,
+   "api_near_corner": 0,
+   "page_marks": 0,
+   "caption": "NO LOCATED EVENTS FROM THIS SOURCE · NOTHING IS PLOTTED"
+  },
+  {
+   "name": "unl-iceland-montenegro",
+   "id": "01f32ce3-9535-5103-aae9-0f9e8a1799af",
+   "width": 1440,
+   "api_located": 0,
+   "api_near_corner": 0,
+   "page_marks": 0,
+   "caption": "NO LOCATED EVENTS FROM THIS SOURCE · NOTHING IS PLOTTED"
+  },
+  {
+   "name": "unl-iceland-montenegro",
+   "id": "01f32ce3-9535-5103-aae9-0f9e8a1799af",
+   "width": 390,
+   "api_located": 0,
+   "api_near_corner": 0,
+   "page_marks": 0,
+   "caption": "NO LOCATED EVENTS FROM THIS SOURCE · NOTHING IS PLOTTED"
+  }
+ ],
+ "note": "production PBEcast + public cast API; before = shots plotted within 3 m of a corner flag; after = no canonical location, nothing plotted"
+}
