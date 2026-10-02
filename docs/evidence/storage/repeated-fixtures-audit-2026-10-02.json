@@ -1,0 +1,156 @@
+{
+ "at": "2026-10-02T22:58:24.328Z",
+ "matches": 9404,
+ "crosswalks": 10357,
+ "q1_matches_with_multiple_espn_events": 41,
+ "q1_examples": [
+  {
+   "match_id": "b237221f-258e-5759-baf4-be46b0d1a989",
+   "espn_events": [
+    "167395",
+    "167707"
+   ]
+  },
+  {
+   "match_id": "efc555ef-6a7e-53b3-89de-e46fb11b65bd",
+   "espn_events": [
+    "167396",
+    "167710"
+   ]
+  },
+  {
+   "match_id": "ab068fb7-9045-588a-8bab-bb8b80f75a85",
+   "espn_events": [
+    "189141",
+    "189143"
+   ]
+  },
+  {
+   "match_id": "4b6cfd75-6a16-5b22-ac86-4bdff59c90fa",
+   "espn_events": [
+    "189394",
+    "189396"
+   ]
+  },
+  {
+   "match_id": "75e070a6-4bf1-5bb4-85ea-432f763e29d8",
+   "espn_events": [
+    "189395",
+    "189397"
+   ]
+  },
+  {
+   "match_id": "1ccce5a5-93f9-5b19-8bb0-89d02e5c70de",
+   "espn_events": [
+    "189636",
+    "189842"
+   ]
+  },
+  {
+   "match_id": "f11418c0-6007-5b4e-abad-f7fbb41370ab",
+   "espn_events": [
+    "190017",
+    "190019"
+   ]
+  },
+  {
+   "match_id": "adadfcda-a88e-5338-a45c-064f5b258dec",
+   "espn_events": [
+    "190018",
+    "190020"
+   ]
+  },
+  {
+   "match_id": "b390d5c3-751f-52e0-ad16-e75cbd9d2859",
+   "espn_events": [
+    "190144",
+    "190196"
+   ]
+  },
+  {
+   "match_id": "fb35c916-8ae9-55b4-a180-2fa7f461e4bb",
+   "espn_events": [
+    "190209",
+    "190211"
+   ]
+  },
+  {
+   "match_id": "263e5110-191f-58f2-bf71-662d6a4f7a7a",
+   "espn_events": [
+    "190274",
+    "190276"
+   ]
+  },
+  {
+   "match_id": "78593e97-b4e2-5e83-93c8-97ceb691ad2c",
+   "espn_events": [
+    "190619",
+    "190621"
+   ]
+  },
+  {
+   "match_id": "7cbfaee1-5588-5dfe-b54e-c27aeb7c46d1",
+   "espn_events": [
+    "191258",
+    "191259"
+   ]
+  },
+  {
+   "match_id": "54be7e8d-0a6b-58b0-9bfe-8baf15679bb5",
+   "espn_events": [
+    "191316",
+    "191917"
+   ]
+  },
+  {
+   "match_id": "0dad0ef3-783a-5c45-b2ca-2ce200da9177",
+   "espn_events": [
+    "191880",
+    "191911"
+   ]
+  },
+  {
+   "match_id": "72250549-3752-5f9c-8e01-41068555d6bf",
+   "espn_events": [
+    "191881",
+    "191910"
+   ]
+  },
+  {
+   "match_id": "e4c58a01-41f0-5166-aab3-bc9579497c20",
+   "espn_events": [
+    "192074",
+    "192082"
+   ]
+  },
+  {
+   "match_id": "9ff3923e-02ee-5de6-9cad-e1a9a0f800c4",
+   "espn_events": [
+    "193163",
+    "193166"
+   ]
+  },
+  {
+   "match_id": "5c2193dc-72d6-5ec9-ab6e-fe400311dcea",
+   "espn_events": [
+    "193164",
+    "193165"
+   ]
+  },
+  {
+   "match_id": "9e84d353-2f7d-5504-ad6f-43a18d7c700f",
+   "espn_events": [
+    "193416",
+    "194133"
+   ]
+  }
+ ],
+ "q2_fixture_graph_attachments_by_provider": {
+  "espn->openligadb": 647,
+  "openligadb->wyscout": 306
+ },
+ "q2_note": "cross-provider attachments were made by (season, home, away[, stage]); provider kickoffs are not stored on the crosswalk, so tolerance can only be enforced going forward (resolver) — no existing attachment is rewritten",
+ "q3_repeated_pairing_groups_today": 0,
+ "q3_would_clash_with_new_key": 0,
+ "tolerance_days": 3
+}
