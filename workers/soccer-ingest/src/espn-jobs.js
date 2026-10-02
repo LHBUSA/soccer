@@ -65,7 +65,7 @@ export function espnClient({ storage, store, fetcher = politeFetch, budget = DEF
   return client;
 }
 
-export async function runEspnLane(lane, { store, storage, registry, areas = { areas: {}, aliases: {} }, state, now = Date.now(), fetcher = politeFetch, budget = DEFAULT_BUDGET, force = false, year: pinYear = null }) {
+export async function runEspnLane(lane, { store, storage, registry, areas = { areas: {}, aliases: {} }, state, now = Date.now(), fetcher = politeFetch, budget = DEFAULT_BUDGET, force = false, year: pinYear = null, depth = 'full' }) {
   const comp = registry.competitions.find(c => c.slug === lane.competition);
   if (!comp?.espn) throw new Error(`registry has no ESPN id for ${lane.competition}`);
   if (comp.espn.enabled === false) return { skipped: `espn lane for ${comp.slug} not enabled (registry espn.enabled=false)` };
@@ -116,6 +116,20 @@ export async function runEspnLane(lane, { store, storage, registry, areas = { ar
       cursor.fixtures[id] = { d: ev.kickoff_utc, h: ev.home.team_id, a: ev.away.team_id, sy: ev.season_year, stype: ev.season_type, v: ev.venue, att: ev.attendance, cap: capture.capture_id };
       stats.fixtures_new += 1;
     }
+    // History seasons can list one pairing several times (postponed / rescheduled / duplicate events). Before any
+    // fixture is founded, every event of a repeated (stage, home, away) gets a status read so the FINISHED event is the
+    // one that becomes canonical (upsertEspnFixtures prefers it); the others are recorded, never merged.
+    if (pinYear) {
+      const role = f => (cursor.types?.[f.stype]?.role === 'playoff' ? `t${f.stype}` : 'l');
+      const groups = new Map();
+      for (const [id, f] of Object.entries(cursor.fixtures)) { const k = `${role(f)}|${f.h}|${f.a}`; groups.set(k, [...(groups.get(k) || []), id]); }
+      for (const ids of groups.values()) if (ids.length > 1) for (const id of ids) {
+        if (cursor.fixtures[id].st) continue;
+        const { json } = await client.get(`${espn.CORE}/${league}/events/${id}/competitions/${id}/status`);
+        cursor.fixtures[id].st = espn.parseStatus(json);
+      }
+      stats.repeated_pairings = [...groups.values()].filter(x => x.length > 1).length;
+    }
   } catch (err) {
     if (!(err instanceof BudgetExhausted)) { await client.flush().catch(() => {}); throw err; }
     stats.budget_exhausted_at = 'discovery';
@@ -134,15 +148,15 @@ export async function runEspnLane(lane, { store, storage, registry, areas = { ar
       .sort((x, y) => Date.parse(x[1].d) - Date.parse(y[1].d));
     for (const [id, f] of due) {
       if (client.budget - client.used < 10) { stats.budget_exhausted_at = stats.budget_exhausted_at || 'details'; break; }
-      const r = await ingestEspnMatch(store, { comp, league, year: cursor.season_year, eventId: id, fixture: f, teamMap: teamRes.teamMap, client, now });
+      const r = await ingestEspnMatch(store, { comp, league, year: cursor.season_year, eventId: id, fixture: f, teamMap: teamRes.teamMap, client, now, resultsOnly: depth === 'results' });
       stats.observed += 1; stats.changed += r.changed;
       stats.match_results.push(r.summary);
       if (r.final) { cursor.done[id] = 1; stats.matches_detailed += 1; }
     }
     // Spare budget retries optional components (lineups/stats/plays) that failed earlier.
-    if (client.budget - client.used >= 20) stats.enrichment_retry = await retryEnrichment(store, { comp, league, year: cursor.season_year, cursor, teamMap: teamRes.teamMap, client, now });
+    if (depth !== 'results' && client.budget - client.used >= 20) stats.enrichment_retry = await retryEnrichment(store, { comp, league, year: cursor.season_year, cursor, teamMap: teamRes.teamMap, client, now });
     // Where OpenLigaDB also covers the season, bridge its queued scorer ids.
-    if (stats.matches_detailed && comp.external_ids.some(x => x.provider === 'openligadb')) {
+    if (depth !== 'results' && stats.matches_detailed && comp.external_ids.some(x => x.provider === 'openligadb')) {
       const { seasonId } = await ensureCompetitionSeason(store, { comp, year: cursor.season_year, history: !!cursor.history });
       stats.openligadb_scorer_bridge = await alignOpenLigaScorersToEspn(store, { seasonId });
     }

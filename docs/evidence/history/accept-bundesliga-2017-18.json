@@ -1,0 +1,37 @@
+{
+ "at": "2026-10-02T22:06:41.596Z",
+ "competition": "bundesliga",
+ "season": "2017/18",
+ "state_before": "published",
+ "matches": 306,
+ "finished": 306,
+ "stages": [
+  "Regular Season:league"
+ ],
+ "teams": 18,
+ "format": {
+  "teams": 18,
+  "league_matches": 306,
+  "games_per_team": {
+   "34": 18
+  }
+ },
+ "providers": [
+  "wyscout"
+ ],
+ "coverage": {
+  "venue": 1,
+  "lineups": 0,
+  "stats": 0,
+  "events": 0
+ },
+ "coverage_tier": "MATCH",
+ "limitations": [
+  "lineups for 0% of finished matches",
+  "team statistics for 0% of finished matches",
+  "event record for 0% of finished matches"
+ ],
+ "notes": [],
+ "checks_failed": [],
+ "pass": true
+}

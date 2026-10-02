@@ -140,7 +140,9 @@ export async function resolveEspnTeams(store, { comp, year, cursor, client }) {
 export async function upsertEspnFixtures(store, { comp, year, cursor, teamMap, now = Date.now() }) {
   const { compId, seasonId, stageId, playoffStageId, typeStageIds } = await ensureCompetitionSeason(store, { comp, year, types: cursor.types, history: !!cursor?.history });
   const stageFor = f => (cursor.types?.[f.stype]?.role === 'playoff' ? typeStageIds.get(String(f.stype)) || playoffStageId || stageId : stageId);
-  const ids = Object.keys(cursor.fixtures).filter(id => teamMap.has(cursor.fixtures[id].h) && teamMap.has(cursor.fixtures[id].a));
+  // A repeated pairing (history): the event whose status read says finished is founded first, so it is the canonical one.
+  const ids = Object.keys(cursor.fixtures).filter(id => teamMap.has(cursor.fixtures[id].h) && teamMap.has(cursor.fixtures[id].a))
+    .sort((x, y) => (cursor.fixtures[x].st === 'finished' ? 0 : 1) - (cursor.fixtures[y].st === 'finished' ? 0 : 1) || Date.parse(cursor.fixtures[x].d) - Date.parse(cursor.fixtures[y].d) || Number(x) - Number(y));
   const known = await resolveMany(store, 'match', P, ids);
   const canon = await store.select('soccer_matches', { columns: ['id', 'home_team_id', 'away_team_id', 'result_provider', 'stage_id'], eq: { season_id: seasonId } });
   const byPair = new Map(canon.map(m => [`${m.home_team_id}|${m.away_team_id}|${m.stage_id}`, m]));
@@ -336,7 +338,7 @@ export async function reconcileEspnLedger(store, { matchId, eventId = null, rows
 //   lineups (per side), stats (per side), plays.
 // `only` (Set of 'lineups' | 'stats' | 'plays') re-runs just those components for a
 // match already known to be finished (enrichment retry); the result is not refetched.
-export async function ingestEspnMatch(store, { comp, league, year, eventId, fixture, teamMap, client, now = Date.now(), only = null, recordLedger = true, ledgerContext = null }) {
+export async function ingestEspnMatch(store, { comp, league, year, eventId, fixture, teamMap, client, now = Date.now(), only = null, recordLedger = true, ledgerContext = null, resultsOnly = false }) {
   const base = `${espn.CORE}/${league}/events/${eventId}/competitions/${eventId}`;
   const summary = { event: eventId };
   let changed = 0;
@@ -370,6 +372,7 @@ export async function ingestEspnMatch(store, { comp, league, year, eventId, fixt
     }
     count(await syncRows(store, { table: 'soccer_match_source_results', key: ['match_id', 'provider'], compare: ['status', 'home_score', 'away_score'], provider: P, captureId: stCap.capture_id, rows: [{ match_id: matchId, provider: P, status, home_score: scores.h ?? null, away_score: scores.a ?? null, home_score_ht: null, away_score_ht: null, capture_id: stCap.capture_id, observed_at: stCap.captured_at }] }));
     if (status !== 'finished') return { final: true, changed, summary };
+    if (resultsOnly) { summary.depth = 'results'; return { final: true, changed, summary }; } // PASS A: skeleton only
   } else summary.retry = [...only];
 
   // ---- lineups (rosters -> athletes, lineups, substitutions), where no other provider supplied them

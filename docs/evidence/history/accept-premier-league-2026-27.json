@@ -1,0 +1,33 @@
+{
+ "at": "2026-10-02T22:06:40.174Z",
+ "competition": "premier-league",
+ "season": "2026/27",
+ "state_before": "published",
+ "matches": 380,
+ "finished": 50,
+ "stages": [
+  "Regular Season:league"
+ ],
+ "teams": 20,
+ "format": {
+  "teams": 20,
+  "league_matches": 380,
+  "games_per_team": {
+   "38": 20
+  }
+ },
+ "providers": [
+  "espn"
+ ],
+ "coverage": {
+  "venue": 1,
+  "lineups": 1,
+  "stats": 1,
+  "events": 1
+ },
+ "coverage_tier": "EVENTS",
+ "limitations": [],
+ "notes": [],
+ "checks_failed": [],
+ "pass": true
+}

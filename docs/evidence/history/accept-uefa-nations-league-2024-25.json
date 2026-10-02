@@ -1,0 +1,48 @@
+{
+ "at": "2026-10-02T22:07:01.890Z",
+ "competition": "uefa-nations-league",
+ "season": "2024/25",
+ "state_before": "published",
+ "matches": 188,
+ "finished": 54,
+ "stages": [
+  "League phase:league",
+  "Knockouts and play-offs:playoff"
+ ],
+ "teams": 54,
+ "format": null,
+ "providers": [
+  "espn"
+ ],
+ "coverage": {
+  "venue": 1,
+  "lineups": 0.9814814814814815,
+  "stats": 0.9814814814814815,
+  "events": 0.9814814814814815
+ },
+ "coverage_tier": "EVENTS",
+ "limitations": [],
+ "notes": [],
+ "checks_failed": [
+  {
+   "check": "past_match_without_final_score",
+   "count": 134,
+   "statuses": {
+    "unknown": 134
+   },
+   "ids": [
+    "012bc8f3-fe53-5703-bee7-7d572235c6cb",
+    "0358c0ec-4a64-5277-87e8-3ed3e8da82db",
+    "038e048e-8ad3-5c85-b57d-0a02c024cba2",
+    "0460fa5f-16fd-5cd3-8fba-6c8301bfc9dd",
+    "05615b68-1bf1-59be-b76d-ee4ad528dcee",
+    "05e716a4-f0a7-5d47-a0d2-9f7859cee0e2",
+    "06e149b6-8d86-5a9b-a9d4-316988394ef5",
+    "131e9e5e-03c1-5784-bcb3-94e39e88d4d1",
+    "14949ac7-a887-50c6-a99c-a1ae269382f3",
+    "159d2355-a2b8-549e-afa5-05261d1d851a"
+   ]
+  }
+ ],
+ "pass": false
+}

@@ -1,0 +1,36 @@
+{
+ "at": "2026-10-02T22:06:16.547Z",
+ "competition": "fifa-world-cup",
+ "season": "2026",
+ "state_before": "published",
+ "matches": 104,
+ "finished": 104,
+ "stages": [
+  "Group stage:league",
+  "Round of 32:knockout",
+  "Round of 16:knockout",
+  "Quarterfinals:knockout",
+  "Semifinals:knockout",
+  "3rd-Place Match:knockout",
+  "Final:knockout"
+ ],
+ "teams": 48,
+ "format": null,
+ "providers": [
+  "espn"
+ ],
+ "coverage": {
+  "venue": 1,
+  "lineups": 1,
+  "stats": 0.5576923076923077,
+  "events": 0.019230769230769232
+ },
+ "coverage_tier": "LINEUP",
+ "limitations": [
+  "team statistics for 56% of finished matches",
+  "event record for 2% of finished matches"
+ ],
+ "notes": [],
+ "checks_failed": [],
+ "pass": true
+}
