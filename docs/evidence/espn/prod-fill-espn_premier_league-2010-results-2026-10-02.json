@@ -1,0 +1,257 @@
+{
+ "lane": "espn_premier_league@2010:results",
+ "runs": [
+  {
+   "lane": "espn_premier_league@2010:results",
+   "run": 1,
+   "http": 200,
+   "ms": 92993,
+   "requests": 120,
+   "fixtures_new": 118,
+   "detailed": 0,
+   "exhausted": "discovery",
+   "error": null,
+   "athletes": {}
+  },
+  {
+   "lane": "espn_premier_league@2010:results",
+   "run": 2,
+   "http": 200,
+   "ms": 91649,
+   "requests": 120,
+   "fixtures_new": 120,
+   "detailed": 0,
+   "exhausted": "discovery",
+   "error": null,
+   "athletes": {}
+  },
+  {
+   "lane": "espn_premier_league@2010:results",
+   "run": 3,
+   "http": 200,
+   "ms": 90631,
+   "requests": 120,
+   "fixtures_new": 120,
+   "detailed": 0,
+   "exhausted": "discovery",
+   "error": null,
+   "athletes": {}
+  },
+  {
+   "lane": "espn_premier_league@2010:results",
+   "run": 4,
+   "http": 200,
+   "ms": 87555,
+   "requests": 112,
+   "fixtures_new": 22,
+   "detailed": 27,
+   "exhausted": "details",
+   "error": null,
+   "teams": {
+    "espn": 20,
+    "before": 11,
+    "founded": 9,
+    "queued_or_refused": 0
+   },
+   "athletes": {}
+  },
+  {
+   "lane": "espn_premier_league@2010:results",
+   "run": 5,
+   "http": 200,
+   "ms": 91155,
+   "requests": 111,
+   "fixtures_new": 0,
+   "detailed": 37,
+   "exhausted": "details",
+   "error": null,
+   "teams": {
+    "espn": 20,
+    "before": 20,
+    "founded": 0,
+    "queued_or_refused": 0
+   },
+   "athletes": {}
+  },
+  {
+   "lane": "espn_premier_league@2010:results",
+   "run": 6,
+   "http": 200,
+   "ms": 90876,
+   "requests": 111,
+   "fixtures_new": 0,
+   "detailed": 37,
+   "exhausted": "details",
+   "error": null,
+   "teams": {
+    "espn": 20,
+    "before": 20,
+    "founded": 0,
+    "queued_or_refused": 0
+   },
+   "athletes": {}
+  },
+  {
+   "lane": "espn_premier_league@2010:results",
+   "run": 7,
+   "http": 200,
+   "ms": 88944,
+   "requests": 111,
+   "fixtures_new": 0,
+   "detailed": 37,
+   "exhausted": "details",
+   "error": null,
+   "teams": {
+    "espn": 20,
+    "before": 20,
+    "founded": 0,
+    "queued_or_refused": 0
+   },
+   "athletes": {}
+  },
+  {
+   "lane": "espn_premier_league@2010:results",
+   "run": 8,
+   "http": 200,
+   "ms": 80029,
+   "requests": 111,
+   "fixtures_new": 0,
+   "detailed": 37,
+   "exhausted": "details",
+   "error": null,
+   "teams": {
+    "espn": 20,
+    "before": 20,
+    "founded": 0,
+    "queued_or_refused": 0
+   },
+   "athletes": {}
+  },
+  {
+   "lane": "espn_premier_league@2010:results",
+   "run": 9,
+   "http": 200,
+   "ms": 79155,
+   "requests": 111,
+   "fixtures_new": 0,
+   "detailed": 37,
+   "exhausted": "details",
+   "error": null,
+   "teams": {
+    "espn": 20,
+    "before": 20,
+    "founded": 0,
+    "queued_or_refused": 0
+   },
+   "athletes": {}
+  },
+  {
+   "lane": "espn_premier_league@2010:results",
+   "run": 10,
+   "http": 200,
+   "ms": 79293,
+   "requests": 111,
+   "fixtures_new": 0,
+   "detailed": 37,
+   "exhausted": "details",
+   "error": null,
+   "teams": {
+    "espn": 20,
+    "before": 20,
+    "founded": 0,
+    "queued_or_refused": 0
+   },
+   "athletes": {}
+  },
+  {
+   "lane": "espn_premier_league@2010:results",
+   "run": 11,
+   "http": 200,
+   "ms": 79339,
+   "requests": 111,
+   "fixtures_new": 0,
+   "detailed": 37,
+   "exhausted": "details",
+   "error": null,
+   "teams": {
+    "espn": 20,
+    "before": 20,
+    "founded": 0,
+    "queued_or_refused": 0
+   },
+   "athletes": {}
+  },
+  {
+   "lane": "espn_premier_league@2010:results",
+   "run": 12,
+   "http": 200,
+   "ms": 80686,
+   "requests": 111,
+   "fixtures_new": 0,
+   "detailed": 37,
+   "exhausted": "details",
+   "error": null,
+   "teams": {
+    "espn": 20,
+    "before": 20,
+    "founded": 0,
+    "queued_or_refused": 0
+   },
+   "athletes": {}
+  },
+  {
+   "lane": "espn_premier_league@2010:results",
+   "run": 13,
+   "http": 200,
+   "ms": 79765,
+   "requests": 111,
+   "fixtures_new": 0,
+   "detailed": 37,
+   "exhausted": "details",
+   "error": null,
+   "teams": {
+    "espn": 20,
+    "before": 20,
+    "founded": 0,
+    "queued_or_refused": 0
+   },
+   "athletes": {}
+  },
+  {
+   "lane": "espn_premier_league@2010:results",
+   "run": 14,
+   "http": 200,
+   "ms": 43549,
+   "requests": 60,
+   "fixtures_new": 0,
+   "detailed": 20,
+   "exhausted": null,
+   "error": null,
+   "teams": {
+    "espn": 20,
+    "before": 20,
+    "founded": 0,
+    "queued_or_refused": 0
+   },
+   "athletes": {}
+  },
+  {
+   "lane": "espn_premier_league@2010:results",
+   "run": 15,
+   "http": 200,
+   "ms": 830,
+   "requests": 0,
+   "fixtures_new": 0,
+   "detailed": 0,
+   "exhausted": null,
+   "error": null,
+   "teams": {
+    "espn": 20,
+    "before": 20,
+    "founded": 0,
+    "queued_or_refused": 0
+   },
+   "athletes": {}
+  }
+ ]
+}

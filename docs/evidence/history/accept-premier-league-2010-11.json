@@ -1,0 +1,37 @@
+{
+ "at": "2026-10-02T22:33:02.556Z",
+ "competition": "premier-league",
+ "season": "2010/11",
+ "state_before": "held",
+ "matches": 380,
+ "finished": 380,
+ "stages": [
+  "Regular Season:league"
+ ],
+ "teams": 20,
+ "format": {
+  "teams": 20,
+  "league_matches": 380,
+  "games_per_team": {
+   "38": 20
+  }
+ },
+ "providers": [
+  "espn"
+ ],
+ "coverage": {
+  "venue": 1,
+  "lineups": 0,
+  "stats": 0,
+  "events": 0
+ },
+ "coverage_tier": "MATCH",
+ "limitations": [
+  "lineups for 0% of finished matches",
+  "team statistics for 0% of finished matches",
+  "event record for 0% of finished matches"
+ ],
+ "notes": [],
+ "checks_failed": [],
+ "pass": true
+}

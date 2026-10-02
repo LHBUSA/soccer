@@ -24,5 +24,5 @@ for (const lane of lanes) {
     if (j.error || r.status >= 500 || r.status === 0) { if (++errors > 15) break; await sleep(120000); continue; }
     if (!s.budget_exhausted_at && !s.fixtures_new && !s.matches_detailed) break;
   }
-  writeFileSync(`docs/evidence/espn/prod-fill-${lane.replace('@', '-')}-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify({ lane, base, runs: log }, null, 2) + '\n');
+  writeFileSync(`docs/evidence/espn/prod-fill-${lane.replace('@', '-').replace(':', '-')}-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify({ lane, base, runs: log }, null, 2) + '\n');
 }
