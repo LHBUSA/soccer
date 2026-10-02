@@ -1,0 +1,1021 @@
+{
+ "engine": "pbe-art-soccer/0.1.0",
+ "generated_at": "2026-10-02T21:33:36.066Z",
+ "specs": [
+  {
+   "id": "finland-albania-preview",
+   "story": "finland-albania-preview-2026-10-03-30a9da",
+   "spec": {
+    "kind": "preview",
+    "competition": "UEFA Nations League",
+    "stage": "Group C1",
+    "label": "Preview",
+    "home": {
+     "name": "Finland",
+     "standing": "2ND · 4 PTS",
+     "form": [
+      "D",
+      "W"
+     ]
+    },
+    "away": {
+     "name": "Albania",
+     "standing": "1ST · 6 PTS",
+     "form": [
+      "W",
+      "W"
+     ]
+    },
+    "when": "HELSINKI OLYMPIC STADIUM · 3 OCT 2026 · 13:00 UTC"
+   }
+  },
+  {
+   "id": "france-italy-report",
+   "story": "match 31fd9bd4-7816-5eac-9e52-310628cd7cc4",
+   "spec": {
+    "kind": "report",
+    "competition": "UEFA Nations League",
+    "stage": null,
+    "label": "Match report",
+    "home": {
+     "name": "France"
+    },
+    "away": {
+     "name": "Italy"
+    },
+    "score": {
+     "home": 1,
+     "away": 1,
+     "home_ht": null,
+     "away_ht": null
+    },
+    "timeline": [
+     {
+      "minute": 55,
+      "display": "55'",
+      "type": "goal",
+      "team": "home",
+      "label": "Olise"
+     },
+     {
+      "minute": 68,
+      "display": "68'",
+      "type": "goal",
+      "team": "away",
+      "label": "Bastoni"
+     },
+     {
+      "minute": 85,
+      "display": "85'",
+      "type": "card_red",
+      "team": "home",
+      "label": "Upamecano"
+     }
+    ],
+    "shots": [
+     {
+      "x": 4.72,
+      "y": 39.24,
+      "team": "away",
+      "goal": false
+     },
+     {
+      "x": 81.38,
+      "y": 51.41,
+      "team": "home",
+      "goal": false
+     },
+     {
+      "x": 78.02,
+      "y": 42.16,
+      "team": "home",
+      "goal": false
+     },
+     {
+      "x": 24.78,
+      "y": 38.62,
+      "team": "away",
+      "goal": false
+     },
+     {
+      "x": 11.44,
+      "y": 21.49,
+      "team": "away",
+      "goal": false
+     },
+     {
+      "x": 82.43,
+      "y": 27.81,
+      "team": "home",
+      "goal": false
+     },
+     {
+      "x": 83.37,
+      "y": 44.06,
+      "team": "home",
+      "goal": false
+     },
+     {
+      "x": 98.7,
+      "y": 20.74,
+      "team": "home",
+      "goal": false
+     },
+     {
+      "x": 77.7,
+      "y": 33.8,
+      "team": "home",
+      "goal": false
+     },
+     {
+      "x": 89.88,
+      "y": 18.84,
+      "team": "home",
+      "goal": false
+     },
+     {
+      "x": 97.55,
+      "y": 46.85,
+      "team": "home",
+      "goal": false
+     },
+     {
+      "x": 9.45,
+      "y": 34.07,
+      "team": "away",
+      "goal": false
+     },
+     {
+      "x": 6.4,
+      "y": 45.22,
+      "team": "away",
+      "goal": false
+     },
+     {
+      "x": 3.99,
+      "y": 36.31,
+      "team": "away",
+      "goal": false
+     },
+     {
+      "x": 30.55,
+      "y": 31.01,
+      "team": "away",
+      "goal": false
+     },
+     {
+      "x": 23.62,
+      "y": 30.8,
+      "team": "away",
+      "goal": false
+     },
+     {
+      "x": 83.58,
+      "y": 27,
+      "team": "home",
+      "goal": false
+     },
+     {
+      "x": 97.55,
+      "y": 36.58,
+      "team": "home",
+      "goal": false
+     },
+     {
+      "x": 91.88,
+      "y": 48.21,
+      "team": "home",
+      "goal": false
+     },
+     {
+      "x": 82.64,
+      "y": 42.64,
+      "team": "home",
+      "goal": true
+     },
+     {
+      "x": 90.72,
+      "y": 35.77,
+      "team": "home",
+      "goal": false
+     },
+     {
+      "x": 18.37,
+      "y": 32.1,
+      "team": "away",
+      "goal": true
+     },
+     {
+      "x": 91.14,
+      "y": 18.43,
+      "team": "home",
+      "goal": false
+     },
+     {
+      "x": 91.14,
+      "y": 47.53,
+      "team": "home",
+      "goal": false
+     },
+     {
+      "x": 5.67,
+      "y": 38.22,
+      "team": "away",
+      "goal": false
+     },
+     {
+      "x": 7.04,
+      "y": 23.94,
+      "team": "away",
+      "goal": false
+     },
+     {
+      "x": 78.96,
+      "y": 36.79,
+      "team": "home",
+      "goal": false
+     },
+     {
+      "x": 84,
+      "y": 51.14,
+      "team": "home",
+      "goal": false
+     },
+     {
+      "x": 11.44,
+      "y": 38.42,
+      "team": "away",
+      "goal": false
+     },
+     {
+      "x": 8.29,
+      "y": 38.96,
+      "team": "away",
+      "goal": false
+     },
+     {
+      "x": 9.76,
+      "y": 40.46,
+      "team": "away",
+      "goal": false
+     },
+     {
+      "x": 81.59,
+      "y": 32.84,
+      "team": "home",
+      "goal": false
+     }
+    ],
+    "when": "STADE DE FRANCE · 2 OCT 2026"
+   }
+  },
+  {
+   "id": "seattle-team-trend",
+   "story": "seattle-sounders-fc-8-league-matches-unbeaten-2026-10-02-adae3a",
+   "spec": {
+    "kind": "team_trend",
+    "competition": "MLS",
+    "label": "Team form",
+    "title": "Seattle Sounders FC",
+    "subtitle": null,
+    "big": 8,
+    "bigLabel": "MLS matches unbeaten",
+    "run": [
+     {
+      "result": "D",
+      "top": "1-1",
+      "bottom": "22 AUG"
+     },
+     {
+      "result": "D",
+      "top": "2-2",
+      "bottom": "29 AUG"
+     },
+     {
+      "result": "D",
+      "top": "0-0",
+      "bottom": "6 SEPT"
+     },
+     {
+      "result": "D",
+      "top": "1-1",
+      "bottom": "13 SEP"
+     },
+     {
+      "result": "D",
+      "top": "3-3",
+      "bottom": "20 SEP"
+     },
+     {
+      "result": "W",
+      "top": "2-0",
+      "bottom": "24 SEP"
+     },
+     {
+      "result": "W",
+      "top": "3-1",
+      "bottom": "27 SEP"
+     },
+     {
+      "result": "W",
+      "top": "2-1",
+      "bottom": "2 OCT "
+     }
+    ],
+    "when": "THROUGH 2 OCT 2026"
+   }
+  },
+  {
+   "id": "angulo-player-form",
+   "story": "ivan-angulo-scoring-run-2026-09-26-0e2dbf",
+   "spec": {
+    "kind": "player_form",
+    "competition": "MLS",
+    "label": "Player form",
+    "title": "Iván Angulo",
+    "subtitle": "Orlando City SC",
+    "big": 4,
+    "bigLabel": "straight scoring appearances",
+    "run": [
+     {
+      "result": null,
+      "top": "1 G",
+      "bottom": "9 SEPT"
+     },
+     {
+      "result": null,
+      "top": "1 G",
+      "bottom": "12 SEP"
+     },
+     {
+      "result": null,
+      "top": "1 G",
+      "bottom": "19 SEP"
+     },
+     {
+      "result": null,
+      "top": "1 G",
+      "bottom": "26 SEP"
+     }
+    ],
+    "when": "THROUGH 26 SEPT 2026"
+   }
+  },
+  {
+   "id": "world-cup-group-a",
+   "story": "fifa-world-cup 2026 group A (verified group table)",
+   "spec": {
+    "kind": "table",
+    "competition": "FIFA World Cup 2026",
+    "label": "Final group table",
+    "title": "Group A",
+    "advance": 3,
+    "rows": [
+     {
+      "position": 1,
+      "name": "Mexico",
+      "points": 9,
+      "form": [
+       "W",
+       "W",
+       "W"
+      ]
+     },
+     {
+      "position": 2,
+      "name": "South Africa",
+      "points": 4,
+      "form": [
+       "W",
+       "D",
+       "L"
+      ]
+     },
+     {
+      "position": 3,
+      "name": "South Korea",
+      "points": 3,
+      "form": [
+       "L",
+       "L",
+       "W"
+      ]
+     },
+     {
+      "position": 4,
+      "name": "Czechia",
+      "points": 1,
+      "form": [
+       "L",
+       "D",
+       "L"
+      ]
+     }
+    ],
+    "when": "72 MATCHES · VERIFIED AGAINST CANONICAL RESULTS"
+   }
+  }
+ ],
+ "assets": [
+  {
+   "id": "finland-albania-preview",
+   "story": "finland-albania-preview-2026-10-03-30a9da",
+   "direction": "poster",
+   "format": "hero",
+   "w": 1600,
+   "h": 900,
+   "svg_sha256": "60739fc5ed5bf21b8340c538238dcc57f336c90c92ba35493417294d5308e63b",
+   "file": "finland-albania-preview--poster--hero.png"
+  },
+  {
+   "id": "finland-albania-preview",
+   "story": "finland-albania-preview-2026-10-03-30a9da",
+   "direction": "poster",
+   "format": "og",
+   "w": 1200,
+   "h": 630,
+   "svg_sha256": "0c557924ff3748f7a5d0a8c235effba4238cc39167fce0e38b8ee86ce0229497",
+   "file": "finland-albania-preview--poster--og.png"
+  },
+  {
+   "id": "finland-albania-preview",
+   "story": "finland-albania-preview-2026-10-03-30a9da",
+   "direction": "poster",
+   "format": "square",
+   "w": 1080,
+   "h": 1080,
+   "svg_sha256": "9b22a86f88d993865e072c9d9900b2b5f4d063903d9e22092605b808fb24a0c0",
+   "file": "finland-albania-preview--poster--square.png"
+  },
+  {
+   "id": "finland-albania-preview",
+   "story": "finland-albania-preview-2026-10-03-30a9da",
+   "direction": "poster",
+   "format": "story",
+   "w": 1080,
+   "h": 1920,
+   "svg_sha256": "93b57417f4c75789d0eabbe6fa5af4e9a4fa83962c9926277da8488d33a2a443",
+   "file": "finland-albania-preview--poster--story.png"
+  },
+  {
+   "id": "finland-albania-preview",
+   "story": "finland-albania-preview-2026-10-03-30a9da",
+   "direction": "pitch",
+   "format": "hero",
+   "w": 1600,
+   "h": 900,
+   "svg_sha256": "a166910be28f0ff5d641bdc88b4f3cd1f4b059e4b9dbce42bc16929bf67fdfc4",
+   "file": "finland-albania-preview--pitch--hero.png"
+  },
+  {
+   "id": "finland-albania-preview",
+   "story": "finland-albania-preview-2026-10-03-30a9da",
+   "direction": "pitch",
+   "format": "og",
+   "w": 1200,
+   "h": 630,
+   "svg_sha256": "ca67de31f711ab2feabf783b24cfade84fb0765a24eeda8d4734d627d8a8eeb6",
+   "file": "finland-albania-preview--pitch--og.png"
+  },
+  {
+   "id": "finland-albania-preview",
+   "story": "finland-albania-preview-2026-10-03-30a9da",
+   "direction": "pitch",
+   "format": "square",
+   "w": 1080,
+   "h": 1080,
+   "svg_sha256": "d0d9e5bd81a7654ecd1c5516d14919c4a3e3e91c7e13dfab55a63abefc5dfd26",
+   "file": "finland-albania-preview--pitch--square.png"
+  },
+  {
+   "id": "finland-albania-preview",
+   "story": "finland-albania-preview-2026-10-03-30a9da",
+   "direction": "pitch",
+   "format": "story",
+   "w": 1080,
+   "h": 1920,
+   "svg_sha256": "00d7fb1014af60f8a307bd916f684bbfcc67d4d0f4fbc9d9c63b110e3017061c",
+   "file": "finland-albania-preview--pitch--story.png"
+  },
+  {
+   "id": "finland-albania-preview",
+   "story": "finland-albania-preview-2026-10-03-30a9da",
+   "direction": "broadcast",
+   "format": "hero",
+   "w": 1600,
+   "h": 900,
+   "svg_sha256": "f3e7d173fc87ae130f97262e27d3fa4134fa87439fce07065f5a241511258588",
+   "file": "finland-albania-preview--broadcast--hero.png"
+  },
+  {
+   "id": "finland-albania-preview",
+   "story": "finland-albania-preview-2026-10-03-30a9da",
+   "direction": "broadcast",
+   "format": "og",
+   "w": 1200,
+   "h": 630,
+   "svg_sha256": "60f5317ad1bd9014197b83d27782f1673d7e3a0b0c01f7f66de87137184d9475",
+   "file": "finland-albania-preview--broadcast--og.png"
+  },
+  {
+   "id": "finland-albania-preview",
+   "story": "finland-albania-preview-2026-10-03-30a9da",
+   "direction": "broadcast",
+   "format": "square",
+   "w": 1080,
+   "h": 1080,
+   "svg_sha256": "5bace59d1b6a2d4e03dec1f7e00b04a737d036f65f3733bad60ab0a70f3647d2",
+   "file": "finland-albania-preview--broadcast--square.png"
+  },
+  {
+   "id": "finland-albania-preview",
+   "story": "finland-albania-preview-2026-10-03-30a9da",
+   "direction": "broadcast",
+   "format": "story",
+   "w": 1080,
+   "h": 1920,
+   "svg_sha256": "b1d2ec7729752262748277a6c17bf3e90a99b66c42e43223f77aa2a425c3089e",
+   "file": "finland-albania-preview--broadcast--story.png"
+  },
+  {
+   "id": "france-italy-report",
+   "story": "match 31fd9bd4-7816-5eac-9e52-310628cd7cc4",
+   "direction": "poster",
+   "format": "hero",
+   "w": 1600,
+   "h": 900,
+   "svg_sha256": "ef285aa3ef469ef9cda5d0f3dd09ae9fe75111c62f89f3919e03ac2c50f50a25",
+   "file": "france-italy-report--poster--hero.png"
+  },
+  {
+   "id": "france-italy-report",
+   "story": "match 31fd9bd4-7816-5eac-9e52-310628cd7cc4",
+   "direction": "poster",
+   "format": "og",
+   "w": 1200,
+   "h": 630,
+   "svg_sha256": "87fbe3ff046e07ef4b81a68b40bc0742f34f8c68d82a1ef817ff954e1575d199",
+   "file": "france-italy-report--poster--og.png"
+  },
+  {
+   "id": "france-italy-report",
+   "story": "match 31fd9bd4-7816-5eac-9e52-310628cd7cc4",
+   "direction": "poster",
+   "format": "square",
+   "w": 1080,
+   "h": 1080,
+   "svg_sha256": "d63258736eed1503efdba3b41853b99f62d8141a9a9897b0cdf51c5f0e92aa33",
+   "file": "france-italy-report--poster--square.png"
+  },
+  {
+   "id": "france-italy-report",
+   "story": "match 31fd9bd4-7816-5eac-9e52-310628cd7cc4",
+   "direction": "poster",
+   "format": "story",
+   "w": 1080,
+   "h": 1920,
+   "svg_sha256": "27ff63d6ada052cb186265e97740d913b8ed5c9650876bc4c03e868ddaa30da9",
+   "file": "france-italy-report--poster--story.png"
+  },
+  {
+   "id": "france-italy-report",
+   "story": "match 31fd9bd4-7816-5eac-9e52-310628cd7cc4",
+   "direction": "pitch",
+   "format": "hero",
+   "w": 1600,
+   "h": 900,
+   "svg_sha256": "f8387c2f1b48491dad4e568192fe3a336ee84dc81797dd8682d0139975a3258d",
+   "file": "france-italy-report--pitch--hero.png"
+  },
+  {
+   "id": "france-italy-report",
+   "story": "match 31fd9bd4-7816-5eac-9e52-310628cd7cc4",
+   "direction": "pitch",
+   "format": "og",
+   "w": 1200,
+   "h": 630,
+   "svg_sha256": "5c4e3af91e50c6031cf9b3a85dfc53f81d6b79bab90cb9d3e23004213eded3df",
+   "file": "france-italy-report--pitch--og.png"
+  },
+  {
+   "id": "france-italy-report",
+   "story": "match 31fd9bd4-7816-5eac-9e52-310628cd7cc4",
+   "direction": "pitch",
+   "format": "square",
+   "w": 1080,
+   "h": 1080,
+   "svg_sha256": "1a7425f53bb678a1f733306ec2f646195f353323c0c899bf1edcc47137e0b1f7",
+   "file": "france-italy-report--pitch--square.png"
+  },
+  {
+   "id": "france-italy-report",
+   "story": "match 31fd9bd4-7816-5eac-9e52-310628cd7cc4",
+   "direction": "pitch",
+   "format": "story",
+   "w": 1080,
+   "h": 1920,
+   "svg_sha256": "536730d0bc3e5e245e4e8c3d676531bf4858be6916c9b8943a4db6867aff687f",
+   "file": "france-italy-report--pitch--story.png"
+  },
+  {
+   "id": "france-italy-report",
+   "story": "match 31fd9bd4-7816-5eac-9e52-310628cd7cc4",
+   "direction": "broadcast",
+   "format": "hero",
+   "w": 1600,
+   "h": 900,
+   "svg_sha256": "b4379826aa5000b4a4a2c1d84cb8c90997f16507b39e853a7ac85d81060d4f3c",
+   "file": "france-italy-report--broadcast--hero.png"
+  },
+  {
+   "id": "france-italy-report",
+   "story": "match 31fd9bd4-7816-5eac-9e52-310628cd7cc4",
+   "direction": "broadcast",
+   "format": "og",
+   "w": 1200,
+   "h": 630,
+   "svg_sha256": "242b7a6e794d91551adc313395859345373bfdfba525da7f82cf750cdacfef1c",
+   "file": "france-italy-report--broadcast--og.png"
+  },
+  {
+   "id": "france-italy-report",
+   "story": "match 31fd9bd4-7816-5eac-9e52-310628cd7cc4",
+   "direction": "broadcast",
+   "format": "square",
+   "w": 1080,
+   "h": 1080,
+   "svg_sha256": "940b3696d72d0ddb51f49788059db9173d1a0799467bb0e9fdc7aa32af79c3f7",
+   "file": "france-italy-report--broadcast--square.png"
+  },
+  {
+   "id": "france-italy-report",
+   "story": "match 31fd9bd4-7816-5eac-9e52-310628cd7cc4",
+   "direction": "broadcast",
+   "format": "story",
+   "w": 1080,
+   "h": 1920,
+   "svg_sha256": "c2c9821a64613859b5467c42fab3712ad532abb16d22c2a9c250a63183efa968",
+   "file": "france-italy-report--broadcast--story.png"
+  },
+  {
+   "id": "seattle-team-trend",
+   "story": "seattle-sounders-fc-8-league-matches-unbeaten-2026-10-02-adae3a",
+   "direction": "poster",
+   "format": "hero",
+   "w": 1600,
+   "h": 900,
+   "svg_sha256": "54d34ca65aa2f919f6abe7589f3cdb7c275d660a049521535613320fb3440531",
+   "file": "seattle-team-trend--poster--hero.png"
+  },
+  {
+   "id": "seattle-team-trend",
+   "story": "seattle-sounders-fc-8-league-matches-unbeaten-2026-10-02-adae3a",
+   "direction": "poster",
+   "format": "og",
+   "w": 1200,
+   "h": 630,
+   "svg_sha256": "a4e0651f43646e5860ed146118f9133cf2326073220c5fa2c1dc83d57f72c56a",
+   "file": "seattle-team-trend--poster--og.png"
+  },
+  {
+   "id": "seattle-team-trend",
+   "story": "seattle-sounders-fc-8-league-matches-unbeaten-2026-10-02-adae3a",
+   "direction": "poster",
+   "format": "square",
+   "w": 1080,
+   "h": 1080,
+   "svg_sha256": "11a3e2bb951919cd70f7d67002590148844f4ce03085f9cdfc16865789823575",
+   "file": "seattle-team-trend--poster--square.png"
+  },
+  {
+   "id": "seattle-team-trend",
+   "story": "seattle-sounders-fc-8-league-matches-unbeaten-2026-10-02-adae3a",
+   "direction": "poster",
+   "format": "story",
+   "w": 1080,
+   "h": 1920,
+   "svg_sha256": "ed460c0e278ce2d1bfd408cf20aaeb666b92ba3b57afce18ca4bd38d22f423ae",
+   "file": "seattle-team-trend--poster--story.png"
+  },
+  {
+   "id": "seattle-team-trend",
+   "story": "seattle-sounders-fc-8-league-matches-unbeaten-2026-10-02-adae3a",
+   "direction": "pitch",
+   "format": "hero",
+   "w": 1600,
+   "h": 900,
+   "svg_sha256": "590153e49a081e6ff03d6278130dbbe7cf6d57c24767d929734067123562ee29",
+   "file": "seattle-team-trend--pitch--hero.png"
+  },
+  {
+   "id": "seattle-team-trend",
+   "story": "seattle-sounders-fc-8-league-matches-unbeaten-2026-10-02-adae3a",
+   "direction": "pitch",
+   "format": "og",
+   "w": 1200,
+   "h": 630,
+   "svg_sha256": "1986558324690a5736de575867c0324723a60e7e63daa95d9d531f856893c06f",
+   "file": "seattle-team-trend--pitch--og.png"
+  },
+  {
+   "id": "seattle-team-trend",
+   "story": "seattle-sounders-fc-8-league-matches-unbeaten-2026-10-02-adae3a",
+   "direction": "pitch",
+   "format": "square",
+   "w": 1080,
+   "h": 1080,
+   "svg_sha256": "da77a78516d6acdd46b429aedc17c778f6183d406d496b789b079516089370e2",
+   "file": "seattle-team-trend--pitch--square.png"
+  },
+  {
+   "id": "seattle-team-trend",
+   "story": "seattle-sounders-fc-8-league-matches-unbeaten-2026-10-02-adae3a",
+   "direction": "pitch",
+   "format": "story",
+   "w": 1080,
+   "h": 1920,
+   "svg_sha256": "9eb486fe19fcfbbe89b4cba042a859bd244a8f1f52cf8d95cd66a5affbebb961",
+   "file": "seattle-team-trend--pitch--story.png"
+  },
+  {
+   "id": "seattle-team-trend",
+   "story": "seattle-sounders-fc-8-league-matches-unbeaten-2026-10-02-adae3a",
+   "direction": "broadcast",
+   "format": "hero",
+   "w": 1600,
+   "h": 900,
+   "svg_sha256": "060b016f223c49bb75c22e985a5a9589f9c1a3d185a02bbc6dca8278a405d343",
+   "file": "seattle-team-trend--broadcast--hero.png"
+  },
+  {
+   "id": "seattle-team-trend",
+   "story": "seattle-sounders-fc-8-league-matches-unbeaten-2026-10-02-adae3a",
+   "direction": "broadcast",
+   "format": "og",
+   "w": 1200,
+   "h": 630,
+   "svg_sha256": "935cf11f5ecc9e674aa5c7e64dc6348591eeb73ae0a65786896e069d55232700",
+   "file": "seattle-team-trend--broadcast--og.png"
+  },
+  {
+   "id": "seattle-team-trend",
+   "story": "seattle-sounders-fc-8-league-matches-unbeaten-2026-10-02-adae3a",
+   "direction": "broadcast",
+   "format": "square",
+   "w": 1080,
+   "h": 1080,
+   "svg_sha256": "a1c2045c199100aca7b6780f83dc739d50092127fb2769810663bfd2cb74709e",
+   "file": "seattle-team-trend--broadcast--square.png"
+  },
+  {
+   "id": "seattle-team-trend",
+   "story": "seattle-sounders-fc-8-league-matches-unbeaten-2026-10-02-adae3a",
+   "direction": "broadcast",
+   "format": "story",
+   "w": 1080,
+   "h": 1920,
+   "svg_sha256": "c4231b968479b5e491e3d8f916fb0d161aef3bc8dcff8f214f72cb41f0321fd1",
+   "file": "seattle-team-trend--broadcast--story.png"
+  },
+  {
+   "id": "angulo-player-form",
+   "story": "ivan-angulo-scoring-run-2026-09-26-0e2dbf",
+   "direction": "poster",
+   "format": "hero",
+   "w": 1600,
+   "h": 900,
+   "svg_sha256": "dbce07645207c18dcf1e2a1afeb7fc04931f4e97e091a65752c870e58bff962a",
+   "file": "angulo-player-form--poster--hero.png"
+  },
+  {
+   "id": "angulo-player-form",
+   "story": "ivan-angulo-scoring-run-2026-09-26-0e2dbf",
+   "direction": "poster",
+   "format": "og",
+   "w": 1200,
+   "h": 630,
+   "svg_sha256": "59c0f5dfdb8d5d9ed28c873768703d27501cfc66047be4ab1a59e12f653a611a",
+   "file": "angulo-player-form--poster--og.png"
+  },
+  {
+   "id": "angulo-player-form",
+   "story": "ivan-angulo-scoring-run-2026-09-26-0e2dbf",
+   "direction": "poster",
+   "format": "square",
+   "w": 1080,
+   "h": 1080,
+   "svg_sha256": "980a0d9d8a8b7adaa38ef87799af73dde4c98052f4be81917c7683f02279b09f",
+   "file": "angulo-player-form--poster--square.png"
+  },
+  {
+   "id": "angulo-player-form",
+   "story": "ivan-angulo-scoring-run-2026-09-26-0e2dbf",
+   "direction": "poster",
+   "format": "story",
+   "w": 1080,
+   "h": 1920,
+   "svg_sha256": "aedcc809618d4aca7158b194b9f71e5ee73038376958f05044193b1b0c50066e",
+   "file": "angulo-player-form--poster--story.png"
+  },
+  {
+   "id": "angulo-player-form",
+   "story": "ivan-angulo-scoring-run-2026-09-26-0e2dbf",
+   "direction": "pitch",
+   "format": "hero",
+   "w": 1600,
+   "h": 900,
+   "svg_sha256": "67f692a0a455e5ea12a87caa3d4bbe55b69b9bd95d62180948623dcb4fed3aeb",
+   "file": "angulo-player-form--pitch--hero.png"
+  },
+  {
+   "id": "angulo-player-form",
+   "story": "ivan-angulo-scoring-run-2026-09-26-0e2dbf",
+   "direction": "pitch",
+   "format": "og",
+   "w": 1200,
+   "h": 630,
+   "svg_sha256": "98be651523c0de71b371b65672384153fed8b427f4c20ca3eb531e8b4ed4c9e2",
+   "file": "angulo-player-form--pitch--og.png"
+  },
+  {
+   "id": "angulo-player-form",
+   "story": "ivan-angulo-scoring-run-2026-09-26-0e2dbf",
+   "direction": "pitch",
+   "format": "square",
+   "w": 1080,
+   "h": 1080,
+   "svg_sha256": "29a0d8779babc67aa34df041afca2d3e44b9fd15fe4264659a7d1f1572142410",
+   "file": "angulo-player-form--pitch--square.png"
+  },
+  {
+   "id": "angulo-player-form",
+   "story": "ivan-angulo-scoring-run-2026-09-26-0e2dbf",
+   "direction": "pitch",
+   "format": "story",
+   "w": 1080,
+   "h": 1920,
+   "svg_sha256": "8483043ce11ab0cb88dc74efc8f31911625277accf5c8fe78770547dc16ebba0",
+   "file": "angulo-player-form--pitch--story.png"
+  },
+  {
+   "id": "angulo-player-form",
+   "story": "ivan-angulo-scoring-run-2026-09-26-0e2dbf",
+   "direction": "broadcast",
+   "format": "hero",
+   "w": 1600,
+   "h": 900,
+   "svg_sha256": "3018bc73481a3b9ec5c2da3e507efa7cc97889d555d9a0bd21fad23233504499",
+   "file": "angulo-player-form--broadcast--hero.png"
+  },
+  {
+   "id": "angulo-player-form",
+   "story": "ivan-angulo-scoring-run-2026-09-26-0e2dbf",
+   "direction": "broadcast",
+   "format": "og",
+   "w": 1200,
+   "h": 630,
+   "svg_sha256": "789817775ea94a4e0eaa4ef0c1cfb490477954648168d512d2bef033dca74d36",
+   "file": "angulo-player-form--broadcast--og.png"
+  },
+  {
+   "id": "angulo-player-form",
+   "story": "ivan-angulo-scoring-run-2026-09-26-0e2dbf",
+   "direction": "broadcast",
+   "format": "square",
+   "w": 1080,
+   "h": 1080,
+   "svg_sha256": "ff4655823b8b0822c48a4193f235a45c45d635295f31b97f4a8c9f1965a94b1a",
+   "file": "angulo-player-form--broadcast--square.png"
+  },
+  {
+   "id": "angulo-player-form",
+   "story": "ivan-angulo-scoring-run-2026-09-26-0e2dbf",
+   "direction": "broadcast",
+   "format": "story",
+   "w": 1080,
+   "h": 1920,
+   "svg_sha256": "f6d3c7ec39a664ec0d75b53e2ba1e02e95b67e880d3ac923a1cf8dff79592318",
+   "file": "angulo-player-form--broadcast--story.png"
+  },
+  {
+   "id": "world-cup-group-a",
+   "story": "fifa-world-cup 2026 group A (verified group table)",
+   "direction": "poster",
+   "format": "hero",
+   "w": 1600,
+   "h": 900,
+   "svg_sha256": "151b11cc2956d0168857a09ac7c2c7dd8c201313482425905e230a13ff089814",
+   "file": "world-cup-group-a--poster--hero.png"
+  },
+  {
+   "id": "world-cup-group-a",
+   "story": "fifa-world-cup 2026 group A (verified group table)",
+   "direction": "poster",
+   "format": "og",
+   "w": 1200,
+   "h": 630,
+   "svg_sha256": "2d4d0fe5fb77437b7c205e9f92f9504b7cbb64e67513be4a8618d030b8eadd4e",
+   "file": "world-cup-group-a--poster--og.png"
+  },
+  {
+   "id": "world-cup-group-a",
+   "story": "fifa-world-cup 2026 group A (verified group table)",
+   "direction": "poster",
+   "format": "square",
+   "w": 1080,
+   "h": 1080,
+   "svg_sha256": "36bc89f197d7dce29d35ccd600e0a0ce78d83455f32aef6d0ad9ee9614b486a5",
+   "file": "world-cup-group-a--poster--square.png"
+  },
+  {
+   "id": "world-cup-group-a",
+   "story": "fifa-world-cup 2026 group A (verified group table)",
+   "direction": "poster",
+   "format": "story",
+   "w": 1080,
+   "h": 1920,
+   "svg_sha256": "d2ab4cf2ae333b917c77c56c46083d62f619afa4770f54c18e0877f14fce58e4",
+   "file": "world-cup-group-a--poster--story.png"
+  },
+  {
+   "id": "world-cup-group-a",
+   "story": "fifa-world-cup 2026 group A (verified group table)",
+   "direction": "pitch",
+   "format": "hero",
+   "w": 1600,
+   "h": 900,
+   "svg_sha256": "0c8d2066fa4b2dcc18d6cadcdb6a90552325a5d36458dff1c61b78bd4190bd48",
+   "file": "world-cup-group-a--pitch--hero.png"
+  },
+  {
+   "id": "world-cup-group-a",
+   "story": "fifa-world-cup 2026 group A (verified group table)",
+   "direction": "pitch",
+   "format": "og",
+   "w": 1200,
+   "h": 630,
+   "svg_sha256": "086611ba655ded4f1aa5d7cbce1d37803daa75f10d5530c2345ff16721a70ab6",
+   "file": "world-cup-group-a--pitch--og.png"
+  },
+  {
+   "id": "world-cup-group-a",
+   "story": "fifa-world-cup 2026 group A (verified group table)",
+   "direction": "pitch",
+   "format": "square",
+   "w": 1080,
+   "h": 1080,
+   "svg_sha256": "2be2a57e429c96e95ed13a34a7a584330cff61e89908d61495ab4770a56b67d1",
+   "file": "world-cup-group-a--pitch--square.png"
+  },
+  {
+   "id": "world-cup-group-a",
+   "story": "fifa-world-cup 2026 group A (verified group table)",
+   "direction": "pitch",
+   "format": "story",
+   "w": 1080,
+   "h": 1920,
+   "svg_sha256": "445039d29eddecf98e997fb9de59e6a735a94dfea8b768d6c6a24cf116435f76",
+   "file": "world-cup-group-a--pitch--story.png"
+  },
+  {
+   "id": "world-cup-group-a",
+   "story": "fifa-world-cup 2026 group A (verified group table)",
+   "direction": "broadcast",
+   "format": "hero",
+   "w": 1600,
+   "h": 900,
+   "svg_sha256": "6e95e76a4cf899263bc46fbd8320a8619b33debc7a7140d79fe1a1efe428999b",
+   "file": "world-cup-group-a--broadcast--hero.png"
+  },
+  {
+   "id": "world-cup-group-a",
+   "story": "fifa-world-cup 2026 group A (verified group table)",
+   "direction": "broadcast",
+   "format": "og",
+   "w": 1200,
+   "h": 630,
+   "svg_sha256": "37086935417a5ce27b31cb49d31efa1f5d631c6a3d94a3ba2a40e9add866ce9d",
+   "file": "world-cup-group-a--broadcast--og.png"
+  },
+  {
+   "id": "world-cup-group-a",
+   "story": "fifa-world-cup 2026 group A (verified group table)",
+   "direction": "broadcast",
+   "format": "square",
+   "w": 1080,
+   "h": 1080,
+   "svg_sha256": "4f27bc96409c5403980525d1cb84e518f1f829b1a0923558956f31e1eeec7178",
+   "file": "world-cup-group-a--broadcast--square.png"
+  },
+  {
+   "id": "world-cup-group-a",
+   "story": "fifa-world-cup 2026 group A (verified group table)",
+   "direction": "broadcast",
+   "format": "story",
+   "w": 1080,
+   "h": 1920,
+   "svg_sha256": "e1cd1883a17dfa94a28a484a0644a1046316cf59dc57ccf8c8ebdd1e110b56de",
+   "file": "world-cup-group-a--broadcast--story.png"
+  }
+ ]
+}
