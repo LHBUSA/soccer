@@ -3,6 +3,7 @@ import { videoObject } from '../components/video.js';
 // Used by middleware.js (first HTML response) and by the client on navigation.
 // Only fields the canonical graph actually returns are ever emitted.
 import { resolve } from '../lib/router.js';
+import { ownedImage, imageObject } from './image-metadata.js';
 
 export const SITE = 'https://soccer.propbetedge.ai';
 export const BRAND = 'PropBetEdge Soccer';
@@ -10,7 +11,7 @@ export const INDEX = 'index, follow, max-image-preview:large';
 export const NOINDEX = 'noindex, follow';
 export const SHARE_IMAGE = `${SITE}/share/propbetedge-soccer-social-v1.jpg`;
 export const LOGO = `${SITE}/share/propbetedge-logo-v3-512.png`;
-export const ORG = { '@type': 'Organization', name: 'PropBetEdge', url: 'https://propbetedge.ai/', logo: { '@type': 'ImageObject', url: LOGO, width: 512, height: 512 }, sameAs: ['https://x.com/PROPBETEDGE'] };
+export const ORG = { '@type': 'Organization', name: 'PropBetEdge', url: 'https://propbetedge.ai/', logo: imageObject(ownedImage({ url: LOGO, width: 512, height: 512, caption: 'PropBetEdge' })), sameAs: ['https://x.com/PROPBETEDGE'] };
 
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const clip = (s, n = 165) => (s.length <= n ? s : `${s.slice(0, n - 1).replace(/\s+\S*$/, '')}…`);
@@ -92,7 +93,8 @@ export function articleMeta(pathname, env, desk) {
       url,
       isPartOf: { '@type': 'WebSite', name: 'PropBetEdge Soccer Intelligence', url: `${SITE}/` },
       articleSection: DESKS[a.desk],
-      image: [{ '@type': 'ImageObject', url: image, width: 1200, height: 630 }],
+      // api/og.js cards are text-only PropBetEdge art (no crests or photos), so the card is owned.
+      image: [imageObject(ownedImage({ url: image, width: 1200, height: 630, caption: a.headline, year: a.published_at }))],
       ...(about.length ? { about } : {}),
       ...(mentions.length ? { mentions } : {}),
     },
