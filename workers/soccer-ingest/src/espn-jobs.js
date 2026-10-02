@@ -145,6 +145,10 @@ export async function runEspnLane(lane, { store, storage, registry, areas = { ar
   try {
     await client.flush();
     if (comp.espn.enabled === false) { stats.skipped = 'competition not enabled in registry'; return { observed: 0, changed: 0, captureId: null, cursor, parserVersion: espn.ESPN_PARSER_VERSION, results: [stats], requests: client.used }; }
+    // A HISTORY season founds nothing until discovery is complete: every event fetched and every repeated pairing's
+    // status and score read. Founding on a partial cursor made a postponed listing canonical before its finished replay
+    // was known (Premier League 2002/03). The next run resumes discovery from the cursor.
+    if (pinYear && stats.budget_exhausted_at === 'discovery') { stats.deferred = 'history discovery incomplete: no fixture is founded until every event and repeated pairing is read'; return { observed: 0, changed: 0, captureId: null, cursor, parserVersion: espn.ESPN_PARSER_VERSION, results: [stats], requests: client.used }; }
     // 4. teams + fixtures -> canonical (only fixtures whose teams are resolved)
     const teamRes = await resolveEspnTeams(store, { comp, year: cursor.season_year, cursor, client });
     stats.team_identity = teamRes.summary;

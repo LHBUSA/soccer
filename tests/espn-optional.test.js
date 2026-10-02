@@ -163,6 +163,18 @@ test('PASS A (results-only history lane): season born held, final score stored, 
   await store.close();
 });
 
+test('history lane founds NOTHING while discovery is incomplete (budget exhausted mid-discovery), then founds on resume', async () => {
+  const store = await openPglite(); await applyMigrations(store);
+  const w = world();
+  const state = emptyLaneState(`${lane.name}@2026:results`);
+  const first = await runEspnLane(lane, { store, storage: w.storage, registry: w.registry, areas: { areas: {}, aliases: {} }, state, now: NOW, fetcher: w.fetcher, budget: 3, force: true, year: 2026, depth: 'results' });
+  assert.equal(first.results[0].budget_exhausted_at, 'discovery'); assert.match(first.results[0].deferred, /discovery incomplete/);
+  assert.equal((await store.select('soccer_matches', { columns: ['id'] })).length, 0, 'no fixture founded on a partial cursor');
+  const second = await runEspnLane(lane, { store, storage: w.storage, registry: w.registry, areas: { areas: {}, aliases: {} }, state: { ...state, cursor: first.cursor }, now: NOW, fetcher: w.fetcher, budget: 200, force: true, year: 2026, depth: 'results' });
+  assert.ok(!second.results[0].deferred); assert.ok((await store.select('soccer_matches', { columns: ['id'] })).length > 0);
+  await store.close();
+});
+
 test('national-team competition: an isNational=false entrant is founded national (contract, evidence recorded); an ESPN id mapped to a CLUB is refused', async () => {
   const store = await openPglite(); await applyMigrations(store);
   const w = world();

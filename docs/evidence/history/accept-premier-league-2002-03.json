@@ -1,0 +1,66 @@
+{
+ "at": "2026-10-02T23:47:18.562Z",
+ "competition": "premier-league",
+ "season": "2002/03",
+ "state_before": "held",
+ "matches": 391,
+ "finished": 341,
+ "stages": [
+  "Regular Season:league"
+ ],
+ "teams": 20,
+ "format": {
+  "teams": 20,
+  "league_matches": 341,
+  "games_per_team": {
+   "30": 1,
+   "31": 1,
+   "32": 3,
+   "33": 4,
+   "34": 2,
+   "35": 3,
+   "36": 3,
+   "37": 2,
+   "38": 1
+  }
+ },
+ "providers": [
+  "espn"
+ ],
+ "coverage": {
+  "venue": 1,
+  "lineups": 0,
+  "stats": 0,
+  "events": 0
+ },
+ "coverage_tier": "MATCH",
+ "limitations": [
+  "lineups for 0% of finished matches",
+  "team statistics for 0% of finished matches",
+  "event record for 0% of finished matches"
+ ],
+ "notes": [
+  "50 past match(es) postponed/cancelled/abandoned (listed, not results)"
+ ],
+ "checks_failed": [
+  {
+   "check": "games_per_team_uneven",
+   "distribution": {
+    "30": 1,
+    "31": 1,
+    "32": 3,
+    "33": 4,
+    "34": 2,
+    "35": 3,
+    "36": 3,
+    "37": 2,
+    "38": 1
+   }
+  },
+  {
+   "check": "home_away_unbalanced",
+   "count": 13
+  }
+ ],
+ "pass": false
+}
