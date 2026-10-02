@@ -21,8 +21,10 @@ const LOG = `docs/evidence/history/queue-${COMP}.jsonl`;
 mkdirSync('docs/evidence/history', { recursive: true });
 const env = Object.fromEntries(readFileSync('D:/Workers/secrets/soccer-supabase.env', 'utf8').split(/\r?\n/).filter(l => l.includes('=')).map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]));
 const U = env.SOCCER_MODEL_SUPABASE_URL; const h = { apikey: env.SOCCER_MODEL_SUPABASE_SERVICE_ROLE_KEY, authorization: `Bearer ${env.SOCCER_MODEL_SUPABASE_SERVICE_ROLE_KEY}` };
-const get = async q => (await fetch(`${U}/rest/v1/${q}`, { headers: h })).json();
-const cnt = async q => Number(((await fetch(`${U}/rest/v1/${q}`, { method: 'HEAD', headers: { ...h, prefer: 'count=exact' } })).headers.get('content-range') || '').split('/')[1]);
+// the runner's own database reads retry transient network/5xx failures (a dropped socket must not kill a lane)
+const retry = async fn => { for (let i = 0; ; i++) { try { return await fn(); } catch (e) { if (i >= 5) throw e; await new Promise(r => setTimeout(r, 5000 * (i + 1))); } } };
+const get = q => retry(async () => { const r = await fetch(`${U}/rest/v1/${q}`, { headers: h }); if (r.status >= 500) throw new Error(`HTTP ${r.status}`); return r.json(); });
+const cnt = q => retry(async () => { const r = await fetch(`${U}/rest/v1/${q}`, { method: 'HEAD', headers: { ...h, prefer: 'count=exact' } }); if (r.status >= 500) throw new Error(`HTTP ${r.status}`); return Number((r.headers.get('content-range') || '').split('/')[1]); });
 const node = args => spawnSync(process.execPath, args, { encoding: 'utf8', env: { ...process.env, MSYS_NO_PATHCONV: '1' }, maxBuffer: 64 * 1024 * 1024 });
 const log = row => { appendFileSync(LOG, `${JSON.stringify({ at: new Date().toISOString(), comp: COMP, ...row })}\n`); console.log(JSON.stringify(row)); };
 const HOLD_FOR_REVIEW = new Set((arg('--hold', '') || '').split(',').filter(Boolean).map(Number)); // ingest, never promote

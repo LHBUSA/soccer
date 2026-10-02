@@ -1,5 +1,5 @@
 {
- "at": "2026-10-02T23:36:53.047Z",
+ "at": "2026-10-02T23:37:00.093Z",
  "competition": "mls",
  "season": "2001",
  "manifest_sha256": "3880609aa8b4db2172d58c9f8ec6a569a9fc547540efc0d8ba1f22d825d443f0",
@@ -78,5 +78,13 @@
    ]
   }
  ],
- "ready": true
+ "ready": true,
+ "applied": {
+  "stages": {
+   "Quarterfinals": "55228699-95e2-5d2c-8d8b-209033ef1310",
+   "Semifinals": "97c821b3-c1f6-592e-8dc1-7351665a4abe",
+   "MLS Cup": "55e2adef-9e38-54b6-8d1d-81bb226f767d"
+  },
+  "playoff_matches_moved": 18
+ }
 }
