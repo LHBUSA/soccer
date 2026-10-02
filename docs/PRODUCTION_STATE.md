@@ -178,3 +178,31 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
   Seattle 2-1 Kansas City with ESPN xG, Denmark 2-4 Portugal, live France v Italy); replay contract 163/163.
 - Observed, not fixed: soccer-api `/v1/matches/:id/cast` returned HTTP 500 on 2 of ~12 browser loads of a LIVE match
   during QA (0 of 20 direct retries); needs a `wrangler tail` during the next live window.
+
+## 2026-10-02 — owner-approved next phase A–D (main 2963061..87c34f8)
+
+- **A. ESPN parser espn-core/1.1.0 (isolated):** soccer-ingest `fdee715b` (rb `34ec7657` = commit 49faecc, live before
+  but missing from this ledger). Functional diff vs live = parser + admin route only (video/art/registry desk unused by
+  ingest). A 0-1-scale match gets no canonical location (`espn_unit_unverified`, source values kept).
+- **B. Coordinate repair APPLIED:** 271 matches (MLS 2026-02-21..05-25: 218; Nations League 2024/25: 53), 54,342 event
+  rows = dry run; canonical x/y cleared, relabelled, source untouched; 0 rows left with a canonical point. Rollback
+  snapshot `docs/evidence/storage/espn-unit-coords-rollback-2026-10-02.json.gz` (written before the first PATCH).
+  Production QA (`docs/evidence/qa/espn-unit-coords-repair-2026-10-02.json`): before 23/23, 30/30, 22/22 shots within 3 m
+  of a corner flag; after 0 located, "nothing is plotted". No coordinate calibration attempted.
+- **C. Season publication gate:** migration `20261002001400` APPLIED (rollback-only proof: fingerprint 48f5c2d2
+  unchanged, checks-1400, zero residue). 29/29 existing seasons published; new seasons default held. Views
+  `soccer_public_seasons` / `soccer_public_matches` (security_invoker; no anon/authenticated). soccer-api `583ffeb6`
+  then `60f66ae8` (rb `583ffeb6`, then `88d28fc1`) reads only the views (every competition, season, match, team history,
+  table, sitemap, data-health and coverage path); located-event counts use verified coordinate systems only. This release
+  also shipped the previously undeployed soccer-api video/keyless changes from main (22 public routes smoke-tested 200).
+  Newsroom reads switch to the views at the next soccer-news deploy (held, owner gate); its detection already ignores
+  history (latest season + 4-day window, tests/history-newsroom.test.js).
+- **D. Algo V2 → soccer-algo-v2.1.0:** same research, model hash `4c40fa9c`, coefficients and policy; input membership
+  frozen to 362 canonical match ids (sha256 `2dc6c0b5…`, frozen_at 2026-10-02T21:51:00Z) + matches after frozen_at
+  (`workers/soccer-ingest/src/algo-v2-dataset.json`). Spec `53e6b8d7…`. V2 has never run in production (ALGO_V2 off;
+  0 events/forecasts/picks). Parity + backfill-immunity regression in tests/algo-v2.test.js.
+- **E (started):** soccer-ingest `0b1682de` (held seasons + V2.1) then `22c8c961` (rb `0b1682de`): PASS A lanes
+  `espn_<comp>@<year>:results`, repeated-pairing status rule, `scripts/history/accept-season.mjs`, queue
+  `scripts/history/queue.json`.
+- Known gap: Nations League 2024/25 (published) has 134 past matches with status unknown (an earlier history run never
+  detailed them); acceptance fails it on that check. V2.1 would hold on them if switched on.
