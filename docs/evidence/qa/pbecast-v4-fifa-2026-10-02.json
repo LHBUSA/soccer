@@ -1,0 +1,468 @@
+{
+  "site": "https://soccer.propbetedge.ai",
+  "at": "2026-10-02T20:27:47.994Z",
+  "pass": 92,
+  "total": 92,
+  "results": [
+    {
+      "name": "390 home: FIFA tile present",
+      "ok": true,
+      "detail": "FIFA 2026 FIFA WORLD CUP 104 matches 1 season OPEN COMPETITION HUB →"
+    },
+    {
+      "name": "390 home: FIFA accent resolved",
+      "ok": true,
+      "detail": "#b5651d"
+    },
+    {
+      "name": "390 home: FIFA dark gradient",
+      "ok": true,
+      "detail": "linear-gradient(155deg, color(srgb 0.24549 0.216157 0.226902"
+    },
+    {
+      "name": "390 home: every tile has an accent + gradient",
+      "ok": true,
+      "detail": "mls=#3d8bfd premier-league=#9b6cff bundesliga=#e8554e uefa-champions-league=#2fb8e6 uefa-nations-league=#22c3a6 fifa-world-cup=#b5651d"
+    },
+    {
+      "name": "390 home: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 FIFA hub renders",
+      "ok": true,
+      "detail": "FIFA WORLD CUP · match links 34 · accent #b5651d"
+    },
+    {
+      "name": "390 FIFA hub: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 rich: moment panel at FT",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 rich: goal chip -> GOAL moment",
+      "ok": true,
+      "detail": "GOAL — KANSAS CITY 0–1 | 14.8 m from goal · in the box PBE derived · ESPN xG 0.24 | PBE CALL Luiz scores with a left-footed finish, set up by Afrifa. Kansas City open the scoring, 0–1."
+    },
+    {
+      "name": "390 rich: feed current is the goal",
+      "ok": true,
+      "detail": "GOAL — KANSAS CITY 0–1"
+    },
+    {
+      "name": "390 rich: pulse present",
+      "ok": true,
+      "detail": "MATCH PULSE Last 10 min · 34'–44' Seattle 5 shots · 2 on target Kansas City 4 shots · 3 on target 9 Shots 12 3 On target 7 17.6 Avg located shot distance (m) 17"
+    },
+    {
+      "name": "390 rich: Shots filter keeps shot records only",
+      "ok": true,
+      "detail": "23 rows · SEATTLE SUBSTITUTION"
+    },
+    {
+      "name": "390 rich: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 unl: moment panel at FT",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 unl: goal chip -> GOAL moment",
+      "ok": true,
+      "detail": "GOAL — PORTUGAL 0–1 | 10.5 m from goal · in the box PBE derived | PBE CALL Cancelo scores with a right-footed finish, set up by Ramos. Portugal open the scoring, 0–1."
+    },
+    {
+      "name": "390 unl: feed current is the goal",
+      "ok": true,
+      "detail": "GOAL — PORTUGAL 0–1"
+    },
+    {
+      "name": "390 unl: pulse present",
+      "ok": true,
+      "detail": "MATCH PULSE Last 10 min · 3'–13' Denmark 1 shot · 1 on target Portugal 4 shots · 2 on target 1 Shots 4 1 On target 2 29.6 Avg located shot distance (m) 18.7 PBE"
+    },
+    {
+      "name": "390 unl: Shots filter keeps shot records only",
+      "ok": true,
+      "detail": "8 rows · PORTUGAL SHOT"
+    },
+    {
+      "name": "390 unl: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 live: moment shows latest",
+      "ok": true,
+      "detail": "cast-top live · LIVE · 81' · ITALY SHOT ON TARGET · rows 30"
+    },
+    {
+      "name": "390 live: tapping a shot selects it on the pitch",
+      "ok": true,
+      "detail": "{\"state\":\"SELECTED · 81'\",\"back\":true,\"cur\":2}"
+    },
+    {
+      "name": "390 live: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "390 no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768 home: FIFA tile present",
+      "ok": true,
+      "detail": "FIFA 2026 FIFA WORLD CUP 104 matches 1 season OPEN COMPETITION HUB →"
+    },
+    {
+      "name": "768 home: FIFA accent resolved",
+      "ok": true,
+      "detail": "#b5651d"
+    },
+    {
+      "name": "768 home: FIFA dark gradient",
+      "ok": true,
+      "detail": "linear-gradient(155deg, color(srgb 0.24549 0.216157 0.226902"
+    },
+    {
+      "name": "768 home: every tile has an accent + gradient",
+      "ok": true,
+      "detail": "mls=#3d8bfd premier-league=#9b6cff bundesliga=#e8554e uefa-champions-league=#2fb8e6 uefa-nations-league=#22c3a6 fifa-world-cup=#b5651d"
+    },
+    {
+      "name": "768 home: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768 FIFA hub renders",
+      "ok": true,
+      "detail": "FIFA WORLD CUP · match links 34 · accent #b5651d"
+    },
+    {
+      "name": "768 FIFA hub: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768 rich: moment panel at FT",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768 rich: goal chip -> GOAL moment",
+      "ok": true,
+      "detail": "GOAL — KANSAS CITY 0–1 | 14.8 m from goal · in the box PBE derived · ESPN xG 0.24 | PBE CALL Luiz scores with a left-footed finish, set up by Afrifa. Kansas City open the scoring, 0–1."
+    },
+    {
+      "name": "768 rich: feed current is the goal",
+      "ok": true,
+      "detail": "GOAL — KANSAS CITY 0–1"
+    },
+    {
+      "name": "768 rich: pulse present",
+      "ok": true,
+      "detail": "MATCH PULSE Last 10 min · 34'–44' Seattle 5 shots · 2 on target Kansas City 4 shots · 3 on target 9 Shots 12 3 On target 7 17.6 Avg located shot distance (m) 17"
+    },
+    {
+      "name": "768 rich: Shots filter keeps shot records only",
+      "ok": true,
+      "detail": "21 rows · GOAL — KANSAS CITY 0–1"
+    },
+    {
+      "name": "768 rich: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768 unl: moment panel at FT",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768 unl: goal chip -> GOAL moment",
+      "ok": true,
+      "detail": "GOAL — PORTUGAL 0–1 | 10.5 m from goal · in the box PBE derived | PBE CALL Cancelo scores with a right-footed finish, set up by Ramos. Portugal open the scoring, 0–1."
+    },
+    {
+      "name": "768 unl: feed current is the goal",
+      "ok": true,
+      "detail": "GOAL — PORTUGAL 0–1"
+    },
+    {
+      "name": "768 unl: pulse present",
+      "ok": true,
+      "detail": "MATCH PULSE Last 10 min · 3'–13' Denmark 1 shot · 1 on target Portugal 4 shots · 2 on target 1 Shots 4 1 On target 2 29.6 Avg located shot distance (m) 18.7 PBE"
+    },
+    {
+      "name": "768 unl: Shots filter keeps shot records only",
+      "ok": true,
+      "detail": "5 rows · GOAL — PORTUGAL 0–1"
+    },
+    {
+      "name": "768 unl: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768 live: moment shows latest",
+      "ok": true,
+      "detail": "cast-top live · LIVE · 81' · ITALY SHOT ON TARGET · rows 30"
+    },
+    {
+      "name": "768 live: tapping a shot selects it on the pitch",
+      "ok": true,
+      "detail": "{\"state\":\"SELECTED · 81'\",\"back\":true,\"cur\":2}"
+    },
+    {
+      "name": "768 live: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "768 no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1024 home: FIFA tile present",
+      "ok": true,
+      "detail": "FIFA 2026 FIFA WORLD CUP 104 matches 1 season OPEN COMPETITION HUB →"
+    },
+    {
+      "name": "1024 home: FIFA accent resolved",
+      "ok": true,
+      "detail": "#b5651d"
+    },
+    {
+      "name": "1024 home: FIFA dark gradient",
+      "ok": true,
+      "detail": "linear-gradient(155deg, color(srgb 0.24549 0.216157 0.226902"
+    },
+    {
+      "name": "1024 home: every tile has an accent + gradient",
+      "ok": true,
+      "detail": "mls=#3d8bfd premier-league=#9b6cff bundesliga=#e8554e uefa-champions-league=#2fb8e6 uefa-nations-league=#22c3a6 fifa-world-cup=#b5651d"
+    },
+    {
+      "name": "1024 home: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1024 FIFA hub renders",
+      "ok": true,
+      "detail": "FIFA WORLD CUP · match links 34 · accent #b5651d"
+    },
+    {
+      "name": "1024 FIFA hub: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1024 rich: moment panel at FT",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1024 rich: goal chip -> GOAL moment",
+      "ok": true,
+      "detail": "GOAL — KANSAS CITY 0–1 | 14.8 m from goal · in the box PBE derived · ESPN xG 0.24 | PBE CALL Luiz scores with a left-footed finish, set up by Afrifa. Kansas City open the scoring, 0–1."
+    },
+    {
+      "name": "1024 rich: feed current is the goal",
+      "ok": true,
+      "detail": "GOAL — KANSAS CITY 0–1"
+    },
+    {
+      "name": "1024 rich: pulse present",
+      "ok": true,
+      "detail": "MATCH PULSE Last 10 min · 34'–44' Seattle 5 shots · 2 on target Kansas City 4 shots · 3 on target 9 Shots 12 3 On target 7 17.6 Avg located shot distance (m) 17"
+    },
+    {
+      "name": "1024 rich: Shots filter keeps shot records only",
+      "ok": true,
+      "detail": "21 rows · GOAL — KANSAS CITY 0–1"
+    },
+    {
+      "name": "1024 rich: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1024 unl: moment panel at FT",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1024 unl: goal chip -> GOAL moment",
+      "ok": true,
+      "detail": "GOAL — PORTUGAL 0–1 | 10.5 m from goal · in the box PBE derived | PBE CALL Cancelo scores with a right-footed finish, set up by Ramos. Portugal open the scoring, 0–1."
+    },
+    {
+      "name": "1024 unl: feed current is the goal",
+      "ok": true,
+      "detail": "GOAL — PORTUGAL 0–1"
+    },
+    {
+      "name": "1024 unl: pulse present",
+      "ok": true,
+      "detail": "MATCH PULSE Last 10 min · 3'–13' Denmark 1 shot · 1 on target Portugal 4 shots · 2 on target 1 Shots 4 1 On target 2 29.6 Avg located shot distance (m) 18.7 PBE"
+    },
+    {
+      "name": "1024 unl: Shots filter keeps shot records only",
+      "ok": true,
+      "detail": "5 rows · GOAL — PORTUGAL 0–1"
+    },
+    {
+      "name": "1024 unl: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1024 live: moment shows latest",
+      "ok": true,
+      "detail": "cast-top live · LIVE · 81' · ITALY SHOT ON TARGET · rows 30"
+    },
+    {
+      "name": "1024 live: tapping a shot selects it on the pitch",
+      "ok": true,
+      "detail": "{\"state\":\"SELECTED · 81'\",\"back\":true,\"cur\":2}"
+    },
+    {
+      "name": "1024 live: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1024 no console errors",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1440 home: FIFA tile present",
+      "ok": true,
+      "detail": "FIFA 2026 FIFA WORLD CUP 104 matches 1 season OPEN COMPETITION HUB →"
+    },
+    {
+      "name": "1440 home: FIFA accent resolved",
+      "ok": true,
+      "detail": "#b5651d"
+    },
+    {
+      "name": "1440 home: FIFA dark gradient",
+      "ok": true,
+      "detail": "linear-gradient(155deg, color(srgb 0.24549 0.216157 0.226902"
+    },
+    {
+      "name": "1440 home: every tile has an accent + gradient",
+      "ok": true,
+      "detail": "mls=#3d8bfd premier-league=#9b6cff bundesliga=#e8554e uefa-champions-league=#2fb8e6 uefa-nations-league=#22c3a6 fifa-world-cup=#b5651d"
+    },
+    {
+      "name": "1440 home: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1440 FIFA hub renders",
+      "ok": true,
+      "detail": "FIFA WORLD CUP · match links 34 · accent #b5651d"
+    },
+    {
+      "name": "1440 FIFA hub: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1440 rich: moment panel at FT",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1440 rich: goal chip -> GOAL moment",
+      "ok": true,
+      "detail": "GOAL — KANSAS CITY 0–1 | 14.8 m from goal · in the box PBE derived · ESPN xG 0.24 | PBE CALL Luiz scores with a left-footed finish, set up by Afrifa. Kansas City open the scoring, 0–1."
+    },
+    {
+      "name": "1440 rich: feed current is the goal",
+      "ok": true,
+      "detail": "GOAL — KANSAS CITY 0–1"
+    },
+    {
+      "name": "1440 rich: pulse present",
+      "ok": true,
+      "detail": "MATCH PULSE Last 10 min · 34'–44' Seattle 5 shots · 2 on target Kansas City 4 shots · 3 on target 9 Shots 12 3 On target 7 17.6 Avg located shot distance (m) 17"
+    },
+    {
+      "name": "1440 rich: Shots filter keeps shot records only",
+      "ok": true,
+      "detail": "21 rows · GOAL — KANSAS CITY 0–1"
+    },
+    {
+      "name": "1440 rich: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1440 unl: moment panel at FT",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1440 unl: goal chip -> GOAL moment",
+      "ok": true,
+      "detail": "GOAL — PORTUGAL 0–1 | 10.5 m from goal · in the box PBE derived | PBE CALL Cancelo scores with a right-footed finish, set up by Ramos. Portugal open the scoring, 0–1."
+    },
+    {
+      "name": "1440 unl: feed current is the goal",
+      "ok": true,
+      "detail": "GOAL — PORTUGAL 0–1"
+    },
+    {
+      "name": "1440 unl: pulse present",
+      "ok": true,
+      "detail": "MATCH PULSE Last 10 min · 3'–13' Denmark 1 shot · 1 on target Portugal 4 shots · 2 on target 1 Shots 4 1 On target 2 29.6 Avg located shot distance (m) 18.7 PBE"
+    },
+    {
+      "name": "1440 unl: Shots filter keeps shot records only",
+      "ok": true,
+      "detail": "5 rows · GOAL — PORTUGAL 0–1"
+    },
+    {
+      "name": "1440 unl: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1440 live: moment shows latest",
+      "ok": true,
+      "detail": "cast-top live · LIVE · 81' · ITALY SHOT ON TARGET · rows 30"
+    },
+    {
+      "name": "1440 live: tapping a shot selects it on the pitch",
+      "ok": true,
+      "detail": "{\"state\":\"SELECTED · 81'\",\"back\":true,\"cur\":2}"
+    },
+    {
+      "name": "1440 live: no horizontal overflow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "1440 no console errors",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

@@ -151,3 +151,30 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
 - Lanes: DETERMINISTIC / VOLUME (defined, unused) / STANDARD_EDITORIAL `gpt-5.6-sol` / FLAGSHIP_EDITORIAL `gpt-6-astra` OFF (`SOCCER_AI_FLAGSHIP_ENABLED` unset, class list empty; candidate classes rich_match_report, continental_or_international). Paid triggers: new_story, admin re-edit, canary (repair = explicit attempt 2 only). Revision, backfill/scope sweeps, correction, dry_run: DETERMINISTIC. Automatic attempts: 1. Kill switch `SOCCER_AI=off`.
 - Audit prerequisites fixed: (A) desk.js inline comment swallowed article_id/news_event_id — fixed, proven by the live canary row; (B) dry=1 = zero model transport + zero writes (trigger dry_run -> DETERMINISTIC); (C) withdrawn stories are terminal (automatic `:correction` re-key deleted); (D) breaker fails CLOSED: no readable ledger and no KV -> hold `editorial_budget_state_unavailable`; an explicit 0 ceiling blocks; re-checked before attempt 2.
 - Production acceptance canary 2026-09-29 22:02Z: `POST /v1/admin/reedit?slug=austin-fc-san-diego-fc-2026-09-27-ac300b&canary=1` (forced dry). 1 call, STANDARD_EDITORIAL / gpt-5.6-sol / premium, trigger canary; frozen packet (path A_asof_safe_rebuild); real gates HELD the draft (new_number_not_in_packet, unsupported_comeback) -> nothing published; article row md5 a6ab0c1b… identical before/after; articles/evidence/events counts unchanged; ledger +1 row with every V4 field (response resp_0806da24…, 7,281 in / 0 cached / 1,773 out / 647 reasoning, 29.7 s, nominal_standard_cost 0.026831 — a nominal standard-rate estimate only, not evidence of actual billing).
+
+## PBEcast live match feed V4 + FIFA World Cup tile (2026-10-02, main ee59351, Vercel dpl_9qnLLdhwiZ7Sq3PxbYMbMV2Ew9Zz, rollback dpl_Ahikig9GbC2tw7qukTenHteT1CY4)
+
+- **Frontend only.** No Worker, migration or cadence change: the cast API already carried every field used
+  (`sequence` outcome / body_part / provider_xg / assist / penalty / x,y / running score; `shot_timeline` situation).
+- `src/lib/castfeed.js` (pure, tests/web/pbecast-feed.test.js): `describe()` headline + sourced facts, `shotGeometry()`
+  distance / in-box (PBE derived from the source location, labelled), `xgOf()` (provider label kept: ESPN xG),
+  `withShotDetail()` (joins shot_timeline situation ONLY when minute/side/player align item by item), `scoreSwing()`,
+  `callLine()` (one deterministic sentence; no quotes, intent, injury or reason), `matchPulse()` (last-10-min and
+  cumulative counts from the events at the cursor; xG total only when every shot of that side has provider xG),
+  `liveCursor()` (provider clock; `tl.total` is the nominal 90' and must not be the live cursor).
+- UI: Current Moment panel, Match Pulse, feed filters (All / Shots / Goals / Cards / Subs) + order, Prev / Next steps,
+  live tap-to-focus (feed row or pitch mark), older located shots fade while one is in focus, one-shot pulse on a new
+  latest event, score flash on a new goal. Second yellow is never claimed: a red card shows "Booked earlier at N'" only
+  when the ledger holds that player's earlier yellow. Woodwork is not in ESPN's play map (only Wyscout `post`).
+- Field coverage measured 2026-10-02 on real casts: coordinates on every ESPN shot; body part on most; goal assists
+  linked; ESPN xG present on MLS, absent on UEFA Nations League. OpenLigaDB (goals-only) matches get no shot pulse.
+- **FIFA World Cup tile root cause:** `accent: 'fifa'` had no `--a-fifa` / `.a-fifa`, so `--accent` was unresolved and
+  the tile's gradient was invalid (white text on the light canvas). Added the FIFA theme, a `:root --accent` default
+  plus a solid dark tile fallback for any unknown accent, and fixed `.cmono.lg` (the legend `.lg` dot rule made the mono
+  display:block). tests/web/accents.test.js enumerates every enabled competition. Hub `/competitions/fifa-world-cup`:
+  104 = 72 group + 16 + 8 + 4 + 2 + 1 + 1 knockout, 12/12 group tables verified, completed; no approved FIFA logo, so
+  the owned `FIFA` mono.
+- Production QA (docs/evidence/qa/pbecast-v4-fifa-2026-10-02.json): 92/92 at 390/768/1024/1440 (home tiles, FIFA hub,
+  Seattle 2-1 Kansas City with ESPN xG, Denmark 2-4 Portugal, live France v Italy); replay contract 163/163.
+- Observed, not fixed: soccer-api `/v1/matches/:id/cast` returned HTTP 500 on 2 of ~12 browser loads of a LIVE match
+  during QA (0 of 20 direct retries); needs a `wrangler tail` during the next live window.
