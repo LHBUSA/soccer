@@ -5,12 +5,61 @@
   "pass_a_lane": "espn_<competition>@<year>:results  (fixtures + status + final score; seasons born held)",
   "acceptance": "node scripts/history/accept-season.mjs <slug> <label> [--expect-teams N] [--promote]",
   "order": [
-    { "step": 1, "competition": "bundesliga", "years": "2004-2025", "lane": "espn_bundesliga@<year>:results", "status": "ready", "note": "ESPN attaches to OpenLigaDB-owned seasons (may_found false): crosswalks + source results only, canonical results unchanged" },
-    { "step": 1, "competition": "bundesliga", "years": "2000-2003", "lane": "espn_bundesliga@<year>:results", "status": "blocked_code", "note": "owner approved ESPN-secondary seasons; needs the no-team-founding mode (teams only via existing crosswalks, unresolved hold) before running" },
-    { "step": 2, "competition": "premier-league", "years": "2001-2025", "lane": "espn_premier_league@<year>:results", "status": "ready", "note": "2001-2007 over-listed: repeated pairings get status reads, finished event founded first; acceptance must pass 20 teams x 38" },
-    { "step": 3, "competition": "mls", "years": "2001-2025", "lane": "espn_mls@<year>:results", "status": "ready", "note": "1996-2000 list 0 events in ESPN: product claim 'PBE record since 2001'; All-Star sides excluded" },
-    { "step": 4, "competition": "uefa-champions-league", "years": "2001-2025", "lane": "espn_uefa_champions_league@<year>:results", "status": "ready_after_type_review", "note": "qualifying rounds excluded by the classifier; review pre-2003 'Second Group Stage' types before running" },
-    { "step": 5, "competition": "fifa-world-cup", "years": "1930-2022", "lane": "espn_fifa_world_cup@<year>:results", "status": "blocked_registry", "note": "Algo V2 freeze DONE (v2.1.0); per-edition type_roles needed first (1934/1938 'Preliminary Round' = knockout, 1950 'Final Stage' = group)" },
-    { "step": 6, "competition": "uefa-nations-league", "years": "2018-2022, complete 2024", "lane": "espn_uefa_nations_league@<year>", "status": "ready", "note": "Algo V2 freeze DONE; 2024/25 is published with 134 past matches lacking results (pre-existing gap); its frozen ids join V2 inputs when results land, by design" }
+    {
+      "step": 1,
+      "competition": "bundesliga",
+      "years": "2004-2025",
+      "lane": "espn_bundesliga@<year>:results",
+      "status": "ready",
+      "note": "ESPN attaches to OpenLigaDB-owned seasons (may_found false): crosswalks + source results only, canonical results unchanged"
+    },
+    {
+      "step": 1,
+      "competition": "bundesliga",
+      "years": "2000-2003",
+      "lane": "espn_bundesliga@<year>:results",
+      "status": "blocked_code",
+      "note": "owner approved ESPN-secondary seasons; needs the no-team-founding mode (teams only via existing crosswalks, unresolved hold) before running"
+    },
+    {
+      "step": 2,
+      "competition": "premier-league",
+      "years": "2001-2025",
+      "lane": "espn_premier_league@<year>:results",
+      "status": "ready",
+      "note": "2001-2007 over-listed: repeated pairings get status reads, finished event founded first; acceptance must pass 20 teams x 38"
+    },
+    {
+      "step": 3,
+      "competition": "mls",
+      "years": "2001-2025",
+      "lane": "espn_mls@<year>:results",
+      "status": "blocked_schema",
+      "note": "MLS plays some opponents more than once at home in a season (MLS 2001: 186 events, 52 repeated home/away pairings = real extra games). The canonical natural key (season, home, away, stage) holds one match per pairing, so only 109 could be stored; acceptance HELD it. Needs an owner-approved migration (natural key with kickoff date) before MLS history can run. 1996-2000 list 0 events."
+    },
+    {
+      "step": 4,
+      "competition": "uefa-champions-league",
+      "years": "2001-2025",
+      "lane": "espn_uefa_champions_league@<year>:results",
+      "status": "ready_after_type_review",
+      "note": "qualifying rounds excluded by the classifier; review pre-2003 'Second Group Stage' types before running"
+    },
+    {
+      "step": 5,
+      "competition": "fifa-world-cup",
+      "years": "1930-2022",
+      "lane": "espn_fifa_world_cup@<year>:results",
+      "status": "blocked_registry",
+      "note": "Algo V2 freeze DONE (v2.1.0); per-edition type_roles needed first (1934/1938 'Preliminary Round' = knockout, 1950 'Final Stage' = group)"
+    },
+    {
+      "step": 6,
+      "competition": "uefa-nations-league",
+      "years": "2018-2022, complete 2024",
+      "lane": "espn_uefa_nations_league@<year>",
+      "status": "ready",
+      "note": "Algo V2 freeze DONE; 2024/25 is published with 134 past matches lacking results (pre-existing gap); its frozen ids join V2 inputs when results land, by design"
+    }
   ]
 }
