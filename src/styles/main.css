@@ -9,7 +9,8 @@
   --pitch: #16603b; --pitch-2: #0f4a2d; --pitch-line: rgba(255,255,255,.78);
   --home: #d4a73a; --away: #dfe9f6; --away-ink: #243b5c;
   --win: #1d8a4e; --loss: #c0392b; --draw: #8a94a6; --live: #c81d25;
-  --a-mls: #3d8bfd; --a-epl: #9b6cff; --a-ucl: #2fb8e6; --a-bl: #e8554e; --a-unl: #22c3a6; --a-x: #8a94a6;
+  --a-mls: #3d8bfd; --a-epl: #9b6cff; --a-ucl: #2fb8e6; --a-bl: #e8554e; --a-unl: #22c3a6; --a-fifa: #b5651d; --a-x: #8a94a6;
+  --accent: var(--a-x);
   --radius: 16px; --radius-s: 10px;
   --display: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif;
   --body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -18,7 +19,9 @@
   --shadow: 0 1px 2px rgba(11,21,38,.05), 0 8px 24px rgba(11,21,38,.06);
 }
 @media (min-width: 768px) { :root { --gutter: 28px; } }
-.a-mls { --accent: var(--a-mls); } .a-epl { --accent: var(--a-epl); } .a-ucl { --accent: var(--a-ucl); } .a-bl { --accent: var(--a-bl); } .a-unl { --accent: var(--a-unl); } .a-x { --accent: var(--a-x); }
+.a-mls { --accent: var(--a-mls); } .a-epl { --accent: var(--a-epl); } .a-ucl { --accent: var(--a-ucl); } .a-bl { --accent: var(--a-bl); } .a-unl { --accent: var(--a-unl); } .a-fifa { --accent: var(--a-fifa); } .a-x { --accent: var(--a-x); }
+/* Every enabled competition accent needs a token + class above (tests/web/accents.test.js). An unknown
+   accent class keeps the inherited :root default (--a-x), so a tile can never lose its dark ground. */
 
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -109,7 +112,7 @@ button { font: inherit; }
 /* ---------- monograms, crests (approved) or initials marks, portraits (approved) or silhouette ---------- */
 .cmono { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; min-width: 34px; height: 24px; padding: 0 6px; border-radius: 6px; font: 800 12px/1 var(--display); letter-spacing: .08em; color: #fff; background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 55%, #0a1628)); }
 .cmono.xs { min-width: 30px; height: 22px; font-size: 11px; border-radius: 5px; }
-.cmono.lg { min-width: 54px; height: 38px; font-size: 18px; border-radius: 9px; }
+.cmono.lg { display: inline-flex; min-width: 54px; height: 38px; font-size: 18px; border-radius: 9px; margin-right: 0; vertical-align: middle; } /* .lg is also the legend dot class: restore the mono's own box */
 .cmono.xl { min-width: 72px; height: 56px; font-size: 26px; border-radius: 12px; padding: 0 10px; }
 /* Competition logo (competitionMark): the approved logo, contained, never recoloured. */
 .clogo { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; width: 30px; height: 30px; }
@@ -222,8 +225,8 @@ button { font: inherit; }
 
 /* ---------- competition tiles ---------- */
 .compgrid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); }
-.comptile { position: relative; display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: #fff; background: linear-gradient(155deg, color-mix(in srgb, var(--accent) 26%, var(--shell-3)), var(--shell) 70%); border: 1px solid var(--shell-line); border-radius: var(--radius); padding: 18px; overflow: hidden; transition: transform .15s, border-color .15s; min-height: 190px; }
-.comptile::after { content: ''; position: absolute; right: -46px; bottom: -46px; width: 170px; height: 170px; border: 1.5px solid color-mix(in srgb, var(--accent) 45%, transparent); border-radius: 50%; }
+.comptile { position: relative; display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: #fff; background: var(--shell); background: linear-gradient(155deg, color-mix(in srgb, var(--accent, var(--a-x)) 26%, var(--shell-3)), var(--shell) 70%); border: 1px solid var(--shell-line); border-radius: var(--radius); padding: 18px; overflow: hidden; transition: transform .15s, border-color .15s; min-height: 190px; }
+.comptile::after { content: ''; position: absolute; right: -46px; bottom: -46px; width: 170px; height: 170px; border: 1.5px solid color-mix(in srgb, var(--accent, var(--a-x)) 45%, transparent); border-radius: 50%; }
 .comptile:hover { transform: translateY(-2px); border-color: var(--accent); }
 .ct-top { display: flex; align-items: center; justify-content: space-between; }
 .ct-season { font: 700 12px/1 var(--mono); color: var(--muted-dark); }
@@ -812,6 +815,74 @@ body { background: transparent; }
 .clu li { display: flex; align-items: center; gap: 8px; padding: 5px 0; border-top: 1px solid var(--line); font-size: 13.5px; min-width: 0; }
 .clu li a { text-decoration: none; }
 .clu .shirt { flex: 0 0 22px; font: 700 12px/1 var(--mono); color: var(--muted); text-align: right; }
+/* PBEcast V4: Current Moment, rich feed cards, feed tools, Match Pulse, step controls. */
+.rp-step { display: flex; gap: 8px; }
+.rp-step .btn { min-height: 40px; padding: 10px 14px; font-size: 13px; }
+.moment { margin: 0 0 12px; padding: 14px 16px; border-radius: 12px; background: var(--shell); color: #fff; border: 1px solid var(--shell-line); border-left: 4px solid var(--muted-dark); min-width: 0; }
+.moment.tone-goal { border-left-color: var(--gold); background: linear-gradient(135deg, #2a2108, var(--shell) 60%); }
+.moment.tone-red { border-left-color: var(--loss); }
+.moment.tone-card { border-left-color: #f2c200; }
+.moment.tone-shot { border-left-color: #8fb4e6; }
+.mo-top { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font: 700 12px/1.3 var(--mono); color: var(--muted-dark); }
+.mo-state { color: var(--gold-2); letter-spacing: .06em; }
+.mo-score { margin-left: auto; color: #fff; }
+.mo-back { font: 700 11px/1 var(--body); letter-spacing: .08em; text-transform: uppercase; padding: 8px 10px; min-height: 32px; border-radius: 8px; border: 1px solid var(--gold); background: transparent; color: var(--gold-2); cursor: pointer; }
+.mo-head { margin: 8px 0 6px; font: 800 clamp(20px, 4.4vw, 28px)/1.05 var(--display); letter-spacing: .02em; text-transform: uppercase; overflow-wrap: anywhere; }
+.moment.tone-goal .mo-head { color: var(--gold-2); }
+.mo-who { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-size: 15px; font-weight: 600; min-width: 0; }
+.mo-who a { color: #fff; }
+.mo-team { font: 700 11px/1 var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--muted-dark); }
+.mo-facts, .mo-geo { margin: 6px 0 0; font-size: 13.5px; color: #dbe4f2; }
+.mo-call { margin: 8px 0 0; font-size: 14px; line-height: 1.45; color: #fff; }
+.mo-call-k, .fi-ctx b { display: inline-block; margin-right: 4px; padding: 3px 6px; border-radius: 5px; background: rgba(212,167,58,.18); color: var(--gold-2); font: 800 10px/1 var(--display); letter-spacing: .12em; vertical-align: 1px; }
+.mo-fresh { margin: 8px 0 0; font-size: 12px; color: var(--muted-dark); }
+.moment .pbe-d, .moment .xg { color: inherit; }
+.pbe-d { text-decoration: none; border-bottom: 1px dotted currentColor; font-size: .86em; font-weight: 700; letter-spacing: .04em; cursor: help; }
+.xg { font-weight: 700; white-space: nowrap; }
+.ct-score.flash { animation: goalflash 1.6s ease-out 1; }
+@keyframes goalflash { 0% { box-shadow: 0 0 0 0 rgba(240,198,90,.9); border-color: var(--gold-2); } 100% { box-shadow: 0 0 0 18px rgba(240,198,90,0); } }
+@media (prefers-reduced-motion: reduce) { .ct-score.flash { animation: none; } }
+.pitch.cast .cmark.old { opacity: .28; }
+.feed-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 10px; }
+.ff { display: flex; flex-wrap: wrap; gap: 6px; min-width: 0; }
+.ff-b { font: 600 12.5px/1 var(--body); border: 1px solid var(--line-2); background: #fff; color: var(--ink); border-radius: 999px; padding: 8px 11px; min-height: 36px; cursor: pointer; }
+.ff-b.on { background: var(--shell); color: #fff; border-color: var(--shell); }
+.ff-n { font: 700 11px/1 var(--mono); opacity: .7; margin-left: 2px; }
+.fo { display: inline-flex; align-items: center; gap: 8px; font: 700 11px/1 var(--body); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.fo select { font: 500 13.5px/1 var(--body); min-height: 36px; padding: 4px 8px; border: 1px solid var(--line-2); border-radius: var(--radius-s); background: #fff; }
+.fi-facts, .fi-geo { font-size: 12.5px; color: var(--ink-2); overflow-wrap: anywhere; }
+.fi-assist { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font-size: 13px; }
+.fi-ctx { font-size: 12.5px; color: var(--ink-2); }
+.fi-ctx b { background: var(--gold-soft); color: var(--gold-ink); }
+.fi-sub { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
+.fi-sub b { font: 800 10px/1 var(--display); letter-spacing: .1em; padding: 3px 5px; border-radius: 4px; }
+.fi-sub b.on { background: #dff3e7; color: #0f6a3a; }
+.fi-sub b.off { background: #f7e1df; color: #8f2219; }
+.moment .fi-sub b.on { background: #1d4d33; color: #c9f0d8; }
+.moment .fi-sub b.off { background: #4d2420; color: #f6cdc8; }
+.fi.t-goal .fi-kind, .fi.t-own_goal .fi-kind { font: 800 15px/1.1 var(--display); letter-spacing: .06em; color: var(--gold-ink); }
+.fi.t-own_goal .fi-kind { color: #8f2219; }
+.fi.t-goal, .fi.t-own_goal { padding-top: 12px; padding-bottom: 12px; border-left-width: 5px; }
+.fi.t-card_red .fi-kind { color: #8f2219; }
+.fi-empty { padding: 14px 8px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+.mpulse { margin: 14px 0 0; padding: 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--canvas-alt); }
+.mp-k { margin: 0 0 8px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; font: 800 12px/1.2 var(--display); letter-spacing: .14em; color: var(--ink); }
+.mp-win { font: 600 12px/1.2 var(--mono); letter-spacing: 0; color: var(--muted); }
+.mp-row { display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; border-top: 1px solid var(--line); font-size: 14px; }
+.mp-team { font-weight: 700; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mp-v { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.mp-tots { display: grid; gap: 2px; margin: 8px 0 0; }
+.mp-tot { display: grid; grid-template-columns: 56px 1fr 56px; gap: 8px; font-size: 13px; padding: 4px 0; border-top: 1px dashed var(--line-2); }
+.mp-tot span:first-child { font: 700 13px/1.3 var(--mono); }
+.mp-tot span:last-child { font: 700 13px/1.3 var(--mono); text-align: right; }
+.mp-l { text-align: center; color: var(--ink-2); }
+.mp-note { margin: 8px 0 0; font-size: 12px; color: var(--muted); }
+.fi[data-pick] { cursor: pointer; }
+.fi[data-pick]:hover { background: var(--canvas-alt); }
+.fi[data-pick]:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+.pitch.cast .cmark[data-ci] { cursor: pointer; }
+.fi { align-items: start; }
+.fi-min, .fi-ic { padding-top: 2px; }
 .cast-links { margin: 18px 0 8px; }
 .btn.ghost.dark { color: var(--ink); border-color: var(--line-2); }
 .cast-body .two { margin-bottom: 8px; }

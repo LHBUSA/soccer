@@ -10,6 +10,7 @@ import { esc, join, when } from '../lib/html.js';
 import { ago, dateShort, dateTime, num, sourceName, STAT_LABELS, statsHeading, time } from '../lib/format.js';
 import { compMeta } from '../lib/competitions.js';
 import { buildTimeline, clockAt, keyMoments, liveStatus, liveView, pctOf, PERIOD_LABEL, pitchItems, pitchKind, replayView } from '../lib/cast.js';
+import { callLine, describe, FEED_FILTERS, feedCounts, filterFn, liveCursor, matchPulse, withShotDetail } from '../lib/castfeed.js';
 import { competitionMark, empty, link, mountMediaFallbacks, playerChip, sectionHead, sourcePanel, statusPill, teamLink, teamMark } from '../components/ui.js';
 import { L, W, pitchLines } from '../components/pitch.js';
 import { keyPlayers } from '../components/keyplayers.js';
@@ -83,26 +84,32 @@ export async function loadCast([id]) { return { env: await api(`matches/${id}/ca
 const ICON = { goal: '●', own_goal: '●', shot: '○', card_yellow: '▮', card_red: '▮', sub: '⇄' };
 const WORD = { goal: 'Goal', own_goal: 'Own goal', shot: 'Shot', card_yellow: 'Yellow card', card_red: 'Red card', sub: 'Substitution' };
 const OUT = { goal: 'goal', on_target: 'on target', off_target: 'off target', blocked: 'blocked', post: 'woodwork' };
+const RECENT_MARKS = 6; // with a current event, the latest few located shots stay full strength; older ones fade
+const DERIVED_GEO = 'PBE derived from the source event location on the canonical 105 × 68 m pitch. Event locations, not tracking.';
 
 // One marker per eligible pitch event (pitchItems: shots, goals, own goals with a source location;
-// never cards, substitutions or other timeline items). Goals carry a ring; ONLY the current replay
-// event is highlighted, and only it gets the one-shot pulse (`cpulse`, never the page's `.pulse`
-// loading-dot class, whose infinite keyframes would light every hidden halo).
+// never cards, substitutions or other timeline items). Goals carry a ring; ONLY the current event is
+// highlighted, and only it gets the one-shot pulse (`cpulse`, never the page's `.pulse` loading-dot
+// class, whose infinite keyframes would light every hidden halo). With a current event, located shots
+// older than the latest few are drawn faintly (`old`); nothing is ever animated between locations.
 const R = { goal: [1.5, 1.75], og: [1.5, 1.75], on: [1.05, 1.25], off: [0.8, 0.95], blocked: [0.8, 0.95], post: [0.8, 0.95] };
-function markFor(x, portrait, { current = false, pulse = false } = {}) {
+function markFor(x, portrait, { current = false, pulse = false, old = false } = {}) {
   const kind = pitchKind(x);
   if (!kind || x.x < 0 || x.x > L || x.y < 0 || x.y > W) return '';
   const p = portrait ? { x: x.y, y: L - x.x } : { x: x.x, y: x.y };
   const r = R[kind][portrait ? 1 : 0];
   const ring = kind === 'goal' || kind === 'og' ? `<circle class="ring${kind === 'og' ? ' og' : ''}" cx="${p.x}" cy="${p.y}" r="${r + (portrait ? 1 : 0.85)}"/>` : '';
-  return `<g class="cmark k-${kind}${current ? ' cur' : ''}" data-ci="${x.i}" data-v="${x.v ?? ''}"${x.v !== null && x.v !== undefined ? ` data-seek="${x.v}"` : ''}>${ring}<circle class="shot ${x.team === 'away' ? 'away' : 'home'} ${kind}" cx="${p.x}" cy="${p.y}" r="${r}"/>${current && pulse ? `<circle class="cpulse" cx="${p.x}" cy="${p.y}" r="${r + 1.6}"/>` : ''}</g>`;
+  return `<g class="cmark k-${kind}${current ? ' cur' : ''}${old ? ' old' : ''}" data-ci="${x.i}" data-v="${x.v ?? ''}"${x.v !== null && x.v !== undefined ? ` data-seek="${x.v}"` : ''}>${ring}<circle class="shot ${x.team === 'away' ? 'away' : 'home'} ${kind}" cx="${p.x}" cy="${p.y}" r="${r}"/>${current && pulse ? `<circle class="cpulse" cx="${p.x}" cy="${p.y}" r="${r + 1.6}"/>` : ''}</g>`;
 }
 
 // Pitch marks for the events the view may show: the full match live / at full time, only
 // replayView().seen during a replay (a future shot is never in the markup). `current` is the
-// replay's current event (the only one highlighted); none at full time or live.
-export const pitchMarks = (items, portrait, { current = null, pulse = false } = {}) =>
-  join(pitchItems(items), x => markFor(x, portrait, { current: !!current && x.i === current.i, pulse }));
+// event in focus (the replay cursor's event, or the live feed's latest / selected one).
+export function pitchMarks(items, portrait, { current = null, pulse = false } = {}) {
+  const marks = pitchItems(items);
+  const recent = new Set(marks.slice(-RECENT_MARKS));
+  return join(marks, x => markFor(x, portrait, { current: !!current && x.i === current.i, pulse, old: !!current && x.i !== current.i && !recent.has(x) }));
+}
 export function castPitch(tl, m, { portrait = false, items = tl.items, current = null } = {}) {
   const hn = m.home?.short_name || m.home?.name || 'Home'; const an = m.away?.short_name || m.away?.name || 'Away';
   const marks = pitchMarks(items, portrait, { current });
@@ -117,18 +124,57 @@ export function castPitch(tl, m, { portrait = false, items = tl.items, current =
     <g class="marks">${marks}</g></svg>`;
 }
 
-export function feedItem(x, m, { current = false, seekable = false } = {}) {
+// Geometry + provider xG for one event, each part only when it exists.
+function geoXg(d) {
+  const parts = [];
+  if (d.geoText) parts.push(`${esc(d.geoText)} <abbr class="pbe-d" title="${esc(DERIVED_GEO)}">PBE derived</abbr>`);
+  if (d.xg) parts.push(`<span class="xg" title="Expected goals as published by the provider. Not a PropBetEdge metric.">${esc(d.xg.label)} ${esc(d.xg.value.toFixed(2))}</span>`);
+  return parts.join(' · ');
+}
+
+// A feed row: broadcast-style card built only from the event's own sourced fields plus PBE derived
+// context from the events seen up to it (`seen` never holds a later event).
+export function feedItem(x, m, { current = false, seekable = false, pickable = false, seen = null } = {}) {
+  const upto = seen ? seen.slice(0, seen.indexOf(x) + 1) : [x];
+  const d = describe(x, m, upto.length ? upto : [x]);
   const team = x.team === 'away' ? m.away : m.home;
-  const who = x.type === 'sub' ? `${playerChip(x.player_in)} <span class="muted">on for</span> ${playerChip(x.player_out)}`
-    : `${playerChip(x.player, { extra: x.penalty ? ' <span class="muted">(pen)</span>' : '' })}${x.assist ? ` <span class="muted">assist</span> ${playerChip(x.assist)}` : ''}`;
-  const detail = x.type === 'shot' ? OUT[x.outcome] || 'shot' : '';
-  const seek = seekable && x.v !== null && x.v !== undefined ? ` data-seek="${x.v}" tabindex="0"` : '';
+  const teamName = team?.short_name || team?.name || '';
+  let who;
+  if (x.type === 'sub') who = `<span class="fi-sub"><b class="on">ON</b>${playerChip(x.player_in)}</span><span class="fi-sub"><b class="off">OFF</b>${playerChip(x.player_out)}</span>`;
+  else if (x.type === 'own_goal') who = `${playerChip(x.player)}<span class="muted">own goal</span>`;
+  else who = `${playerChip(x.player, { extra: x.penalty ? ' <span class="muted">(pen)</span>' : '' })}${x.type === 'card_yellow' || x.type === 'card_red' ? `<span class="muted">${esc(teamName)}</span>` : ''}`;
+  const seek = seekable && x.v !== null && x.v !== undefined ? ` data-seek="${x.v}" tabindex="0"` : pickable ? ` data-pick="${x.i}" tabindex="0"` : '';
+  const facts = d.facts.length ? `<span class="fi-facts">${esc(d.facts.join(' · '))}</span>` : '';
+  const assist = x.assist ? `<span class="fi-assist"><span class="muted">Assist</span> ${playerChip(x.assist)}</span>` : '';
+  const geo = geoXg(d);
+  const ctx = (x.type === 'goal' || x.type === 'own_goal' ? d.derived : d.derived.filter(t => /straight/.test(t)));
   return `<li class="fi t-${esc(x.type)} ${x.team === 'away' ? 'away' : 'home'}${current ? ' cur' : ''}" data-fi="${x.i}" data-v="${x.v ?? ''}"${seek}${current ? ' aria-current="true"' : ''}>
     <span class="fi-min">${esc(x.display_minute || '—')}</span>
     <span class="fi-ic" aria-hidden="true">${ICON[x.type] || '•'}</span>
-    <span class="fi-body"><span class="fi-kind">${esc(WORD[x.type] || 'Event')}${detail ? ` · ${esc(detail)}` : ''} · ${esc(team?.short_name || team?.name || '')}</span><span class="fi-who">${who}</span></span>
+    <span class="fi-body"><span class="fi-kind">${esc(d.headline)}</span><span class="fi-who">${who}</span>${facts}${assist}${geo ? `<span class="fi-geo">${geo}</span>` : ''}${ctx.length ? `<span class="fi-ctx"><b>PBE</b> ${esc(ctx.join(' · '))}</span>` : ''}</span>
     ${x.type === 'goal' || x.type === 'own_goal' ? `<span class="fi-score">${esc(String(x.score.home))}–${esc(String(x.score.away))}</span>` : ''}
   </li>`;
+}
+
+// The feed list for a view: the user's filter and order over the events the view may show.
+export const feedPrefs = { filter: 'all', order: 'desc' };
+export function feedList(items, m, { current = null, seekable = false, pickable = false, prefs = feedPrefs } = {}) {
+  const keep = filterFn(prefs.filter);
+  const rows = items.filter(keep);
+  if (!rows.length) {
+    const label = (FEED_FILTERS.find(f => f[0] === prefs.filter) || FEED_FILTERS[0])[1].toLowerCase();
+    return `<li class="fi-empty">${items.length ? `No ${esc(label)} recorded${seekable ? ' up to this point' : ''}.` : 'No sourced events yet.'}</li>`;
+  }
+  const ordered = prefs.order === 'asc' ? rows : [...rows].reverse();
+  return join(ordered, x => feedItem(x, m, { current: !!current && x === current, seekable, pickable, seen: items }));
+}
+
+export function feedTools(items, prefs = feedPrefs, { replay = false } = {}) {
+  const counts = feedCounts(items);
+  return `<div class="feed-tools" data-feed-tools>
+    <div class="ff" role="group" aria-label="Filter the feed">${join(FEED_FILTERS, ([k, label]) => `<button type="button" class="ff-b${prefs.filter === k ? ' on' : ''}" data-ff="${k}" aria-pressed="${prefs.filter === k}">${esc(label)} <span class="ff-n" data-ff-n="${k}">${counts[k]}</span></button>`)}</div>
+    <label class="fo">Order <select data-fo><option value="desc"${prefs.order === 'desc' ? ' selected' : ''}>Latest first</option><option value="asc"${prefs.order === 'asc' ? ' selected' : ''}>${replay ? 'Match order (kick-off first)' : 'Kick-off first'}</option></select></label>
+  </div>`;
 }
 
 // The replay's current event in words: what the scrubber is at (never a later event).
@@ -141,6 +187,56 @@ export function nowLine(rv, m) {
   const who = x.type === 'sub' ? `${x.player_in?.name || 'Unidentified'} on for ${x.player_out?.name || 'unidentified'}` : x.player?.name || '';
   const detail = x.type === 'shot' ? ` (${OUT[x.outcome] || 'shot'})` : '';
   return `${x.display_minute || rv.clock} ${WORD[x.type] || 'Event'}${detail}${who ? ` · ${who}` : ''} · ${team?.short_name || team?.name || ''} · ${hn} ${rv.score.home}–${rv.score.away} ${an}`;
+}
+
+// CURRENT MOMENT: clock, score and the event in focus with its sourced detail. Built from one state
+// ({ seen, current, score, clock }) so replay can never show more than the cursor has reached.
+export function momentPanel(st, m, { mode = 'replay', freshness = null, selected = false } = {}) {
+  const hn = m.home?.short_name || m.home?.name || 'Home'; const an = m.away?.short_name || m.away?.name || 'Away';
+  const x = st.current;
+  const state = mode === 'live' ? (selected ? `SELECTED · ${x?.display_minute || ''}` : `LIVE${st.clock ? ` · ${st.clock}` : ''}`)
+    : st.atEnd ? 'FULL TIME' : `REPLAY · ${st.clock}`;
+  const scoreLine = `${hn} ${st.score.home}–${st.score.away} ${an}`;
+  let body;
+  if (!x || (st.atEnd && mode !== 'live')) {
+    const goals = st.seen.filter(y => y.type === 'goal' || y.type === 'own_goal').length;
+    body = `<p class="mo-head">${st.atEnd ? 'FULL TIME' : x === null && !st.seen.length ? 'KICK-OFF' : 'NO EVENT YET'}</p><p class="mo-call">${esc(st.atEnd ? `${st.seen.length} recorded events · ${goals} ${goals === 1 ? 'goal' : 'goals'}. Scrub or replay to step through them.` : 'Nothing recorded yet.')}</p>`;
+  } else {
+    const d = describe(x, m, st.seen.slice(0, st.seen.indexOf(x) + 1));
+    const who = x.type === 'sub' ? `<span class="fi-sub"><b class="on">ON</b>${playerChip(x.player_in, { size: 'sm' })}</span><span class="fi-sub"><b class="off">OFF</b>${playerChip(x.player_out, { size: 'sm' })}</span>`
+      : playerChip(x.player, { size: 'md', extra: x.penalty ? ' <span class="muted">(pen)</span>' : '' });
+    const facts = [...d.facts];
+    const geo = geoXg(d);
+    body = `<p class="mo-head">${esc(d.headline)}</p>
+      <div class="mo-who">${who}<span class="mo-team">${esc(d.team)}</span></div>
+      ${facts.length ? `<p class="mo-facts">${esc(facts.join(' · '))}</p>` : ''}
+      ${x.assist ? `<p class="mo-facts">Assist: ${esc(x.assist.name || '')}</p>` : ''}
+      ${geo ? `<p class="mo-geo">${geo}</p>` : ''}
+      <p class="mo-call"><span class="mo-call-k" title="A deterministic sentence built from the recorded events. Not a quote.">PBE CALL</span> ${esc(callLine(x, m, st.seen.slice(0, st.seen.indexOf(x) + 1)))}</p>`;
+  }
+  return `<div class="moment tone-${esc(x && !(st.atEnd && mode !== 'live') ? describe(x, m, [x]).tone : 'neutral')}" data-moment>
+    <div class="mo-top"><span class="mo-state">${esc(state)}</span><span class="mo-score">${esc(scoreLine)}</span>${selected ? '<button type="button" class="mo-back" data-mo-latest>Back to latest</button>' : ''}</div>
+    ${body}
+    ${freshness ? `<p class="mo-fresh">${esc(freshness)}</p>` : ''}
+  </div>`;
+}
+
+// MATCH PULSE: rolling + cumulative counts, PBE derived from the recorded events at the cursor.
+export function pulsePanel(p, m) {
+  const hn = m.home?.short_name || m.home?.name || 'Home'; const an = m.away?.short_name || m.away?.name || 'Away';
+  if (!p.hasShotRecord) return `<div class="mpulse" data-pulse><p class="mp-k">MATCH PULSE</p><p class="muted small">This match's event source records goals and cards but no shots, so there is no shot pulse. Nothing is estimated in its place.</p></div>`;
+  const row = (name, s) => `<div class="mp-row"><span class="mp-team">${esc(name)}</span><span class="mp-v"><b>${s.window.shots}</b> ${s.window.shots === 1 ? 'shot' : 'shots'} · <b>${s.window.on_target}</b> on target</span></div>`;
+  const tot = (label, h, a) => `<div class="mp-tot"><span>${esc(String(h))}</span><span class="mp-l">${esc(label)}</span><span>${esc(String(a))}</span></div>`;
+  const xgRow = p.home.xg && p.away.xg ? tot(`${p.home.xg.label} (provider)`, p.home.xg.total.toFixed(2), p.away.xg.total.toFixed(2)) : '';
+  const xgNote = !xgRow && (p.home.xg_partial || p.away.xg_partial) ? '<p class="mp-note">The provider published xG for only some shots, so no xG total is shown.</p>' : '';
+  const dist = p.home.avg_distance_m !== null || p.away.avg_distance_m !== null ? tot('Avg located shot distance (m)', p.home.avg_distance_m ?? '—', p.away.avg_distance_m ?? '—') : '';
+  return `<div class="mpulse" data-pulse>
+    <p class="mp-k">MATCH PULSE <span class="mp-win">Last ${p.window} min · ${esc(p.label)}</span></p>
+    ${row(hn, p.home)}${row(an, p.away)}
+    <div class="mp-tots">${tot('Shots', p.home.match.shots, p.away.match.shots)}${tot('On target', p.home.match.on_target, p.away.match.on_target)}${dist}${xgRow}</div>
+    ${xgNote}
+    <p class="mp-note">PBE derived from recorded ${esc(sourceName(m.event_source))} events up to this point. Recorded events may not be exhaustive; this is not possession or a probability.</p>
+  </div>`;
 }
 
 export function timelineBar(tl, m) {
@@ -173,48 +269,69 @@ function lineupsCompact(m) {
   return `<div class="clus">${side('home', m.home)}${side('away', m.away)}</div>`;
 }
 
-export function castView(env) {
+// The view state for a mode: replay opens at full time (everything sourced is known); live is the
+// whole recorded sequence with the latest event in focus and the provider's clock as the cursor.
+export function castState(env) {
   const m = env.data; const live = m.live || { mode: 'replay' };
-  const tl = buildTimeline(m.sequence || []);
+  const tl = buildTimeline(withShotDetail(m.sequence || [], m.shot_timeline || []));
   const mode = live.mode === 'live' ? 'live' : live.mode === 'replay' ? 'replay' : live.mode === 'pregame' ? 'pregame' : 'other';
-  const st = liveStatus(live);
-  const lv = mode === 'live' ? liveView(m) : { score: m.score, clock: null };
+  if (mode === 'live') {
+    const lv = liveView(m);
+    const v = liveCursor(tl, lv.clock || live.display_clock);
+    const last = [...tl.items].reverse().find(y => y.score);
+    const score = lv.score && lv.score.home !== null && lv.score.home !== undefined ? lv.score : last ? last.score : { home: 0, away: 0 };
+    return { m, tl, mode, live, lv, st: { v, seen: tl.items, current: tl.items[tl.items.length - 1] || null, score, clock: lv.clock || live.detail || '', atEnd: false } };
+  }
+  const rv = replayView(tl.total, tl, m.score);
+  return { m, tl, mode, live, lv: { score: m.score, clock: null }, st: rv };
+}
+
+export function castView(env) {
+  const { m, tl, mode, live, lv, st } = castState(env);
+  const status = liveStatus(live);
   const sc = lv.score && lv.score.home !== null && lv.score.home !== undefined ? lv.score : null;
-  const rv = replayView(tl.total, tl, m.score); // the replay opens at full time: everything sourced is known
   const located = pitchItems(tl.items).length;
   const moments = keyMoments(tl);
   const clock = mode === 'live' ? (lv.clock || (lv.from === 'canonical' ? live.detail || '' : '')) : mode === 'replay' ? 'FT' : '';
+  const replay = mode === 'replay';
+  const fresh = mode === 'live' ? status?.note || null : replay ? 'Replay: everything shown is from events at or before the cursor.' : null;
+  const focus = mode === 'live' ? st.current : null;
+  const pitchFocus = focus && pitchKind(focus) ? focus : null;
   return `<section class="cast-top ${esc(mode)}"><div class="wrap">
       <p class="ct-meta">${link('/pbecast', 'PBECAST', 'ct-home')} · ${m.competition ? link(`/competitions/${m.competition.slug}`, `${competitionMark(m.competition.slug, 'xs', { tone: 'dark' })}<span>${esc(m.competition.name)}</span>`, 'ct-comp') : ''}${m.round ? ` · ${esc(m.round)}` : ''}</p>
       <h1 class="sr-only">${esc(m.home?.name || '')} v ${esc(m.away?.name || '')}: PBEcast</h1>
       <div class="ct-board">
         <div class="ct-team">${teamMark(m.home, 'md')}${teamLink(m.home, 'ct-name')}</div>
-        <div class="ct-score" data-ct-score>${sc || mode === 'replay' ? `<span data-sh>${esc(String(sc?.home ?? 0))}</span><i>–</i><span data-sa>${esc(String(sc?.away ?? 0))}</span>` : '<span class="vs">v</span>'}</div>
+        <div class="ct-score" data-ct-score>${sc || replay ? `<span data-sh>${esc(String(sc?.home ?? 0))}</span><i>–</i><span data-sa>${esc(String(sc?.away ?? 0))}</span>` : '<span class="vs">v</span>'}</div>
         <div class="ct-team away">${teamMark(m.away, 'md')}${teamLink(m.away, 'ct-name')}</div>
       </div>
-      <p class="ct-status">${mode === 'live' ? `<span class="ct-live ${esc(st.tone)}"><i class="livedot" aria-hidden="true"></i>${esc(st.label)}</span>${clock ? `<span class="ct-clock">${esc(clock)}</span>` : ''}` : mode === 'replay' ? `<span class="ct-tag">PBECAST REPLAY</span><span class="ct-clock" data-ct-clock>${esc(clock)}</span>` : statusPill(m.status)}
+      <p class="ct-status">${mode === 'live' ? `<span class="ct-live ${esc(status.tone)}"><i class="livedot" aria-hidden="true"></i>${esc(status.label)}</span>${clock ? `<span class="ct-clock">${esc(clock)}</span>` : ''}` : replay ? `<span class="ct-tag">PBECAST REPLAY</span><span class="ct-clock" data-ct-clock>${esc(clock)}</span>` : statusPill(m.status)}
         <span class="muted">${esc(dateTime(m.kickoff_at))}${m.venue ? ` · ${esc(m.venue.name)}` : ''}</span></p>
-      ${when(st, () => `<p class="ct-fresh" role="status">${esc(st.note)}</p>`)}
+      ${when(status, () => `<p class="ct-fresh" role="status">${esc(status.note)}</p>`)}
     </div></section>
     <section class="canvas cast-body" data-match-id="${esc(m.id)}"><div class="wrap">
       ${mode === 'pregame' ? `<div class="panel pregame">${sectionHead('PREGAME', `Kick-off ${dateTime(m.kickoff_at)}`)}<p>PBEcast goes live at kick-off: the score and the provider's clock, then every sourced shot, goal, card and substitution as the source records it. This page refreshes itself.</p></div>` : ''}
       ${when(tl.items.length, () => `<div class="cast-grid">
         <div class="cast-stage panel">
-          ${mode === 'replay' ? `<div class="rp" data-replay>
+          ${replay ? `<div class="rp" data-replay>
             <button type="button" class="btn gold rp-play" data-rp-play aria-pressed="false">▶ REPLAY FROM KICK-OFF</button>
+            <div class="rp-step"><button type="button" class="btn ghost dark" data-rp-prev aria-label="Previous event">◀ PREV</button><button type="button" class="btn ghost dark" data-rp-next aria-label="Next event">NEXT ▶</button></div>
             <label class="rp-speed">Speed <select data-rp-speed><option value="0.5">1 min / 2 s</option><option value="1" selected>1 min / s</option><option value="3">3 min / s</option></select></label>
             <input type="range" class="rp-range" data-rp-range min="0" max="${tl.total}" step="0.25" value="${tl.total}" aria-label="Replay position (match minute)">
-            <p class="rp-now" data-rp-now aria-live="polite"><span class="rp-now-k">NOW</span><span data-rp-now-text>${esc(nowLine(rv, m))}</span></p>
+            <p class="sr-only" data-rp-now aria-live="polite"><span data-rp-now-text>${esc(nowLine(st, m))}</span></p>
             ${when(moments.length, () => `<div class="rp-moments" aria-label="Jump to a key moment"><span class="rp-jump">JUMP TO</span>${join(moments, x => `<button type="button" class="chip" data-seek="${x.v}">${esc(x.display_minute || '')} ${esc(x.type === 'card_red' ? 'Red' : 'Goal')} ${esc(x.player?.name?.split(' ').slice(-1)[0] || '')}</button>`)}</div>`)}
           </div>` : ''}
+          <div data-moment-slot>${momentPanel(st, m, { mode, freshness: fresh })}</div>
           ${timelineBar(tl, m)}
-          <div class="pitchwrap land">${castPitch(tl, m)}</div>
-          <div class="pitchwrap port">${castPitch(tl, m, { portrait: true })}</div>
-          <p class="emap-label" data-rp-caption>${mode === 'replay' ? esc(rv.caption) : located ? `${num(located)} LOCATED SHOTS · EVENT LOCATIONS, NOT PLAYER TRACKING` : 'NO LOCATED EVENTS FROM THIS SOURCE · NOTHING IS PLOTTED'}</p>
-          <p class="legend"><span><i class="lg goal"></i>Goal</span><span><i class="lg on"></i>On target</span><span><i class="lg off"></i>Off target / blocked</span><span class="muted">Shots only · cards and substitutions are in the feed</span></p>
+          <div class="pitchwrap land">${castPitch(tl, m, { current: pitchFocus })}</div>
+          <div class="pitchwrap port">${castPitch(tl, m, { portrait: true, current: pitchFocus })}</div>
+          <p class="emap-label" data-rp-caption>${replay ? esc(st.caption) : located ? `${num(located)} LOCATED SHOTS · EVENT LOCATIONS, NOT PLAYER TRACKING` : 'NO LOCATED EVENTS FROM THIS SOURCE · NOTHING IS PLOTTED'}</p>
+          <p class="legend"><span><i class="lg goal"></i>Goal</span><span><i class="lg on"></i>On target</span><span><i class="lg off"></i>Off target / blocked</span><span class="muted">Shots only · tap a feed event to find it · cards and substitutions are in the feed</span></p>
+          <div data-pulse-slot>${pulsePanel(matchPulse(st.seen, st.v ?? tl.total, tl), m)}</div>
         </div>
-        <div class="cast-feed panel">${mode === 'replay' ? '<header class="sec-head"><p class="kicker">REPLAY FEED</p><h2 data-feed-sub>Full match · latest first</h2></header>' : sectionHead(mode === 'live' ? 'LIVE FEED' : 'MATCH FEED', 'Sourced events, newest first')}
-          <ol class="feed" data-feed${mode === 'live' ? ' aria-live="polite"' : ''}>${mode === 'replay' ? join([...rv.seen].reverse(), x => feedItem(x, m, { current: x === rv.current, seekable: true })) : join([...tl.items].reverse(), x => feedItem(x, m))}</ol>
+        <div class="cast-feed panel">${replay ? '<header class="sec-head"><p class="kicker">REPLAY FEED</p><h2 data-feed-sub>Full match</h2></header>' : sectionHead(mode === 'live' ? 'LIVE MATCH FEED' : 'MATCH FEED', 'Every sourced shot, goal, card and substitution')}
+          ${feedTools(st.seen, feedPrefs, { replay })}
+          <ol class="feed" data-feed${mode === 'live' ? ' aria-live="polite"' : ''}>${feedList(st.seen, m, { current: replay ? null : focus, seekable: replay, pickable: !replay })}</ol>
         </div>
       </div>`)}
       ${when(!tl.items.length && mode !== 'pregame', () => empty('No sourced events for this match', m.event_source === 'openligadb' ? 'The result source reports the score without an event record, so there is nothing to cast. Nothing is plotted rather than something invented.' : 'No event record is stored for this match yet.'))}
@@ -224,39 +341,72 @@ export function castView(env) {
         <div class="panel">${sectionHead('LINEUPS', 'Starting XI')}${lineupsCompact(m)}</div>
       </div>
       <p class="cast-links">${link(`/matches/${m.id}`, 'FULL MATCH INTELLIGENCE →', 'btn ghost dark')}</p>
-      ${sourcePanel(env.meta, { title: 'PBECAST SOURCE & FRESHNESS', extra: [['Mode', mode.toUpperCase()], ['Source clock', live.display_clock || (mode === 'live' ? 'Not supplied' : 'Not live')], ['Last source observation', live.provider_observed_at ? `${dateTime(live.provider_observed_at)} (${ago(live.provider_observed_at)})` : 'None'], ...(live.enrichment ? [['Result of record', sourceName(live.canonical_result_source)], ['Live score', `${sourceName(live.enrichment.source)}, fetched ${live.enrichment.fetched_at ? `${dateTime(live.enrichment.fetched_at)} (${ago(live.enrichment.fetched_at)})` : 'never'}${live.enrichment.freshness?.stale ? ' · delayed' : ''}`]] : [])] })}
+      ${sourcePanel(env.meta, { title: 'PBECAST SOURCE & FRESHNESS', extra: [['Mode', mode.toUpperCase()], ['Source clock', live.display_clock || (mode === 'live' ? 'Not supplied' : 'Not live')], ['Last source observation', live.provider_observed_at ? `${dateTime(live.provider_observed_at)} (${ago(live.provider_observed_at)})` : 'None'], ['Event record', m.event_source ? sourceName(m.event_source) : 'None'], ...(live.enrichment ? [['Result of record', sourceName(live.canonical_result_source)], ['Live score', `${sourceName(live.enrichment.source)}, fetched ${live.enrichment.fetched_at ? `${dateTime(live.enrichment.fetched_at)} (${ago(live.enrichment.fetched_at)})` : 'never'}${live.enrichment.freshness?.stale ? ' · delayed' : ''}`]] : []), ['Derived context', 'Shot distance, rolling windows, runs and totals are PBE derived from recorded events at or before the moment shown. Provider xG is labelled with its provider.']] })}
     </div></section>`;
 }
 
+// Feed controls (filter + order) shared by every mode. `redraw` re-renders the list from the view's
+// current state, so a filter change never reveals an event the view has not reached.
+function mountFeedTools(root, redraw) {
+  const tools = root.querySelector('[data-feed-tools]'); if (!tools) return;
+  tools.addEventListener('click', e => {
+    const b = e.target.closest('[data-ff]'); if (!b) return;
+    feedPrefs.filter = b.dataset.ff;
+    for (const x of tools.querySelectorAll('[data-ff]')) { const on = x.dataset.ff === feedPrefs.filter; x.classList.toggle('on', on); x.setAttribute('aria-pressed', String(on)); }
+    redraw();
+  });
+  tools.querySelector('[data-fo]')?.addEventListener('change', e => { feedPrefs.order = e.target.value === 'asc' ? 'asc' : 'desc'; redraw(); });
+}
+const setCounts = (root, items) => { const c = feedCounts(items); for (const el of root.querySelectorAll('[data-ff-n]')) el.textContent = String(c[el.dataset.ffN] ?? 0); };
+function scrollFeedToCurrent(feed) {
+  if (!feed) return;
+  const cur = feed.querySelector('.fi.cur');
+  if (!cur) { feed.scrollTop = feedPrefs.order === 'asc' ? feed.scrollHeight : 0; return; }
+  feed.scrollTop = Math.max(0, cur.offsetTop - feed.offsetTop - feed.clientHeight / 3);
+}
+
 // Replay engine: moves a cursor over the virtual minute axis. Every frame is ONE replayView() (built on
-// stateAt): score, clock, current event, pitch marks (future marks are removed from the markup), feed
-// (events through the cursor, current first), timeline markers (future ones dimmed) and caption.
+// stateAt): score, clock, Current Moment, pitch marks (future marks are removed from the markup), feed
+// (events through the cursor), Match Pulse (events through the cursor), timeline markers (future ones
+// dimmed) and caption. Prev / Next step between sourced events.
 export function mountReplay(root, env) {
   const box = root.querySelector('[data-replay]'); if (!box) return () => {};
-  const m = env.data; const tl = buildTimeline(m.sequence || []);
+  const m = env.data; const tl = buildTimeline(withShotDetail(m.sequence || [], m.shot_timeline || []));
   const range = box.querySelector('[data-rp-range]'); const play = box.querySelector('[data-rp-play]'); const speed = box.querySelector('[data-rp-speed]');
   const fill = root.querySelector('[data-tl-fill]'); const clock = root.querySelector('[data-ct-clock]');
-  const sh = root.querySelector('[data-sh]'); const sa = root.querySelector('[data-sa]');
+  const sh = root.querySelector('[data-sh]'); const sa = root.querySelector('[data-sa]'); const board = root.querySelector('[data-ct-score]');
   const caption = root.querySelector('[data-rp-caption]'); const nowText = root.querySelector('[data-rp-now-text]');
   const feed = root.querySelector('[data-feed]'); const feedSub = root.querySelector('[data-feed-sub]');
+  const momentSlot = root.querySelector('[data-moment-slot]'); const pulseSlot = root.querySelector('[data-pulse-slot]');
   const markGroups = [...root.querySelectorAll('.pitch.cast .marks')];
   const tlMarks = [...root.querySelectorAll('.tl-m[data-seek], .tl-shot[data-v]')];
   const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-  let v = tl.total; let timer = null; let drawn = null;
+  const stops = [...new Set(tl.items.filter(x => x.v !== null).map(x => x.v))].sort((a, b) => a - b);
+  let v = tl.total; let timer = null; let drawn = null; let lastGoals = null; let rvNow = null;
+  const drawFeed = () => {
+    if (!feed || !rvNow) return;
+    feed.innerHTML = feedList(rvNow.seen, m, { current: rvNow.atEnd ? null : rvNow.current, seekable: true });
+    mountMediaFallbacks(feed); scrollFeedToCurrent(feed); setCounts(root, rvNow.seen);
+  };
   const show = (nv, { flash = false } = {}) => {
-    const rv = replayView(nv, tl, m.score); v = rv.v;
+    const rv = replayView(nv, tl, m.score); v = rv.v; rvNow = rv;
     range.value = String(v); fill.style.width = `${pctOf(v, tl)}%`;
     if (clock) clock.textContent = rv.clock;
     if (sh) sh.textContent = String(rv.score.home);
     if (sa) sa.textContent = String(rv.score.away);
     if (caption) caption.textContent = rv.caption;
     if (nowText) nowText.textContent = nowLine(rv, m);
-    if (feedSub) feedSub.textContent = rv.atEnd ? 'Full match · latest first' : `Through ${rv.clock} · latest first`;
+    if (feedSub) feedSub.textContent = rv.atEnd ? 'Full match' : `Through ${rv.clock}`;
     const key = `${rv.seen.length}:${rv.current?.i ?? ''}:${rv.atEnd}`;
     if (key !== drawn) {
       const current = rv.atEnd ? null : rv.current;
       for (const g of markGroups) g.innerHTML = pitchMarks(rv.seen, g.closest('svg').classList.contains('portrait'), { current, pulse: flash && !reduce });
-      if (feed) { feed.innerHTML = join([...rv.seen].reverse(), x => feedItem(x, m, { current: x === rv.current, seekable: true })); mountMediaFallbacks(feed); feed.scrollTop = 0; }
+      if (momentSlot) { momentSlot.innerHTML = momentPanel(rv, m, { mode: 'replay', freshness: 'Replay: everything shown is from events at or before the cursor.' }); mountMediaFallbacks(momentSlot); }
+      if (pulseSlot) pulseSlot.innerHTML = pulsePanel(matchPulse(rv.seen, v, tl), m);
+      drawFeed();
+      const goals = rv.seen.filter(x => x.type === 'goal' || x.type === 'own_goal').length;
+      if (flash && !reduce && lastGoals !== null && goals > lastGoals && board) { board.classList.remove('flash'); void board.offsetWidth; board.classList.add('flash'); }
+      lastGoals = goals;
       drawn = key;
     }
     for (const el of tlMarks) {
@@ -272,13 +422,61 @@ export function mountReplay(root, env) {
     play.setAttribute('aria-pressed', 'true'); play.textContent = '❚❚ PAUSE';
     timer = setInterval(() => { if (!root.isConnected) return stop(); show(v + Number(speed.value) * 0.25, { flash: true }); if (v >= tl.total) stop(); }, 250);
   };
+  const step = dir => {
+    stop();
+    const target = dir > 0 ? stops.find(s => s > v) : [...stops].reverse().find(s => s < (v >= tl.total ? tl.total + 1 : v));
+    show(target ?? (dir > 0 ? tl.total : 0), { flash: true });
+  };
   play.addEventListener('click', () => (timer ? stop() : start()));
+  box.querySelector('[data-rp-prev]')?.addEventListener('click', () => step(-1));
+  box.querySelector('[data-rp-next]')?.addEventListener('click', () => step(1));
   range.addEventListener('input', () => { stop(); show(Number(range.value)); });
   const seekFrom = e => { const b = e.target.closest('[data-seek]'); if (!b || !root.contains(b) || e.target.closest('a')) return; stop(); show(Number(b.dataset.seek), { flash: true }); };
   root.addEventListener('click', seekFrom);
   root.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target.matches?.('li[data-seek]')) { e.preventDefault(); seekFrom(e); } });
+  mountFeedTools(root, drawFeed);
   show(tl.total);
   return stop;
+}
+
+// Live (and other non-replay) views: the feed and pitch stay on the whole recorded sequence; tapping a
+// feed event or a pitch mark puts THAT event in focus (Current Moment + its pitch location) until
+// "Back to latest". A goal or a new latest event since the previous refresh flashes / pulses once.
+const lastLive = { id: null, goals: null, latest: null };
+export function mountLive(root, env) {
+  const { m, tl, mode, st } = castState(env);
+  if (mode !== 'live' || !tl.items.length) return;
+  const feed = root.querySelector('[data-feed]'); const momentSlot = root.querySelector('[data-moment-slot]');
+  const markGroups = [...root.querySelectorAll('.pitch.cast .marks')];
+  const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  const fresh = mode === 'live' ? liveStatus(m.live)?.note || null : null;
+  let selected = null;
+  const focus = (x, { pulse = false } = {}) => {
+    const cur = x || st.current;
+    const pitchCur = cur && pitchKind(cur) ? cur : null;
+    for (const g of markGroups) g.innerHTML = pitchMarks(tl.items, g.closest('svg').classList.contains('portrait'), { current: pitchCur, pulse: pulse && !reduce });
+    if (momentSlot) { momentSlot.innerHTML = momentPanel({ ...st, current: cur }, m, { mode: 'live', freshness: fresh, selected: !!x }); mountMediaFallbacks(momentSlot); }
+    if (feed) { feed.innerHTML = feedList(tl.items, m, { current: cur, pickable: true }); mountMediaFallbacks(feed); }
+  };
+  const pick = e => {
+    if (e.target.closest('a') || e.target.closest('[data-feed-tools]')) return;
+    if (e.target.closest('[data-mo-latest]')) { selected = null; focus(null); return; }
+    const li = e.target.closest('[data-pick]'); const mark = e.target.closest('.cmark[data-ci]');
+    const i = li ? Number(li.dataset.pick) : mark ? Number(mark.dataset.ci) : null;
+    if (i === null || !root.contains(e.target)) return;
+    selected = tl.items.find(x => x.i === i) || null; focus(selected, { pulse: true });
+  };
+  root.addEventListener('click', pick);
+  root.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target.matches?.('li[data-pick]')) { e.preventDefault(); pick(e); } });
+  mountFeedTools(root, () => { if (feed) { feed.innerHTML = feedList(tl.items, m, { current: selected || st.current, pickable: true }); mountMediaFallbacks(feed); } });
+  // A refresh that brought a new latest event pulses its location once; a new goal flashes the score.
+  const goals = tl.items.filter(x => x.type === 'goal' || x.type === 'own_goal').length;
+  const latest = st.current ? `${st.current.i}:${st.current.type}:${st.current.minute}` : null;
+  if (lastLive.id === m.id) {
+    if (latest !== lastLive.latest) focus(null, { pulse: true });
+    if (goals > (lastLive.goals ?? goals) && !reduce) root.querySelector('[data-ct-score]')?.classList.add('flash');
+  }
+  Object.assign(lastLive, { id: m.id, goals, latest });
 }
 
 export const cast = {
@@ -288,6 +486,7 @@ export const cast = {
   render(d) { return castView(d.env); },
   mount(root, d) {
     mountReplay(root, d.env);
+    mountLive(root, d.env);
     const mode = d.env.data.live?.mode;
     const soon = mode === 'pregame' && Date.parse(d.env.data.kickoff_at) - Date.now() < 30 * 60e3;
     if (mode === 'live' || soon) softRefresh(root, () => loadCast([d.env.data.id]), cast, mode === 'live' ? POLL_LIVE_MS : 60000);
