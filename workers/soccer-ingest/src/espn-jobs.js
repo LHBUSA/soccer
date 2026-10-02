@@ -143,7 +143,7 @@ export async function runEspnLane(lane, { store, storage, registry, areas = { ar
     if (client.budget - client.used >= 20) stats.enrichment_retry = await retryEnrichment(store, { comp, league, year: cursor.season_year, cursor, teamMap: teamRes.teamMap, client, now });
     // Where OpenLigaDB also covers the season, bridge its queued scorer ids.
     if (stats.matches_detailed && comp.external_ids.some(x => x.provider === 'openligadb')) {
-      const { seasonId } = await ensureCompetitionSeason(store, { comp, year: cursor.season_year });
+      const { seasonId } = await ensureCompetitionSeason(store, { comp, year: cursor.season_year, history: !!cursor.history });
       stats.openligadb_scorer_bridge = await alignOpenLigaScorersToEspn(store, { seasonId });
     }
   } catch (err) {

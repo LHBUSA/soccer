@@ -13,7 +13,7 @@ const SLUG = 'fifa-world-cup';
 async function seed({ crossing = false } = {}) {
   const store = await openPglite(); await applyMigrations(store);
   await store.insert('soccer_competitions', [{ id: U(1), slug: SLUG, name: 'FIFA World Cup', comp_type: 'international_tournament' }]);
-  await store.insert('soccer_seasons', [{ id: U(2), competition_id: U(1), label: '2026' }]);
+  await store.insert('soccer_seasons', [{ id: U(2), competition_id: U(1), label: '2026', publication_state: 'published', published_at: '2026-01-01T00:00:00Z' }]);
   await store.insert('soccer_stages', [
     { id: U(3), season_id: U(2), name: 'Group stage', stage_type: 'league', stage_order: 1 },
     { id: U(4), season_id: U(2), name: 'Semifinals', stage_type: 'knockout', stage_order: 2 },

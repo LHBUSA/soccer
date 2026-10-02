@@ -101,9 +101,9 @@ export async function buildLiveEnvelope(store, env, now = Date.now()) {
   const comps = await store.select('soccer_competitions', { columns: ['id', 'slug'], in: { slug: LIVE_COMPS } });
   const compIds = comps.map(c => c.id);
   const [liveRows, recent, upcoming] = await Promise.all([
-    store.select('soccer_matches', { columns: MATCH_COLS, eq: { status: 'live' }, in: { competition_id: compIds }, order: 'kickoff_at.asc', limit: 40 }),
-    store.select('soccer_matches', { columns: MATCH_COLS, eq: { status: 'finished' }, in: { competition_id: compIds }, gte: { kickoff_at: iso(now - 4 * 86400e3) }, lte: { kickoff_at: iso(now) }, order: 'kickoff_at.desc', limit: 24 }),
-    store.select('soccer_matches', { columns: MATCH_COLS, eq: { status: 'scheduled' }, in: { competition_id: compIds }, gte: { kickoff_at: iso(now - 3 * 3600e3) }, order: 'kickoff_at.asc', limit: 24 }),
+    store.select('soccer_public_matches', { columns: MATCH_COLS, eq: { status: 'live' }, in: { competition_id: compIds }, order: 'kickoff_at.asc', limit: 40 }),
+    store.select('soccer_public_matches', { columns: MATCH_COLS, eq: { status: 'finished' }, in: { competition_id: compIds }, gte: { kickoff_at: iso(now - 4 * 86400e3) }, lte: { kickoff_at: iso(now) }, order: 'kickoff_at.desc', limit: 24 }),
+    store.select('soccer_public_matches', { columns: MATCH_COLS, eq: { status: 'scheduled' }, in: { competition_id: compIds }, gte: { kickoff_at: iso(now - 3 * 3600e3) }, order: 'kickoff_at.asc', limit: 24 }),
   ]);
   const all = [...liveRows, ...recent, ...upcoming];
   const [{ teams, comps: compMap }, flags, lane] = await Promise.all([teamsAndComps(store, all), intel(store, all.map(m => m.id)), laneState(env)]);
@@ -180,7 +180,7 @@ export async function players(store, q, env) {
   const asOf = new Date().toISOString();
   for (const slug of slugs) {
     const [c] = await store.select('soccer_competitions', { columns: ['id', 'slug', 'name'], eq: { slug }, limit: 1 }); if (!c) continue;
-    const seasons = (await store.select('soccer_seasons', { columns: ['id', 'label'], eq: { competition_id: c.id } })).sort((a, b) => (a.label < b.label ? 1 : -1));
+    const seasons = (await store.select('soccer_public_seasons', { columns: ['id', 'label'], eq: { competition_id: c.id } })).sort((a, b) => (a.label < b.label ? 1 : -1));
     const s = q.season ? seasons.find(x => x.label === q.season) : seasons[0];
     if (!s) continue;
     const { profiles } = await seasonProfiles(store, env, s.id, asOf, 'player');

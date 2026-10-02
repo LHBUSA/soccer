@@ -84,7 +84,7 @@ export async function ingestOpenLigaSeason(store, { registry, league, season, st
     seasonId = rows[0]?.id || mintId('season', P, sExt);
     if (!rows.length) {
       const ds = matches.map(m => m.kickoff_utc).filter(Boolean).sort();
-      await syncRows(store, { table: 'soccer_seasons', key: ['id'], rows: [{ id: seasonId, competition_id: compId, label, start_date: ds[0]?.slice(0, 10) || null, end_date: ds[ds.length - 1]?.slice(0, 10) || null }] });
+      await syncRows(store, { table: 'soccer_seasons', key: ['id'], compare: ['competition_id', 'label', 'start_date', 'end_date'], rows: [{ id: seasonId, competition_id: compId, label, start_date: ds[0]?.slice(0, 10) || null, end_date: ds[ds.length - 1]?.slice(0, 10) || null, publication_state: 'published', published_at: new Date().toISOString(), source_families: ['openligadb'], publication_note: 'canonical result source season (OpenLigaDB lane)' }] });
     }
     await syncRows(store, { table: 'soccer_season_external_ids', key: ['provider', 'external_id'], compare: ['season_id'], rows: [{ provider: P, external_id: sExt, season_id: seasonId, method: rows.length ? 'reviewed' : 'founding', evidence: `competition ${regComp.slug} season label ${label}`, capture_id: rec.capture_id }] });
   }

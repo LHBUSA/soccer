@@ -56,7 +56,7 @@ function pickOut(p, teams) {
 const PICK_COLS = ['id', 'record_no', 'match_id', 'market', 'selection', 'model_probability', 'threshold', 'issued_at', 'lock_at', 'kickoff_at', 'status', 'final_home_score', 'final_away_score', 'settled_at', 'settlement_reason', 'input_hash', 'input_as_of', 'algo_version', 'pick_policy_version', 'sportsbook', 'price_decimal', 'price_american', 'price_captured_at', 'units', 'profit_units'];
 
 async function withTeams(store, rows) {
-  const ms = rows.length ? await store.select('soccer_matches', { columns: ['id', 'home_team_id', 'away_team_id', 'status'], in: { id: [...new Set(rows.map(r => r.match_id))] } }) : [];
+  const ms = rows.length ? await store.select('soccer_public_matches', { columns: ['id', 'home_team_id', 'away_team_id', 'status'], in: { id: [...new Set(rows.map(r => r.match_id))] } }) : [];
   const byMatch = new Map(ms.map(m => [m.id, m]));
   const joined = rows.map(r => ({ ...r, home_team_id: byMatch.get(r.match_id)?.home_team_id, away_team_id: byMatch.get(r.match_id)?.away_team_id, match_status: byMatch.get(r.match_id)?.status }));
   return { joined, teams: await teamsById(store, joined.flatMap(r => [r.home_team_id, r.away_team_id])) };
@@ -70,7 +70,7 @@ export async function picks(store, now = Date.now()) {
   const recentRows = await store.select('soccer_algo_picks', { columns: PICK_COLS, eq: { algo_version: V }, neq: { status: 'pending' }, order: 'record_no.desc', limit: 10 });
   const forecasts = await store.select('soccer_algo_forecasts', { columns: ['id', 'match_id', 'issued_at', 'kickoff_at', 'lambda_home', 'lambda_away', 'probabilities', 'game_best', 'input_hash'], eq: { algo_version: V }, gte: { kickoff_at: nowIso }, order: 'kickoff_at.asc', limit: 40 });
   const [comp] = await store.select('soccer_competitions', { columns: ['id'], eq: { slug: spec.competition_scope.competition_slug }, limit: 1 });
-  const upcoming = comp ? await store.select('soccer_matches', { columns: ['id', 'kickoff_at', 'home_team_id', 'away_team_id', 'status', 'stage_id'], eq: { competition_id: comp.id, status: 'scheduled' }, gte: { kickoff_at: nowIso }, order: 'kickoff_at.asc', limit: 30 }) : [];
+  const upcoming = comp ? await store.select('soccer_public_matches', { columns: ['id', 'kickoff_at', 'home_team_id', 'away_team_id', 'status', 'stage_id'], eq: { competition_id: comp.id, status: 'scheduled' }, gte: { kickoff_at: nowIso }, order: 'kickoff_at.asc', limit: 30 }) : [];
   const stageIds = [...new Set(upcoming.map(m => m.stage_id).filter(Boolean))];
   const league = new Set(stageIds.length ? (await store.select('soccer_stages', { columns: ['id', 'stage_type'], in: { id: stageIds } })).filter(s => s.stage_type === spec.competition_scope.stage_type).map(s => s.id) : []);
   const fcIds = new Set(forecasts.map(f => f.match_id));

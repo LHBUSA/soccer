@@ -41,7 +41,7 @@ const id = n => `00000000-0000-5000-8000-0000000e${String(n).padStart(4, '0')}`;
 async function seed() {
   const store = await openPglite(); await applyMigrations(store);
   await store.insert('soccer_competitions', [{ id: id(1), slug: 'premier-league', name: 'Premier League', comp_type: 'league' }]);
-  await store.insert('soccer_seasons', [{ id: id(2), competition_id: id(1), label: '2026/27' }]);
+  await store.insert('soccer_seasons', [{ id: id(2), competition_id: id(1), label: '2026/27', publication_state: 'published', published_at: '2026-01-01T00:00:00Z' }]);
   await store.insert('soccer_stages', [{ id: id(3), season_id: id(2), name: 'Regular season', stage_type: 'league', stage_order: 1 }]);
   const teams = ['Arsenal', 'Chelsea', 'Everton', 'Fulham', 'Brentford', 'Burnley'].map((n, i) => ({ id: id(10 + i), slug: n.toLowerCase(), name: n, team_type: 'club', founding_provider: 'espn', founding_external_id: String(300 + i) }));
   await store.insert('soccer_teams', teams);

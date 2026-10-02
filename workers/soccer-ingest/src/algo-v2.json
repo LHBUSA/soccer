@@ -1,5 +1,5 @@
 {
-  "algo_version": "soccer-algo-v2.0.0",
+  "algo_version": "soccer-algo-v2.1.0",
   "name": "Soccer Algo V2 (International)",
   "profile": "national_team_group",
   "status": "official",
@@ -83,5 +83,18 @@
   },
   "prices": "none: no sportsbook price is captured, so ROI, units and CLV are unavailable; no default odds.",
   "no_backfill": "no V2 pick is ever created for a match that kicked off before activation; the completed 2026 World Cup is research, replay and intelligence only",
-  "spec_hash": "eebf33dec7a99caffef25867eca4440d78c419accfd646a258c4bce4b8846e20"
+  "derived_from": {
+    "algo_version": "soccer-algo-v2.0.0",
+    "change": "input membership frozen to exact canonical match ids; model, research, coefficients and pick policy unchanged"
+  },
+  "input_dataset": {
+    "path": "workers/soccer-ingest/src/algo-v2-dataset.json",
+    "file_sha256": "fb5414cdbc6123fff68b0129604a16e725ab554f5ce6698252f5553b550e273f",
+    "dataset_version": "soccer-algo-v2-inputs/1.0.0",
+    "frozen_at": "2026-10-02T21:51:00.322Z",
+    "match_count": 362,
+    "match_ids_sha256": "2dc6c0b5b2dfbe6606b0ed5a954fbaaafa37e4b8bb1f4eec2e8003a708550e0a",
+    "rule": "inputs = finished canonical matches of input_competitions whose id is in match_ids, plus those kicking off after frozen_at; window and identity rules unchanged"
+  },
+  "spec_hash": "53e6b8d7ff9bcd8ccba5922c048ceb89aa138918a25220a5722be6c8379d556e"
 }

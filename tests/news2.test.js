@@ -138,7 +138,7 @@ test('UCL readiness: league-phase recap with a verified table publishes on the c
   const store = await openPglite(); await applyMigrations(store);
   const id = n => `00000000-0000-5000-8000-0000000f${String(n).padStart(4, '0')}`;
   await store.insert('soccer_competitions', [{ id: id(1), slug: 'uefa-champions-league', name: 'UEFA Champions League', comp_type: 'cup' }]);
-  await store.insert('soccer_seasons', [{ id: id(2), competition_id: id(1), label: '2026/27' }]);
+  await store.insert('soccer_seasons', [{ id: id(2), competition_id: id(1), label: '2026/27', publication_state: 'published', published_at: '2026-01-01T00:00:00Z' }]);
   await store.insert('soccer_stages', [{ id: id(3), season_id: id(2), name: 'League phase', stage_type: 'league', stage_order: 1 }]);
   const teams = ['Alpha FC', 'Beta SC', 'Gamma AC', 'Delta CF'].map((n, i) => ({ id: id(10 + i), slug: n.toLowerCase().replace(/ /g, '-'), name: n, team_type: 'club', founding_provider: 'espn', founding_external_id: String(100 + i) }));
   await store.insert('soccer_teams', teams);

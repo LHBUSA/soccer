@@ -17,7 +17,7 @@ const T0 = Date.parse('2026-10-09T19:00:00Z'); // 30 min after a 18:30 kickoff
 async function world({ bundesligaMode = 'shadow' } = {}) {
   const store = await openPglite(); await applyMigrations(store);
   await store.insert('soccer_competitions', [{ id: id(1), slug: 'bundesliga', name: 'Bundesliga', comp_type: 'league' }, { id: id(2), slug: 'mls', name: 'MLS', comp_type: 'league' }]);
-  await store.insert('soccer_seasons', [{ id: id(3), competition_id: id(1), label: '2026/27' }, { id: id(4), competition_id: id(2), label: '2026' }]);
+  await store.insert('soccer_seasons', [{ id: id(3), competition_id: id(1), label: '2026/27', publication_state: 'published', published_at: '2026-01-01T00:00:00Z' }, { id: id(4), competition_id: id(2), label: '2026', publication_state: 'published', published_at: '2026-01-01T00:00:00Z' }]);
   const teams = [[10, 'bay', 'openligadb', '40', '132'], [11, 'bvb', 'openligadb', '7', '124'], [12, 'mia', 'espn', '1', '1'], [13, 'nyc', 'espn', '2', '2'], [14, 'lev', 'openligadb', '6', '131'], [15, 'rbl', 'openligadb', '1635', '11420']];
   await store.insert('soccer_teams', teams.map(([n, slug, fp, fe]) => ({ id: id(n), slug, name: slug.toUpperCase(), team_type: 'club', founding_provider: fp, founding_external_id: fe })));
   await store.insert('soccer_team_external_ids', teams.map(([n, , , , espnId]) => ({ provider: 'espn', external_id: espnId, team_id: id(n), method: 'fixture_graph', evidence: 't' })));

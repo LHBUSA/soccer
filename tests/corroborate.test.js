@@ -15,7 +15,7 @@ const TA = mintId('team', 'wyscout', '1'); const TB = mintId('team', 'wyscout', 
 async function world({ extraSameName = false, lineup = true } = {}) {
   const store = await openPglite(); await applyMigrations(store);
   await store.insert('soccer_competitions', [{ id: COMP, slug: 'bundesliga', name: 'Bundesliga', comp_type: 'league', gender: 'men', country_code: 'DEU', tier: 1 }]);
-  await store.insert('soccer_seasons', [{ id: S17, competition_id: COMP, label: '2017/18', start_date: null, end_date: null }]);
+  await store.insert('soccer_seasons', [{ id: S17, competition_id: COMP, label: '2017/18', publication_state: 'published', published_at: '2026-01-01T00:00:00Z', start_date: null, end_date: null }]);
   await store.insert('soccer_teams', [TA, TB].map((id, i) => ({ id, slug: `t${i}`, name: `Team ${i}`, team_type: 'club', gender: 'men', founding_provider: 'wyscout', founding_external_id: String(i + 1) })));
   await store.insert('soccer_team_external_ids', [{ provider: 'espn', external_id: '132', team_id: TA, method: 'fixture_graph', evidence: 't', capture_id: null }, { provider: 'espn', external_id: '134', team_id: TB, method: 'fixture_graph', evidence: 't', capture_id: null }]);
   const P1 = mintId('player', 'wyscout', '10');

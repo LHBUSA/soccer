@@ -8,7 +8,7 @@ test('history API: multiple chronological seasons, competition isolation, canoni
   try {
     await s.insert('soccer_competitions', [{id:U(1),slug:'bundesliga',name:'Bundesliga',comp_type:'league'},{id:U(2),slug:'cup',name:'Cup',comp_type:'international_tournament'}]);
     await s.insert('soccer_teams', [10,11].map(n=>({id:U(n),slug:`team-${n}`,name:`Team ${n}`,team_type:'club',founding_provider:'espn',founding_external_id:String(n)})));
-    await s.insert('soccer_seasons', [{id:U(20),competition_id:U(1),label:'2024/25'},{id:U(21),competition_id:U(1),label:'2025/26'},{id:U(22),competition_id:U(2),label:'2025'}]);
+    await s.insert('soccer_seasons', [{id:U(20),competition_id:U(1),label:'2024/25', publication_state: 'published', published_at: '2026-01-01T00:00:00Z'},{id:U(21),competition_id:U(1),label:'2025/26', publication_state: 'published', published_at: '2026-01-01T00:00:00Z'},{id:U(22),competition_id:U(2),label:'2025', publication_state: 'published', published_at: '2026-01-01T00:00:00Z'}]);
     await s.insert('soccer_stages', [20,21,22].map(n=>({id:U(n+10),season_id:U(n),name:'Stage',stage_type:n===22?'knockout':'league',stage_order:1})));
     const m=(n,season,home,hs,as)=>({id:U(n),season_id:U(season),competition_id:U(season===22?2:1),stage_id:U(season+10),kickoff_at:`${season===20?'2024':'2025'}-09-${season===21?'20':'10'}T12:00:00Z`,status:'finished',home_team_id:U(home?10:11),away_team_id:U(home?11:10),home_score:hs,away_score:as,result_provider:'espn'});
     const ms=[m(100,20,true,3,1),m(101,21,false,2,2),m(102,22,true,0,1)]; await s.insert('soccer_matches',ms);

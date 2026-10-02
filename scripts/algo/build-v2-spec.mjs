@@ -45,6 +45,15 @@ const spec = {
   prices: 'none: no sportsbook price is captured, so ROI, units and CLV are unavailable; no default odds.',
   no_backfill: PROTOCOL.live_contract.no_backfill,
 };
+// soccer-algo-v2.1.0 (owner decision 2026-10-02): same research, model, coefficients and policy as v2.0.0; the ONLY
+// change is the input contract: the historical input membership is frozen to exact canonical match ids
+// (workers/soccer-ingest/src/algo-v2-dataset.json, built by scripts/algo/freeze-v2-dataset.mjs) so historical backfill
+// can never enter the model. Matches kicking off after frozen_at join as live results, as before.
+const datasetRaw = readFileSync('workers/soccer-ingest/src/algo-v2-dataset.json'); const dataset = JSON.parse(datasetRaw);
+if (dataset.match_ids_sha256 !== sha(dataset.match_ids.join('\n'))) throw new Error('V2 input dataset ids do not match their hash');
+spec.algo_version = 'soccer-algo-v2.1.0';
+spec.derived_from = { algo_version: PROTOCOL.algo_version, change: 'input membership frozen to exact canonical match ids; model, research, coefficients and pick policy unchanged' };
+spec.input_dataset = { path: 'workers/soccer-ingest/src/algo-v2-dataset.json', file_sha256: sha(datasetRaw), dataset_version: dataset.dataset_version, frozen_at: dataset.frozen_at, match_count: dataset.match_count, match_ids_sha256: dataset.match_ids_sha256, rule: dataset.rule };
 spec.spec_hash = sha(JSON.stringify(spec));
 const pm = m => { const x = hold.markets[m]; const f = freeze.markets[m]; return { market: m, gate_select: f.gate_select, gate_holdout: x.gate_holdout, log_loss_holdout: x.validation_holdout.log_loss, baseline_log_loss_holdout: x.validation_holdout.baseline_log_loss, brier_holdout: x.validation_holdout.brier, baseline_brier_holdout: x.validation_holdout.baseline_brier, selected_threshold: f.selected_threshold, holdout_picks: x.picks_holdout ? { picks: x.picks_holdout.picks, hit_rate: x.picks_holdout.hit_rate, mean_probability: x.picks_holdout.mean_prob, wilson_lo: x.picks_holdout.wilson_lo, baseline_rate: x.picks_holdout.baseline_rate } : null, holdout_rule: x.holdout_rule || null, active: !!active[m] }; };
 const researchOut = {

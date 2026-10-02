@@ -16,7 +16,7 @@ let mid = 1000;
 async function world(now) {
   const store = await openPglite(); await applyMigrations(store);
   await store.query(`insert into soccer_competitions (id, slug, name, comp_type) values ($1,'bundesliga','Bundesliga','league')`, [COMP]);
-  await store.query(`insert into soccer_seasons (id, competition_id, label) values ($1,$3,'2025/26'), ($2,$3,'2026/27')`, [S25, S26, COMP]);
+  await store.query(`insert into soccer_seasons (id, competition_id, label, publication_state, published_at) values ($1,$3,'2025/26','published',now()), ($2,$3,'2026/27','published',now())`, [S25, S26, COMP]);
   await store.query(`insert into soccer_stages (id, season_id, name, stage_type) values ($1,$3,'Regular Season','league'), ($2,$4,'Regular Season','league')`, [L25, L26, S25, S26]);
   for (const [i, t] of TEAMS.entries()) await store.query(`insert into soccer_teams (id, slug, name, team_type, founding_provider, founding_external_id) values ($1,$2,$3,'club','test',$4)`, [t, `team-${i}`, `Team ${i}`, String(i)]);
   // strong team 0 (wins big), everyone else mixed: gives the model clear favourites

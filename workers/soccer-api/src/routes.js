@@ -118,7 +118,7 @@ async function competitionBySlug(store, slug) {
 }
 
 async function seasonsOf(store, competitionId) {
-  return (await store.select('soccer_seasons', { columns: ['id', 'label', 'start_date', 'end_date'], eq: { competition_id: competitionId } }))
+  return (await store.select('soccer_public_seasons', { columns: ['id', 'label', 'start_date', 'end_date'], eq: { competition_id: competitionId } }))
     .sort((a, b) => (a.label < b.label ? 1 : -1));
 }
 
@@ -138,7 +138,7 @@ export async function competitions(store) {
   const out = [];
   for (const c of comps) {
     const seasons = await seasonsOf(store, c.id);
-    const matches = await store.count('soccer_matches', { eq: { competition_id: c.id } });
+    const matches = await store.count('soccer_public_matches', { eq: { competition_id: c.id } });
     if (!matches) continue; // registry-only competitions with no data are not listed
     out.push({ slug: c.slug, name: c.name, type: c.comp_type, country_code: c.country_code, seasons: seasons.length, latest_season: seasons[0]?.label || null, matches });
   }
@@ -148,13 +148,13 @@ export async function competitions(store) {
 export async function competition(store, slug, q = {}, now = Date.now()) {
   const c = await competitionBySlug(store, slug);
   const seasons = await seasonsOf(store, c.id);
-  const counts = await Promise.all(seasons.map(s => store.count('soccer_matches', { eq: { season_id: s.id } })));
+  const counts = await Promise.all(seasons.map(s => store.count('soccer_public_matches', { eq: { season_id: s.id } })));
   const withCounts = seasons.map((s, i) => ({ label: s.label, start_date: s.start_date, end_date: s.end_date, matches: counts[i] }));
   const season = q.season ? seasons.find(s => s.label === q.season) : seasons[0];
   if (q.season && !season) throw new NotFound(`season ${q.season}`);
   let current = null;
   if (season) {
-    const ms = await store.select('soccer_matches', { columns: ['id', 'stage_id', 'kickoff_at', 'home_team_id', 'away_team_id', 'status', 'winner_team_id', 'home_score', 'away_score'], eq: { season_id: season.id }, order: 'id.asc' });
+    const ms = await store.select('soccer_public_matches', { columns: ['id', 'stage_id', 'kickoff_at', 'home_team_id', 'away_team_id', 'status', 'winner_team_id', 'home_score', 'away_score'], eq: { season_id: season.id }, order: 'id.asc' });
     const teams = await teamsById(store, ms.flatMap(x => [x.home_team_id, x.away_team_id]));
     const n = st => ms.filter(x => x.status === st).length;
     // Stages of the season with their counts; knockout edges only where proven from canonical results.
@@ -219,24 +219,24 @@ export async function matches(store, q) {
   if (q.team) {
     const [t] = await store.select('soccer_teams', { columns: ['id'], eq: { slug: q.team }, limit: 1 });
     if (!t) throw new NotFound(`team ${q.team}`);
-    const [h, a] = await Promise.all([store.select('soccer_matches', { ...opts, eq: { ...opts.eq, home_team_id: t.id } }), store.select('soccer_matches', { ...opts, eq: { ...opts.eq, away_team_id: t.id } })]);
+    const [h, a] = await Promise.all([store.select('soccer_public_matches', { ...opts, eq: { ...opts.eq, home_team_id: t.id } }), store.select('soccer_public_matches', { ...opts, eq: { ...opts.eq, away_team_id: t.id } })]);
     const rows = [...h, ...a].sort((x, y) => (opts.order === 'kickoff_at.asc' ? 1 : -1) * (Date.parse(x.kickoff_at) - Date.parse(y.kickoff_at))).slice(0, opts.limit);
     const [teams, comps, intel, stages] = await Promise.all([teamsById(store, rows.flatMap(r => [r.home_team_id, r.away_team_id])), compsById(store, rows.map(r => r.competition_id)), intelFlags(store, rows.map(r => r.id)), stagesById(store, rows)]);
     return E(rows.map(r => shapeMatch(r, teams, comps, intel, stages)), { source: 'pbe', semantics: 'Canonical matches (max 100 per page); intel flags which Match Intelligence layers exist.', source_updated_at: maxTs(rows.map(r => r.updated_at)), attribution: [...new Set(rows.map(r => r.result_provider))] });
   }
-  const rows = await store.select('soccer_matches', opts);
+  const rows = await store.select('soccer_public_matches', opts);
   const [teams, comps, intel, stages] = await Promise.all([teamsById(store, rows.flatMap(r => [r.home_team_id, r.away_team_id])), compsById(store, rows.map(r => r.competition_id)), intelFlags(store, rows.map(r => r.id)), stagesById(store, rows)]);
   return E(rows.map(r => shapeMatch(r, teams, comps, intel, stages)), { source: 'pbe', semantics: 'Canonical matches (max 100 per page); intel flags which Match Intelligence layers exist. stage = the canonical stage (key, name, type); score.after / score.pens / score.winner appear only for a match decided after extra time or on penalties.', source_updated_at: maxTs(rows.map(r => r.updated_at)), attribution: [...new Set(rows.map(r => r.result_provider))], coverage: rows.length ? COVERAGE.OK : COVERAGE.PARTIAL });
 }
 
 export async function match(store, id) {
   if (!/^[0-9a-f-]{36}$/.test(id)) throw new NotFound('match');
-  const [m] = await store.select('soccer_matches', { columns: MATCH_COLS, eq: { id }, limit: 1 });
+  const [m] = await store.select('soccer_public_matches', { columns: MATCH_COLS, eq: { id }, limit: 1 });
   if (!m) throw new NotFound('match');
   const [teams, [comp], [season], venueRows, sources] = await Promise.all([
     teamsById(store, [m.home_team_id, m.away_team_id]),
     store.select('soccer_competitions', { columns: ['slug', 'name'], eq: { id: m.competition_id }, limit: 1 }),
-    store.select('soccer_seasons', { columns: ['label'], eq: { id: m.season_id }, limit: 1 }),
+    store.select('soccer_public_seasons', { columns: ['label'], eq: { id: m.season_id }, limit: 1 }),
     m.venue_id ? store.select('soccer_venues', { columns: ['name', 'city'], eq: { id: m.venue_id }, limit: 1 }) : Promise.resolve([]),
     store.select('soccer_match_source_results', { columns: ['provider', 'observed_at'], eq: { match_id: id } }),
   ]);
@@ -395,8 +395,8 @@ export async function team(store, slug, env = null) {
   const [t] = await store.select('soccer_teams', { columns: [...TEAM_COLS, 'updated_at'], eq: { slug, status: 'active' }, limit: 1 });
   if (!t) throw new NotFound(`team ${slug}`);
   const [h, a] = await Promise.all([
-    store.select('soccer_matches', { columns: MATCH_COLS, eq: { home_team_id: t.id }, order: 'kickoff_at.desc', limit: 40 }),
-    store.select('soccer_matches', { columns: MATCH_COLS, eq: { away_team_id: t.id }, order: 'kickoff_at.desc', limit: 40 }),
+    store.select('soccer_public_matches', { columns: MATCH_COLS, eq: { home_team_id: t.id }, order: 'kickoff_at.desc', limit: 40 }),
+    store.select('soccer_public_matches', { columns: MATCH_COLS, eq: { away_team_id: t.id }, order: 'kickoff_at.desc', limit: 40 }),
   ]);
   const all = [...h, ...a].sort((x, y) => Date.parse(y.kickoff_at) - Date.parse(x.kickoff_at));
   const recent = all.filter(x => x.status === 'finished').slice(0, 10);
@@ -420,16 +420,16 @@ async function teamSeasonDepth(store, t, all, comps) {
   for (const m of all) if (!latest.has(m.competition_id)) latest.set(m.competition_id, m.season_id);
   const records = []; const seasonMatchIds = [];
   for (const [compId, seasonId] of latest) {
-    const [seasonRow] = await store.select('soccer_seasons', { columns: ['label'], eq: { id: seasonId }, limit: 1 });
+    const [seasonRow] = await store.select('soccer_public_seasons', { columns: ['label'], eq: { id: seasonId }, limit: 1 });
     const league = (await store.select('soccer_stages', { columns: ['id'], eq: { season_id: seasonId, stage_type: 'league' } })).map(x => x.id);
-    const [h, a] = await Promise.all(['home_team_id', 'away_team_id'].map(k => store.select('soccer_matches', { columns: ['id', 'stage_id', 'status', 'home_team_id', 'away_team_id', 'home_score', 'away_score', 'kickoff_at'], eq: { season_id: seasonId, [k]: t.id }, order: 'id.asc' })));
+    const [h, a] = await Promise.all(['home_team_id', 'away_team_id'].map(k => store.select('soccer_public_matches', { columns: ['id', 'stage_id', 'status', 'home_team_id', 'away_team_id', 'home_score', 'away_score', 'kickoff_at'], eq: { season_id: seasonId, [k]: t.id }, order: 'id.asc' })));
     const mine = [...h, ...a];
     seasonMatchIds.push(...mine.filter(x => x.status === 'finished').map(x => x.id));
     const done = mine.filter(x => x.status === 'finished' && x.home_score !== null && league.includes(x.stage_id));
     const comp = comps.get(compId) || null;
     if (!done.length) { records.push({ competition: comp, season: seasonRow?.label || null, record: null, position: null }); continue; }
     const tb = tiebreakOf(comp?.slug);
-    const full = await store.select('soccer_matches', { columns: ['id', 'home_team_id', 'away_team_id', 'home_score', 'away_score', 'kickoff_at'], eq: { season_id: seasonId, status: 'finished' }, in: { stage_id: league }, order: 'id.asc' });
+    const full = await store.select('soccer_public_matches', { columns: ['id', 'home_team_id', 'away_team_id', 'home_score', 'away_score', 'kickoff_at'], eq: { season_id: seasonId, status: 'finished' }, in: { stage_id: league }, order: 'id.asc' });
     const tbl = computeTable(full.filter(x => x.home_score !== null && x.away_score !== null), { tiebreak: tb });
     const i = tbl.findIndex(r => r.team_id === t.id);
     const r = tbl[i];
@@ -476,7 +476,7 @@ async function teamSeasonDepth(store, t, all, comps) {
 async function cachedSeasonProfiles(store, env, seasonId, kind) {
   const kv = env?.SOCCER_STATE; if (!kv) return null;
   const asOf = new Date().toISOString();
-  const [last] = await store.select('soccer_matches', { columns: ['kickoff_at'], eq: { season_id: seasonId, status: 'finished' }, lte: { kickoff_at: asOf }, order: 'kickoff_at.desc', limit: 1 });
+  const [last] = await store.select('soccer_public_matches', { columns: ['kickoff_at'], eq: { season_id: seasonId, status: 'finished' }, lte: { kickoff_at: asOf }, order: 'kickoff_at.desc', limit: 1 });
   const cutoff = last ? new Date(last.kickoff_at).toISOString() : 'none';
   const hit = await kv.get(`dna:${DNA_VERSION}:${kind}:${seasonId}:${cutoff}`, 'json').catch(() => null);
   return hit ? new Map(hit.profiles) : null;
@@ -513,12 +513,12 @@ async function playerObserved(store, p) {
   const goals = perMatchBestFamily(goalsRaw); const shots = perMatchBestFamily(shotsRaw);
   const matchIds = [...new Set([...lineups.map(l => l.match_id), ...goals.map(g => g.match_id), ...shots.map(s => s.match_id)])];
   const ms = [];
-  for (const part of chunkArr(matchIds, 100)) ms.push(...await store.select('soccer_matches', { columns: MATCH_COLS, in: { id: part } }));
+  for (const part of chunkArr(matchIds, 100)) ms.push(...await store.select('soccer_public_matches', { columns: MATCH_COLS, in: { id: part } }));
   const byId = new Map(ms.map(m => [m.id, m]));
   const lineupByMatch = new Map(lineups.map(l => [l.match_id, l]));
   const seasons = new Map();
   const sIds = [...new Set(ms.map(m => m.season_id))];
-  for (const part of chunkArr(sIds, 100)) for (const s of await store.select('soccer_seasons', { columns: ['id', 'label'], in: { id: part } })) seasons.set(s.id, s.label);
+  for (const part of chunkArr(sIds, 100)) for (const s of await store.select('soccer_public_seasons', { columns: ['id', 'label'], in: { id: part } })) seasons.set(s.id, s.label);
   const [teams, comps] = await Promise.all([teamsById(store, ms.flatMap(m => [m.home_team_id, m.away_team_id])), compsById(store, ms.map(m => m.competition_id))]);
   const count = (arr, id) => arr.filter(x => x.match_id === id).length;
   const rows = new Map();
@@ -565,9 +565,9 @@ export async function player(store, slug) {
   for (const s of stats) byMatch.set(s.match_id, { ...(byMatch.get(s.match_id) || { team_id: s.team_id }), [s.stat_key]: Number(s.value) });
   const matchIds = [...byMatch.keys()];
   const ms = [];
-  for (const part of chunkArr(matchIds, 150)) ms.push(...await store.select('soccer_matches', { columns: ['id', 'season_id', 'competition_id', 'kickoff_at'], in: { id: part } }));
+  for (const part of chunkArr(matchIds, 150)) ms.push(...await store.select('soccer_public_matches', { columns: ['id', 'season_id', 'competition_id', 'kickoff_at'], in: { id: part } }));
   const seasonIds = [...new Set(ms.map(x => x.season_id))];
-  const seasons = seasonIds.length ? new Map((await store.select('soccer_seasons', { columns: ['id', 'label'], in: { id: seasonIds } })).map(s => [s.id, s.label])) : new Map();
+  const seasons = seasonIds.length ? new Map((await store.select('soccer_public_seasons', { columns: ['id', 'label'], in: { id: seasonIds } })).map(s => [s.id, s.label])) : new Map();
   const totals = {};
   for (const m of ms) {
     const label = seasons.get(m.season_id);
@@ -645,7 +645,7 @@ export async function table(store, q) {
   const season = q.season ? seasons.find(s => s.label === q.season) : seasons[0];
   if (!season) throw new NotFound(`season ${q.season}`);
   const leagueStages = (await store.select('soccer_stages', { columns: ['id'], eq: { season_id: season.id, stage_type: 'league' } })).map(s => s.id);
-  const played = leagueStages.length ? await store.select('soccer_matches', { columns: ['id', 'home_team_id', 'away_team_id', 'home_score', 'away_score', 'kickoff_at', 'updated_at', 'result_provider'], eq: { season_id: season.id, status: 'finished' }, in: { stage_id: leagueStages } }) : [];
+  const played = leagueStages.length ? await store.select('soccer_public_matches', { columns: ['id', 'home_team_id', 'away_team_id', 'home_score', 'away_score', 'kickoff_at', 'updated_at', 'result_provider'], eq: { season_id: season.id, status: 'finished' }, in: { stage_id: leagueStages } }) : [];
   const valid = played.filter(x => x.home_score !== null && x.away_score !== null);
   const tb = tiebreakOf(c.slug);
   const computed = computeTable(valid, { tiebreak: tb });
@@ -803,7 +803,7 @@ export async function article(store, slug) {
 export async function coverage(store) {
   const comps = await store.select('soccer_competitions', { columns: ['id', 'slug', 'name'] });
   const [matchesTotal, finishedTotal, eventsTotal, eventsXY] = await Promise.all([
-    store.count('soccer_matches'), store.count('soccer_matches', { eq: { status: 'finished' } }),
+    store.count('soccer_public_matches'), store.count('soccer_public_matches', { eq: { status: 'finished' } }),
     store.count('soccer_match_events'), store.count('soccer_match_events', { neq: { source_coordinate_system: 'none' } }),
   ]);
   // Matches with at least one located shot = coordinate-backed event ledger.
@@ -812,10 +812,10 @@ export async function coverage(store) {
   const lineups = await store.select('soccer_lineups', { columns: ['match_id'], order: 'match_id.asc' });
   const lineupMatches = [...new Set(lineups.map(r => r.match_id))];
   const compOf = new Map();
-  for (const part of chunkArr([...new Set([...shotMatches, ...lineupMatches])], 150)) for (const m of await store.select('soccer_matches', { columns: ['id', 'competition_id'], in: { id: part } })) compOf.set(m.id, m.competition_id);
+  for (const part of chunkArr([...new Set([...shotMatches, ...lineupMatches])], 150)) for (const m of await store.select('soccer_public_matches', { columns: ['id', 'competition_id'], in: { id: part } })) compOf.set(m.id, m.competition_id);
   const per = [];
   for (const c of comps) {
-    const [n, fin] = await Promise.all([store.count('soccer_matches', { eq: { competition_id: c.id } }), store.count('soccer_matches', { eq: { competition_id: c.id, status: 'finished' } })]);
+    const [n, fin] = await Promise.all([store.count('soccer_public_matches', { eq: { competition_id: c.id } }), store.count('soccer_public_matches', { eq: { competition_id: c.id, status: 'finished' } })]);
     if (!n) continue;
     per.push({ slug: c.slug, name: c.name, matches: n, finished: fin, coordinate_backed_matches: shotMatches.filter(id => compOf.get(id) === c.id).length, matches_with_lineups: lineupMatches.filter(id => compOf.get(id) === c.id).length });
   }
@@ -835,7 +835,7 @@ export async function sitemap(store, kind) {
     competitions: ['soccer_competitions', ['slug', 'updated_at'], {}, 'slug.asc'],
     teams: ['soccer_teams', ['slug', 'updated_at'], { eq: { status: 'active' } }, 'slug.asc'],
     players: ['soccer_players', ['slug', 'updated_at'], { eq: { status: 'active' } }, 'slug.asc'],
-    matches: ['soccer_matches', ['id', 'status', 'updated_at'], { in: { status: ['finished', 'scheduled'] } }, 'id.asc'],
+    matches: ['soccer_public_matches', ['id', 'status', 'updated_at'], { in: { status: ['finished', 'scheduled'] } }, 'id.asc'],
     news: ['soccer_articles', ['desk', 'slug', 'published_at', 'updated_at'], { eq: { status: 'published' } }, 'published_at.desc'],
   }[kind];
   if (kind === 'news') {
@@ -859,14 +859,14 @@ export async function teamDnaRoute(store, slug, q, env = null) {
   const [t] = await store.select('soccer_teams', { columns: ['id', 'slug', 'name'], eq: { slug, status: 'active' }, limit: 1 });
   if (!t) throw new NotFound(`team ${slug}`);
   const asOf = asOfOf(q);
-  const recent = [...await store.select('soccer_matches', { columns: ['competition_id', 'season_id', 'kickoff_at'], eq: { home_team_id: t.id, status: 'finished' }, order: 'kickoff_at.desc', limit: 20 }), ...await store.select('soccer_matches', { columns: ['competition_id', 'season_id', 'kickoff_at'], eq: { away_team_id: t.id, status: 'finished' }, order: 'kickoff_at.desc', limit: 20 })]
+  const recent = [...await store.select('soccer_public_matches', { columns: ['competition_id', 'season_id', 'kickoff_at'], eq: { home_team_id: t.id, status: 'finished' }, order: 'kickoff_at.desc', limit: 20 }), ...await store.select('soccer_public_matches', { columns: ['competition_id', 'season_id', 'kickoff_at'], eq: { away_team_id: t.id, status: 'finished' }, order: 'kickoff_at.desc', limit: 20 })]
     .filter(m => Date.parse(m.kickoff_at) < Date.parse(asOf)).sort((a, b) => Date.parse(b.kickoff_at) - Date.parse(a.kickoff_at));
   let comp = null;
   if (q.competition) comp = await competitionBySlug(store, q.competition);
   const pick = comp ? recent.find(m => m.competition_id === comp.id) : recent[0];
   if (!pick) return E({ team: { slug: t.slug, name: t.name }, as_of: asOf, profile: null }, { source: 'pbe', semantics: 'No finished matches before as_of.', coverage: COVERAGE.UNAVAILABLE });
   const [c] = await store.select('soccer_competitions', { columns: ['slug', 'name'], eq: { id: pick.competition_id }, limit: 1 });
-  const [s] = await store.select('soccer_seasons', { columns: ['label'], eq: { id: pick.season_id }, limit: 1 });
+  const [s] = await store.select('soccer_public_seasons', { columns: ['label'], eq: { id: pick.season_id }, limit: 1 });
   const { profiles: all, latest } = await seasonProfiles(store, env, pick.season_id, asOf, 'team'); const p = all.get(t.id);
   const D = { matches: latest ? [{ kickoff_at: latest }] : [] };
   return E({
@@ -886,12 +886,12 @@ export async function playerDnaRoute(store, slug, q, env = null) {
   const asOf = asOfOf(q);
   const lps = await store.select('soccer_lineup_players', { columns: ['lineup_id'], eq: { player_id: p.id }, order: 'lineup_id.asc' });
   const lus = lps.length ? await store.select('soccer_lineups', { columns: ['match_id'], in: { id: lps.map(x => x.lineup_id).slice(0, 150) } }) : [];
-  const ms = lus.length ? await store.select('soccer_matches', { columns: ['id', 'season_id', 'competition_id', 'kickoff_at'], in: { id: lus.map(x => x.match_id) } }) : [];
+  const ms = lus.length ? await store.select('soccer_public_matches', { columns: ['id', 'season_id', 'competition_id', 'kickoff_at'], in: { id: lus.map(x => x.match_id) } }) : [];
   const seasons = [...new Map(ms.filter(m => Date.parse(m.kickoff_at) < Date.parse(asOf)).sort((a, b) => Date.parse(b.kickoff_at) - Date.parse(a.kickoff_at)).map(m => [m.season_id, m])).values()].slice(0, 2);
   const out = [];
   for (const sm of seasons) {
     const [c] = await store.select('soccer_competitions', { columns: ['slug', 'name'], eq: { id: sm.competition_id }, limit: 1 });
-    const [s] = await store.select('soccer_seasons', { columns: ['label'], eq: { id: sm.season_id }, limit: 1 });
+    const [s] = await store.select('soccer_public_seasons', { columns: ['label'], eq: { id: sm.season_id }, limit: 1 });
     const { profiles: all } = await seasonProfiles(store, env, sm.season_id, asOf, 'player');
     const me = all.get(p.id); if (!me) continue;
     out.push({ competition: c, season: s?.label, players_compared: [...all.values()].filter(x => x.minutes_nominal >= MIN_MINUTES).length, eligible_for_percentiles: me.minutes_nominal >= MIN_MINUTES,
@@ -918,7 +918,7 @@ export async function dataHealth(store, env) {
     const [c] = await store.select('soccer_competitions', { columns: ['id', 'slug', 'name'], eq: { slug: rc.slug }, limit: 1 });
     if (!c) { out.push({ competition: rc.slug, missing: true }); continue; }
     const s = (await seasonsOf(store, c.id))[0];
-    const ms = await store.select('soccer_matches', { columns: ['id', 'status', 'kickoff_at', 'home_team_id', 'away_team_id', 'home_score'], eq: { season_id: s.id }, order: 'id.asc' });
+    const ms = await store.select('soccer_public_matches', { columns: ['id', 'status', 'kickoff_at', 'home_team_id', 'away_team_id', 'home_score'], eq: { season_id: s.id }, order: 'id.asc' });
     const past = ms.filter(m => Date.parse(m.kickoff_at) < now - 3 * 3600e3);
     const teams = new Set(ms.flatMap(m => [m.home_team_id, m.away_team_id]));
     const ids = ms.filter(m => m.status === 'finished').map(m => m.id);
@@ -981,8 +981,8 @@ export async function newsroomHealth(store, last, lastTick, now = Date.now()) {
   for (const rc of registryData.competitions.filter(c => c.news?.enabled)) {
     const [c] = await store.select('soccer_competitions', { columns: ['id'], eq: { slug: rc.slug }, limit: 1 });
     const s = c ? (await seasonsOf(store, c.id))[0] : null;
-    const [lastMatch] = s ? await store.select('soccer_matches', { columns: ['updated_at'], eq: { season_id: s.id }, order: 'updated_at.desc', limit: 1 }) : [];
-    const upcoming = s ? await store.count('soccer_matches', { eq: { season_id: s.id, status: 'scheduled' }, gte: { kickoff_at: new Date(now).toISOString() }, lte: { kickoff_at: new Date(now + 24 * 3600e3).toISOString() } }) : 0;
+    const [lastMatch] = s ? await store.select('soccer_public_matches', { columns: ['updated_at'], eq: { season_id: s.id }, order: 'updated_at.desc', limit: 1 }) : [];
+    const upcoming = s ? await store.count('soccer_public_matches', { eq: { season_id: s.id, status: 'scheduled' }, gte: { kickoff_at: new Date(now).toISOString() }, lte: { kickoff_at: new Date(now + 24 * 3600e3).toISOString() } }) : 0;
     const [newest] = await store.select('soccer_articles', { columns: ['headline', 'story_class', 'published_at'], eq: { status: 'published', desk: rc.desk }, order: 'published_at.desc', limit: 1 });
     const holds = {}; for (const a of held.filter(x => x.desk === rc.desk)) for (const r of a.hold_reasons || []) holds[r] = (holds[r] || 0) + 1;
     const run = last?.competitions?.[rc.slug] || null;
@@ -1022,7 +1022,7 @@ export async function newsroomHealth(store, last, lastTick, now = Date.now()) {
 // entry and the profile stays time-safe. Current seasons: 6 h TTL (late lineups, retried
 // components, corrections); historical seasons: 30 days.
 export async function seasonProfiles(store, env, seasonId, asOf, kind) {
-  const [last] = await store.select('soccer_matches', { columns: ['kickoff_at'], eq: { season_id: seasonId, status: 'finished' }, lte: { kickoff_at: asOf }, order: 'kickoff_at.desc', limit: 2 })
+  const [last] = await store.select('soccer_public_matches', { columns: ['kickoff_at'], eq: { season_id: seasonId, status: 'finished' }, lte: { kickoff_at: asOf }, order: 'kickoff_at.desc', limit: 2 })
     .then(rows => rows.filter(r => Date.parse(r.kickoff_at) < Date.parse(asOf)));
   const cutoff = last ? new Date(last.kickoff_at).toISOString() : 'none';
   const key = `dna:${DNA_VERSION}:${kind}:${seasonId}:${cutoff}`;

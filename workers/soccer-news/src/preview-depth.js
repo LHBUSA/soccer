@@ -199,7 +199,7 @@ export function evidenceDepth(d) {
 export async function loadPreviewDepth(store, { match, groups = {}, groupTable = null, roundFixtures = [], playersInForm = [] }) {
   const kick = new Date(match.kickoff_at).toISOString();
   const cols = ['id', 'competition_id', 'season_id', 'stage_id', 'kickoff_at', 'status', 'home_team_id', 'away_team_id', 'home_score', 'away_score'];
-  const teamMatches = async tid => (await Promise.all(['home_team_id', 'away_team_id'].map(k => store.select('soccer_matches', { columns: cols, eq: { [k]: tid }, lte: { kickoff_at: kick }, order: 'kickoff_at.desc', limit: 40 })))).flat()
+  const teamMatches = async tid => (await Promise.all(['home_team_id', 'away_team_id'].map(k => store.select('soccer_public_matches', { columns: cols, eq: { [k]: tid }, lte: { kickoff_at: kick }, order: 'kickoff_at.desc', limit: 40 })))).flat()
     .map(m => ({ ...m, kickoff_at: new Date(m.kickoff_at).toISOString() })).filter(valid).sort(byKickDesc);
   const [H, A] = [match.home_team_id, match.away_team_id];
   const [hm, am] = await Promise.all([teamMatches(H), teamMatches(A)]);
@@ -248,7 +248,7 @@ export async function loadPreviewDepth(store, { match, groups = {}, groupTable =
   const earliest = [...hm, ...am].map(m => m.kickoff_at).sort()[0] || null;
   const h2h = headToHead(meetings, H, A, { coverageStart: earliest ? earliest.slice(0, 4) : null });
   const sameSeason = meetings.find(m => m.season_id === match.season_id) || null;
-  const next = async tid => (await Promise.all(['home_team_id', 'away_team_id'].map(k => store.select('soccer_matches', { columns: cols, eq: { [k]: tid, status: 'scheduled' }, gte: { kickoff_at: kick }, order: 'kickoff_at.asc', limit: 2 })))).flat().filter(x => x.id !== match.id && Date.parse(x.kickoff_at) > Date.parse(kick)).sort((a, b) => Date.parse(a.kickoff_at) - Date.parse(b.kickoff_at))[0] || null;
+  const next = async tid => (await Promise.all(['home_team_id', 'away_team_id'].map(k => store.select('soccer_public_matches', { columns: cols, eq: { [k]: tid, status: 'scheduled' }, gte: { kickoff_at: kick }, order: 'kickoff_at.asc', limit: 2 })))).flat().filter(x => x.id !== match.id && Date.parse(x.kickoff_at) > Date.parse(kick)).sort((a, b) => Date.parse(a.kickoff_at) - Date.parse(b.kickoff_at))[0] || null;
   const [nh, na] = await Promise.all([next(H), next(A)]);
   const nextRef = async (n, tid) => { if (!n) return null; const o = n.home_team_id === tid ? n.away_team_id : n.home_team_id; const [t] = await store.select('soccer_teams', { columns: ['id', 'slug', 'name'], eq: { id: o }, limit: 1 }); return { match_id: n.id, date: new Date(n.kickoff_at).toISOString().slice(0, 10), venue: n.home_team_id === tid ? 'home' : 'away', opponent: t ? { id: t.id, name: t.name, slug: t.slug } : null, competition: comps.get(n.competition_id) || null }; };
   const withCampaign = (list, tid) => ({ ...depthOf(list, tid), campaign: campaignRecord(campaign[tid === H ? 'home' : 'away'], tid) });

@@ -1,5 +1,5 @@
 {
-  "algo_version": "soccer-algo-v2.0.0",
+  "algo_version": "soccer-algo-v2.1.0",
   "status": "official",
   "status_reason": "Markets passing the pre-registered holdout gate: away_to_score >= 0.8.",
   "protocol_sha256": "356a78a3fdd235015573102759b99579499c0a36a926c7d95f4b4f0e13e65a3d",

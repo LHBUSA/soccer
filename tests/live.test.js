@@ -9,7 +9,7 @@ test('live lane: source clock verbatim, plays every tick, no ledger mid-match, o
   const store = await openPglite(); await applyMigrations(store);
   const id = n => `00000000-0000-5000-8000-0000000f00${n}`;
   await store.insert('soccer_competitions', [{ id: id(10), slug: 'mls', name: 'MLS', comp_type: 'league' }]);
-  await store.insert('soccer_seasons', [{ id: id(11), competition_id: id(10), label: '2026' }]);
+  await store.insert('soccer_seasons', [{ id: id(11), competition_id: id(10), label: '2026', publication_state: 'published', published_at: '2026-01-01T00:00:00Z' }]);
   await store.insert('soccer_teams', [{ id: id(12), slug: 'a', name: 'A', team_type: 'club', founding_provider: 'espn', founding_external_id: '1' }, { id: id(13), slug: 'b', name: 'B', team_type: 'club', founding_provider: 'espn', founding_external_id: '2' }]);
   await store.insert('soccer_team_external_ids', [{ provider: 'espn', external_id: '1', team_id: id(12), method: 'founding', evidence: 't' }, { provider: 'espn', external_id: '2', team_id: id(13), method: 'founding', evidence: 't' }]);
   await store.insert('soccer_matches', [{ id: id(20), competition_id: id(10), season_id: id(11), kickoff_at: '2026-09-27T23:00:00Z', home_team_id: id(12), away_team_id: id(13), status: 'scheduled', result_provider: 'espn' }]);

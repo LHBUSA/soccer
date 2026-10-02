@@ -30,7 +30,7 @@ const U = n => `00000000-0000-5000-8000-${String(n).padStart(12, '0')}`;
 async function seed() {
   const store = await openPglite(); await applyMigrations(store);
   await store.insert('soccer_competitions', [{ id: U(1), slug: 'uefa-nations-league', name: 'UEFA Nations League', comp_type: 'international_tournament' }]);
-  await store.insert('soccer_seasons', [{ id: U(2), competition_id: U(1), label: '2026/27' }]);
+  await store.insert('soccer_seasons', [{ id: U(2), competition_id: U(1), label: '2026/27', publication_state: 'published', published_at: '2026-01-01T00:00:00Z' }]);
   await store.insert('soccer_stages', [{ id: U(3), season_id: U(2), name: 'League phase', stage_type: 'league', stage_order: 1 }]);
   const teams = ['France', 'Italy', 'Belgium', 'Israel', 'Malta', 'Andorra'].map((name, i) => ({ id: U(10 + i), slug: name.toLowerCase(), name, team_type: 'national', founding_provider: 'espn', founding_external_id: String(100 + i) }));
   await store.insert('soccer_teams', teams);

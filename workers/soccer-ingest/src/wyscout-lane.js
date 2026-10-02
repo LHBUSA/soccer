@@ -71,7 +71,7 @@ export async function ingestWyscoutSeason(store, { registry, competitionExternal
   const [existingSeason] = [...(await resolveMany(store, 'season', P, [sExt])).values()];
   const seasonId = existingSeason || mintId('season', P, sExt);
   const sl = seasonLabel(matches.map(m => m.kickoff_utc));
-  await syncRows(store, { table: 'soccer_seasons', key: ['id'], rows: [{ id: seasonId, competition_id: compId, label: sl.label, start_date: sl.start_date, end_date: sl.end_date }] });
+  await syncRows(store, { table: 'soccer_seasons', key: ['id'], compare: ['competition_id', 'label', 'start_date', 'end_date'], rows: [{ id: seasonId, competition_id: compId, label: sl.label, start_date: sl.start_date, end_date: sl.end_date, publication_state: 'published', published_at: new Date().toISOString(), source_families: ['wyscout_figshare'], publication_note: 'Wyscout public dataset season' }] });
   await syncRows(store, { table: 'soccer_season_external_ids', key: ['provider', 'external_id'], rows: [{ provider: P, external_id: sExt, season_id: seasonId, method: 'founding', evidence: `wyscout seasonId ${sExt}`, capture_id: captures.matches }], compare: ['season_id'] });
   const stageId = childId('stage', seasonId, 'regular-season');
   await syncRows(store, { table: 'soccer_stages', key: ['id'], rows: [{ id: stageId, season_id: seasonId, name: 'Regular Season', stage_type: regComp.comp_type === 'league' ? 'league' : 'group', stage_order: 1 }] });

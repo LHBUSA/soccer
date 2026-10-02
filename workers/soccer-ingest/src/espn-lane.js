@@ -31,7 +31,10 @@ async function selectIn(store, table, col, values, opts = {}) {
   return out;
 }
 
-export async function ensureCompetitionSeason(store, { comp, year, types = null }) {
+// history: a season created by a HISTORY lane (espn_<comp>@<year>) is born 'held' (migration 20261002001400) and
+// becomes public only by an explicit promotion; a current-season lane creates it 'published'. Existing seasons are
+// never touched here (insert-only).
+export async function ensureCompetitionSeason(store, { comp, year, types = null, history = false }) {
   const compId = competitionId(comp);
   if (!(await store.select('soccer_competitions', { columns: ['id'], eq: { id: compId }, limit: 1 })).length) {
     await syncRows(store, { table: 'soccer_competitions', key: ['id'], rows: [{ id: compId, slug: comp.slug, name: comp.name, comp_type: comp.comp_type, gender: comp.gender, country_code: comp.country_code, tier: comp.tier }] });
@@ -43,7 +46,7 @@ export async function ensureCompetitionSeason(store, { comp, year, types = null 
     const label = espn.seasonLabel(year, comp.season_format);
     const rows = await store.select('soccer_seasons', { columns: ['id'], eq: { competition_id: compId, label }, limit: 1 });
     seasonId = rows[0]?.id || mintId('season', P, sExt);
-    if (!rows.length) await syncRows(store, { table: 'soccer_seasons', key: ['id'], rows: [{ id: seasonId, competition_id: compId, label, start_date: null, end_date: null }] });
+    if (!rows.length) await syncRows(store, { table: 'soccer_seasons', key: ['id'], compare: ['competition_id', 'label'], rows: [{ id: seasonId, competition_id: compId, label, start_date: null, end_date: null, publication_state: history ? 'held' : 'published', published_at: history ? null : new Date().toISOString(), source_families: ['espn'], publication_note: history ? 'historical backfill (ESPN history lane): held until Pass A acceptance' : 'current season (ESPN lane)' }] });
     await syncRows(store, { table: 'soccer_season_external_ids', key: ['provider', 'external_id'], compare: ['season_id'], rows: [{ provider: P, external_id: sExt, season_id: seasonId, method: rows.length ? 'reviewed' : 'founding', evidence: `competition ${comp.slug} season label ${label}`, capture_id: null }] });
   }
   const stageId = childId('stage', seasonId, comp.comp_type === 'league' ? 'regular-season' : 'espn-all');
@@ -68,7 +71,7 @@ export async function ensureCompetitionSeason(store, { comp, year, types = null 
 
 // Team identity for the season's ESPN fixtures.
 export async function resolveEspnTeams(store, { comp, year, cursor, client }) {
-  const { seasonId } = await ensureCompetitionSeason(store, { comp, year });
+  const { seasonId } = await ensureCompetitionSeason(store, { comp, year, history: !!cursor?.history });
   const fixtures = Object.entries(cursor.fixtures).map(([id, f]) => ({ id, date: f.d.slice(0, 10), home: f.h, away: f.a }));
   const espnTeams = [...new Set(fixtures.flatMap(f => [f.home, f.away]))];
   const teamMap = await resolveMany(store, 'team', P, espnTeams);
@@ -135,7 +138,7 @@ export async function resolveEspnTeams(store, { comp, year, cursor, client }) {
 // Fixtures -> canonical matches. Attach to an existing canonical match (same
 // season, same home/away) instead of creating a duplicate; found only when none.
 export async function upsertEspnFixtures(store, { comp, year, cursor, teamMap, now = Date.now() }) {
-  const { compId, seasonId, stageId, playoffStageId, typeStageIds } = await ensureCompetitionSeason(store, { comp, year, types: cursor.types });
+  const { compId, seasonId, stageId, playoffStageId, typeStageIds } = await ensureCompetitionSeason(store, { comp, year, types: cursor.types, history: !!cursor?.history });
   const stageFor = f => (cursor.types?.[f.stype]?.role === 'playoff' ? typeStageIds.get(String(f.stype)) || playoffStageId || stageId : stageId);
   const ids = Object.keys(cursor.fixtures).filter(id => teamMap.has(cursor.fixtures[id].h) && teamMap.has(cursor.fixtures[id].a));
   const known = await resolveMany(store, 'match', P, ids);
@@ -513,7 +516,7 @@ export async function recordEnrichment(store, { matchId, outcomes, now = Date.no
 // Retry components that are unavailable/empty and due, for one competition season.
 export async function retryEnrichment(store, { comp, league, year, cursor, teamMap, client, now = Date.now(), maxMatches = 6 }) {
   const out = { due: 0, retried: 0, completed: 0, still_missing: 0 };
-  const { seasonId } = await ensureCompetitionSeason(store, { comp, year });
+  const { seasonId } = await ensureCompetitionSeason(store, { comp, year, history: !!cursor?.history });
   const seasonMatches = new Set((await store.select('soccer_matches', { columns: ['id'], eq: { season_id: seasonId } })).map(m => m.id));
   const due = (await store.select('soccer_match_enrichment', { columns: ['match_id', 'component', 'attempts'], eq: { provider: P }, in: { status: ['unavailable', 'empty'] }, lte: { next_retry_at: new Date(now).toISOString() }, order: 'next_retry_at.asc' }))
     .filter(r => seasonMatches.has(r.match_id) && r.attempts < MAX_ENRICH_ATTEMPTS);

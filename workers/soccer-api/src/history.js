@@ -25,9 +25,9 @@ async function selectIds(store, table, ids, columns) {
 
 export async function historyData(store, teamId, { asOf = new Date().toISOString(), env = null } = {}) {
   const cols = ['id', 'competition_id', 'season_id', 'stage_id', 'kickoff_at', 'status', 'home_team_id', 'away_team_id', 'home_score', 'away_score', 'result_provider', 'updated_at'];
-  const [h, a] = await Promise.all(['home_team_id', 'away_team_id'].map(k => store.select('soccer_matches', { columns: cols, eq: { [k]: teamId }, lte: { kickoff_at: asOf }, order: 'kickoff_at.asc,id.asc' })));
+  const [h, a] = await Promise.all(['home_team_id', 'away_team_id'].map(k => store.select('soccer_public_matches', { columns: cols, eq: { [k]: teamId }, lte: { kickoff_at: asOf }, order: 'kickoff_at.asc,id.asc' })));
   const mine = [...new Map([...h, ...a].filter(m => Date.parse(m.kickoff_at) < Date.parse(asOf)).map(m => [m.id, m])).values()];
-  const [seasons, comps] = await Promise.all([selectIds(store, 'soccer_seasons', mine.map(m => m.season_id), ['id', 'competition_id', 'label', 'start_date', 'end_date']), selectIds(store, 'soccer_competitions', mine.map(m => m.competition_id), ['id', 'slug', 'name', 'comp_type'])]);
+  const [seasons, comps] = await Promise.all([selectIds(store, 'soccer_public_seasons', mine.map(m => m.season_id), ['id', 'competition_id', 'label', 'start_date', 'end_date']), selectIds(store, 'soccer_competitions', mine.map(m => m.competition_id), ['id', 'slug', 'name', 'comp_type'])]);
   const byComp = new Map(comps.map(c => [c.id, c]));
   const rows = [];
   // Four independent seasons at a time, bounded rather than 23 sequential round trips.
@@ -49,7 +49,7 @@ export async function historyData(store, teamId, { asOf = new Date().toISOString
     const agg = aggregateResults(done, teamId, meaningful);
     let finish = null; let groupPosition = null;
     if (leagueIds.length && leagueDone.length) {
-      const full = await store.select('soccer_matches', { columns: cols, eq: { season_id: s.id, competition_id: s.competition_id }, in: { stage_id: leagueIds }, lte: { kickoff_at: asOf }, order: 'id.asc' });
+      const full = await store.select('soccer_public_matches', { columns: cols, eq: { season_id: s.id, competition_id: s.competition_id }, in: { stage_id: leagueIds }, lte: { kickoff_at: asOf }, order: 'id.asc' });
       const computed = computeTable(full.filter(valid)); const byId = new Map(computed.map(r => [r.team_id, r]));
       for (const g of groups) {
         const source = await store.select('soccer_source_standings', { columns: ['team_id', 'rank', 'played', 'won', 'drawn', 'lost', 'goals_for', 'goals_against', 'points', 'deductions'], eq: { group_id: g.id, provider: 'espn' } });

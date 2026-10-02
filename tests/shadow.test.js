@@ -34,7 +34,7 @@ async function world() {
   const store = await openPglite();
   await applyMigrations(store);
   await store.query(`insert into soccer_competitions (id, slug, name, comp_type) values ($1,'bundesliga','Bundesliga','league')`, [COMP]);
-  await store.query(`insert into soccer_seasons (id, competition_id, label) values ($1,$3,'2025/26'), ($2,$3,'2026/27')`, [S25, S26, COMP]);
+  await store.query(`insert into soccer_seasons (id, competition_id, label, publication_state, published_at) values ($1,$3,'2025/26','published',now()), ($2,$3,'2026/27','published',now())`, [S25, S26, COMP]);
   await store.query(`insert into soccer_stages (id, season_id, name, stage_type) values ($1,$4,'Regular Season','league'), ($2,$5,'Regular Season','league'), ($3,$5,'Relegation Playoff','playoff')`, [L25, L26, PO, S25, S26]);
   for (const [i, t] of TEAMS.entries()) await store.query(`insert into soccer_teams (id, slug, name, team_type, founding_provider, founding_external_id) values ($1,$2,$2,'club','test',$3)`, [t, `team-${i}`, String(i)]);
   // Deterministic double round-robin: 2025/26 complete (weekly), 2026/27 rounds 1-20 before NOW.

@@ -14,7 +14,7 @@ async function seed(store, { currentKickoffs }) {
   await store.insert('soccer_teams', [10, 11, 12, 13].map(n => ({ id: U(n), slug: `club-${n}`, name: `Club ${n}`, short_name: `C${n}`, team_type: 'club', founding_provider: 'espn', founding_external_id: String(n) })));
   // two historical seasons backfilled today + the current season
   const seasons = [[20, '2001/02'], [21, '2012/13'], [22, '2026/27']];
-  await store.insert('soccer_seasons', seasons.map(([n, label]) => ({ id: U(n), competition_id: U(1), label })));
+  await store.insert('soccer_seasons', seasons.map(([n, label]) => ({ id: U(n), competition_id: U(1), label, publication_state: 'published', published_at: '2026-01-01T00:00:00Z' })));
   await store.insert('soccer_stages', seasons.map(([n]) => ({ id: U(n + 10), season_id: U(n), name: 'Regular Season', stage_type: 'league', stage_order: 1 })));
   const m = (id, season, day, h, a, hs, as) => ({ id: U(id), competition_id: U(1), season_id: U(season), stage_id: U(season + 10), kickoff_at: day, status: 'finished', home_team_id: U(h), away_team_id: U(a), home_score: hs, away_score: as, result_provider: 'espn' });
   const rows = [];

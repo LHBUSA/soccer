@@ -32,7 +32,24 @@ let rowsWithPoint = 0; for (let i = 0; i < ids.length; i += 40) rowsWithPoint +=
 // published articles about these matches (frozen visuals may carry shot locations: reported, not rewritten here)
 const arts = []; for (let i = 0; i < ids.length; i += 100) arts.push(...await get(`soccer_news_events?select=id,match_id,story_class,status&match_id=in.(${ids.slice(i, i + 100).join(',')})`));
 const out = { at: new Date().toISOString(), mode: APPLY ? 'apply' : 'dry_run', matches: ids.length, by_season: bySeason, kickoff_range: [matches.map(m => m.kickoff_at).sort()[0], matches.map(m => m.kickoff_at).sort().at(-1)], event_rows_with_canonical_point: rowsWithPoint, news_events_on_these_matches: arts.length, news_by_status: arts.reduce((o, a) => ({ ...o, [a.status]: (o[a.status] || 0) + 1 }), {}) };
+// Rows the write will touch (ESPN rows of these matches still labelled espn_pct_v1), with their current values.
+const snapshot = [];
+for (const id of ids) {
+  let o = 0;
+  for (;;) { const rows = await get(`soccer_match_events?select=id,match_id,x_m,y_m,end_x_m,end_y_m,source_coordinate_system&match_id=eq.${id}&source_family=eq.espn&source_coordinate_system=eq.espn_pct_v1&order=id.asc&limit=1000&offset=${o}`); snapshot.push(...rows); if (rows.length < 1000) break; o += 1000; }
+}
+out.rows_to_patch = snapshot.length;
+out.rows_to_patch_with_point = snapshot.filter(x => x.x_m !== null).length;
 if (APPLY) {
+  // Reconcile with the committed dry run before any write; a moving target refuses.
+  const dry = JSON.parse(readFileSync(`docs/evidence/storage/espn-unit-coords-${new Date().toISOString().slice(0, 10)}-dry_run.json`, 'utf8'));
+  if (dry.matches !== ids.length || dry.event_rows_with_canonical_point !== out.rows_to_patch_with_point) throw new Error(`REFUSED: dry run ${dry.matches}/${dry.event_rows_with_canonical_point} != now ${ids.length}/${out.rows_to_patch_with_point}`);
+  // Rollback snapshot (every touched row's prior values), written BEFORE the first PATCH.
+  const { gzipSync } = await import('node:zlib');
+  mkdirSync('docs/evidence/storage', { recursive: true });
+  const snapPath = `docs/evidence/storage/espn-unit-coords-rollback-${new Date().toISOString().slice(0, 10)}.json.gz`;
+  writeFileSync(snapPath, gzipSync(JSON.stringify({ at: new Date().toISOString(), restore: 'PATCH soccer_match_events?id=eq.<id> with { x_m, y_m, end_x_m, end_y_m, source_coordinate_system } from each row', rows: snapshot })));
+  out.rollback_snapshot = snapPath;
   let patched = 0;
   for (const id of ids) {
     const r = await fetch(`${U}/rest/v1/soccer_match_events?match_id=eq.${id}&source_family=eq.espn&source_coordinate_system=eq.espn_pct_v1`, { method: 'PATCH', headers: { ...h, 'content-type': 'application/json', prefer: 'return=minimal,count=exact' }, body: JSON.stringify({ x_m: null, y_m: null, end_x_m: null, end_y_m: null, source_coordinate_system: 'espn_unit_unverified' }) });

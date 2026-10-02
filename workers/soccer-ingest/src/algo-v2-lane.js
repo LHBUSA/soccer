@@ -1,4 +1,4 @@
-// SOCCER ALGO V2 lane (soccer-algo-v2.0.0, frozen spec algo-v2.json, national teams). UEFA NATIONS LEAGUE GROUP /
+// SOCCER ALGO V2 lane (soccer-algo-v2.1.0 = v2.0.0 model with a frozen input membership, frozen spec algo-v2.json, national teams). UEFA NATIONS LEAGUE GROUP /
 // LEAGUE-PHASE MATCHES ONLY. Off unless ALGO_V2 = 'on' AND the spec's status (decided by the committed research,
 // never here) is 'forecast' or 'official'. Separate algo_version, separate record: V1 is never read or written.
 //
@@ -11,6 +11,7 @@
 //   2. settle: same rules as V1 (canonical final score; cancelled/abandoned/moved > 48 h -> void).
 // The ledger triggers (migration 1200) enforce lock, immutability and write-once settlement.
 import spec from './algo-v2.json' with { type: 'json' };
+import dataset from './algo-v2-dataset.json' with { type: 'json' };
 import { ntPredict, marketsFrom } from '../../../scripts/research/national-core.mjs';
 import { payloadKey } from '../../shared/archive.js';
 import { chunkArr } from './store.js';
@@ -19,6 +20,11 @@ import { sortInputs, inputHash } from './shadow-lane.js';
 
 export const ALGO_V2_LANE = 'algo_v2_international';
 export const ALGO_V2_SPEC = spec;
+// FROZEN INPUT MEMBERSHIP (soccer-algo-v2.1.0): a match is a model input candidate only if its id was frozen with the
+// dataset or it kicks off after frozen_at. A historical match backfilled later is neither, whatever its kickoff.
+const FROZEN = { ids: new Set(dataset.match_ids), at: Date.parse(dataset.frozen_at) };
+export const v2Member = (m, frozen = FROZEN) => frozen.ids.has(m.id) || Date.parse(m.kickoff_at) > frozen.at;
+export const ALGO_V2_DATASET = dataset;
 const DAY = 864e5;
 const CADENCE_MS = 55 * 60e3;
 const NO_RESULT_EXPECTED = new Set(['postponed', 'cancelled', 'abandoned']);
@@ -73,7 +79,7 @@ export async function neutralMap(store, storage, kv, ids) {
 }
 
 export async function runAlgoV2(ctx) {
-  const { store, storage, kv = null, now = Date.now(), force = false, state = {}, env = {} } = ctx;
+  const { store, storage, kv = null, now = Date.now(), force = false, state = {}, env = {}, frozen = FROZEN } = ctx; // frozen: tests only
   if (env.ALGO_V2 !== 'on') return { skipped: 'algo_v2_off' };
   if (!['forecast', 'official'].includes(spec.status)) return { skipped: `algo_v2_status_${spec.status}` };
   if (!force && state.last_success_at && now - Date.parse(state.last_success_at) < CADENCE_MS) return { skipped: 'cadence' };
@@ -88,6 +94,7 @@ export async function runAlgoV2(ctx) {
   const window = (5 * spec.model.half_life_days + 2) * DAY;
   let matches = [];
   for (const c of comps) matches = matches.concat(await store.select('soccer_matches', { columns: ['id', 'competition_id', 'season_id', 'stage_id', 'kickoff_at', 'status', 'home_team_id', 'away_team_id', 'home_score', 'away_score'], eq: { competition_id: c.id }, gte: { kickoff_at: new Date(now - window).toISOString() }, lte: { kickoff_at: new Date(now + spec.lead_time.issue_window_days * DAY).toISOString() } }));
+  matches = matches.filter(m => v2Member(m, frozen));
   const past = matches.filter(m => Date.parse(m.kickoff_at) < now);
   const unavailable = past.filter(m => !NO_RESULT_EXPECTED.has(m.status) && (m.status !== 'finished' || m.home_score === null || m.away_score === null));
   // Research identity rule (protocol data.identity): a match with a side whose ESPN record said isNational=false is

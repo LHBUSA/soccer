@@ -35,7 +35,7 @@ async function started(store) {
   return s?.at || null;
 }
 async function withTeams(store, rows) {
-  const ms = rows.length ? await store.select('soccer_matches', { columns: ['id', 'home_team_id', 'away_team_id'], in: { id: [...new Set(rows.map(r => r.match_id))] } }) : [];
+  const ms = rows.length ? await store.select('soccer_public_matches', { columns: ['id', 'home_team_id', 'away_team_id'], in: { id: [...new Set(rows.map(r => r.match_id))] } }) : [];
   const by = new Map(ms.map(m => [m.id, m]));
   const joined = rows.map(r => ({ ...r, home_team_id: by.get(r.match_id)?.home_team_id, away_team_id: by.get(r.match_id)?.away_team_id }));
   return { joined, teams: await teamsById(store, joined.flatMap(r => [r.home_team_id, r.away_team_id])) };
