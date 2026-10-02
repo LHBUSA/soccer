@@ -141,8 +141,25 @@ test('history lane: a pinned past season never reads the league (current season)
   assert.equal(out.cursor.season_year, 2026); assert.equal(out.cursor.history, true);
   assert.equal(out.results[0].matches_detailed, 1);
   const { historyLane } = await import('../workers/soccer-ingest/src/index.js');
-  assert.deepEqual(historyLane('espn_uefa_nations_league@2018'), { lane: { name: 'espn_uefa_nations_league', competition: 'uefa-nations-league' }, year: 2018 });
+  assert.deepEqual(historyLane('espn_uefa_nations_league@2018'), { lane: { name: 'espn_uefa_nations_league', competition: 'uefa-nations-league' }, year: 2018, depth: 'full' });
+  assert.deepEqual(historyLane('espn_uefa_nations_league@2018:results'), { lane: { name: 'espn_uefa_nations_league', competition: 'uefa-nations-league' }, year: 2018, depth: 'results' }, 'PASS A lane');
+  assert.equal(historyLane('espn_uefa_nations_league@2018:events'), null);
   assert.equal(historyLane('espn_uefa_nations_league'), null); assert.equal(historyLane('espn_nope@2018'), null);
+  await store.close();
+});
+
+test('PASS A (results-only history lane): season born held, final score stored, no roster/statistics/plays read', async () => {
+  const store = await openPglite(); await applyMigrations(store);
+  const w = world();
+  const out = await runEspnLane(lane, { store, storage: w.storage, registry: w.registry, areas: { areas: {}, aliases: {} }, state: emptyLaneState(`${lane.name}@2026:results`), now: NOW, fetcher: w.fetcher, budget: 200, force: true, year: 2026, depth: 'results' });
+  assert.equal(out.results[0].matches_detailed, 1);
+  assert.equal(w.calls.filter(u => /\/(roster|statistics|plays)/.test(u)).length, 0, 'skeleton only');
+  const [season] = await store.select('soccer_seasons', { columns: ['publication_state', 'source_families'] });
+  assert.equal(season.publication_state, 'held');
+  const ms = await store.select('soccer_matches', { columns: ['status', 'home_score', 'away_score'] });
+  assert.ok(ms.some(m => m.status === 'finished' && Number.isInteger(m.home_score)));
+  assert.equal((await store.select('soccer_public_matches', { columns: ['id'] })).length, 0, 'invisible until accepted');
+  assert.equal((await store.select('soccer_lineups', { columns: ['id'] })).length, 0);
   await store.close();
 });
 
