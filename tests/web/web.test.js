@@ -47,6 +47,10 @@ test('public soccer reads bypass the Vercel function; authenticated Pro stays pr
   assert.equal(bySource('/api/soccer/live')?.destination, 'https://soccer-api.sales-fd3.workers.dev/v1/live');
   assert.equal(bySource('/api/soccer/media/:sha')?.destination, 'https://soccer-api.sales-fd3.workers.dev/v1/media/:sha');
   assert.equal(bySource('/api/soccer/pro/:path*')?.destination, '/api/soccer?path=pro/:path*');
+  // Soccer PBE Picks: V1 and V2 each reach the Worker through their own exact routes; no algo wildcard exists
+  assert.equal(bySource('/api/soccer/algo/:kind(picks|record|research)')?.destination, 'https://soccer-api.sales-fd3.workers.dev/v1/algo/:kind');
+  assert.equal(bySource('/api/soccer/algo/v2/:kind(picks|record|research)')?.destination, 'https://soccer-api.sales-fd3.workers.dev/v1/algo/v2/:kind');
+  assert.ok(!rw.some(x => /^\/api\/soccer\/algo\/.*(:path|\*)/.test(x.source)), 'no wildcard algo rewrite');
   const anon = bySource('/api/soccer/pro/access');
   assert.equal(anon?.destination, '/soccer-free-access.json');
   assert.deepEqual(anon?.missing, [{ type: 'cookie', key: 'pbe_session' }]);
