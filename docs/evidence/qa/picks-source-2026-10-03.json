@@ -1,0 +1,61 @@
+{
+  "generated_at": "2026-10-03T15:12:37.252Z",
+  "base": "https://soccer.propbetedge.ai",
+  "results": [
+    {
+      "source_coverage_headings": 1,
+      "source_cards": 1,
+      "lanes": [
+        "Bundesliga — Soccer Algo V1",
+        "International — Soccer Algo V2"
+      ],
+      "has_v1_text": true,
+      "has_v2_text": true,
+      "records_separate": true,
+      "ledger_rule": true,
+      "source_row": true,
+      "not_stated": false,
+      "updated_row": false,
+      "overflow_x": false,
+      "width": 390,
+      "pass": true
+    },
+    {
+      "source_coverage_headings": 1,
+      "source_cards": 1,
+      "lanes": [
+        "Bundesliga — Soccer Algo V1",
+        "International — Soccer Algo V2"
+      ],
+      "has_v1_text": true,
+      "has_v2_text": true,
+      "records_separate": true,
+      "ledger_rule": true,
+      "source_row": true,
+      "not_stated": false,
+      "updated_row": false,
+      "overflow_x": false,
+      "width": 768,
+      "pass": true
+    },
+    {
+      "source_coverage_headings": 1,
+      "source_cards": 1,
+      "lanes": [
+        "Bundesliga — Soccer Algo V1",
+        "International — Soccer Algo V2"
+      ],
+      "has_v1_text": true,
+      "has_v2_text": true,
+      "records_separate": true,
+      "ledger_rule": true,
+      "source_row": true,
+      "not_stated": false,
+      "updated_row": false,
+      "overflow_x": false,
+      "width": 1440,
+      "pass": true
+    }
+  ],
+  "pass": true
+}
