@@ -10,7 +10,8 @@ import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { dateTime } from '../lib/format.js';
 import { empty, link, mergeMeta, sectionHead, sourcePanel } from '../components/ui.js';
-import { AVM_ALGO_MODEL, byDeadline, loadAlgoVsMarket, trackRecordAvmHtml } from '../data/kalshi.js';
+import { AVM_ALGO_MODEL, boardEntry, boardWithin, byDeadline, loadAlgoVsMarket, trackRecordAvmHtml } from '../data/kalshi.js';
+import { findAvmRow, pickMarketSlot } from '../lib/pick-market.js';
 
 // Longest the track record waits for the Algo vs Market read (it runs in parallel with the record reads).
 export const AVM_WAIT_MS = 2500;
@@ -57,11 +58,20 @@ function policyBlock(m, pol) {
     <p class="muted">Spec hash <code>${esc(pol.spec_hash.slice(0, 16))}…</code> · model hash <code>${esc(pol.model_hash.slice(0, 16))}…</code></p></div>`;
 }
 
-const pickRow = (m, showModel) => p => `<tr>${showModel ? `<td>${modelChip(m)}</td>` : ''}<td class="num">#${esc(p.record_no)}</td><td class="tm">${fixture(p)}<br><span class="muted">${esc(dateTime(p.kickoff_at))}</span></td>
-    <td><b>${esc(p.label)}</b><br><span class="muted">${esc(p.market_name)}</span></td><td class="num">${pc(p.model_probability)}<br><span class="muted small">threshold ${pc(p.threshold, 1)}</span></td>
+// Kalshi for an Official Pick: the SAME match (canonical match UUID) and the SAME side (home / draw / away), only for
+// the match-result market (Kalshi's 90-minute result contract; home-to-score has no comparable market). A settled or
+// kicked-off pick shows only stored market evidence; the frozen Algo vs Market comparison when one exists. '' otherwise.
+export function pickKalshi(p, avm = null, now = Date.now()) {
+  if (!p || p.market !== '1x2' || !['home', 'draw', 'away'].includes(p.selection) || !p.match_id) return '';
+  const settled = p.status !== 'pending' || Date.parse(p.kickoff_at || '') <= now;
+  return pickMarketSlot(boardEntry(p.match_id), p.selection, { settled, avmRow: findAvmRow(avm, p.match_id, p.selection) });
+}
+
+const pickRow = (m, showModel, avm) => p => `<tr>${showModel ? `<td>${modelChip(m)}</td>` : ''}<td class="num">#${esc(p.record_no)}</td><td class="tm">${fixture(p)}<br><span class="muted">${esc(dateTime(p.kickoff_at))}</span></td>
+    <td><b>${esc(p.label)}</b><br><span class="muted">${esc(p.market_name)}</span>${pickKalshi(p, avm)}</td><td class="num">${pc(p.model_probability)}<br><span class="muted small">threshold ${pc(p.threshold, 1)}</span></td>
     <td>${statusChip(p.status)}${p.final_score ? ` <span class="muted">${esc(p.final_score)}</span>` : ''}${p.status === 'void' && p.settlement_reason ? `<br><span class="muted">${esc(p.settlement_reason)}</span>` : ''}</td>
     <td class="muted small">issued ${esc(dateTime(p.issued_at))}<br>locks ${esc(dateTime(p.lock_at))}</td></tr>`;
-const pickTable = (rows, label, showModel) => `<div class="tablewrap" tabindex="0" role="region" aria-label="${esc(label)}"><table class="ltable algo-table"><thead><tr>${showModel ? '<th scope="col">Model</th>' : ''}<th scope="col">No.</th><th class="tm" scope="col">Match</th><th scope="col">Pick</th><th scope="col">Model probability</th><th scope="col">Result</th><th scope="col">Ledger</th></tr></thead><tbody>${rows.map(([m, p]) => pickRow(m, showModel)(p)).join('')}</tbody></table></div>`;
+const pickTable = (rows, label, showModel, avm = null) => `<div class="tablewrap" tabindex="0" role="region" aria-label="${esc(label)}"><table class="ltable algo-table"><thead><tr>${showModel ? '<th scope="col">Model</th>' : ''}<th scope="col">No.</th><th class="tm" scope="col">Match</th><th scope="col">Pick</th><th scope="col">Model probability</th><th scope="col">Result</th><th scope="col">Ledger</th></tr></thead><tbody>${rows.map(([m, p]) => pickRow(m, showModel, avm)(p)).join('')}</tbody></table></div>`;
 
 function gameBestCard(m, g) {
   const b = g.game_best; const official = b.qualifies && g.official_pick;
@@ -87,11 +97,16 @@ const tabLink = (base, key, label, on) => link(`${base}${key ? `?model=${key}` :
 export const picks = {
   title: () => 'Soccer PBE Picks | PropBetEdge Soccer',
   async load(_p, sp) {
-    const models = await loadModels('picks');
+    // The Kalshi board (one shared read) and the frozen Algo vs Market ledger run beside the picks reads, bounded, so
+    // a pick's Kalshi line is part of the first paint (no late insert). A slow or failed read renders nothing.
+    const avmDeadline = Date.now() + AVM_WAIT_MS;
+    const avmRead = loadAlgoVsMarket();
+    const [models] = await Promise.all([loadModels('picks'), boardWithin(AVM_WAIT_MS)]);
+    const avm = (await byDeadline(avmRead, avmDeadline)) ?? null;
     const want = sp?.get('model');
-    return { models, tab: models.some(x => x.model.key === want) ? want : 'all' };
+    return { models, tab: models.some(x => x.model.key === want) ? want : 'all', avm };
   },
-  render({ models, tab }) {
+  render({ models, tab, avm = null }) {
     const shown = tab === 'all' ? models : models.filter(x => x.model.key === tab);
     const many = shown.length > 1;
     const open = shown.flatMap(x => x.res.data.official_picks.open.map(p => [x.model, p])).sort((a, b) => Date.parse(a[1].kickoff_at) - Date.parse(b[1].kickoff_at));
@@ -103,8 +118,8 @@ export const picks = {
     <section class="canvas algo-canvas"><div class="wrap">
       ${models.length ? `<p class="algo-filters" role="navigation" aria-label="Competition">${tabLink('/picks', null, 'ALL', tab === 'all')} ${join(models, x => tabLink('/picks', x.model.key, x.model.tab, tab === x.model.key))}</p>` : `<div class="algo-banner"><b>Not live yet.</b> No PBE Picks model has issued an Official Pick. Each record starts with its first pick after go-live and is never back-filled.</div>`}
       ${sectionHead('OFFICIAL PICKS', 'Open picks')}
-      ${open.length ? pickTable(open, 'Open Official Picks', many) : empty('No open Official Picks', models.length ? 'No upcoming match currently meets a frozen threshold.' : 'Official Picks have not gone live.')}
-      ${when(recent.length, () => `${sectionHead('RECENTLY SETTLED', 'Latest results')}${pickTable(recent, 'Recently settled Official Picks', many)}<p>${link('/track-record', 'Full track record →', 'sec-link')}</p>`)}
+      ${open.length ? pickTable(open, 'Open Official Picks', many, avm) : empty('No open Official Picks', models.length ? 'No upcoming match currently meets a frozen threshold.' : 'Official Picks have not gone live.')}
+      ${when(recent.length, () => `${sectionHead('RECENTLY SETTLED', 'Latest results')}${pickTable(recent, 'Recently settled Official Picks', many, avm)}<p>${link('/track-record', 'Full track record →', 'sec-link')}</p>`)}
       ${sectionHead('GAME BEST', 'Every forecast match')}
       <p class="sec-note">Each model's strongest selection for every match inside its 7-day forecast window. A Game Best is a model forecast; it enters a record only when it is also an Official Pick of that model.</p>
       ${best.length ? `<div class="algo-gbgrid">${best.map(([m, g]) => gameBestCard(m, g)).join('')}</div>` : empty('No forecasts in the window', models.length ? 'Forecasts are issued when a match is 7 days away.' : 'Forecasts start at go-live.')}
@@ -145,7 +160,7 @@ export const trackRecord = {
     // which models are live: one cheap picks read each; the record and research of the SELECTED model only
     const avmDeadline = Date.now() + AVM_WAIT_MS;
     const avmRead = loadAlgoVsMarket();
-    const live = await loadModels('picks');
+    const [live] = await Promise.all([loadModels('picks'), boardWithin(AVM_WAIT_MS)]);
     const want = sp?.get('model');
     const model = (live.find(x => x.model.key === want) || live[0] || { model: MODELS[0] }).model;
     const markets = marketsOf((live.find(x => x.model === model)?.res.data.policy) || {}).map(x => x.market);
@@ -176,7 +191,7 @@ export const trackRecord = {
       ${calibrationTable(d.totals.calibration)}
       ${when(avmHtml, () => `${sectionHead('ALGO VS MARKET', 'PBE pick vs prediction market at lock')}<div class="avm-slot">${avmHtml}</div>`)}
       ${sectionHead('LEDGER', 'Every Official Pick')}
-      ${d.picks.length ? pickTable(d.picks.map(p => [model, p]), 'Official Pick ledger', false) : empty('No Official Picks yet', 'The ledger is empty.')}
+      ${d.picks.length ? pickTable(d.picks.map(p => [model, p]), 'Official Pick ledger', false, avm) : empty('No Official Picks yet', 'The ledger is empty.')}
       ${researchPanel(model, res.data)}
       ${sourcePanel(rec.meta)}
     </div></section>`;
