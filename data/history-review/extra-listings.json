@@ -1,0 +1,28 @@
+{
+  "version": "soccer-extra-listings/1.0.0",
+  "rule": "A provider listing in a competition that ALLOWS repeat pairings is removed from the discovery floor only by an entry here: the exact provider event, the finished event it is an extra representation of, and committed evidence (sha256-pinned file + verbatim quotes) proving there was no separate played fixture. Verified fail-closed by scripts/history/reviewed-extras.mjs. Owner decision 2026-10-03 ('Structure proof + evidence').",
+  "entries": [
+    {
+      "competition": "mls",
+      "season": "2008",
+      "provider": "espn",
+      "event_id": "237819",
+      "observed": "abandoned listing, 2008-06-04T23:30Z, D.C. United v Houston Dynamo, no score",
+      "represented_by_event_id": "244613",
+      "claim": "D.C. United's complete 2008 MLS regular-season record (30 matches) lists exactly one home match against Houston Dynamo: July 23, 2008, 0-2, whose match report is ESPN event 244613. The 2008-06-04 listing is therefore not a separate played fixture.",
+      "evidence": [
+        {
+          "source": "https://en.wikipedia.org/wiki/2008_D.C._United_season",
+          "file": "docs/evidence/history/review/wikipedia-2008_D.C._United_season.wikitext",
+          "sha256": "4c155030694b1f9838b5f28c19113b7834b93fb75c6ee59c58374e71e4703cb2",
+          "license": "CC BY-SA 4.0 (review evidence only; never a canonical source)",
+          "quotes": [
+            "|{{left}}July 23, 2008\n|{{left}}[[Houston Dynamo]]\n|H\n|0–2",
+            "http://soccernet.espn.go.com/report/_/id/244613"
+          ],
+          "counts": { "section": "MLS", "match_rows": 30, "home_rows_vs_houston": 1 }
+        }
+      ]
+    }
+  ]
+}

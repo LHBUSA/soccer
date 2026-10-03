@@ -1,0 +1,66 @@
+{
+ "at": "2026-10-03T09:14:58.613Z",
+ "competition": "premier-league",
+ "season": "2022/23",
+ "state_before": "held",
+ "acceptance": {
+  "canonical_matches": 380,
+  "finished": 380,
+  "teams": 20,
+  "league_matches": 380,
+  "matches_per_club": {
+   "min": 38,
+   "max": 38
+  },
+  "repeated_pairings": 0,
+  "repeat_pairings_allowed": false,
+  "era": "20-club double round robin since 1995/96",
+  "unresolved_identity_queue": 0,
+  "discovery": {
+   "checked": true,
+   "lane": "espn_premier_league@2022:results",
+   "indexed": 380,
+   "fetched": 380,
+   "missing_events": 0,
+   "repeated_pairing_events": 0,
+   "without_status": 0,
+   "finished_without_score": 0
+  },
+  "crosswalked": 380,
+  "espn_source_results": 380,
+  "score_disagreements": 0,
+  "postponed_beside_replay": 0
+ },
+ "matches": 380,
+ "finished": 380,
+ "stages": [
+  "Regular Season:league"
+ ],
+ "teams": 20,
+ "format": {
+  "teams": 20,
+  "league_matches": 380,
+  "games_per_team": {
+   "38": 20
+  }
+ },
+ "providers": [
+  "espn"
+ ],
+ "coverage": {
+  "venue": 0.9973684210526316,
+  "lineups": 0,
+  "stats": 0,
+  "events": 0
+ },
+ "coverage_tier": "MATCH",
+ "limitations": [
+  "lineups for 0% of finished matches",
+  "team statistics for 0% of finished matches",
+  "event record for 0% of finished matches"
+ ],
+ "notes": [],
+ "checks_failed": [],
+ "pass": true,
+ "promoted": true
+}

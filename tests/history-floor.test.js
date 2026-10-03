@@ -60,3 +60,43 @@ test('the floor never mutates the cursor', () => {
   const c = cursor({ p1: ev('X', 'Y', '2004-01-01T15:00:00Z', 'postponed'), f1: ev('X', 'Y', '2004-02-01T15:00:00Z', 'finished', { h: 1, a: 0 }) });
   const before = structuredClone(c); discoveryFloor(c, { now: NOW }); assert.deepEqual(c, before);
 });
+
+// ---- abandoned listings (owner decision 2026-10-03: structure proof + evidence) -------------------------------------
+import { reviewedExtras, verifyExtraEntry } from '../scripts/history/reviewed-extras.mjs';
+import { readFileSync } from 'node:fs';
+const abandonedCase = () => cursor({ ...uniques(3), ab: ev('X', 'Y', '2006-04-08T14:00:00Z', 'abandoned'), f1: ev('X', 'Y', '2006-05-04T19:45:00Z', 'finished', { h: 2, a: 1 }) });
+
+test('no-repeat competition (Premier League shape): an unscored abandoned listing beside a played meeting is a proven extra', () => {
+  const r = discoveryFloor(abandonedCase(), { now: NOW, repeatPairings: false });
+  assert.deepEqual(r.removed.map(x => [x.id, x.kind]), [['ab', 'abandoned_listing_structure_proven']]); assert.equal(r.floor, 4);
+});
+
+test('repeats-allowed competition (MLS): an abandoned listing stays in the floor without a reviewed entry', () => {
+  assert.equal(discoveryFloor(abandonedCase(), { now: NOW, repeatPairings: true }).floor, 5);
+  assert.equal(discoveryFloor(abandonedCase(), { now: NOW }).floor, 5, 'the default is the strict side');
+  const ok = discoveryFloor(abandonedCase(), { now: NOW, repeatPairings: true, reviewedExtras: new Map([['ab', 'f1']]) });
+  assert.deepEqual(ok.removed.map(x => [x.id, x.kind, x.represented_by]), [['ab', 'abandoned_listing_reviewed', 'f1']]);
+  const wrongTarget = discoveryFloor(abandonedCase(), { now: NOW, repeatPairings: true, reviewedExtras: new Map([['ab', 'not-in-pairing']]) });
+  assert.equal(wrongTarget.floor, 5, 'a reviewed entry must name a finished event of the same pairing');
+});
+
+test('a SCORED abandoned listing, or one without a played meeting, is never removed', () => {
+  const scored = cursor({ ab: ev('X', 'Y', '2006-04-08T14:00:00Z', 'abandoned', { h: 1, a: 0 }), f1: ev('X', 'Y', '2006-05-04T19:45:00Z', 'finished', { h: 2, a: 1 }) });
+  assert.equal(discoveryFloor(scored, { now: NOW, repeatPairings: false }).floor, 2);
+  const unplayed = cursor({ ab: ev('X', 'Y', '2006-04-08T14:00:00Z', 'abandoned'), p1: ev('X', 'Y', '2006-05-04T19:45:00Z', 'postponed') });
+  assert.equal(discoveryFloor(unplayed, { now: NOW, repeatPairings: false }).floor, 2);
+});
+
+test('reviewed extras verify fail-closed: the committed MLS 2008 entry passes; drifted evidence or a missing quote throws', () => {
+  const m = reviewedExtras('mls', '2008');
+  assert.equal(m.get('237819'), '244613');
+  const doc = JSON.parse(readFileSync('data/history-review/extra-listings.json', 'utf8'));
+  const entry = doc.entries.find(e => e.event_id === '237819');
+  const read = f => readFileSync(f, 'utf8');
+  assert.equal(verifyExtraEntry(entry, read), true);
+  const row = score => ['|{{left}}July 23, 2008', '|{{left}}[[Houston Dynamo]]', '|H', `|${score}`].join('\n');
+  assert.throws(() => verifyExtraEntry(entry, f => read(f).replace(/\r\n/g, '\n').replace(row('0–2'), row('1–2'))), /evidence changed.*quote not found/);
+  const bad = structuredClone(entry); bad.evidence[0].quotes.push('a quote that is not in the source');
+  assert.throws(() => verifyExtraEntry(bad, read), /quote not found/);
+  assert.equal(reviewedExtras('mls', '2009').size, 0, 'an entry applies only to its own season');
+});

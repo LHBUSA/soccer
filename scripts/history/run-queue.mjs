@@ -11,6 +11,7 @@
 import { spawnSync } from 'node:child_process';
 import { appendFileSync, mkdirSync, readFileSync } from 'node:fs';
 import { discoveryFloor } from './discovery-floor.mjs';
+import { reviewedExtras } from './reviewed-extras.mjs';
 const arg = (k, d) => { const i = process.argv.indexOf(k); return i >= 0 ? process.argv[i + 1] : d; };
 const COMP = arg('--comp'); const LANE = arg('--lane'); const MODE = arg('--mode', 'promote');
 const [y0, y1] = arg('--years').split('-').map(Number);
@@ -32,7 +33,11 @@ const node = args => spawnSync(process.execPath, args, { encoding: 'utf8', env: 
 const cursorFloor = laneName => {
   const kv = spawnSync('npx', ['wrangler', 'kv', 'key', 'get', `lane:${laneName}`, '--namespace-id', '3e665f75414849578249f5aed979b868', '--remote'], { cwd: 'workers/soccer-ingest', encoding: 'utf8', shell: true, maxBuffer: 64 * 1024 * 1024, env: { ...process.env, NODE_OPTIONS: '--require D:/Workers/exfat-readlink.cjs' } });
   let st = null; try { st = JSON.parse(kv.stdout); } catch { return { floor: 1, complete: false, extras: 0, events: 0 }; }
-  return discoveryFloor(st?.cursor);
+  // repeat pairings from the registered structure (an unregistered competition is treated as repeats-allowed: strict);
+  // reviewed extra listings are evidence-verified here and throw (stop the lane) if their sources drifted
+  const reg = JSON.parse(readFileSync('data/history-structure.json', 'utf8')).competitions[COMP];
+  const year = Number((laneName.match(/@(\d{4})/) || [])[1]);
+  return discoveryFloor(st?.cursor, { repeatPairings: reg ? reg.repeat_pairings !== false : true, reviewedExtras: reviewedExtras(COMP, labelOf(year)) });
 };
 const log = row => { appendFileSync(LOG, `${JSON.stringify({ at: new Date().toISOString(), comp: COMP, ...row })}\n`); console.log(JSON.stringify(row)); };
 const HOLD_FOR_REVIEW = new Set((arg('--hold', '') || '').split(',').filter(Boolean).map(Number)); // ingest, never promote

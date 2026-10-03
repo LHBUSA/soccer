@@ -1,0 +1,639 @@
+{{Use American English|date=March 2026}}
+{{Use mdy dates|date=March 2012}}
+{{Infobox football club season
+| image = D.C. United 1998 wordmark.svg
+| club = [[D.C. United]]
+| season = 2008
+| league = [[Major League Soccer]]
+| league result = 10th
+| chrtitle   = Owner
+| chairman   =  [[D.C. United Holdings]]
+| ceo        =
+| mgrtitle   = Coach
+| manager    =  [[Tom Soehn]]
+| cup1 = [[2008 MLS Cup Playoffs|MLS Cup]]
+| cup1 result = Did not qualify
+| cup2 = [[2008 U.S. Open Cup|U.S. Open Cup]]
+| cup2 result = Champions
+| cup3 = [[2008–09 CONCACAF Champions League|CONCACAF Champions League]]
+| cup3 result = Group stage
+| cup4 = [[2008 CONCACAF Champions' Cup|CONCACAF Champions' Cup]]
+| cup4 result = Semifinals
+| cup5 = [[Atlantic Cup (Major League Soccer)|Atlantic Cup]]
+| cup5 result = Champions
+| cup6 =
+| cup7 =
+| league topscorer   =  [[Luciano Emilio]] <small>(9 goals)</small>
+| highest attendance = 35,979<br />vs. [[Los Angeles Galaxy|LA]] <small>(Jun 29)</small>
+| lowest attendance  = 14,660<br />vs. [[Houston Dynamo|HOU]] <small>(Jul 23)</small>
+| average attendance = 19,835
+| pattern_la1 = _adidasstripeswhite
+| pattern_b1  = _dcunited08h
+| pattern_ra1 = _adidasstripeswhite
+| pattern_sh1 = _TROFEO_WHITE
+| pattern_so1 = _3_stripes_white
+| leftarm1    = 000000
+| body1       = FFFFFF
+| rightarm1   = 000000
+| shorts1     = 000000
+| socks1      = 000000
+| pattern_la2 = _adidasstripesonwhite
+| pattern_b2  = _dcunited08a
+| pattern_ra2 = _adidasstripesonwhite
+| pattern_sh2 = _TROFEO_ONWHITE
+| pattern_so2 = _3_stripes_on_white2
+| leftarm2    = 000000
+| body2       = FFFFFF
+| rightarm2   = 000000
+| shorts2     = 000000
+| socks2      = 000000
+| American = true
+| prevseason = [[2007 D.C. United season|2007]]
+| nextseason = [[2009 D.C. United season|2009]]
+}}
+
+The '''2008 [[D.C. United]] season''' was the fourteenth year of the club's existence, as well as their thirteenth season in [[Major League Soccer]] and their thirteenth consecutive season in the top tier of the [[American soccer pyramid]].
+
+To fans and the media alike, this year marked a downfall for the franchise, as well as end to what was considered a "second golden age" for the club in league play. The justification behind this involved the United failing to defend the [[MLS Supporters' Shield|Supporters' Shield]], an awarded given to the MLS club with the best regular season record, for a third-consecutive year. With a 10th-place overall finish and a 6th-place finish in the [[Eastern Conference (MLS)|Eastern Conference]], United finished the lowest in the conference and league tables since [[2002 Major League Soccer season|2002]]. With the subpar record, United failed to make the playoffs, having qualified since [[2003 Major League Soccer season|2003]].
+
+Their performance league play reflected on the continental stage as well. Finishing as the [[2007 Major League Soccer season#Standings|2007 MLS Supporters' Shield]] winners, United qualified for the inaugural [[CONCACAF Champions League]]. The tournament replaced the obsolete [[CONCACAF Champions' Cup]], and was modeled similarly to its cousin tournament, the [[UEFA Champions League]]. In the Champions League, United continued their misfortunes, losing all their Group stage matches at home, and only managing to pick up one draw at Costa Rica's [[C.D. Saprissa|Saprissa]]. United finished in the bottom of Group C, with a record of 0–1–5 (W-T-L).
+
+In spite of the poorer performance in league and continental play, United excelled in the [[U.S. Open Cup]] play, ultimately winning the domestic title against [[Charleston Battery]], 2–1. The domestic cup title was their first since their [[1996 D.C. United season|inaugural season]]. The U.S. Open Cup, a domestic cup tournament much similar to the [[FA Cup]] runs parallel to the regular seasons of all tiers of professional and amateur soccer in the [[Soccer in the United States|United States]]. The tournament is open for entry for any soccer club, professional or amateur, that is affiliated with the [[United States Soccer Federation]]. For MLS clubs, the top six American MLS clubs overall in the regular season are admitted entry into the third round proper, or round of 16, in the tournament. By finishing 1st overall in the regular season, United booked a third round entry in the tournament proper. The club opened Open Cup play with wins against [[Rochester Rhinos]] of the [[USL First Division]] (second tier) and [[New England Revolution]] of MLS (first tier) in the third round and quarterfinals respectively. In the semifinals, United won in [[extra time]] to defeat [[Chicago Fire Soccer Club|Chicago Fire]]. In the championship, United defeated [[Charleston Battery]] of the [[USL Second Division]] (third tier) to win the Open Cup for a second time in club history.
+
+== Club ==
+
+=== 2008 roster ===
+{{Football squad start}}
+{{Fs player | no=1  | nat=USA | pos=GK | name= [[Zach Wells]]}}
+{{Fs player | no=2  | nat=ARG | pos=DF | name= [[Gonzalo Peralta]]}}
+{{Fs player | no=3  | nat=USA | pos=MF | name= [[Joe Vide]]}}
+{{Fs player | no=4  | nat=USA | pos=DF | name= [[Marc Burch]]}}
+{{Fs player | no=5  | nat=USA | pos=MF | name= [[Quavas Kirk]]}}
+{{Fs player | no=6  | nat=USA | pos=MF | name= [[Domenic Mediate]]}}
+{{Fs player | no=7  | nat=BRA | pos=MF | name= [[Helbert Frederico Carreiro da Silva|Fred]]}}
+{{Fs player | no=8 | nat=Sierra Leone | pos=DF | name= [[Ibrahim Koroma]]}}
+{{Fs player | no=10 | nat=ARG | pos=MF | name= [[Marcelo Gallardo]]}}
+{{Fs player | no=11 | nat=BRA | pos=FW | name= [[Luciano Emilio]]}}
+{{Fs player | no=12 | nat=HND | pos=MF | name= [[Iván Guerrero]]}}
+{{Fs player | no=13 | nat=USA | pos=DF | name= [[Ryan Miller (soccer)|Ryan Miller]]}}
+{{Fs player | no=14 | nat=USA | pos=MF | name= [[Ben Olsen]]}}
+{{Fs player | no=15 | nat=RUS | pos=MF | name= [[Rod Dyachenko]]}}
+{{Fs player | no=16 | nat=USA | pos=DF | name= [[Greg Janicki]]}}
+{{Football squad mid}}
+{{Fs player | no=17 | nat=South Africa | pos=FW | name= [[Thabiso Khumalo]]}}
+{{Fs player | no=18 | nat=USA | pos=DF | name= [[Devon McTavish]]}}
+{{Fs player | no=19 | nat=USA | pos=MF | name= [[Clyde Simms]]}}
+{{Fs player | no=20 | nat=USA | pos=DF | name= [[Mike Zaher]]}}
+{{Fs player | no=21 | nat=USA | pos=DF | name= [[Pat Carroll (soccer)|Pat Carroll]]}}
+{{Fs player | no=22 | nat=USA | pos=MF | name= [[Ryan Cordeiro]]}}
+{{Fs player | no=23 | nat=COL | pos=DF | name= [[Gonzalo Martínez]]}}
+{{Fs player | no=24 | nat=USA | pos=MF | name= [[Jeff Carroll (soccer)|Jeff Carroll]]}}
+{{Fs player | no=25 | nat=USA | pos=FW | name= [[Santino Quaranta]]}}
+{{Fs player | no=26 | nat=USA | pos=DF | name= [[Bryan Namoff]]}}
+{{Fs player | no=27 | nat=LBR | pos=GK | name= [[Louis Crayton]]}}
+{{Fs player | no=28 | nat=ARG| pos=MF | name= [[Jonathan La Rosa ]]}}
+{{Fs player | no=30 | nat=LBR | pos=FW | name= [[Francis Doe]]}}
+{{Fs player | no=40 | nat=USA | pos=GK | name= [[James Thorpe (soccer)|James Thorpe]]}}
+{{Fs player | no=99 | nat=BOL | pos=FW | name= [[Jaime Moreno (footballer, born 1974)|Jaime Moreno]]|other=[[Captain (association football)|captain]]}}
+{{Football squad end}}
+
+== Transfers ==
+
+=== In ===
+{| class="wikitable" style="text-align:left; font-size:95%;"
+|-
+! style="width:125px;"|Date
+! style="width:170px;"|Player
+! style="width:50px;"|Position
+! style="width:200px;"|Previous club
+! style="width:250px;"|Fee/notes
+! style="width:30px;"|Ref
+|-
+| January 18, 2008 || {{flagicon|USA}} [[Ryan Cordeiro]] || MF / FW || {{flagicon|USA}} [[Connecticut Huskies#Men's soccer|University of Connecticut]] || [[2008 MLS SuperDraft]], Round 3 selection ||<ref name="superdraft selections 2008">{{cite news|title=United trade defender Prideaux to Colorado|url=https://www.usatoday.com/sports/soccer/mls/2006-12-15-united-rapids-trade_x.htm|accessdate=May 28, 2011|newspaper=USA Today|date=December 15, 2006}}</ref>
+|-
+| January 22, 2008 || {{flagicon|ARG}} [[Gonzalo Peralta]] || DF || {{flagicon|ARG}} [[Almirante Brown de Isidro Casanova|Almirante Brown]] || Free, Discovery Player ||
+|-
+| January 29, 2008 || {{flagicon|ARG}} [[Marcelo Gallardo]] || MF || {{flagicon|FRA}} [[Paris Saint-Germain]] || Free ||<ref name="WashPost0404">{{cite news| title=Gallardo Is United's Highest-Paid Player Ever| url=https://www.washingtonpost.com/wp-dyn/content/article/2008/04/03/AR2008040304288.html | accessdate=April 4, 2008 | newspaper=The Washington Post | first=Steven | last=Goff | date=April 4, 2008}}</ref>
+|-
+| March 1, 2008 || {{flagicon|USA}} [[Pat Carroll (soccer)|Pat Carroll]] || DF || {{flagicon|USA}} [[West Virginia Mountaineers#Men's Soccer|West Virginia University]] || Free ||
+|-
+| March 15, 2008 || {{flagicon|USA}} [[Quavas Kirk]] || MF || {{flagicon|USA}} [[Los Angeles Galaxy]] || Traded for [[Greg Vanney]] ||<ref name="anchorName">{{cite web
+ |title      = United acquire Kirk from Galaxy
+ |url        = http://dcunited.mlsnet.com/news/team_news.jsp?ymd=20080215&content_id=139154&vkey=pr_dcu&fext=.jsp&team=t103
+ |accessdate = February 16, 2008
+}}{{Dead link|date=September 2018 |bot=InternetArchiveBot |fix-attempted=yes }}</ref>
+|-
+| March 27, 2008 || {{flagicon|USA}} [[James Thorpe (soccer)|James Thorpe]] || GK || {{flagicon|USA}} [[Franklin Pierce College]] || Developmental contract ||<ref>{{cite web |url=http://dcunited.mlsnet.com/players/bio.jsp?team=t103&player=thorpe_j&playerId=tho573734&statType=current |title= Major League Soccer: Roster: Player Bio|website=dcunited.mlsnet.com |archive-url=https://web.archive.org/web/20100324143812/http://dcunited.mlsnet.com/players/bio.jsp?team=t103&player=thorpe_j&playerId=tho573734&statType=current |archive-date=March 24, 2010}}</ref>
+|-
+| April 17, 2008 || {{flagicon|USA}} [[Mike Zaher]] || DF || {{flagicon|CAN}} [[Toronto FC]] || Traded for undisclosed [[2009 MLS SuperDraft|SuperDraft]] pick ||
+|-
+| April 23, 2008 || {{flagicon|LBR}} [[Francis Doe]] || FW || {{flagicon|USA}} [[New York Red Bulls]] || Waived by New York, free transfer ||<ref name="PostApr23">{{cite news | author=Goff, Steven | title=United's Start Has a Familiar Look | url=https://www.washingtonpost.com/wp-dyn/content/article/2008/04/22/AR2008042202914.html |newspaper=The Washington Post | accessdate=May 2, 2008 | date=April 23, 2008}}</ref>
+|-
+| June 30, 2008 || {{flagicon|USA}} [[Craig Thompson (soccer)|Craig Thompson]] || MF || {{flagicon|USA}} [[Houston Dynamo]] || Free ||<ref>{{cite press release|url=http://web.mlsnet.com/news/team_news.jsp?ymd=20080630&content_id=169511&vkey=pr_dcu&fext=.jsp&team=t103 |title=D.C. United acquire Craig Thompson |publisher=[[D.C. United]] |date=June 30, 2008 |location=Washington, D.C. |accessdate=April 7, 2009 }}{{dead link|date=June 2017 |bot=InternetArchiveBot |fix-attempted=yes }}</ref>
+|-
+| July 16, 2008 || {{flagicon|USA}} [[Joe Vide]] || MF || {{flagicon|USA}} [[San Jose Earthquakes]] || Free ||
+|-
+| July 31, 2008 || {{flagicon|HON}} [[Iván Guerrero]] || MF || {{flagicon|USA}} San Jose Earthquakes || Trade for partial allocation ||
+|-
+| August 7, 2008 || {{flagicon|LBR}} [[Louis Crayton]] || GK || {{flagicon|SUI}} [[FC Basel|Basel]] || Undisclosed ||<ref>{{cite news|title=Crayton geht, Almerares kommt!|url=http://www.fcb.ch/news/show/byItemID//10044/20644/16/7|accessdate=May 28, 2011|newspaper=FC Basel|date=August 7, 2008|language=German|archive-url=https://web.archive.org/web/20080818171947/http://fcb.ch/news/show/byItemID/10044/20644/16/7|archive-date=August 18, 2008|url-status=dead|df=mdy-all}}</ref>
+|-
+| September 15, 2008 || {{flagicon|USA}} [[Ryan Miller (soccer)|Ryan Miller]] || DF / MF || {{flagicon|USA}} [[Cleveland City Stars]] || Free ||<ref name="D.C. United Player Bio">{{cite news|url=http://dcunited.mlsnet.com/players/bio.jsp?team=t103&player=miller_r&playerId=mil395269&statType=current |title= Player Bio: Ryan Miller |publisher=D.C. United |accessdate=February 10, 2009|archiveurl = https://web.archive.org/web/20090304204231/http://dcunited.mlsnet.com/players/bio.jsp?team=t103&player=miller_r&playerId=mil395269&statType=current |archivedate = March 4, 2009|url-status=dead}}</ref>
+|-
+| September 16, 2008 || {{flagicon|USA}} [[Greg Janicki]] || MF || {{flagicon|USA}} [[Pittsburgh Riverhounds]] || Loaned, subsequently signed developmental contract ||<ref>{{cite web|last=Butler |first=Brian |title=Teams beef up rosters prior to freeze deadline |url=http://web.mlsnet.com/news/mls_news.jsp?ymd=20080916&content_id=188371&vkey=news_mls&fext=.jsp |date=September 16, 2008 |publisher=[[Major League Soccer]] |accessdate=April 15, 2009 |url-status=dead |archiveurl=https://web.archive.org/web/20080919025008/http://web.mlsnet.com/news/mls_news.jsp?ymd=20080916&content_id=188371&vkey=news_mls&fext=.jsp |archivedate=September 19, 2008 }}</ref>
+|}
+
+=== Loan ===
+
+==== In ====
+{| class="wikitable" style="text-align:left; font-size:95%;"
+|-
+! style="width:170px;"|Player
+! style="width:50px;"|Pos.
+! style="width:190px;"|From
+! style="width:125px;"|Start
+! style="width:125px;"|End
+! style="width:30px;"|Ref
+|-
+| {{flagicon|ARG}} [[Franco Niell]] || FW || {{flagicon|ARG}} [[Argentinos Juniors]] || January 22, 2008 || June 28, 2008 (waived) <ref name="niell-close-to-joining-dc-united">{{cite news|title=Niell Close to Joining DC United|url=https://www.washingtonpost.com/wp-dyn/content/article/2008/01/08/AR2008010803786.html|accessdate=October 9, 2023|date=January 8, 2008}}</ref>
+|-
+| {{flagicon|SLE}} [[Ibrahim Koroma]] || DF || {{flagicon|SLE}} [[Kallon F.C.|Kallon]] || September 1, 2008 || January 31, 2009 ||
+|-
+| {{flagicon|RSA}} [[Thabiso Khumalo]] || MF / FW || {{flagicon|USA}} [[Pittsburgh Riverhounds]] || September 1, 2008 || January 31, 2009 ||<ref name="khumalo loan">{{cite news|title=Khumalo signs for DC United|url=http://www.kickoff.com/news/4477/us-based-khumalo-signs-for-dc-united.php|accessdate=May 28, 2011|newspaper=Kickoff.com|date=September 10, 2008}}</ref>
+|}
+
+== Standings ==
+
+=== Major League Soccer ===
+'''Conference Standings'''
+{{2008 Major League Soccer Eastern Conference table}}
+
+'''Overall Table'''
+{{2008 Major League Soccer season table}}
+
+=== CONCACAF Champions League ===
+'''Group A'''
+{| class="wikitable" style="text-align: center;"
+|-
+! style="width:175px;"| Club
+! style="width:20px;"| Pld
+! style="width:20px;"| W
+! style="width:20px;"| D
+! style="width:20px;"| L
+! style="width:20px;"| GF
+! style="width:20px;"| GA
+! style="width:20px;"| GD
+! style="width:20px;"| Pts
+|-
+| align=left | {{flagicon|HON}} [[C.D. Marathón|Marathón]]
+| 6 || 4 || 1 || 1 || 12 || 5 || +7 || '''13'''
+|-
+| align=left | {{flagicon|MEX}} [[C.D.S.C. Cruz Azul|Cruz Azul]]
+| 6 || 3 || 1 || 2 || 8 || 4 || +4 || '''10'''
+|-
+| align=left | {{flagicon|CRC}} [[C.D. Saprissa|Saprissa]]
+| 6 || 3 || 1 || 2 || 7 || 9 || −2 || '''10'''
+|- style="background:#def;"
+| align=left | {{flagicon|USA}} [[D.C. United]]
+| 6 || 0 || 1 || 5 || 4 || 13 || −9 || '''1'''
+|}
+
+== Match results ==
+
+=== MLS ===
+{| class="wikitable"
+|-
+| style="background:#dfd;"|<small>Win</small>
+|bgcolor=fafad2|<small>Tie</small>
+| style="background:#fdd;"|<small>Loss</small>
+|}
+
+[[File:DC United Houston Dynamo SuperLiga 2008.jpeg|thumb|right|[[D.C. United]] playing [[Houston Dynamo]] in the 2008 SuperLiga.]]
+
+{|class="wikitable" style="font-size:95%; text-align:center"
+|-
+!Date!!Opponent!!Venue!!Result!!Attendance!!Scorers!!Ref.
+|- style="background:#fdd;"
+|{{left}}March 29, 2008
+|{{left}}[[Kansas City Wizards]]
+|A
+|0–2
+|10,385
+|
+|<ref>{{cite news|title=Wizards win season opener, blank D.C. United|url=http://soccernet.espn.go.com/report/_/id/237753|archive-url=https://archive.today/20120717121120/http://soccernet.espn.go.com/report/_/id/237753|url-status=dead|archive-date=July 17, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=March 29, 2008}}</ref>
+|- style="background:#dfd;"
+|{{left}}April 5, 2008
+|{{left}}[[Toronto FC]]
+|H
+|4–1
+|20,161
+|<small>[[Luciano Emilio|Emilio]], [[Santino Quaranta|Quaranta]], [[Marcelo Gallardo|Gallardo]], [[Jaime Moreno (footballer, born 1974)|Moreno]]</small>
+|<ref>{{cite news|title=D.C. United overwhelms Toronto FC|url=http://soccernet.espn.go.com/report/_/id/237758?cc=5901|archive-url=https://web.archive.org/web/20121025215127/http://soccernet.espn.go.com/report/_/id/237758?cc=5901|url-status=dead|archive-date=October 25, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=April 5, 2008}}</ref>
+|- style="background:#fdd;"
+|{{left}}April 12, 2008
+|{{left}}[[Real Salt Lake]]
+|A
+|0-4
+|13,193
+|
+|<ref>{{cite news|title=Beckerman scores twice as Real Salt Lake romps|url=http://soccernet.espn.go.com/report/_/id/237769?cc=5901|archive-url=https://archive.today/20120717150450/http://soccernet.espn.go.com/report/_/id/237769?cc=5901|url-status=dead|archive-date=July 17, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=April 12, 2008}}</ref>
+|- style="background:#fdd;"
+|{{left}}April 17, 2008
+|{{left}}[[Columbus Crew]]
+|H
+|1–2
+|13,329
+|<small>[[Bryan Namoff|Namoff]]</small>
+|<ref>{{cite news|title=Moreno, own goal send Crew past United|url=http://soccernet.espn.go.com/report/_/id/237771?cc=5901|archive-url=https://archive.today/20120714164320/http://soccernet.espn.go.com/report/_/id/237771?cc=5901|url-status=dead|archive-date=July 14, 2012|accessdate=May 28, 2011|newspaper=Carolina RailHawks FC|date=April 17, 2008}}</ref>
+|- style="background:#dfd;"
+|{{left}}April 26, 2008
+|{{left}}[[Real Salt Lake]]
+|H
+|4-1
+|23,269
+|<small>[[Jaime Moreno (footballer, born 1974)|Moreno]] (2), [[Santino Quaranta|Quaranta]], [[Marcelo Gallardo|Gallardo]]</small>
+|<ref>{{cite web|title=Moreno scores twice, propels D.C. United past Real|url=http://soccernet.espn.go.com/report/_/id/237781?cc=5901|archive-url=https://archive.today/20120717013112/http://soccernet.espn.go.com/report/_/id/237781?cc=5901|url-status=dead|archive-date=July 17, 2012|work=Associated Press|publisher=ESPNSoccernet.com|accessdate=May 28, 2011}}</ref>
+|- style="background:#fdd;"
+|{{left}}May 4, 2008
+|{{left}}[[Colorado Rapids]]
+|A
+|0-2
+|13,115
+|
+|<ref>{{cite news|title=Peterson, Erpen power Rapids past D.C. United|url=http://soccernet.espn.go.com/report/_/id/237791?cc=5901|archive-url=https://archive.today/20120729161054/http://soccernet.espn.go.com/report/_/id/237791?cc=5901|url-status=dead|archive-date=July 29, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=May 11, 2011}}</ref>
+|- style="background:#fdd;"
+|{{left}}May 8, 2008
+|{{left}}[[Chicago Fire Soccer Club|Chicago Fire]]
+|H
+|0–2
+|18,605
+|
+|<ref>{{cite news|title=Mapp, Blanco fuel Fire past D.C. United|url=http://soccernet.espn.go.com/report/_/id/237792?cc=5901|archive-url=https://archive.today/20120714081147/http://soccernet.espn.go.com/report/_/id/237792?cc=5901|url-status=dead|archive-date=July 14, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=May 8, 2008}}</ref>
+|- style="background:#fdd;"
+|{{left}}May 17, 2008
+|{{left}}[[C.D. Chivas USA|Chivas USA]]
+|A
+|1–3
+|13,113
+|<small>[[Marcelo Gallardo|Gallardo]]</small>
+|<ref>{{cite news|title=Second-half explosion fuels Chivas USA past D.C. United|url=http://soccernet.espn.go.com/report/_/id/237803?cc=5901|archive-url=https://archive.today/20120731014039/http://soccernet.espn.go.com/report/_/id/237803?cc=5901|url-status=dead|archive-date=July 31, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=May 17, 2008}}</ref>
+|- style="background:#fdd;"
+|{{left}}May 21, 2008
+|{{left}}[[Toronto FC]]
+|A
+|0-1
+|19,791
+|
+|<ref>{{cite news|title=Dichio, Toronto FC keep D.C. United reeling|url=http://soccernet.espn.go.com/report/_/id/237805?cc=5901|archive-url=https://web.archive.org/web/20121025215231/http://soccernet.espn.go.com/report/_/id/237805?cc=5901|url-status=dead|archive-date=October 25, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=May 21, 2008}}</ref>
+|- style="background:#dfd;"
+|{{left}}May 24, 2008
+|{{left}}[[Toronto FC]]
+|H
+|3–2
+|18,647
+|<small>[[Gonzalo Peralta|Peralta]], [[Jaime Moreno (footballer, born 1974)|Moreno]], [[Luciano Emilio|Emilio]]</small>
+|<ref>{{cite news|title=Moreno, Emilio help United snap skid|url=http://soccernet.espn.go.com/report/_/id/237807?cc=5901|archive-url=https://archive.today/20120718125221/http://soccernet.espn.go.com/report/_/id/237807?cc=5901|url-status=dead|archive-date=July 18, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=May 24, 2008}}</ref>
+|- style="background:#fafad2;"
+|{{left}}May 29, 2008
+|{{left}}[[New England Revolution]]
+|A
+|2–2
+|8,159
+|<small>[[Luciano Emilio|Emilio]], [[Helbert Frederico Carreiro da Silva|Fred]]</small>
+|<ref>{{cite news|title=Dube rallies Revolution to draw|url=http://soccernet.espn.go.com/report/_/id/237813?cc=5901|archive-url=https://web.archive.org/web/20121025215334/http://soccernet.espn.go.com/report/_/id/237813?cc=5901|url-status=dead|archive-date=October 25, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=May 29, 2008}}</ref>
+|- style="background:#dfd;"
+|{{left}}June 7, 2008
+|{{left}}[[Chicago Fire Soccer Club|Chicago Fire]]
+|A
+|1–2
+|19,256
+|<small>[[Jaime Moreno (footballer, born 1974)|Moreno]], [[Luciano Emilio|Emilio]]</small>
+|<ref>{{cite news|title=Emilio's late goal helps D.C. United edge Fire|url=http://soccernet.espn.go.com/report/_/id/237822?cc=5901|archive-url=https://archive.today/20120719163819/http://soccernet.espn.go.com/report/_/id/237822?cc=5901|url-status=dead|archive-date=July 19, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=June 7, 2008}}</ref>
+|- style="background:#dfd;"
+|{{left}}June 14, 2008
+|{{left}}[[New York Red Bulls]]
+|H
+|4-1
+|18,622
+|<small>[[Luciano Emilio|Emilio]] (3), [[Clyde Simms|Simms]]</small>
+|<ref>{{cite news|title=Emilio's hat trick leads DC United past Red Bulls|url=http://soccernet.espn.go.com/report/_/id/237828?cc=5901|archive-url=https://web.archive.org/web/20121025203955/http://soccernet.espn.go.com/report/_/id/237828?cc=5901|url-status=dead|archive-date=October 25, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=June 14, 2008}}</ref>
+|- style="background:#dfd;"
+|{{left}}June 22, 2008
+|{{left}}[[San Jose Earthquakes]]
+|H
+|3–1
+|17,922
+|<small>[[Clyde Simms|Simms]], [[Gonzalo Martínez|Martínez]], [[Luciano Emilio|Emilio]]</small>
+|<ref>{{cite news|title=Second-half flurry sends United to third straight win|url=http://soccernet.espn.go.com/report/_/id/237841?cc=5901|archive-url=https://web.archive.org/web/20121025215424/http://soccernet.espn.go.com/report/_/id/237841?cc=5901|url-status=dead|archive-date=October 25, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=June 22, 2008}}</ref>
+|- style="background:#dfd;"
+|{{left}}June 29, 2008
+|{{left}}[[Los Angeles Galaxy]]
+|H
+|4–1
+|35,979
+|<small>[[Jaime Moreno (footballer, born 1974)|Moreno]], [[Luciano Emilio|Emilio]] (2), [[Marcelo Gallardo|Gallardo]]</small>
+|<ref>{{cite news|title=Emilio lifts D.C. United past Galaxy|url=http://soccernet.espn.go.com/report/_/id/237848?cc=5901|archive-url=https://web.archive.org/web/20121025215434/http://soccernet.espn.go.com/report/_/id/237848?cc=5901|url-status=dead|archive-date=October 25, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=June 29, 2008}}</ref>
+|- style="background:#fdd;"
+|{{left}}July 23, 2008
+|{{left}}[[Houston Dynamo]]
+|H
+|0–2
+|14,460
+|
+|<ref>{{cite news|title=Dynamo survive weather and D.C. United|url=http://soccernet.espn.go.com/report/_/id/244613?cc=5901|archive-url=https://web.archive.org/web/20121025215446/http://soccernet.espn.go.com/report/_/id/244613?cc=5901|url-status=dead|archive-date=October 25, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=July 23, 2008}}</ref>
+|- style="background:#dfd;"
+|{{left}}August 2, 2008
+|{{left}}[[Kansas City Wizards]]
+|H
+|2–0
+|18,731
+|<small>[[Luciano Emilio|Emilio]], [[Jaime Moreno (footballer, born 1974)|Moreno]]</small>
+|<ref>{{cite news|title=Moreno, Emilio help United top Wizards|url=http://soccernet.espn.go.com/report/_/id/237870?cc=5901|archive-url=https://archive.today/20120713234437/http://soccernet.espn.go.com/report/_/id/237870?cc=5901|url-status=dead|archive-date=July 13, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=August 2, 2008}}</ref>
+|- style="background:#fdd;"
+|{{left}}August 10, 2008
+|{{left}}[[New York Red Bulls]]
+|A
+|1-4
+|15,038
+|<small>[[Jaime Moreno (footballer, born 1974)|Moreno]]</small>
+|<ref>{{cite news|title=Angel leads New York past D.C. United|url=http://soccernet.espn.go.com/report/_/id/237878?cc=5901|archive-url=https://archive.today/20120718064423/http://soccernet.espn.go.com/report/_/id/237878?cc=5901|url-status=dead|archive-date=July 18, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=August 10, 2008}}</ref>
+|- style="background:#dfd;"
+|{{left}}August 16, 2008
+|{{left}}[[Chicago Fire Soccer Club|Chicago Fire]]
+|A
+|0–1
+|19,560
+|<small>[[Helbert Frederico Carreiro da Silva|Fred]]</small>
+|<ref>{{cite news|title=Fred leads D.C. United past Fire|url=http://soccernet.espn.go.com/report/_/id/237883?cc=5901|archive-url=https://web.archive.org/web/20121025223803/http://soccernet.espn.go.com/report/_/id/237883?cc=5901|url-status=dead|archive-date=October 25, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=August 16, 2008}}</ref>
+|- style="background:#fdd;"
+|{{left}}August 20, 2008
+|{{left}}[[New England Revolution]]
+|A
+|1-2
+|14,962
+|<small>[[Jaime Moreno (footballer, born 1974)|Moreno]]</small>
+|<ref>{{cite news|title=Twellman stars as Revolution down United|url=http://soccernet.espn.go.com/report/_/id/237888?cc=5901|archive-url=https://archive.today/20120715103428/http://soccernet.espn.go.com/report/_/id/237888?cc=5901|url-status=dead|archive-date=July 15, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=August 20, 2008}}</ref>
+|- style="background:#dfd;"
+|{{left}}August 23, 2008
+|{{left}}[[Colorado Rapids]]
+|H
+|3–0
+|17,283
+|<small>[[Joe Vide|Vide]], [[Santino Quaranta|Quaranta]], [[Quavas Kirk|Kirk]]</small>
+|<ref>{{cite news|title=Vide, Quaranta push United over Rapids|url=http://soccernet.espn.go.com/report/_/id/237892?cc=5901|archive-url=https://archive.today/20120714165903/http://soccernet.espn.go.com/report/_/id/237892?cc=5901|url-status=dead|archive-date=July 14, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=August 23, 2008}}</ref>
+|- style="background:#fafad2;"
+|{{left}}August 30, 2008
+|{{left}}[[New York Red Bulls]]
+|H
+|0–0
+|15,616
+|
+|<ref>{{cite news|title=United claim Atlantic Cup in scoreless draw|url=http://soccernet.espn.go.com/report/_/id/237898?cc=5901|archive-url=https://archive.today/20120717201359/http://soccernet.espn.go.com/report/_/id/237898?cc=5901|url-status=dead|archive-date=July 17, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=August 30, 2008}}</ref>
+|- style="background:#fdd;"
+|{{left}}September 6, 2008
+|{{left}}[[San Jose Earthquakes]]
+|A
+|1-2
+|10,121
+|<small>[[Santino Quaranta|Quaranta]]</small>
+|<ref>{{cite news|title=Alvarez, Huckerby fire Earthquakes to victory|url=http://soccernet.espn.go.com/report/_/id/237908?cc=5901|archive-url=https://archive.today/20120717152908/http://soccernet.espn.go.com/report/_/id/237908?cc=5901|url-status=dead|archive-date=July 17, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=September 6, 2008}}</ref>
+|- style="background:#fafad2;"
+|{{left}}September 13, 2008
+|{{left}}[[FC Dallas]]
+|H
+|2–2
+|19,890
+|<small>[[Jaime Moreno (footballer, born 1974)|Moreno]], [[Santino Quaranta|Quaranta]]</small>
+|<ref>{{cite news|title=Rocha nets FC Dallas draw with D.C.|url=http://soccernet.espn.go.com/report/_/id/237915?cc=5901|archive-url=https://web.archive.org/web/20121025224025/http://soccernet.espn.go.com/report/_/id/237915?cc=5901|url-status=dead|archive-date=October 25, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=September 13, 2008}}</ref>
+|- style="background:#fdd;"
+|{{left}}September 20, 2008
+|{{left}}[[Los Angeles Galaxy]]
+|A
+|2-5
+|27,000
+|<small>[[Devon McTavish|McTavish]], [[Thabiso Khumalo|Khumalo]]</small>
+|<ref>{{cite news|title=Donovan hat trick powers L.A. past D.C.|url=http://soccernet.espn.go.com/report/_/id/237923?cc=5901|archive-url=https://archive.today/20120716104725/http://soccernet.espn.go.com/report/_/id/237923?cc=5901|url-status=dead|archive-date=July 16, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=September 20, 2008}}</ref>
+|- style="background:#fdd;"
+|{{left}}September 28, 2008
+|{{left}}[[FC Dallas]]
+|A
+|0-3
+|12,138
+|
+|<ref>{{cite news|title=FC Dallas dominates D.C. United|url=http://soccernet.espn.go.com/report/_/id/237931?cc=5901|archive-url=https://archive.today/20120722232718/http://soccernet.espn.go.com/report/_/id/237931?cc=5901|url-status=dead|archive-date=July 22, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=September 28, 2008}}</ref>
+|- style="background:#fdd;"
+|{{left}}October 4, 2008
+|{{left}}[[C.D. Chivas USA|Chivas USA]]
+|H
+|0–3
+|28,145
+|
+|<ref>{{cite news|title=Kennedy, Chivas shut out DC United|url=http://soccernet.espn.go.com/report/_/id/237934?cc=5901|archive-url=https://web.archive.org/web/20121025224214/http://soccernet.espn.go.com/report/_/id/237934?cc=5901|url-status=dead|archive-date=October 25, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=October 4, 2008}}</ref>
+|- style="background:#fafad2;"
+|{{left}}October 12, 2008
+|{{left}}[[Houston Dynamo]]
+|A
+|0–0
+|17,531
+|
+|<ref>{{cite news|title=D.C. United, Dynamo play to a scoreless draw|url=http://soccernet.espn.go.com/report/_/id/237944?cc=5901|archive-url=https://archive.today/20120730155008/http://soccernet.espn.go.com/report/_/id/237944?cc=5901|url-status=dead|archive-date=July 30, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=October 12, 2008}}</ref>
+|- style="background:#dfd;"
+|{{left}}October 16, 2008
+|{{left}}[[New England Revolution]]
+|H
+|2–1
+|16,672
+|<small>[[Francis Doe|Doe]] (2)</small>
+|<ref>{{cite news|title=Doe propels D.C. United to much-needed win|url=http://soccernet.espn.go.com/report/_/id/237946?cc=5901|archive-url=https://archive.today/20120714143003/http://soccernet.espn.go.com/report/_/id/237946?cc=5901|url-status=dead|archive-date=July 14, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=October 16, 2008}}</ref>
+|- style="background:#fdd;"
+|{{left}}October 26, 2008
+|{{left}}[[Columbus Crew]]
+|A
+|0-1
+|19,591
+|
+|<ref>{{cite news|title=Columbus 1–0 D.C.: United eliminated from postseason|url=http://soccernet.espn.go.com/report/_/id/237959?cc=5901|archive-url=https://archive.today/20120713232847/http://soccernet.espn.go.com/report/_/id/237959?cc=5901|url-status=dead|archive-date=July 13, 2012|accessdate=May 28, 2011|newspaper=ESPNSoccernet.com|date=October 26, 2008}}</ref>
+|}
+
+=== CONCACAF Champions' Cup ===
+{{see also|2008 CONCACAF Champions' Cup}}
+
+{| class="wikitable"
+|-
+| style="background:#dfd;"|<small>Win</small>
+|bgcolor=fafad2|<small>Tie</small>
+| style="background:#fdd;"|<small>Loss</small>
+|}
+
+{|class="wikitable" style="font-size:95%; text-align:center"
+|-
+!Round!!Date!!Opponent!!Venue!!Result!!Attendance!!Scorers!!Ref.
+|- style="background:#fafad2;"
+|[[2008 CONCACAF Champions' Cup#Quarterfinals|QF]]
+|{{left}}March 12, 2008
+|{{left}} {{flagicon|JAM}} [[Harbour View F.C.|Harbour View]]
+|A
+|1–1
+|6,985
+|<small>[[Devon McTavish|McTavish]]</small>
+|<ref>{{cite news|title=United draw Jamaica's Harbour View to open Champions' Cup|url=http://soccernet.espn.go.com/match/_/id/238115?cc=5901|archive-url=https://archive.today/20120715031129/http://soccernet.espn.go.com/match/_/id/238115?cc=5901|url-status=dead|archive-date=July 15, 2012|accessdate=May 29, 2011|newspaper=ESPNSoccernet.com|date=March 12, 2008}}</ref>
+|- style="background:#dfd;"
+|[[2008 CONCACAF Champions' Cup#Quarterfinals|QF]]
+|{{left}}March 18, 2008
+|{{left}} {{flagicon|JAM}} [[Harbour View F.C.|Harbour View]]
+|H
+|5–0
+|12,394
+|<small>[[Devon McTavish|McTavish]] (2), [[Luciano Emilio|Emilio]] (2), [[Helbert Frederico Carreiro da Silva|Fred]]</small>
+|<ref>{{cite news|title=United route Harbour View to advance to CONCACAF semis|url=http://soccernet.espn.go.com/match/_/id/238118?cc=5901|archive-url=https://archive.today/20120715023601/http://soccernet.espn.go.com/match/_/id/238118?cc=5901|url-status=dead|archive-date=July 15, 2012|accessdate=May 29, 2011|newspaper=ESPNSoccernet.com|date=March 18, 2008}}</ref>
+|- style="background:#fdd;"
+|[[2008 CONCACAF Champions' Cup#Semifinals|SF]]
+|{{left}}April 1, 2008
+|{{left}} {{flagicon|MEX}} [[C.F. Pachuca|Pachuca]]
+|A
+|0–2
+|18,642
+|
+|<ref>[http://ww2.mlsnet.com/news/team_news.jsp?ymd=20080402&content_id=146906&vkey=news_dcu&fext=.jsp&team=t103 Latest News {{pipe}} MLSsoccer.com] {{webarchive|url=https://web.archive.org/web/20080504085527/http://ww2.mlsnet.com/news/team_news.jsp?ymd=20080402&content_id=146906&vkey=news_dcu&fext=.jsp&team=t103 |date=May 4, 2008 }}</ref>
+|- style="background:#dfd;"
+|[[2008 CONCACAF Champions' Cup#Semifinals|SF]]
+|{{left}}April 9, 2008
+|{{left}} {{flagicon|MEX}} [[C.F. Pachuca|Pachuca]]
+|H
+|2–1
+|17,329
+|<small>[[Rod Dyachenko|Dyachenko]], [[Franco Niell|Niell]]</small>
+|<ref>{{cite web |url=http://dcunited.mlsnet.com/news/team_news.jsp?ymd=20080409&content_id=149478&vkey=news_dcu&fext=.jsp&team=t103 |title= D.C. United: News: D.C. Can't get goals they need in win|website=dcunited.mlsnet.com |archive-url=https://web.archive.org/web/20090630080616/http://dcunited.mlsnet.com/news/team_news.jsp?ymd=20080409&content_id=149478&vkey=news_dcu&fext=.jsp&team=t103 |archive-date=June 30, 2009}}</ref>
+|}
+
+=== CONCACAF Champions League ===
+{{see also|2008–09 CONCACAF Champions League}}
+{| class="wikitable"
+|-
+| style="background:#dfd;"|<small>Win</small>
+|bgcolor=fafad2|<small>Tie</small>
+| style="background:#fdd;"|<small>Loss</small>
+|}
+
+{|class="wikitable" style="font-size:95%; text-align:center"
+|-
+!Round!!Date!!Opponent!!Venue!!Result!!Attendance!!Scorers!!Ref.
+|- style="background:#fdd;"
+|[[2008–09 CONCACAF Champions League group stage#D.C. United v Saprissa|GS]]
+|{{left}}September 16, 2008
+|{{left}} {{flagicon|CRC}} [[C.D. Saprissa|Saprissa]]
+|H
+|0–2
+|6,105
+|
+|<ref>{{cite news|title=Match Report: D.C. United vs Saprissa|url=http://www.concacaf.com/competitions/matchreport/7156.pdf|accessdate=May 28, 2011|newspaper=CONCACAF|date=September 17, 2008|archiveurl = https://web.archive.org/web/20090306035301/http://www.concacaf.com/competitions/matchreport/7156.pdf|archivedate=March 6, 2009 |url-status=dead}}</ref>
+|- style="background:#fdd;"
+|[[2008–09 CONCACAF Champions League group stage#Marathón v D.C. United|GS]]
+|{{left}}September 24, 2008
+|{{left}} {{flagicon|HON}} [[C.D. Marathón|Marathón]]
+|A
+|0-2
+|8,000
+|
+|<ref name="CCL game 2">{{cite news|title=Match Report: Marathón vs D.C. United|url=http://www.concacaf.com/competitions/matchreport/7159.pdf|accessdate=May 28, 2011|newspaper=CONCACAF|date=September 25, 2008}}{{dead link|date=June 2016|bot=medic}}{{cbignore|bot=medic}}</ref>
+|- style="background:#fdd;"
+|[[2008–09 CONCACAF Champions League group stage#D.C. United v Cruz Azul|GS]]
+|{{left}}October 1, 2008
+|{{left}} {{flagicon|MEX}} [[Cruz Azul]]
+|H
+|0–1
+|7,124
+|
+|<ref>http://www.concacaf.com/competitions/matchreport/7169.pdf  {{dead link|date=June 2016|bot=medic}}{{cbignore|bot=medic}}</ref>
+|- style="background:#fafad2;"
+|[[2008–09 CONCACAF Champions League group stage#Saprissa v D.C. United|GS]]
+|{{left}}October 9, 2008
+|{{left}} {{flagicon|CRC}} [[C.D. Saprissa|Saprissa]]
+|A
+|2–2
+|10,000
+|<small>[[Francis Doe|Doe]], [[Rod Dyachenko|Dyachenko]]</small>
+|<ref>{{cite web |title=MATCH STATISTICS/ESTADISTICAS DEL PARTIDO |url=http://www.concacaf.com/competitions/matchreport/7171.pdf |archive-url=https://web.archive.org/web/20090306133110/http://www.concacaf.com/competitions/matchreport/7171.pdf |archive-date=March 6, 2009 |website=www.concacaf.com}}</ref>
+|- style="background:#fdd;"
+|[[2008–09 CONCACAF Champions League group stage#Cruz Azul v D.C. United|GS]]
+|{{left}}October 21, 2008
+|{{left}} {{flagicon|MEX}} [[Cruz Azul]]
+|A
+|0-2
+|4,265
+|
+|<ref>{{cite web|title=CCL 2008–09 Match Report: Cruz Azul vs. D.C. United|url=http://www.concacaf.com/competitions/matchreport/7172.pdf|publisher=Confederation of North, Central American and the Caribbean Association Football}}{{dead link|date=June 2016|bot=medic}}{{cbignore|bot=medic}}</ref>
+|- style="background:#fdd;"
+|[[2008–09 CONCACAF Champions League group stage#D.C. United v Marathón|GS]]
+|{{left}}October 29, 2008
+|{{left}} {{flagicon|HON}} [[C.D. Marathón|Marathón]]
+|H
+|2–4
+|7,156
+|<small>[[Francis Doe|Doe]], [[Greg Janicki|Janicki]]</small>
+|<ref>{{cite web |title=MATCH STATISTICS/ESTADISTICAS DEL PARTIDO |url=http://www.concacaf.com/competitions/matchreport/7174.pdf |archive-url=https://web.archive.org/web/20090306133118/http://www.concacaf.com/competitions/matchreport/7174.pdf |archive-date=March 6, 2009 |website=www.concacaf.com}}</ref>
+|}
+
+=== U.S. Open Cup ===
+{{see also|2008 U.S. Open Cup}}
+{| class="wikitable"
+|-
+| style="background:#dfd;"|<small>Win</small>
+|bgcolor=fafad2|<small>Tie</small>
+| style="background:#fdd;"|<small>Loss</small>
+|}
+
+{|class="wikitable" style="font-size:95%; text-align:center"
+|-
+!Round!!Date!!Opponent!!Venue!!Result!!Attendance!!Scorers!!Ref.
+|- style="background:#dfd;"
+|[[2008 U.S. Open Cup#Third round|R3]]
+|{{left}}July 1, 2008
+|{{left}}[[Rochester Rhinos]]
+|H
+|2–0
+|2,752
+|<small>[[Marc Burch|Burch]] (2)</small>
+|
+|- style="background:#dfd;"
+|[[2008 U.S. Open Cup#Quarterfinals|QF]]
+|{{left}}July 8, 2008
+|{{left}}[[Chicago Fire Soccer Club|Chicago Fire]]
+|H
+|2–1 (a.e.t.)
+|4,118
+|<small>[[Francis Doe|Doe]], [[Bryan Namoff|Namoff]]</small>
+|<ref name="usoc quarterfinals">{{cite news|last=Tenorio|first=Paul|title=Moreno Comes In, United Moves On|url=https://www.washingtonpost.com/wp-dyn/content/article/2008/07/08/AR2008070803444.html|accessdate=May 28, 2011|newspaper=The Washington Post|date=July 9, 2008}}</ref>
+|- style="background:#dfd;"
+|[[2008 U.S. Open Cup#Semifinals|SF]]
+|{{left}}August 12, 2008
+|{{left}}[[New England Revolution]]
+|H
+|3–1
+|6,797
+|<small>[[Luciano Emilio|Emilio]] (2), [[Santino Quaranta|Quaranta]]</small>
+|<ref>{{cite news|title=Emilio, Quaranta brace propels United to USOC final|url=http://dcunited.mlsnet.com/news/team_news.jsp?ymd=20080812&content_id=179784&vkey=news_dcu&fext=.jsp&team=t103|accessdate=May 28, 2011|newspaper=D.C. United|date=August 12, 2008|archiveurl = https://web.archive.org/web/20090103000333/http://dcunited.mlsnet.com/news/team_news.jsp?ymd=20080812&content_id=179784&vkey=news_dcu&fext=.jsp&team=t103 |archivedate = January 3, 2009|url-status=dead}}</ref>
+|- style="background:#dfd;"
+|[[2008 U.S. Open Cup#Final|F]]
+|{{left}}September 3, 2008
+|{{left}}[[Charleston Battery]]
+|H
+|2–1
+|8,212
+|<small>[[Luciano Emilio|Emilio]], [[Helbert Frederico Carreiro da Silva|Fred]]</small>
+|<ref>{{cite news|last=Leon|first=Chris|title=Battery edged by DC United in Cup Final Thriller|url=http://www.charlestonbattery.com/news.asp?y=2008&page=1&id=406|accessdate=May 28, 2011|newspaper=Charleston Battery|date=September 3, 2008|archive-date=October 22, 2012|archive-url=https://web.archive.org/web/20121022074607/http://www.charlestonbattery.com/news.asp?y=2008&page=1&id=406|url-status=dead}}</ref>
+|}
+
+==References==
+{{reflist|2}}
+
+{{D.C. United seasons}}
+{{Major League Soccer}}
+{{D.C. United}}
+{{2008 MLS season by team}}
+{{2008 in American soccer}}
+
+[[Category:D.C. United seasons|2008]]
+[[Category:2008 Major League Soccer season|Dc United]]
+[[Category:American soccer clubs 2008 season|Dc United]]
+[[Category:2008 in sports in Washington, D.C.]]
+[[Category:U.S. Open Cup champion seasons]]

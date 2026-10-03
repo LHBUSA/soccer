@@ -1,0 +1,69 @@
+{
+ "at": "2026-10-03T06:58:51.846Z",
+ "competition": "mls",
+ "season": "2019",
+ "state_before": "held",
+ "acceptance": {
+  "canonical_matches": 421,
+  "finished": 421,
+  "teams": 24,
+  "league_matches": 408,
+  "matches_per_club": {
+   "min": 34,
+   "max": 34
+  },
+  "repeated_pairings": 0,
+  "repeat_pairings_allowed": true,
+  "era": null,
+  "unresolved_identity_queue": 0,
+  "discovery": {
+   "checked": true,
+   "lane": "espn_mls@2019:results",
+   "indexed": 421,
+   "fetched": 421,
+   "missing_events": 0,
+   "repeated_pairing_events": 0,
+   "without_status": 0,
+   "finished_without_score": 0
+  },
+  "crosswalked": 421,
+  "espn_source_results": 421,
+  "score_disagreements": 0,
+  "postponed_beside_replay": 0
+ },
+ "matches": 421,
+ "finished": 421,
+ "stages": [
+  "Playoffs:playoff",
+  "Regular Season:league"
+ ],
+ "teams": 24,
+ "format": {
+  "teams": 24,
+  "league_matches": 408,
+  "games_per_team": {
+   "34": 24
+  }
+ },
+ "providers": [
+  "espn"
+ ],
+ "coverage": {
+  "venue": 1,
+  "lineups": 0,
+  "stats": 0,
+  "events": 0
+ },
+ "coverage_tier": "MATCH",
+ "limitations": [
+  "lineups for 0% of finished matches",
+  "team statistics for 0% of finished matches",
+  "event record for 0% of finished matches"
+ ],
+ "notes": [
+  "no registered era: uniform league games per club decides"
+ ],
+ "checks_failed": [],
+ "pass": true,
+ "promoted": true
+}

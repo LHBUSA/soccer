@@ -1,0 +1,98 @@
+{
+ "at": "2026-10-03T04:27:49.329Z",
+ "competition": "premier-league",
+ "season": "2009/10",
+ "state_before": "held",
+ "acceptance": {
+  "canonical_matches": 357,
+  "finished": 357,
+  "teams": 20,
+  "league_matches": 357,
+  "matches_per_club": {
+   "min": 15,
+   "max": 37
+  },
+  "repeated_pairings": 0,
+  "repeat_pairings_allowed": false,
+  "era": "20-club double round robin since 1995/96",
+  "unresolved_identity_queue": 0,
+  "discovery": {
+   "checked": true,
+   "lane": "espn_premier_league@2009:results",
+   "indexed": 357,
+   "fetched": 357,
+   "missing_events": 0,
+   "repeated_pairing_events": 0,
+   "without_status": 0,
+   "finished_without_score": 0
+  },
+  "crosswalked": 357,
+  "espn_source_results": 357,
+  "score_disagreements": 0,
+  "postponed_beside_replay": 0
+ },
+ "matches": 357,
+ "finished": 357,
+ "stages": [
+  "Regular Season:league"
+ ],
+ "teams": 20,
+ "format": {
+  "teams": 20,
+  "league_matches": 357,
+  "games_per_team": {
+   "15": 1,
+   "36": 4,
+   "37": 15
+  }
+ },
+ "providers": [
+  "espn"
+ ],
+ "coverage": {
+  "venue": 1,
+  "lineups": 0,
+  "stats": 0,
+  "events": 0
+ },
+ "coverage_tier": "MATCH",
+ "limitations": [
+  "lineups for 0% of finished matches",
+  "team statistics for 0% of finished matches",
+  "event record for 0% of finished matches"
+ ],
+ "notes": [],
+ "checks_failed": [
+  {
+   "check": "games_per_team_uneven",
+   "distribution": {
+    "15": 1,
+    "36": 4,
+    "37": 15
+   }
+  },
+  {
+   "check": "home_away_unbalanced",
+   "count": 16
+  },
+  {
+   "check": "structure_league_match_count",
+   "expected": 380,
+   "found": 357,
+   "era": "20-club double round robin since 1995/96"
+  },
+  {
+   "check": "structure_matches_per_club",
+   "expected": 38,
+   "clubs_off": 20,
+   "min": 15,
+   "max": 37
+  },
+  {
+   "check": "structure_finished_count",
+   "expected": 380,
+   "found": 357
+  }
+ ],
+ "pass": false
+}

@@ -1,0 +1,82 @@
+{
+ "at": "2026-10-03T07:22:30.408Z",
+ "competition": "mls",
+ "season": "2020",
+ "state_before": "held",
+ "acceptance": {
+  "canonical_matches": 329,
+  "finished": 324,
+  "teams": 26,
+  "league_matches": 297,
+  "matches_per_club": {
+   "min": 18,
+   "max": 23
+  },
+  "repeated_pairings": 59,
+  "repeat_pairings_allowed": true,
+  "era": null,
+  "unresolved_identity_queue": 0,
+  "discovery": {
+   "checked": true,
+   "lane": "espn_mls@2020:results",
+   "indexed": 334,
+   "fetched": 334,
+   "missing_events": 0,
+   "repeated_pairing_events": 135,
+   "without_status": 0,
+   "finished_without_score": 0
+  },
+  "crosswalked": 329,
+  "espn_source_results": 329,
+  "score_disagreements": 0,
+  "postponed_beside_replay": 0
+ },
+ "matches": 329,
+ "finished": 324,
+ "stages": [
+  "Playoffs:playoff",
+  "Regular Season:league"
+ ],
+ "teams": 26,
+ "format": {
+  "teams": 26,
+  "league_matches": 292,
+  "games_per_team": {
+   "18": 1,
+   "21": 2,
+   "22": 5,
+   "23": 18
+  }
+ },
+ "providers": [
+  "espn"
+ ],
+ "coverage": {
+  "venue": 0.9537037037037037,
+  "lineups": 0,
+  "stats": 0,
+  "events": 0
+ },
+ "coverage_tier": "MATCH",
+ "limitations": [
+  "lineups for 0% of finished matches",
+  "team statistics for 0% of finished matches",
+  "event record for 0% of finished matches"
+ ],
+ "notes": [
+  "5 past match(es) postponed/cancelled/abandoned (listed, not results)",
+  "no registered era: uniform league games per club decides"
+ ],
+ "checks_failed": [
+  {
+   "check": "games_per_team_uneven",
+   "distribution": {
+    "18": 1,
+    "21": 2,
+    "22": 5,
+    "23": 18
+   }
+  }
+ ],
+ "pass": false
+}

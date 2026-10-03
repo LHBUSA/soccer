@@ -1,0 +1,1529 @@
+{{Use American English|date=March 2026}}
+{{Use mdy dates|date=August 2023}}
+{{Infobox football club season
+| club = [[Houston Dynamo]]
+| season = [[2008 Major League Soccer season|2008]]
+| league = [[2008 Major League Soccer season|Major League Soccer]]
+| league result = [[Western Conference (MLS)|Conference]]: 1st, <br> Overall: 2nd
+| owner = [[Philip Anschutz]] ([[Anschutz Entertainment Group|AEG]])
+| mgrtitle = Head coach
+| manager = [[Dominic Kinnear]]
+|chairman = [[Oliver Luck]]<br> Chris Canetti
+|chrtitle = President<br> [[Chief operating officer|COO]]
+|stadium  = [[Robertson Stadium]]
+| cup1 = [[2008 MLS Cup Playoffs|MLS Cup Playoffs]] | cup1 result = '''Conference Semifinals'''
+| cup2 = [[2008 U.S. Open Cup|U.S. Open Cup]] | cup2 result = '''Third Round'''
+| cup3 = [[2008 CONCACAF Champions' Cup|CONCACAF Champions' Cup]] | cup3 result = '''Semifinals'''
+| cup4 = [[2008–09 CONCACAF Champions League|CONCACAF Champions League]] | cup4 result = '''Quarterfinals'''
+| cup5 = [[2008 North American SuperLiga|SuperLiga]] | cup5 result = '''Runners-up'''
+| league topscorer =<br>[[Brian Ching]]: 13 goals
+| season topscorer =<br>[[Brian Ching]]: 14 goals
+
+| pattern_la1 = _adidasstripeswhite
+| pattern_b1  = _DYNAMO_07h
+| pattern_ra1 = _adidasstripeswhite
+| pattern_sh1 = _DYNAMO_07h
+| pattern_so1 = _3_stripes_white
+| leftarm1    = FF6F00
+| body1       = FFFFFF
+| rightarm1   = FF6F00
+| shorts1     = FFFFFF
+| socks1      = FF6F00
+
+| pattern_la2 = _adidasstripesonwhite
+| pattern_b2  = _DYNAMO_07a
+| pattern_ra2 = _adidasstripesonwhite
+| pattern_sh2 = _DYNAMO_07a
+| pattern_so2 = _3_stripes_on_white
+| leftarm2    = FF6F00
+| body2       = FFFFFF
+| rightarm2   = FF6F00
+| shorts2     = FFFFFF
+| socks2      = FF6F00
+
+| prevseason = [[2007 Houston Dynamo season|2007]]
+| nextseason = [[2009 Houston Dynamo season|2009]]
+
+| American   = y
+}}
+
+The '''2008 [[Houston Dynamo]] season''' was the third season of the existence for the Houston franchise. The Houston Dynamo were the defending [[wikt:back-to-back|back-to-back]] [[MLS Cup]] [[MLS Cup 2007|Champions]], and sought to become the first club in [[Major League Soccer]] history to win three straight MLS Cups.  It was the team's third season with head coach [[Dominic Kinnear]], majority owner [[Philip Anschutz|Philip Anschultz]], president [[Oliver Luck]], and chief operating officer Chris Canetti.
+
+In the MLS regular season, the Dynamo finished first in the Western Conference to qualify for the playoffs for the third consecutive season.  In the [[2008 MLS Cup Playoffs|MLS Cup Playoffs]], Houston lost to the [[New York Red Bulls]] 4–1 on aggregate in the Conference Semifinals. They were eliminated by the [[Charleston Battery]] in the third round of the [[2008 U.S. Open Cup|U.S. Open Cup]].  During the [[2008 CONCACAF Champions' Cup]], Houston defeated [[C.S.D. Municipal]] 3–1 on aggregate in the quarterfinals before falling in the semifinals 3–0 to [[Deportivo Saprissa]].  During the 2008 North American SuperLiga, the Dynamo reached the final, where they lost 6–5 on [[Penalty shoot-out (association football)|penalties]] to the [[New England Revolution]].  The Dynamo also played in the group stage of the [[2008–09 CONCACAF Champions League]] during the season, finishing second in their group to advance.
+
+==Major events==
+
+===Team news===
+* [[Houston City Council|Houston's City Council]] on January 30, 2008, approved the purchase of over {{convert|80|acre|m2}} of land near [[Texas State Highway 288|State Highway 288]] and Almeda-Genoa Rd. for the development of an amateur sports complex—the first of its kind in the history of the city. The new complex will provide 18 fields for local soccer organizations and will also afford the area the opportunity to host amateur tournaments of state, regional and national stature. Once completely developed, the complex is expected to attract well over 500,000 visitors per year.<ref>{{Cite news|url=http://houston.mlsnet.com/news/team_news.jsp?ymd=20080130&content_id=137151&vkey=pr_hou&fext=.jsp&team=t200 |title=Houston OKs purchase for Soccer Complex |accessdate=2008-01-30 |date=2008-01-30 |publisher=Houston Dynamo Media Relations }}{{dead link|date=June 2017 |bot=InternetArchiveBot |fix-attempted=yes }}</ref>
+* On February 26, 2008, Houston Dynamo President [[Oliver Luck]] revealed the planned negotiations to the media stating that the Houston Dynamo would be managed in majority by original owners Anschutz Entertainment Group (who will hold 50% of ownership) along with newfound partners Gabriel Brener, head of Brener International Group, and multiple World and Olympic [[boxing]] champion [[Oscar De La Hoya]] (each with 25% ownership).<ref>{{Cite news|url=http://www.mlsnet.com/news/team_news.jsp?ymd=20080226&content_id=140708&vkey=pr_hou&fext=.jsp&team=t200 |title=De La Hoya on the way to Dynamo |accessdate=2008-02-26 |date=2008-02-26 |publisher=Houston Dynamo Media Relations }}{{dead link|date=June 2017 |bot=InternetArchiveBot |fix-attempted=yes }}</ref>
+
+== Final roster==
+{{updated|November 27, 2008}}<ref name="Houston Dynamo: Roster: Main">{{Cite web|date=2008-10-27|title=Houston Dynamo: Roster: Main|url=http://web.mlsnet.com:80/players/roster.jsp?club=t200|url-status=live|archive-url=https://web.archive.org/web/20081027110221/http://web.mlsnet.com/players/roster.jsp?club=t200|archive-date=2008-10-27|access-date=2020-07-25|website=MLSnet.com}}</ref>
+
+''Appearances and goals are totals for MLS regular season only.''
+{| class="wikitable" style="text-align:center; font-size:90%; width:85%;"
+! style="background:#F75010; color:#000; text-align:center; border:2px solid #96C0E6;" scope="col"  |No.
+! style="background:#F75010; color:#000; text-align:center; border:2px solid #96C0E6;" scope="col"  |Name
+! style="background:#F75010; color:#000; text-align:center; border:2px solid #96C0E6;" scope="col"  |Nationality
+! style="background:#F75010; color:#000; text-align:center; border:2px solid #96C0E6;" scope="col"  |Position
+! style="background:#F75010; color:#000; text-align:center; border:2px solid #96C0E6;" scope="col"  |Date of birth (Age)
+! style="background:#F75010; color:#000; text-align:center; border:2px solid #96C0E6;" scope="col"  |Joined from
+! style="background:#F75010; color:#000; text-align:center; border:2px solid #96C0E6;" scope="col"  |Joined in
+! style="background:#F75010; color:#000; text-align:center; border:2px solid #96C0E6;" scope="col"  |Apps.
+! style="background:#F75010; color:#000; text-align:center; border:2px solid #96C0E6;" scope="col"  |Goals
+|-
+! colspan="9" style="background:#dcdcdc; text-align:center;" |Goalkeepers
+|-
+|1
+|[[Tony Caig]]||{{Flagicon|ENG}}||[[Goalkeeper (association football)|GK]]||April 11, 1974 (34)||[[Gretna F.C.|Gretna FC]]||2008||7||0
+|-
+|18||[[Pat Onstad]]||{{Flagicon|CAN}}||[[Goalkeeper (association football)|GK]]||January 13, 1968 (40)||[[San Jose Earthquakes]]||2006||83||0
+|-
+|30||Corbin Waller||{{Flagicon|USA}}||[[Goalkeeper (association football)|GK]]||March 26, 1985 (23)||[[College of Charleston Cougars|College of Charleston]]||2008||0||0
+|-
+! colspan="9" style="background:#dcdcdc; text-align:center;" |Defenders
+|-
+|2||[[Eddie Robinson (soccer)|Eddie Robinson]]||{{Flagicon|USA}}||[[Defender (association football)|DF]]||June 19, 1978 (30)||[[San Jose Earthquakes]]||2006||70||4
+|-
+|4||[[Patrick Ianni]]||{{Flagicon|USA}}||[[Defender (association football)|DF]]||June 15, 1985 (23)||[[UCLA Bruins men's soccer|UCLA]]||2006||35||1
+|-
+|16||[[Craig Waibel]]||{{Flagicon|USA}}||[[Defender (association football)|DF]]||August 21, 1975 (33)||[[San Jose Earthquakes]]||2006||63||5
+|-
+|23||Stephen Wondolowski||{{Flagicon|USA}}||[[Defender (association football)|DF]]||August 13, 1985 (23)||[[San Jose Frogs]]||2008||0||0
+|-
+|24||[[Wade Barrett (soccer)|Wade Barrett]] <small>([[Captain (association football)|C]])</small>||{{Flagicon|USA}}||[[Defender (association football)|DF]]||June 23, 1976 (32)||[[San Jose Earthquakes]]||2006||87||0
+|-
+|32||[[Bobby Boswell]]||{{Flagicon|USA}}||[[Defender (association football)|DF]]||March 15, 1983 (25)||[[D.C. United]]||2008||29||1
+|-
+! colspan="9" style="background:#dcdcdc; text-align:center;" |Midfielders
+|-
+|3||Johnny Alcaraz||{{Flagicon|USA}}||[[Midfielder|MF]]||March 11, 1985 (23)||[[Westmont College]]||2008||0||0
+|-
+|8
+|[[Richard Mulrooney]]||{{Flagicon|USA}}||[[Midfielder|MF]]||November 3, 1976 (32)||[[Toronto FC]]||2007||51||0
+|-
+|9||[[Brian Mullan]]||{{Flagicon|USA}}||[[Midfielder|MF]]||April 23, 1978 (30)||[[San Jose Earthquakes]]||2006||89||6
+|-
+|11||[[Brad Davis (soccer)|Brad Davis]]||{{Flagicon|USA}}||[[Midfielder|MF]]||November 8, 1981 (27)||[[San Jose Earthquakes]]||2006||71||7
+|-
+|13||[[Ricardo Clark]]||{{Flagicon|USA}}||[[Midfielder|MF]]||February 10, 1983 (25)||[[San Jose Earthquakes]]||2006||75||6
+|-
+|14||[[Dwayne De Rosario]]||{{Flagicon|CAN}}||[[Midfielder|MF]]||May 15, 1978 (30)||[[San Jose Earthquakes]]||2006||78||24
+|-
+|17||[[Mike Chabala]]||{{Flagicon|USA}}||[[Midfielder|MF]]||May 24, 1984 (24)||[[Washington Huskies men's soccer|University of Washington]]||2006||0||0
+|-
+|19||[[John Michael Hayden]]||{{Flagicon|USA}}||[[Midfielder|MF]]||April 27, 1984 (24)||[[Indiana Hoosiers men's soccer|Indiana University]]||2007||0||0
+|-
+|20||[[Geoff Cameron]]||{{Flagicon|USA}}||[[Midfielder|MF]]||July 11, 1985 (23)||[[Rhode Island Rams men's soccer|University of Rhode Island]]||2008||23||1
+|-
+|21
+|Nick Hatzke||{{Flagicon|USA}}||[[Midfielder|MF]]||October 16, 1983 (25)||[[California Golden Bears men's soccer|University of California]]||2007||0||0
+|-
+|22||[[Stuart Holden]]||{{Flagicon|USA}}||[[Midfielder|MF]]||August 1, 1985 (23)||[[Sunderland A.F.C.]]||2006||62||9
+|-
+|26||[[Corey Ashe]]||{{Flagicon|USA}}||[[Midfielder|MF]]||March 14, 1986 (22)||[[North Carolina Tar Heels men's soccer|University of North Carolina]]||2007||44||1
+|-
+|27||[[Erik Ustruck]]||{{Flagicon|USA}}||[[Midfielder|MF]]||January 4, 1985 (23)||[[Santa Clara Broncos|Santa Clara University]]||2007||0||0
+|-
+! colspan="9" style="background:#dcdcdc; text-align:center;" |Forwards
+|-
+|5||[[Kyle Brown (soccer)|Kyle Brown]]||{{Flagicon|USA}}||[[Forward (association football)|FW]]||August 10, 1983 (25)||[[Real Salt Lake]]||2008||4||0
+|-
+|7||[[Chris Wondolowski]]||{{Flagicon|USA}}||[[Forward (association football)|FW]]||January 28, 1983 (25)||[[San Jose Earthquakes]]||2006||30||2
+|-
+|10||[[Kei Kamara]]||{{Flagicon|SLE}}||[[Forward (association football)|FW]]||September 1, 1984 (24)||[[San Jose Earthquakes]]||2008||10||2
+|-
+|21||[[Nate Jaqua]]||{{Flagicon|USA}}||[[Forward (association football)|FW]]||October 28, 1981 (27)||[[SC Rheindorf Altach]]||2008||29||10
+|-
+|25||[[Brian Ching]]||{{Flagicon|USA}}||[[Forward (association football)|FW]]||May 24, 1978 (30)||[[San Jose Earthquakes]]||2006||66||31
+|-
+|99||[[Guy-Roland Kpene]]||{{Flagicon|CIV}}||[[Forward (association football)|FW]]||November 23, 1983 (25)||[[D.C. United]]||2008||0||0
+|}
+
+==Player movement==
+
+===In===
+''<small>Per Major League Soccer and club policies terms of the deals do not get disclosed.</small>''
+{| class="wikitable" style="text-align:left; font-size:95%;"
+! style="background:#c2ddff; width:120px;" |Date!! style="background:#c2ddff; width:130px;" |Player!! style="background:#c2ddff; width:50px;" |Position!! style="background:#c2ddff; width:30px;" |Age!! style="background:#c2ddff; width:170px;" |Previous club!! style="background:#c2ddff; width:300px;" |Notes!! style="background:#c2ddff; width:30px;" |Ref
+|-
+|'''November 2007'''||{{Flagicon|USA}} Stephen Wondolowski||DF||22||{{Flagicon|USA}} [[San Jose Frogs]]||Signed on a free transfer.  Had been playing with the Dynamo reserve team in 2007.||<ref>{{Cite web|date=2008-05-22|title=Stephen Wondolowski|url=http://houston.mlsnet.com/players/bio.jsp?team=t200&player=wondolowski_s&playerId=won155817&statType=current|access-date=2020-07-24|archive-url=https://web.archive.org/web/20080522132819/http://houston.mlsnet.com/players/bio.jsp?team=t200&player=wondolowski_s&playerId=won155817&statType=current|archive-date=2008-05-22}}</ref>
+|-
+| '''December 12, 2007'''||| {{Flagicon|USA}} [[Bobby Boswell]]|| DF|| 24|| {{Flagicon|USA}} [[D.C. United]]|| Acquired in exchange for [[Zach Wells]] and a conditional pick in the [[2009 MLS SuperDraft]].||<ref name=":0">{{Cite news|date=2007-12-12|title=Dynamo acquire Bobby Boswell from D.C.|publisher=Houston Dynamo Media Relations|url=http://houston.mlsnet.com/news/team_news.jsp?ymd=20071212&content_id=132791&vkey=pr_hou&fext=.jsp&team=t200|url-status=dead|accessdate=2008-01-19|archive-url=https://web.archive.org/web/20071222235259/http://houston.mlsnet.com/news/team_news.jsp?ymd=20071212&content_id=132791&vkey=pr_hou&fext=.jsp&team=t200|archive-date=2007-12-22}}</ref>
+|-
+| '''January 18, 2008'''||{{Flagicon|USA}} [[Geoff Cameron]]|| MF|| 22|| [[Rhode Island Rams men's soccer|University of Rhode Island]]|| Selected with the 14th pick of the 3rd round (42nd overall) in the [[2008 MLS SuperDraft]].||<ref name=":1">{{Cite web|last1=Fallas|first1=Bernardo|last2=Chronicle|first2=Copyright 2008 Houston|date=2008-01-19|title=Dynamo miss out on College Station product|url=https://www.chron.com/sports/dynamo/article/Dynamo-miss-out-on-College-Station-product-1992937.php|access-date=2020-07-22|website=Houston Chronicle}}</ref>
+|-
+| '''January 18, 2008'''||{{Flagicon|USA}} [[Jeremy Barlow]]|| MF|| 22|| [[Virginia Cavaliers men's soccer|University of Virginia]]|| Selected with the 14th pick of the 4th round (56nd overall) in the [[2008 MLS SuperDraft]].||<ref name=":1" />
+|-
+| '''January 24, 2008'''||{{Flagicon|USA}} Johnny Alcaraz|| MF|| 22|| [[Westmont College]]|| Selected with the 14th pick of the 1st round in the [[2008 MLS Supplemental Draft]].||<ref name=":2">{{Cite web|date=2008-01-24|title=Dynamo selects midfielders, forwards in MLS supplemental draft|url=https://www.oursportscentral.com/services/releases/dynamo-selects-midfielders-forwards-in-mls-supplemental-draft/n-3584349|access-date=2020-07-22|website=OurSports Central|language=en}}</ref>
+|-
+| '''January 24, 2008'''||{{Flagicon|USA}} [[Craig Thompson (soccer)|Craig Thompson]]|| MF|| 22|| [[Colorado Mines Orediggers|Colorado School of Mines]]|| Selected with the 14th pick of the 2nd round (28th overall) in the [[2008 MLS Supplemental Draft]].
+|<ref name=":2" />
+|-
+| '''January 24, 2008'''||{{Flagicon|ENG}} Kieran Hall|| MF|| 22|| [[Fort Lewis Skyhawks|Fort Lewis College]]|| Selected with the 14th pick of the 3rd round (42nd overall) in the [[2008 MLS Supplemental Draft]].  Did not sign a contract with Houston.||<ref name=":2" />
+|-
+| '''January 24, 2008'''||{{Flagicon|AUS}} James Georgeff|| FW|| 24|| [[UCF Knights men's soccer|University of Central Florida]]|| Selected with the 14th pick of the 4th round (56th overall) in the [[2008 MLS Supplemental Draft]].||<ref name=":2" />
+|-
+|'''January 29, 2008'''||{{Flagicon|ENG}} [[Tony Caig]]||GK||33||{{Flagicon|SCO}} [[Gretna F.C.]]||Signed on a free transfer||<ref>{{Cite web|last1=Fallas|first1=Bernardo|last2=Chronicle|first2=Copyright 2008 Houston|date=2008-01-29|title=Dynamo signs EPL vet Caig as backup keeper|url=https://www.chron.com/sports/dynamo/article/Dynamo-signs-EPL-vet-Caig-as-backup-keeper-1673225.php|access-date=2020-07-24|website=Houston Chronicle}}</ref>
+|-
+| '''February 27, 2008'''|| {{Flagicon|ARG}} [[Franco Caraccio]]|| FW|| 21|| {{Flagicon|ARG}} [[Arsenal de Sarandí]]|| Full rights purchased||<ref>{{Cite web|date=2008-02-27|title=Houston Dynamo Sign Argentine Forward Franco Caraccio|url=https://www.oursportscentral.com/services/releases/houston-dynamo-sign-argentine-forward-franco-caraccio/n-3598112|access-date=2020-07-23|website=OurSports Central|language=en}}</ref>
+|-
+| '''March 4, 2008'''||{{Flagicon|USA}} [[Kyle Brown (soccer)|Kyle Brown]]|| FW|| 24||{{Flagicon|USA}} [[Real Salt Lake]]|| Selected in the 2008 MLS Waiver Draft||<ref>{{Cite web|last1=Fallas|first1=Bernardo|last2=Chronicle|first2=Copyright 2008 Houston|date=2008-03-04|title=Dynamo add forward Kyle Brown in waiver draft|url=https://www.chron.com/sports/dynamo/article/Dynamo-add-forward-Kyle-Brown-in-waiver-draft-1670642.php|access-date=2020-07-23|website=Houston Chronicle}}</ref>
+|-
+| '''March 18, 2008'''||{{Flagicon|USA}} Corbin Waller|| GK|| 22|| [[College of Charleston Cougars|College of Charleston]]|| Signed on a free transfer
+|<ref>{{Cite web|date=March 18, 2008|title=CofC's Corbin Waller Signs With Houston Dynamo|url=https://cofcsports.com/news/2008/3/18/1414488.aspx|url-status=dead|archive-url=https://web.archive.org/web/20171209044016/https://cofcsports.com/news/2008/3/18/1414488.aspx|archive-date=December 9, 2017|access-date=March 18, 2021|website=College of Charleston Sports}}</ref>
+|-
+|'''May 7, 2008'''||{{Flagicon|CIV}} [[Guy-Roland Kpene]]||FW||24||{{Flagicon|USA}} [[D.C. United]]||Signed on a free transfer||<ref>{{Cite web|last1=Fallas|first1=Bernardo|last2=Chronicle|first2=Copyright 2008 Houston|date=2008-05-07|title=DYNAMO NOTES: Team signs ex-United forward Kpene|url=https://www.chron.com/sports/dynamo/article/DYNAMO-NOTES-Team-signs-ex-United-forward-Kpene-1620747.php|access-date=2020-07-24|website=Houston Chronicle}}</ref>
+|-
+| '''July 15, 2008'''||{{Flagicon|USA}} [[Nate Jaqua]] || FW || 26|| {{Flagicon|AUT}} [[SC Rheindorf Altach]]|| Signed on a free transfer||<ref>{{Cite web|last1=Fallas|first1=Bernardo|last2=Chronicle|first2=Copyright 2008 Houston|date=2008-07-16|title=DYNAMO NOTES: Forward Jaqua to return to squad|url=https://www.chron.com/sports/dynamo/article/DYNAMO-NOTES-Forward-Jaqua-to-return-to-squad-1590956.php|access-date=2020-07-24|website=Houston Chronicle}}</ref>
+|-
+|'''July 24, 2008'''||{{Flagicon|SLE}} [[Kei Kamara]]||FW||23||{{Flagicon|USA}} [[San Jose Earthquakes]]||Acquired in exchange for a 1st round pick in the [[2009 MLS SuperDraft]] and [[allocation money]].||<ref>{{Cite web|last1=Fallas|first1=Bernardo|last2=Chronicle|first2=Copyright 2008 Houston|date=2008-07-24|title=Dynamo acquire forward Kamara from San Jose|url=https://www.chron.com/sports/dynamo/article/Dynamo-acquire-forward-Kamara-from-San-Jose-1790002.php|access-date=2020-07-24|website=Houston Chronicle}}</ref>
+|}
+
+===Out===
+''<small>Per Major League Soccer and club policies terms of the deals do not get disclosed.</small>''
+{| class="wikitable" style="text-align:left; font-size:95%;"
+! style="background:#c2ddff; width:120px;" |Date!! style="background:#c2ddff; width:130px;" |Player!! style="background:#c2ddff; width:50px;" |Position!! style="background:#c2ddff; width:30px;" |Age!! style="background:#c2ddff; width:170px;" |Destination Club!! style="background:#c2ddff; width:300px;" |Notes!! style="background:#c2ddff; width:30px;" |Ref
+|-
+|'''November 21, 2007'''||{{Flagicon|USA}} [[Ryan Cochrane (soccer)|Ryan Cochrane]]||DF||23||{{Flagicon|USA}} [[San Jose Earthquakes]]||Selected in the [[2007 MLS Expansion Draft]].||<ref>{{Cite web|date=2007-11-21|title=Red Bulls Midfielder Joe Vide Selected in MLS Expansion Draft|url=https://www.oursportscentral.com/services/releases/red-bulls-midfielder-joe-vide-selected-in-mls-expansion-draft/n-3562229|access-date=2020-07-22|website=OurSports Central|language=en}}</ref>
+|-
+|'''November 28, 2007'''||{{Flagicon|USA}} Jordan James||GK||25||{{Flagicon|USA}} [[Portland Timbers (2001–2010)|Portland Timbers]]||Released after the 2007 season.||<ref name=":3">{{Cite web|date=2007-11-28|title=MLS Waiver Draft set for Thursday|url=http://web.mlsnet.com/news/mls_news.jsp?ymd=20071128&content_id=131302&vkey=pr_mls&fext=.jsp|url-status=live|archive-url=https://web.archive.org/web/20071214050655/http://web.mlsnet.com/news/mls_news.jsp?ymd=20071128&content_id=131302&vkey=pr_mls&fext=.jsp|archive-date=2007-12-14|access-date=2020-07-24}}</ref>
+|-
+|'''November 28, 2007'''||{{Flagicon|USA}} [[Kenneth Hoerner]]||MF||23||Retired||Released after the 2007 season.||<ref name=":3" />
+|-
+|'''December 12, 2007'''||{{Flagicon|USA}} [[Zach Wells]]|| GK|| 26||{{Flagicon|USA}} [[D.C. United]]|| Traded along with a conditional pick in the [[2009 MLS SuperDraft]] for [[Bobby Boswell]].||<ref name=":0" />
+|-
+|'''December 31, 2007'''||{{Flagicon|ZIM}} [[Joseph Ngwenya]]||FW||26||{{Flagicon|AUT}} [[SK Austria Kärnten]]||Contract expired||<ref>{{Cite web|last1=Fallas|first1=Bernardo|last2=Chronicle|first2=Copyright 2008 Houston|date=2008-01-21|title=Former Dynamo player Ngwenya signs with Austrian club|url=https://www.chron.com/sports/dynamo/article/Former-Dynamo-player-Ngwenya-signs-with-Austrian-1790609.php|access-date=2020-07-24|website=Houston Chronicle}}</ref>
+|-
+|'''December 31, 2007'''||{{Flagicon|USA}} [[Nate Jaqua]]||FW||26||{{Flagicon|AUT}} [[SC Rheindorf Altach]]||Contract expired||<ref>{{Cite web|last1=Fallas|first1=Bernardo|last2=Chronicle|first2=Copyright 2008 Houston|date=2008-01-29|title=Dynamo forward Jaqua signs with Austrian team|url=https://www.chron.com/sports/dynamo/article/Dynamo-forward-Jaqua-signs-with-Austrian-team-1783001.php|access-date=2020-07-24|website=Houston Chronicle}}</ref>
+|-
+| '''January 2008'''|| {{Flagicon|SCO}} [[Paul Dalglish]]|| FW|| 30||{{Flagicon|SCO}} [[Kilmarnock F.C.]]|| Released after the 2007 season.||<ref>{{Cite news|date=2008-02-16|title=Kilmarnock secure Dalglish deal|language=en-GB|url=http://news.bbc.co.uk/sport2/hi/football/teams/k/kilmarnock/7248378.stm|access-date=2020-07-22}}</ref>
+|-
+|'''March 20, 2008'''||{{Flagicon|USA}} [[Eric Ebert]]||MF||23||{{Flagicon|USA}} [[Chivas USA]]||Traded to Chivas USA for a 1st round pick in the 2009 [[MLS Supplemental Draft]]||<ref>{{Cite web|title=Mendoza re-signs with Chivas|url=https://www.mlssoccer.com/post/2010/01/23/mendoza-re-signs-chivas|access-date=July 22, 2020|website=Major League Soccer}}</ref>
+|-
+|'''March 23, 2008'''||{{Flagicon|USA}} [[Jeremy Barlow]]||MF||22||{{Flagicon|USA}} [[D.C. United]]||Traded to D.C. United for a 3rd round pick in the 2009 [[MLS Supplemental Draft]]||<ref>{{Cite web|date=2008-03-17|title=D.C. United Acquires Rights To Jeremy Barlow|url=https://www.oursportscentral.com/services/releases/d-c-united-acquires-rights-to-jeremy-barlow/n-3606705|access-date=2020-07-23|website=OurSports Central|language=en}}</ref>
+|-
+| '''June 30, 2008'''||{{Flagicon|USA}} [[Craig Thompson (soccer)|Craig Thompson]]|| MF|| 22||{{Flagicon|USA}} [[D.C. United]]|| Traded to D.C. United for a 4th round pick in the 2010 [[MLS Supplemental Draft]]||<ref>{{Cite web|date=June 30, 2008|title=D.C. United acquire Craig Thompson|url=https://www.mlssoccer.com/post/2010/01/23/dc-united-acquire-craig-thompson|access-date=July 22, 2020|website=Major League Soccer}}</ref>
+|-
+| '''July 18, 2008'''|| {{Flagicon|ARG}} [[Franco Caraccio]]|| FW|| 21|| {{Flagicon|ARG}} [[All Boys]]|| Released||<ref>{{Cite web|last1=Fallas|first1=Bernardo|last2=Chronicle|first2=Copyright 2008 Houston|date=2008-07-18|title=Dynamo say goodbye to forward Caraccio|url=https://www.chron.com/sports/dynamo/article/Dynamo-say-goodbye-to-forward-Caraccio-1767329.php|access-date=2020-07-23|website=Houston Chronicle}}</ref>
+|-
+| '''July 29, 2008'''||{{Flagicon|AUS}} James Georgeff|| FW|| 25|| {{Flagicon|POR}} [[F.C. Arouca]]|| Released||<ref>{{Cite web|last1=Fallas|first1=Bernardo|last2=Chronicle|first2=Copyright 2008 Houston|date=2008-07-29|title=DYNAMO NOTES: No excuses from Pachuca|url=https://www.chron.com/sports/dynamo/article/DYNAMO-NOTES-No-excuses-from-Pachuca-1759114.php|access-date=2020-07-23|website=Houston Chronicle}}</ref>
+|}
+
+==Coaching staff==
+{| class="wikitable"
+|+
+! style="background:#c2ddff; width:120px;" |Position
+! style="background:#c2ddff; width:120px;" |Name
+|-
+|Head coach||{{Flagicon|USA}} [[Dominic Kinnear]]
+|-
+|Assistant coach||{{Flagicon|SCO}} [[John Spencer (Scottish footballer)|John Spencer]]
+|-
+|Goalkeeper coach||{{Flagicon|CAN}} Mike Toshack
+|-
+|Head athletic trainer||{{Flagicon|USA}} Theron Enns
+|-
+|Assistant athletic trainer||{{Flagicon|USA}} Shane Caron
+|-
+|Team administrator||{{Flagicon|USA}} Nick Kowba
+|-
+|Equipment manager||{{Flagicon|USA}} Beau Abdulla
+|}
+:''Source''<ref name="Houston Dynamo: Roster: Main"/>
+
+==Pre-season==
+
+=== Friendlies ===
+{{football box collapsible
+|round      = 
+|date       = February 13, 2008
+|time       = 10:00 PM ([[Central Standard Time|CST]])
+|team1      = [[San Jose Earthquakes]]
+|score      = 0–1
+|report     = [https://www.houstondynamo.com/post/2008/02/14/dynamo-open-preseason-1-0-win Report]
+|team2      = [[Houston Dynamo]]
+|goals1     = 
+|goals2     = [[Ricardo Clark|Clark]] {{goal|44}} <br> [[Jeremy Barlow]] {{yel|74}}
+|stadium    = [[PAL Stadium]]
+|location   = [[San Jose, California]]
+|attendance = 3,182
+|referee    = 
+|result     = W
+}}
+{{football box collapsible
+|round      = 
+|date       = February 16, 2008
+|time       = 10:30 PM ([[Central Standard Time|CST]])
+|team1      = [[San Jose Earthquakes]]
+|score      = 0–0
+|report     = [https://www.houstondynamo.com/post/2008/02/17/dynamo-finish-california-trip-undefeated Report]
+|team2      = [[Houston Dynamo]]
+|goals1     = 
+|goals2     = 
+|stadium    = [[Kezar Stadium]]
+|location   = [[San Jose, California]]
+|attendance = 4,113
+|referee    = 
+|result     = D
+}}
+
+=== Pan-Pacific Championship ===
+{{main|2008 Pan-Pacific Championship}}
+{{football box collapsible
+|round      = Semifinals
+|date       = February 20, 2009
+|time       = 9:30 PM ([[Central Standard Time|CST]])
+|team1      = [[Houston Dynamo]] 
+|score      = 3–0
+|report     = [https://www.houstondynamo.com/post/2008/02/21/dynamo-down-sydney-3-0-hawaii Report]
+|team2      =  [[Sydney FC]]
+|goals1     = [[Dwayne De Rosario|De Rosario]] {{goal|27}}<br>[[Stuart Holden|Holden]] {{goal|28}}<br>[[Chris Wondolowski|C. Wondolowski]] {{goal|43}}<br> [[Patrick Ianni|Ianni]] {{yel|77}}
+|goals2     = [[Brendon Santalab|Santalab]] {{yel|49}}<br>[[Ryan Walsh (soccer)|Walsh]] {{yel|60}}
+|stadium    = [[Aloha Stadium]]
+|location   = [[Honolulu, Hawaii]]
+|attendance = 15,128
+|referee    = Alex Prus
+|result     = W
+}}
+{{football box collapsible
+|round      = Final
+|date       = February 23, 2008
+|time       = 9:30 PM ([[Central Standard Time|CST]])
+|team1      = [[Gamba Osaka]] 
+|score      = 6–1
+|report     = [https://www.houstondynamo.com/post/2008/02/24/bare-gamba-osaka-roll-over-dynamo-6-1 Report]
+|team2      =  [[Houston Dynamo]]
+|goals1     = [[Jader Volnei Spindler|Baré]] {{goal|14}} {{goal|26}} {{goal|60}} {{goal|72}} {{yel|59}}<br>[[Lucas Severino|Lucas]] {{goal|64}}<br>[[Masato Yamazaki (footballer, born 1981)|Yamazaki]] {{goal|78}}
+|goals2     = [[Ricardo Clark|Clark]] {{goal|11}}<br>[[Brad Davis (soccer)|Davis]] {{yel|13}}<br>[[Stuart Holden|Holden]] {{yel|47}}
+|stadium    = [[Aloha Stadium]]
+|location   = [[Honolulu, Hawaii]]
+|attendance = 23,087
+|referee    = [[Kevin Stott]]
+|result     = L
+}}
+
+=== Texas Pro Soccer Festival ===
+{{main|Texas Pro Soccer Festival 2008}}
+{{football box collapsible
+|round      = 
+|date       = March 5, 2008
+|time       = 9:00 PM ([[Central Standard Time|CST]])
+|team1      = [[Houston Dynamo]]
+|score      = 4–3
+|report     = [https://www.houstondynamo.com/post/2008/03/06/dynamo-open-festival-4-3-win Report]
+|team2      = [[Toronto FC]]
+|goals1     = [[Chris Wondolowski|C. Wondolowski]] {{goal|2}}<br>[[Brian Ching|Ching]] {{goal|42}} {{goal|44}}<br>[[Erik Ustruck|Ustruck]] {{goal|47}}
+|goals2     = [[Kiki Musampa|Musampa]] {{goal|36}} <br>[[Martin Brittain|Brittain]] {{goal|71|pen.}}<br>[[Tony Vairelles|Vairelles]] {{goal|81}}
+|stadium    = [[Steele Stadium]]
+|location   = [[Cibolo, Texas]]
+|attendance = 1,000
+|referee    = Jasen Anno
+|result     = W
+}}
+{{football box collapsible
+|round      = 
+|date       = March 7, 2008
+|time       = 9:00 PM ([[Central Standard Time|CST]])
+|team1      = [[Houston Dynamo]]
+|score      = 1–0
+|report     = [https://www.houstondynamo.com/post/2008/03/08/dynamo-continue-unbeaten-preseason Report]
+|team2      = [[Chivas USA]]
+|goals1     = [[Dwayne De Rosario|De Rosario]] {{goal|12}}
+|goals2     = 
+|stadium    = [[Steele Stadium]]
+|location   = [[Cibolo, Texas]]
+|attendance = 600
+|referee    = 
+|result     = W
+}}
+{{football box collapsible
+|round      = 
+|date       = March 9, 2008
+|time       = 2:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]]
+|score      = 1–1
+|report     = [https://www.houstondynamo.com/post/2008/03/09/dynamo-win-festival-1-1-tie-vs-dc Report]
+|team2      = [[D.C. United]]
+|goals1     = [[Franco Caraccio|Caraccio]] {{goal|53}}
+|goals2     = [[Cesar Augusto Herrmegildo|Cezar]] {{goal|78}}
+|stadium    = [[Steele Stadium]]
+|location   = [[Cibolo, Texas]]
+|attendance = 800
+|referee    = 
+|result     = D
+}}
+
+== Competitions ==
+
+=== Major League Soccer ===
+{{main|2008 Major League Soccer season}}
+
+==== Standings ====
+
+===== Western Conference =====
+{{2008 Major League Soccer Western Conference table}}
+
+===== Overall =====
+{{2008 Major League Soccer season table|team=HOU}}
+
+====Results summary====
+
+{{Fb_rs |hw=10 |hd=4 |hl=1 |hgf=30 |hga=14 |aw=3 |ad=8 |al=4 |agf=15 |aga=18 }}
+{{Fb rs footer|s=[https://web.archive.org/web/20081226075042/http://web.mlsnet.com:80/standings/ Major League Soccer] |date=September 2010}}
+
+====Results by round====
+{{#invoke:sports rbr table|table|legendpos=b
+|header=Round
+|label1= Stadium
+| res1=A/H/A/A/A/H/H/A/A/A/H/A/H/H/A/H/A/H/H/H/A/H/H/A/H/A/A/H/H/A
+|label2= Result
+| res2=L/D/D/D/L/D/W/W/L/D/W/W/L/D/D/D/W/W/W/W/L/W/W/D/D/W/D/W/W/D
+<!-- -->
+|text_H=Home|text_A=Away
+|color_W=green2|text_W=Win
+|color_D=yellow2|text_D=Draw
+|color_L=red2|text_L=Loss
+|source=[https://web.archive.org/web/20080314045353/http://houston.mlsnet.com:80/schedule/scoreboard/season.jsp?team=t200 Houston Dynamo] 
+|date=September 2010
+}}
+
+==== Match results ====
+{{football box collapsible
+|round      = 1
+|date       = March 29, 2008
+|time       = 6:30 PM ([[Central Daylight Time|CDT]])
+|team1      = [[New England Revolution]]
+|score      = 3–0
+|report     = [https://fbref.com/en/matches/1815b388/New-England-Revolution-Houston-Dynamo-March-29-2008-Major-League-Soccer Report]
+|team2      = [[Houston Dynamo]]
+|goals1     = [[Steve Ralston|Ralston]] {{goal|16}}<br>[[Adam Cristman|Cristman]] {{goal|32}}<br>[[Sainey Nyassi|Nyassi]] {{goal|90+3}}
+|goals2     = [[Richard Mulrooney|Mulrooney]] {{yel|58}}
+|stadium    = [[Gillette Stadium]]
+|location   = [[Foxborough, Massachusetts]]
+|attendance = 11,116
+|referee    = Michael Kennedy
+|result     = L
+}}
+{{football box collapsible
+|round      = 2 [[Texas Derby]]
+|date       = April 6, 2008
+|time       = 2:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]]
+|score      = 3–3
+|report     = [https://fbref.com/en/matches/f956ac73/Houston-Dynamo-FC-Dallas-April-6-2008-Major-League-Soccer Report]
+|team2      = [[FC Dallas]]
+|goals1     = [[Franco Caraccio|Caraccio]] {{goal|21}}<br>[[Drew Moor|Moor]] {{goal|57|o.g.}}<br>[[Wade Barrett (soccer)|Barrett]] {{yel|72}}<br>[[Geoff Cameron|Cameron]] {{goal|90+1}}
+|goals2     = [[Kenny Cooper|Cooper]] {{goal|35}} {{goal|45}}<br>[[Arturo Álvarez (footballer, born 1985)|Álvarez]] {{goal|}}<br>[[Juan Toja|Toja]] {{yel|70}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 20,102
+|referee    = Abbey Okulaja
+|result     = D
+}}
+{{football box collapsible
+|round      = 3
+|date       = April 12, 2008
+|time       = 7:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Kansas City Wizards]]
+|score      = 0–0
+|report     = [https://fbref.com/en/matches/4d8168d4/Kansas-City-Wizards-Houston-Dynamo-April-12-2008-Major-League-Soccer Report]
+|team2      = [[Houston Dynamo]]
+|goals1     = [[Kurt Morsink|Morsink]] {{yel|24}}<br>[[Kerry Zavagnin|Zavagnin]] {{yel|67}}
+|goals2     = [[Ricardo Clark|Clark]] {{yel|15}}<br>[[Bobby Boswell|Boswell]] {{yel|71}}<br>[[Dwayne De Rosario|De Rosario]] {{yel|77}}
+|stadium    = [[CommunityAmerica Ballpark]]
+|location   = [[Kansas City, Kansas]]
+|attendance = 9,627
+|referee    = [[Baldomero Toledo]]
+|result     = D
+}}
+{{football box collapsible
+|round      = 4
+|date       = April 19, 2008
+|time       = 9:30 PM ([[Central Daylight Time|CDT]])
+|team1      = [[LA Galaxy]]
+|score      = 2–2
+|report     = [https://fbref.com/en/matches/816d02b8/LA-Galaxy-Houston-Dynamo-April-19-2008-Major-League-Soccer Report]
+|team2      = [[Houston Dynamo]]
+|goals1     = [[Mike Randolph|Randolph]] {{yel|25}}<br>[[Greg Vanney|Vanney]] {{yel|57}}<br>[[Landon Donovan]] {{goal|67}} {{goal|84}}
+|goals2     = [[Brad Davis (soccer)|Davis]] {{goal|36}}<br>[[Franco Caraccio|Caraccio]] {{yel|78}} {{goal|79}}<br>[[Ricardo Clark|Clark]] {{yel|90+2}}
+|stadium    = [[Home Depot Center]]
+|location   = [[Carson, California]]
+|attendance = 23,401
+|referee    = [[Mark Geiger]]
+|result     = D
+}}
+{{football box collapsible
+|round      = 5
+|date       = April 26, 2008
+|time       = 6:30 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Columbus Crew]]
+|score      = 1–0
+|report     = [https://fbref.com/en/matches/baab3391/Columbus-Crew-Houston-Dynamo-April-26-2008-Major-League-Soccer Report]
+|team2      = [[Houston Dynamo]]
+|goals1     = [[Alejandro Moreno|Moreno]] {{goal|22}}<br>[[Adam Moffat|Moffat]] {{yel|48}}<br>[[William Hesmer|Hesmer]] {{yel|90+1}}<br>[[Frankie Hejduk|Hejduk]] {{yel|90+6}}
+|goals2     = [[Bobby Boswell|Boswell]] {{yel|28}}
+|stadium    = [[Mapfre Stadium|Crew Stadium]]
+|location   = [[Columbus, Ohio]]
+|attendance = 15,271
+|referee    = Terry Vaughn
+|result     = L
+}}
+{{football box collapsible
+|round      = 6
+|date       = May 3, 2008
+|time       = 7:30 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]]
+|score      = 0–0
+|report     = [https://fbref.com/en/matches/80c1edcf/Houston-Dynamo-Chivas-USA-May-3-2008-Major-League-Soccer Report]
+|team2      = [[Chivas USA]]
+|goals1     = [[Dwayne De Rosario|De Rosario]] {{yel|9}}<br>[[Patrick Ianni|Ianni]] {{yel|12}}<br>[[Stuart Holden|Holden]] {{yel|35}}<br>[[Bobby Boswell|Boswell]] {{yel|52}}
+|goals2     = [[Sacha Kljestan|Kljestan]] {{yel|13}}<br>[[Shavar Thomas|Thomas]] {{yel|55}}<br>[[Maykel Galindo|Galindo]] {{yel|71}}<br>[[Jonathan Bornstein|Bornstein]] {{yel|75}}<br>[[Claudio Suárez|Suárez]] {{sent off|0|82}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 20,058
+|referee    = Jozef Batko
+|result     = D
+}}
+{{football box collapsible
+|round      = 7
+|date       = May 10, 2008
+|time       = 7:30 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]]
+|score      = 2–1
+|report     = [https://fbref.com/en/matches/930a4a81/Houston-Dynamo-Colorado-Rapids-May-10-2008-Major-League-Soccer Report]
+|team2      = [[Colorado Rapids]]
+|goals1     = [[Richard Mulrooney|Mulrooney]] {{yel|28}}<br>[[Ricardo Clark|Clark]] {{yel|34}}<br>[[Brian Ching|Ching]] {{goal|}}<br>[[Dwayne De Rosario|De Rosario]] {{goal|87|pen.}}
+|goals2     = [[Jordan Harvey|Harvey]] {{yel|41}}<br>[[Tam McManus|McManus]] {{yel|44}} {{sent off|0|89}}<br>[[Omar Cummings|Cummings]] {{goal|68}}<br>[[Ugo Ihemelu|Ihemelu]] {{yel|86}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 15,024
+|referee    = Tim Weyland
+|result     = W
+}}
+{{football box collapsible
+|round      = 8
+|date       = May 17, 2008
+|time       = 7:30 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Chicago Fire FC|Chicago Fire]]
+|score      = 1–2
+|report     = [https://fbref.com/en/matches/a46a18c6/Chicago-Fire-Houston-Dynamo-May-17-2008-Major-League-Soccer Report]
+|team2      = [[Houston Dynamo]]
+|goals1     = [[Calen Carr|Carr]] {{goal|28}}<br>[[Gonzalo Segares|Segares]] {{yel|90+2}}<br>[[Cuauhtémoc Blanco|Blanco]] {{yel|90+5}}
+|goals2     = [[Dwayne De Rosario|De Rosario]] {{goal|17}} {{yel|58}}<br>[[Ricardo Clark|45+3]] {{yel|}}<br>[[Bobby Boswell|Boswell]] {{goal|82}}
+|stadium    = [[SeatGeek Stadium|Toyota Park]]
+|location   = [[Bridgeview, Illinois]]
+|attendance = 17,183
+|referee    = Paul Ward
+|result     = W
+}}
+{{football box collapsible
+|round      = 9
+|date       = May 22, 2008
+|time       = 9:30 PM ([[Central Daylight Time|CDT]])
+|team1      = [[San Jose Earthquakes]]
+|score      = 2–1
+|report     = [https://fbref.com/en/matches/ad62686d/San-Jose-Earthquakes-Houston-Dynamo-May-22-2008-Major-League-Soccer Report]
+|team2      = [[Houston Dynamo]]
+|goals1     = [[Nick Garcia|Garcia]] {{yel|35}}<br>[[Ryan Cochrane (soccer)|Cochrane]] {{yel|40}}<br>[[Kei Kamara|Kamara]] {{goal|67}}<br>[[Iván Guerrero|Guerrero]] {{goal|81}}
+|goals2     = [[Brian Ching|Ching]] {{goal|88}}
+|stadium    = [[Buck Shaw Stadium]]
+|location   = [[Santa Clara, California]]
+|attendance = 10,046
+|referee    = [[Jair Marrufo]]
+|result     = L
+}}
+{{football box collapsible
+|round      = 10 [[Texas Derby]]
+|date       = May 28, 2008
+|time       = 7:30 PM ([[Central Daylight Time|CDT]])
+|team1      = [[FC Dallas]]
+|score      = 2–2
+|report     = [https://fbref.com/en/matches/6081286a/FC-Dallas-Houston-Dynamo-May-28-2008-Major-League-Soccer Report]
+|team2      = [[Houston Dynamo]]
+|goals1     = [[Kenny Cooper|Cooper]] {{goal|35}}<br>[[Drew Moor|Moor]] {{goal|69}}<br>[[Darío Sala|Sala]] {{yel|74}}<br>[[André Guerreiro Rocha|Rocha]] {{sent off|0|80}}<br>[[Marcelo Saragosa|Saragosa]] {{yel|80}}
+|goals2     = [[Stuart Holden|Holden]] {{yel|18}}<br>[[Eddie Robinson (soccer)|Robinson]] {{sent off|2|57|80}}<br>[[Corey Ashe|Ashe]] {{goal|59}}<br>[[Dwayne De Rosario|De Rosario]]{{goal|90+3}}
+|stadium    = [[Pizza Hut Park]]
+|location   = [[Frisco, Texas]]
+|attendance = 8,541
+|referee    = Alex Prus
+|result     = D
+}}
+{{football box collapsible
+|round      = 11
+|date       = May 31, 2008
+|time       = 7:30 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]]
+|score      = 1–0
+|report     = [https://fbref.com/en/matches/aa49b60d/Houston-Dynamo-New-York-Red-Bulls-May-31-2008-Major-League-Soccer Report]
+|team2      = [[New York Red Bulls]]
+|goals1     = [[Bobby Boswell|Boswell]] {{yel|65}}<br>[[Brian Ching|Ching]] {{goal|68}}<br>[[Brad Davis (soccer)|Davis]] {{yel|78}}<br>[[Geoff Cameron|Cameron]] {{yel|84}}
+|goals2     = [[John Wolyniec|Wolyniec]] {{yel|37}}<br>[[Danleigh Borman|Borman]] {{yel|60}}<br>[[Kevin Goldthwaite|Goldthwaite]] {{yel|64}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 17,204
+|referee    = Andrew Chapin
+|result     = W
+}}
+{{football box collapsible
+|round      = 12
+|date       = June 8, 2008
+|time       = 7:30 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]]
+|score      = 3–1
+|report     = [https://fbref.com/en/matches/3c4f8ad9/Houston-Dynamo-Toronto-FC-June-8-2008-Major-League-Soccer Report]
+|team2      = [[Toronto FC]]
+|goals1     = [[Dwayne De Rosario|De Rosario]] {{goal|45+1}}<br>[[Brian Ching|Ching]] {{goal|52}} {{goal|69}}<br>[[Chris Wondolowski|C. Wondolowski]] {{yel|90+4}}
+|goals2     = [[Carl Robinson|Robinson]] {{yel|53}}<br>[[Jeff Cunningham|Cunningham]] {{goal|71}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance =  13,179
+|referee    = Terry Vaughn
+|result     = W
+}}
+{{football box collapsible
+|round      = 13
+|date       = June 12, 2008
+|time       = 8:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]]
+|score      = 0–2
+|report     = [https://fbref.com/en/matches/7aa8b197/Houston-Dynamo-New-England-Revolution-June-12-2008-Major-League-Soccer Report]
+|team2      = [[New England Revolution]]
+|goals1     = [[Ricardo Clark|Clark]] {{yel|72}}<br>[[Geoff Cameron|Cameron]] {{yel|74}}
+|goals2     = [[Steve Ralston|Ralston]] {{goal|8}}<br>[[Kheli Dube|Dube]] {{goal|35}}<br>[[Amaechi Igwe|Igwe]] {{yel|81}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 14,655
+|referee    = [[Mark Geiger]]
+|result     = L
+}}
+{{football box collapsible
+|round      = 14
+|date       = June 21, 2008
+|time       = 8:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Colorado Rapids]]
+|score      = 0–0
+|report     = [https://fbref.com/en/matches/dffd298d/Colorado-Rapids-Houston-Dynamo-June-21-2008-Major-League-Soccer Report]
+|team2      = [[Houston Dynamo]]
+|goals1     = 
+|goals2     = [[Stuart Holden|Holden]] {{yel|25}}<br>[[Craig Waibel|Waibel]] {{yel|34}}
+|stadium    = [[Dick's Sporting Goods Park]]
+|location   = [[Commerce City, Colorado]]
+|attendance = 13,220
+|referee    = Jeff Gontarek
+|result     = D
+}}
+{{football box collapsible
+|round      = 15 [[Texas Derby]]
+|date       = June 26, 2008
+|time       = 8:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]]
+|score      = 1–1
+|report     = [https://fbref.com/en/matches/205f1bc5/Houston-Dynamo-FC-Dallas-June-26-2008-Major-League-Soccer Report]
+|team2      = [[FC Dallas]]
+|goals1     = [[Brian Ching|Ching]] {{goal|21}}<br>[[Dwayne De Rosario|De Rosario]] {{yel|83}}
+|goals2     = [[Kenny Cooper|Cooper]] {{goal|62}}<br>[[Adrian Serioux|Serioux]] {{yel|68}}<br>[[Pablo Ricchetti|Ricchetti]] {{yel|76}}<br>[[Marcelo Saragosa|Saragosa]] {{yel|82}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 16,933
+|referee    = [[Kevin Stott]]
+|result     = D
+}}
+{{football box collapsible
+|round      = 16
+|date       = July 3, 2008
+|time       = 9:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Real Salt Lake]]
+|score      = 0–0
+|report     = [https://fbref.com/en/matches/1623a38a/Real-Salt-Lake-Houston-Dynamo-July-3-2008-Major-League-Soccer Report]
+|team2      = [[Houston Dynamo]]
+|goals1     = [[Jámison Olave|Olave]] {{yel|14}}<br>[[Chris Wingert|Wingert]] {{sent off|0|90}}
+|goals2     = [[Patrick Ianni|Ianni]] {{yel|56}}<br>[[Bobby Boswell|Boswell]] {{yel|70}}<br>[[Wade Barrett (soccer)|Barrett]] {{yel|73}}<br>[[Ricardo Clark|Clark]] {{yel|81}}<br>[[Corey Ashe|Ashe]] {{yel|90+2}}
+|stadium    = [[Rice–Eccles Stadium]]
+|location   = [[Salt Lake City, Utah]]
+|attendance = 
+|referee    = [[Mark Geiger]]
+|result     = D
+}}
+{{football box collapsible
+|round      = 17
+|date       = July 23, 2008
+|time       = 6:30 PM ([[Central Daylight Time|CDT]])
+|team1      = [[D.C. United]]
+|score      = 0–2
+|report     = [https://fbref.com/en/matches/68bad1bc/DC-United-Houston-Dynamo-July-23-2008-Major-League-Soccer Report]
+|team2      = [[Houston Dynamo]]
+|goals1     = [[Rod Dyachenko|Dyachenko]] {{yel|45+1}}<br>[[Gonzalo Martínez|Martínez]] {{sent off|2|54|83}}<br>[[Luciano Emílio|Emílio]] {{yel|57}}
+|goals2     = [[Eddie Robinson (soccer)|Robinson]] {{yel|16}}<br>[[Dwayne De Rosario|De Rosario]] {{yel|63}}<br>[[Pat Onstad|Onstad]] {{yel|77}}<br>[[Brian Ching|Ching]] {{goal|79}}
+|stadium    = [[RFK Stadium]]
+|location   = [[Washington, D.C.]]
+|attendance = 14,660
+|referee    = [[Ricardo Salazar]]
+|result     = W
+}}
+{{football box collapsible
+|round      = 18
+|date       = August 2, 2008
+|time       = 7:30 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]]
+|score      = 2–0
+|report     = [https://fbref.com/en/matches/c01f30b2/Houston-Dynamo-Columbus-Crew-August-2-2008-Major-League-Soccer Report]
+|team2      = [[Columbus Crew]]
+|goals1     = [[Brad Davis (soccer)|Davis]] {{goal|13}}<br>[[Nate Jaqua|Jaqua]] {{yel|29}}<br>[[Brian Ching|Ching]] {{goal|43}}
+|goals2     = [[Eddie Gaven|Gaven]] {{yel|32}}<br>[[Ezra Hendrickson|Hendrickson]] {{yel|37}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 15,371
+|referee    = Steven DePiero
+|result     = W
+}}
+{{football box collapsible
+|round      = 19
+|date       = August 16, 2008
+|time       = 7:30 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]]
+|score      = 4–3
+|report     = [https://fbref.com/en/matches/3b591e15/Houston-Dynamo-Real-Salt-Lake-August-16-2008-Major-League-Soccer Report]
+|team2      = [[Real Salt Lake]]
+|goals1     = [[Brian Mullan|Mullan]] {{goal|16}}<br>[[Brian Ching|Ching]] {{goal|29}} {{yel|90+2}}<br>[[Ricardo Clark|Clark]] {{goal|35}}<br>[[Nate Jaqua|Jaqua]] {{goal|42}}
+|goals2     = [[Yura Movsisyan|Movsisyan]] {{goal|3}}<br>[[Javier Morales|Morales]] {{goal|25}}<br>[[Nat Borchers|Borchers]] {{yel|30}}<br>[[Clint Mathis|Mathis]] {{yel|67}}<br>[[Kenny Deuchar|Deuchar]] {{goal|80}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 13,579
+|referee    = Paul Ward
+|result     = W
+}}
+{{football box collapsible
+|round      = 20
+|date       = August 20, 2008
+|time       = 8:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]]
+|score      = 4–0
+|report     = [https://fbref.com/en/matches/95e805be/Houston-Dynamo-Chivas-USA-August-20-2008-Major-League-Soccer Report]
+|team2      = [[Chivas USA]]
+|goals1     = [[Stuart Holden|Holden]] {{goal|11}}<br>[[Kei Kamara|Kamara]] {{goal|22}} {{goal|35}}<br>[[Nate Jaqua|Jaqua]] {{goal|28}}<br>[[Wade Barrett (soccer)|Barrett]] {{yel|68}}
+|goals2     = [[Claudio Suárez|Suárez]] {{yel|32}}<br>[[Shavar Thomas|Thomas]] {{yel|39}}<br>[[Eric Ebert|Ebert]] {{yel|73}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 10,908
+|referee    = [[Baldomero Toledo]]
+|result     = W
+}}
+{{football box collapsible
+|round      = 21
+|date       = August 24, 2008
+|time       = 2:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[New York Red Bulls]]
+|score      = 3–0
+|report     = [https://fbref.com/en/matches/a01ca925/New-York-Red-Bulls-Houston-Dynamo-August-24-2008-Major-League-Soccer Report]
+|team2      = [[Houston Dynamo]]
+|goals1     = [[Juan Pablo Ángel|Ángel]] {{goal|8}}<br>[[Seth Stammler|Stammler]] {{yel|21}}<br>[[Dane Richards|Richards]] {{goal|26}}<br>[[Mike Magee (soccer)|Magee]] {{goal|60}} {{yel|72}}<br>[[Chris Leitch|Laitch]] {{yel|76}}
+|goals2     = [[Brian Mullan|Mullan]] {{yel|40}}
+|stadium    = [[Giants Stadium]]
+|location   = [[East Rutherford, New Jersey]]
+|attendance = 12,549
+|referee    = [[Edvin Jurisevic]]
+|result     = L
+}}
+{{football box collapsible
+|round      = 22
+|date       = August 31, 2008
+|time       = 6:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]]
+|score      = 2–1
+|report     = [https://fbref.com/en/matches/bad490c4/Houston-Dynamo-Chicago-Fire-August-31-2008-Major-League-Soccer Report]
+|team2      = [[Chicago Fire FC|Chicago Fire]]
+|goals1     = [[Dwayne De Rosario|De Rosario]] {{goal|7}}<br>[[Brian Mullan|Mullan]] {{goal|39}}
+|goals2     = [[Brian McBride|McBride]] {{goal|6}}<br>[[Bakary Soumaré|Soumaré]] {{yel|59}}<br>[[Cuauhtémoc Blanco|Blanco]] {{yel|62}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 22,554
+|referee    = Alex Prus
+|result     = W
+}}
+{{football box collapsible
+|round      = 23
+|date       = September 7, 2008
+|time       = 2:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]]
+|score      = 3–1
+|report     = [https://fbref.com/en/matches/13c0af59/Houston-Dynamo-Kansas-City-Wizards-September-7-2008-Major-League-Soccer Report]
+|team2      = [[Kansas City Wizards]]
+|goals1     = [[Brad Davis (soccer)|Davis]] {{goal|28}}<br>[[Nate Jaqua|Jaqua]] {{goal|54}} {{goal|67}}
+|goals2     = [[Carlos Marinelli|Marinelli]] {{yel|59}}<br>[[Davy Arnaud|Arnaud]] {{goal|87}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 14,297
+|referee    = Abbey Okulaja
+|result     = W
+}}
+{{football box collapsible
+|round      = 24
+|date       = September 13, 2008
+|time       = 9:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[San Jose Earthquakes]]
+|score      = 1–1
+|report     = [https://fbref.com/en/matches/8f831fd2/San-Jose-Earthquakes-Houston-Dynamo-September-13-2008-Major-League-Soccer Report]
+|team2      = [[Houston Dynamo]]
+|goals1     = [[Ronnie O'Brien|O'Brien]] {{goal|50}}<br>[[James Riley (soccer)|Riley]] {{yel|69}}
+|goals2     = [[Kei Kamara|Kamara]] {{yel|15}}<br>[[Richard Mulrooney|Mulrooney]] {{yel|31}}<br>[[Eddie Robinson (soccer)|Robinson]] {{sent off|2|62|85}}<br>[[Brian Ching|Ching]] {{goal|71}}<br>[[Brian Mullan|Mullan]] {{yel|80}}<br>[[Pat Onstad|Onstad]] {{yel|90+3}}
+|stadium    = [[Buck Shaw Stadium]]
+|location   = [[Santa Clara, California]]
+|attendance = 10,526
+|referee    = [[Silviu Petrescu]]
+|result     = D
+}}
+{{football box collapsible
+|round      = 25
+|date       = September 27, 2008
+|time       = 2:30 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Toronto FC]]
+|score      = 1–1
+|report     = [https://fbref.com/en/matches/6a4f5472/Toronto-FC-Houston-Dynamo-September-27-2008-Major-League-Soccer Report]
+|team2      = [[Houston Dynamo]]
+|goals1     = [[Jim Brennan|Brennan]] {{yel|9}}<br>[[Marvell Wynne (soccer)|Wynne]] {{goal|73}}<br>[[Tyrone Marshall|Marshall]] {{yel|83}}
+|goals2     = [[Bobby Boswell|Boswell]] {{yel|11}}<br>[[Hunter Freeman|Freeman]] {{goal|23|o.g.}}
+|stadium    = [[BMO Field]]
+|location   = [[Toronto, Ontario]]
+|attendance = 20,074
+|referee    = Tim Weyland
+|result     = D
+}}
+{{football box collapsible
+|round      = 26
+|date       = October 4, 2008
+|time       = 8:30 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Colorado Rapids]]
+|score      = 1–3
+|report     = [https://fbref.com/en/matches/17d6b154/Colorado-Rapids-Houston-Dynamo-October-4-2008-Major-League-Soccer Report]
+|team2      = [[Houston Dynamo]]
+|goals1     = [[Conor Casey|Casey]] {{goal|7}} {{sent off|2|33|53}}
+|goals2     = [[Brian Ching|Ching]] {{goal|2}} {{goal|9}}<br>[[Ricardo Clark|Clark]] {{goal|19}}<br>[[Nate Jaqua|Jaqua]] {{yel|73}}
+|stadium    = [[Dick's Sporting Goods Park]]
+|location   = [[Commerce City, Colorado]]
+|attendance = 12,496
+|referee    = [[Mark Geiger]]
+|result     = W
+}}
+{{football box collapsible
+|round      = 27
+|date       = October 12, 2008
+|time       = 6:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]]
+|score      = 0–0
+|report     = [https://fbref.com/en/matches/ca984e91/Houston-Dynamo-DC-United-October-12-2008-Major-League-Soccer Report]
+|team2      = [[D.C. United]]
+|goals1     = [[Dwayne De Rosario|De Rosario]] {{yel|53}}<br>[[Eddie Robinson (soccer)|Robinson]] {{yel|65}}<br>[[Geoff Cameron|Cameron]] {{yel|71}}<br>[[Brad Davis (soccer)|Davis]]  {{yel|71}}
+|goals2     = [[Bryan Namoff|Namoff]] {{sent off|2|62|73}}<br>[[Devon McTavish|McTavish]] {{yel|65}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 17,531
+|referee    = [[Baldomero Toledo]]
+|result     = D
+}}
+{{football box collapsible
+|round      = 28
+|date       = October 15, 2008
+|time       = 8:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]]
+|score      = 2–1
+|report     = [https://fbref.com/en/matches/86c11309/Houston-Dynamo-San-Jose-Earthquakes-October-15-2008-Major-League-Soccer Report]
+|team2      = [[San Jose Earthquakes]]
+|goals1     = [[Stuart Holden|Holden]] {{goal|6}} {{goal|90+3}}<br>[[Kei Kamara|Kamara]] {{sent off|0|11}}<br>[[Eddie Robinson (soccer)|Robinson]] {{yel|61}}
+|goals2     = [[Scott Sealy|Sealy]] {{goal|68}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 12,327
+|referee    = [[Jair Marrufo]]
+|result     = W
+}}
+{{football box collapsible
+|round      = 29
+|date       = October 18, 2008
+|time       = 7:30 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]]
+|score      = 3–0
+|report     = [https://fbref.com/en/matches/dd36e0a3/Houston-Dynamo-LA-Galaxy-October-18-2008-Major-League-Soccer Report]
+|team2      = [[LA Galaxy]]
+|goals1     = [[Bryan Jordan|Jordan]] {{goal|14|o.g.}}<br>[[Dwayne De Rosario|De Rosario]] {{goal|20}}<br>[[Brian Ching|Ching]] {{goal|23}}
+|goals2     = [[Álvaro Pires (footballer)|Pires]] {{yel|86}}<br>[[Troy Roberts (soccer)|Roberts]] {{yel|88}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 30,361
+|referee    = [[Mark Geiger]]
+|result     = W
+}}
+{{football box collapsible
+|round      = 30
+|date       = October 25, 2008
+|time       = 9:30 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Chivas USA]]
+|score      = 1–1
+|report     = [https://fbref.com/en/matches/982cebd7/Chivas-USA-Houston-Dynamo-October-25-2008-Major-League-Soccer Report]
+|team2      = [[Houston Dynamo]]
+|goals1     = [[Dan Kennedy (soccer)|Kennedy]] {{sent off|0|50}}<br>[[Jim Curtin|Curtin]] {{goal|90}}
+|goals2     = [[Brian Ching|Ching]] {{yel|14}}<br>[[Dwayne De Rosario|De Rosario]] {{goal|52|pen.}}
+|stadium    = [[Home Depot Center]]
+|location   = [[Carson, California]]
+|attendance = 18,165
+|referee    = Terry Vaughn
+|result     = D
+}}
+
+=== MLS Cup Playoffs ===
+{{main|2008 MLS Cup Playoffs}}
+{{football box collapsible
+|round      = Conference semifinals
+|date       = November 1, 2008
+|time       = 3:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[New York Red Bulls]]
+|score      = 1–1
+|report     = [https://www.houstondynamo.com/post/2008/11/01/dynamo-1-new-york-red-bulls-1 Report]
+|team2      = [[Houston Dynamo]]
+|goals1     = [[Dane Richards|Richards]] {{yel|29}}<br>[[Juan Pablo Angel|Angel]] {{yel|37}} {{goal|48}}
+|goals2     = [[Brian Mullan|Mullan]] {{yel|53}}<br>[[Kei Kamara|Kamara]] {{goal|85}}
+|stadium    = [[Giants Stadium]]
+|location   = [[East Rutherford, New Jersey]]
+|attendance = 11,578
+|referee    = [[Kevin Stott]]
+|result     = D
+}}
+{{football box collapsible
+|round      = Conference semifinals
+|date       = November 9, 2008
+|time       = 2:00 PM ([[Central Standard Time|CST]])
+|team1      = [[Houston Dynamo]]
+|score      = 0–3
+|aggregatescore = 1–4
+|report     = [https://www.houstondynamo.com/post/2008/11/10/dynamo-0-new-york-red-bulls-3 Report]
+|team2      = [[New York Red Bulls]]
+|goals1     = [[Eddie Robinson (soccer)|Robinson]] {{yel|62}}<br>[[Pat Onstad|Onstad]] {{yel|69}}<br>[[Brian Mullan|Mullan]] {{yel|73}}
+|goals2     = [[Dave van den Bergh|van den Bergh]] {{yel|5}}<br>[[Dane Richards|Richards]] {{goal|25}}<br>[[Kevin Goldthwaite|Goldthwaite]] {{yel|28}}<br>[[Juan Pablo Angel|Angel]] {{goal|36|pen.}}<br>[[Luke Sassano|Sassano]] {{yel|45+2}}<br>[[John Wolyniec|Wolyniec]] {{goal|81}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 30,053
+|referee    = [[Baldomero Toledo]]
+|result     = L
+}}
+
+=== U.S. Open Cup ===
+{{main|2008 U.S. Open Cup}}
+{{football box collapsible
+|round      = Third round
+|date       = July 1, 2008
+|time       = 6:30 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Charleston Battery]] {{flagicon|North Carolina}}
+|score      = 1–1 |aet=y
+|report     = [https://www.houstondynamo.com/post/2010/07/02/dynamo-make-early-exit-again Report]
+|team2      = {{flagicon|Texas}} [[Houston Dynamo]]
+|goals1     = [[Stephen Armstrong|Armstrong]] {{yel|17}}<br>[[Marco Reda|Reda]] {{goal|31}} {{sent off|2|78|103}}<br>[[Chris Corcoran (soccer)|Corcoran]] {{sent off|0|78}}<br>[[Darren Spicer|Spicer]] {{yel|109}}
+|goals2     = [[Erik Ustruck|Ustruck]] {{yel|30}}<br>[[Chris Wondolowski|C. Wondolowski]] {{yel|33}}<br>S. Wondolowski {{yel|39}} {{goal|89}}<br>[[Franco Caraccio|Caraccio]] {{yel|95}}<br>[[Stuart Holden|Holden]] {{yel|11}}
+|stadium    = [[Blackbaud Stadium]]
+|location   = [[Charleston, South Carolina]]
+|attendance = 3,103
+|referee    = Joe Caroccio
+|result     = L
+|penalties1 = [[Osvaldo Alonso|Alonso]] {{pengoal}}<br>[[Stephen Armstrong|Armstrong]] {{pengoal}}<br>[[Darren Spicer|Spicer]]{{pengoal}} <br>[[Tim Velten|Velten]] {{pengoal}}
+|penaltyscore = 4–3
+|penalties2 =  {{pengoal}} [[Stuart Holden|Holden]]<br>{{pengoal}} [[Chris Wondolowski|C. Wondolowski]] <br> {{penmiss}}[[Geoff Cameron|Cameron]] <br> {{pengoal}} [[John Michael Hayden|Hayden]]<br>{{penmiss}} [[Franco Caraccio|Caraccio]] 
+}}
+
+=== CONCACAF Champions' Cup ===
+{{main|2008 CONCACAF Champions' Cup}}
+
+==== Quarterfinals ====
+{{football box collapsible
+|round      = First leg
+|date       = March 12, 2008
+|time       = 9:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[C.S.D. Municipal|Municipal]] {{flagicon|GUA}}
+|score      = 0–0
+|report     = [https://www.houstondynamo.com/post/2008/03/13/dynamo-draw-municipal-opener Report]
+|team2      = {{flagicon|USA}} [[Houston Dynamo]]
+|goals1     = [[Guillermo Ramírez|Ramírez]] {{yel|90+3}}
+|goals2     = [[Wade Barrett (soccer)|Barrett]] {{yel|47}}
+|stadium    = [[Estadio Mateo Flores]]
+|location   = [[Guatemala City, Guatemala]]
+|attendance = 22,250
+|referee    = Edgar Rodriguez
+|result     = D
+}}
+{{football box collapsible
+|round      = Second leg
+|date       = March 19, 2008
+|time       = 7:30 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]] {{flagicon|USA}}
+|score      = 3–1
+|aggregatescore = 3–1
+|report     = [https://www.houstondynamo.com/post/2008/03/20/de-rosarios-goals-lead-dynamo-semis Report]
+|team2      = {{flagicon|GUA}} [[C.S.D. Municipal|Municipal]]
+|goals1     = [[Bobby Boswell|Boswell]] {{yel|32}}<br>[[Dwayne De Rosario|De Rosario]] {{goal|47}} {{goal|69|pen.}} {{yel|72}}<br>[[Chris Wondolowski|C. Wondolowski]] {{yel|72}} {{goal|75}} 
+|goals2     = [[Pablo Melgar|Melgar]] {{yel|43}}<br>[[Fredy Thompson|Thompson]] {{yel|72}}<br>[[Selvyn Ponciano|Ponciano]] {{yel|72}}<br>[[Guillermo Ramírez|Ramírez]] {{goal|86|pen.}}<br>[[Mario Rodríguez (footballer, born 1981)|Rodríguez]] {{yel|90+3}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 14,348
+|referee    = Mauricio Morales
+|result     = W
+}}
+
+==== Semifinals ====
+{{football box collapsible
+|round      = First leg
+|date       = April 2, 2008
+|time       = 8:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]] {{flagicon|USA}}
+|score      = 0–0
+|report     = [https://www.houstondynamo.com/post/2008/04/03/dynamo-held-draw-semifinal-opener Report]
+|team2      = {{flagicon|Costa Rica}} [[Deportivo Saprissa]]
+|goals1     = [[Bobby Boswell|Boswell]] {{yel|70}}
+|goals2     = [[Michael Barrantes|Barrantes]] {{yel|89}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 10,260
+|referee    = Courtney Campbell
+|result     = D
+}}
+{{football box collapsible
+|round      = Second leg
+|date       = April 9, 2008
+|time       = 9:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Deportivo Saprissa]] {{flagicon|Costa Rica}}
+|score      = 3–0
+|aggregatescore = 3–0
+|report     = [https://www.houstondynamo.com/post/2008/04/10/dynamo-0-deportivo-saprissa-3 Report]
+|team2      = {{flagicon|USA}} [[Houston Dynamo]]
+|goals1     = [[Armando Alonso|Alonso]] {{goal|35}}<br> [[Celso Borges|Borges]] {{goal|49}}<br>[[Jairo Arrieta|Arrieta]] {{goal|77}}
+|goals2     = [[Ricardo Clark|Clark]] {{yel|90}}
+|stadium    = [[Estadio Ricardo Saprissa]]
+|location   = [[San José, Costa Rica]]
+|attendance = 23,112
+|referee    = [[Marco Antonio Rodríguez|Marco Rodriguez]] 
+|result     = L
+}}
+
+=== North American SuperLiga ===
+{{main|2008 North American SuperLiga}}
+{| class="wikitable" style="text-align: center;"
+|-
+!width="175"|Team!!width="20"|Pts!!width="20"|Pld!!width="20"|W!!width="20"|D!!width="20"|L!!width="20"|GF!!width="20"|GA!!width="20"|GD
+|- bgcolor=#ccffcc
+|style="text-align:left;"|{{Flag icon|USA}} '''[[Houston Dynamo]]'''
+|'''6'''||3||2||0||1||7||2||+5
+|- bgcolor=#ccffcc
+|style="text-align:left;"|{{Flag icon|MEX}} '''[[Atlante F.C.|Atlante]]'''
+|'''6'''||3||2||0||1||5||6||−1
+|-bgcolor=FFFFFF
+|style="text-align:left;"|{{Flag icon|MEX}} [[Club Deportivo Guadalajara|Guadalajara]]
+|'''6'''||3||2||0||1||3||3||0
+|-bgcolor=FFFFFF
+|style="text-align:left;"|{{Flag icon|USA}} [[D.C. United]]
+|'''0'''||3||0||0||3||4||8||−4
+|}
+{{football box collapsible
+|round      = Group stage
+|date       = July 12, 2008
+|time       = 9:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]] {{flagicon|USA}}
+|score      = 4–0
+|report     = [https://www.houstondynamo.com/post/2008/07/13/dynamo-4-atlante-0 Report]
+|team2      = {{flagicon|MEX}} [[Atlante F.C.|Atlante]]
+|goals1     = [[Patrick Ianni|Ianni]] {{yel|17}}<br>[[Dwayne De Rosario|De Rosario]] {{goal|20}} {{sent off|0|44}}<br>[[Stuart Holden|Holden]] {{goal|21}} {{goal|28}}<br>[[Brian Mullan|Mullan]] {{goal|54}}<br>[[Geoff Cameron|Cameron]] {{yel|60}}
+|goals2     = [[Clemente Ovalle|Ovalle]] {{yel|32}}<br>[[Javier Muñoz (Argentine footballer)|Muñoz]] {{sent off|0|44}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 13,105
+|referee    = Courtney Campbell
+|result     = W
+}}
+{{football box collapsible
+|round      = Group stage
+|date       = July 15, 2008
+|time       = 9:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]] {{flagicon|USA}}
+|score      = 0–1
+|report     = [https://www.houstondynamo.com/post/2008/07/16/dynamo-0-chivas-guadalajara-1 Report]
+|team2      = {{flagicon|MEX}} [[C.D. Guadalajara]]
+|goals1     = [[Ricardo Clark|Clark]] {{yel|19}}<br>[[Corey Ashe|Ashe]] {{yel|36}}<br>[[Wade Barrett (soccer)|Barrett]] {{yel|88}}
+|goals2     = [[Gonzalo Pineda|Pineda]] {{yel|19}}<br>[[Sergio Ávila|Ávila]] {{yel|27}}<br>[[Hector Reynoso|Reynoso]] {{yel|53}}<br>[[Omar Arellano (footballer, born 1987)|Arellano]] {{goal|71}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 28,723
+|referee    = [[Enrico Wijngaarde]]
+|result     = L
+}}
+{{football box collapsible
+|round      = Group stage
+|date       = July 19, 2008
+|time       = 7:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[D.C. United]] {{flagicon|USA}}
+|score      = 1–3
+|report     = [https://www.houstondynamo.com/post/2008/07/20/dynamo-3-dc-united-1 Report]
+|team2      = {{flagicon|USA}} [[Houston Dynamo]]
+|goals1     = [[Fred (footballer, born 1979)|Fred]] {{yel|20}}<br>[[Luciano Emílio|Emílio]] {{yel|21}}<br>[[Francis Doe|Doe]] {{goal|76}}<br>[[Rod Dyachenko|Dyachenko]] {{yel|81}}
+|goals2     = [[Ricardo Clark|Clark]] {{goal|12}}<br>[[Bobby Boswell|Boswell]] {{goal|28}}<br>[[Stuart Holden|Holden]] {{goal|84}}
+|stadium    = [[RFK Stadium]]
+|location   = [[Washington, D.C.]]
+|attendance = 12,893
+|referee    = Alex Prus
+|result     = W
+}}
+{{football box collapsible
+|round      = Semifinals
+|date       = July 29, 2008
+|time       = 9:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]] {{flagicon|USA}}
+|score      = 2–0
+|report     = [https://www.houstondynamo.com/post/2008/07/30/dynamo-defeat-defending-champs-advance Report]
+|team2      = {{flagicon|MEX}}[[C.F. Pachuca|Pachuca]]
+|goals1     = [[Ricardo Clark|Clark]] {{yel|36}}<br>[[Bobby Boswell|Boswell]] {{goal|77}}<br>[[Corey Ashe|Ashe]] {{goal|87}}
+|goals2     = [[José Francisco Torres|Torres]] {{yel|32}}<br>[[Leobardo López|López]] {{yel|33}}<br>[[Damián Álvarez (footballer, born 1979)|Alvarez]]{{yel|86}} <br>[[Bruno Marioni|Marioni]] {{yel|90}}<br>[[Paul Aguilar|Aguilar]] {{yel|90+4}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 16,679
+|referee    = Neil Brizan
+|result     = W
+}}
+{{football box collapsible
+|round      = Final
+|date       = August 5, 2008
+|time       =  PM ([[Central Daylight Time|CDT]])
+|team1      = [[New England Revolution]] {{flagicon|USA}}
+|score      = 2–2
+|aet        = yes
+|report     = [https://www.houstondynamo.com/post/2008/08/06/revs-edge-houston-superliga-crown-pks Report]
+|team2      = {{flagicon|USA}} [[Houston Dynamo]]
+|goals1     = [[Steve Ralston|Ralston]] {{goal|41}}<br>[[Shalrie Joseph|Joseph]] {{yel|82}} {{goal|102}}
+|goals2     = [[Brad Davis (soccer)|Davis]] {{yel|14}}<br>[[Nate Jaqua|Jaqua]] {{goal|18}}<br>[[Kei Kamara|Kamara]] {{goal|98}}
+|stadium    = [[Gillette Stadium]]
+|location   = [[Foxborough, Massachusetts]]
+|attendance = 9,242
+|referee    = [[Howard Webb]]
+|result     = L
+|penalties1 = [[Steve Ralston|Ralston]] {{pengoal}}<br>[[Matt Reis|Reis]] {{penmiss}}<br>[[Shalrie Joseph|Joseph]] {{pengoal}}<br>[[Taylor Twellman|Twellman]] {{pengoal}}<br>[[Khano Smith|Smith]] {{penmiss}}<br>[[Jeff Larentowicz|Larentowicz]] {{pengoal}}<br>[[Chris Tierney (soccer)|Tierney]] {{pengoal}}<br>[[Chris Albright|Albright]] {{pengoal}}
+|penaltyscore = 6–5
+|penalties2 = {{pengoal}} [[Craig Waibel|Waibel]]<br>{{pengoal}} [[Chris Wondolowski|Wondolowski]]<br>{{penmiss}} [[Dwayne De Rosario|De Rosario]]<br>{{penmiss}} [[Brian Ching|Ching]]<br>{{pengoal}} [[Ricardo Clark|Clark]]<br>{{pengoal}} [[Wade Barrett (soccer)|Barrett]]<br>{{pengoal}} [[Kei Kamara|Kamara]]<br>{{penmiss}} [[Corey Ashe|Ashe]]
+}}
+
+=== CONCACAF Champions League ===
+{{main|2008–09 CONCACAF Champions League}}
+
+==== Group stage ====
+{{main|2008–09 CONCACAF Champions League group stage}}
+{|
+|-
+|
+{|class="wikitable" style="text-align: center;"
+|-
+! style="width:175px;"|Club
+!width="20"|Pld
+!width="20"|W
+!width="20"|D
+!width="20"|L
+!width="20"|GF
+!width="20"|GA
+!width="20"|GD
+!width="20"|Pts
+|- style="background:#cfc;"
+|align=left|{{flagicon|MEX}} [[Club Universidad Nacional|UNAM]]
+|6||3||3||0||18||7||+11||'''12'''
+|- style="background:#cfc;"
+|align=left|{{flagicon|USA}} [[Houston Dynamo]]
+|6||2||3||1||9||9||0||'''9'''
+|-
+|align=left|{{flagicon|SLV}} [[C.D. Luis Ángel Firpo|Luis Ángel Firpo]]
+|6||2||2||2||6||8||−2||'''8'''
+|-
+|align=left|{{flagicon|PAN}} [[San Francisco F.C.|San Francisco]]
+|6||0||2||4||4||13||−9||'''2'''
+|}
+|
+{|class="wikitable" style="text-align:center"
+|-
+! style="width:140px;"|&nbsp;!!width="50"|[[Houston Dynamo|HOU]]!!width="50"|[[C.D. Luis Ángel Firpo|LAF]]!!width="50"|[[San Francisco F.C.|SFR]]!!width="50"|[[Club Universidad Nacional|UNAM]]
+|-
+!style="text-align:right;"|[[Houston Dynamo]]
+!|–
+|title="Houston Dynamo v Luis Ángel Firpo"|[[CONCACAF Champions League 2008-09 Group Stage#Houston Dynamo v Luis Ángel Firpo|1–0]]
+|title="Houston Dynamo v San Francisco"|[[CONCACAF Champions League 2008-09 Group Stage#Houston Dynamo v San Francisco|2–1]]
+|title="Houston Dynamo v Universidad Nacional"|[[CONCACAF Champions League 2008-09 Group Stage#Houston Dynamo v Universidad Nacional|1–3]]
+|-
+!style="text-align:right;"|[[C.D. Luis Ángel Firpo|Luis Ángel Firpo]]
+|title="Luis Ángel Firpo v Houston Dynamo"|[[CONCACAF Champions League 2008-09 Group Stage#Luis Ángel Firpo v Houston Dynamo|1–1]]
+!|–
+|title="Luis Ángel Firpo v San Francisco"|[[CONCACAF Champions League 2008-09 Group Stage#Luis Ángel Firpo v San Francisco|1–0]]
+|title="Luis Ángel Firpo v Universidad Nacional"|[[CONCACAF Champions League 2008-09 Group Stage#Firpo v Universidad Nacional|1–1]]
+|-
+!style="text-align:right;"|[[San Francisco F.C.|San Francisco]]
+|title="San Francisco v Houston Dynamo"|[[CONCACAF Champions League 2008-09 Group Stage#San Francisco v Houston Dynamo|0–0]]
+|title="San Francisco v Luis Ángel Firpo"|[[CONCACAF Champions League 2008-09 Group Stage#San Francisco v Luis Ángel Firpo|2–3]]
+!|–
+|title="San Francisco v Universidad Nacional"|[[CONCACAF Champions League 2008-09 Group Stage#San Francisco v Universidad Nacional|1–1]]
+|-
+!style="text-align:right;"|[[Club Universidad Nacional|UNAM]]
+|title="Universidad Nacional v Houston Dynamo"|[[CONCACAF Champions League 2008-09 Group Stage#Universidad Nacional v Houston Dynamo|4–4]]
+|title="Universidad Nacional v Luis Ángel Firpo"|[[CONCACAF Champions League 2008-09 Group Stage#Universidad Nacional v Luis Ángel Firpo|3–0]]
+|title="Universidad Nacional v San Francisco"|[[CONCACAF Champions League 2008-09 Group Stage#Universidad Nacional v San Francisco|6–0]]
+!|–
+|}
+|}
+{{football box collapsible
+|round      = 1
+|date       = September 23, 2008
+|time       = 9:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[San Francisco F.C.|San Francisco]] {{flagicon|PAN}}
+|score      = 0–0
+|report     = [https://www.houstondynamo.com/post/2008/09/24/dynamo-open-ccl-play-scoreless-tie Report]
+|team2      = {{flagicon|USA}} [[Houston Dynamo]]
+|goals1     = 
+|goals2     = [[Geoff Cameron|Cameron]] {{yel|6}}<br>[[Corey Ashe|Ashe]] {{yel|62}}
+|stadium    = [[Estadio Nacional de Panamá|Estadio Nacional Rod Carew]],
+|location   = [[Panama City, Panama]]
+|attendance = 3,400
+|referee    = Geoffrey Hospedales
+|result     = D
+}}
+{{football box collapsible
+|round      = 2
+|date       = September 30, 2008
+|time       = 9:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Club Universidad Nacional|U.N.A.M.]] {{flagicon|MEX}}
+|score      = 4–4
+|report     = [https://www.houstondynamo.com/post/2008/10/01/dynamo-earn-historic-tie-mexico Report]
+|team2      = {{flagicon|USA}} [[Houston Dynamo]]
+|goals1     = [[Dante López|López]] {{goal|18}}<br> [[Efrain Juárez|Juárez]] {{goal|26}}<br>[[Francisco Palencia|Palencia]] {{goal|41}}<br>[[Darío Verón|Verón]] {{goal|45+2}}
+|goals2     = [[Craig Waibel|Waibel]] {{goal|3}} {{goal|50}}<br>[[Kei Kamara|Kamara]] {{goal|16}} {{goal|33|pen.}}<br>[[Eddie Robinson (soccer)|Robinson]] {{yel|26}}
+|stadium    = [[Estadio Olímpico Universitario]]
+|location   = [[Mexico City, Mexico]]
+|attendance = 9,179
+|referee    = [[Walter Quesada]]
+|result     = D
+}}
+{{football box collapsible
+|round      = 3
+|date       = October 7, 2008
+|time       = 9:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]] {{flagicon|USA}}
+|score      = 2–1
+|report     = [https://www.houstondynamo.com/post/2008/10/08/late-de-ro-goal-lifts-dynamo-over-san-fran Report]
+|team2      = {{flagicon|PAN}} [[San Francisco F.C.|San Francisco]]
+|goals1     = [[Chris Wondolowski|C. Wondolowski]] {{goal|13}}<br>[[Richard Mulrooney|Mulrooney]]{{yel|74}}<br> [[Dwayne De Rosario|De Rosario]] {{goal|88}}
+|goals2     = [[Temistocles Perez|Perez]] {{goal|47}}<br>[[Manuel Torres (footballer, born 1978)|M. Torres]] {{yel|60}}<br>[[Wess Torres|W. Torres]] {{yel|90+1}}<br>[[Angel Lombardo|Lombardo]] {{yel|90+2}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 4,178
+|referee    = [[Benito Archundia]]
+|result     = W
+}}
+{{football box collapsible
+|round      = 4
+|date       = October 22, 2008
+|time       = 9:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[Houston Dynamo]] {{flagicon|USA}}
+|score      = 1–3
+|report     = [https://www.houstondynamo.com/post/2008/10/23/houston-streak-snapped-pumas-loss Report]
+|team2      = {{flagicon|MEX}} [[Club Universidad Nacional|U.N.A.M.]]
+|goals1     = [[Marco Antonio Palacios|Palacios]] {{goal|38|o.g.}}<br>[[Stuart Holden|Holden]] {{yel|43}}
+|goals2     = [[Juan Carlos Cacho|Cacho]] {{goal|19|pen.}}<br>[[David Cabrera Pujol|Cabrera]] {{yel|24}}<br>[[Fernando Espinosa (Mexican footballer)|Espinosa]] {{goal|30}}<br>[[Ismael Íñiguez|Íñiguez]] {{yel|32}}<br>[[Marco Antonio Palacios|Palacios]] {{goal|69}}, {{yel|81}}<br>[[Luis Fernando Fuentes|Fuentes]] {{yel|70}}<br>[[Martín Bravo|Bravo]] {{yel|71}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 8,741
+|referee    = Neal Brizan
+|result     = L
+}}
+{{football box collapsible
+|round      = 5
+|date       = October 28, 2008
+|time       = 9:00 PM ([[Central Daylight Time|CDT]])
+|team1      = [[C.D. Luis Ángel Firpo|Luis Ángel Firpo]] {{flagicon|SLV}}
+|score      = 1–1
+|report     = [https://www.houstondynamo.com/post/2008/10/29/dynamo-stay-alive-ccl-road-tie Report]
+|team2      = {{flagicon|USA}} [[Houston Dynamo]]
+|goals1     = [[José Campos (footballer)|Campos]] {{yel|66}}<br>[[Fernando Leguizamón|Leguizamón]] {{goal|87}}
+|goals2     = [[Stuart Holden|Holden]] {{goal|16}} {{yel|37}}<br>[[Geoff Cameron|Cameron]] {{yel|39}}<br>[[John Michael Hayden|Hayden]] {{yel|50}}<br>[[Tony Caig|Caig]] {{yel|90+2}}
+|stadium    = [[Estadio Cuscatlán]]
+|location   = [[San Salvador, El Salvador]]
+|attendance = 3,000
+|referee    = Jorge Gasso
+|result     = D
+}}
+{{football box collapsible
+|round      = 6
+|date       = November 26, 2008
+|time       = 9:00 PM ([[Central Standard Time|CST]])
+|team1      = [[Houston Dynamo]] {{flagicon|USA}}
+|score      = 1–0
+|report     = [https://www.houstondynamo.com/post/2008/11/24/ching-leads-dynamo-past-firpo Report]
+|team2      = {{flagicon|SLV}} [[C.D. Luis Ángel Firpo|Luis Ángel Firpo]]
+|goals1     = [[Brian Ching|Ching]] {{goal|13}}<br>[[Craig Waibel|Waibel]] {{yel|32}}<br>[[Dwayne De Rosario|De Rosario]] {{yel|43}}<br>[[Brian Mullan|Mullan]] {{yel|45}}<br>[[Kei Kamara|Kamara]] {{yel|77}}<br>[[Eddie Robinson (soccer)|Robinson]] {{sent off|0|82}}
+|goals2     = [[Leonardo Pekarnik|Pekarnik]] {{yel|32}}<br>[[Carlos Monteagudo|Monteagudo]] {{yel|76}}<br>[[Carlos Calderón (Salvadoran footballer)|Calderón]] {{sent off|2|86|91}}<br>Morales {{yel|91}}
+|stadium    = [[Robertson Stadium]]
+|location   = [[Houston, Texas]]
+|attendance = 14,142
+|referee    = Roberto Garcia
+|result     = W
+}}
+
+==== Championship round ====
+{{main|2008–09 CONCACAF Champions League championship round}}
+After finishing 2nd in group B, the Dynamo qualified for the Championship Round.  The fixtures for the Championship Round are included in the Dynamo's [[2009 Houston Dynamo season|2009 season]].
+
+== Player statistics ==
+
+=== Appearances, goals, and assists ===
+{| class="wikitable sortable" style="text-align:center;"
+|+
+! rowspan="2" |<small>{{Abbr|No.|Number}}</small>
+! rowspan="2" |<small>{{Abbr|Pos.|Position}}</small>
+! rowspan="2" |<small>{{Abbr|Nat.|Nationality}}</small>
+! rowspan="2" |{{smaller|Player}}
+! colspan="3" |{{smaller|Total}}
+! colspan="3" |{{smaller|[[2008 Major League Soccer season|MLS]]}}
+! colspan="3" |{{smaller|[[2008 MLS Cup Playoffs|Playoffs]]}}
+! colspan="3" |{{smaller|[[2008 U.S. Open Cup|U.S. Open Cup]]}}
+! colspan="3" |{{smaller|[[2008 CONCACAF Champions' Cup|Champions Cup]]}}
+! colspan="3" |{{smaller|[[2008 North American SuperLiga|SuperLiga]]}}
+! colspan="3" |{{smaller|[[2008–09 CONCACAF Champions League|Champions League]]}}
+|-
+!<small>{{Abbr|App|Appearances}}</small>!!<small>{{Abbr|G|Goals}}</small>!!<small>{{Abbr|A|Assists}}</small>!!<small>{{Abbr|App|Appearances}}</small>!!<small>{{Abbr|G|Goals}}</small>!!<small>{{Abbr|A|Assists}}</small>!!<small>{{Abbr|App|Appearances}}</small>!!<small>{{Abbr|G|Goals}}</small>!!<small>{{Abbr|A|Assists}}</small>!!<small>{{Abbr|App|Appearances}}</small>!!<small>{{Abbr|G|Goals}}</small>!!<small>{{Abbr|A|Assists}}</small>!!<small>{{Abbr|App|Appearances}}</small>!!<small>{{Abbr|G|Goals}}</small>!!<small>{{Abbr|A|Assists}}</small>!!<small>{{Abbr|App|Appearances}}</small>!!<small>{{Abbr|G|Goals}}</small>!!<small>{{Abbr|A|Assists}}</small>!!<small>{{Abbr|App|Appearances}}</small>!!<small>{{Abbr|G|Goals}}</small>!!<small>{{Abbr|A|Assists}}</small>
+|-
+|1||GK||{{Flagicon|ENG}}||align=left|{{smaller|[[Tony Caig]]}}||11||0||0||7||0||0||0||0||0||1||0||0||1||0||0||0||0||0||2||0||0
+|-
+|2||DF||{{Flagicon|USA}}||align=left|{{smaller|[[Eddie Robinson (soccer)|Eddie Robinson]]}}||29||0||0||20||0||0||2||0||0||0||0||0||3||0||0||1||0||0||3||0||0
+|-
+|3||MF||{{Flagicon|USA}}||align=left|{{smaller|Johnny Alcaraz}}||1||0||0||0||0||0||0||0||0||1||0||0||0||0||0||0||0||0||0||0||0
+|-
+|4||DF||{{Flagicon|USA}}||align=left|{{smaller|[[Patrick Ianni]]}}||27||0||1||17||0||1||0||0||0||0||0||0||2||0||0||3||0||0||5||0||0
+|-
+|5||FW||{{Flagicon|USA}}||align=left|{{smaller|[[Kyle Brown (soccer)|Kyle Brown]]}}||8||0||0||4||0||0||0||0||0||1||0||0||0||0||0||1||0||0||2||0||0
+|-
+|6||MF||{{Flagicon|USA}}||align=left|{{smaller|[[Erik Ustruck]]}}||3||0||0||0||0||0||0||0||0||1||0||0||0||0||0||0||0||0||2||0||0
+|-
+|7||FW||{{Flagicon|USA}}||align=left|{{smaller|[[Chris Wondolowski]]}}||19||2||0||8||0||0||0||0||0||1||0||0||4||1||0||4||0||0||2||1||0
+|-
+|8||MF||{{Flagicon|USA}}||align=left|{{smaller|[[Richard Mulrooney]]}}||33||0||4||23||0||4||2||0||0||0||0||0||4||0||0||0||0||0||4||0||0
+|-
+|9||MF||{{Flagicon|USA}}||align=left|{{smaller|[[Brian Mullan]]}}||44||4||8||30||3||5||2||0||0||0||0||0||3||0||0||5||1||2||4||0||1
+|-
+|10||FW||{{Flagicon|SLE}}||align=left|{{smaller|[[Kei Kamara]]}}||19||6||2||10||2||2||2||1||0||0||0||0||0||0||0||2||1||0||5||2||0
+|-
+|10||FW||{{Flagicon|ARG}}||align=left|{{smaller|[[Franco Caraccio]]}}<ref group=lower-alpha name="left">Left during the season</ref>||17||2||2||10||2||1||0||0||0||1||0||1||4||0||0||2||0||0||0||0||0
+|-
+|11||MF||{{Flagicon|USA}}||align=left|{{smaller|[[Brad Davis (soccer)|Brad Davis]]}}||35||3||11||26||3||8||2||0||0||0||0||0||1||0||0||5||0||3||1||0||0
+|-
+|13||MF||{{Flagicon|USA}}||align=left|{{smaller|[[Ricardo Clark]]}}||41||3||1||25||2||1||2||0||0||0||0||0||4||0||0||5||1||0||5||0||0
+|-
+|14||MF||{{Flagicon|CAN}}||align=left|{{smaller|[[Dwayne De Rosario]]}}||39||11||5||24||7||2||2||0||0||0||0||0||4||2||0||4||1||2||5||1||1
+|-
+|16||DF||{{Flagicon|USA}}||align=left|{{smaller|[[Craig Waibel]]}}||26||2||4||14||0||3||0||0||0||0||0||0||3||0||0||5||0||1||4||2||0
+|-
+|17||MF||{{Flagicon|USA}}||align=left|{{smaller|[[Mike Chabala]]}}||5||0||0||0||0||0||0||0||0||1||0||0||0||0||0||1||0||0||3||0||0
+|-
+|18||GK||{{Flagicon|CAN}}||align=left|{{smaller|[[Pat Onstad]]}}||38||0||0||24||0||0||2||0||0||0||0||0||3||0||0||5||0||0||4||0||0
+|-
+|19||MF||{{Flagicon|USA}}||align=left|{{smaller|[[John Michael Hayden]]}}||2||0||0||0||0||0||0||0||0||1||0||0||0||0||0||0||0||0||1||0||0
+|-
+|20||MF||{{Flagicon|USA}}||align=left|{{smaller|[[Geoff Cameron]]}}||36||1||5||23||1||2||1||0||0||1||0||0||2||0||0||5||0||2||4||0||1
+|-
+|21||FW||{{Flagicon|USA}}||align=left|{{smaller|Nick Hatzke}}||1||0||0||0||0||0||0||0||0||1||0||0||0||0||0||0||0||0||0||0||0
+|-
+|22||MF||{{Flagicon|USA}}||align=left|{{smaller|[[Stuart Holden]]}}||37||7||6||27||3||4||2||0||0||1||0||0||0||0||0||2||3||0||5||1||1
+|-
+|23||MF||{{Flagicon|USA}}||align=left|{{smaller|Stephen Wondolowski}}||2||1||0||0||0||0||0||0||0||1||1||0||0||0||0||0||0||0||1||0||0
+|-
+|24||DF||{{Flagicon|USA}}||align=left|{{smaller|[[Wade Barrett (soccer)|Wade Barrett]]}}||41||0||1||26||0||0||2||0||0||0||0||0||4||0||0||5||0||1||4||0||0
+|-
+|25||FW||{{Flagicon|USA}}||align=left|{{smaller|[[Brian Ching]]}}||35||14||7||25||13||5||2||0||0||0||0||0||4||0||0||2||0||2||2||1||0
+|-
+|26||MF||{{Flagicon|USA}}||align=left|{{smaller|[[Corey Ashe]]}}||39||2||4||22||1||1||1||0||0||1||0||0||4||0||1||5||1||0||6||0||2
+|-
+|27||MF||{{Flagicon|USA}}||align=left|{{smaller|[[Nate Jaqua]]}}||23||5||4||14||4||4||2||0||0||0||0||0||0||0||0||2||1||0||5||0||0
+|-
+|30||GK||{{Flagicon|USA}}||align=left|{{smaller|Corbin Waller}}||0||0||0||0||0||0||0||0||0||0||0||0||0||0||0||0||0||0||0||0||0
+|-
+|32||DF||{{Flagicon|USA}}||align=left|{{smaller|[[Bobby Boswell]]}}||43||3||1||29||1||1||2||0||0||0||0||0||3||0||0||5||2||0||4||0||0
+|-
+|99||FW||{{Flagicon|CIV}}||align=left|{{smaller|[[Guy-Roland Kpene]]}}||0||0||0||0||0||0||0||0||0||0||0||0||0||0||0||0||0||0||0||0||0
+{{Fb cs footer |s=[https://www.houstondynamo.com/stats/season?year=2008&group=g Season Statistics] and match reports in [[#Competitions|Competitions]]|date=July 27, 2020}}
+{{notelist}}
+
+=== Disciplinary record ===
+
+{| class="wikitable sortable" style="text-align:center;"
+|+
+! rowspan="2" |{{Abbr|No.|Number}}
+! rowspan="2" |{{Abbr|Pos.|Position}}
+! rowspan="2" |{{Abbr|Nat.|Nationality}}
+! rowspan="2" |Player
+! colspan="2" |Total
+! colspan="2" |[[2008 Major League Soccer season|MLS]]
+! colspan="2" |[[2008 MLS Cup Playoffs|Playoffs]]
+! colspan="2" |[[2008 U.S. Open Cup|U.S. Open Cup]]
+! colspan="2" |[[2008 CONCACAF Champions' Cup|Champions Cup]]
+! colspan="2" |[[2008 North American SuperLiga|SuperLiga]]
+! colspan="3" |[[2008–09 CONCACAF Champions League|Champions League]]
+|-
+!style="width:30px;"|{{yel}}!!style="width:30px;"|{{sent off}}!!style="width:30px;"|{{yel}}!!style="width:30px;"|{{sent off}}!!style="width:30px;"|{{yel}}!!style="width:30px;"|{{sent off}}!!style="width:30px;"|{{yel}}!!style="width:30px;"|{{sent off}}!!style="width:30px;"|{{yel}}!!style="width:30px;"|{{sent off}}!!style="width:30px;"|{{yel}}!!style="width:30px;"|{{sent off}}!!style="width:30px;"|{{yel}}!!style="width:30px;"|{{sent off}}
+|-
+|1||GK||{{Flagicon|ENG}}||align=left|{{smaller|[[Tony Caig]]}}||1||0||0||0||0||0||0||0||0||0||0||0||1||0
+|-
+|2||DF||{{Flagicon|USA}}||align=left|{{smaller|[[Eddie Robinson (soccer)|Eddie Robinson]]}}||9||3||6||2||2||0||0||0||0||0||0||0||1||1
+|-
+|3||MF||{{Flagicon|USA}}||align=left|{{smaller|Johnny Alcaraz}}||0||0||0||0||0||0||0||0||0||0||0||0||0||0
+|-
+|4||DF||{{Flagicon|USA}}||align=left|{{smaller|[[Patrick Ianni]]}}||3||0||2||0||0||0||0||0||0||0||1||0||0||0
+|-
+|5||FW||{{Flagicon|USA}}||align=left|{{smaller|[[Kyle Brown (soccer)|Kyle Brown]]}}||0||0||0||0||0||0||0||0||0||0||0||0||0||0
+|-
+|6||MF||{{Flagicon|USA}}||align=left|{{smaller|[[Erik Ustruck]]}}||1||0||0||0||0||0||1||0||0||0||0||0||0||0
+|-
+|7||FW||{{Flagicon|USA}}||align=left|{{smaller|[[Chris Wondolowski]]}}||3||0||1||0||0||0||1||0||1||0||0||0||0||0
+|-
+|8||MF||{{Flagicon|USA}}||align=left|{{smaller|[[Richard Mulrooney]]}}||4||0||3||0||0||0||0||0||0||0||0||0||1||0
+|-
+|9||MF||{{Flagicon|USA}}||align=left|{{smaller|[[Brian Mullan]]}}||5||0||2||0||2||0||0||0||0||0||0||0||1||0
+|-
+|10||FW||{{Flagicon|SLE}}||align=left|{{smaller|[[Kei Kamara]]}}||2||1||1||1||0||0||0||0||0||0||0||0||1||0
+|-
+|10||FW||{{Flagicon|ARG}}||align=left|{{smaller|[[Franco Caraccio]]}}<ref group=lower-alpha name="left">Left during the season</ref>||2||0||1||0||0||0||1||0||0||0||0||0||0||0
+|-
+|11||MF||{{Flagicon|USA}}||align=left|{{smaller|[[Brad Davis (soccer)|Brad Davis]]}}||3||0||2||0||0||0||0||0||0||0||1||0||0||0
+|-
+|13||MF||{{Flagicon|USA}}||align=left|{{smaller|[[Ricardo Clark]]}}||9||0||6||0||0||0||0||0||1||0||2||0||0||0
+|-
+|14||MF||{{Flagicon|CAN}}||align=left|{{smaller|[[Dwayne De Rosario]]}}||8||1||6||0||0||0||0||0||1||0||0||1||1||0
+|-
+|16||DF||{{Flagicon|USA}}||align=left|{{smaller|[[Craig Waibel]]}}||2||0||1||0||0||0||0||0||0||0||0||0||1||0
+|-
+|17||MF||{{Flagicon|USA}}||align=left|{{smaller|[[Mike Chabala]]}}||0||0||0||0||0||0||0||0||0||0||0||0||0||0
+|-
+|18||GK||{{Flagicon|CAN}}||align=left|{{smaller|[[Pat Onstad]]}}||3||0||2||0||1||0||0||0||0||0||0||0||0||0
+|-
+|19||MF||{{Flagicon|USA}}||align=left|{{smaller|[[John Michael Hayden]]}}||1||0||0||0||0||0||0||0||0||0||0||0||1||0
+|-
+|20||MF||{{Flagicon|USA}}||align=left|{{smaller|[[Geoff Cameron]]}}||6||0||3||0||0||0||0||0||0||0||1||0||2||0
+|-
+|21||FW||{{Flagicon|USA}}||align=left|{{smaller|Nick Hatzke}}||0||0||0||0||0||0||0||0||0||0||0||0||0||0
+|-
+|22||MF||{{Flagicon|USA}}||align=left|{{smaller|[[Stuart Holden]]}}||6||0||3||0||0||0||1||0||0||0||0||0||2||0
+|-
+|23||MF||{{Flagicon|USA}}||align=left|{{smaller|Stephen Wondolowski}}||1||0||0||0||0||0||1||0||0||0||0||0||0||0
+|-
+|24||DF||{{Flagicon|USA}}||align=left|{{smaller|[[Wade Barrett (soccer)|Wade Barrett]]}}||5||0||3||0||0||0||0||0||1||0||1||0||0||0
+|-
+|25||FW||{{Flagicon|USA}}||align=left|{{smaller|[[Brian Ching]]}}||2||0||2||0||0||0||0||0||0||0||0||0||0||0
+|-
+|26||MF||{{Flagicon|USA}}||align=left|{{smaller|[[Corey Ashe]]}}||3||0||1||0||0||0||0||0||0||0||1||0||1||0
+|-
+|27||MF||{{Flagicon|USA}}||align=left|{{smaller|[[Nate Jaqua]]}}||2||0||2||0||0||0||0||0||0||0||0||0||0||0
+|-
+|30||GK||{{Flagicon|USA}}||align=left|{{smaller|Corbin Waller}}||0||0||0||0||0||0||0||0||0||0||0||0||0||0
+|-
+|32||DF||{{Flagicon|USA}}||align=left|{{smaller|[[Bobby Boswell]]}}||8||0||6||0||0||0||0||0||2||0||0||0||0||0
+|-
+|99||FW||{{Flagicon|CIV}}||align=left|{{smaller|[[Guy-Roland Kpene]]}}||0||0||0||0||0||0||0||0||0||0||0||0||0||0
+{{Fb cs footer |s=[https://www.houstondynamo.com/stats/season?year=2008&season_type=REG&group=fouls&op=Search&form_build_id=form-u5p4UeVcKhnxuELXG706scHp5xBw8cZrposPUre3l68&form_id=mp7_stats_hub_build_filter_form&sort=desc&order=YC Season Statistics] and match reports in [[#Competitions|Competitions]]|date=July 27, 2020}}
+{{notelist}}
+
+=== Clean sheets ===
+{| class="wikitable" style="text-align:center;"
+|+
+!Rank!!Nat.!!Player!![[2008 Major League Soccer season|MLS]]!![[2008 MLS Cup Playoffs|Playoffs]]!![[2008 U.S. Open Cup|U.S. Open Cup]]!![[2008 CONCACAF Champions' Cup|Champions Cup]]!![[2008 North American SuperLiga|SuperLiga]]!![[2008–09 CONCACAF Champions League|Champions League]]!!Total
+|-
+|1||{{Flagicon|CAN}}||[[Pat Onstad]]||7||0||0||2||2||2
+!13
+|-
+|2||{{Flagicon|ENG}}||[[Tony Caig]]||3||0||0||0||0||0
+!3
+|-
+! colspan="3" |Total!!10!!0!!0!!2!!2!!2!!16
+{{Fb cs footer |s=[https://www.houstondynamo.com/stats/season?year=2008&season_type=REG&group=shutouts&op=Search&form_build_id=form-YXEWqjBvTx8Pxx-SrFsPW6SaZHGFs6lSr2hL-elgAI0&form_id=mp7_stats_hub_build_filter_form Season Statistics] and match reports in [[#Competitions|Competitions]]|date=July 27, 2020}}
+
+== Honors and awards ==
+
+=== MLS Player of the Week ===
+{| class="wikitable"
+|+
+!Week!!Player!!Ref.
+|-
+| align="center" |11||{{Flagicon|USA}} [[Brian Ching]]||<ref name=":6">{{Cite web|title=MLS Fact and Record Book|url=https://www.mlssoccer.com/media-resources/mls-fact-and-record-book|access-date=July 29, 2020|website=[[Major League Soccer]]|page=173|archive-date=March 1, 2017|archive-url=https://web.archive.org/web/20170301164108/http://www.mlssoccer.com/media-resources/mls-fact-and-record-book|url-status=dead}}</ref>
+|-
+| align="center" |28||{{Flagicon|USA}} [[Brian Ching]]||<ref name=":6" />
+|}
+
+=== MLS Goal of the Week ===
+{| class="wikitable"
+|+
+!Week!!Player!!Opponent!!Date
+|-
+|align=center|2||{{Flagicon|USA}} [[Geoff Cameron]]||[[FC Dallas]]||April 6
+|}
+
+=== Annual ===
+{| class="wikitable"
+|+
+!Honor!!Player!!Ref.
+|-
+|[[2008 MLS All-Star Game|MLS All-Star]]
+|{{Flagicon|USA}} [[Brian Ching]]
+{{Flagicon|CAN}} [[Dwayne De Rosario]]
+
+{{Flagicon|CAN}} [[Pat Onstad]]
+|<ref>{{Cite web|title=MLS Fact and Record Book|url=https://www.mlssoccer.com/media-resources/mls-fact-and-record-book|access-date=July 29, 2020|website=[[Major League Soccer]]|page=144|archive-date=March 1, 2017|archive-url=https://web.archive.org/web/20170301164108/http://www.mlssoccer.com/media-resources/mls-fact-and-record-book|url-status=dead}}</ref>
+|}
+
+=== Dynamo team awards ===
+{| class="wikitable"
+|+
+!MVP!!Defensive Player of the Year!!'''Humanitarian of the Year'''!!Young Player of the Year!!Newcomer of the Year!!Ref.
+|-
+|{{Flagicon|USA}} [[Brian Ching]]||{{Flagicon|USA}} [[Bobby Boswell]]||{{Flagicon|USA}} [[Stuart Holden]]||{{Flagicon|USA}} [[Stuart Holden]]||{{Flagicon|USA}} [[Geoff Cameron]]||<ref>{{Cite web|title=Dynamo Awards|url=https://www.houstondynamo.com/history/awards|access-date=July 29, 2020|website=Houston Dynamo|archive-date=May 17, 2018|archive-url=https://web.archive.org/web/20180517153410/https://www.houstondynamo.com/history/awards|url-status=dead}}</ref>
+|}
+
+== Kits ==
+'''Supplier:''' [[Adidas]] / '''Sponsor:''' [[Amigo Energy]]
+{|border="0" style="margin:1em auto;"
+|{{football kit
+|pattern_la = _adidasstripeswhite
+|pattern_b  = _DYNAMO_07h
+|pattern_ra = _adidasstripeswhite
+|pattern_sh = _DYNAMO_07h
+|pattern_so = _3_stripes_white
+|leftarm    = FF6F00
+|body       = FFFFFF
+|rightarm   = FF6F00
+|shorts     = FFFFFF
+|socks      = FF6F00
+|title      = Home
+}}
+|
+{{football kit
+|pattern_la = _adidasstripesonwhite
+|pattern_b  = _DYNAMO_07a
+|pattern_ra = _adidasstripesonwhite
+|pattern_sh = _DYNAMO_07a
+|pattern_so =  _3_stripes_on_white
+|leftarm    = FF6F00
+|body       = FFFFFF
+|rightarm   = FF6F00
+|shorts     = FFFFFF
+|socks      = FF6F00
+|title      = Away
+}}
+|}
+
+==References==
+{{Reflist}}
+
+==External links==
+* [https://web.archive.org/web/20080314045353/http://houston.mlsnet.com/schedule/scoreboard/season.jsp?team=t200 2008 Schedule]
+
+{{Major League Soccer}}
+{{Houston Dynamo}}
+{{2008 MLS season by team}}
+{{2008 in American soccer}}
+
+{{DEFAULTSORT:2008 Houston Dynamo Season}}
+[[Category:Houston Dynamo FC seasons]]
+[[Category:American soccer clubs 2008 season|Houston Dynamo]]
+[[Category:2008 Major League Soccer season|Hou]]
+[[Category:2008 in sports in Texas|Houston Dynamo]]

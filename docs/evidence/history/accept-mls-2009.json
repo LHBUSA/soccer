@@ -1,0 +1,69 @@
+{
+ "at": "2026-10-03T02:45:46.451Z",
+ "competition": "mls",
+ "season": "2009",
+ "state_before": "held",
+ "acceptance": {
+  "canonical_matches": 236,
+  "finished": 236,
+  "teams": 15,
+  "league_matches": 225,
+  "matches_per_club": {
+   "min": 30,
+   "max": 30
+  },
+  "repeated_pairings": 15,
+  "repeat_pairings_allowed": true,
+  "era": null,
+  "unresolved_identity_queue": 0,
+  "discovery": {
+   "checked": true,
+   "lane": "espn_mls@2009:results",
+   "indexed": 236,
+   "fetched": 236,
+   "missing_events": 0,
+   "repeated_pairing_events": 30,
+   "without_status": 0,
+   "finished_without_score": 0
+  },
+  "crosswalked": 236,
+  "espn_source_results": 236,
+  "score_disagreements": 0,
+  "postponed_beside_replay": 0
+ },
+ "matches": 236,
+ "finished": 236,
+ "stages": [
+  "Regular Season:league",
+  "Playoffs:playoff"
+ ],
+ "teams": 15,
+ "format": {
+  "teams": 15,
+  "league_matches": 225,
+  "games_per_team": {
+   "30": 15
+  }
+ },
+ "providers": [
+  "espn"
+ ],
+ "coverage": {
+  "venue": 0.9872881355932204,
+  "lineups": 0,
+  "stats": 0,
+  "events": 0
+ },
+ "coverage_tier": "MATCH",
+ "limitations": [
+  "lineups for 0% of finished matches",
+  "team statistics for 0% of finished matches",
+  "event record for 0% of finished matches"
+ ],
+ "notes": [
+  "no registered era: uniform league games per club decides"
+ ],
+ "checks_failed": [],
+ "pass": true,
+ "promoted": true
+}

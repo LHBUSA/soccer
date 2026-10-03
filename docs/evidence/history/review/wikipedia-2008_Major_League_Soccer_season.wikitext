@@ -1,0 +1,983 @@
+{{Short description|13th season of Major League Soccer}}
+{{Use mdy dates|date=June 2017}}
+{{Use American English|date=June 2017}}
+{{ infobox football league season
+| competition                = [[Major League Soccer]]
+| logo                       = Major League Soccer MLS wordmark 2007.svg
+| season                     = 2008
+| num_teams                  = 14
+| mlscup                     = [[Columbus Crew]] (1st title)
+| shield                     = [[Columbus Crew]] (2nd shield)
+| continentalcup1            = [[2009–10 CONCACAF Champions League|Champions League]]
+| continentalcup1 qualifiers = [[Columbus Crew]]<br />[[New York Red Bulls]]<br />[[Houston Dynamo]]<br />[[D.C. United]]
+| continentalcup2            = [[2009 North American SuperLiga|SuperLiga]]
+| continentalcup2 qualifiers = [[Chicago Fire S.C.|Chicago Fire]]<br />[[New England Revolution|N.E. Revolution]]<br />[[C.D. Chivas USA|Chivas USA]]<br />[[Kansas City Wizards]]
+| league topscorer           = [[Landon Donovan]]<br />[[Los Angeles Galaxy]]<br />Goals: 20
+| biggest home win           = [[Colorado Rapids|COL]] 4–0 [[Los Angeles Galaxy|LA]]<br />[[Chicago Fire S.C.|CHI]] 4–0 [[New England Revolution|NE]]<br />[[Real Salt Lake|RSL]] 4–0 [[D.C. United|DCU]]
+| biggest away win           = [[FC Dallas|FCD]] 1–5 [[Los Angeles Galaxy|LA]]<br />[[New York Red Bulls|NY]] 1–5 [[Chicago Fire S.C.|CHI]] 
+| highest scoring            = [[New York Red Bulls|NY]] 4–5 [[Colorado Rapids|COL]] 
+| matches                    = 210
+| total goals                = 591
+| average goals              = 
+| longest wins               = 5 games:<br />[[Columbus Crew]] 
+| longest unbeaten           = 9 games:<br />[[Columbus Crew]]<br />[[San Jose Earthquakes]] 
+| longest losses             = 4 games:<br />[[D.C. United]] 
+| highest attendance         = [[Los Angeles Galaxy|LA]] @ [[New York Red Bulls|NY]]: 46,754
+| lowest attendance          = [[Columbus Crew|CLB]] @ [[Chivas USA|CHV]]: 6,733
+| attendance                 = 3,461,013
+| average attendance         = 16,481
+| prevseason                 = [[2007 Major League Soccer season|2007]]
+| nextseason                 = [[2009 Major League Soccer season|2009]]
+}}
+{{Location map+ |United States |width=525 |float=right |caption=<div style="text-align: center;">Locations of teams for the 2008 Major League Soccer season<br>[[File:ButtonRed.svg|8px]] [[Western Conference (MLS)|Western Conference]] &nbsp; [[File:ButtonBlue.svg|8px]] [[Eastern Conference (MLS)|Eastern Conference]]</div>|places=
+{{Location map~ |United States |lat=38.889722 |long=-76.971667 |label='''[[D.C. United]]''' |position=bottom |mark=ButtonBlue.svg}}
+{{Location map~ |United States |lat=40.737411 |long=-74.153763 |label='''[[New York Red Bulls|New York]]''' |position=left |mark=ButtonBlue.svg}}
+{{Location map~ |United States |lat=40.009444 |long=-82.991111 |label='''[[Columbus Crew|Columbus]]''' |position=left |mark=ButtonBlue.svg}}
+{{Location map~ |United States |lat=42.090833 |long=-71.264444 |label='''[[New England Revolution|New England]]''' |position=top |mark=ButtonBlue.svg}}
+{{Location map~ |United States |lat=41.742432 |long=-87.806789 |label='''[[Chicago Fire SC|Chicago]]''' |position=top |mark=ButtonBlue.svg}}
+{{Location map~ |United States |lat=39.1218 |long=-94.8237 |label='''[[Kansas City Wizards|Kansas City]]''' |position=bottom |mark=ButtonBlue.svg}}
+{{Location map~ |United States |lat=43.632778 |long=-79.418611 |label='''[[Toronto FC|Toronto]]''' |position=top |mark=ButtonBlue.svg}}
+{{Location map~ |United States |lat=39.35 |long=-104.8918 |label='''[[Colorado Rapids|Colorado]]''' |position=top |mark=ButtonRed.svg}}
+{{Location map~ |United States |lat=33.154444 |long=-96.835278 |label='''[[FC Dallas|Dallas]]''' |position=right |mark=ButtonRed.svg}}
+{{Location map~ |United States |lat=33.864444 |long=-118.261111 |label='''[[Chivas USA]]''' |position=top |mark=ButtonRed.svg}}
+{{Location map~ |United States |lat=33.864444 |long=-118.261111 |label='''[[LA Galaxy|Galaxy]]''' |position=bottom |mark=ButtonRed.svg}}
+{{Location map~ |United States |lat=29.721944 |long=-95.349167 |label='''[[Houston Dynamo|Houston]]''' |position=right |mark=ButtonRed.svg}}
+{{Location map~ |United States |lat=40.582923 |long=-111.893156 |label='''[[Real Salt Lake|Salt Lake]]''' |position=bottom |mark=ButtonRed.svg}}
+{{Location map~ |United States |lat=37.350556 |long=-121.936667 |label='''[[San Jose Earthquakes|San Jose]]'''|position=top |mark=ButtonRed.svg}}
+}}
+
+The '''2008 Major League Soccer season''' was the 13th season of [[Major League Soccer]]. It was also the 96th season of FIFA-sanctioned soccer in the [[United States]], and the 30th with a national first-division league.
+
+The [[San Jose Earthquakes]] returned to the league, following a two-year hiatus that began after the 2005 season.
+
+The [[Kansas City Wizards]] left [[Arrowhead Stadium]] and moved to the [[Kansas]] side of the [[Kansas City Metropolitan Area|metropolitan area]], occupying [[CommunityAmerica Ballpark]] in [[Kansas City, Kansas|Kansas City]]. The league also debuted its newest [[soccer-specific stadium]] in October when [[Real Salt Lake]] opened [[Rio Tinto Stadium]] in [[Sandy, Utah]].
+
+The regular season began on March 29, and concluded on October 26. The 2008 MLS Cup Playoffs began on October 30, and concluded with [[MLS Cup 2008]] on November 23. The [[Columbus Crew]] captured the league double by winning their second [[ Supporters' Shield]] and by defeating the [[New York Red Bulls]], 3-1, in MLS Cup.
+
+==Overview==
+
+===Season format===
+The season began on March 29 and concluded with [[MLS Cup 2008|MLS Cup]] on November 23. The 14 teams were split evenly into two conferences. Each team played 30 games that were evenly divided between home and away. Each team played every other team twice, home and away, for a total of 26 games. The remaining four games were played against four regional rivals, two at home and two away.
+
+The top three teams from each conference automatically qualified for the [[MLS Cup Playoffs]]. In addition, the two highest remaining point totals, regardless of conference, also qualified. In the first round, aggregate goals over two matches determined the winners. The conference finals were played as a single match, and the winners advanced to [[MLS Cup 2008|MLS Cup]]. In all rounds, draws were broken with two 15-minute periods of extra time, followed by penalty kicks if necessary. The [[away goals rule]] was not used in any round.
+
+The team with the most points in the regular season was awarded the [[MLS Supporters' Shield]] and qualified for the [[CONCACAF Champions League 2009–10|CONCACAF Champions League]]. Additionally, the winner of [[MLS Cup]], and the runner-up, also qualified for the CONCACAF Champions League. An additional berth in the Champions League was also awarded to the winner of the [[2008 Lamar Hunt U.S. Open Cup|U.S. Open Cup]]. If a team qualified for multiple berths into the Champions League, then additional berths were awarded to the highest overall finishing MLS team(s) not already qualified. Also, [[Toronto FC]], as a Canadian-based team, could not qualify for the CONCACAF Champions League through MLS, and had to instead qualify through the [[Canadian Championship]].
+
+Automatic qualification for the [[2009 Lamar Hunt U.S. Open Cup|U.S. Open Cup]] was awarded to the top six overall finishers, as opposed to the top three finishers in each conference. The rest of the U.S.-based MLS teams had to qualify for the remaining two berths via a series of play-in games.
+
+Due to fixture congestion, qualification for the [[North American SuperLiga|SuperLiga]] was limited to the top four overall finishers not already qualified for the [[CONCACAF Champions League]]. This applied retroactively to the 2008 season, and thus was related to qualification for MLS teams to [[North American SuperLiga 2009|SuperLiga 2009]].
+
+===Stadiums and locations===
+{{main|List of Major League Soccer stadiums}}
+{| class="wikitable sortable" style="text-align:left"
+|-
+! Team
+! Stadium
+! Capacity
+|-
+| [[Chicago Fire FC|Chicago Fire]]
+| [[SeatGeek Stadium|Toyota Park]]
+| 20,000
+|-
+| [[Chivas USA]]
+| [[Home Depot Center]]
+| 27,000
+|-
+| [[Colorado Rapids]]
+| [[Dick's Sporting Goods Park]]
+| 18,061
+|-
+| [[Columbus Crew]]
+| [[Historic Crew Stadium|Columbus Crew Stadium]]
+| 22,555
+|-
+| [[D.C. United]]
+| [[RFK Memorial Stadium|RFK Stadium]]
+| 46,000
+|-
+| [[FC Dallas]]
+| [[Toyota Stadium (Texas)|Pizza Hut Park]]
+| 21,193
+|-
+| [[Houston Dynamo]]
+| [[Robertson Stadium]]
+| 32,000
+|-
+| [[Sporting Kansas City|Kansas City Wizards]]
+| [[Legends Field (Kansas City)|CommunityAmerica Ballpark]]
+| 10,385
+|-
+| [[LA Galaxy]]
+| [[Home Depot Center]]
+| 27,000
+|-
+| [[New England Revolution]]
+| [[Gillette Stadium]]
+| 68,756
+|-
+| [[New York Red Bulls]]
+| [[Giants Stadium]]
+| 80,200
+|-
+| [[Real Salt Lake]]
+| [[Rice-Eccles Stadium]] <br> [[Rio Tinto Stadium]]
+| 45,017 <br> 20,213
+|-
+| [[San Jose Earthquakes]]
+| [[Stevens Stadium|Buck Shaw Stadium]]
+| 10,525
+|-
+| [[Toronto FC]]
+| [[BMO Field]]
+| 21,566
+|}
+
+===Personnel and sponsorships===
+{| class="wikitable sortable" style="text-align: left;"
+|-
+! Team
+! Head coach
+! Captain
+! Shirt sponsor
+|-
+| [[Chicago Fire FC|Chicago Fire]]
+| {{flagicon|CRC}} [[Denis Hamlett]]
+| 
+| [[Best Buy]]
+|-
+| [[Chivas USA]]
+| {{flagicon|USA}} [[Preki]]
+| 
+| [[Comex Group|Comex]]
+|-
+| [[Colorado Rapids]]
+| {{flagicon|USA}} [[Fernando Clavijo]]
+| 
+| align="center" colspan="1" style="background:#ececec; color:gray |— 
+|-
+| [[Columbus Crew]]
+| {{flagicon|USA}} [[Sigi Schmid]]
+| {{flagicon|USA}} [[Frankie Hejduk]]
+| [[Glidden (paints)|Glidden]]
+|-
+| [[D.C. United]]
+| {{flagicon|USA}} [[Tom Soehn]]
+| 
+| [[Volkswagen Group of America|Volkswagen]]
+|-
+| [[FC Dallas]]
+| {{flagicon|NIR}} [[Steve Morrow]]
+| 
+| align="center" colspan="1" style="background:#ececec; color:gray |— 
+|-
+| [[Houston Dynamo]]
+| {{flagicon|USA}} [[Dominic Kinnear]]
+| {{flagicon|USA}} [[Wade Barrett (soccer)|Wade Barrett]]
+| align="center" colspan="1" style="background:#ececec; color:gray |— 
+|-
+| [[Sporting Kansas City|Kansas City Wizards]]
+| {{flagicon|USA}} [[Curt Onalfo]]
+| 
+| align="center" colspan="1" style="background:#ececec; color:gray |— 
+|-
+| [[LA Galaxy]]
+| {{flagicon|NED}} [[Ruud Gullit]]
+| 
+| [[Herbalife]]
+|-
+| [[New England Revolution]]
+| {{flagicon|SCO}} [[Steve Nicol]]
+| 
+| align="center" colspan="1" style="background:#ececec; color:gray |— 
+|-
+| [[New York Red Bulls]]
+| {{flagicon|COL}} [[Juan Carlos Osorio]]
+| {{flagicon|COL}} [[Juan Pablo Ángel]]
+| [[Red Bull]]
+|-
+| [[Real Salt Lake]]
+| {{flagicon|USA}} [[Jason Kreis]]
+| {{flagicon|USA}} [[Kyle Beckerman]]
+| align="center" colspan="1" style="background:#ececec; color:gray |— 
+|-
+| [[San Jose Earthquakes]]
+| {{flagicon|CAN}} [[Frank Yallop]]
+| {{flagicon|USA}} [[Nick Garcia]]
+| align="center" colspan="1" style="background:#ececec; color:gray |— 
+|-
+| [[Toronto FC]]
+| {{flagicon|ENG}} [[John Carver (footballer)|John Carver]]
+| 
+| align="center" colspan="1" style="background:#ececec; color:gray |— 
+|}
+
+===Coaching changes===
+{| class="wikitable sortable"
+|-
+! Team!! Outgoing coach!! Manner of departure!! Date of vacancy!! Incoming coach!! Date of appointment
+
+|-
+| [[FC Dallas]]
+| {{flagicon|NIR}} [[Steve Morrow]]
+| Fired
+| May 20, 2008
+| {{flagicon|USA}} [[Marco Ferruzzi]]
+| May 20, 2008
+|-
+|-
+| [[FC Dallas]]
+| {{flagicon|USA}} [[Marco Ferruzzi]]
+| End of interim period
+| June 16, 2008
+| {{flagicon|USA}} [[Schellas Hyndman]]
+| June 16, 2008
+|-
+|}
+
+==Results table==
+
+{| class="wikitable" style="text-align:center; width:100%"
+|-
+!colspan="31"|Abbreviation and Color Key:<br />[[Chicago Fire S.C.|Chicago Fire]] - CHI • [[C.D. Chivas USA|Chivas USA]] - CHV • [[Colorado Rapids]] - COL • [[Columbus Crew]] - CLB • [[D.C. United]] - DC<br />[[FC Dallas]] - DAL • [[Houston Dynamo]] - HOU • [[Kansas City Wizards]] - KC • [[Los Angeles Galaxy]] - LA • [[New England Revolution]] - NE<br />[[New York Red Bulls]] - NY • [[Real Salt Lake]] - RSL • [[San Jose Earthquakes]] - SJ • [[Toronto FC]] - TOR<br /><span style="background:#DFE7FF;width:50px; border:1px solid #000000;">Win</span> {{*}} <span style="background:#FFDFDF;width:50px; border:1px solid #000000;">Loss</span> {{*}} <span style="background:#FFFDD0;width:50px; border:1px solid #000000;">Tie</span> {{*}}<span style="background:#DDDDDD;width:50px; border:1px solid #000000;">Home</span>
+|-
+!width="10%" rowspan="2"|Club
+!width="90%" colspan="30"|Match
+|-style="background-color:#CCCCCC; font-size: 90%"
+!width="3%"|1
+!width="3%"|2
+!width="3%"|3
+!width="3%"|4
+!width="3%"|5
+!width="3%"|6
+!width="3%"|7
+!width="3%"|8
+!width="3%"|9
+!width="3%"|10
+!width="3%"|11
+!width="3%"|12
+!width="3%"|13
+!width="3%"|14
+!width="3%"|15
+!width="3%"|16
+!width="3%"|17
+!width="3%"|18
+!width="3%"|19
+!width="3%"|20
+!width="3%"|21
+!width="3%"|22
+!width="3%"|23
+!width="3%"|24
+!width="3%"|25
+!width="3%"|26
+!width="3%"|27
+!width="3%"|28
+!width="3%"|29
+!width="3%"|30
+<!--
+Win:  bgcolor=#DFE7FF|score
+Loss: bgcolor=#FFDFDF|score
+Tie: bgcolor=#FFFDD0|score
+-->
+|-style="font-size: 75%"
+|rowspan="2"|[[Chicago Fire S.C.|Chicago Fire]] ||RSL||bgcolor=#DDDDDD|NE||SJ||bgcolor=#DDDDDD|KC||bgcolor=#DDDDDD|COL||NE||DC||bgcolor=#DDDDDD|HOU||NY||bgcolor=#DDDDDD|DC||DAL||CHV||bgcolor=#DDDDDD|SJ||CLB||bgcolor=#DDDDDD|TOR||bgcolor=#DDDDDD|RSL||KC||bgcolor=#DDDDDD|CHV||NE||bgcolor=#DDDDDD|DC||LA||HOU||bgcolor=#DDDDDD|NY||COL||bgcolor=#DDDDDD|DAL||bgcolor=#DDDDDD|LA||KC||bgcolor=#DDDDDD|CLB||TOR||bgcolor=#DDDDDD|NY
+|-style="font-size: 75%"
+|bgcolor=#FFFDD0|1-1||bgcolor=#DFE7FF|0-4||bgcolor=#DFE7FF|1-0||bgcolor=#FFDFDF|1-0||bgcolor=#DFE7FF|1-2||bgcolor=#DFE7FF|3-0||bgcolor=#DFE7FF|2-0||bgcolor=#FFDFDF|2-1||bgcolor=#DFE7FF|5-1||bgcolor=#FFDFDF|2-1||bgcolor=#FFDFDF|0-1||bgcolor=#FFDFDF|0-2||bgcolor=#FFFDD0|0-0||bgcolor=#FFFDD0|2-2||bgcolor=#DFE7FF|1-2||bgcolor=#FFFDD0|0-0||bgcolor=#FFFDD0|0-0||bgcolor=#DFE7FF|0-1||bgcolor=#DFE7FF|2-1||bgcolor=#FFDFDF|1-0||bgcolor=#DFE7FF|1-0||bgcolor=#FFDFDF|1-2||bgcolor=#DFE7FF|0-1||bgcolor=#FFDFDF|0-2||bgcolor=#FFDFDF|4-1||bgcolor=#DFE7FF|1-3||bgcolor=#FFFDD0|1-1||bgcolor=#FFFDD0|2-2||bgcolor=#FFDFDF|2-3||bgcolor=#DFE7FF|2-5
+|-style="font-size: 75%"
+|rowspan="2"|[[C.D. Chivas USA|Chivas USA]] ||DAL||bgcolor=#DDDDDD|RSL||CLB||bgcolor=#DDDDDD|DAL||LA||HOU||bgcolor=#DDDDDD|NE||bgcolor=#DDDDDD|DC||COL||bgcolor=#DDDDDD|CLB||NY||bgcolor=#DDDDDD|RSL||bgcolor=#DDDDDD|CHI||bgcolor=#DDDDDD|NY||bgcolor=#DDDDDD|SJ||LA||CHI||KC||bgcolor=#DDDDDD|LA||HOU||bgcolor=#DDDDDD|SJ||bgcolor=#DDDDDD|TOR||TOR||NE||RSL||bgcolor=#DDDDDD|KC||DC||SJ||bgcolor=#DDDDDD|COL||bgcolor=#DDDDDD|HOU
+|-style="font-size: 75%"
+|bgcolor=#FFFDD0|1-1||bgcolor=#DFE7FF|1-3||bgcolor=#FFDFDF|3-4||bgcolor=#FFDFDF|2-0||bgcolor=#FFDFDF|2-5||bgcolor=#FFFDD0|0-0||bgcolor=#FFDFDF|2-1||bgcolor=#DFE7FF|1-3||bgcolor=#DFE7FF|2-1||bgcolor=#DFE7FF|0-2||bgcolor=#FFDFDF|0-1||bgcolor=#FFDFDF|1-0||bgcolor=#DFE7FF|0-2||bgcolor=#FFFDD0|1-1||bgcolor=#DFE7FF|0-1||bgcolor=#FFFDD0|1-1||bgcolor=#FFDFDF|0-1||bgcolor=#FFDFDF|2-3||bgcolor=#FFFDD0|2-2||bgcolor=#FFDFDF|0-4||bgcolor=#FFFDD0|0-0||bgcolor=#DFE7FF|1-2||bgcolor=#DFE7FF|3-1||bgcolor=#FFDFDF|0-4||bgcolor=#DFE7FF|1-0||bgcolor=#DFE7FF|1-2||bgcolor=#DFE7FF|3-0||bgcolor=#DFE7FF|1-0||bgcolor=#FFDFDF|2-1||bgcolor=#FFFDD0|1-1
+|-style="font-size: 75%"
+|rowspan="2"|[[Colorado Rapids]] ||bgcolor=#DDDDDD|LA||KC||NE||bgcolor=#DDDDDD|SJ||CHI||bgcolor=#DDDDDD|DC||HOU||bgcolor=#DDDDDD|RSL||bgcolor=#DDDDDD|CHV||bgcolor=#DDDDDD|DAL||LA||TOR||bgcolor=#DDDDDD|HOU||CLB||bgcolor=#DDDDDD|NY||SJ||DAL||bgcolor=#DDDDDD|CLB||bgcolor=#DDDDDD|TOR||bgcolor=#DDDDDD|KC||DC||RSL||DAL||bgcolor=#DDDDDD|CHI||bgcolor=#DDDDDD|NE||NY||bgcolor=#DDDDDD|HOU||LA||CHV||bgcolor=#DDDDDD|RSL
+|-style="font-size: 75%"
+|bgcolor=#DFE7FF|0-4||bgcolor=#FFDFDF|2-3||bgcolor=#DFE7FF|1-0||bgcolor=#FFDFDF|2-0||bgcolor=#FFDFDF|1-2||bgcolor=#DFE7FF|0-2||bgcolor=#FFDFDF|1-2||bgcolor=#DFE7FF|0-2||bgcolor=#FFDFDF|2-1||bgcolor=#DFE7FF|1-2||bgcolor=#FFDFDF|2-3||bgcolor=#FFDFDF|1-3||bgcolor=#FFFDD0|0-0||bgcolor=#FFDFDF|1-2||bgcolor=#DFE7FF|0-4||bgcolor=#FFFDD0|1-1||bgcolor=#FFFDD0|2-2||bgcolor=#FFDFDF|2-0||bgcolor=#FFDFDF|0-1||bgcolor=#DFE7FF|1-2||bgcolor=#FFDFDF|0-3||bgcolor=#FFDFDF|0-2||bgcolor=#DFE7FF|1-0||bgcolor=#DFE7FF|0-2||bgcolor=#FFFDD0|1-1||bgcolor=#DFE7FF|5-4||bgcolor=#FFDFDF|3-1||bgcolor=#FFDFDF|2-3||bgcolor=#DFE7FF|2-1||bgcolor=#FFFDD0|1-1
+|-style="font-size: 75%"
+|rowspan="2"|[[Columbus Crew]] ||bgcolor=#DDDDDD|TOR||NY||bgcolor=#DDDDDD|CHV||DC||bgcolor=#DDDDDD|HOU||bgcolor=#DDDDDD|KC||SJ||TOR||bgcolor=#DDDDDD|NE||CHV||bgcolor=#DDDDDD|SJ||KC||LA||bgcolor=#DDDDDD|COL||bgcolor=#DDDDDD|CHI||RSL||bgcolor=#DDDDDD|KC||COL||HOU||bgcolor=#DDDDDD|DAL||bgcolor=#DDDDDD|RSL||DAL||bgcolor=#DDDDDD|NE||TOR||bgcolor=#DDDDDD|NY||NE||bgcolor=#DDDDDD|LA||CHI||NY||bgcolor=#DDDDDD|DC
+|-style="font-size: 75%"
+|bgcolor=#DFE7FF|0-2||bgcolor=#FFDFDF|0-2||bgcolor=#DFE7FF|3-4||bgcolor=#DFE7FF|2-1||bgcolor=#DFE7FF|0-1||bgcolor=#DFE7FF|1-2||bgcolor=#DFE7FF|3-2||bgcolor=#FFFDD0|0-0||bgcolor=#FFDFDF|1-0||bgcolor=#FFDFDF|0-2||bgcolor=#FFDFDF|2-0||bgcolor=#DFE7FF|3-0||bgcolor=#FFFDD0|3-3||bgcolor=#DFE7FF|1-2||bgcolor=#FFFDD0|2-2||bgcolor=#FFDFDF|0-2||bgcolor=#FFFDD0|3-3||bgcolor=#DFE7FF|2-0||bgcolor=#FFDFDF|0-2||bgcolor=#DFE7FF|1-2||bgcolor=#DFE7FF|0-3||bgcolor=#DFE7FF|2-1||bgcolor=#DFE7FF|0-4||bgcolor=#FFFDD0|1-1||bgcolor=#DFE7FF|1-3||bgcolor=#DFE7FF|1-0||bgcolor=#DFE7FF|0-1||bgcolor=#FFFDD0|2-2||bgcolor=#FFDFDF|1-3||bgcolor=#DFE7FF|0-1
+|-style="font-size: 75%"
+|rowspan="2"|[[D.C. United]] ||KC||bgcolor=#DDDDDD|TOR||RSL||bgcolor=#DDDDDD|CLB||bgcolor=#DDDDDD|RSL||COL||bgcolor=#DDDDDD|CHI||CHV||TOR||bgcolor=#DDDDDD|TOR||NE||CHI||bgcolor=#DDDDDD|NY||bgcolor=#DDDDDD|SJ||bgcolor=#DDDDDD|LA||bgcolor=#DDDDDD|HOU||bgcolor=#DDDDDD|KC||NY||CHI||NE||bgcolor=#DDDDDD|COL||bgcolor=#DDDDDD|NY||SJ||bgcolor=#DDDDDD|DAL||LA||DAL||bgcolor=#DDDDDD|CHV||HOU||bgcolor=#DDDDDD|NE||CLB
+|-style="font-size: 75%"
+|bgcolor=#FFDFDF|0-2||bgcolor=#DFE7FF|1-4||bgcolor=#FFDFDF|0-4||bgcolor=#FFDFDF|2-1||bgcolor=#DFE7FF|1-4||bgcolor=#FFDFDF|0-2||bgcolor=#FFDFDF|2-0||bgcolor=#FFDFDF|1-3||bgcolor=#FFDFDF|0-1||bgcolor=#DFE7FF|2-3||bgcolor=#FFFDD0|2-2||bgcolor=#DFE7FF|2-1||bgcolor=#DFE7FF|1-4||bgcolor=#DFE7FF|1-3||bgcolor=#DFE7FF|1-4||bgcolor=#FFDFDF|2-0||bgcolor=#DFE7FF|0-2||bgcolor=#FFDFDF|4-1||bgcolor=#DFE7FF|1-0||bgcolor=#FFDFDF|1-2||bgcolor=#DFE7FF|0-3||bgcolor=#FFFDD0|0-0||bgcolor=#FFDFDF|1-2||bgcolor=#FFFDD0|2-2||bgcolor=#FFDFDF|2-5||bgcolor=#FFDFDF|0-3||bgcolor=#FFDFDF|3-0||bgcolor=#FFFDD0|0-0||bgcolor=#DFE7FF|1-2||bgcolor=#FFDFDF|0-1
+|-style="font-size: 75%"
+|rowspan="2"|[[FC Dallas]] ||bgcolor=#DDDDDD|CHV||HOU||bgcolor=#DDDDDD|NY||CHV||bgcolor=#DDDDDD|NE||SJ||RSL||bgcolor=#DDDDDD|LA||bgcolor=#DDDDDD|RSL||bgcolor=#DDDDDD|HOU||COL||NE||bgcolor=#DDDDDD|CHI||NY||HOU||bgcolor=#DDDDDD|KC||bgcolor=#DDDDDD|COL||bgcolor=#DDDDDD|LA||TOR||CLB||KC||bgcolor=#DDDDDD|CLB||bgcolor=#DDDDDD|COL||DC||CHI||bgcolor=#DDDDDD|DC||bgcolor=#DDDDDD|SJ||bgcolor=#DDDDDD|TOR||RSL||LA
+|-style="font-size: 75%"
+|bgcolor=#FFFDD0|1-1||bgcolor=#FFFDD0|3-3||bgcolor=#DFE7FF|0-2||bgcolor=#DFE7FF|2-0||bgcolor=#FFDFDF|1-0||bgcolor=#FFFDD0|0-0||bgcolor=#FFDFDF|1-2||bgcolor=#FFDFDF|5-1||bgcolor=#DFE7FF|1-2||bgcolor=#FFFDD0|2-2||bgcolor=#FFDFDF|1-2||bgcolor=#FFDFDF|1-2||bgcolor=#DFE7FF|0-1||bgcolor=#FFDFDF|0-1||bgcolor=#FFFDD0|1-1||bgcolor=#FFFDD0|1-1||bgcolor=#FFFDD0|2-2||bgcolor=#DFE7FF|0-4||bgcolor=#DFE7FF|2-0||bgcolor=#FFDFDF|1-2||bgcolor=#FFFDD0|1-1||bgcolor=#FFDFDF|2-1||bgcolor=#FFDFDF|1-0||bgcolor=#FFFDD0|2-2||bgcolor=#DFE7FF|4-1||bgcolor=#DFE7FF|0-3||bgcolor=#FFFDD0|1-1||bgcolor=#FFFDD0|2-2||bgcolor=#FFDFDF|1-3||bgcolor=#FFFDD0|2-2
+|-style="font-size: 75%"
+|rowspan="2"|[[Houston Dynamo]] ||NE||bgcolor=#DDDDDD|DAL||KC||LA||CLB||bgcolor=#DDDDDD|CHV||bgcolor=#DDDDDD|COL||CHI||SJ||DAL||bgcolor=#DDDDDD|NY||bgcolor=#DDDDDD|TOR||bgcolor=#DDDDDD|NE||COL||bgcolor=#DDDDDD|DAL||RSL||DC||bgcolor=#DDDDDD|CLB||bgcolor=#DDDDDD|RSL||bgcolor=#DDDDDD|CHV||NY||bgcolor=#DDDDDD|CHI||bgcolor=#DDDDDD|KC||SJ||TOR||COL||bgcolor=#DDDDDD|DC||bgcolor=#DDDDDD|SJ||bgcolor=#DDDDDD|LA||CHV
+|-style="font-size: 75%"
+|bgcolor=#FFDFDF|0-3||bgcolor=#FFFDD0|3-3||bgcolor=#FFFDD0|0-0||bgcolor=#FFFDD0|2-2||bgcolor=#FFDFDF|0-1||bgcolor=#FFFDD0|0-0||bgcolor=#DFE7FF|1-2||bgcolor=#DFE7FF|2-1||bgcolor=#FFDFDF|1-2||bgcolor=#FFFDD0|2-2||bgcolor=#DFE7FF|0-1||bgcolor=#DFE7FF|1-3||bgcolor=#FFDFDF|2-0||bgcolor=#FFFDD0|0-0||bgcolor=#FFFDD0|1-1||bgcolor=#FFFDD0|0-0||bgcolor=#DFE7FF|2-0||bgcolor=#DFE7FF|0-2||bgcolor=#DFE7FF|3-4||bgcolor=#DFE7FF|0-4||bgcolor=#FFDFDF|0-3||bgcolor=#DFE7FF|1-2||bgcolor=#DFE7FF|1-3||bgcolor=#FFFDD0|1-1||bgcolor=#FFFDD0|1-1||bgcolor=#DFE7FF|3-1||bgcolor=#FFFDD0|0-0||bgcolor=#DFE7FF|1-2||bgcolor=#DFE7FF|0-3||bgcolor=#FFFDD0|1-1
+|-style="font-size: 75%"
+|rowspan="2"|[[Kansas City Wizards]] ||bgcolor=#DDDDDD|DC||bgcolor=#DDDDDD|COL||bgcolor=#DDDDDD|NE||bgcolor=#DDDDDD|HOU||CHI||TOR||CLB||NY||LA||RSL||bgcolor=#DDDDDD|CLB||TOR||bgcolor=#DDDDDD|RSL||DAL||bgcolor=#DDDDDD|NY||CLB||bgcolor=#DDDDDD|CHI||DC||bgcolor=#DDDDDD|CHV||COL||bgcolor=#DDDDDD|DAL||SJ||HOU||bgcolor=#DDDDDD|LA||bgcolor=#DDDDDD|TOR||CHV||bgcolor=#DDDDDD|CHI||bgcolor=#DDDDDD|NE||bgcolor=#DDDDDD|SJ||NE
+|-style="font-size: 75%"
+|bgcolor=#DFE7FF|0-2||bgcolor=#DFE7FF|2-3||bgcolor=#FFDFDF|3-1||bgcolor=#FFFDD0|0-0||bgcolor=#DFE7FF|1-0||bgcolor=#FFDFDF|0-2||bgcolor=#FFDFDF|1-2||bgcolor=#FFFDD0|1-1||bgcolor=#FFDFDF|1-3||bgcolor=#FFFDD0|0-0||bgcolor=#FFDFDF|3-0||bgcolor=#FFFDD0|0-0||bgcolor=#DFE7FF|0-1||bgcolor=#FFFDD0|1-1||bgcolor=#DFE7FF|1-2||bgcolor=#FFFDD0|3-3||bgcolor=#FFFDD0|0-0||bgcolor=#FFDFDF|0-2||bgcolor=#DFE7FF|2-3||bgcolor=#FFDFDF|1-2||bgcolor=#FFFDD0|1-1||bgcolor=#FFDFDF|1-2||bgcolor=#FFDFDF|1-3||bgcolor=#DFE7FF|0-2||bgcolor=#DFE7FF|0-2||bgcolor=#FFDFDF|1-2||bgcolor=#FFFDD0|1-1||bgcolor=#DFE7FF|0-1||bgcolor=#DFE7FF|2-3||bgcolor=#DFE7FF|3-1
+|-style="font-size: 75%"
+|rowspan="2"|[[Los Angeles Galaxy]] ||COL||bgcolor=#DDDDDD|SJ||bgcolor=#DDDDDD|TOR||bgcolor=#DDDDDD|HOU||bgcolor=#DDDDDD|CHV||RSL||bgcolor=#DDDDDD|NY||DAL||bgcolor=#DDDDDD|KC||TOR||bgcolor=#DDDDDD|COL||SJ||bgcolor=#DDDDDD|CLB||DC||bgcolor=#DDDDDD|NE||bgcolor=#DDDDDD|CHV||NY||DAL||SJ||CHV||bgcolor=#DDDDDD|CHI||NE||bgcolor=#DDDDDD|RSL||KC||bgcolor=#DDDDDD|DC||CHI||CLB||bgcolor=#DDDDDD|COL||HOU||bgcolor=#DDDDDD|DAL
+|-style="font-size: 75%"
+|bgcolor=#FFDFDF|0-4||bgcolor=#DFE7FF|0-2||bgcolor=#FFDFDF|3-2||bgcolor=#FFFDD0|2-2||bgcolor=#DFE7FF|2-5||bgcolor=#FFFDD0|2-2||bgcolor=#FFDFDF|2-1||bgcolor=#DFE7FF|5-1||bgcolor=#DFE7FF|1-3||bgcolor=#FFDFDF|0-2||bgcolor=#DFE7FF|2-3||bgcolor=#DFE7FF|3-0||bgcolor=#FFFDD0|3-3||bgcolor=#FFDFDF|1-4||bgcolor=#FFDFDF|2-1||bgcolor=#FFFDD0|1-1||bgcolor=#FFFDD0|2-2||bgcolor=#FFDFDF|0-4||bgcolor=#FFDFDF|2-3||bgcolor=#FFFDD0|2-2||bgcolor=#FFDFDF|1-0||bgcolor=#FFFDD0|2-2||bgcolor=#FFFDD0|2-2||bgcolor=#FFDFDF|0-2||bgcolor=#DFE7FF|2-5||bgcolor=#FFDFDF|1-3||bgcolor=#FFDFDF|0-1||bgcolor=#DFE7FF|2-3||bgcolor=#FFDFDF|0-3||bgcolor=#FFFDD0|2-2
+|-style="font-size: 75%"
+|rowspan="2"|[[New England Revolution]] ||bgcolor=#DDDDDD|HOU||CHI||KC||bgcolor=#DDDDDD|COL||NY||DAL||bgcolor=#DDDDDD|CHI||CHV||bgcolor=#DDDDDD|SJ||CLB||bgcolor=#DDDDDD|DC||bgcolor=#DDDDDD|DAL||HOU||bgcolor=#DDDDDD|NY||RSL||bgcolor=#DDDDDD|TOR||LA||bgcolor=#DDDDDD|CHI||SJ||bgcolor=#DDDDDD|DC||TOR||bgcolor=#DDDDDD|LA||CLB||bgcolor=#DDDDDD|CHV||COL||bgcolor=#DDDDDD|CLB||bgcolor=#DDDDDD|RSL||KC||DC||bgcolor=#DDDDDD|KC
+|-style="font-size: 75%"
+|bgcolor=#DFE7FF|0-3||bgcolor=#FFDFDF|0-4||bgcolor=#DFE7FF|3-1||bgcolor=#FFDFDF|1-0||bgcolor=#FFFDD0|1-1||bgcolor=#DFE7FF|1-0||bgcolor=#FFDFDF|3-0||bgcolor=#DFE7FF|2-1||bgcolor=#DFE7FF|0-2||bgcolor=#DFE7FF|1-0||bgcolor=#FFFDD0|2-2||bgcolor=#DFE7FF|1-2||bgcolor=#DFE7FF|2-0||bgcolor=#FFFDD0|1-1||bgcolor=#FFDFDF|1-2||bgcolor=#DFE7FF|1-2||bgcolor=#DFE7FF|2-1||bgcolor=#FFDFDF|2-1||bgcolor=#FFDFDF|0-4||bgcolor=#DFE7FF|1-2||bgcolor=#FFFDD0|1-1||bgcolor=#FFFDD0|2-2||bgcolor=#FFDFDF|0-4||bgcolor=#DFE7FF|0-4||bgcolor=#FFFDD0|1-1||bgcolor=#FFDFDF|1-0||bgcolor=#FFFDD0|2-2||bgcolor=#FFDFDF|0-1||bgcolor=#FFDFDF|1-2||bgcolor=#FFDFDF|3-1
+|-style="font-size: 75%"
+|rowspan="2"|[[New York Red Bulls]] ||bgcolor=#DDDDDD|CLB||DAL||bgcolor=#DDDDDD|NE||bgcolor=#DDDDDD|SJ||TOR||LA||bgcolor=#DDDDDD|KC||bgcolor=#DDDDDD|CHI||HOU||bgcolor=#DDDDDD|CHV||DC||NE||bgcolor=#DDDDDD|DAL||CHV||COL||KC||bgcolor=#DDDDDD|LA||SJ||bgcolor=#DDDDDD|DC||bgcolor=#DDDDDD|TOR||bgcolor=#DDDDDD|HOU||DC||CHI||bgcolor=#DDDDDD|RSL||CLB||bgcolor=#DDDDDD|COL||bgcolor=#DDDDDD|TOR||RSL||bgcolor=#DDDDDD|CLB||CHI
+|-style="font-size: 75%"
+|bgcolor=#DFE7FF|0-2||bgcolor=#FFDFDF|0-2||bgcolor=#FFFDD0|1-1||bgcolor=#DFE7FF|0-2||bgcolor=#FFFDD0|1-1||bgcolor=#DFE7FF|2-1||bgcolor=#FFFDD0|1-1||bgcolor=#FFDFDF|5-1||bgcolor=#FFDFDF|0-1||bgcolor=#DFE7FF|0-1||bgcolor=#FFDFDF|1-4||bgcolor=#FFFDD0|1-1||bgcolor=#DFE7FF|0-1||bgcolor=#FFFDD0|1-1||bgcolor=#FFDFDF|0-4||bgcolor=#FFDFDF|1-2||bgcolor=#FFFDD0|2-2||bgcolor=#FFFDD0|1-1||bgcolor=#DFE7FF|4-1||bgcolor=#DFE7FF|0-2||bgcolor=#DFE7FF|0-3||bgcolor=#FFFDD0|0-0||bgcolor=#FFDFDF|0-1||bgcolor=#DFE7FF|1-2||bgcolor=#FFDFDF|1-3||bgcolor=#FFDFDF|5-4||bgcolor=#FFDFDF|3-1||bgcolor=#FFFDD0|1-1||bgcolor=#DFE7FF|1-3||bgcolor=#FFDFDF|2-5
+|-style="font-size: 75%"
+|rowspan="2"|[[Real Salt Lake]] ||bgcolor=#DDDDDD|CHI||CHV||bgcolor=#DDDDDD|DC||TOR||DC||bgcolor=#DDDDDD|LA||bgcolor=#DDDDDD|DAL||COL||DAL||bgcolor=#DDDDDD|SJ||bgcolor=#DDDDDD|KC||CHV||bgcolor=#DDDDDD|SJ||bgcolor=#DDDDDD|NE||KC||bgcolor=#DDDDDD|HOU||bgcolor=#DDDDDD|CLB||CHI||bgcolor=#DDDDDD|TOR||HOU||CLB||bgcolor=#DDDDDD|COL||LA||NY||bgcolor=#DDDDDD|CHV||SJ||NE||bgcolor=#DDDDDD|NY||bgcolor=#DDDDDD|DAL||COL
+|-style="font-size: 75%"
+|bgcolor=#FFFDD0|1-1||bgcolor=#FFDFDF|1-3||bgcolor=#DFE7FF|0-4||bgcolor=#FFDFDF|0-1||bgcolor=#FFDFDF|1-4||bgcolor=#FFFDD0|2-2||bgcolor=#DFE7FF|1-2||bgcolor=#FFDFDF|0-2||bgcolor=#FFDFDF|1-2||bgcolor=#DFE7FF|1-3||bgcolor=#FFFDD0|0-0||bgcolor=#DFE7FF|1-0||bgcolor=#FFFDD0|0-0||bgcolor=#DFE7FF|1-2||bgcolor=#FFDFDF|0-1||bgcolor=#FFFDD0|0-0||bgcolor=#DFE7FF|0-2||bgcolor=#FFFDD0|0-0||bgcolor=#DFE7FF|1-2||bgcolor=#FFDFDF|3-4||bgcolor=#FFDFDF|0-3||bgcolor=#DFE7FF|0-2||bgcolor=#FFFDD0|2-2||bgcolor=#FFDFDF|1-2||bgcolor=#FFDFDF|1-0||bgcolor=#DFE7FF|3-2||bgcolor=#FFFDD0|2-2||bgcolor=#FFFDD0|1-1||bgcolor=#DFE7FF|1-3||bgcolor=#FFFDD0|1-1
+|-style="font-size: 75%"
+|rowspan="2"|[[San Jose Earthquakes]] ||LA||bgcolor=#DDDDDD|CHI||COL||NY||bgcolor=#DDDDDD|DAL||bgcolor=#DDDDDD|CLB||NE||bgcolor=#DDDDDD|HOU||RSL||CLB||bgcolor=#DDDDDD|LA||RSL||DC||CHI||CHV||bgcolor=#DDDDDD|COL||TOR||bgcolor=#DDDDDD|NY||bgcolor=#DDDDDD|LA||bgcolor=#DDDDDD|NE||CHV||bgcolor=#DDDDDD|KC||bgcolor=#DDDDDD|DC||HOU||bgcolor=#DDDDDD|RSL||DAL||bgcolor=#DDDDDD|CHV||bgcolor=#DDDDDD|HOU||KC||bgcolor=#DDDDDD|TOR
+|-style="font-size: 75%"
+|bgcolor=#FFDFDF|0-2||bgcolor=#FFDFDF|1-0||bgcolor=#DFE7FF|2-0||bgcolor=#FFDFDF|0-2||bgcolor=#FFFDD0|0-0||bgcolor=#FFDFDF|3-2||bgcolor=#FFDFDF|0-2||bgcolor=#DFE7FF|1-2||bgcolor=#FFDFDF|1-3||bgcolor=#DFE7FF|2-0||bgcolor=#FFDFDF|3-0||bgcolor=#FFFDD0|0-0||bgcolor=#FFDFDF|1-3||bgcolor=#FFFDD0|0-0||bgcolor=#FFDFDF|1-0||bgcolor=#FFFDD0|1-1||bgcolor=#FFFDD0|0-0||bgcolor=#FFFDD0|1-1||bgcolor=#DFE7FF|2-3||bgcolor=#DFE7FF|0-4||bgcolor=#FFFDD0|0-0||bgcolor=#DFE7FF|1-2||bgcolor=#DFE7FF|1-2||bgcolor=#FFFDD0|1-1||bgcolor=#FFDFDF|3-2||bgcolor=#FFFDD0|1-1||bgcolor=#FFDFDF|1-0||bgcolor=#FFDFDF|1-2||bgcolor=#FFDFDF|2-3||bgcolor=#DFE7FF|0-2
+|-style="font-size: 75%"
+|rowspan="2"|[[Toronto FC]] ||CLB||DC||LA||bgcolor=#DDDDDD|RSL||bgcolor=#DDDDDD|KC||bgcolor=#DDDDDD|NY||bgcolor=#DDDDDD|CLB||bgcolor=#DDDDDD|DC||DC||bgcolor=#DDDDDD|LA||HOU||bgcolor=#DDDDDD|COL||bgcolor=#DDDDDD|KC||NE||CHI||bgcolor=#DDDDDD|SJ||RSL||bgcolor=#DDDDDD|DAL||COL||NY||bgcolor=#DDDDDD|NE||CHV||bgcolor=#DDDDDD|CHV||bgcolor=#DDDDDD|CLB||KC||bgcolor=#DDDDDD|HOU||NY||DAL||bgcolor=#DDDDDD|CHI||SJ
+|-style="font-size: 75%"
+|bgcolor=#FFDFDF|0-2||bgcolor=#FFDFDF|1-4||bgcolor=#DFE7FF|3-2||bgcolor=#DFE7FF|0-1||bgcolor=#DFE7FF|0-2||bgcolor=#FFFDD0|1-1||bgcolor=#FFFDD0|0-0||bgcolor=#DFE7FF|0-1||bgcolor=#FFDFDF|2-3||bgcolor=#DFE7FF|0-2||bgcolor=#FFDFDF|1-3||bgcolor=#DFE7FF|1-3||bgcolor=#FFFDD0|0-0||bgcolor=#FFDFDF|1-2||bgcolor=#FFDFDF|1-2||bgcolor=#FFFDD0|0-0||bgcolor=#FFDFDF|1-2||bgcolor=#FFDFDF|2-0||bgcolor=#DFE7FF|1-0||bgcolor=#FFDFDF|0-2||bgcolor=#FFFDD0|1-1||bgcolor=#FFDFDF|1-2||bgcolor=#FFDFDF|3-1||bgcolor=#FFFDD0|1-1||bgcolor=#FFDFDF|0-2||bgcolor=#FFFDD0|1-1||bgcolor=#DFE7FF|3-1||bgcolor=#FFFDD0|2-2||bgcolor=#DFE7FF|2-3||bgcolor=#FFDFDF|0-2
+|}
+
+==Standings==
+
+===Eastern Conference===
+{{2008 Major League Soccer Eastern Conference table}}
+
+===Western Conference===
+{{2008 Major League Soccer Western Conference table}}
+
+===Overall standings===
+{{2008 Major League Soccer season table}}
+
+==MLS Cup playoffs==
+{{Main|2008 MLS Cup playoffs}}
+
+===Bracket===
+{{#section:2008 MLS Cup playoffs|Bracket}}
+
+==Player statistics==
+===Goals===
+{| class="wikitable" style="text-align:center"
+|-
+! Rank !! Player !! Club !! Goals
+|-
+| 1
+| align="left"|{{flagicon|USA}} [[Landon Donovan]]
+| align="left"| [[LA Galaxy]]
+| 20
+|-
+| 2
+| align="left"|{{flagicon|USA}} [[Kenny Cooper]] 
+| align="left"| [[FC Dallas]]
+| 18
+|-
+| 3
+| align="left"|{{flagicon|USA}} [[Edson Buddle]]
+| align="left"| [[LA Galaxy]]
+| 15
+|-
+| 4
+| align="left"|{{flagicon|COL}} [[Juan Pablo Ángel]]
+| align="left"| [[New York Red Bulls]] 
+| 14
+|-
+| 5
+| align="left"|{{flagicon|USA}} [[Brian Ching]]
+| align="left"| [[Houston Dynamo]]
+| 13
+|-
+| rowspan="2" |6
+| align="left"|{{flagicon|BRA}} [[Luciano Emilio]]
+| align="left"| [[D.C. United]] 
+| rowspan="2" |11
+|-
+| align="left"|{{flagicon|USA}} [[Conor Casey]]
+| align="left"| [[Colorado Rapids]]
+|-
+| 8
+| align="left"|{{flagicon|BOL}} [[Jaime Moreno (footballer, born 1974)|Jaime Moreno]]
+| align="left"| [[D.C. United]]
+| 10
+|-
+| rowspan="2" |9
+| align="left"|{{flagicon|USA}} [[Chad Barrett]]
+| align="left"| [[Chicago Fire SC|Chicago Fire]] <br> [[Toronto FC]]
+| rowspan="2" |9
+|-
+| align="left"|{{flagicon|USA}} [[Chris Rolfe]]
+| align="left"| [[Chicago Fire SC|Chicago Fire]] 
+|}
+
+===Assists===
+{| class="wikitable" style="text-align:center"
+|-
+! Rank !! Player !! Club !! Assists
+|-
+| 1
+| align="left"|{{flagicon|ARG}} [[Guillermo Barros Schelotto]]
+| align="left"| [[Columbus Crew]]
+| 16
+|-
+| 2
+| align="left"|{{flagicon|ARG}} [[Javier Morales]] 
+| align="left"| [[Real Salt Lake]]
+| 11
+|-
+| 3
+| align="left"|{{flagicon|ENG}} [[Terry Cooke]]
+| align="left"| [[Colorado Rapids]]
+| 10
+|-
+| rowspan="2" |4
+| align="left"|{{flagicon|ENG}} [[David Beckham]]
+| align="left"| [[LA Galaxy]] 
+| rowspan="2" |8
+|-
+| align="left"|{{flagicon|USA}} [[Justin Mapp]]
+| align="left"| [[Chicago Fire SC|Chicago Fire]]
+|-
+| 6
+| align="left"|{{flagicon|ARG}} [[Christian Gómez]]
+| align="left"| [[Colorado Rapids]]
+| 7
+|-
+| rowspan="5" |7
+| align="left"|{{flagicon|MEX}} [[Cuauhtémoc Blanco]]
+| align="left"| [[Chicago Fire SC|Chicago Fire]]
+| rowspan="5" |6
+|-
+| align="left"|{{flagicon|USA}} [[Brad Davis (soccer)|Brad Davis]]
+| align="left"| [[Houston Dynamo]]
+|-
+| align="left"|{{flagicon|USA}} [[Landon Donovan]]
+| align="left"| [[LA Galaxy]]
+|-
+| align="left"|{{flagicon|BOL}} [[Jaime Moreno (footballer, born 1974)|Jaime Moreno]]
+| align="left"| [[D.C. United]] 
+|-
+| align="left"|{{flagicon|IRL}} [[Ronnie O'Brien]]
+| align="left"| [[San Jose Earthquakes]] 
+|}
+
+===Clean sheets===
+{| class="wikitable" style="text-align:center"
+|-
+!Rank
+!Player
+!Club
+!Clean<br>sheets
+|-
+|rowspan="3"|1
+|align="left"|{{flagicon|USA}} [[Jon Busch]]
+|align="left"|[[Chicago Fire FC|Chicago Fire]]
+|rowspan="3"|10
+|-
+|align="left"|{{flagicon|USA}} [[Kevin Hartman]]
+|align="left"|[[Kansas City Wizards]]
+|-
+|align="left"|{{flagicon|USA}} [[Will Hesmer]]
+|align="left"|[[Columbus Crew]]
+|-
+|4
+|align="left"|{{flagicon|USA}} [[Joe Cannon (soccer)|Joe Cannon]]
+|align="left"|[[San Jose Earthquakes]]
+|9
+|-
+|5
+|align="left"|{{flagicon|USA}} [[Nick Rimando]]
+|align="left"|[[Real Salt Lake]]
+|8
+|-
+|rowspan="3"|6
+|align="left"|{{flagicon|USA}} [[Jon Conway]]
+|align="left"|[[New York Red Bulls]]
+|rowspan="3"|7
+|-
+|align="left"|{{flagicon|CAN}} [[Pat Onstad]]
+|align="left"|[[Houston Dynamo]]
+|-
+|align="left"|{{flagicon|ARG}} [[Darío Sala]]
+|align="left"|[[FC Dallas]]
+|-
+|rowspan="2"|9
+|align="left"|{{flagicon|USA}} [[Matt Reis]]
+|align="left"|[[New England Revolution]]
+|rowspan="2"|6
+|-
+|align="left"|{{flagicon|CAN}} [[Greg Sutton (soccer)|Greg Sutton]]
+|align="left"|[[Toronto FC]]
+|-
+|}
+
+==Awards==
+
+===Individual awards===
+{| class="wikitable" style="font-size:100%"
+!Award!!Player!!Club
+|-
+|[[Major League Soccer MVP Award|Most Valuable Player]]||{{flagicon|ARG}} [[Guillermo Barros Schelotto]]||[[Columbus Crew]]
+|-
+|[[MLS Defender of the Year Award|Defender of the Year]]||{{flagicon|USA}} [[Chad Marshall]]||[[Columbus Crew]]
+|-
+|[[MLS Goalkeeper of the Year Award|Goalkeeper of the Year]]||{{flagicon|USA}} [[Jon Busch]]||[[Chicago Fire SC|Chicago Fire]]
+|-
+|[[MLS Coach of the Year Award|Coach of the Year]]||{{flagicon|USA}} [[Sigi Schmid]]||[[Columbus Crew]]
+|-
+|[[MLS Rookie of the Year Award|Rookie of the Year]]||{{flagicon|USA}} [[Sean Franklin]]||[[LA Galaxy]]
+|-
+|[[MLS Newcomer of the Year Award|Newcomer of the Year]]||{{flagicon|ENG}} [[Darren Huckerby]]||[[San Jose Earthquakes]]
+|-
+|[[MLS Comeback Player of the Year Award|Comeback Player of the Year]]||{{flagicon|USA}} [[Kenny Cooper]]||[[FC Dallas]]
+|-
+|[[MLS Golden Boot|Golden Boot]]||{{flagicon|USA}} [[Landon Donovan]]||[[LA Galaxy]]
+|- 
+|[[MLS Goal of the Year Award|Goal of the Year]]||{{flagicon|CAN}} [[Will Johnson (soccer)|Will Johnson]]||[[Real Salt Lake]]
+|-
+|[[MLS Fair Play Award|Fair Play Award]]||{{flagicon|USA}} [[Michael Parkhurst]]||[[New England Revolution]]
+|-
+|[[MLS Humanitarian of the Year Award|Humanitarian of the Year]]||{{flagicon|USA}} [[José Burciaga Jr.]]||[[Colorado Rapids]]
+|}
+
+===MLS Best XI===
+{| class="wikitable"
+!Goalkeeper
+!Defenders
+!Midfielders
+!Forwards
+|-
+|{{flagicon|USA}} [[Jon Busch]], [[Chicago Fire FC|Chicago]]
+|{{flagicon|USA}} [[Jimmy Conrad]], [[Sporting Kansas City|Kansas City]]<br>{{flagicon|USA}} [[Chad Marshall]], [[Columbus Crew|Columbus]]<br>{{flagicon|MLI}} [[Bakary Soumaré]], [[Chicago Fire FC|Chicago]]
+|{{flagicon|MEX}} [[Cuauhtémoc Blanco]], [[Chicago Fire FC|Chicago]]<br>{{flagicon|GRN}} [[Shalrie Joseph]], [[New England Revolution|New England]]<br>{{flagicon|USA}} [[Sacha Kljestan]], [[Chivas USA]]<br>{{flagicon|USA}} [[Robbie Rogers]], [[Columbus Crew|Columbus]]<br>{{flagicon|ARG}} [[Guillermo Barros Schelotto]], [[Columbus Crew|Columbus]]
+|{{flagicon|USA}} [[Kenny Cooper]], [[FC Dallas|Dallas]]<br>{{flagicon|USA}} [[Landon Donovan]], [[LA Galaxy]]
+|}
+
+===Player of the Month===
+{| class="wikitable"
+|-
+!Week!!Player!!Club
+|-
+|April
+|{{Flagicon|USA}} [[Landon Donovan]]
+|[[LA Galaxy]]
+|-
+|May
+|{{Flagicon|MEX}} [[Cuauhtémoc Blanco]]
+|[[Chicago Fire S.C.|Chicago Fire]]
+|-
+|June
+|{{Flagicon|BRA}} [[Luciano Emilio]]
+|[[D.C. United]]
+|-
+|July
+|{{Flagicon|USA}} [[Nick Rimando]]
+|[[Real Salt Lake]]
+|-
+|August
+|{{Flagicon|ARG}} [[Guillermo Barros Schelotto]]
+|[[Columbus Crew]]
+|-
+|September
+|{{Flagicon|ENG}} [[Darren Huckerby]]
+|[[San Jose Earthquakes]]
+|-
+|October
+|{{Flagicon|COL}} [[Juan Pablo Ángel]]
+|[[New York Red Bulls]]
+|}
+
+===Weekly awards===
+{| class="wikitable collapsible collapsed"
+|-
+! colspan="3"|Player of the Week
+|-
+!Week!!Player!!Club
+|-
+|align=center|Week 1
+|{{Flagicon|ENG}} [[Terry Cooke]]
+|[[Colorado Rapids]]
+|-
+|align=center|Week 2
+|{{Flagicon|ENG}} [[David Beckham]]
+|[[LA Galaxy]]
+|-
+|align=center|Week 3
+|{{Flagicon|ARG}} [[Guillermo Barros Schelotto]]
+|[[Columbus Crew]]
+|-
+|align=center|Week 4
+|{{Flagicon|USA}} [[Landon Donovan]]
+|[[LA Galaxy]]
+|-
+|align=center|Week 5
+|{{Flagicon|USA}} [[Landon Donovan]]
+|[[LA Galaxy]]
+|-
+|align=center|Week 6
+|{{Flagicon|ENG}} [[David Beckham]]
+|[[LA Galaxy]]
+|-
+|align=center|Week 7
+|{{Flagicon|USA}} [[Robbie Rogers]]
+|[[Columbus Crew]]
+|-
+|align=center|Week 8
+|{{Flagicon|USA}} [[Edson Buddle]]
+|[[LA Galaxy]]
+|-
+|align=center|Week 9
+|{{Flagicon|MEX}} [[Cuauhtémoc Blanco]]
+|[[Chicago Fire S.C.|Chicago Fire]]
+|-
+|align=center|Week 10
+|{{Flagicon|USA}} [[Robbie Findley]]
+|[[Real Salt Lake]]
+|-
+|align=center|Week 11
+|{{Flagicon|USA}} [[Brian Ching]]
+|[[Houston Dynamo]]
+|-
+|align=center|Week 12
+|{{Flagicon|USA}} [[Edson Buddle]]
+|[[LA Galaxy]]
+|-
+|align=center|Week 13
+|{{Flagicon|USA}} [[Landon Donovan]]
+|[[LA Galaxy]]
+|-
+|align=center|Week 14
+|{{Flagicon|USA}} [[Steve Ralston]]
+|[[New England Revolution]]
+|-
+|align=center|Week 15
+|{{Flagicon|USA}} [[Adam Cristman]]
+|[[New England Revolution]]
+|-
+|align=center|Week 16
+|{{Flagicon|USA}} [[John Thorrington]]
+|[[Chicago Fire S.C.|Chicago Fire]]
+|-
+|align=center|Week 17
+|{{Flagicon|ARG}} [[Guillermo Barros Schelotto]]
+|[[Columbus Crew]]
+|-
+|align=center|Week 18
+|{{Flagicon|USA}} [[Kenny Cooper]]
+|[[FC Dallas]]
+|-
+|align=center|Week 19
+|{{Flagicon|USA}} [[Kenny Cooper]]
+|[[FC Dallas]]
+|-
+|align=center|Week 20
+|{{Flagicon|COL}} [[Juan Pablo Ángel]]
+|[[New York Red Bulls]]
+|-
+|align=center|Week 21
+|{{Flagicon|IRE}} [[Ronnie O'Brien]]
+|[[San Jose Earthquakes]]
+|-
+|align=center|Week 22
+|{{Flagicon|ARG}} [[Guillermo Barros Schelotto]]
+|[[Columbus Crew]]
+|-
+|align=center|Week 23
+|{{Flagicon|ARG}} [[Fabian Espindola]]
+|[[Real Salt Lake]]
+|-
+|align=center|Week 24
+|{{Flagicon|ARG}} [[Guillermo Barros Schelotto]]
+|[[Columbus Crew]]
+|-
+|align=center|Week 25
+|{{Flagicon|USA}} [[Steve Ralston]]
+|[[New England Revolution]]
+|-
+|align=center|Week 26
+|{{Flagicon|USA}} [[Landon Donovan]]
+|[[LA Galaxy]]
+|-
+|align=center|Week 27
+|{{Flagicon|USA}} [[Conor Casey]]
+|[[Colorado Rapids]]
+|-
+|align=center|Week 28
+|{{Flagicon|USA}} [[Brian Ching]]
+|[[Houston Dynamo]]
+|-
+|align=center|Week 29
+|{{Flagicon|USA}} [[Brian McBride]]
+|[[Chicago Fire S.C.|Chicago Fire]]
+|-
+|align=center|Week 30
+|{{Flagicon|ARG}} [[Claudio López (footballer)|Claudio López]]
+|[[Kansas City Wizards]]
+|-
+|align=center|Week 31
+|{{Flagicon|USA}} [[Chris Rolfe]]
+|[[Chicago Fire S.C.|Chicago Fire]]
+|}
+
+{| class="wikitable collapsible collapsed"
+|-
+! colspan="3"|Goal of the Week
+|-
+!Week!!Player!!Club
+|-
+|align=center|Week 1
+|{{Flagicon|GAM}} [[Sainey Nyassi]]
+|[[New England Revolution]]
+|-
+|align=center|Week 2
+|{{Flagicon|USA}} [[Geoff Cameron]]
+|[[Houston Dynamo]]
+|-
+|align=center|Week 3
+|{{Flagicon|USA}} [[Sacha Kljestan]]
+|[[Club Deportivo Chivas USA|Chivas USA]]
+|-
+|align=center|Week 4
+|{{Flagicon|USA}} [[Landon Donovan]]
+|[[LA Galaxy]]
+|-
+|align=center|Week 5
+|{{Flagicon|ARG}} [[Marcelo Gallardo]]
+|[[D.C. United]]
+|-
+|align=center|Week 6
+|{{Flagicon|USA}} [[Chris Rolfe]]
+|[[Chicago Fire S.C.|Chicago Fire]]
+|-
+|align=center|Week 7
+|{{Flagicon|MEX}} [[Cuauhtémoc Blanco]]
+|[[Chicago Fire S.C.|Chicago Fire]]
+|-
+|align=center|Week 8
+|{{Flagicon|ARG}} [[Marcelo Gallardo]]
+|[[D.C. United]]
+|-
+|align=center|Week 9
+|{{Flagicon|Scotland}} [[Tam McManus]]
+|[[Colorado Rapids]]
+|-
+|align=center|Week 10
+|{{Flagicon|USA}} [[Robbie Findley]]
+|[[Real Salt Lake]]
+|-
+|align=center|Week 11
+|{{Flagicon|BRA}} [[Luciano Emilio]]
+|[[D.C. United]]
+|-
+|align=center|Week 12
+|{{Flagicon|USA}} [[Clyde Simms]]
+|[[D.C. United]]
+|-
+|align=center|Week 13
+|{{Flagicon|COL}} [[Gonzalo Martínez]]
+|[[D.C. United]]
+|-
+|align=center|Week 14
+|{{Flagicon|BRA}} [[Luciano Emilio]]
+|[[D.C. United]]
+|-
+|align=center|Week 15
+|{{Flagicon|USA}} [[Ante Razov]]
+|[[Club Deportivo Chivas USA|Chivas USA]]
+|-
+|align=center|Week 16
+|{{Flagicon|USA}} [[Ante Razov]]
+|[[Club Deportivo Chivas USA|Chivas USA]]
+|-
+|align=center|Week 17
+|{{Flagicon|Colombia}} [[Juan Pablo Angel]]
+|[[New York Red Bulls]]
+|-
+|align=center|Week 18
+|{{Flagicon|USA}} [[Abe Thompson]]
+|[[FC Dallas]]
+|-
+|align=center|Week 19
+|{{Flagicon|BOL}} [[Jaime Moreno (footballer, born 1974)|Jaime Moreno]]
+|[[D.C. United]]
+|-
+|align=center|Week 20
+|{{Flagicon|USA}} [[Chad Barrett]]
+|[[Toronto FC]]
+|-
+|align=center|Week 21
+|{{Flagicon|USA}} [[Brian Carroll]]
+|[[Columbus Crew]]
+|-
+|align=center|Week 22
+|{{Flagicon|USA}} [[Joe Vide]]
+|[[D.C. United]]
+|-
+|align=center|Week 23
+|{{Flagicon|ARG}} [[Fabian Espindola]]
+|[[Real Salt Lake]]
+|-
+|align=center|Week 24
+|{{Flagicon|USA}} [[Santino Quaranta]]
+|[[D.C. United]]
+|-
+|align=center|Week 25
+|{{Flagicon|USA}} [[Davy Arnaud]]
+|[[Kansas City Wizards]]
+|-
+|align=center|Week 26
+|{{Flagicon|USA}} [[Robbie Rogers]]
+|[[Columbus Crew]]
+|-
+|align=center|Week 27
+|{{Flagicon|USA}} [[Josh Wolff]]
+|[[Kansas City Wizards]]
+|-
+|align=center|Week 28
+|{{Flagicon|JAM}} [[Andy Williams (Jamaican footballer)|Andy Williams]]
+|[[Real Salt Lake]]
+|-
+|align=center|Week 29
+|{{Flagicon|USA}} [[Brandon McDonald (soccer)|Brandon McDonald]]
+|[[LA Galaxy]]
+|-
+|align=center|Week 30
+|{{Flagicon|USA}} [[Danny Cepero]]
+|[[New York Red Bulls]]
+|-
+|align=center|Week 31
+|{{Flagicon|USA}} [[Brad Evans (soccer)|Brad Evans]]
+|[[Columbus Crew]]
+|}
+
+==Attendance==
+{{Main|Major League Soccer attendance}}
+{|class="wikitable sortable" style=text-align:center
+|-
+!width=25|Rank
+!width=150|Team
+!{{Tooltip|GP|Home games played}}
+!width=45|{{Tooltip|Cumulative|Cumulative total of all home games attendance}}
+!width=45|{{Tooltip|High|Highest season attendance}}
+!width=45|{{Tooltip|Low|Lowest season attendance}}
+!width=45|{{Tooltip|Mean|Statistical mean season attendance}}
+|-
+| 1 ||align=left|[[LA Galaxy]] || 15 || {{formatnum:{{#expr: (+27000 +20426 +23401 +27000 +27000 +24716 +25219 +27000 +27000 +27000 +27000 +27000 +27000 +27000 +27000)}}}} || 27,000 || bgcolor="#98fb98" | 20,426 || bgcolor="#98fb98" | {{formatnum:{{#expr: (+27000 +20426 +23401 +27000 +27000 +24716 +25219 +27000 +27000 +27000 +27000 +27000 +27000 +27000 +27000)/17 round 0}}}}
+|-
+| 2 ||align=left|[[Toronto FC]] || 15 || {{formatnum:{{#expr: (+20219 +20045 +19816 +20358 +19791 +20096 +20145 +20293 +22264 +20247 +20461 +19863 +19657 +20074 +20294)}}}} || 22,264 ||  19,657 || {{formatnum:{{#expr: (+20219 +20045 +19816 +20358 +19791 +20096 +20145 +20293 +22264 +20247 +20461 +19863 +19657 +20074 +20294)/17 round 0}}}}
+|-
+| 3 ||align=left|[[D.C. United]] || 15 || {{formatnum:{{#expr: (+20161 +13329 +23269 +18605 +18647 +16672 +18622 +17922 +35979 +14660 +18731 +17283 +15616 +19890 +28145)}}}} || 35,979 || 13,329 || {{formatnum:{{#expr: (+20161 +13329 +23269 +18605 +18647 +16672 +18622 +17922 +35979 +14660 +18731 +17283 +15616 +19890 +28145)/17 round 0}}}}
+|- 
+| 4 ||align=left|[[New England Revolution]] || 15 || {{formatnum:{{#expr: (+11116 +8309 +10858 +13004 +8159 +54045 +10596 +15863 +19240 +14962 +39256 +7606 +15035 +18893 +16764)}}}} || bgcolor="#98fb98" | 54,045 || 7,606 || {{formatnum:{{#expr: (+11116 +8309 +10858 +13004 +8159 +54045 +10596 +15863 +19240 +14962 +39256 +7606 +15035 +18893 +16764)/17 round 0}}}}
+|-
+| 5 ||align=left|[[Chicago Fire S.C.|Chicago Fire]] || 15 || {{formatnum:{{#expr: (+15553 +17212 +14251 +17138 +19256 +15267 +15188 +19578 +20492 +19560 +16776 +16923 +20156 +14994 +13274)}}}} || 20,492 || 13,274 || {{formatnum:{{#expr: (+15553 +17212 +14251 +17138 +19256 +15267 +15188 +19578 +20492 +19560 +16776 +16923 +20156 +14994 +13274)/17 round 0}}}}
+|-
+| 6 ||align=left|[[Houston Dynamo]] || 15 || {{formatnum:{{#expr: (+20102 +20058 +15024 +17204 +13179 +14655 +16933 +15371 +13579 +10908 +22554 +14297 +30361 +17631 +12237)}}}} || 30,361 || 10,908 || {{formatnum:{{#expr: (+20102 +20058 +15024 +17204 +13179 +14655 +16933 +15371 +13579 +10908 +22554 +14297 +30361 +17631 +12237)/17 round 0}}}}
+|-
+| 7 ||align=left|[[Real Salt Lake]] || 15 || {{formatnum:{{#expr: (+20272 +13193 +25500 +12173 +15977 +11327 +10333 +11965 +17898 +12378 +12319 +15257 +26391 +20008 +17628)}}}} || 26,391 || 10,333 || {{formatnum:{{#expr: (+20272 +13193 +25500 +12173 +15977 +11327 +10333 +11965 +17898 +12378 +12319 +15257 +26391 +20008 +17628)/17 round 0}}}}
+|-
+| 8 ||align=left|[[New York Red Bulls]] || 15 || {{formatnum:{{#expr: (+17119 +12047 +9053 +15755 +14754 +9521 +16427 +46754 +15038 +11119 +12549 +11692 +14795 +13756 +18546)}}}} || 46,754 || 9,053 || {{formatnum:{{#expr: (+17119 +12047 +9053 +15755 +14754 +9521 +16427 +46754 +15038 +11119 +12549 +11692 +14795 +13756 +18546)/17 round 0}}}}
+|-
+| 9 ||align=left|[[Chivas USA]] || 15 || {{formatnum:{{#expr: (+17251 +10237 +10927 +13113 +12388 +10573 +24143 +16379 +13561 +27000 +12209 +12561 +14783 +13427 +18165)}}}} || 27,000 || 10,267 || {{formatnum:{{#expr: (+17251 +10237 +10927 +13113 +12388 +10573 +24143 +16379 +13561 +27000 +12209 +12561 +14783 +13427 +18165)/17 round 0}}}}
+|-
+| 10 ||align=left|[[Columbus Crew]] || 15 || {{formatnum:{{#expr: (+13843 +6733 +15271 +10447 +15621 +11704 +12254 +17172 +16117 +17647 +12448 +16918 +10881 +22685 +19591)}}}}|| 22,685 || bgcolor="#ffc)cb" | 6,733 || {{formatnum:{{#expr: (+13843 +6733 +15271 +10447 +15621 +11704 +12254 +17172 +16117 +17647 +12448 +16918 +10881 +22685 +19591)/17 round 0}}}}
+|-
+| 11 ||align=left|[[San Jose Earthquakes]] || 15 || {{formatnum:{{#expr: (+20038 +10515 +9318 +10046 +39872 +9107 +9046 +26701 +9859 +10089 +10121 +10526 +10059 +10052 +10526)}}}}|| 39,872 || 9,046 || {{formatnum:{{#expr: (+20038 +10515 +9318 +10046 +39872 +9107 +9046 +26701 +9859 +10089 +10121 +10526 +10059 +10052 +10526)/17 round 0}}}}
+|-
+| 12 ||align=left|[[Colorado Rapids]] || 15 || {{formatnum:{{#expr: (+18943 +14919 +13115 +11414 +14619 +12120 +13220 +18776 +10647 +11752 +10609 +14214 +12223 +12496 +16047)}}}}|| bgcolor="#ffc)cb" | 18,943 || 10,609 || {{formatnum:{{#expr: (+18943 +14919 +13115 +11414 +14619 +12120 +13220 +18776 +10647 +11752 +10609 +14214 +12223 +12496 +16047)/17 round 0}}}}
+|-
+| 13 ||align=left|[[FC Dallas]] || 15 || {{formatnum:{{#expr: (+17540 +11564 +10453 +23500 +8960 +8541 +14738 +16765 +12289 +21020 +10590 +7140 +12138 +7103 +14114)}}}}|| 23,500 || 7,103 || {{formatnum:{{#expr: (+17540 +11564 +10453 +23500 +8960 +8541 +14738 +16765 +12289 +21020 +10590 +7140 +12138 +7103 +14114)/17 round 0}}}}
+|-
+| 14 ||align=left|[[Kansas City Wizards]] || 15 || {{formatnum:{{#expr: (+10385 +8731 +8096 +9627 +10385 +10385 +8773 +10385 +9597 +9825 +26211 +8270 +10385 +9488 +9841)}}}}|| 26,211 || 8,096 || bgcolor="#ffc)cb" | {{formatnum:{{#expr: (+10385 +8731 +8096 +9627 +10385 +10385 +8773 +10385 +9597 +9825 +26211 +8270 +10385 +9488 +9841)/17 round 0}}}}
+|-
+! colspan=2| Total || 210 || 3,461,013 || 54,045 || 6,733 || {{formatnum:{{#expr: (+3461013)/210 round 0}}}}
+|}
+
+==Related competitions==
+
+=== International competitions ===
+
+==== CONCACAF Champions' Cup 2008 ====
+
+{{Main|CONCACAF Champions' Cup 2008}}
+
+The [[Houston Dynamo]] and [[D.C. United]] earned berths in the [[CONCACAF Champions' Cup 2008|CONCACAF Champions' Cup]] by virtue of their MLS Cup and Supporters' Shield wins, respectively.  Houston and D.C. were both victorious in their quarterfinal ties and advanced to the semifinals.  For the second straight year, however, both lost their respective semifinals, and were eliminated.
+
+====SuperLiga 2008====
+
+{{Main|North American SuperLiga 2008}}
+
+[[D.C. United]], [[C.D. Chivas USA|Chivas USA]], the [[New England Revolution]], and the [[Houston Dynamo]] were MLS's entrants into [[North American SuperLiga 2008|SuperLiga 2008]], based on their top-four finish in the [[2007 Major League Soccer season|2007 regular season]].
+
+Following the Group Stage, which took place from July 12 to July 20, Houston and New England each won their respective groups to advance to the Semifinals, where they faced [[North American SuperLiga 2007|2007 champion]] [[Pachuca CF|Pachuca]] on July 29 and [[Atlante F.C.|Atlante]] on July 30, respectively.  D.C. United finished last and Chivas USA finished third in their respective groups and failed to advance.
+
+Both MLS teams were victorious in the Semifinals, setting up a rematch of the [[MLS Cup 2006|2006]] and [[MLS Cup 2007|2007]] MLS Cups in the Final on August 5 at Gillette Stadium.
+
+The teams played to a 2–2 draw after extra time. New England eventually defeated Houston 6–5 on penalty kicks.
+
+====CONCACAF Champions League 2008–09====
+
+{{Main|CONCACAF Champions League 2008–09}}
+
+The [[Houston Dynamo]] (MLS Cup winner), [[D.C. United]] (Supporters' Shield Winner), the [[New England Revolution]] (U.S. Open Cup winner and MLS Cup runner-up), and [[C.D. Chivas USA|Chivas USA]] (Supporters' Shield runner-up) were the representatives in the rebranded successor to the CONCACAF Champions' Cup.
+
+New England and Chivas USA entered at the preliminary round, and were eliminated over two legs by [[Joe Public F.C.|Joe Public]] of [[Trinidad and Tobago]] and [[Tauro F.C.|Tauro]] of [[Panama]], respectively.
+
+D.C. and Houston were seeded into the Group Stage as the top seeds in Groups A and B, respectively.
+
+D.C. was eliminated from Group A with two games remaining in group play, while Houston qualified for the Championship Round with a 1–0 win in their last match against [[C.D. Luis Ángel Firpo|Luis Ángel Firpo]] on November 26, which was postponed from Matchday 1 due to [[Hurricane Ike]].
+
+Houston was eliminated in the Quarterfinals over two legs by [[Atlante F.C.|Atlante]].
+
+===National competitions===
+
+====2008 Lamar Hunt U.S. Open Cup====
+
+{{Main|2008 Lamar Hunt U.S. Open Cup}}
+
+MLS awarded the top three finishers in each conference [[2007 Major League Soccer season|last season]] automatic berths into the 2008 U.S. Open Cup's Third Round. [[D.C. United]], the [[New England Revolution]], and the [[New York Red Bulls]] qualified from the Eastern Conference while [[C.D. Chivas USA|Chivas USA]], the [[Houston Dynamo]], and [[FC Dallas]] qualified from the Western Conference.  The rest of MLS's U.S.-based teams would have to compete for the final two berths into the third round via a seven-team playoff.  Eventually [[Chicago Fire S.C.|Chicago Fire]] and the [[Kansas City Wizards]] qualified by beating the [[Columbus Crew]] and the [[Colorado Rapids]] respectively.
+
+Each of the qualified MLS teams was matched up against the winner of a Second Round game, all of whom came from either one of the [[United Soccer Leagues|USL's]] three divisions or the [[USASA]], in the third round on July 1.  Three MLS teams were eliminated by these lower division clubs.  Chivas USA was eliminated by [[USL First Division|USL-1's]] [[Seattle Sounders (1994–2008)|Seattle Sounders]], the New York Red Bulls were upset by [[Crystal Palace Baltimore]] of [[USL Second Division|USL-2]], and the Houston Dynamo lost a penalty shootout to the USL-1's [[Charleston Battery]].
+
+In the Quarterfinals on July 8, FC Dallas and the Kansas City Wizards were eliminated by the Charleston Battery and the Seattle Sounders, respectively.  This meant an MLS team, either D.C. United or the New England Revolution would face a USL-1 team in the final.
+
+In the Semifinals on August 12, D.C. United upset the Open Cup holding Revolution by a score of 3 to 1.  This earned United a berth in the final against the USL-1's Charleston Battery on September 3 at [[Robert F. Kennedy Memorial Stadium|RFK Stadium]].
+
+In the Final on September 3, D.C. United won their second U.S. Open Cup in a 2–1 win over the Charleston Battery.
+
+====2008 Canadian Championship====
+
+{{Main|2008 Canadian Championship}}
+
+Due to the fact that none of the Canadian teams playing in the [[American soccer pyramid]] can qualify for Canada's berth in the [[CONCACAF Champions League]] through their leagues or the U.S. Open Cup, the [[Canadian Soccer Association]] was forced to develop a tournament to determine the country's representative in the Champions League.  The country's top three teams, MLS's [[Toronto FC]] and the [[USL First Division|USL-1's]] [[Montreal Impact (1992–2011)|Montreal Impact]] and [[Vancouver Whitecaps (1986–2010)|Vancouver Whitecaps FC]] were entered into the inaugural Canadian Championship.  The tournament was played as a double round robin group from May 27 to July 22.  The Montreal Impact finished first, claiming the Canadian berth in the Champions League.
+
+===All-Star game===
+{{Main|2008 MLS All-Star Game}}
+
+The 2008 MLS All-Star Game was held at [[BMO Field]] in [[Toronto]], [[Ontario]], Canada, home of [[Toronto FC]], on July 24.<ref>{{cite news|url=https://www.thestar.com/Sports/article/307638|title=Luring Liverpool to Toronto would be an all-star coup | work=The Star | first=Cathal | last=Kelly | date=February 28, 2008 | access-date=April 22, 2010}}</ref>  The opponent was [[West Ham United F.C.|West Ham United]], of England's [[Premier League]].  It was the first time that the game was played outside the United States.
+
+The game was won by the MLS All-Stars by a score of 3–2. Cuauhtémoc Blanco was named MVP of the game after assisting the All-Stars' first goal and scoring their second.
+
+==See also==
+
+{{Wikinewscat|2008 Major League Soccer season}}
+{{Portal|Association football}}
+*[[List of transfers for the MLS 2008 Season]]
+*[[2007 MLS Expansion Draft]]
+
+==References==
+
+{{Reflist}}
+
+==External links==
+* [https://web.archive.org/web/20081028010155/http://web.mlsnet.com/index.jsp Official Site of Major League Soccer]
+
+{{Major League Soccer}}
+{{Major League Soccer seasons}}
+{{2008 MLS season by team}}
+{{2008 in American soccer}} 
+{{2008 in Canadian soccer}}
+{{2007–08 in North and Central America, and Caribbean Football (CONCACAF)}}
+{{2008–09 in North and Central America, and Caribbean Football (CONCACAF)}}
+
+{{DEFAULTSORT:Major League Soccer season}}
+[[Category:2008 Major League Soccer season| ]]
+[[Category:Major League Soccer seasons|2008]]
+[[Category:2008 in American men's soccer leagues|1]]
+[[Category:2008 in men's top-tier association football leagues|United States]]
