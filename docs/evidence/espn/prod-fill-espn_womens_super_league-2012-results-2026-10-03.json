@@ -1,0 +1,82 @@
+{
+  "lane": "espn_womens_super_league@2012:results",
+  "base": "https://soccer-ingest.sales-fd3.workers.dev",
+  "runs": [
+    {
+      "lane": "espn_womens_super_league@2012:results",
+      "run": 1,
+      "http": 200,
+      "ms": 82172,
+      "requests": 112,
+      "fixtures_new": 59,
+      "repeated_pairings": 3,
+      "detailed": 13,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 8,
+        "before": 8,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_womens_super_league@2012:results",
+      "run": 2,
+      "http": 200,
+      "ms": 79422,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 3,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 8,
+        "before": 8,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_womens_super_league@2012:results",
+      "run": 3,
+      "http": 200,
+      "ms": 13387,
+      "requests": 18,
+      "fixtures_new": 0,
+      "repeated_pairings": 3,
+      "detailed": 6,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 8,
+        "before": 8,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_womens_super_league@2012:results",
+      "run": 4,
+      "http": 200,
+      "ms": 756,
+      "requests": 0,
+      "fixtures_new": 0,
+      "repeated_pairings": 3,
+      "detailed": 0,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 8,
+        "before": 8,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    }
+  ]
+}

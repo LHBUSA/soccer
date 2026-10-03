@@ -1,6 +1,6 @@
 {
- "at": "2026-10-03T23:07:43.306Z",
- "competition": "premiere-ligue",
+ "at": "2026-10-03T23:34:52.712Z",
+ "competition": "womens-super-league",
  "season": "2022/23",
  "state_before": "held",
  "acceptance": {
@@ -14,11 +14,11 @@
   },
   "repeated_pairings": 0,
   "repeat_pairings_allowed": false,
-  "era": "12-club double round robin regular season (play-offs are a separate ESPN type from 2023/24); ESPN Core catalog teams_listed x events_listed = double round robin (docs/evidence/history/womens-history-discovery-2026-10-03.json), matching the published league format",
+  "era": "12-club double round robin (2019/20 was curtailed: a completed-season check holds it); ESPN Core catalog teams_listed x events_listed = double round robin (docs/evidence/history/womens-history-discovery-2026-10-03.json), matching the published league format",
   "unresolved_identity_queue": 0,
   "discovery": {
    "checked": true,
-   "lane": "espn_premiere_ligue@2022:results",
+   "lane": "espn_womens_super_league@2022:results",
    "indexed": 132,
    "fetched": 132,
    "missing_events": 0,
@@ -34,7 +34,6 @@
  "matches": 132,
  "finished": 132,
  "stages": [
-  "Playoffs:playoff",
   "Regular Season:league"
  ],
  "teams": 12,

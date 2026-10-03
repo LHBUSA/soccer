@@ -1,0 +1,96 @@
+{
+ "at": "2026-10-03T23:14:35.338Z",
+ "competition": "womens-super-league",
+ "season": "2019/20",
+ "state_before": "held",
+ "acceptance": {
+  "canonical_matches": 132,
+  "finished": 87,
+  "teams": 12,
+  "league_matches": 132,
+  "matches_per_club": {
+   "min": 13,
+   "max": 16
+  },
+  "repeated_pairings": 0,
+  "repeat_pairings_allowed": false,
+  "era": "12-club double round robin (2019/20 was curtailed: a completed-season check holds it); ESPN Core catalog teams_listed x events_listed = double round robin (docs/evidence/history/womens-history-discovery-2026-10-03.json), matching the published league format",
+  "unresolved_identity_queue": 0,
+  "discovery": {
+   "checked": true,
+   "lane": "espn_womens_super_league@2019:results",
+   "indexed": 132,
+   "fetched": 132,
+   "missing_events": 0,
+   "repeated_pairing_events": 0,
+   "without_status": 0,
+   "finished_without_score": 0
+  },
+  "crosswalked": 132,
+  "espn_source_results": 132,
+  "score_disagreements": 0,
+  "postponed_beside_replay": 0
+ },
+ "matches": 132,
+ "finished": 87,
+ "stages": [
+  "Regular Season:league"
+ ],
+ "teams": 12,
+ "format": {
+  "teams": 12,
+  "league_matches": 87,
+  "games_per_team": {
+   "13": 1,
+   "14": 6,
+   "15": 3,
+   "16": 2
+  }
+ },
+ "providers": [
+  "espn"
+ ],
+ "coverage": {
+  "venue": 1,
+  "lineups": 0,
+  "stats": 0,
+  "events": 0
+ },
+ "coverage_tier": "MATCH",
+ "limitations": [
+  "lineups for 0% of finished matches",
+  "team statistics for 0% of finished matches",
+  "event record for 0% of finished matches"
+ ],
+ "notes": [
+  "45 past match(es) postponed/cancelled/abandoned (listed, not results)"
+ ],
+ "checks_failed": [
+  {
+   "check": "games_per_team_uneven",
+   "distribution": {
+    "13": 1,
+    "14": 6,
+    "15": 3,
+    "16": 2
+   }
+  },
+  {
+   "check": "home_away_unbalanced",
+   "count": 9
+  },
+  {
+   "check": "structure_matches_per_club",
+   "expected": 22,
+   "clubs_off": 12,
+   "min": 13,
+   "max": 16
+  },
+  {
+   "check": "structure_finished_count",
+   "expected": 132,
+   "found": 87
+  }
+ ],
+ "pass": false
+}

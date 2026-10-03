@@ -1,0 +1,108 @@
+{
+ "at": "2026-10-03T23:29:05.689Z",
+ "competition": "nwsl",
+ "season": "2015",
+ "state_before": "held",
+ "acceptance": {
+  "canonical_matches": 112,
+  "finished": 86,
+  "teams": 10,
+  "league_matches": 109,
+  "matches_per_club": {
+   "min": 20,
+   "max": 24
+  },
+  "repeated_pairings": 21,
+  "repeat_pairings_allowed": true,
+  "era": null,
+  "unresolved_identity_queue": 0,
+  "discovery": {
+   "checked": true,
+   "lane": "espn_nwsl@2015:results",
+   "indexed": 115,
+   "fetched": 115,
+   "missing_events": 0,
+   "repeated_pairing_events": 48,
+   "without_status": 0,
+   "finished_without_score": 0
+  },
+  "crosswalked": 112,
+  "espn_source_results": 87,
+  "score_disagreements": 0,
+  "postponed_beside_replay": 0
+ },
+ "matches": 112,
+ "finished": 86,
+ "stages": [
+  "Playoffs:playoff",
+  "Regular Season:league"
+ ],
+ "teams": 10,
+ "format": {
+  "teams": 10,
+  "league_matches": 108,
+  "games_per_team": {
+   "20": 3,
+   "21": 2,
+   "22": 2,
+   "23": 2,
+   "24": 1
+  }
+ },
+ "providers": [
+  "espn"
+ ],
+ "coverage": {
+  "venue": 0.7325581395348837,
+  "lineups": 0,
+  "stats": 0,
+  "events": 0
+ },
+ "coverage_tier": "RESULTS",
+ "limitations": [
+  "lineups for 0% of finished matches",
+  "team statistics for 0% of finished matches",
+  "event record for 0% of finished matches"
+ ],
+ "notes": [
+  "1 past match(es) postponed/cancelled/abandoned (listed, not results)",
+  "no registered era: uniform league games per club decides"
+ ],
+ "checks_failed": [
+  {
+   "check": "too_few_matches",
+   "expected_at_least": 115,
+   "found": 112
+  },
+  {
+   "check": "past_match_without_final_score",
+   "count": 25,
+   "statuses": {
+    "unknown": 25
+   },
+   "ids": [
+    "01a7fad5-54ca-5029-806b-0d7b11f32ffe",
+    "06724cd3-8afc-51f2-b9d3-e913501a0409",
+    "0968a63d-f260-5ec9-9d68-755b93d55ba4",
+    "293315ca-1246-54c1-bbd7-8fc2b6ccc44c",
+    "29c710e2-7192-5a2a-82cc-e528fa2470b1",
+    "29e488e3-d43f-5829-9712-3bcdac0f78b9",
+    "2be1071c-079a-5aef-b16c-b77c4b4be75a",
+    "4170788e-7031-58e3-ac69-6d0da785cc62",
+    "4843209e-056f-5a37-859d-c86078be01c1",
+    "489acb66-4ebb-5ee5-9aff-8ffb4eb57b24"
+   ]
+  },
+  {
+   "check": "games_per_team_uneven",
+   "distribution": {
+    "20": 3,
+    "21": 2,
+    "22": 2,
+    "23": 2,
+    "24": 1
+   }
+  }
+ ],
+ "pass": false
+}

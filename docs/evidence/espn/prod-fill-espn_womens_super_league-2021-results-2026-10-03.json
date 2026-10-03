@@ -1,14 +1,14 @@
 {
-  "lane": "espn_premiere_ligue@2022:results",
+  "lane": "espn_womens_super_league@2021:results",
   "base": "https://soccer-ingest.sales-fd3.workers.dev",
   "runs": [
     {
-      "lane": "espn_premiere_ligue@2022:results",
+      "lane": "espn_womens_super_league@2021:results",
       "run": 1,
       "http": 200,
-      "ms": 84400,
+      "ms": 84549,
       "requests": 120,
-      "fixtures_new": 117,
+      "fixtures_new": 118,
       "repeated_pairings": null,
       "detailed": 0,
       "exhausted": "discovery",
@@ -16,29 +16,29 @@
       "athletes": {}
     },
     {
-      "lane": "espn_premiere_ligue@2022:results",
+      "lane": "espn_womens_super_league@2021:results",
       "run": 2,
       "http": 200,
-      "ms": 87071,
-      "requests": 113,
-      "fixtures_new": 15,
+      "ms": 91352,
+      "requests": 111,
+      "fixtures_new": 14,
       "repeated_pairings": 0,
       "detailed": 32,
       "exhausted": "details",
       "error": null,
       "teams": {
         "espn": 12,
-        "before": 10,
-        "founded": 2,
+        "before": 11,
+        "founded": 1,
         "queued_or_refused": 0
       },
       "athletes": {}
     },
     {
-      "lane": "espn_premiere_ligue@2022:results",
+      "lane": "espn_womens_super_league@2021:results",
       "run": 3,
       "http": 200,
-      "ms": 80956,
+      "ms": 83006,
       "requests": 111,
       "fixtures_new": 0,
       "repeated_pairings": 0,
@@ -54,10 +54,10 @@
       "athletes": {}
     },
     {
-      "lane": "espn_premiere_ligue@2022:results",
+      "lane": "espn_womens_super_league@2021:results",
       "run": 4,
       "http": 200,
-      "ms": 80704,
+      "ms": 85501,
       "requests": 111,
       "fixtures_new": 0,
       "repeated_pairings": 0,
@@ -73,10 +73,10 @@
       "athletes": {}
     },
     {
-      "lane": "espn_premiere_ligue@2022:results",
+      "lane": "espn_womens_super_league@2021:results",
       "run": 5,
       "http": 200,
-      "ms": 56393,
+      "ms": 56652,
       "requests": 78,
       "fixtures_new": 0,
       "repeated_pairings": 0,
@@ -92,10 +92,10 @@
       "athletes": {}
     },
     {
-      "lane": "espn_premiere_ligue@2022:results",
+      "lane": "espn_womens_super_league@2021:results",
       "run": 6,
       "http": 200,
-      "ms": 737,
+      "ms": 684,
       "requests": 0,
       "fixtures_new": 0,
       "repeated_pairings": 0,

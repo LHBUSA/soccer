@@ -1,60 +1,59 @@
 {
- "at": "2026-10-03T23:07:43.306Z",
- "competition": "premiere-ligue",
- "season": "2022/23",
+ "at": "2026-10-03T22:56:58.795Z",
+ "competition": "womens-super-league",
+ "season": "2011",
  "state_before": "held",
  "acceptance": {
-  "canonical_matches": 132,
-  "finished": 132,
-  "teams": 12,
-  "league_matches": 132,
+  "canonical_matches": 56,
+  "finished": 56,
+  "teams": 8,
+  "league_matches": 56,
   "matches_per_club": {
-   "min": 22,
-   "max": 22
+   "min": 14,
+   "max": 14
   },
   "repeated_pairings": 0,
   "repeat_pairings_allowed": false,
-  "era": "12-club double round robin regular season (play-offs are a separate ESPN type from 2023/24); ESPN Core catalog teams_listed x events_listed = double round robin (docs/evidence/history/womens-history-discovery-2026-10-03.json), matching the published league format",
+  "era": "8-club double round robin (2011-2013 summer seasons); ESPN Core catalog teams_listed x events_listed = double round robin (docs/evidence/history/womens-history-discovery-2026-10-03.json), matching the published league format (bounds in accept-season seasonKey form: calendar 2011 -> 2011/12)",
   "unresolved_identity_queue": 0,
   "discovery": {
    "checked": true,
-   "lane": "espn_premiere_ligue@2022:results",
-   "indexed": 132,
-   "fetched": 132,
+   "lane": "espn_womens_super_league@2011:results",
+   "indexed": 56,
+   "fetched": 56,
    "missing_events": 0,
    "repeated_pairing_events": 0,
    "without_status": 0,
    "finished_without_score": 0
   },
-  "crosswalked": 132,
-  "espn_source_results": 132,
+  "crosswalked": 56,
+  "espn_source_results": 56,
   "score_disagreements": 0,
   "postponed_beside_replay": 0
  },
- "matches": 132,
- "finished": 132,
+ "matches": 56,
+ "finished": 56,
  "stages": [
-  "Playoffs:playoff",
   "Regular Season:league"
  ],
- "teams": 12,
+ "teams": 8,
  "format": {
-  "teams": 12,
-  "league_matches": 132,
+  "teams": 8,
+  "league_matches": 56,
   "games_per_team": {
-   "22": 12
+   "14": 8
   }
  },
  "providers": [
   "espn"
  ],
  "coverage": {
-  "venue": 1,
+  "venue": 0,
   "lineups": 0,
   "stats": 0,
   "events": 0
  },
- "coverage_tier": "MATCH",
+ "coverage_tier": "RESULTS",
  "limitations": [
   "lineups for 0% of finished matches",
   "team statistics for 0% of finished matches",

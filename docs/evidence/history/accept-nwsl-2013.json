@@ -1,0 +1,105 @@
+{
+ "at": "2026-10-03T23:13:27.908Z",
+ "competition": "nwsl",
+ "season": "2013",
+ "state_before": "held",
+ "acceptance": {
+  "canonical_matches": 81,
+  "finished": 56,
+  "teams": 8,
+  "league_matches": 78,
+  "matches_per_club": {
+   "min": 18,
+   "max": 21
+  },
+  "repeated_pairings": 22,
+  "repeat_pairings_allowed": true,
+  "era": null,
+  "unresolved_identity_queue": 0,
+  "discovery": {
+   "checked": true,
+   "lane": "espn_nwsl@2013:results",
+   "indexed": 89,
+   "fetched": 89,
+   "missing_events": 0,
+   "repeated_pairing_events": 60,
+   "without_status": 0,
+   "finished_without_score": 0
+  },
+  "crosswalked": 81,
+  "espn_source_results": 56,
+  "score_disagreements": 0,
+  "postponed_beside_replay": 0
+ },
+ "matches": 81,
+ "finished": 56,
+ "stages": [
+  "Playoffs:playoff",
+  "Regular Season:league"
+ ],
+ "teams": 8,
+ "format": {
+  "teams": 8,
+  "league_matches": 78,
+  "games_per_team": {
+   "18": 2,
+   "19": 1,
+   "20": 4,
+   "21": 1
+  }
+ },
+ "providers": [
+  "espn"
+ ],
+ "coverage": {
+  "venue": 0.5357142857142857,
+  "lineups": 0,
+  "stats": 0,
+  "events": 0
+ },
+ "coverage_tier": "RESULTS",
+ "limitations": [
+  "lineups for 0% of finished matches",
+  "team statistics for 0% of finished matches",
+  "event record for 0% of finished matches"
+ ],
+ "notes": [
+  "no registered era: uniform league games per club decides"
+ ],
+ "checks_failed": [
+  {
+   "check": "too_few_matches",
+   "expected_at_least": 83,
+   "found": 81
+  },
+  {
+   "check": "past_match_without_final_score",
+   "count": 25,
+   "statuses": {
+    "unknown": 25
+   },
+   "ids": [
+    "012ad1e6-5f6b-5b76-b605-5404dea2d0db",
+    "1628878c-fe20-519f-acee-b0be272c4259",
+    "1b6be35d-f936-5b04-aee0-686222042297",
+    "219914e5-0338-5030-9f85-87edc3c8057b",
+    "2bc4e3ac-5e40-5b01-aa59-86de5c57558c",
+    "4ccf589e-c917-5b09-b963-cc9140a75ded",
+    "59a90010-785a-5d5f-97dc-5c54e2ac1822",
+    "6913956d-a44a-5893-bf73-201f600cd79c",
+    "6f081694-ff9c-563c-b536-11ac781ea12c",
+    "82af9af6-63e0-5c33-98fa-6e8cbc612455"
+   ]
+  },
+  {
+   "check": "games_per_team_uneven",
+   "distribution": {
+    "18": 2,
+    "19": 1,
+    "20": 4,
+    "21": 1
+   }
+  }
+ ],
+ "pass": false
+}

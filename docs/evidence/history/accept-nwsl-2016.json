@@ -1,0 +1,78 @@
+{
+ "at": "2026-10-03T23:34:59.887Z",
+ "competition": "nwsl",
+ "season": "2016",
+ "state_before": "held",
+ "acceptance": {
+  "canonical_matches": 103,
+  "finished": 102,
+  "teams": 10,
+  "league_matches": 100,
+  "matches_per_club": {
+   "min": 19,
+   "max": 20
+  },
+  "repeated_pairings": 10,
+  "repeat_pairings_allowed": true,
+  "era": null,
+  "unresolved_identity_queue": 0,
+  "discovery": {
+   "checked": true,
+   "lane": "espn_nwsl@2016:results",
+   "indexed": 103,
+   "fetched": 103,
+   "missing_events": 0,
+   "repeated_pairing_events": 20,
+   "without_status": 0,
+   "finished_without_score": 0
+  },
+  "crosswalked": 103,
+  "espn_source_results": 103,
+  "score_disagreements": 0,
+  "postponed_beside_replay": 0
+ },
+ "matches": 103,
+ "finished": 102,
+ "stages": [
+  "Playoffs:playoff",
+  "Regular Season:league"
+ ],
+ "teams": 10,
+ "format": {
+  "teams": 10,
+  "league_matches": 99,
+  "games_per_team": {
+   "19": 2,
+   "20": 8
+  }
+ },
+ "providers": [
+  "espn"
+ ],
+ "coverage": {
+  "venue": 1,
+  "lineups": 0,
+  "stats": 0,
+  "events": 0
+ },
+ "coverage_tier": "MATCH",
+ "limitations": [
+  "lineups for 0% of finished matches",
+  "team statistics for 0% of finished matches",
+  "event record for 0% of finished matches"
+ ],
+ "notes": [
+  "1 past match(es) postponed/cancelled/abandoned (listed, not results)",
+  "no registered era: uniform league games per club decides"
+ ],
+ "checks_failed": [
+  {
+   "check": "games_per_team_uneven",
+   "distribution": {
+    "19": 2,
+    "20": 8
+   }
+  }
+ ],
+ "pass": false
+}
