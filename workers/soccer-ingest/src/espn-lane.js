@@ -34,6 +34,10 @@ async function selectIn(store, table, col, values, opts = {}) {
 // history: a season created by a HISTORY lane (espn_<comp>@<year>) is born 'held' (migration 20261002001400) and
 // becomes public only by an explicit promotion; a current-season lane creates it 'published'. Existing seasons are
 // never touched here (insert-only).
+// A competition that changed season format keeps its registry season_format and lists the provider years that were
+// calendar seasons (WSL 2011-2013 were summer seasons; 2018/19 onward split): those years are labelled '2011', not '2011/12'.
+export const seasonFormatFor = (comp, year) => ((comp.calendar_season_years || []).includes(Number(year)) ? 'calendar' : comp.season_format);
+
 export async function ensureCompetitionSeason(store, { comp, year, types = null, history = false }) {
   const compId = competitionId(comp);
   if (!(await store.select('soccer_competitions', { columns: ['id'], eq: { id: compId }, limit: 1 })).length) {
@@ -43,7 +47,7 @@ export async function ensureCompetitionSeason(store, { comp, year, types = null,
   const sExt = `${comp.espn.league}:${year}`;
   let seasonId = (await resolveMany(store, 'season', P, [sExt])).get(sExt);
   if (!seasonId) {
-    const label = espn.seasonLabel(year, comp.season_format);
+    const label = espn.seasonLabel(year, seasonFormatFor(comp, year));
     const rows = await store.select('soccer_seasons', { columns: ['id'], eq: { competition_id: compId, label }, limit: 1 });
     seasonId = rows[0]?.id || mintId('season', P, sExt);
     if (!rows.length) await syncRows(store, { table: 'soccer_seasons', key: ['id'], compare: ['competition_id', 'label'], rows: [{ id: seasonId, competition_id: compId, label, start_date: null, end_date: null, publication_state: history ? 'held' : 'published', published_at: history ? null : new Date().toISOString(), source_families: ['espn'], publication_note: history ? 'historical backfill (ESPN history lane): held until Pass A acceptance' : 'current season (ESPN lane)' }] });

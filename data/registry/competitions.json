@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026-10-03.10",
+  "registry_version": "2026-10-03.12",
   "note": "Reviewed canonical metadata for competitions and the provider ids proven to denote them. Provider ids here are crosswalks, not identity.",
   "competitions": [
     {
@@ -522,7 +522,13 @@
       "news": {
         "enabled": false,
         "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
-      }
+      },
+      "calendar_season_years": [
+        2011,
+        2012,
+        2013
+      ],
+      "calendar_season_years_basis": "ESPN Core eng.w.1 catalog (docs/evidence/history/womens-history-discovery-2026-10-03.json): types named \"2011 FA Women's Super League\" .. \"2013 ...\" (summer seasons, 8 teams); 2014-2017/18 absent from the catalog; split seasons from 2018 (\"2018-10\" sic, 2019-20 ..)."
     },
     {
       "slug": "uefa-womens-champions-league",
@@ -544,7 +550,18 @@
           "season_type": 1
         },
         "discovery_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): uefa.wchampions id 19483, gender FEMALE; 2026 types 1 'League Phase' (54 events, standings), 2 'Knockout Round Playoffs', 3 'Quarterfinals', 4 'Semifinals', 5 'Final'; 18 teams. Women's teams have their own ESPN team ids (0 ids shared with any men's competition probed).",
-        "enable_note": "Enabled 2026-10-03 after local canary PASS (docs/evidence/world/canary-uefa-womens-champions-league-2026-10-03.json): 54/54 fixtures, 18/18 finished detailed (lineups both sides 18, team stats 18, plays 18; 24760 located events), 0 enrichment gaps; identity 18/18 teams gender women (0 reused from production by stable ESPN id, 18 founded, 0 queued, 0 name-only merges); table league-phase; PBEcast replay + pregame payloads proven. 26 athletes without DOB queued (never invented)."
+        "enable_note": "Enabled 2026-10-03 after local canary PASS (docs/evidence/world/canary-uefa-womens-champions-league-2026-10-03.json): 54/54 fixtures, 18/18 finished detailed (lineups both sides 18, team stats 18, plays 18; 24760 located events), 0 enrichment gaps; identity 18/18 teams gender women (0 reused from production by stable ESPN id, 18 founded, 0 queued, 0 name-only merges); table league-phase; PBEcast replay + pregame payloads proven. 26 athletes without DOB queued (never invented).",
+        "type_roles": {
+          "Round of 32": "playoff",
+          "Round of 16": "playoff",
+          "Quarterfinals": "playoff",
+          "Semifinals": "playoff",
+          "Final": "playoff",
+          "Group Stage": "league",
+          "League Phase": "league",
+          "Knockout Round Playoffs": "playoff"
+        },
+        "type_roles_basis": "Explicit per-edition roles for every ESPN type name in uefa.wchampions 2019-2026 (docs/evidence/history/womens-history-discovery-2026-10-03.json): 2019/20-2020/21 knockout-only (Round of 32 .. Final), 2021/22-2024/25 Group Stage + knockouts, 2025/26+ League Phase + knockouts. Never the generic classifier (it drops Group Stage)."
       },
       "external_ids": [
         {

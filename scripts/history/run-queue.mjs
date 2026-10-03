@@ -12,13 +12,16 @@ import { spawnSync } from 'node:child_process';
 import { appendFileSync, mkdirSync, readFileSync } from 'node:fs';
 import { discoveryFloor } from './discovery-floor.mjs';
 import { reviewedExtras } from './reviewed-extras.mjs';
+import { seasonFormatFor } from '../../workers/soccer-ingest/src/espn-lane.js';
 const arg = (k, d) => { const i = process.argv.indexOf(k); return i >= 0 ? process.argv[i + 1] : d; };
 const COMP = arg('--comp'); const LANE = arg('--lane'); const MODE = arg('--mode', 'promote');
 const [y0, y1] = arg('--years').split('-').map(Number);
 const SKIP = new Set((arg('--skip', '') || '').split(',').filter(Boolean).map(Number));
 const EXPECT = arg('--expect-teams', null);
-const split = !['mls', 'fifa-world-cup'].includes(COMP);
-const labelOf = y => (split ? `${y}/${String((y + 1) % 100).padStart(2, '0')}` : String(y));
+// Season labels come from the registry (season_format + calendar_season_years), exactly as the lane labels them.
+const REG = JSON.parse(readFileSync('data/registry/competitions.json', 'utf8')).competitions.find(c => c.slug === COMP);
+if (!REG) throw new Error(`${COMP}: not in data/registry/competitions.json`);
+const labelOf = y => (seasonFormatFor(REG, y) === 'split' ? `${y}/${String((y + 1) % 100).padStart(2, '0')}` : String(y));
 const LOG = `docs/evidence/history/queue-${COMP}.jsonl`;
 mkdirSync('docs/evidence/history', { recursive: true });
 const env = Object.fromEntries(readFileSync('D:/Workers/secrets/soccer-supabase.env', 'utf8').split(/\r?\n/).filter(l => l.includes('=')).map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]));

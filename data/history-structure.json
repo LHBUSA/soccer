@@ -5,19 +5,102 @@
     "premier-league": {
       "repeat_pairings": false,
       "eras": [
-        { "from": "1995/96", "to": "2099/00", "teams": 20, "league_matches_per_team": 38, "league_matches": 380, "basis": "20-club double round robin since 1995/96" }
+        {
+          "from": "1995/96",
+          "to": "2099/00",
+          "teams": 20,
+          "league_matches_per_team": 38,
+          "league_matches": 380,
+          "basis": "20-club double round robin since 1995/96"
+        }
       ]
     },
     "bundesliga": {
       "repeat_pairings": false,
       "eras": [
-        { "from": "1965/66", "to": "2099/00", "teams": 18, "league_matches_per_team": 34, "league_matches": 306, "basis": "18-club double round robin (1991/92 had 20 clubs; not in the ESPN catalog)" }
+        {
+          "from": "1965/66",
+          "to": "2099/00",
+          "teams": 18,
+          "league_matches_per_team": 34,
+          "league_matches": 306,
+          "basis": "18-club double round robin (1991/92 had 20 clubs; not in the ESPN catalog)"
+        }
       ]
     },
     "mls": {
       "repeat_pairings": true,
       "eras": [],
       "basis": "Club count and schedule length changed season by season and teams meet some opponents more than once at home: no era registered; uniform league games per team or a reviewed season manifest decides."
+    },
+    "womens-super-league": {
+      "repeat_pairings": false,
+      "eras": [
+        {
+          "from": "2011/12",
+          "to": "2013/14",
+          "teams": 8,
+          "league_matches_per_team": 14,
+          "league_matches": 56,
+          "basis": "8-club double round robin (2011-2013 summer seasons); ESPN Core catalog teams_listed x events_listed = double round robin (docs/evidence/history/womens-history-discovery-2026-10-03.json), matching the published league format (bounds in accept-season seasonKey form: calendar 2011 -> 2011/12)"
+        },
+        {
+          "from": "2018/19",
+          "to": "2018/19",
+          "teams": 11,
+          "league_matches_per_team": 20,
+          "league_matches": 110,
+          "basis": "11-club double round robin; ESPN Core catalog teams_listed x events_listed = double round robin (docs/evidence/history/womens-history-discovery-2026-10-03.json), matching the published league format"
+        },
+        {
+          "from": "2019/20",
+          "to": "2025/26",
+          "teams": 12,
+          "league_matches_per_team": 22,
+          "league_matches": 132,
+          "basis": "12-club double round robin (2019/20 was curtailed: a completed-season check holds it); ESPN Core catalog teams_listed x events_listed = double round robin (docs/evidence/history/womens-history-discovery-2026-10-03.json), matching the published league format"
+        },
+        {
+          "from": "2026/27",
+          "to": "2099/00",
+          "teams": 14,
+          "league_matches_per_team": 26,
+          "league_matches": 182,
+          "basis": "14-club double round robin from 2026/27; ESPN Core catalog teams_listed x events_listed = double round robin (docs/evidence/history/womens-history-discovery-2026-10-03.json), matching the published league format"
+        }
+      ]
+    },
+    "liga-f": {
+      "repeat_pairings": false,
+      "eras": [
+        {
+          "from": "2022/23",
+          "to": "2024/25",
+          "teams": 16,
+          "league_matches_per_team": 30,
+          "league_matches": 240,
+          "basis": "16-club double round robin; ESPN Core catalog teams_listed x events_listed = double round robin (docs/evidence/history/womens-history-discovery-2026-10-03.json), matching the published league format"
+        }
+      ],
+      "note": "2025/26 lists 14 teams against 240 events (inconsistent catalog): not registered; generic invariants decide"
+    },
+    "premiere-ligue": {
+      "repeat_pairings": false,
+      "eras": [
+        {
+          "from": "2022/23",
+          "to": "2099/00",
+          "teams": 12,
+          "league_matches_per_team": 22,
+          "league_matches": 132,
+          "basis": "12-club double round robin regular season (play-offs are a separate ESPN type from 2023/24); ESPN Core catalog teams_listed x events_listed = double round robin (docs/evidence/history/womens-history-discovery-2026-10-03.json), matching the published league format"
+        }
+      ]
+    },
+    "nwsl": {
+      "repeat_pairings": true,
+      "eras": [],
+      "basis": "Unbalanced schedules (clubs meet some opponents more than once at home; club count 8-16 across 2013-2026): no era registered; uniform league games per club or a reviewed manifest decides. 2020 (season cancelled; 108 listed, 0 sampled finished) is skipped."
     }
   }
 }

@@ -42,6 +42,27 @@ locations unverified, not plotted), SPATIAL(0-100) (verified locations).
 
 Provider xG appears in ~1% of sampled historical matches (MLS/World Cup recent only).
 
+### Women's competitions (2026-10-03, ESPN catalog, K=6 sampled matches per season)
+
+Evidence: `docs/evidence/history/womens-history-discovery-2026-10-03.json` (2,510 Core requests, 0 errors, read-only).
+**Catalog availability, not production coverage.** A band is what the sampled matches of that season carry; Pass A
+acceptance decides what is published.
+
+| Competition | ESPN catalog | Seasons | Events listed | Bands |
+|---|---|---|---|---|
+| NWSL | 2013–2026 | 14 | 1,915 | 2013–2015 RESULTS/MATCH (some listed events unfinished) · 2016–2018 MATCH · 2019 EVENTS (no formations) · **2020: 108 listed, 0/6 sampled finished (season cancelled; HOLD)** · 2021–2023 EVENTS · 2024–2025 EVENTS+unit · 2026 SPATIAL from 2026-05-31 (earlier matches unit) |
+| Women's Super League | 2011–2013, 2018/19–2026/27 | 12 | 1,392 | 2011–2013 RESULTS (8 teams, calendar seasons) · **2014–2017/18 not in the ESPN catalog (source gap)** · 2018/19 MATCH · 2019/20 MATCH/EVENTS, unfinished listings (season curtailed; acceptance decides) · 2020/21–2023/24 EVENTS (no formations / team stats) · 2024/25 EVENTS · 2025/26 EVENTS+unit · 2026/27 SPATIAL (current) |
+| UEFA Women's Champions League | 2019/20–2026/27 | 8 | 489 | 2019/20–2020/21 EVENTS, **knockout-only format (Round of 32 → Final)** · 2021/22–2024/25 EVENTS, **group stage (4×4) + knockouts** (2024/25 unit coords) · 2025/26 EVENTS+unit, **league phase (18) + knockouts** · 2026/27 SPATIAL (current) |
+| Liga F | 2022/23–2026/27 | 5 | 1,200 | 2022/23–2025/26 EVENTS (lineups, formations, team stats; no coordinates) · 2026/27 current |
+| Première Ligue (D1 Arkema) | 2022/23–2026/27 | 5 | 670 | 2022/23–2023/24 EVENTS+unit · 2024/25–2025/26 EVENTS (no coordinates) · regular season + play-offs from 2023/24 |
+| FIFA Women's World Cup | 2003–2023 | 6 | 266 | 2003 EVENTS (one sampled match SPATIAL) · **2007 SPATIAL(0-100)** · 2011–2023 EVENTS+unit · 1991–1999 not in the ESPN catalog |
+| Frauen-Bundesliga | — | 0 | — | **No ESPN Core league** (ger.w.1 absent). OpenLigaDB `ffb1` exists but community-maintained (quality decision pending). Not built. |
+| Serie A Women | — | 0 | — | **No ESPN Core league** (ita.w.1 absent), no OpenLigaDB league. No source; not claimed. |
+
+Women's-specific Pass A notes: NWSL and the World Cup are **calendar** seasons (labels `2016`, `2019`); WSL is calendar
+2011–2013 and split from 2018/19; UWCL and the World Cup need explicit per-edition stage roles (never the generic league
+classifier); team identity reuses the current canonical women's teams by stable ESPN id (never the men's club).
+
 ## Data-quality flags for Pass A (must be resolved before a season is canonical)
 
 - **Over-listed seasons** (more events than a round robin): Premier League 2001/02–2007/08 (403–495 vs 380), Bundesliga

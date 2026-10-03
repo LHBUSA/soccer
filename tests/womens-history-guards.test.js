@@ -67,3 +67,19 @@ for (const [slug, labels] of [['nwsl', ['2016', '2021', '2026']], ['womens-super
     } finally { await store.close(); }
   });
 }
+
+test('season labels follow the registry: WSL 2011-2013 calendar, split from 2018/19; NWSL calendar', async () => {
+  const { seasonFormatFor } = await import('../workers/soccer-ingest/src/espn-lane.js');
+  const { seasonLabel } = await import('../workers/providers/espn.js');
+  const comp = s => registry.competitions.find(c => c.slug === s);
+  const wsl = comp('womens-super-league');
+  assert.deepEqual([2011, 2013, 2018, 2025].map(y => seasonLabel(y, seasonFormatFor(wsl, y))), ['2011', '2013', '2018/19', '2025/26']);
+  assert.deepEqual([2016, 2026].map(y => seasonLabel(y, seasonFormatFor(comp('nwsl'), y))), ['2016', '2026']);
+});
+
+test('UWCL: every ESPN type name discovered 2019-2026 has an explicit role; group stages are never dropped', () => {
+  const d = JSON.parse(readFileSync('docs/evidence/history/womens-history-discovery-2026-10-03.json', 'utf8')).competitions['uefa-womens-champions-league'];
+  const roles = registry.competitions.find(c => c.slug === 'uefa-womens-champions-league').espn.type_roles;
+  for (const s of Object.values(d.seasons)) for (const t of s.types) assert.ok(roles[t.name], `${s.year} ${t.name} has no explicit role`);
+  assert.equal(roles['Group Stage'], 'league'); assert.equal(roles['League Phase'], 'league'); assert.equal(roles['Round of 32'], 'playoff');
+});
