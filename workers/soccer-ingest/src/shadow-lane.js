@@ -16,6 +16,7 @@ import { predictFrom, dc1x2 } from '../../../scripts/research/structural-core.mj
 import { sha256Hex } from '../../shared/ids.js';
 import { payloadKey } from '../../shared/archive.js';
 import { shadowMetrics } from './shadow-metrics.js';
+import { assertModelInputs } from './leakage-guard.js';
 
 export const SHADOW_LANE = 'model_shadow_bundesliga_dc';
 export const SHADOW_SPEC = spec;
@@ -33,6 +34,7 @@ export const inputHash = inputs => sha256Hex(JSON.stringify(inputs.map(x => [x.i
 // Frozen model: team strengths are the model's normal time-safe rolling calculation over the
 // inputs; rho, half-lives, shrinkage and min weight come from the card. No calibration.
 export function predictShadow(inputs, target) {
+  assertModelInputs(inputs, target); // leakage guard: no prediction-market field may reach the model
   const ts = spec.team_strength;
   const m = { t: Date.parse(target.kickoff_at), home_team_id: target.home_team_id, away_team_id: target.away_team_id };
   const p = predictFrom(inputs, 0, inputs.length, m, { hl: ts.half_life_days, shrink: ts.shrink, homeHl: spec.home_half_life_days, minWeight: ts.min_weight });

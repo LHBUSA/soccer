@@ -17,6 +17,7 @@ import spec from './algo-v1.json' with { type: 'json' };
 import { predictFrom, dcGrid } from '../../../scripts/research/structural-core.mjs';
 import { payloadKey } from '../../shared/archive.js';
 import { modelMatch, sortInputs, inputHash } from './shadow-lane.js';
+import { assertModelInputs, guardModelStore } from './leakage-guard.js';
 
 export const ALGO_LANE = 'algo_v1_bundesliga';
 export const ALGO_SPEC = spec;
@@ -28,6 +29,7 @@ const SEL3 = ['home', 'draw', 'away'];
 
 // Pure: every market's probability from the frozen model (Dixon-Coles grid, rho from the spec, no calibration).
 export function algoForecast(inputs, target) {
+  assertModelInputs(inputs, target); // leakage guard: no prediction-market field may reach the model
   const M = spec.model; const ts = M.team_strength;
   const p = predictFrom(inputs, 0, inputs.length, { t: Date.parse(target.kickoff_at), home_team_id: target.home_team_id, away_team_id: target.away_team_id }, { hl: ts.half_life_days, shrink: ts.shrink, homeHl: M.home_half_life_days, minWeight: ts.min_weight });
   if (!p) return null;
@@ -74,7 +76,8 @@ const SEL_WORD = { home: 'HOME WIN', draw: 'DRAW', away: 'AWAY WIN', yes: 'TO SC
 export const selectionLabel = (market, selection, teams) => (market === 'home_to_score' ? `${teams.home} to score: ${selection.toUpperCase()}` : market === 'away_to_score' ? `${teams.away} to score: ${selection.toUpperCase()}` : market === '1x2' && selection !== 'draw' ? `${selection === 'home' ? teams.home : teams.away} WIN` : SEL_WORD[selection]);
 
 export async function runAlgo(ctx) {
-  const { store, storage, now = Date.now(), force = false, state = {}, env = {} } = ctx;
+  const { storage, now = Date.now(), force = false, state = {}, env = {} } = ctx;
+  const store = guardModelStore(ctx.store); // leakage guard: market/venue tables are never read
   if (env.ALGO_OFFICIAL !== 'on') return { skipped: 'algo_official_off' };
   if (!force && state.last_success_at && now - Date.parse(state.last_success_at) < CADENCE_MS) return { skipped: 'cadence' };
   const nowIso = new Date(now).toISOString();

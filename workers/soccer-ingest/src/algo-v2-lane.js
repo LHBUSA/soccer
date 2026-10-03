@@ -17,6 +17,7 @@ import { payloadKey } from '../../shared/archive.js';
 import { chunkArr } from './store.js';
 import { grade, notify, selectionLabel } from './algo-lane.js';
 import { sortInputs, inputHash } from './shadow-lane.js';
+import { assertModelInputs, guardModelStore } from './leakage-guard.js';
 
 export const ALGO_V2_LANE = 'algo_v2_international';
 export const ALGO_V2_SPEC = spec;
@@ -34,6 +35,7 @@ const NEUTRAL_KV = 'algo_v2:neutral:v1';
 
 // Pure: probabilities + Game Best + Official Pick under the frozen V2 policy.
 export function v2Forecast(inputs, target) {
+  assertModelInputs(inputs, target); // leakage guard: no prediction-market field may reach the model
   const M = spec.model;
   const p = ntPredict(inputs, { t: Date.parse(target.kickoff_at), home_team_id: target.home_team_id, away_team_id: target.away_team_id, neutral: !!target.neutral }, { hl: M.half_life_days, k: M.shrink_k });
   if (!p) return null;
@@ -79,7 +81,8 @@ export async function neutralMap(store, storage, kv, ids) {
 }
 
 export async function runAlgoV2(ctx) {
-  const { store, storage, kv = null, now = Date.now(), force = false, state = {}, env = {}, frozen = FROZEN } = ctx; // frozen: tests only
+  const { storage, kv = null, now = Date.now(), force = false, state = {}, env = {}, frozen = FROZEN } = ctx; // frozen: tests only
+  const store = guardModelStore(ctx.store); // leakage guard: market/venue tables are never read
   if (env.ALGO_V2 !== 'on') return { skipped: 'algo_v2_off' };
   if (!['forecast', 'official'].includes(spec.status)) return { skipped: `algo_v2_status_${spec.status}` };
   if (!force && state.last_success_at && now - Date.parse(state.last_success_at) < CADENCE_MS) return { skipped: 'cadence' };
