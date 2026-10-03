@@ -63,7 +63,7 @@ test('the same-origin proxy forwards expand=groups (group rows reach the page in
 
 test('WOMEN menu group: only enabled women\'s competitions, never in the club rail', async () => {
   const { WOMEN_COMPS } = await import('../../src/lib/competitions.js');
-  assert.deepEqual(WOMEN_COMPS.map(c => c.slug), ['womens-super-league', 'uefa-womens-champions-league']);
+  assert.deepEqual(WOMEN_COMPS.map(c => c.slug), ['womens-super-league', 'uefa-womens-champions-league', 'liga-f']);
   assert.ok(WOMEN_COMPS.every(c => c.gender === 'women'));
   assert.ok(!CLUB_COMPS.some(c => c.gender === 'women'));
 });

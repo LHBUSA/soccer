@@ -24,7 +24,7 @@ export const ALL_COMPS = [
   { slug: 'nwsl', name: 'NWSL', long: "National Women's Soccer League", mono: 'NWSL', accent: 'nwsl', desk: 'nwsl', format: 'league', nav: 'women', gender: 'women', enabled: false },
   { slug: 'womens-super-league', name: 'WSL', long: "Women's Super League", mono: 'WSL', accent: 'wsl', desk: 'wsl', format: 'league', nav: 'women', gender: 'women', enabled: true },
   { slug: 'uefa-womens-champions-league', name: "Women's Champions League", long: "UEFA Women's Champions League", mono: 'UWCL', accent: 'uwcl', desk: 'uwcl', format: 'ucl', nav: 'women', gender: 'women', enabled: true },
-  { slug: 'liga-f', name: 'Liga F', long: 'Liga F', mono: 'LF', accent: 'ligaf', desk: 'liga-f', format: 'league', nav: 'women', gender: 'women', spatial: false, enabled: false },
+  { slug: 'liga-f', name: 'Liga F', long: 'Liga F', mono: 'LF', accent: 'ligaf', desk: 'liga-f', format: 'league', nav: 'women', gender: 'women', spatial: false, enabled: true },
   { slug: 'premiere-ligue', name: 'Première Ligue', long: 'Première Ligue', mono: 'D1F', accent: 'd1f', desk: 'premiere-ligue', format: 'league', nav: 'women', gender: 'women', spatial: false, enabled: false },
 ]
 // Product navigation only advertises competitions whose canonical graph is live.
