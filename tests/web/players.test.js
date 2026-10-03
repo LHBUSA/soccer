@@ -25,7 +25,7 @@ test('query: unknown values fall back; per-90 sorts need one competition', () =>
   assert.equal(hrefFor(q('competition=mls&team=portland-timbers'), { competition: 'premier-league' }), '/players?competition=premier-league', 'changing competition drops the team');
   assert.equal(q('sort=goals_per90').sort, 'goals', 'no cross-competition rate leaders');
   assert.equal(q('competition=mls&sort=goals_per90').sort, 'goals_per90');
-  assert.equal(q('competition=la-liga').competition, '');
+  assert.equal(q('competition=not-a-competition').competition, '');
   assert.equal(q('role=striker').role, '');
   assert.equal(q('page=-4').page, 1);
   assert.equal(hrefFor(q('competition=mls&sort=goals_per90'), { competition: '' }), '/players', 'leaving the competition drops the rate sort');
