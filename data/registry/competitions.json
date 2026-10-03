@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026-10-03.9",
+  "registry_version": "2026-10-03.10",
   "note": "Reviewed canonical metadata for competitions and the provider ids proven to denote them. Provider ids here are crosswalks, not identity.",
   "competitions": [
     {
@@ -473,10 +473,11 @@
       "espn": {
         "league": "usa.nwsl",
         "id": "8301",
-        "enabled": false,
+        "enabled": true,
         "may_found": true,
         "stage_by_type": true,
-        "discovery_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): usa.nwsl id 8301 'NWSL', gender FEMALE; 2026 types 1 'Regular Season' (240 events, standings), 2-4 'Playoffs - Quarterfinals/Semifinals/Championship'; 16 teams. Women's teams have their own ESPN team ids (0 ids shared with any men's competition probed)."
+        "discovery_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): usa.nwsl id 8301 'NWSL', gender FEMALE; 2026 types 1 'Regular Season' (240 events, standings), 2-4 'Playoffs - Quarterfinals/Semifinals/Championship'; 16 teams. Women's teams have their own ESPN team ids (0 ids shared with any men's competition probed).",
+        "enable_note": "Enabled 2026-10-03 after local canary PASS (docs/evidence/world/canary-nwsl-r2-2026-10-03.json): 240/240 fixtures, 210/210 finished detailed (lineups both sides 210, team stats 210, plays 210; 143570 located events), 0 enrichment gaps; identity 16/16 teams gender women (0 reused from production by stable ESPN id, 16 founded, 0 queued, 0 name-only merges); table overall; PBEcast replay + pregame payloads proven. 5 athletes without DOB queued (never invented). Owner approved go-live 2026-10-03 on the second run (docs/evidence/world/nwsl-r2-diagnosis-2026-10-03.json): run 1 stopped on an ESPN 503. Spatial: 118 matches located (espn_pct_v1, 2026-05-31 on); 92 early-season matches have only ESPN 0-1 unit coordinates, kept source-only and never plotted or transformed (neutral no-map note)."
       },
       "external_ids": [
         {
@@ -489,7 +490,7 @@
       "expected_teams": 16,
       "news": {
         "enabled": false,
-        "blocker": "Lane disabled until its canary passes (docs/evidence/world/); newsroom enablement follows lane certification."
+        "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
       }
     },
     {
