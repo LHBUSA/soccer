@@ -1,0 +1,297 @@
+{
+ "stage": "select",
+ "at": "2026-10-03T12:08:19.170Z",
+ "elapsed_s": 77,
+ "protocol_sha256": "9db6c099280b22bb109cc46164e9a9964a682c9b6affcd469c4fe6c001227562",
+ "dataset_sha256": "f075b67d2b943260fcf74f4267de57726727e64df43d189d72916304062cfcdc",
+ "rows": {
+  "warmup": 380,
+  "train": 3800,
+  "dev": 2280,
+  "holdout_rows_not_evaluated": 2660
+ },
+ "b0": {
+  "freq": [
+   0.4645,
+   0.2613,
+   0.2742
+  ],
+  "rates": {
+   "over_2_5": 0.4926,
+   "home_to_score": 0.7684,
+   "away_to_score": 0.6558,
+   "btts": 0.5066
+  },
+  "dev_log_loss": 1.0626
+ },
+ "m1_grid": [
+  {
+   "K": 10,
+   "home_edge": 40,
+   "theta": [
+    0.009,
+    -0.75,
+    0.5
+   ],
+   "dev_log_loss": 0.9641
+  },
+  {
+   "K": 10,
+   "home_edge": 60,
+   "theta": [
+    0.009,
+    -0.55,
+    0.7
+   ],
+   "dev_log_loss": 0.9636
+  },
+  {
+   "K": 10,
+   "home_edge": 80,
+   "theta": [
+    0.009,
+    -0.35,
+    0.9
+   ],
+   "dev_log_loss": 0.9632
+  },
+  {
+   "K": 10,
+   "home_edge": 100,
+   "theta": [
+    0.009,
+    -0.2,
+    1.05
+   ],
+   "dev_log_loss": 0.9639
+  },
+  {
+   "K": 15,
+   "home_edge": 40,
+   "theta": [
+    0.0075,
+    -0.8,
+    0.45
+   ],
+   "dev_log_loss": 0.9643
+  },
+  {
+   "K": 15,
+   "home_edge": 60,
+   "theta": [
+    0.0075,
+    -0.65,
+    0.6
+   ],
+   "dev_log_loss": 0.9644
+  },
+  {
+   "K": 15,
+   "home_edge": 80,
+   "theta": [
+    0.0075,
+    -0.5,
+    0.75
+   ],
+   "dev_log_loss": 0.9644
+  },
+  {
+   "K": 15,
+   "home_edge": 100,
+   "theta": [
+    0.0075,
+    -0.35,
+    0.9
+   ],
+   "dev_log_loss": 0.9644
+  },
+  {
+   "K": 20,
+   "home_edge": 40,
+   "theta": [
+    0.0065,
+    -0.85,
+    0.4
+   ],
+   "dev_log_loss": 0.9658
+  },
+  {
+   "K": 20,
+   "home_edge": 60,
+   "theta": [
+    0.0065,
+    -0.7,
+    0.55
+   ],
+   "dev_log_loss": 0.9654
+  },
+  {
+   "K": 20,
+   "home_edge": 80,
+   "theta": [
+    0.0065,
+    -0.55,
+    0.7
+   ],
+   "dev_log_loss": 0.9649
+  },
+  {
+   "K": 20,
+   "home_edge": 100,
+   "theta": [
+    0.0065,
+    -0.45,
+    0.8
+   ],
+   "dev_log_loss": 0.9655
+  },
+  {
+   "K": 30,
+   "home_edge": 40,
+   "theta": [
+    0.0055,
+    -0.85,
+    0.4
+   ],
+   "dev_log_loss": 0.9676
+  },
+  {
+   "K": 30,
+   "home_edge": 60,
+   "theta": [
+    0.0055,
+    -0.75,
+    0.5
+   ],
+   "dev_log_loss": 0.9677
+  },
+  {
+   "K": 30,
+   "home_edge": 80,
+   "theta": [
+    0.0055,
+    -0.65,
+    0.6
+   ],
+   "dev_log_loss": 0.9678
+  },
+  {
+   "K": 30,
+   "home_edge": 100,
+   "theta": [
+    0.0055,
+    -0.55,
+    0.7
+   ],
+   "dev_log_loss": 0.9679
+  }
+ ],
+ "m2_grid": [
+  {
+   "half_life_days": 270,
+   "shrink": 5,
+   "dev_log_loss": 0.9623,
+   "dev_without_history": 0
+  },
+  {
+   "half_life_days": 270,
+   "shrink": 10,
+   "dev_log_loss": 0.9652,
+   "dev_without_history": 0
+  },
+  {
+   "half_life_days": 270,
+   "shrink": 20,
+   "dev_log_loss": 0.9732,
+   "dev_without_history": 0
+  },
+  {
+   "half_life_days": 365,
+   "shrink": 5,
+   "dev_log_loss": 0.9614,
+   "dev_without_history": 0
+  },
+  {
+   "half_life_days": 365,
+   "shrink": 10,
+   "dev_log_loss": 0.9636,
+   "dev_without_history": 0
+  },
+  {
+   "half_life_days": 365,
+   "shrink": 20,
+   "dev_log_loss": 0.97,
+   "dev_without_history": 0
+  },
+  {
+   "half_life_days": 540,
+   "shrink": 5,
+   "dev_log_loss": 0.9616,
+   "dev_without_history": 0
+  },
+  {
+   "half_life_days": 540,
+   "shrink": 10,
+   "dev_log_loss": 0.963,
+   "dev_without_history": 0
+  },
+  {
+   "half_life_days": 540,
+   "shrink": 20,
+   "dev_log_loss": 0.9675,
+   "dev_without_history": 0
+  },
+  {
+   "half_life_days": 730,
+   "shrink": 5,
+   "dev_log_loss": 0.9622,
+   "dev_without_history": 0
+  },
+  {
+   "half_life_days": 730,
+   "shrink": 10,
+   "dev_log_loss": 0.9632,
+   "dev_without_history": 0
+  },
+  {
+   "half_life_days": 730,
+   "shrink": 20,
+   "dev_log_loss": 0.9666,
+   "dev_without_history": 0
+  }
+ ],
+ "chosen": {
+  "M1_elo": {
+   "K": 10,
+   "home_edge": 80,
+   "theta": [
+    0.009,
+    -0.35,
+    0.9
+   ],
+   "dev_log_loss": 0.9632
+  },
+  "M2_poisson": {
+   "half_life_days": 365,
+   "shrink": 5,
+   "dev_log_loss": 0.9614,
+   "dev_without_history": 0
+  },
+  "M3_poisson_dc": {
+   "half_life_days": 365,
+   "shrink": 5,
+   "rho": -0.0561,
+   "dev_log_loss": 0.9619
+  }
+ },
+ "candidate": {
+  "family": "M2_poisson",
+  "params": {
+   "half_life_days": 365,
+   "shrink": 5,
+   "dev_log_loss": 0.9614,
+   "dev_without_history": 0
+  }
+ },
+ "prediction_hash_train_dev": "e49c29bcceb0caf91658834bb702c75961fb6c5a9ed4bdb6d43d7ab476ec4483"
+}
