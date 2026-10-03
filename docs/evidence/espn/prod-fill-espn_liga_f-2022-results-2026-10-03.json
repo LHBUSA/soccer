@@ -1,0 +1,184 @@
+{
+  "lane": "espn_liga_f@2022:results",
+  "base": "https://soccer-ingest.sales-fd3.workers.dev",
+  "runs": [
+    {
+      "lane": "espn_liga_f@2022:results",
+      "run": 1,
+      "http": 200,
+      "ms": 84946,
+      "requests": 120,
+      "fixtures_new": 118,
+      "repeated_pairings": null,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "lane": "espn_liga_f@2022:results",
+      "run": 2,
+      "http": 200,
+      "ms": 84220,
+      "requests": 120,
+      "fixtures_new": 120,
+      "repeated_pairings": null,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "lane": "espn_liga_f@2022:results",
+      "run": 3,
+      "http": 200,
+      "ms": 93687,
+      "requests": 113,
+      "fixtures_new": 2,
+      "repeated_pairings": 0,
+      "detailed": 35,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 16,
+        "before": 10,
+        "founded": 6,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_liga_f@2022:results",
+      "run": 4,
+      "http": 200,
+      "ms": 82724,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 16,
+        "before": 16,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_liga_f@2022:results",
+      "run": 5,
+      "http": 200,
+      "ms": 81364,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 16,
+        "before": 16,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_liga_f@2022:results",
+      "run": 6,
+      "http": 200,
+      "ms": 81047,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 16,
+        "before": 16,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_liga_f@2022:results",
+      "run": 7,
+      "http": 200,
+      "ms": 81406,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 16,
+        "before": 16,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_liga_f@2022:results",
+      "run": 8,
+      "http": 200,
+      "ms": 81046,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 16,
+        "before": 16,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_liga_f@2022:results",
+      "run": 9,
+      "http": 200,
+      "ms": 44357,
+      "requests": 60,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 20,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 16,
+        "before": 16,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_liga_f@2022:results",
+      "run": 10,
+      "http": 200,
+      "ms": 913,
+      "requests": 0,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 0,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 16,
+        "before": 16,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    }
+  ]
+}

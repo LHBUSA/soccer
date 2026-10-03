@@ -74,3 +74,32 @@ test("an ESPN id already mapped to a MEN's team is refused in a women's competit
   assert.equal((await store.select('soccer_matches', { columns: ['id'] })).length, 0);
   await store.close();
 });
+
+test('pinned history lane: a corrected type role rebuilds the cached type index (Premiere Ligue 2022/23 regression)', async () => {
+  const L = 'https://sports.core.api.espn.com/v2/sports/soccer/leagues/fra.w.1';
+  const TYPE = '2022-23 French Division 1 Féminine';
+  const body = url => {
+    if (url.endsWith('/seasons/2022/types')) return { items: [{ $ref: `${L}/seasons/2022/types/1` }] };
+    if (url.endsWith('/seasons/2022/types/1')) return { id: '1', name: TYPE };
+    if (url.includes('/types/1/events')) return { items: [{ $ref: `${L}/events/${EV}?lang=en` }], pageCount: 1 };
+    if (url.endsWith(`/events/${EV}`)) return { id: EV, date: '2022-09-10T13:00Z', season: { $ref: `${L}/seasons/2022` }, seasonType: { $ref: `${L}/seasons/2022/types/1` }, competitions: [{ competitors: [{ id: HOME, homeAway: 'home' }, { id: AWAY, homeAway: 'away' }] }] };
+    if (url.endsWith(`/teams/${HOME}`)) return { id: HOME, displayName: 'Lyon', isNational: false };
+    if (url.endsWith(`/teams/${AWAY}`)) return { id: AWAY, displayName: 'Paris FC', isNational: false };
+    if (url.endsWith('/status')) return { type: { name: 'STATUS_FULL_TIME', state: 'post', completed: true }, period: 2 };
+    if (url.endsWith('/score')) return { value: 1 };
+    return {};
+  };
+  const fetcher = async url => ({ status: 200, contentType: 'application/json', bytes: new TextEncoder().encode(JSON.stringify(body(url))) });
+  const mem = new Map(); const storage = { async head(k) { return mem.has(k); }, async put(k, b) { mem.set(k, b); }, async get(k) { return mem.get(k) || null; } };
+  const comp = roles => ({ competitions: [{ slug: 'premiere-ligue', name: 'Premiere Ligue', comp_type: 'league', gender: 'women', country_code: 'FRA', tier: 1, season_format: 'split',
+    external_ids: [{ provider: 'espn', external_id: 'fra.w.1', method: 'founding', evidence: 't' }], espn: { league: 'fra.w.1', id: '20955', enabled: true, may_found: true, stage_by_type: true, ...(roles ? { type_roles: roles } : {}) } }] });
+  const store = await openPglite(); await applyMigrations(store);
+  const plLane = { name: 'espn_premiere_ligue', competition: 'premiere-ligue' };
+  const first = await runEspnLane(plLane, { store, storage, registry: comp(null), state: emptyLaneState('espn_premiere_ligue@2022:results'), now: NOW, fetcher, budget: 200, force: true, year: 2022, depth: 'results' });
+  assert.equal(first.cursor.types['1'].role, 'excluded', 'the generic classifier excludes this type name');
+  assert.equal(Object.keys(first.cursor.fixtures || {}).length, 0);
+  const second = await runEspnLane(plLane, { store, storage, registry: comp({ [TYPE]: 'league' }), state: { lane: 'espn_premiere_ligue@2022:results', cursor: first.cursor }, now: NOW, fetcher, budget: 200, force: true, year: 2022, depth: 'results' });
+  assert.equal(second.cursor.types['1'].role, 'league', 'cached index rebuilt with the corrected role');
+  assert.equal(Object.keys(second.cursor.fixtures).length, 1, 'the season is indexed after the role fix');
+  await store.close();
+});

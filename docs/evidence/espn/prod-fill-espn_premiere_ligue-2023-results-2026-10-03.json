@@ -1,0 +1,114 @@
+{
+  "lane": "espn_premiere_ligue@2023:results",
+  "base": "https://soccer-ingest.sales-fd3.workers.dev",
+  "runs": [
+    {
+      "lane": "espn_premiere_ligue@2023:results",
+      "run": 1,
+      "http": 200,
+      "ms": 84304,
+      "requests": 120,
+      "fixtures_new": 111,
+      "repeated_pairings": null,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premiere_ligue@2023:results",
+      "run": 2,
+      "http": 200,
+      "ms": 85946,
+      "requests": 112,
+      "fixtures_new": 25,
+      "repeated_pairings": 0,
+      "detailed": 27,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 12,
+        "before": 6,
+        "founded": 6,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premiere_ligue@2023:results",
+      "run": 3,
+      "http": 200,
+      "ms": 81898,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 12,
+        "before": 12,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premiere_ligue@2023:results",
+      "run": 4,
+      "http": 200,
+      "ms": 81179,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 12,
+        "before": 12,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premiere_ligue@2023:results",
+      "run": 5,
+      "http": 200,
+      "ms": 77834,
+      "requests": 105,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 35,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 12,
+        "before": 12,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premiere_ligue@2023:results",
+      "run": 6,
+      "http": 200,
+      "ms": 801,
+      "requests": 0,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 0,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 12,
+        "before": 12,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+ "at": "2026-10-03T22:29:59.725Z",
+ "competition": "liga-f",
+ "season": "2023/24",
+ "state_before": "held",
+ "acceptance": {
+  "canonical_matches": 240,
+  "finished": 240,
+  "teams": 16,
+  "league_matches": 240,
+  "matches_per_club": {
+   "min": 30,
+   "max": 30
+  },
+  "repeated_pairings": 0,
+  "repeat_pairings_allowed": false,
+  "era": "16-club double round robin; ESPN Core catalog teams_listed x events_listed = double round robin (docs/evidence/history/womens-history-discovery-2026-10-03.json), matching the published league format",
+  "unresolved_identity_queue": 0,
+  "discovery": {
+   "checked": true,
+   "lane": "espn_liga_f@2023:results",
+   "indexed": 240,
+   "fetched": 240,
+   "missing_events": 0,
+   "repeated_pairing_events": 0,
+   "without_status": 0,
+   "finished_without_score": 0
+  },
+  "crosswalked": 240,
+  "espn_source_results": 240,
+  "score_disagreements": 0,
+  "postponed_beside_replay": 0
+ },
+ "matches": 240,
+ "finished": 240,
+ "stages": [
+  "Regular Season:league"
+ ],
+ "teams": 16,
+ "format": {
+  "teams": 16,
+  "league_matches": 240,
+  "games_per_team": {
+   "30": 16
+  }
+ },
+ "providers": [
+  "espn"
+ ],
+ "coverage": {
+  "venue": 1,
+  "lineups": 0,
+  "stats": 0,
+  "events": 0
+ },
+ "coverage_tier": "MATCH",
+ "limitations": [
+  "lineups for 0% of finished matches",
+  "team statistics for 0% of finished matches",
+  "event record for 0% of finished matches"
+ ],
+ "notes": [],
+ "checks_failed": [],
+ "pass": true,
+ "promoted": true
+}

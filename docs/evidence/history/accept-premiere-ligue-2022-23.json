@@ -1,0 +1,77 @@
+{
+ "at": "2026-10-03T22:54:09.885Z",
+ "competition": "premiere-ligue",
+ "season": "2022/23",
+ "state_before": "held",
+ "acceptance": {
+  "canonical_matches": 0,
+  "finished": 0,
+  "teams": 0,
+  "league_matches": 0,
+  "matches_per_club": null,
+  "repeated_pairings": 0,
+  "repeat_pairings_allowed": false,
+  "era": "12-club double round robin regular season (play-offs are a separate ESPN type from 2023/24); ESPN Core catalog teams_listed x events_listed = double round robin (docs/evidence/history/womens-history-discovery-2026-10-03.json), matching the published league format",
+  "unresolved_identity_queue": 0,
+  "discovery": {
+   "checked": true,
+   "lane": "espn_premiere_ligue@2022:results",
+   "indexed": 0,
+   "fetched": 0,
+   "missing_events": 0,
+   "repeated_pairing_events": 0,
+   "without_status": 0,
+   "finished_without_score": 0
+  },
+  "crosswalked": 0,
+  "espn_source_results": 0,
+  "score_disagreements": 0,
+  "postponed_beside_replay": 0
+ },
+ "matches": 0,
+ "finished": 0,
+ "stages": [
+  "Playoffs:playoff",
+  "Regular Season:league"
+ ],
+ "teams": 0,
+ "format": null,
+ "providers": [],
+ "coverage": {
+  "venue": 0,
+  "lineups": 0,
+  "stats": 0,
+  "events": 0
+ },
+ "coverage_tier": null,
+ "limitations": [
+  "lineups for 0% of finished matches",
+  "team statistics for 0% of finished matches",
+  "event record for 0% of finished matches"
+ ],
+ "notes": [],
+ "checks_failed": [
+  {
+   "check": "too_few_matches",
+   "expected_at_least": 1,
+   "found": 0
+  },
+  {
+   "check": "structure_league_match_count",
+   "expected": 132,
+   "found": 0,
+   "era": "12-club double round robin regular season (play-offs are a separate ESPN type from 2023/24); ESPN Core catalog teams_listed x events_listed = double round robin (docs/evidence/history/womens-history-discovery-2026-10-03.json), matching the published league format"
+  },
+  {
+   "check": "structure_team_count",
+   "expected": 12,
+   "found": 0
+  },
+  {
+   "check": "structure_finished_count",
+   "expected": 132,
+   "found": 0
+  }
+ ],
+ "pass": false
+}

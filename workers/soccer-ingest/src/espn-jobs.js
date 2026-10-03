@@ -90,7 +90,11 @@ export async function runEspnLane(lane, { store, storage, registry, areas = { ar
     }
     const year = cursor.season_year;
     // 2. event index (all season types: tournaments have several)
-    if (!cursor.index || (!pinYear && cursor.index_day !== today)) {
+    // A cached type index whose roles no longer match the registry (a corrected type_roles entry) is rebuilt, also for a
+    // pinned history lane (Premiere Ligue 2022/23 kept 'excluded' for its only type after the registry fix).
+    const roleOf = n => comp.espn.type_roles?.[n] || espn.seasonTypeRole(n);
+    const rolesDrifted = !!(comp.espn.stage_by_type && cursor.types && Object.values(cursor.types).some(t => roleOf(t.name) !== t.role));
+    if (!cursor.index || rolesDrifted || (!pinYear && cursor.index_day !== today)) {
       const { json: types } = await client.get(espn.urls.seasonTypes(league, year));
       let typeIds = (types.items || []).map(i => espn.refId(i.$ref, 'types')).filter(Boolean);
       if (comp.espn.stage_by_type) {
@@ -100,7 +104,7 @@ export async function runEspnLane(lane, { store, storage, registry, areas = { ar
           const { json: tj } = await client.get(`${espn.CORE}/${league}/seasons/${year}/types/${t}`);
           // A registry may name a competition's own league-stage type exactly (World Cup: "Group Stage");
           // anything not named there keeps the generic classification.
-          cursor.types[t] = { name: tj.name || null, role: comp.espn.type_roles?.[tj.name] || espn.seasonTypeRole(tj.name) };
+          cursor.types[t] = { name: tj.name || null, role: roleOf(tj.name) };
         }
         typeIds = typeIds.filter(t => cursor.types[t].role !== 'excluded');
       }

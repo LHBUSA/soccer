@@ -1,0 +1,25 @@
+{
+  "lane": "espn_premiere_ligue@2022:results",
+  "base": "https://soccer-ingest.sales-fd3.workers.dev",
+  "runs": [
+    {
+      "lane": "espn_premiere_ligue@2022:results",
+      "run": 1,
+      "http": 200,
+      "ms": 1075,
+      "requests": 0,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 0,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 0,
+        "before": 0,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    }
+  ]
+}
