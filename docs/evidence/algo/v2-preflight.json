@@ -1,0 +1,606 @@
+{
+ "at": "2026-10-03T11:58:51.723Z",
+ "now": "2026-10-03T11:58:51.715Z",
+ "frozen": {
+  "match_ids": 362,
+  "ids_sha256": "2dc6c0b5b2dfbe6606b0ed5a954fbaaafa37e4b8bb1f4eec2e8003a708550e0a",
+  "recorded": "2dc6c0b5b2dfbe6606b0ed5a954fbaaafa37e4b8bb1f4eec2e8003a708550e0a",
+  "frozen_at": "2026-10-02T21:51:00.322Z",
+  "spec_hash": "53e6b8d7ff9bcd8ccba5922c048ceb89aa138918a25220a5722be6c8379d556e",
+  "model_hash": "4c40fa9c020073c3dfeb42dd8b286940b9989c44035e8d08bb4a46ca8f984002",
+  "model_code_sha256": "a6ad149d2e9929078d58b1c568c5ff23761445a52fdbe764bc9ea993db3e1c40",
+  "status": "official",
+  "algo_version": "soccer-algo-v2.1.0"
+ },
+ "history": {
+  "members_found": 362,
+  "missing": 0,
+  "past_without_final_score": 0,
+  "sample": []
+ },
+ "reproduction": {
+  "run_a": {
+   "forecasts": 34,
+   "picks": 4
+  },
+  "run_b": {
+   "forecasts": 34,
+   "picks": 4
+  },
+  "identical": true
+ },
+ "lane": {
+  "result": {
+   "fixtures": 34,
+   "forecasts": 34,
+   "picks": 4,
+   "holds": [],
+   "settled": 0,
+   "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+   "input_count": 359
+  },
+  "writes_captured": [
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_picks:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_picks:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_picks:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_picks:1",
+   "insert:soccer_algo_forecasts:1",
+   "insert:soccer_algo_events:43"
+  ],
+  "forecasts": [
+   {
+    "match_id": "010bfdcb-a201-5c1c-988e-cf6e44aad8c0",
+    "kickoff_at": "2026-10-04T13:00:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "away_to_score",
+     "selection": "yes",
+     "probability": 0.705419014739602,
+     "threshold": 0.8,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "0371ef4c-8b5c-5e80-8958-d07c5755af28",
+    "kickoff_at": "2026-10-06T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "1x2",
+     "selection": "home",
+     "probability": 0.8575960738317252,
+     "threshold": 0.8,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "07e6fcec-6c9f-5253-929f-08d6f1c33366",
+    "kickoff_at": "2026-10-03T16:00:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "away_to_score",
+     "selection": "yes",
+     "probability": 0.9062948510453536,
+     "threshold": 0.8,
+     "qualifies": true
+    }
+   },
+   {
+    "match_id": "0c5f70ba-c581-5912-b1f6-1a2e632ed76d",
+    "kickoff_at": "2026-10-04T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "home_to_score",
+     "selection": "yes",
+     "probability": 0.9194132411531137,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "0e43b178-51c8-50f2-ba0e-52a05aa93a1b",
+    "kickoff_at": "2026-10-04T16:00:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "over_2_5",
+     "selection": "under",
+     "probability": 0.7993515931409093,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "19c81d3c-2371-5e2f-9123-b066125f410b",
+    "kickoff_at": "2026-10-03T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "over_2_5",
+     "selection": "under",
+     "probability": 0.7744637613339165,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "1d6cae78-ee35-5200-a565-c21080cf88f4",
+    "kickoff_at": "2026-10-05T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "home_to_score",
+     "selection": "yes",
+     "probability": 0.7972363521368477,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "2204842c-b7b7-555a-a440-f60676bd47a0",
+    "kickoff_at": "2026-10-05T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "home_to_score",
+     "selection": "yes",
+     "probability": 0.9324241842231284,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "4325c47f-824c-5636-9e68-80438467e42a",
+    "kickoff_at": "2026-10-05T16:00:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "over_2_5",
+     "selection": "under",
+     "probability": 0.7209009348727364,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "460caa0c-ff4e-5768-8d8a-5b21f53b1ebc",
+    "kickoff_at": "2026-10-06T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "home_to_score",
+     "selection": "yes",
+     "probability": 0.8478502307535127,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "546e59de-d4c7-5431-856c-dd6560a3b70a",
+    "kickoff_at": "2026-10-04T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "away_to_score",
+     "selection": "yes",
+     "probability": 0.6737934442017713,
+     "threshold": 0.8,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "572f279a-5d98-586a-a51d-eca288487796",
+    "kickoff_at": "2026-10-03T16:00:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "over_2_5",
+     "selection": "under",
+     "probability": 0.7693380520025589,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "58860348-4d71-5a86-8493-4d65e9f664fc",
+    "kickoff_at": "2026-10-05T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "home_to_score",
+     "selection": "yes",
+     "probability": 0.9201307149002578,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "67bd5270-5de2-5b7a-ad5d-7d550ecb92e1",
+    "kickoff_at": "2026-10-06T14:00:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "over_2_5",
+     "selection": "under",
+     "probability": 0.7408683535885631,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "785de2fc-5c7d-5b24-a639-5ab6024a3f21",
+    "kickoff_at": "2026-10-05T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "home_to_score",
+     "selection": "yes",
+     "probability": 0.7511133264692974,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "7dbfccd7-b6bf-5ded-9d34-e3e60555b70d",
+    "kickoff_at": "2026-10-05T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "away_to_score",
+     "selection": "yes",
+     "probability": 0.9244446981720167,
+     "threshold": 0.8,
+     "qualifies": true
+    }
+   },
+   {
+    "match_id": "8030206f-a25a-50d7-aa7b-c5e305f53385",
+    "kickoff_at": "2026-10-03T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "home_to_score",
+     "selection": "yes",
+     "probability": 0.7523592102851802,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "857a0af4-2774-5000-a928-322851f4316f",
+    "kickoff_at": "2026-10-03T13:00:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "away_to_score",
+     "selection": "yes",
+     "probability": 0.6181861220745986,
+     "threshold": 0.8,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "86c1ca12-4ea8-5008-a35f-c257cc49b51c",
+    "kickoff_at": "2026-10-03T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "1x2",
+     "selection": "home",
+     "probability": 0.891073446574711,
+     "threshold": 0.8,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "88556a6e-dee6-558a-9fa5-0c3a443abfd5",
+    "kickoff_at": "2026-10-03T16:00:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "home_to_score",
+     "selection": "yes",
+     "probability": 0.8168006627531658,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "8f6ea9cf-5fbb-537e-8cd4-68ddbfb78988",
+    "kickoff_at": "2026-10-04T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "home_to_score",
+     "selection": "yes",
+     "probability": 0.8066811385843111,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "978364ff-e007-573a-85d9-758cb99848e6",
+    "kickoff_at": "2026-10-04T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "home_to_score",
+     "selection": "yes",
+     "probability": 0.7927717569881936,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "9803528e-d95f-5387-b4b0-cf2a3efa6823",
+    "kickoff_at": "2026-10-06T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "1x2",
+     "selection": "home",
+     "probability": 0.8778321122991455,
+     "threshold": 0.8,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "b2147914-9dbc-5495-a253-e6ccb303a998",
+    "kickoff_at": "2026-10-06T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "away_to_score",
+     "selection": "yes",
+     "probability": 0.8865620160307285,
+     "threshold": 0.8,
+     "qualifies": true
+    }
+   },
+   {
+    "match_id": "bbaed7e5-2129-54d8-a2c2-39ac779c34a5",
+    "kickoff_at": "2026-10-05T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "home_to_score",
+     "selection": "yes",
+     "probability": 0.7432704195253566,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "c0859e14-22b5-52c7-9d72-bca89698da86",
+    "kickoff_at": "2026-10-03T16:00:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "home_to_score",
+     "selection": "yes",
+     "probability": 0.8547348055713918,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "c0b33d2e-84d7-5557-b334-3724c25b6078",
+    "kickoff_at": "2026-10-06T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "away_to_score",
+     "selection": "yes",
+     "probability": 0.7390970981369004,
+     "threshold": 0.8,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "d18078ce-1ffd-5d4b-bd13-e6dce2f9b880",
+    "kickoff_at": "2026-10-06T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "over_2_5",
+     "selection": "under",
+     "probability": 0.7930020221846217,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "d2c0b067-8277-551e-a4f5-ba7bc955ac51",
+    "kickoff_at": "2026-10-04T16:00:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "away_to_score",
+     "selection": "yes",
+     "probability": 0.779048764093174,
+     "threshold": 0.8,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "d73a6c9e-c1c3-5380-b441-84395c004339",
+    "kickoff_at": "2026-10-04T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "home_to_score",
+     "selection": "yes",
+     "probability": 0.8283485369275481,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "d8a2ec34-2731-5da9-923c-add016ff5630",
+    "kickoff_at": "2026-10-06T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "over_2_5",
+     "selection": "under",
+     "probability": 0.8234587814435844,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "ebae473a-3eff-578b-af6a-07430306d4f6",
+    "kickoff_at": "2026-10-06T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "away_to_score",
+     "selection": "yes",
+     "probability": 0.6869102361102208,
+     "threshold": 0.8,
+     "qualifies": false
+    }
+   },
+   {
+    "match_id": "f95982ce-9a4b-5c05-b653-2811ab589950",
+    "kickoff_at": "2026-10-05T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "away_to_score",
+     "selection": "yes",
+     "probability": 0.837449301717725,
+     "threshold": 0.8,
+     "qualifies": true
+    }
+   },
+   {
+    "match_id": "fdce7804-6880-5085-94ea-5f3321fffb8e",
+    "kickoff_at": "2026-10-06T18:45:00.000Z",
+    "input_hash": "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64",
+    "input_count": 359,
+    "input_as_of": "2026-10-02T18:45:00.000Z",
+    "game_best": {
+     "market": "home_to_score",
+     "selection": "yes",
+     "probability": 0.7298653731511788,
+     "threshold": 0.9,
+     "qualifies": false
+    }
+   }
+  ],
+  "picks": [
+   {
+    "match_id": "07e6fcec-6c9f-5253-929f-08d6f1c33366",
+    "market": "away_to_score",
+    "selection": "yes",
+    "threshold": 0.8,
+    "lock_at": "2026-10-03T15:00:00.000Z"
+   },
+   {
+    "match_id": "7dbfccd7-b6bf-5ded-9d34-e3e60555b70d",
+    "market": "away_to_score",
+    "selection": "yes",
+    "threshold": 0.8,
+    "lock_at": "2026-10-05T17:45:00.000Z"
+   },
+   {
+    "match_id": "b2147914-9dbc-5495-a253-e6ccb303a998",
+    "market": "away_to_score",
+    "selection": "yes",
+    "threshold": 0.8,
+    "lock_at": "2026-10-06T17:45:00.000Z"
+   },
+   {
+    "match_id": "f95982ce-9a4b-5c05-b653-2811ab589950",
+    "market": "away_to_score",
+    "selection": "yes",
+    "threshold": 0.8,
+    "lock_at": "2026-10-05T17:45:00.000Z"
+   }
+  ]
+ },
+ "contamination": {
+  "inputs_used": 359,
+  "frozen_members_used": 359,
+  "post_freeze_inputs": 0,
+  "historical_non_members": 0,
+  "input_hashes": [
+   "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64"
+  ],
+  "input_count": 359,
+  "input_as_of": "2026-10-02T18:45:00.000Z"
+ },
+ "checks_failed": [],
+ "pass": true,
+ "holds": []
+}
