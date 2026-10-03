@@ -5,7 +5,8 @@
   --pbe-ink-2: var(--shell-2); --pbe-paper: #f3f6fb; --pbe-dim: var(--muted-dark);
   --pbe-line: var(--shell-line); --f-mono: var(--mono); --r: var(--radius-s);
 }
-.kx { border-radius: var(--radius); }
+.kx { border-radius: var(--radius); border: 1px solid rgba(127,184,255,.24); padding: 16px; color: var(--pbe-paper); min-width: 0; }
+.kx-strip { color: var(--pbe-paper); }
 
 /* Match page: its own block between the hero and the match intelligence. */
 .kx-sec { padding-top: 18px; padding-bottom: 6px; }

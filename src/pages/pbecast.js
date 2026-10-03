@@ -15,7 +15,7 @@ import { competitionMark, empty, link, mountMediaFallbacks, playerChip, sectionH
 import { L, W, pitchLines } from '../components/pitch.js';
 import { keyPlayers } from '../components/keyplayers.js';
 import { matchTitle } from '../seo/meta.js';
-import { boardWithin, castKalshiHtml, kalshi, kalshiLineFor, kalshiPollState } from '../data/kalshi.js';
+import { boardWithin, byDeadline, castKalshiHtml, kalshi, KALSHI_FIRST_PAINT_MS, kalshiLineFor, kalshiPollState } from '../data/kalshi.js';
 import { wireKalshi } from '../vendor/kalshi/kalshi-market-ui.js';
 
 const POLL_LIVE_MS = 60000;   // the ingest lane polls about once a minute; do not poll faster than the source can change
@@ -84,7 +84,19 @@ export const hub = {
 };
 
 // ---------------------------------------------------------------- cast
-export async function loadCast([id]) { return { env: await api(`matches/${id}/cast`, {}, { fresh: true }) }; }
+// The Kalshi strip is read alongside the cast and waited for at most KALSHI_FIRST_PAINT_MS, so a
+// direct visit paints it with the cast (no layout shift); a slower answer lands via mountCastKalshi.
+export async function loadCast([id]) {
+  const deadline = Date.now() + KALSHI_FIRST_PAINT_MS;
+  const kx = castKx.id === id && castKx.entry ? null : kalshi.loadEvent(id).catch(() => null);
+  const env = await api(`matches/${id}/cast`, {}, { fresh: true });
+  if (kx) {
+    const entry = await byDeadline(kx, deadline);
+    if (entry && castKx.id !== id) Object.assign(castKx, { id, entry, open: false });
+    else if (entry && !castKx.entry) castKx.entry = entry;
+  }
+  return { env };
+}
 
 const ICON = { goal: '●', own_goal: '●', shot: '○', card_yellow: '▮', card_red: '▮', sub: '⇄' };
 const WORD = { goal: 'Goal', own_goal: 'Own goal', shot: 'Shot', card_yellow: 'Yellow card', card_red: 'Red card', sub: 'Substitution' };
