@@ -1,0 +1,37 @@
+{
+ "at": "2026-10-03T12:24:57.469Z",
+ "algo_version": "soccer-algo-v2.1.0",
+ "activation_at": "2026-10-03T12:21:54.013+00:00",
+ "forecasts": 33,
+ "official_picks": 4,
+ "holds": 0,
+ "reproduced_within_1e12_decisions_identical": "33/33",
+ "probabilities_bit_exact": "28/33",
+ "max_abs_probability_difference": 1.1102230246251565e-16,
+ "input_hashes": [
+  "30a8bad7f4cce7af71e1b1f450a250d8e98b5b19e4581b20ae4ab0559ac95d64"
+ ],
+ "ledger_ids": [
+  4,
+  5,
+  6,
+  7
+ ],
+ "public_record_numbers": [
+  1,
+  2,
+  3,
+  4
+ ],
+ "settlement": {
+  "pending": 4
+ },
+ "v1_ledger": {
+  "forecasts": 1,
+  "picks": [
+   3
+  ]
+ },
+ "checks_failed": [],
+ "pass": true
+}
