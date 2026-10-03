@@ -5,6 +5,8 @@
 //   groups  a tournament of verified group tables and NO overall table (Nations League now;
 //           World Cup / EURO / Copa America / Gold Cup reuse it)
 // `nav` places the competition in the top rail: 'club' chips, or inside the INTERNATIONAL menu.
+// `spatial: false` = the source gives this competition's events no pitch locations (canary SPATIAL_DATA_UNAVAILABLE):
+// PBEcast shows a neutral 'shot map not available' note, never an empty pitch, never invented locations.
 export const ALL_COMPS = [
   { slug: 'mls', name: 'MLS', long: 'Major League Soccer', mono: 'MLS', accent: 'mls', desk: 'mls', format: 'league', nav: 'club', enabled: true },
   { slug: 'premier-league', name: 'Premier League', long: 'Premier League', mono: 'PL', accent: 'epl', desk: 'premier-league', format: 'league', nav: 'club', enabled: true },
@@ -22,8 +24,8 @@ export const ALL_COMPS = [
   { slug: 'nwsl', name: 'NWSL', long: "National Women's Soccer League", mono: 'NWSL', accent: 'nwsl', desk: 'nwsl', format: 'league', nav: 'women', gender: 'women', enabled: false },
   { slug: 'womens-super-league', name: 'WSL', long: "Women's Super League", mono: 'WSL', accent: 'wsl', desk: 'wsl', format: 'league', nav: 'women', gender: 'women', enabled: false },
   { slug: 'uefa-womens-champions-league', name: "Women's Champions League", long: "UEFA Women's Champions League", mono: 'UWCL', accent: 'uwcl', desk: 'uwcl', format: 'ucl', nav: 'women', gender: 'women', enabled: false },
-  { slug: 'liga-f', name: 'Liga F', long: 'Liga F', mono: 'LF', accent: 'ligaf', desk: 'liga-f', format: 'league', nav: 'women', gender: 'women', enabled: false },
-  { slug: 'premiere-ligue', name: 'Première Ligue', long: 'Première Ligue', mono: 'D1F', accent: 'd1f', desk: 'premiere-ligue', format: 'league', nav: 'women', gender: 'women', enabled: false },
+  { slug: 'liga-f', name: 'Liga F', long: 'Liga F', mono: 'LF', accent: 'ligaf', desk: 'liga-f', format: 'league', nav: 'women', gender: 'women', spatial: false, enabled: false },
+  { slug: 'premiere-ligue', name: 'Première Ligue', long: 'Première Ligue', mono: 'D1F', accent: 'd1f', desk: 'premiere-ligue', format: 'league', nav: 'women', gender: 'women', spatial: false, enabled: false },
 ]
 // Product navigation only advertises competitions whose canonical graph is live.
 export const FEATURED_COMPS = ALL_COMPS.filter(c => c.enabled);

@@ -112,3 +112,22 @@ test('replay pitch + feed markup contain only the events through the cursor', ()
   assert.match(nowLine(replayView(tl.total, tl, { home: 1, away: 1 }), m), /^Full time · H 1–1 A$/);
   assert.match(nowLine(replayView(0, tl), m), /^Kick-off/);
 });
+
+test('no empty shot map: spatial:false competitions and unlocated finished matches get the neutral note; the rest of the cast stays', () => {
+  const unlocated = seq.map(({ x, y, ...e }) => e);
+  // Liga F (competitions.js spatial:false): never a pitch, even live
+  for (const live of [{ mode: 'replay' }, { mode: 'live', display_clock: "63'", provider_observed_at: new Date().toISOString(), stale: false }]) {
+    const h = castView(env(live, { sequence: unlocated, competition: { slug: 'liga-f', name: 'Liga F' } }));
+    assert.doesNotMatch(h, /class="pitchwrap/); assert.doesNotMatch(h, /NOTHING IS PLOTTED/); assert.doesNotMatch(h, /class="legend"/);
+    assert.match(h, /SHOT MAP NOT AVAILABLE/); assert.match(h, /this competition&#39;s events without pitch locations|this competition's events without pitch locations/);
+    assert.match(h, /data-feed/, 'the match feed still renders');
+  }
+  // a spatial competition: a finished match with zero located events gets the note, never an empty pitch
+  const fin = castView(env({ mode: 'replay' }, { sequence: unlocated }));
+  assert.doesNotMatch(fin, /class="pitchwrap/); assert.match(fin, /SHOT MAP NOT AVAILABLE/); assert.match(fin, /data-replay/, 'replay controls stay');
+  // live match of a spatial competition keeps its map (located shots can arrive at any minute)
+  const live = castView(env({ mode: 'live', display_clock: "5'", provider_observed_at: new Date().toISOString(), stale: false }, { sequence: unlocated }));
+  assert.match(live, /class="pitchwrap land"/);
+  // located data: unchanged
+  assert.match(castView(env({ mode: 'replay' })), /class="pitchwrap land"/);
+});

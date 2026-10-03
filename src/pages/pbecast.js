@@ -314,6 +314,11 @@ export function castView(env) {
   const fresh = mode === 'live' ? status?.note || null : replay ? 'Replay: everything shown is from events at or before the cursor.' : null;
   const focus = mode === 'live' ? st.current : null;
   const pitchFocus = focus && pitchKind(focus) ? focus : null;
+  // No empty shot map: a competition whose source has no pitch locations (competitions.js spatial:false) never shows
+  // one; a finished / non-live match with zero located events shows the neutral note instead. A live match of a
+  // spatial competition keeps the map (its first located shot can arrive at any minute).
+  const spatialOff = compMeta(m.competition?.slug)?.spatial === false;
+  const showMap = !spatialOff && (located > 0 || mode === 'live');
   return `<section class="cast-top ${esc(mode)}"><div class="wrap">
       <p class="ct-meta">${link('/pbecast', 'PBECAST', 'ct-home')} · ${m.competition ? link(`/competitions/${m.competition.slug}`, `${competitionMark(m.competition.slug, 'xs', { tone: 'dark' })}<span>${esc(m.competition.name)}</span>`, 'ct-comp') : ''}${m.round ? ` · ${esc(m.round)}` : ''}</p>
       <h1 class="sr-only">${esc(m.home?.name || '')} v ${esc(m.away?.name || '')}: PBEcast</h1>
@@ -341,10 +346,10 @@ export function castView(env) {
           </div>` : ''}
           <div data-moment-slot>${momentPanel(st, m, { mode, freshness: fresh })}</div>
           ${timelineBar(tl, m)}
-          <div class="pitchwrap land">${castPitch(tl, m, { current: pitchFocus })}</div>
+          ${showMap ? `<div class="pitchwrap land">${castPitch(tl, m, { current: pitchFocus })}</div>
           <div class="pitchwrap port">${castPitch(tl, m, { portrait: true, current: pitchFocus })}</div>
           <p class="emap-label" data-rp-caption>${replay ? esc(st.caption) : located ? `${num(located)} LOCATED SHOTS · EVENT LOCATIONS, NOT PLAYER TRACKING` : 'NO LOCATED EVENTS FROM THIS SOURCE · NOTHING IS PLOTTED'}</p>
-          <p class="legend"><span><i class="lg goal"></i>Goal</span><span><i class="lg on"></i>On target</span><span><i class="lg off"></i>Off target / blocked</span><span class="muted">Shots only · tap a feed event to find it · cards and substitutions are in the feed</span></p>
+          <p class="legend"><span><i class="lg goal"></i>Goal</span><span><i class="lg on"></i>On target</span><span><i class="lg off"></i>Off target / blocked</span><span class="muted">Shots only · tap a feed event to find it · cards and substitutions are in the feed</span></p>` : `<div class="cast-nomap" role="note"><p class="kicker">SHOT MAP NOT AVAILABLE</p><p>The source records ${spatialOff ? 'this competition\'s' : 'this match\'s'} events without pitch locations, so no shot map is drawn. Every shot, goal, card and substitution is in the match feed.</p></div>`}
           <div data-pulse-slot>${pulsePanel(matchPulse(st.seen, st.v ?? tl.total, tl), m)}</div>
         </div>
         <div class="cast-feed panel">${replay ? '<header class="sec-head"><p class="kicker">REPLAY FEED</p><h2 data-feed-sub>Full match</h2></header>' : sectionHead(mode === 'live' ? 'LIVE MATCH FEED' : 'MATCH FEED', 'Every sourced shot, goal, card and substitution')}

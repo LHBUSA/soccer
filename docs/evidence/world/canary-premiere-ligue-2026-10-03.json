@@ -1,0 +1,349 @@
+{
+  "generated_at": "2026-10-03T16:04:46.178Z",
+  "mode": "local-pglite (production untouched; production team identities seeded read-only)",
+  "competition": "premiere-ligue",
+  "gender": "women",
+  "team_kind": "club",
+  "source": "ESPN Core (owner-approved collection lane)",
+  "budget": 3000,
+  "requests_used": 572,
+  "budget_exhausted": false,
+  "aborted": null,
+  "runs": [
+    {
+      "requests": 200,
+      "fixtures_new": 132,
+      "detailed": 0,
+      "team_identity": {
+        "espn_teams": 12,
+        "resolved_before": 0,
+        "teams_founded": 12,
+        "team_crosswalk": {
+          "inserted": 12,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "resolved_after": 12
+      },
+      "fixtures": {
+        "considered": 132,
+        "attached_to_existing": 0,
+        "founded": 132,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 132,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 132,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 5,
+      "team_identity": {
+        "espn_teams": 12,
+        "resolved_before": 12
+      },
+      "fixtures": {
+        "considered": 132,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 172,
+      "fixtures_new": 0,
+      "detailed": 13,
+      "team_identity": {
+        "espn_teams": 12,
+        "resolved_before": 12
+      },
+      "fixtures": {
+        "considered": 132,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": null
+    },
+    {
+      "requests": 0,
+      "fixtures_new": 0,
+      "detailed": 0,
+      "team_identity": {
+        "espn_teams": 12,
+        "resolved_before": 12
+      },
+      "fixtures": {
+        "considered": 132,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": null
+    }
+  ],
+  "espn": {
+    "league": "fra.w.1",
+    "id": "20955",
+    "season_year": 2026,
+    "types": {
+      "1": {
+        "name": "Regular Season",
+        "role": "league"
+      },
+      "2": {
+        "name": "Playoffs - Semifinals",
+        "role": "playoff"
+      },
+      "3": {
+        "name": "Playoffs - 3rd-Place",
+        "role": "playoff"
+      },
+      "4": {
+        "name": "Playoffs - Final",
+        "role": "playoff"
+      }
+    },
+    "fixtures_seen": 132,
+    "detailed": 18,
+    "by_type": {
+      "Regular Season": 132
+    },
+    "excluded_teams": null
+  },
+  "competition_row": {
+    "id": "00cb1efa-4139-53f9-96c0-b7e3c4099b13",
+    "slug": "premiere-ligue",
+    "name": "Première Ligue",
+    "comp_type": "league",
+    "gender": "women"
+  },
+  "season": {
+    "label": "2026/27",
+    "publication_state_after_lane": "published",
+    "local_promotion": "published in the local canary store only"
+  },
+  "identity_gate": {
+    "teams": 12,
+    "expected_teams": 12,
+    "wrong_team_kind": [],
+    "wrong_gender": [],
+    "reused_existing_canonical": [],
+    "founded_new": 12,
+    "espn_ids_already_crosswalked_in_production": 0,
+    "espn_id_maps_to_same_canonical_as_production": true,
+    "duplicate_espn_team_ids": 0,
+    "teams_with_more_than_one_espn_id": 0,
+    "duplicate_names": [],
+    "crosswalk_methods": {
+      "founding": 12
+    },
+    "cross_gender_namesakes_kept_distinct": [
+      {
+        "team": "Paris Saint-Germain Women",
+        "gender": "women",
+        "distinct_from": [
+          "Paris Saint-Germain (men)"
+        ]
+      },
+      {
+        "team": "Lens Women",
+        "gender": "women",
+        "distinct_from": [
+          "Lens (men)"
+        ]
+      }
+    ],
+    "teams_queued": 0,
+    "teams_queued_detail": [],
+    "pass": true
+  },
+  "matches": {
+    "total": 132,
+    "by_status": {
+      "scheduled": 114,
+      "finished": 18
+    },
+    "by_stage": [
+      {
+        "name": "Regular Season",
+        "type": "league",
+        "matches": 132,
+        "finished": 18
+      },
+      {
+        "name": "Playoffs",
+        "type": "playoff",
+        "matches": 0,
+        "finished": 0
+      }
+    ],
+    "finished_without_score": 0,
+    "knockout_without_winner": 0
+  },
+  "enrichment": {
+    "finished": 18,
+    "detailed": 18,
+    "lineups_both": 18,
+    "lineup_rows": 36,
+    "formations": 36,
+    "team_stats_both": 18,
+    "team_stat_rows": 528,
+    "plays": 18,
+    "events": 278,
+    "located_events": 0,
+    "coord_systems": {
+      "none": 278
+    },
+    "gaps": []
+  },
+  "players": {
+    "in_lineups": 222,
+    "founded_locally": 222,
+    "corroborated": 0,
+    "queued": 34,
+    "queued_by_reason": {
+      "athlete_without_dob_or_name": 34
+    },
+    "already_canonical_in_production_by_espn_id": 0,
+    "production_lookup": "ok"
+  },
+  "table": {
+    "view": "overall",
+    "rows": 12,
+    "top": [
+      {
+        "team": "OL Lyonnes",
+        "pld": 3,
+        "pts": 9
+      },
+      {
+        "team": "Paris Saint-Germain Women",
+        "pld": 3,
+        "pts": 9
+      },
+      {
+        "team": "Marseille",
+        "pld": 3,
+        "pts": 7
+      }
+    ]
+  },
+  "finished_match_proof": {
+    "match_id": "a79f54c0-4bac-53d7-8cfa-a432a81735bc",
+    "fixture": "OL Lyonnes 7-1 Paris FC",
+    "kickoff": "2026-09-12T11:30:00.000Z",
+    "venue": "Groupama Stadium",
+    "lineups": [
+      "home",
+      "away"
+    ],
+    "timeline": 12,
+    "shots": 0,
+    "events": 22,
+    "coverage": {
+      "state": "partial",
+      "notes": [
+        "No event ledger with coordinates for this match: timeline shows reported goals only."
+      ]
+    },
+    "cast": {
+      "mode": "replay",
+      "sequence": 22
+    }
+  },
+  "scheduled_match_proof": {
+    "match_id": "eaabf2f9-470a-569a-9877-6829f58a181f",
+    "fixture": "Le Havre AC v Saint-Malo",
+    "kickoff": "2026-10-03T16:00:00.000Z",
+    "cast_mode": "pregame"
+  },
+  "competition_api": {
+    "team_kind": null,
+    "teams": 12,
+    "finished": 18,
+    "scheduled": 114
+  },
+  "gate": {
+    "lane_completed_without_abort": true,
+    "fixtures_complete": true,
+    "every_finished_match_scored": true,
+    "no_unknown_status": true,
+    "every_finished_match_detailed": true,
+    "no_enrichment_gaps": true,
+    "identity": true,
+    "table": true,
+    "knockout_winners_known": true,
+    "pass": true
+  },
+  "gate_version": "competition-canary-gate/1.2.0",
+  "elapsed_s": 417,
+  "acceptance": {
+    "match_data": "MATCH_DATA_PASS",
+    "spatial": "SPATIAL_DATA_UNAVAILABLE",
+    "located_events": 0
+  },
+  "regated": {
+    "at": "2026-10-03T16:27:31.706Z",
+    "previous_gate": {
+      "lane_completed_without_abort": true,
+      "fixtures_complete": true,
+      "every_finished_match_scored": true,
+      "every_finished_match_detailed": true,
+      "no_enrichment_gaps": true,
+      "identity": true,
+      "table": true,
+      "knockout_winners_known": true,
+      "pass": true
+    },
+    "reason": "gate 1.2.0: separate acceptance labels (MATCH_DATA_* / SPATIAL_DATA_*) + no_unknown_status check"
+  }
+}

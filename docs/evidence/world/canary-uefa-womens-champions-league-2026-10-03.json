@@ -1,50 +1,44 @@
 {
-  "generated_at": "2026-10-03T14:36:06.128Z",
+  "generated_at": "2026-10-03T15:43:59.973Z",
   "mode": "local-pglite (production untouched; production team identities seeded read-only)",
-  "competition": "serie-a",
-  "gender": "men",
+  "competition": "uefa-womens-champions-league",
+  "gender": "women",
   "team_kind": "club",
   "source": "ESPN Core (owner-approved collection lane)",
   "budget": 3000,
-  "requests_used": 1534,
+  "requests_used": 772,
   "budget_exhausted": false,
   "aborted": null,
   "runs": [
     {
       "requests": 200,
-      "fixtures_new": 197,
-      "detailed": 0,
-      "exhausted": "discovery"
-    },
-    {
-      "requests": 199,
-      "fixtures_new": 183,
-      "detailed": 0,
+      "fixtures_new": 54,
+      "detailed": 2,
       "team_identity": {
-        "espn_teams": 20,
-        "resolved_before": 4,
-        "teams_founded": 16,
+        "espn_teams": 18,
+        "resolved_before": 0,
+        "teams_founded": 18,
         "team_crosswalk": {
-          "inserted": 16,
+          "inserted": 18,
           "updated": 0,
           "unchanged": 0
         },
-        "resolved_after": 20
+        "resolved_after": 18
       },
       "fixtures": {
-        "considered": 380,
+        "considered": 54,
         "attached_to_existing": 0,
-        "founded": 380,
+        "founded": 54,
         "replacement_listings": 0,
         "repeated_pairs_skipped": 0,
         "queued": 0,
         "written": {
-          "inserted": 380,
+          "inserted": 54,
           "updated": 0,
           "unchanged": 0
         },
         "crosswalk": {
-          "inserted": 380,
+          "inserted": 54,
           "updated": 0,
           "unchanged": 0
         }
@@ -56,39 +50,11 @@
       "fixtures_new": 0,
       "detailed": 3,
       "team_identity": {
-        "espn_teams": 20,
-        "resolved_before": 20
+        "espn_teams": 18,
+        "resolved_before": 18
       },
       "fixtures": {
-        "considered": 380,
-        "attached_to_existing": 0,
-        "founded": 0,
-        "replacement_listings": 0,
-        "repeated_pairs_skipped": 0,
-        "queued": 0,
-        "written": {
-          "inserted": 0,
-          "updated": 0,
-          "unchanged": 0
-        },
-        "crosswalk": {
-          "inserted": 0,
-          "updated": 0,
-          "unchanged": 0
-        }
-      },
-      "exhausted": "details"
-    },
-    {
-      "requests": 200,
-      "fixtures_new": 0,
-      "detailed": 3,
-      "team_identity": {
-        "espn_teams": 20,
-        "resolved_before": 20
-      },
-      "fixtures": {
-        "considered": 380,
+        "considered": 54,
         "attached_to_existing": 0,
         "founded": 0,
         "replacement_listings": 0,
@@ -112,11 +78,11 @@
       "fixtures_new": 0,
       "detailed": 3,
       "team_identity": {
-        "espn_teams": 20,
-        "resolved_before": 20
+        "espn_teams": 18,
+        "resolved_before": 18
       },
       "fixtures": {
-        "considered": 380,
+        "considered": 54,
         "attached_to_existing": 0,
         "founded": 0,
         "replacement_listings": 0,
@@ -136,71 +102,15 @@
       "exhausted": "details"
     },
     {
-      "requests": 200,
+      "requests": 172,
       "fixtures_new": 0,
-      "detailed": 12,
+      "detailed": 10,
       "team_identity": {
-        "espn_teams": 20,
-        "resolved_before": 20
+        "espn_teams": 18,
+        "resolved_before": 18
       },
       "fixtures": {
-        "considered": 380,
-        "attached_to_existing": 0,
-        "founded": 0,
-        "replacement_listings": 0,
-        "repeated_pairs_skipped": 0,
-        "queued": 0,
-        "written": {
-          "inserted": 0,
-          "updated": 0,
-          "unchanged": 0
-        },
-        "crosswalk": {
-          "inserted": 0,
-          "updated": 0,
-          "unchanged": 0
-        }
-      },
-      "exhausted": "details"
-    },
-    {
-      "requests": 200,
-      "fixtures_new": 0,
-      "detailed": 15,
-      "team_identity": {
-        "espn_teams": 20,
-        "resolved_before": 20
-      },
-      "fixtures": {
-        "considered": 380,
-        "attached_to_existing": 0,
-        "founded": 0,
-        "replacement_listings": 0,
-        "repeated_pairs_skipped": 0,
-        "queued": 0,
-        "written": {
-          "inserted": 0,
-          "updated": 0,
-          "unchanged": 0
-        },
-        "crosswalk": {
-          "inserted": 0,
-          "updated": 0,
-          "unchanged": 0
-        }
-      },
-      "exhausted": "details"
-    },
-    {
-      "requests": 135,
-      "fixtures_new": 0,
-      "detailed": 14,
-      "team_identity": {
-        "espn_teams": 20,
-        "resolved_before": 20
-      },
-      "fixtures": {
-        "considered": 380,
+        "considered": 54,
         "attached_to_existing": 0,
         "founded": 0,
         "replacement_listings": 0,
@@ -224,11 +134,11 @@
       "fixtures_new": 0,
       "detailed": 0,
       "team_identity": {
-        "espn_teams": 20,
-        "resolved_before": 20
+        "espn_teams": 18,
+        "resolved_before": 18
       },
       "fixtures": {
-        "considered": 380,
+        "considered": 54,
         "attached_to_existing": 0,
         "founded": 0,
         "replacement_listings": 0,
@@ -249,22 +159,44 @@
     }
   ],
   "espn": {
-    "league": "ita.1",
-    "id": "730",
+    "league": "uefa.wchampions",
+    "id": "19483",
     "season_year": 2026,
-    "fixtures_seen": 380,
-    "detailed": 50,
+    "types": {
+      "1": {
+        "name": "League Phase",
+        "role": "league"
+      },
+      "2": {
+        "name": "Knockout Round Playoffs",
+        "role": "playoff"
+      },
+      "3": {
+        "name": "Quarterfinals",
+        "role": "playoff"
+      },
+      "4": {
+        "name": "Semifinals",
+        "role": "playoff"
+      },
+      "5": {
+        "name": "Final",
+        "role": "playoff"
+      }
+    },
+    "fixtures_seen": 54,
+    "detailed": 18,
     "by_type": {
-      "1": 380
+      "League Phase": 54
     },
     "excluded_teams": null
   },
   "competition_row": {
-    "id": "fa3fc310-da32-534f-9f2d-14cf8704a93f",
-    "slug": "serie-a",
-    "name": "Serie A",
-    "comp_type": "league",
-    "gender": "men"
+    "id": "fe031e1a-7d2d-562e-a9ca-7a51204d3673",
+    "slug": "uefa-womens-champions-league",
+    "name": "UEFA Women's Champions League",
+    "comp_type": "club_tournament",
+    "gender": "women"
   },
   "season": {
     "label": "2026/27",
@@ -272,128 +204,170 @@
     "local_promotion": "published in the local canary store only"
   },
   "identity_gate": {
-    "teams": 20,
-    "expected_teams": 20,
+    "teams": 18,
+    "expected_teams": 18,
     "wrong_team_kind": [],
     "wrong_gender": [],
-    "reused_existing_canonical": [
-      "Internazionale",
-      "AS Roma",
-      "Napoli",
-      "Como"
-    ],
-    "founded_new": 16,
-    "espn_ids_already_crosswalked_in_production": 4,
+    "reused_existing_canonical": [],
+    "founded_new": 18,
+    "espn_ids_already_crosswalked_in_production": 0,
     "espn_id_maps_to_same_canonical_as_production": true,
     "duplicate_espn_team_ids": 0,
     "teams_with_more_than_one_espn_id": 0,
     "duplicate_names": [],
     "crosswalk_methods": {
-      "founding": 20
+      "founding": 18
     },
-    "cross_gender_namesakes_kept_distinct": [],
+    "cross_gender_namesakes_kept_distinct": [
+      {
+        "team": "Manchester City Women",
+        "gender": "women",
+        "distinct_from": [
+          "Manchester City (men)"
+        ]
+      },
+      {
+        "team": "Paris Saint-Germain Women",
+        "gender": "women",
+        "distinct_from": [
+          "Paris Saint-Germain (men)"
+        ]
+      },
+      {
+        "team": "Chelsea Women",
+        "gender": "women",
+        "distinct_from": [
+          "Chelsea (men)"
+        ]
+      },
+      {
+        "team": "Arsenal Women",
+        "gender": "women",
+        "distinct_from": [
+          "Arsenal (men)"
+        ]
+      },
+      {
+        "team": "Barcelona Women",
+        "gender": "women",
+        "distinct_from": [
+          "Barcelona (men)"
+        ]
+      },
+      {
+        "team": "Real Madrid Women",
+        "gender": "women",
+        "distinct_from": [
+          "Real Madrid (men)"
+        ]
+      },
+      {
+        "team": "Internazionale Women",
+        "gender": "women",
+        "distinct_from": [
+          "Internazionale (men)"
+        ]
+      }
+    ],
     "teams_queued": 0,
     "teams_queued_detail": [],
     "pass": true
   },
   "matches": {
-    "total": 380,
+    "total": 54,
     "by_status": {
-      "finished": 50,
-      "scheduled": 330
+      "scheduled": 36,
+      "finished": 18
     },
     "by_stage": [
       {
-        "name": "Regular Season",
+        "name": "League phase",
         "type": "league",
-        "matches": 380,
-        "finished": 50
+        "matches": 54,
+        "finished": 18
+      },
+      {
+        "name": "Knockout rounds",
+        "type": "playoff",
+        "matches": 0,
+        "finished": 0
       }
     ],
     "finished_without_score": 0,
     "knockout_without_winner": 0
   },
   "enrichment": {
-    "finished": 50,
-    "detailed": 50,
-    "lineups_both": 50,
-    "lineup_rows": 100,
-    "formations": 100,
-    "team_stats_both": 50,
-    "team_stat_rows": 1500,
-    "plays": 50,
-    "events": 73148,
-    "located_events": 67835,
+    "finished": 18,
+    "detailed": 18,
+    "lineups_both": 18,
+    "lineup_rows": 36,
+    "formations": 36,
+    "team_stats_both": 18,
+    "team_stat_rows": 540,
+    "plays": 18,
+    "events": 26524,
+    "located_events": 24760,
     "coord_systems": {
-      "none": 2581,
-      "espn_pct_v1": 70567
+      "none": 779,
+      "espn_pct_v1": 25745
     },
     "gaps": []
   },
   "players": {
-    "in_lineups": 582,
-    "founded_locally": 582,
+    "in_lineups": 403,
+    "founded_locally": 403,
     "corroborated": 0,
-    "queued": 13,
+    "queued": 26,
     "queued_by_reason": {
-      "athlete_without_dob_or_name": 13
+      "athlete_without_dob_or_name": 26
     },
-    "already_canonical_in_production_by_espn_id": 238,
+    "already_canonical_in_production_by_espn_id": 0,
     "production_lookup": "ok"
   },
   "table": {
-    "view": "overall",
-    "rows": 20,
-    "top": [
+    "view": "league-phase",
+    "groups": [
       {
-        "team": "AS Roma",
-        "pld": 5,
-        "pts": 13
-      },
-      {
-        "team": "Internazionale",
-        "pld": 5,
-        "pts": 13
-      },
-      {
-        "team": "Lazio",
-        "pld": 5,
-        "pts": 13
+        "key": "league-phase",
+        "name": "League phase",
+        "verified": true,
+        "rows": 18,
+        "mismatches": []
       }
     ]
   },
   "finished_match_proof": {
-    "match_id": "755eeebc-1c49-53e5-a625-5b9e735fdaa8",
-    "fixture": "Atalanta 1-2 Cagliari",
-    "kickoff": "2026-09-12T18:45:00.000Z",
-    "venue": "New Balance Arena",
+    "match_id": "35c64ed0-6c63-5d94-89fc-34913b5558f0",
+    "fixture": "Roma 0-6 Barcelona Women",
+    "kickoff": "2026-09-30T16:45:00.000Z",
+    "venue": "Stadio Tre Fontane",
     "lineups": [
       "home",
       "away"
     ],
-    "timeline": 3,
-    "shots": 27,
-    "events": 1647,
+    "timeline": 7,
+    "shots": 24,
+    "events": 1738,
     "coverage": {
       "state": "ok",
       "notes": []
     },
     "cast": {
       "mode": "replay",
-      "sequence": 35
+      "sequence": 36
     }
   },
   "scheduled_match_proof": {
-    "match_id": "cfdd3770-6d86-52fb-a746-e222ee354734",
-    "fixture": "Bologna v AS Roma",
-    "kickoff": "2026-12-04T19:45:00.000Z",
+    "match_id": "3383adef-ebbf-541a-8f3e-cf569f39ed77",
+    "fixture": "Servette v OH Leuven",
+    "kickoff": "2026-10-28T17:45:00.000Z",
     "cast_mode": "pregame"
   },
   "competition_api": {
     "team_kind": null,
-    "teams": 20,
-    "finished": 50,
-    "scheduled": 330
+    "teams": 18,
+    "finished": 18,
+    "scheduled": 36
   },
   "gate": {
     "lane_completed_without_abort": true,
@@ -407,15 +381,15 @@
     "knockout_winners_known": true,
     "pass": true
   },
-  "elapsed_s": 1104,
+  "gate_version": "competition-canary-gate/1.2.0",
+  "elapsed_s": 613,
   "acceptance": {
     "match_data": "MATCH_DATA_PASS",
     "spatial": "SPATIAL_DATA_AVAILABLE",
-    "located_events": 67835
+    "located_events": 24760
   },
-  "gate_version": "competition-canary-gate/1.2.0",
   "regated": {
-    "at": "2026-10-03T16:27:32.135Z",
+    "at": "2026-10-03T16:27:32.876Z",
     "previous_gate": {
       "lane_completed_without_abort": true,
       "fixtures_complete": true,

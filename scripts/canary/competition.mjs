@@ -28,7 +28,7 @@ import { emptyLaneState } from '../../workers/soccer-ingest/src/state.js';
 import { chunkArr } from '../../workers/soccer-ingest/src/store.js';
 import * as R from '../../workers/soccer-api/src/routes.js';
 import * as C from '../../workers/soccer-api/src/cast.js';
-import { gateOf, GATE_VERSION } from './competition-gate.mjs';
+import { acceptanceOf, gateOf, GATE_VERSION } from './competition-gate.mjs';
 
 const argv = process.argv.slice(2);
 const arg = (k, d) => { const i = argv.indexOf(k); return i >= 0 ? argv[i + 1] : d; };
@@ -198,7 +198,7 @@ if (c) {
   if (next) { try { const md = await R.match(store, next.id); const cast = await C.cast(store, next.id, {}); report.scheduled_match_proof = { match_id: next.id, fixture: `${md.data.home?.name} v ${md.data.away?.name}`, kickoff: next.kickoff_at, cast_mode: cast.data.live?.mode ?? null }; } catch (e) { report.scheduled_match_proof = { match_id: next.id, error: String(e.message || e) }; } }
   try { const cp = await R.competition(store, SLUG); report.competition_api = { team_kind: cp.data.current?.team_kind || null, teams: cp.data.current?.teams?.length, finished: cp.data.current?.finished, scheduled: cp.data.current?.scheduled }; } catch (e) { report.competition_api = { error: String(e.message || e) }; }
 }
-report.gate = gateOf(report); report.gate_version = GATE_VERSION;
+report.gate = gateOf(report); report.acceptance = acceptanceOf(report, report.gate); report.gate_version = GATE_VERSION;
 report.elapsed_s = Math.round((Date.now() - t0) / 1000);
 mkdirSync('docs/evidence/world', { recursive: true });
 writeFileSync(out, JSON.stringify(report, null, 2) + '\n');

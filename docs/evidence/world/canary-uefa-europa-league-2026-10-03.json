@@ -418,6 +418,7 @@
     "lane_completed_without_abort": true,
     "fixtures_complete": true,
     "every_finished_match_scored": true,
+    "no_unknown_status": true,
     "every_finished_match_detailed": true,
     "no_enrichment_gaps": true,
     "identity": true,
@@ -426,9 +427,9 @@
     "pass": true
   },
   "elapsed_s": 981,
-  "gate_version": "competition-canary-gate/1.1.0",
+  "gate_version": "competition-canary-gate/1.2.0",
   "regated": {
-    "at": "2026-10-03T15:09:02.308Z",
+    "at": "2026-10-03T16:27:32.488Z",
     "previous_gate": {
       "lane_completed_without_abort": true,
       "fixtures_complete": true,
@@ -436,10 +437,15 @@
       "every_finished_match_detailed": true,
       "no_enrichment_gaps": true,
       "identity": true,
-      "table": false,
+      "table": true,
       "knockout_winners_known": true,
-      "pass": false
+      "pass": true
     },
-    "reason": "gate 1.0 read verified_groups/withheld_groups, which the league-phase view does not return; the table itself was verified (1 group, 36 rows, 0 mismatches)"
+    "reason": "gate 1.2.0: separate acceptance labels (MATCH_DATA_* / SPATIAL_DATA_*) + no_unknown_status check"
+  },
+  "acceptance": {
+    "match_data": "MATCH_DATA_PASS",
+    "spatial": "SPATIAL_DATA_AVAILABLE",
+    "located_events": 24771
   }
 }

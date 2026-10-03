@@ -39,6 +39,7 @@ for (const r of disc.results) {
     live: live.has(r.slug) ? 'per-minute lane' : null, pbecast: c?.finished_match_proof?.cast ? 'replay payload proven' : null,
     players: c?.players?.in_lineups ?? null, dna: c ? 'descriptive (inputs present)' : null, media: null, news: registered?.news?.enabled ? 'enabled' : 'off',
     history: r.season ? 'current season only' : null,
+    match_data: c?.acceptance?.match_data ?? null, spatial: c?.acceptance?.spatial ?? null,
     source_status: r.status, launch_status: launch,
     blocker: r.status !== 'source_present' ? 'no ESPN Core source' : c ? (g?.pass ? (live.has(r.slug) ? null : enabledOnMain.has(r.slug) ? 'soccer-ingest release (owner permission) + production fill + frontend enable' : 'enable + release + production fill') : Object.entries(g || {}).filter(([k, v]) => k !== 'pass' && !v).map(([k]) => k).join(', ')) : registered ? 'canary not run' : 'not yet registered (phase order)',
   });
@@ -50,7 +51,7 @@ for (const c of reg.competitions.filter(c => !disc.results.some(r => r.slug === 
 }
 for (const x of EXTRA) rows.push({ phase: x.phase, competition: x.slug, slug: x.slug, gender: x.gender, region: x.country, provider: x.provider, source_status: x.status, launch_status: 'not registered', blocker: x.note });
 writeFileSync('docs/evidence/world/world-matrix.json', JSON.stringify({ generated_at: new Date().toISOString(), discovery: disc.generated_at, rows }, null, 2) + '\n');
-const cols = ['phase', 'competition', 'gender', 'region', 'provider', 'season', 'teams', 'matches', 'results', 'standings', 'lineups', 'stats', 'plays', 'coordinates', 'live', 'pbecast', 'players', 'dna', 'news', 'source_status', 'launch_status', 'blocker'];
+const cols = ['phase', 'competition', 'gender', 'region', 'provider', 'season', 'teams', 'matches', 'results', 'standings', 'lineups', 'stats', 'plays', 'coordinates', 'live', 'pbecast', 'players', 'dna', 'news', 'match_data', 'spatial', 'source_status', 'launch_status', 'blocker'];
 const md = [`| ${cols.join(' | ')} |`, `|${cols.map(() => '---').join('|')}|`, ...rows.map(r => `| ${cols.map(k => String(r[k] ?? '—').replace(/\|/g, '/')).join(' | ')} |`)].join('\n');
 const path = 'docs/WORLD_COVERAGE.md';
 const head = existsSync(path) ? readFileSync(path, 'utf8').split('<!-- matrix -->')[0] : '# World Coverage\n\n';

@@ -428,6 +428,7 @@
     "lane_completed_without_abort": true,
     "fixtures_complete": true,
     "every_finished_match_scored": true,
+    "no_unknown_status": true,
     "every_finished_match_detailed": true,
     "no_enrichment_gaps": true,
     "identity": true,
@@ -435,5 +436,26 @@
     "knockout_winners_known": true,
     "pass": true
   },
-  "elapsed_s": 1250
+  "elapsed_s": 1250,
+  "acceptance": {
+    "match_data": "MATCH_DATA_PASS",
+    "spatial": "SPATIAL_DATA_AVAILABLE",
+    "located_events": 93772
+  },
+  "gate_version": "competition-canary-gate/1.2.0",
+  "regated": {
+    "at": "2026-10-03T16:27:29.404Z",
+    "previous_gate": {
+      "lane_completed_without_abort": true,
+      "fixtures_complete": true,
+      "every_finished_match_scored": true,
+      "every_finished_match_detailed": true,
+      "no_enrichment_gaps": true,
+      "identity": true,
+      "table": true,
+      "knockout_winners_known": true,
+      "pass": true
+    },
+    "reason": "gate 1.2.0: separate acceptance labels (MATCH_DATA_* / SPATIAL_DATA_*) + no_unknown_status check"
+  }
 }

@@ -1,50 +1,44 @@
 {
-  "generated_at": "2026-10-03T14:36:06.128Z",
+  "generated_at": "2026-10-03T15:33:17.964Z",
   "mode": "local-pglite (production untouched; production team identities seeded read-only)",
-  "competition": "serie-a",
-  "gender": "men",
+  "competition": "womens-super-league",
+  "gender": "women",
   "team_kind": "club",
   "source": "ESPN Core (owner-approved collection lane)",
   "budget": 3000,
-  "requests_used": 1534,
+  "requests_used": 779,
   "budget_exhausted": false,
   "aborted": null,
   "runs": [
     {
-      "requests": 200,
-      "fixtures_new": 197,
-      "detailed": 0,
-      "exhausted": "discovery"
-    },
-    {
       "requests": 199,
-      "fixtures_new": 183,
+      "fixtures_new": 182,
       "detailed": 0,
       "team_identity": {
-        "espn_teams": 20,
-        "resolved_before": 4,
-        "teams_founded": 16,
+        "espn_teams": 14,
+        "resolved_before": 0,
+        "teams_founded": 14,
         "team_crosswalk": {
-          "inserted": 16,
+          "inserted": 14,
           "updated": 0,
           "unchanged": 0
         },
-        "resolved_after": 20
+        "resolved_after": 14
       },
       "fixtures": {
-        "considered": 380,
+        "considered": 182,
         "attached_to_existing": 0,
-        "founded": 380,
+        "founded": 182,
         "replacement_listings": 0,
         "repeated_pairs_skipped": 0,
         "queued": 0,
         "written": {
-          "inserted": 380,
+          "inserted": 182,
           "updated": 0,
           "unchanged": 0
         },
         "crosswalk": {
-          "inserted": 380,
+          "inserted": 182,
           "updated": 0,
           "unchanged": 0
         }
@@ -52,43 +46,15 @@
       "exhausted": "details"
     },
     {
-      "requests": 200,
+      "requests": 194,
       "fixtures_new": 0,
-      "detailed": 3,
+      "detailed": 4,
       "team_identity": {
-        "espn_teams": 20,
-        "resolved_before": 20
+        "espn_teams": 14,
+        "resolved_before": 14
       },
       "fixtures": {
-        "considered": 380,
-        "attached_to_existing": 0,
-        "founded": 0,
-        "replacement_listings": 0,
-        "repeated_pairs_skipped": 0,
-        "queued": 0,
-        "written": {
-          "inserted": 0,
-          "updated": 0,
-          "unchanged": 0
-        },
-        "crosswalk": {
-          "inserted": 0,
-          "updated": 0,
-          "unchanged": 0
-        }
-      },
-      "exhausted": "details"
-    },
-    {
-      "requests": 200,
-      "fixtures_new": 0,
-      "detailed": 3,
-      "team_identity": {
-        "espn_teams": 20,
-        "resolved_before": 20
-      },
-      "fixtures": {
-        "considered": 380,
+        "considered": 182,
         "attached_to_existing": 0,
         "founded": 0,
         "replacement_listings": 0,
@@ -108,15 +74,15 @@
       "exhausted": "details"
     },
     {
-      "requests": 200,
+      "requests": 195,
       "fixtures_new": 0,
-      "detailed": 3,
+      "detailed": 7,
       "team_identity": {
-        "espn_teams": 20,
-        "resolved_before": 20
+        "espn_teams": 14,
+        "resolved_before": 14
       },
       "fixtures": {
-        "considered": 380,
+        "considered": 182,
         "attached_to_existing": 0,
         "founded": 0,
         "replacement_listings": 0,
@@ -136,71 +102,15 @@
       "exhausted": "details"
     },
     {
-      "requests": 200,
+      "requests": 191,
       "fixtures_new": 0,
-      "detailed": 12,
+      "detailed": 18,
       "team_identity": {
-        "espn_teams": 20,
-        "resolved_before": 20
+        "espn_teams": 14,
+        "resolved_before": 14
       },
       "fixtures": {
-        "considered": 380,
-        "attached_to_existing": 0,
-        "founded": 0,
-        "replacement_listings": 0,
-        "repeated_pairs_skipped": 0,
-        "queued": 0,
-        "written": {
-          "inserted": 0,
-          "updated": 0,
-          "unchanged": 0
-        },
-        "crosswalk": {
-          "inserted": 0,
-          "updated": 0,
-          "unchanged": 0
-        }
-      },
-      "exhausted": "details"
-    },
-    {
-      "requests": 200,
-      "fixtures_new": 0,
-      "detailed": 15,
-      "team_identity": {
-        "espn_teams": 20,
-        "resolved_before": 20
-      },
-      "fixtures": {
-        "considered": 380,
-        "attached_to_existing": 0,
-        "founded": 0,
-        "replacement_listings": 0,
-        "repeated_pairs_skipped": 0,
-        "queued": 0,
-        "written": {
-          "inserted": 0,
-          "updated": 0,
-          "unchanged": 0
-        },
-        "crosswalk": {
-          "inserted": 0,
-          "updated": 0,
-          "unchanged": 0
-        }
-      },
-      "exhausted": "details"
-    },
-    {
-      "requests": 135,
-      "fixtures_new": 0,
-      "detailed": 14,
-      "team_identity": {
-        "espn_teams": 20,
-        "resolved_before": 20
-      },
-      "fixtures": {
-        "considered": 380,
+        "considered": 182,
         "attached_to_existing": 0,
         "founded": 0,
         "replacement_listings": 0,
@@ -224,11 +134,11 @@
       "fixtures_new": 0,
       "detailed": 0,
       "team_identity": {
-        "espn_teams": 20,
-        "resolved_before": 20
+        "espn_teams": 14,
+        "resolved_before": 14
       },
       "fixtures": {
-        "considered": 380,
+        "considered": 182,
         "attached_to_existing": 0,
         "founded": 0,
         "replacement_listings": 0,
@@ -249,22 +159,22 @@
     }
   ],
   "espn": {
-    "league": "ita.1",
-    "id": "730",
+    "league": "eng.w.1",
+    "id": "8097",
     "season_year": 2026,
-    "fixtures_seen": 380,
-    "detailed": 50,
+    "fixtures_seen": 182,
+    "detailed": 29,
     "by_type": {
-      "1": 380
+      "1": 182
     },
     "excluded_teams": null
   },
   "competition_row": {
-    "id": "fa3fc310-da32-534f-9f2d-14cf8704a93f",
-    "slug": "serie-a",
-    "name": "Serie A",
+    "id": "e2f11656-1405-5d8f-a8b9-11778b0bfef6",
+    "slug": "womens-super-league",
+    "name": "Women's Super League",
     "comp_type": "league",
-    "gender": "men"
+    "gender": "women"
   },
   "season": {
     "label": "2026/27",
@@ -272,128 +182,215 @@
     "local_promotion": "published in the local canary store only"
   },
   "identity_gate": {
-    "teams": 20,
-    "expected_teams": 20,
+    "teams": 14,
+    "expected_teams": 14,
     "wrong_team_kind": [],
     "wrong_gender": [],
-    "reused_existing_canonical": [
-      "Internazionale",
-      "AS Roma",
-      "Napoli",
-      "Como"
-    ],
-    "founded_new": 16,
-    "espn_ids_already_crosswalked_in_production": 4,
+    "reused_existing_canonical": [],
+    "founded_new": 14,
+    "espn_ids_already_crosswalked_in_production": 0,
     "espn_id_maps_to_same_canonical_as_production": true,
     "duplicate_espn_team_ids": 0,
     "teams_with_more_than_one_espn_id": 0,
     "duplicate_names": [],
     "crosswalk_methods": {
-      "founding": 20
+      "founding": 14
     },
-    "cross_gender_namesakes_kept_distinct": [],
+    "cross_gender_namesakes_kept_distinct": [
+      {
+        "team": "Manchester City Women",
+        "gender": "women",
+        "distinct_from": [
+          "Manchester City (men)"
+        ]
+      },
+      {
+        "team": "Birmingham City Women",
+        "gender": "women",
+        "distinct_from": [
+          "Birmingham City (men)"
+        ]
+      },
+      {
+        "team": "Chelsea Women",
+        "gender": "women",
+        "distinct_from": [
+          "Chelsea (men)"
+        ]
+      },
+      {
+        "team": "Liverpool Women",
+        "gender": "women",
+        "distinct_from": [
+          "Liverpool (men)"
+        ]
+      },
+      {
+        "team": "Everton Women",
+        "gender": "women",
+        "distinct_from": [
+          "Everton (men)"
+        ]
+      },
+      {
+        "team": "Arsenal Women",
+        "gender": "women",
+        "distinct_from": [
+          "Arsenal (men)"
+        ]
+      },
+      {
+        "team": "West Ham United Women",
+        "gender": "women",
+        "distinct_from": [
+          "West Ham United (men)"
+        ]
+      },
+      {
+        "team": "Brighton & Hove Albion Women",
+        "gender": "women",
+        "distinct_from": [
+          "Brighton & Hove Albion (men)"
+        ]
+      },
+      {
+        "team": "Manchester United Women",
+        "gender": "women",
+        "distinct_from": [
+          "Manchester United (men)"
+        ]
+      },
+      {
+        "team": "Tottenham Hotspur Women",
+        "gender": "women",
+        "distinct_from": [
+          "Tottenham Hotspur (men)"
+        ]
+      },
+      {
+        "team": "Aston Villa Women",
+        "gender": "women",
+        "distinct_from": [
+          "Aston Villa (men)"
+        ]
+      },
+      {
+        "team": "Charlton Athletic Women",
+        "gender": "women",
+        "distinct_from": [
+          "Charlton Athletic (men)"
+        ]
+      },
+      {
+        "team": "Crystal Palace Women",
+        "gender": "women",
+        "distinct_from": [
+          "Crystal Palace (men)"
+        ]
+      }
+    ],
     "teams_queued": 0,
     "teams_queued_detail": [],
     "pass": true
   },
   "matches": {
-    "total": 380,
+    "total": 182,
     "by_status": {
-      "finished": 50,
-      "scheduled": 330
+      "scheduled": 153,
+      "finished": 29
     },
     "by_stage": [
       {
         "name": "Regular Season",
         "type": "league",
-        "matches": 380,
-        "finished": 50
+        "matches": 182,
+        "finished": 29
       }
     ],
     "finished_without_score": 0,
     "knockout_without_winner": 0
   },
   "enrichment": {
-    "finished": 50,
-    "detailed": 50,
-    "lineups_both": 50,
-    "lineup_rows": 100,
-    "formations": 100,
-    "team_stats_both": 50,
-    "team_stat_rows": 1500,
-    "plays": 50,
-    "events": 73148,
-    "located_events": 67835,
+    "finished": 29,
+    "detailed": 29,
+    "lineups_both": 29,
+    "lineup_rows": 58,
+    "formations": 58,
+    "team_stats_both": 29,
+    "team_stat_rows": 840,
+    "plays": 29,
+    "events": 43332,
+    "located_events": 40295,
     "coord_systems": {
-      "none": 2581,
-      "espn_pct_v1": 70567
+      "espn_pct_v1": 42052,
+      "none": 1280
     },
     "gaps": []
   },
   "players": {
-    "in_lineups": 582,
-    "founded_locally": 582,
+    "in_lineups": 308,
+    "founded_locally": 308,
     "corroborated": 0,
-    "queued": 13,
+    "queued": 10,
     "queued_by_reason": {
-      "athlete_without_dob_or_name": 13
+      "athlete_without_dob_or_name": 10
     },
-    "already_canonical_in_production_by_espn_id": 238,
+    "already_canonical_in_production_by_espn_id": 0,
     "production_lookup": "ok"
   },
   "table": {
     "view": "overall",
-    "rows": 20,
+    "rows": 14,
     "top": [
       {
-        "team": "AS Roma",
-        "pld": 5,
-        "pts": 13
+        "team": "Manchester City Women",
+        "pld": 4,
+        "pts": 12
       },
       {
-        "team": "Internazionale",
-        "pld": 5,
-        "pts": 13
+        "team": "Tottenham Hotspur Women",
+        "pld": 4,
+        "pts": 10
       },
       {
-        "team": "Lazio",
-        "pld": 5,
-        "pts": 13
+        "team": "Chelsea Women",
+        "pld": 4,
+        "pts": 10
       }
     ]
   },
   "finished_match_proof": {
-    "match_id": "755eeebc-1c49-53e5-a625-5b9e735fdaa8",
-    "fixture": "Atalanta 1-2 Cagliari",
-    "kickoff": "2026-09-12T18:45:00.000Z",
-    "venue": "New Balance Arena",
+    "match_id": "550eabea-a89b-5f64-a985-87c1de9a3dc2",
+    "fixture": "Liverpool Women 2-0 Everton Women",
+    "kickoff": "2026-09-27T13:00:00.000Z",
+    "venue": "Anfield",
     "lineups": [
       "home",
       "away"
     ],
     "timeline": 3,
-    "shots": 27,
-    "events": 1647,
+    "shots": 24,
+    "events": 1617,
     "coverage": {
       "state": "ok",
       "notes": []
     },
     "cast": {
       "mode": "replay",
-      "sequence": 35
+      "sequence": 32
     }
   },
   "scheduled_match_proof": {
-    "match_id": "cfdd3770-6d86-52fb-a746-e222ee354734",
-    "fixture": "Bologna v AS Roma",
-    "kickoff": "2026-12-04T19:45:00.000Z",
+    "match_id": "00bd0fc4-89e2-54ee-a330-3a8b53f5a054",
+    "fixture": "West Ham United Women v Chelsea Women",
+    "kickoff": "2026-10-04T13:00:00.000Z",
     "cast_mode": "pregame"
   },
   "competition_api": {
     "team_kind": null,
-    "teams": 20,
-    "finished": 50,
-    "scheduled": 330
+    "teams": 14,
+    "finished": 29,
+    "scheduled": 153
   },
   "gate": {
     "lane_completed_without_abort": true,
@@ -407,15 +404,15 @@
     "knockout_winners_known": true,
     "pass": true
   },
-  "elapsed_s": 1104,
+  "gate_version": "competition-canary-gate/1.2.0",
+  "elapsed_s": 561,
   "acceptance": {
     "match_data": "MATCH_DATA_PASS",
     "spatial": "SPATIAL_DATA_AVAILABLE",
-    "located_events": 67835
+    "located_events": 40295
   },
-  "gate_version": "competition-canary-gate/1.2.0",
   "regated": {
-    "at": "2026-10-03T16:27:32.135Z",
+    "at": "2026-10-03T16:27:33.377Z",
     "previous_gate": {
       "lane_completed_without_abort": true,
       "fixtures_complete": true,
