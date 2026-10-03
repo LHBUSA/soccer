@@ -34,8 +34,9 @@ export const matches = {
     const comp = FEATURED.includes(q.get('competition')) ? q.get('competition') : '';
     const today = todayUtc();
     const params = view === 'today' ? { date: today } : view === 'upcoming' ? { status: 'scheduled', from: today, order: 'asc' } : { status: 'finished', to: today };
-    // The Kalshi board (card lines for not-finished matches) loads beside the fixtures; bounded, never fails the page.
-    const [list, comps] = await Promise.allSettled([api('matches', { ...params, competition: comp || undefined, season: q.get('season'), team: q.get('team'), limit: 40 }), api('competitions'), view === 'recent' ? null : boardWithin()]);
+    // The market board (live lines for not-finished matches, the market close line on recent results) loads beside
+    // the fixtures; bounded, never fails the page.
+    const [list, comps] = await Promise.allSettled([api('matches', { ...params, competition: comp || undefined, season: q.get('season'), team: q.get('team'), limit: 40 }), api('competitions'), boardWithin()]);
     return { view, comp, list, comps };
   },
   render(d) {
@@ -117,6 +118,7 @@ export const sources = {
           <li>Mid-market is the midpoint of the best YES bid and the best YES ask, shown only when the spread is 10¢ or less. It is not a probability. Bid, ask and last trade are labelled separately.</li>
           <li>Movement is drawn only from prices we observed and stored; nothing is interpolated.</li>
           <li>Kalshi soccer match contracts settle on the result after 90 minutes plus stoppage time, with no extra time or penalties.</li>
+          <li>When the market closes, the match page and PBEcast keep it as <b>How the market closed</b>: the first price we observed (our first record, not an opening price), the last price we observed before kick-off, Kalshi's final trade and Kalshi's settlement. A finished match is not a settled market: until Kalshi settles it the page says “awaiting settlement”. Settlement is Kalshi's, not our result.</li>
           <li>Your browser reads these prices from PropBetEdge, never from Kalshi directly.</li>
         </ul>
       </div></section>`;

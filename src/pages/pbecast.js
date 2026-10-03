@@ -15,7 +15,7 @@ import { competitionMark, empty, link, mountMediaFallbacks, playerChip, sectionH
 import { L, W, pitchLines } from '../components/pitch.js';
 import { keyPlayers } from '../components/keyplayers.js';
 import { matchTitle } from '../seo/meta.js';
-import { boardWithin, byDeadline, castKalshiHtml, kalshi, KALSHI_FIRST_PAINT_MS, kalshiLineFor, kalshiPollState } from '../data/kalshi.js';
+import { boardEntry, boardWithin, byDeadline, castKalshiHtml, KALSHI_FIRST_PAINT_MS, kalshiLineFor, kalshiPollState, loadMatchMarket, marketPollMs } from '../data/kalshi.js';
 import { wireKalshi } from '../vendor/kalshi/kalshi-market-ui.js';
 
 const POLL_LIVE_MS = 60000;   // the ingest lane polls about once a minute; do not poll faster than the source can change
@@ -51,7 +51,7 @@ function hubCard(m, kind) {
   return `<a class="hcard k-${kind}" href="/pbecast/${esc(m.id)}" data-link>
     <span class="hc-top">${f ? competitionMark(f.slug, 'xs') : ''}<span class="hc-comp">${esc(f?.name || m.competition?.name || '')}</span>${kind === 'live' ? statusPill('live') : ''}${top}</span>
     ${side(m.home, lv.score?.home)}${side(m.away, lv.score?.away)}
-    ${kind === 'replay' ? '' : hubKalshi(m)}
+    ${hubKalshi(m)}
     <span class="hc-cta">${esc(cta)} <span aria-hidden="true">→</span></span>
   </a>`;
 }
@@ -88,7 +88,7 @@ export const hub = {
 // direct visit paints it with the cast (no layout shift); a slower answer lands via mountCastKalshi.
 export async function loadCast([id]) {
   const deadline = Date.now() + KALSHI_FIRST_PAINT_MS;
-  const kx = castKx.id === id && castKx.entry ? null : kalshi.loadEvent(id).catch(() => null);
+  const kx = castKx.id === id && castKx.entry ? null : loadMatchMarket(id);
   const env = await api(`matches/${id}/cast`, {}, { fresh: true });
   if (kx) {
     const entry = await byDeadline(kx, deadline);
@@ -500,11 +500,12 @@ export function mountLive(root, env) {
 // ---------------------------------------------------------------- Kalshi strip
 // Never blocks the cast: the first paint uses what is already known for this match (the last event read,
 // else the board entry the hub/match lists loaded); the event read + polling run beside the cast. The strip's
-// open/closed state survives every live re-render. Polls: live 20 s, pregame 45 s, none for a replay.
+// open/closed state survives every live re-render. Polls: live 20 s, pregame 45 s. A replay shows "How the
+// market closed" (history card) once the market has CLOSED / SETTLED and follows it: CLOSED 5 min until SETTLED, then none.
 const castKx = { id: null, entry: null, open: false, timer: null };
 export function stopCastKalshi() { clearTimeout(castKx.timer); castKx.timer = null; }
 function castKalshiSlot(m) {
-  if (castKx.id !== m.id) Object.assign(castKx, { id: m.id, entry: kalshi.forEvent(m.id), open: false });
+  if (castKx.id !== m.id) Object.assign(castKx, { id: m.id, entry: boardEntry(m.id), open: false });
   const html = castKalshiHtml(castKx.entry, { open: castKx.open });
   return `<div class="ct-kx" data-kx-cast${html ? '' : ' hidden'}>${html}</div>`;
 }
@@ -523,10 +524,12 @@ export function mountCastKalshi(root, env) {
   const mode = m.live?.mode;
   const lane = mode === 'live' ? 'live' : mode === 'pregame' ? 'pregame' : kalshiPollState(m.status) === 'pregame' ? 'pregame' : null;
   const refresh = async (force) => {
-    const entry = await kalshi.loadEvent(m.id, { force }).catch(() => null);
+    const entry = await loadMatchMarket(m.id, { force });
     if (!slot.isConnected || castKx.id !== m.id) return;
     castKx.entry = entry; paintCastKalshi(slot);
-    if (lane) castKx.timer = setTimeout(() => { if (!slot.isConnected) return; if (document.hidden) return refresh(false); refresh(true); }, kalshi.pollMsFor(lane));
+    const ms = marketPollMs(lane === 'live' ? 'live' : lane === 'pregame' ? 'scheduled' : m.status, entry);
+    clearTimeout(castKx.timer);
+    if (ms) castKx.timer = setTimeout(() => { if (!slot.isConnected) return; if (document.hidden) return refresh(false); refresh(true); }, ms);
   };
   refresh(false);
 }

@@ -22,3 +22,8 @@
 .mc-kx .kx-line, .hcard:not(.k-live) .hc-kx .kx-line { color: var(--ink-2); flex-wrap: wrap; }
 .mc-kx .kx-line__b, .hcard:not(.k-live) .hc-kx .kx-line__b { color: #1f5fae; }
 .hcard.k-live .hc-kx .kx-line { color: #f3f6fb; flex-wrap: wrap; }
+
+/* Market history: result-card close line stays subtle (no accent badge); history card spacing in the cast. */
+.mc-kx .kx-line--closed, .hcard:not(.k-live) .hc-kx .kx-line--closed { color: var(--muted); }
+.mc-kx .kx-line--closed .kx-line__b, .hcard:not(.k-live) .hc-kx .kx-line--closed .kx-line__b { color: var(--muted); }
+.ct-kx .kx-h { text-align: left; }

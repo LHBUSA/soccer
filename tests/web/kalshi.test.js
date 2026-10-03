@@ -6,6 +6,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { join } from 'node:path';
 
 const ID = 'dd8264d9-a90f-54bd-8da8-da17d6d41ef7';
@@ -34,15 +35,17 @@ const entry = (over = {}) => ({
 // Browser fetch stand-in: the same-origin market routes + the soccer API envelope for the match page.
 const fetched = [];
 let marketMode = 'up'; // 'up' | 'hang' | 'down'
+const extraEvents = new Map(); // id -> event body (market-history tests)
+const extraBoard = [];
 globalThis.fetch = async (url) => {
   url = String(url); fetched.push(url);
   const ok = body => ({ ok: true, status: 200, json: async () => body });
   if (url.startsWith('/api/markets/')) {
     if (marketMode === 'hang') return new Promise(() => {});
     if (marketMode === 'down') throw new Error('markets down');
-    if (url === '/api/markets/v1/market-intelligence/sport/soccer') { const e = entry(); return ok({ contract: 'market-intel/1', sport: 'soccer', enabled: true, events: [e] }); }
+    if (url === '/api/markets/v1/market-intelligence/sport/soccer') { const e = entry(); return ok({ contract: 'market-intel/1', sport: 'soccer', enabled: true, events: [e, ...extraBoard] }); }
     const m = url.match(/^\/api\/markets\/v1\/market-intelligence\/event\/soccer\/([0-9a-f-]{36})$/);
-    if (m) return ok({ contract: 'market-intel/1', sport: 'soccer', enabled: true, event: m[1] === ID ? { ...entry(), movement: { kalshi: {} } } : null });
+    if (m) return ok({ contract: 'market-intel/1', sport: 'soccer', enabled: true, event: extraEvents.has(m[1]) ? extraEvents.get(m[1]) : m[1] === ID ? { ...entry(), movement: { kalshi: {} } } : null });
   }
   const mm = url.match(/^\/api\/soccer\/matches\/([0-9a-f-]{36})$/);
   if (mm) return ok({ data: matchData(mm[1]), meta: { source: 'pbe', coverage: { state: 'ok', notes: [] } } });
@@ -212,4 +215,130 @@ test('vendored Kalshi files match the canonical shared client (when the canonica
   for (const f of ['kalshi-market-ui.js', 'kalshi-market-ui.css', 'kalshi-market-client.js', 'README.md']) {
     assert.equal(norm(readFileSync(join('src/vendor/kalshi', f), 'utf8')), norm(readFileSync(join(canon, f), 'utf8')), f);
   }
+});
+
+// ------------------------------------------------------------------ market history ("How the market closed")
+// SETTLED fixture = the REAL tennis event JSON (Rybakina v Charaeva, KXWTAMATCH-26OCT01RYBCHA, captured from the
+// live API 2026-10-03), reshaped ONLY for sport / ids / proposition so the soccer gate accepts it. No soccer market
+// had settled when this shipped; the prices, timestamps and settlement are Kalshi's real values for that market.
+const HIST_ID = '7a1c2b3d-4e5f-5a6b-8c7d-9e0f1a2b3c4d';
+const CLOSED_ID = '8b2d3c4e-5f6a-5b7c-9d8e-0f1a2b3c4d5e';
+const real = JSON.parse(readFileSync(new URL('./fixtures/market-history-settled-tennis.json', import.meta.url), 'utf8'));
+const asSoccer = (id, mut = x => x) => {
+  const e = structuredClone(real.event);
+  e.event = { ...e.event, sport: 'soccer', competition: 'premier-league', canonical_event_id: id };
+  for (const o of [e.kalshi, e.market, e.market_history]) if (o) o.proposition = 'match_result_90min';
+  return mut(e);
+};
+const closedVariant = e => {
+  e.market.lifecycle = 'CLOSED'; e.market.close.lifecycle = 'CLOSED';
+  for (const o of e.market.close.outcomes) o.result = null;
+  e.market_history.lifecycle = 'CLOSED'; e.market_history.status_label = 'Market closed';
+  for (const o of e.market_history.outcomes) o.settlement = null;
+  e.market_history.markers.settlement = null;
+  return e;
+};
+const settled = () => asSoccer(HIST_ID);
+
+test('vendored shared client is pinned byte-for-byte to propbetedge-workers 70d92e0 (SHA-256)', () => {
+  const pins = {
+    'kalshi-market-ui.js': 'c343805e546cde66d01676c9c6c9f6f4ca746a8ba138b4b1ad0159a341f3db2a',
+    'kalshi-market-ui.css': 'db0f4b1efd5209966fb627f72e217b9539876d5123edc10d80524d172da41a06',
+    'kalshi-market-client.js': '653cb0fc2673f909552453052560bfd6194e0e4d045c51b1eb73483957d4c049',
+    'README.md': 'a80e4ac5d8733bde8afc0c13c281242babff8b1acd083974741f677b7af5a480',
+  };
+  for (const [f, sha] of Object.entries(pins)) {
+    const bytes = readFileSync(join('src/vendor/kalshi', f), 'utf8').replace(/\r\n/g, '\n');
+    assert.equal(createHash('sha256').update(bytes).digest('hex'), sha, f);
+  }
+  for (const fn of ['marketHistoryCard', 'marketCloseLine', 'marketModule']) assert.equal(typeof ui[fn], 'function', fn);
+});
+
+test('SETTLED (real Kalshi history): match page shows "How the market closed" with the 90-minute note, never an opening price', () => {
+  const html = kx.matchKalshiHtml(settled());
+  assert.match(html, /data-kx-history/);
+  const t = text(html);
+  assert.match(t, /How the market closed/);
+  assert.match(t, /Market settled/);
+  assert.match(t, /First observed/);
+  assert.match(t, /Final trade/);
+  assert.match(t, /Kalshi settlement: Alina Charaeva — YES/);
+  assert.match(t, /Settled YES/); assert.match(t, /Settled NO/);
+  assert.match(t, /is our first record, not the opening price/);
+  assert.match(t, /Settlement is the market venue's, not our result/);
+  assert.ok(t.includes(kx.SETTLEMENT_NOTE), '90-minute note kept with the history');
+  assert.doesNotMatch(t.replace('not the opening price', ''), /opening price|opened at/i);
+  assert.doesNotMatch(html, /\sstyle="/, 'no inline styles (strict CSP)');
+  assert.doesNotMatch(t, /earlier than|more accurate|sportsbooks? (?:are|is) stale/i);
+  const anchors = html.match(/<a [^>]*>/g) || [];
+  assert.ok(anchors.length >= 1);
+  for (const a of anchors) { assert.match(a, /href="https:\/\/kalshi\.com\/markets\//); assert.match(a, /rel="noopener noreferrer sponsored"/); }
+});
+
+test('CLOSED: history says "Market closed · awaiting settlement" (a finished match is not a settled market)', () => {
+  const e = asSoccer(CLOSED_ID, closedVariant);
+  const t = text(kx.matchKalshiHtml(e));
+  assert.match(t, /Market closed · awaiting settlement/);
+  assert.match(t, /Awaiting settlement/);
+  assert.doesNotMatch(t, /Settled YES|Settled NO|settlement: .* — YES/);
+  assert.equal(kx.marketPollMs('finished', e), 5 * 60_000, 'CLOSED polls every 5 min until settled');
+  assert.equal(kx.marketPollMs('finished', settled()), null, 'SETTLED: no polling');
+  assert.equal(kx.marketPollMs('live', entry()), 20_000);
+  assert.equal(kx.marketPollMs('scheduled', entry()), 45_000);
+  assert.equal(kx.marketPollMs('finished', null), null, 'no market: no polling');
+});
+
+test('three-way history keeps home / draw / away rows', () => {
+  const e = asSoccer(HIST_ID, x => {
+    const h = x.market_history; h.shape = 'three_way';
+    const draw = structuredClone(h.outcomes[0]); Object.assign(draw, { role: 'draw', abbr: 'Draw', kalshi_name: 'Tie', contract: 'Tie is the result' });
+    h.outcomes = [h.outcomes[0], draw, h.outcomes[1]];
+    return x;
+  });
+  const html = kx.matchKalshiHtml(e);
+  assert.equal((html.match(/<li class="kx-h__row/g) || []).length, 3);
+  const t = text(html);
+  assert.ok(t.indexOf('Elena Rybakina') < t.indexOf('Tie is the result') && t.indexOf('Tie is the result') < t.indexOf('Alina Charaeva'));
+});
+
+test('no entry -> no history, no close line, no poll', () => {
+  assert.equal(kx.matchKalshiHtml(null), '');
+  assert.equal(kx.castKalshiHtml(null), '');
+  assert.equal(kx.kalshiLineFor({ id: NO_MARKET_ID, status: 'finished' }), '');
+  assert.equal(ui.marketCloseLine(null), '');
+  assert.equal(ui.marketHistoryCard({ market_history: null }), '');
+});
+
+test('completed match: page load keeps the market (history), mounts the slot and the PBEcast replay shows the history card', async () => {
+  marketMode = 'up';
+  extraEvents.set(HIST_ID, settled());
+  const d = await match.load([HIST_ID]);
+  assert.ok(d.kx?.market_history, 'completed-match read keeps the history entry');
+  const html = match.render({ ...d, env: { ...d.env, data: { ...d.env.data, status: 'finished', score: { home: 2, away: 1 } } } });
+  assert.match(html, /<section class="canvas kx-sec" data-kx-match><div class="wrap mid"><section class="ic kx kx-h" data-kx-history/);
+  // a settled market whose event body has no live kalshi block still renders (the vendored loadEvent drops it)
+  const noLive = settled(); noLive.kalshi = null; extraEvents.set(CLOSED_ID, noLive);
+  const d2 = await match.load([CLOSED_ID]);
+  assert.ok(d2.kx?.market_history, 'history kept when kalshi is null');
+  assert.match(kx.matchKalshiHtml(d2.kx), /data-kx-history/);
+  // PBEcast replay: history card, not the live strip
+  const cast = kx.castKalshiHtml(settled());
+  assert.match(cast, /data-kx-history/); assert.doesNotMatch(cast, /kx-strip/);
+  assert.ok(cast.includes(kx.SETTLEMENT_NOTE));
+  assert.match(kx.castKalshiHtml(entry()), /^<details class="kx-strip"/, 'live strip unchanged while trading');
+  extraEvents.clear();
+});
+
+test('result cards: subtle market close line from the board for a finished match, only when it has content', async () => {
+  marketMode = 'up';
+  const s = settled(); const none = asSoccer(CLOSED_ID, x => { x.market.close = null; x.kalshi = null; return x; });
+  extraBoard.push(s, none);
+  await kx.kalshi.loadBoard({ force: true });
+  const base = { kickoff_at: '2026-10-03T14:00:00Z', home: { name: 'A', slug: 'a' }, away: { name: 'B', slug: 'b' }, competition: { slug: 'premier-league', name: 'Premier League' }, score: { home: 1, away: 2 } };
+  const card = matchCard({ ...base, id: HIST_ID, status: 'finished' });
+  assert.match(card, /<div class="mc-kx"><span class="kx-line kx-line--closed mono"/);
+  assert.match(text(card), /MARKET Alina Charaeva first 5\.5¢ · settled YES/);
+  assert.doesNotMatch(matchCard({ ...base, id: CLOSED_ID, status: 'finished' }), /mc-kx|kx-line/, 'nothing recorded -> nothing');
+  assert.doesNotMatch(matchCard({ ...base, id: NO_MARKET_ID, status: 'finished' }), /mc-kx|kx-line/);
+  extraBoard.length = 0;
 });

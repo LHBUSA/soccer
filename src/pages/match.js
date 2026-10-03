@@ -9,7 +9,7 @@ import { mountRelatedNews } from '../components/related.js';
 import { keyPlayers } from '../components/keyplayers.js';
 import { matchTitle } from '../seo/meta.js';
 import { analyzerPreviewHtml } from '../components/analyzer.js';
-import { byDeadline, kalshi, KALSHI_FIRST_PAINT_MS, kalshiPollState, matchKalshiHtml } from '../data/kalshi.js';
+import { boardEntry, byDeadline, KALSHI_FIRST_PAINT_MS, loadMatchMarket, marketPollMs, matchKalshiHtml } from '../data/kalshi.js';
 import { wireKalshi } from '../vendor/kalshi/kalshi-market-ui.js';
 
 export const title = d => (d?.env?.data ? matchTitle(d.env.data) : 'Match Intelligence | PropBetEdge');
@@ -18,10 +18,10 @@ export const title = d => (d?.env?.data ? matchTitle(d.env.data) : 'Match Intell
 // KALSHI_FIRST_PAINT_MS from the start of the load (never longer); a late answer fills the slot in mount().
 export async function load([id]) {
   const deadline = Date.now() + KALSHI_FIRST_PAINT_MS;
-  const kx = kalshi.loadEvent(id).catch(() => null);
+  const kx = loadMatchMarket(id);
   const env = await api(`matches/${id}`);
   const entry = await byDeadline(kx, deadline);
-  return { env, kx: entry === undefined ? kalshi.forEvent(id) : entry, kxPending: entry === undefined ? kx : null };
+  return { env, kx: entry === undefined ? boardEntry(id) : entry, kxPending: entry === undefined ? kx : null };
 }
 
 const personLink = p => (p?.slug ? link(`/players/${p.slug}`, esc(p.name)) : esc(p?.name || 'Unidentified player'));
@@ -193,8 +193,10 @@ export function render(d) {
 
 const newsSlot = () => '<div data-related-news></div>';
 
-// Kalshi card lifecycle: one poll chain per mounted match page (live 20 s / pregame 45 s, none once
-// finished); it stops as soon as the slot leaves the DOM (navigation or re-render) and is cleared on every mount.
+// Market card lifecycle: one poll chain per mounted match page, for every match that has or had a market
+// (completed ones too): live 20 s / pregame 45 s; CLOSED (or a finished match whose market still trades)
+// 5 min until it settles; SETTLED none (marketPollMs). The slot turns from the live card into "How the market
+// closed" on its own when the API says so. It stops as soon as the slot leaves the DOM (navigation or re-render) and is cleared on every mount.
 const kxState = { id: null, entry: null, timer: null };
 export function stopMatchKalshi() { clearTimeout(kxState.timer); kxState.timer = null; }
 function paintKalshi(slot, entry) {
@@ -210,18 +212,19 @@ function mountKalshi(root, d) {
   if (!slot) return;
   Object.assign(kxState, { id: m.id, entry: d.kx || null });
   if (d.kx) wireKalshi(slot);
-  const lane = kalshiPollState(m.status);
   const schedule = () => {
-    if (!lane || !slot.isConnected) return;
+    clearTimeout(kxState.timer); kxState.timer = null;
+    const ms = marketPollMs(m.status, kxState.entry);
+    if (!ms || !slot.isConnected) return;
     kxState.timer = setTimeout(async () => {
       if (!slot.isConnected) return;
       if (document.hidden) return schedule();
-      const entry = await kalshi.loadEvent(m.id, { force: true }).catch(() => null);
+      const entry = await loadMatchMarket(m.id, { force: true });
       if (!slot.isConnected || kxState.id !== m.id) return;
       kxState.entry = entry; paintKalshi(slot, entry); schedule();
-    }, kalshi.pollMsFor(lane));
+    }, ms);
   };
-  if (d.kxPending) d.kxPending.then(entry => { if (slot.isConnected && entry && kxState.id === m.id) { kxState.entry = entry; paintKalshi(slot, entry); } });
+  if (d.kxPending) d.kxPending.then(entry => { if (slot.isConnected && entry && kxState.id === m.id) { kxState.entry = entry; paintKalshi(slot, entry); schedule(); } });
   schedule();
 }
 

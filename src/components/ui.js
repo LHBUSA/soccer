@@ -123,7 +123,8 @@ export function intelBadges(intel, status) {
   return join(on, ([k, l]) => `<span class="intel i-${k}">${l}</span>`);
 }
 
-// Restrained Kalshi prediction-market line for a not-finished match whose page loaded the market board;
+// Restrained Kalshi prediction-market line for a not-finished match, or the subtle market close line on a
+// finished result card, when the page loaded the market board;
 // nothing at all otherwise (no placeholder).
 const kalshiSlot = m => { const line = kalshiLineFor(m); return line ? `<div class="mc-kx">${line}</div>` : ''; };
 
