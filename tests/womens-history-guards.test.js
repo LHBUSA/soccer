@@ -83,3 +83,13 @@ test('UWCL: every ESPN type name discovered 2019-2026 has an explicit role; grou
   for (const s of Object.values(d.seasons)) for (const t of s.types) assert.ok(roles[t.name], `${s.year} ${t.name} has no explicit role`);
   assert.equal(roles['Group Stage'], 'league'); assert.equal(roles['League Phase'], 'league'); assert.equal(roles['Round of 32'], 'playoff');
 });
+
+test('every stage_by_type women\'s competition has an explicit role for every ESPN type in its whole catalog', () => {
+  const d = JSON.parse(readFileSync('docs/evidence/history/womens-history-discovery-2026-10-03.json', 'utf8')).competitions;
+  for (const c of registry.competitions.filter(c => c.gender === 'women' && c.espn?.stage_by_type && d[c.slug])) {
+    for (const s of Object.values(d[c.slug].seasons)) for (const t of s.types) assert.ok(c.espn.type_roles?.[t.name], `${c.slug} ${s.year} '${t.name}' has no explicit role (the generic classifier may exclude it)`);
+  }
+  const roles = slug => registry.competitions.find(c => c.slug === slug).espn.type_roles;
+  assert.equal(roles('nwsl').Regular, 'league'); assert.equal(roles('nwsl')['First Round'], 'playoff');
+  assert.equal(roles('premiere-ligue')['2022-23 French Division 1 Féminine'], 'league');
+});
