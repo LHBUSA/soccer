@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026-10-03.6",
+  "registry_version": "2026-10-03.7",
   "note": "Reviewed canonical metadata for competitions and the provider ids proven to denote them. Provider ids here are crosswalks, not identity.",
   "competitions": [
     {
@@ -535,14 +535,15 @@
       "espn": {
         "league": "uefa.wchampions",
         "id": "19483",
-        "enabled": false,
+        "enabled": true,
         "may_found": true,
         "stage_by_type": true,
         "standings": {
           "group_type": "league_phase",
           "season_type": 1
         },
-        "discovery_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): uefa.wchampions id 19483, gender FEMALE; 2026 types 1 'League Phase' (54 events, standings), 2 'Knockout Round Playoffs', 3 'Quarterfinals', 4 'Semifinals', 5 'Final'; 18 teams. Women's teams have their own ESPN team ids (0 ids shared with any men's competition probed)."
+        "discovery_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): uefa.wchampions id 19483, gender FEMALE; 2026 types 1 'League Phase' (54 events, standings), 2 'Knockout Round Playoffs', 3 'Quarterfinals', 4 'Semifinals', 5 'Final'; 18 teams. Women's teams have their own ESPN team ids (0 ids shared with any men's competition probed).",
+        "enable_note": "Enabled 2026-10-03 after local canary PASS (docs/evidence/world/canary-uefa-womens-champions-league-2026-10-03.json): 54/54 fixtures, 18/18 finished detailed (lineups both sides 18, team stats 18, plays 18; 24760 located events), 0 enrichment gaps; identity 18/18 teams gender women (0 reused from production by stable ESPN id, 18 founded, 0 queued, 0 name-only merges); table league-phase; PBEcast replay + pregame payloads proven. 26 athletes without DOB queued (never invented)."
       },
       "external_ids": [
         {
@@ -555,7 +556,7 @@
       "expected_teams": 18,
       "news": {
         "enabled": false,
-        "blocker": "Lane disabled until its canary passes (docs/evidence/world/); newsroom enablement follows lane certification."
+        "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
       }
     },
     {
