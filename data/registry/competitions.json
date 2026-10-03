@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026-10-03.7",
+  "registry_version": "2026-10-03.8",
   "note": "Reviewed canonical metadata for competitions and the provider ids proven to denote them. Provider ids here are crosswalks, not identity.",
   "competitions": [
     {
@@ -571,9 +571,10 @@
       "espn": {
         "league": "esp.w.1",
         "id": "20956",
-        "enabled": false,
+        "enabled": true,
         "may_found": true,
-        "discovery_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): esp.w.1 id 20956 'Spanish Liga F', gender FEMALE; 2026 one type (240 events, standings); 16 teams. Women's teams have their own ESPN team ids (0 ids shared with any men's competition probed)."
+        "discovery_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): esp.w.1 id 20956 'Spanish Liga F', gender FEMALE; 2026 one type (240 events, standings); 16 teams. Women's teams have their own ESPN team ids (0 ids shared with any men's competition probed).",
+        "enable_note": "Enabled 2026-10-03 after local canary PASS (docs/evidence/world/canary-liga-f-2026-10-03.json): 240/240 fixtures, 43/43 finished detailed (lineups both sides 43, team stats 43, plays 43; 0 located events), 0 enrichment gaps; identity 16/16 teams gender women (0 reused from production by stable ESPN id, 16 founded, 0 queued, 0 name-only merges); table overall; PBEcast replay + pregame payloads proven. 21 athletes without DOB queued (never invented). Acceptance: MATCH_DATA_PASS + SPATIAL_DATA_UNAVAILABLE (ESPN gives Liga F events no pitch locations; owner 2026-10-03 approved launch without shot maps; the product never draws an empty map or invents locations)."
       },
       "external_ids": [
         {
@@ -586,7 +587,7 @@
       "expected_teams": 16,
       "news": {
         "enabled": false,
-        "blocker": "Lane disabled until its canary passes (docs/evidence/world/); newsroom enablement follows lane certification."
+        "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
       }
     },
     {
