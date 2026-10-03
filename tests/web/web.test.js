@@ -158,7 +158,7 @@ test('match page: truthful labels, event map, stats basis, lineups, provenance',
 test('match page without located events says so instead of plotting anything', () => {
   const env = espnMatch(); env.data.shots = []; env.data.event_source = 'openligadb'; env.data.stats = null; env.data.lineups = null;
   const html = match.render({ env });
-  assert.ok(html.includes('No event map for this match'));
+  assert.ok(html.includes('SHOT MAP NOT AVAILABLE') && !html.includes('No event map for this match'), 'one neutral no-map treatment (owner 2026-10-03)');
   assert.ok(html.includes('reports goals only'));
   assert.ok(html.includes('Absent statistics are not zeros'));
   assert.ok(html.includes('Lineups are not available'));
@@ -206,7 +206,7 @@ test('V2 table: POS CLUB P W D L GD PTS, form dots only when real', () => {
 });
 
 test('V2: MLS is in the rail, filters and selectors; team observed players are sourced only', () => {
-  assert.deepEqual(FEATURED, ['mls', 'premier-league', 'la-liga', 'serie-a', 'ligue-1', 'bundesliga', 'uefa-champions-league', 'uefa-europa-league', 'uefa-nations-league', 'fifa-world-cup', 'womens-super-league', 'uefa-womens-champions-league', 'liga-f', 'premiere-ligue']);
+  assert.deepEqual(FEATURED, ['mls', 'premier-league', 'la-liga', 'serie-a', 'ligue-1', 'bundesliga', 'uefa-champions-league', 'uefa-europa-league', 'uefa-nations-league', 'fifa-world-cup', 'nwsl', 'womens-super-league', 'uefa-womens-champions-league', 'liga-f', 'premiere-ligue']);
   const t = team.render({ env: { data: { name: 'A', form: [], recent: [], upcoming: [], records: [], players_observed: { lineups_counted: 0, players: [] } }, meta: { source: 'pbe', coverage: { state: 'ok', notes: [] } } } });
   assert.ok(t.includes('PLAYERS OBSERVED IN SOURCE DATA') && t.includes('Squad lists are never guessed'));
   const t2 = team.render({ env: { data: { name: 'A', form: ['W'], recent: [], upcoming: [], records: [{ competition: { slug: 'mls', name: 'MLS' }, season: '2026', position: 3, teams_in_table: 30, record: { played: 30, won: 15, drawn: 5, lost: 10, goal_difference: 8, points: 50, form: ['W'] } }], players_observed: { lineups_counted: 2, players: [{ slug: 'p', name: 'P', role: 'forward', appearances: 2, starts: 1, named: 2 }] } }, meta: { source: 'pbe', coverage: { state: 'ok', notes: [] } } } });
@@ -223,4 +223,12 @@ test('match page, spatial:false competition (Liga F): one neutral no-map panel, 
   assert.ok(!html.includes('Every shot on the canonical 105 × 68 m pitch'), 'no map promise');
   assert.ok(!html.includes('No event map for this match'), 'no generic missing-data state');
   assert.ok(html.includes('STARTING XI') && html.includes('SOURCE MATCH STATISTICS'), 'the rest of the match renders');
+});
+
+test('match page, spatial competition but this match has no verified locations (NWSL early 2026, 0-1 coords): neutral note, no generic empty map', () => {
+  const e = espnMatch();
+  const html = match.render({ env: { ...e, data: { ...e.data, competition: { slug: 'nwsl', name: 'NWSL' }, shots: [], coordinates: null } } });
+  assert.ok(html.includes('SHOT MAP NOT AVAILABLE') && html.includes('no verified pitch locations'));
+  assert.ok(!html.includes('No event map for this match') && !html.includes('class="pitchwrap'));
+  assert.ok(!html.includes('Every shot on the canonical 105 × 68 m pitch'));
 });

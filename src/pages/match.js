@@ -85,6 +85,16 @@ export function subsBlock(m) {
     <span class="min">${s.minute !== null && s.minute !== undefined ? `${esc(s.minute)}'` : DASH}</span><span>${playerChip(s.out)}</span><span>${playerChip(s.in)}</span></div>`)}</div>`;
 }
 
+// One neutral treatment for every genuinely non-spatial match (owner 2026-10-03): a competition without pitch locations
+// (competitions.js spatial:false), a match whose source locations are unverified 0-1 scale (kept source-only), or a
+// goals-only source. Never a pitch promise, never the generic "no event map" state.
+export function noMapPanel(m) {
+  const why = compMeta(m.competition?.slug)?.spatial === false ? "The source records this competition's events without pitch locations"
+    : m.event_source === 'openligadb' ? 'The source for this match reports goals only, without event locations'
+      : 'This match has no verified pitch locations in the source';
+  return `<div class="panel map">${sectionHead('EVENT MAP', 'Shot map not available')}<div class="cast-nomap" role="note"><p class="kicker">SHOT MAP NOT AVAILABLE</p><p>${esc(why)}, so no shot map is drawn. Every recorded shot, goal, card and substitution is in the match timeline.</p></div></div>`;
+}
+
 export function eventMap(m) {
   const shots = validShots(m.shots);
   if (!shots.length) {
@@ -182,10 +192,9 @@ export function render(d) {
   <section class="canvas" data-match-id="${esc(m.id)}"><div class="wrap mgrid2">
     <div class="col-a">
       <div class="panel">${sectionHead('MATCH STORY', 'Goals, cards and substitutions')}${story(m)}</div>
-      ${compMeta(m.competition?.slug)?.spatial === false
-        // competitions.js spatial:false: the source gives no pitch locations; no map panel promising one
-        ? `<div class="panel map">${sectionHead('EVENT MAP', 'Shot map not available')}<div class="cast-nomap" role="note"><p class="kicker">SHOT MAP NOT AVAILABLE</p><p>The source records this competition's events without pitch locations, so no shot map is drawn. Every shot, goal, card and substitution is in the match timeline.</p></div></div>`
-        : `<div class="panel map">${sectionHead('EVENT MAP', 'Every shot on the canonical 105 × 68 m pitch')}${eventMap(m)}</div>`}
+      ${validShots(m.shots).length && compMeta(m.competition?.slug)?.spatial !== false
+        ? `<div class="panel map">${sectionHead('EVENT MAP', 'Every shot on the canonical 105 × 68 m pitch')}${eventMap(m)}</div>`
+        : noMapPanel(m)}
       ${when(m.shot_timeline?.length, () => `<div class="panel">${sectionHead('SHOT INTELLIGENCE', 'Every shot, in order')}${shotTimeline(m)}</div>`)}
     </div>
     <div class="col-b">
