@@ -79,7 +79,8 @@ test('a soccer entry renders home / draw / away with prediction-market wording a
   const t = text(html);
   for (const s of ['Arsenal wins', 'Tie is the result', 'Leeds United wins', 'Draw']) assert.ok(t.includes(s), s);
   assert.ok(t.indexOf('Arsenal') < t.indexOf('Draw') && t.indexOf('Draw') < t.indexOf('Leeds'), 'home, draw, away order');
-  assert.match(t, /Kalshi market Live prediction market/);
+  assert.match(t, /Market Pulse Live prediction market · Kalshi/);
+  assert.match(t, /Live prediction-market pricing — no sportsbook line required./);
   assert.match(t, /not sportsbook odds and not a PropBetEdge model/);
   assert.match(t, /Mid-market/);
   assert.ok(t.includes(kx.SETTLEMENT_NOTE), 'settlement note next to the card');

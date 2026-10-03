@@ -184,13 +184,13 @@ export function kalshiCard(entry, { placement, colors = {}, compact = false } = 
     body = k.outcomes.map(settledPanel).join('')
     if (!body) return ''
   }
-  return `<section class="ic kx${compact ? ' kx--compact' : ''}" ${attrs(entry, k, placement)} aria-label="Kalshi prediction market">
+  return `<section class="ic kx${compact ? ' kx--compact' : ''}" ${attrs(entry, k, placement)} aria-label="Market Pulse: live Kalshi prediction market">
     <header class="kx__hd">
-      <div class="kx__brand"><span class="kx__name">Kalshi market</span><span class="kx__sub">Live prediction market</span></div>
+      <div class="kx__brand"><span class="kx__name">Market Pulse</span><span class="kx__sub">Live prediction market · Kalshi</span></div>
       ${freshnessBadge(k)}
     </header>
     ${body === null ? fieldList(k, k.outcomes, { placement, movement }) : `<div class="kx__grid" style="--kx-cols:${k.outcomes.length}">${body}</div>`}
-    ${k.state === 'open' && !compact ? '<p class="kx__note">Traded contract prices, not sportsbook odds and not a PropBetEdge model. Each YES contract pays $1 if that outcome happens. Mid-market is the midpoint of the best YES bid and ask, shown only when the spread is 10¢ or less. Movement uses our stored observations only.</p>' : ''}
+    ${k.state === 'open' && !compact ? '<p class="kx__note">Live prediction-market pricing — no sportsbook line required. Traded contract prices on Kalshi, not sportsbook odds and not a PropBetEdge model. Each YES contract pays $1 if that outcome happens. Mid-market is the midpoint of the best YES bid and ask, shown only when the spread is 10¢ or less. Movement uses our stored observations only.</p>' : ''}
     <footer class="kx__ft"><span>Kalshi · Prediction market data</span>${link(k, 'View market on Kalshi ↗', 'kx__cta', placement, null)}</footer>
   </section>`
 }
@@ -211,7 +211,7 @@ export function kalshiStrip(entry, { placement = 'nbacast-strip', colors = {} } 
     return `<span class="kx__si"${c ? ` style="--kx-team:${c}"` : ''}><b>${esc(o.abbr || '')}</b> <span class="mono kx__sp${dir}">${esc(centsLabel(o.mid_bp, { fixed: true }))}</span>${arrow}</span>`
   }).join('<span class="kx__sep" aria-hidden="true">|</span>')
   return `<details class="kx-strip" ${attrs(entry, k, placement)}>
-    <summary><span class="kx__name">Kalshi market</span><span class="kx__sitems">${items}</span>${freshnessBadge(k)}<span class="kx__chev" aria-hidden="true"></span></summary>
+    <summary><span class="kx__name">Market Pulse</span><span class="kx__sitems">${items}</span>${freshnessBadge(k)}<span class="kx__chev" aria-hidden="true"></span><span class="kx__stag">Live prediction-market expectations — no sportsbook line required · Kalshi</span></summary>
     ${kalshiCard(entry, { placement: `${placement}-expanded`, colors, compact: true })}
   </details>`
 }
