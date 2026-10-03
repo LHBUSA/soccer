@@ -7,6 +7,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 import { join } from 'node:path';
 
 const ID = 'dd8264d9-a90f-54bd-8da8-da17d6d41ef7';
@@ -216,12 +217,17 @@ test('browser code never names a Kalshi API host; the market Worker is reached o
   assert.doesNotMatch(csp, /kalshi|propsports-markets/);
 });
 
-test('vendored Kalshi files match the canonical shared client (when the canonical checkout is present)', t => {
-  const canon = 'D:/Workers/propbetedge-workers/workers/propsports-markets/client';
-  if (!existsSync(canon)) { t.skip('canonical checkout not present on this machine'); return; }
+// Canonical = the COMMITTED shared client (HEAD of the canonical checkout), never its working tree: an owning session's
+// uncommitted, in-progress edit is not a release and must not block (or be vendored by) another product's release
+// (2026-10-03: every soccer push was refused while the Kalshi session had unsaved edits on top of ad6187a).
+// A NEWER COMMITTED canonical still fails here until soccer re-vendors it.
+test('vendored Kalshi files match the canonical shared client (committed HEAD, when the canonical checkout is present)', t => {
+  const repo = 'D:/Workers/propbetedge-workers';
+  if (!existsSync(join(repo, 'workers/propsports-markets/client'))) { t.skip('canonical checkout not present on this machine'); return; }
   const norm = s => s.replace(/\r\n/g, '\n');
   for (const f of ['kalshi-market-ui.js', 'kalshi-market-ui.css', 'kalshi-market-client.js', 'README.md']) {
-    assert.equal(norm(readFileSync(join('src/vendor/kalshi', f), 'utf8')), norm(readFileSync(join(canon, f), 'utf8')), f);
+    const committed = execFileSync('git', ['-C', repo, 'show', `HEAD:workers/propsports-markets/client/${f}`], { encoding: 'utf8' });
+    assert.equal(norm(readFileSync(join('src/vendor/kalshi', f), 'utf8')), norm(committed), f);
   }
 });
 
