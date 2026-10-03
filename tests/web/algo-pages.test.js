@@ -118,3 +118,24 @@ test('models load independently: one failing API never hides the other', async (
   assert.match(src, /Promise\.allSettled\(MODELS\.map/);
   assert.match(src, /\.filter\(x => x\.res\?\.data\?\.live === true\)/);
 });
+
+test('/picks renders ONE SOURCE & COVERAGE card for every live lane; lanes are sections inside it; no "Not stated"', () => {
+  const m1 = { source: 'pbe', source_updated_at: null, semantics: 'v1 semantics', coverage: { state: 'ok', notes: [] }, attribution: [] };
+  const m2 = { source: 'pbe', source_updated_at: null, semantics: 'v2 semantics', coverage: { state: 'ok', notes: [] }, attribution: [] };
+  const both = { models: [{ model: V1, res: { data: { ...emptyPicks, live: true }, meta: m1 } }, { model: V2, res: { data: { ...emptyPicks, live: true }, meta: m2 } }], tab: 'all' };
+  const html = picks.render(both);
+  assert.equal((html.match(/SOURCE &amp; COVERAGE|SOURCE & COVERAGE/g) || []).length, 1, 'exactly one heading');
+  assert.equal((html.match(/<details class="source"/g) || []).length, 1, 'exactly one provenance shell');
+  const t = text(html);
+  assert.match(t, /Bundesliga — Soccer Algo V1 Frozen Bundesliga model\./);
+  assert.match(t, /International — Soccer Algo V2 Frozen national-team model for UEFA Nations League group \/ league-phase matches\./);
+  assert.match(t, /append-only ledger before lock \(kickoff − 60 min\) and never edited\. Records remain separate between V1 and V2\./);
+  assert.doesNotMatch(t, /Not stated/); assert.doesNotMatch(t, /UPDATED|Updated/);
+  // a real timestamp IS shown (latest of the lanes)
+  const timed = picks.render({ ...both, models: both.models.map((x, i) => ({ ...x, res: { ...x.res, meta: { ...x.res.meta, source_updated_at: i ? '2026-10-03T12:00:00Z' : '2026-10-02T12:00:00Z' } } })) });
+  assert.match(text(timed), /Updated/);
+  // a single-model tab: still one card, only that lane, no cross-model sentence
+  const solo = text(picks.render({ ...both, models: both.models, tab: 'nations-league' }));
+  assert.equal((solo.match(/SOURCE &amp; COVERAGE/g) || []).length, 1);
+  assert.doesNotMatch(solo, /Soccer Algo V1 Frozen/); assert.doesNotMatch(solo, /Records remain separate/);
+});

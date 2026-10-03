@@ -361,6 +361,9 @@ button { font: inherit; }
 .band.dark .src-body dt { color: var(--muted-dark); }
 .src-body dd { margin: 0; overflow-wrap: anywhere; }
 .semantics { margin: 12px 0 0; }
+.src-lane { margin: 12px 0 0; padding-left: 10px; border-left: 3px solid var(--line-2); }
+.src-lane p { margin: 0; }
+.src-lane .src-lane-h { margin: 0 0 2px; }
 .notes { margin: 8px 0 0; padding-left: 18px; color: var(--gold-ink); }
 .attrib { display: flex; flex-direction: column; gap: 2px; margin: 10px 0 0; font-size: 12px; color: var(--muted); }
 

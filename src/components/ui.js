@@ -47,13 +47,33 @@ export function coverageBadge(meta) {
 const LANE = /\bESPN(?:'s)?\b(?: \(secondary(?: source)?\))?/g;
 const customerText = s => String(s || '').replace(LANE, 'PropSports');
 const customerAttribution = list => [...new Set((list || []).filter(a => !/ESPN/.test(String(a))))];
-// The one reusable SOURCE / COVERAGE component.
-export function sourcePanel(meta, { title = 'SOURCE & COVERAGE', extra = [], open = false } = {}) {
+// Several API responses behind ONE surface (e.g. one per model lane on /picks) share one provenance block: the latest
+// real source timestamp, the worst coverage state, and the union of notes and attribution. Never one card per response.
+const COVERAGE_RANK = { ok: 0, partial: 1, unavailable: 2 };
+export function mergeMeta(metas) {
+  const ms = (metas || []).filter(Boolean);
+  if (ms.length <= 1) return ms[0] || null;
+  const times = ms.map(m => m.source_updated_at).filter(Boolean).sort();
+  const states = ms.map(m => m.coverage?.state).filter(Boolean).sort((a, b) => (COVERAGE_RANK[b] ?? 3) - (COVERAGE_RANK[a] ?? 3));
+  const sources = [...new Set(ms.map(m => m.source))];
+  return {
+    ...ms[0],
+    source: sources.length === 1 ? sources[0] : sources.join(' + '),
+    source_updated_at: times.at(-1) || null,
+    coverage: { state: states[0] || ms[0].coverage?.state, notes: [...new Set(ms.flatMap(m => m.coverage?.notes || []))] },
+    attribution: [...new Set(ms.flatMap(m => m.attribution || []))],
+    semantics: null,
+  };
+}
+
+// The one reusable SOURCE / COVERAGE component. `sections` explains several lanes inside the same card.
+// No real timestamp = no Updated row (a "Not stated" row tells the reader nothing).
+export function sourcePanel(meta, { title = 'SOURCE & COVERAGE', extra = [], open = false, sections = [] } = {}) {
   if (!meta) return '';
   const notes = meta.coverage?.notes || [];
   const rows = [
     ['Source', sourceName(meta.source)],
-    ['Updated', meta.source_updated_at ? `${dateTime(meta.source_updated_at)} (${ago(meta.source_updated_at)})` : 'Not stated'],
+    ...(meta.source_updated_at ? [['Updated', `${dateTime(meta.source_updated_at)} (${ago(meta.source_updated_at)})`]] : []),
     ...extra,
   ];
   return `<details class="source"${open ? ' open' : ''}>
@@ -61,6 +81,7 @@ export function sourcePanel(meta, { title = 'SOURCE & COVERAGE', extra = [], ope
     <div class="src-body">
       <dl>${join(rows, ([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`)}</dl>
       ${when(meta.semantics, () => `<p class="semantics"><b>What this means.</b> ${esc(customerText(meta.semantics))}</p>`)}
+      ${join(sections, s => `<div class="src-lane"><p class="src-lane-h"><b>${esc(s.title)}</b></p><p>${esc(customerText(s.text))}</p></div>`)}
       ${when(notes.length, () => `<ul class="notes">${join(notes, n => `<li>${esc(customerText(n))}</li>`)}</ul>`)}
       ${when(customerAttribution(meta.attribution).length, () => `<p class="attrib">${join(customerAttribution(meta.attribution), a => `<span>${esc(a)}</span>`)}</p>`)}
     </div>

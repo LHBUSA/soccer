@@ -9,13 +9,27 @@
 import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { dateTime } from '../lib/format.js';
-import { empty, link, sectionHead, sourcePanel } from '../components/ui.js';
+import { empty, link, mergeMeta, sectionHead, sourcePanel } from '../components/ui.js';
 
 // Production-approved soccer algos. lock_minutes = each frozen spec's lead_time.lock_minutes_before_kickoff.
 export const MODELS = [
-  { key: 'bundesliga', tab: 'BUNDESLIGA', competition: 'Bundesliga', version: 'Soccer Algo V1', api: 'algo', lock_minutes: 60 },
-  { key: 'nations-league', tab: 'NATIONS LEAGUE', competition: 'UEFA Nations League', version: 'Soccer Algo V2', api: 'algo/v2', lock_minutes: 60 },
+  { key: 'bundesliga', tab: 'BUNDESLIGA', competition: 'Bundesliga', version: 'Soccer Algo V1', api: 'algo', lock_minutes: 60,
+    lane: 'Bundesliga — Soccer Algo V1',
+    about: 'Frozen Bundesliga model. GAME BEST is the strongest model selection for each forecast match and is a model forecast unless it qualifies as an Official Pick.' },
+  { key: 'nations-league', tab: 'NATIONS LEAGUE', competition: 'UEFA Nations League', version: 'Soccer Algo V2', api: 'algo/v2', lock_minutes: 60,
+    lane: 'International — Soccer Algo V2',
+    about: 'Frozen national-team model for UEFA Nations League group / league-phase matches. GAME BEST is the strongest model selection for each forecast match and is a model forecast unless it meets the frozen Official Pick threshold.' },
 ];
+
+// ONE provenance block for every model lane on the page: the lanes share a source (PBE) and coverage, so each lane is a
+// section inside the same card instead of its own SOURCE & COVERAGE shell (was: one card per lane, 2026-10-03).
+export function picksSource(shown) {
+  const meta = mergeMeta(shown.map(x => x.res.meta));
+  if (!meta) return '';
+  const locks = [...new Set(shown.map(x => x.model.lock_minutes))];
+  meta.semantics = `OFFICIAL PICKS are each model's frozen-policy qualifying selections, written to that model's append-only ledger before lock (${locks.length === 1 ? `kickoff − ${locks[0]} min` : 'each model\'s lock time'}) and never edited.${shown.length > 1 ? ` Records remain separate between ${shown.map(x => x.model.version.replace('Soccer Algo ', '')).join(' and ')}.` : ''}`;
+  return sourcePanel(meta, { sections: shown.map(x => ({ title: x.model.lane, text: x.model.about })) });
+}
 const byKey = new Map(MODELS.map(m => [m.key, m]));
 
 const pc = (p, dp = 1) => (p === null || p === undefined ? '—' : `${(100 * p).toFixed(dp)}%`);
@@ -92,7 +106,7 @@ export const picks = {
       ${best.length ? `<div class="algo-gbgrid">${best.map(([m, g]) => gameBestCard(m, g)).join('')}</div>` : empty('No forecasts in the window', models.length ? 'Forecasts are issued when a match is 7 days away.' : 'Forecasts start at go-live.')}
       ${when(awaiting.length, () => `${sectionHead('NEXT UP', 'Awaiting forecast')}<ul class="algo-next">${awaiting.map(([m, g]) => `<li>${modelChip(m)} ${fixture(g)} <span class="muted">· kickoff ${esc(dateTime(g.kickoff_at))} · forecast window opens ${esc(dateTime(g.forecast_window_opens_at))}</span></li>`).join('')}</ul>`)}
       ${when(shown.length, () => `${sectionHead('THE POLICY', 'Frozen before any outcome')}${shown.map(x => policyBlock(x.model, x.res.data.policy)).join('')}`)}
-      ${shown.map(x => sourcePanel(x.res.meta)).join('')}
+      ${picksSource(shown)}
     </div></section>`;
   },
 };
