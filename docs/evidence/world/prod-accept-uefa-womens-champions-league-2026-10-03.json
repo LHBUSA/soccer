@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-10-03T18:54:34.526Z",
-  "competition": "womens-super-league",
+  "generated_at": "2026-10-03T18:54:18.112Z",
+  "competition": "uefa-womens-champions-league",
   "gender": "women",
-  "canary": "docs/evidence/world/canary-womens-super-league-2026-10-03.json",
+  "canary": "docs/evidence/world/canary-uefa-womens-champions-league-2026-10-03.json",
   "season": "2026/27",
   "publication_state": "published",
   "worker_enabled": true,
@@ -10,28 +10,12 @@
     "match_data": "MATCH_DATA_PASS",
     "spatial": "SPATIAL_DATA_AVAILABLE",
     "cast_located_in_latest_finished": [
-      23,
+      31,
       30,
-      24
+      28
     ]
   },
   "namesakes": [
-    {
-      "team": "Tottenham Hotspur Women",
-      "distinct_from": [
-        "Tottenham Hotspur"
-      ],
-      "same_id": false,
-      "shared_espn_id": false
-    },
-    {
-      "team": "Everton Women",
-      "distinct_from": [
-        "Everton"
-      ],
-      "same_id": false,
-      "shared_espn_id": false
-    },
     {
       "team": "Chelsea Women",
       "distinct_from": [
@@ -41,9 +25,41 @@
       "shared_espn_id": false
     },
     {
-      "team": "West Ham United Women",
+      "team": "Real Madrid Women",
       "distinct_from": [
-        "West Ham United"
+        "Real Madrid"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Barcelona Women",
+      "distinct_from": [
+        "Barcelona"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Juventus Women",
+      "distinct_from": [
+        "Juventus"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Benfica Women",
+      "distinct_from": [
+        "Benfica"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Internazionale Women",
+      "distinct_from": [
+        "Internazionale"
       ],
       "same_id": false,
       "shared_espn_id": false
@@ -57,57 +73,17 @@
       "shared_espn_id": false
     },
     {
-      "team": "Crystal Palace Women",
+      "team": "Paris Saint-Germain Women",
       "distinct_from": [
-        "Crystal Palace"
+        "Paris Saint-Germain"
       ],
       "same_id": false,
       "shared_espn_id": false
     },
     {
-      "team": "Brighton & Hove Albion Women",
+      "team": "Paris FC Women",
       "distinct_from": [
-        "Brighton & Hove Albion"
-      ],
-      "same_id": false,
-      "shared_espn_id": false
-    },
-    {
-      "team": "Manchester United Women",
-      "distinct_from": [
-        "Manchester United"
-      ],
-      "same_id": false,
-      "shared_espn_id": false
-    },
-    {
-      "team": "Birmingham City Women",
-      "distinct_from": [
-        "Birmingham City"
-      ],
-      "same_id": false,
-      "shared_espn_id": false
-    },
-    {
-      "team": "Aston Villa Women",
-      "distinct_from": [
-        "Aston Villa"
-      ],
-      "same_id": false,
-      "shared_espn_id": false
-    },
-    {
-      "team": "Liverpool Women",
-      "distinct_from": [
-        "Liverpool"
-      ],
-      "same_id": false,
-      "shared_espn_id": false
-    },
-    {
-      "team": "Charlton Athletic Women",
-      "distinct_from": [
-        "Charlton Athletic"
+        "Paris FC"
       ],
       "same_id": false,
       "shared_espn_id": false
@@ -122,23 +98,23 @@
     }
   ],
   "fixtures": {
-    "production": 182,
-    "canary": 182,
+    "production": 54,
+    "canary": 54,
     "verified": true
   },
   "completed_detail": {
-    "finished": 29,
-    "canary_finished": 29,
-    "scored": 29,
-    "lineups_both": 29,
-    "stats_both": 29,
-    "plays": 29,
+    "finished": 18,
+    "canary_finished": 18,
+    "scored": 18,
+    "lineups_both": 18,
+    "stats_both": 18,
+    "plays": 18,
     "gaps": 0,
     "unknown_status": 0
   },
   "identity": {
-    "teams": 14,
-    "expected": 14,
+    "teams": 18,
+    "expected": 18,
     "reused_from_production": [
       "Chelsea Women",
       "Arsenal Women",
@@ -156,12 +132,12 @@
   "api": {
     "competition": 200,
     "table": 200,
-    "table_view": "overall",
-    "table_rows": 14,
+    "table_view": "league-phase",
+    "table_rows": 18,
     "match": 200,
     "cast": 200,
     "cast_mode": "replay",
-    "match_fixture": "Manchester United Women 1-0 Liverpool Women"
+    "match_fixture": "Manchester City Women 1-1 Real Madrid Women"
   },
   "checks": {
     "backfill_complete": true,
@@ -172,7 +148,6 @@
     "gender_integrity": true,
     "spatial_status_proven": true,
     "api_canary": true,
-    "navigation_live": true,
     "browser_canary": true,
     "browser_390": true,
     "browser_768": true,
@@ -180,17 +155,17 @@
   },
   "pass": true,
   "browser": {
-    "generated_at": "2026-10-03T18:54:55.912Z",
-    "nav_expected": true,
-    "match_id": "f75166dd-a3da-54c2-aed7-daa55ba8a96e",
+    "generated_at": "2026-10-03T18:55:12.916Z",
+    "nav_expected": false,
+    "match_id": "9c0c9ab0-7ba4-557a-b65a-8e9755c3e006",
     "results": [
       {
         "width": 390,
         "kind": "hub",
-        "path": "/competitions/womens-super-league",
+        "path": "/competitions/uefa-womens-champions-league",
         "error_state": false,
         "not_found": false,
-        "table_rows": 20,
+        "table_rows": 24,
         "lineups": true,
         "feed_items": 0,
         "pitch": false,
@@ -198,7 +173,7 @@
         "nomap_h": 0,
         "nomap_text": false,
         "empty_states": [],
-        "nav_link": true,
+        "nav_link": false,
         "overflow_x": false,
         "spatial_ok": true,
         "js_errors": [],
@@ -207,10 +182,10 @@
       {
         "width": 390,
         "kind": "match",
-        "path": "/matches/f75166dd-a3da-54c2-aed7-daa55ba8a96e",
+        "path": "/matches/9c0c9ab0-7ba4-557a-b65a-8e9755c3e006",
         "error_state": false,
         "not_found": false,
-        "table_rows": 51,
+        "table_rows": 60,
         "lineups": true,
         "feed_items": 0,
         "pitch": true,
@@ -218,7 +193,7 @@
         "nomap_h": 0,
         "nomap_text": false,
         "empty_states": [],
-        "nav_link": true,
+        "nav_link": false,
         "overflow_x": false,
         "spatial_ok": true,
         "js_errors": [],
@@ -227,18 +202,18 @@
       {
         "width": 390,
         "kind": "pbecast",
-        "path": "/pbecast/f75166dd-a3da-54c2-aed7-daa55ba8a96e",
+        "path": "/pbecast/9c0c9ab0-7ba4-557a-b65a-8e9755c3e006",
         "error_state": false,
         "not_found": false,
         "table_rows": 0,
         "lineups": true,
-        "feed_items": 33,
+        "feed_items": 39,
         "pitch": true,
         "nomap": false,
         "nomap_h": 0,
         "nomap_text": false,
         "empty_states": [],
-        "nav_link": true,
+        "nav_link": false,
         "overflow_x": false,
         "spatial_ok": true,
         "js_errors": [],
@@ -247,10 +222,10 @@
       {
         "width": 768,
         "kind": "hub",
-        "path": "/competitions/womens-super-league",
+        "path": "/competitions/uefa-womens-champions-league",
         "error_state": false,
         "not_found": false,
-        "table_rows": 20,
+        "table_rows": 24,
         "lineups": true,
         "feed_items": 0,
         "pitch": false,
@@ -258,7 +233,7 @@
         "nomap_h": 0,
         "nomap_text": false,
         "empty_states": [],
-        "nav_link": true,
+        "nav_link": false,
         "overflow_x": false,
         "spatial_ok": true,
         "js_errors": [],
@@ -267,10 +242,10 @@
       {
         "width": 768,
         "kind": "match",
-        "path": "/matches/f75166dd-a3da-54c2-aed7-daa55ba8a96e",
+        "path": "/matches/9c0c9ab0-7ba4-557a-b65a-8e9755c3e006",
         "error_state": false,
         "not_found": false,
-        "table_rows": 51,
+        "table_rows": 60,
         "lineups": true,
         "feed_items": 0,
         "pitch": true,
@@ -278,7 +253,7 @@
         "nomap_h": 0,
         "nomap_text": false,
         "empty_states": [],
-        "nav_link": true,
+        "nav_link": false,
         "overflow_x": false,
         "spatial_ok": true,
         "js_errors": [],
@@ -287,18 +262,18 @@
       {
         "width": 768,
         "kind": "pbecast",
-        "path": "/pbecast/f75166dd-a3da-54c2-aed7-daa55ba8a96e",
+        "path": "/pbecast/9c0c9ab0-7ba4-557a-b65a-8e9755c3e006",
         "error_state": false,
         "not_found": false,
         "table_rows": 0,
         "lineups": true,
-        "feed_items": 33,
+        "feed_items": 39,
         "pitch": true,
         "nomap": false,
         "nomap_h": 0,
         "nomap_text": false,
         "empty_states": [],
-        "nav_link": true,
+        "nav_link": false,
         "overflow_x": false,
         "spatial_ok": true,
         "js_errors": [],
@@ -307,10 +282,10 @@
       {
         "width": 1440,
         "kind": "hub",
-        "path": "/competitions/womens-super-league",
+        "path": "/competitions/uefa-womens-champions-league",
         "error_state": false,
         "not_found": false,
-        "table_rows": 20,
+        "table_rows": 24,
         "lineups": true,
         "feed_items": 0,
         "pitch": false,
@@ -318,7 +293,7 @@
         "nomap_h": 0,
         "nomap_text": false,
         "empty_states": [],
-        "nav_link": true,
+        "nav_link": false,
         "overflow_x": false,
         "spatial_ok": true,
         "js_errors": [],
@@ -327,10 +302,10 @@
       {
         "width": 1440,
         "kind": "match",
-        "path": "/matches/f75166dd-a3da-54c2-aed7-daa55ba8a96e",
+        "path": "/matches/9c0c9ab0-7ba4-557a-b65a-8e9755c3e006",
         "error_state": false,
         "not_found": false,
-        "table_rows": 51,
+        "table_rows": 60,
         "lineups": true,
         "feed_items": 0,
         "pitch": true,
@@ -338,7 +313,7 @@
         "nomap_h": 0,
         "nomap_text": false,
         "empty_states": [],
-        "nav_link": true,
+        "nav_link": false,
         "overflow_x": false,
         "spatial_ok": true,
         "js_errors": [],
@@ -347,18 +322,18 @@
       {
         "width": 1440,
         "kind": "pbecast",
-        "path": "/pbecast/f75166dd-a3da-54c2-aed7-daa55ba8a96e",
+        "path": "/pbecast/9c0c9ab0-7ba4-557a-b65a-8e9755c3e006",
         "error_state": false,
         "not_found": false,
         "table_rows": 0,
         "lineups": true,
-        "feed_items": 33,
+        "feed_items": 39,
         "pitch": true,
         "nomap": false,
         "nomap_h": 0,
         "nomap_text": false,
         "empty_states": [],
-        "nav_link": true,
+        "nav_link": false,
         "overflow_x": false,
         "spatial_ok": true,
         "js_errors": [],

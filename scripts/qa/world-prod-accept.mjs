@@ -41,15 +41,19 @@ const xwCount = allXw.reduce((o, x) => ({ ...o, [x.external_id]: (o[x.external_i
 const comps = await prod.select('soccer_competitions', { columns: ['id', 'slug', 'gender'] });
 const genderOf = new Map(all.map(t => [t.id, t.gender]));
 let crossGender = [];
+const compsOfTeam = new Map(); // team id -> competitions it plays in (production matches)
 for (const c of comps) {
   const ss = await prod.select('soccer_seasons', { columns: ['id'], eq: { competition_id: c.id } });
   for (const s of ss) {
     const ms = await prod.select('soccer_matches', { columns: ['id', 'home_team_id', 'away_team_id'], eq: { season_id: s.id }, limit: 3000 });
+    for (const m of ms) for (const tid of [m.home_team_id, m.away_team_id]) compsOfTeam.set(tid, new Set([...(compsOfTeam.get(tid) || []), c.slug]));
     crossGender = crossGender.concat(ms.filter(m => [m.home_team_id, m.away_team_id].some(t => genderOf.has(t) && genderOf.get(t) !== (c.gender || 'men'))).map(m => ({ competition: c.slug, match: m.id })));
   }
 }
 const canaryTeams = canary.identity_gate;
-const prodReused = teams.filter(t => xw.find(x => x.team_id === t.id)?.method !== 'founding' || canaryTeams.reused_existing_canonical.includes(t.name));
+// One canonical team across competitions: a team of this competition that also plays in another production competition.
+const prodReused = teams.filter(t => [...(compsOfTeam.get(t.id) || [])].some(c => c !== SLUG));
+void canaryTeams;
 
 // public API canary (through the same-origin proxy the browser uses)
 const get = async p => { const r = await fetch(`${BASE}/api/soccer/${p}`); return { status: r.status, json: r.ok ? await r.json() : null }; };
