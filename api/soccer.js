@@ -14,6 +14,7 @@ const ROUTES = [
   /^teams\/[a-z0-9-]{1,120}\/history$/,
   /^table$/, /^news$/, /^live$/, /^matches\/[0-9a-f-]{36}\/cast$/, /^players$/, /^news\/[a-z0-9-]{1,200}$/, /^media\/[0-9a-f]{64}$/, /^videos$/,
   /^algo\/(picks|record|research)$/,
+  /^algo\/v2\/(picks|record|research)$/, // Soccer Algo V2 (Nations League): its own exact routes, nothing nested beyond them
   /^pro\/(access|catalog|board)$/, /^pro\/matches\/[0-9a-f-]{36}$/, /^pro\/teams\/[a-z0-9-]{1,120}$/,
   /^pro\/matches\/[0-9a-f-]{36}\/analyzer$/,
 ];

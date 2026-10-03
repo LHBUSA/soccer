@@ -95,6 +95,13 @@ test('previews: meaningful fixtures 1-24 h out, one per fixture, one matchday br
   const p2 = r2.competitions['premier-league'];
   assert.equal(p2.new, 0); assert.equal(p2.duplicates, p2.candidates);
   assert.equal((await store.select('soccer_articles', { columns: ['slug'], eq: { story_class: 'match_preview' } })).length, arts.length, 'no duplicate previews');
+  // every "duplicate" is accounted for by what its existing story IS (published / held / other)
+  assert.equal(p2.existing.published + p2.existing.held + p2.existing.other, p2.duplicates);
+  // a story that was HELD is reported as held material with its reasons, never as a plain duplicate
+  await store.update('soccer_articles', { status: 'held', hold_reasons: ['editorial:new_number_not_in_packet'] }, { eq: { slug: one.slug } });
+  const p3 = (await runNews(store, { now: NOW + 60 * 60e3, competitions: ['premier-league'], env: { NEWS_DESK: 'off' } })).competitions['premier-league'];
+  assert.equal(p3.existing.held, p2.existing.held + 1); assert.ok(p3.existing.held_reasons['editorial:new_number_not_in_packet'] >= 1);
+  assert.equal(p3.new, 0, 'a held story is never re-issued by the detector');
   void teams; await store.close();
 });
 

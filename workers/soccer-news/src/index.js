@@ -10,6 +10,7 @@ import { deskAvailable, deskRequired, DESK_VERSION, QUALITY_VERSION } from './de
 import { PACKET_V3, DEPTH_VERSION } from './depth.js';
 import { callsForDay, costReport, readCallLog, WORKER_VERSION } from './openai-cost.js';
 import { ROUTER_VERSION, aiConfig } from './ai-router.js';
+import { publicationDiagnostic } from './news-health.js';
 
 // The only production schedule. The temporary backlog-migration cron (*/10) is retired: there is no automatic OpenAI
 // backlog processing. Re-edits are manual only (POST /v1/admin/reedit, scripts/news/reedit-backlog.mjs).
@@ -48,9 +49,13 @@ export default {
     const url = new URL(req.url);
     if (url.pathname === '/health') {
       const last = env.SOCCER_STATE ? await env.SOCCER_STATE.get('news:last_run', 'json') : null;
-      const fresh = last && Date.now() - Date.parse(last.at) < 2 * 3600e3;
       const tick = env.SOCCER_STATE ? await env.SOCCER_STATE.get('news:last_tick', 'json') : null;
-      return json({ ok: !!fresh, version: WORKER_VERSION, news_enabled: env.NEWS_ENABLED === 'on', last_tick: tick, desk: { version: DESK_VERSION, quality: QUALITY_VERSION, packet: PACKET_V3, depth: DEPTH_VERSION, required: deskRequired(env), available: deskAvailable(env) }, ai: (() => { const c = aiConfig(env); return { router: ROUTER_VERSION, enabled: c.enabled, standard_model: c.standardModel, standard_max_output: c.standardMaxOutput, flagship_enabled: c.flagshipEnabled, flagship_classes: [...c.flagshipClasses] }; })(), last_run: last }, fresh ? 200 : 503);
+      // newest PUBLISHED story (stale-publication diagnostic); a read failure is reported, never guessed
+      let newest = null; let newestError = null;
+      try { const store = storeFromEnv(env); const [a] = store ? await store.select('soccer_articles', { columns: ['published_at'], eq: { status: 'published' }, order: 'published_at.desc', limit: 1 }) : []; newest = a?.published_at || null; } catch (e) { newestError = String(e.message || e).slice(0, 160); }
+      const publication = { ...publicationDiagnostic({ tick, last, newestPublishedAt: newest }), ...(newestError ? { newest_published_error: newestError } : {}) };
+      const fresh = publication.ok;
+      return json({ ok: !!fresh, state: publication.state, message: publication.message, publication, version: WORKER_VERSION, news_enabled: env.NEWS_ENABLED === 'on', last_tick: tick, desk: { version: DESK_VERSION, quality: QUALITY_VERSION, packet: PACKET_V3, depth: DEPTH_VERSION, required: deskRequired(env), available: deskAvailable(env) }, ai: (() => { const c = aiConfig(env); return { router: ROUTER_VERSION, enabled: c.enabled, standard_model: c.standardModel, standard_max_output: c.standardMaxOutput, flagship_enabled: c.flagshipEnabled, flagship_classes: [...c.flagshipClasses] }; })(), last_run: last }, fresh ? 200 : 503);
     }
     if (url.pathname === '/v1/run' && req.method === 'POST') {
       if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);

@@ -49,6 +49,15 @@ export async function runNews(store, { now = Date.now(), env = {}, windowDays = 
     for (const part of chunkArr(ids.filter(i => !existing.has(i)), 100)) for (const r of await store.select('soccer_news_events', { columns: ['id'], in: { id: part } })) existing.add(r.id);
     const fresh = cands.filter((c, i) => !existing.has(ids[i])).sort((a, b) => b.materiality.score - a.materiality.score).slice(0, maxPerCompetition);
     out.duplicates = cands.length - cands.filter((c, i) => !existing.has(ids[i])).length;
+    // what the existing stories ARE: a candidate whose story was already HELD is not a "duplicate" of published news.
+    // Health reports held material separately (by reason) so gate holds are never mistaken for a quiet newsroom.
+    out.existing = { published: 0, held: 0, other: 0, held_reasons: {} };
+    const dupIds = ids.filter(i => existing.has(i));
+    for (const part of chunkArr(dupIds, 100)) for (const a of await store.select('soccer_articles', { columns: ['news_event_id', 'status', 'hold_reasons'], in: { news_event_id: part } })) {
+      if (a.status === 'published') out.existing.published += 1;
+      else if (a.status === 'held') { out.existing.held += 1; for (const r of a.hold_reasons || []) out.existing.held_reasons[r] = (out.existing.held_reasons[r] || 0) + 1; }
+      else out.existing.other += 1;
+    }
     out.new = fresh.length;
     for (const cand of fresh) {
       const packet = await buildPacket(store, S, cand);

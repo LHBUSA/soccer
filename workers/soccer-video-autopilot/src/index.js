@@ -1,5 +1,8 @@
 /* soccer-video-autopilot — scheduled official-video discovery + article resolution.
  *
+ * Discovery is keyless by owner decision (2026-09-29, re-ruled 2026-10-03; data/source-registry/sources.json
+ * youtube_rss use_status). Every run records the mechanism it ACTUALLY used, and every cron tick leaves a trace
+ * (video:last_tick) and, on failure, video:last_error, so health tells "cron not firing" from "run failing".
  * Mirrors the proven UFC pattern:
  *   no YOUTUBE_API_KEY -> public YouTube Atom channel feed + oEmbed verification
  *   YOUTUBE_API_KEY    -> optional Data API enrichment (duration, region/status)
@@ -14,7 +17,9 @@ import {
 } from '../../shared/video-match.js';
 
 const WORKER = 'soccer-video-autopilot';
-const VERSION = 'soccer-video-autopilot/1.1.1';
+const VERSION = 'soccer-video-autopilot/1.2.0';
+export const discoveryMechanism = env => (env.YOUTUBE_API_KEY ? 'youtube_data_api_v3' : 'youtube_atom_feed_oembed');
+const STALE_MS = 2 * 3600e3;
 const PROVIDER = 'youtube';
 const DEFAULT_SINCE_DAYS = 14;
 const MAX_CHANNELS_PER_RUN = 80;
@@ -218,7 +223,7 @@ async function discoverChannel(env, channel, { sinceDays = DEFAULT_SINCE_DAYS } 
         video_type: classifyVideo(sn.title),
         is_short: sec !== null && sec <= 60,
         source_metadata: {
-          discovery: env.YOUTUBE_API_KEY ? 'youtube_data_api_v3' : 'youtube_atom_feed_oembed',
+          discovery: 'youtube_data_api_v3',
           privacy_status: st.privacyStatus || null,
           live_broadcast_content: sn.liveBroadcastContent || null,
           actual_start_time: v.liveStreamingDetails?.actualStartTime || null,
@@ -309,7 +314,7 @@ async function relink(store, { now = Date.now() } = {}) {
   };
 }
 
-async function run(env, { dry = false, sinceDays = DEFAULT_SINCE_DAYS, onlyChannel = null, invoked = 'manual' } = {}) {
+export async function run(env, { dry = false, sinceDays = DEFAULT_SINCE_DAYS, onlyChannel = null, invoked = 'manual' } = {}) {
   const store = storeFromEnv(env);
   if (!store) throw new Error('store_not_configured');
   const started = Date.now();
@@ -334,7 +339,7 @@ async function run(env, { dry = false, sinceDays = DEFAULT_SINCE_DAYS, onlyChann
   const out = {
     ok: failures.length === 0,
     status: failures.length ? 'partial' : 'ran',
-    discovery: 'youtube_data_api_v3',
+    discovery: discoveryMechanism(env),
     channels: channels.length,
     discovered: dedup.length,
     newest_video_at: newest,
@@ -352,12 +357,19 @@ export default {
   async fetch(req, env) {
     const url = new URL(req.url);
     if (url.pathname === '/health') {
-      const last = env.SOCCER_STATE ? await env.SOCCER_STATE.get('video:last_run', 'json') : null;
+      const kv = env.SOCCER_STATE;
+      const [last, tick, lastError] = kv ? await Promise.all(['video:last_run', 'video:last_tick', 'video:last_error'].map(k => kv.get(k, 'json'))) : [null, null, null];
+      const age = at => (at ? Date.now() - Date.parse(at) : null);
+      const runFresh = last && age(last.at) <= STALE_MS; const tickFresh = tick && age(tick.at) <= STALE_MS;
+      const failingSinceRun = lastError && (!last || Date.parse(lastError.at) > Date.parse(last.at));
       return json({
+        ok: Boolean(runFresh) && !failingSinceRun,
+        state: !tickFresh ? 'cron_not_firing' : failingSinceRun ? 'run_failing' : runFresh ? 'healthy' : 'run_stale',
+        last_tick: tick, last_error: lastError,
         service: WORKER,
         version: VERSION,
-        discovery: env.YOUTUBE_API_KEY ? 'youtube_data_api_v3' : 'youtube_atom_feed_oembed',
-        youtube_api_key_optional: Boolean(env.YOUTUBE_API_KEY),
+        discovery: discoveryMechanism(env),
+        discovery_policy: 'keyless by owner decision 2026-09-29 (re-ruled 2026-10-03); Data API used only if a key is ever configured',
         manual_admin_trigger_configured: Boolean(env.VIDEO_ADMIN_TOKEN),
         cron: '13,43 * * * *',
         last_run: last,
@@ -374,6 +386,16 @@ export default {
     return json({ error: 'not_found' }, 404);
   },
   async scheduled(event, env, ctx) {
-    ctx.waitUntil(run(env, { sinceDays: DEFAULT_SINCE_DAYS, invoked: `cron:${event.cron}` }).catch(e => console.error(WORKER, e?.message || e)));
+    const at = new Date(event.scheduledTime || Date.now()).toISOString();
+    const kv = env.SOCCER_STATE;
+    ctx.waitUntil((async () => {
+      if (kv) await kv.put('video:last_tick', JSON.stringify({ at, cron: event.cron, discovery: discoveryMechanism(env) }));
+      try { await run(env, { sinceDays: DEFAULT_SINCE_DAYS, invoked: `cron:${event.cron}` }); }
+      catch (e) {
+        const error = String(e?.message || e).slice(0, 400);
+        console.error(WORKER, error);
+        if (kv) await kv.put('video:last_error', JSON.stringify({ at: new Date().toISOString(), tick_at: at, error, discovery: discoveryMechanism(env) })).catch(() => {});
+      }
+    })());
   },
 };

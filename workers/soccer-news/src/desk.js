@@ -11,7 +11,7 @@ import { route, reachesTransport, ELIGIBLE_TRIGGERS } from './ai-router.js';
 import { stripIdentifiers } from './gates.js';
 import { PROFILES, unsupportedGroupClaims } from './profiles.js';
 
-export const DESK_VERSION = 'soccer-desk/2.1.1'; // 2.0.0: depth contract (packet v3), evidence-family + repetition gates
+export const DESK_VERSION = 'soccer-desk/2.2.0'; // 2.2.0: no derived numbers/places rule + plural-opener names fix; 2.0.0: depth contract (packet v3), evidence-family + repetition gates
 export const QUALITY_VERSION = 'soccer-quality/2.1.0'; // 2.1.0: evidence-aware depth floor
 export const DESK_MODEL = 'gpt-5.6-sol'; // OpenAI Responses API; override with NEWS_DESK_MODEL
 export const DESK_API = 'https://api.openai.com/v1/responses';
@@ -81,6 +81,7 @@ lead into a rout, while a 23-3 edge in shots showed how little room Union had to
 
 Hard rules (a violation means the story is not published):
 - Use ONLY facts in the packet. Every number, name, date and score you write must be in the packet.
+- Never derive a number the packet does not state: no sums, differences, totals across matches, counts of days or games you work out yourself (write "across the three matches", not "six goals across the sequence" unless the packet gives six). Never name a city, stadium or place the packet does not name.
 - Never invent: quotes, injuries, suspensions, transfers, rumours, odds or betting, xG or expected goals, possession unless the packet carries it, tactics or formations not in the packet, player or manager intent, emotions or mental state, records or "historic"/"first time"/"all-time" claims.
 - Refer to players and teams only by names that appear in the packet (you may use the short team name given in the packet).
 - Write out no URLs. Do not mention PropBetEdge's pipeline, packets, hashes or gates; source notes are published separately.
@@ -277,7 +278,8 @@ export function validateEditorial(article, packet) {
   // same word is written lowercase somewhere in the article or packet, or is a common football descriptor.
   // A real first name ("Thomas Müller") is never written lowercase, so invented people are still caught.
   const lowerWords = new Set((`${t}\n${P}`.match(/(?<![\p{L}])[\p{Ll}][\p{L}'’-]*/gu) || []));
-  const commonWord = w => lowerWords.has(w.toLowerCase()) || DESCRIPTORS.has(w);
+  // ...including a plural opener whose singular is written lowercase ("Groups A and B" beside "group")
+  const commonWord = w => lowerWords.has(w.toLowerCase()) || DESCRIPTORS.has(w) || (/s$/.test(w) && lowerWords.has(w.slice(0, -1).toLowerCase()));
   for (const s of sentences(t)) {
     const toks = [...s.matchAll(/\b[A-ZÀ-Ý][\p{L}'’.-]+/gu)];
     toks.forEach((m, i) => {

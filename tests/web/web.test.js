@@ -20,6 +20,11 @@ test('proxy: only the public API routes, fixed upstream, known query keys, no tr
   assert.equal(isAllowedPath('matches/5b0c8f3e-1111-5222-8333-444455556666'), true);
   assert.equal(isAllowedPath('competitions/bundesliga'), true);
   assert.equal(isAllowedPath('matches/5b0c8f3e-1111-5222-8333-444455556666/analyzer-preview'), true);
+  for (const ok of ['algo/picks', 'algo/record', 'algo/research', 'algo/v2/picks', 'algo/v2/record', 'algo/v2/research']) assert.equal(isAllowedPath(ok), true, ok);
+  // V2 is exposed only through its three exact routes: nothing nested, no other version, no traversal
+  for (const bad of ['algo/v2', 'algo/v2/', 'algo/v2/picks/x', 'algo/v2/picks/../record', 'algo/v2/admin', 'algo/v3/picks', 'algo/v2/record/extra', 'algo/v2//picks', 'algo/v2/picks?x=1', 'algo/picks/v2', 'algo', 'algo/v2/research/../../health']) assert.equal(isAllowedPath(bad), false, bad);
+  assert.equal(upstreamUrl('https://soccer.propbetedge.ai/api/soccer?path=algo/v2/picks').href, `${UPSTREAM}algo/v2/picks`);
+  assert.equal(upstreamUrl('https://soccer.propbetedge.ai/api/soccer?path=algo/v2/picks/../../admin'), null);
   for (const bad of ['', '../etc/passwd', 'matches/not-a-uuid', 'https://evil.example', 'admin', 'v1/matches', 'teams/../x', 'runs']) assert.equal(isAllowedPath(bad), false, bad);
   const u = upstreamUrl('https://soccer.propbetedge.ai/api/soccer?path=matches&competition=bundesliga&token=x&limit=5');
   assert.equal(u.href, `${UPSTREAM}matches?competition=bundesliga&limit=5`);
