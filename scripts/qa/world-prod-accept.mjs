@@ -59,7 +59,12 @@ api.table = await get(`table?competition=${SLUG}&season=${encodeURIComponent(sea
 const deep = finished.sort((a, b) => new Date(b.kickoff_at) - new Date(a.kickoff_at))[0];
 if (deep) { api.match = await get(`matches/${deep.id}`); api.cast = await get(`matches/${deep.id}/cast`); }
 const t = api.table.json?.data;
-const tableOk = api.table.status === 200 && (t?.groups?.length ? t.groups.every(g => g.verified !== false) : (t?.rows?.length || 0) === canary.identity_gate.expected_teams) && (t?.verification ? t.verification.verified !== false : true);
+// A competition with ESPN standings (league phase / groups) must serve the VERIFIED grouped view, never only the computed
+// overall fallback; a plain league serves its computed table with every team.
+const grouped = !!reg.espn?.standings;
+const tableOk = api.table.status === 200 && (grouped
+  ? t?.view !== 'overall' && (t?.verification?.verified === true || (t?.groups?.length > 0 && t.groups.every(g => g.verified !== false) && t?.view === 'groups'))
+  : (t?.rows?.length || 0) === canary.identity_gate.expected_teams);
 
 const r = {
   generated_at: new Date().toISOString(), competition: SLUG, gender: GENDER, canary: canaryFile, season: season.label, publication_state: season.publication_state,

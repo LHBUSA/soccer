@@ -15,7 +15,7 @@ export const ALL_COMPS = [
   { slug: 'ligue-1', name: 'Ligue 1', long: 'Ligue 1', mono: 'L1', accent: 'ligue1', desk: 'ligue-1', format: 'league', nav: 'club', enabled: true },
   { slug: 'bundesliga', name: 'Bundesliga', long: 'Bundesliga', mono: 'BL', accent: 'bl', desk: 'bundesliga', format: 'league', nav: 'club', enabled: true },
   { slug: 'uefa-champions-league', name: 'Champions League', long: 'UEFA Champions League', mono: 'UCL', accent: 'ucl', desk: 'champions-league', format: 'ucl', nav: 'club', enabled: true },
-  { slug: 'uefa-europa-league', name: 'Europa League', long: 'UEFA Europa League', mono: 'UEL', accent: 'uel', desk: 'europa-league', format: 'ucl', nav: 'club', enabled: false },
+  { slug: 'uefa-europa-league', name: 'Europa League', long: 'UEFA Europa League', mono: 'UEL', accent: 'uel', desk: 'europa-league', format: 'ucl', nav: 'club', enabled: true },
   { slug: 'uefa-nations-league', name: 'Nations League', long: 'UEFA Nations League', mono: 'UNL', accent: 'unl', desk: 'international', format: 'groups', nav: 'international', teams: 'national', enabled: true },
   { slug: 'fifa-world-cup', name: 'FIFA World Cup', long: 'FIFA World Cup', mono: 'FIFA', accent: 'fifa', desk: 'fifa', format: 'groups', nav: 'international', teams: 'national', enabled: true },
   { slug: 'uefa-european-championship', name: 'European Championship', long: 'UEFA European Championship', mono: 'EURO', accent: 'euro', desk: 'international', format: 'groups', nav: 'international', teams: 'national', enabled: false },
