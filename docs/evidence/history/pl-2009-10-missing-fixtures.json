@@ -1,0 +1,179 @@
+{
+ "at": "2026-10-03T12:04:31.456Z",
+ "competition": "premier-league",
+ "season": "2009/10",
+ "publication_state": "held",
+ "espn_catalog_rows": 357,
+ "canonical_matches_present": 357,
+ "expected_league_matches": 380,
+ "missing_delta": 23,
+ "clubs": 20,
+ "duplicate_pairings_present": false,
+ "statuses": {
+  "finished": 357
+ },
+ "rule": "Each missing item is a (home, away) pairing the 20-club double round robin requires and ESPN never listed. No date, score or result is inferred; the season stays HELD until a legitimate source supplies these fixtures and the hardened gate passes.",
+ "matches_per_club": {
+  "Liverpool": 37,
+  "Arsenal": 37,
+  "Tottenham Hotspur": 37,
+  "Manchester City": 37,
+  "Sunderland": 37,
+  "Fulham": 37,
+  "Wigan Athletic": 37,
+  "Blackburn Rovers": 37,
+  "Chelsea": 36,
+  "Manchester United": 36,
+  "Hull City": 37,
+  "Everton": 36,
+  "Bolton Wanderers": 36,
+  "Birmingham City": 37,
+  "Aston Villa": 37,
+  "Stoke City": 37,
+  "Wolverhampton Wanderers": 37,
+  "West Ham United": 37,
+  "Burnley": 15,
+  "Portsmouth": 37
+ },
+ "missing_fixtures": [
+  {
+   "home": "Blackburn Rovers",
+   "away": "Burnley",
+   "home_slug": "blackburn-rovers",
+   "away_slug": "burnley"
+  },
+  {
+   "home": "Bolton Wanderers",
+   "away": "Burnley",
+   "home_slug": "bolton-wanderers",
+   "away_slug": "burnley"
+  },
+  {
+   "home": "Burnley",
+   "away": "Arsenal",
+   "home_slug": "burnley",
+   "away_slug": "arsenal"
+  },
+  {
+   "home": "Burnley",
+   "away": "Aston Villa",
+   "home_slug": "burnley",
+   "away_slug": "aston-villa"
+  },
+  {
+   "home": "Burnley",
+   "away": "Birmingham City",
+   "home_slug": "burnley",
+   "away_slug": "birmingham-city"
+  },
+  {
+   "home": "Burnley",
+   "away": "Bolton Wanderers",
+   "home_slug": "burnley",
+   "away_slug": "bolton-wanderers"
+  },
+  {
+   "home": "Burnley",
+   "away": "Chelsea",
+   "home_slug": "burnley",
+   "away_slug": "chelsea"
+  },
+  {
+   "home": "Burnley",
+   "away": "Everton",
+   "home_slug": "burnley",
+   "away_slug": "everton"
+  },
+  {
+   "home": "Burnley",
+   "away": "Fulham",
+   "home_slug": "burnley",
+   "away_slug": "fulham"
+  },
+  {
+   "home": "Burnley",
+   "away": "Hull City",
+   "home_slug": "burnley",
+   "away_slug": "hull-city"
+  },
+  {
+   "home": "Burnley",
+   "away": "Manchester United",
+   "home_slug": "burnley",
+   "away_slug": "manchester-united"
+  },
+  {
+   "home": "Burnley",
+   "away": "Sunderland",
+   "home_slug": "burnley",
+   "away_slug": "sunderland"
+  },
+  {
+   "home": "Burnley",
+   "away": "Wigan Athletic",
+   "home_slug": "burnley",
+   "away_slug": "wigan-athletic"
+  },
+  {
+   "home": "Chelsea",
+   "away": "Burnley",
+   "home_slug": "chelsea",
+   "away_slug": "burnley"
+  },
+  {
+   "home": "Everton",
+   "away": "Burnley",
+   "home_slug": "everton",
+   "away_slug": "burnley"
+  },
+  {
+   "home": "Liverpool",
+   "away": "Burnley",
+   "home_slug": "liverpool",
+   "away_slug": "burnley"
+  },
+  {
+   "home": "Manchester City",
+   "away": "Burnley",
+   "home_slug": "manchester-city",
+   "away_slug": "burnley"
+  },
+  {
+   "home": "Manchester United",
+   "away": "Burnley",
+   "home_slug": "manchester-united",
+   "away_slug": "burnley"
+  },
+  {
+   "home": "Portsmouth",
+   "away": "Burnley",
+   "home_slug": "portsmouth",
+   "away_slug": "burnley"
+  },
+  {
+   "home": "Stoke City",
+   "away": "Burnley",
+   "home_slug": "stoke-city",
+   "away_slug": "burnley"
+  },
+  {
+   "home": "Tottenham Hotspur",
+   "away": "Burnley",
+   "home_slug": "tottenham-hotspur",
+   "away_slug": "burnley"
+  },
+  {
+   "home": "West Ham United",
+   "away": "Burnley",
+   "home_slug": "west-ham-united",
+   "away_slug": "burnley"
+  },
+  {
+   "home": "Wolverhampton Wanderers",
+   "away": "Burnley",
+   "home_slug": "wolverhampton-wanderers",
+   "away_slug": "burnley"
+  }
+ ],
+ "finding": "All 23 missing pairings involve Burnley (15 of 38 present; every other club 36-37, each short only its Burnley games). ESPN's 2009/10 eng.1 catalog (types 1-3) lists 357 events, so the gap is upstream, not a resolver or identity loss. Candidate remedy: evaluate one legitimate free source for exactly these 23 Burnley fixtures; the global gate is not weakened."
+}
