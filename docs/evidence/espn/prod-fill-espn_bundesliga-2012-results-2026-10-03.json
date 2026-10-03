@@ -1,0 +1,222 @@
+{
+  "lane": "espn_bundesliga@2012:results",
+  "base": "https://soccer-ingest.sales-fd3.workers.dev",
+  "runs": [
+    {
+      "lane": "espn_bundesliga@2012:results",
+      "run": 1,
+      "http": 200,
+      "ms": 142005,
+      "requests": 120,
+      "fixtures_new": 117,
+      "repeated_pairings": null,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2012:results",
+      "run": 2,
+      "http": 200,
+      "ms": 112832,
+      "requests": 120,
+      "fixtures_new": 120,
+      "repeated_pairings": null,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2012:results",
+      "run": 3,
+      "http": 200,
+      "ms": 112682,
+      "requests": 111,
+      "fixtures_new": 69,
+      "repeated_pairings": 0,
+      "detailed": 14,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 16,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2012:results",
+      "run": 4,
+      "http": 200,
+      "ms": 116208,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2012:results",
+      "run": 5,
+      "http": 200,
+      "ms": 117986,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2012:results",
+      "run": 6,
+      "http": 200,
+      "ms": 121659,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2012:results",
+      "run": 7,
+      "http": 200,
+      "ms": 114480,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2012:results",
+      "run": 8,
+      "http": 200,
+      "ms": 120086,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2012:results",
+      "run": 9,
+      "http": 200,
+      "ms": 123876,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2012:results",
+      "run": 10,
+      "http": 200,
+      "ms": 208058,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2012:results",
+      "run": 11,
+      "http": 200,
+      "ms": 138236,
+      "requests": 99,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 33,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2012:results",
+      "run": 12,
+      "http": 200,
+      "ms": 833,
+      "requests": 0,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 0,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    }
+  ]
+}

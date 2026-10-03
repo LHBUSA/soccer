@@ -1,0 +1,63 @@
+{
+  "lane": "espn_mls@2005:results",
+  "base": "https://soccer-ingest.sales-fd3.workers.dev",
+  "runs": [
+    {
+      "lane": "espn_mls@2005:results",
+      "run": 1,
+      "http": 200,
+      "ms": 113572,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 60,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 12,
+        "before": 12,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2005:results",
+      "run": 2,
+      "http": 200,
+      "ms": 76855,
+      "requests": 45,
+      "fixtures_new": 0,
+      "repeated_pairings": 60,
+      "detailed": 15,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 12,
+        "before": 12,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2005:results",
+      "run": 3,
+      "http": 200,
+      "ms": 699,
+      "requests": 0,
+      "fixtures_new": 0,
+      "repeated_pairings": 60,
+      "detailed": 0,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 12,
+        "before": 12,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    }
+  ]
+}

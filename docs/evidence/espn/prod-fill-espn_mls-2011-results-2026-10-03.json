@@ -1,0 +1,241 @@
+{
+  "lane": "espn_mls@2011:results",
+  "base": "https://soccer-ingest.sales-fd3.workers.dev",
+  "runs": [
+    {
+      "lane": "espn_mls@2011:results",
+      "run": 1,
+      "http": 200,
+      "ms": 132607,
+      "requests": 120,
+      "fixtures_new": 108,
+      "repeated_pairings": null,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2011:results",
+      "run": 2,
+      "http": 200,
+      "ms": 89347,
+      "requests": 120,
+      "fixtures_new": 120,
+      "repeated_pairings": null,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2011:results",
+      "run": 3,
+      "http": 200,
+      "ms": 88696,
+      "requests": 112,
+      "fixtures_new": 91,
+      "repeated_pairings": 0,
+      "detailed": 7,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2011:results",
+      "run": 4,
+      "http": 200,
+      "ms": 79302,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2011:results",
+      "run": 5,
+      "http": 200,
+      "ms": 115182,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2011:results",
+      "run": 6,
+      "http": 200,
+      "ms": 82683,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2011:results",
+      "run": 7,
+      "http": 200,
+      "ms": 86291,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2011:results",
+      "run": 8,
+      "http": 200,
+      "ms": 86894,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2011:results",
+      "run": 9,
+      "http": 200,
+      "ms": 87930,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2011:results",
+      "run": 10,
+      "http": 200,
+      "ms": 87782,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2011:results",
+      "run": 11,
+      "http": 200,
+      "ms": 79638,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2011:results",
+      "run": 12,
+      "http": 200,
+      "ms": 38676,
+      "requests": 48,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 16,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2011:results",
+      "run": 13,
+      "http": 200,
+      "ms": 735,
+      "requests": 0,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 0,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    }
+  ]
+}

@@ -1,0 +1,273 @@
+{
+  "lane": "espn_premier_league@2021:results",
+  "base": "https://soccer-ingest.sales-fd3.workers.dev",
+  "runs": [
+    {
+      "lane": "espn_premier_league@2021:results",
+      "run": 1,
+      "http": 200,
+      "ms": 86467,
+      "requests": 120,
+      "fixtures_new": 118,
+      "repeated_pairings": null,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2021:results",
+      "run": 2,
+      "http": 200,
+      "ms": 84834,
+      "requests": 120,
+      "fixtures_new": 120,
+      "repeated_pairings": null,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2021:results",
+      "run": 3,
+      "http": 200,
+      "ms": 85886,
+      "requests": 120,
+      "fixtures_new": 120,
+      "repeated_pairings": null,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2021:results",
+      "run": 4,
+      "http": 200,
+      "ms": 96458,
+      "requests": 112,
+      "fixtures_new": 22,
+      "repeated_pairings": 0,
+      "detailed": 30,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2021:results",
+      "run": 5,
+      "http": 200,
+      "ms": 84830,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2021:results",
+      "run": 6,
+      "http": 200,
+      "ms": 84609,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2021:results",
+      "run": 7,
+      "http": 200,
+      "ms": 84238,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2021:results",
+      "run": 8,
+      "http": 200,
+      "ms": 84541,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2021:results",
+      "run": 9,
+      "http": 200,
+      "ms": 83816,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2021:results",
+      "run": 10,
+      "http": 200,
+      "ms": 80298,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2021:results",
+      "run": 11,
+      "http": 200,
+      "ms": 86592,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2021:results",
+      "run": 12,
+      "http": 200,
+      "ms": 85906,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2021:results",
+      "run": 13,
+      "http": 200,
+      "ms": 114135,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2021:results",
+      "run": 14,
+      "http": 200,
+      "ms": 65304,
+      "requests": 51,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 17,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2021:results",
+      "run": 15,
+      "http": 200,
+      "ms": 537,
+      "requests": 0,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 0,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
- "at": "2026-10-03T02:31:32.555Z",
+ "at": "2026-10-03T11:46:12.968Z",
  "competition": "premier-league",
  "season": "2005/06",
  "state_before": "held",
@@ -60,12 +60,7 @@
   "event record for 0% of finished matches"
  ],
  "notes": [],
- "checks_failed": [
-  {
-   "check": "too_few_matches",
-   "expected_at_least": 381,
-   "found": 380
-  }
- ],
- "pass": false
+ "checks_failed": [],
+ "pass": true,
+ "promoted": true
 }

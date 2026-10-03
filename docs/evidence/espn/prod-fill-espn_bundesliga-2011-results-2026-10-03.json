@@ -1,0 +1,242 @@
+{
+  "lane": "espn_bundesliga@2011:results",
+  "base": "https://soccer-ingest.sales-fd3.workers.dev",
+  "runs": [
+    {
+      "lane": "espn_bundesliga@2011:results",
+      "run": 1,
+      "http": 200,
+      "ms": 89619,
+      "requests": 120,
+      "fixtures_new": 117,
+      "repeated_pairings": null,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2011:results",
+      "run": 2,
+      "http": 200,
+      "ms": 143036,
+      "requests": 120,
+      "fixtures_new": 120,
+      "repeated_pairings": null,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2011:results",
+      "run": 3,
+      "http": 200,
+      "ms": 209131,
+      "requests": 113,
+      "fixtures_new": 71,
+      "repeated_pairings": 0,
+      "detailed": 14,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 19,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2011:results",
+      "run": 4,
+      "http": 200,
+      "ms": 154705,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 19,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2011:results",
+      "run": 5,
+      "http": 200,
+      "ms": 150735,
+      "repeated_pairings": null,
+      "exhausted": null,
+      "error": "espn shape drift: non-JSON response for https://sports.core.api.espn.com/v2/sports/soccer/leagues/ger.1/events/320966/competitions/320966/status (capture 17824ae5d7d13f95c362c644, HTTP 503, text/html; charset=utf-8)",
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2011:results",
+      "run": 6,
+      "http": 200,
+      "ms": 142327,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 19,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2011:results",
+      "run": 7,
+      "http": 200,
+      "ms": 194062,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 19,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2011:results",
+      "run": 8,
+      "http": 200,
+      "ms": 21978,
+      "repeated_pairings": null,
+      "exhausted": null,
+      "error": "espn shape drift: non-JSON response for https://sports.core.api.espn.com/v2/sports/soccer/leagues/ger.1/events/320885/competitions/320885/competitors/2428/score (capture e405ec4792fc71d10b217034, HTTP 503, text/html; charset=utf-8)",
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2011:results",
+      "run": 9,
+      "http": 200,
+      "ms": 187106,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 19,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2011:results",
+      "run": 10,
+      "http": 200,
+      "ms": 176198,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 19,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2011:results",
+      "run": 11,
+      "http": 200,
+      "ms": 187401,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 19,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2011:results",
+      "run": 12,
+      "http": 200,
+      "ms": 186991,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 19,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2011:results",
+      "run": 13,
+      "http": 200,
+      "ms": 11438,
+      "requests": 6,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 2,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 19,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2011:results",
+      "run": 14,
+      "http": 200,
+      "ms": 689,
+      "requests": 0,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 0,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 19,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    }
+  ]
+}

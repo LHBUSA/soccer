@@ -1,0 +1,25 @@
+{
+  "lane": "espn_premier_league@2005:results",
+  "base": "https://soccer-ingest.sales-fd3.workers.dev",
+  "runs": [
+    {
+      "lane": "espn_premier_league@2005:results",
+      "run": 1,
+      "http": 200,
+      "ms": 4881,
+      "requests": 0,
+      "fixtures_new": 0,
+      "repeated_pairings": 110,
+      "detailed": 0,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    }
+  ]
+}

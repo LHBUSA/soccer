@@ -1,0 +1,222 @@
+{
+  "lane": "espn_bundesliga@2021:results",
+  "base": "https://soccer-ingest.sales-fd3.workers.dev",
+  "runs": [
+    {
+      "lane": "espn_bundesliga@2021:results",
+      "run": 1,
+      "http": 200,
+      "ms": 84905,
+      "requests": 120,
+      "fixtures_new": 118,
+      "repeated_pairings": null,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2021:results",
+      "run": 2,
+      "http": 200,
+      "ms": 84112,
+      "requests": 120,
+      "fixtures_new": 120,
+      "repeated_pairings": null,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2021:results",
+      "run": 3,
+      "http": 200,
+      "ms": 79837,
+      "requests": 113,
+      "fixtures_new": 68,
+      "repeated_pairings": 0,
+      "detailed": 15,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2021:results",
+      "run": 4,
+      "http": 200,
+      "ms": 78178,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2021:results",
+      "run": 5,
+      "http": 200,
+      "ms": 78181,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2021:results",
+      "run": 6,
+      "http": 200,
+      "ms": 78400,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2021:results",
+      "run": 7,
+      "http": 200,
+      "ms": 78467,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2021:results",
+      "run": 8,
+      "http": 200,
+      "ms": 78232,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2021:results",
+      "run": 9,
+      "http": 200,
+      "ms": 78152,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2021:results",
+      "run": 10,
+      "http": 200,
+      "ms": 78356,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2021:results",
+      "run": 11,
+      "http": 200,
+      "ms": 67689,
+      "requests": 96,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 32,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_bundesliga@2021:results",
+      "run": 12,
+      "http": 200,
+      "ms": 626,
+      "requests": 0,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 0,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 18,
+        "before": 18,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    }
+  ]
+}

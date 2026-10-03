@@ -1,5 +1,5 @@
 {
- "at": "2026-10-03T02:18:45.338Z",
+ "at": "2026-10-03T11:46:08.849Z",
  "competition": "mls",
  "season": "2008",
  "state_before": "held",
@@ -63,12 +63,7 @@
  "notes": [
   "no registered era: uniform league games per club decides"
  ],
- "checks_failed": [
-  {
-   "check": "too_few_matches",
-   "expected_at_least": 222,
-   "found": 221
-  }
- ],
- "pass": false
+ "checks_failed": [],
+ "pass": true,
+ "promoted": true
 }

@@ -1,0 +1,375 @@
+{
+  "lane": "espn_mls@2024:results",
+  "base": "https://soccer-ingest.sales-fd3.workers.dev",
+  "runs": [
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 1,
+      "http": 200,
+      "ms": 199908,
+      "requests": 120,
+      "fixtures_new": 85,
+      "repeated_pairings": null,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 2,
+      "http": 200,
+      "ms": 199937,
+      "requests": 120,
+      "fixtures_new": 120,
+      "repeated_pairings": null,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 3,
+      "http": 200,
+      "ms": 94421,
+      "requests": 120,
+      "fixtures_new": 120,
+      "repeated_pairings": null,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 4,
+      "http": 200,
+      "ms": 167427,
+      "requests": 120,
+      "fixtures_new": 120,
+      "repeated_pairings": null,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 5,
+      "http": 200,
+      "ms": 202405,
+      "requests": 120,
+      "fixtures_new": 81,
+      "repeated_pairings": null,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 6,
+      "http": 200,
+      "ms": 113003,
+      "requests": 112,
+      "fixtures_new": 0,
+      "repeated_pairings": 19,
+      "detailed": 15,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 29,
+        "before": 29,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 7,
+      "http": 200,
+      "ms": 78446,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 19,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 29,
+        "before": 29,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 8,
+      "http": 200,
+      "ms": 78372,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 19,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 29,
+        "before": 29,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 9,
+      "http": 200,
+      "ms": 150768,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 19,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 29,
+        "before": 29,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 10,
+      "http": 200,
+      "ms": 186287,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 19,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 29,
+        "before": 29,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 11,
+      "http": 200,
+      "ms": 165936,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 19,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 29,
+        "before": 29,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 12,
+      "http": 200,
+      "ms": 158110,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 19,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 29,
+        "before": 29,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 13,
+      "http": 200,
+      "ms": 190231,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 19,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 29,
+        "before": 29,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 14,
+      "http": 200,
+      "ms": 181211,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 19,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 29,
+        "before": 29,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 15,
+      "http": 200,
+      "ms": 78358,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 19,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 29,
+        "before": 29,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 16,
+      "http": 200,
+      "ms": 78312,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 19,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 29,
+        "before": 29,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 17,
+      "http": 200,
+      "ms": 79106,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 19,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 29,
+        "before": 29,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 18,
+      "http": 200,
+      "ms": 182697,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 19,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 29,
+        "before": 29,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 19,
+      "http": 200,
+      "ms": 184257,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 19,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 29,
+        "before": 29,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 20,
+      "http": 200,
+      "ms": 55440,
+      "requests": 78,
+      "fixtures_new": 0,
+      "repeated_pairings": 19,
+      "detailed": 26,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 29,
+        "before": 29,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_mls@2024:results",
+      "run": 21,
+      "http": 200,
+      "ms": 902,
+      "requests": 0,
+      "fixtures_new": 0,
+      "repeated_pairings": 19,
+      "detailed": 0,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 29,
+        "before": 29,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    }
+  ]
+}
