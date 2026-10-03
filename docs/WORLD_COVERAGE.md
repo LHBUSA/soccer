@@ -73,7 +73,7 @@ League, Bundesliga, UCL, Nations League, FIFA World Cup stay as they are).
 See the generated matrix below; production steps not yet run are listed in its blocker column.
 
 <!-- matrix -->
-Generated 2026-10-03T19:38:09.525Z by scripts/evidence/world-matrix.mjs.
+Generated 2026-10-03T20:08:17.579Z by scripts/evidence/world-matrix.mjs.
 
 ### Production rollout (from production evidence only)
 
@@ -105,7 +105,7 @@ Worker enabled = the deployed soccer-ingest (docs/deployments.jsonl) has the lan
 | A | Italian Serie A | men | ITA | espn ita.1 (730) | 2026-27 Italian Serie A | 20 | 380 | 50 | verified/computed | 50 | 50 | 50 | 67835 | per-minute lane | replay payload proven | 582 | descriptive (inputs present) | off | MATCH_DATA_PASS | SPATIAL_DATA_AVAILABLE | source_present | lane live in production | — |
 | A | French Ligue 1 | men | FRA | espn fra.1 (710) | 2026-27 French Ligue 1 | 18 | 306 | 45 | verified/computed | 45 | 45 | 45 | 63170 | per-minute lane | replay payload proven | 446 | descriptive (inputs present) | off | MATCH_DATA_PASS | SPATIAL_DATA_AVAILABLE | source_present | lane live in production | — |
 | A | UEFA Europa League | men | international | espn uefa.europa (776) | 2026-27 UEFA Europa League | 36 | 144 | 18 | verified/computed | 18 | 18 | 18 | 24771 | per-minute lane | replay payload proven | 781 | descriptive (inputs present) | off | MATCH_DATA_PASS | SPATIAL_DATA_AVAILABLE | source_present | lane live in production | — |
-| B | NWSL | women | USA | espn usa.nwsl (8301) | 2026 NWSL | 16 | 240 | 65 | verified/computed | 64 | 63 | 65 | 0 | — | replay payload proven | 380 | descriptive (inputs present) | off | MATCH_DATA_FAIL | SPATIAL_DATA_UNVERIFIED | source_present | canary FAIL | lane_completed_without_abort, no_unknown_status, no_enrichment_gaps |
+| B | NWSL | women | USA | espn usa.nwsl (8301) | 2026 NWSL | 16 | 240 | 210 | verified/computed | 210 | 210 | 210 | 143570 | — | replay payload proven | 433 | descriptive (inputs present) | off | MATCH_DATA_PASS | SPATIAL_DATA_AVAILABLE | source_present | canary PASS (not enabled) | enable + release + production fill |
 | B | English Women's Super League | women | ENG | espn eng.w.1 (8097) | 2026-27 English Women's Super League | 14 | 182 | 29 | verified/computed | 29 | 29 | 29 | 40295 | per-minute lane | replay payload proven | 308 | descriptive (inputs present) | off | MATCH_DATA_PASS | SPATIAL_DATA_AVAILABLE | source_present | lane live in production | — |
 | B | UEFA Women's Champions League | women | international | espn uefa.wchampions (19483) | 2026-27 UEFA Women's Champions League | 18 | 54 | 18 | verified/computed | 18 | 18 | 18 | 24760 | per-minute lane | replay payload proven | 403 | descriptive (inputs present) | off | MATCH_DATA_PASS | SPATIAL_DATA_AVAILABLE | source_present | lane live in production | — |
 | B | Spanish Liga F | women | ESP | espn esp.w.1 (20956) | 2026-27 Spanish Liga F | 16 | 240 | 43 | verified/computed | 43 | 43 | 43 | 0 | per-minute lane | replay payload proven | 357 | descriptive (inputs present) | off | MATCH_DATA_PASS | SPATIAL_DATA_UNAVAILABLE | source_present | lane live in production | — |

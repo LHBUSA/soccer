@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-03T19:38:09.512Z",
+  "generated_at": "2026-10-03T20:08:17.562Z",
   "discovery": "2026-10-03T13:52:26.937Z",
   "rows": [
     {
@@ -219,24 +219,24 @@
       "season": "2026 NWSL",
       "teams": 16,
       "matches": 240,
-      "results": 65,
+      "results": 210,
       "standings": "verified/computed",
-      "lineups": 64,
-      "stats": 63,
-      "plays": 65,
-      "coordinates": 0,
+      "lineups": 210,
+      "stats": 210,
+      "plays": 210,
+      "coordinates": 143570,
       "live": null,
       "pbecast": "replay payload proven",
-      "players": 380,
+      "players": 433,
       "dna": "descriptive (inputs present)",
       "media": null,
       "news": "off",
       "history": "current season only",
-      "match_data": "MATCH_DATA_FAIL",
-      "spatial": "SPATIAL_DATA_UNVERIFIED",
+      "match_data": "MATCH_DATA_PASS",
+      "spatial": "SPATIAL_DATA_AVAILABLE",
       "source_status": "source_present",
-      "launch_status": "canary FAIL",
-      "blocker": "lane_completed_without_abort, no_unknown_status, no_enrichment_gaps"
+      "launch_status": "canary PASS (not enabled)",
+      "blocker": "enable + release + production fill"
     },
     {
       "phase": "B",

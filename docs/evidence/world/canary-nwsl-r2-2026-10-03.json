@@ -1,0 +1,577 @@
+{
+  "generated_at": "2026-10-03T20:07:03.184Z",
+  "mode": "local-pglite (production untouched; production team identities seeded read-only)",
+  "competition": "nwsl",
+  "gender": "women",
+  "team_kind": "club",
+  "source": "ESPN Core (owner-approved collection lane)",
+  "budget": 6000,
+  "requests_used": 2548,
+  "budget_exhausted": false,
+  "aborted": null,
+  "runs": [
+    {
+      "requests": 200,
+      "fixtures_new": 190,
+      "detailed": 0,
+      "exhausted": "discovery"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 50,
+      "detailed": 2,
+      "team_identity": {
+        "espn_teams": 16,
+        "resolved_before": 0,
+        "teams_founded": 16,
+        "team_crosswalk": {
+          "inserted": 16,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "resolved_after": 16
+      },
+      "fixtures": {
+        "considered": 240,
+        "attached_to_existing": 0,
+        "founded": 240,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 240,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 240,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 4,
+      "team_identity": {
+        "espn_teams": 16,
+        "resolved_before": 16
+      },
+      "fixtures": {
+        "considered": 240,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 194,
+      "fixtures_new": 0,
+      "detailed": 11,
+      "team_identity": {
+        "espn_teams": 16,
+        "resolved_before": 16
+      },
+      "fixtures": {
+        "considered": 240,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 198,
+      "fixtures_new": 0,
+      "detailed": 22,
+      "team_identity": {
+        "espn_teams": 16,
+        "resolved_before": 16
+      },
+      "fixtures": {
+        "considered": 240,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 197,
+      "fixtures_new": 0,
+      "detailed": 23,
+      "team_identity": {
+        "espn_teams": 16,
+        "resolved_before": 16
+      },
+      "fixtures": {
+        "considered": 240,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 193,
+      "fixtures_new": 0,
+      "detailed": 23,
+      "team_identity": {
+        "espn_teams": 16,
+        "resolved_before": 16
+      },
+      "fixtures": {
+        "considered": 240,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 192,
+      "fixtures_new": 0,
+      "detailed": 21,
+      "team_identity": {
+        "espn_teams": 16,
+        "resolved_before": 16
+      },
+      "fixtures": {
+        "considered": 240,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 192,
+      "fixtures_new": 0,
+      "detailed": 20,
+      "team_identity": {
+        "espn_teams": 16,
+        "resolved_before": 16
+      },
+      "fixtures": {
+        "considered": 240,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 21,
+      "team_identity": {
+        "espn_teams": 16,
+        "resolved_before": 16
+      },
+      "fixtures": {
+        "considered": 240,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 193,
+      "fixtures_new": 0,
+      "detailed": 21,
+      "team_identity": {
+        "espn_teams": 16,
+        "resolved_before": 16
+      },
+      "fixtures": {
+        "considered": 240,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 197,
+      "fixtures_new": 0,
+      "detailed": 21,
+      "team_identity": {
+        "espn_teams": 16,
+        "resolved_before": 16
+      },
+      "fixtures": {
+        "considered": 240,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 192,
+      "fixtures_new": 0,
+      "detailed": 21,
+      "team_identity": {
+        "espn_teams": 16,
+        "resolved_before": 16
+      },
+      "fixtures": {
+        "considered": 240,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": null
+    },
+    {
+      "requests": 0,
+      "fixtures_new": 0,
+      "detailed": 0,
+      "team_identity": {
+        "espn_teams": 16,
+        "resolved_before": 16
+      },
+      "fixtures": {
+        "considered": 240,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": null
+    }
+  ],
+  "espn": {
+    "league": "usa.nwsl",
+    "id": "8301",
+    "season_year": 2026,
+    "types": {
+      "1": {
+        "name": "Regular Season",
+        "role": "league"
+      },
+      "2": {
+        "name": "Playoffs - Quarterfinals",
+        "role": "playoff"
+      },
+      "3": {
+        "name": "Playoffs - Semifinals",
+        "role": "playoff"
+      },
+      "4": {
+        "name": "Playoffs - Championship",
+        "role": "playoff"
+      }
+    },
+    "fixtures_seen": 240,
+    "detailed": 210,
+    "by_type": {
+      "Regular Season": 240
+    },
+    "excluded_teams": null
+  },
+  "competition_row": {
+    "id": "bd7d6adf-bd1a-5103-8ade-69e62a3667c4",
+    "slug": "nwsl",
+    "name": "NWSL",
+    "comp_type": "league",
+    "gender": "women"
+  },
+  "season": {
+    "label": "2026",
+    "publication_state_after_lane": "published",
+    "local_promotion": "published in the local canary store only"
+  },
+  "identity_gate": {
+    "teams": 16,
+    "expected_teams": 16,
+    "wrong_team_kind": [],
+    "wrong_gender": [],
+    "reused_existing_canonical": [],
+    "founded_new": 16,
+    "espn_ids_already_crosswalked_in_production": 0,
+    "espn_id_maps_to_same_canonical_as_production": true,
+    "duplicate_espn_team_ids": 0,
+    "teams_with_more_than_one_espn_id": 0,
+    "duplicate_names": [],
+    "crosswalk_methods": {
+      "founding": 16
+    },
+    "cross_gender_namesakes_kept_distinct": [],
+    "teams_queued": 0,
+    "teams_queued_detail": [],
+    "pass": true
+  },
+  "matches": {
+    "total": 240,
+    "by_status": {
+      "finished": 210,
+      "scheduled": 30
+    },
+    "by_stage": [
+      {
+        "name": "Regular Season",
+        "type": "league",
+        "matches": 240,
+        "finished": 210
+      },
+      {
+        "name": "Playoffs",
+        "type": "playoff",
+        "matches": 0,
+        "finished": 0
+      }
+    ],
+    "finished_without_score": 0,
+    "knockout_without_winner": 0
+  },
+  "enrichment": {
+    "finished": 210,
+    "detailed": 210,
+    "lineups_both": 210,
+    "lineup_rows": 420,
+    "formations": 420,
+    "team_stats_both": 210,
+    "team_stat_rows": 6300,
+    "plays": 210,
+    "events": 175928,
+    "located_events": 143570,
+    "coord_systems": {
+      "espn_unit_unverified": 19112,
+      "none": 5950,
+      "espn_pct_v1": 150866
+    },
+    "gaps": []
+  },
+  "players": {
+    "in_lineups": 433,
+    "founded_locally": 433,
+    "corroborated": 0,
+    "queued": 5,
+    "queued_by_reason": {
+      "athlete_without_dob_or_name": 5
+    },
+    "already_canonical_in_production_by_espn_id": 9,
+    "production_lookup": "ok"
+  },
+  "table": {
+    "view": "overall",
+    "rows": 16,
+    "top": [
+      {
+        "team": "Gotham FC",
+        "pld": 26,
+        "pts": 54
+      },
+      {
+        "team": "San Diego Wave FC",
+        "pld": 27,
+        "pts": 51
+      },
+      {
+        "team": "Washington Spirit",
+        "pld": 26,
+        "pts": 46
+      }
+    ]
+  },
+  "finished_match_proof": {
+    "match_id": "f24521b3-6d9e-5878-a108-47606932f0da",
+    "fixture": "San Diego Wave FC 2-1 North Carolina Courage",
+    "kickoff": "2026-09-12T22:30:00.000Z",
+    "venue": "Snapdragon Stadium",
+    "lineups": [
+      "home",
+      "away"
+    ],
+    "timeline": 4,
+    "shots": 22,
+    "events": 1588,
+    "coverage": {
+      "state": "ok",
+      "notes": []
+    },
+    "cast": {
+      "mode": "replay",
+      "sequence": 30
+    }
+  },
+  "scheduled_match_proof": {
+    "match_id": "4688b38c-42f8-5edf-84c7-cff865958263",
+    "fixture": "Racing Louisville FC v Utah Royals",
+    "kickoff": "2026-10-03T20:00:00.000Z",
+    "cast_mode": "pregame"
+  },
+  "competition_api": {
+    "team_kind": null,
+    "teams": 16,
+    "finished": 210,
+    "scheduled": 30
+  },
+  "gate": {
+    "lane_completed_without_abort": true,
+    "fixtures_complete": true,
+    "every_finished_match_scored": true,
+    "no_unknown_status": true,
+    "every_finished_match_detailed": true,
+    "no_enrichment_gaps": true,
+    "identity": true,
+    "table": true,
+    "knockout_winners_known": true,
+    "pass": true
+  },
+  "acceptance": {
+    "match_data": "MATCH_DATA_PASS",
+    "spatial": "SPATIAL_DATA_AVAILABLE",
+    "located_events": 143570
+  },
+  "gate_version": "competition-canary-gate/1.2.0",
+  "elapsed_s": 1847
+}

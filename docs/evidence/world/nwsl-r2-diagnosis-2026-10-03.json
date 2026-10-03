@@ -1,0 +1,35 @@
+{
+  "generated_at": "2026-10-03T20:08:17.333Z",
+  "competition": "nwsl",
+  "decision": "HOLD (owner): production stays disabled pending owner review of this second run",
+  "run1": {
+    "file": "docs/evidence/world/canary-nwsl-2026-10-03.json",
+    "requests": 1184,
+    "stopped_by": "EspnShapeError: HTTP 503 text/html on usa.nwsl/events/401853907/competitions/401853907/status (lane fails closed; capture 3de7bcb86f735ddbd705eced archived)",
+    "unknown_status_145": "fixtures the aborted run never reached (status is read when a match is detailed); not a status-mapping defect",
+    "gaps_3": "lineup_away / stats_home / stats_away unavailable on 3 matches in run 1; all complete in run 2 (transient source gaps)"
+  },
+  "run2": {
+    "file": "docs/evidence/world/canary-nwsl-r2-2026-10-03.json",
+    "requests": 2548,
+    "budget": 6000,
+    "result": "MATCH_DATA_PASS: 240/240 fixtures, 210 finished + 30 scheduled, 0 unknown, 210/210 detailed (lineups both sides, stats, plays), 0 gaps, 16/16 teams gender women, table 16 rows"
+  },
+  "spatial": {
+    "label_run2": "SPATIAL_DATA_AVAILABLE (aggregate)",
+    "per_match": {
+      "located_espn_pct_v1": {
+        "matches": 118,
+        "from": "2026-05-31",
+        "to": "2026-10-03"
+      },
+      "unit_scale_only_espn_unit_unverified": {
+        "matches": 92,
+        "from": "2026-03-14",
+        "to": "2026-05-31"
+      },
+      "mixed": 0
+    },
+    "policy": "0-1 unit-scale coordinates stay source-only (frame not proven; same rule as MLS 2026-10-02 repair). Those 92 matches render the neutral no-map note (non-live, zero located events); nothing is transformed or synthesized."
+  }
+}
