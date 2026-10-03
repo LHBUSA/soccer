@@ -109,7 +109,7 @@ export function shotTimeline(m) {
   const hasXg = shots.some(s => s.provider_xg);
   return `<div class="tablewrap" tabindex="0" role="region" aria-label="Shot timeline (scrolls horizontally)"><table class="ltable shots">
     <caption class="sr-only">Every shot in match order</caption>
-    <thead><tr><th scope="col">Min</th><th class="tm" scope="col">Shooter</th><th scope="col" class="tl">Team</th><th scope="col" class="tl">Result</th><th scope="col" class="tl wide">How</th><th scope="col"><abbr title="Score before the shot">Score</abbr></th><th scope="col" class="tl wide">Assist</th>${hasXg ? '<th scope="col" title="Expected goals supplied by ESPN, not PropBetEdge">ESPN xG</th>' : ''}</tr></thead>
+    <thead><tr><th scope="col">Min</th><th class="tm" scope="col">Shooter</th><th scope="col" class="tl">Team</th><th scope="col" class="tl">Result</th><th scope="col" class="tl wide">How</th><th scope="col"><abbr title="Score before the shot">Score</abbr></th><th scope="col" class="tl wide">Assist</th>${hasXg ? '<th scope="col" title="Supplied expected goals, not a PropBetEdge model">xG</th>' : ''}</tr></thead>
     <tbody>${join(shots, s => `<tr class="${s.goal ? 'goalrow' : ''} ${s.team}">
       <td>${esc(s.display_minute || (s.minute !== null && s.minute !== undefined ? `${s.minute}'` : DASH))}</td>
       <th class="tm" scope="row">${playerChip(s.player)}</th><td class="tl">${esc(tn(s.team))}</td>
@@ -117,7 +117,7 @@ export function shotTimeline(m) {
       <td class="tl wide">${esc([BODY[s.body_part], s.set_piece ? String(s.set_piece).replace(/_/g, ' ') : null, s.situation && s.situation !== 'Regular Play' ? s.situation : null].filter(Boolean).join(' · ') || DASH)}</td>
       <td>${esc(s.score_before || DASH)}</td><td class="tl wide">${s.assist ? personLink(s.assist) : DASH}</td>
       ${hasXg ? `<td>${s.provider_xg ? num(s.provider_xg.value, { dp: 2 }) : DASH}</td>` : ''}</tr>`)}</tbody></table></div>
-    ${hasXg ? '<p class="caveat">ESPN xG is supplied by ESPN (secondary source) and is not a PropBetEdge model.</p>' : ''}`;
+    ${hasXg ? '<p class="caveat">xG is a supplied stat (DATA · PropSports), not a PropBetEdge model.</p>' : ''}`;
 }
 
 // PLAYER IMPACT — sourced counts per player; minutes are nominal.
@@ -126,7 +126,7 @@ export function playerImpact(m) {
   const p = m.players;
   if (!p?.rows?.length) return '<p class="muted">No player-level record for this match.</p>';
   const cols = IMPACT_COLS.filter(([k]) => p.rows.some(r => r[k] !== undefined && r[k] !== null));
-  const basis = p.basis === 'derived' ? 'PBE derived counts from the event ledger' : 'Counted from the ESPN event record (secondary source)';
+  const basis = p.basis === 'derived' ? 'PBE derived counts from the event ledger' : 'Counted from the PropSports event record';
   const side = key => { const rows = p.rows.filter(r => r.team === key); if (!rows.length) return ''; const team = key === 'away' ? m.away : m.home; return `
     <h3 class="impact-team">${teamLink(team)}</h3>
     <div class="tablewrap" tabindex="0" role="region" aria-label="${esc(team?.name || key)} player impact (scrolls horizontally)"><table class="ltable impact"><caption class="sr-only">${esc(team?.name || key)} players</caption>

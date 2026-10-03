@@ -151,7 +151,7 @@ export const player = {
         <tbody>${join(seasons, s => `<tr><th class="tm" scope="row">${esc(s.season)}</th>${join(cols, ([k]) => `<td>${num(s[k])}</td>`)}</tr>`)}</tbody></table></div>
         <p class="caveat">Counts come from the event ledger (PBE derived counts), only for seasons that have one. Minutes are nominal (90/120, cut at substitution or dismissal). A dash means the value is not recorded, not zero.</p>`
         : '<div class="state empty"><p class="state-title">No event-level season history</p><p>This player has no season in the graph with an event ledger. Their identity and appearances in sourced lineups or reported goals may still exist.</p></div>'}
-      ${when(p.reported_goals_other_seasons, () => `<p class="note-line"><b>${num(p.reported_goals_other_seasons)}</b> goals reported by OpenLigaDB in seasons without an event ledger.</p>`)}
+      ${when(p.reported_goals_other_seasons, () => `<p class="note-line"><b>${num(p.reported_goals_other_seasons)}</b> goals reported in seasons without an event ledger.</p>`)}
       <p class="muted small">Player DNA is descriptive: time-safe counts and rates from sourced data, not a forecast. Predictive models stay unpublished until they beat declared baselines out of sample.</p>
       ${sourcePanel(meta, { title: 'SOURCE & COVERAGE' })}
     </div></section>`;

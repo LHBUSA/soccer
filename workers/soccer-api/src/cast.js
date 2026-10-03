@@ -115,7 +115,7 @@ export async function buildLiveEnvelope(store, env, now = Date.now()) {
     lane: lane ? { ...lane, cadence_seconds: LIVE_CADENCE_S } : null,
   }, {
     source: 'pbe', source_updated_at: maxTs(all.map(m => m.updated_at)),
-    semantics: `Canonical match states. Live scores and clocks come from ESPN (secondary source) through the soccer-ingest live lane, about once a minute per active match plus the provider's own delay. A clock is shown only as the provider states it.`,
+    semantics: `Canonical match states. Live scores and clocks are observed by PropSports, about once a minute per active match plus the provider's own delay. A clock is shown only as the provider states it.`,
     attribution: [...new Set(all.map(m => m.result_provider).filter(Boolean))],
   });
 }

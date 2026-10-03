@@ -29,7 +29,8 @@ export function storyParts(a) {
   const body = a.body || {};
   const sections = (body.sections || []).filter(s => s.key !== 'method');
   const legacyMethod = (body.sections || []).find(s => s.key === 'method');
-  const disclosure = body.disclosure || legacyMethod?.paragraphs || [];
+  // Customer source boundary: a collection-lane credit in a frozen packet renders as DATA · PropSports (licence credits stay).
+  const disclosure = [...new Set((body.disclosure || legacyMethod?.paragraphs || []).map(p => (/^Structured facts: ESPN/.test(p) ? 'DATA · PropSports.' : String(p).replace(/\bESPN(?:'s)?\b(?: \(secondary(?: source)?\))?/g, 'PropSports'))))];
   return { sections, disclosure, desk: /soccer-desk/.test(a.composer || '') };
 }
 
@@ -134,13 +135,13 @@ export function body(sections, watch = '', entities = [], visuals = []) {
 }
 
 function sourceMethod(a, parts, meta) {
-  const sources = parts.disclosure.filter(p => /^(Fixtures|Structured|Event data|Results)/.test(p));
+  const sources = parts.disclosure.filter(p => /^(Fixtures|Structured|Event data|Results|DATA · PropSports)/.test(p));
   const notes = parts.disclosure.filter(p => !sources.includes(p) && !/evidence packet|hash/i.test(p));
   const unavailable = (parts.disclosure.join(' ').match(/Not reported: ([^.]+)\./) || [])[1];
   return `<details class="src-method"><summary><span>SOURCE &amp; METHOD</span><small>How this story was built</small></summary>
     <div class="sm-body">
       <dl>
-        <div><dt>Sources</dt><dd>${sources.length ? esc(sources.join(' ')) : 'PropBetEdge canonical soccer graph'}</dd></div>
+        <div><dt>Sources</dt><dd>${sources.length ? esc(sources.join(' ')) : 'DATA · PropSports'}</dd></div>
         ${unavailable ? `<div><dt>Not covered</dt><dd>${esc(unavailable)}</dd></div>` : ''}
         <div><dt>Last verified</dt><dd>${esc(dateTime(a.updated_at || a.published_at))}</dd></div>
         <div><dt>Method</dt><dd>Every figure comes from a frozen fact record assembled before writing and checked by publication gates. ${link('/sources', 'Sources and method →')}</dd></div>

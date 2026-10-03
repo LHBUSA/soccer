@@ -42,6 +42,10 @@ export function coverageBadge(meta) {
   return `<span class="cov cov-${c.tone}" title="Coverage: ${esc(c.label)}">${esc(c.label)}</span>`;
 }
 
+// Customer source boundary: API text that names a collection lane renders as PropSports; licence credits stay.
+const LANE = /\bESPN(?:'s)?\b(?: \(secondary(?: source)?\))?/g;
+const customerText = s => String(s || '').replace(LANE, 'PropSports');
+const customerAttribution = list => [...new Set((list || []).filter(a => !/ESPN/.test(String(a))))];
 // The one reusable SOURCE / COVERAGE component.
 export function sourcePanel(meta, { title = 'SOURCE & COVERAGE', extra = [], open = false } = {}) {
   if (!meta) return '';
@@ -55,9 +59,9 @@ export function sourcePanel(meta, { title = 'SOURCE & COVERAGE', extra = [], ope
     <summary><span class="src-title">${esc(title)}</span>${coverageBadge(meta)}</summary>
     <div class="src-body">
       <dl>${join(rows, ([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`)}</dl>
-      ${when(meta.semantics, () => `<p class="semantics"><b>What this means.</b> ${esc(meta.semantics)}</p>`)}
-      ${when(notes.length, () => `<ul class="notes">${join(notes, n => `<li>${esc(n)}</li>`)}</ul>`)}
-      ${when((meta.attribution || []).length, () => `<p class="attrib">${join(meta.attribution, a => `<span>${esc(a)}</span>`)}</p>`)}
+      ${when(meta.semantics, () => `<p class="semantics"><b>What this means.</b> ${esc(customerText(meta.semantics))}</p>`)}
+      ${when(notes.length, () => `<ul class="notes">${join(notes, n => `<li>${esc(customerText(n))}</li>`)}</ul>`)}
+      ${when(customerAttribution(meta.attribution).length, () => `<p class="attrib">${join(customerAttribution(meta.attribution), a => `<span>${esc(a)}</span>`)}</p>`)}
     </div>
   </details>`;
 }

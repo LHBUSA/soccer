@@ -71,7 +71,7 @@ export function xgOf(x) {
   const g = x?.provider_xg;
   const v = Number(g?.value);
   if (!g || g.value === null || g.value === undefined || !Number.isFinite(v) || !g.provider) return null;
-  return { value: v, provider: g.provider, label: `${g.provider === 'espn' ? 'ESPN' : String(g.provider).toUpperCase()} xG` };
+  return { value: v, provider: g.provider, label: g.provider === 'espn' ? 'Supplied xG' : `${String(g.provider).toUpperCase()} xG` };
 }
 
 // ---- description -----------------------------------------------------------------------------

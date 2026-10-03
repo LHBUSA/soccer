@@ -59,7 +59,7 @@ export const FOOT = { left: 'Left', right: 'Right', both: 'Both' };
 export const STAT_LABELS = {
   source: [
     ['possession_pct', 'Possession', '%'], ['shots', 'Shots'], ['shots_on_target', 'Shots on target'],
-    ['provider_xg_espn', 'xG (ESPN-supplied)', '', 2], ['passes', 'Passes'], ['passes_completed', 'Accurate passes'],
+    ['provider_xg_espn', 'xG (supplied)', '', 2], ['passes', 'Passes'], ['passes_completed', 'Accurate passes'],
     ['corners', 'Corners'], ['fouls_committed', 'Fouls'], ['offsides', 'Offsides'], ['tackles', 'Tackles'],
     ['interceptions', 'Interceptions'], ['clearances', 'Clearances'], ['saves', 'Saves'],
     ['yellow_cards', 'Yellow cards'], ['red_cards', 'Red cards'],
@@ -74,7 +74,7 @@ export const STAT_LABELS = {
 export function statsHeading(stats) {
   if (!stats) return null;
   if (stats.basis === 'derived') return { title: 'PBE DERIVED COUNTS', note: `Counted by PropBetEdge from the event ledger${stats.derivation ? ` (${stats.derivation})` : ''}.` };
-  if (stats.basis === 'source') return { title: 'SOURCE MATCH STATISTICS', note: `Supplied by ${stats.provider === 'espn' ? 'ESPN (secondary source)' : stats.provider || 'the source provider'}. Not PropBetEdge metrics.` };
+  if (stats.basis === 'source') return { title: 'SOURCE MATCH STATISTICS', note: 'Supplied match statistics (DATA · PropSports). Not PropBetEdge metrics.' };
   return null;
 }
 
@@ -84,5 +84,7 @@ export const COVERAGE = {
 };
 export const coverageOf = meta => COVERAGE[meta?.coverage?.state] || { label: 'UNKNOWN', tone: 'unavailable' };
 
-export const SOURCE_NAMES = { openligadb: 'OpenLigaDB', wyscout: 'Wyscout public dataset', wyscout_figshare: 'Wyscout public dataset', espn: 'ESPN (secondary)', pbe: 'PropBetEdge canonical graph' };
+// Customer source labels (network standard DATA · PropSports): collection lanes read PropSports; the CC BY research
+// dataset keeps its licence name. Licence credits for Wyscout (CC BY) and OpenLigaDB (ODbL) live in the footer.
+export const SOURCE_NAMES = { openligadb: 'PropSports', wyscout: 'Wyscout public dataset', wyscout_figshare: 'Wyscout public dataset', espn: 'PropSports', pbe: 'PropSports', PropSports: 'PropSports' };
 export const sourceName = s => SOURCE_NAMES[s] || s || DASH;

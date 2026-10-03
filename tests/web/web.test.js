@@ -91,7 +91,8 @@ test('missing values render as missing, never as zero', () => {
 test('stats basis labels are never blurred', () => {
   assert.equal(statsHeading({ basis: 'derived', derivation: 'pbe-counts/1.0.0' }).title, 'PBE DERIVED COUNTS');
   assert.equal(statsHeading({ basis: 'source', provider: 'espn' }).title, 'SOURCE MATCH STATISTICS');
-  assert.match(statsHeading({ basis: 'source', provider: 'espn' }).note, /ESPN/);
+  assert.match(statsHeading({ basis: 'source', provider: 'espn' }).note, /DATA · PropSports/);
+  assert.doesNotMatch(statsHeading({ basis: 'source', provider: 'espn' }).note, /ESPN/);
   assert.equal(statsHeading(null), null);
   assert.deepEqual(['ok', 'partial', 'unavailable', 'degraded'].map(s => coverageOf({ coverage: { state: s } }).label), ['FULL', 'PARTIAL', 'UNAVAILABLE', 'DEGRADED']);
 });
@@ -130,7 +131,8 @@ const espnMatch = () => ({
 
 test('match page: truthful labels, event map, stats basis, lineups, provenance', () => {
   const html = match.render({ env: espnMatch() });
-  for (const s of ['MATCH INTELLIGENCE', 'EVENT LOCATIONS — NOT PLAYER TRACKING', 'SOURCE MATCH STATISTICS', 'xG (ESPN-supplied)', 'STARTING XI', 'Formation <b>4-2-3-1</b>', 'Formation not stated by the source', 'SOURCE &amp; FRESHNESS', 'ESPN (secondary)', 'Structured facts: ESPN (secondary source)', 'Craven Cottage', 'César Palacios']) assert.ok(html.includes(s), s);
+  for (const s of ['MATCH INTELLIGENCE', 'EVENT LOCATIONS — NOT PLAYER TRACKING', 'SOURCE MATCH STATISTICS', 'xG (supplied)', 'STARTING XI', 'Formation <b>4-2-3-1</b>', 'Formation not stated by the source', 'SOURCE &amp; FRESHNESS', 'PropSports', 'Craven Cottage', 'César Palacios']) assert.ok(html.includes(s), s);
+  assert.ok(!html.replace(/Image: ESPN/g, '').includes('ESPN'), 'no upstream lane name on the match page (logo image credits stay)');
   assert.ok(!html.includes('PBE DERIVED COUNTS'));
   assert.ok(html.includes('class="pitchwrap land"') && html.includes('class="pitchwrap port"'));
   // a stat present for one side only is shown as missing on the other, not 0

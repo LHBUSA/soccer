@@ -12,14 +12,14 @@ import { COORDINATE_SYSTEMS, toMatchFrame } from '../../shared/coords.js';
 // Only verified coordinate systems count as located (espn_unit_unverified keeps source values, never a canonical point).
 const VERIFIED_COORDS = Object.keys(COORDINATE_SYSTEMS);
 import { displayMinute } from '../../shared/clock.js';
-import { COVERAGE, envelope, maxTs } from './envelope.js';
+import { COVERAGE, envelope, maxTs, DEPRECATED_FIELDS } from './envelope.js';
 import { chunkArr } from '../../soccer-ingest/src/store.js';
 import { provenBracket } from '../../shared/bracket.js';
 import { ownGoalBeneficiary } from '../../shared/own-goals.js';
 import { LIVE_SNAPSHOT_STATUS_KEY, LIVE_SNAPSHOT_DIRTY_KEY } from '../../shared/live-snapshot.js';
 
 export const API_VERSION = 'soccer-api/1.2.0';
-const E = (data, o) => envelope(data, { version: API_VERSION, ...o });
+const E = (data, o) => envelope(data, { version: API_VERSION, deprecated: DEPRECATED_FIELDS, ...o });
 export class NotFound extends Error { constructor(what) { super(`${what} not found`); this.status = 404; } }
 const clampLimit = (v, d = 50) => Math.max(1, Math.min(100, Number(v) || d));
 
@@ -98,6 +98,7 @@ function shapeMatch(m, teams, comps = null, intel = null, stages = null) {
     score: m.home_score === null ? null : { home: m.home_score, away: m.away_score, home_ht: m.home_score_ht, away_ht: m.away_score_ht,
       ...(decided ? { after: m.duration } : {}), ...(m.home_pens != null && m.away_pens != null ? { pens: { home: m.home_pens, away: m.away_pens } } : {}),
       ...(m.winner_team_id && decided ? { winner: m.winner_team_id === m.home_team_id ? 'home' : 'away' } : {}) },
+    data_source: 'PropSports',
     result_source: m.result_provider,
     ...(intel ? { intel: intel(m.id) } : {}),
   };
@@ -282,8 +283,9 @@ export async function match(store, id) {
   });
   const stats = await store.select('soccer_team_match_stats', { columns: ['team_id', 'stat_key', 'value', 'basis', 'derivation_version'], eq: { match_id: id } });
   const statsBasis = stats.some(x => x.basis === 'derived') ? 'derived' : stats.length ? 'source' : null;
-  const statsOut = { home: {}, away: {}, basis: statsBasis, derivation: stats.find(x => x.basis === 'derived')?.derivation_version || null, provider: statsBasis === 'source' ? family : null };
+  const statsOut = { home: {}, away: {}, basis: statsBasis, derivation: stats.find(x => x.basis === 'derived')?.derivation_version || null, provider: statsBasis === 'source' ? family : null, source: statsBasis ? 'PropSports' : null };
   for (const s of stats) if (side(s.team_id) && s.basis === statsBasis) statsOut[side(s.team_id)][s.stat_key] = Number(s.value);
+  for (const k of ['home', 'away']) if (statsOut[k].provider_xg_espn !== undefined) statsOut[k].provider_xg = statsOut[k].provider_xg_espn;
 
   const lineupOut = Object.fromEntries(lineups.map(l => [side(l.team_id), {
     manager: mgrs.get(l.manager_id) ? { slug: mgrs.get(l.manager_id).slug, name: mgrs.get(l.manager_id).display_name } : null,
@@ -379,6 +381,7 @@ export async function match(store, id) {
     ...shapeMatch(m, teams, null, null, await stagesById(store, [m])), competition: comp, season: season?.label, venue,
     timeline, shots, stats: stats.length ? statsOut : null, lineups: lineups.length ? lineupOut : null,
     substitutions: subs.map(s => ({ minute: s.minute, team: side(s.team_id), in: person(s.player_in_id), out: person(s.player_out_id) })),
+    data_source: 'PropSports',
     event_source: family,
     shot_timeline: shotTimeline,
     sequence,
@@ -387,7 +390,7 @@ export async function match(store, id) {
     coordinates: hasLedger ? { system: '105x68 m, match frame: home attacks toward x=105', note: 'Event locations, not player tracking.' } : null,
   }, {
     source: 'pbe', source_updated_at: maxTs(m.updated_at, sources.map(s => s.observed_at)),
-    semantics: `Canonical match assembled by PropBetEdge. ${statsBasis === 'derived' ? 'Team counts are derived by PropBetEdge from the event ledger (pbe-counts).' : statsBasis === 'source' ? `Team statistics are source facts supplied by ${family === 'espn' ? 'ESPN (secondary source)' : family}, not PropBetEdge metrics.` : 'No team statistics available.'} Shot locations on the 105x68 canonical pitch; provider xG, where present, is labelled with its provider and is not PBE xG.`,
+    semantics: `Canonical match assembled by PropBetEdge. ${statsBasis === 'derived' ? 'Team counts are derived by PropBetEdge from the event ledger (pbe-counts).' : statsBasis === 'source' ? `Team statistics are supplied source facts (DATA · PropSports), not PropBetEdge metrics.` : 'No team statistics available.'} Shot locations on the 105x68 canonical pitch; provider xG, where present, is labelled with its provider and is not PBE xG.`,
     coverage: notes.length ? COVERAGE.PARTIAL : COVERAGE.OK, coverage_notes: notes,
     attribution: [...new Set([...sources.map(s => s.provider), ...(family === 'wyscout_figshare' ? ['wyscout'] : family ? [family] : [])])],
   });
@@ -679,8 +682,8 @@ export async function table(store, q) {
     for (const g of out) { const k = g.parent?.key || null; let t = tiers.find(x => x.key === k); if (!t) tiers.push(t = { key: k, name: g.parent?.name || null, groups: [] }); t.groups.push(g.key); }
     const verified = out.filter(g => g.verified).length;
     return E({ competition: c.slug, season: season.label, view: 'groups', groups: out, tiers, matches_counted: valid.length, rows: [], verified_groups: verified, withheld_groups: out.length - verified }, {
-      source: 'pbe', semantics: "Group competition: no overall table exists and none is computed. Each group table uses ESPN's published membership, official position (tie-breakers as applied by the provider) and zone notes, and is shown only when every played/won/drawn/lost/goals/points figure equals the table PropBetEdge computes from its own canonical results; a group that does not verify is withheld on its own.",
-      source_updated_at: maxTs([...valid.map(x => x.updated_at), ...all.map(s => s.observed_at)]), attribution: [...new Set([...valid.map(x => x.result_provider), 'Standings: ESPN (secondary source)'])],
+      source: 'pbe', semantics: "Group competition: no overall table exists and none is computed. Each group table uses the observed published membership, official position (tie-breakers as applied by the provider) and zone notes, and is shown only when every played/won/drawn/lost/goals/points figure equals the table PropBetEdge computes from its own canonical results; a group that does not verify is withheld on its own.",
+      source_updated_at: maxTs([...valid.map(x => x.updated_at), ...all.map(s => s.observed_at)]), attribution: [...new Set([...valid.map(x => x.result_provider), 'Standings: DATA · PropSports'])],
       coverage: verified === out.length && out.length ? COVERAGE.OK : verified ? COVERAGE.PARTIAL : COVERAGE.UNAVAILABLE,
       coverage_notes: out.filter(g => !g.verified).map(g => `${g.name}: withheld (${g.withheld_reason}).`),
     });
@@ -699,10 +702,10 @@ export async function table(store, q) {
     return E({
       competition: c.slug, season: season.label, group: groupMeta(g), groups: groupList, view: g.group_key,
       matches_counted: valid.length, tiebreak: `official ${c.slug === 'mls' ? 'MLS' : 'UEFA'} order as published by the provider`, rows,
-      verification: { verified: check.verified, provider: 'espn', teams: source.length, mismatches: check.mismatches.slice(0, 20), provider_observed_at: maxTs(source.map(s => s.observed_at)) },
+      verification: { verified: check.verified, source: 'PropSports', provider: 'espn', teams: source.length, mismatches: check.mismatches.slice(0, 20), provider_observed_at: maxTs(source.map(s => s.observed_at)) },
     }, {
-      source: 'pbe', semantics: `${g.name}: ${kind} membership, position (the competition's official tie-breakers as applied by the provider) and zone notes come from ESPN's published standings (secondary source); every played/won/drawn/lost/goals/points figure is verified against the table PropBetEdge computes from its own canonical results before anything is shown.${check.verified ? '' : ' Verification failed, so no table is shown.'}`,
-      source_updated_at: maxTs([...valid.map(x => x.updated_at), ...source.map(s => s.observed_at)]), attribution: [...new Set([...valid.map(x => x.result_provider), 'Standings: ESPN (secondary source)'])],
+      source: 'pbe', semantics: `${g.name}: ${kind} membership, position (the competition's official tie-breakers as applied by the provider) and zone notes come from the observed published standings; every played/won/drawn/lost/goals/points figure is verified against the table PropBetEdge computes from its own canonical results before anything is shown.${check.verified ? '' : ' Verification failed, so no table is shown.'}`,
+      source_updated_at: maxTs([...valid.map(x => x.updated_at), ...source.map(s => s.observed_at)]), attribution: [...new Set([...valid.map(x => x.result_provider), 'Standings: DATA · PropSports'])],
       coverage: check.verified ? COVERAGE.OK : COVERAGE.UNAVAILABLE,
       coverage_notes: check.verified ? [] : crossing.has(g.id) ? [check.mismatches[0].reason + '; the table is withheld.'] : [source.length ? `Published standings disagree with canonical results for ${new Set(check.mismatches.map(m => m.team_id).filter(Boolean)).size} team(s); the table is withheld until they agree.` : 'No published standings stored for this group yet.'],
     });

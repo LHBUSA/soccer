@@ -44,12 +44,12 @@ test('missing source fields are omitted, never guessed', () => {
   assert.equal(d.geo, null); assert.equal(d.xg, null);
 });
 
-test('rich shot: body part, outcome, PBE derived distance, provider xG labelled ESPN xG', () => {
+test('rich shot: body part, outcome, PBE derived distance, provider xG labelled Supplied xG (never PBE xG, never the lane name)', () => {
   const html = feedItem(it(1), m, { seen: upto(1) });
   const t = strip(html);
   assert.match(t, /ARSENAL SHOT ON TARGET/); assert.match(t, /Left foot · on target/);
   assert.match(t, /14\.3 m from goal · in the box PBE derived/); // home attacks x=105: hypot(13, 6) = 14.3
-  assert.match(t, /ESPN xG 0\.21/); assert.doesNotMatch(t, /PBE xG/);
+  assert.match(t, /Supplied xG 0\.21/); assert.doesNotMatch(t, /PBE xG|ESPN/);
   assert.match(html, /<abbr class="pbe-d" title="PBE derived from the source event location/);
   assert.deepEqual(shotGeometry(it(2)), { distance_m: 18.4, in_box: false }, 'away attacks x=0: hypot(18, 4); 18 m out is outside the 16.5 m box');
 });
@@ -60,7 +60,7 @@ test('away distance is measured to the goal the away side attacks', () => {
   assert.equal(shotGeometry({ type: 'own_goal', team: 'home', x: 100, y: 34 }), null, 'an own goal location is not an attempt on goal');
   assert.equal(shotGeometry({ type: 'card_red', team: 'home', x: 100, y: 34 }), null);
   assert.equal(xgOf({ provider_xg: { provider: 'espn', value: null } }), null);
-  assert.equal(xgOf({ provider_xg: { provider: 'espn', value: 0.5 } }).label, 'ESPN xG');
+  assert.equal(xgOf({ provider_xg: { provider: 'espn', value: 0.5 } }).label, 'Supplied xG');
 });
 
 test('goal: dominant headline with score, assist chip, score swing and derived conversion', () => {

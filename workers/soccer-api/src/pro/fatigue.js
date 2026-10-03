@@ -45,7 +45,7 @@ export function teamLoad(matches, teamId, asOf = new Date().toISOString()) {
     short_rest_sequences_21: shortRest, rest_gaps_21_days: gaps.map(g => r2(g)),
     home_away_last5: venue.join(''), away_share_last5: venue.length ? r2(venue.filter(v => v === 'A').length / venue.length) : null,
     competition_switches_last5: switches, competitions_last5: recent5.map(m => m.competition_slug),
-    extra_time_21: extraTime, extra_time_basis: 'counted only where the source recorded extra time; ESPN results carry no extra-time flag',
+    extra_time_21: extraTime, extra_time_basis: 'counted only where the source recorded extra time; some observed results carry no extra-time flag',
     next_match: next ? { id: next.id, kickoff_at: next.kickoff_at, rest_days_before: last ? r2((ms(next.kickoff_at) - ms(last.kickoff_at)) / DAY) : null } : null,
   };
 }

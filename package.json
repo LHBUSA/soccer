@@ -17,9 +17,10 @@
     "coverage:openligadb": "node scripts/coverage/openligadb-depth.mjs",
     "proof:article": "node scripts/news/proof-article.mjs",
     "dev": "vite",
-    "build": "node scripts/guard-truth.mjs && vite build && node -e \"require('fs').copyFileSync('dist/index.html','dist/404.html')\"",
+    "build": "node scripts/guard-truth.mjs && node scripts/guard-source-brand.mjs && vite build && node -e \"require('fs').copyFileSync('dist/index.html','dist/404.html')\"",
     "test:web": "node --test \"tests/web/**/*.test.js\"",
-    "qa:browser": "node scripts/qa/browser.mjs"
+    "qa:browser": "node scripts/qa/browser.mjs",
+    "guard:source-brand": "node scripts/guard-source-brand.mjs"
   },
   "devDependencies": {
     "@electric-sql/pglite": "^0.5.8",
