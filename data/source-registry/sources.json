@@ -963,7 +963,7 @@
       "licence": "proprietary",
       "verdict": "RESTRICTS_AUTOMATED_ACCESS",
       "production_ready": false,
-      "production_note": "Probed 2026-09-29 for a scheduled official-video lane. robots.txt disallows /feeds/videos.xml and /youtubei/ for all user agents, and the Terms of Service forbid automated access except public search engines following robots.txt or with written permission. Not used for automated discovery. The compliant route is the YouTube Data API v3 under the YouTube API Services Terms (owner-created API key required). Embedding through the official YouTube player remains permitted by the Terms.",
+      "production_note": "Probed 2026-09-29 for a scheduled official-video lane. robots.txt disallows /feeds/videos.xml and /youtubei/ for all user agents, and the Terms of Service forbid automated access except public search engines following robots.txt or with written permission. Recorded facts; production use is governed by the owner decision in use_note. Embedding through the official YouTube player remains permitted by the Terms.",
       "capabilities": {},
       "access": "Public HTML pages and Atom feeds",
       "robots": "Disallows /feeds/videos.xml and /youtubei/",
@@ -973,13 +973,16 @@
       },
       "obligations": [
         "Embed only through the official YouTube (youtube-nocookie) player",
-        "No automated discovery via public pages, /youtubei/ or /feeds/videos.xml"
+        "Verified official channels only; no /youtubei/ access",
+        "Record the discovery mechanism actually used on every run"
       ],
       "evidence": [
         "docs/evidence/source-audit/2026-09-29/youtube_rss__robots.json",
         "docs/evidence/source-audit/2026-09-29/youtube_rss__terms.json",
         "docs/evidence/source-audit/2026-09-29/youtube_rss__channel_feed.json"
-      ]
+      ],
+      "use_status": "OWNER_APPROVED_SECONDARY",
+      "use_note": "OWNER-APPROVED KEYLESS DISCOVERY — owner decision 2026-09-29 (\"youtube api key is not needed\", made with the robots.txt and Terms findings below in view), re-ruled 2026-10-03 (\"Keep keyless (09-29)\") over a fail-closed proposal. Used by workers/soccer-video-autopilot for verified official channels only (soccer_video_channels enabled+verified), twice an hour, oEmbed embeddability check, dedupe by video id; every run records the mechanism it actually used. The verdict and terms below stay as recorded facts."
     }
   ]
 }

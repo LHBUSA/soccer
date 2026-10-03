@@ -1,0 +1,128 @@
+{
+ "at": "2026-10-03T01:41:54.088Z",
+ "rule": "Data availability is not model validation. A competition enters PBE Picks only with its own research, frozen holdout, approved pick policy and owner activation.",
+ "competitions": [
+  {
+   "slug": "bundesliga",
+   "type": "league",
+   "seasons_total": 23,
+   "published": 23,
+   "held": 0,
+   "first_published": "2004/05",
+   "last_published": "2026/27",
+   "tiers": {
+    "none": 23
+   },
+   "research_depth_ok": true,
+   "model": {
+    "model": "soccer-algo-v1.0.0",
+    "research": "docs/evidence/research (Algo V1 protocol: selection seasons + one-shot holdout)",
+    "holdout": "frozen (select_freeze_sha256 in algo-research.json)",
+    "policy": "soccer-algo-pick-policy/1.1",
+    "flag": "on",
+    "production": "LIVE (owner G7 sign-off 2026-09-29)"
+   }
+  },
+  {
+   "slug": "premier-league",
+   "type": "league",
+   "seasons_total": 6,
+   "published": 5,
+   "held": 1,
+   "first_published": "2001/02",
+   "last_published": "2026/27",
+   "tiers": {
+    "MATCH": 4,
+    "none": 1
+   },
+   "research_depth_ok": false,
+   "model": null
+  },
+  {
+   "slug": "la-liga",
+   "missing": true
+  },
+  {
+   "slug": "serie-a",
+   "missing": true
+  },
+  {
+   "slug": "ligue-1",
+   "missing": true
+  },
+  {
+   "slug": "fifa-world-cup",
+   "type": "international_tournament",
+   "seasons_total": 1,
+   "published": 1,
+   "held": 0,
+   "first_published": "2026",
+   "last_published": "2026",
+   "tiers": {
+    "none": 1
+   },
+   "research_depth_ok": false,
+   "model": null
+  },
+  {
+   "slug": "uefa-european-championship",
+   "missing": true
+  },
+  {
+   "slug": "uefa-champions-league",
+   "type": "club_tournament",
+   "seasons_total": 1,
+   "published": 1,
+   "held": 0,
+   "first_published": "2026/27",
+   "last_published": "2026/27",
+   "tiers": {
+    "none": 1
+   },
+   "research_depth_ok": false,
+   "model": null
+  },
+  {
+   "slug": "uefa-nations-league",
+   "type": "international_tournament",
+   "seasons_total": 2,
+   "published": 2,
+   "held": 0,
+   "first_published": "2024/25",
+   "last_published": "2026/27",
+   "tiers": {
+    "none": 2
+   },
+   "research_depth_ok": false,
+   "model": {
+    "model": "soccer-algo-v2.1.0",
+    "research": "scripts/research/algo-v2-research.mjs (pre-registered national-team protocol)",
+    "holdout": "frozen; input membership frozen 2026-10-02 (algo-v2-dataset.json)",
+    "policy": "soccer-algo-v2-pick-policy/1.0",
+    "status": "official",
+    "flag": "off",
+    "production": "OFF (never ran; pre-activation preflight + owner sign-off pending)"
+   }
+  },
+  {
+   "slug": "uefa-europa-league",
+   "missing": true
+  },
+  {
+   "slug": "mls",
+   "type": "league",
+   "seasons_total": 7,
+   "published": 7,
+   "held": 0,
+   "first_published": "2001",
+   "last_published": "2026",
+   "tiers": {
+    "RESULTS": 3,
+    "MATCH": 3,
+    "none": 1
+   },
+   "research_depth_ok": false,
+   "model": null
+  }
+ ]
+}

@@ -25,7 +25,10 @@ import { storeFromEnv } from '../../workers/shared/postgrest.js';
 const arg = k => { const i = process.argv.indexOf(k); return i >= 0 ? process.argv[i + 1] : null; };
 const NOW = Date.parse(arg('--now') || new Date().toISOString());
 const env = Object.fromEntries(readFileSync('D:/Workers/secrets/soccer-supabase.env', 'utf8').split(/\r?\n/).filter(l => l.includes('=')).map(l => [l.slice(0, l.indexOf('=')).trim(), l.slice(l.indexOf('=') + 1).trim()]));
-const real = storeFromEnv(env);
+const base = storeFromEnv(env);
+// reads retry transient socket aborts (ECONNABORTED / fetch failed); writes never reach this store
+const retry = fn => async (...a) => { for (let i = 0; ; i++) { try { return await fn(...a); } catch (e) { if (i >= 5 || !/fetch failed|ECONN|socket|terminated/i.test(String(e?.message || e) + String(e?.cause?.code || ''))) throw e; await new Promise(r => setTimeout(r, 1500 * (i + 1))); } } };
+const real = new Proxy(base, { get: (t, k) => (k === 'select' ? retry(t.select.bind(t)) : typeof t[k] === 'function' ? t[k].bind(t) : t[k]) });
 const CACHE = 'D:/Temp/claude/algo-v2-preflight-r2'; mkdirSync(CACHE, { recursive: true });
 
 // read-through store: selects hit production, every write is captured and never sent

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Safe Worker release with a checked-in ledger (docs/deployments.jsonl).
-//   node scripts/release/release-worker.mjs <soccer-api|soccer-ingest|soccer-news> [--canary <path>] [--dry]
+//   node scripts/release/release-worker.mjs <soccer-api|soccer-ingest|soccer-news|soccer-video-autopilot> [--canary <path>] [--dry]
 // 1. refuses unless HEAD == origin/main and workers/ + data/ (+ the frozen research core) are clean
 // 2. builds from a clean `git archive` of HEAD
 // 3. records the CURRENT production version (the rollback target)
@@ -20,7 +20,7 @@ import { join } from 'node:path';
 const [worker, ...rest] = process.argv.slice(2);
 const opt = k => { const i = rest.indexOf(k); return i >= 0 ? rest[i + 1] : null; };
 const DRY = rest.includes('--dry');
-if (!['soccer-api', 'soccer-ingest', 'soccer-news'].includes(worker)) throw new Error('worker: soccer-api | soccer-ingest | soccer-news');
+if (!['soccer-api', 'soccer-ingest', 'soccer-news', 'soccer-video-autopilot'].includes(worker)) throw new Error('worker: soccer-api | soccer-ingest | soccer-news | soccer-video-autopilot');
 const canaryPath = opt('--canary') || '/health';
 // Git Bash rewrites '/v1/...' arguments into Windows paths unless MSYS_NO_PATHCONV=1 is set.
 if (!/^\/[A-Za-z0-9/_.?=&%-]*$/.test(canaryPath)) throw new Error(`canary path is not a URL path: ${canaryPath} (run with MSYS_NO_PATHCONV=1)`);
