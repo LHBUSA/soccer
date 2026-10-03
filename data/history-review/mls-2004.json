@@ -4,7 +4,7 @@
  "season": "2004",
  "review_status": "approved",
  "reviewer": "PropBetEdge history review (Claude, owner-directed 2026-10-02)",
- "reviewed_at": "2026-10-03T00:53:09.663Z",
+ "reviewed_at": "2026-10-03T00:55:54.257Z",
  "rule": "Provider events are classified only when (local date, unordered pairing, per-team goals) all agree with a reviewed fixture (Football box team1/team2 order is not home/away; the stadium is corroboration only); the regular season must reconcile to the reviewed standings; anything unproven stays held.",
  "evidence": [
   {
@@ -304,6 +304,9 @@
   ],
   "notes": []
  },
+ "limitations": [
+  "MLS Cup 2004 (ESPN event 168975): ESPN lists kickoff 17:30Z; the MLS Cup 2004 article states 12:45 p.m. Pacific (20:45Z). The date agrees; canonical kickoff kept as published by ESPN."
+ ],
  "team_map": {
   "CHI": "chicago-fire-fc",
   "COL": "colorado-rapids",

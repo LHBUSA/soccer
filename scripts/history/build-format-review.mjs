@@ -74,6 +74,7 @@ const SEASONS = {
     stage: { 'Conference semifinals': 'Conference Semifinals', 'Conference finals': 'Conference Finals', 'MLS Cup': 'MLS Cup' },
     structure: ['Conference Semifinals (two legs, aggregate)', 'Conference Finals (single match)', 'MLS Cup (single match)'],
     facts: { regular_season_end: '2004-10-17', playoffs_start: '2004-10-22', mls_cup: '2004-11-14', note: '10 clubs, 30 matches each (150); top four per conference qualify; conference semifinals home-and-home on aggregate goals; conference finals and MLS Cup single matches (D.C. United beat New England 4-3 on penalties after 3-3 AET).' },
+    limitations: ['MLS Cup 2004 (ESPN event 168975): ESPN lists kickoff 17:30Z; the MLS Cup 2004 article states 12:45 p.m. Pacific (20:45Z). The date agrees; canonical kickoff kept as published by ESPN.'],
     fact_quotes: [
       { file: 'article', quote: 'The regular season began on April 3, and concluded on October 17. The 2004 MLS Cup Playoffs began on October 22, and concluded with [[MLS Cup 2004]] on November 14.' },
       { file: 'article', quote: 'Each team played 30 games that were evenly divided between home and away.' },
@@ -114,6 +115,7 @@ const manifest = {
   facts: { teams: codes.length, regular_season_matches: appearances / 2, ...SEASON.facts, ...(SEASON.fact_quotes ? { quotes: SEASON.fact_quotes.map(q => ({ source: EV[q.file], quote: q.quote })) } : {}) },
   regular_season: { stage: 'Regular Season', expected_matches: appearances / 2, expected_team_games: dist, standings },
   playoffs: { structure: SEASON.structure, fixtures, notes },
+  ...(SEASON.limitations ? { limitations: SEASON.limitations } : {}),
   team_map: TEAM_MAP,
 };
 mkdirSync('data/history-review', { recursive: true });

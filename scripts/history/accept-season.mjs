@@ -181,7 +181,12 @@ if (events < 0.9) limitations.push(`event record for ${Math.round(events * 100)}
 const result = { at: new Date().toISOString(), competition: slug, season: label, state_before: season.publication_state, acceptance, matches: ms.length, finished: fin.length, stages: stages.map(s => `${s.name}:${s.stage_type}`), teams: teamIds.length, format, providers, coverage: { venue, lineups, stats, events }, coverage_tier: tier, limitations, notes, checks_failed: fail, pass: fail.length === 0 };
 if (PROMOTE) {
   if (!result.pass) throw new Error(`REFUSED: ${slug} ${label} failed ${fail.map(f => f.check).join(', ')} — stays held`);
-  const r = await fetch(`${U}/rest/v1/soccer_seasons?id=eq.${season.id}`, { method: 'PATCH', headers: { ...h, 'content-type': 'application/json', prefer: 'return=minimal' }, body: JSON.stringify({ publication_state: 'published', published_at: new Date().toISOString(), reviewed_at: new Date().toISOString(), coverage_tier: tier, source_families: providers, limitations, publication_note: `Pass A accepted ${result.at.slice(0, 10)} (scripts/history/accept-season.mjs)` }) });
+  // keep review/format limitations already on the season (format review, provider date exceptions) and the reviewed
+  // manifest's own limitations; only the measured coverage lines are recomputed
+  const [cur] = await get(`soccer_seasons?select=limitations&id=eq.${season.id}`);
+  const COVERAGE_LINE = /^(lineups|team statistics|event record) for \d+% of finished matches$/;
+  const keptLimitations = [...new Set([...(cur?.limitations || []).filter(l => !COVERAGE_LINE.test(l)), ...(review?.limitations || []), ...limitations])];
+  const r = await fetch(`${U}/rest/v1/soccer_seasons?id=eq.${season.id}`, { method: 'PATCH', headers: { ...h, 'content-type': 'application/json', prefer: 'return=minimal' }, body: JSON.stringify({ publication_state: 'published', published_at: new Date().toISOString(), reviewed_at: new Date().toISOString(), coverage_tier: tier, source_families: providers, limitations: keptLimitations, publication_note: `Pass A accepted ${result.at.slice(0, 10)} (scripts/history/accept-season.mjs)` }) });
   if (!r.ok) throw new Error(`promote failed ${r.status} ${await r.text()}`);
   result.promoted = true;
 }
