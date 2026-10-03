@@ -111,7 +111,7 @@ export const sources = {
           <li>Proprietary models such as xG, xT and Soccer DNA are not published until they are validated.</li>
         </ul>
         <h2 id="kalshi">Kalshi prediction-market prices</h2>
-        <p>Live prediction-market pricing is part of every match page on PropBetEdge: match pages, PBEcast and fixture cards carry prices from Kalshi, a prediction market. They appear as <b>Market Pulse</b>: live prediction-market pricing, with no sportsbook line required. They are traded contract prices: not sportsbook odds and not a PropBetEdge model or prediction.</p>
+        <p>Live prediction-market pricing is built into PropBetEdge match pages and PBEcast. Match pages, PBEcast, the score ticker and fixture cards carry prices from Kalshi, a prediction market. They appear as <b>Market Pulse</b>: live prediction-market pricing, with no sportsbook line required. They are traded contract prices: not sportsbook odds and not a PropBetEdge model or prediction.</p>
         <ul>
           <li>A market is shown only when it is matched exactly to that match, is fresh and is trading. Otherwise nothing is shown.</li>
           <li>Every price links to that market on Kalshi.</li>

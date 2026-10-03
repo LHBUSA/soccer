@@ -157,14 +157,20 @@ test('match page: card is in the FIRST paint as its own block, with a bounded wa
   marketMode = 'up';
 });
 
-test('PBEcast: the strip renders from the known board entry, never blocks the cast, keeps its open state', async () => {
+test('PBEcast: full Market Pulse card directly under the scoreboard with a lifecycle label, from the known board entry', async () => {
   marketMode = 'up'; await kx.kalshi.loadBoard({ force: true });
   const env = { data: { ...matchData(ID), status: 'scheduled', sequence: [], live: { mode: 'pregame' } }, meta: { source: 'pbe', coverage: { state: 'ok', notes: [] } } };
   const html = castView(env);
-  assert.match(html, /<div class="ct-kx" data-kx-cast><details class="kx-strip"/);
-  assert.ok(html.indexOf('data-kx-cast') < html.indexOf('cast-body'), 'strip sits in the cast header');
+  assert.match(html, /<div class="ct-kx" data-kx-cast><div class="ct-mkt" data-phase="pre"><p class="ct-mkt-phase"><span class="ct-mkt-dot" aria-hidden="true"><\/span>MARKET OPEN · PRE-MATCH<\/p><section class="ic kx kx--compact"/);
+  assert.doesNotMatch(html, /kx-strip|<details[^>]*kx/, 'no collapsed strip');
+  assert.ok(html.indexOf('ct-board') < html.indexOf('data-kx-cast') && html.indexOf('data-kx-cast') < html.indexOf('cast-body'), 'module sits under the scoreboard, in the cast header');
   assert.ok(html.includes(kx.SETTLEMENT_NOTE));
-  assert.match(kx.castKalshiHtml(entry(), { open: true }), /^<details open class="kx-strip"/);
+  const t = text(html);
+  assert.match(t, /Market Pulse/); assert.match(t, /Mid-market/); assert.match(t, /Updated 2 min ago/); assert.match(t, /View market on Kalshi ↗/);
+  assert.equal((html.match(/class="kx__panel"/g) || []).length, 3, 'home / draw / away panels');
+  assert.ok(t.indexOf('Arsenal wins') < t.indexOf('Tie is the result') && t.indexOf('Tie is the result') < t.indexOf('Leeds United wins'), 'home, draw, away order');
+  assert.match(html, /Bid<\/dt><dd>71¢/); assert.match(html, /Ask<\/dt><dd>72¢/);
+  for (const a of html.match(/<a [^>]*kalshi\.com[^>]*>/g)) assert.match(a, /rel="noopener noreferrer sponsored"/);
   const other = castView({ ...env, data: { ...env.data, id: NO_MARKET_ID } });
   assert.match(other, /<div class="ct-kx" data-kx-cast hidden><\/div>/);
 });
@@ -325,7 +331,8 @@ test('completed match: page load keeps the market (history), mounts the slot and
   const cast = kx.castKalshiHtml(settled());
   assert.match(cast, /data-kx-history/); assert.doesNotMatch(cast, /kx-strip/);
   assert.ok(cast.includes(kx.SETTLEMENT_NOTE));
-  assert.match(kx.castKalshiHtml(entry()), /^<details class="kx-strip"/, 'live strip unchanged while trading');
+  assert.match(kx.castKalshiHtml(entry()), /^<div class="ct-mkt" data-phase="pre">.*<section class="ic kx kx--compact"/s, 'live card while trading');
+  assert.match(cast, /data-phase="settled"[^>]*><p class="ct-mkt-phase">.*MARKET SETTLED<\/p>/s, 'settled label, same slot');
   extraEvents.clear();
 });
 
@@ -341,4 +348,60 @@ test('result cards: subtle market close line from the board for a finished match
   assert.doesNotMatch(matchCard({ ...base, id: CLOSED_ID, status: 'finished' }), /mc-kx|kx-line/, 'nothing recorded -> nothing');
   assert.doesNotMatch(matchCard({ ...base, id: NO_MARKET_ID, status: 'finished' }), /mc-kx|kx-line/);
   extraBoard.length = 0;
+});
+
+// ------------------------------------------------------------------ MLB standard: lifecycle labels + score ticker line
+test('PBEcast lifecycle labels: pre-match / live / full time still trading / closed awaiting settlement / settled', () => {
+  const label = (e, st) => kx.castMarketPhase(e, st)?.[1] ?? null;
+  assert.equal(label(null, { status: 'scheduled' }), null);
+  assert.equal(label(entry(), { mode: 'pregame', status: 'scheduled' }), 'MARKET OPEN · PRE-MATCH');
+  assert.equal(label(entry(), { mode: 'live', status: 'live' }), 'LIVE MARKET');
+  assert.equal(label(entry(), { mode: 'replay', status: 'finished' }), 'FULL TIME · MARKET STILL TRADING');
+  assert.equal(label(asSoccer(CLOSED_ID, closedVariant), { status: 'finished' }), 'MARKET CLOSED · AWAITING SETTLEMENT');
+  assert.equal(label(settled(), { status: 'finished' }), 'MARKET SETTLED');
+  const live = kx.castKalshiHtml(entry(), { mode: 'live', status: 'live' });
+  assert.match(live, /data-phase="live"/); assert.match(text(live), /LIVE MARKET Market Pulse/);
+  const closed = kx.castKalshiHtml(asSoccer(CLOSED_ID, closedVariant), { status: 'finished' });
+  assert.match(closed, /data-phase="closed"/); assert.match(closed, /data-kx-history/); assert.match(text(closed), /MARKET CLOSED · AWAITING SETTLEMENT How the market closed/);
+  // a closed board entry with no history yet: nothing until the event read brings market_history (no empty box)
+  const bare = asSoccer(CLOSED_ID, closedVariant); bare.market_history = null; bare.kalshi = null;
+  assert.equal(kx.castKalshiHtml(bare, { status: 'finished' }), '');
+});
+
+test('the 70d92e0 product-side fetch wrapper is gone: the shared client keeps completed events itself', async () => {
+  const src = readFileSync('src/data/kalshi.js', 'utf8');
+  assert.doesNotMatch(src, /teeFetch|rawBoard|rawEvents|fetchImpl/);
+  marketMode = 'up';
+  const s = settled(); s.kalshi = null; extraBoard.push(s); extraEvents.set(HIST_ID, s);
+  await kx.kalshi.loadBoard({ force: true });
+  assert.ok(kx.boardEntry(HIST_ID)?.market?.lifecycle, 'board keeps a completed entry with no live block');
+  const ev = await kx.loadMatchMarket(HIST_ID, { force: true });
+  assert.ok(ev?.market_history, 'event read keeps market_history with kalshi null');
+  extraBoard.length = 0; extraEvents.clear();
+  await kx.kalshi.loadBoard({ force: true });
+});
+
+const { tickerItem, tickerMarketHtml } = await import('../../src/components/score-ticker.js');
+test('score ticker: compact "MKT ARS 71.5¢ · DRAW 17.5¢ · LEE 11.5¢" segment only for an exact, live-or-next, displayable market', () => {
+  const m = { id: ID, kickoff_at: '2026-10-03T14:00:00Z', home: { name: 'Arsenal', short_name: 'Arsenal' }, away: { name: 'Leeds United', short_name: 'Leeds' }, competition: null, score: null };
+  const parts = kx.tickerMarket(entry(), m, 'next');
+  assert.deepEqual(parts, [{ label: 'ARS', px: '71.5¢' }, { label: 'DRAW', px: '17.5¢' }, { label: 'LEE', px: '11.5¢' }]);
+  assert.deepEqual(kx.tickerMarket(entry(), m, 'live'), parts);
+  assert.equal(kx.tickerMarket(entry(), m, 'ft'), null, 'finals carry no line');
+  assert.equal(kx.tickerMarket(entry(), { ...m, id: NO_MARKET_ID }, 'next'), null, 'exact match id only');
+  assert.equal(kx.tickerMarket(entry({ freshness: 'stale' }), m, 'live'), null, 'no stale quote');
+  assert.equal(kx.tickerMarket(entry({ proposition: 'match_result_incl_extra_time' }), m, 'next'), null);
+  assert.equal(kx.tickerMarket(null, m, 'next'), null);
+  const e2 = entry(); e2.kalshi.outcomes[1].displayable = false;
+  assert.equal(kx.tickerMarket(e2, m, 'next'), null, 'undisplayable contract -> no line');
+  const odd = entry(); odd.kalshi.outcomes[0].market_ticker = 'X-weird'; odd.kalshi.outcomes[2].market_ticker = 'X';
+  assert.deepEqual(kx.tickerMarket(odd, m, 'next').map(p => p.label), ['H', 'DRAW', 'A'], 'fallback labels');
+  const chip = tickerItem({ m, k: 'next' }, { market: parts });
+  assert.match(chip, /href="\/pbecast\/dd8264d9-a90f-54bd-8da8-da17d6d41ef7"/, 'chip still opens PBEcast, never Kalshi');
+  assert.doesNotMatch(chip, /kalshi\.com/);
+  assert.match(text(chip), /MKT ARS 71\.5¢ · DRAW 17\.5¢ · LEE 11\.5¢/);
+  assert.doesNotMatch(chip, /sstyle="/, 'no inline styles');
+  const plain = tickerItem({ m, k: 'next' });
+  assert.doesNotMatch(plain, /stk-mkt/, 'no market -> chip unchanged');
+  assert.equal(tickerMarketHtml(null), '');
 });

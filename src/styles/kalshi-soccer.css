@@ -13,9 +13,47 @@
 .kx-sec[hidden], .ct-kx[hidden] { display: none; }
 .kx-soccer-note { margin: 8px 2px 0; font-size: 12px; line-height: 1.45; color: var(--muted); }
 
-/* PBEcast: strip under the score/status, on the dark cast header. */
-.ct-kx { max-width: 760px; margin: 12px auto 0; text-align: left; }
-.ct-kx .kx-soccer-note { color: var(--muted-dark); text-align: center; font-size: 11.5px; }
+/* PBEcast Market Pulse (MLB PBEcast standard): one module directly under the scoreboard for the whole match
+   lifecycle (pre-match / live card, then "How the market closed"); collapses to nothing until a market exists.
+   Compact per-outcome panels (home / draw / away side by side; Mid-market + stored movement), lifecycle label
+   above. Fixed structure: price updates never shift layout. */
+.ct-kx { max-width: 760px; margin: 14px auto 0; text-align: left; min-width: 0; }
+.ct-mkt { min-width: 0; container-type: inline-size; }
+.ct-mkt .kx { padding: 12px 14px; }
+.ct-mkt-phase { display: flex; align-items: center; gap: 6px; margin: 0 0 6px 2px; font: 800 10px/1 var(--mono); letter-spacing: .14em; color: #7fb8ff; }
+.ct-mkt-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex: none; }
+.ct-mkt[data-phase="live"] .ct-mkt-phase { color: #ff8a8f; }
+.ct-mkt[data-phase="live"] .ct-mkt-dot { animation: ct-mkt-blink 1.6s ease-in-out infinite; }
+.ct-mkt[data-phase="closed"] .ct-mkt-phase, .ct-mkt[data-phase="settled"] .ct-mkt-phase, .ct-mkt[data-phase="final-open"] .ct-mkt-phase { color: var(--muted-dark); }
+@keyframes ct-mkt-blink { 50% { opacity: .25; } }
+@media (prefers-reduced-motion: reduce) { .ct-mkt-dot { animation: none !important; } }
+.ct-mkt .kx__hd { margin-bottom: 8px; }
+.ct-mkt .kx__panel { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-areas: "who move" "price move" "book book"; column-gap: 12px; align-items: end; padding: 8px 10px 8px 13px; }
+.ct-mkt .kx__who { grid-area: who; }
+.ct-mkt .kx__price { grid-area: price; margin-top: 2px; }
+.ct-mkt .kx__move { grid-area: move; min-height: 0; margin: 0; align-self: stretch; }
+.ct-mkt .kx__book { grid-area: book; margin-top: 6px; }
+.ct-mkt .kx__act { display: none; }
+.ct-mkt .kx__ft { margin-top: 8px; }
+.ct-mkt .kx-h { text-align: left; }
+.ct-kx .kx-soccer-note { color: var(--muted-dark); font-size: 11.5px; }
+/* Three outcomes in a narrow cast (phone / tablet): each panel stacks; the three panels stay side by side. */
+@container (max-width: 640px) {
+  .ct-mkt .kx__grid { gap: 6px; }
+  .ct-mkt .kx__panel { grid-template-columns: minmax(0, 1fr); grid-template-areas: "who" "price" "move" "book"; padding: 8px 6px 8px 10px; }
+  .ct-mkt .kx__who b { font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ct-mkt .kx__px { font-size: 19px; }
+  .ct-mkt .kx__move { margin-top: 4px; }
+  .ct-mkt .kx__spark { height: 26px; }
+  .ct-mkt .kx__book { gap: 1px 6px; font-size: 10.5px; }
+}
+
+/* Score ticker: compact market segment inside a chip ("MKT ARS 41.0¢ · DRAW 27.0¢ · CHE 32.0¢"). Same row,
+   so the rail never grows; each price has a fixed width, so in-place updates never move the chips. */
+.stk-mkt { display: inline-flex; align-items: center; gap: 5px; margin-left: 4px; padding-left: 10px; border-left: 1px dashed rgba(127,184,255,.22); font: 600 10.5px/1 var(--mono); letter-spacing: .02em; color: rgba(232,238,248,.82); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.stk-mkt-b { font-weight: 800; letter-spacing: .12em; color: #7fb8ff; }
+.stk-mkt-px { display: inline-block; min-width: 5ch; text-align: right; color: #f3f6fb; font-weight: 700; }
+.stk-mkt-sep { color: var(--muted-dark); }
 
 /* Fixture cards (white) and PBEcast hub cards: one restrained line, readable on light surfaces. */
 .mc-kx, .hc-kx { display: block; min-width: 0; overflow: hidden; }
@@ -26,4 +64,3 @@
 /* Market history: result-card close line stays subtle (no accent badge); history card spacing in the cast. */
 .mc-kx .kx-line--closed, .hcard:not(.k-live) .hc-kx .kx-line--closed { color: var(--muted); }
 .mc-kx .kx-line--closed .kx-line__b, .hcard:not(.k-live) .hc-kx .kx-line--closed .kx-line__b { color: var(--muted); }
-.ct-kx .kx-h { text-align: left; }

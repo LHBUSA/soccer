@@ -17,41 +17,24 @@
 // page follows the market's own lifecycle from the API (UPCOMING -> ACTIVE -> CLOSED -> SETTLED) with
 // no release; a finished match is not a settled market (CLOSED reads "awaiting settlement").
 import { createKalshiClient } from '../vendor/kalshi/kalshi-market-client.js';
-import { kalshiLine, kalshiStrip, marketCloseLine, marketHistoryCard, marketModule } from '../vendor/kalshi/kalshi-market-ui.js';
+import { kalshiCard, kalshiLine, marketCloseLine, marketHistoryCard, marketModule } from '../vendor/kalshi/kalshi-market-ui.js';
 
 export const MARKETS_BASE = '/api/markets';
 
-// The vendored client keeps only entries that still carry a live `kalshi` block. A closed/settled market
-// may come back without one, so the raw bodies are also kept here (same single request, nothing extra):
-// board entries for result-card lines, event entries for the history card.
-const rawBoard = new Map();
-const rawEvents = new Map();
-async function teeFetch(url, init) {
-  const res = await globalThis.fetch(url, init);
-  if (!res?.ok) return res;
-  const body = await res.json();
-  const u = String(url);
-  if (/\/sport\/soccer$/.test(u)) {
-    rawBoard.clear();
-    if (body?.enabled && Array.isArray(body.events)) for (const e of body.events) if (e?.event?.canonical_event_id) rawBoard.set(String(e.event.canonical_event_id), e);
-  } else {
-    const m = u.match(/\/event\/soccer\/([^/?#]+)$/);
-    if (m) rawEvents.set(decodeURIComponent(m[1]), body?.enabled && body.event && (body.event.kalshi || body.event.market_history) ? body.event : null);
-  }
-  return { ok: true, status: res.status, json: async () => body };
-}
-export const kalshi = createKalshiClient({ sport: 'soccer', base: MARKETS_BASE, fetchImpl: teeFetch });
+// The shared client (propbetedge-workers 8b73545) keeps completed events itself: the board keeps entries
+// with a market lifecycle and no live block, loadEvent keeps an event with only market_history. No
+// product-side fetch wrapper is needed (the 70d92e0 workaround was removed).
+export const kalshi = createKalshiClient({ sport: 'soccer', base: MARKETS_BASE });
 
 /** Event read for the match page / PBEcast: the live entry, else a closed/settled entry with history. Never rejects. */
 export function loadMatchMarket(id, opts) {
-  return kalshi.loadEvent(id, opts).then(v => v || rawEvents.get(String(id)) || null, () => null);
+  return kalshi.loadEvent(id, opts).then(v => v || null, () => null);
 }
-/** Board entry for a match (including a closed/settled one the vendored board drops). */
-export const boardEntry = id => kalshi.forEvent(id) || rawBoard.get(String(id)) || null;
+/** Board entry for a match (live, or a closed/settled one with its market close). */
+export const boardEntry = id => kalshi.forEvent(id) || null;
 
 const CLOSED_POLL_MS = 5 * 60_000;
 const lifecycle = e => e?.market?.lifecycle || e?.market_history?.lifecycle || null;
-export const isHistory = e => (lifecycle(e) === 'CLOSED' || lifecycle(e) === 'SETTLED') && !!e?.market_history;
 
 /**
  * Next poll for a mounted match page / cast, or null to stop: SETTLED -> none; CLOSED -> 5 min until it
@@ -118,12 +101,61 @@ export function matchKalshiHtml(entry) {
   return card ? `${card}${note()}` : '';
 }
 
-/** PBEcast one-line strip (expands to the compact card) + the settlement note; '' without a market. */
-export function castKalshiHtml(entry, { open = false } = {}) {
+/** True once the venue market has CLOSED or SETTLED (the event read then carries market_history). */
+export const marketDone = e => lifecycle(e) === 'CLOSED' || lifecycle(e) === 'SETTLED';
+
+/**
+ * PBEcast lifecycle label for the Market Pulse module: [phase key, text], or null without a market.
+ * The match state comes from PBEcast (live mode / match status); a finished match is not a settled market.
+ */
+export function castMarketPhase(entry, { mode = null, status = null } = {}) {
   const e = soccerEntry(entry);
-  if (isHistory(e)) { const h = marketHistoryCard(e, { placement: 'pbecast' }); return h ? `${h}${note()}` : ''; }
-  let strip = kalshiStrip(soccerEntry(entry), { placement: 'pbecast' });
-  if (!strip) return '';
-  if (open) strip = strip.replace('<details class="kx-strip"', '<details open class="kx-strip"');
-  return `${strip}${note()}`;
+  if (!e) return null;
+  if (marketDone(e)) return lifecycle(e) === 'SETTLED' ? ['settled', 'MARKET SETTLED'] : ['closed', 'MARKET CLOSED · AWAITING SETTLEMENT'];
+  if (status === 'finished' || mode === 'replay') return ['final-open', 'FULL TIME · MARKET STILL TRADING'];
+  if (mode === 'live' || status === 'live') return ['live', 'LIVE MARKET'];
+  return ['pre', 'MARKET OPEN · PRE-MATCH'];
+}
+
+/**
+ * PBEcast Market Pulse, directly under the scoreboard for the whole match lifecycle: the full shared card
+ * (compact: Mid-market per outcome, Updated Ns ago, stored movement + sparkline, bid / ask, "View market on
+ * Kalshi") for home / draw / away while the market trades, then "How the market closed" in the SAME slot
+ * once CLOSED / SETTLED; always the lifecycle label and the 90-minute note; '' without a market.
+ */
+export function castKalshiHtml(entry, state = {}) {
+  const e = soccerEntry(entry);
+  const phase = castMarketPhase(e, state);
+  if (!phase) return '';
+  const body = marketDone(e)
+    ? marketHistoryCard(e, { placement: 'pbecast-replay' })
+    : kalshiCard(e, { placement: 'pbecast', compact: true });
+  if (!body) return '';
+  return `<div class="ct-mkt" data-phase="${phase[0]}"><p class="ct-mkt-phase"><span class="ct-mkt-dot" aria-hidden="true"></span>${phase[1]}</p>${body}${note()}</div>`;
+}
+
+// ---------------------------------------------------------------- score ticker market line
+// Kalshi's own outcome code from the contract ticker (KXEPLGAME-26OCT10ARSCHE-ARS -> ARS); the draw reads DRAW.
+const code = (o, fallback) => {
+  if (o.role === 'draw') return 'DRAW';
+  const s = String(o.market_ticker || '').split('-').pop();
+  return /^[A-Z]{2,4}$/.test(s) && s !== 'TIE' ? s : fallback;
+};
+
+/**
+ * Compact ticker market parts for one ticker item, or null (no line): only a scheduled / live match, only an
+ * exact match id, only what a card line would show (kalshiLine rules: open, every Mid-market present, not
+ * stale), only the 90-minute three-way market ordered home / draw / away. Finals carry no line.
+ */
+export function tickerMarket(entry, m, k) {
+  if (!entry || !m || (k !== 'live' && k !== 'next')) return null;
+  if (String(entry.event?.canonical_event_id ?? '') !== String(m.id)) return null;
+  const e = soccerEntry(entry);
+  if (!e || !kalshiLine(e)) return null;
+  const outs = e.kalshi?.outcomes || [];
+  if (outs.length !== 3) return null;
+  const by = r => outs.find(o => o.role === r);
+  const rows = [[by('home'), 'H'], [by('draw'), 'D'], [by('away'), 'A']];
+  if (rows.some(([o]) => !o || !Number.isFinite(o.mid_bp))) return null;
+  return rows.map(([o, f]) => ({ label: code(o, f), px: `${(o.mid_bp / 100).toFixed(1)}¢` }));
 }

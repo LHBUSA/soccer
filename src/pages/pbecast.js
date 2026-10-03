@@ -84,7 +84,7 @@ export const hub = {
 };
 
 // ---------------------------------------------------------------- cast
-// The Kalshi strip is read alongside the cast and waited for at most KALSHI_FIRST_PAINT_MS, so a
+// The Market Pulse module is read alongside the cast and waited for at most KALSHI_FIRST_PAINT_MS, so a
 // direct visit paints it with the cast (no layout shift); a slower answer lands via mountCastKalshi.
 export async function loadCast([id]) {
   const deadline = Date.now() + KALSHI_FIRST_PAINT_MS;
@@ -92,7 +92,7 @@ export async function loadCast([id]) {
   const env = await api(`matches/${id}/cast`, {}, { fresh: true });
   if (kx) {
     const entry = await byDeadline(kx, deadline);
-    if (entry && castKx.id !== id) Object.assign(castKx, { id, entry, open: false });
+    if (entry && castKx.id !== id) Object.assign(castKx, { id, entry });
     else if (entry && !castKx.entry) castKx.entry = entry;
   }
   return { env };
@@ -502,21 +502,26 @@ export function mountLive(root, env) {
   Object.assign(lastLive, { id: m.id, goals, latest });
 }
 
-// ---------------------------------------------------------------- Kalshi strip
-// Never blocks the cast: the first paint uses what is already known for this match (the last event read,
-// else the board entry the hub/match lists loaded); the event read + polling run beside the cast. The strip's
-// open/closed state survives every live re-render. Polls: live 20 s, pregame 45 s. A replay shows "How the
-// market closed" (history card) once the market has CLOSED / SETTLED and follows it: CLOSED 5 min until SETTLED, then none.
-const castKx = { id: null, entry: null, open: false, timer: null };
+// ---------------------------------------------------------------- Market Pulse (Kalshi)
+// One module directly under the scoreboard for the whole match lifecycle (MLB PBEcast standard): the full
+// shared card (compact) with a lifecycle label — MARKET OPEN · PRE-MATCH / LIVE MARKET / FULL TIME · MARKET
+// STILL TRADING — then "How the market closed" in the SAME slot once the market has CLOSED / SETTLED. Never
+// blocks the cast: the first paint uses what is already known for this match (the last event read, else the
+// board entry the hub/match lists loaded); the event read + polling run beside the cast and write into the slot
+// in place (only when the HTML changed). Polls: live 20 s, pregame 45 s, CLOSED 5 min until SETTLED, then none.
+const castKx = { id: null, entry: null, timer: null, state: {} };
 export function stopCastKalshi() { clearTimeout(castKx.timer); castKx.timer = null; }
+const kxMatchState = m => ({ mode: m.live?.mode || null, status: m.status || null });
 function castKalshiSlot(m) {
-  if (castKx.id !== m.id) Object.assign(castKx, { id: m.id, entry: boardEntry(m.id), open: false });
-  const html = castKalshiHtml(castKx.entry, { open: castKx.open });
+  if (castKx.id !== m.id) Object.assign(castKx, { id: m.id, entry: boardEntry(m.id) });
+  castKx.state = kxMatchState(m);
+  const html = castKalshiHtml(castKx.entry, castKx.state);
   return `<div class="ct-kx" data-kx-cast${html ? '' : ' hidden'}>${html}</div>`;
 }
 function paintCastKalshi(slot) {
-  const html = castKalshiHtml(castKx.entry, { open: castKx.open });
-  slot.innerHTML = html; slot.hidden = !html;
+  const html = castKalshiHtml(castKx.entry, castKx.state);
+  if (slot.dataset.kxHtml === html) return;
+  slot.innerHTML = html; slot.hidden = !html; slot.dataset.kxHtml = html;
   if (html) wireKalshi(slot);
 }
 export function mountCastKalshi(root, env) {
@@ -524,8 +529,9 @@ export function mountCastKalshi(root, env) {
   const m = env.data;
   const slot = root.querySelector('[data-kx-cast]');
   if (!slot) return;
+  slot.dataset.kxHtml = slot.hidden ? '' : castKalshiHtml(castKx.entry, kxMatchState(m));
   if (!slot.hidden) wireKalshi(slot);
-  slot.addEventListener('toggle', e => { if (e.target.matches?.('details.kx-strip')) castKx.open = e.target.open; }, true);
+  castKx.state = kxMatchState(m);
   const mode = m.live?.mode;
   const lane = mode === 'live' ? 'live' : mode === 'pregame' ? 'pregame' : kalshiPollState(m.status) === 'pregame' ? 'pregame' : null;
   const refresh = async (force) => {
