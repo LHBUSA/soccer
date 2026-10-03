@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026-10-03.3",
+  "registry_version": "2026-10-03.4",
   "note": "Reviewed canonical metadata for competitions and the provider ids proven to denote them. Provider ids here are crosswalks, not identity.",
   "competitions": [
     {
@@ -195,12 +195,13 @@
       "espn": {
         "league": "fra.1",
         "id": "710",
-        "enabled": false,
-        "may_found": true
+        "enabled": true,
+        "may_found": true,
+        "enable_note": "Enabled 2026-10-03 after local canary PASS (docs/evidence/world/canary-ligue-1-2026-10-03.json): 306/306 fixtures, 45/45 finished detailed (lineups both sides 45, team stats 45, plays 45; 63170 located events), 0 enrichment gaps; identity 18/18 teams gender men (3 reused from production by stable ESPN id, 15 founded, 0 queued, 0 name-only merges); table overall; PBEcast replay + pregame payloads proven. 17 athletes without DOB queued (never invented)."
       },
       "news": {
         "enabled": false,
-        "blocker": "No canonical competition row, season or matches in production: ESPN lane disabled; needs lane canary + identity certification."
+        "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
       },
       "expected_teams": 18
     },

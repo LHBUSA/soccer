@@ -1,0 +1,381 @@
+{
+  "generated_at": "2026-10-03T14:51:06.912Z",
+  "mode": "local-pglite (production untouched; production team identities seeded read-only)",
+  "competition": "ligue-1",
+  "gender": "men",
+  "team_kind": "club",
+  "source": "ESPN Core (owner-approved collection lane)",
+  "budget": 3000,
+  "requests_used": 1219,
+  "budget_exhausted": false,
+  "aborted": null,
+  "runs": [
+    {
+      "requests": 200,
+      "fixtures_new": 197,
+      "detailed": 0,
+      "exhausted": "discovery"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 109,
+      "detailed": 1,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 3,
+        "teams_founded": 15,
+        "team_crosswalk": {
+          "inserted": 15,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "resolved_after": 18
+      },
+      "fixtures": {
+        "considered": 306,
+        "attached_to_existing": 0,
+        "founded": 306,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 306,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 196,
+      "fixtures_new": 0,
+      "detailed": 4,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "fixtures": {
+        "considered": 306,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 196,
+      "fixtures_new": 0,
+      "detailed": 4,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "fixtures": {
+        "considered": 306,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 197,
+      "fixtures_new": 0,
+      "detailed": 15,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "fixtures": {
+        "considered": 306,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 18,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "fixtures": {
+        "considered": 306,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 30,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "fixtures": {
+        "considered": 306,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": null
+    },
+    {
+      "requests": 0,
+      "fixtures_new": 0,
+      "detailed": 0,
+      "team_identity": {
+        "espn_teams": 18,
+        "resolved_before": 18
+      },
+      "fixtures": {
+        "considered": 306,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": null
+    }
+  ],
+  "espn": {
+    "league": "fra.1",
+    "id": "710",
+    "season_year": 2026,
+    "fixtures_seen": 306,
+    "detailed": 45,
+    "by_type": {
+      "1": 306
+    },
+    "excluded_teams": null
+  },
+  "competition_row": {
+    "id": "f377eafc-0b23-5dab-aa5c-01c62d1d5b29",
+    "slug": "ligue-1",
+    "name": "Ligue 1",
+    "comp_type": "league",
+    "gender": "men"
+  },
+  "season": {
+    "label": "2026/27",
+    "publication_state_after_lane": "published",
+    "local_promotion": "published in the local canary store only"
+  },
+  "identity_gate": {
+    "teams": 18,
+    "expected_teams": 18,
+    "wrong_team_kind": [],
+    "wrong_gender": [],
+    "reused_existing_canonical": [
+      "Lille",
+      "Lens",
+      "Paris Saint-Germain"
+    ],
+    "founded_new": 15,
+    "espn_ids_already_crosswalked_in_production": 3,
+    "espn_id_maps_to_same_canonical_as_production": true,
+    "duplicate_espn_team_ids": 0,
+    "teams_with_more_than_one_espn_id": 0,
+    "duplicate_names": [],
+    "crosswalk_methods": {
+      "founding": 18
+    },
+    "cross_gender_namesakes_kept_distinct": [],
+    "teams_queued": 0,
+    "teams_queued_detail": [],
+    "pass": true
+  },
+  "matches": {
+    "total": 306,
+    "by_status": {
+      "finished": 45,
+      "scheduled": 261
+    },
+    "by_stage": [
+      {
+        "name": "Regular Season",
+        "type": "league",
+        "matches": 306,
+        "finished": 45
+      }
+    ],
+    "finished_without_score": 0,
+    "knockout_without_winner": 0
+  },
+  "enrichment": {
+    "finished": 45,
+    "detailed": 45,
+    "lineups_both": 45,
+    "lineup_rows": 90,
+    "formations": 90,
+    "team_stats_both": 45,
+    "team_stat_rows": 1350,
+    "plays": 45,
+    "events": 67698,
+    "located_events": 63170,
+    "coord_systems": {
+      "espn_pct_v1": 65471,
+      "none": 2227
+    },
+    "gaps": []
+  },
+  "players": {
+    "in_lineups": 446,
+    "founded_locally": 446,
+    "corroborated": 0,
+    "queued": 17,
+    "queued_by_reason": {
+      "athlete_without_dob_or_name": 17
+    },
+    "already_canonical_in_production_by_espn_id": 141,
+    "production_lookup": "ok"
+  },
+  "table": {
+    "view": "overall",
+    "rows": 18,
+    "top": [
+      {
+        "team": "AS Monaco",
+        "pld": 5,
+        "pts": 13
+      },
+      {
+        "team": "Lyon",
+        "pld": 5,
+        "pts": 11
+      },
+      {
+        "team": "Paris FC",
+        "pld": 5,
+        "pts": 11
+      }
+    ]
+  },
+  "finished_match_proof": {
+    "match_id": "d3d68706-e56f-5447-be5b-5ef90c649443",
+    "fixture": "Paris FC 3-0 Nice",
+    "kickoff": "2026-08-30T13:00:00.000Z",
+    "venue": "Stade Jean Bouin",
+    "lineups": [
+      "home",
+      "away"
+    ],
+    "timeline": 4,
+    "shots": 30,
+    "events": 1763,
+    "coverage": {
+      "state": "ok",
+      "notes": []
+    },
+    "cast": {
+      "mode": "replay",
+      "sequence": 39
+    }
+  },
+  "scheduled_match_proof": {
+    "match_id": "68a87e92-6ac1-572c-8dd2-23ad274421bf",
+    "fixture": "Toulouse v Strasbourg",
+    "kickoff": "2026-11-06T19:45:00.000Z",
+    "cast_mode": "pregame"
+  },
+  "competition_api": {
+    "team_kind": null,
+    "teams": 18,
+    "finished": 45,
+    "scheduled": 261
+  },
+  "gate": {
+    "lane_completed_without_abort": true,
+    "fixtures_complete": true,
+    "every_finished_match_scored": true,
+    "every_finished_match_detailed": true,
+    "no_enrichment_gaps": true,
+    "identity": true,
+    "table": true,
+    "knockout_winners_known": true,
+    "pass": true
+  },
+  "elapsed_s": 870
+}

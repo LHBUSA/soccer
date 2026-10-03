@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-03T14:36:51.749Z",
+  "generated_at": "2026-10-03T14:51:44.612Z",
   "discovery": "2026-10-03T13:52:26.937Z",
   "rows": [
     {
@@ -157,22 +157,22 @@
       "season": "2026-27 French Ligue 1",
       "teams": 18,
       "matches": 306,
-      "results": null,
-      "standings": null,
-      "lineups": null,
-      "stats": null,
-      "plays": null,
-      "coordinates": null,
+      "results": 45,
+      "standings": "verified/computed",
+      "lineups": 45,
+      "stats": 45,
+      "plays": 45,
+      "coordinates": 63170,
       "live": null,
-      "pbecast": null,
-      "players": null,
-      "dna": null,
+      "pbecast": "replay payload proven",
+      "players": 446,
+      "dna": "descriptive (inputs present)",
       "media": null,
       "news": "off",
       "history": "current season only",
       "source_status": "source_present",
-      "launch_status": "registered, lane disabled",
-      "blocker": "canary not run"
+      "launch_status": "enabled on main; soccer-ingest release pending",
+      "blocker": "soccer-ingest release (owner permission) + production fill + frontend enable"
     },
     {
       "phase": "A",
