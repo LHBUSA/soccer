@@ -40,10 +40,20 @@ async function started(store) {
 
 const teamOut = t => (t ? { slug: t.slug, name: t.name, short_name: t.short_name || null, crest: t.crest ? { url: t.crest.cached_url, attribution: t.crest.attribution } : null } : null);
 
+// PUBLIC RECORD NUMBERS are per model (owner decision 2026-10-03): a pick's position in its own algo_version's ledger,
+// in issue order. soccer_algo_picks.record_no is ONE identity shared by every model (and rolled-back ledger-guard
+// proofs consume identity values), so it is exposed only as ledger_id, the immutable internal key. No row changes.
+export async function modelRecordNumbers(store, version) {
+  const ids = [];
+  for (let off = 0; ; off += 1000) { const part = await store.select('soccer_algo_picks', { columns: ['record_no'], eq: { algo_version: version }, order: 'record_no.asc', limit: 1000, offset: off }); ids.push(...part.map(r => Number(r.record_no))); if (part.length < 1000) break; }
+  return new Map(ids.map((id, i) => [id, i + 1]));
+}
+export const renumber = (rows, numbers) => rows.map(r => ({ ...r, ledger_id: Number(r.record_no), record_no: numbers.get(Number(r.record_no)) }));
+
 function pickOut(p, teams) {
   const h = teams.get(p.home_team_id); const a = teams.get(p.away_team_id);
   return {
-    record_no: Number(p.record_no), match_id: p.match_id, home: teamOut(h), away: teamOut(a),
+    record_no: Number(p.record_no), ledger_id: p.ledger_id ?? null, match_id: p.match_id, home: teamOut(h), away: teamOut(a),
     market: p.market, market_name: MARKET_NAME[p.market], selection: p.selection, label: selectionLabel(p.market, p.selection, h?.name || 'Home', a?.name || 'Away'),
     model_probability: r4(p.model_probability), threshold: p.threshold,
     issued_at: p.issued_at, lock_at: p.lock_at, kickoff_at: p.kickoff_at, locked: Date.parse(p.lock_at) <= Date.now(),
@@ -66,8 +76,9 @@ async function withTeams(store, rows) {
 export async function picks(store, now = Date.now()) {
   const startedAt = await started(store);
   const nowIso = new Date(now).toISOString();
-  const openRows = await store.select('soccer_algo_picks', { columns: PICK_COLS, eq: { algo_version: V, status: 'pending' }, order: 'kickoff_at.asc' });
-  const recentRows = await store.select('soccer_algo_picks', { columns: PICK_COLS, eq: { algo_version: V }, neq: { status: 'pending' }, order: 'record_no.desc', limit: 10 });
+  const numbers = await modelRecordNumbers(store, V);
+  const openRows = renumber(await store.select('soccer_algo_picks', { columns: PICK_COLS, eq: { algo_version: V, status: 'pending' }, order: 'kickoff_at.asc' }), numbers);
+  const recentRows = renumber(await store.select('soccer_algo_picks', { columns: PICK_COLS, eq: { algo_version: V }, neq: { status: 'pending' }, order: 'record_no.desc', limit: 10 }), numbers);
   const forecasts = await store.select('soccer_algo_forecasts', { columns: ['id', 'match_id', 'issued_at', 'kickoff_at', 'lambda_home', 'lambda_away', 'probabilities', 'game_best', 'input_hash'], eq: { algo_version: V }, gte: { kickoff_at: nowIso }, order: 'kickoff_at.asc', limit: 40 });
   const [comp] = await store.select('soccer_competitions', { columns: ['id'], eq: { slug: spec.competition_scope.competition_slug }, limit: 1 });
   const upcoming = comp ? await store.select('soccer_public_matches', { columns: ['id', 'kickoff_at', 'home_team_id', 'away_team_id', 'status', 'stage_id'], eq: { competition_id: comp.id, status: 'scheduled' }, gte: { kickoff_at: nowIso }, order: 'kickoff_at.asc', limit: 30 }) : [];
@@ -127,7 +138,7 @@ export async function record(store, q = {}) {
   const last = q.last ? Number(q.last) : null;
   if (q.last && ![30, 60, 100].includes(last)) throw Object.assign(new Error('last must be 30, 60 or 100'), { status: 400 });
   const startedAt = await started(store);
-  const all = await store.select('soccer_algo_picks', { columns: PICK_COLS, eq: { algo_version: V, ...(market ? { market } : {}) }, order: 'record_no.desc' });
+  const all = renumber(await store.select('soccer_algo_picks', { columns: PICK_COLS, eq: { algo_version: V, ...(market ? { market } : {}) }, order: 'record_no.desc' }), await modelRecordNumbers(store, V));
   const settledDesc = all.filter(r => r.status !== 'pending');
   const scope = last ? settledDesc.slice(0, last) : all;
   const { joined, teams } = await withTeams(store, all.slice(0, 200));

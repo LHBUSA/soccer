@@ -11,7 +11,7 @@ import spec from '../../soccer-ingest/src/algo-v2.json' with { type: 'json' };
 import research from './algo-v2-research.json' with { type: 'json' };
 import { envelope, COVERAGE } from './envelope.js';
 import { API_VERSION, teamsById } from './routes.js';
-import { selectionLabel, summarize } from './algo.js';
+import { selectionLabel, summarize, modelRecordNumbers, renumber } from './algo.js';
 
 const V = spec.algo_version;
 const E = (data, o) => envelope(data, { version: API_VERSION, source: 'pbe', ...o });
@@ -42,7 +42,7 @@ async function withTeams(store, rows) {
 }
 const pickOut = (p, teams) => {
   const h = teams.get(p.home_team_id); const a = teams.get(p.away_team_id);
-  return { record_no: Number(p.record_no), match_id: p.match_id, home: teamOut(h), away: teamOut(a), market: p.market, market_name: MARKET_NAME[p.market], selection: p.selection, label: selectionLabel(p.market, p.selection, h?.name || 'Home', a?.name || 'Away'), model_probability: r4(p.model_probability), threshold: p.threshold, issued_at: p.issued_at, lock_at: p.lock_at, kickoff_at: p.kickoff_at, status: p.status, final_score: p.final_home_score == null ? null : `${p.final_home_score}-${p.final_away_score}`, settlement_reason: p.settlement_reason, algo_version: p.algo_version };
+  return { record_no: Number(p.record_no), ledger_id: p.ledger_id ?? null, match_id: p.match_id, home: teamOut(h), away: teamOut(a), market: p.market, market_name: MARKET_NAME[p.market], selection: p.selection, label: selectionLabel(p.market, p.selection, h?.name || 'Home', a?.name || 'Away'), model_probability: r4(p.model_probability), threshold: p.threshold, issued_at: p.issued_at, lock_at: p.lock_at, kickoff_at: p.kickoff_at, status: p.status, final_score: p.final_home_score == null ? null : `${p.final_home_score}-${p.final_away_score}`, settlement_reason: p.settlement_reason, algo_version: p.algo_version };
 };
 
 export async function picksV2(store, now = Date.now()) {
@@ -55,8 +55,9 @@ export async function picksV2(store, now = Date.now()) {
   const startedAt = await started(store);
   const nowIso = new Date(now).toISOString();
   const forecasts = await store.select('soccer_algo_forecasts', { columns: ['match_id', 'issued_at', 'kickoff_at', 'lambda_home', 'lambda_away', 'probabilities', 'game_best', 'input_hash'], eq: { algo_version: V }, gte: { kickoff_at: nowIso }, order: 'kickoff_at.asc', limit: 60 });
-  const open = spec.status === 'official' ? await store.select('soccer_algo_picks', { columns: PICK_COLS, eq: { algo_version: V, status: 'pending' }, order: 'kickoff_at.asc' }) : [];
-  const recent = spec.status === 'official' ? await store.select('soccer_algo_picks', { columns: PICK_COLS, eq: { algo_version: V }, neq: { status: 'pending' }, order: 'record_no.desc', limit: 10 }) : [];
+  const numbers = await modelRecordNumbers(store, V);
+  const open = spec.status === 'official' ? renumber(await store.select('soccer_algo_picks', { columns: PICK_COLS, eq: { algo_version: V, status: 'pending' }, order: 'kickoff_at.asc' }), numbers) : [];
+  const recent = spec.status === 'official' ? renumber(await store.select('soccer_algo_picks', { columns: PICK_COLS, eq: { algo_version: V }, neq: { status: 'pending' }, order: 'record_no.desc', limit: 10 }), numbers) : [];
   const { joined: fj, teams: t1 } = await withTeams(store, forecasts);
   const { joined: pj, teams: t2 } = await withTeams(store, [...open, ...recent]);
   const teams = new Map([...t1, ...t2]);
@@ -87,7 +88,7 @@ export async function recordV2(store, q = {}) {
   const last = q.last ? Number(q.last) : null;
   if (q.last && ![30, 60, 100].includes(last)) throw Object.assign(new Error('last must be 30, 60 or 100'), { status: 400 });
   const startedAt = await started(store);
-  const all = await store.select('soccer_algo_picks', { columns: PICK_COLS, eq: { algo_version: V }, order: 'record_no.desc' });
+  const all = renumber(await store.select('soccer_algo_picks', { columns: PICK_COLS, eq: { algo_version: V }, order: 'record_no.desc' }), await modelRecordNumbers(store, V));
   const settled = all.filter(r => r.status !== 'pending');
   const { joined, teams } = await withTeams(store, all.slice(0, 200));
   return E({ algo_version: V, status: spec.status, live: Boolean(startedAt), started_at: startedAt, policy: policyV2(), totals: summarize(last ? settled.slice(0, last) : all), picks: joined.map(p => pickOut(p, teams)) }, {
