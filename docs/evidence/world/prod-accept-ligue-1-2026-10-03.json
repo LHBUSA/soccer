@@ -1,10 +1,78 @@
 {
-  "generated_at": "2026-10-03T17:44:50.199Z",
+  "generated_at": "2026-10-03T19:37:21.986Z",
   "competition": "ligue-1",
   "gender": "men",
   "canary": "docs/evidence/world/canary-ligue-1-2026-10-03.json",
   "season": "2026/27",
   "publication_state": "published",
+  "worker_enabled": true,
+  "acceptance": {
+    "match_data": "MATCH_DATA_PASS",
+    "spatial": "SPATIAL_DATA_AVAILABLE",
+    "cast_located_in_latest_finished": [
+      43,
+      30,
+      18
+    ]
+  },
+  "namesakes": [
+    {
+      "team": "Paris FC",
+      "distinct_from": [
+        "Paris FC Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Marseille",
+      "distinct_from": [
+        "Marseille Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Strasbourg",
+      "distinct_from": [
+        "Strasbourg Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Le Havre AC",
+      "distinct_from": [
+        "Le Havre AC Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Lens",
+      "distinct_from": [
+        "Lens Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Toulouse",
+      "distinct_from": [
+        "Toulouse Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Paris Saint-Germain",
+      "distinct_from": [
+        "Paris Saint-Germain Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    }
+  ],
   "fixtures": {
     "production": 306,
     "canary": 306,
@@ -24,8 +92,11 @@
     "teams": 18,
     "expected": 18,
     "reused_from_production": [
+      "Stade Rennais",
+      "Marseille",
       "Lille",
       "Lens",
+      "Lyon",
       "Paris Saint-Germain"
     ],
     "duplicate_same_gender_names": [],
@@ -54,13 +125,17 @@
     "standings_verified": true,
     "identity_dedupe": true,
     "gender_integrity": true,
+    "spatial_status_proven": true,
     "api_canary": true,
+    "navigation_live": true,
     "browser_canary": true,
-    "navigation_live": true
+    "browser_390": true,
+    "browser_768": true,
+    "browser_1440": true
   },
   "pass": true,
   "browser": {
-    "generated_at": "2026-10-03T17:48:01.426Z",
+    "generated_at": "2026-10-03T19:37:33.301Z",
     "nav_expected": true,
     "match_id": "4a1be582-84dd-5d3c-811a-d96638888e0d",
     "results": [
@@ -75,8 +150,12 @@
         "feed_items": 0,
         "pitch": false,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -91,8 +170,12 @@
         "feed_items": 0,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -107,8 +190,12 @@
         "feed_items": 57,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -123,8 +210,12 @@
         "feed_items": 0,
         "pitch": false,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -139,8 +230,12 @@
         "feed_items": 0,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -155,8 +250,12 @@
         "feed_items": 57,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -171,8 +270,12 @@
         "feed_items": 0,
         "pitch": false,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -187,8 +290,12 @@
         "feed_items": 0,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -203,8 +310,12 @@
         "feed_items": 57,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       }

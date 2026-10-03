@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-03T18:08:14.794Z",
+  "generated_at": "2026-10-03T19:38:09.512Z",
   "discovery": "2026-10-03T13:52:26.937Z",
   "rows": [
     {
@@ -254,7 +254,7 @@
       "stats": 29,
       "plays": 29,
       "coordinates": 40295,
-      "live": null,
+      "live": "per-minute lane",
       "pbecast": "replay payload proven",
       "players": 308,
       "dna": "descriptive (inputs present)",
@@ -264,8 +264,8 @@
       "match_data": "MATCH_DATA_PASS",
       "spatial": "SPATIAL_DATA_AVAILABLE",
       "source_status": "source_present",
-      "launch_status": "canary PASS (not enabled)",
-      "blocker": "enable + release + production fill"
+      "launch_status": "lane live in production",
+      "blocker": null
     },
     {
       "phase": "B",
@@ -283,7 +283,7 @@
       "stats": 18,
       "plays": 18,
       "coordinates": 24760,
-      "live": null,
+      "live": "per-minute lane",
       "pbecast": "replay payload proven",
       "players": 403,
       "dna": "descriptive (inputs present)",
@@ -293,8 +293,8 @@
       "match_data": "MATCH_DATA_PASS",
       "spatial": "SPATIAL_DATA_AVAILABLE",
       "source_status": "source_present",
-      "launch_status": "canary PASS (not enabled)",
-      "blocker": "enable + release + production fill"
+      "launch_status": "lane live in production",
+      "blocker": null
     },
     {
       "phase": "B",
@@ -312,7 +312,7 @@
       "stats": 43,
       "plays": 43,
       "coordinates": 0,
-      "live": null,
+      "live": "per-minute lane",
       "pbecast": "replay payload proven",
       "players": 357,
       "dna": "descriptive (inputs present)",
@@ -322,8 +322,8 @@
       "match_data": "MATCH_DATA_PASS",
       "spatial": "SPATIAL_DATA_UNAVAILABLE",
       "source_status": "source_present",
-      "launch_status": "canary PASS (not enabled)",
-      "blocker": "enable + release + production fill"
+      "launch_status": "lane live in production",
+      "blocker": null
     },
     {
       "phase": "B",
@@ -370,7 +370,7 @@
       "stats": 18,
       "plays": 18,
       "coordinates": 0,
-      "live": null,
+      "live": "per-minute lane",
       "pbecast": "replay payload proven",
       "players": 222,
       "dna": "descriptive (inputs present)",
@@ -380,8 +380,8 @@
       "match_data": "MATCH_DATA_PASS",
       "spatial": "SPATIAL_DATA_UNAVAILABLE",
       "source_status": "source_present",
-      "launch_status": "canary PASS (not enabled)",
-      "blocker": "enable + release + production fill"
+      "launch_status": "lane live in production",
+      "blocker": null
     },
     {
       "phase": "B",

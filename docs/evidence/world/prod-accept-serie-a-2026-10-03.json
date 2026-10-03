@@ -1,10 +1,38 @@
 {
-  "generated_at": "2026-10-03T17:26:23.781Z",
+  "generated_at": "2026-10-03T19:36:58.025Z",
   "competition": "serie-a",
   "gender": "men",
   "canary": "docs/evidence/world/canary-serie-a-2026-10-03.json",
   "season": "2026/27",
   "publication_state": "published",
+  "worker_enabled": true,
+  "acceptance": {
+    "match_data": "MATCH_DATA_PASS",
+    "spatial": "SPATIAL_DATA_AVAILABLE",
+    "cast_located_in_latest_finished": [
+      16,
+      25,
+      49
+    ]
+  },
+  "namesakes": [
+    {
+      "team": "Juventus",
+      "distinct_from": [
+        "Juventus Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Internazionale",
+      "distinct_from": [
+        "Internazionale Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    }
+  ],
   "fixtures": {
     "production": 380,
     "canary": 380,
@@ -24,6 +52,8 @@
     "teams": 20,
     "expected": 20,
     "reused_from_production": [
+      "Juventus",
+      "AC Milan",
       "Internazionale",
       "AS Roma",
       "Napoli",
@@ -55,13 +85,17 @@
     "standings_verified": true,
     "identity_dedupe": true,
     "gender_integrity": true,
+    "spatial_status_proven": true,
     "api_canary": true,
+    "navigation_live": true,
     "browser_canary": true,
-    "navigation_live": true
+    "browser_390": true,
+    "browser_768": true,
+    "browser_1440": true
   },
   "pass": true,
   "browser": {
-    "generated_at": "2026-10-03T17:29:45.935Z",
+    "generated_at": "2026-10-03T19:37:10.307Z",
     "nav_expected": true,
     "match_id": "e7ba7b82-2957-5d5f-9b5b-04547eeedc35",
     "results": [
@@ -76,8 +110,12 @@
         "feed_items": 0,
         "pitch": false,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -92,8 +130,12 @@
         "feed_items": 0,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -108,8 +150,12 @@
         "feed_items": 25,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -124,8 +170,12 @@
         "feed_items": 0,
         "pitch": false,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -140,8 +190,12 @@
         "feed_items": 0,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -156,8 +210,12 @@
         "feed_items": 25,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -172,8 +230,12 @@
         "feed_items": 0,
         "pitch": false,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -188,8 +250,12 @@
         "feed_items": 0,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -204,8 +270,12 @@
         "feed_items": 25,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       }

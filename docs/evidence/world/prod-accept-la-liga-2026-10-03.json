@@ -1,10 +1,102 @@
 {
-  "generated_at": "2026-10-03T17:02:13.110Z",
+  "generated_at": "2026-10-03T19:36:32.684Z",
   "competition": "la-liga",
   "gender": "men",
   "canary": "docs/evidence/world/canary-la-liga-2026-10-03.json",
   "season": "2026/27",
   "publication_state": "published",
+  "worker_enabled": true,
+  "acceptance": {
+    "match_data": "MATCH_DATA_PASS",
+    "spatial": "SPATIAL_DATA_AVAILABLE",
+    "cast_located_in_latest_finished": [
+      43,
+      27,
+      34
+    ]
+  },
+  "namesakes": [
+    {
+      "team": "Espanyol",
+      "distinct_from": [
+        "Espanyol Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Real Sociedad",
+      "distinct_from": [
+        "Real Sociedad Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Valencia",
+      "distinct_from": [
+        "Valencia Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Athletic Club",
+      "distinct_from": [
+        "Athletic Club Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Real Madrid",
+      "distinct_from": [
+        "Real Madrid Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Atlético Madrid",
+      "distinct_from": [
+        "Atlético Madrid Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Deportivo",
+      "distinct_from": [
+        "Deportivo Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Sevilla",
+      "distinct_from": [
+        "Sevilla Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Alavés",
+      "distinct_from": [
+        "Alavés Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Barcelona",
+      "distinct_from": [
+        "Barcelona Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    }
+  ],
   "fixtures": {
     "production": 380,
     "canary": 380,
@@ -25,6 +117,8 @@
     "expected": 20,
     "reused_from_production": [
       "Real Betis",
+      "Real Sociedad",
+      "Celta Vigo",
       "Villarreal",
       "Real Madrid",
       "Atlético Madrid",
@@ -56,13 +150,17 @@
     "standings_verified": true,
     "identity_dedupe": true,
     "gender_integrity": true,
+    "spatial_status_proven": true,
     "api_canary": true,
+    "navigation_live": true,
     "browser_canary": true,
-    "navigation_live": true
+    "browser_390": true,
+    "browser_768": true,
+    "browser_1440": true
   },
   "pass": true,
   "browser": {
-    "generated_at": "2026-10-03T17:07:11.571Z",
+    "generated_at": "2026-10-03T19:36:46.086Z",
     "nav_expected": true,
     "match_id": "bea0127a-426e-522f-bf4d-0139d639fa29",
     "results": [
@@ -77,8 +175,12 @@
         "feed_items": 0,
         "pitch": false,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -93,8 +195,12 @@
         "feed_items": 0,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -109,8 +215,12 @@
         "feed_items": 59,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -125,8 +235,12 @@
         "feed_items": 0,
         "pitch": false,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -141,8 +255,12 @@
         "feed_items": 0,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -157,8 +275,12 @@
         "feed_items": 59,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -173,8 +295,12 @@
         "feed_items": 0,
         "pitch": false,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -189,8 +315,12 @@
         "feed_items": 0,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -205,8 +335,12 @@
         "feed_items": 59,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       }

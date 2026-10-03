@@ -58,23 +58,37 @@ League, Bundesliga, UCL, Nations League, FIFA World Cup stay as they are).
   green, nothing weakened), then soccer-ingest 366d9b89 released (rollback d4b335bf). LaLiga, Serie A, Ligue 1 and
   Europa were each filled, accepted in production and exposed in navigation one at a time.
 
+- **Women's rollout (DONE 2026-10-03):** WSL -> UWCL -> Liga F -> Premiere Ligue, one at a time (soccer-ingest
+  3c87ad74 -> 88ddb1ad -> 09704687 -> 6dfa5321), each filled, accepted in production and exposed in the WOMEN menu.
+  Women's teams that play in several competitions are one canonical team (Chelsea / Arsenal / Man City Women in WSL +
+  UWCL; Real Madrid / Barcelona Women in Liga F + UWCL; OL Lyonnes / PSG / Paris FC Women in Premiere Ligue + UWCL);
+  every men's namesake is a distinct team with no shared ESPN id; 0 production matches join a team of the other gender.
+  Liga F + Premiere Ligue: SPATIAL_DATA_UNAVAILABLE proven (0 located events), match page + PBEcast show the neutral
+  note, never a pitch.
+- **Release discipline:** push only via `node scripts/release/push-main.mjs` (fail-closed gate; tests/push-main.test.js
+  proves a deliberately failing test blocks the push). Every push in the women's rollout went through it.
+
 ## State
 
 See the generated matrix below; production steps not yet run are listed in its blocker column.
 
 <!-- matrix -->
-Generated 2026-10-03T18:08:14.812Z by scripts/evidence/world-matrix.mjs.
+Generated 2026-10-03T19:38:09.525Z by scripts/evidence/world-matrix.mjs.
 
 ### Production rollout (from production evidence only)
 
 Worker enabled = the deployed soccer-ingest (docs/deployments.jsonl) has the lane enabled.
 
-| competition | worker_enabled | backfill_complete | fixtures_verified | standings_verified | completed_match_detail | identity_dedupe | production_canary | navigation_live | evidence |
-|---|---|---|---|---|---|---|---|---|---|
-| la-liga | yes | PASS | PASS (380/380) | PASS (overall, 20 rows) | PASS (69 finished, 0 gaps) | PASS (20 teams, 5 reused) | PASS | LIVE | docs/evidence/world/prod-accept-la-liga-2026-10-03.json |
-| ligue-1 | yes | PASS | PASS (306/306) | PASS (overall, 18 rows) | PASS (45 finished, 0 gaps) | PASS (18 teams, 3 reused) | PASS | LIVE | docs/evidence/world/prod-accept-ligue-1-2026-10-03.json |
-| serie-a | yes | PASS | PASS (380/380) | PASS (overall, 20 rows) | PASS (50 finished, 0 gaps) | PASS (20 teams, 4 reused) | PASS | LIVE | docs/evidence/world/prod-accept-serie-a-2026-10-03.json |
-| uefa-europa-league | yes | PASS | PASS (144/144) | PASS (league-phase, 36 rows) | PASS (18 finished, 0 gaps) | PASS (36 teams, 5 reused) | PASS | LIVE | docs/evidence/world/prod-accept-uefa-europa-league-2026-10-03.json |
+| competition | gender | worker_enabled | backfill_complete | fixtures | table_verified | finished_detail | spatial | identity_dedupe | gender_integrity | api_canary | browser_390 | browser_768 | browser_1440 | navigation |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| la-liga | men | yes | PASS | 380/380 PASS | PASS (overall, 20) | 69 PASS (0 gaps) | AVAILABLE PASS | PASS (20 teams, 7 shared) | PASS | PASS | PASS | PASS | PASS | LIVE |
+| liga-f | women | yes | PASS | 240/240 PASS | PASS (overall, 16) | 44 PASS (0 gaps) | UNAVAILABLE PASS | PASS (16 teams, 2 shared) | PASS | PASS | PASS | PASS | PASS | LIVE |
+| ligue-1 | men | yes | PASS | 306/306 PASS | PASS (overall, 18) | 45 PASS (0 gaps) | AVAILABLE PASS | PASS (18 teams, 6 shared) | PASS | PASS | PASS | PASS | PASS | LIVE |
+| premiere-ligue | women | yes | PASS | 132/132 PASS | PASS (overall, 12) | 22 PASS (0 gaps) | UNAVAILABLE PASS | PASS (12 teams, 3 shared) | PASS | PASS | PASS | PASS | PASS | LIVE |
+| serie-a | men | yes | PASS | 380/380 PASS | PASS (overall, 20) | 50 PASS (0 gaps) | AVAILABLE PASS | PASS (20 teams, 6 shared) | PASS | PASS | PASS | PASS | PASS | LIVE |
+| uefa-europa-league | men | yes | PASS | 144/144 PASS | PASS (league-phase, 36) | 18 PASS (0 gaps) | AVAILABLE PASS | PASS (36 teams, 12 shared) | PASS | PASS | PASS | PASS | PASS | LIVE |
+| uefa-womens-champions-league | women | yes | PASS | 54/54 PASS | PASS (league-phase, 18) | 18 PASS (0 gaps) | AVAILABLE PASS | PASS (18 teams, 3 shared) | PASS | PASS | PASS | PASS | PASS | LIVE |
+| womens-super-league | women | yes | PASS | 182/182 PASS | PASS (overall, 14) | 29 PASS (0 gaps) | AVAILABLE PASS | PASS (14 teams, 3 shared) | PASS | PASS | PASS | PASS | PASS | LIVE |
 
 ### All discovered competitions (canary + discovery evidence)
 
@@ -92,11 +106,11 @@ Worker enabled = the deployed soccer-ingest (docs/deployments.jsonl) has the lan
 | A | French Ligue 1 | men | FRA | espn fra.1 (710) | 2026-27 French Ligue 1 | 18 | 306 | 45 | verified/computed | 45 | 45 | 45 | 63170 | per-minute lane | replay payload proven | 446 | descriptive (inputs present) | off | MATCH_DATA_PASS | SPATIAL_DATA_AVAILABLE | source_present | lane live in production | — |
 | A | UEFA Europa League | men | international | espn uefa.europa (776) | 2026-27 UEFA Europa League | 36 | 144 | 18 | verified/computed | 18 | 18 | 18 | 24771 | per-minute lane | replay payload proven | 781 | descriptive (inputs present) | off | MATCH_DATA_PASS | SPATIAL_DATA_AVAILABLE | source_present | lane live in production | — |
 | B | NWSL | women | USA | espn usa.nwsl (8301) | 2026 NWSL | 16 | 240 | 65 | verified/computed | 64 | 63 | 65 | 0 | — | replay payload proven | 380 | descriptive (inputs present) | off | MATCH_DATA_FAIL | SPATIAL_DATA_UNVERIFIED | source_present | canary FAIL | lane_completed_without_abort, no_unknown_status, no_enrichment_gaps |
-| B | English Women's Super League | women | ENG | espn eng.w.1 (8097) | 2026-27 English Women's Super League | 14 | 182 | 29 | verified/computed | 29 | 29 | 29 | 40295 | — | replay payload proven | 308 | descriptive (inputs present) | off | MATCH_DATA_PASS | SPATIAL_DATA_AVAILABLE | source_present | canary PASS (not enabled) | enable + release + production fill |
-| B | UEFA Women's Champions League | women | international | espn uefa.wchampions (19483) | 2026-27 UEFA Women's Champions League | 18 | 54 | 18 | verified/computed | 18 | 18 | 18 | 24760 | — | replay payload proven | 403 | descriptive (inputs present) | off | MATCH_DATA_PASS | SPATIAL_DATA_AVAILABLE | source_present | canary PASS (not enabled) | enable + release + production fill |
-| B | Spanish Liga F | women | ESP | espn esp.w.1 (20956) | 2026-27 Spanish Liga F | 16 | 240 | 43 | verified/computed | 43 | 43 | 43 | 0 | — | replay payload proven | 357 | descriptive (inputs present) | off | MATCH_DATA_PASS | SPATIAL_DATA_UNAVAILABLE | source_present | canary PASS (not enabled) | enable + release + production fill |
+| B | English Women's Super League | women | ENG | espn eng.w.1 (8097) | 2026-27 English Women's Super League | 14 | 182 | 29 | verified/computed | 29 | 29 | 29 | 40295 | per-minute lane | replay payload proven | 308 | descriptive (inputs present) | off | MATCH_DATA_PASS | SPATIAL_DATA_AVAILABLE | source_present | lane live in production | — |
+| B | UEFA Women's Champions League | women | international | espn uefa.wchampions (19483) | 2026-27 UEFA Women's Champions League | 18 | 54 | 18 | verified/computed | 18 | 18 | 18 | 24760 | per-minute lane | replay payload proven | 403 | descriptive (inputs present) | off | MATCH_DATA_PASS | SPATIAL_DATA_AVAILABLE | source_present | lane live in production | — |
+| B | Spanish Liga F | women | ESP | espn esp.w.1 (20956) | 2026-27 Spanish Liga F | 16 | 240 | 43 | verified/computed | 43 | 43 | 43 | 0 | per-minute lane | replay payload proven | 357 | descriptive (inputs present) | off | MATCH_DATA_PASS | SPATIAL_DATA_UNAVAILABLE | source_present | lane live in production | — |
 | B | frauen-bundesliga | women | DEU | espn ger.w.1: absent | — | — | — | — | — | — | — | — | — | — | — | — | — | off | — | — | league_unavailable | not registered | no ESPN Core source |
-| B | French Première Ligue | women | FRA | espn fra.w.1 (20955) | 2026-27 French Première Ligue | 12 | 132 | 18 | verified/computed | 18 | 18 | 18 | 0 | — | replay payload proven | 222 | descriptive (inputs present) | off | MATCH_DATA_PASS | SPATIAL_DATA_UNAVAILABLE | source_present | canary PASS (not enabled) | enable + release + production fill |
+| B | French Première Ligue | women | FRA | espn fra.w.1 (20955) | 2026-27 French Première Ligue | 12 | 132 | 18 | verified/computed | 18 | 18 | 18 | 0 | per-minute lane | replay payload proven | 222 | descriptive (inputs present) | off | MATCH_DATA_PASS | SPATIAL_DATA_UNAVAILABLE | source_present | lane live in production | — |
 | B | serie-a-women | women | ITA | espn ita.w.1: absent | — | — | — | — | — | — | — | — | — | — | — | — | — | off | — | — | league_unavailable | not registered | no ESPN Core source |
 | B | FIFA Women's World Cup | women | international | espn fifa.wwc (795) | 2023 FIFA Women's World Cup | 32 | 64 | — | — | — | — | — | — | — | — | — | — | off | — | — | source_present | not registered | not yet registered (phase order) |
 | C | English League Championship | men | ENG | espn eng.2 (3914) | 2026-27 English League Championship | 24 | 552 | — | — | — | — | — | — | — | — | — | — | off | — | — | source_present | not registered | not yet registered (phase order) |

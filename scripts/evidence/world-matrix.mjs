@@ -57,12 +57,15 @@ const md = [`| ${cols.join(' | ')} |`, `|${cols.map(() => '---').join('|')}|`, .
 const prodFiles = readdirSync('docs/evidence/world').filter(f => /^prod-accept-.+\.json$/.test(f)).sort();
 const prodRows = prodFiles.map(f => JSON.parse(readFileSync(`docs/evidence/world/${f}`, 'utf8'))).map(p => {
   const yn = b => (b ? 'PASS' : 'FAIL');
-  return { competition: p.competition, worker_enabled: live.has(p.competition) ? 'yes' : 'no', backfill_complete: yn(p.checks.backfill_complete), fixtures_verified: `${yn(p.checks.fixtures_verified)} (${p.fixtures.production}/${p.fixtures.canary})`,
-    standings_verified: `${yn(p.checks.standings_verified)} (${p.api.table_view}, ${p.api.table_rows} rows)`, completed_match_detail: `${yn(p.checks.completed_detail_verified)} (${p.completed_detail.finished} finished, ${p.completed_detail.gaps} gaps)`,
-    identity_dedupe: `${yn(p.checks.identity_dedupe && p.checks.gender_integrity)} (${p.identity.teams} teams, ${p.identity.reused_from_production.length} reused)`,
-    production_canary: yn(p.checks.api_canary && p.checks.browser_canary), navigation_live: p.checks.navigation_live ? 'LIVE' : 'no', evidence: `docs/evidence/world/${prodFiles.find(f => f.includes(p.competition))}` };
+  return { competition: p.competition, gender: p.gender, worker_enabled: live.has(p.competition) ? 'yes' : 'no', backfill_complete: yn(p.checks.backfill_complete),
+    fixtures: `${p.fixtures.production}/${p.fixtures.canary} ${yn(p.checks.fixtures_verified)}`, table_verified: `${yn(p.checks.standings_verified)} (${p.api.table_view}, ${p.api.table_rows})`,
+    finished_detail: `${p.completed_detail.finished} ${yn(p.checks.completed_detail_verified)} (${p.completed_detail.gaps} gaps)`,
+    spatial: `${(p.acceptance?.spatial || '').replace('SPATIAL_DATA_', '') || '—'} ${p.checks.spatial_status_proven === undefined ? '' : yn(p.checks.spatial_status_proven)}`.trim(),
+    identity_dedupe: `${yn(p.checks.identity_dedupe)} (${p.identity.teams} teams, ${p.identity.reused_from_production.length} shared)`, gender_integrity: yn(p.checks.gender_integrity),
+    api_canary: yn(p.checks.api_canary), browser_390: yn(p.checks.browser_390), browser_768: yn(p.checks.browser_768), browser_1440: yn(p.checks.browser_1440),
+    navigation: p.checks.navigation_live ? 'LIVE' : 'no' };
 });
-const pcols = ['competition', 'worker_enabled', 'backfill_complete', 'fixtures_verified', 'standings_verified', 'completed_match_detail', 'identity_dedupe', 'production_canary', 'navigation_live', 'evidence'];
+const pcols = ['competition', 'gender', 'worker_enabled', 'backfill_complete', 'fixtures', 'table_verified', 'finished_detail', 'spatial', 'identity_dedupe', 'gender_integrity', 'api_canary', 'browser_390', 'browser_768', 'browser_1440', 'navigation'];
 const pmd = prodRows.length ? [`| ${pcols.join(' | ')} |`, `|${pcols.map(() => '---').join('|')}|`, ...prodRows.map(r => `| ${pcols.map(k => String(r[k] ?? '—')).join(' | ')} |`)].join('\n') : '_No production rollout yet._';
 const path = 'docs/WORLD_COVERAGE.md';
 const head = existsSync(path) ? readFileSync(path, 'utf8').split('<!-- matrix -->')[0] : '# World Coverage\n\n';

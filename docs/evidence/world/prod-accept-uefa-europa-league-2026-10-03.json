@@ -1,10 +1,62 @@
 {
-  "generated_at": "2026-10-03T18:05:00.571Z",
+  "generated_at": "2026-10-03T19:37:46.972Z",
   "competition": "uefa-europa-league",
   "gender": "men",
   "canary": "docs/evidence/world/canary-uefa-europa-league-2026-10-03.json",
   "season": "2026/27",
   "publication_state": "published",
+  "worker_enabled": true,
+  "acceptance": {
+    "match_data": "MATCH_DATA_PASS",
+    "spatial": "SPATIAL_DATA_AVAILABLE",
+    "cast_located_in_latest_finished": [
+      22,
+      31,
+      26
+    ]
+  },
+  "namesakes": [
+    {
+      "team": "Juventus",
+      "distinct_from": [
+        "Juventus Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Real Sociedad",
+      "distinct_from": [
+        "Real Sociedad Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Crystal Palace",
+      "distinct_from": [
+        "Crystal Palace Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Benfica",
+      "distinct_from": [
+        "Benfica Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Marseille",
+      "distinct_from": [
+        "Marseille Women"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    }
+  ],
   "fixtures": {
     "production": 144,
     "canary": 144,
@@ -24,11 +76,18 @@
     "teams": 36,
     "expected": 36,
     "reused_from_production": [
+      "Juventus",
+      "Real Sociedad",
+      "AC Milan",
       "Crystal Palace",
+      "Stade Rennais",
       "Hoffenheim",
+      "Celta Vigo",
       "Bayer Leverkusen",
+      "Marseille",
       "Sunderland",
-      "AFC Bournemouth"
+      "AFC Bournemouth",
+      "Lyon"
     ],
     "duplicate_same_gender_names": [],
     "espn_ids_on_more_than_one_team": [],
@@ -56,13 +115,17 @@
     "standings_verified": true,
     "identity_dedupe": true,
     "gender_integrity": true,
+    "spatial_status_proven": true,
     "api_canary": true,
+    "navigation_live": true,
     "browser_canary": true,
-    "navigation_live": true
+    "browser_390": true,
+    "browser_768": true,
+    "browser_1440": true
   },
   "pass": true,
   "browser": {
-    "generated_at": "2026-10-03T18:07:54.058Z",
+    "generated_at": "2026-10-03T19:37:59.236Z",
     "nav_expected": true,
     "match_id": "a3e378d3-cf61-5b30-be18-5805c0cf36b5",
     "results": [
@@ -77,8 +140,12 @@
         "feed_items": 0,
         "pitch": false,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -93,8 +160,12 @@
         "feed_items": 0,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -109,8 +180,12 @@
         "feed_items": 45,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -125,8 +200,12 @@
         "feed_items": 0,
         "pitch": false,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -141,8 +220,12 @@
         "feed_items": 0,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -157,8 +240,12 @@
         "feed_items": 45,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -173,8 +260,12 @@
         "feed_items": 0,
         "pitch": false,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -189,8 +280,12 @@
         "feed_items": 0,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       },
@@ -205,8 +300,12 @@
         "feed_items": 45,
         "pitch": true,
         "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
         "nav_link": true,
         "overflow_x": false,
+        "spatial_ok": true,
         "js_errors": [],
         "pass": true
       }
