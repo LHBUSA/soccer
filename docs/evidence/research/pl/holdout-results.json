@@ -1,0 +1,223 @@
+{
+ "stage": "holdout",
+ "at": "2026-10-03T12:10:06.584Z",
+ "protocol_sha256": "9db6c099280b22bb109cc46164e9a9964a682c9b6affcd469c4fe6c001227562",
+ "dataset_sha256": "f075b67d2b943260fcf74f4267de57726727e64df43d189d72916304062cfcdc",
+ "select_freeze_at": "2026-10-03T12:08:19.170Z",
+ "candidate": {
+  "family": "M2_poisson",
+  "params": {
+   "half_life_days": 365,
+   "shrink": 5,
+   "dev_log_loss": 0.9614,
+   "dev_without_history": 0
+  }
+ },
+ "holdout_rows": 2660,
+ "holdout_without_poisson_history": 0,
+ "seasons": [
+  "2019/20",
+  "2020/21",
+  "2021/22",
+  "2022/23",
+  "2023/24",
+  "2024/25",
+  "2025/26"
+ ],
+ "1x2": {
+  "B0": {
+   "n": 2660,
+   "log_loss": 1.0764,
+   "brier": 0.6517,
+   "accuracy": 0.4342,
+   "ece": 0.0367
+  },
+  "M1_elo": {
+   "n": 2660,
+   "log_loss": 0.9912,
+   "brier": 0.5904,
+   "accuracy": 0.5263,
+   "ece": 0.033
+  },
+  "M2_poisson": {
+   "n": 2660,
+   "log_loss": 0.9835,
+   "brier": 0.5852,
+   "accuracy": 0.5241,
+   "ece": 0.0114
+  },
+  "M3_poisson_dc": {
+   "n": 2660,
+   "log_loss": 0.9835,
+   "brier": 0.5852,
+   "accuracy": 0.5237,
+   "ece": 0.0085
+  }
+ },
+ "per_season": {
+  "B0": {
+   "2019/20": 1.067,
+   "2020/21": 1.1047,
+   "2021/22": 1.079,
+   "2022/23": 1.0497,
+   "2023/24": 1.0616,
+   "2024/25": 1.0907,
+   "2025/26": 1.0824
+  },
+  "M1_elo": {
+   "2019/20": 0.9778,
+   "2020/21": 1.0446,
+   "2021/22": 0.9646,
+   "2022/23": 0.9774,
+   "2023/24": 0.9392,
+   "2024/25": 1.0079,
+   "2025/26": 1.0269
+  },
+  "M2_poisson": {
+   "2019/20": 0.9727,
+   "2020/21": 1.0115,
+   "2021/22": 0.9516,
+   "2022/23": 0.9985,
+   "2023/24": 0.9323,
+   "2024/25": 0.9904,
+   "2025/26": 1.0274
+  },
+  "M3_poisson_dc": {
+   "2019/20": 0.9724,
+   "2020/21": 1.0138,
+   "2021/22": 0.9517,
+   "2022/23": 0.9994,
+   "2023/24": 0.9328,
+   "2024/25": 0.9891,
+   "2025/26": 1.0252
+  }
+ },
+ "binary": {
+  "over_2_5": {
+   "B0": {
+    "log_loss": 0.6947,
+    "brier": 0.2508
+   },
+   "M2_poisson": {
+    "log_loss": 0.6806,
+    "brier": 0.2437
+   },
+   "M3_poisson_dc": {
+    "log_loss": 0.6806,
+    "brier": 0.2437
+   }
+  },
+  "home_to_score": {
+   "B0": {
+    "log_loss": 0.5407,
+    "brier": 0.1777
+   },
+   "M2_poisson": {
+    "log_loss": 0.5078,
+    "brier": 0.1666
+   },
+   "M3_poisson_dc": {
+    "log_loss": 0.5078,
+    "brier": 0.1666
+   }
+  },
+  "away_to_score": {
+   "B0": {
+    "log_loss": 0.6071,
+    "brier": 0.208
+   },
+   "M2_poisson": {
+    "log_loss": 0.5791,
+    "brier": 0.1966
+   },
+   "M3_poisson_dc": {
+    "log_loss": 0.5791,
+    "brier": 0.1966
+   }
+  },
+  "btts": {
+   "B0": {
+    "log_loss": 0.6922,
+    "brier": 0.2495
+   },
+   "M2_poisson": {
+    "log_loss": 0.6876,
+    "brier": 0.2472
+   },
+   "M3_poisson_dc": {
+    "log_loss": 0.6875,
+    "brier": 0.2472
+   }
+  }
+ },
+ "reliability_home": [
+  {
+   "bin": "0-0.1",
+   "n": 39,
+   "predicted": 0.0826,
+   "observed": 0.0769
+  },
+  {
+   "bin": "0.1-0.2",
+   "n": 203,
+   "predicted": 0.159,
+   "observed": 0.1675
+  },
+  {
+   "bin": "0.2-0.3",
+   "n": 410,
+   "predicted": 0.2557,
+   "observed": 0.2366
+  },
+  {
+   "bin": "0.3-0.4",
+   "n": 544,
+   "predicted": 0.3511,
+   "observed": 0.364
+  },
+  {
+   "bin": "0.4-0.5",
+   "n": 554,
+   "predicted": 0.4501,
+   "observed": 0.4368
+  },
+  {
+   "bin": "0.5-0.6",
+   "n": 402,
+   "predicted": 0.5467,
+   "observed": 0.5498
+  },
+  {
+   "bin": "0.6-0.7",
+   "n": 303,
+   "predicted": 0.6464,
+   "observed": 0.6568
+  },
+  {
+   "bin": "0.7-0.8",
+   "n": 144,
+   "predicted": 0.7479,
+   "observed": 0.75
+  },
+  {
+   "bin": "0.8-0.9",
+   "n": 58,
+   "predicted": 0.8373,
+   "observed": 0.8621
+  },
+  {
+   "bin": "0.9-1",
+   "n": 3,
+   "predicted": 0.9154,
+   "observed": 1
+  }
+ ],
+ "verdict": {
+  "candidate": "M2_poisson",
+  "beats_b0_log_loss": true,
+  "beats_b0_brier": true,
+  "seasons_beating_b0": "7/7",
+  "pass": true,
+  "rule": "The selected candidate PASSES phase 1 only if on the HOLDOUT it beats B0 on pooled 1X2 log loss AND Brier, and beats B0 on log loss in at least 5 of the 7 holdout seasons. M1/M2/M3 holdout numbers are reported for transparency but only the pre-selected candidate is judged."
+ }
+}
