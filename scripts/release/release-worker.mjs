@@ -91,7 +91,7 @@ if (crons.length) {
   if (!triggers.ok) throw new Error(`triggers NOT verified: ${JSON.stringify(triggers)} (version ${version} is live; schedules may be stale)`);
   log('triggers', reported.join(', '));
 }
-const host = { 'soccer-api': 'https://soccer-api.sales-fd3.workers.dev', 'soccer-ingest': 'https://soccer-ingest.sales-fd3.workers.dev', 'soccer-news': 'https://soccer-news.sales-fd3.workers.dev' }[worker];
+const host = { 'soccer-api': 'https://soccer-api.sales-fd3.workers.dev', 'soccer-ingest': 'https://soccer-ingest.sales-fd3.workers.dev', 'soccer-news': 'https://soccer-news.sales-fd3.workers.dev', 'soccer-video-autopilot': 'https://soccer-video-autopilot.sales-fd3.workers.dev' }[worker];
 const prod = await canary(host);
 const row = { at: new Date().toISOString(), worker, commit: head, uploaded_version: version, promoted_version: live, previous_version: previous, rollback_version: previous, deployment_id: after.deployment, preview_canary: pre, production_canary: { path: canaryPath, ...prod }, ...(triggers ? { triggers } : {}) };
 mkdirSync(join(ROOT, 'docs'), { recursive: true });
