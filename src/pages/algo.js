@@ -35,7 +35,7 @@ function policyBlock(m, pol) {
     <p>${modelChip(m)} · <b>${esc(pol.algo_version)}</b> · policy ${esc(pol.pick_policy_version)} · ${esc(pol.competition)}</p>
     <ul>${join(marketsOf(pol), x => `<li>${esc(x.name)}: an Official Pick needs a model probability of at least <b>${pc(x.threshold, 1)}</b></li>`)}
       <li>At most one Official Pick per match. Picks are written to an append-only ledger when the match enters the 7-day window and lock ${m.lock_minutes} minutes before kickoff; nothing is edited after issue.</li>
-      <li>No sportsbook prices are captured, so no ROI, units or closing-line value is stated. No default odds are ever assumed.</li></ul>
+      <li>No sportsbook prices are captured, so no ROI, units or closing-line value is stated. No default sportsbook odds are ever assumed.</li></ul>
     <p class="muted">Spec hash <code>${esc(pol.spec_hash.slice(0, 16))}…</code> · model hash <code>${esc(pol.model_hash.slice(0, 16))}…</code></p></div>`;
 }
 

@@ -5,6 +5,7 @@ import { esc, join, when } from '../lib/html.js';
 import { competitionMark, crest, initials, mountMediaFallbacks, portrait } from './media.js';
 import { ago, coverageOf, dateShort, dateTime, scoreline, sourceName, time } from '../lib/format.js';
 import { compMeta } from '../lib/competitions.js';
+import { kalshiLineFor } from '../data/kalshi.js';
 
 export const link = (href, inner, cls = '') => `<a href="${esc(href)}" data-link${cls ? ` class="${cls}"` : ''}>${inner}</a>`;
 
@@ -101,6 +102,10 @@ export function intelBadges(intel, status) {
   return join(on, ([k, l]) => `<span class="intel i-${k}">${l}</span>`);
 }
 
+// Restrained Kalshi prediction-market line for a not-finished match whose page loaded the market board;
+// nothing at all otherwise (no placeholder).
+const kalshiSlot = m => { const line = kalshiLineFor(m); return line ? `<div class="mc-kx">${line}</div>` : ''; };
+
 export function matchCard(m, { showComp = true } = {}) {
   const sc = m.score && m.score.home !== null && m.score.home !== undefined;
   const hw = sc && m.score.home > m.score.away; const aw = sc && m.score.away > m.score.home;
@@ -116,6 +121,7 @@ export function matchCard(m, { showComp = true } = {}) {
       ${sc ? '' : '<span class="vs">v</span>'}
     </div>
     <div class="mc-when">${esc(dateShort(m.kickoff_at))}${m.status === 'scheduled' || m.status === 'live' ? ` · ${esc(time(m.kickoff_at))}` : ''}${sc && m.score.home_ht !== null && m.score.home_ht !== undefined ? ` · HT ${esc(scoreline({ home: m.score.home_ht, away: m.score.away_ht }))}` : ''}</div>
+    ${kalshiSlot(m)}
     <div class="mc-foot"><span class="mc-intel">${intelBadges(m.intel, m.status)}</span>${link(`/matches/${m.id}`, 'MATCH INTELLIGENCE <span aria-hidden="true">→</span>', 'mc-cta')}</div>
   </article>`;
 }

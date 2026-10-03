@@ -17,7 +17,7 @@ const deskTabs = active => `<nav class="nr2-tabs" aria-label="News desks">${tab(
 const emptyRoom = desk => `<section class="newsroom"><div class="wrap narrow center">
   <p class="kicker gold">PROPBETEDGE SOCCER NEWSROOM${desk ? ` · ${esc(compByDesk(desk)?.name.toUpperCase() || '')}` : ''}</p>
   <h1 class="display">Evidence-backed soccer reporting is coming online.</h1>
-  <p class="lede">Every story is written from a frozen evidence packet drawn from the canonical graph, and checked by publication gates before it runs. Every number traces to a source. No invented quotes, injuries or odds.</p>
+  <p class="lede">Every story is written from a frozen evidence packet drawn from the canonical graph, and checked by publication gates before it runs. Every number traces to a source. No invented quotes, injuries or sportsbook odds.</p>
   <div class="nr-steps"><div><b>01</b><span>Canonical data</span></div><div><b>02</b><span>Frozen evidence packet</span></div><div><b>03</b><span>Original composition</span></div><div><b>04</b><span>Publication gates</span></div></div>
   <p>${link('/matches', 'Explore match intelligence', 'btn gold')}</p>
 </div></section>`;
@@ -69,7 +69,7 @@ function listPage(d, desk) {
   return `<section class="nr2-top"><div class="wrap nr2">
       <p class="nr2-kicker">PROPBETEDGE SOCCER</p>
       <h1 class="nr2-title">${esc(c ? `${c.name} newsroom` : 'Newsroom')}</h1>
-      <p class="nr2-sub">Evidence-backed football reporting. Every figure traces to a frozen evidence packet; no quotes, injuries, rumours or odds.</p>
+      <p class="nr2-sub">Evidence-backed football reporting. Every figure traces to a frozen evidence packet; no quotes, injuries, rumours or sportsbook odds.</p>
       ${deskTabs(desk)}
     </div></section>
     <section class="nr2-body"><div class="wrap nr2">

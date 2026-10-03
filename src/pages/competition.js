@@ -8,6 +8,7 @@ import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { num, todayUtc } from '../lib/format.js';
 import { compMeta } from '../lib/competitions.js';
+import { boardWithin } from '../data/kalshi.js';
 import { competitionMark, empty, errorState, link, matchGrid, mountTabs, sectionHead, sourcePanel, tabBar, tabPanel, teamMark } from '../components/ui.js';
 import { groupTables, mountGroupTables, mountTableViews, tableView, tableViews } from '../components/table.js';
 import { mountRelatedNews } from '../components/related.js';
@@ -30,12 +31,14 @@ export async function load([slug], query) {
   const isCurrent = season === current;
   const today = todayUtc();
   const grouped = compMeta(slug)?.format === 'groups';
+  // The Kalshi board (card lines for upcoming / live fixtures) loads beside the fixtures; bounded, never fails the page.
   const [table, recent, upcoming, cov, live] = await Promise.allSettled([
     api('table', { competition: slug, season, ...(grouped ? { expand: 'groups' } : {}) }),
     api('matches', { competition: slug, season, status: 'finished', ...(isCurrent ? { to: today } : {}), limit: 30 }),
     isCurrent ? api('matches', { competition: slug, season, status: 'scheduled', from: today, order: 'asc', limit: 30 }) : Promise.resolve(null),
     api('coverage'),
     isCurrent && comp.data.current?.live ? api('matches', { competition: slug, season, status: 'live', limit: 12 }) : Promise.resolve(null),
+    isCurrent ? boardWithin() : null,
   ]);
   // Conference tables (only where the API lists conference groups for the season).
   const groups = table.status === 'fulfilled' ? (table.value.data.groups || []).filter(g => g.type === 'conference') : [];

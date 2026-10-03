@@ -3,6 +3,7 @@ import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { DASH, FOOT, ROLE, dateLong, dateShort, num, scoreline } from '../lib/format.js';
 import { compMeta } from '../lib/competitions.js';
+import { boardWithin } from '../data/kalshi.js';
 import { competitionMark, formChips, link, matchGrid, playerChip, portrait, sectionHead, sourcePanel, teamLink, teamMark } from '../components/ui.js';
 import { portraitOf } from '../components/media.js';
 import { pitchSvg, validShots } from '../components/pitch.js';
@@ -50,7 +51,7 @@ export function squadCard(p) {
 
 export const team = {
   title: d => `${d.env?.data?.name || 'Team'} Results, Team DNA & Soccer Intelligence | PropBetEdge`,
-  async load([slug]) { return { env: await api(`teams/${slug}`) }; },
+  async load([slug]) { const [env] = await Promise.all([api(`teams/${slug}`), boardWithin()]); return { env }; }, // board: Kalshi line on the next-match cards
   render(d) {
     const t = d.env.data;
     // ESPN's team `location` is often the club's short name, not a city: never print it as one.

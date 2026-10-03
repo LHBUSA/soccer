@@ -6,6 +6,7 @@ import { competitionMark, empty, errorState, link, matchGrid, sectionHead, sourc
 import { groupTables, mountGroupTables, mountTableViews, tableView, tableViews } from '../components/table.js';
 import { coverageCards } from './home.js';
 import { FEATURED, FEATURED_COMPS, compMeta } from '../lib/competitions.js';
+import { boardWithin } from '../data/kalshi.js';
 
 // ---- /competitions
 export const competitions = {
@@ -33,7 +34,8 @@ export const matches = {
     const comp = FEATURED.includes(q.get('competition')) ? q.get('competition') : '';
     const today = todayUtc();
     const params = view === 'today' ? { date: today } : view === 'upcoming' ? { status: 'scheduled', from: today, order: 'asc' } : { status: 'finished', to: today };
-    const [list, comps] = await Promise.allSettled([api('matches', { ...params, competition: comp || undefined, season: q.get('season'), team: q.get('team'), limit: 40 }), api('competitions')]);
+    // The Kalshi board (card lines for not-finished matches) loads beside the fixtures; bounded, never fails the page.
+    const [list, comps] = await Promise.allSettled([api('matches', { ...params, competition: comp || undefined, season: q.get('season'), team: q.get('team'), limit: 40 }), api('competitions'), view === 'recent' ? null : boardWithin()]);
     return { view, comp, list, comps };
   },
   render(d) {
@@ -106,6 +108,16 @@ export const sources = {
           <li>Missing data is shown as missing, never as zero.</li>
           <li>Team statistics are labelled either PBE DERIVED COUNTS (computed by PropBetEdge from the event ledger) or SOURCE MATCH STATISTICS (supplied by a provider).</li>
           <li>Proprietary models such as xG, xT and Soccer DNA are not published until they are validated.</li>
+        </ul>
+        <h2 id="kalshi">Kalshi prediction-market prices</h2>
+        <p>Some match pages, PBEcast and fixture cards show prices from Kalshi, a prediction market. They are traded contract prices: not sportsbook odds and not a PropBetEdge model or prediction.</p>
+        <ul>
+          <li>A market is shown only when it is matched exactly to that match, is fresh and is trading. Otherwise nothing is shown.</li>
+          <li>Every price links to that market on Kalshi.</li>
+          <li>Mid-market is the midpoint of the best YES bid and the best YES ask, shown only when the spread is 10¢ or less. It is not a probability. Bid, ask and last trade are labelled separately.</li>
+          <li>Movement is drawn only from prices we observed and stored; nothing is interpolated.</li>
+          <li>Kalshi soccer match contracts settle on the result after 90 minutes plus stoppage time, with no extra time or penalties.</li>
+          <li>Your browser reads these prices from PropBetEdge, never from Kalshi directly.</li>
         </ul>
       </div></section>`;
   },

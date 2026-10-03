@@ -1,0 +1,23 @@
+/* Kalshi Market Intelligence: soccer placements. The vendored component CSS
+   (src/vendor/kalshi/kalshi-market-ui.css) stays unchanged; this file only maps the
+   house tokens onto the component and styles the soccer slots around it. */
+.kx, .kx-strip {
+  --pbe-ink-2: var(--shell-2); --pbe-paper: #f3f6fb; --pbe-dim: var(--muted-dark);
+  --pbe-line: var(--shell-line); --f-mono: var(--mono); --r: var(--radius-s);
+}
+.kx { border-radius: var(--radius); }
+
+/* Match page: its own block between the hero and the match intelligence. */
+.kx-sec { padding-top: 18px; padding-bottom: 6px; }
+.kx-sec[hidden], .ct-kx[hidden] { display: none; }
+.kx-soccer-note { margin: 8px 2px 0; font-size: 12px; line-height: 1.45; color: var(--muted); }
+
+/* PBEcast: strip under the score/status, on the dark cast header. */
+.ct-kx { max-width: 760px; margin: 12px auto 0; text-align: left; }
+.ct-kx .kx-soccer-note { color: var(--muted-dark); text-align: center; font-size: 11.5px; }
+
+/* Fixture cards (white) and PBEcast hub cards: one restrained line, readable on light surfaces. */
+.mc-kx, .hc-kx { display: block; min-width: 0; overflow: hidden; }
+.mc-kx .kx-line, .hcard:not(.k-live) .hc-kx .kx-line { color: var(--ink-2); flex-wrap: wrap; }
+.mc-kx .kx-line__b, .hcard:not(.k-live) .hc-kx .kx-line__b { color: #1f5fae; }
+.hcard.k-live .hc-kx .kx-line { color: #f3f6fb; flex-wrap: wrap; }

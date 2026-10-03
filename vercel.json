@@ -112,6 +112,14 @@
       "destination": "https://soccer-api.sales-fd3.workers.dev/v1/algo/:kind"
     },
     {
+      "source": "/api/markets/v1/market-intelligence/sport/soccer",
+      "destination": "https://propsports-markets.sales-fd3.workers.dev/v1/market-intelligence/sport/soccer"
+    },
+    {
+      "source": "/api/markets/v1/market-intelligence/event/soccer/:id([0-9a-f-]+)",
+      "destination": "https://propsports-markets.sales-fd3.workers.dev/v1/market-intelligence/event/soccer/:id"
+    },
+    {
       "source": "/sitemap.xml",
       "destination": "/api/sitemap?kind=index"
     },

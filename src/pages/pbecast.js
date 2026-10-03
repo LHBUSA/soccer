@@ -15,6 +15,8 @@ import { competitionMark, empty, link, mountMediaFallbacks, playerChip, sectionH
 import { L, W, pitchLines } from '../components/pitch.js';
 import { keyPlayers } from '../components/keyplayers.js';
 import { matchTitle } from '../seo/meta.js';
+import { boardWithin, castKalshiHtml, kalshi, kalshiLineFor, kalshiPollState } from '../data/kalshi.js';
+import { wireKalshi } from '../vendor/kalshi/kalshi-market-ui.js';
 
 const POLL_LIVE_MS = 60000;   // the ingest lane polls about once a minute; do not poll faster than the source can change
 const POLL_HUB_MS = 60000;
@@ -49,13 +51,16 @@ function hubCard(m, kind) {
   return `<a class="hcard k-${kind}" href="/pbecast/${esc(m.id)}" data-link>
     <span class="hc-top">${f ? competitionMark(f.slug, 'xs') : ''}<span class="hc-comp">${esc(f?.name || m.competition?.name || '')}</span>${kind === 'live' ? statusPill('live') : ''}${top}</span>
     ${side(m.home, lv.score?.home)}${side(m.away, lv.score?.away)}
+    ${kind === 'replay' ? '' : hubKalshi(m)}
     <span class="hc-cta">${esc(cta)} <span aria-hidden="true">→</span></span>
   </a>`;
 }
 
+const hubKalshi = m => { const line = kalshiLineFor(m); return line ? `<span class="hc-kx">${line}</span>` : ''; };
+
 export const hub = {
   title: () => 'PBEcast — Live Soccer Match Tracker & Replays | PropBetEdge',
-  async load() { return { env: await api('live', {}, { fresh: true }) }; },
+  async load() { const [env] = await Promise.all([api('live', {}, { fresh: true }), boardWithin()]); return { env }; },
   render(d) {
     const x = d.env.data; const lane = x.lane;
     const replays = x.recent || [];
@@ -308,6 +313,7 @@ export function castView(env) {
       <p class="ct-status">${mode === 'live' ? `<span class="ct-live ${esc(status.tone)}"><i class="livedot" aria-hidden="true"></i>${esc(status.label)}</span>${clock ? `<span class="ct-clock">${esc(clock)}</span>` : ''}` : replay ? `<span class="ct-tag">PBECAST REPLAY</span><span class="ct-clock" data-ct-clock>${esc(clock)}</span>` : statusPill(m.status)}
         <span class="muted">${esc(dateTime(m.kickoff_at))}${m.venue ? ` · ${esc(m.venue.name)}` : ''}</span></p>
       ${when(status, () => `<p class="ct-fresh" role="status">${esc(status.note)}</p>`)}
+      ${castKalshiSlot(m)}
     </div></section>
     <section class="canvas cast-body" data-match-id="${esc(m.id)}"><div class="wrap">
       ${mode === 'pregame' ? `<div class="panel pregame">${sectionHead('PREGAME', `Kick-off ${dateTime(m.kickoff_at)}`)}<p>PBEcast goes live at kick-off: the score and the provider's clock, then every sourced shot, goal, card and substitution as the source records it. This page refreshes itself.</p></div>` : ''}
@@ -479,6 +485,40 @@ export function mountLive(root, env) {
   Object.assign(lastLive, { id: m.id, goals, latest });
 }
 
+// ---------------------------------------------------------------- Kalshi strip
+// Never blocks the cast: the first paint uses what is already known for this match (the last event read,
+// else the board entry the hub/match lists loaded); the event read + polling run beside the cast. The strip's
+// open/closed state survives every live re-render. Polls: live 20 s, pregame 45 s, none for a replay.
+const castKx = { id: null, entry: null, open: false, timer: null };
+export function stopCastKalshi() { clearTimeout(castKx.timer); castKx.timer = null; }
+function castKalshiSlot(m) {
+  if (castKx.id !== m.id) Object.assign(castKx, { id: m.id, entry: kalshi.forEvent(m.id), open: false });
+  const html = castKalshiHtml(castKx.entry, { open: castKx.open });
+  return `<div class="ct-kx" data-kx-cast${html ? '' : ' hidden'}>${html}</div>`;
+}
+function paintCastKalshi(slot) {
+  const html = castKalshiHtml(castKx.entry, { open: castKx.open });
+  slot.innerHTML = html; slot.hidden = !html;
+  if (html) wireKalshi(slot);
+}
+export function mountCastKalshi(root, env) {
+  stopCastKalshi();
+  const m = env.data;
+  const slot = root.querySelector('[data-kx-cast]');
+  if (!slot) return;
+  if (!slot.hidden) wireKalshi(slot);
+  slot.addEventListener('toggle', e => { if (e.target.matches?.('details.kx-strip')) castKx.open = e.target.open; }, true);
+  const mode = m.live?.mode;
+  const lane = mode === 'live' ? 'live' : mode === 'pregame' ? 'pregame' : kalshiPollState(m.status) === 'pregame' ? 'pregame' : null;
+  const refresh = async (force) => {
+    const entry = await kalshi.loadEvent(m.id, { force }).catch(() => null);
+    if (!slot.isConnected || castKx.id !== m.id) return;
+    castKx.entry = entry; paintCastKalshi(slot);
+    if (lane) castKx.timer = setTimeout(() => { if (!slot.isConnected) return; if (document.hidden) return refresh(false); refresh(true); }, kalshi.pollMsFor(lane));
+  };
+  refresh(false);
+}
+
 export const cast = {
   canonical: d => `/matches/${d.env.data.id}`,
   title: d => (d?.env?.data ? `${matchTitle(d.env.data).replace(/\s*\|\s*PropBetEdge.*$/, '')} — PBEcast | PropBetEdge` : 'PBEcast | PropBetEdge'),
@@ -487,6 +527,7 @@ export const cast = {
   mount(root, d) {
     mountReplay(root, d.env);
     mountLive(root, d.env);
+    mountCastKalshi(root, d.env);
     const mode = d.env.data.live?.mode;
     const soon = mode === 'pregame' && Date.parse(d.env.data.kickoff_at) - Date.now() < 30 * 60e3;
     if (mode === 'live' || soon) softRefresh(root, () => loadCast([d.env.data.id]), cast, mode === 'live' ? POLL_LIVE_MS : 60000);

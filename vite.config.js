@@ -4,7 +4,11 @@ import { defineConfig } from 'vite';
 // data/ or docs/ is ever copied into dist/ (Vercel serves dist/ only).
 // Local dev/preview only: same-origin proxy to the public read-only API, mirroring api/soccer.js.
 // SOCCER_API_TARGET (local QA only) points the proxy at a dark API version; production never reads it.
-const devProxy = { '/api/soccer': { target: process.env.SOCCER_API_TARGET || 'https://soccer-api.sales-fd3.workers.dev', changeOrigin: true, rewrite: p => p.replace(/^\/api\/soccer/, '/v1') } };
+const devProxy = {
+  '/api/soccer': { target: process.env.SOCCER_API_TARGET || 'https://soccer-api.sales-fd3.workers.dev', changeOrigin: true, rewrite: p => p.replace(/^\/api\/soccer/, '/v1') },
+  // Kalshi Market Intelligence (shared propsports-markets Worker), mirroring the vercel.json /api/markets rewrites.
+  '/api/markets': { target: 'https://propsports-markets.sales-fd3.workers.dev', changeOrigin: true, rewrite: p => p.replace(/^\/api\/markets/, '') },
+};
 
 export default defineConfig({
   root: '.',

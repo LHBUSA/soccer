@@ -21,6 +21,9 @@ import { networkFooter, applyFooterMembership } from './components/footer.js';
 import { accountButtonLabel, handleVerifiedReturn, openAccount } from './components/account.js';
 import { proAccess } from './lib/pro.js';
 import './styles/pbe-membership.css';
+import './vendor/kalshi/kalshi-market-ui.css';
+import './styles/kalshi-soccer.css';
+import { wireKalshi } from './vendor/kalshi/kalshi-market-ui.js';
 import { CLUB_COMPS, FEATURED_COMPS, INTERNATIONAL_COMPS, WOMEN_COMPS } from './lib/competitions.js';
 import { mountMediaFallbacks } from './components/ui.js';
 import { installPlayerDrawer, close as closeDrawer } from './components/drawer.js';
@@ -120,6 +123,7 @@ export async function render(url = new URL(location.href)) {
     firstLoad = false;
     mountMediaFallbacks(main);
     mod.mount?.(main, data, { navigate, isCurrent: () => my === seq });
+    wireKalshi(main); // Kalshi impressions/clicks on any market UI this page rendered (idempotent)
   } catch (err) {
     if (my !== seq) return;
     firstLoad = false;

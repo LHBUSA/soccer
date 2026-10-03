@@ -60,10 +60,16 @@ test('public soccer reads bypass the Vercel function; authenticated Pro stays pr
   assert.deepEqual([free.data.pro, free.data.membership.state, free.data.check], [false, 'free', 'ok']);
 });
 
+// Allow-list (exact file + exact host, nothing else): the vendored shared Kalshi client is kept byte-identical to the
+// canonical copy, and its DEFAULT base names the markets Worker. Soccer always passes the same-origin base
+// (/api/markets, src/data/kalshi.js), so the default is never used; tests/web/kalshi.test.js proves both.
+const VENDOR_WORKER_DEFAULT = { file: join('src', 'vendor', 'kalshi', 'kalshi-market-client.js'), host: "base = 'https://propsports-markets.sales-fd3.workers.dev'" };
+
 test('browser source never calls a provider, the Worker host or Supabase directly', () => {
   const walk = d => readdirSync(d).flatMap(f => (statSync(join(d, f)).isDirectory() ? walk(join(d, f)) : [join(d, f)]));
   for (const f of walk('src')) {
-    const t = readFileSync(f, 'utf8');
+    let t = readFileSync(f, 'utf8');
+    if (f === VENDOR_WORKER_DEFAULT.file) { assert.equal(t.split(VENDOR_WORKER_DEFAULT.host).length, 2, 'vendored default base appears exactly once'); t = t.replace(VENDOR_WORKER_DEFAULT.host, ''); }
     assert.ok(!/workers\.dev|supabase\.co|espn\.com|openligadb\.de|figshare\.com|ndownloader|service_role/i.test(t), `${f} references an upstream`);
     assert.ok(!/fetch\(\s*['"`]https?:/.test(t), `${f} fetches an absolute URL`);
   }

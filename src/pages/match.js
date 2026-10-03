@@ -9,11 +9,19 @@ import { mountRelatedNews } from '../components/related.js';
 import { keyPlayers } from '../components/keyplayers.js';
 import { matchTitle } from '../seo/meta.js';
 import { analyzerPreviewHtml } from '../components/analyzer.js';
+import { byDeadline, kalshi, KALSHI_FIRST_PAINT_MS, kalshiPollState, matchKalshiHtml } from '../data/kalshi.js';
+import { wireKalshi } from '../vendor/kalshi/kalshi-market-ui.js';
 
 export const title = d => (d?.env?.data ? matchTitle(d.env.data) : 'Match Intelligence | PropBetEdge');
 
+// The Kalshi market read starts WITH the match read and may hold the first paint for at most
+// KALSHI_FIRST_PAINT_MS from the start of the load (never longer); a late answer fills the slot in mount().
 export async function load([id]) {
-  return { env: await api(`matches/${id}`) };
+  const deadline = Date.now() + KALSHI_FIRST_PAINT_MS;
+  const kx = kalshi.loadEvent(id).catch(() => null);
+  const env = await api(`matches/${id}`);
+  const entry = await byDeadline(kx, deadline);
+  return { env, kx: entry === undefined ? kalshi.forEvent(id) : entry, kxPending: entry === undefined ? kx : null };
 }
 
 const personLink = p => (p?.slug ? link(`/players/${p.slug}`, esc(p.name)) : esc(p?.name || 'Unidentified player'));
@@ -143,6 +151,7 @@ export function freshness(m, meta) {
 export function render(d) {
   const m = d.env.data; const meta = d.env.meta;
   const sc = m.score;
+  const kxHtml = matchKalshiHtml(d.kx);
   const extra = [
     ['Event source', m.event_source ? sourceName(m.event_source) : 'None'],
     ['Result source', sourceName(m.result_source)],
@@ -163,6 +172,7 @@ export function render(d) {
     ${when(m.status === 'live' || (m.timeline || []).length || (m.shots || []).length, () => `<p class="center mh-cast">${link(`/pbecast/${m.id}`, m.status === 'live' ? '<i class="livedot" aria-hidden="true"></i> WATCH THE LIVE PBECAST' : '▶ REPLAY ON PBECAST', 'btn gold')}</p>`)}
     ${freshness(m, meta)}
   </div></section>
+  <section class="canvas kx-sec" data-kx-match${kxHtml ? '' : ' hidden'}><div class="wrap mid">${kxHtml}</div></section>
   <section class="canvas alt" data-analyzer-preview hidden><div class="wrap"></div></section>
   <section class="canvas" data-match-id="${esc(m.id)}"><div class="wrap mgrid2">
     <div class="col-a">
@@ -183,7 +193,40 @@ export function render(d) {
 
 const newsSlot = () => '<div data-related-news></div>';
 
+// Kalshi card lifecycle: one poll chain per mounted match page (live 20 s / pregame 45 s, none once
+// finished); it stops as soon as the slot leaves the DOM (navigation or re-render) and is cleared on every mount.
+const kxState = { id: null, entry: null, timer: null };
+export function stopMatchKalshi() { clearTimeout(kxState.timer); kxState.timer = null; }
+function paintKalshi(slot, entry) {
+  const html = matchKalshiHtml(entry);
+  slot.querySelector('.wrap').innerHTML = html;
+  slot.hidden = !html;
+  if (html) wireKalshi(slot);
+}
+function mountKalshi(root, d) {
+  stopMatchKalshi();
+  const m = d.env.data;
+  const slot = root.querySelector('[data-kx-match]');
+  if (!slot) return;
+  Object.assign(kxState, { id: m.id, entry: d.kx || null });
+  if (d.kx) wireKalshi(slot);
+  const lane = kalshiPollState(m.status);
+  const schedule = () => {
+    if (!lane || !slot.isConnected) return;
+    kxState.timer = setTimeout(async () => {
+      if (!slot.isConnected) return;
+      if (document.hidden) return schedule();
+      const entry = await kalshi.loadEvent(m.id, { force: true }).catch(() => null);
+      if (!slot.isConnected || kxState.id !== m.id) return;
+      kxState.entry = entry; paintKalshi(slot, entry); schedule();
+    }, kalshi.pollMsFor(lane));
+  };
+  if (d.kxPending) d.kxPending.then(entry => { if (slot.isConnected && entry && kxState.id === m.id) { kxState.entry = entry; paintKalshi(slot, entry); } });
+  schedule();
+}
+
 export function mount(root, d) {
+  mountKalshi(root, d);
   mountRelatedNews(root, { match: d.env.data.id }, { title: 'Stories about this match' });
   const preview = root.querySelector('[data-analyzer-preview]');
   if (preview && d.env.meta.features?.includes('matchup_analyzer_v2')) api(`matches/${d.env.data.id}/analyzer-preview`).then(env => {
@@ -196,7 +239,7 @@ export function mount(root, d) {
     const path = location.pathname;
     const t = setTimeout(async () => {
       if (location.pathname !== path || !root.isConnected) return;
-      try { const env = await api(`matches/${d.env.data.id}`, {}, { fresh: true }); if (location.pathname !== path) return; root.innerHTML = render({ env }); mount(root, { env }); } catch { /* keep the current view */ }
+      try { const env = await api(`matches/${d.env.data.id}`, {}, { fresh: true }); if (location.pathname !== path) return; const next = { env, kx: kxState.id === env.data.id ? kxState.entry : null }; root.innerHTML = render(next); mount(root, next); } catch { /* keep the current view */ }
     }, 60000);
     root.dataset.liveTimer = String(t);
   }
