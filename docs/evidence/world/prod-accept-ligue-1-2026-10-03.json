@@ -55,12 +55,13 @@
     "identity_dedupe": true,
     "gender_integrity": true,
     "api_canary": true,
-    "browser_canary": true
+    "browser_canary": true,
+    "navigation_live": true
   },
   "pass": true,
   "browser": {
-    "generated_at": "2026-10-03T17:45:09.015Z",
-    "nav_expected": false,
+    "generated_at": "2026-10-03T17:48:01.426Z",
+    "nav_expected": true,
     "match_id": "4a1be582-84dd-5d3c-811a-d96638888e0d",
     "results": [
       {
@@ -74,7 +75,7 @@
         "feed_items": 0,
         "pitch": false,
         "nomap": false,
-        "nav_link": false,
+        "nav_link": true,
         "overflow_x": false,
         "js_errors": [],
         "pass": true
@@ -90,7 +91,7 @@
         "feed_items": 0,
         "pitch": true,
         "nomap": false,
-        "nav_link": false,
+        "nav_link": true,
         "overflow_x": false,
         "js_errors": [],
         "pass": true
@@ -106,7 +107,7 @@
         "feed_items": 57,
         "pitch": true,
         "nomap": false,
-        "nav_link": false,
+        "nav_link": true,
         "overflow_x": false,
         "js_errors": [],
         "pass": true
@@ -122,7 +123,7 @@
         "feed_items": 0,
         "pitch": false,
         "nomap": false,
-        "nav_link": false,
+        "nav_link": true,
         "overflow_x": false,
         "js_errors": [],
         "pass": true
@@ -138,7 +139,7 @@
         "feed_items": 0,
         "pitch": true,
         "nomap": false,
-        "nav_link": false,
+        "nav_link": true,
         "overflow_x": false,
         "js_errors": [],
         "pass": true
@@ -154,7 +155,7 @@
         "feed_items": 57,
         "pitch": true,
         "nomap": false,
-        "nav_link": false,
+        "nav_link": true,
         "overflow_x": false,
         "js_errors": [],
         "pass": true
@@ -170,7 +171,7 @@
         "feed_items": 0,
         "pitch": false,
         "nomap": false,
-        "nav_link": false,
+        "nav_link": true,
         "overflow_x": false,
         "js_errors": [],
         "pass": true
@@ -186,7 +187,7 @@
         "feed_items": 0,
         "pitch": true,
         "nomap": false,
-        "nav_link": false,
+        "nav_link": true,
         "overflow_x": false,
         "js_errors": [],
         "pass": true
@@ -202,7 +203,7 @@
         "feed_items": 57,
         "pitch": true,
         "nomap": false,
-        "nav_link": false,
+        "nav_link": true,
         "overflow_x": false,
         "js_errors": [],
         "pass": true
