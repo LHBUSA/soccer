@@ -67,9 +67,19 @@ const VENDOR_WORKER_DEFAULT = { file: join('src', 'vendor', 'kalshi', 'kalshi-ma
 
 test('browser source never calls a provider, the Worker host or Supabase directly', () => {
   const walk = d => readdirSync(d).flatMap(f => (statSync(join(d, f)).isDirectory() ? walk(join(d, f)) : [join(d, f)]));
+  // The vendored shared client (canonical, unmodified) carries the Worker host ONLY as the default `base` of its exported
+  // client factories (createKalshiClient; createTapeClient since a966456). Soccer never relies on that default: every
+  // call to a vendored factory outside src/vendor must pass its own same-origin `base:` (checked below).
+  const factoryDefault = new RegExp(`export function create\\w+Client\\(\\{ ${VENDOR_WORKER_DEFAULT.host.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'g');
   for (const f of walk('src')) {
     let t = readFileSync(f, 'utf8');
-    if (f === VENDOR_WORKER_DEFAULT.file) { assert.equal(t.split(VENDOR_WORKER_DEFAULT.host).length, 2, 'vendored default base appears exactly once'); t = t.replace(VENDOR_WORKER_DEFAULT.host, ''); }
+    if (f === VENDOR_WORKER_DEFAULT.file) {
+      const all = t.split(VENDOR_WORKER_DEFAULT.host).length - 1;
+      const asDefault = (t.match(factoryDefault) || []).length;
+      assert.ok(all >= 1 && all === asDefault, `vendored Worker host appears only as a client-factory default base (${asDefault}/${all})`);
+      t = t.split(VENDOR_WORKER_DEFAULT.host).join('');
+    }
+    if (!f.includes(join('src', 'vendor'))) for (const call of t.match(/create\w+Client\(\{[^)]*\}\)/g) || []) assert.match(call, /\bbase:/, `${f}: ${call} must pass a same-origin base`);
     assert.ok(!/workers\.dev|supabase\.co|espn\.com|openligadb\.de|figshare\.com|ndownloader|service_role/i.test(t), `${f} references an upstream`);
     assert.ok(!/fetch\(\s*['"`]https?:/.test(t), `${f} fetches an absolute URL`);
   }

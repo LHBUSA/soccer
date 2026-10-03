@@ -426,3 +426,105 @@ export function algoVsMarketEvent(payload, { nameOf = null } = {}) {
     <p class="kx__note">Market price recorded ${r.market?.snapshot_age_s != null ? `${esc(String(Math.round(r.market.snapshot_age_s / 60)))} min` : ''} before the algorithm locked (Kalshi prediction market). Later market moves never change this contest.</p>
   </section>`
 }
+
+/* ───────────────────────── MARKET TAPE rail (network) ─────────────────────────
+ * Consumes ONLY GET /v1/market-tape (no local movement math). Fixed-size cards inside a reserved-height
+ * scroller so refreshes update in place. Filters: ALL / LIVE / MOVERS / PBE vs MARKET / SETTLED — a filter
+ * with no items is not rendered (no empty-state UI). Clicks go to the PBE research page (destination);
+ * the event page owns the market link. Movement is labelled "since first observed" (never "since open"). */
+const TAPE_FILTERS = [['all', 'All'], ['live', 'Live'], ['movers', 'Movers'], ['pbe', 'PBE vs Market'], ['settled', 'Settled']]
+const SPORT_LABEL = { nba: 'NBA', wnba: 'WNBA', nfl: 'NFL', nhl: 'NHL', mlb: 'MLB', soccer: 'SOCCER', tennis: 'TENNIS', ufc: 'UFC', f1: 'F1', golf: 'GOLF', boxing: 'BOXING' }
+const cents = (bp) => (bp == null ? null : `${(bp / 100).toFixed(1)}¢`)
+const signed = (bp) => (bp > 0 ? '▲' : '▼') + Math.abs(bp / 100).toFixed(1)
+
+export function tapeState(it) {
+  if (it.lifecycle === 'SETTLED') return ['SETTLED', 'settled']
+  if (it.lifecycle === 'CLOSED') return ['CLOSED', 'closed']
+  if (it.freshness === 'stale' || it.freshness === 'delayed') return ['STALE', 'stale']
+  if (it.lifecycle === 'ACTIVE') return ['LIVE', 'live']
+  if (it.lifecycle === 'UPCOMING') return ['UPCOMING', 'upcoming']
+  return [it.lifecycle || '', 'other']
+}
+
+export function tapeItems(payload, filter = 'all') {
+  const c = payload?.classes || {}
+  const uniq = (arr) => { const seen = new Set(); return arr.filter((x) => { const k = `${x.sport}|${x.canonical_event_id}`; if (seen.has(k)) return false; seen.add(k); return true }) }
+  if (filter === 'live') return c.live || []
+  if (filter === 'movers') return c.movers || []
+  if (filter === 'pbe') return c.pbe_disagreements || []
+  if (filter === 'settled') return uniq([...(c.just_settled || []), ...(c.just_closed || [])])
+  return uniq([...(c.live || []), ...(c.movers || []).slice(0, 8), ...(c.closing_soon || []), ...(c.just_settled || []), ...(c.pbe_disagreements || [])])
+}
+
+function tapeOutcomes(it) {
+  const outs = (it.outcomes || []).slice(0, it.shape === 'field' ? 2 : 3)
+  if (it.lifecycle === 'SETTLED') {
+    const won = (it.outcomes || []).find((o) => o.result === 'yes')
+    const pre = (it.outcomes || []).filter((o) => o.pre_bp != null).sort((a, b) => b.pre_bp - a.pre_bp)[0]
+    return `${pre ? `<span class="tape__l">${esc(pre.label || '')} ${esc(cents(pre.pre_bp))} pre-start favorite</span>` : ''}${won ? `<span class="tape__l tape__l--res">${esc(won.label || '')} ${it.shape === 'two_way' || it.shape === 'three_way' ? 'won' : 'YES'}</span>` : ''}`
+  }
+  return outs.map((o) => {
+    const px = o.price_bp != null ? cents(o.price_bp) : null
+    const mv = o.delta_first_bp ? `<em class="tape__mv tape__mv--${o.delta_first_bp > 0 ? 'up' : 'down'}" title="Since first observed">${esc(signed(o.delta_first_bp))}</em>` : ''
+    return px ? `<span class="tape__l"><b>${esc(o.label || '')}</b> <span class="mono">${esc(px)}</span>${mv}</span>` : ''
+  }).join('')
+}
+
+function tapeCard(it) {
+  const [label, cls] = tapeState(it)
+  const pbe = it.pbe
+  const pbeLine = pbe && pbe.algo_probability != null && pbe.market?.selection_price_bp != null
+    ? `<span class="tape__l tape__l--pbe">PBE ${esc((pbe.algo_probability * 100).toFixed(1))}% · Market ${esc(cents(pbe.market.selection_price_bp))} · ${esc(((pbe.algo_probability * 100) - pbe.market.selection_price_bp / 100).toFixed(1))} pts</span>` : ''
+  const href = it.destination?.url || null
+  const inner = `<span class="tape__hd"><span class="tape__sp">${esc(SPORT_LABEL[it.sport] || String(it.sport || '').toUpperCase())}</span><span class="tape__st tape__st--${cls}">${esc(label)}</span></span>
+    <span class="tape__ti">${esc(it.title || '')}</span>
+    <span class="tape__bd">${pbeLine || tapeOutcomes(it)}</span>`
+  return href ? `<a class="tape__c" href="${esc(href)}" data-tape-event="${esc(`${it.sport}|${it.canonical_event_id}`)}">${inner}</a>` : `<span class="tape__c">${inner}</span>`
+}
+
+/** The rail: filter chips (only non-empty ones) + one horizontally scrolling row of fixed-size cards. */
+export function marketTapeRail(payload, { filter = 'all', title = 'Market Tape' } = {}) {
+  if (!payload?.classes) return ''
+  const counts = Object.fromEntries(TAPE_FILTERS.map(([k]) => [k, tapeItems(payload, k).length]))
+  if (!counts.all) return ''
+  const f = counts[filter] ? filter : 'all'
+  const chips = TAPE_FILTERS.filter(([k]) => counts[k]).map(([k, l]) => `<button type="button" class="tape__f${k === f ? ' is-on' : ''}" data-tape-filter="${k}" aria-pressed="${k === f}">${esc(l)}</button>`).join('')
+  const cards = tapeItems(payload, f).slice(0, 24).map(tapeCard).join('')
+  return `<section class="tape" data-tape aria-label="Market tape: prediction-market prices across PropBetEdge">
+    <div class="tape__top"><span class="tape__name">${esc(title)}</span><span class="tape__fs" role="group" aria-label="Filter">${chips}</span></div>
+    <div class="tape__row" data-tape-row>${cards}</div>
+    <p class="tape__ft">Prediction-market prices (Kalshi) · movement since first observed · not sportsbook odds or a PropBetEdge model</p>
+  </section>`
+}
+
+/** Wire filter chips and in-place refresh. load(): Promise<payload>; refreshMs default 30 s. Returns stop(). */
+export function mountMarketTape(host, load, { refreshMs = 30000, title } = {}) {
+  if (!host) return () => {}
+  let filter = 'all', last = null, t = 0, dead = false
+  const paint = () => {
+    const html = marketTapeRail(last, { filter, title })
+    const row = host.querySelector('[data-tape-row]')
+    if (row && html) {
+      // in place: swap chips + cards only, keep the scroller element (and its scroll position)
+      const tmp = document.createElement('div'); tmp.innerHTML = html
+      const left = row.scrollLeft
+      host.querySelector('.tape__fs').innerHTML = tmp.querySelector('.tape__fs').innerHTML
+      row.innerHTML = tmp.querySelector('[data-tape-row]').innerHTML
+      row.scrollLeft = left
+    } else host.innerHTML = html
+  }
+  host.addEventListener('click', (e) => {
+    const b = e.target.closest?.('[data-tape-filter]')
+    if (!b) return
+    filter = b.dataset.tapeFilter
+    const row = host.querySelector('[data-tape-row]'); if (row) row.scrollLeft = 0
+    paint()
+  })
+  const tick = async () => {
+    if (dead) return
+    if (typeof document === 'undefined' || !document.hidden) { try { const p = await load(); if (p) { last = p; paint() } } catch {} }
+    t = setTimeout(tick, refreshMs)
+  }
+  tick()
+  return () => { dead = true; clearTimeout(t) }
+}

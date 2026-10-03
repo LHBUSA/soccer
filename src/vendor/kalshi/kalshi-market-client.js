@@ -72,3 +72,18 @@ export function createKalshiClient({ base = 'https://propsports-markets.sales-fd
 
   return { loadBoard, forEvent, loadEvent, pollMsFor, sport }
 }
+
+/** Network Market Tape (all sports): GET /v1/market-tape. Failures resolve null (never cached as empty). */
+export function createTapeClient({ base = 'https://propsports-markets.sales-fd3.workers.dev', fetchImpl = (...a) => globalThis.fetch(...a) } = {}) {
+  const root = String(base).replace(/\/+$/, '')
+  return {
+    async load({ sport = null, limit = 24 } = {}) {
+      try {
+        const q = new URLSearchParams({ limit: String(limit) }); if (sport) q.set('sport', sport)
+        const res = await fetchImpl(`${root}/v1/market-tape?${q}`, { headers: { accept: 'application/json' } })
+        if (!res.ok) return null
+        return await res.json()
+      } catch { return null }
+    },
+  }
+}
