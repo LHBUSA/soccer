@@ -33,6 +33,11 @@ const COMPS = [
   { slug: 'premier-league', league: 'eng.1', tier: 1 }, { slug: 'bundesliga', league: 'ger.1', tier: 1 }, { slug: 'mls', league: 'usa.1', tier: 1 },
   { slug: 'uefa-champions-league', league: 'uefa.champions', tier: 1 }, { slug: 'fifa-world-cup', league: 'fifa.world', tier: 1 }, { slug: 'uefa-nations-league', league: 'uefa.nations', tier: 1 },
   { slug: 'la-liga', league: 'esp.1', tier: 2 }, { slug: 'serie-a', league: 'ita.1', tier: 2 }, { slug: 'ligue-1', league: 'fra.1', tier: 2 }, { slug: 'uefa-europa-league', league: 'uefa.europa', tier: 2 },
+  // Women's history (2026-10-03). ger.w.1 / ita.w.1 are probed so their absence on ESPN Core is recorded, not assumed.
+  { slug: 'nwsl', league: 'usa.nwsl', tier: 1, gender: 'women' }, { slug: 'womens-super-league', league: 'eng.w.1', tier: 1, gender: 'women' },
+  { slug: 'uefa-womens-champions-league', league: 'uefa.wchampions', tier: 1, gender: 'women' }, { slug: 'liga-f', league: 'esp.w.1', tier: 1, gender: 'women' },
+  { slug: 'premiere-ligue', league: 'fra.w.1', tier: 1, gender: 'women' }, { slug: 'fifa-womens-world-cup', league: 'fifa.wwc', tier: 1, gender: 'women' },
+  { slug: 'frauen-bundesliga', league: 'ger.w.1', tier: 2, gender: 'women' }, { slug: 'serie-a-women', league: 'ita.w.1', tier: 2, gender: 'women' },
 ];
 const only = arg('--comps', null)?.split(',');
 mkdirSync(CACHE, { recursive: true }); mkdirSync(OUT_DIR, { recursive: true });
