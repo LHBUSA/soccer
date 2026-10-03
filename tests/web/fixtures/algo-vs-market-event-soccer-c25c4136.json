@@ -1,0 +1,57 @@
+{
+ "contract": "algo-vs-market/1",
+ "sport": "soccer",
+ "comparisons": [
+  {
+   "algo_id": "soccer:soccer-algo-v1",
+   "algo_label": "PBE Soccer Algo V1",
+   "sport": "soccer",
+   "canonical_event_id": "c25c4136-f800-5f3a-a5de-b91c1f981bd7",
+   "proposition": "match_result_90min",
+   "algo_lock_at": "2026-10-03T14:05:57+00:00",
+   "event_start_at": "2026-10-10T13:30:00+00:00",
+   "status": "AGREEMENT",
+   "algo_selection": "away",
+   "algo_selection_label": "away",
+   "algo_probability": 0.713535830714774,
+   "market": {
+    "venue": "kalshi",
+    "venue_type": "prediction_market",
+    "market_url": "https://kalshi.com/markets/kxbundesligagame/bundesliga-game/kxbundesligagame-26oct10fcabmu",
+    "observed_at": "2026-10-03T14:03:56.875+00:00",
+    "snapshot_age_s": 120,
+    "selection": "away",
+    "selection_label": "Bayern München",
+    "selection_price_bp": 8050,
+    "prices": {
+     "away": {
+      "label": "Bayern München",
+      "state": "open",
+      "ask_bp": 8100,
+      "bid_bp": 8000,
+      "mid_bp": 8050,
+      "last_bp": 8100
+     },
+     "draw": {
+      "label": "Draw",
+      "state": "open",
+      "ask_bp": 1100,
+      "bid_bp": 1000,
+      "mid_bp": 1050,
+      "last_bp": 1100
+     },
+     "home": {
+      "label": "Augsburg",
+      "state": "open",
+      "ask_bp": 1000,
+      "bid_bp": 900,
+      "mid_bp": 950,
+      "last_bp": 1000
+     }
+    }
+   },
+   "result": null,
+   "frozen_at": "2026-10-03T15:58:21.103597+00:00"
+  }
+ ]
+}

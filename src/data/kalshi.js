@@ -17,12 +17,13 @@
 // page follows the market's own lifecycle from the API (UPCOMING -> ACTIVE -> CLOSED -> SETTLED) with
 // no release; a finished match is not a settled market (CLOSED reads "awaiting settlement").
 import { createKalshiClient } from '../vendor/kalshi/kalshi-market-client.js';
-import { kalshiCard, kalshiLine, marketCloseLine, marketHistoryCard, marketModule } from '../vendor/kalshi/kalshi-market-ui.js';
+import { algoVsMarketCard, algoVsMarketEvent, kalshiCard, kalshiLine, marketCloseLine, marketHistoryCard, marketModule } from '../vendor/kalshi/kalshi-market-ui.js';
 
 export const MARKETS_BASE = '/api/markets';
 
-// The shared client (propbetedge-workers 8b73545) keeps completed events itself: the board keeps entries
-// with a market lifecycle and no live block, loadEvent keeps an event with only market_history. No
+// The shared client (propbetedge-workers ad6187a) keeps completed events itself: the board keeps entries
+// with a market lifecycle and no live block, loadEvent keeps an event with only market_history; a failed
+// read is never cached as 'no market' (last good value kept, the next poll retries at once). No
 // product-side fetch wrapper is needed (the 70d92e0 workaround was removed).
 export const kalshi = createKalshiClient({ sport: 'soccer', base: MARKETS_BASE });
 
@@ -158,4 +159,49 @@ export function tickerMarket(entry, m, k) {
   const rows = [[by('home'), 'H'], [by('draw'), 'D'], [by('away'), 'A']];
   if (rows.some(([o]) => !o || !Number.isFinite(o.mid_bp))) return null;
   return rows.map(([o, f]) => ({ label: code(o, f), px: `${(o.mid_bp / 100).toFixed(1)}¢` }));
+}
+
+// ---------------------------------------------------------------- ALGO vs MARKET
+// GET /v1/algo-vs-market/soccer and /v1/algo-vs-market/event/soccer/:uuid on the shared market Worker, read through the
+// exact same-origin rewrites (vercel.json). Both opinions are frozen at the algorithm lock by the API; this site only
+// renders what the API returns, through the vendored algoVsMarketCard / algoVsMarketEvent (which state their own
+// rules). Only the Bundesliga model (Soccer Algo V1, match result) has an exactly comparable market. No algo entry, no
+// comparison, a failed read or a timeout -> nothing rendered.
+export const AVM_ALGO_MODEL = { 'soccer:soccer-algo-v1': 'bundesliga' };
+export const AVM_BOARD_PATH = `${MARKETS_BASE}/v1/algo-vs-market/soccer`;
+export const avmEventPath = id => `${MARKETS_BASE}/v1/algo-vs-market/event/soccer/${encodeURIComponent(id)}`;
+
+async function readJson(url) {
+  const res = await fetch(url, { headers: { accept: 'application/json' } });
+  if (!res.ok) throw new Error(`${url} ${res.status}`);
+  return res.json();
+}
+/** Track-record payload ({ algos }) or null. Never rejects. */
+export const loadAlgoVsMarket = () => readJson(AVM_BOARD_PATH).then(b => (Array.isArray(b?.algos) ? b : null), () => null);
+/** Event payload ({ comparisons }) or null. Never rejects. */
+export const loadAlgoVsMarketEvent = id => readJson(avmEventPath(id)).then(b => (Array.isArray(b?.comparisons) ? b : null), () => null);
+
+/** Role -> display name from page data ({ home, away } team objects); the draw reads Draw. */
+const teamNameOf = (home, away) => (_r, role) => (role === 'draw' ? 'Draw' : role === 'home' ? home?.name : role === 'away' ? away?.name : null) || null;
+
+/**
+ * Track-record module for one soccer model: the API's entry for that model's algo, rendered as the shared card.
+ * `picks` (the model's official ledger rows) supply match names: rows without an event label get "Home v Away" from
+ * the pick of the same match; roles resolve to team names. '' when the model has no algo entry yet.
+ */
+export function trackRecordAvmHtml(payload, modelKey, picks = []) {
+  const algo = (payload?.algos || []).find(a => AVM_ALGO_MODEL[a.algo_id] === modelKey);
+  if (!algo) return '';
+  const byMatch = new Map(picks.filter(p => p?.match_id).map(p => [String(p.match_id), p]));
+  const ledger = (algo.ledger || []).map(r => {
+    const p = byMatch.get(String(r.canonical_event_id));
+    return !r.event_label && p?.home?.name && p?.away?.name ? { ...r, event_label: `${p.home.name} v ${p.away.name}` } : r;
+  });
+  const nameOf = (r, role) => { const p = byMatch.get(String(r.canonical_event_id)); return p ? teamNameOf(p.home, p.away)(r, role) : role === 'draw' ? 'Draw' : null; };
+  return algoVsMarketCard({ ...algo, ledger }, { nameOf, recent: 10 });
+}
+
+/** Match-page layer next to Market Pulse: PBE pick vs market at PBE lock (+ result); '' without a qualifying comparison. */
+export function matchAvmHtml(payload, m) {
+  return algoVsMarketEvent(payload, { nameOf: teamNameOf(m?.home, m?.away) });
 }

@@ -208,6 +208,8 @@ test('browser code never names a Kalshi API host; the market Worker is reached o
   assert.deepEqual(markets, [
     { source: '/api/markets/v1/market-intelligence/sport/soccer', destination: 'https://propsports-markets.sales-fd3.workers.dev/v1/market-intelligence/sport/soccer' },
     { source: '/api/markets/v1/market-intelligence/event/soccer/:id([0-9a-f-]+)', destination: 'https://propsports-markets.sales-fd3.workers.dev/v1/market-intelligence/event/soccer/:id' },
+    { source: '/api/markets/v1/algo-vs-market/soccer', destination: 'https://propsports-markets.sales-fd3.workers.dev/v1/algo-vs-market/soccer' },
+    { source: '/api/markets/v1/algo-vs-market/event/soccer/:id([0-9a-f-]+)', destination: 'https://propsports-markets.sales-fd3.workers.dev/v1/algo-vs-market/event/soccer/:id' },
   ], 'soccer routes only, no wildcard');
   const csp = v.headers.flatMap(h => h.headers).find(h => h.key === 'Content-Security-Policy').value;
   assert.match(csp, /connect-src 'self' /, 'same-origin reads need no new connect-src host');
@@ -246,18 +248,18 @@ const closedVariant = e => {
 };
 const settled = () => asSoccer(HIST_ID);
 
-test('vendored shared client is pinned byte-for-byte to propbetedge-workers 8b73545 (SHA-256)', () => {
+test('vendored shared client is pinned byte-for-byte to propbetedge-workers ad6187a (SHA-256)', () => {
   const pins = {
-    'kalshi-market-ui.js': '93a8f485e90633a1cd70e93ab4123c1dc2161d08b3a76e41ec3cc4a0279d74f4',
+    'kalshi-market-ui.js': '03712a0eb48e5265523ec45b145fd2fa880c9435e1adf2c6ca988c78c3fa37a8',
     'kalshi-market-ui.css': 'fb046ada2b2e5450207e4301c0e41a193aa599e4661843fdcdb50d45ac7191ae',
-    'kalshi-market-client.js': '211be23bb9a5b2be0a1b4ed1a1c2c1b3b2dfc4ef45a040ae13c07d28a8ae8744',
+    'kalshi-market-client.js': '68f9ed06de627654634e385acc79b1efdee858de4a59801e20b401b5c0bc43dc',
     'README.md': 'a80e4ac5d8733bde8afc0c13c281242babff8b1acd083974741f677b7af5a480',
   };
   for (const [f, sha] of Object.entries(pins)) {
     const bytes = readFileSync(join('src/vendor/kalshi', f), 'utf8').replace(/\r\n/g, '\n');
     assert.equal(createHash('sha256').update(bytes).digest('hex'), sha, f);
   }
-  for (const fn of ['marketHistoryCard', 'marketCloseLine', 'marketModule']) assert.equal(typeof ui[fn], 'function', fn);
+  for (const fn of ['marketHistoryCard', 'marketCloseLine', 'marketModule', 'algoVsMarketCard', 'algoVsMarketEvent']) assert.equal(typeof ui[fn], 'function', fn);
 });
 
 test('SETTLED (real Kalshi history): match page shows "How the market closed" with the 90-minute note, never an opening price', () => {
@@ -404,4 +406,35 @@ test('score ticker: compact "MKT ARS 71.5¢ · DRAW 17.5¢ · LEE 11.5¢" segmen
   const plain = tickerItem({ m, k: 'next' });
   assert.doesNotMatch(plain, /stk-mkt/, 'no market -> chip unchanged');
   assert.equal(tickerMarketHtml(null), '');
+});
+
+// ------------------------------------------------------------------ shared client ad6187a behaviour
+test('ad6187a: the card subtitle says "Live prediction market" only for a live-fresh quote; stale says "quote not current"', () => {
+  assert.match(text(kx.matchKalshiHtml(entry())), /Market Pulse Live prediction market · Kalshi/);
+  const stale = text(kx.matchKalshiHtml(entry({ freshness: 'stale', age_seconds: 3600 })));
+  assert.match(stale, /Market Pulse Prediction market · quote not current · Kalshi/);
+  assert.doesNotMatch(stale, /Live prediction market ·/);
+  const delayed = text(kx.matchKalshiHtml(entry({ freshness: 'delayed' })));
+  assert.match(delayed, /Market Pulse Prediction market · Kalshi/);
+});
+
+test('ad6187a: a failed event read is never cached as "no market": the last good value is kept and the next call retries', async () => {
+  const { createKalshiClient } = await import('../../src/vendor/kalshi/kalshi-market-client.js');
+  let mode = 'up'; const calls = [];
+  const c = createKalshiClient({ sport: 'soccer', base: '/api/markets', fetchImpl: async url => { calls.push(url); if (mode === 'down') return { ok: false, status: 503, json: async () => ({}) }; return { ok: true, status: 200, json: async () => ({ enabled: true, event: entry() }) }; } });
+  const good = await c.loadEvent(ID);
+  assert.equal(good?.event?.canonical_event_id, ID);
+  mode = 'down';
+  const kept = await c.loadEvent(ID, { force: true });
+  assert.equal(kept, good, 'a 503 keeps the last good entry (no "no market")');
+  mode = 'up';
+  const n = calls.length;
+  const again = await c.loadEvent(ID); // no force: a failure is not cached for the TTL, so this reads again at once
+  assert.equal(calls.length, n + 1, 'retried immediately');
+  assert.equal(again?.event?.canonical_event_id, ID);
+  // a never-good id that fails reads as nothing, and the next call retries rather than serving a cached null
+  mode = 'down';
+  assert.equal(await c.loadEvent(NO_MARKET_ID), null);
+  const m = calls.length; await c.loadEvent(NO_MARKET_ID);
+  assert.equal(calls.length, m + 1);
 });

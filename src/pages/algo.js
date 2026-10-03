@@ -10,6 +10,10 @@ import { api } from '../lib/api.js';
 import { esc, join, when } from '../lib/html.js';
 import { dateTime } from '../lib/format.js';
 import { empty, link, mergeMeta, sectionHead, sourcePanel } from '../components/ui.js';
+import { AVM_ALGO_MODEL, byDeadline, loadAlgoVsMarket, trackRecordAvmHtml } from '../data/kalshi.js';
+
+// Longest the track record waits for the Algo vs Market read (it runs in parallel with the record reads).
+export const AVM_WAIT_MS = 2500;
 
 // Production-approved soccer algos. lock_minutes = each frozen spec's lead_time.lock_minutes_before_kickoff.
 export const MODELS = [
@@ -139,6 +143,8 @@ export const trackRecord = {
   title: () => 'Soccer PBE Picks Track Record | PropBetEdge Soccer',
   async load(_p, sp) {
     // which models are live: one cheap picks read each; the record and research of the SELECTED model only
+    const avmDeadline = Date.now() + AVM_WAIT_MS;
+    const avmRead = loadAlgoVsMarket();
     const live = await loadModels('picks');
     const want = sp?.get('model');
     const model = (live.find(x => x.model.key === want) || live[0] || { model: MODELS[0] }).model;
@@ -146,10 +152,16 @@ export const trackRecord = {
     const market = markets.includes(sp?.get('market')) ? sp.get('market') : undefined;
     const last = ['30', '60', '100'].includes(sp?.get('last')) ? sp.get('last') : undefined;
     const [rec, res] = await Promise.all([api(`${model.api}/record`, { market, last }), api(`${model.api}/research`)]);
-    return { rec, res, market, last, model, live: live.map(x => x.model), markets: marketsOf(rec.data.policy) };
+    // Algo vs Market: only for a model with an exactly comparable market (V1, match result); never under another market filter
+    const avmOn = Object.values(AVM_ALGO_MODEL).includes(model.key) && (!market || market === '1x2');
+    const avm = avmOn ? (await byDeadline(avmRead, avmDeadline)) ?? null : null;
+    const op = live.find(x => x.model === model)?.res.data.official_picks;
+    const avmPicks = [...(rec.data.picks || []), ...(op?.open || []), ...(op?.recent || [])];
+    return { rec, res, market, last, model, live: live.map(x => x.model), markets: marketsOf(rec.data.policy), avm, avmPicks };
   },
-  render({ rec, res, market, last, model = MODELS[0], live = [], markets = [] }) {
+  render({ rec, res, market, last, model = MODELS[0], live = [], markets = [], avm = null, avmPicks = [] }) {
     const d = rec.data;
+    const avmHtml = trackRecordAvmHtml(avm, model.key, avmPicks);
     const q = o => { const p = new URLSearchParams({ ...(live.length > 1 ? { model: model.key } : {}), ...(market ? { market } : {}), ...(last ? { last } : {}), ...o }); for (const [k, v] of [...p]) if (!v) p.delete(k); return p.toString() ? `?${p}` : ''; };
     const f = (k, v, l) => link(`/track-record${q({ [k]: v || '' })}`, esc(l), `btn${(k === 'market' ? market : last) === v ? ' gold' : ''}`);
     return `${hero(`${model.version.toUpperCase()} · ${model.competition.toUpperCase()} · PUBLIC RECORD`, 'Track <span>record</span>', 'Every Official Pick this model issued after go-live, straight from its append-only ledger. Wins, losses, voids and pending picks. Nothing is removed, nothing from before go-live is counted, and no model shares a record with another.')}
@@ -162,6 +174,7 @@ export const trackRecord = {
       <p class="sec-note">Hit rate = hits / (hits + misses). Void and pending picks are not in it. ${esc(d.prices?.reason || '')}</p>
       ${sectionHead('CALIBRATION', 'Model probability vs outcome')}
       ${calibrationTable(d.totals.calibration)}
+      ${when(avmHtml, () => `${sectionHead('ALGO VS MARKET', 'PBE pick vs prediction market at lock')}<div class="avm-slot">${avmHtml}</div>`)}
       ${sectionHead('LEDGER', 'Every Official Pick')}
       ${d.picks.length ? pickTable(d.picks.map(p => [model, p]), 'Official Pick ledger', false) : empty('No Official Picks yet', 'The ledger is empty.')}
       ${researchPanel(model, res.data)}

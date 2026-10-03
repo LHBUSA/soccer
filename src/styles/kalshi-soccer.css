@@ -64,3 +64,9 @@
 /* Market history: result-card close line stays subtle (no accent badge); history card spacing in the cast. */
 .mc-kx .kx-line--closed, .hcard:not(.k-live) .hc-kx .kx-line--closed { color: var(--muted); }
 .mc-kx .kx-line--closed .kx-line__b, .hcard:not(.k-live) .hc-kx .kx-line--closed .kx-line__b { color: var(--muted); }
+
+/* Algo vs Market (shared module): match-page layer directly under Market Pulse; /track-record module after CALIBRATION.
+   Both render only when the API has a qualifying comparison; the ledger table scrolls inside its own box on phones. */
+.avm-sec { padding-top: 6px; }
+.avm-slot { max-width: 820px; min-width: 0; }
+.avm .kx__note { color: var(--muted-dark); }

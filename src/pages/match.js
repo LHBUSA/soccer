@@ -10,19 +10,21 @@ import { keyPlayers } from '../components/keyplayers.js';
 import { matchTitle } from '../seo/meta.js';
 import { analyzerPreviewHtml } from '../components/analyzer.js';
 import { compMeta } from '../lib/competitions.js';
-import { boardEntry, byDeadline, KALSHI_FIRST_PAINT_MS, loadMatchMarket, marketPollMs, matchKalshiHtml } from '../data/kalshi.js';
+import { boardEntry, byDeadline, KALSHI_FIRST_PAINT_MS, loadAlgoVsMarketEvent, loadMatchMarket, marketPollMs, matchAvmHtml, matchKalshiHtml } from '../data/kalshi.js';
 import { wireKalshi } from '../vendor/kalshi/kalshi-market-ui.js';
 
 export const title = d => (d?.env?.data ? matchTitle(d.env.data) : 'Match Intelligence | PropBetEdge');
 
 // The Kalshi market read starts WITH the match read and may hold the first paint for at most
 // KALSHI_FIRST_PAINT_MS from the start of the load (never longer); a late answer fills the slot in mount().
+// The Algo vs Market comparison (PBE pick vs market at PBE lock) is read the same way, in parallel, same budget.
 export async function load([id]) {
   const deadline = Date.now() + KALSHI_FIRST_PAINT_MS;
   const kx = loadMatchMarket(id);
+  const avm = loadAlgoVsMarketEvent(id);
   const env = await api(`matches/${id}`);
-  const entry = await byDeadline(kx, deadline);
-  return { env, kx: entry === undefined ? boardEntry(id) : entry, kxPending: entry === undefined ? kx : null };
+  const [entry, avmNow] = await Promise.all([byDeadline(kx, deadline), byDeadline(avm, deadline)]);
+  return { env, kx: entry === undefined ? boardEntry(id) : entry, kxPending: entry === undefined ? kx : null, avm: avmNow ?? null, avmPending: avmNow === undefined ? avm : null };
 }
 
 const personLink = p => (p?.slug ? link(`/players/${p.slug}`, esc(p.name)) : esc(p?.name || 'Unidentified player'));
@@ -153,6 +155,7 @@ export function render(d) {
   const m = d.env.data; const meta = d.env.meta;
   const sc = m.score;
   const kxHtml = matchKalshiHtml(d.kx);
+  const avmHtml = matchAvmHtml(d.avm, m);
   const extra = [
     ['Event source', m.event_source ? sourceName(m.event_source) : 'None'],
     ['Result source', sourceName(m.result_source)],
@@ -174,6 +177,7 @@ export function render(d) {
     ${freshness(m, meta)}
   </div></section>
   <section class="canvas kx-sec" data-kx-match${kxHtml ? '' : ' hidden'}><div class="wrap mid">${kxHtml}</div></section>
+  <section class="canvas kx-sec avm-sec" data-avm-match${avmHtml ? '' : ' hidden'}><div class="wrap mid">${avmHtml}</div></section>
   <section class="canvas alt" data-analyzer-preview hidden><div class="wrap"></div></section>
   <section class="canvas" data-match-id="${esc(m.id)}"><div class="wrap mgrid2">
     <div class="col-a">
@@ -232,8 +236,22 @@ function mountKalshi(root, d) {
   schedule();
 }
 
+// Algo vs Market layer: frozen at the PBE lock, so it never polls; a read that missed the first-paint budget fills the slot once.
+function mountAvm(root, d) {
+  const slot = root.querySelector('[data-avm-match]');
+  if (!slot || d.avm || !d.avmPending) return;
+  const id = d.env.data.id;
+  d.avmPending.then(p => {
+    if (p) d.avm = p;
+    const html = slot.isConnected && d.env.data.id === id ? matchAvmHtml(p, d.env.data) : '';
+    if (!html) return;
+    slot.querySelector('.wrap').innerHTML = html; slot.hidden = false;
+  });
+}
+
 export function mount(root, d) {
   mountKalshi(root, d);
+  mountAvm(root, d);
   mountRelatedNews(root, { match: d.env.data.id }, { title: 'Stories about this match' });
   const preview = root.querySelector('[data-analyzer-preview]');
   if (preview && d.env.meta.features?.includes('matchup_analyzer_v2')) api(`matches/${d.env.data.id}/analyzer-preview`).then(env => {
@@ -246,7 +264,7 @@ export function mount(root, d) {
     const path = location.pathname;
     const t = setTimeout(async () => {
       if (location.pathname !== path || !root.isConnected) return;
-      try { const env = await api(`matches/${d.env.data.id}`, {}, { fresh: true }); if (location.pathname !== path) return; const next = { env, kx: kxState.id === env.data.id ? kxState.entry : null }; root.innerHTML = render(next); mount(root, next); } catch { /* keep the current view */ }
+      try { const env = await api(`matches/${d.env.data.id}`, {}, { fresh: true }); if (location.pathname !== path) return; const next = { env, kx: kxState.id === env.data.id ? kxState.entry : null, avm: d.avm || null }; root.innerHTML = render(next); mount(root, next); } catch { /* keep the current view */ }
     }, 60000);
     root.dataset.liveTimer = String(t);
   }
