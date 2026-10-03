@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-03T14:51:44.612Z",
+  "generated_at": "2026-10-03T15:09:10.551Z",
   "discovery": "2026-10-03T13:52:26.937Z",
   "rows": [
     {
@@ -184,22 +184,22 @@
       "season": "2026-27 UEFA Europa League",
       "teams": 36,
       "matches": 144,
-      "results": null,
-      "standings": null,
-      "lineups": null,
-      "stats": null,
-      "plays": null,
-      "coordinates": null,
+      "results": 18,
+      "standings": "verified/computed",
+      "lineups": 18,
+      "stats": 18,
+      "plays": 18,
+      "coordinates": 24771,
       "live": null,
-      "pbecast": null,
-      "players": null,
-      "dna": null,
+      "pbecast": "replay payload proven",
+      "players": 781,
+      "dna": "descriptive (inputs present)",
       "media": null,
       "news": "off",
       "history": "current season only",
       "source_status": "source_present",
-      "launch_status": "registered, lane disabled",
-      "blocker": "canary not run"
+      "launch_status": "enabled on main; soccer-ingest release pending",
+      "blocker": "soccer-ingest release (owner permission) + production fill + frontend enable"
     },
     {
       "phase": "B",

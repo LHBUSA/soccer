@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026-10-03.4",
+  "registry_version": "2026-10-03.5",
   "note": "Reviewed canonical metadata for competitions and the provider ids proven to denote them. Provider ids here are crosswalks, not identity.",
   "competitions": [
     {
@@ -395,14 +395,15 @@
       "espn": {
         "league": "uefa.europa",
         "id": "776",
-        "enabled": false,
+        "enabled": true,
         "may_found": true,
         "stage_by_type": true,
         "standings": {
           "group_type": "league_phase",
           "season_type": 1
         },
-        "structure_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): uefa.europa 2026 types 1 'League Phase' (144 events, standings), 2 'Knockout Round Playoffs', 3 'Round of 16', 4 'Quarterfinals', 5 'Semifinals', 6 'Final'; 36 teams. Same format as the Champions League lane."
+        "structure_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): uefa.europa 2026 types 1 'League Phase' (144 events, standings), 2 'Knockout Round Playoffs', 3 'Round of 16', 4 'Quarterfinals', 5 'Semifinals', 6 'Final'; 36 teams. Same format as the Champions League lane.",
+        "enable_note": "Enabled 2026-10-03 after local canary PASS (docs/evidence/world/canary-uefa-europa-league-2026-10-03.json): 144/144 fixtures, 18/18 finished detailed (lineups both sides 18, team stats 18, plays 18; 24771 located events), 0 enrichment gaps; identity 36/36 teams gender men (5 reused from production by stable ESPN id, 31 founded, 0 queued, 0 name-only merges); table league-phase; PBEcast replay + pregame payloads proven. 14 athletes without DOB queued (never invented)."
       },
       "external_ids": [
         {
@@ -414,7 +415,7 @@
       ],
       "news": {
         "enabled": false,
-        "blocker": "No canonical competition row, season or matches in production: ESPN lane disabled; needs lane canary + identity certification."
+        "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
       },
       "expected_teams": 36
     },

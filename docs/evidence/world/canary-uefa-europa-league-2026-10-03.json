@@ -1,0 +1,445 @@
+{
+  "generated_at": "2026-10-03T15:07:58.395Z",
+  "mode": "local-pglite (production untouched; production team identities seeded read-only)",
+  "competition": "uefa-europa-league",
+  "gender": "men",
+  "team_kind": "club",
+  "source": "ESPN Core (owner-approved collection lane)",
+  "budget": 3000,
+  "requests_used": 1359,
+  "budget_exhausted": false,
+  "aborted": null,
+  "runs": [
+    {
+      "requests": 200,
+      "fixtures_new": 144,
+      "detailed": 0,
+      "team_identity": {
+        "espn_teams": 36,
+        "resolved_before": 5,
+        "teams_founded": 31,
+        "team_crosswalk": {
+          "inserted": 31,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "resolved_after": 36
+      },
+      "fixtures": {
+        "considered": 144,
+        "attached_to_existing": 0,
+        "founded": 144,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 144,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 144,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 36,
+        "resolved_before": 36
+      },
+      "fixtures": {
+        "considered": 144,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 36,
+        "resolved_before": 36
+      },
+      "fixtures": {
+        "considered": 144,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 36,
+        "resolved_before": 36
+      },
+      "fixtures": {
+        "considered": 144,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 36,
+        "resolved_before": 36
+      },
+      "fixtures": {
+        "considered": 144,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 36,
+        "resolved_before": 36
+      },
+      "fixtures": {
+        "considered": 144,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 159,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 36,
+        "resolved_before": 36
+      },
+      "fixtures": {
+        "considered": 144,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": null
+    },
+    {
+      "requests": 0,
+      "fixtures_new": 0,
+      "detailed": 0,
+      "team_identity": {
+        "espn_teams": 36,
+        "resolved_before": 36
+      },
+      "fixtures": {
+        "considered": 144,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": null
+    }
+  ],
+  "espn": {
+    "league": "uefa.europa",
+    "id": "776",
+    "season_year": 2026,
+    "types": {
+      "1": {
+        "name": "League Phase",
+        "role": "league"
+      },
+      "2": {
+        "name": "Knockout Round Playoffs",
+        "role": "playoff"
+      },
+      "3": {
+        "name": "Round of 16",
+        "role": "playoff"
+      },
+      "4": {
+        "name": "Quarterfinals",
+        "role": "playoff"
+      },
+      "5": {
+        "name": "Semifinals",
+        "role": "playoff"
+      },
+      "6": {
+        "name": "Final",
+        "role": "playoff"
+      }
+    },
+    "fixtures_seen": 144,
+    "detailed": 18,
+    "by_type": {
+      "League Phase": 144
+    },
+    "excluded_teams": null
+  },
+  "competition_row": {
+    "id": "4f7beeba-61a8-51d2-82a4-ad375f4cfe85",
+    "slug": "uefa-europa-league",
+    "name": "UEFA Europa League",
+    "comp_type": "club_tournament",
+    "gender": "men"
+  },
+  "season": {
+    "label": "2026/27",
+    "publication_state_after_lane": "published",
+    "local_promotion": "published in the local canary store only"
+  },
+  "identity_gate": {
+    "teams": 36,
+    "expected_teams": 36,
+    "wrong_team_kind": [],
+    "wrong_gender": [],
+    "reused_existing_canonical": [
+      "Crystal Palace",
+      "Hoffenheim",
+      "Bayer Leverkusen",
+      "Sunderland",
+      "AFC Bournemouth"
+    ],
+    "founded_new": 31,
+    "espn_ids_already_crosswalked_in_production": 5,
+    "espn_id_maps_to_same_canonical_as_production": true,
+    "duplicate_espn_team_ids": 0,
+    "teams_with_more_than_one_espn_id": 0,
+    "duplicate_names": [],
+    "crosswalk_methods": {
+      "fixture_graph": 2,
+      "founding": 34
+    },
+    "cross_gender_namesakes_kept_distinct": [],
+    "teams_queued": 0,
+    "teams_queued_detail": [],
+    "pass": true
+  },
+  "matches": {
+    "total": 144,
+    "by_status": {
+      "scheduled": 126,
+      "finished": 18
+    },
+    "by_stage": [
+      {
+        "name": "League phase",
+        "type": "league",
+        "matches": 144,
+        "finished": 18
+      },
+      {
+        "name": "Knockout rounds",
+        "type": "playoff",
+        "matches": 0,
+        "finished": 0
+      }
+    ],
+    "finished_without_score": 0,
+    "knockout_without_winner": 0
+  },
+  "enrichment": {
+    "finished": 18,
+    "detailed": 18,
+    "lineups_both": 18,
+    "lineup_rows": 36,
+    "formations": 36,
+    "team_stats_both": 18,
+    "team_stat_rows": 540,
+    "plays": 18,
+    "events": 26531,
+    "located_events": 24771,
+    "coord_systems": {
+      "none": 861,
+      "espn_pct_v1": 25670
+    },
+    "gaps": []
+  },
+  "players": {
+    "in_lineups": 781,
+    "founded_locally": 781,
+    "corroborated": 0,
+    "queued": 14,
+    "queued_by_reason": {
+      "athlete_without_dob_or_name": 14
+    },
+    "already_canonical_in_production_by_espn_id": 310,
+    "production_lookup": "ok"
+  },
+  "table": {
+    "view": "league-phase",
+    "groups": [
+      {
+        "key": "league-phase",
+        "name": "League phase",
+        "verified": true,
+        "rows": 36,
+        "mismatches": []
+      }
+    ]
+  },
+  "finished_match_proof": {
+    "match_id": "c17326bd-2ca1-5466-af47-58d41e01ca71",
+    "fixture": "Viktoria Plzen 0-3 Union St.-Gilloise",
+    "kickoff": "2026-09-17T19:00:00.000Z",
+    "venue": "Doosan Arena",
+    "lineups": [
+      "home",
+      "away"
+    ],
+    "timeline": 7,
+    "shots": 36,
+    "events": 1626,
+    "coverage": {
+      "state": "ok",
+      "notes": []
+    },
+    "cast": {
+      "mode": "replay",
+      "sequence": 48
+    }
+  },
+  "scheduled_match_proof": {
+    "match_id": "135d8b46-a329-5917-b6e8-20ced342513f",
+    "fixture": "Lyon v Crystal Palace",
+    "kickoff": "2026-10-15T16:45:00.000Z",
+    "cast_mode": "pregame"
+  },
+  "competition_api": {
+    "team_kind": null,
+    "teams": 36,
+    "finished": 18,
+    "scheduled": 126
+  },
+  "gate": {
+    "lane_completed_without_abort": true,
+    "fixtures_complete": true,
+    "every_finished_match_scored": true,
+    "every_finished_match_detailed": true,
+    "no_enrichment_gaps": true,
+    "identity": true,
+    "table": true,
+    "knockout_winners_known": true,
+    "pass": true
+  },
+  "elapsed_s": 981,
+  "gate_version": "competition-canary-gate/1.1.0",
+  "regated": {
+    "at": "2026-10-03T15:09:02.308Z",
+    "previous_gate": {
+      "lane_completed_without_abort": true,
+      "fixtures_complete": true,
+      "every_finished_match_scored": true,
+      "every_finished_match_detailed": true,
+      "no_enrichment_gaps": true,
+      "identity": true,
+      "table": false,
+      "knockout_winners_known": true,
+      "pass": false
+    },
+    "reason": "gate 1.0 read verified_groups/withheld_groups, which the league-phase view does not return; the table itself was verified (1 group, 36 rows, 0 mismatches)"
+  }
+}

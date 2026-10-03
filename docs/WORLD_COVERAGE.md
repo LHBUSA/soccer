@@ -41,7 +41,7 @@ League, Bundesliga, UCL, Nations League, FIFA World Cup stay as they are).
 See the generated matrix below; production steps not yet run are listed in its blocker column.
 
 <!-- matrix -->
-Generated 2026-10-03T14:51:44.620Z by scripts/evidence/world-matrix.mjs from docs/evidence/world/*.json.
+Generated 2026-10-03T15:09:10.563Z by scripts/evidence/world-matrix.mjs from docs/evidence/world/*.json.
 
 | phase | competition | gender | region | provider | season | teams | matches | results | standings | lineups | stats | plays | coordinates | live | pbecast | players | dna | news | source_status | launch_status | blocker |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -55,7 +55,7 @@ Generated 2026-10-03T14:51:44.620Z by scripts/evidence/world-matrix.mjs from doc
 | A | Spanish LALIGA | men | ESP | espn esp.1 (740) | 2026-27 Spanish LALIGA | 20 | 380 | 69 | verified/computed | 69 | 69 | 69 | 93772 | — | replay payload proven | 544 | descriptive (inputs present) | off | source_present | enabled on main; soccer-ingest release pending | soccer-ingest release (owner permission) + production fill + frontend enable |
 | A | Italian Serie A | men | ITA | espn ita.1 (730) | 2026-27 Italian Serie A | 20 | 380 | 50 | verified/computed | 50 | 50 | 50 | 67835 | — | replay payload proven | 582 | descriptive (inputs present) | off | source_present | enabled on main; soccer-ingest release pending | soccer-ingest release (owner permission) + production fill + frontend enable |
 | A | French Ligue 1 | men | FRA | espn fra.1 (710) | 2026-27 French Ligue 1 | 18 | 306 | 45 | verified/computed | 45 | 45 | 45 | 63170 | — | replay payload proven | 446 | descriptive (inputs present) | off | source_present | enabled on main; soccer-ingest release pending | soccer-ingest release (owner permission) + production fill + frontend enable |
-| A | UEFA Europa League | men | international | espn uefa.europa (776) | 2026-27 UEFA Europa League | 36 | 144 | — | — | — | — | — | — | — | — | — | — | off | source_present | registered, lane disabled | canary not run |
+| A | UEFA Europa League | men | international | espn uefa.europa (776) | 2026-27 UEFA Europa League | 36 | 144 | 18 | verified/computed | 18 | 18 | 18 | 24771 | — | replay payload proven | 781 | descriptive (inputs present) | off | source_present | enabled on main; soccer-ingest release pending | soccer-ingest release (owner permission) + production fill + frontend enable |
 | B | NWSL | women | USA | espn usa.nwsl (8301) | 2026 NWSL | 16 | 240 | — | — | — | — | — | — | — | — | — | — | off | source_present | registered, lane disabled | canary not run |
 | B | English Women's Super League | women | ENG | espn eng.w.1 (8097) | 2026-27 English Women's Super League | 14 | 182 | — | — | — | — | — | — | — | — | — | — | off | source_present | registered, lane disabled | canary not run |
 | B | UEFA Women's Champions League | women | international | espn uefa.wchampions (19483) | 2026-27 UEFA Women's Champions League | 18 | 54 | — | — | — | — | — | — | — | — | — | — | off | source_present | registered, lane disabled | canary not run |
