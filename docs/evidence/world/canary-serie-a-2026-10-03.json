@@ -1,0 +1,410 @@
+{
+  "generated_at": "2026-10-03T14:36:06.128Z",
+  "mode": "local-pglite (production untouched; production team identities seeded read-only)",
+  "competition": "serie-a",
+  "gender": "men",
+  "team_kind": "club",
+  "source": "ESPN Core (owner-approved collection lane)",
+  "budget": 3000,
+  "requests_used": 1534,
+  "budget_exhausted": false,
+  "aborted": null,
+  "runs": [
+    {
+      "requests": 200,
+      "fixtures_new": 197,
+      "detailed": 0,
+      "exhausted": "discovery"
+    },
+    {
+      "requests": 199,
+      "fixtures_new": 183,
+      "detailed": 0,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 4,
+        "teams_founded": 16,
+        "team_crosswalk": {
+          "inserted": 16,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "resolved_after": 20
+      },
+      "fixtures": {
+        "considered": 380,
+        "attached_to_existing": 0,
+        "founded": 380,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 380,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 380,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "fixtures": {
+        "considered": 380,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "fixtures": {
+        "considered": 380,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "fixtures": {
+        "considered": 380,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 12,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "fixtures": {
+        "considered": 380,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 15,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "fixtures": {
+        "considered": 380,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 135,
+      "fixtures_new": 0,
+      "detailed": 14,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "fixtures": {
+        "considered": 380,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": null
+    },
+    {
+      "requests": 0,
+      "fixtures_new": 0,
+      "detailed": 0,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "fixtures": {
+        "considered": 380,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": null
+    }
+  ],
+  "espn": {
+    "league": "ita.1",
+    "id": "730",
+    "season_year": 2026,
+    "fixtures_seen": 380,
+    "detailed": 50,
+    "by_type": {
+      "1": 380
+    },
+    "excluded_teams": null
+  },
+  "competition_row": {
+    "id": "fa3fc310-da32-534f-9f2d-14cf8704a93f",
+    "slug": "serie-a",
+    "name": "Serie A",
+    "comp_type": "league",
+    "gender": "men"
+  },
+  "season": {
+    "label": "2026/27",
+    "publication_state_after_lane": "published",
+    "local_promotion": "published in the local canary store only"
+  },
+  "identity_gate": {
+    "teams": 20,
+    "expected_teams": 20,
+    "wrong_team_kind": [],
+    "wrong_gender": [],
+    "reused_existing_canonical": [
+      "Internazionale",
+      "AS Roma",
+      "Napoli",
+      "Como"
+    ],
+    "founded_new": 16,
+    "espn_ids_already_crosswalked_in_production": 4,
+    "espn_id_maps_to_same_canonical_as_production": true,
+    "duplicate_espn_team_ids": 0,
+    "teams_with_more_than_one_espn_id": 0,
+    "duplicate_names": [],
+    "crosswalk_methods": {
+      "founding": 20
+    },
+    "cross_gender_namesakes_kept_distinct": [],
+    "teams_queued": 0,
+    "teams_queued_detail": [],
+    "pass": true
+  },
+  "matches": {
+    "total": 380,
+    "by_status": {
+      "finished": 50,
+      "scheduled": 330
+    },
+    "by_stage": [
+      {
+        "name": "Regular Season",
+        "type": "league",
+        "matches": 380,
+        "finished": 50
+      }
+    ],
+    "finished_without_score": 0,
+    "knockout_without_winner": 0
+  },
+  "enrichment": {
+    "finished": 50,
+    "detailed": 50,
+    "lineups_both": 50,
+    "lineup_rows": 100,
+    "formations": 100,
+    "team_stats_both": 50,
+    "team_stat_rows": 1500,
+    "plays": 50,
+    "events": 73148,
+    "located_events": 67835,
+    "coord_systems": {
+      "none": 2581,
+      "espn_pct_v1": 70567
+    },
+    "gaps": []
+  },
+  "players": {
+    "in_lineups": 582,
+    "founded_locally": 582,
+    "corroborated": 0,
+    "queued": 13,
+    "queued_by_reason": {
+      "athlete_without_dob_or_name": 13
+    },
+    "already_canonical_in_production_by_espn_id": 238,
+    "production_lookup": "ok"
+  },
+  "table": {
+    "view": "overall",
+    "rows": 20,
+    "top": [
+      {
+        "team": "AS Roma",
+        "pld": 5,
+        "pts": 13
+      },
+      {
+        "team": "Internazionale",
+        "pld": 5,
+        "pts": 13
+      },
+      {
+        "team": "Lazio",
+        "pld": 5,
+        "pts": 13
+      }
+    ]
+  },
+  "finished_match_proof": {
+    "match_id": "755eeebc-1c49-53e5-a625-5b9e735fdaa8",
+    "fixture": "Atalanta 1-2 Cagliari",
+    "kickoff": "2026-09-12T18:45:00.000Z",
+    "venue": "New Balance Arena",
+    "lineups": [
+      "home",
+      "away"
+    ],
+    "timeline": 3,
+    "shots": 27,
+    "events": 1647,
+    "coverage": {
+      "state": "ok",
+      "notes": []
+    },
+    "cast": {
+      "mode": "replay",
+      "sequence": 35
+    }
+  },
+  "scheduled_match_proof": {
+    "match_id": "cfdd3770-6d86-52fb-a746-e222ee354734",
+    "fixture": "Bologna v AS Roma",
+    "kickoff": "2026-12-04T19:45:00.000Z",
+    "cast_mode": "pregame"
+  },
+  "competition_api": {
+    "team_kind": null,
+    "teams": 20,
+    "finished": 50,
+    "scheduled": 330
+  },
+  "gate": {
+    "lane_completed_without_abort": true,
+    "fixtures_complete": true,
+    "every_finished_match_scored": true,
+    "every_finished_match_detailed": true,
+    "no_enrichment_gaps": true,
+    "identity": true,
+    "table": true,
+    "knockout_winners_known": true,
+    "pass": true
+  },
+  "elapsed_s": 1104
+}

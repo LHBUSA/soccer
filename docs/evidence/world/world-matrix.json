@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-03T14:19:55.631Z",
+  "generated_at": "2026-10-03T14:36:51.749Z",
   "discovery": "2026-10-03T13:52:26.937Z",
   "rows": [
     {
@@ -130,22 +130,22 @@
       "season": "2026-27 Italian Serie A",
       "teams": 20,
       "matches": 380,
-      "results": null,
-      "standings": null,
-      "lineups": null,
-      "stats": null,
-      "plays": null,
-      "coordinates": null,
+      "results": 50,
+      "standings": "verified/computed",
+      "lineups": 50,
+      "stats": 50,
+      "plays": 50,
+      "coordinates": 67835,
       "live": null,
-      "pbecast": null,
-      "players": null,
-      "dna": null,
+      "pbecast": "replay payload proven",
+      "players": 582,
+      "dna": "descriptive (inputs present)",
       "media": null,
       "news": "off",
       "history": "current season only",
       "source_status": "source_present",
-      "launch_status": "registered, lane disabled",
-      "blocker": "canary not run"
+      "launch_status": "enabled on main; soccer-ingest release pending",
+      "blocker": "soccer-ingest release (owner permission) + production fill + frontend enable"
     },
     {
       "phase": "A",

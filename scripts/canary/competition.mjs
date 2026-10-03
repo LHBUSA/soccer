@@ -193,7 +193,7 @@ if (c) {
       report.finished_match_proof = { match_id: deep.id, fixture: `${d.home?.name} ${d.score?.home}-${d.score?.away} ${d.away?.name}`, kickoff: d.kickoff_at, venue: d.venue?.name || null, lineups: d.lineups ? Object.keys(d.lineups) : null, timeline: d.timeline?.length ?? null, shots: d.shots?.length ?? null, events: events.filter(e => e.match_id === deep.id).length, coverage: md.meta?.coverage, cast: { mode: cast.data.live?.mode ?? null, sequence: cast.data.sequence?.length ?? null } };
     } catch (e) { report.finished_match_proof = { match_id: deep.id, error: String(e.message || e) }; }
   }
-  const next = matches.filter(m => m.status === 'scheduled').sort((a, b) => String(a.kickoff_at).localeCompare(String(b.kickoff_at)))[0];
+  const next = matches.filter(m => m.status === 'scheduled').sort((a, b) => new Date(a.kickoff_at) - new Date(b.kickoff_at))[0];
   if (next) { try { const md = await R.match(store, next.id); const cast = await C.cast(store, next.id, {}); report.scheduled_match_proof = { match_id: next.id, fixture: `${md.data.home?.name} v ${md.data.away?.name}`, kickoff: next.kickoff_at, cast_mode: cast.data.live?.mode ?? null }; } catch (e) { report.scheduled_match_proof = { match_id: next.id, error: String(e.message || e) }; } }
   try { const cp = await R.competition(store, SLUG); report.competition_api = { team_kind: cp.data.current?.team_kind || null, teams: cp.data.current?.teams?.length, finished: cp.data.current?.finished, scheduled: cp.data.current?.scheduled }; } catch (e) { report.competition_api = { error: String(e.message || e) }; }
 }
