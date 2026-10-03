@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026-10-03.5",
+  "registry_version": "2026-10-03.6",
   "note": "Reviewed canonical metadata for competitions and the provider ids proven to denote them. Provider ids here are crosswalks, not identity.",
   "competitions": [
     {
@@ -504,9 +504,10 @@
       "espn": {
         "league": "eng.w.1",
         "id": "8097",
-        "enabled": false,
+        "enabled": true,
         "may_found": true,
-        "discovery_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): eng.w.1 id 8097 'English Women's Super League', gender FEMALE; 2026 one type (182 events, standings); 14 teams. Women's teams have their own ESPN team ids (0 ids shared with any men's competition probed)."
+        "discovery_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): eng.w.1 id 8097 'English Women's Super League', gender FEMALE; 2026 one type (182 events, standings); 14 teams. Women's teams have their own ESPN team ids (0 ids shared with any men's competition probed).",
+        "enable_note": "Enabled 2026-10-03 after local canary PASS (docs/evidence/world/canary-womens-super-league-2026-10-03.json): 182/182 fixtures, 29/29 finished detailed (lineups both sides 29, team stats 29, plays 29; 40295 located events), 0 enrichment gaps; identity 14/14 teams gender women (0 reused from production by stable ESPN id, 14 founded, 0 queued, 0 name-only merges); table overall; PBEcast replay + pregame payloads proven. 10 athletes without DOB queued (never invented)."
       },
       "external_ids": [
         {
@@ -519,7 +520,7 @@
       "expected_teams": 14,
       "news": {
         "enabled": false,
-        "blocker": "Lane disabled until its canary passes (docs/evidence/world/); newsroom enablement follows lane certification."
+        "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
       }
     },
     {

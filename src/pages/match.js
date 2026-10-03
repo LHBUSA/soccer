@@ -9,6 +9,7 @@ import { mountRelatedNews } from '../components/related.js';
 import { keyPlayers } from '../components/keyplayers.js';
 import { matchTitle } from '../seo/meta.js';
 import { analyzerPreviewHtml } from '../components/analyzer.js';
+import { compMeta } from '../lib/competitions.js';
 import { boardEntry, byDeadline, KALSHI_FIRST_PAINT_MS, loadMatchMarket, marketPollMs, matchKalshiHtml } from '../data/kalshi.js';
 import { wireKalshi } from '../vendor/kalshi/kalshi-market-ui.js';
 
@@ -177,7 +178,10 @@ export function render(d) {
   <section class="canvas" data-match-id="${esc(m.id)}"><div class="wrap mgrid2">
     <div class="col-a">
       <div class="panel">${sectionHead('MATCH STORY', 'Goals, cards and substitutions')}${story(m)}</div>
-      <div class="panel map">${sectionHead('EVENT MAP', 'Every shot on the canonical 105 × 68 m pitch')}${eventMap(m)}</div>
+      ${compMeta(m.competition?.slug)?.spatial === false
+        // competitions.js spatial:false: the source gives no pitch locations; no map panel promising one
+        ? `<div class="panel map">${sectionHead('EVENT MAP', 'Shot map not available')}<div class="cast-nomap" role="note"><p class="kicker">SHOT MAP NOT AVAILABLE</p><p>The source records this competition's events without pitch locations, so no shot map is drawn. Every shot, goal, card and substitution is in the match timeline.</p></div></div>`
+        : `<div class="panel map">${sectionHead('EVENT MAP', 'Every shot on the canonical 105 × 68 m pitch')}${eventMap(m)}</div>`}
       ${when(m.shot_timeline?.length, () => `<div class="panel">${sectionHead('SHOT INTELLIGENCE', 'Every shot, in order')}${shotTimeline(m)}</div>`)}
     </div>
     <div class="col-b">

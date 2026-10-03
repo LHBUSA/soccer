@@ -204,3 +204,13 @@ test('V2: MLS is in the rail, filters and selectors; team observed players are s
   const tb = tables.render({ comp: 'mls', comps: { status: 'fulfilled', value: { data: FEATURED.map(slug => ({ slug })) } }, table: { status: 'fulfilled', value: { data: { rows: [] }, meta: { coverage: { notes: [] } } } } });
   assert.ok(tb.includes('Major League Soccer') && tb.indexOf('>MLS<') < tb.indexOf('Premier League'));
 });
+
+test('match page, spatial:false competition (Liga F): one neutral no-map panel, never a pitch promise or empty map', () => {
+  const e = espnMatch();
+  const html = match.render({ env: { ...e, data: { ...e.data, competition: { slug: 'liga-f', name: 'Liga F' }, shots: [], coordinates: null } } });
+  assert.ok(html.includes('SHOT MAP NOT AVAILABLE') && html.includes('without pitch locations'));
+  assert.ok(!html.includes('class="pitchwrap'), 'no pitch drawn');
+  assert.ok(!html.includes('Every shot on the canonical 105 × 68 m pitch'), 'no map promise');
+  assert.ok(!html.includes('No event map for this match'), 'no generic missing-data state');
+  assert.ok(html.includes('STARTING XI') && html.includes('SOURCE MATCH STATISTICS'), 'the rest of the match renders');
+});

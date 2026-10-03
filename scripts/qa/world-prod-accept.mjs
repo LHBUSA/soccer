@@ -66,8 +66,23 @@ const tableOk = api.table.status === 200 && (grouped
   ? t?.view !== 'overall' && (t?.verification?.verified === true || (t?.groups?.length > 0 && t.groups.every(g => g.verified !== false) && t?.view === 'groups'))
   : (t?.rows?.length || 0) === canary.identity_gate.expected_teams);
 
+// Spatial status: the canary's declared label, proven on production casts (located events in the PBEcast payload of the
+// latest finished matches): AVAILABLE needs located events, UNAVAILABLE must have none (nothing synthesized).
+const spatialLabel = canary.acceptance?.spatial || null;
+const castLocated = [];
+for (const m of finished.slice(0, 3)) { const c = m.id === deep?.id ? api.cast : await get(`matches/${m.id}/cast`); castLocated.push((c.json?.data?.sequence || []).filter(x => Number.isFinite(x?.x) && Number.isFinite(x?.y)).length); }
+const spatialOk = spatialLabel === 'SPATIAL_DATA_AVAILABLE' ? castLocated.some(n => n > 0) : spatialLabel === 'SPATIAL_DATA_UNAVAILABLE' ? castLocated.every(n => n === 0) : false;
+// Namesakes: a women's team named like a men's club must be a different canonical team with no shared ESPN id.
+const strip = s => norm(s).replace(/\b(women|womens|w)\b/g, '').replace(/\s+/g, ' ').trim();
+const otherGender = all.filter(o => o.gender !== GENDER);
+const namesakes = teams.map(tm => ({ team: tm, other: otherGender.filter(o => strip(o.name) === strip(tm.name)) })).filter(x => x.other.length)
+  .map(x => ({ team: x.team.name, distinct_from: x.other.map(o => o.name), same_id: x.other.some(o => o.id === x.team.id), shared_espn_id: x.other.some(o => allXw.some(a => a.team_id === o.id && xw.some(b => b.team_id === x.team.id && b.external_id === a.external_id))) }));
+
 const r = {
   generated_at: new Date().toISOString(), competition: SLUG, gender: GENDER, canary: canaryFile, season: season.label, publication_state: season.publication_state,
+  worker_enabled: true,
+  acceptance: { match_data: canary.acceptance?.match_data || null, spatial: spatialLabel, cast_located_in_latest_finished: castLocated },
+  namesakes,
   fixtures: { production: matches.length, canary: canary.matches.total, verified: matches.length === canary.matches.total },
   completed_detail: { finished: finished.length, canary_finished: canary.matches.by_status.finished, scored: finished.filter(m => m.home_score !== null && m.away_score !== null).length,
     lineups_both: finished.filter(m => ok(m, 'lineup_home') && ok(m, 'lineup_away')).length, stats_both: finished.filter(m => ok(m, 'stats_home') && ok(m, 'stats_away')).length, plays: finished.filter(m => ok(m, 'plays')).length, gaps: gaps.length,
@@ -84,7 +99,8 @@ r.checks = {
   completed_detail_verified: d.scored === d.finished && d.lineups_both === d.finished && d.stats_both === d.finished && d.plays === d.finished && d.gaps === 0,
   standings_verified: tableOk,
   identity_dedupe: r.identity.teams === r.identity.expected && !r.identity.duplicate_same_gender_names.length && !r.identity.espn_ids_on_more_than_one_team.length && !r.identity.wrong_kind.length,
-  gender_integrity: !r.identity.wrong_gender.length && r.gender_integrity_global.matches_with_cross_gender_team === 0,
+  gender_integrity: !r.identity.wrong_gender.length && r.gender_integrity_global.matches_with_cross_gender_team === 0 && namesakes.every(n => !n.same_id && !n.shared_espn_id),
+  spatial_status_proven: spatialOk,
   api_canary: [r.api.competition, r.api.table, r.api.match, r.api.cast].every(s => s === 200),
 };
 r.pass = Object.values(r.checks).every(Boolean);

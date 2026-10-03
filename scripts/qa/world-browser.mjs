@@ -13,6 +13,7 @@ const BASE = 'https://soccer.propbetedge.ai';
 const acc = JSON.parse(readFileSync(`docs/evidence/world/prod-accept-${SLUG}-${new Date().toISOString().slice(0, 10)}.json`, 'utf8'));
 const ms = await (await fetch(`${BASE}/api/soccer/matches?competition=${SLUG}&status=finished&limit=1`)).json();
 const matchId = ms.data?.[0]?.id;
+const SPATIAL = acc.acceptance?.spatial || 'SPATIAL_DATA_AVAILABLE';
 const pages = [['hub', `/competitions/${SLUG}`], ['match', `/matches/${matchId}`], ['pbecast', `/pbecast/${matchId}`]];
 const browser = await puppeteer.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: 'new', userDataDir: 'D:/Temp/soccer-qa-chrome-world', args: ['--no-first-run', '--disable-extensions'] });
 const results = [];
@@ -29,12 +30,19 @@ for (const width of [390, 768, 1440]) for (const [kind, path] of pages) {
       table_rows: document.querySelectorAll('table tbody tr').length,
       lineups: /LINEUPS|Starting XI/i.test(t), feed_items: document.querySelectorAll('[data-feed] li').length,
       pitch: !!document.querySelector('.pitchwrap'), nomap: !!document.querySelector('.cast-nomap'),
+      nomap_h: Math.round(document.querySelector('.cast-nomap')?.getBoundingClientRect().height || 0),
+      nomap_text: /SHOT MAP NOT AVAILABLE/.test(document.querySelector('.cast-nomap')?.innerText || ''),
+      empty_states: [...document.querySelectorAll('.state.empty .state-title')].map(x => x.textContent.trim()),
       nav_link: !!document.querySelector(`#leagues-panel a[data-comp="${slug}"]`),
       overflow_x: document.documentElement.scrollWidth > window.innerWidth + 1,
     };
   }, SLUG, kind);
   const content = kind === 'hub' ? r.table_rows > 0 : kind === 'match' ? r.lineups : r.feed_items > 0;
-  results.push({ width, kind, path, ...r, js_errors: errors.slice(0, 3), pass: !r.error_state && !r.not_found && content && !r.overflow_x && !errors.length && (!NAV || r.nav_link) });
+  // spatial: AVAILABLE -> the pitch renders on match + PBEcast; UNAVAILABLE -> the neutral note instead, never a pitch,
+  // never a generic "no event map" state, never an oversized blank panel
+  const spatialOk = kind === 'hub' ? true : SPATIAL === 'SPATIAL_DATA_AVAILABLE' ? r.pitch
+    : r.nomap && r.nomap_text && !r.pitch && r.nomap_h > 0 && r.nomap_h < 260 && !r.empty_states.some(t => /event map/i.test(t));
+  results.push({ width, kind, path, ...r, spatial_ok: spatialOk, js_errors: errors.slice(0, 3), pass: !r.error_state && !r.not_found && content && spatialOk && !r.overflow_x && !errors.length && (!NAV || r.nav_link) });
   console.log(JSON.stringify(results.at(-1)));
   await page.close();
 }
@@ -42,6 +50,7 @@ await browser.close();
 acc.browser = { generated_at: new Date().toISOString(), nav_expected: NAV, match_id: matchId, results, pass: results.every(x => x.pass) };
 if (NAV) acc.checks.navigation_live = acc.browser.pass && results.every(x => x.nav_link);
 acc.checks.browser_canary = acc.browser.pass;
+for (const w of [390, 768, 1440]) acc.checks[`browser_${w}`] = results.filter(x => x.width === w).every(x => x.pass);
 acc.pass = Object.values(acc.checks).every(Boolean);
 writeFileSync(`docs/evidence/world/prod-accept-${SLUG}-${new Date().toISOString().slice(0, 10)}.json`, JSON.stringify(acc, null, 2) + '\n');
 console.log('browser pass', acc.browser.pass, 'overall', acc.pass);
