@@ -17,7 +17,7 @@ import {
 } from '../../shared/video-match.js';
 
 const WORKER = 'soccer-video-autopilot';
-const VERSION = 'soccer-video-autopilot/1.2.0';
+const VERSION = 'soccer-video-autopilot/1.2.1';
 export const discoveryMechanism = env => (env.YOUTUBE_API_KEY ? 'youtube_data_api_v3' : 'youtube_atom_feed_oembed');
 const STALE_MS = 2 * 3600e3;
 const PROVIDER = 'youtube';
@@ -136,7 +136,8 @@ async function discoverChannelKeyless(channel, { sinceDays = DEFAULT_SINCE_DAYS 
       description: String(e.description || '').slice(0, 4000),
       published_at: e.published,
       duration_sec: null,
-      thumbnail_url: e.thumbnail_url || 'https://i.ytimg.com/vi/' + e.video_id + '/hqdefault.jpg',
+      // the public feed serves thumbnails on i1-i4.ytimg.com; store the canonical host the table accepts (same image)
+      thumbnail_url: 'https://i.ytimg.com/vi/' + e.video_id + '/hqdefault.jpg',
       url: 'https://www.youtube.com/watch?v=' + e.video_id,
       embeddable: embed.embeddable,
       region_restriction: null,
@@ -314,6 +315,19 @@ async function relink(store, { now = Date.now() } = {}) {
   };
 }
 
+// Row checks mirroring soccer_videos' own constraints (migration 20260929000900): one invalid row is recorded and
+// skipped, never allowed to abort the batch for every other video.
+const VIDEO_TYPES = new Set(['highlights', 'match_recap', 'goals', 'interview', 'press_conference', 'preview', 'analysis', 'other']);
+export function rowProblem(v) {
+  if (!/^[A-Za-z0-9_-]{11}$/.test(v.provider_video_id || '')) return 'provider_video_id';
+  if (!v.channel_id || !v.channel_name || !v.title) return 'missing_required';
+  if (v.duration_sec !== null && v.duration_sec !== undefined && !(v.duration_sec > 0)) return 'duration_sec';
+  if (v.thumbnail_url && !/^https:\/\/i\.ytimg\.com\//.test(v.thumbnail_url)) return 'thumbnail_url';
+  if (!/^https:\/\/www\.youtube\.com\/watch\?v=/.test(v.url || '')) return 'url';
+  if (!VIDEO_TYPES.has(v.video_type)) return 'video_type';
+  return null;
+}
+
 export async function run(env, { dry = false, sinceDays = DEFAULT_SINCE_DAYS, onlyChannel = null, invoked = 'manual' } = {}) {
   const store = storeFromEnv(env);
   if (!store) throw new Error('store_not_configured');
@@ -332,7 +346,8 @@ export async function run(env, { dry = false, sinceDays = DEFAULT_SINCE_DAYS, on
     }
   }
 
-  const dedup = [...new Map(discovered.map(v => [v.provider_video_id, v])).values()];
+  const unique = [...new Map(discovered.map(v => [v.provider_video_id, v])).values()];
+  const dedup = unique.filter(v => { const why = rowProblem(v); if (why) failures.push({ channel_id: v.channel_id, video_id: v.provider_video_id, error: `row_rejected:${why}` }); return !why; });
   if (!dry && dedup.length) await store.upsert('soccer_videos', dedup, ['provider_video_id'], { chunk: 200 });
   const links = dry ? null : await relink(store);
   const newest = dedup.map(v => v.published_at).filter(Boolean).sort().at(-1) || null;

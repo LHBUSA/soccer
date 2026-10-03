@@ -34,3 +34,16 @@ test('health distinguishes cron not firing, run failing, stale and healthy', asy
   assert.equal(recovered.state, 'healthy', 'an error older than the last successful run no longer fails health');
   assert.equal((await health({ SOCCER_STATE: kv({ 'video:last_tick': { at: iso(60e3) }, 'video:last_run': { at: iso(3 * 3600e3) } }) })).state, 'run_stale');
 });
+
+test('a feed thumbnail on i1-i4.ytimg.com is stored on the canonical host; an invalid row is skipped, never aborting the batch', async () => {
+  const { rowProblem } = await import('../workers/soccer-video-autopilot/src/index.js');
+  const ok = { provider_video_id: '1cBh7MDY2fE', channel_id: 'UCgqlho3-8a6FmDqQm7Q6gJw', channel_name: 'Fenerbahçe SK', title: 't', thumbnail_url: 'https://i.ytimg.com/vi/1cBh7MDY2fE/hqdefault.jpg', url: 'https://www.youtube.com/watch?v=1cBh7MDY2fE', video_type: 'other', duration_sec: null };
+  assert.equal(rowProblem(ok), null);
+  assert.equal(rowProblem({ ...ok, thumbnail_url: 'https://i2.ytimg.com/vi/1cBh7MDY2fE/hqdefault.jpg' }), 'thumbnail_url', 'the production 23514 failure of 2026-10-03 02:13');
+  assert.equal(rowProblem({ ...ok, video_type: 'clip' }), 'video_type');
+  assert.equal(rowProblem({ ...ok, duration_sec: 0 }), 'duration_sec');
+  const { readFileSync } = await import('node:fs');
+  const src = readFileSync('workers/soccer-video-autopilot/src/index.js', 'utf8');
+  assert.match(src, /thumbnail_url: 'https:\/\/i\.ytimg\.com\/vi\/' \+ e\.video_id/, 'keyless rows use the canonical thumbnail host');
+  assert.match(src, /const dedup = unique\.filter\(v => \{ const why = rowProblem\(v\)/);
+});
