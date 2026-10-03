@@ -19,7 +19,7 @@ const ENV = { data: { view: 'groups', season: '2026/27', rows: [], verified_grou
   ] }, meta: { semantics: 'x', coverage: { state: 'partial', notes: [] } } };
 
 test('registry: club chips vs the INTERNATIONAL menu; groups format; national teams', () => {
-  assert.deepEqual(CLUB_COMPS.map(c => c.slug), ['mls', 'premier-league', 'la-liga', 'bundesliga', 'uefa-champions-league']);
+  assert.deepEqual(CLUB_COMPS.map(c => c.slug), ['mls', 'premier-league', 'la-liga', 'serie-a', 'bundesliga', 'uefa-champions-league']);
   assert.deepEqual(INTERNATIONAL_COMPS.map(c => c.slug), ['uefa-nations-league', 'fifa-world-cup']);
   assert.deepEqual([compMeta('uefa-nations-league').format, compMeta('uefa-nations-league').mono, compMeta('uefa-nations-league').desk], ['groups', 'UNL', 'international']);
   assert.equal(compMeta('uefa-champions-league').format, 'ucl'); // UCL format not overloaded

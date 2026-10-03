@@ -11,7 +11,7 @@ export const ALL_COMPS = [
   { slug: 'mls', name: 'MLS', long: 'Major League Soccer', mono: 'MLS', accent: 'mls', desk: 'mls', format: 'league', nav: 'club', enabled: true },
   { slug: 'premier-league', name: 'Premier League', long: 'Premier League', mono: 'PL', accent: 'epl', desk: 'premier-league', format: 'league', nav: 'club', enabled: true },
   { slug: 'la-liga', name: 'LaLiga', long: 'LaLiga', mono: 'LL', accent: 'laliga', desk: 'la-liga', format: 'league', nav: 'club', enabled: true },
-  { slug: 'serie-a', name: 'Serie A', long: 'Serie A', mono: 'SA', accent: 'seriea', desk: 'serie-a', format: 'league', nav: 'club', enabled: false },
+  { slug: 'serie-a', name: 'Serie A', long: 'Serie A', mono: 'SA', accent: 'seriea', desk: 'serie-a', format: 'league', nav: 'club', enabled: true },
   { slug: 'ligue-1', name: 'Ligue 1', long: 'Ligue 1', mono: 'L1', accent: 'ligue1', desk: 'ligue-1', format: 'league', nav: 'club', enabled: false },
   { slug: 'bundesliga', name: 'Bundesliga', long: 'Bundesliga', mono: 'BL', accent: 'bl', desk: 'bundesliga', format: 'league', nav: 'club', enabled: true },
   { slug: 'uefa-champions-league', name: 'Champions League', long: 'UEFA Champions League', mono: 'UCL', accent: 'ucl', desk: 'champions-league', format: 'ucl', nav: 'club', enabled: true },
