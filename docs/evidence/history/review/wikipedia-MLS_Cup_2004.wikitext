@@ -1,0 +1,383 @@
+{{short description|2004 edition of the MLS Cup}}
+{{good article}}
+{{Use American English|date=June 2017}}
+{{Use mdy dates|date=June 2017}}
+{{Infobox football match
+| title = MLS Cup 2004
+| event = [[MLS Cup]]
+| image = MLS Cup 2004 logo.png
+| team1  = [[D.C. United]]
+| team1score = 3 
+| team2 = [[Kansas City Wizards]]
+| team2score = 2
+| date = {{Start date|2004|11|14}}
+| stadium = [[Home Depot Center]]
+| city = [[Carson, California]], US 
+| man_of_the_match1a = [[Alecko Eskandarian]]<br>(D.C. United)
+| weather = Clear, {{convert|81|°F|°C}}<ref name="FARB">{{cite web |author1=MLS Communications Department |author2=Elias Sports Bureau |date=February 23, 2024 |title=2024 Fact and Record Book |page=157 |url=https://mlssoccer.app.box.com/s/xvks2sfia70gsowb4qyh61c7ytqpbnht |publisher=[[Major League Soccer]] |ref={{sfnref|Major League Soccer|2024}} |accessdate=December 12, 2024}}</ref>
+| attendance = 25,797 
+| previous = [[MLS Cup 2003|2003]]
+| next = [[MLS Cup 2005|2005]]
+}}
+
+'''MLS Cup 2004''' was the ninth edition of the [[MLS Cup]], the championship match of [[Major League Soccer]] (MLS), which took place on November 14, 2004, at the [[Home Depot Center]] in [[Carson, California]]. It was contested between [[D.C. United]] and the [[Kansas City Wizards]] to decide the champion of the [[2004 Major League Soccer season|2004 season]]. The two teams had qualified for the playoffs after seasons with mixed results that ended in top-two finishes in their respective conferences.
+
+D.C. United won the match 3–2, scoring all three of its goals in a seven-minute span during the first half after the Wizards had taken an early lead. [[Alecko Eskandarian]] was named the match MVP for scoring the first two goals for D.C., one of which included an alleged handball that was uncalled. The 2004 final featured the first [[red card (sports)|red card]] in MLS Cup history, awarded for a handball which resulted in a [[penalty kick]] for Kansas City's second goal. It was D.C. United's fourth MLS Cup title and their first since [[MLS Cup 1999|1999]], and manager [[Peter Nowak]] became the first person to win the MLS Cup as a player and coach.
+
+==Venue==
+
+The [[Home Depot Center]] in [[Carson, California]], the home venue of the [[Los Angeles Galaxy]], was announced by the league as the host of MLS Cup 2004 on June 23, 2004. The 27,000-seat stadium had hosted the [[MLS Cup 2003|previous edition]] of the MLS Cup and the [[2003 FIFA Women's World Cup Final]] in its first year of operation.<ref>{{cite press release |date=June 24, 2004 |title=Home Depot Center to host MLS Cup |url=http://www.mlsnet.com/MLS/news/mls_news.jsp?ymd=20040624&content_id=6327&vkey=news_mls&fext=.jsp |publisher=[[Major League Soccer]] |url-status=dead |archive-url=https://web.archive.org/web/20040624113912/http://www.mlsnet.com/MLS/news/mls_news.jsp?ymd=20040624&content_id=6327&vkey=news_mls&fext=.jsp |archive-date=June 24, 2004 |access-date=November 16, 2018}}</ref> The 2004 final marked the first time that a stadium had hosted consecutive editions of the MLS Cup,<ref>{{cite news |date=June 24, 2004 |title=MLS Cup returns to Carson |page=C7 |work=[[Monterey County Herald]] |agency=[[Associated Press]]}}</ref> which would be followed by [[Pizza Hut Park]] in [[Frisco, Texas]] in [[MLS Cup 2005|2005]] and [[MLS Cup 2006|2006]].<ref>{{cite news |last=Xavier Lopez |first=Tobias |date=February 1, 2006 |title=Frisco is MLS' big cheese again |page=D3 |work=[[Fort Worth Star-Telegram]]}}</ref>
+
+==Road to the final==
+
+The [[MLS Cup]] is the post-season championship of [[Major League Soccer]] (MLS), a professional club soccer league based in the United States. The [[2004 Major League Soccer season|2004 season]] was the ninth in the league's history and was contested by ten teams in two conferences, divided into the [[Eastern Conference (MLS)|east]] and [[Western Conference (MLS)|west]]. Each team played a total of 30 matches in the regular season from April to October, facing teams within their conference four times, outside of their conference two times, and playing an additional home game against a non-conference team.<ref name="Overview">{{cite web |title=About Major League Soccer: General Overview |url=http://www.mlsnet.com/MLS/about/ |publisher=Major League Soccer |url-status=dead |archive-url=https://web.archive.org/web/20041015022143/http://www.mlsnet.com/MLS/about/ |archive-date=October 15, 2004 |access-date=January 19, 2019}}</ref> The playoffs ran from mid-October to November and were contested by the top four teams in each conference.<ref name="Overview"/> It was organized into three rounds: a [[two-legged tie|home-and-away series]] with a winner determined by [[aggregate score]] in the Conference Semifinals, a single-match Conference Final, and the MLS Cup final.<ref name="MLS-Format">{{cite news |last=Rodriguez |first=Alicia |date=October 21, 2015 |title=Audi MLS Cup Playoffs: Tracing the evolution of the postseason format since 1996 |url=https://www.mlssoccer.com/post/2015/10/21/audi-mls-cup-playoffs-tracing-evolution-postseason-format |work=MLSsoccer.com |access-date=January 19, 2019 |archive-url=https://web.archive.org/web/20181113165913/https://www.mlssoccer.com/post/2015/10/21/audi-mls-cup-playoffs-tracing-evolution-postseason-format |archive-date=November 13, 2018 |url-status=live |df=mdy-all }}</ref>
+
+MLS Cup 2004 was contested by [[D.C. United]] and the [[Kansas City Wizards]]. Both teams had previously won the MLS Cup and finished in the top two seeds of their respective conferences in regular season play.<ref name="Dure">{{cite news |last=Dure |first=Beau |date=November 8, 2004 |title=United, Wizards to meet for MLS championship |page=C13 |work=[[USA Today]]}}</ref> D.C. and Kansas City had played each other twice during the regular season, trading 1–0 away wins at their respective homes: the Wizards won at [[RFK Memorial Stadium]] in May and D.C. United won at [[Arrowhead Stadium]] in July.<ref>{{cite news |last=Luder |first=Bob |date=November 7, 2004 |title=Wizards have inkling of what D.C. can do |page=C10 |work=The Kansas City Star |url=http://www.kansascity.com/mld/kansascity/sports/soccer/mls/kansas_city_wizards/10118960.htm |url-status=dead |archive-url=https://web.archive.org/web/20041215215002/http://www.kansascity.com/mld/kansascity/sports/soccer/mls/kansas_city_wizards/10118960.htm |archive-date=December 15, 2004 |access-date=January 20, 2019}}</ref> Kansas City qualified for the playoffs as the top seed in the Western Conference, finishing level with [[Supporters' Shield]] winners [[Columbus Crew SC|Columbus Crew]] on points,<ref>{{cite news |date=October 17, 2004 |title=Wizards take top spot by beating Galaxy |page=10 |work=[[Ventura County Star]] |agency=Associated Press}}</ref> while D.C. United rode late-season momentum to finish with a record slightly above [[Winning percentage|.500]].<ref name="Dure"/><ref>{{cite news |last=Wright |first=Ken |date=October 10, 2004 |title=United continues late surge |page=B5 |work=[[The Washington Times]]}}</ref>
+
+===D.C. United===
+{{see also|2004 D.C. United season}}
+[[File:DC United post-game victory celebration (RFK Memorial Stadium, 06-11-2004).jpg|thumb|right|D.C. United players and coaches celebrating their win over the [[New England Revolution]] in the 2004 Eastern Conference Championship]]
+
+D.C. United won three MLS Cup titles in the first four seasons of the league's existence, only finishing as runners-up in 1998, and established a dynasty under head coaches [[Bruce Arena]] and [[Thomas Rongen]].<ref name="Dure"/> From 2000 to 2002, however, D.C. failed to qualify for the playoffs for three consecutive seasons and Rongen was fired.<ref>{{cite news |last=Gutierrez |first=Paul |date=September 23, 2004 |title=Rongen Will Lead MLS' Chivas USA |page=D1 |url=https://www.latimes.com/archives/la-xpm-2004-sep-23-sp-chivas23-story.html |work=Los Angeles Times |access-date=January 21, 2019}}</ref><ref>{{cite news |last=Goff |first=Steven |authorlink=Steven Goff |date=July 22, 2013 |title=Olsen's longevity sets United coaching mark |url=https://www.washingtonpost.com/news/soccer-insider/wp/2013/07/22/olsens-longevity-sets-united-coaching-mark/?noredirect=on |work=[[The Washington Post]] |access-date=January 21, 2019 |archive-url=https://web.archive.org/web/20190121232424/https://www.washingtonpost.com/news/soccer-insider/wp/2013/07/22/olsens-longevity-sets-united-coaching-mark/?noredirect=on&utm_term=.dd83af9b6243 |archive-date=January 21, 2019 |url-status=live |df=mdy-all }}</ref> [[Ray Hudson]] lead the team to a playoffs return in 2003, where they lost 4–0 on aggregate to the [[Chicago Fire Soccer Club|Chicago Fire]] in the first round.<ref>{{cite news |last=McCarthy |first=Jack |date=November 10, 2003 |title=Ralph's goal deflates D.C. |page=3 |work=[[Chicago Tribune]] |url=https://www.chicagotribune.com/news/ct-xpm-2003-11-10-0311100137-story.html |access-date=January 21, 2019 |archive-url=https://web.archive.org/web/20190121175204/https://www.chicagotribune.com/news/ct-xpm-2003-11-10-0311100137-story.html |archive-date=January 21, 2019 |url-status=live |df=mdy-all }}</ref><ref>{{cite news |last=Wright |first=Ken |date=November 2, 2003 |title=United puts itself in a hole by losing first playoff game |page=C16 |work=The Washington Times |url=http://www.washtimes.com/sports/20031102-125009-7894r.htm |url-status=dead |archive-url=https://web.archive.org/web/20050209090535/http://www.washtimes.com/sports/20031102-125009-7894r.htm |archive-date=February 9, 2005 |access-date=January 21, 2019}}</ref>
+
+In January 2004, D.C. hired recently retired Chicago Fire midfielder [[Peter Nowak]] as its fourth head coach in nine seasons.<ref>{{cite news |last=Goff |first=Steven |date=January 9, 2004 |title=In Other Coaching News, Nowak Takes Over United |page=D3 |work=The Washington Post}}</ref> The last remaining player from the club's inaugural season, forward [[Marco Etcheverry]], left the club at the end of the 2003 season.<ref>{{cite news |last=Haydon |first=John |date=January 23, 2004 |title=United, El Diablo opt to cut ties |page=C8 |work=The Washington Times}}</ref> To replace Etcheverry, the club recalled [[Jaime Moreno (footballer, born 1974)|Jaime Moreno]] from the [[MetroStars]] and drafted 14-year-old forward [[Freddy Adu]], who had already agreed in November to sign with them.<ref>{{cite news |last=Venture |first=Tommy |date=April 4, 2004 |title=Not much Adu in MLS debut |page=3 |work=Chicago Tribune}}</ref><ref>{{cite news |last=Bell |first=Jack |date=November 19, 2003 |title=Adu, 14, Signs An M.L.S. Deal For Six Years |page=D1 |url=https://www.nytimes.com/2003/11/19/sports/soccer-adu-14-signs-an-mls-deal-for-six-years.html |work=The New York Times |access-date=January 21, 2019 |archive-url=https://web.archive.org/web/20190122094702/https://www.nytimes.com/2003/11/19/sports/soccer-adu-14-signs-an-mls-deal-for-six-years.html |archive-date=January 22, 2019 |url-status=live |df=mdy-all }}</ref> Nowak implemented an aggressive playstyle that emphasized counterattacks and team-oriented play that took hold late in the season.<ref>{{cite news |last=Boehm |first=Charles |date=November 15, 2004 |title=United reap reward from hard work |url=http://www.mlsnet.com/MLS/news/mls_events_news.jsp?ymd=20041115&content_id=19151&vkey=mlscup2004&fext=.jsp |work=MLSnet.com |url-status=dead |archive-url=https://web.archive.org/web/20050114060351/http://www.mlsnet.com/MLS/news/mls_events_news.jsp?ymd=20041115&content_id=19151&vkey=mlscup2004&fext=.jsp |archive-date=January 14, 2005 |access-date=January 22, 2019}}</ref>
+
+The club earned a 5–5–5 record at the beginning of the season, including a 271-minute scoreless streak and a four-match unbeaten streak that was capped with a 6–2 win over the MetroStars.<ref>{{cite news |last=Goff |first=Steven |date=June 20, 2004 |title=Finally, It's Time For United To Fly |page=E1 |url=https://www.washingtonpost.com/wp-dyn/articles/A55096-2004Jun19.html |work=The Washington Post |access-date=January 21, 2019 |archive-url=https://web.archive.org/web/20190122094646/http://www.washingtonpost.com/wp-dyn/articles/A55096-2004Jun19.html |archive-date=January 22, 2019 |url-status=live |df=mdy-all }}</ref><ref>{{cite news |last=Goff |first=Steven |date=July 4, 2004 |title=United's Offense Helps Itself |page=E1 |work=The Washington Post}}</ref> After a four-match winless streak to start the second half of the season,<ref>{{cite news |last=Goff |first=Steven |date=August 12, 2004 |title=Adu Scores, United Rolls |page=D3 |url=https://www.washingtonpost.com/wp-dyn/articles/A58161-2004Aug11.html |work=The Washington Post |access-date=January 21, 2019 |archive-url=https://web.archive.org/web/20190122144920/http://www.washingtonpost.com/wp-dyn/articles/A58161-2004Aug11.html |archive-date=January 22, 2019 |url-status=live |df=mdy-all }}</ref> D.C. United found a more consistent rhythm and finished the season with a winning record and a ten-match home unbeaten streak.<ref name="Post-R04">{{cite news |last=Goff |first=Steven |date=October 18, 2004 |title=United Wins Again, Regular Season Ends |page=D3 |url=https://www.washingtonpost.com/wp-dyn/articles/A40535-2004Oct17.html |work=The Washington Post |access-date=January 21, 2019 |archive-url=https://web.archive.org/web/20190122094831/http://www.washingtonpost.com/wp-dyn/articles/A40535-2004Oct17.html |archive-date=January 22, 2019 |url-status=live |df=mdy-all }}</ref><ref>{{cite news |last=Saslow |first=Eli |date=October 10, 2004 |title=Gomez Goal Gives United a Sloppy Win |page=E4 |work=The Washington Post}}</ref> The club signed Argentine midfielder [[Christian Gómez]] in the summer transfer window and paired him with forward [[Alecko Eskandarian]], who lead D.C. in goals scored, to close out the season;<ref>{{cite news |last=Gildea |first=William |date=November 4, 2004 |title=United: Come Together, Right Now |page=D1 |url=https://www.washingtonpost.com/archive/sports/2004/11/04/united-come-together-right-now/d9d05f5e-5be3-4628-85c0-2632d3b961f3/ |work=The Washington Post |access-date=January 21, 2019 |archive-url=https://web.archive.org/web/20190122094959/https://www.washingtonpost.com/archive/sports/2004/11/04/united-come-together-right-now/d9d05f5e-5be3-4628-85c0-2632d3b961f3/ |archive-date=January 22, 2019 |url-status=live |df=mdy-all }}</ref> rookie goalkeeper [[Troy Perkins]] was promoted to the starting lineup and played in place of [[Nick Rimando]] before he returned later in the season.<ref>{{cite news |last=Goff |first=Steven |date=October 9, 2004 |title=Rimando: D.C.'s 'Hot Goalkeeper' |page=D3 |url=https://www.washingtonpost.com/wp-dyn/articles/A18690-2004Oct8.html |work=The Washington Post |access-date=January 21, 2019 |archive-url=https://web.archive.org/web/20190122094718/http://www.washingtonpost.com/wp-dyn/articles/A18690-2004Oct8.html |archive-date=January 22, 2019 |url-status=live |df=mdy-all }}</ref>
+
+By winning five of their final six regular season matches, D.C. United clinched the second-place seed in the Eastern Conference behind the Columbus Crew.<ref name="Post-R04"/><ref>{{cite news |last=Bell |first=Jack |date=October 19, 2004 |title=How the Final Eight Match Up |page=D6 |url=https://www.nytimes.com/2004/10/19/sports/soccer/how-the-final-eight-match-up.html |work=The New York Times |access-date=January 21, 2019 |archive-url=https://web.archive.org/web/20190122095042/https://www.nytimes.com/2004/10/19/sports/soccer/how-the-final-eight-match-up.html |archive-date=January 22, 2019 |url-status=live |df=mdy-all }}</ref> In the Conference Semifinals, D.C. played host to their [[Atlantic Cup (Major League Soccer)|Atlantic Cup]] rivals, the New York/New Jersey MetroStars, who they had played in the final week of the season.<ref>{{cite news |last=Goff |first=Steven |date=October 17, 2004 |title=D.C. United, MetroStars Becoming Familiar Foes |page=E4 |url=https://www.washingtonpost.com/archive/sports/2004/10/17/dc-united-metrostars-becoming-familiar-foes/c5ccc8be-bac1-4cb3-9374-5ccf744449d1/ |work=The New York Times |access-date=January 21, 2019 |archive-url=https://web.archive.org/web/20190122094650/https://www.washingtonpost.com/archive/sports/2004/10/17/dc-united-metrostars-becoming-familiar-foes/c5ccc8be-bac1-4cb3-9374-5ccf744449d1/ |archive-date=January 22, 2019 |url-status=live |df=mdy-all }}</ref> D.C. United won 2–0 in the first leg at [[Giants Stadium]] on second-half goals by [[Earnie Stewart]] and Eskandarian.<ref>{{cite news |last=Goff |first=Steven |date=October 24, 2004 |title=With Stewart, United Is Off And Running |page=E1 |url=https://www.washingtonpost.com/archive/sports/2004/10/24/with-stewart-united-is-off-and-running/04e85437-b2ec-4bc9-b2f8-515c8abc108e/ |work=The Washington Post |access-date=January 21, 2019 |archive-url=https://web.archive.org/web/20190122144947/https://www.washingtonpost.com/archive/sports/2004/10/24/with-stewart-united-is-off-and-running/04e85437-b2ec-4bc9-b2f8-515c8abc108e/ |archive-date=January 22, 2019 |url-status=live |df=mdy-all }}</ref> In the second leg of the series at RFK Memorial Stadium, D.C. defeated the MetroStars 2–0, with late goals scored by Moreno and [[Bryan Namoff]], and advanced to the Conference Final on an aggregate score of 4–0.<ref>{{cite news |last=Goff |first=Steven |date=October 31, 2004 |title=United Earns Style Points, Moves to Conference Final |page=E1 |url=https://www.washingtonpost.com/wp-dyn/articles/A12681-2004Oct30.html |work=The Washington Post |access-date=January 21, 2019 |archive-url=https://web.archive.org/web/20190122094839/http://www.washingtonpost.com/wp-dyn/articles/A12681-2004Oct30.html |archive-date=January 22, 2019 |url-status=live |df=mdy-all }}</ref>
+
+D.C. United faced the fourth-seeded [[New England Revolution]], who upset the Columbus Crew in the semifinals, in the Conference Final at RFK Memorial Stadium on November 6, 2004.<ref>{{cite news |last=Merz |first=Craig |date=November 1, 2004 |title=Another flat finish: 0-for-2 effort on penalty kicks will haunt Crew |page=D1 |work=[[The Columbus Dispatch]]}}</ref> During the match, considered one of the best in MLS history,<ref name="Lifton">{{cite news |last=Lifton |first=David |date=May 11, 2005 |title=Looking back: Unforgettable in every way |url=http://web.mlsnet.com/news/team_news.jsp?ymd=20050511&content_id=29379&vkey=news_dcu&fext=.jsp&team=dcu |publisher=D.C. United |url-status=dead |archive-url=https://web.archive.org/web/20070407082306/http://soccernet.espn.go.com/columns/story?id=337632&root=extratime&&cc=5901 |archive-date=April 7, 2007 |access-date=October 10, 2011}}</ref><ref>{{cite news |last=Stejskal |first=Sam |date=October 28, 2017 |title=Epic comebacks and endless penalty kicks: The 5 best MLS playoff matches |url=https://www.fourfourtwo.com/us/features/best-mls-cup-playoff-games-epic-comebacks-penalty-kicks |work=[[FourFourTwo]] |access-date=January 21, 2019 |archive-url=https://web.archive.org/web/20190122144938/https://www.fourfourtwo.com/us/features/best-mls-cup-playoff-games-epic-comebacks-penalty-kicks |archive-date=January 22, 2019 |url-status=live |df=mdy-all }}</ref> D.C. took the lead three times and New England responded with three equalizing goals.<ref>{{cite news |last=Dell'Apa |first=Frank |date=July 26, 2005 |title=10 of the best... MLS games |url=http://soccernet.espn.go.com/columns/story?id=337632&root=extratime&&cc=5901 |publisher=[[ESPN FC|ESPN SoccerNet]] |url-status=dead |archive-url=https://web.archive.org/web/20110525193831/http://soccernet.espn.go.com/columns/story?id=337632&root=extratime&&cc=5901 |archive-date=May 25, 2011 |access-date=October 10, 2011}}</ref><ref>{{cite news |last=Goff |first=Steven |date=November 3, 2006 |title=Revolution Ready to Take Another Shot |page=E1 |url=https://www.washingtonpost.com/wp-dyn/content/article/2006/11/02/AR2006110201524.html |work=The Washington Post |access-date=October 10, 2011 |archive-url=https://web.archive.org/web/20121106045419/http://www.washingtonpost.com/wp-dyn/content/article/2006/11/02/AR2006110201524.html |archive-date=November 6, 2012 |url-status=live |df=mdy-all }}</ref> Eskandarian opened the scoring in the 11th minute on a defensive mistake, but [[Taylor Twellman]] leveled the score at 1–1 six minutes later with a volleyed shot from inside the box.<ref name="Globe">{{cite news |last=Dell'Apa |first=Frank |date=November 7, 2004 |title=Lack of finishing kicks ends Revolution's run |page=E1 |url=https://archive.boston.com/sports/articles/2004/11/07/lack_of_finishing_kicks_ends_revolutions_run/ |work=[[The Boston Globe]] |access-date=January 21, 2019 |archive-url=https://web.archive.org/web/20190122130319/http://archive.boston.com/sports/articles/2004/11/07/lack_of_finishing_kicks_ends_revolutions_run/ |archive-date=January 22, 2019 |url-status=live |df=mdy-all }}</ref> Jamie Moreno restored the lead for D.C. in the 21st minute, curling a shot around the left post to beat goalkeeper [[Matt Reis]]; New England were awarded a [[penalty kick]] after the ball hit the arm of defender [[Brian Carroll]], and [[Steve Ralston]]'s shot deflected off the post and Nick Rimando before going into the net and tying the match 2–2 at halftime.<ref name="Lifton"/><ref name="Post-NE">{{cite news |last=Goff |first=Steven |date=November 7, 2004 |title=In a Thriller, United Prevails |page=E1 |url=https://www.washingtonpost.com/wp-dyn/articles/A31291-2004Nov6.html |work=The Washington Post |access-date=January 21, 2019 |archive-url=https://web.archive.org/web/20190116200716/http://www.washingtonpost.com/wp-dyn/articles/A31291-2004Nov6.html |archive-date=January 16, 2019 |url-status=live |df=mdy-all }}</ref> Gómez scored D.C.'s third goal in the 67th minute, heading a cross from Earnie Stewart, but New England's [[Pat Noonan]] responded with a headed goal in the 85th minute that tied the match at the end of regulation time.<ref name="Post-NE"/>
+
+Despite several attempts at goal,<ref name="Lifton"/> the match remained tied 3–3 after [[extra time]] and would be the first MLS playoff match decided by a [[penalty shootout (association football)|penalty shootout]].<ref name="Post-NE"/><ref>{{cite news |last=Dure |first=Beau |date=November 6, 2004 |title=United boot New England from MLS playoffs |url=https://usatoday30.usatoday.com/sports/soccer/mls/2004-11-06-united-revolution_x.htm |work=USA Today |access-date=January 26, 2019}}</ref> After an opening round in which neither penalty taker scored, five consecutive penalties were scored to give D.C. a 3–2 lead. In the fourth round, the shot by [[Jay Heaps]] for New England was saved by Rimando, but the follow-up by Moreno was saved by Reis to prevent the Revolution from being eliminated. New England's [[Shalrie Joseph]] scored his penalty to trigger a [[sudden death (sport)|sudden death]] round, which saw Brian Carroll score and [[Clint Dempsey]]'s shot saved by Nick Rimando.<ref name="Lifton"/><ref name="Globe"/> The penalty shootout ended in a 4–3 victory for D.C. United, who clinched an appearance in their fifth MLS Cup final.<ref name="Post-NE"/>
+
+===Kansas City Wizards===
+{{see also|2004 Kansas City Wizards season}}
+[[File:JimmyConrad 2006 MLS Cup.jpg|thumb|left|upright=0.8|Defender [[Jimmy Conrad]], one of two Wizards players named to the 2004 [[MLS Best XI]]]]
+
+The Kansas City Wizards had won the MLS Cup in [[MLS Cup 2000|2000]], defeating the Chicago Fire, in the same season that they had clinched the [[Supporters' Shield]] for the best regular season record.<ref>{{cite news |last=Kovzan |first=Sam |date=December 5, 2018 |title=2000 MLS Cup flashback: Gansler, former players share memories of KC's first title |url=https://www.sportingkc.com/post/2018/12/05/2000-mls-cup-flashback-gansler-former-players-share-memories-kcs-first-title |publisher=Sporting Kansas City |access-date=January 21, 2019 |archive-url=https://web.archive.org/web/20190122145055/https://www.sportingkc.com/post/2018/12/05/2000-mls-cup-flashback-gansler-former-players-share-memories-kcs-first-title |archive-date=January 22, 2019 |url-status=live |df=mdy-all }}</ref> The team qualified for the playoffs in six of their first eight seasons, including four consecutive appearances under manager [[Bob Gansler]]. The Wizards finished in second place in the Western Conference at the end of the 2003 season,<ref name="MN">{{cite news |last=Hernandez |first=Dylan |date=March 31, 2004 |title=MLS Preview |page=D3 |work=[[The Mercury News]]}}</ref> relying on 40-year-old forward [[Preki]] as he led the league in scoring and was named the [[Landon Donovan MVP Award|most valuable player]].<ref>{{cite news |date=November 22, 2003 |title=Preki becomes first 2-time MVP winner |page=D6 |work=[[Iowa City Press-Citizen]] |url=https://www.newspapers.com/clip/27505879/preki_becomes_first_2time_mvp_winner/ |via=[[Newspapers.com]] |access-date=January 21, 2019 |archive-url=https://web.archive.org/web/20190122145054/https://www.newspapers.com/clip/27505879/preki_becomes_first_2time_mvp_winner/ |archive-date=January 22, 2019 |url-status=live |df=mdy-all }}</ref> The team advanced past the [[Colorado Rapids]] and qualified for the Conference Finals, where they were defeated 3–2 by the [[San Jose Earthquakes]] in extra time.<ref>{{cite news |last=Kovzan |first=Sam |date=November 16, 2018 |title=Playoff history: How Sporting has KC fared in past conference championships |url=https://www.sportingkc.com/post/2018/11/16/playoff-history-how-sporting-has-kc-fared-past-conference-championships |publisher=Sporting Kansas City |access-date=January 21, 2019 |archive-url=https://web.archive.org/web/20190122145047/https://www.sportingkc.com/post/2018/11/16/playoff-history-how-sporting-has-kc-fared-past-conference-championships |archive-date=January 22, 2019 |url-status=live |df=mdy-all }}</ref>
+
+The Wizards began the 2004 season without Preki, who broke his leg during preseason and replaced with [[Josh Wolff]] and [[Davy Arnaud]] as starting forwards.<ref name="MN"/><ref>{{cite news |last=Luder |first=Bob |date=February 22, 2004 |title=Preki breaks leg; Star out three months |page=C1 |work=The Kansas City Star |url=https://www.newspapers.com/clip/72947578/preki-breaks-leg/ |via=Newspapers.com |access-date=March 7, 2021}}</ref> The season began with only three wins in the first nine matches,<ref>{{cite news |last=Rooney |first=Pat |date=June 10, 2004 |title=Wolff gives Wizards late win |page=D3 |work=The Kansas City Star |url=https://www.newspapers.com/clip/72947591/wolff-gives-wizards-late-win/ |via=Newspapers.com |access-date=March 7, 2021}}</ref> but the Wizards found their form in June and went unbeaten in nine despite playing five consecutive away matches.<ref>{{cite news |last=Luder |first=Bob |date=June 30, 2004 |title=Wizards unfazed by relocation report |page=D1 |work=The Kansas City Star |url=https://www.newspapers.com/clip/72947598/wizards-unfazed-by-relocation-report/ |via=Newspapers.com |access-date=March 7, 2021}}</ref> The team saw their unbeaten streak broken at the end of July before the [[2003 MLS All-Star Game|All-Star Game]] break, remaining in second place behind the [[Los Angeles Galaxy]] in the Western Conference standings.<ref>{{cite news |last=Luder |first=Bob |date=July 29, 2004 |title=Left seeing stars: Wizards' unbeaten streak ends at nine |page=D1 |work=The Kansas City Star |url=https://www.newspapers.com/clip/72947459/left-seeing-stars-wizards-unbeaten/ |via=Newspapers.com |access-date=March 7, 2021}}</ref> Veteran goalkeeper [[Tony Meola]] picked up an injury to his [[achilles tendon]] during a pre-game warm-up in August and was replaced by backup goalkeeper [[Bo Oshoniyi]], who would start for the rest of the season.<ref>{{cite news |last=Cowles |first=Chris |date=August 22, 2004 |title=Wizards snap skid |page=C3 |work=The Kansas City Star |url=http://www.kansascity.com/mld/kansascity/sports/soccer/mls/kansas_city_wizards/9463783.htm |url-status=dead |archive-url=https://web.archive.org/web/20040901093831/http://www.kansascity.com/mld/kansascity/sports/soccer/mls/kansas_city_wizards/9463783.htm |archive-date=September 1, 2004 |access-date=January 21, 2019}}</ref><ref>{{cite news |last=Luder |first=Bob |date=October 28, 2004 |title=Wizards' Meola ready to return, but... |page=D3 |work=The Kansas City Star
+|via=Newspapers.com }}</ref> The Wizards also lost starting midfielder [[Chris Klein (soccer)|Chris Klein]] to a torn ligament in his knee, while Preki returned only for three matches before being sidelined for an additional ankle surgery.<ref>{{cite news |last=Leon Moore |first=David |date=November 12, 2004 |title=As injuries piled up, Wizards kept on playing and winning |page=C13 |work=USA Today}}</ref>
+
+Kansas City returned from the All-Star break by continuing a four-match winless streak,<ref>{{cite news |last=Luder |first=Bob |date=August 21, 2004 |title=Wizards ready to get back up |page=D3 |work=The Kansas City Star |url=https://www.newspapers.com/clip/72947475/wizards-ready-to-get-back-up/ |via=Newspapers.com |access-date=March 7, 2021}}</ref> but finished the season with five wins in the final nine matches to clinch the first seed in the Western Conference.<ref>{{cite news |last=Luder |first=Bob |date=October 17, 2004 |title=Wizards wrap up West title |page=C1 |work=The Kansas City Star |url=https://www.newspapers.com/clip/72947495/wizards-wrap-up-west-title/ |via=Newspapers.com |access-date=March 7, 2021}}</ref> The team's success was credited to a league-leading defense, conceding one goal per game on average, and strong performances from reserve and replacement players under Gansler.<ref>{{cite news |last=Green |first=Nick |date=November 14, 2004 |title=Storied United face unapologetic Wizards |page=D1 |work=[[Daily Breeze]] |location=Torrance, California}}</ref> The Wizards also won their first [[2004 U.S. Open Cup|U.S. Open Cup]] title in September by defeating the Chicago Fire 1–0 with a [[golden goal]] in extra time.<ref>{{cite news |last=Grathoff |first=Pete |date=September 23, 2004 |title=Free kick snuffs Fire's Cup bid |page=111 |work=[[Chicago Sun-Times]] |url=http://www.suntimes.com/output/fire/cst-spt-fire23.html |url-status=dead |archive-url=https://web.archive.org/web/20041011131433/http://www.suntimes.com/output/fire/cst-spt-fire23.html |archive-date=October 11, 2004 |access-date=January 21, 2019}}</ref> The team were tied with the Columbus Crew in the overall standings with 49 points, but lost the Supporters' Shield on the third tiebreaker, goals scored.<ref>{{cite news |last=Merz |first=Craig |date=October 17, 2004 |title=Crew posts 13th draw, wins Supporters' Shield |page=E3 |work=The Columbus Dispatch}}</ref> Two Wizards players, defender [[Jimmy Conrad]] and midfielder [[Kerry Zavagnin]], were named to the [[MLS Best XI]], but Gansler finished as runner-up to Columbus's [[Greg Andrulis]] for [[MLS Coach of the Year Award|MLS Coach of the Year]].<ref>{{cite news |last=Luder |first=Bob |date=November 13, 2004 |title=Awards go to other clubs |page=D3 |work=The Kansas City Star |url=https://www.newspapers.com/clip/72947540/awards-go-to-other-clubs/ |via=Newspapers.com |access-date=March 7, 2021}}</ref>
+
+The Wizards began their playoff campaign in the Western Conference Semifinals against the San Jose Earthquakes, the defending MLS Cup champions. The team fell 2–0 in the first leg of the series in San Jose, conceding goals to [[Dwayne De Rosario]] and [[Craig Waibel]] near halftime, but Oshoniyi saved further chances from the Earthquakes.<ref>{{cite news |last=Carlisle |first=Jeff |date=October 25, 2004 |title=Earthquakes rattle Wizards |page=C3 |work=The Kansas City Star |url=https://www.newspapers.com/clip/72947564/earthquakes-rattle-wizards/ |via=Newspapers.com |access-date=March 7, 2021}}</ref><ref>{{cite news |last=Hernandez |first=Dylan |date=October 25, 2004 |title=Quakes jump to two-goal lead |page=D1 |work=The Mercury News |url=http://www.mercurynews.com/mld/mercurynews/sports/10009123.htm |url-status=dead |archive-url=https://web.archive.org/web/20041201004553/http://www.mercurynews.com/mld/mercurynews/sports/10009123.htm |archive-date=December 1, 2004 |access-date=January 21, 2019}}</ref> The Wizards returned to Arrowhead Stadium and earned a 2–0 lead in the second half to tie the series, with a first-half goal from rookie midfielder [[Khari Stephenson]] and an [[own goal]] scored on a deflection off Earthquakes forward [[Brian Ching]].<ref>{{cite news |last=Whitman |first=Robert |date=October 31, 2004 |title=Quakes crash out of playoffs |page=C1 |work=The Mercury News |url=http://www.mercurynews.com/mld/mercurynews/sports/soccer/10061880.htm |url-status=dead |archive-url=https://web.archive.org/web/20041127164051/http://www.mercurynews.com/mld/mercurynews/sports/soccer/10061880.htm |archive-date=November 27, 2004 |access-date=January 21, 2019}}</ref> In the second minute of [[stoppage time]], Kansas City midfielder [[Jack Jewsbury]] scored the winning goal to give his team a 3–2 win on aggregate that would clinch a berth in the Western Conference Final.<ref>{{cite news |last=Luder |first=Bob |date=October 31, 2004 |title=Wizards' comeback rocks Earthquakes |page=A1 |work=The Kansas City Star |url=http://www.kansascity.com/mld/kansascity/sports/soccer/mls/kansas_city_wizards/10059189.htm |url-status=dead |archive-url=https://web.archive.org/web/20041128102420/http://www.kansascity.com/mld/kansascity/sports/soccer/mls/kansas_city_wizards/10059189.htm |archive-date=November 28, 2004 |access-date=January 21, 2019}}</ref> The Wizards then hosted the Los Angeles Galaxy in the Western Conference Final, repeating similar playoff matchups that the Galaxy won in 1996 and 2002 and lost in 2000; the Galaxy, who were hosting the MLS Cup final, was also winless in four regular season matches against the Wizards in 2004.<ref>{{cite news |last=Luder |first=Bob |date=November 1, 2004 |title=Wizards familiar with West final foe |page=C12 |work=The Kansas City Star |url=http://www.kansascity.com/mld/kansascity/sports/10065844.htm |url-status=dead |archive-url=https://web.archive.org/web/20041103002529/http://www.kansascity.com/mld/kansascity/sports/10065844.htm |archive-date=November 3, 2004 |access-date=January 22, 2019}}</ref> With a strong defensive performance, Kansas City advanced to their second MLS Cup final on a 2–0 win over Los Angeles; both of the team's goals were scored by [[Davy Arnaud]] in the 24th and 69th minutes.<ref>{{cite news |last=Jones |first=Grahame L. |date=November 6, 2004 |title=Galaxy Hopes Quietly Slip Away to Wizards |page=D1 |url=https://www.latimes.com/archives/la-xpm-2004-nov-06-sp-galaxy6-story.html |work=Los Angeles Times |access-date=January 22, 2019 |archive-url=https://web.archive.org/web/20151017120932/http://articles.latimes.com/2004/nov/06/sports/sp-galaxy6 |archive-date=October 17, 2015 |url-status=live |df=mdy-all }}</ref><ref>{{cite news |last=Luder |first=Bob |date=November 6, 2004 |title=One from the cup: Arnaud's goals, Wizards' defense send KC to MLS final |page=D1 |work=The Kansas City Star |url=http://www.kansascity.com/mld/kansascity/sports/10112602.htm |url-status=dead |archive-url=https://web.archive.org/web/20041109051338/http://www.kansascity.com/mld/kansascity/sports/10112602.htm |archive-date=November 9, 2004 |access-date=January 22, 2019}}</ref>
+
+===Summary of results===
+
+:''Note: In all results below, the score of the finalist is given first (H: home; A: away).''
+{| class="wikitable" style="text-align:center"
+|-
+!colspan=4|[[D.C. United]]
+!Round
+!colspan=4|[[Kansas City Wizards]]
+|-
+|colspan=4 valign=top|2nd place in [[2004 Major League Soccer season#Eastern Conference|Eastern Conference]]<br />&nbsp;
+
+{| class="wikitable" style="text-align:center; margin:0; font-size: 95%"
+|-
+! style="width:175px;"|Team
+!width="20"|{{Tooltip|Pld|Played}}
+!width="20"|{{Tooltip|W|Won}}
+!width="20"|{{Tooltip|L|Lost}}
+!width="20"|{{Tooltip|D|Drawn}}
+!width="20"|{{Tooltip|Pts|Points}}
+|-style="background:#BBF1BD;"
+|align=left|[[Columbus Crew]] ([[Supporters' Shield|SS]])
+|30||12||5||13||'''49'''
+|-style="background:#FFFEBB;"
+|align=left|'''[[D.C. United]]'''
+|30||11||10||9||'''42'''
+|-style="background:#FFFEBB;"
+|align=left|[[MetroStars]]
+|30||11||12||7||'''40'''
+|-style="background:#FFFEBB;"
+|align=left|[[New England Revolution]]
+|30||8||13||9||'''33'''
+|-
+|align=left|[[Chicago Fire Soccer Club|Chicago Fire]]
+|30||8||13||9||'''33'''
+|}
+
+{{small|1=Source: [https://www.mlssoccer.com/standings/conference/#season=2004&live=true MLS]}}
+
+{{legend0|#FFFEBB|Qualified for playoffs|border=1px solid black}}<br />{{legend0|#BBF1BD|[[Supporters' Shield]] winner|border=1px solid black}}
+|style="background:#c1e0ff"|[[2004 Major League Soccer season|Regular season]]
+|colspan=4 valign=top|1st place in [[2004 Major League Soccer season#Western Conference|Western Conference]]<br />&nbsp;
+
+{| class="wikitable" style="text-align:center; margin:0; font-size: 95%"
+|-
+! style="width:175px;"|Team
+!width="20"|{{Tooltip|Pld|Played}}
+!width="20"|{{Tooltip|W|Won}}
+!width="20"|{{Tooltip|L|Lost}}
+!width="20"|{{Tooltip|D|Drawn}}
+!width="20"|{{Tooltip|Pts|Points}}
+|-style="background:#FFFEBB;"
+|align=left|'''[[Kansas City Wizards]]'''
+|30||14||9||7||'''49'''
+|-style="background:#FFFEBB;"
+|align=left|[[Los Angeles Galaxy]]
+|30||11||9||10||'''43'''
+|-style="background:#FFFEBB;"
+|align=left|[[Colorado Rapids]]
+|30||10||9||11||'''41'''
+|-style="background:#FFFEBB;"
+|align=left|[[San Jose Earthquakes]]
+|30||9||10||11||'''38'''
+|-
+|align=left|[[Dallas Burn]]
+|30||10||14||6||'''36'''
+|}
+
+{{small|1=Source: [https://www.mlssoccer.com/standings/conference/#season=2004&live=true MLS]}}
+
+{{legend0|#FFFEBB|Qualified for playoffs|border=1px solid black}}
+|- style="background:#c1e0ff"
+|Opponent
+|{{tooltip|Agg.|Aggregate score}}
+|1st leg
+|2nd leg
+|[[2004 MLS Cup Playoffs|MLS Cup Playoffs]]
+|Opponent
+|{{tooltip|Agg.|Aggregate score}}
+|1st leg
+|2nd leg
+|-
+|align=left|[[MetroStars]]
+|4–0
+|{{nowrap|2–0 (A)}}
+|{{nowrap|2–0 (H)}}
+|style="background:#c1e0ff"|Conference Semifinals
+|align=left|[[San Jose Earthquakes]]
+|3–2
+|{{nowrap|0–2 (A)}}
+|{{nowrap|3–0 (H)}}
+|-
+|align=left|[[New England Revolution]]
+|colspan=3|3–3 {{pso|4–3}} (H)
+|style="background:#c1e0ff"|Conference Final
+|align=left|[[Los Angeles Galaxy]]
+|colspan=3|2–0 (H)
+|}
+
+==Broadcasting and entertainment==
+
+The MLS Cup final was televised in the United States on [[ESPN on ABC|ABC]] in English, along with a Spanish broadcast using [[Second audio program|secondary audio programming]], both produced by [[ESPN]]. English play-by-play commentary was provided by [[JP Dellacamera]] with color analysis by [[Eric Wynalda]], reprising their roles in the previous final. Play-by-play commentator [[Ernesto Motta]] returned to the Spanish-language broadcast, working alongside color analyst Robert Sierra. The ABC/ESPN broadcast was produced by a team of 85 people and used 20 cameras, including specialized replay and slow-motion cameras. The match was also broadcast in over 175 other countries by [[ESPN International]]. Radio coverage of the match was provided by the local teams in English and [[KMXE (AM)|Radiovisa]] nationally in Spanish. It was also carried on the [[American Forces Radio Network]] internationally.<ref>{{cite press release |date=November 11, 2004 |title=MLS Cup 2004 to reach television and radio audiences in English and Spanish |url=https://www.mlssoccer.com/post/2010/01/22/mls-cup-2004-reach-television-and-radio-audiences-english-and-spanish |publisher=Major League Soccer |access-date=January 22, 2019 |archive-url=https://web.archive.org/web/20190123223838/https://www.mlssoccer.com/post/2010/01/22/mls-cup-2004-reach-television-and-radio-audiences-english-and-spanish |archive-date=January 23, 2019 |url-status=live |df=mdy-all }}</ref> The ABC broadcast earned a [[Nielsen rating]] of 0.8 and averaged a local 2.4 rating in the [[Kansas City metropolitan area]]—far below the competing [[Kansas City Chiefs]] game.<ref>{{cite news |last=Kennedy |first=Paul |date=December 4, 2012 |title=MLS Cup television ratings dip |url=https://www.socceramerica.com/publications/article/49487/mls-cup-television-ratings-dip.html |work=Soccer America |url-access=subscription |access-date=January 22, 2019 |archive-url=https://web.archive.org/web/20181116085553/https://www.socceramerica.com/publications/article/49487/mls-cup-television-ratings-dip.html |archive-date=November 16, 2018 |url-status=live |df=mdy-all }}</ref><ref>{{cite news |last=Flanagan |first=Jeffrey |date=November 16, 2004 |title=Channel 9 happy with ratings for Sunday's MLS Cup |page=C2 |work=The Kansas City Star |url=http://www.kansascity.com/mld/kansascity/sports/10191345.htm |url-status=dead |archive-url=https://web.archive.org/web/20041117205445/http://www.kansascity.com/mld/kansascity/sports/10191345.htm |archive-date=November 17, 2004 |access-date=January 26, 2019}}</ref> The match's halftime show featured [[San Diego]]–based alternative rock band [[Switchfoot]] and a pyrotechnics display.<ref>{{cite press release |date=November 11, 2004 |title=RadioShack MLS Cup 2004 halftime show to feature recording artist Switchfoot |url=https://www.mlssoccer.com/post/2010/01/22/radioshack-mls-cup-2004-halftime-show-feature-recording-artist-switchfoot |publisher=Major League Soccer |access-date=January 22, 2019 |archive-url=https://web.archive.org/web/20190124041341/https://www.mlssoccer.com/post/2010/01/22/radioshack-mls-cup-2004-halftime-show-feature-recording-artist-switchfoot |archive-date=January 24, 2019 |url-status=live |df=mdy-all }}</ref><ref>{{cite news |last=Castillo |first=Arielle |date=December 5, 2013 |title=MLS Cup 2015: a #TBT look at musical performers of Cups past |url=https://www.mlssoccer.com/post/2015/12/03/mls-cup-2015-tbt-look-musical-performers-cups-past-sideline |work=MLSsoccer.com |access-date=January 22, 2019 |archive-url=https://web.archive.org/web/20181209125658/https://www.mlssoccer.com/post/2015/12/03/mls-cup-2015-tbt-look-musical-performers-cups-past-sideline |archive-date=December 9, 2018 |url-status=live |df=mdy-all }}</ref><ref>{{cite news |last=Green |first=Nick |date=November 12, 2004 |title=Dancers needed for MLS Cup show |page=A5 |work=Daily Breeze |location=Torrance, California}}</ref>
+
+==Match==
+
+===Summary===
+[[File:The pitch at the Home Depot Center.jpg|thumb|right|MLS Cup 2004 was hosted at the [[Home Depot Center]] in [[Carson, California]], near Los Angeles]]
+
+The match kicked off at 12:45&nbsp;p.m. [[Pacific Time Zone|Pacific Time]] on November 14, 2004, at the Home Depot Center in Carson, California, in front of a crowd of 25,797 spectators—including several hundred traveling D.C. United supporters.<ref name="Goff">{{cite news |last=Goff |first=Steven |date=November 15, 2004 |title=United Captures 4th Title |page=D1 |url=https://www.washingtonpost.com/wp-dyn/articles/A49618-2004Nov14.html |work=The Washington Post |access-date=January 22, 2019 |archive-url=https://web.archive.org/web/20190124041431/http://www.washingtonpost.com/wp-dyn/articles/A49618-2004Nov14.html |archive-date=January 24, 2019 |url-status=live |df=mdy-all }}</ref><ref name="MLS-Play">{{cite web |date=November 14, 2004 |title=Match Tracker: D.C. United vs. Kansas City Wizards (11/14) – Play-by-Play |url=http://www.mlsnet.com/MLS/scoreboard/gameLog.jsp?match=11142004_DCKC&event=mls_cup&year=2004 |publisher=Major League Soccer |url-status=dead |archive-url=https://web.archive.org/web/20041211121743/http://www.mlsnet.com/MLS/scoreboard/gameLog.jsp?match=11142004_DCKC&event=mls_cup&year=2004 |archive-date=December 11, 2004 |access-date=January 26, 2019}}</ref> At kickoff, the temperature measured {{convert|81|F|C}}, setting a new record for hottest MLS Cup final.<ref>{{cite news |last=Stejskal |first=Sam |date=December 10, 2016 |title=Will Toronto FC vs. Seattle Sounders be the coldest MLS Cup on record? |url=https://www.mlssoccer.com/post/2016/12/10/will-toronto-fc-vs-seattle-sounders-be-coldest-mls-cup-record |work=MLSsoccer.com |access-date=January 22, 2019 |archive-url=https://web.archive.org/web/20181105160621/https://www.mlssoccer.com/post/2016/12/10/will-toronto-fc-vs-seattle-sounders-be-coldest-mls-cup-record |archive-date=November 5, 2018 |url-status=live |df=mdy-all }}</ref> Kansas City took an early lead in the sixth minute after defender [[José Burciaga Jr.]] scored on a shot from {{convert|30|yd|m}}, following sustained offensive pressure from kickoff.<ref name="LAT">{{cite news |last=Jones |first=Grahame L. |date=November 15, 2004 |title=United Gets Its Cupful |page=D1 |url=https://www.latimes.com/archives/la-xpm-2004-nov-15-sp-mls15-story.html |work=Los Angeles Times |access-date=January 22, 2019}}</ref><ref name="KC-Summary">{{cite news |last=Luder |first=Bob |date=November 15, 2004 |title=United they fall |page=C1 |work=The Kansas City Star}}</ref>
+
+D.C. United responded with its own offensive pressure and scored three goals within seven minutes to take a 3–1 lead by the 30th minute of play.<ref name="MLSMoment">{{cite news |last=Doyle |first=Matt |date=November 3, 2011 |title=Top 50 MLS Cup Moments: #17 Bull Rush |url=https://www.mlssoccer.com/post/2011/11/03/top-50-mls-cup-moments-17-bull-rush |work=MLSsoccer.com |access-date=January 26, 2019}}</ref> [[Alecko Eskandarian]] scored D.C.'s first two goals, first receiving a pass from [[Brian Carroll]] and turning around defender [[Nick Garcia]] to score from {{convert|14|yd|m}} in the 19th minute.<ref name="LAT"/> Four minutes later, Eskandarian stole the ball from a Wizards throw-in meant for defender [[Jimmy Conrad]] and scored on a left-footed shot from {{convert|18|yd|m}} for a 2–1 lead; during the run-up to the goal, Eskandarian used his forearm to block the ball, but it was not called by referee Michael Kennedy despite protests from Kansas City players and coaches.<ref name="MLS-Handball">{{cite news |last=Doyle |first=Matt |date=October 19, 2011 |title=Top 50 MLS Cup Moments: #32 Hand of Eski |url=https://www.mlssoccer.com/post/2011/10/19/top-50-mls-cup-moments-32-hand-eski |work=MLSsoccer.com |access-date=January 26, 2019 |archive-url=https://web.archive.org/web/20190126165914/https://www.mlssoccer.com/post/2011/10/19/top-50-mls-cup-moments-32-hand-eski |archive-date=January 26, 2019 |url-status=live |df=mdy-all }}</ref><ref>{{cite news |last=Lewis |first=Michael |date=November 15, 2004 |title=United's MLS title has Jersey flavor |work=[[New York Daily News]] |url=http://www.nydailynews.com/sports/more_sports/story/252745p-216416c.html |url-status=dead |archive-url=https://web.archive.org/web/20041116132454/http://www.nydailynews.com/sports/more_sports/story/252745p-216416c.html |archive-date=November 16, 2004 |access-date=January 26, 2019}}</ref> D.C. United extended their lead to 3–1 in the 26th minute after Wizards defender [[Alex Zotinca]] scored an [[own goal]] by deflecting a cross from [[Earnie Stewart]] into the goal with his chest.<ref name="KC-Summary"/><ref name="MLS-Ole">{{cite news |last=French |first=Scott |date=November 14, 2004 |title=Olé! United give vintage per-four-mance |url=http://www.mlsnet.com/MLS/news/mls_events_news.jsp?ymd=20041114&content_id=19055&vkey=mlscup2004&fext=.jsp |work=MLSnet.com |url-status=dead |archive-url=https://web.archive.org/web/20050114060319/http://www.mlsnet.com/MLS/news/mls_events_news.jsp?ymd=20041114&content_id=19055&vkey=mlscup2004&fext=.jsp |archive-date=January 14, 2005 |access-date=January 24, 2019}}</ref>
+
+D.C. remained ahead by two goals at halftime, but Kansas City began the second half with an offensive push along the wings to narrow the lead.<ref name="MLS-Ole"/><ref name="MLS-Lanes">{{cite news |last=Rusert |first=Robert |date=November 14, 2004 |title=Closed lanes doom Wizards |url=http://www.mlsnet.com/MLS/news/mls_events_news.jsp?ymd=20041114&content_id=19094&vkey=mlscup2004&fext=.jsp |work=MLSnet.com |url-status=dead |archive-url=https://web.archive.org/web/20050114060328/http://www.mlsnet.com/MLS/news/mls_events_news.jsp?ymd=20041114&content_id=19094&vkey=mlscup2004&fext=.jsp |archive-date=January 14, 2005 |access-date=January 26, 2019}}</ref> Burciaga Jr. took a [[corner kick]] for the Wizards in the 56th minute that was headed towards goal by Conrad, who led the team with four shots,<ref>{{cite news |last=Luder |first=Bob |date=November 15, 2004 |title=Enemy within defeats KC |page=C4 |work=The Kansas City Star}}</ref> but it was blocked by Eskandarian on the goal line and deflected away by goalkeeper [[Nick Rimando]].<ref name="MLS-Play"/> The ball returned to Conrad, who took a short, volleyed shot towards the goal that hit the hand of D.C. midfielder [[Dema Kovalenko]].<ref name="Goff"/><ref name="KC-Summary"/> After the referee and an [[assistant referee (association football)|assistant]] discussed the play, Kansas City were awarded a [[penalty kick]] and Kovalenko received the first [[red card (sports)|red card]] in MLS Cup history for his handball.<ref name="MLS-Ole"/><ref name="AP">{{cite news |last=Peters |first=Ken |date=November 15, 2004 |title=D.C. United coach re-United with MLS trophy |page=13 |url=https://www.chron.com/sports/dynamo/article/D-C-United-coach-re-United-with-MLS-trophy-1960979.php |work=[[Houston Chronicle]] |agency=Associated Press |access-date=January 26, 2019 |archive-url=https://web.archive.org/web/20190127094558/https://www.chron.com/sports/dynamo/article/D-C-United-coach-re-United-with-MLS-trophy-1960979.php |archive-date=January 27, 2019 |url-status=live |df=mdy-all }}</ref>
+
+The resulting penalty kick was scored in the 58th minute by [[Josh Wolff]], but the Wizards failed to find an equalizing goal with their one-man advantage.<ref name="LAT"/> Manager [[Bob Gansler]] made two substitutions to bring on attacking players, but the team failed to capitalize on chances given to Burciaga in the 81st minute and [[Matt Taylor (American soccer)|Matt Taylor]] in [[stoppage time]].<ref name="MLS-Ole"/><ref>{{cite news |last=Rusert |first=Robert |date=November 14, 2004 |title=No call adds to Wizards woes |url=http://www.mlsnet.com/MLS/news/mls_events_news.jsp?ymd=20041114&content_id=19105&vkey=mlscup2004&fext=.jsp |work=MLSnet.com |url-status=dead |archive-url=https://web.archive.org/web/20050114060335/http://www.mlsnet.com/MLS/news/mls_events_news.jsp?ymd=20041114&content_id=19105&vkey=mlscup2004&fext=.jsp |archive-date=January 14, 2005 |access-date=January 26, 2019}}</ref> Nowak responded by making several defensive substitutions for D.C., also bringing on [[Freddy Adu]] in the 65th minute for Eskandarian, who suffered a leg injury, as the team held onto their lead to win the match 3–2 and clinch an MLS Cup.<ref name="MLS-Ole"/>
+
+===Details===
+{{football box
+|date    = November 14, 2004
+|time    = 12:30&nbsp;[[Pacific Time Zone|PST]]
+|team1   = [[D.C. United]]
+|score   = 3–2
+|report  = [https://www.mlssoccer.com/history/mls-cup/2004 Report]
+|team2   = [[Kansas City Wizards]]
+|goals1  = 
+*[[Alecko Eskandarian|Eskandarian]] {{goal|19||23}}
+*[[Alex Zotinca|Zotinca]] {{goal|26|o.g.}}
+|goals2  = 
+*[[José Burciaga Jr.|Burciaga Jr.]] {{goal|6}}
+*[[Josh Wolff|Wolff]] {{goal|58|pen.}}
+|stadium = [[The Home Depot Center]]
+|location = [[Carson, California]]
+|attendance = 25,797
+|referee = Michael Kennedy
+}}
+
+{| width=92% |
+|-
+|{{Football kit
+ | pattern_la = _DCU_04h
+ | pattern_b  = _DCU_04h
+ | pattern_ra = _DCU_04h
+ | pattern_sh = _DCU_04h
+ | pattern_so = _redtopline
+ | leftarm    = FFFFFF
+ | body       = FFFFFF
+ | rightarm   = FFFFFF
+ | shorts     = FFFFFF
+ | socks      = 000000
+ | title      = 
+}}
+|{{Football kit
+ | pattern_la = _adidasstripeswhite
+ | pattern_b  = _MUNDIAL_WHITE
+ | pattern_ra = _adidasstripeswhite
+ | pattern_sh = _adidaswhite2011
+ | pattern_so = _whitetop
+ | leftarm    = 0080FF
+ | body       = 0080FF
+ | rightarm   = 0080FF
+ | shorts     = 0080FF
+ | socks      = 0080FF
+ | title      =
+}}
+|}
+
+{| style="width:100%;"
+|-
+|  style="vertical-align:top; width:50%;"|
+{| style="font-size: 90%" cellspacing="0" cellpadding="0"
+|-
+|colspan=4|<br />'''D.C. UNITED:'''
+|-
+!width=25| !!width=25|
+|-
+|GK ||'''18'''||{{flagicon|USA}} [[Nick Rimando]]
+|-
+|DF ||'''26'''||{{flagicon|USA}} [[Bryan Namoff]] || {{yel|72}}
+|-
+|DF ||'''7''' ||{{flagicon|NZL}} [[Ryan Nelsen]] ([[Captain (association football)|c]])
+|-
+|DF ||'''12'''||{{flagicon|USA}} [[Mike Petke]]
+|-
+|MF ||'''8''' ||{{flagicon|USA}} [[Earnie Stewart]] || {{yel|55}} || {{suboff|82}}
+|-
+|MF ||'''16'''||{{flagicon|USA}} [[Brian Carroll]]
+|-
+|MF ||'''14'''||{{flagicon|USA}} [[Ben Olsen]] || {{yel|89}}
+|-
+|MF ||'''21'''||{{flagicon|UKR}} [[Dema Kovalenko]] || {{sent off|0|57}}
+|-
+|MF ||'''13'''||{{flagicon|ARG}} [[Christian Gomez]] || || {{suboff|59}}
+|-
+|FW ||'''99'''||{{flagicon|BOL}} [[Jaime Moreno (footballer, born 1974)|Jaime Moreno]]
+|-
+|FW ||'''11'''||{{flagicon|USA}} [[Alecko Eskandarian]] || || {{suboff|65}}
+|-
+|colspan=3|'''Substitutions:'''
+|-
+|GK ||'''22'''||{{flagicon|USA}} [[Troy Perkins]]
+|-
+|DF ||'''2''' ||{{flagicon|USA}} [[David Stokes (soccer)|David Stokes]]
+|-
+|DF ||'''4''' ||{{flagicon|USA}} [[Brandon Prideaux]] || || {{subon|82}}
+|-
+|DF ||'''5''' ||{{flagicon|VIN}} [[Ezra Hendrickson]]
+|-
+|MF ||'''9''' ||{{flagicon|USA}} [[Freddy Adu]] || || {{subon|65}}
+|-
+|MF ||'''17'''||{{flagicon|USA}} [[Joshua Gros]] || || {{subon|59}}
+|-
+|MF ||'''27'''||{{flagicon|USA}} Tim Lawson
+|-
+|FW ||'''25'''||{{flagicon|USA}} [[Santino Quaranta]]
+|-
+|FW ||'''3''' ||{{flagicon|USA}} [[Jason Thompson (soccer)|Jason Thompson]]
+|-
+|colspan=3|'''Head Coach:'''
+|-
+|colspan=4| {{flagicon|USA}} [[Peter Nowak]]
+|}
+|valign="top"|<!-- Need to create graphic -->
+|  style="vertical-align:top; width:50%;"|
+{| cellspacing="0" cellpadding="0" style="font-size:90%; margin:auto;"
+|-
+|colspan=4|<br />'''KANSAS CITY WIZARDS:'''
+|-
+!width="25"| !!width="25"|
+|-
+|GK ||'''25'''||{{flagicon|USA}} [[Bo Oshoniyi]]
+|-
+|DF ||'''12'''||{{flagicon|USA}} [[Jimmy Conrad]]
+|-
+|DF ||'''3''' ||{{flagicon|USA}} [[Nick Garcia]]
+|-
+|DF ||'''23'''||{{flagicon|ROM}} [[Alex Zotinca]] || || {{suboff|82}}
+|-
+|DF ||'''6''' ||{{flagicon|USA}} [[José Burciaga Jr.]]
+|-
+|MF ||'''5''' ||{{flagicon|USA}} [[Kerry Zavagnin]]
+|-
+|MF ||'''7''' ||{{flagicon|USA}} [[Diego Gutiérrez (soccer, born 1972)|Diego Gutiérrez]] ([[Captain (association football)|c]])&nbsp;|| {{yel|33}}
+|-
+|MF ||'''14'''||{{flagicon|USA}} [[Jack Jewsbury]] || || {{suboff|66}}
+|-
+|MF ||'''24'''||{{flagicon|JAM}} [[Khari Stephenson]] || || {{suboff|45}}
+|-
+|FW ||'''22'''||{{flagicon|USA}} [[Davy Arnaud]]
+|-
+|FW ||'''15'''||{{flagicon|USA}} [[Josh Wolff]]
+|-
+|colspan=3|'''Substitutions:'''
+|-
+|GK ||'''1''' ||{{flagicon|USA}} [[Tony Meola]]
+|-
+|GK ||'''30'''||{{flagicon|USA}} [[Will Hesmer]]
+|-
+|DF ||'''4''' ||{{flagicon|JAM}} [[Shavar Thomas]]
+|-
+|DF ||'''26'''||{{flagicon|USA}} [[Taylor Graham]]
+|-
+|MF ||'''8''' ||{{flagicon|BRA}} [[Diego Walsh]] || || {{subon|82}}
+|-
+|MF ||'''10'''||{{flagicon|USA}} [[Francisco Gomez (soccer, born 1979)|Francisco Gomez]]
+|-
+|MF ||'''20'''||{{flagicon|RUS}} [[Igor Simutenkov]] || || {{subon|45}}
+|-
+|FW ||'''19'''||{{flagicon|USA}} [[Matt Taylor (American soccer)|Matt Taylor]] || || {{subon|66}}
+|-
+|FW ||'''27'''||{{flagicon|USA}} [[Justin Detter]]
+|-
+|colspan=3|'''Head Coach:'''
+|-
+|colspan=3|{{flagicon|USA}} [[Bob Gansler]]
+|}
+|}
+
+{| width=100% style="font-size: 90%"
+|
+'''MLS Cup Most Valuable Player:'''
+<br />
+{{flagicon|USA}} [[Alecko Eskandarian]] (D.C. United)
+|}
+
+{| width=100% style="font-size: 90%"
+|
+'''Assistant referees:'''
+<br />Nathan Clement (United States)
+<br />Kermit Quisenberry (United States)
+<br />'''Fourth official:'''
+<br />[[Abiodun Okulaja]] (United States)
+|}
+
+==Post-match==
+[[File:AleckoEskandarian20050917.JPG|thumb|left|upright=0.8|D.C. United forward [[Alecko Eskandarian]] was named the MLS Cup MVP for his two goals in the final]]
+
+D.C. United won its fourth MLS Cup championship and its first since 1999, solidifying its place as the most successful sports franchise in [[Washington, D.C.]]<ref>{{cite news |last=Wise |first=Mike |date=November 15, 2004 |title=United on Top of Its Game |page=A1 |url=https://www.washingtonpost.com/wp-dyn/articles/A50056-2004Nov14.html |work=The Washington Post |access-date=January 26, 2019 |archive-url=https://web.archive.org/web/20180509155650/http://www.washingtonpost.com/wp-dyn/articles/A50056-2004Nov14.html |archive-date=May 9, 2018 |url-status=live |df=mdy-all }}</ref> [[Peter Nowak]] became the first person to win the MLS Cup as both a player and as a head coach, as well as the first coach without American or Canadian citizenship to win the title.<ref name="MLS-Ole"/><ref>{{cite news |last=Stejskal |first=Sam |date=November 10, 2017 |title=How have foreign coaches fared throughout MLS history? |url=https://www.mlssoccer.com/post/2017/11/10/how-have-foreign-coaches-fared-throughout-mls-history |work=MLSsoccer.com |access-date=February 13, 2019}}</ref> He was the MLS Cup MVP during the Chicago Fire's 1998 victory against D.C. United and also played in their loss to Kansas City in 2000.<ref name="AP-AZ">{{cite news |date=November 15, 2004 |title=D.C United slides past Kansas City to nab MLS Cup |page=C8 |url=https://azdailysun.com/d-c-united-slides-past-kansas-city-to-nab-mls/article_b3b25c84-e3eb-523e-a78a-9c415d13e1c2.html |work=[[Arizona Daily Sun]] |location=Flagstaff, Arizona |agency=Associated Press |access-date=January 25, 2019 |archive-url=https://web.archive.org/web/20190125130947/https://azdailysun.com/d-c-united-slides-past-kansas-city-to-nab-mls/article_b3b25c84-e3eb-523e-a78a-9c415d13e1c2.html |archive-date=January 25, 2019 |url-status=live |df=mdy-all }}</ref> [[Josh Wolff]], who scored Kansas City's second goal in the 2004 cup, was a teammate of Nowawk's and played in the 2000 cup.<ref>{{cite news |last=Robledo |first=Fred J. |date=November 11, 2004 |title=Nowak set to face old friends |work=[[San Gabriel Valley Tribune]]}}</ref> 15-year-old substitute [[Freddy Adu]] became the youngest member of an American professional championship team in modern sports history, beating a record set by 18-year-old baseball pitcher [[Art Houtteman]] with the [[Detroit Tigers]] in 1945.<ref name="AP-AZ"/><ref>{{cite news |last=D'Hippolito |first=Joseph |date=November 15, 2004  |title=Adu makes history—again |page=C4 |work=The Washington Times}}</ref>
+
+Eskandarian was named the match's MVP for his two goals, capping a season of redemption after spending his rookie year on the bench.<ref name="MVP">{{cite news |last=Leon Moore |first=David |date=November 14, 2004 |title=Eskandarian waits his turn and delivers twice for D.C. |page=C13 |url=https://usatoday30.usatoday.com/sports/soccer/mls/2004-11-14-mls-cup-side_x.htm |work=USA Today |access-date=October 2, 2011}}</ref> After the match, he stated, "I didn't even know where the ball hit me. It was just what you learn in youth soccer; you keep going until you hear a whistle."<ref name="AP"/> In 2011, Eskandarian publicly acknowledged that there was a handball on the play that led to his second goal in a [[Twitter]] [[roast (comedy)|roast]] of retiring defender [[Jimmy Conrad]].<ref name="MLS-Handball"/> Wizards head coach [[Bob Gansler]] complimented United's defensive performance and lamented his team's defensive errors that lead to the three conceded goals.<ref>{{cite news |date=November 15, 2004 |title=Eskandarian Leads D.C. To Fourth M.L.S. Cup |page=D5 |url=https://www.nytimes.com/2004/11/15/sports/soccer-eskandarian-leads-dc-to-fourth-mls-cup.html |work=The New York Times |agency=Associated Press |access-date=January 24, 2019 |archive-url=https://web.archive.org/web/20190125132615/https://www.nytimes.com/2004/11/15/sports/soccer-eskandarian-leads-dc-to-fourth-mls-cup.html |archive-date=January 25, 2019 |url-status=live |df=mdy-all }}</ref><ref>{{cite news |date=November 14, 2004  |title=Wizards quote sheet |url=http://www.mlsnet.com/MLS/news/mls_events_news.jsp?ymd=20041114&content_id=19086&vkey=mlscup2004&fext=.jsp |work=MLSnet.com |url-status=dead |archive-url=https://web.archive.org/web/20050114104530/http://www.mlsnet.com/MLS/news/mls_events_news.jsp?ymd=20041114&content_id=19086&vkey=mlscup2004&fext=.jsp |archive-date=January 14, 2005 |access-date=January 26, 2019}}</ref>
+
+Both finalists qualified for the [[2005 CONCACAF Champions' Cup]] and were placed in the quarterfinals, which were played during the MLS preseason in early March.<ref>{{cite news |last=Luder |first=Bob |date=March 9, 2005 |title=Wizards hope to exhibit intensity at Arrowhead |page=D3 |work=The Kansas City Star}}</ref> Kansas City tied [[Deportivo Saprissa]] in its home leg, but were eliminated by losing 2–1 after extra time the following week in [[San José, Costa Rica|San José]], Costa Rica.<ref>{{cite news |last=Luder |first=Bob |date=March 10, 2005 |title=Wizards wind up with tie |page=D3 |work=The Kansas City Star}}</ref><ref>{{cite news |date=March 18, 2005 |title=Wizards see win slip away |page=D17 |work=The Kansas City Star}}</ref> D.C. played against [[Harbour View F.C.|Harbour View]] of Jamaica and advanced from the quarterfinals with a 4–2 aggregate score.<ref>{{cite news |last=Goff |first=Steven |date=March 10, 2005 |title=Rusty D.C. Drives All Right in the Cold |page=D9 |url=https://www.washingtonpost.com/wp-dyn/articles/A22076-2005Mar9.html |work=The Washington Post |access-date=January 25, 2019 |archive-url=https://web.archive.org/web/20190125183203/http://www.washingtonpost.com/wp-dyn/articles/A22076-2005Mar9.html |archive-date=January 25, 2019 |url-status=live |df=mdy-all }}</ref><ref>{{cite news |date=March 17, 2005 |title=D.C. United Advances To Semifinals |page=D2 |url=https://www.washingtonpost.com/wp-dyn/articles/A41742-2005Mar16.html |work=The Washington Post |access-date=January 25, 2019 |archive-url=https://web.archive.org/web/20190125183133/http://www.washingtonpost.com/wp-dyn/articles/A41742-2005Mar16.html |archive-date=January 25, 2019 |url-status=live |df=mdy-all }}</ref> In the semifinals, they played against Mexican champions [[UNAM Pumas]] and drew 1–1 in the home leg, but were eliminated after losing 5–0 in [[Mexico City]].<ref>{{cite news |last=Goff |first=Steven |date=April 7, 2005 |title=In High-Profile Match, United Earns a Tie |page=D3 |url=https://www.washingtonpost.com/wp-dyn/articles/A32575-2005Apr6.html |work=The Washington Post |access-date=January 25, 2019 |archive-url=https://web.archive.org/web/20170321140457/http://www.washingtonpost.com/wp-dyn/articles/A32575-2005Apr6.html |archive-date=March 21, 2017 |url-status=live |df=mdy-all }}</ref><ref>{{cite news |date=April 14, 2005 |title=D.C. United Smashed Out Of Champions' Cup Semis |page=D6 |url=https://www.washingtonpost.com/wp-dyn/articles/A51718-2005Apr13.html |archive-url=https://web.archive.org/web/20161216195121/http://www.washingtonpost.com/wp-dyn/articles/A51718-2005Apr13.html |url-status=dead |archive-date=December 16, 2016 |work=The Washington Post |access-date=January 25, 2019 |df=mdy-all }}</ref>
+
+==References==
+{{clear}}
+{{reflist}}
+
+{{MLS Cup}}
+{{2004 in American soccer}}
+{{D.C. United matches}}
+{{Sporting Kansas City matches}}
+
+[[Category:MLS Cup|2004]]
+[[Category:2004 Major League Soccer season|*]]
+[[Category:D.C. United matches|MLS Cup 2004]]
+[[Category:Sporting Kansas City matches|MLS Cup 2004]]
+[[Category:Soccer competitions in Carson, California]]
+[[Category:November 2004 sports events in the United States]]
+[[Category:2004 in sports in Los Angeles County, California]]
+[[Category:2000s in Carson, California]]

@@ -1,0 +1,693 @@
+{{Short description|9th season of Major League Soccer}}
+{{Use mdy dates|date=June 2017}}
+{{Use American English|date=June 2017}}
+{{Infobox football league season
+  | season                     = 2004
+  | num_teams                  = 10
+  | mlscup                     = [[D.C. United]] (4th title)
+  | shield                     = [[Columbus Crew SC|Columbus Crew]] (1st shield)
+  | continentalcup1            = [[2005 CONCACAF Champions' Cup]]
+  | continentalcup1 qualifiers = [[D.C. United]]<br>[[Kansas City Wizards]]
+  | league topscorer           = [[Brian Ching]]<br>[[San Jose Earthquakes]] Goals: 12<br>[[Eddie Johnson (American soccer)|Eddie Johnson]]<br>[[FC Dallas|Dallas Burn]]<br>Goals: 12
+  | matches                    = 150
+  | total goals                = 392
+  | average goals              = 
+  | biggest home win           = [[New England Revolution|NE]] 6–1 [[Colorado Rapids|COL]] 
+  | biggest away win           = [[LA Galaxy|LA]] 0–3 [[New York Red Bulls|NY]]<br>[[FC Dallas|DAL]] 0–3 [[New England Revolution|NE]]<br>[[Chicago Fire Soccer Club|CHI]] 0–3 [[Colorado Rapids|COL]]
+  | highest scoring            = [[San Jose Earthquakes|SJ]] 5–5 [[New York Red Bulls|NY]] 
+  | longest wins               = [[Columbus Crew SC|Columbus Crew]]<br>Games: 4<br>(05/15 – 06/06)<br>[[Columbus Crew SC|Columbus Crew]]<br>Games: 4<br> (09/04 – 09/25)
+  | longest unbeaten           = [[Columbus Crew SC|Columbus Crew]]<br>Games: 18<br>(07/03/2004)
+  | longest losses             = [[FC Dallas|Dallas Burn]]<br>Games: 4<br>(05/08 – 05/29)
+  | highest attendance         = [[LA Galaxy|Los Angeles Galaxy]]<br> Season: 357,137<br>Game Avg.: 23,809 
+  | lowest attendance          = [[FC Dallas|Dallas Burn]]<br> Season: 136,319<br>Game Avg.: 9,088
+  | attendance                 = 2,333,797
+  | average attendance         = 15,559
+  | prevseason                 = [[2003 Major League Soccer season|2003]]
+  | nextseason                 = [[2005 Major League Soccer season|2005]]
+}}
+{{Location map+ |United States |width=525 |float=right |caption=<div style="text-align: center;">Locations of teams for the 2004 Major League Soccer season<br>[[File:ButtonRed.svg|8px]] [[Western Conference (MLS)|Western Conference]] &nbsp; [[File:ButtonBlue.svg|8px]] [[Eastern Conference (MLS)|Eastern Conference]]</div>|places=
+{{Location map~ |United States |lat=38.889722 |long=-76.971667 |label='''[[D.C. United]]'''|position=bottom |mark=ButtonBlue.svg}}
+{{Location map~ |United States |lat=40.737411 |long=-74.153763 |label='''[[MetroStars]]'''|position=left |mark=ButtonBlue.svg}}
+{{Location map~ |United States |lat=40.009444 |long=-82.991111 |label='''[[Columbus Crew|Columbus]]'''|position=left|mark=ButtonBlue.svg}}
+{{Location map~ |United States |lat=41.742432 |long=-87.806789 |label='''[[Chicago Fire SC|Chicago]]'''|position=top |mark=ButtonBlue.svg}}
+{{Location map~ |United States |lat=42.090833 |long=-71.264444 |label='''[[New England Revolution|New England]]'''|position=top |mark=ButtonBlue.svg}}
+{{Location map~ |United States |lat=39.35 |long=-104.8918 |label='''[[Colorado Rapids|Colorado]]'''|position=top |mark=ButtonRed.svg}}
+{{Location map~ |United States |lat=33.154444 |long=-96.835278 |label='''[[Dallas Burn|Dallas]]'''|position=right |mark=ButtonRed.svg}}
+{{Location map~ |United States |lat=33.864444 |long=-118.261111 |label='''[[Los Angeles Galaxy|Los Angeles]]'''|position=bottom |mark=ButtonRed.svg}}
+{{Location map~ |United States |lat=39.1218 |long=-94.8237 |label='''[[Kansas City Wizards|Kansas City]]'''|position=bottom |mark=ButtonRed.svg}}
+{{Location map~ |United States |lat=37.350556 |long=-121.936667 |label='''[[San Jose Earthquakes|San Jose]]'''|position=top |mark=ButtonRed.svg}}
+}}
+
+The '''2004 Major League Soccer season''' was the ninth season of [[Major League Soccer]]. It was also the 92nd season of FIFA-sanctioned soccer in the [[United States]], and the 26th with a national first-division league.
+
+After playing one season in the suburb of [[Southlake, Texas|Southlake]], the [[Dallas Burn]] returned to the [[Cotton Bowl (stadium)|Cotton Bowl]].
+
+[[D.C. United]] signed 14-year-old prodigy [[Freddy Adu]], who made his debut as a substitute in their season opener becoming the youngest player in North American sports history. The [[Columbus Crew SC|Columbus Crew]] emerged as a dominant team in the second half of the regular season, running off an MLS-record 18-game unbeaten streak en route to winning the [[Supporters' Shield]].
+
+The regular season began on April 3, and concluded on October 17. The 2004 MLS Cup Playoffs began on October 22, and concluded with [[MLS Cup 2004]] on November 14. [[D.C. United]] won their record 4th league title by defeating the [[Kansas City Wizards]] in MLS Cup.
+
+==Overview==
+
+===Season format===
+The season began on April 3 and concluded with [[MLS Cup 2004|MLS Cup]] on November 14. The 10 teams were split evenly into two conferences. Each team played 30 games that were evenly divided between home and away. Each team played every other team in their conference, and two designated opponents from the opposite conference, four times, and the remaining teams in the opposite conference twice.
+
+The top four teams from each conference qualified for the [[MLS Cup Playoffs]]. In the first round, aggregate goals over two matches determined the winners. The conference finals were played as a single match, and the winners advanced to [[MLS Cup 2004|MLS Cup]]. In all rounds, draws were broken with two 15-minute periods of extra time, followed by penalty kicks if necessary. The [[away goals rule]] was not used in any round.
+
+The team with the most points in the regular season was awarded the [[MLS Supporters' Shield]]. Additionally, the winner of [[MLS Cup]] and the runner-up qualified for the [[2005 CONCACAF Champions' Cup|CONCACAF Champions' Cup]].
+
+===Stadiums and locations===
+{{main|List of Major League Soccer stadiums}}
+{| class="wikitable sortable" style="text-align:left"
+|-
+! Team
+! Stadium
+! Capacity
+|-
+| [[Chicago Fire FC|Chicago Fire]]
+| [[Soldier Field]]
+| 61,500
+|-
+|-
+| [[Colorado Rapids]]
+| [[Empower Field at Mile High|Invesco Field at Mile High]]
+| 76,125
+|-
+| [[Columbus Crew]]
+| [[Historic Crew Stadium|Columbus Crew Stadium]]
+| 22,555
+|-
+| [[D.C. United]]
+| [[RFK Memorial Stadium|RFK Stadium]]
+| 46,000
+|-
+| [[FC Dallas|Dallas Burn]]
+| [[Cotton Bowl (stadium)|Cotton Bowl]]
+| 92,100
+|-
+| [[Sporting Kansas City|Kansas City Wizards]]
+| [[Arrowhead Stadium]]
+| 81,425
+|-
+| [[Los Angeles Galaxy]]
+| [[Home Depot Center]]
+| 27,000
+|-
+| [[New York Red Bulls|MetroStars]]
+| [[Giants Stadium]]
+| 80,200
+|-
+| [[New England Revolution]]
+| [[Gillette Stadium]]
+| 68,756
+|-
+| [[San Jose Earthquakes]]
+| [[CEFCU Stadium|Spartan Stadium]]
+| 30,456
+|}
+
+===Personnel and sponsorships===
+{| class="wikitable sortable" style="text-align: left;"
+|-
+! Team
+! Head coach
+! Captain
+!Manufacturer
+! Shirt sponsor
+|-
+|[[Chicago Fire FC|Chicago Fire]]
+|{{flagicon|USA}} [[Dave Sarachan]]
+|
+|[[Puma (brand)|Puma]]
+|[[Honda]]
+|-
+| [[Colorado Rapids]]
+| {{flagicon|USA}} [[Tim Hankinson]]
+|
+|[[Atletica]]
+| colspan="1" align="center" style="background:#ececec; color:gray " |— 
+|-
+| [[Columbus Crew]]
+| {{flagicon|USA}} [[Greg Andrulis]]
+| {{flagicon|USA}} [[Robin Fraser]]
+|[[Adidas]]
+| [[Sierra Mist]]
+|-
+| [[D.C. United]]
+| {{flagicon|POL}} [[Piotr Nowak]]
+|
+|[[Adidas]]
+| colspan="1" align="center" style="background:#ececec; color:gray " |— 
+|-
+| [[FC Dallas|Dallas Burn]]
+| {{flagicon|NIR}} [[Colin Clarke (footballer, born 1962)|Colin Clarke]]
+|
+|[[Atletica]]
+|[[RadioShack]]
+|-
+|[[Sporting Kansas City|Kansas City Wizards]]
+|{{flagicon|USA}} [[Bob Gansler]]
+|
+|[[Adidas]]
+|[[U.S. Soccer Foundation]]
+|-
+| [[Los Angeles Galaxy]]
+| {{flagicon|USA}} [[Steve Sampson]]
+|
+|[[Nike, Inc.|Nike]]
+|[[Budweiser]]
+|-
+| [[New York Red Bulls|MetroStars]]
+| {{flagicon|USA}} [[Bob Bradley]]
+| {{flagicon|USA}} [[Eddie Pope]]
+|[[Nike, Inc.|Nike]]
+| colspan="1" align="center" style="background:#ececec; color:gray " |— 
+|-
+| [[New England Revolution]]
+| {{flagicon|SCO}} [[Steve Nicol]]
+|
+|[[Reebok]]
+| [[Sierra Mist]]
+|-
+| [[San Jose Earthquakes]]
+| {{flagicon|USA}} [[Dominic Kinnear]]
+| {{flagicon|USA}} [[Jeff Agoos]]
+|[[Nike, Inc.|Nike]]
+| [[Yahoo!|Yahoo! en Español]]
+|}
+
+===Coaching changes===
+{| class="wikitable sortable"
+|-
+! Team!! Outgoing coach!! Manner of departure!! Date of vacancy!! Incoming coach!! Date of appointment
+
+|-
+| [[Los Angeles Galaxy]]
+| {{flagicon|USA}} [[Sigi Schmid]]
+| Fired
+| August 16, 2004
+| {{flagicon|USA}} [[Steve Sampson]]
+| August 18, 2004
+|-
+|}
+
+==Standings==
+
+===Eastern Conference===
+{{2004 Major League Soccer Eastern Conference table}}
+
+===Western Conference===
+{{2004 Major League Soccer Western Conference table}}
+
+===Overall standings===
+{{2004 Major League Soccer season table}}
+
+==MLS Cup Playoffs==
+
+===Bracket===
+{{8TeamBracket|legs=2/1/1
+| RD1=Conference semifinals
+| RD2=Conference finals
+| RD3=[[MLS Cup 2004|MLS Cup]]
+| RD1-group1='''Eastern Conference'''
+| RD1-group2='''Western Conference'''
+| team-width=185px
+| RD1-seed1=E1
+| RD1-team1=[[Columbus Crew SC|Columbus]]
+| RD1-score1-1=0
+| RD1-score1-2=1
+| RD1-seed2=E4
+| RD1-team2='''[[New England Revolution|New England]]''' (wins 2–1 agg.) 
+| RD1-score2-1='''1'''
+| RD1-score2-2='''1'''
+| RD1-seed3=E2
+| RD1-team3='''[[D.C. United]]''' (wins 4–0 agg.)
+| RD1-score3-1='''2'''
+| RD1-score3-2='''2'''
+| RD1-seed4=E3
+| RD1-team4=[[New York Red Bulls|MetroStars]]
+| RD1-score4-1=0
+| RD1-score4-2=0
+| RD1-seed5=W1
+| RD1-team5='''[[Sporting Kansas City|Kansas City]]''' (wins 3–2 agg.)
+| RD1-score5-1='''0'''
+| RD1-score5-2='''3'''
+| RD1-seed6=W4
+| RD1-team6=[[San Jose Earthquakes|San Jose]]
+| RD1-score6-1=2
+| RD1-score6-2=0
+| RD1-seed7=W2
+| RD1-team7='''[[LA Galaxy|Los Angeles]]''' (wins 2–1 agg.)
+| RD1-score7-1='''0'''
+| RD1-score7-2='''2'''
+| RD1-seed8=W3
+| RD1-team8=[[Colorado Rapids|Colorado]]
+| RD1-score8-1=1
+| RD1-score8-2=0
+| RD2-seed1=E4
+| RD2-team1=[[New England Revolution|New England]]
+| RD2-score1=3
+| RD2-seed2=E2
+| RD2-team2='''[[D.C. United]]''' (wins 4–3 on PK's)
+| RD2-score2='''3*'''
+| RD2-seed3=W1
+| RD2-team3='''[[Sporting Kansas City|Kansas City]]'''
+| RD2-score3='''2'''
+| RD2-seed4=W2
+| RD2-team4=[[LA Galaxy|Los Angeles]]
+| RD2-score4=0
+| RD3-seed1=E2
+| RD3-team1='''[[D.C. United]]'''
+| RD3-score1='''3'''
+| RD3-seed2=W1
+| RD3-team2=[[Sporting Kansas City|Kansas City]]
+| RD3-score2=2
+}}
+
+=== Conference semifinals  <span class="anchor" id="Conference Semifinals"></span>===
+
+{{football box
+|date = October 23, 2004
+|team1 = [[Columbus Crew SC|Columbus Crew]]
+|score = 0–1
+|team2 = [[New England Revolution]]
+|goals1 = 
+|goals2 = [[Avery John|John]] {{goal|25}}
+|stadium = [[Gillette Stadium]]<br>[[Foxborough, Massachusetts]]
+|attendance = 5,679
+|referee = N/A
+|report = [https://web.archive.org/web/20050102211118/http://soccernet.espn.go.com/match?id=167852&cc=5901 Report]
+}}
+
+{{football box
+|date = October 31, 2004
+|team1 = [[New England Revolution]]
+|score = 1–1
+|team2 = [[Columbus Crew SC|Columbus Crew]]
+|goals1 = [[Taylor Twellman|Twellman]] {{goal|81}}
+|goals2 = [[Edson Buddle|Buddle]] {{goal|90+2}}
+|stadium = [[MAPFRE Stadium|Crew Stadium]]<br>[[Columbus, Ohio]]
+|attendance = 15,224
+|referee = Alex Prus
+|report = [http://web.mlsnet.com/news/mls_events_news.jsp?ymd=20041031&content_id=18135&vkey=mlscup2004&fext=.jsp Report]
+}}
+
+''[[New England Revolution]] advance 2–1 on aggregate.''
+
+----
+{{football box
+|date = October 23, 2004
+|team1 = [[D.C. United]]
+|score = 2–0
+|team2 = [[New York Red Bulls|MetroStars]]
+|goals1 = [[Earnie Stewart|Stewart]] {{goal|67}} <br> [[Alecko Eskandarian|Eskandarian]] {{goal|88}}
+|goals2 = 
+|stadium = [[Giants Stadium]]<br>[[East Rutherford, New Jersey]]
+|attendance = 11,161
+|referee = Kevin Stott
+|report = [http://web.mlsnet.com/news/mls_events_news.jsp?ymd=20041023&content_id=17555&vkey=mlscup2004&fext=.jsp Report]
+}}
+
+{{football box
+|date = October 30, 2004
+|team1 = [[New York Red Bulls|MetroStars]]
+|score = 0–2
+|team2 = [[D.C. United]]
+|goals1 = 
+|goals2 = [[Jaime Moreno (footballer, born 1974)|Moreno]] {{goal|85}} <br> [[Bryan Namoff|Namoff]] {{goal|89}}
+|stadium = [[RFK Stadium]]<br>[[Washington, D.C.]]
+|attendance = 15,763
+|referee = Ricardo Valenzuela
+|report = [http://web.mlsnet.com/news/mls_events_news.jsp?ymd=20041030&content_id=18050&vkey=mlscup2004&fext=.jsp Report]
+}}
+
+''[[D.C. United]] advance 4–0 on aggregate.''
+
+----
+{{football box
+|date = October 24, 2004
+|team1 = [[Sporting Kansas City|Kansas City Wizards]]
+|score = 0–2
+|team2 = [[San Jose Earthquakes]]
+|goals1 = 
+|goals2 = [[Dwayne De Rosario|De Rosario]] {{goal|40}} <br> [[Craig Waibel|Waibel]] {{goal|52}}
+|stadium = [[Spartan Stadium (San Jose)|Spartan Stadium]]<br>[[San Jose, California]]
+|attendance = 8,659
+|referee = [[Kevin Terry]]
+|report = [http://web.mlsnet.com/news/mls_events_news.jsp?ymd=20041024&content_id=17633&vkey=mlscup2004&fext=.jsp Report]
+}}
+
+{{football box
+|date = October 30, 2004
+|team1 = [[San Jose Earthquakes]]
+|score = 0–3
+|team2 = [[Sporting Kansas City|Kansas City Wizards]]
+|goals1 = 
+|goals2 = [[Khari Stephenson|Stephenson]] {{goal|26}}  <br> [[Brian Ching|Ching]] {{goal|48|o.g.}} <br> [[Jack Jewsbury|Jewsbury]] {{goal|90+2}}
+|stadium = [[Arrowhead Stadium]]<br>[[Kansas City, Missouri]]
+|attendance = 10,022
+|referee = Terry Vaughn
+|report = [http://web.mlsnet.com/news/mls_events_news.jsp?ymd=20041030&content_id=18064&vkey=mlscup2004&fext=.jsp Report]
+}}
+
+''[[Sporting Kansas City|Kansas City Wizards]] advance 3–2 on aggregate.''
+
+----
+{{football box
+|date = October 22, 2004
+|team1 = [[LA Galaxy|Los Angeles Galaxy]]
+|score = 0–1
+|team2 = [[Colorado Rapids]]
+|goals1 = 
+|goals2 = [[Jean Philippe Peguero|Peguero]] {{goal|30}}
+|stadium = [[INVESCO Field at Mile High]]<br>[[Denver, Colorado]]
+|attendance = 8,028
+|referee = Terry Vaughn
+|report = [http://web.mlsnet.com/news/mls_events_news.jsp?ymd=20041023&content_id=17480&vkey=mlscup2004&fext=.jsp Report]
+}}
+
+{{football box
+|date = October 30, 2004
+|team1 = [[Colorado Rapids]]
+|score = 0–2
+|team2 = [[LA Galaxy|Los Angeles Galaxy]]
+|goals1 = 
+|goals2 = [[Carlos Ruiz (Guatemalan footballer)|Ruiz]] {{goal|30}} <br> [[Tyrone Marshall|Marshall]] {{goal|45+3}}
+|stadium = [[Dignity Health Sports Park|Home Depot Center]]<br>[[Carson, California]]
+|attendance = 20,026
+|referee = Michael Kennedy
+|report = [http://web.mlsnet.com/news/mls_events_news.jsp?ymd=20041031&content_id=18097&vkey=mlscup2004&fext=.jsp Report]
+}}
+
+''[[LA Galaxy|Los Angeles Galaxy]] advance 2–1 on aggregate.''
+
+----
+
+===Conference finals===
+{{football box |
+|date = November 5, 2004
+|team1 = [[LA Galaxy|Los Angeles Galaxy]]
+|score = 0–2
+|team2 = [[Sporting Kansas City|Kansas City Wizards]]
+|goals1 = 
+|goals2 = [[Davy Arnaud|Arnaud]] {{goal|24||68}}
+|stadium = [[Arrowhead Stadium]]<br>[[Kansas City, Missouri]]
+|attendance = 11,931
+|referee = Abiodun Okulaja
+|report = [http://web.mlsnet.com/news/mls_events_news.jsp?ymd=20041105&content_id=18432&vkey=mlscup2004&fext=.jsp Report]
+}}
+
+----
+
+{{football box |
+|date = November 6, 2004
+|team1 = [[New England Revolution]]
+|score = 3–3 [[Extra Time|(AET)]]
+|team2 = [[D.C. United]]
+|goals1 = [[Taylor Twellman|Twellman]] {{goal|17}} <br> [[Steve Ralston|Ralston]] {{goal|44|pen.}} <br> [[Pat Noonan|Noonan]] {{goal|85}}
+|goals2 = [[Alecko Eskandarian|Eskandarian]] {{goal|11}}<br>[[Jaime Moreno (footballer, born 1974)|Moreno]] {{goal|21}} <br> [[Christian Gomez|Gomez]] {{goal|67}}
+|stadium = [[RFK Stadium]]<br>[[Washington, D.C.]]
+|attendance = 21,201
+|referee = Terry Vaughn
+|report = [https://web.archive.org/web/20070111222236/http://web.mlsnet.com/news/mls_events_news.jsp?ymd=20041106&content_id=18484&vkey=mlscup2004&fext=.jsp Report]
+|penalties1 = [[Steve Ralston|Ralston]] {{penmiss}}<br>[[Matt Reis|Reis]] {{pengoal}}<br>[[Taylor Twellman|Twellman]] {{pengoal}}<br>[[Jay Heaps|Heaps]] {{penmiss}}<br>[[Shalrie Joseph|Joseph]] {{pengoal}}<br>[[Clint Dempsey|Dempsey]] {{penmiss}}
+|penaltyscore = 3–4
+|penalties2 = {{penmiss}} [[Ben Olsen|Olsen]]<br>{{pengoal}} [[Santino Quaranta|Quaranta]]<br>{{pengoal}} [[Freddy Adu|Adu]]<br>{{pengoal}} [[Alecko Eskandarian|Eskandarian]]<br>{{penmiss}} [[Jaime Moreno (footballer, born 1974)|Moreno]]<br>{{pengoal}} [[Brian Carroll|Carroll]]
+|}}
+
+''[[D.C. United]] advance 4–3 on penalties (3–3 after [[Full-time (sports)|full time]]).''
+
+----
+
+===MLS Cup===
+{{Main article|MLS Cup 2004}}
+{{football box |
+|date = November 14, 2004
+|team1 = [[Sporting Kansas City|Kansas City Wizards]]
+|score = 2–3
+|team2 = [[D.C. United]]
+|goals1 = [[Jose Burciaga|Burciaga Jr.]] {{goal|6}} <br> [[Josh Wolff|Wolff]] {{goal|58|pen.}}
+|goals2 = [[Alecko Eskandarian|Eskandarian]] {{goal|19}} {{goal|23}} <br> [[Alex Zotinca|Zotinca]] {{goal|26|o.g.}}<br> [[Dema Kovalenko|Kovalenko]] {{sent off|0|57}}
+|stadium = [[Dignity Health Sports Park|Home Depot Center]]<br>[[Carson, California]]
+|attendance = 25,797
+|referee = Michael Kennedy
+|report = [http://web.mlsnet.com/news/mls_events_news.jsp?ymd=20041114&content_id=19055&vkey=mlscup2004&fext=.jsp Report]
+}}
+
+==Player statistics==
+===Goals===
+{| class="wikitable" style="text-align:center"
+|-
+! Rank !! Player !! Club !! Goals
+|-
+| rowspan="2" |1
+| align="left"|{{flagicon|USA}} [[Brian Ching]]
+| align="left"| [[San Jose Earthquakes]]
+| rowspan="2" |12
+|-
+| align="left"|{{flagicon|USA}} [[Eddie Johnson (American soccer)|Eddie Johnson]] 
+| align="left"| [[FC Dallas|Dallas Burn]]
+|-
+| rowspan="4" |3
+| align="left"|{{flagicon|USA}} [[Edson Buddle]]
+| align="left"| [[Columbus Crew SC|Columbus Crew]]
+| rowspan="4" |11
+|-
+| align="left"|{{flagicon|USA}} [[Pat Noonan]]
+| align="left"| [[New England Revolution]] 
+|-
+| align="left"|{{flagicon|JAM}} [[Damani Ralph]]
+| align="left"| [[Chicago Fire Soccer Club|Chicago Fire]]
+|-
+| align="left"|{{flagicon|GUA}} [[Carlos Ruiz (Guatemalan footballer)|Carlos Ruiz]]
+| align="left"| [[LA Galaxy|Los Angeles Galaxy]]
+|-
+| rowspan="4" |7
+| align="left"|{{flagicon|USA}} [[Alecko Eskandarian]]
+| align="left"| [[D.C. United]]
+| rowspan="4" |10
+|-
+| align="left"|{{flagicon|HON|1949}} [[Amado Guevara]] 
+| align="left"| [[New York Red Bulls|MetroStars]]
+|-
+| align="left"|{{flagicon|USA}} [[Josh Wolff]]
+| align="left"| [[Sporting Kansas City|Kansas City Wizards]] 
+|-
+| align="left"|{{flagicon|USA}} [[John Wolyniec]]
+| align="left"| [[New York Red Bulls|MetroStars]] 
+|}
+
+===Assists===
+{| class="wikitable" style="text-align:center"
+|-
+! Rank !! Player !! Club !! Assists
+|-
+| rowspan="3" |1
+| align="left"|{{flagicon|URU}} [[José Cancela]]
+| align="left"| [[New England Revolution]] 
+| rowspan="3" |8
+|-
+| align="left"|{{flagicon|NZL}} [[Simon Elliott]] 
+| align="left"| [[Columbus Crew SC|Columbus Crew]]
+|-
+| align="left"|{{flagicon|HON|1949}} [[Amado Guevara]]
+| align="left"| [[MetroStars]]
+|-
+| 4
+| align="left"|{{flagicon|USA}} [[Landon Donovan]]
+| align="left"| [[San Jose Earthquakes]] 
+| 7
+|-
+| rowspan="7" |5
+| align="left"|{{flagicon|AUT}} [[Andreas Herzog]]
+| align="left"| [[Los Angeles Galaxy]]
+| rowspan="7" |6
+|-
+| align="left"|{{flagicon|USA}} [[Chris Klein (soccer)|Chris Klein]]
+| align="left"| [[Kansas City Wizards]]
+|-
+| align="left"|{{flagicon|UKR}} [[Dema Kovalenko]]
+| align="left"| [[D.C. United]]
+|-
+| align="left"|{{flagicon|BOL}} [[Jaime Moreno (footballer, born 1974)|Jaime Moreno]] 
+| align="left"| [[D.C. United]]
+|-
+| align="left"|{{flagicon|USA}} [[Richard Mulrooney]]
+| align="left"| [[San Jose Earthquakes]] 
+|-
+| align="left"|{{flagicon|IRE}} [[Ronnie O'Brien]]
+| align="left"| [[Dallas Burn]] 
+|-
+| align="left"|{{flagicon|JAM}} [[Andy Williams (Jamaican footballer)|Andy Williams]]
+| align="left"| [[Chicago Fire SC|Chicago Fire]] 
+|}
+
+===Clean sheets===
+{| class="wikitable" style="text-align:center"
+|-
+!Rank
+!Player
+!Club
+!Clean<br>sheets
+|-
+|rowspan="2"|1
+|align="left"|{{flagicon|USA}} [[Jon Busch]]
+|align="left"|[[Columbus Crew]]
+|rowspan="2"|10
+|-
+|align="left"|{{flagicon|USA}} [[Joe Cannon (soccer)|Joe Cannon]]
+|align="left"|[[Colorado Rapids]]
+|-
+|rowspan="3"|3
+|align="left"|{{flagicon|USA}} [[Kevin Hartman]]
+|align="left"|[[Los Angeles Galaxy]]
+|rowspan="3"|7
+|-
+|align="left"|{{flagicon|USA}} [[Tony Meola]]
+|align="left"|[[Kansas City Wizards]]
+|-
+|align="left"|{{flagicon|USA}} [[Henry Ring]]
+|align="left"|[[Chicago Fire FC|Chicago Fire]]
+|-
+|6
+|align="left"|{{flagicon|CAN}} [[Pat Onstad]]
+|align="left"|[[San Jose Earthquakes]]
+|6
+|-
+|rowspan="2"|7
+|align="left"|{{flagicon|USA}} [[Bo Oshoniyi]]
+|align="left"|[[Kansas City Wizards]]
+|rowspan="2"|5
+|-
+|align="left"|{{flagicon|USA}} [[Jonny Walker (soccer)|Jonny Walker]]
+|align="left"|[[MetroStars]]
+|-
+|rowspan="3"|9
+|align="left"|{{flagicon|USA}} [[Jeff Cassar]]
+|align="left"|[[Dallas Burn]]
+|rowspan="3"|4
+|-
+|align="left"|{{flagicon|USA}} [[Scott Garlick]]
+|align="left"|[[Dallas Burn]]
+|-
+|align="left"|{{flagicon|USA}} [[Nick Rimando]]
+|align="left"|[[D.C. United]]
+|-
+|}
+
+==Awards==
+
+===Individual awards===
+{| class="wikitable" style="font-size:100%"
+!Award!!Player!!Club
+|-
+|[[Major League Soccer MVP Award|Most Valuable Player]]||{{flagicon|HON|1949}} [[Amado Guevara]]||[[New York Red Bulls|MetroStars]]
+|-
+|[[MLS Defender of the Year Award|Defender of the Year]]||{{flagicon|USA}} [[Robin Fraser]]||[[Columbus Crew SC|Columbus Crew]]
+|-
+|[[MLS Goalkeeper of the Year Award|Goalkeeper of the Year]]||{{flagicon|USA}} [[Joe Cannon (soccer)|Joe Cannon]]||[[Colorado Rapids]]
+|-
+|[[MLS Coach of the Year Award|Coach of the Year]]||{{flagicon|USA}} [[Greg Andrulis]]||[[Columbus Crew SC|Columbus Crew]]
+|-
+|[[MLS Rookie of the Year Award|Rookie of the Year]]||{{flagicon|USA}} [[Clint Dempsey]]||[[New England Revolution]] 
+|-
+|[[MLS Comeback Player of the Year Award|Comeback Player of the Year]]||{{flagicon|USA}} [[Brian Ching]]||[[San Jose Earthquakes]]
+|-
+|[[MLS Scoring Champion Award|Scoring Champion]]||{{flagicon|HON|1949}} [[Amado Guevara]] <br> {{flagicon|USA}} [[Pat Noonan]] ||[[New York Red Bulls|MetroStars]] <br> [[New England Revolution]]
+|- 
+|[[MLS Goal of the Year Award|Goal of the Year]]||{{flagicon|CAN}} [[Dwayne De Rosario]]||[[San Jose Earthquakes]]
+|-
+|[[MLS Fair Play Award|Fair Play Award]]||{{flagicon|USA}} [[Eddie Pope]]||[[New York Red Bulls|MetroStars]]
+|-
+|[[MLS Humanitarian of the Year Award|Humanitarian of the Year]]||{{flagicon|USA}} [[Chris Henderson]]||[[Colorado Rapids]]
+|}
+
+===Best XI===
+{| class="wikitable"
+!Goalkeeper
+!Defenders
+!Midfielders
+!Forwards
+|-
+|{{flagicon|USA}} [[Joe Cannon (soccer)|Joe Cannon]], [[Colorado Rapids|Colorado]]
+|{{flagicon|USA}} [[Jimmy Conrad]], [[Sporting Kansas City|Kansas City]]<br>{{flagicon|USA}} [[Robin Fraser]], [[Columbus Crew|Columbus]]<br>{{flagicon|NZL}} [[Ryan Nelsen]], [[D.C. United]] <br>{{flagicon|USA}} [[Eddie Pope]], [[MetroStars]]
+|{{flagicon|USA}} [[Eddie Gaven]], [[MetroStars]]<br>{{flagicon|HON}} [[Amado Guevara]], [[MetroStars]]<br>{{flagicon|IRE}} [[Ronnie O'Brien]], [[FC Dallas|Dallas]]<br>{{flagicon|USA}} [[Kerry Zavagnin]], [[Sporting Kansas City|Kansas City]] 
+|{{flagicon|USA}} [[Brian Ching]], [[San Jose Earthquakes|San Jose]]<br>{{flagicon|BOL}} [[Jaime Moreno (footballer, born 1974)|Jaime Moreno]], [[D.C. United]]
+|-
+|}
+
+==Attendance==
+{| class="wikitable" style="font-size:100%"
+!Club
+!Games 
+!Total
+!Average
+|-
+|[[LA Galaxy|Los Angeles Galaxy]]
+|align=center|15
+|align=center|357,137
+|align=center|23,809
+|-
+|[[D.C. United]] 
+|align=center|15
+|align=center|258,484
+|align=center|17,232
+|-
+|[[New York Red Bulls|MetroStars]]
+|align=center|15
+|align=center|257,923
+|align=center|17,195
+|-
+|[[Chicago Fire FC|Chicago Fire]]
+|align=center|15
+|align=center|257,295 
+|align=center|17,153 
+|-
+|[[Columbus Crew SC|Columbus Crew]]
+|align=center|15
+|align=center|253,079
+|align=center|16,872
+|-
+|[[Sporting Kansas City|Kansas City Wizards]]
+|align=center|15
+|align=center|222,235
+|align=center|14,816
+|-
+|[[Colorado Rapids]]
+|align=center|15
+|align=center|212,925 
+|align=center|14,195
+|-
+|[[San Jose Earthquakes]]
+|align=center|15
+|align=center|195,015
+|align=center|13,001
+|-
+|[[New England Revolution]]
+|align=center|15
+|align=center|183,385
+|align=center|12,226
+|-
+|[[FC Dallas|Dallas Burn]] 
+|align=center|15
+|align=center|136,319
+|align=center|9,088 
+|-
+|'''Totals'''
+|align=center|'''150'''
+|align=center|'''2,333,797'''
+|align=center|'''15,559'''
+|}
+
+==References==
+{{reflist}}
+
+{{Major League Soccer}}
+{{2004 MLS season by team}}
+{{Major League Soccer seasons}}
+{{2004 in American soccer}}
+
+{{DEFAULTSORT:Major League Soccer season}}
+[[Category:2004 Major League Soccer season| ]]
+[[Category:Major League Soccer seasons|2004]]
+[[Category:2004 in American men's soccer leagues|1]]
+[[Category:2004 in men's top-tier association football leagues|United States]]

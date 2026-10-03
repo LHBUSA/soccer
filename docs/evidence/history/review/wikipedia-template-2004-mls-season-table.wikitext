@@ -1,0 +1,41 @@
+{{#invoke:Sports table|main|style=WDL
+|update=complete
+|source=[https://www.mlssoccer.com/standings/2004/supporters-shield MLS]
+|draw_header=T
+|loss_before_draw=y
+
+<!-- Display order is listed below. Change team # to change order. -->
+|team1=CLB |team2=KCW |team3=LAG |team4=DCU |team5=COL |team6=MET |team7=SJE |team8=DAL |team9=NER |team10=CHI
+
+|win_CHI=8  |draw_CHI=9 |loss_CHI=13 |gf_CHI=36 |ga_CHI=44 |status_CHI= 
+|win_CLB=12 |draw_CLB=13 |loss_CLB=5  |gf_CLB=40 |ga_CLB=32 |status_CLB=S
+|win_DCU=11 |draw_DCU=9 |loss_DCU=10  |gf_DCU=43 |ga_DCU=42 |status_DCU=C
+|win_MET=11 |draw_MET=7 |loss_MET=12 |gf_MET=47 |ga_MET=49 |status_MET=
+|win_NER=8  |draw_NER=9 |loss_NER=13 |gf_NER=42 |ga_NER=43 |status_NER= 
+|win_KCW=14 |draw_KCW=7 |loss_KCW=9 |gf_KCW=38 |ga_KCW=30 |status_KCW= 
+|win_LAG=11 |draw_LAG=10 |loss_LAG=9 |gf_LAG=42 |ga_LAG=40 |status_LAG=
+|win_COL=10 |draw_COL=11 |loss_COL=9 |gf_COL=29 |ga_COL=32 |status_COL=
+|win_SJE=9 |draw_SJE=11 |loss_SJE=10 |gf_SJE=41 |ga_SJE=35 |status_SJE=
+|win_DAL=10 |draw_DAL=6 |loss_DAL=14 |gf_DAL=34 |ga_DAL=45 |status_DAL=
+
+|name_CHI= [[Chicago Fire FC|Chicago Fire]]
+|name_CLB= [[Columbus Crew]]
+|name_DCU= [[2004 D.C. United season|D.C. United]]
+|name_MET= [[New York Red Bulls|MetroStars]]
+|name_NER= [[New England Revolution]]
+|name_KCW= [[2004 Kansas City Wizards season|Kansas City Wizards]]
+|name_LAG= [[LA Galaxy|Los Angeles Galaxy]]
+|name_COL= [[Colorado Rapids]]
+|name_SJE= [[2004 San Jose Earthquakes season|San Jose Earthquakes]]
+|name_DAL= [[2004 Dallas Burn season|Dallas Burn]]
+
+|status_text_S=Supporters' Shield
+|res_col_header=Q
+|class_rules=1) points; 2) head-to-head record; 3) goal difference; 4) number of goals scored
+|col_QPCC=green1|text_QPCC=[[2005 CONCACAF Champions' Cup|CONCACAF Champions' Cup]]
+|result2=QPCC|result4=QPCC
+}}<noinclude>
+----
+{{Major League Soccer standings template}}
+[[Category:Major League Soccer standings templates‎|2004]]
+</noinclude>

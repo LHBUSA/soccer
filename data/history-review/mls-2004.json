@@ -1,0 +1,341 @@
+{
+ "manifest_version": "soccer-format-review/1.0.0",
+ "competition": "mls",
+ "season": "2004",
+ "review_status": "approved",
+ "reviewer": "PropBetEdge history review (Claude, owner-directed 2026-10-02)",
+ "reviewed_at": "2026-10-03T00:53:09.663Z",
+ "rule": "Provider events are classified only when (local date, unordered pairing, per-team goals) all agree with a reviewed fixture (Football box team1/team2 order is not home/away; the stadium is corroboration only); the regular season must reconcile to the reviewed standings; anything unproven stays held.",
+ "evidence": [
+  {
+   "source": "https://en.wikipedia.org/wiki/2004_Major_League_Soccer_season",
+   "file": "docs/evidence/history/review/wikipedia-2004-mls-season.wikitext",
+   "sha256": "a5ae78689cee7d6017270f7a0f320666b3058e9133e1cfe69a8c82e99eb4b1d2",
+   "license": "CC BY-SA 4.0 (review evidence only; never a canonical source)"
+  },
+  {
+   "source": "https://en.wikipedia.org/wiki/Template:2004_Major_League_Soccer_season_table",
+   "file": "docs/evidence/history/review/wikipedia-template-2004-mls-season-table.wikitext",
+   "sha256": "410c4b57682ea7e564a0fc2bdcc23b8bdddd6757278f309ce31c52d69deca87a",
+   "license": "CC BY-SA 4.0 (review evidence only)"
+  },
+  {
+   "source": "https://en.wikipedia.org/wiki/MLS_Cup_2004",
+   "file": "docs/evidence/history/review/wikipedia-MLS_Cup_2004.wikitext",
+   "sha256": "3ea96ec97cfe9859fcecf352ae2f9c8c86f3068ad5b6e748f72f60b4ba6865ac",
+   "license": "CC BY-SA 4.0 (review evidence only)"
+  }
+ ],
+ "facts": {
+  "teams": 10,
+  "regular_season_matches": 150,
+  "regular_season_end": "2004-10-17",
+  "playoffs_start": "2004-10-22",
+  "mls_cup": "2004-11-14",
+  "note": "10 clubs, 30 matches each (150); top four per conference qualify; conference semifinals home-and-home on aggregate goals; conference finals and MLS Cup single matches (D.C. United beat New England 4-3 on penalties after 3-3 AET).",
+  "quotes": [
+   {
+    "source": "docs/evidence/history/review/wikipedia-2004-mls-season.wikitext",
+    "quote": "The regular season began on April 3, and concluded on October 17. The 2004 MLS Cup Playoffs began on October 22, and concluded with [[MLS Cup 2004]] on November 14."
+   },
+   {
+    "source": "docs/evidence/history/review/wikipedia-2004-mls-season.wikitext",
+    "quote": "Each team played 30 games that were evenly divided between home and away."
+   },
+   {
+    "source": "docs/evidence/history/review/wikipedia-2004-mls-season.wikitext",
+    "quote": "The conference finals were played as a single match, and the winners advanced to [[MLS Cup 2004|MLS Cup]]."
+   }
+  ]
+ },
+ "regular_season": {
+  "stage": "Regular Season",
+  "expected_matches": 150,
+  "expected_team_games": {
+   "30": 10
+  },
+  "standings": {
+   "chicago-fire-fc": {
+    "code": "CHI",
+    "won": 8,
+    "drawn": 9,
+    "lost": 13,
+    "goals_for": 36,
+    "goals_against": 44,
+    "played": 30
+   },
+   "columbus-crew": {
+    "code": "CLB",
+    "won": 12,
+    "drawn": 13,
+    "lost": 5,
+    "goals_for": 40,
+    "goals_against": 32,
+    "played": 30
+   },
+   "d-c-united": {
+    "code": "DCU",
+    "won": 11,
+    "drawn": 9,
+    "lost": 10,
+    "goals_for": 43,
+    "goals_against": 42,
+    "played": 30
+   },
+   "red-bull-new-york": {
+    "code": "MET",
+    "won": 11,
+    "drawn": 7,
+    "lost": 12,
+    "goals_for": 47,
+    "goals_against": 49,
+    "played": 30
+   },
+   "new-england-revolution": {
+    "code": "NER",
+    "won": 8,
+    "drawn": 9,
+    "lost": 13,
+    "goals_for": 42,
+    "goals_against": 43,
+    "played": 30
+   },
+   "sporting-kansas-city": {
+    "code": "KCW",
+    "won": 14,
+    "drawn": 7,
+    "lost": 9,
+    "goals_for": 38,
+    "goals_against": 30,
+    "played": 30
+   },
+   "la-galaxy": {
+    "code": "LAG",
+    "won": 11,
+    "drawn": 10,
+    "lost": 9,
+    "goals_for": 42,
+    "goals_against": 40,
+    "played": 30
+   },
+   "colorado-rapids": {
+    "code": "COL",
+    "won": 10,
+    "drawn": 11,
+    "lost": 9,
+    "goals_for": 29,
+    "goals_against": 32,
+    "played": 30
+   },
+   "san-jose-earthquakes": {
+    "code": "SJE",
+    "won": 9,
+    "drawn": 11,
+    "lost": 10,
+    "goals_for": 41,
+    "goals_against": 35,
+    "played": 30
+   },
+   "fc-dallas": {
+    "code": "DAL",
+    "won": 10,
+    "drawn": 6,
+    "lost": 14,
+    "goals_for": 34,
+    "goals_against": 45,
+    "played": 30
+   }
+  }
+ },
+ "playoffs": {
+  "structure": [
+   "Conference Semifinals (two legs, aggregate)",
+   "Conference Finals (single match)",
+   "MLS Cup (single match)"
+  ],
+  "fixtures": [
+   {
+    "round": "Conference semifinals",
+    "date_local": "2004-10-23",
+    "team_a": "columbus-crew",
+    "team_b": "new-england-revolution",
+    "goals_a": 0,
+    "goals_b": 1,
+    "aet": false,
+    "stadium": "Gillette Stadium",
+    "stage": "Conference Semifinals"
+   },
+   {
+    "round": "Conference semifinals",
+    "date_local": "2004-10-31",
+    "team_a": "new-england-revolution",
+    "team_b": "columbus-crew",
+    "goals_a": 1,
+    "goals_b": 1,
+    "aet": false,
+    "stadium": "MAPFRE Stadium",
+    "stage": "Conference Semifinals"
+   },
+   {
+    "round": "Conference semifinals",
+    "date_local": "2004-10-23",
+    "team_a": "d-c-united",
+    "team_b": "red-bull-new-york",
+    "goals_a": 2,
+    "goals_b": 0,
+    "aet": false,
+    "stadium": "Giants Stadium",
+    "stage": "Conference Semifinals"
+   },
+   {
+    "round": "Conference semifinals",
+    "date_local": "2004-10-30",
+    "team_a": "red-bull-new-york",
+    "team_b": "d-c-united",
+    "goals_a": 0,
+    "goals_b": 2,
+    "aet": false,
+    "stadium": "RFK Stadium",
+    "stage": "Conference Semifinals"
+   },
+   {
+    "round": "Conference semifinals",
+    "date_local": "2004-10-24",
+    "team_a": "sporting-kansas-city",
+    "team_b": "san-jose-earthquakes",
+    "goals_a": 0,
+    "goals_b": 2,
+    "aet": false,
+    "stadium": "Spartan Stadium (San Jose)",
+    "stage": "Conference Semifinals"
+   },
+   {
+    "round": "Conference semifinals",
+    "date_local": "2004-10-30",
+    "team_a": "san-jose-earthquakes",
+    "team_b": "sporting-kansas-city",
+    "goals_a": 0,
+    "goals_b": 3,
+    "aet": false,
+    "stadium": "Arrowhead Stadium",
+    "stage": "Conference Semifinals"
+   },
+   {
+    "round": "Conference semifinals",
+    "date_local": "2004-10-22",
+    "team_a": "la-galaxy",
+    "team_b": "colorado-rapids",
+    "goals_a": 0,
+    "goals_b": 1,
+    "aet": false,
+    "stadium": "INVESCO Field at Mile High",
+    "stage": "Conference Semifinals"
+   },
+   {
+    "round": "Conference semifinals",
+    "date_local": "2004-10-30",
+    "team_a": "colorado-rapids",
+    "team_b": "la-galaxy",
+    "goals_a": 0,
+    "goals_b": 2,
+    "aet": false,
+    "stadium": "Dignity Health Sports Park",
+    "stage": "Conference Semifinals"
+   },
+   {
+    "round": "Conference finals",
+    "date_local": "2004-11-05",
+    "team_a": "la-galaxy",
+    "team_b": "sporting-kansas-city",
+    "goals_a": 0,
+    "goals_b": 2,
+    "aet": false,
+    "stadium": "Arrowhead Stadium",
+    "stage": "Conference Finals",
+    "corroboration": [
+     {
+      "source": "docs/evidence/history/review/wikipedia-MLS_Cup_2004.wikitext",
+      "quote": "|align=left|[[Los Angeles Galaxy]]\n|colspan=3|2–0 (H)",
+      "reads": "Kansas City Wizards (finalist, H) 2–0 Los Angeles Galaxy"
+     }
+    ]
+   },
+   {
+    "round": "Conference finals",
+    "date_local": "2004-11-06",
+    "team_a": "new-england-revolution",
+    "team_b": "d-c-united",
+    "goals_a": 3,
+    "goals_b": 3,
+    "aet": true,
+    "stadium": "RFK Stadium",
+    "stage": "Conference Finals",
+    "corroboration": [
+     {
+      "source": "docs/evidence/history/review/wikipedia-MLS_Cup_2004.wikitext",
+      "quote": "|align=left|[[New England Revolution]]\n|colspan=3|3–3 {{pso|4–3}} (H)",
+      "reads": "D.C. United (finalist, H) 3–3 New England, 4–3 on penalties"
+     }
+    ]
+   },
+   {
+    "round": "MLS Cup",
+    "date_local": "2004-11-14",
+    "team_a": "sporting-kansas-city",
+    "team_b": "d-c-united",
+    "goals_a": 2,
+    "goals_b": 3,
+    "aet": false,
+    "stadium": "Dignity Health Sports Park",
+    "stage": "MLS Cup",
+    "corroboration": [
+     {
+      "source": "docs/evidence/history/review/wikipedia-MLS_Cup_2004.wikitext",
+      "quote": "| team1  = [[D.C. United]]\n| team1score = 3 \n| team2 = [[Kansas City Wizards]]\n| team2score = 2\n| date = {{Start date|2004|11|14}}",
+      "reads": "infobox: D.C. United 3–2 Kansas City Wizards, 2004-11-14"
+     },
+     {
+      "source": "docs/evidence/history/review/wikipedia-MLS_Cup_2004.wikitext",
+      "quote": "The match kicked off at 12:45&nbsp;p.m. [[Pacific Time Zone|Pacific Time]] on November 14, 2004",
+      "reads": "kickoff 12:45 PT = 20:45Z; ESPN lists 17:30Z: kickoff TIME disagrees (date agrees); canonical kickoff stays ESPN, recorded as a limitation, never used to classify"
+     }
+    ]
+   }
+  ],
+  "notes": []
+ },
+ "team_map": {
+  "CHI": "chicago-fire-fc",
+  "COL": "colorado-rapids",
+  "CLB": "columbus-crew",
+  "DAL": "fc-dallas",
+  "DC": "d-c-united",
+  "KC": "sporting-kansas-city",
+  "DCU": "d-c-united",
+  "NER": "new-england-revolution",
+  "KCW": "sporting-kansas-city",
+  "LAG": "la-galaxy",
+  "SJE": "san-jose-earthquakes",
+  "MIA": "miami",
+  "LA": "la-galaxy",
+  "MET": "red-bull-new-york",
+  "NE": "new-england-revolution",
+  "SJ": "san-jose-earthquakes",
+  "TB": "tampa-bay",
+  "Chicago Fire Soccer Club": "chicago-fire-fc",
+  "Chicago Fire FC": "chicago-fire-fc",
+  "FC Dallas": "fc-dallas",
+  "Sporting Kansas City": "sporting-kansas-city",
+  "Miami Fusion": "miami",
+  "New York Red Bulls": "red-bull-new-york",
+  "LA Galaxy": "la-galaxy",
+  "Los Angeles Galaxy": "la-galaxy",
+  "San Jose Earthquakes": "san-jose-earthquakes",
+  "Columbus Crew": "columbus-crew",
+  "Columbus Crew SC": "columbus-crew",
+  "Colorado Rapids": "colorado-rapids",
+  "D.C. United": "d-c-united",
+  "New England Revolution": "new-england-revolution",
+  "Tampa Bay Mutiny": "tampa-bay"
+ }
+}
