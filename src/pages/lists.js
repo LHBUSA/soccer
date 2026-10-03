@@ -96,7 +96,7 @@ export const sources = {
         <dl class="srclist">
           <div><dt>Wyscout public dataset</dt><dd>Event data with pitch locations for the 2017/18 Bundesliga. Pappalardo et al. (2019), CC BY 4.0.</dd></div>
           <div><dt>OpenLigaDB</dt><dd>Bundesliga fixtures, results and reported goals, 2004/05 to today. Open Database License (ODbL).</dd></div>
-          <div><dt>ESPN (secondary)</dt><dd>Structured current-season facts: fixtures, results, lineups, team statistics and event locations for MLS, the Premier League, Champions League and Bundesliga. Secondary source: it never overrides a stronger source, and its provider xG is labelled as ESPN's.</dd></div>
+          <div><dt>ESPN (secondary)</dt><dd>Structured current-season facts: fixtures, results, lineups, team statistics and event locations for MLS, the Premier League, Champions League and Bundesliga. Secondary source: it never overrides a stronger source, and its provider xG is labelled as supplied xG, never PBE xG.</dd></div>
         </dl>
         <h2>Rules the product follows</h2>
         <ul>

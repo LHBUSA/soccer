@@ -1,4 +1,4 @@
-// Source-brand guard v2 (PropBetEdge network standard; reference implementation LHBUSA/golf 43c4677, 2026-10-03).
+// Source-brand guard v2.1 (template literals + JSX text; PropBetEdge network standard; reference implementation LHBUSA/golf 43c4677, 2026-10-03).
 // Customer-facing data attribution is "DATA · PropSports" (https://propsports.proptechusa.ai). Upstream providers
 // stay in ingest provenance, captures, logs, admin/debug, source registries and tests.
 // v2 scans every customer-rendered directory INCLUDING lib/ and data/ and the public API serializers, and flags an
@@ -9,7 +9,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const ROOT = process.cwd();
+// Repo root = the parent of scripts/, so the guard gives the same answer from any working directory.
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 // ---- per-repo configuration -------------------------------------------------------------------------------------
 const SCOPE = ['src', 'index.html', 'workers/soccer-api/src'];
 const ALLOW = new Set(['src/pages/lists.js' /* /sources provenance + licence page */, 'src/lib/competition-media.js' /* per-image logo credits */]);
@@ -25,7 +26,7 @@ const FORBIDDEN = [
   // (source_family === "espn", espn_athlete_id, "ufcstats_round_stats") are implementation values, not copy
   new RegExp(String.raw`(['"\`])[^'"\`\n]*?(?<![\w.$/-])${DISPLAY}(?![\w$])[^'"\`\n]*?\1`, 'g'),
   // provider in parentheses, e.g. "a secondary source (ESPN)"
-  new RegExp(String.raw`\(${PROVIDERS}[^)]{0,40}\)`, 'gi'),
+  new RegExp(String.raw`\(${PROVIDERS}[^)]{0,40}\)`, 'g'),
   // operational setup must never reach customers
   /wrangler secret put|npx wrangler|C:\\\\Workers/gi,
 ];
@@ -37,7 +38,7 @@ function stripComments(text) {
     .replace(/\/\*[\s\S]*?\*\//g, (m) => m.replace(/[^\n]/g, ''))
     .replace(/<!--[\s\S]*?-->/g, (m) => m.replace(/[^\n]/g, ''))
     .replace(/^[ \t]*\/\/.*$/gm, '')
-    .replace(/([;,{}()\]])\s*\/\/(?![^'"`\n]*['"`]).*$/gm, '$1');
+    .replace(/([;,{}()\]])[ \t]*\/\/(?![^'"`\n]*['"`]).*$/gm, '$1');
 }
 function files(rel, out = []) {
   const full = path.join(ROOT, rel);
@@ -51,15 +52,55 @@ function files(rel, out = []) {
   }
   return out;
 }
+// Text inside template literals, per line. Template literals often span many lines of HTML that the same-line
+// string-literal pattern cannot see. ${...} interpolations (code) are excluded; nesting is tracked.
+function templateText(text) {
+  const out = text.split('\n').map(() => '');
+  const stack = [];
+  let line = 0, mode = 'code', depth = 0;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (c === '\n') { line++; if (mode === "'" || mode === '"') mode = 'code'; continue; }
+    if (mode === 'tpl') {
+      if (c === '\\') { out[line] += text[i + 1] === '\n' ? '' : (text[i + 1] || ''); i++; continue; }
+      if (c === '`') { mode = stack.pop() || 'code'; continue; }
+      if (c === '$' && text[i + 1] === '{') { stack.push({ resume: 'tpl', depth }); mode = 'code'; depth = 0; i++; out[line] += ' '; continue; }
+      out[line] += c;
+      continue;
+    }
+    if (mode === "'" || mode === '"') { if (c === '\\') { i++; continue; } if (c === mode) mode = 'code'; continue; }
+    if (c === "'" || c === '"') { mode = c; continue; }
+    if (c === '`') { stack.push('code'); mode = 'tpl'; continue; }
+    const top = stack[stack.length - 1];
+    if (top && typeof top === 'object') {
+      if (c === '{') depth++;
+      else if (c === '}') { if (depth === 0) { stack.pop(); mode = 'tpl'; depth = top.depth; continue; } depth--; }
+    }
+  }
+  return out;
+}
+const BARE = new RegExp(String.raw`\b${PROVIDERS}`, 'i');
+const URLS = /(?:https?:)?\/\/[^\s'"`)<]+/g;
+
+// JSX text children (.tsx/.jsx): customer copy between tags, e.g. <p>Data from X</p>, which no quote-based
+// pattern can see. {expressions} are excluded.
+const JSX_TEXT = />([^<>{}]*)(?=<|\{|$)/g;
+function jsxText(line) { let s = ''; for (const m of line.matchAll(JSX_TEXT)) s += ' ' + m[1]; return s; }
+
 export function scan(root = ROOT) {
   const violations = [];
   for (const rel of SCOPE.flatMap((s) => files(s))) {
     if (ALLOW.has(rel)) continue;
     const raw = fs.readFileSync(path.join(root, rel), 'utf8').split('\n');
-    const lines = stripComments(raw.join('\n')).split('\n');
+    const stripped = stripComments(raw.join('\n'));
+    const lines = stripped.split('\n');
+    const tpl = templateText(stripped);
+    const jsx = /\.(tsx|jsx)$/.test(rel);
     for (let i = 0; i < lines.length; i++) {
       if (raw[i].includes('source-brand:allow')) continue;
-      const line = lines[i].replace(/(?:https?:)?\/\/[^\s'"`)]+/g, '').replace(BENIGN, '');
+      const clean = (s) => (s || '').replace(URLS, '').replace(BENIGN, '');
+      if (BARE.test(clean(tpl[i])) || (jsx && BARE.test(clean(jsxText(lines[i]))))) { violations.push(`${rel}:${i + 1}: ${lines[i].trim().slice(0, 180)}`); continue; }
+      const line = clean(lines[i]);
       for (const pattern of FORBIDDEN) {
         pattern.lastIndex = 0;
         if (pattern.test(line)) { violations.push(`${rel}:${i + 1}: ${lines[i].trim().slice(0, 180)}`); break; }

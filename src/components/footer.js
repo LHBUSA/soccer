@@ -40,7 +40,7 @@ export function networkFooter() {
       </aside>
     </div>
     ${renderPreferredSource({ surface: 'footer' })}
-    <p class="muted small fsrc">DATA · PropSports. Event data: Pappalardo et al. (2019), Wyscout public dataset, CC BY 4.0 · Fixtures/results: OpenLigaDB, ODbL. Event maps show event locations, not player tracking. Workload intelligence is not a medical or fitness assessment.</p>
+    <p class="muted small fsrc"><!-- source-brand:allow (CC BY + ODbL licence credits) -->DATA · PropSports. Event data: Pappalardo et al. (2019), Wyscout public dataset, CC BY 4.0 · Fixtures/results: OpenLigaDB, ODbL. Event maps show event locations, not player tracking. Workload intelligence is not a medical or fitness assessment.</p>
   </div></footer>`;
 }
 
