@@ -1,0 +1,66 @@
+{
+ "at": "2026-10-03T01:01:42.421Z",
+ "competition": "bundesliga",
+ "season": "2008/09",
+ "state_before": "published",
+ "acceptance": {
+  "canonical_matches": 308,
+  "finished": 308,
+  "teams": 19,
+  "league_matches": 306,
+  "matches_per_club": {
+   "min": 34,
+   "max": 34
+  },
+  "repeated_pairings": 0,
+  "repeat_pairings_allowed": false,
+  "era": "18-club double round robin (1991/92 had 20 clubs; not in the ESPN catalog)",
+  "unresolved_identity_queue": 0,
+  "discovery": {
+   "checked": true,
+   "lane": "espn_bundesliga@2008:results",
+   "indexed": 308,
+   "fetched": 308,
+   "missing_events": 0,
+   "repeated_pairing_events": 0,
+   "without_status": 0,
+   "finished_without_score": 0
+  },
+  "crosswalked": 308,
+  "espn_source_results": 308,
+  "score_disagreements": 0,
+  "postponed_beside_replay": 0
+ },
+ "matches": 308,
+ "finished": 308,
+ "stages": [
+  "Regular Season:league",
+  "Relegation Play-off:playoff"
+ ],
+ "teams": 19,
+ "format": {
+  "teams": 18,
+  "league_matches": 306,
+  "games_per_team": {
+   "34": 18
+  }
+ },
+ "providers": [
+  "openligadb"
+ ],
+ "coverage": {
+  "venue": 0,
+  "lineups": 0,
+  "stats": 0,
+  "events": 0
+ },
+ "coverage_tier": "RESULTS",
+ "limitations": [
+  "lineups for 0% of finished matches",
+  "team statistics for 0% of finished matches",
+  "event record for 0% of finished matches"
+ ],
+ "notes": [],
+ "checks_failed": [],
+ "pass": true
+}

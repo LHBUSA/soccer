@@ -10,6 +10,7 @@
 // Log: docs/evidence/history/queue-<comp>.jsonl (one line per season).
 import { spawnSync } from 'node:child_process';
 import { appendFileSync, mkdirSync, readFileSync } from 'node:fs';
+import { discoveryFloor } from './discovery-floor.mjs';
 const arg = (k, d) => { const i = process.argv.indexOf(k); return i >= 0 ? process.argv[i + 1] : d; };
 const COMP = arg('--comp'); const LANE = arg('--lane'); const MODE = arg('--mode', 'promote');
 const [y0, y1] = arg('--years').split('-').map(Number);
@@ -26,13 +27,12 @@ const retry = async fn => { for (let i = 0; ; i++) { try { return await fn(); } 
 const get = q => retry(async () => { const r = await fetch(`${U}/rest/v1/${q}`, { headers: h }); if (r.status >= 500) throw new Error(`HTTP ${r.status}`); return r.json(); });
 const cnt = q => retry(async () => { const r = await fetch(`${U}/rest/v1/${q}`, { method: 'HEAD', headers: { ...h, prefer: 'count=exact' } }); if (r.status >= 500) throw new Error(`HTTP ${r.status}`); return Number((r.headers.get('content-range') || '').split('/')[1]); });
 const node = args => spawnSync(process.execPath, args, { encoding: 'utf8', env: { ...process.env, MSYS_NO_PATHCONV: '1' }, maxBuffer: 64 * 1024 * 1024 });
-// lane cursor (KV, read-only) -> events minus the extra listings of every repeated pairing
+// lane cursor (KV, read-only) -> discovery floor (scripts/history/discovery-floor.mjs: only PROVEN extra listings are
+// removed; incomplete discovery is never adjusted). No cursor -> floor 1 (the gate's own checks still decide).
 const cursorFloor = laneName => {
   const kv = spawnSync('npx', ['wrangler', 'kv', 'key', 'get', `lane:${laneName}`, '--namespace-id', '3e665f75414849578249f5aed979b868', '--remote'], { cwd: 'workers/soccer-ingest', encoding: 'utf8', shell: true, maxBuffer: 64 * 1024 * 1024, env: { ...process.env, NODE_OPTIONS: '--require D:/Workers/exfat-readlink.cjs' } });
-  let st = null; try { st = JSON.parse(kv.stdout); } catch { return 1; }
-  const fx = Object.values(st?.cursor?.fixtures || {}); const groups = {};
-  for (const f of fx) { const k = `${f.stype}|${f.h}|${f.a}`; groups[k] = (groups[k] || 0) + 1; }
-  return fx.length - Object.values(groups).reduce((a, n) => a + (n - 1), 0);
+  let st = null; try { st = JSON.parse(kv.stdout); } catch { return { floor: 1, complete: false, extras: 0, events: 0 }; }
+  return discoveryFloor(st?.cursor);
 };
 const log = row => { appendFileSync(LOG, `${JSON.stringify({ at: new Date().toISOString(), comp: COMP, ...row })}\n`); console.log(JSON.stringify(row)); };
 const HOLD_FOR_REVIEW = new Set((arg('--hold', '') || '').split(',').filter(Boolean).map(Number)); // ingest, never promote
@@ -64,16 +64,16 @@ for (let y = y0; y <= y1; y++) {
     log({ season: label, lane, outcome: 'RECONCILED', requests, minutes, transient_non_json_cleared: transient, fixtures_seen: fixtures, results_read: detailed, canonical_matches: ms.length, espn_observations: src.length, disagreements: dis.length, disagreement_ids: dis.slice(0, 10).map(d => d.match_id), state: s.publication_state });
     continue;
   }
-  // floor: the lane cursor's events minus the EXTRA listings of every repeated pairing (sum of group size - 1): each
-  // pairing founds at least one match. (Subtracting the number of repeated pairings overshot when a pairing was listed
-  // three or more times; Premier League 2003/04 held on a perfect 380.) No cursor -> 1.
-  const floor = String(Math.max(1, cursorFloor(lane)));
+  // floor: discovered events minus listings PROVEN to be extra representations (Premier League 2003/04 held on a perfect
+  // 380 when a pairing listed three times was under-counted; MLS genuine repeat meetings are never removed)
+  const fl = cursorFloor(lane);
+  const floor = String(Math.max(1, fl.floor));
   const acc = node(['scripts/history/accept-season.mjs', COMP, label, '--min-matches', floor, ...(EXPECT ? ['--expect-teams', EXPECT] : [])]);
   let res = null; try { res = JSON.parse(acc.stdout.trim().split('\n').pop()); } catch { /* below */ }
   if (!res) { log({ season: label, lane, outcome: 'HELD_acceptance_error', requests, minutes, stderr: acc.stderr.slice(-400) }); continue; }
   if (res.failed.some(f => STOP_CHECKS.has(f))) { log({ season: label, lane, outcome: 'STOP_integrity', requests, minutes, failed: res.failed, matches: res.matches }); process.exit(4); }
   if (res.pass && HOLD_FOR_REVIEW.has(y)) { log({ season: label, lane, outcome: 'HELD_for_review', requests, minutes, matches: res.matches, note: 'format needs review before publication' }); continue; }
-  if (!res.pass) { log({ season: label, lane, outcome: 'HELD', requests, minutes, failed: res.failed, matches: res.matches, finished: res.finished, teams: res.teams, format: res.format }); continue; }
+  if (!res.pass) { log({ season: label, lane, outcome: 'HELD', requests, minutes, failed: res.failed, matches: res.matches, finished: res.finished, teams: res.teams, format: res.format, discovery_floor: { events: fl.events, extras: fl.extras, floor: fl.floor, complete: fl.complete } }); continue; }
   const pro = node(['scripts/history/accept-season.mjs', COMP, label, '--min-matches', floor, ...(EXPECT ? ['--expect-teams', EXPECT] : []), '--promote']);
   let p = null; try { p = JSON.parse(pro.stdout.trim().split('\n').pop()); } catch { /* below */ }
   if (!p?.promoted) { log({ season: label, lane, outcome: 'HELD_promote_refused', requests, minutes, stderr: pro.stderr.slice(-400) }); continue; }

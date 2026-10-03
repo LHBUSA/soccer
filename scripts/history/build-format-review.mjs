@@ -10,6 +10,37 @@
 import { createHash } from 'node:crypto';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 const [comp, season] = process.argv.slice(2);
+// REVIEWED per-season format facts (from the evidence files; nothing here is inferred from provider data). One entry per
+// reviewed season: a season without its own reviewed entry is refused before any evidence is read (no season inherits
+// another season's playoff mapping).
+const SEASONS = {
+  2001: {
+    stage: { Quarterfinals: 'Quarterfinals', Semifinals: 'Semifinals', 'MLS Cup': 'MLS Cup', 'MLS Cup 2001': 'MLS Cup' },
+    structure: ['Quarterfinals (best of three)', 'Semifinals (best of three)', 'MLS Cup (single match)'],
+    facts: { regular_season_end: '2001-09-09', playoffs_start: '2001-09-20', mls_cup: '2001-10-21', note: 'Regular season ended prematurely after the September 11 attacks; remaining matches were cancelled; playoff seeding by points per game; best-of-three series decided on points, with sudden-death series overtime when level.' },
+  },
+  2004: {
+    stage: { 'Conference semifinals': 'Conference Semifinals', 'Conference finals': 'Conference Finals', 'MLS Cup': 'MLS Cup' },
+    structure: ['Conference Semifinals (two legs, aggregate)', 'Conference Finals (single match)', 'MLS Cup (single match)'],
+    facts: { regular_season_end: '2004-10-17', playoffs_start: '2004-10-22', mls_cup: '2004-11-14', note: '10 clubs, 30 matches each (150); top four per conference qualify; conference semifinals home-and-home on aggregate goals; conference finals and MLS Cup single matches (D.C. United beat New England 4-3 on penalties after 3-3 AET).' },
+    limitations: ['MLS Cup 2004 (ESPN event 168975): ESPN lists kickoff 17:30Z; the MLS Cup 2004 article states 12:45 p.m. Pacific (20:45Z). The date agrees; canonical kickoff kept as published by ESPN.'],
+    fact_quotes: [
+      { file: 'article', quote: 'The regular season began on April 3, and concluded on October 17. The 2004 MLS Cup Playoffs began on October 22, and concluded with [[MLS Cup 2004]] on November 14.' },
+      { file: 'article', quote: 'Each team played 30 games that were evenly divided between home and away.' },
+      { file: 'article', quote: 'The conference finals were played as a single match, and the winners advanced to [[MLS Cup 2004|MLS Cup]].' },
+    ],
+    // second source (MLS Cup 2004 article: finalists' road-to-the-final table and match infobox), per fixture
+    corroboration: {
+      'Conference Finals|2004-11-06': [{ file: 'cup', quote: ['|align=left|[[New England Revolution]]', '|colspan=3|3–3 {{pso|4–3}} (H)'].join('\n'), reads: 'D.C. United (finalist, H) 3–3 New England, 4–3 on penalties' }],
+      'Conference Finals|2004-11-05': [{ file: 'cup', quote: ['|align=left|[[Los Angeles Galaxy]]', '|colspan=3|2–0 (H)'].join('\n'), reads: 'Kansas City Wizards (finalist, H) 2–0 Los Angeles Galaxy' }],
+      'MLS Cup|2004-11-14': [
+        { file: 'cup', quote: ['| team1  = [[D.C. United]]', '| team1score = 3 ', '| team2 = [[Kansas City Wizards]]', '| team2score = 2', '| date = {{Start date|2004|11|14}}'].join('\n'), reads: 'infobox: D.C. United 3–2 Kansas City Wizards, 2004-11-14' },
+        { file: 'cup', quote: 'The match kicked off at 12:45&nbsp;p.m. [[Pacific Time Zone|Pacific Time]] on November 14, 2004', reads: 'kickoff 12:45 PT = 20:45Z; ESPN lists 17:30Z: kickoff TIME disagrees (date agrees); canonical kickoff stays ESPN, recorded as a limitation, never used to classify' },
+      ],
+    },
+  },
+};
+const SEASON = SEASONS[season]; if (!SEASON) throw new Error(`season ${season} has no reviewed format config`);
 const DIR = 'docs/evidence/history/review';
 const sha = f => createHash('sha256').update(readFileSync(f)).digest('hex');
 const article = `${DIR}/wikipedia-${season}-mls-season.wikitext`;
@@ -63,35 +94,6 @@ for (const m of boxes) {
   if (Number.isNaN(d.getTime())) throw new Error(`unparseable date ${date}`);
   fixtures.push({ round: roundAt(m.index), date_local: d.toISOString().slice(0, 10), team_a: team(field(box, 'team1')), team_b: team(field(box, 'team2')), goals_a: Number(sc[1]), goals_b: Number(sc[2]), aet: /AET|extra time/i.test(score), stadium: link(field(box, 'stadium')) || null });
 }
-// REVIEWED per-season format facts (from the evidence files; nothing here is inferred from provider data)
-const SEASONS = {
-  2001: {
-    stage: { Quarterfinals: 'Quarterfinals', Semifinals: 'Semifinals', 'MLS Cup': 'MLS Cup', 'MLS Cup 2001': 'MLS Cup' },
-    structure: ['Quarterfinals (best of three)', 'Semifinals (best of three)', 'MLS Cup (single match)'],
-    facts: { regular_season_end: '2001-09-09', playoffs_start: '2001-09-20', mls_cup: '2001-10-21', note: 'Regular season ended prematurely after the September 11 attacks; remaining matches were cancelled; playoff seeding by points per game; best-of-three series decided on points, with sudden-death series overtime when level.' },
-  },
-  2004: {
-    stage: { 'Conference semifinals': 'Conference Semifinals', 'Conference finals': 'Conference Finals', 'MLS Cup': 'MLS Cup' },
-    structure: ['Conference Semifinals (two legs, aggregate)', 'Conference Finals (single match)', 'MLS Cup (single match)'],
-    facts: { regular_season_end: '2004-10-17', playoffs_start: '2004-10-22', mls_cup: '2004-11-14', note: '10 clubs, 30 matches each (150); top four per conference qualify; conference semifinals home-and-home on aggregate goals; conference finals and MLS Cup single matches (D.C. United beat New England 4-3 on penalties after 3-3 AET).' },
-    limitations: ['MLS Cup 2004 (ESPN event 168975): ESPN lists kickoff 17:30Z; the MLS Cup 2004 article states 12:45 p.m. Pacific (20:45Z). The date agrees; canonical kickoff kept as published by ESPN.'],
-    fact_quotes: [
-      { file: 'article', quote: 'The regular season began on April 3, and concluded on October 17. The 2004 MLS Cup Playoffs began on October 22, and concluded with [[MLS Cup 2004]] on November 14.' },
-      { file: 'article', quote: 'Each team played 30 games that were evenly divided between home and away.' },
-      { file: 'article', quote: 'The conference finals were played as a single match, and the winners advanced to [[MLS Cup 2004|MLS Cup]].' },
-    ],
-    // second source (MLS Cup 2004 article: finalists' road-to-the-final table and match infobox), per fixture
-    corroboration: {
-      'Conference Finals|2004-11-06': [{ file: 'cup', quote: ['|align=left|[[New England Revolution]]', '|colspan=3|3–3 {{pso|4–3}} (H)'].join('\n'), reads: 'D.C. United (finalist, H) 3–3 New England, 4–3 on penalties' }],
-      'Conference Finals|2004-11-05': [{ file: 'cup', quote: ['|align=left|[[Los Angeles Galaxy]]', '|colspan=3|2–0 (H)'].join('\n'), reads: 'Kansas City Wizards (finalist, H) 2–0 Los Angeles Galaxy' }],
-      'MLS Cup|2004-11-14': [
-        { file: 'cup', quote: ['| team1  = [[D.C. United]]', '| team1score = 3 ', '| team2 = [[Kansas City Wizards]]', '| team2score = 2', '| date = {{Start date|2004|11|14}}'].join('\n'), reads: 'infobox: D.C. United 3–2 Kansas City Wizards, 2004-11-14' },
-        { file: 'cup', quote: 'The match kicked off at 12:45&nbsp;p.m. [[Pacific Time Zone|Pacific Time]] on November 14, 2004', reads: 'kickoff 12:45 PT = 20:45Z; ESPN lists 17:30Z: kickoff TIME disagrees (date agrees); canonical kickoff stays ESPN, recorded as a limitation, never used to classify' },
-      ],
-    },
-  },
-};
-const SEASON = SEASONS[season]; if (!SEASON) throw new Error(`season ${season} has no reviewed format config`);
 for (const f of fixtures) { f.stage = SEASON.stage[f.round]; if (!f.stage) throw new Error(`unreviewed playoff round heading: ${f.round}`); }
 // REVIEWED provider date exceptions: a provider event whose date disagrees with the reviewed fixture date, resolved by
 // independent evidence. The event is identified by its provider id AND must still agree on pairing and goals; the

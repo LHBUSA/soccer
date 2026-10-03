@@ -54,3 +54,37 @@ test('an unprovable fixture keeps the season HELD (no fallback to date or pairin
   const m3 = structuredClone(manifest); m3.playoffs.fixtures.find(f => f.stage === 'MLS Cup').date_local = '2004-11-20';
   assert.equal(classifyFormatReview(m3, snapshot.matches).ready, false, 'same pairing and score on another date is never accepted');
 });
+
+test('evidence integrity: committed sources and every reviewed quote verify; any drift fails closed', async () => {
+  const { verifyManifestEvidence } = await import('../scripts/history/format-review-lib.mjs');
+  const { createHash } = await import('node:crypto');
+  const root = new URL('../', import.meta.url);
+  const read = f => readFileSync(new URL(f, root), 'utf8'); const sha = t => createHash('sha256').update(t).digest('hex');
+  assert.deepEqual(verifyManifestEvidence(manifest, read, sha), { files: 3, quotes: 7 });
+  const cup = manifest.evidence.find(e => /MLS_Cup_2004/.test(e.file)).file;
+  // the source text changes: the hash and the corroborating quotes both fail
+  const edited = f => (f === cup ? read(f).replace('| team1score = 3 ', '| team1score = 2 ') : read(f));
+  assert.throws(() => verifyManifestEvidence(manifest, edited, sha), /evidence changed: .*MLS_Cup_2004.*quote not found/);
+  // a reviewed quote edited in the manifest (source untouched) fails too
+  const m2 = structuredClone(manifest); m2.facts.quotes[0].quote = m2.facts.quotes[0].quote.replace('October 17', 'October 16');
+  assert.throws(() => verifyManifestEvidence(m2, read, sha), /quote not found/);
+});
+
+test('every overridden fixture is individually identified, with its own evidence', () => {
+  const r = classifyFormatReview(manifest, snapshot.matches);
+  for (const x of r.reclassified) {
+    assert.ok(x.match_id && x.espn_event && x.kickoff_at && x.result);
+    assert.match(x.evidence.reviewed_fixture, /^[a-z-]+ \d+-\d+ [a-z-]+$/);
+    assert.ok(manifest.playoffs.fixtures.some(f => f.date_local === x.evidence.date_local && f.stage === x.reviewed_stage && f.corroboration?.length));
+  }
+});
+
+test('a reviewed mapping never carries to another season: the builder refuses a season without its own review', async () => {
+  const { spawnSync } = await import('node:child_process');
+  const r = spawnSync(process.execPath, ['scripts/history/build-format-review.mjs', 'mls', '2005'], { cwd: new URL('../', import.meta.url), encoding: 'utf8' });
+  assert.notEqual(r.status, 0); assert.match(r.stderr, /season 2005 has no reviewed format config/);
+  // and the 2004 manifest proves nothing on a season whose fixtures are a year later
+  const shifted = snapshot.matches.map(m => ({ ...m, kickoff_at: new Date(Date.parse(m.kickoff_at) + 364 * 864e5).toISOString() }));
+  const s = classifyFormatReview(manifest, shifted);
+  assert.equal(s.ready, false); assert.equal(s.playoff.size, 0);
+});

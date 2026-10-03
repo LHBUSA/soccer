@@ -54,3 +54,15 @@ export function leagueGamesPerTeam(assignment, matches, leagueStage) {
   for (const a of assignment) if (a.reviewed_stage === leagueStage) { const m = byId.get(a.match_id); for (const t of [m.home, m.away]) n[t] = (n[t] || 0) + 1; }
   return n;
 }
+
+// EVIDENCE INTEGRITY: every evidence file must still hash to the manifest's sha256 and every reviewed quote (facts and
+// per-fixture corroboration) must appear verbatim in its source file. Throws (fail closed) on any drift.
+// read(path) -> file text (string); sha(text) -> hex sha256 of the raw bytes as read.
+export function verifyManifestEvidence(manifest, read, sha) {
+  const problems = [];
+  for (const e of manifest.evidence || []) { let t = null; try { t = read(e.file); } catch { problems.push(`missing evidence ${e.file}`); continue; } if (sha(t) !== e.sha256) problems.push(`evidence changed: ${e.file}`); }
+  const quotes = [...(manifest.facts?.quotes || []), ...(manifest.playoffs?.fixtures || []).flatMap(f => f.corroboration || [])];
+  for (const q of quotes) { let t = ''; try { t = read(q.source).replace(/\r\n/g, '\n'); } catch { problems.push(`missing quote source ${q.source}`); continue; } if (!t.includes(q.quote)) problems.push(`quote not found in ${q.source}: ${q.quote.slice(0, 60)}`); }
+  if (problems.length) throw new Error(`reviewed manifest evidence failed: ${problems.join('; ')}`);
+  return { files: (manifest.evidence || []).length, quotes: quotes.length };
+}

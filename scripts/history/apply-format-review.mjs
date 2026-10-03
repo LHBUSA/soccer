@@ -12,10 +12,12 @@
 //   node scripts/history/apply-format-review.mjs mls 2004 [--apply]
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { classifyFormatReview, leagueGamesPerTeam } from './format-review-lib.mjs';
+import { classifyFormatReview, leagueGamesPerTeam, verifyManifestEvidence } from './format-review-lib.mjs';
 const [comp, season] = process.argv.slice(2);
 const APPLY = process.argv.includes('--apply');
 const manifest = JSON.parse(readFileSync(`data/history-review/${comp}-${season}.json`, 'utf8'));
+// fail closed when committed evidence or any reviewed quote has drifted
+verifyManifestEvidence(manifest, f => readFileSync(f, 'utf8'), t => createHash('sha256').update(t).digest('hex'));
 const env = Object.fromEntries(readFileSync('D:/Workers/secrets/soccer-supabase.env', 'utf8').split(/\r?\n/).filter(l => l.includes('=')).map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]));
 const U = env.SOCCER_MODEL_SUPABASE_URL; if (!/tkmlnhmylqnttmnsnief/.test(U)) throw new Error('target guard');
 const h = { apikey: env.SOCCER_MODEL_SUPABASE_SERVICE_ROLE_KEY, authorization: `Bearer ${env.SOCCER_MODEL_SUPABASE_SERVICE_ROLE_KEY}` };
