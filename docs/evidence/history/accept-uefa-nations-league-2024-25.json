@@ -1,8 +1,36 @@
 {
- "at": "2026-10-02T23:38:29.717Z",
+ "at": "2026-10-03T00:14:57.592Z",
  "competition": "uefa-nations-league",
  "season": "2024/25",
  "state_before": "published",
+ "acceptance": {
+  "canonical_matches": 188,
+  "finished": 188,
+  "teams": 54,
+  "league_matches": 156,
+  "matches_per_club": {
+   "min": 4,
+   "max": 6
+  },
+  "repeated_pairings": 0,
+  "repeat_pairings_allowed": true,
+  "era": null,
+  "unresolved_identity_queue": 0,
+  "discovery": {
+   "checked": true,
+   "lane": "espn_uefa_nations_league@2024",
+   "indexed": 188,
+   "fetched": 188,
+   "missing_events": 0,
+   "repeated_pairing_events": 0,
+   "without_status": 0,
+   "finished_without_score": 0
+  },
+  "crosswalked": 188,
+  "espn_source_results": 188,
+  "score_disagreements": 0,
+  "postponed_beside_replay": 0
+ },
  "matches": 188,
  "finished": 188,
  "stages": [

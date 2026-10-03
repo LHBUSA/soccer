@@ -1,27 +1,47 @@
 {
- "at": "2026-10-02T23:47:18.562Z",
+ "at": "2026-10-03T00:14:20.590Z",
  "competition": "premier-league",
  "season": "2002/03",
- "state_before": "held",
- "matches": 391,
- "finished": 341,
+ "state_before": "published",
+ "acceptance": {
+  "canonical_matches": 380,
+  "finished": 380,
+  "teams": 20,
+  "league_matches": 380,
+  "matches_per_club": {
+   "min": 38,
+   "max": 38
+  },
+  "repeated_pairings": 0,
+  "repeat_pairings_allowed": false,
+  "era": "20-club double round robin since 1995/96",
+  "unresolved_identity_queue": 0,
+  "discovery": {
+   "checked": true,
+   "lane": "espn_premier_league@2002:results",
+   "indexed": 431,
+   "fetched": 431,
+   "missing_events": 0,
+   "repeated_pairing_events": 102,
+   "without_status": 0,
+   "finished_without_score": 0
+  },
+  "crosswalked": 380,
+  "espn_source_results": 380,
+  "score_disagreements": 0,
+  "postponed_beside_replay": 0
+ },
+ "matches": 380,
+ "finished": 380,
  "stages": [
   "Regular Season:league"
  ],
  "teams": 20,
  "format": {
   "teams": 20,
-  "league_matches": 341,
+  "league_matches": 380,
   "games_per_team": {
-   "30": 1,
-   "31": 1,
-   "32": 3,
-   "33": 4,
-   "34": 2,
-   "35": 3,
-   "36": 3,
-   "37": 2,
-   "38": 1
+   "38": 20
   }
  },
  "providers": [
@@ -39,28 +59,7 @@
   "team statistics for 0% of finished matches",
   "event record for 0% of finished matches"
  ],
- "notes": [
-  "50 past match(es) postponed/cancelled/abandoned (listed, not results)"
- ],
- "checks_failed": [
-  {
-   "check": "games_per_team_uneven",
-   "distribution": {
-    "30": 1,
-    "31": 1,
-    "32": 3,
-    "33": 4,
-    "34": 2,
-    "35": 3,
-    "36": 3,
-    "37": 2,
-    "38": 1
-   }
-  },
-  {
-   "check": "home_away_unbalanced",
-   "count": 13
-  }
- ],
- "pass": false
+ "notes": [],
+ "checks_failed": [],
+ "pass": true
 }

@@ -1,0 +1,234 @@
+{
+  "lane": "espn_premier_league@2002:results",
+  "base": "https://soccer-ingest.sales-fd3.workers.dev",
+  "runs": [
+    {
+      "lane": "espn_premier_league@2002:results",
+      "run": 1,
+      "http": 200,
+      "ms": 135845,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 51,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2002:results",
+      "run": 2,
+      "http": 200,
+      "ms": 119490,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 51,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2002:results",
+      "run": 3,
+      "http": 200,
+      "ms": 118662,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 51,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2002:results",
+      "run": 4,
+      "http": 200,
+      "ms": 115352,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 51,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2002:results",
+      "run": 5,
+      "http": 200,
+      "ms": 123635,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 51,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2002:results",
+      "run": 6,
+      "http": 200,
+      "ms": 119695,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 51,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2002:results",
+      "run": 7,
+      "http": 200,
+      "ms": 119232,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 51,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2002:results",
+      "run": 8,
+      "http": 200,
+      "ms": 103366,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 51,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2002:results",
+      "run": 9,
+      "http": 200,
+      "ms": 122468,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 51,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2002:results",
+      "run": 10,
+      "http": 200,
+      "ms": 122695,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 51,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2002:results",
+      "run": 11,
+      "http": 200,
+      "ms": 35181,
+      "requests": 30,
+      "fixtures_new": 0,
+      "repeated_pairings": 51,
+      "detailed": 10,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_premier_league@2002:results",
+      "run": 12,
+      "http": 200,
+      "ms": 2628,
+      "requests": 0,
+      "fixtures_new": 0,
+      "repeated_pairings": 51,
+      "detailed": 0,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 20,
+        "before": 20,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    }
+  ]
+}

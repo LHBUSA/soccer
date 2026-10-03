@@ -1,0 +1,23 @@
+{
+  "version": "soccer-history-structure/1.0.0",
+  "note": "Registered league formats used by scripts/history/accept-season.mjs. Only formats known with certainty are registered; a season outside every registered era (or a competition without eras) is checked by the generic invariants plus, where present, a reviewed season manifest (data/history-review/). A completed league season must match its era exactly; anything else HOLDS.",
+  "competitions": {
+    "premier-league": {
+      "repeat_pairings": false,
+      "eras": [
+        { "from": "1995/96", "to": "2099/00", "teams": 20, "league_matches_per_team": 38, "league_matches": 380, "basis": "20-club double round robin since 1995/96" }
+      ]
+    },
+    "bundesliga": {
+      "repeat_pairings": false,
+      "eras": [
+        { "from": "1965/66", "to": "2099/00", "teams": 18, "league_matches_per_team": 34, "league_matches": 306, "basis": "18-club double round robin (1991/92 had 20 clubs; not in the ESPN catalog)" }
+      ]
+    },
+    "mls": {
+      "repeat_pairings": true,
+      "eras": [],
+      "basis": "Club count and schedule length changed season by season and teams meet some opponents more than once at home: no era registered; uniform league games per team or a reviewed season manifest decides."
+    }
+  }
+}

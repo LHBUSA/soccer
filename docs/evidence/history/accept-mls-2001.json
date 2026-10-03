@@ -1,8 +1,36 @@
 {
- "at": "2026-10-02T23:37:11.878Z",
+ "at": "2026-10-03T00:14:46.202Z",
  "competition": "mls",
  "season": "2001",
- "state_before": "held",
+ "state_before": "published",
+ "acceptance": {
+  "canonical_matches": 179,
+  "finished": 176,
+  "teams": 12,
+  "league_matches": 161,
+  "matches_per_club": {
+   "min": 26,
+   "max": 27
+  },
+  "repeated_pairings": 38,
+  "repeat_pairings_allowed": true,
+  "era": "reviewed manifest",
+  "unresolved_identity_queue": 0,
+  "discovery": {
+   "checked": true,
+   "lane": "espn_mls@2001:results",
+   "indexed": 186,
+   "fetched": 186,
+   "missing_events": 0,
+   "repeated_pairing_events": 129,
+   "without_status": 0,
+   "finished_without_score": 0
+  },
+  "crosswalked": 179,
+  "espn_source_results": 179,
+  "score_disagreements": 0,
+  "postponed_beside_replay": 0
+ },
  "matches": 179,
  "finished": 176,
  "stages": [
@@ -42,6 +70,5 @@
   "format from a reviewed season manifest (provider stage metadata insufficient)"
  ],
  "checks_failed": [],
- "pass": true,
- "promoted": true
+ "pass": true
 }

@@ -1,8 +1,36 @@
 {
- "at": "2026-10-02T23:05:56.795Z",
+ "at": "2026-10-03T00:16:21.097Z",
  "competition": "premier-league",
  "season": "2001/02",
- "state_before": "held",
+ "state_before": "published",
+ "acceptance": {
+  "canonical_matches": 380,
+  "finished": 380,
+  "teams": 20,
+  "league_matches": 380,
+  "matches_per_club": {
+   "min": 38,
+   "max": 38
+  },
+  "repeated_pairings": 0,
+  "repeat_pairings_allowed": false,
+  "era": "20-club double round robin since 1995/96",
+  "unresolved_identity_queue": 0,
+  "discovery": {
+   "checked": true,
+   "lane": "espn_premier_league@2001:results",
+   "indexed": 415,
+   "fetched": 415,
+   "missing_events": 0,
+   "repeated_pairing_events": 69,
+   "without_status": 0,
+   "finished_without_score": 0
+  },
+  "crosswalked": 380,
+  "espn_source_results": 380,
+  "score_disagreements": 0,
+  "postponed_beside_replay": 0
+ },
  "matches": 380,
  "finished": 380,
  "stages": [
@@ -33,6 +61,5 @@
  ],
  "notes": [],
  "checks_failed": [],
- "pass": true,
- "promoted": true
+ "pass": true
 }
