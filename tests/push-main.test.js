@@ -26,16 +26,26 @@ test('a REAL failing test file makes the gate fail with its real exit status, an
   assert.ok(!calls.some(c => c.startsWith('push')), 'git push never ran');
 });
 
-test('a passing gate pushes; a gate that fails after the rebase blocks the push', () => {
+test('order: rebase first, then gate the rebased tree, then push; a failing gate after the rebase blocks the push', () => {
   const ok = { ok: true, steps: [] }; const bad = { ok: false, steps: [{ label: 'tests', status: 1 }] };
-  const c1 = [];
-  assert.equal(guardedPush({ gateFn: () => ok, gitFn: fakeGit(c1), log: () => {} }).pushed, true);
-  assert.ok(c1.some(c => c.startsWith('push')));
+  const c1 = []; let gatedAfter = null;
+  const r1 = guardedPush({ gateFn: () => { gatedAfter = c1.slice(); return ok; }, gitFn: fakeGit(c1), log: () => {} });
+  assert.equal(r1.pushed, true);
+  assert.ok(gatedAfter.some(c => c.startsWith('rebase')), 'the gate runs on the rebased tree');
   assert.ok(c1.indexOf(c1.find(c => c.startsWith('push'))) < c1.lastIndexOf('rev-parse origin/main'), 'origin/main is re-read after the push (verified, not assumed)');
-  let n = 0; const c2 = [];
-  const r = guardedPush({ gateFn: () => (n++ === 0 ? ok : bad), gitFn: fakeGit(c2, { moved: true }), log: () => {} });
-  assert.equal(r.pushed, false); assert.match(r.reason, /after rebase/);
-  assert.ok(!c2.some(c => c.startsWith('push')));
+  const c2 = [];
+  const r2 = guardedPush({ gateFn: () => bad, gitFn: fakeGit(c2), log: () => {} });
+  assert.equal(r2.pushed, false); assert.ok(!c2.some(c => c.startsWith('push')));
+});
+
+test('a failed rebase or a rejected push is refused, never forced', () => {
+  const ok = { ok: true, steps: [] };
+  const conflict = (calls) => (...a) => { calls.push(a.join(' ')); if (a[0] === 'rebase' && a[1] === '-q') throw new Error('CONFLICT'); return a[0] === 'status' ? '' : 'x'; };
+  const c1 = []; const r1 = guardedPush({ gateFn: () => ok, gitFn: conflict(c1), log: () => {} });
+  assert.equal(r1.pushed, false); assert.match(r1.reason, /rebase/); assert.ok(c1.includes('rebase --abort')); assert.ok(!c1.some(c => c.startsWith('push')));
+  const rejected = (calls) => (...a) => { calls.push(a.join(' ')); if (a[0] === 'push') throw new Error('non-fast-forward'); return a[0] === 'status' ? '' : 'x'; };
+  const c2 = []; const r2 = guardedPush({ gateFn: () => ok, gitFn: rejected(c2), log: () => {} });
+  assert.equal(r2.pushed, false); assert.match(r2.reason, /rejected/); assert.ok(!c2.some(c => /--force|(^| )-f( |$)/.test(c)));
 });
 
 test('uncommitted tracked changes refuse before the gate runs', () => {

@@ -15,20 +15,18 @@ import { gate as realGate } from './gate.mjs';
 const git = (...a) => execFileSync('git', a, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
 
 /** Pure decision core (tested): push happens only after every gate run passed. */
+// Order: rebase on origin/main FIRST, then gate the exact tree that will be pushed (a gate run before the rebase tested
+// a tree nobody pushes: 2026-10-03 it failed on a vendored-client parity that origin had already fixed).
 export function guardedPush({ gateFn = realGate, gitFn = git, log = console.log } = {}) {
   if (gitFn('status', '--porcelain', '--untracked-files=no')) return { pushed: false, reason: 'tracked changes not committed' };
-  const first = gateFn();
-  if (!first.ok) return { pushed: false, reason: `gate failed at "${first.steps.at(-1)?.label}" (exit ${first.steps.at(-1)?.status})` };
-  const before = gitFn('rev-parse', 'HEAD');
   gitFn('fetch', '-q', 'origin');
-  gitFn('rebase', '-q', 'origin/main');
-  const after = gitFn('rev-parse', 'HEAD');
-  if (after !== before) {
-    log('[push-main] rebase brought upstream commits: re-running the gate on the rebased tree');
-    const again = gateFn();
-    if (!again.ok) return { pushed: false, reason: `gate failed after rebase at "${again.steps.at(-1)?.label}"` };
-  }
-  gitFn('push', '-q', 'origin', 'HEAD:main');
+  try { gitFn('rebase', '-q', 'origin/main'); } catch (e) { try { gitFn('rebase', '--abort'); } catch {} return { pushed: false, reason: `rebase on origin/main failed (aborted, nothing pushed): ${String(e.message || e).slice(0, 200)}` }; }
+  const head = gitFn('rev-parse', 'HEAD');
+  log(`[push-main] gating ${head.slice(0, 7)} (rebased on origin/main)`);
+  const g = gateFn();
+  if (!g.ok) return { pushed: false, reason: `gate failed at "${g.steps.at(-1)?.label}" (exit ${g.steps.at(-1)?.status})` };
+  // A plain (non-force) push: if origin moved while the gate ran, git rejects it as non-fast-forward -> refuse, re-run.
+  try { gitFn('push', '-q', 'origin', 'HEAD:main'); } catch (e) { return { pushed: false, reason: `push rejected (origin moved during the gate?): ${String(e.message || e).slice(0, 200)}` }; }
   gitFn('fetch', '-q', 'origin');
   const remote = gitFn('rev-parse', 'origin/main');
   if (remote !== gitFn('rev-parse', 'HEAD')) return { pushed: false, reason: `push not visible: origin/main ${remote}` };
