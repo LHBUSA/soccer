@@ -470,6 +470,28 @@ function tapeOutcomes(it) {
   }).join('')
 }
 
+// Multi-venue lines (Market Tape v2 items only; a v1 item has no venues/related -> ''). Polymarket is labelled
+// by venue; COMPARABLE quotes carry the disclosure; RELATED markets show their own price with the
+// "RELATED MARKET · RULES DIFFER" label and reason, never a gap. Stale is labelled; no number without freshness.
+const venueName = (v) => (v === 'polymarket' ? 'Polymarket' : v === 'kalshi' ? 'Kalshi' : String(v || ''))
+const pxList = (outs) => (outs || []).filter((o) => o.mid_bp != null && o.freshness).slice(0, 2)
+  .map((o) => `${esc(o.label || o.role || '')} <span class="mono">${esc(cents(o.mid_bp))}</span>${o.freshness === 'stale' ? ' <em class="tape__stale">stale</em>' : ''}`).join(' · ')
+export function tapeVenueLines(it) {
+  const pm = (it?.venues || []).filter((v) => v.venue !== 'kalshi')
+  const rel = (it?.related || [])
+  if (!pm.length && !rel.length) return ''
+  const lines = pm.map((v) => {
+    const gap = it.comparison && it.comparison.match_class === v.match ? ` · gap ${esc(Math.round(it.comparison.max_gap_pts))} pts` : ''
+    const dx = v.disclosure ? `<span class="tape__dx">${esc(v.disclosure)}</span>` : ''
+    return `<span class="tape__vl" data-venue="${esc(v.venue)}" data-match="${esc(v.match)}"><b>${esc(venueName(v.venue))}</b> ${pxList(v.outcomes)}${gap}${dx}</span>`
+  })
+  for (const r of rel) {
+    const px = pxList(r.outcomes)
+    lines.push(`<span class="tape__vl tape__vl--rel" data-venue="${esc(r.venue)}" data-match="${esc(r.match)}" title="${esc(r.reason || '')}"><i class="tape__rl">${esc(r.label || 'RELATED MARKET')}</i> <b>${esc(venueName(r.venue))}</b> ${px}</span>`)
+  }
+  return lines.join('')
+}
+
 function tapeCard(it) {
   const [label, cls] = tapeState(it)
   const pbe = it.pbe
@@ -478,7 +500,7 @@ function tapeCard(it) {
   const href = it.destination?.url || null
   const inner = `<span class="tape__hd"><span class="tape__sp">${esc(SPORT_LABEL[it.sport] || String(it.sport || '').toUpperCase())}</span><span class="tape__st tape__st--${cls}">${esc(label)}</span></span>
     <span class="tape__ti">${esc(it.title || '')}</span>
-    <span class="tape__bd">${pbeLine || tapeOutcomes(it)}</span>`
+    <span class="tape__bd">${pbeLine || tapeOutcomes(it)}${tapeVenueLines(it)}</span>`
   return href ? `<a class="tape__c" href="${esc(href)}" data-tape-event="${esc(`${it.sport}|${it.canonical_event_id}`)}">${inner}</a>` : `<span class="tape__c">${inner}</span>`
 }
 
@@ -493,7 +515,7 @@ export function marketTapeRail(payload, { filter = 'all', title = 'Market Tape' 
   return `<section class="tape" data-tape aria-label="Market tape: prediction-market prices across PropBetEdge">
     <div class="tape__top"><span class="tape__name">${esc(title)}</span><span class="tape__fs" role="group" aria-label="Filter">${chips}</span></div>
     <div class="tape__row" data-tape-row>${cards}</div>
-    <p class="tape__ft">Prediction-market prices (Kalshi) · movement since first observed · not sportsbook odds or a PropBetEdge model</p>
+    <p class="tape__ft">Prediction-market prices (${tapeItems(payload, f).some((x) => tapeVenueLines(x)) ? 'Kalshi, Polymarket' : 'Kalshi'}) · movement since first observed · not sportsbook odds or a PropBetEdge model</p>
   </section>`
 }
 
