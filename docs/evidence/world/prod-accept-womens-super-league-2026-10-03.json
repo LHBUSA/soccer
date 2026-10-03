@@ -1,0 +1,365 @@
+{
+  "generated_at": "2026-10-03T18:32:23.199Z",
+  "competition": "womens-super-league",
+  "gender": "women",
+  "canary": "docs/evidence/world/canary-womens-super-league-2026-10-03.json",
+  "season": "2026/27",
+  "publication_state": "published",
+  "worker_enabled": true,
+  "acceptance": {
+    "match_data": "MATCH_DATA_PASS",
+    "spatial": "SPATIAL_DATA_AVAILABLE",
+    "cast_located_in_latest_finished": [
+      23,
+      30,
+      24
+    ]
+  },
+  "namesakes": [
+    {
+      "team": "Tottenham Hotspur Women",
+      "distinct_from": [
+        "Tottenham Hotspur"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Everton Women",
+      "distinct_from": [
+        "Everton"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Chelsea Women",
+      "distinct_from": [
+        "Chelsea"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "West Ham United Women",
+      "distinct_from": [
+        "West Ham United"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Arsenal Women",
+      "distinct_from": [
+        "Arsenal"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Crystal Palace Women",
+      "distinct_from": [
+        "Crystal Palace"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Brighton & Hove Albion Women",
+      "distinct_from": [
+        "Brighton & Hove Albion"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Manchester United Women",
+      "distinct_from": [
+        "Manchester United"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Birmingham City Women",
+      "distinct_from": [
+        "Birmingham City"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Aston Villa Women",
+      "distinct_from": [
+        "Aston Villa"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Liverpool Women",
+      "distinct_from": [
+        "Liverpool"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Charlton Athletic Women",
+      "distinct_from": [
+        "Charlton Athletic"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    },
+    {
+      "team": "Manchester City Women",
+      "distinct_from": [
+        "Manchester City"
+      ],
+      "same_id": false,
+      "shared_espn_id": false
+    }
+  ],
+  "fixtures": {
+    "production": 182,
+    "canary": 182,
+    "verified": true
+  },
+  "completed_detail": {
+    "finished": 29,
+    "canary_finished": 29,
+    "scored": 29,
+    "lineups_both": 29,
+    "stats_both": 29,
+    "plays": 29,
+    "gaps": 0,
+    "unknown_status": 0
+  },
+  "identity": {
+    "teams": 14,
+    "expected": 14,
+    "reused_from_production": [],
+    "duplicate_same_gender_names": [],
+    "espn_ids_on_more_than_one_team": [],
+    "wrong_gender": [],
+    "wrong_kind": []
+  },
+  "gender_integrity_global": {
+    "matches_with_cross_gender_team": 0,
+    "sample": []
+  },
+  "api": {
+    "competition": 200,
+    "table": 200,
+    "table_view": "overall",
+    "table_rows": 14,
+    "match": 200,
+    "cast": 200,
+    "cast_mode": "replay",
+    "match_fixture": "Manchester United Women 1-0 Liverpool Women"
+  },
+  "checks": {
+    "backfill_complete": true,
+    "fixtures_verified": true,
+    "completed_detail_verified": true,
+    "standings_verified": true,
+    "identity_dedupe": true,
+    "gender_integrity": true,
+    "spatial_status_proven": true,
+    "api_canary": true,
+    "browser_canary": true,
+    "browser_390": true,
+    "browser_768": true,
+    "browser_1440": true
+  },
+  "pass": true,
+  "browser": {
+    "generated_at": "2026-10-03T18:32:46.757Z",
+    "nav_expected": false,
+    "match_id": "f75166dd-a3da-54c2-aed7-daa55ba8a96e",
+    "results": [
+      {
+        "width": 390,
+        "kind": "hub",
+        "path": "/competitions/womens-super-league",
+        "error_state": false,
+        "not_found": false,
+        "table_rows": 20,
+        "lineups": true,
+        "feed_items": 0,
+        "pitch": false,
+        "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
+        "nav_link": false,
+        "overflow_x": false,
+        "spatial_ok": true,
+        "js_errors": [],
+        "pass": true
+      },
+      {
+        "width": 390,
+        "kind": "match",
+        "path": "/matches/f75166dd-a3da-54c2-aed7-daa55ba8a96e",
+        "error_state": false,
+        "not_found": false,
+        "table_rows": 51,
+        "lineups": true,
+        "feed_items": 0,
+        "pitch": true,
+        "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
+        "nav_link": false,
+        "overflow_x": false,
+        "spatial_ok": true,
+        "js_errors": [],
+        "pass": true
+      },
+      {
+        "width": 390,
+        "kind": "pbecast",
+        "path": "/pbecast/f75166dd-a3da-54c2-aed7-daa55ba8a96e",
+        "error_state": false,
+        "not_found": false,
+        "table_rows": 0,
+        "lineups": true,
+        "feed_items": 33,
+        "pitch": true,
+        "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
+        "nav_link": false,
+        "overflow_x": false,
+        "spatial_ok": true,
+        "js_errors": [],
+        "pass": true
+      },
+      {
+        "width": 768,
+        "kind": "hub",
+        "path": "/competitions/womens-super-league",
+        "error_state": false,
+        "not_found": false,
+        "table_rows": 20,
+        "lineups": true,
+        "feed_items": 0,
+        "pitch": false,
+        "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
+        "nav_link": false,
+        "overflow_x": false,
+        "spatial_ok": true,
+        "js_errors": [],
+        "pass": true
+      },
+      {
+        "width": 768,
+        "kind": "match",
+        "path": "/matches/f75166dd-a3da-54c2-aed7-daa55ba8a96e",
+        "error_state": false,
+        "not_found": false,
+        "table_rows": 51,
+        "lineups": true,
+        "feed_items": 0,
+        "pitch": true,
+        "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
+        "nav_link": false,
+        "overflow_x": false,
+        "spatial_ok": true,
+        "js_errors": [],
+        "pass": true
+      },
+      {
+        "width": 768,
+        "kind": "pbecast",
+        "path": "/pbecast/f75166dd-a3da-54c2-aed7-daa55ba8a96e",
+        "error_state": false,
+        "not_found": false,
+        "table_rows": 0,
+        "lineups": true,
+        "feed_items": 33,
+        "pitch": true,
+        "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
+        "nav_link": false,
+        "overflow_x": false,
+        "spatial_ok": true,
+        "js_errors": [],
+        "pass": true
+      },
+      {
+        "width": 1440,
+        "kind": "hub",
+        "path": "/competitions/womens-super-league",
+        "error_state": false,
+        "not_found": false,
+        "table_rows": 20,
+        "lineups": true,
+        "feed_items": 0,
+        "pitch": false,
+        "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
+        "nav_link": false,
+        "overflow_x": false,
+        "spatial_ok": true,
+        "js_errors": [],
+        "pass": true
+      },
+      {
+        "width": 1440,
+        "kind": "match",
+        "path": "/matches/f75166dd-a3da-54c2-aed7-daa55ba8a96e",
+        "error_state": false,
+        "not_found": false,
+        "table_rows": 51,
+        "lineups": true,
+        "feed_items": 0,
+        "pitch": true,
+        "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
+        "nav_link": false,
+        "overflow_x": false,
+        "spatial_ok": true,
+        "js_errors": [],
+        "pass": true
+      },
+      {
+        "width": 1440,
+        "kind": "pbecast",
+        "path": "/pbecast/f75166dd-a3da-54c2-aed7-daa55ba8a96e",
+        "error_state": false,
+        "not_found": false,
+        "table_rows": 0,
+        "lineups": true,
+        "feed_items": 33,
+        "pitch": true,
+        "nomap": false,
+        "nomap_h": 0,
+        "nomap_text": false,
+        "empty_states": [],
+        "nav_link": false,
+        "overflow_x": false,
+        "spatial_ok": true,
+        "js_errors": [],
+        "pass": true
+      }
+    ],
+    "pass": true
+  }
+}

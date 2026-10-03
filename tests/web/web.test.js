@@ -196,7 +196,7 @@ test('V2 table: POS CLUB P W D L GD PTS, form dots only when real', () => {
 });
 
 test('V2: MLS is in the rail, filters and selectors; team observed players are sourced only', () => {
-  assert.deepEqual(FEATURED, ['mls', 'premier-league', 'la-liga', 'serie-a', 'ligue-1', 'bundesliga', 'uefa-champions-league', 'uefa-europa-league', 'uefa-nations-league', 'fifa-world-cup']);
+  assert.deepEqual(FEATURED, ['mls', 'premier-league', 'la-liga', 'serie-a', 'ligue-1', 'bundesliga', 'uefa-champions-league', 'uefa-europa-league', 'uefa-nations-league', 'fifa-world-cup', 'womens-super-league']);
   const t = team.render({ env: { data: { name: 'A', form: [], recent: [], upcoming: [], records: [], players_observed: { lineups_counted: 0, players: [] } }, meta: { source: 'pbe', coverage: { state: 'ok', notes: [] } } } });
   assert.ok(t.includes('PLAYERS OBSERVED IN SOURCE DATA') && t.includes('Squad lists are never guessed'));
   const t2 = team.render({ env: { data: { name: 'A', form: ['W'], recent: [], upcoming: [], records: [{ competition: { slug: 'mls', name: 'MLS' }, season: '2026', position: 3, teams_in_table: 30, record: { played: 30, won: 15, drawn: 5, lost: 10, goal_difference: 8, points: 50, form: ['W'] } }], players_observed: { lineups_counted: 2, players: [{ slug: 'p', name: 'P', role: 'forward', appearances: 2, starts: 1, named: 2 }] } }, meta: { source: 'pbe', coverage: { state: 'ok', notes: [] } } } });
