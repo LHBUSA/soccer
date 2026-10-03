@@ -1,11 +1,58 @@
-# World Coverage
+# World Coverage (men + women)
+
+Program started 2026-10-03. Goal: a broad global soccer product without rebuilding working competitions (MLS, Premier
+League, Bundesliga, UCL, Nations League, FIFA World Cup stay as they are).
+
+## Rules
+
+- **Source first.** A competition is registered only from discovery evidence (`scripts/evidence/espn-world-discovery.mjs`,
+  ESPN Core only, polite, budgeted). ESPN listing a league is not a reason to enable it.
+- **Canary before enable.** `node scripts/canary/competition.mjs --slug <slug>` runs the real lane on real data in a
+  local PGlite store with production team identities seeded read-only. Gates: lane completes, fixture graph complete,
+  every finished match scored + detailed, 0 enrichment gaps, identity (team kind, gender, stable ESPN ids, no duplicate
+  vs production, nothing queued, expected team count), table, knockout winners. Evidence: `docs/evidence/world/`.
+- **One identity per sporting team.** A club is the same canonical team in every competition (crosswalk by stable ESPN
+  team id: the LaLiga canary reused Real Madrid, Barcelona, Atlético, Betis and Villarreal from the Champions League).
+- **Women's teams are their own teams.** ESPN names a women's side exactly like the club ("Manchester City" in eng.w.1)
+  and gives it a different team id (0 ids shared across genders in discovery). The lane founds it with the
+  competition's gender, never matches names across genders, refuses an ESPN id already mapped to the other gender
+  (`team_gender_differs_from_competition`), and displays "<name> Women" only when a men's namesake exists (display,
+  never identity; evidence on the crosswalk). Parent-club relationships are not modelled yet.
+- **Players**: exact provider id + DOB + roster/fixture corroboration; never a name-only merge. Athletes without a DOB
+  wait in the identity queue.
+- **Models**: data and descriptive DNA yes; PBE predictions NO for any new competition until its own research passes
+  its own gates. The Bundesliga / PL / V2 models are never applied to another competition.
+- **Markets**: new competitions use the shared sportsbook / Kalshi / model / movement architecture; no verified market
+  = omitted.
+- **Video**: `soccer-video-match/1.3.0` is gender target-aware (NWSL video valid for NWSL, rejected for MLS).
+
+## Release runbook per competition (after a canary PASS)
+
+1. Registry: `espn.enabled = true` + `enable_note` citing the canary file. Push.
+2. Release soccer-ingest: `MSYS_NO_PATHCONV=1 node scripts/release/release-worker.mjs soccer-ingest`.
+3. Production fill, ONE competition at a time (shared Supabase ceiling): `node scripts/backfill/espn-fill-prod.mjs espn_<slug_underscored> 60 80`.
+4. Verify `/v1/data-health` for the competition (teams, fixtures, 0 gaps); wait ~15 min for edge caches.
+5. Frontend: `enabled: true` in `src/lib/competitions.js` (push = Vercel production), production QA.
+6. Crests / competition logo: `node scripts/media/provider-media.mjs`, `node scripts/media/competition-logos.mjs`.
+7. Newsroom: only after the held soccer-news deploy and a desk canary for the competition.
+
+## State
+
+See the generated matrix below; production steps not yet run are listed in its blocker column.
 
 <!-- matrix -->
-Generated 2026-10-03T14:18:02.277Z by scripts/evidence/world-matrix.mjs from docs/evidence/world/*.json.
+Generated 2026-10-03T14:19:55.639Z by scripts/evidence/world-matrix.mjs from docs/evidence/world/*.json.
 
 | phase | competition | gender | region | provider | season | teams | matches | results | standings | lineups | stats | plays | coordinates | live | pbecast | players | dna | news | source_status | launch_status | blocker |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| A | Spanish LALIGA | men | ESP | espn esp.1 (740) | 2026-27 Spanish LALIGA | 20 | 380 | 69 | verified/computed | 69 | 69 | 69 | 93772 | per-minute lane | replay payload proven | 544 | descriptive (inputs present) | off | source_present | lane enabled | — |
+| live | MLS | men | USA | espn usa.1 | — | — | — | — | — | — | — | — | — | per-minute lane (ESPN-owned matches) | — | — | — | enabled | certified before this sprint (docs/PRODUCTION_STATE.md) | lane live in production | — |
+| live | UEFA Nations League | men | international | espn uefa.nations | — | — | — | — | — | — | — | — | — | per-minute lane (ESPN-owned matches) | — | — | — | enabled | certified before this sprint (docs/PRODUCTION_STATE.md) | lane live in production | — |
+| live | UEFA Champions League | men | international | espn uefa.champions | — | — | — | — | — | — | — | — | — | per-minute lane (ESPN-owned matches) | — | — | — | enabled | certified before this sprint (docs/PRODUCTION_STATE.md) | lane live in production | — |
+| live | UEFA European Championship | men | international | wyscout 102, espn uefa.euro | — | — | — | — | — | — | — | — | — | — | — | — | — | off | registered, not certified | registered, lane disabled | No canonical competition row in production; ESPN lane disabled. No current tournament (next EURO 2028). |
+| live | FIFA World Cup | men | international | wyscout 28, espn fifa.world | — | — | — | — | — | — | — | — | — | per-minute lane (ESPN-owned matches) | — | — | — | off | certified before this sprint (docs/PRODUCTION_STATE.md) | lane live in production | — |
+| live | Premier League | men | ENG | wyscout 364, espn eng.1 | — | — | — | — | — | — | — | — | — | per-minute lane (ESPN-owned matches) | — | — | — | enabled | certified before this sprint (docs/PRODUCTION_STATE.md) | lane live in production | — |
+| live | Bundesliga | men | DEU | wyscout 426, openligadb bl1, espn ger.1 | — | — | — | — | — | — | — | — | — | per-minute lane (ESPN-owned matches) | — | — | — | enabled | certified before this sprint (docs/PRODUCTION_STATE.md) | lane live in production | — |
+| A | Spanish LALIGA | men | ESP | espn esp.1 (740) | 2026-27 Spanish LALIGA | 20 | 380 | 69 | verified/computed | 69 | 69 | 69 | 93772 | — | replay payload proven | 544 | descriptive (inputs present) | off | source_present | enabled on main; soccer-ingest release pending | soccer-ingest release (owner permission) + production fill + frontend enable |
 | A | Italian Serie A | men | ITA | espn ita.1 (730) | 2026-27 Italian Serie A | 20 | 380 | — | — | — | — | — | — | — | — | — | — | off | source_present | registered, lane disabled | canary not run |
 | A | French Ligue 1 | men | FRA | espn fra.1 (710) | 2026-27 French Ligue 1 | 18 | 306 | — | — | — | — | — | — | — | — | — | — | off | source_present | registered, lane disabled | canary not run |
 | A | UEFA Europa League | men | international | espn uefa.europa (776) | 2026-27 UEFA Europa League | 36 | 144 | — | — | — | — | — | — | — | — | — | — | off | source_present | registered, lane disabled | canary not run |
