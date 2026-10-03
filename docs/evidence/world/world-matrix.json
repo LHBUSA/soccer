@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-03T16:27:53.441Z",
+  "generated_at": "2026-10-03T18:08:14.794Z",
   "discovery": "2026-10-03T13:52:26.937Z",
   "rows": [
     {
@@ -109,7 +109,7 @@
       "stats": 69,
       "plays": 69,
       "coordinates": 93772,
-      "live": null,
+      "live": "per-minute lane",
       "pbecast": "replay payload proven",
       "players": 544,
       "dna": "descriptive (inputs present)",
@@ -119,8 +119,8 @@
       "match_data": "MATCH_DATA_PASS",
       "spatial": "SPATIAL_DATA_AVAILABLE",
       "source_status": "source_present",
-      "launch_status": "enabled on main; soccer-ingest release pending",
-      "blocker": "soccer-ingest release (owner permission) + production fill + frontend enable"
+      "launch_status": "lane live in production",
+      "blocker": null
     },
     {
       "phase": "A",
@@ -138,7 +138,7 @@
       "stats": 50,
       "plays": 50,
       "coordinates": 67835,
-      "live": null,
+      "live": "per-minute lane",
       "pbecast": "replay payload proven",
       "players": 582,
       "dna": "descriptive (inputs present)",
@@ -148,8 +148,8 @@
       "match_data": "MATCH_DATA_PASS",
       "spatial": "SPATIAL_DATA_AVAILABLE",
       "source_status": "source_present",
-      "launch_status": "enabled on main; soccer-ingest release pending",
-      "blocker": "soccer-ingest release (owner permission) + production fill + frontend enable"
+      "launch_status": "lane live in production",
+      "blocker": null
     },
     {
       "phase": "A",
@@ -167,7 +167,7 @@
       "stats": 45,
       "plays": 45,
       "coordinates": 63170,
-      "live": null,
+      "live": "per-minute lane",
       "pbecast": "replay payload proven",
       "players": 446,
       "dna": "descriptive (inputs present)",
@@ -177,8 +177,8 @@
       "match_data": "MATCH_DATA_PASS",
       "spatial": "SPATIAL_DATA_AVAILABLE",
       "source_status": "source_present",
-      "launch_status": "enabled on main; soccer-ingest release pending",
-      "blocker": "soccer-ingest release (owner permission) + production fill + frontend enable"
+      "launch_status": "lane live in production",
+      "blocker": null
     },
     {
       "phase": "A",
@@ -196,7 +196,7 @@
       "stats": 18,
       "plays": 18,
       "coordinates": 24771,
-      "live": null,
+      "live": "per-minute lane",
       "pbecast": "replay payload proven",
       "players": 781,
       "dna": "descriptive (inputs present)",
@@ -206,8 +206,8 @@
       "match_data": "MATCH_DATA_PASS",
       "spatial": "SPATIAL_DATA_AVAILABLE",
       "source_status": "source_present",
-      "launch_status": "enabled on main; soccer-ingest release pending",
-      "blocker": "soccer-ingest release (owner permission) + production fill + frontend enable"
+      "launch_status": "lane live in production",
+      "blocker": null
     },
     {
       "phase": "B",

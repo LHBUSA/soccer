@@ -53,7 +53,18 @@ for (const x of EXTRA) rows.push({ phase: x.phase, competition: x.slug, slug: x.
 writeFileSync('docs/evidence/world/world-matrix.json', JSON.stringify({ generated_at: new Date().toISOString(), discovery: disc.generated_at, rows }, null, 2) + '\n');
 const cols = ['phase', 'competition', 'gender', 'region', 'provider', 'season', 'teams', 'matches', 'results', 'standings', 'lineups', 'stats', 'plays', 'coordinates', 'live', 'pbecast', 'players', 'dna', 'news', 'match_data', 'spatial', 'source_status', 'launch_status', 'blocker'];
 const md = [`| ${cols.join(' | ')} |`, `|${cols.map(() => '---').join('|')}|`, ...rows.map(r => `| ${cols.map(k => String(r[k] ?? '—').replace(/\|/g, '/')).join(' | ')} |`)].join('\n');
+// PRODUCTION rollout matrix: only from docs/evidence/world/prod-accept-*.json (production reads, API + browser canaries)
+const prodFiles = readdirSync('docs/evidence/world').filter(f => /^prod-accept-.+\.json$/.test(f)).sort();
+const prodRows = prodFiles.map(f => JSON.parse(readFileSync(`docs/evidence/world/${f}`, 'utf8'))).map(p => {
+  const yn = b => (b ? 'PASS' : 'FAIL');
+  return { competition: p.competition, worker_enabled: live.has(p.competition) ? 'yes' : 'no', backfill_complete: yn(p.checks.backfill_complete), fixtures_verified: `${yn(p.checks.fixtures_verified)} (${p.fixtures.production}/${p.fixtures.canary})`,
+    standings_verified: `${yn(p.checks.standings_verified)} (${p.api.table_view}, ${p.api.table_rows} rows)`, completed_match_detail: `${yn(p.checks.completed_detail_verified)} (${p.completed_detail.finished} finished, ${p.completed_detail.gaps} gaps)`,
+    identity_dedupe: `${yn(p.checks.identity_dedupe && p.checks.gender_integrity)} (${p.identity.teams} teams, ${p.identity.reused_from_production.length} reused)`,
+    production_canary: yn(p.checks.api_canary && p.checks.browser_canary), navigation_live: p.checks.navigation_live ? 'LIVE' : 'no', evidence: `docs/evidence/world/${prodFiles.find(f => f.includes(p.competition))}` };
+});
+const pcols = ['competition', 'worker_enabled', 'backfill_complete', 'fixtures_verified', 'standings_verified', 'completed_match_detail', 'identity_dedupe', 'production_canary', 'navigation_live', 'evidence'];
+const pmd = prodRows.length ? [`| ${pcols.join(' | ')} |`, `|${pcols.map(() => '---').join('|')}|`, ...prodRows.map(r => `| ${pcols.map(k => String(r[k] ?? '—')).join(' | ')} |`)].join('\n') : '_No production rollout yet._';
 const path = 'docs/WORLD_COVERAGE.md';
 const head = existsSync(path) ? readFileSync(path, 'utf8').split('<!-- matrix -->')[0] : '# World Coverage\n\n';
-writeFileSync(path, `${head}<!-- matrix -->\nGenerated ${new Date().toISOString()} by scripts/evidence/world-matrix.mjs from docs/evidence/world/*.json.\n\n${md}\n`);
+writeFileSync(path, `${head}<!-- matrix -->\nGenerated ${new Date().toISOString()} by scripts/evidence/world-matrix.mjs.\n\n### Production rollout (from production evidence only)\n\nWorker enabled = the deployed soccer-ingest (docs/deployments.jsonl) has the lane enabled.\n\n${pmd}\n\n### All discovered competitions (canary + discovery evidence)\n\n${md}\n`);
 console.log('rows', rows.length);
