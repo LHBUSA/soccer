@@ -1,0 +1,439 @@
+{
+  "generated_at": "2026-10-03T14:17:11.965Z",
+  "mode": "local-pglite (production untouched; production team identities seeded read-only)",
+  "competition": "la-liga",
+  "gender": "men",
+  "team_kind": "club",
+  "source": "ESPN Core (owner-approved collection lane)",
+  "budget": 3000,
+  "requests_used": 1650,
+  "budget_exhausted": false,
+  "aborted": null,
+  "runs": [
+    {
+      "requests": 200,
+      "fixtures_new": 197,
+      "detailed": 0,
+      "exhausted": "discovery"
+    },
+    {
+      "requests": 198,
+      "fixtures_new": 183,
+      "detailed": 0,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 5,
+        "teams_founded": 15,
+        "team_crosswalk": {
+          "inserted": 15,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "resolved_after": 20
+      },
+      "fixtures": {
+        "considered": 380,
+        "attached_to_existing": 0,
+        "founded": 380,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 380,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 380,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 3,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "fixtures": {
+        "considered": 380,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 4,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "fixtures": {
+        "considered": 380,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 200,
+      "fixtures_new": 0,
+      "detailed": 6,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "fixtures": {
+        "considered": 380,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 195,
+      "fixtures_new": 0,
+      "detailed": 13,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "fixtures": {
+        "considered": 380,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 193,
+      "fixtures_new": 0,
+      "detailed": 16,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "fixtures": {
+        "considered": 380,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 198,
+      "fixtures_new": 0,
+      "detailed": 20,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "fixtures": {
+        "considered": 380,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": "details"
+    },
+    {
+      "requests": 66,
+      "fixtures_new": 0,
+      "detailed": 7,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "fixtures": {
+        "considered": 380,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": null
+    },
+    {
+      "requests": 0,
+      "fixtures_new": 0,
+      "detailed": 0,
+      "team_identity": {
+        "espn_teams": 20,
+        "resolved_before": 20
+      },
+      "fixtures": {
+        "considered": 380,
+        "attached_to_existing": 0,
+        "founded": 0,
+        "replacement_listings": 0,
+        "repeated_pairs_skipped": 0,
+        "queued": 0,
+        "written": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        },
+        "crosswalk": {
+          "inserted": 0,
+          "updated": 0,
+          "unchanged": 0
+        }
+      },
+      "exhausted": null
+    }
+  ],
+  "espn": {
+    "league": "esp.1",
+    "id": "740",
+    "season_year": 2026,
+    "fixtures_seen": 380,
+    "detailed": 69,
+    "by_type": {
+      "1": 380
+    },
+    "excluded_teams": null
+  },
+  "competition_row": {
+    "id": "5a65ec85-4418-5d21-b733-4a913c3018ae",
+    "slug": "la-liga",
+    "name": "LaLiga",
+    "comp_type": "league",
+    "gender": "men"
+  },
+  "season": {
+    "label": "2026/27",
+    "publication_state_after_lane": "published",
+    "local_promotion": "published in the local canary store only"
+  },
+  "identity_gate": {
+    "teams": 20,
+    "expected_teams": 20,
+    "wrong_team_kind": [],
+    "wrong_gender": [],
+    "reused_existing_canonical": [
+      "Real Betis",
+      "Villarreal",
+      "Real Madrid",
+      "Atlético Madrid",
+      "Barcelona"
+    ],
+    "founded_new": 15,
+    "espn_ids_already_crosswalked_in_production": 5,
+    "espn_id_maps_to_same_canonical_as_production": true,
+    "duplicate_espn_team_ids": 0,
+    "teams_with_more_than_one_espn_id": 0,
+    "duplicate_names": [],
+    "crosswalk_methods": {
+      "founding": 20
+    },
+    "cross_gender_namesakes_kept_distinct": [],
+    "teams_queued": 0,
+    "teams_queued_detail": [],
+    "pass": true
+  },
+  "matches": {
+    "total": 380,
+    "by_status": {
+      "finished": 69,
+      "scheduled": 311
+    },
+    "by_stage": [
+      {
+        "name": "Regular Season",
+        "type": "league",
+        "matches": 380,
+        "finished": 69
+      }
+    ],
+    "finished_without_score": 0,
+    "knockout_without_winner": 0
+  },
+  "enrichment": {
+    "finished": 69,
+    "detailed": 69,
+    "lineups_both": 69,
+    "lineup_rows": 138,
+    "formations": 138,
+    "team_stats_both": 69,
+    "team_stat_rows": 2070,
+    "plays": 69,
+    "events": 100759,
+    "located_events": 93772,
+    "coord_systems": {
+      "espn_pct_v1": 97320,
+      "none": 3439
+    },
+    "gaps": []
+  },
+  "players": {
+    "in_lineups": 544,
+    "founded_locally": 544,
+    "corroborated": 0,
+    "queued": 23,
+    "queued_by_reason": {
+      "athlete_without_dob_or_name": 23
+    },
+    "already_canonical_in_production_by_espn_id": 171,
+    "production_lookup": "ok"
+  },
+  "table": {
+    "view": "overall",
+    "rows": 20,
+    "top": [
+      {
+        "team": "Barcelona",
+        "pld": 7,
+        "pts": 21
+      },
+      {
+        "team": "Atlético Madrid",
+        "pld": 7,
+        "pts": 16
+      },
+      {
+        "team": "Real Betis",
+        "pld": 7,
+        "pts": 16
+      }
+    ]
+  },
+  "finished_match_proof": {
+    "match_id": "e2cc893b-ab8f-55e2-ba42-dfd04a1a2d2f",
+    "fixture": "Villarreal 1-2 Real Betis",
+    "kickoff": "2026-09-14T19:00:00.000Z",
+    "venue": "Estadio de la Cerámica",
+    "lineups": [
+      "home",
+      "away"
+    ],
+    "timeline": 4,
+    "shots": 40,
+    "events": 1615,
+    "coverage": {
+      "state": "ok",
+      "notes": []
+    },
+    "cast": {
+      "mode": "replay",
+      "sequence": 51
+    }
+  },
+  "scheduled_match_proof": {
+    "match_id": "099d2dd4-a875-569f-a8b8-c49cdcb448b5",
+    "fixture": "Málaga v Espanyol",
+    "kickoff": "2026-10-09T19:00:00.000Z",
+    "cast_mode": "pregame"
+  },
+  "competition_api": {
+    "team_kind": null,
+    "teams": 20,
+    "finished": 69,
+    "scheduled": 311
+  },
+  "gate": {
+    "lane_completed_without_abort": true,
+    "fixtures_complete": true,
+    "every_finished_match_scored": true,
+    "every_finished_match_detailed": true,
+    "no_enrichment_gaps": true,
+    "identity": true,
+    "table": true,
+    "knockout_winners_known": true,
+    "pass": true
+  },
+  "elapsed_s": 1250
+}
