@@ -1,0 +1,17 @@
+{
+ "at": "2026-10-03T00:57:26.404Z",
+ "season": "mls 2001",
+ "before": [
+  "lineups for 0% of finished matches",
+  "team statistics for 0% of finished matches",
+  "event record for 0% of finished matches"
+ ],
+ "after": [
+  "Stage classification from reviewed format manifest data/history-review/mls-2001.json (ESPN files the playoffs inside its regular-season type).",
+  "ESPN event 17679 (Semifinals chicago-fire-fc 0-1 la-galaxy) carries a provider date one day later than the reviewed fixture date; canonical kickoff kept as published by ESPN.",
+  "lineups for 0% of finished matches",
+  "team statistics for 0% of finished matches",
+  "event record for 0% of finished matches"
+ ],
+ "reason": "promotion (pre-e576178) overwrote review limitations; restored from mls-2001-classification-applied.json"
+}

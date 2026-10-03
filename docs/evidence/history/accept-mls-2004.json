@@ -1,5 +1,5 @@
 {
- "at": "2026-10-03T00:37:43.232Z",
+ "at": "2026-10-03T00:57:14.196Z",
  "competition": "mls",
  "season": "2004",
  "state_before": "held",
@@ -7,14 +7,14 @@
   "canonical_matches": 161,
   "finished": 161,
   "teams": 10,
-  "league_matches": 153,
+  "league_matches": 150,
   "matches_per_club": {
    "min": 30,
-   "max": 32
+   "max": 30
   },
-  "repeated_pairings": 61,
+  "repeated_pairings": 60,
   "repeat_pairings_allowed": true,
-  "era": null,
+  "era": "reviewed manifest",
   "unresolved_identity_queue": 0,
   "discovery": {
    "checked": true,
@@ -35,16 +35,19 @@
  "finished": 161,
  "stages": [
   "Regular Season:league",
-  "Playoffs:playoff"
+  "Playoffs:playoff",
+  "Conference Semifinals:knockout",
+  "Conference Finals:knockout",
+  "MLS Cup:knockout"
  ],
  "teams": 10,
  "format": {
-  "teams": 10,
-  "league_matches": 153,
-  "games_per_team": {
-   "30": 6,
-   "31": 2,
-   "32": 2
+  "reviewed_manifest": "data/history-review/mls-2004.json",
+  "regular_season": 150,
+  "playoff_stages": {
+   "Conference Semifinals": 8,
+   "Conference Finals": 2,
+   "MLS Cup": 1
   }
  },
  "providers": [
@@ -63,17 +66,9 @@
   "event record for 0% of finished matches"
  ],
  "notes": [
-  "no registered era: uniform league games per club decides"
+  "format from a reviewed season manifest (provider stage metadata insufficient)"
  ],
- "checks_failed": [
-  {
-   "check": "games_per_team_uneven",
-   "distribution": {
-    "30": 6,
-    "31": 2,
-    "32": 2
-   }
-  }
- ],
- "pass": false
+ "checks_failed": [],
+ "pass": true,
+ "promoted": true
 }

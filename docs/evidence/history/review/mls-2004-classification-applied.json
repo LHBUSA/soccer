@@ -1,0 +1,1279 @@
+{
+ "at": "2026-10-03T00:55:11.582Z",
+ "competition": "mls",
+ "season": "2004",
+ "manifest_sha256": "a1ad26fff95f594437c0e52a1752016b39d51dfc1caa1f7eaed8287ef7326e09",
+ "canonical_matches": 161,
+ "playoff_matched": 11,
+ "playoff_expected": 11,
+ "regular_finished": 150,
+ "regular_expected": 150,
+ "league_games_per_team_after_review": {
+  "d-c-united": 30,
+  "san-jose-earthquakes": 30,
+  "la-galaxy": 30,
+  "new-england-revolution": 30,
+  "columbus-crew": 30,
+  "red-bull-new-york": 30,
+  "fc-dallas": 30,
+  "colorado-rapids": 30,
+  "sporting-kansas-city": 30,
+  "chicago-fire-fc": 30
+ },
+ "provider_stage_counts": {
+  "Regular Season": 153,
+  "Playoffs": 8
+ },
+ "reviewed_stage_counts": {
+  "Regular Season": 150,
+  "Conference Semifinals": 8,
+  "Conference Finals": 2,
+  "MLS Cup": 1
+ },
+ "reclassified": [
+  {
+   "match_id": "5d507f1c-85d7-5119-9296-00172490637a",
+   "espn_event": "168949",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Conference Finals",
+   "kickoff_at": "2004-11-06T00:30:00+00:00",
+   "result": "sporting-kansas-city 2-0 la-galaxy",
+   "evidence": {
+    "reviewed_fixture": "la-galaxy 0-2 sporting-kansas-city",
+    "date_local": "2004-11-05",
+    "stage": "Conference Finals",
+    "stadium": "Arrowhead Stadium",
+    "sources": [
+     {
+      "source": "https://en.wikipedia.org/wiki/2004_Major_League_Soccer_season",
+      "sha256": "a5ae78689cee7d6017270f7a0f320666b3058e9133e1cfe69a8c82e99eb4b1d2"
+     },
+     {
+      "source": "https://en.wikipedia.org/wiki/Template:2004_Major_League_Soccer_season_table",
+      "sha256": "410c4b57682ea7e564a0fc2bdcc23b8bdddd6757278f309ce31c52d69deca87a"
+     },
+     {
+      "source": "https://en.wikipedia.org/wiki/MLS_Cup_2004",
+      "sha256": "3ea96ec97cfe9859fcecf352ae2f9c8c86f3068ad5b6e748f72f60b4ba6865ac"
+     }
+    ]
+   }
+  },
+  {
+   "match_id": "50df99cc-1593-5b67-9a0a-aa34e1389155",
+   "espn_event": "168950",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Conference Finals",
+   "kickoff_at": "2004-11-07T00:00:00+00:00",
+   "result": "d-c-united 3-3 new-england-revolution",
+   "evidence": {
+    "reviewed_fixture": "new-england-revolution 3-3 d-c-united",
+    "date_local": "2004-11-06",
+    "stage": "Conference Finals",
+    "stadium": "RFK Stadium",
+    "sources": [
+     {
+      "source": "https://en.wikipedia.org/wiki/2004_Major_League_Soccer_season",
+      "sha256": "a5ae78689cee7d6017270f7a0f320666b3058e9133e1cfe69a8c82e99eb4b1d2"
+     },
+     {
+      "source": "https://en.wikipedia.org/wiki/Template:2004_Major_League_Soccer_season_table",
+      "sha256": "410c4b57682ea7e564a0fc2bdcc23b8bdddd6757278f309ce31c52d69deca87a"
+     },
+     {
+      "source": "https://en.wikipedia.org/wiki/MLS_Cup_2004",
+      "sha256": "3ea96ec97cfe9859fcecf352ae2f9c8c86f3068ad5b6e748f72f60b4ba6865ac"
+     }
+    ]
+   }
+  },
+  {
+   "match_id": "2eb684df-b68e-57da-9bfd-ad31e96fdb33",
+   "espn_event": "168975",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "MLS Cup",
+   "kickoff_at": "2004-11-14T17:30:00+00:00",
+   "result": "sporting-kansas-city 2-3 d-c-united",
+   "evidence": {
+    "reviewed_fixture": "sporting-kansas-city 2-3 d-c-united",
+    "date_local": "2004-11-14",
+    "stage": "MLS Cup",
+    "stadium": "Dignity Health Sports Park",
+    "sources": [
+     {
+      "source": "https://en.wikipedia.org/wiki/2004_Major_League_Soccer_season",
+      "sha256": "a5ae78689cee7d6017270f7a0f320666b3058e9133e1cfe69a8c82e99eb4b1d2"
+     },
+     {
+      "source": "https://en.wikipedia.org/wiki/Template:2004_Major_League_Soccer_season_table",
+      "sha256": "410c4b57682ea7e564a0fc2bdcc23b8bdddd6757278f309ce31c52d69deca87a"
+     },
+     {
+      "source": "https://en.wikipedia.org/wiki/MLS_Cup_2004",
+      "sha256": "3ea96ec97cfe9859fcecf352ae2f9c8c86f3068ad5b6e748f72f60b4ba6865ac"
+     }
+    ]
+   }
+  }
+ ],
+ "excluded_listings": [],
+ "unresolved": [],
+ "unknown_teams": [],
+ "fixtures": [
+  {
+   "stage": "Conference Semifinals",
+   "date_local": "2004-10-23",
+   "fixture": "columbus-crew 0-1 new-england-revolution",
+   "stadium": "Gillette Stadium",
+   "candidates": [
+    {
+     "match_id": "247ea280-2bc9-5909-838c-c5493f7a01f2",
+     "espn_event": "167852",
+     "kickoff_at": "2004-10-23T23:30:00+00:00",
+     "home": "new-england-revolution",
+     "provider_stage": "Playoffs"
+    }
+   ],
+   "outcome": "matched"
+  },
+  {
+   "stage": "Conference Semifinals",
+   "date_local": "2004-10-31",
+   "fixture": "new-england-revolution 1-1 columbus-crew",
+   "stadium": "MAPFRE Stadium",
+   "candidates": [
+    {
+     "match_id": "e1fc7052-a4dd-564d-a728-69b2e1410e68",
+     "espn_event": "167853",
+     "kickoff_at": "2004-10-31T22:00:00+00:00",
+     "home": "columbus-crew",
+     "provider_stage": "Playoffs"
+    }
+   ],
+   "outcome": "matched"
+  },
+  {
+   "stage": "Conference Semifinals",
+   "date_local": "2004-10-23",
+   "fixture": "d-c-united 2-0 red-bull-new-york",
+   "stadium": "Giants Stadium",
+   "candidates": [
+    {
+     "match_id": "a79de683-235a-540c-b5c1-a7158185c164",
+     "espn_event": "167854",
+     "kickoff_at": "2004-10-23T23:30:00+00:00",
+     "home": "red-bull-new-york",
+     "provider_stage": "Playoffs"
+    }
+   ],
+   "outcome": "matched"
+  },
+  {
+   "stage": "Conference Semifinals",
+   "date_local": "2004-10-30",
+   "fixture": "red-bull-new-york 0-2 d-c-united",
+   "stadium": "RFK Stadium",
+   "candidates": [
+    {
+     "match_id": "30f9d9f9-7a82-5c8f-96a5-05bfbd3ff495",
+     "espn_event": "167855",
+     "kickoff_at": "2004-10-30T23:00:00+00:00",
+     "home": "d-c-united",
+     "provider_stage": "Playoffs"
+    }
+   ],
+   "outcome": "matched"
+  },
+  {
+   "stage": "Conference Semifinals",
+   "date_local": "2004-10-24",
+   "fixture": "sporting-kansas-city 0-2 san-jose-earthquakes",
+   "stadium": "Spartan Stadium (San Jose)",
+   "candidates": [
+    {
+     "match_id": "4dc28e59-0b9d-58c6-bdf3-4520e29f0e7f",
+     "espn_event": "167856",
+     "kickoff_at": "2004-10-24T18:00:00+00:00",
+     "home": "san-jose-earthquakes",
+     "provider_stage": "Playoffs"
+    }
+   ],
+   "outcome": "matched"
+  },
+  {
+   "stage": "Conference Semifinals",
+   "date_local": "2004-10-30",
+   "fixture": "san-jose-earthquakes 0-3 sporting-kansas-city",
+   "stadium": "Arrowhead Stadium",
+   "candidates": [
+    {
+     "match_id": "f0881de2-8b3d-5899-a7cc-590f25019854",
+     "espn_event": "167857",
+     "kickoff_at": "2004-10-30T23:30:00+00:00",
+     "home": "sporting-kansas-city",
+     "provider_stage": "Playoffs"
+    }
+   ],
+   "outcome": "matched"
+  },
+  {
+   "stage": "Conference Semifinals",
+   "date_local": "2004-10-22",
+   "fixture": "la-galaxy 0-1 colorado-rapids",
+   "stadium": "INVESCO Field at Mile High",
+   "candidates": [
+    {
+     "match_id": "0d9a234c-b310-568f-9030-291a2a235eb6",
+     "espn_event": "167858",
+     "kickoff_at": "2004-10-22T23:30:00+00:00",
+     "home": "colorado-rapids",
+     "provider_stage": "Playoffs"
+    }
+   ],
+   "outcome": "matched"
+  },
+  {
+   "stage": "Conference Semifinals",
+   "date_local": "2004-10-30",
+   "fixture": "colorado-rapids 0-2 la-galaxy",
+   "stadium": "Dignity Health Sports Park",
+   "candidates": [
+    {
+     "match_id": "2a083851-d452-5058-b193-5af8ef8e7fe4",
+     "espn_event": "167859",
+     "kickoff_at": "2004-10-30T23:00:00+00:00",
+     "home": "la-galaxy",
+     "provider_stage": "Playoffs"
+    }
+   ],
+   "outcome": "matched"
+  },
+  {
+   "stage": "Conference Finals",
+   "date_local": "2004-11-05",
+   "fixture": "la-galaxy 0-2 sporting-kansas-city",
+   "stadium": "Arrowhead Stadium",
+   "candidates": [
+    {
+     "match_id": "5d507f1c-85d7-5119-9296-00172490637a",
+     "espn_event": "168949",
+     "kickoff_at": "2004-11-06T00:30:00+00:00",
+     "home": "sporting-kansas-city",
+     "provider_stage": "Regular Season"
+    }
+   ],
+   "outcome": "matched"
+  },
+  {
+   "stage": "Conference Finals",
+   "date_local": "2004-11-06",
+   "fixture": "new-england-revolution 3-3 d-c-united",
+   "stadium": "RFK Stadium",
+   "candidates": [
+    {
+     "match_id": "50df99cc-1593-5b67-9a0a-aa34e1389155",
+     "espn_event": "168950",
+     "kickoff_at": "2004-11-07T00:00:00+00:00",
+     "home": "d-c-united",
+     "provider_stage": "Regular Season"
+    }
+   ],
+   "outcome": "matched"
+  },
+  {
+   "stage": "MLS Cup",
+   "date_local": "2004-11-14",
+   "fixture": "sporting-kansas-city 2-3 d-c-united",
+   "stadium": "Dignity Health Sports Park",
+   "candidates": [
+    {
+     "match_id": "2eb684df-b68e-57da-9bfd-ad31e96fdb33",
+     "espn_event": "168975",
+     "kickoff_at": "2004-11-14T17:30:00+00:00",
+     "home": "sporting-kansas-city",
+     "provider_stage": "Regular Season"
+    }
+   ],
+   "outcome": "matched"
+  }
+ ],
+ "standings_differences": [],
+ "assignment": [
+  {
+   "match_id": "0e7cdd9d-f855-5ba9-aaa2-08919527a75f",
+   "espn_event": "143898",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "11048398-33fd-5493-b83e-23dfb55a4f73",
+   "espn_event": "143902",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "97050926-6c5b-51f0-b965-21f528cfe2ad",
+   "espn_event": "143899",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "eff4573d-13a3-5c8c-981f-3589d6469ca9",
+   "espn_event": "143901",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "b23722aa-f78f-5e39-8bc6-c8fff16c94ea",
+   "espn_event": "143900",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "d3094ded-4dd4-509f-9b75-bcf8bea69996",
+   "espn_event": "143903",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "1ab787ec-d3d3-5cc0-a42a-996a0a300896",
+   "espn_event": "143904",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "808233c6-3c7f-5c73-ab8e-9e5d2fcfe870",
+   "espn_event": "143905",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "5c51eefc-a469-580b-a4af-7eb822e9067d",
+   "espn_event": "143909",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "df28985b-2824-52f4-b7d1-b27c1bba7ecb",
+   "espn_event": "143907",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "17005924-92ba-5bd9-a9cd-9c812f9b134b",
+   "espn_event": "143906",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "10c97f79-212a-5323-a5dc-90425e82088c",
+   "espn_event": "143908",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "00feca2d-900d-5d59-add6-2791fba007b6",
+   "espn_event": "143910",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "b7680c29-427e-5648-9465-fcd3abb47a43",
+   "espn_event": "143912",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "d0a20bb7-3562-55be-ad41-4294425cf1bc",
+   "espn_event": "143913",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "dfe036c8-67ee-594b-b2fd-ab1e56545e92",
+   "espn_event": "143911",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "55118e6a-e441-555a-a2c4-286367cf43c1",
+   "espn_event": "143914",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "3017be41-62bc-5e59-aea9-80f9d969cad0",
+   "espn_event": "143915",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "8bcdea7c-296f-5c47-a342-72126db075ab",
+   "espn_event": "143916",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "858887c0-25d8-548b-9025-abd951d70d25",
+   "espn_event": "143918",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "bea453bc-5edd-5ed4-887b-7f8aae423cd1",
+   "espn_event": "143917",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "49337d68-d231-516d-902a-286c9347ef67",
+   "espn_event": "143919",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "97d94eee-5b8e-5534-952b-b68fc97b681c",
+   "espn_event": "143920",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "73d13b3b-9bd6-5e2f-a298-bd960ad2daae",
+   "espn_event": "143921",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "ac67518d-7c6c-54ec-925e-f464f88b5a3e",
+   "espn_event": "143924",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "86d44de9-4f3f-591d-bf06-1568744d8dcc",
+   "espn_event": "143922",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "0bead6f4-f0a2-5ffb-bb3c-1e0ab3dd865b",
+   "espn_event": "143923",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "aa22c15d-92e6-5aae-9448-9861f4d401f9",
+   "espn_event": "143925",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "d52fee74-23de-5a5c-b074-5c70e1cda02b",
+   "espn_event": "143929",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "c0d28f8c-92f6-5b0b-a9f8-85dffec26d2e",
+   "espn_event": "143927",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "ee952ea1-a896-5643-a579-7720fa74f666",
+   "espn_event": "143926",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "505023f0-2294-5230-b921-0c3978f10e48",
+   "espn_event": "143928",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "426b38e8-dc22-5f08-89ad-ad635be43d6b",
+   "espn_event": "143930",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "2f3331bc-2c21-5580-b9b9-5212ad575275",
+   "espn_event": "143931",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "ef301869-5f2b-5ba1-9b4e-9a5ac881c9e5",
+   "espn_event": "143934",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "28eb1726-deee-5c30-b112-6fdc1524f6c5",
+   "espn_event": "143933",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "645adcc4-ba79-599f-9aa1-c34ed24b9a07",
+   "espn_event": "143932",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "5245b7e7-2757-5914-8790-7a2db3c2baff",
+   "espn_event": "143935",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "93eb60e1-d018-5bf2-aa87-2d91937e7cce",
+   "espn_event": "143939",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "3079472a-74fa-5ae5-bed3-864daeeac29b",
+   "espn_event": "143936",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "10112703-cac7-5439-8799-3ce176554e96",
+   "espn_event": "143938",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "8837607a-7cad-5f27-9281-bd407e3be1e5",
+   "espn_event": "143937",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "92615274-141a-5030-af3e-984e14dc0d58",
+   "espn_event": "143940",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "5e0b006a-cc00-5119-827d-a413d784392c",
+   "espn_event": "143941",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "ed82c782-14ce-5c32-99c9-88cfb2db0f5f",
+   "espn_event": "143942",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "796f95ca-0a60-5dcd-985d-12df8ed9a85a",
+   "espn_event": "143944",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "3b691d5a-13e0-5264-a191-26612387f7ab",
+   "espn_event": "151700",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "194bd116-8bb6-5381-96b5-b995fd33bd57",
+   "espn_event": "143943",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "548967d2-3f40-5b96-99f5-995be78fa7aa",
+   "espn_event": "143945",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "0c18593f-0991-53f5-86cc-0e90043b2976",
+   "espn_event": "143946",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "444be9cf-f586-5fac-b03f-2db6bc2d9141",
+   "espn_event": "143950",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "41de5552-5e52-51a1-a93d-c8701c48bac5",
+   "espn_event": "143947",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "18dc5700-6e07-5f8a-8e10-bf729ddf8b05",
+   "espn_event": "143948",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "0109c5a3-4ae9-50be-a28f-0c6c4a445de1",
+   "espn_event": "143949",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "2b3561db-a772-5660-bee1-e9acb66f467a",
+   "espn_event": "143951",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "ebfde414-c932-512c-9af1-b1f005dd62dd",
+   "espn_event": "143955",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "52bea029-a990-5e05-9770-21a320430df5",
+   "espn_event": "143952",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "1b427709-d47e-58d8-8e22-652099a50943",
+   "espn_event": "143954",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "3aebd807-ed62-5305-b190-6da50979da99",
+   "espn_event": "143953",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "fd038cb4-85dc-5a48-b4e5-3a83503ab76a",
+   "espn_event": "143956",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "f24922e6-243c-5af9-a625-a10ab1f23037",
+   "espn_event": "143957",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "91d1a285-d90b-581b-afa6-daaca2af6c5c",
+   "espn_event": "143960",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "5cf3ff5f-f260-5cf5-86ce-8fcfed01b24f",
+   "espn_event": "143958",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "3a756b37-f55f-5635-b54c-d15a9eb62cc8",
+   "espn_event": "143959",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "2a1af8e5-0367-5a98-87fd-d07374f51f66",
+   "espn_event": "143961",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "716622f3-712d-5799-a6d0-7669a4feb87c",
+   "espn_event": "143962",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "7c677739-58eb-525a-97f0-d93c33f6744f",
+   "espn_event": "143963",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "14fd189c-d01a-599d-b2c4-1191e60f096b",
+   "espn_event": "143964",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "76d8e594-e0cc-5405-928a-f7eb383fb29a",
+   "espn_event": "143965",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "33cee477-85df-59c7-8224-a55f3bb1663a",
+   "espn_event": "143967",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "07a983d6-0b99-5ea8-9baa-ec069d808e63",
+   "espn_event": "143966",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "484b3dd6-5623-5afb-be75-e6bfb82beeb7",
+   "espn_event": "143968",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "46a49d8f-ff7a-5c3e-bf5c-7c93d30a2752",
+   "espn_event": "143969",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "4e5221f3-3a9a-5a6d-8737-59778f2db80d",
+   "espn_event": "143973",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "4d5af286-203b-5ba0-8e6f-41f423b30a0b",
+   "espn_event": "143970",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "5fea8e54-5246-5cc4-8d3f-a82a0cd4c888",
+   "espn_event": "143971",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "e9e10e4f-499f-5951-9a89-c90107718874",
+   "espn_event": "143972",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "49f24655-863d-5b88-a068-fdce414a9f26",
+   "espn_event": "143975",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "26d98663-741d-5ab4-b951-c983baf039e8",
+   "espn_event": "143974",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "faa6a26f-0034-51ee-92ae-295874e48439",
+   "espn_event": "143976",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "cb54fb26-0d48-5969-ab95-0ffaa97cfa8e",
+   "espn_event": "143977",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "e9b1b24a-f36e-5501-8247-c5eb8632afa3",
+   "espn_event": "143978",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "1851d2ed-3f06-5300-b131-8e0959aa6742",
+   "espn_event": "143980",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "e0bc9201-882a-573e-91d2-bcfcba1de7e6",
+   "espn_event": "143979",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "b70afb54-a47b-5199-93ad-c75283158b3b",
+   "espn_event": "151960",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "2b501436-b68b-55ae-89df-1cdee39c85f4",
+   "espn_event": "151956",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "d06ce28b-cfd5-5b12-8355-1faea1d0f508",
+   "espn_event": "151957",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "b49a4cc6-6b0a-5351-98ec-d55e13874cd4",
+   "espn_event": "151958",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "4a4c278d-263f-5009-bc30-0a4428a5aace",
+   "espn_event": "151959",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "cec82f32-3450-54ba-9e85-d4bf80ad8877",
+   "espn_event": "143982",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "a8626686-cc1d-5479-a6b6-45318ae11e66",
+   "espn_event": "143981",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "b37acba7-f5bc-5a7c-ab64-5e956877b31c",
+   "espn_event": "152311",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "43104c8a-6955-5a2c-a5e6-6bf5814949d4",
+   "espn_event": "143988",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "f38b3d83-8011-532a-a231-15b86fb8d733",
+   "espn_event": "143991",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "14e84eb2-165e-5dbc-8ab7-c8c798c543b0",
+   "espn_event": "143989",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "e8f32c64-7194-58e6-b32e-ffa7635e7724",
+   "espn_event": "143992",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "4f6625dd-a9ce-5a7a-b606-7c0181bbd038",
+   "espn_event": "143994",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "f43743b7-7728-5f31-a053-748807bd2fbd",
+   "espn_event": "143993",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "4ece0716-a05c-5ff9-83c6-eeb3668f7e09",
+   "espn_event": "144001",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "58d8a23d-a782-5a85-88fb-8a0fc109e231",
+   "espn_event": "143998",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "dcbb1773-7f8f-50ee-aa2f-04c160827c1f",
+   "espn_event": "143995",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "081a3164-e435-5860-9bf7-a1ac6033cb73",
+   "espn_event": "143997",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "abefda09-f5d7-5367-b16c-4fbda73601c7",
+   "espn_event": "143996",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "57f23c24-5935-53e0-90bc-5c45deec0464",
+   "espn_event": "143999",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "d130a411-e839-5b8f-9abb-2e6a60b61685",
+   "espn_event": "144000",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "6dd1316d-51f1-577d-9ef4-77b074ae9a80",
+   "espn_event": "144004",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "603bce9c-0596-5042-8149-1b669f76b8b4",
+   "espn_event": "144005",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "82a2f55d-5d7b-54d2-ad77-df33b386b14d",
+   "espn_event": "144006",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "63bcc2c9-c1bb-506c-8b02-7febaecbfafc",
+   "espn_event": "144003",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "d4335f8f-f95c-5803-837f-d8726291c7c9",
+   "espn_event": "144002",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "d18f396a-660c-55e8-b2cb-4a4a9ba0c4bb",
+   "espn_event": "144008",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "bfdc85fa-d2f6-5ef4-98bc-ede5cfb1a732",
+   "espn_event": "144010",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "5357ec4f-5f10-5007-88b0-be7d09204bdf",
+   "espn_event": "144009",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "748f89fd-2647-5683-b281-4f05c5d15224",
+   "espn_event": "144011",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "76dadef6-5a0c-58db-b7ab-65fee6bbccca",
+   "espn_event": "161567",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "85b0819c-96d1-53dc-a96c-2a8b8c6edad8",
+   "espn_event": "144016",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "9c4c3116-4441-53be-8652-dd54fb39622e",
+   "espn_event": "144015",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "ceae25ac-041c-52a7-b11c-93eb421055b3",
+   "espn_event": "144014",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "48cd399c-8f22-52e4-8b20-328eabb8534e",
+   "espn_event": "144013",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "e57b7022-aaec-53d0-a4ec-0e140d3f4124",
+   "espn_event": "144012",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "3be7fd23-b609-5e2e-a5d0-95cb1d24af71",
+   "espn_event": "144017",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "a5108461-8d69-5b0c-a9ae-871880ee1481",
+   "espn_event": "144020",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "4d3f1a03-6790-5d8b-a3b3-0395f26466c6",
+   "espn_event": "144019",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "ef64c8f0-e145-5448-b0d4-07a49780bc34",
+   "espn_event": "144018",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "979cbe2d-6ef5-5755-a2ea-8fc3ce04132f",
+   "espn_event": "144021",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "b1bb27fc-913a-59f5-9ee3-1be4579f1739",
+   "espn_event": "144024",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "e1480538-2114-5ebf-82ad-be39dfcff89a",
+   "espn_event": "144023",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "fbd8381e-4c1b-5776-a7ff-cefd5273c1fb",
+   "espn_event": "144027",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "357046ae-47ee-5b73-9ceb-976354c9719c",
+   "espn_event": "144026",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "0b6696bc-3639-5abb-b427-065d377f976d",
+   "espn_event": "144025",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "bad683ca-3e88-5bd6-b461-e8761a102044",
+   "espn_event": "144032",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "b07d14bd-7200-500b-8ca8-a3e18cd033aa",
+   "espn_event": "144029",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "83ad5791-8120-5030-bccd-e5a50f35dc95",
+   "espn_event": "144030",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "16b3a587-acd4-5d1d-a258-12cf720016a1",
+   "espn_event": "144028",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "eb809362-214f-55d4-8e73-fe6dec489156",
+   "espn_event": "144031",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "2b29ac91-d890-5b20-8e39-bc54037d2ccf",
+   "espn_event": "144037",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "7b2e7883-1435-53d5-b421-6aeed8d8c7a5",
+   "espn_event": "144036",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "c104784d-71ba-56f3-8829-9ea546217ad1",
+   "espn_event": "144034",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "f2d901f9-3a55-5a56-9e05-1fb464e94b37",
+   "espn_event": "144033",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "d07ee360-269d-57bc-85a0-350a7b42cdfb",
+   "espn_event": "144035",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "c3702f2b-96e5-561c-816d-f40beec9ba1f",
+   "espn_event": "161725",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "7f9324e2-f21a-5f9c-96f9-1c5a7396c20f",
+   "espn_event": "144041",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "cb75682b-8107-5cad-934c-c551a863e939",
+   "espn_event": "144042",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "3e2e89d6-5668-5476-95a8-6deb3fa965f8",
+   "espn_event": "144038",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "00480d20-2d96-5fc3-a586-fcdf1bdaf027",
+   "espn_event": "144039",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "13f769d3-1404-5ec7-8cf3-0f126ff79095",
+   "espn_event": "144046",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "822e3a05-de7d-5bf8-9d19-30ff27ac8799",
+   "espn_event": "144043",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "c963b0b0-b76f-58e3-854b-871ae700d1ff",
+   "espn_event": "144044",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "556991e2-8afc-5130-ab63-1fb4a2173ae8",
+   "espn_event": "144045",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "1ba7812a-f629-5b0d-b611-be3419bb0f82",
+   "espn_event": "144047",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Regular Season"
+  },
+  {
+   "match_id": "0d9a234c-b310-568f-9030-291a2a235eb6",
+   "espn_event": "167858",
+   "provider_stage": "Playoffs",
+   "reviewed_stage": "Conference Semifinals"
+  },
+  {
+   "match_id": "a79de683-235a-540c-b5c1-a7158185c164",
+   "espn_event": "167854",
+   "provider_stage": "Playoffs",
+   "reviewed_stage": "Conference Semifinals"
+  },
+  {
+   "match_id": "247ea280-2bc9-5909-838c-c5493f7a01f2",
+   "espn_event": "167852",
+   "provider_stage": "Playoffs",
+   "reviewed_stage": "Conference Semifinals"
+  },
+  {
+   "match_id": "4dc28e59-0b9d-58c6-bdf3-4520e29f0e7f",
+   "espn_event": "167856",
+   "provider_stage": "Playoffs",
+   "reviewed_stage": "Conference Semifinals"
+  },
+  {
+   "match_id": "30f9d9f9-7a82-5c8f-96a5-05bfbd3ff495",
+   "espn_event": "167855",
+   "provider_stage": "Playoffs",
+   "reviewed_stage": "Conference Semifinals"
+  },
+  {
+   "match_id": "2a083851-d452-5058-b193-5af8ef8e7fe4",
+   "espn_event": "167859",
+   "provider_stage": "Playoffs",
+   "reviewed_stage": "Conference Semifinals"
+  },
+  {
+   "match_id": "f0881de2-8b3d-5899-a7cc-590f25019854",
+   "espn_event": "167857",
+   "provider_stage": "Playoffs",
+   "reviewed_stage": "Conference Semifinals"
+  },
+  {
+   "match_id": "e1fc7052-a4dd-564d-a728-69b2e1410e68",
+   "espn_event": "167853",
+   "provider_stage": "Playoffs",
+   "reviewed_stage": "Conference Semifinals"
+  },
+  {
+   "match_id": "5d507f1c-85d7-5119-9296-00172490637a",
+   "espn_event": "168949",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Conference Finals"
+  },
+  {
+   "match_id": "50df99cc-1593-5b67-9a0a-aa34e1389155",
+   "espn_event": "168950",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "Conference Finals"
+  },
+  {
+   "match_id": "2eb684df-b68e-57da-9bfd-ad31e96fdb33",
+   "espn_event": "168975",
+   "provider_stage": "Regular Season",
+   "reviewed_stage": "MLS Cup"
+  }
+ ],
+ "provider_date_exceptions": [],
+ "ready": true,
+ "applied": {
+  "stages": {
+   "Conference Semifinals": "23516984-e889-583c-87bb-02802d1094c3",
+   "Conference Finals": "c7fd8a53-a5c5-5969-8e40-71d46968fe49",
+   "MLS Cup": "646ce237-27b1-516d-833f-b56b771b1ff9"
+  },
+  "playoff_matches_moved": 11
+ }
+}
