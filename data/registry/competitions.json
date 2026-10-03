@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026-10-01.2",
+  "registry_version": "2026-10-03.1",
   "note": "Reviewed canonical metadata for competitions and the provider ids proven to denote them. Provider ids here are crosswalks, not identity.",
   "competitions": [
     {
@@ -129,7 +129,8 @@
       "news": {
         "enabled": false,
         "blocker": "No canonical competition row, season or matches in production: ESPN lane disabled (registry espn.enabled=false); needs lane canary + identity certification."
-      }
+      },
+      "expected_teams": 20
     },
     {
       "slug": "serie-a",
@@ -163,7 +164,8 @@
       "news": {
         "enabled": false,
         "blocker": "No canonical competition row, season or matches in production: ESPN lane disabled; needs lane canary + identity certification."
-      }
+      },
+      "expected_teams": 20
     },
     {
       "slug": "ligue-1",
@@ -197,7 +199,8 @@
       "news": {
         "enabled": false,
         "blocker": "No canonical competition row, season or matches in production: ESPN lane disabled; needs lane canary + identity certification."
-      }
+      },
+      "expected_teams": 18
     },
     {
       "slug": "fifa-world-cup",
@@ -390,7 +393,13 @@
         "league": "uefa.europa",
         "id": "776",
         "enabled": false,
-        "may_found": true
+        "may_found": true,
+        "stage_by_type": true,
+        "standings": {
+          "group_type": "league_phase",
+          "season_type": 1
+        },
+        "structure_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): uefa.europa 2026 types 1 'League Phase' (144 events, standings), 2 'Knockout Round Playoffs', 3 'Round of 16', 4 'Quarterfinals', 5 'Semifinals', 6 'Final'; 36 teams. Same format as the Champions League lane."
       },
       "external_ids": [
         {
@@ -403,7 +412,8 @@
       "news": {
         "enabled": false,
         "blocker": "No canonical competition row, season or matches in production: ESPN lane disabled; needs lane canary + identity certification."
-      }
+      },
+      "expected_teams": 36
     },
     {
       "slug": "mls",
@@ -445,6 +455,163 @@
           "table_watch"
         ],
         "note": "ESPN lane certified; mls profile (overall standings; conference tables only when verified)."
+      }
+    },
+    {
+      "slug": "nwsl",
+      "name": "NWSL",
+      "comp_type": "league",
+      "gender": "women",
+      "country_code": "USA",
+      "tier": 1,
+      "desk": "nwsl",
+      "season_format": "calendar",
+      "espn": {
+        "league": "usa.nwsl",
+        "id": "8301",
+        "enabled": false,
+        "may_found": true,
+        "stage_by_type": true,
+        "discovery_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): usa.nwsl id 8301 'NWSL', gender FEMALE; 2026 types 1 'Regular Season' (240 events, standings), 2-4 'Playoffs - Quarterfinals/Semifinals/Championship'; 16 teams. Women's teams have their own ESPN team ids (0 ids shared with any men's competition probed)."
+      },
+      "external_ids": [
+        {
+          "provider": "espn",
+          "external_id": "usa.nwsl",
+          "method": "founding",
+          "evidence": "ESPN Core league detail (docs/evidence/world/espn-world-discovery-2026-10-03.json): usa.nwsl id 8301, gender FEMALE"
+        }
+      ],
+      "expected_teams": 16,
+      "news": {
+        "enabled": false,
+        "blocker": "Lane disabled until its canary passes (docs/evidence/world/); newsroom enablement follows lane certification."
+      }
+    },
+    {
+      "slug": "womens-super-league",
+      "name": "Women's Super League",
+      "comp_type": "league",
+      "gender": "women",
+      "country_code": "ENG",
+      "tier": 1,
+      "desk": "wsl",
+      "season_format": "split",
+      "espn": {
+        "league": "eng.w.1",
+        "id": "8097",
+        "enabled": false,
+        "may_found": true,
+        "discovery_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): eng.w.1 id 8097 'English Women's Super League', gender FEMALE; 2026 one type (182 events, standings); 14 teams. Women's teams have their own ESPN team ids (0 ids shared with any men's competition probed)."
+      },
+      "external_ids": [
+        {
+          "provider": "espn",
+          "external_id": "eng.w.1",
+          "method": "founding",
+          "evidence": "ESPN Core league detail (docs/evidence/world/espn-world-discovery-2026-10-03.json): eng.w.1 id 8097, gender FEMALE"
+        }
+      ],
+      "expected_teams": 14,
+      "news": {
+        "enabled": false,
+        "blocker": "Lane disabled until its canary passes (docs/evidence/world/); newsroom enablement follows lane certification."
+      }
+    },
+    {
+      "slug": "uefa-womens-champions-league",
+      "name": "UEFA Women's Champions League",
+      "comp_type": "club_tournament",
+      "gender": "women",
+      "country_code": null,
+      "tier": null,
+      "desk": "uwcl",
+      "season_format": "split",
+      "espn": {
+        "league": "uefa.wchampions",
+        "id": "19483",
+        "enabled": false,
+        "may_found": true,
+        "stage_by_type": true,
+        "standings": {
+          "group_type": "league_phase",
+          "season_type": 1
+        },
+        "discovery_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): uefa.wchampions id 19483, gender FEMALE; 2026 types 1 'League Phase' (54 events, standings), 2 'Knockout Round Playoffs', 3 'Quarterfinals', 4 'Semifinals', 5 'Final'; 18 teams. Women's teams have their own ESPN team ids (0 ids shared with any men's competition probed)."
+      },
+      "external_ids": [
+        {
+          "provider": "espn",
+          "external_id": "uefa.wchampions",
+          "method": "founding",
+          "evidence": "ESPN Core league detail (docs/evidence/world/espn-world-discovery-2026-10-03.json): uefa.wchampions id 19483, gender FEMALE"
+        }
+      ],
+      "expected_teams": 18,
+      "news": {
+        "enabled": false,
+        "blocker": "Lane disabled until its canary passes (docs/evidence/world/); newsroom enablement follows lane certification."
+      }
+    },
+    {
+      "slug": "liga-f",
+      "name": "Liga F",
+      "comp_type": "league",
+      "gender": "women",
+      "country_code": "ESP",
+      "tier": 1,
+      "desk": "liga-f",
+      "season_format": "split",
+      "espn": {
+        "league": "esp.w.1",
+        "id": "20956",
+        "enabled": false,
+        "may_found": true,
+        "discovery_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): esp.w.1 id 20956 'Spanish Liga F', gender FEMALE; 2026 one type (240 events, standings); 16 teams. Women's teams have their own ESPN team ids (0 ids shared with any men's competition probed)."
+      },
+      "external_ids": [
+        {
+          "provider": "espn",
+          "external_id": "esp.w.1",
+          "method": "founding",
+          "evidence": "ESPN Core league detail (docs/evidence/world/espn-world-discovery-2026-10-03.json): esp.w.1 id 20956, gender FEMALE"
+        }
+      ],
+      "expected_teams": 16,
+      "news": {
+        "enabled": false,
+        "blocker": "Lane disabled until its canary passes (docs/evidence/world/); newsroom enablement follows lane certification."
+      }
+    },
+    {
+      "slug": "premiere-ligue",
+      "name": "Première Ligue",
+      "comp_type": "league",
+      "gender": "women",
+      "country_code": "FRA",
+      "tier": 1,
+      "desk": "premiere-ligue",
+      "season_format": "split",
+      "espn": {
+        "league": "fra.w.1",
+        "id": "20955",
+        "enabled": false,
+        "may_found": true,
+        "stage_by_type": true,
+        "discovery_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): fra.w.1 id 20955 'French Première Ligue', gender FEMALE; 2026 types 1 'Regular Season' (132 events, standings), 2-4 'Playoffs - Semifinals/3rd-Place/Final'; 12 teams. Women's teams have their own ESPN team ids (0 ids shared with any men's competition probed)."
+      },
+      "external_ids": [
+        {
+          "provider": "espn",
+          "external_id": "fra.w.1",
+          "method": "founding",
+          "evidence": "ESPN Core league detail (docs/evidence/world/espn-world-discovery-2026-10-03.json): fra.w.1 id 20955, gender FEMALE"
+        }
+      ],
+      "expected_teams": 12,
+      "news": {
+        "enabled": false,
+        "blocker": "Lane disabled until its canary passes (docs/evidence/world/); newsroom enablement follows lane certification."
       }
     }
   ]

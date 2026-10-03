@@ -181,3 +181,55 @@ test('global competition matcher distinguishes FIFA, Europa, LaLiga, Serie A and
     assert.equal(classifyVideo(title), 'highlights');
   }
 });
+
+test('1.3.0 target-aware gender: an NWSL video is valid for an NWSL game and rejected for an MLS game', () => {
+  const ix = buildAliasIndex([
+    { id: 'ars', name: 'Arsenal', short_name: 'Arsenal', gender: 'men' }, { id: 'che', name: 'Chelsea', short_name: 'Chelsea', gender: 'men' },
+    { id: 'arsw', name: 'Arsenal Women', short_name: 'Arsenal', gender: 'women' }, { id: 'chew', name: 'Chelsea Women', short_name: 'Chelsea', gender: 'women' },
+    { id: 'por', name: 'Portland Timbers', short_name: 'Portland', gender: 'men' }, { id: 'sea', name: 'Seattle Sounders FC', short_name: 'Seattle', gender: 'men' },
+    { id: 'thorns', name: 'Portland Thorns FC', short_name: 'Portland', gender: 'women' }, { id: 'reign', name: 'Seattle Reign FC', short_name: 'Seattle', gender: 'women' },
+  ]);
+  const NWSL = { channel_id: 'UCaaaaaaaaaaaaaaaaaaaaaa', verified: true, enabled: true, competition_id: 'c-nwsl', team_id: null, publisher_type: 'competition' };
+  const MLS = { channel_id: 'UCbbbbbbbbbbbbbbbbbbbbbb', verified: true, enabled: true, competition_id: 'c-mls', team_id: null, publisher_type: 'competition' };
+  const nwslCtx = { competition_slug: 'nwsl', competition_id: 'c-nwsl', match: { id: 'n1', home_id: 'thorns', away_id: 'reign', kickoff: '2026-10-04T02:00:00Z', score: { home: 2, away: 1 } }, player: null };
+  const mlsCtx = { competition_slug: 'mls', competition_id: 'c-mls', match: { id: 'm1', home_id: 'por', away_id: 'sea', kickoff: '2026-10-04T02:00:00Z', score: { home: 2, away: 1 } }, player: null };
+  const nwslTitle = { title: 'Portland Thorns FC vs. Seattle Reign FC | NWSL Highlights | October 3, 2026', published_at: '2026-10-04T05:00:00Z', video_type: 'highlights' };
+  const ok = scoreVideo(nwslTitle, NWSL, nwslCtx, ix);
+  assert.equal(ok.status, 'linked', JSON.stringify(ok));
+  const asMls = scoreVideo(nwslTitle, MLS, mlsCtx, ix);
+  assert.equal(asMls.status, 'rejected', 'an NWSL video never attaches to the MLS game between the same cities');
+  // an MLS video never attaches to the NWSL game
+  const mlsTitle = { title: 'Portland Timbers vs. Seattle Sounders FC | MLS Highlights', published_at: '2026-10-04T05:00:00Z', video_type: 'highlights' };
+  assert.equal(scoreVideo(mlsTitle, MLS, mlsCtx, ix).status, 'linked');
+  assert.equal(scoreVideo(mlsTitle, NWSL, nwslCtx, ix).status, 'rejected');
+});
+
+test('1.3.0: women\'s side and men\'s club stay distinct; a club channel covering both proves nothing', () => {
+  const ix = buildAliasIndex([
+    { id: 'ars', name: 'Arsenal', short_name: 'Arsenal', gender: 'men' }, { id: 'che', name: 'Chelsea', short_name: 'Chelsea', gender: 'men' },
+    { id: 'arsw', name: 'Arsenal Women', short_name: 'Arsenal', gender: 'women' }, { id: 'chew', name: 'Chelsea Women', short_name: 'Chelsea', gender: 'women' },
+  ]);
+  assert.deepEqual(teamsInTitle('Arsenal 2-1 Chelsea', ix, 'men').sort(), ['ars', 'che']);
+  assert.deepEqual(teamsInTitle('Arsenal Women 2-1 Chelsea Women', ix, 'women').sort(), ['arsw', 'chew']);
+  assert.deepEqual(teamsInTitle('Arsenal Women 2-1 Chelsea Women', ix, 'men').sort(), ['ars', 'che'], 'men-scoped lookup sees the club names; the gender rule then rejects');
+  const ARS = { channel_id: 'UCcccccccccccccccccccccc', verified: true, enabled: true, competition_id: null, team_id: 'ars', publisher_type: 'club' };
+  const WSL = { channel_id: 'UCdddddddddddddddddddddd', verified: true, enabled: true, competition_id: 'c-wsl', team_id: null, publisher_type: 'competition' };
+  const wslCtx = { competition_slug: 'womens-super-league', competition_id: 'c-wsl', match: { id: 'w1', home_id: 'arsw', away_id: 'chew', kickoff: '2026-10-04T13:00:00Z', score: { home: 2, away: 1 } }, player: null };
+  const plCtx = { competition_slug: 'premier-league', competition_id: 'c-pl', match: { id: 'p1', home_id: 'ars', away_id: 'che', kickoff: '2026-10-04T16:30:00Z', score: { home: 2, away: 1 } }, player: null };
+  const PL = { channel_id: 'UCeeeeeeeeeeeeeeeeeeeeee', verified: true, enabled: true, competition_id: 'c-pl', team_id: null, publisher_type: 'competition' };
+  // men's highlights posted the same day never attach to the WSL game, even from a competition channel
+  assert.equal(scoreVideo({ title: 'Arsenal 2-1 Chelsea | Premier League Highlights', published_at: '2026-10-04T19:00:00Z', video_type: 'highlights' }, WSL, wslCtx, ix).status, 'rejected');
+  assert.equal(scoreVideo({ title: 'Arsenal 2-1 Chelsea | Highlights', published_at: '2026-10-04T19:00:00Z', video_type: 'highlights' }, WSL, wslCtx, ix).status, 'rejected', 'no women\'s marker');
+  // women's highlights on the men's club channel never attach to the PL game
+  assert.equal(scoreVideo({ title: "Arsenal Women 2-1 Chelsea Women | Barclays Women's Super League Highlights", published_at: '2026-10-04T16:00:00Z', video_type: 'highlights' }, ARS, plCtx, ix).status, 'rejected');
+  // the same women's video is valid for the WSL game
+  const ok = scoreVideo({ title: "Arsenal Women 2-1 Chelsea Women | Barclays Women's Super League Highlights", published_at: '2026-10-04T16:00:00Z', video_type: 'highlights' }, WSL, wslCtx, ix);
+  assert.equal(ok.status, 'linked', JSON.stringify(ok));
+  // "Women's Champions League" never reads as the men's Champions League
+  const UEFA = { channel_id: 'UCyGa1YEx9ST66rYrJTGIKOw', verified: true, enabled: true, competition_id: 'c-ucl', scope_competition_ids: ['c-ucl', 'c-uwcl'], team_id: null, publisher_type: 'governing_body' };
+  const uwcl = { competition_slug: 'uefa-womens-champions-league', competition_id: 'c-uwcl', match: { id: 'u1', home_id: 'arsw', away_id: 'chew', kickoff: '2026-10-08T19:00:00Z', score: { home: 2, away: 1 } }, player: null };
+  assert.equal(scoreVideo({ title: "Arsenal Women 2-1 Chelsea Women | UEFA Women's Champions League Highlights", published_at: '2026-10-08T22:00:00Z', video_type: 'highlights' }, UEFA, uwcl, ix).status, 'linked');
+  assert.equal(scoreVideo({ title: "Arsenal 2-1 Chelsea | UEFA Champions League Highlights", published_at: '2026-10-08T22:00:00Z', video_type: 'highlights' }, UEFA, uwcl, ix).status, 'rejected');
+  assert.equal(articleContext({}, { event: {}, competition: { slug: 'nwsl' } }).gender, 'women');
+  assert.equal(articleContext({}, { event: {}, competition: { slug: 'mls' } }).gender, 'men');
+});

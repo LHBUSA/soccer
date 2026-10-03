@@ -79,12 +79,19 @@ export async function resolveEspnTeams(store, { comp, year, cursor, client }) {
   // National-team competitions (registry espn.team_type 'national': World Cup, Nations League): an ESPN id already
   // mapped to a CLUB is never used here; it waits in the identity queue and its fixtures are not written.
   const nationalOnly = comp.espn?.team_type === 'national';
-  if (nationalOnly && teamMap.size) {
-    const types = new Map((await store.select('soccer_teams', { columns: ['id', 'team_type'], in: { id: [...new Set(teamMap.values())] } })).map(t => [t.id, t.team_type]));
-    for (const [t, id] of [...teamMap]) if (types.get(id) !== 'national') { teamMap.delete(t); await queueIdentity(store, { entity_type: 'team', provider: P, external_id: t, reason: 'club_mapped_in_national_team_competition', candidate_ids: [id], payload: { competition: comp.slug } }); summary.clubs_refused = (summary.clubs_refused || 0) + 1; }
+  // Gender is part of a sporting team's identity: Manchester City Women is never Manchester City. An ESPN id already
+  // mapped to a team of the other gender is never used here (identity queue), whatever the names say.
+  const gender = comp.gender || 'men';
+  if (teamMap.size) {
+    const rows = new Map((await store.select('soccer_teams', { columns: ['id', 'team_type', 'gender'], in: { id: [...new Set(teamMap.values())] } })).map(t => [t.id, t]));
+    for (const [t, id] of [...teamMap]) {
+      if (nationalOnly && rows.get(id)?.team_type !== 'national') { teamMap.delete(t); await queueIdentity(store, { entity_type: 'team', provider: P, external_id: t, reason: 'club_mapped_in_national_team_competition', candidate_ids: [id], payload: { competition: comp.slug } }); summary.clubs_refused = (summary.clubs_refused || 0) + 1; continue; }
+      if (rows.get(id) && rows.get(id).gender !== gender) { teamMap.delete(t); await queueIdentity(store, { entity_type: 'team', provider: P, external_id: t, reason: 'team_gender_differs_from_competition', candidate_ids: [id], payload: { competition: comp.slug, competition_gender: gender, team_gender: rows.get(id).gender } }); summary.gender_refused = (summary.gender_refused || 0) + 1; }
+    }
   }
   const excluded = new Set(Object.keys(cursor.excluded_teams || {}));
-  const refused = new Set(nationalOnly ? (await store.select('soccer_identity_queue', { columns: ['external_id'], eq: { entity_type: 'team', provider: P, reason: 'club_mapped_in_national_team_competition', status: 'open' } })).map(q => q.external_id) : []);
+  const refusedReasons = [...(nationalOnly ? ['club_mapped_in_national_team_competition'] : []), 'team_gender_differs_from_competition'];
+  const refused = new Set((await store.select('soccer_identity_queue', { columns: ['external_id'], eq: { entity_type: 'team', provider: P, status: 'open' }, in: { reason: refusedReasons } })).map(q => q.external_id));
   const pending = espnTeams.filter(t => !teamMap.has(t) && !excluded.has(t) && !refused.has(t));
   if (excluded.size) summary.all_star_teams_excluded = excluded.size;
   if (!pending.length) return { teamMap, summary };
@@ -109,9 +116,16 @@ export async function resolveEspnTeams(store, { comp, year, cursor, client }) {
     return { teamMap, summary };
   } else {
     // No other source for this season: ESPN founds teams from their stable ids.
-    const existing = await store.select('soccer_teams', { columns: ['id', 'name', 'official_name', 'short_name'] });
+    // Same-name safety net within the SAME gender only: a women's side named like the men's club is a different team,
+    // not a clash (and never a merge); the stable ESPN id founds it.
+    const everyTeam = await store.select('soccer_teams', { columns: ['id', 'name', 'official_name', 'short_name', 'gender'] });
+    const existing = everyTeam.filter(e => (e.gender || 'men') === gender);
     const byName = new Map();
     for (const e of existing) for (const n of [e.name, e.official_name]) if (n) byName.set(normName(n), [...(byName.get(normName(n)) || []), e.id]);
+    // ESPN names a women's side exactly like the club ("Manchester City"). Display only, never identity: a women's team
+    // whose name equals a men's team's is named "<name> Women" (slug follows), and the namesake is recorded as evidence.
+    const otherGender = new Map();
+    for (const e of everyTeam.filter(x => (x.gender || 'men') !== gender)) otherGender.set(normName(e.name), e.id);
     const found = [];
     for (const t of pending.sort((a, b) => Number(a) - Number(b))) {
       const { json, capture } = await client.get(`${espn.CORE}/${comp.espn.league}/seasons/${year}/teams/${t}`);
@@ -120,12 +134,13 @@ export async function resolveEspnTeams(store, { comp, year, cursor, client }) {
       const clash = byName.get(normName(team.name));
       if (clash) { await client.flush(); await queueIdentity(store, { entity_type: 'team', provider: P, external_id: t, reason: 'same_normalized_name_as_existing_team', candidate_ids: clash, payload: { name: team.name } }); continue; }
       byName.set(normName(team.name), [mintId('team', P, t)]);
-      found.push({ ...team, capture_id: capture.capture_id });
+      const namesake = gender === 'women' ? otherGender.get(normName(team.name)) : null;
+      found.push({ ...team, ...(namesake ? { name: `${team.name} Women`, espn_name: team.name, namesake } : {}), capture_id: capture.capture_id });
     }
     await client.flush();
     const slugs = allocateSlugs(found.map(s => ({ id: mintId('team', P, s.external_id), name: s.name })), found.length ? (await store.select('soccer_teams', { columns: ['slug'] })).map(r => r.slug) : []);
-    await syncRows(store, { table: 'soccer_teams', key: ['id'], rows: found.map(s => ({ id: mintId('team', P, s.external_id), slug: slugs.get(mintId('team', P, s.external_id)), name: s.name, short_name: s.short_name, official_name: null, team_type: s.is_national || nationalOnly ? 'national' : 'club', gender: 'men', country_code: null, city: null, founding_provider: P, founding_external_id: s.external_id })) });
-    for (const s of found) { teamMap.set(s.external_id, mintId('team', P, s.external_id)); xw.push({ provider: P, external_id: s.external_id, team_id: mintId('team', P, s.external_id), method: 'founding', evidence: `espn team id${s.sdr ? `; sdr ${s.sdr}` : ''}${nationalOnly ? `; national team by competition contract (${comp.slug} admits national teams only)${s.is_national ? '' : '; provider record says isNational=false (provider inconsistency recorded, not used)'}` : ''}`, capture_id: s.capture_id }); }
+    await syncRows(store, { table: 'soccer_teams', key: ['id'], rows: found.map(s => ({ id: mintId('team', P, s.external_id), slug: slugs.get(mintId('team', P, s.external_id)), name: s.name, short_name: s.short_name, official_name: null, team_type: s.is_national || nationalOnly ? 'national' : 'club', gender, country_code: null, city: null, founding_provider: P, founding_external_id: s.external_id })) });
+    for (const s of found) { teamMap.set(s.external_id, mintId('team', P, s.external_id)); xw.push({ provider: P, external_id: s.external_id, team_id: mintId('team', P, s.external_id), method: 'founding', evidence: `espn team id${s.sdr ? `; sdr ${s.sdr}` : ''}${gender === 'women' ? `; women's team (competition ${comp.slug})` : ''}${s.namesake ? `; ESPN name '${s.espn_name}' equals men's team ${s.namesake}: distinct team, displayed as '${s.name}'` : ''}${nationalOnly ? `; national team by competition contract (${comp.slug} admits national teams only)${s.is_national ? '' : '; provider record says isNational=false (provider inconsistency recorded, not used)'}` : ''}`, capture_id: s.capture_id }); }
     summary.teams_founded = found.length;
   }
   summary.team_crosswalk = await syncRows(store, { table: 'soccer_team_external_ids', key: ['provider', 'external_id'], compare: ['team_id'], rows: xw });

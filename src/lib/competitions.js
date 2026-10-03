@@ -17,6 +17,13 @@ export const ALL_COMPS = [
   { slug: 'uefa-nations-league', name: 'Nations League', long: 'UEFA Nations League', mono: 'UNL', accent: 'unl', desk: 'international', format: 'groups', nav: 'international', teams: 'national', enabled: true },
   { slug: 'fifa-world-cup', name: 'FIFA World Cup', long: 'FIFA World Cup', mono: 'FIFA', accent: 'fifa', desk: 'fifa', format: 'groups', nav: 'international', teams: 'national', enabled: true },
   { slug: 'uefa-european-championship', name: 'European Championship', long: 'UEFA European Championship', mono: 'EURO', accent: 'euro', desk: 'international', format: 'groups', nav: 'international', teams: 'national', enabled: false },
+  // Women's football: first-class competitions on the same product (gender 'women' in the canonical graph; a women's
+  // team is its own canonical team, never the men's club of the same name). nav 'women' = the WOMEN menu group.
+  { slug: 'nwsl', name: 'NWSL', long: "National Women's Soccer League", mono: 'NWSL', accent: 'nwsl', desk: 'nwsl', format: 'league', nav: 'women', gender: 'women', enabled: false },
+  { slug: 'womens-super-league', name: 'WSL', long: "Women's Super League", mono: 'WSL', accent: 'wsl', desk: 'wsl', format: 'league', nav: 'women', gender: 'women', enabled: false },
+  { slug: 'uefa-womens-champions-league', name: "Women's Champions League", long: "UEFA Women's Champions League", mono: 'UWCL', accent: 'uwcl', desk: 'uwcl', format: 'ucl', nav: 'women', gender: 'women', enabled: false },
+  { slug: 'liga-f', name: 'Liga F', long: 'Liga F', mono: 'LF', accent: 'ligaf', desk: 'liga-f', format: 'league', nav: 'women', gender: 'women', enabled: false },
+  { slug: 'premiere-ligue', name: 'Première Ligue', long: 'Première Ligue', mono: 'D1F', accent: 'd1f', desk: 'premiere-ligue', format: 'league', nav: 'women', gender: 'women', enabled: false },
 ]
 // Product navigation only advertises competitions whose canonical graph is live.
 export const FEATURED_COMPS = ALL_COMPS.filter(c => c.enabled);
@@ -24,6 +31,7 @@ export const NEWSROOM_COMPS = ALL_COMPS;
 export const FEATURED = FEATURED_COMPS.map(c => c.slug);
 export const CLUB_COMPS = FEATURED_COMPS.filter(c => c.nav === 'club');
 export const INTERNATIONAL_COMPS = FEATURED_COMPS.filter(c => c.nav === 'international');
+export const WOMEN_COMPS = FEATURED_COMPS.filter(c => c.nav === 'women');
 export const compMeta = slug => ALL_COMPS.find(c => c.slug === slug) || null;
 export const compByDesk = desk => ALL_COMPS.find(c => c.desk === desk && c.enabled) || ALL_COMPS.find(c => c.desk === desk) || null;
 // Competitions contested by national teams: copy says nations / national teams, never clubs.

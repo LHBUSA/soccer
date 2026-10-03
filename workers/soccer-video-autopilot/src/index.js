@@ -253,7 +253,7 @@ async function selectIn(store, table, column, values, opts = {}) {
 async function relink(store, { now = Date.now() } = {}) {
   const channels = await enabledChannels(store);
   const byChannel = new Map(channels.map(c => [c.channel_id, c]));
-  const teams = await store.select('soccer_teams', { columns: ['id','name','short_name'], order: 'id.asc' });
+  const teams = await store.select('soccer_teams', { columns: ['id','name','short_name','gender'], order: 'id.asc' });
   const aliases = buildAliasIndex(teams);
   const videos = await store.select('soccer_videos', {
     columns: VIDEO_COLS,

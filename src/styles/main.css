@@ -10,6 +10,7 @@
   --home: #d4a73a; --away: #dfe9f6; --away-ink: #243b5c;
   --win: #1d8a4e; --loss: #c0392b; --draw: #8a94a6; --live: #c81d25;
   --a-mls: #3d8bfd; --a-epl: #9b6cff; --a-ucl: #2fb8e6; --a-bl: #e8554e; --a-unl: #22c3a6; --a-fifa: #b5651d; --a-x: #8a94a6;
+  --a-laliga: #e0335e; --a-seriea: #5b8def; --a-ligue1: #b9c62c; --a-uel: #ff8c1a; --a-nwsl: #4cc38a; --a-wsl: #d24dbb; --a-uwcl: #3a6ff7; --a-ligaf: #ff7a59; --a-d1f: #a3b84a;
   --accent: var(--a-x);
   --radius: 16px; --radius-s: 10px;
   --display: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif;
@@ -20,6 +21,8 @@
 }
 @media (min-width: 768px) { :root { --gutter: 28px; } }
 .a-mls { --accent: var(--a-mls); } .a-epl { --accent: var(--a-epl); } .a-ucl { --accent: var(--a-ucl); } .a-bl { --accent: var(--a-bl); } .a-unl { --accent: var(--a-unl); } .a-fifa { --accent: var(--a-fifa); } .a-x { --accent: var(--a-x); }
+.a-laliga { --accent: var(--a-laliga); } .a-seriea { --accent: var(--a-seriea); } .a-ligue1 { --accent: var(--a-ligue1); } .a-uel { --accent: var(--a-uel); }
+.a-nwsl { --accent: var(--a-nwsl); } .a-wsl { --accent: var(--a-wsl); } .a-uwcl { --accent: var(--a-uwcl); } .a-ligaf { --accent: var(--a-ligaf); } .a-d1f { --accent: var(--a-d1f); }
 /* Every enabled competition accent needs a token + class above (tests/web/accents.test.js). An unknown
    accent class keeps the inherited :root default (--a-x), so a tile can never lose its dark ground. */
 

@@ -21,7 +21,7 @@ import { networkFooter, applyFooterMembership } from './components/footer.js';
 import { accountButtonLabel, handleVerifiedReturn, openAccount } from './components/account.js';
 import { proAccess } from './lib/pro.js';
 import './styles/pbe-membership.css';
-import { CLUB_COMPS, FEATURED_COMPS, INTERNATIONAL_COMPS } from './lib/competitions.js';
+import { CLUB_COMPS, FEATURED_COMPS, INTERNATIONAL_COMPS, WOMEN_COMPS } from './lib/competitions.js';
 import { mountMediaFallbacks } from './components/ui.js';
 import { installPlayerDrawer, close as closeDrawer } from './components/drawer.js';
 import { mountScoreTicker } from './components/score-ticker.js';
@@ -59,7 +59,7 @@ function shell() {
     <button class="navtoggle" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span></button>
     <nav id="nav" class="nav" aria-label="Primary">${NAV.map(([h, l, p]) => `<a href="${h}" data-link data-pages="${p}">${l}</a>`).join('')}
       <div class="navmenu"><button type="button" class="navdrop" aria-expanded="false" aria-controls="leagues-panel" data-menu-toggle data-leagues-toggle data-pages="competition">LEAGUES<i aria-hidden="true"></i></button>
-        <div id="leagues-panel" class="navpanel lg-panel" hidden><p class="lg-h">CLUB</p>${CLUB_COMPS.map(leagueLink).join('')}${INTERNATIONAL_COMPS.length ? `<p class="lg-h">INTERNATIONAL</p>${INTERNATIONAL_COMPS.map(leagueLink).join('')}` : ''}</div></div>
+        <div id="leagues-panel" class="navpanel lg-panel" hidden><p class="lg-h">CLUB</p>${CLUB_COMPS.map(leagueLink).join('')}${INTERNATIONAL_COMPS.length ? `<p class="lg-h">INTERNATIONAL</p>${INTERNATIONAL_COMPS.map(leagueLink).join('')}` : ''}${WOMEN_COMPS.length ? `<p class="lg-h">WOMEN</p>${WOMEN_COMPS.map(leagueLink).join('')}` : ''}</div></div>
       <div class="navmenu"><button type="button" class="navdrop" aria-expanded="false" aria-controls="intel-panel" data-menu-toggle data-intel-toggle data-pages="${INTEL_PAGES}">INTELLIGENCE<i aria-hidden="true"></i></button>
         <div id="intel-panel" class="navpanel" hidden>${INTEL.map(([h, l]) => `<a href="${h}" data-link>${l}</a>`).join('')}</div></div>
       <a href="/news" data-link data-pages="news,newsDesk,article">NEWS</a>

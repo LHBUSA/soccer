@@ -33,7 +33,7 @@ const CH_COLS = ['channel_id', 'channel_name', 'publisher_type', 'competition_id
 const channels = await store.select('soccer_video_channels', { columns: [...CH_COLS, 'scope_competition_ids'], eq: { enabled: true, verified: true } })
   .catch(() => store.select('soccer_video_channels', { columns: CH_COLS, eq: { enabled: true, verified: true } }));
 const byChannel = new Map(channels.map(c => [c.channel_id, c]));
-const allTeams = await store.select('soccer_teams', { columns: ['id', 'name', 'short_name'] });
+const allTeams = await store.select('soccer_teams', { columns: ['id', 'name', 'short_name', 'gender'] });
 // active teams only (the four competitions' latest seasons) keep the alias index precise
 const comps = await store.select('soccer_competitions', { columns: ['id', 'slug'] });
 const active = new Set();

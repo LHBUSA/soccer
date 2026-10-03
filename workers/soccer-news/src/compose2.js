@@ -11,7 +11,7 @@ const fmtDate = iso => { const d = new Date(iso); return `${d.getUTCDate()} ${MO
 const ord = n => `${n}${n % 100 >= 11 && n % 100 <= 13 ? 'th' : ['th', 'st', 'nd', 'rd'][n % 10] || 'th'}`;
 const plural = (n, w, p = `${w}s`) => `${n} ${n === 1 ? w : p}`;
 const list = xs => (xs.length <= 1 ? xs.join('') : `${xs.slice(0, -1).join(', ')} and ${xs[xs.length - 1]}`);
-const DESK = { 'premier-league': 'premier-league', 'la-liga': 'la-liga', 'serie-a': 'serie-a', 'ligue-1': 'ligue-1', bundesliga: 'bundesliga', mls: 'mls', 'uefa-champions-league': 'champions-league', 'uefa-europa-league': 'europa-league', 'uefa-nations-league': 'international', 'fifa-world-cup': 'fifa' };
+const DESK = { 'premier-league': 'premier-league', 'la-liga': 'la-liga', 'serie-a': 'serie-a', 'ligue-1': 'ligue-1', bundesliga: 'bundesliga', mls: 'mls', 'uefa-champions-league': 'champions-league', 'uefa-europa-league': 'europa-league', 'uefa-nations-league': 'international', 'fifa-world-cup': 'fifa', nwsl: 'nwsl', 'womens-super-league': 'wsl', 'uefa-womens-champions-league': 'uwcl', 'liga-f': 'liga-f', 'premiere-ligue': 'premiere-ligue' };
 const standingsWord = p => (p.competition.slug === 'mls' ? 'overall MLS standings' : `${p.competition.name} table`);
 const method = (p, extra = '') => ({ key: 'method', heading: 'Evidence and method', paragraphs: [
   ...(p.event.corrects ? [/own goal/i.test(p.event.corrects.reason || '') ? 'Correction: this story replaces an earlier version that was withdrawn because an own goal was credited to the wrong side. The goal sequence now reproduces the recorded result.' : 'Correction: this story replaces an earlier version that was withdrawn after an error was found.'] : []),

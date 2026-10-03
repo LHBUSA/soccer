@@ -58,6 +58,18 @@ export const PROFILES = {
       ['mls_playoff_claim', /\bplayoff (spot|place|line|position)s?\b/i],
     ],
   },
+  // Women's domestic leagues (NWSL, WSL, Liga F, Première Ligue): a computed overall table only. Their qualification,
+  // play-off and relegation rules are not stored, so no zone angles and no zone language (same discipline as MLS).
+  womens_league: {
+    table: true, tiebreak: 'standard',
+    angles: { overall_leader_change: 1.2, upset: 1.0, winning_streak: 1.0, unbeaten_run_ended: 1.0, ...COMMON_MATCH_ANGLES },
+    zones: null,
+    upset_gap: 8,
+    banned: [
+      ['womens_zone_claim', /\b(relegat\w*|drop zone|bottom (two|three)|top[ -](three|four)|champions league (places?|spots?)|european places?|continental places?)\b/i],
+      ['womens_playoff_claim', /\bplay-?off (spot|place|line|position)s?\b/i],
+    ],
+  },
   ucl_league_phase: {
     table: false, tiebreak: null,
     angles: { ...COMMON_MATCH_ANGLES },
@@ -129,6 +141,12 @@ export const COMPETITION_PROFILES = {
   mls: () => 'mls',
   'uefa-champions-league': (kickoffIso, cfg = {}) => (Date.parse(kickoffIso) < Date.parse(cfg.ucl_league_phase_end || '2027-02-01T00:00:00Z') ? 'ucl_league_phase' : 'knockout'),
   'uefa-europa-league': (kickoffIso, cfg = {}) => (Date.parse(kickoffIso) < Date.parse(cfg.uel_league_phase_end || '2027-02-01T00:00:00Z') ? 'ucl_league_phase' : 'knockout'),
+  nwsl: () => 'womens_league',
+  'womens-super-league': () => 'womens_league',
+  'liga-f': () => 'womens_league',
+  'premiere-ligue': () => 'womens_league',
+  // League phase = ESPN season type 1, ending 2026-12-18 (docs/evidence/world/espn-world-discovery-2026-10-03.json).
+  'uefa-womens-champions-league': (kickoffIso, cfg = {}) => (Date.parse(kickoffIso) < Date.parse(cfg.uwcl_league_phase_end || '2026-12-19T00:00:00Z') ? 'ucl_league_phase' : 'knockout'),
   // League phase = ESPN season type 1, ending 2026-11-19T04:59Z (docs/evidence/espn/uefa-nations-discovery-2026-09-29.json).
   'uefa-nations-league': (kickoffIso, cfg = {}) => (Date.parse(kickoffIso) < Date.parse(cfg.unl_league_phase_end || '2026-11-19T05:00:00Z') ? 'nations_league' : 'nations_league_knockout'),
   // World Cup publishing is currently disabled in the registry. This profile makes the

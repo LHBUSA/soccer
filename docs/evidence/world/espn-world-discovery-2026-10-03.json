@@ -1,0 +1,3995 @@
+{
+  "generated_at": "2026-10-03T13:52:26.937Z",
+  "source": "ESPN Core API (sports.core.api.espn.com) only; politeFetch, sequential >= 700 ms; no site.api / espn.com pages",
+  "requests": 486,
+  "blocked": [],
+  "elapsed_s": 345,
+  "shared_espn_team_ids": 197,
+  "cross_gender_shared_team_ids": [],
+  "results": [
+    {
+      "phase": "A",
+      "slug": "la-liga",
+      "espn": "esp.1",
+      "expected_gender": "men",
+      "country": "ESP",
+      "league": {
+        "id": "740",
+        "name": "Spanish LALIGA",
+        "abbreviation": "LALIGA",
+        "gender": "MALE",
+        "is_tournament": false,
+        "slug_echo": "esp.1"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026-27 Spanish LALIGA",
+        "start": "2026-06-01T04:00Z",
+        "end": "2027-06-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "2026-27 LALIGA",
+          "abbreviation": "2026-27 LALIGA",
+          "start": "2026-06-01T04:00Z",
+          "end": "2027-06-01T03:59Z",
+          "has_groups": false,
+          "has_standings": true,
+          "events": 380
+        }
+      ],
+      "teams": {
+        "count": 20,
+        "sample": [
+          {
+            "id": "83",
+            "name": "Barcelona",
+            "short": "Barcelona",
+            "is_national": false,
+            "location": "Barcelona"
+          },
+          {
+            "id": "85",
+            "name": "Celta Vigo",
+            "short": "Celta Vigo",
+            "is_national": false,
+            "location": "Celta Vigo"
+          },
+          {
+            "id": "86",
+            "name": "Real Madrid",
+            "short": "Real Madrid",
+            "is_national": false,
+            "location": "Real Madrid"
+          }
+        ]
+      },
+      "team_ids": [
+        "83",
+        "85",
+        "86",
+        "87",
+        "88",
+        "89",
+        "90",
+        "93",
+        "94",
+        "96",
+        "97",
+        "99",
+        "101",
+        "102",
+        "243",
+        "244",
+        "1068",
+        "1538",
+        "2922",
+        "3751"
+      ],
+      "events_total": 380,
+      "status": "source_present"
+    },
+    {
+      "phase": "A",
+      "slug": "serie-a",
+      "espn": "ita.1",
+      "expected_gender": "men",
+      "country": "ITA",
+      "league": {
+        "id": "730",
+        "name": "Italian Serie A",
+        "abbreviation": "Serie A",
+        "gender": "MALE",
+        "is_tournament": false,
+        "slug_echo": "ita.1"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026-27 Italian Serie A",
+        "start": "2026-06-05T04:00Z",
+        "end": "2027-07-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "2026-27 Italian Serie A",
+          "abbreviation": "2026-27 Italian Serie A",
+          "start": "2026-06-05T04:00Z",
+          "end": "2027-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": true,
+          "events": 380
+        }
+      ],
+      "teams": {
+        "count": 20,
+        "sample": [
+          {
+            "id": "103",
+            "name": "AC Milan",
+            "short": "Milan",
+            "is_national": false,
+            "location": "AC Milan"
+          },
+          {
+            "id": "104",
+            "name": "AS Roma",
+            "short": "AS Roma",
+            "is_national": false,
+            "location": "AS Roma"
+          },
+          {
+            "id": "105",
+            "name": "Atalanta",
+            "short": "Atalanta",
+            "is_national": false,
+            "location": "Atalanta"
+          }
+        ]
+      },
+      "team_ids": [
+        "103",
+        "104",
+        "105",
+        "107",
+        "109",
+        "110",
+        "111",
+        "112",
+        "113",
+        "114",
+        "115",
+        "118",
+        "239",
+        "2572",
+        "2925",
+        "3263",
+        "3997",
+        "4007",
+        "4057",
+        "17530"
+      ],
+      "events_total": 380,
+      "status": "source_present"
+    },
+    {
+      "phase": "A",
+      "slug": "ligue-1",
+      "espn": "fra.1",
+      "expected_gender": "men",
+      "country": "FRA",
+      "league": {
+        "id": "710",
+        "name": "French Ligue 1",
+        "abbreviation": "Ligue 1",
+        "gender": "MALE",
+        "is_tournament": false,
+        "slug_echo": "fra.1"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026-27 French Ligue 1",
+        "start": "2026-06-01T04:00Z",
+        "end": "2027-06-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "2026-27 Ligue 1",
+          "abbreviation": "2026-27 Ligue 1",
+          "start": "2026-07-01T04:00Z",
+          "end": "2027-06-01T03:59Z",
+          "has_groups": false,
+          "has_standings": true,
+          "events": 306
+        }
+      ],
+      "teams": {
+        "count": 18,
+        "sample": [
+          {
+            "id": "160",
+            "name": "Paris Saint-Germain",
+            "short": "PSG",
+            "is_national": false,
+            "location": "Paris Saint-Germain"
+          },
+          {
+            "id": "166",
+            "name": "Lille",
+            "short": "Lille",
+            "is_national": false,
+            "location": "Lille"
+          },
+          {
+            "id": "167",
+            "name": "Lyon",
+            "short": "Lyon",
+            "is_national": false,
+            "location": "Lyon"
+          }
+        ]
+      },
+      "team_ids": [
+        "160",
+        "166",
+        "167",
+        "169",
+        "170",
+        "172",
+        "174",
+        "175",
+        "176",
+        "179",
+        "180",
+        "273",
+        "2502",
+        "2697",
+        "3236",
+        "6851",
+        "6997",
+        "7868"
+      ],
+      "events_total": 306,
+      "status": "source_present"
+    },
+    {
+      "phase": "A",
+      "slug": "uefa-europa-league",
+      "espn": "uefa.europa",
+      "expected_gender": "men",
+      "country": null,
+      "league": {
+        "id": "776",
+        "name": "UEFA Europa League",
+        "abbreviation": "UEFA Europa League",
+        "gender": "MALE",
+        "is_tournament": true,
+        "slug_echo": "uefa.europa"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026-27 UEFA Europa League",
+        "start": "2026-07-01T04:00Z",
+        "end": "2027-07-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "League Phase",
+          "abbreviation": "League Phase",
+          "start": "2026-08-29T04:00Z",
+          "end": "2027-01-30T04:59Z",
+          "has_groups": false,
+          "has_standings": true,
+          "events": 144
+        },
+        {
+          "id": "2",
+          "name": "Knockout Round Playoffs",
+          "abbreviation": "Knockout Round Playoffs",
+          "start": "2027-01-30T05:00Z",
+          "end": "2027-02-27T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "3",
+          "name": "Round of 16",
+          "abbreviation": "Round of 16",
+          "start": "2027-02-27T05:00Z",
+          "end": "2027-03-20T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "4",
+          "name": "Quarterfinals",
+          "abbreviation": "Quarterfinals",
+          "start": "2027-03-20T04:00Z",
+          "end": "2027-04-17T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "5",
+          "name": "Semifinals",
+          "abbreviation": "Semifinals",
+          "start": "2027-04-17T04:00Z",
+          "end": "2027-05-08T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "6",
+          "name": "Final",
+          "abbreviation": "Final",
+          "start": "2027-05-09T04:00Z",
+          "end": "2027-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        }
+      ],
+      "teams": {
+        "count": 36,
+        "sample": [
+          {
+            "id": "85",
+            "name": "Celta Vigo",
+            "short": "Celta Vigo",
+            "is_national": false,
+            "location": "Celta Vigo"
+          },
+          {
+            "id": "89",
+            "name": "Real Sociedad",
+            "short": "Real Sociedad",
+            "is_national": false,
+            "location": "Real Sociedad"
+          },
+          {
+            "id": "103",
+            "name": "AC Milan",
+            "short": "Milan",
+            "is_national": false,
+            "location": "AC Milan"
+          }
+        ]
+      },
+      "team_ids": [
+        "85",
+        "89",
+        "103",
+        "111",
+        "131",
+        "140",
+        "147",
+        "167",
+        "169",
+        "176",
+        "256",
+        "349",
+        "366",
+        "384",
+        "433",
+        "435",
+        "441",
+        "490",
+        "597",
+        "617",
+        "622",
+        "987",
+        "1010",
+        "1895",
+        "1929",
+        "2790",
+        "2990",
+        "3362",
+        "3746",
+        "5807",
+        "7911",
+        "11505",
+        "11706",
+        "13083",
+        "20024",
+        "21615"
+      ],
+      "events_total": 144,
+      "status": "source_present"
+    },
+    {
+      "phase": "B",
+      "slug": "nwsl",
+      "espn": "usa.nwsl",
+      "expected_gender": "women",
+      "country": "USA",
+      "league": {
+        "id": "8301",
+        "name": "NWSL",
+        "abbreviation": "NWSL",
+        "gender": "FEMALE",
+        "is_tournament": false,
+        "slug_echo": "usa.nwsl"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026 NWSL",
+        "start": "2026-01-01T05:00Z",
+        "end": "2026-12-31T04:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "Regular Season",
+          "abbreviation": "2026 NWSL",
+          "start": "2026-01-01T05:00Z",
+          "end": "2026-10-26T03:59Z",
+          "has_groups": false,
+          "has_standings": true,
+          "events": 240
+        },
+        {
+          "id": "2",
+          "name": "Playoffs - Quarterfinals",
+          "abbreviation": "2026 NWSL Playoffs",
+          "start": "2026-11-04T05:00Z",
+          "end": "2026-11-11T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "3",
+          "name": "Playoffs - Semifinals",
+          "abbreviation": "Semifinals",
+          "start": "2026-11-11T05:00Z",
+          "end": "2026-11-18T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "4",
+          "name": "Playoffs - Championship",
+          "abbreviation": "Championship",
+          "start": "2026-11-18T05:00Z",
+          "end": "2027-01-01T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        }
+      ],
+      "teams": {
+        "count": 16,
+        "sample": [
+          {
+            "id": "15360",
+            "name": "Chicago Stars FC",
+            "short": "Chicago",
+            "is_national": false,
+            "location": "Chicago Stars FC"
+          },
+          {
+            "id": "15362",
+            "name": "Portland Thorns FC",
+            "short": "Portland",
+            "is_national": false,
+            "location": "Portland Thorns FC"
+          },
+          {
+            "id": "15363",
+            "name": "Seattle Reign FC",
+            "short": "Seattle",
+            "is_national": false,
+            "location": "Seattle Reign FC"
+          }
+        ]
+      },
+      "team_ids": [
+        "15360",
+        "15362",
+        "15363",
+        "15364",
+        "15365",
+        "15366",
+        "17346",
+        "18206",
+        "19141",
+        "20905",
+        "20907",
+        "21422",
+        "21423",
+        "22187",
+        "131562",
+        "131563"
+      ],
+      "events_total": 240,
+      "status": "source_present"
+    },
+    {
+      "phase": "B",
+      "slug": "womens-super-league",
+      "espn": "eng.w.1",
+      "expected_gender": "women",
+      "country": "ENG",
+      "league": {
+        "id": "8097",
+        "name": "English Women's Super League",
+        "abbreviation": "Women's Super League",
+        "gender": "FEMALE",
+        "is_tournament": false,
+        "slug_echo": "eng.w.1"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026-27 English Women's Super League",
+        "start": "2026-07-01T04:00Z",
+        "end": "2027-07-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "2026-27 English Women's Super League",
+          "abbreviation": "2026-27 WSL",
+          "start": "2026-07-01T04:00Z",
+          "end": "2027-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": true,
+          "events": 182
+        }
+      ],
+      "teams": {
+        "count": 14,
+        "sample": [
+          {
+            "id": "19257",
+            "name": "Manchester City",
+            "short": "Man City",
+            "is_national": false,
+            "location": "Manchester City"
+          },
+          {
+            "id": "19968",
+            "name": "Birmingham City",
+            "short": "Birmingham",
+            "is_national": false,
+            "location": "Birmingham City"
+          },
+          {
+            "id": "19970",
+            "name": "Chelsea",
+            "short": "Chelsea ",
+            "is_national": false,
+            "location": "Chelsea"
+          }
+        ]
+      },
+      "team_ids": [
+        "19257",
+        "19968",
+        "19970",
+        "19971",
+        "19972",
+        "19973",
+        "19975",
+        "19976",
+        "20061",
+        "20062",
+        "20707",
+        "21035",
+        "21037",
+        "21053"
+      ],
+      "events_total": 182,
+      "status": "source_present"
+    },
+    {
+      "phase": "B",
+      "slug": "uefa-womens-champions-league",
+      "espn": "uefa.wchampions",
+      "expected_gender": "women",
+      "country": null,
+      "league": {
+        "id": "19483",
+        "name": "UEFA Women's Champions League",
+        "abbreviation": "UEFA Women's Champions League",
+        "gender": "FEMALE",
+        "is_tournament": true,
+        "slug_echo": "uefa.wchampions"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026-27 UEFA Women's Champions League",
+        "start": "2026-07-01T04:00Z",
+        "end": "2027-07-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "League Phase",
+          "abbreviation": "League Phase",
+          "start": "2026-09-21T04:00Z",
+          "end": "2026-12-18T04:59Z",
+          "has_groups": false,
+          "has_standings": true,
+          "events": 54
+        },
+        {
+          "id": "2",
+          "name": "Knockout Round Playoffs",
+          "abbreviation": "Knockout Round Playoffs",
+          "start": "2026-12-18T05:00Z",
+          "end": "2027-02-13T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "3",
+          "name": "Quarterfinals",
+          "abbreviation": "Quarterfinals",
+          "start": "2027-02-13T05:00Z",
+          "end": "2027-04-03T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "4",
+          "name": "Semifinals",
+          "abbreviation": "Semifinals",
+          "start": "2027-04-03T04:00Z",
+          "end": "2027-05-11T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "5",
+          "name": "Final",
+          "abbreviation": "Final",
+          "start": "2027-05-11T04:00Z",
+          "end": "2027-06-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        }
+      ],
+      "teams": {
+        "count": 18,
+        "sample": [
+          {
+            "id": "19256",
+            "name": "OL Lyonnes",
+            "short": "Lyonnes",
+            "is_national": false,
+            "location": "OL Lyonnes"
+          },
+          {
+            "id": "19257",
+            "name": "Manchester City",
+            "short": "Man City",
+            "is_national": false,
+            "location": "Manchester City"
+          },
+          {
+            "id": "19258",
+            "name": "Paris Saint-Germain",
+            "short": "PSG",
+            "is_national": false,
+            "location": "Paris Saint-Germain"
+          }
+        ]
+      },
+      "team_ids": [
+        "19256",
+        "19257",
+        "19258",
+        "19970",
+        "19973",
+        "20091",
+        "20092",
+        "20103",
+        "20830",
+        "20835",
+        "21124",
+        "21127",
+        "21128",
+        "21640",
+        "21685",
+        "131423",
+        "131635",
+        "131643"
+      ],
+      "events_total": 54,
+      "status": "source_present"
+    },
+    {
+      "phase": "B",
+      "slug": "liga-f",
+      "espn": "esp.w.1",
+      "expected_gender": "women",
+      "country": "ESP",
+      "league": {
+        "id": "20956",
+        "name": "Spanish Liga F",
+        "abbreviation": "Liga F",
+        "gender": "FEMALE",
+        "is_tournament": false,
+        "slug_echo": "esp.w.1"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026-27 Spanish Liga F",
+        "start": "2026-07-01T04:00Z",
+        "end": "2027-07-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "2026-27 Spanish Liga F",
+          "abbreviation": "2026-27 Liga F",
+          "start": "2026-07-01T04:00Z",
+          "end": "2027-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": true,
+          "events": 240
+        }
+      ],
+      "teams": {
+        "count": 16,
+        "sample": [
+          {
+            "id": "20091",
+            "name": "Barcelona",
+            "short": "Barcelona",
+            "is_national": false,
+            "location": "Barcelona"
+          },
+          {
+            "id": "20093",
+            "name": "Atlético Madrid",
+            "short": "Atlético Madrid",
+            "is_national": false,
+            "location": "Atlético Madrid"
+          },
+          {
+            "id": "21128",
+            "name": "Real Madrid",
+            "short": "Real Madrid",
+            "is_national": false,
+            "location": "Real Madrid"
+          }
+        ]
+      },
+      "team_ids": [
+        "20091",
+        "20093",
+        "21128",
+        "21140",
+        "21145",
+        "21149",
+        "21154",
+        "21175",
+        "21372",
+        "21374",
+        "21376",
+        "21378",
+        "21424",
+        "21425",
+        "21428",
+        "131393"
+      ],
+      "events_total": 240,
+      "status": "source_present"
+    },
+    {
+      "phase": "B",
+      "slug": "frauen-bundesliga",
+      "espn": "ger.w.1",
+      "expected_gender": "women",
+      "country": "DEU",
+      "status": "league_unavailable",
+      "http": 400
+    },
+    {
+      "phase": "B",
+      "slug": "premiere-ligue",
+      "espn": "fra.w.1",
+      "expected_gender": "women",
+      "country": "FRA",
+      "league": {
+        "id": "20955",
+        "name": "French Première Ligue",
+        "abbreviation": "Première Ligue",
+        "gender": "FEMALE",
+        "is_tournament": false,
+        "slug_echo": "fra.w.1"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026-27 French Première Ligue",
+        "start": "2026-07-01T04:00Z",
+        "end": "2027-07-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "Regular Season",
+          "abbreviation": "Regular Season",
+          "start": "2026-07-01T04:00Z",
+          "end": "2027-05-06T03:59Z",
+          "has_groups": false,
+          "has_standings": true,
+          "events": 132
+        },
+        {
+          "id": "2",
+          "name": "Playoffs - Semifinals",
+          "abbreviation": "Semifinals",
+          "start": "2027-05-06T04:00Z",
+          "end": "2027-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "3",
+          "name": "Playoffs - 3rd-Place",
+          "abbreviation": "3rd-Place",
+          "start": "2027-05-08T04:00Z",
+          "end": "2027-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "4",
+          "name": "Playoffs - Final",
+          "abbreviation": "Final",
+          "start": "2027-05-07T04:00Z",
+          "end": "2027-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        }
+      ],
+      "teams": {
+        "count": 12,
+        "sample": [
+          {
+            "id": "19256",
+            "name": "OL Lyonnes",
+            "short": "Lyonnes",
+            "is_national": false,
+            "location": "OL Lyonnes"
+          },
+          {
+            "id": "19258",
+            "name": "Paris Saint-Germain",
+            "short": "PSG",
+            "is_national": false,
+            "location": "Paris Saint-Germain"
+          },
+          {
+            "id": "21635",
+            "name": "Le Havre AC",
+            "short": "Le Havre AC",
+            "is_national": false,
+            "location": "Le Havre AC"
+          }
+        ]
+      },
+      "team_ids": [
+        "19256",
+        "19258",
+        "21635",
+        "21637",
+        "21638",
+        "21640",
+        "22328",
+        "22329",
+        "131297",
+        "131298",
+        "131875",
+        "131876"
+      ],
+      "events_total": 132,
+      "status": "source_present"
+    },
+    {
+      "phase": "B",
+      "slug": "serie-a-women",
+      "espn": "ita.w.1",
+      "expected_gender": "women",
+      "country": "ITA",
+      "status": "league_unavailable",
+      "http": 400
+    },
+    {
+      "phase": "B",
+      "slug": "fifa-womens-world-cup",
+      "espn": "fifa.wwc",
+      "expected_gender": "women",
+      "country": null,
+      "league": {
+        "id": "795",
+        "name": "FIFA Women's World Cup",
+        "abbreviation": "FIFA Women's World Cup",
+        "gender": "FEMALE",
+        "is_tournament": true,
+        "slug_echo": "fifa.wwc"
+      },
+      "season": {
+        "year": 2023,
+        "label": "2023 FIFA Women's World Cup",
+        "start": "2023-07-01T04:00Z",
+        "end": "2023-09-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "Group Stage",
+          "abbreviation": "Group Stage",
+          "start": "2023-07-01T04:00Z",
+          "end": "2023-08-04T03:59Z",
+          "has_groups": true,
+          "has_standings": true,
+          "events": 48
+        },
+        {
+          "id": "2",
+          "name": "Round of 16",
+          "abbreviation": "Round of 16",
+          "start": "2023-08-04T04:00Z",
+          "end": "2023-08-10T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 8
+        },
+        {
+          "id": "3",
+          "name": "Quarterfinals",
+          "abbreviation": "Quarterfinals",
+          "start": "2023-08-10T04:00Z",
+          "end": "2023-08-14T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 4
+        },
+        {
+          "id": "4",
+          "name": "Semifinals",
+          "abbreviation": "Semifinals",
+          "start": "2023-08-14T04:00Z",
+          "end": "2023-08-18T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 2
+        },
+        {
+          "id": "5",
+          "name": "3rd-Place",
+          "abbreviation": "3rd-Place",
+          "start": "2023-08-18T04:00Z",
+          "end": "2023-08-20T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 1
+        },
+        {
+          "id": "6",
+          "name": "Final",
+          "abbreviation": "Final",
+          "start": "2023-08-20T04:00Z",
+          "end": "2023-09-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 1
+        }
+      ],
+      "teams": {
+        "count": 32,
+        "sample": [
+          {
+            "id": "2750",
+            "name": "Argentina",
+            "short": "Argentina",
+            "is_national": true,
+            "location": "Argentina"
+          },
+          {
+            "id": "2751",
+            "name": "Australia",
+            "short": "Australia",
+            "is_national": true,
+            "location": "Australia"
+          },
+          {
+            "id": "2752",
+            "name": "Brazil",
+            "short": "Brazil",
+            "is_national": true,
+            "location": "Brazil"
+          }
+        ]
+      },
+      "team_ids": [
+        "2750",
+        "2751",
+        "2752",
+        "2753",
+        "2754",
+        "2755",
+        "2756",
+        "2758",
+        "2761",
+        "2762",
+        "2764",
+        "2765",
+        "2792",
+        "2891",
+        "2893",
+        "2894",
+        "2895",
+        "2896",
+        "4153",
+        "4178",
+        "5159",
+        "7151",
+        "9531",
+        "11337",
+        "13313",
+        "17639",
+        "17640",
+        "17641",
+        "17815",
+        "18221",
+        "20795",
+        "21546"
+      ],
+      "events_total": 64,
+      "status": "source_present"
+    },
+    {
+      "phase": "C",
+      "slug": "efl-championship",
+      "espn": "eng.2",
+      "expected_gender": "men",
+      "country": "ENG",
+      "league": {
+        "id": "3914",
+        "name": "English League Championship",
+        "abbreviation": "EFL Championship",
+        "gender": "MALE",
+        "is_tournament": false,
+        "slug_echo": "eng.2"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026-27 English League Championship",
+        "start": "2026-06-01T04:00Z",
+        "end": "2027-06-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "Regular Season",
+          "abbreviation": "2026-27 English League Championship",
+          "start": "2026-06-01T04:00Z",
+          "end": "2027-05-03T03:59Z",
+          "has_groups": false,
+          "has_standings": true,
+          "events": 552
+        },
+        {
+          "id": "2",
+          "name": "Promotion Eliminators",
+          "abbreviation": "Promotion Eliminators",
+          "start": "2027-05-03T04:00Z",
+          "end": "2027-06-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "3",
+          "name": "Promotion Semifinals",
+          "abbreviation": "Promotion Semifinals",
+          "start": "2027-05-04T04:00Z",
+          "end": "2027-06-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "4",
+          "name": "Promotion Final",
+          "abbreviation": "Promotion Final",
+          "start": "2027-05-05T04:00Z",
+          "end": "2027-06-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        }
+      ],
+      "teams": {
+        "count": 24,
+        "sample": [
+          {
+            "id": "314",
+            "name": "Lincoln City",
+            "short": "Lincoln City",
+            "is_national": false,
+            "location": "Lincoln City"
+          },
+          {
+            "id": "318",
+            "name": "Swansea City",
+            "short": "Swansea",
+            "is_national": false,
+            "location": "Swansea City"
+          },
+          {
+            "id": "333",
+            "name": "Bristol City",
+            "short": "Bristol City",
+            "is_national": false,
+            "location": "Bristol City"
+          }
+        ]
+      },
+      "team_ids": [
+        "314",
+        "318",
+        "333",
+        "334",
+        "336",
+        "347",
+        "352",
+        "358",
+        "365",
+        "369",
+        "371",
+        "372",
+        "374",
+        "376",
+        "379",
+        "380",
+        "381",
+        "383",
+        "385",
+        "391",
+        "392",
+        "394",
+        "395",
+        "398"
+      ],
+      "events_total": 552,
+      "status": "source_present"
+    },
+    {
+      "phase": "C",
+      "slug": "liga-mx",
+      "espn": "mex.1",
+      "expected_gender": "men",
+      "country": "MEX",
+      "league": {
+        "id": "760",
+        "name": "Mexican Liga BBVA MX",
+        "abbreviation": "Liga MX",
+        "gender": "MALE",
+        "is_tournament": false,
+        "slug_echo": "mex.1"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026-27 Liga BBVA MX",
+        "start": "2026-06-01T04:00Z",
+        "end": "2027-06-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "Torneo Apertura",
+          "abbreviation": "2026 Liga MX Apertura",
+          "start": "2026-06-01T04:00Z",
+          "end": "2026-11-24T04:59Z",
+          "has_groups": false,
+          "has_standings": true,
+          "events": 153
+        },
+        {
+          "id": "2",
+          "name": "Apertura - 7th Place vs 8th Place",
+          "abbreviation": "2026 Liga MX Apertura Playoffs",
+          "start": "2026-11-11T05:00Z",
+          "end": "2026-11-21T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "3",
+          "name": "Apertura - 9th Place vs 10th Place",
+          "abbreviation": "Apertura - 9th Place vs 10th Place",
+          "start": "2026-11-11T05:00Z",
+          "end": "2026-11-21T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "4",
+          "name": "Apertura - 8th Seed Game",
+          "abbreviation": "Apertura - 8th Seed Game",
+          "start": "2026-11-21T05:00Z",
+          "end": "2026-11-25T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "5",
+          "name": "Apertura - Quarterfinals",
+          "abbreviation": "Apertura - Quarterfinals",
+          "start": "2026-11-25T05:00Z",
+          "end": "2026-12-01T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "6",
+          "name": "Apertura - Semifinals",
+          "abbreviation": "Apertura - Semifinals",
+          "start": "2026-12-01T05:00Z",
+          "end": "2026-12-09T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "7",
+          "name": "Apertura - Finals",
+          "abbreviation": "Apertura - Finals",
+          "start": "2026-12-09T05:00Z",
+          "end": "2027-01-01T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "8",
+          "name": "Torneo Clausura",
+          "abbreviation": "2026 Liga MX Clausura",
+          "start": "2027-01-01T05:00Z",
+          "end": "2027-04-28T03:59Z",
+          "has_groups": false,
+          "has_standings": true,
+          "events": 0
+        },
+        {
+          "id": "9",
+          "name": "Clausura 2026 - 7th Seed Game",
+          "abbreviation": "2026 Liga MX Clausura Playoffs",
+          "start": "2027-04-24T04:00Z",
+          "end": "2027-04-28T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "10",
+          "name": "Clausura - 9th Place vs 10th Place",
+          "abbreviation": "Clausura - 9th Place vs 10th Place",
+          "start": "2027-04-24T04:00Z",
+          "end": "2027-04-28T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        }
+      ],
+      "teams": {
+        "count": 18,
+        "sample": [
+          {
+            "id": "216",
+            "name": "Atlas",
+            "short": "Atlas",
+            "is_national": false,
+            "location": "Atlas"
+          },
+          {
+            "id": "218",
+            "name": "Cruz Azul",
+            "short": "Cruz Azul",
+            "is_national": false,
+            "location": "Cruz Azul"
+          },
+          {
+            "id": "219",
+            "name": "Guadalajara",
+            "short": "Guadalajara",
+            "is_national": false,
+            "location": "Guadalajara"
+          }
+        ]
+      },
+      "team_ids": [
+        "216",
+        "218",
+        "219",
+        "220",
+        "222",
+        "223",
+        "225",
+        "226",
+        "227",
+        "228",
+        "229",
+        "231",
+        "232",
+        "233",
+        "234",
+        "10125",
+        "15720",
+        "17851"
+      ],
+      "events_total": 153,
+      "status": "source_present"
+    },
+    {
+      "phase": "C",
+      "slug": "eredivisie",
+      "espn": "ned.1",
+      "expected_gender": "men",
+      "country": "NLD",
+      "league": {
+        "id": "725",
+        "name": "Dutch Eredivisie",
+        "abbreviation": "Eredivisie",
+        "gender": "MALE",
+        "is_tournament": false,
+        "slug_echo": "ned.1"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026-27 Dutch Eredivisie",
+        "start": "2026-06-01T04:00Z",
+        "end": "2027-06-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "Regular Season",
+          "abbreviation": "2026-27 Dutch Eredivisie",
+          "start": "2026-08-01T04:00Z",
+          "end": "2027-05-25T03:59Z",
+          "has_groups": false,
+          "has_standings": true,
+          "events": 306
+        },
+        {
+          "id": "2",
+          "name": "Conference League Playoffs - Semifinals",
+          "abbreviation": "CL Playoffs - Semifinals",
+          "start": "2027-05-18T04:00Z",
+          "end": "2027-05-24T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "3",
+          "name": "Conference League Playoffs - Final",
+          "abbreviation": "CL Playoffs - Final",
+          "start": "2027-05-24T04:00Z",
+          "end": "2027-06-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        }
+      ],
+      "teams": {
+        "count": 18,
+        "sample": [
+          {
+            "id": "139",
+            "name": "Ajax Amsterdam",
+            "short": "Ajax",
+            "is_national": false,
+            "location": "Ajax Amsterdam"
+          },
+          {
+            "id": "140",
+            "name": "AZ Alkmaar",
+            "short": "AZ Alkmaar",
+            "is_national": false,
+            "location": "AZ Alkmaar"
+          },
+          {
+            "id": "142",
+            "name": "Feyenoord Rotterdam",
+            "short": "Feyenoord",
+            "is_national": false,
+            "location": "Feyenoord Rotterdam"
+          }
+        ]
+      },
+      "team_ids": [
+        "139",
+        "140",
+        "142",
+        "143",
+        "145",
+        "146",
+        "147",
+        "148",
+        "151",
+        "152",
+        "153",
+        "156",
+        "2565",
+        "2566",
+        "2726",
+        "3706",
+        "3735",
+        "3736"
+      ],
+      "events_total": 306,
+      "status": "source_present"
+    },
+    {
+      "phase": "C",
+      "slug": "primeira-liga",
+      "espn": "por.1",
+      "expected_gender": "men",
+      "country": "PRT",
+      "league": {
+        "id": "715",
+        "name": "Portuguese Primeira Liga",
+        "abbreviation": "Portuguese Liga",
+        "gender": "MALE",
+        "is_tournament": false,
+        "slug_echo": "por.1"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026-27 Portuguese Primeira Liga",
+        "start": "2026-07-01T04:00Z",
+        "end": "2027-07-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "2026-27 Portuguese Primeira Liga",
+          "abbreviation": "2026-27",
+          "start": "2026-07-01T04:00Z",
+          "end": "2027-06-01T03:59Z",
+          "has_groups": false,
+          "has_standings": true,
+          "events": 306
+        }
+      ],
+      "teams": {
+        "count": 18,
+        "sample": [
+          {
+            "id": "437",
+            "name": "FC Porto",
+            "short": "FC Porto",
+            "is_national": false,
+            "location": "FC Porto"
+          },
+          {
+            "id": "552",
+            "name": "Maritimo",
+            "short": "Maritimo",
+            "is_national": false,
+            "location": "Maritimo"
+          },
+          {
+            "id": "1929",
+            "name": "Benfica",
+            "short": "Benfica",
+            "is_national": false,
+            "location": "Benfica"
+          }
+        ]
+      },
+      "team_ids": [
+        "437",
+        "552",
+        "1929",
+        "2250",
+        "2994",
+        "3472",
+        "3696",
+        "3699",
+        "3822",
+        "5309",
+        "12215",
+        "12216",
+        "12698",
+        "15784",
+        "21581",
+        "21607",
+        "21610",
+        "21613"
+      ],
+      "events_total": 306,
+      "status": "source_present"
+    },
+    {
+      "phase": "C",
+      "slug": "copa-libertadores",
+      "espn": "conmebol.libertadores",
+      "expected_gender": "men",
+      "country": null,
+      "league": {
+        "id": "783",
+        "name": "CONMEBOL Libertadores",
+        "abbreviation": "CONMEBOL Libertadores",
+        "gender": "MALE",
+        "is_tournament": true,
+        "slug_echo": "conmebol.libertadores"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026 CONMEBOL Libertadores",
+        "start": "2026-01-01T05:00Z",
+        "end": "2027-01-01T04:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "First Stage",
+          "abbreviation": "First Stage",
+          "start": "2026-01-01T05:00Z",
+          "end": "2026-02-14T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 6
+        },
+        {
+          "id": "2",
+          "name": "Second Stage",
+          "abbreviation": "Second Stage",
+          "start": "2026-02-14T05:00Z",
+          "end": "2026-02-28T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 16
+        },
+        {
+          "id": "3",
+          "name": "Third Stage",
+          "abbreviation": "Third Stage",
+          "start": "2026-02-28T05:00Z",
+          "end": "2026-03-14T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 8
+        },
+        {
+          "id": "4",
+          "name": "Group Stage",
+          "abbreviation": "Group Stage",
+          "start": "2026-03-14T04:00Z",
+          "end": "2026-05-30T03:59Z",
+          "has_groups": true,
+          "has_standings": true,
+          "events": 96
+        },
+        {
+          "id": "5",
+          "name": "Round of 16",
+          "abbreviation": "Round of 16",
+          "start": "2026-05-30T04:00Z",
+          "end": "2026-08-22T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 16
+        },
+        {
+          "id": "6",
+          "name": "Quarterfinals",
+          "abbreviation": "Quarterfinals",
+          "start": "2026-08-22T04:00Z",
+          "end": "2026-09-19T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 8
+        },
+        {
+          "id": "7",
+          "name": "Semifinals",
+          "abbreviation": "Semifinals",
+          "start": "2026-09-19T04:00Z",
+          "end": "2026-10-24T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 4
+        },
+        {
+          "id": "8",
+          "name": "Final",
+          "abbreviation": "Final",
+          "start": "2026-10-24T04:00Z",
+          "end": "2027-01-01T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 1
+        }
+      ],
+      "teams": {
+        "count": 46,
+        "sample": [
+          {
+            "id": "3",
+            "name": "Argentinos Juniors",
+            "short": "Argentinos ",
+            "is_national": false,
+            "location": "Argentinos Juniors"
+          },
+          {
+            "id": "5",
+            "name": "Boca Juniors",
+            "short": "Boca ",
+            "is_national": false,
+            "location": "Boca Juniors"
+          },
+          {
+            "id": "8",
+            "name": "Estudiantes de La Plata",
+            "short": "Estudiantes",
+            "is_national": false,
+            "location": "Estudiantes de La Plata"
+          }
+        ]
+      },
+      "team_ids": [
+        "3",
+        "5",
+        "8",
+        "12",
+        "17",
+        "819",
+        "874",
+        "885",
+        "2022",
+        "2029",
+        "2670",
+        "2671",
+        "2673",
+        "2681",
+        "2683",
+        "2684",
+        "2685",
+        "2686",
+        "2690",
+        "3445",
+        "4134",
+        "4815",
+        "4816",
+        "4818",
+        "5488",
+        "5489",
+        "5492",
+        "6037",
+        "6072",
+        "6086",
+        "6097",
+        "7385",
+        "7764",
+        "8186",
+        "8416",
+        "9169",
+        "9744",
+        "9967",
+        "10094",
+        "10311",
+        "11995",
+        "17086",
+        "17090",
+        "19425",
+        "131554",
+        "131556"
+      ],
+      "events_total": 155,
+      "status": "source_present"
+    },
+    {
+      "phase": "C",
+      "slug": "scottish-premiership",
+      "espn": "sco.1",
+      "expected_gender": "men",
+      "country": "SCO",
+      "league": {
+        "id": "735",
+        "name": "Scottish Premiership",
+        "abbreviation": "SPFL Premiership",
+        "gender": "MALE",
+        "is_tournament": false,
+        "slug_echo": "sco.1"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026-27 Scottish Premiership",
+        "start": "2026-06-01T04:00Z",
+        "end": "2027-06-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "2026-27 Scottish Premiership",
+          "abbreviation": "2026-27 Scottish Premiership",
+          "start": "2026-06-01T04:00Z",
+          "end": "2027-06-01T03:59Z",
+          "has_groups": false,
+          "has_standings": true,
+          "events": 198
+        }
+      ],
+      "teams": {
+        "count": 12,
+        "sample": [
+          {
+            "id": "250",
+            "name": "St Mirren",
+            "short": "St Mirren",
+            "is_national": false,
+            "location": "St Mirren"
+          },
+          {
+            "id": "254",
+            "name": "Falkirk",
+            "short": "Falkirk",
+            "is_national": false,
+            "location": "Falkirk"
+          },
+          {
+            "id": "256",
+            "name": "Celtic",
+            "short": "Celtic",
+            "is_national": false,
+            "location": "Celtic"
+          }
+        ]
+      },
+      "team_ids": [
+        "250",
+        "254",
+        "256",
+        "257",
+        "258",
+        "260",
+        "261",
+        "262",
+        "263",
+        "264",
+        "266",
+        "267"
+      ],
+      "events_total": 198,
+      "status": "source_present"
+    },
+    {
+      "phase": "C",
+      "slug": "belgian-pro-league",
+      "espn": "bel.1",
+      "expected_gender": "men",
+      "country": "BEL",
+      "league": {
+        "id": "3901",
+        "name": "Belgian Pro League",
+        "abbreviation": "Belgian Pro League",
+        "gender": "MALE",
+        "is_tournament": false,
+        "slug_echo": "bel.1"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026-27 Belgian Pro League",
+        "start": "2026-07-01T04:00Z",
+        "end": "2027-07-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "Regular Season",
+          "abbreviation": "2026-27 Belgian Pro League",
+          "start": "2026-06-01T04:00Z",
+          "end": "2027-06-01T03:59Z",
+          "has_groups": false,
+          "has_standings": true,
+          "events": 306
+        },
+        {
+          "id": "2",
+          "name": "Playoff Round",
+          "abbreviation": "Playoff Round",
+          "start": "2027-03-23T04:00Z",
+          "end": "2027-06-01T03:59Z",
+          "has_groups": true,
+          "has_standings": true,
+          "events": 0
+        },
+        {
+          "id": "3",
+          "name": "European Competition Playoffs",
+          "abbreviation": "European Competition Playoffs",
+          "start": "2027-03-23T04:00Z",
+          "end": "2027-06-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        }
+      ],
+      "teams": {
+        "count": 18,
+        "sample": [
+          {
+            "id": "441",
+            "name": "Anderlecht",
+            "short": "Anderlecht",
+            "is_national": false,
+            "location": "Anderlecht"
+          },
+          {
+            "id": "559",
+            "name": "Standard Liege",
+            "short": "Standard Liege",
+            "is_national": false,
+            "location": "Standard Liege"
+          },
+          {
+            "id": "570",
+            "name": "Club Brugge",
+            "short": "Club Brugge",
+            "is_national": false,
+            "location": "Club Brugge"
+          }
+        ]
+      },
+      "team_ids": [
+        "441",
+        "559",
+        "570",
+        "606",
+        "936",
+        "938",
+        "3610",
+        "3611",
+        "3616",
+        "4691",
+        "5579",
+        "5786",
+        "5807",
+        "7879",
+        "13450",
+        "17544",
+        "22269",
+        "131235"
+      ],
+      "events_total": 306,
+      "status": "source_present"
+    },
+    {
+      "phase": "C",
+      "slug": "argentine-primera",
+      "espn": "arg.1",
+      "expected_gender": "men",
+      "country": "ARG",
+      "league": {
+        "id": "745",
+        "name": "Argentine Liga Profesional de Fútbol",
+        "abbreviation": "Argentine LPF",
+        "gender": "MALE",
+        "is_tournament": false,
+        "slug_echo": "arg.1"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026 Argentine Liga Profesional de Fútbol",
+        "start": "2026-01-01T05:00Z",
+        "end": "2026-12-31T05:00Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "Torneo Apertura",
+          "abbreviation": "2026 Argentine LPF Apertura",
+          "start": "2026-01-01T05:00Z",
+          "end": "2026-05-07T03:59Z",
+          "has_groups": true,
+          "has_standings": true,
+          "events": 240
+        },
+        {
+          "id": "2",
+          "name": "Apertura - Round of 16",
+          "abbreviation": "2026 Argentine LPF Apertura Playoffs",
+          "start": "2026-05-07T04:00Z",
+          "end": "2026-05-12T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 8
+        },
+        {
+          "id": "3",
+          "name": "Apertura - Quarterfinals",
+          "abbreviation": "Apertura - Quarterfinals",
+          "start": "2026-05-12T04:00Z",
+          "end": "2026-05-25T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 4
+        },
+        {
+          "id": "4",
+          "name": "Apertura - Semifinals",
+          "abbreviation": "Apertura - Semifinals",
+          "start": "2026-05-12T04:00Z",
+          "end": "2026-05-25T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 2
+        },
+        {
+          "id": "5",
+          "name": "Apertura - Final",
+          "abbreviation": "Apertura - Final",
+          "start": "2026-05-12T04:00Z",
+          "end": "2026-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 1
+        },
+        {
+          "id": "6",
+          "name": "Torneo Clausura",
+          "abbreviation": "2026 Argentine LPF Clausura",
+          "start": "2026-07-01T04:00Z",
+          "end": "2026-11-09T04:59Z",
+          "has_groups": true,
+          "has_standings": true,
+          "events": 240
+        },
+        {
+          "id": "7",
+          "name": "Clausura - Round of 16",
+          "abbreviation": "Clausura - Round of 16",
+          "start": "2026-11-22T05:00Z",
+          "end": "2026-11-27T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "8",
+          "name": "Clausura - Quarterfinals",
+          "abbreviation": "Clausura - Quarterfinals",
+          "start": "2026-11-27T05:00Z",
+          "end": "2026-12-02T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "9",
+          "name": "Clausura - Semifinals",
+          "abbreviation": "Clausura - Semifinals",
+          "start": "2026-12-02T05:00Z",
+          "end": "2026-12-12T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "10",
+          "name": "Clausura - Final",
+          "abbreviation": "Clausura - Final",
+          "start": "2026-12-12T05:00Z",
+          "end": "2027-01-01T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        }
+      ],
+      "teams": {
+        "count": 30,
+        "sample": [
+          {
+            "id": "3",
+            "name": "Argentinos Juniors",
+            "short": "Argentinos ",
+            "is_national": false,
+            "location": "Argentinos Juniors"
+          },
+          {
+            "id": "4",
+            "name": "Belgrano (Córdoba)",
+            "short": "Belgrano ",
+            "is_national": false,
+            "location": "Belgrano (Córdoba)"
+          },
+          {
+            "id": "5",
+            "name": "Boca Juniors",
+            "short": "Boca ",
+            "is_national": false,
+            "location": "Boca Juniors"
+          }
+        ]
+      },
+      "team_ids": [
+        "3",
+        "4",
+        "5",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "235",
+        "2975",
+        "7764",
+        "7767",
+        "8950",
+        "9739",
+        "9744",
+        "9785",
+        "10060",
+        "10158",
+        "11972",
+        "11989",
+        "17702",
+        "19685"
+      ],
+      "events_total": 495,
+      "status": "source_present"
+    },
+    {
+      "phase": "C",
+      "slug": "brasileirao",
+      "espn": "bra.1",
+      "expected_gender": "men",
+      "country": "BRA",
+      "league": {
+        "id": "630",
+        "name": "Brazilian Serie A",
+        "abbreviation": "Brazil Serie A",
+        "gender": "MALE",
+        "is_tournament": false,
+        "slug_echo": "bra.1"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026 Futebol Brasileiro",
+        "start": "2026-01-01T05:05Z",
+        "end": "2026-12-31T04:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "2026 Brasileiro Serie A ",
+          "abbreviation": "2026 Serie A",
+          "start": "2026-01-01T05:00Z",
+          "end": "2026-12-31T04:59Z",
+          "has_groups": false,
+          "has_standings": true,
+          "events": 383
+        }
+      ],
+      "teams": {
+        "count": 20,
+        "sample": [
+          {
+            "id": "819",
+            "name": "Flamengo",
+            "short": "Flamengo",
+            "is_national": false,
+            "location": "Flamengo"
+          },
+          {
+            "id": "874",
+            "name": "Corinthians",
+            "short": "Corinthians",
+            "is_national": false,
+            "location": "Corinthians"
+          },
+          {
+            "id": "1936",
+            "name": "Internacional",
+            "short": "Internacional",
+            "is_national": false,
+            "location": "Internacional"
+          }
+        ]
+      },
+      "team_ids": [
+        "819",
+        "874",
+        "1936",
+        "2022",
+        "2026",
+        "2029",
+        "2674",
+        "3445",
+        "3454",
+        "3456",
+        "3457",
+        "3458",
+        "4936",
+        "6079",
+        "6086",
+        "6273",
+        "7632",
+        "9169",
+        "9318",
+        "9967"
+      ],
+      "events_total": 383,
+      "status": "source_present"
+    },
+    {
+      "phase": "C",
+      "slug": "saudi-pro-league",
+      "espn": "ksa.1",
+      "expected_gender": "men",
+      "country": "SAU",
+      "league": {
+        "id": "21231",
+        "name": "Saudi Pro League",
+        "abbreviation": "Saudi Pro League",
+        "gender": "MALE",
+        "is_tournament": false,
+        "slug_echo": "ksa.1"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026-27 Saudi Pro League",
+        "start": "2026-07-01T04:00Z",
+        "end": "2027-07-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "2026-27 Saudi Pro League",
+          "abbreviation": "2026-27 Saudi Pro League",
+          "start": "2026-07-01T04:00Z",
+          "end": "2027-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": true,
+          "events": 306
+        }
+      ],
+      "teams": {
+        "count": 18,
+        "sample": [
+          {
+            "id": "793",
+            "name": "Al Shabab",
+            "short": "Al Shabab",
+            "is_national": false,
+            "location": "Al Shabab"
+          },
+          {
+            "id": "817",
+            "name": "Al Nassr",
+            "short": "Al Nassr",
+            "is_national": false,
+            "location": "Al Nassr"
+          },
+          {
+            "id": "929",
+            "name": "Al Hilal",
+            "short": "Al Hilal",
+            "is_national": false,
+            "location": "Al Hilal"
+          }
+        ]
+      },
+      "team_ids": [
+        "793",
+        "817",
+        "929",
+        "2276",
+        "8346",
+        "8363",
+        "13033",
+        "18459",
+        "21446",
+        "21827",
+        "21829",
+        "21833",
+        "21964",
+        "21965",
+        "22022",
+        "22028",
+        "130899",
+        "131746"
+      ],
+      "events_total": 306,
+      "status": "source_present"
+    },
+    {
+      "phase": "C",
+      "slug": "j1-league",
+      "espn": "jpn.1",
+      "expected_gender": "men",
+      "country": "JPN",
+      "league": {
+        "id": "750",
+        "name": "Japanese J.League",
+        "abbreviation": "Japanese J1 League",
+        "gender": "MALE",
+        "is_tournament": false,
+        "slug_echo": "jpn.1"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026 Japanese J1 League",
+        "start": "2026-01-01T05:00Z",
+        "end": "2027-07-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "2026 J1 100 Year Vision League",
+          "abbreviation": "100 Year Vision League",
+          "start": "2026-01-01T05:00Z",
+          "end": "2026-05-25T03:59Z",
+          "has_groups": true,
+          "has_standings": true,
+          "events": 180
+        },
+        {
+          "id": "2",
+          "name": "Placement Playoffs",
+          "abbreviation": "Playoffs",
+          "start": "2026-05-25T04:00Z",
+          "end": "2026-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 18
+        },
+        {
+          "id": "3",
+          "name": "Championship",
+          "abbreviation": "Championship",
+          "start": "2026-05-25T04:00Z",
+          "end": "2026-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 2
+        },
+        {
+          "id": "4",
+          "name": "Regular Season",
+          "abbreviation": "Regular Season",
+          "start": "2026-07-01T04:00Z",
+          "end": "2027-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": true,
+          "events": 380
+        }
+      ],
+      "teams": {
+        "count": 20,
+        "sample": [
+          {
+            "id": "3384",
+            "name": "FC Tokyo",
+            "short": "Tokyo",
+            "is_national": false,
+            "location": "FC Tokyo"
+          },
+          {
+            "id": "3385",
+            "name": "Urawa Red Diamonds",
+            "short": "Urawa Reds",
+            "is_national": false,
+            "location": "Urawa Red Diamonds"
+          },
+          {
+            "id": "3393",
+            "name": "Tokyo Verdy 1969",
+            "short": "Tokyo Verdy",
+            "is_national": false,
+            "location": "Tokyo Verdy 1969"
+          }
+        ]
+      },
+      "team_ids": [
+        "3384",
+        "3385",
+        "3393",
+        "7102",
+        "7104",
+        "7107",
+        "7108",
+        "7109",
+        "7111",
+        "7112",
+        "7114",
+        "7115",
+        "7116",
+        "7476",
+        "7477",
+        "19001",
+        "21361",
+        "22167",
+        "22522",
+        "131701"
+      ],
+      "events_total": 580,
+      "status": "source_present"
+    },
+    {
+      "phase": "D",
+      "slug": "fa-cup",
+      "espn": "eng.fa",
+      "expected_gender": "men",
+      "country": "ENG",
+      "league": {
+        "id": "3918",
+        "name": "English FA Cup",
+        "abbreviation": "English FA Cup",
+        "gender": "MALE",
+        "is_tournament": true,
+        "slug_echo": "eng.fa"
+      },
+      "season": {
+        "year": 2025,
+        "label": "2025-26 English FA Cup",
+        "start": "2025-07-01T04:00Z",
+        "end": "2026-07-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "First Round",
+          "abbreviation": "First Round",
+          "start": "2025-07-01T04:00Z",
+          "end": "2025-12-05T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 40
+        },
+        {
+          "id": "2",
+          "name": "Second Round",
+          "abbreviation": "Second Round",
+          "start": "2025-12-05T05:00Z",
+          "end": "2026-01-09T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 20
+        },
+        {
+          "id": "3",
+          "name": "Third Round",
+          "abbreviation": "Third Round",
+          "start": "2026-01-09T05:00Z",
+          "end": "2026-02-13T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 32
+        },
+        {
+          "id": "4",
+          "name": "Fourth Round",
+          "abbreviation": "Fourth Round",
+          "start": "2026-02-13T05:00Z",
+          "end": "2026-03-06T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 16
+        },
+        {
+          "id": "5",
+          "name": "Fifth Round",
+          "abbreviation": "Fifth Round",
+          "start": "2026-03-06T05:00Z",
+          "end": "2026-04-03T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 8
+        },
+        {
+          "id": "6",
+          "name": "Quarterfinals",
+          "abbreviation": "Quarterfinals",
+          "start": "2026-04-03T04:00Z",
+          "end": "2026-04-24T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 4
+        },
+        {
+          "id": "7",
+          "name": "Semifinals",
+          "abbreviation": "Semifinals",
+          "start": "2026-04-24T04:00Z",
+          "end": "2026-05-15T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 2
+        },
+        {
+          "id": "8",
+          "name": "Final",
+          "abbreviation": "Final",
+          "start": "2026-05-15T04:00Z",
+          "end": "2026-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 1
+        }
+      ],
+      "teams": {
+        "count": 124,
+        "sample": [
+          {
+            "id": "279",
+            "name": "Doncaster Rovers",
+            "short": "Doncaster",
+            "is_national": false,
+            "location": "Doncaster Rovers"
+          },
+          {
+            "id": "280",
+            "name": "Barnet",
+            "short": "Barnet",
+            "is_national": false,
+            "location": "Barnet"
+          },
+          {
+            "id": "282",
+            "name": "Forest Green Rovers",
+            "short": "Forest Green",
+            "is_national": false,
+            "location": "Forest Green Rovers"
+          }
+        ]
+      },
+      "team_ids": [
+        "279",
+        "280",
+        "282",
+        "285",
+        "292",
+        "301",
+        "302",
+        "304",
+        "306",
+        "307",
+        "308",
+        "309",
+        "310",
+        "311",
+        "312",
+        "313",
+        "314",
+        "315",
+        "318",
+        "320",
+        "322",
+        "324",
+        "331",
+        "332",
+        "333",
+        "334",
+        "335",
+        "336",
+        "337",
+        "338",
+        "339",
+        "340",
+        "341",
+        "342",
+        "343",
+        "344",
+        "345",
+        "346",
+        "347",
+        "348",
+        "349",
+        "350",
+        "351",
+        "352",
+        "353",
+        "357",
+        "358",
+        "359",
+        "360",
+        "361",
+        "362",
+        "363",
+        "364",
+        "365",
+        "366",
+        "367",
+        "368",
+        "369",
+        "370",
+        "371",
+        "372",
+        "373",
+        "374",
+        "375",
+        "376",
+        "379",
+        "380",
+        "381",
+        "382",
+        "383",
+        "384",
+        "385",
+        "386",
+        "387",
+        "388",
+        "389",
+        "390",
+        "391",
+        "392",
+        "393",
+        "394",
+        "395",
+        "396",
+        "397",
+        "398",
+        "399",
+        "400",
+        "401",
+        "402",
+        "632",
+        "633",
+        "635",
+        "640",
+        "642",
+        "645",
+        "2567",
+        "2594",
+        "2595",
+        "2731",
+        "2804",
+        "3109",
+        "3129",
+        "3138",
+        "3231",
+        "3535",
+        "3802",
+        "3806",
+        "3828",
+        "3857",
+        "3887",
+        "3891",
+        "3897",
+        "3915",
+        "4703",
+        "5767",
+        "7155",
+        "10183",
+        "12271",
+        "18035",
+        "18312",
+        "19262",
+        "20198",
+        "131494",
+        "131495"
+      ],
+      "events_total": 123,
+      "status": "source_present"
+    },
+    {
+      "phase": "D",
+      "slug": "efl-cup",
+      "espn": "eng.league_cup",
+      "expected_gender": "men",
+      "country": "ENG",
+      "league": {
+        "id": "3920",
+        "name": "English Carabao Cup",
+        "abbreviation": "Carabao Cup",
+        "gender": "MALE",
+        "is_tournament": true,
+        "slug_echo": "eng.league_cup"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026-27 English Carabao Cup",
+        "start": "2026-06-01T04:00Z",
+        "end": "2027-06-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "Preliminary Round",
+          "abbreviation": "Preliminary Round",
+          "start": "2026-06-01T04:00Z",
+          "end": "2026-08-04T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 2
+        },
+        {
+          "id": "2",
+          "name": "First Round",
+          "abbreviation": "First Round",
+          "start": "2026-08-04T04:00Z",
+          "end": "2026-08-18T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 35
+        },
+        {
+          "id": "3",
+          "name": "Second Round",
+          "abbreviation": "Second Round",
+          "start": "2026-08-18T04:00Z",
+          "end": "2026-09-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 23
+        },
+        {
+          "id": "4",
+          "name": "Third Round",
+          "abbreviation": "Third Round",
+          "start": "2026-09-01T04:00Z",
+          "end": "2026-09-29T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 16
+        },
+        {
+          "id": "5",
+          "name": "Fourth Round",
+          "abbreviation": "Fourth Round",
+          "start": "2026-09-29T04:00Z",
+          "end": "2026-11-03T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 8
+        },
+        {
+          "id": "6",
+          "name": "Quarterfinals",
+          "abbreviation": "Quarterfinals",
+          "start": "2026-11-03T05:00Z",
+          "end": "2026-12-29T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "7",
+          "name": "Semifinals",
+          "abbreviation": "Semifinals",
+          "start": "2026-12-29T05:00Z",
+          "end": "2027-02-09T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "8",
+          "name": "Final",
+          "abbreviation": "Final",
+          "start": "2027-02-09T05:00Z",
+          "end": "2027-06-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        }
+      ],
+      "teams": {
+        "count": 92,
+        "sample": [
+          {
+            "id": "279",
+            "name": "Doncaster Rovers",
+            "short": "Doncaster",
+            "is_national": false,
+            "location": "Doncaster Rovers"
+          },
+          {
+            "id": "280",
+            "name": "Barnet",
+            "short": "Barnet",
+            "is_national": false,
+            "location": "Barnet"
+          },
+          {
+            "id": "285",
+            "name": "Stevenage",
+            "short": "Stevenage",
+            "is_national": false,
+            "location": "Stevenage"
+          }
+        ]
+      },
+      "team_ids": [
+        "279",
+        "280",
+        "285",
+        "301",
+        "302",
+        "303",
+        "304",
+        "306",
+        "307",
+        "308",
+        "309",
+        "311",
+        "314",
+        "315",
+        "318",
+        "320",
+        "324",
+        "331",
+        "332",
+        "333",
+        "334",
+        "335",
+        "336",
+        "337",
+        "338",
+        "339",
+        "340",
+        "341",
+        "342",
+        "343",
+        "344",
+        "345",
+        "346",
+        "347",
+        "348",
+        "349",
+        "350",
+        "351",
+        "352",
+        "353",
+        "357",
+        "358",
+        "359",
+        "360",
+        "361",
+        "362",
+        "363",
+        "364",
+        "365",
+        "366",
+        "367",
+        "368",
+        "369",
+        "370",
+        "371",
+        "372",
+        "373",
+        "374",
+        "375",
+        "376",
+        "379",
+        "380",
+        "381",
+        "382",
+        "383",
+        "384",
+        "385",
+        "386",
+        "387",
+        "388",
+        "389",
+        "390",
+        "391",
+        "392",
+        "393",
+        "394",
+        "395",
+        "396",
+        "397",
+        "398",
+        "399",
+        "400",
+        "401",
+        "402",
+        "635",
+        "2567",
+        "2594",
+        "2731",
+        "3129",
+        "3802",
+        "3891",
+        "4703"
+      ],
+      "events_total": 84,
+      "status": "source_present"
+    },
+    {
+      "phase": "D",
+      "slug": "copa-del-rey",
+      "espn": "esp.copa_del_rey",
+      "expected_gender": "men",
+      "country": "ESP",
+      "league": {
+        "id": "3951",
+        "name": "Spanish Copa del Rey",
+        "abbreviation": "Copa del Rey",
+        "gender": "MALE",
+        "is_tournament": true,
+        "slug_echo": "esp.copa_del_rey"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026-27 Spanish Copa del Rey",
+        "start": "2026-07-01T04:00Z",
+        "end": "2027-07-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "Qualifying Round",
+          "abbreviation": "Qualifying Round",
+          "start": "2026-07-01T04:00Z",
+          "end": "2026-10-06T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 20
+        },
+        {
+          "id": "2",
+          "name": "First Round",
+          "abbreviation": "First Round",
+          "start": "2026-10-06T04:00Z",
+          "end": "2027-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "3",
+          "name": "Second Round",
+          "abbreviation": "Second Round",
+          "start": "2026-10-06T04:00Z",
+          "end": "2027-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "4",
+          "name": "Round of 32",
+          "abbreviation": "Round of 32",
+          "start": "2026-10-06T04:00Z",
+          "end": "2027-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "5",
+          "name": "Round of 16",
+          "abbreviation": "Round of 16",
+          "start": "2026-10-06T04:00Z",
+          "end": "2027-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "6",
+          "name": "Quarterfinals",
+          "abbreviation": "Quarterfinals",
+          "start": "2026-10-06T04:00Z",
+          "end": "2027-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "7",
+          "name": "Semifinals",
+          "abbreviation": "Semifinals",
+          "start": "2026-10-06T04:00Z",
+          "end": "2027-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "8",
+          "name": "Final",
+          "abbreviation": "Final",
+          "start": "2026-10-06T04:00Z",
+          "end": "2027-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        }
+      ],
+      "teams": {
+        "count": 20,
+        "sample": [
+          {
+            "id": "18334",
+            "name": "AE Prat",
+            "short": "AE Prat",
+            "is_national": false,
+            "location": "AE Prat"
+          },
+          {
+            "id": "20776",
+            "name": "Anaitasuna",
+            "short": "Anaitasuna",
+            "is_national": false,
+            "location": "Anaitasuna"
+          },
+          {
+            "id": "22372",
+            "name": "CD Baztán",
+            "short": "Baztán",
+            "is_national": false,
+            "location": "CD Baztán"
+          }
+        ]
+      },
+      "team_ids": [
+        "18334",
+        "20776",
+        "22372",
+        "131403",
+        "131412",
+        "131419",
+        "133831",
+        "133832",
+        "133833",
+        "133836",
+        "133838",
+        "133840",
+        "133841",
+        "133842",
+        "133843",
+        "133844",
+        "133846",
+        "133847",
+        "133850",
+        "133851"
+      ],
+      "events_total": 20,
+      "status": "source_present"
+    },
+    {
+      "phase": "D",
+      "slug": "coppa-italia",
+      "espn": "ita.coppa_italia",
+      "expected_gender": "men",
+      "country": "ITA",
+      "league": {
+        "id": "3956",
+        "name": "Coppa Italia",
+        "abbreviation": "Coppa Italia",
+        "gender": "MALE",
+        "is_tournament": true,
+        "slug_echo": "ita.coppa_italia"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026-27 Coppa Italia",
+        "start": "2026-07-01T04:00Z",
+        "end": "2027-07-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "Preliminary Round",
+          "abbreviation": "Preliminary Round",
+          "start": "2026-07-01T04:00Z",
+          "end": "2026-08-10T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 4
+        },
+        {
+          "id": "2",
+          "name": "First Round",
+          "abbreviation": "First Round",
+          "start": "2026-08-10T04:00Z",
+          "end": "2026-08-18T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 16
+        },
+        {
+          "id": "3",
+          "name": "Second Round",
+          "abbreviation": "Second Round",
+          "start": "2026-08-18T04:00Z",
+          "end": "2026-09-16T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 8
+        },
+        {
+          "id": "4",
+          "name": "Round of 16",
+          "abbreviation": "Round of 16",
+          "start": "2026-09-16T04:00Z",
+          "end": "2027-01-14T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 8
+        },
+        {
+          "id": "5",
+          "name": "Quarterfinals",
+          "abbreviation": "Quarterfinals",
+          "start": "2027-01-14T05:00Z",
+          "end": "2027-02-12T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 4
+        },
+        {
+          "id": "6",
+          "name": "Semifinals",
+          "abbreviation": "Semifinals",
+          "start": "2027-02-12T05:00Z",
+          "end": "2027-04-23T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 4
+        },
+        {
+          "id": "7",
+          "name": "Final",
+          "abbreviation": "Final",
+          "start": "2027-04-23T04:00Z",
+          "end": "2027-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 1
+        }
+      ],
+      "teams": {
+        "count": 46,
+        "sample": [
+          {
+            "id": "103",
+            "name": "AC Milan",
+            "short": "Milan",
+            "is_national": false,
+            "location": "AC Milan"
+          },
+          {
+            "id": "104",
+            "name": "AS Roma",
+            "short": "AS Roma",
+            "is_national": false,
+            "location": "AS Roma"
+          },
+          {
+            "id": "105",
+            "name": "Atalanta",
+            "short": "Atalanta",
+            "is_national": false,
+            "location": "Atalanta"
+          }
+        ]
+      },
+      "team_ids": [
+        "103",
+        "104",
+        "105",
+        "107",
+        "109",
+        "110",
+        "111",
+        "112",
+        "113",
+        "114",
+        "115",
+        "118",
+        "119",
+        "120",
+        "239",
+        "2572",
+        "2573",
+        "2574",
+        "2734",
+        "2923",
+        "2925",
+        "3257",
+        "3258",
+        "3263",
+        "3337",
+        "3345",
+        "3346",
+        "3952",
+        "3956",
+        "3975",
+        "3988",
+        "3991",
+        "3997",
+        "4002",
+        "4007",
+        "4050",
+        "4055",
+        "4057",
+        "4059",
+        "4347",
+        "11137",
+        "11139",
+        "17530",
+        "131554",
+        "131556",
+        "131836"
+      ],
+      "events_total": 45,
+      "status": "source_present"
+    },
+    {
+      "phase": "D",
+      "slug": "dfb-pokal",
+      "espn": "ger.dfb_pokal",
+      "expected_gender": "men",
+      "country": "DEU",
+      "league": {
+        "id": "3954",
+        "name": "German Cup",
+        "abbreviation": "German Cup",
+        "gender": "MALE",
+        "is_tournament": true,
+        "slug_echo": "ger.dfb_pokal"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026-27 German Cup",
+        "start": "2026-07-01T04:00Z",
+        "end": "2027-07-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "First Round",
+          "abbreviation": "First Round",
+          "start": "2026-07-01T04:00Z",
+          "end": "2026-09-04T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 32
+        },
+        {
+          "id": "2",
+          "name": "Second Round",
+          "abbreviation": "Second Round",
+          "start": "2026-09-04T04:00Z",
+          "end": "2026-10-30T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 16
+        },
+        {
+          "id": "3",
+          "name": "Round of 16",
+          "abbreviation": "Round of 16",
+          "start": "2026-10-30T04:00Z",
+          "end": "2026-12-04T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "4",
+          "name": "Quarterfinals",
+          "abbreviation": "Quarterfinals",
+          "start": "2026-12-04T05:00Z",
+          "end": "2027-02-12T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "5",
+          "name": "Semifinals",
+          "abbreviation": "Semifinals",
+          "start": "2027-02-12T05:00Z",
+          "end": "2027-04-23T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "6",
+          "name": "Final",
+          "abbreviation": "Final",
+          "start": "2027-04-23T04:00Z",
+          "end": "2027-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        }
+      ],
+      "teams": {
+        "count": 64,
+        "sample": [
+          {
+            "id": "121",
+            "name": "VfL Bochum",
+            "short": "Bochum",
+            "is_national": false,
+            "location": "VfL Bochum"
+          },
+          {
+            "id": "122",
+            "name": "FC Cologne",
+            "short": "Cologne",
+            "is_national": false,
+            "location": "FC Cologne"
+          },
+          {
+            "id": "123",
+            "name": "Energie Cottbus",
+            "short": "Cottbus",
+            "is_national": false,
+            "location": "Energie Cottbus"
+          }
+        ]
+      },
+      "team_ids": [
+        "121",
+        "122",
+        "123",
+        "124",
+        "125",
+        "126",
+        "127",
+        "128",
+        "129",
+        "130",
+        "131",
+        "132",
+        "133",
+        "134",
+        "135",
+        "137",
+        "138",
+        "268",
+        "269",
+        "270",
+        "598",
+        "2428",
+        "2506",
+        "2950",
+        "3067",
+        "3070",
+        "3307",
+        "3308",
+        "3769",
+        "3812",
+        "3841",
+        "3849",
+        "4471",
+        "6318",
+        "6325",
+        "6418",
+        "6610",
+        "6631",
+        "7013",
+        "7017",
+        "7277",
+        "7884",
+        "7891",
+        "7911",
+        "9705",
+        "9707",
+        "9865",
+        "9867",
+        "10382",
+        "10388",
+        "11420",
+        "17491",
+        "17492",
+        "18741",
+        "18747",
+        "19233",
+        "20735",
+        "21508",
+        "21957",
+        "22272",
+        "131218",
+        "131785",
+        "131786",
+        "131787"
+      ],
+      "events_total": 48,
+      "status": "source_present"
+    },
+    {
+      "phase": "D",
+      "slug": "coupe-de-france",
+      "espn": "fra.coupe_de_france",
+      "expected_gender": "men",
+      "country": "FRA",
+      "league": {
+        "id": "3952",
+        "name": "Coupe de France",
+        "abbreviation": "Coupe de France",
+        "gender": "MALE",
+        "is_tournament": true,
+        "slug_echo": "fra.coupe_de_france"
+      },
+      "season": {
+        "year": 2025,
+        "label": "2025-26 Coupe de France",
+        "start": "2025-12-01T05:00Z",
+        "end": "2026-07-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "Round of 64",
+          "abbreviation": "Round of 64",
+          "start": "2025-12-01T05:00Z",
+          "end": "2025-12-23T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 32
+        },
+        {
+          "id": "2",
+          "name": "Round of 32",
+          "abbreviation": "Round of 32",
+          "start": "2025-12-23T05:00Z",
+          "end": "2026-01-14T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 16
+        },
+        {
+          "id": "3",
+          "name": "Round of 16",
+          "abbreviation": "Round of 16",
+          "start": "2026-01-13T05:00Z",
+          "end": "2026-02-06T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 8
+        },
+        {
+          "id": "4",
+          "name": "Quarterfinals",
+          "abbreviation": "Quarterfinals",
+          "start": "2026-02-06T05:00Z",
+          "end": "2026-03-06T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 4
+        },
+        {
+          "id": "5",
+          "name": "Semifinals",
+          "abbreviation": "Semifinals",
+          "start": "2026-03-06T05:00Z",
+          "end": "2026-04-24T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 2
+        },
+        {
+          "id": "6",
+          "name": "Final",
+          "abbreviation": "Final",
+          "start": "2026-04-24T04:00Z",
+          "end": "2026-08-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 1
+        }
+      ],
+      "teams": {
+        "count": 64,
+        "sample": [
+          {
+            "id": "159",
+            "name": "Bordeaux",
+            "short": "Bordeaux",
+            "is_national": false,
+            "location": "Bordeaux"
+          },
+          {
+            "id": "160",
+            "name": "Paris Saint-Germain",
+            "short": "PSG",
+            "is_national": false,
+            "location": "Paris Saint-Germain"
+          },
+          {
+            "id": "165",
+            "name": "Nantes",
+            "short": "Nantes",
+            "is_national": false,
+            "location": "Nantes"
+          }
+        ]
+      },
+      "team_ids": [
+        "159",
+        "160",
+        "165",
+        "166",
+        "167",
+        "169",
+        "170",
+        "171",
+        "172",
+        "173",
+        "174",
+        "175",
+        "176",
+        "177",
+        "178",
+        "179",
+        "180",
+        "272",
+        "273",
+        "274",
+        "2502",
+        "2697",
+        "3207",
+        "3236",
+        "3243",
+        "3266",
+        "3267",
+        "3335",
+        "6851",
+        "6994",
+        "6997",
+        "7718",
+        "7723",
+        "7732",
+        "7868",
+        "9017",
+        "9023",
+        "10691",
+        "11305",
+        "11313",
+        "11883",
+        "11895",
+        "14445",
+        "16913",
+        "16916",
+        "17483",
+        "17655",
+        "18101",
+        "18403",
+        "18901",
+        "18906",
+        "18909",
+        "19392",
+        "19393",
+        "21307",
+        "22485",
+        "131567",
+        "131568",
+        "131569",
+        "131570",
+        "131571",
+        "131572",
+        "131573",
+        "131576"
+      ],
+      "events_total": 63,
+      "status": "source_present"
+    },
+    {
+      "phase": "D",
+      "slug": "uefa-conference-league",
+      "espn": "uefa.europa.conf",
+      "expected_gender": "men",
+      "country": null,
+      "league": {
+        "id": "20296",
+        "name": "UEFA Conference League",
+        "abbreviation": "UEFA Conference League",
+        "gender": "MALE",
+        "is_tournament": true,
+        "slug_echo": "uefa.europa.conf"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026-27 UEFA Conference League",
+        "start": "2026-07-01T04:00Z",
+        "end": "2027-07-01T03:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "League Phase",
+          "abbreviation": "League Phase",
+          "start": "2026-08-29T04:00Z",
+          "end": "2026-12-19T04:59Z",
+          "has_groups": false,
+          "has_standings": true,
+          "events": 108
+        },
+        {
+          "id": "2",
+          "name": "Knockout Round Playoffs",
+          "abbreviation": "Knockout Round Playoffs",
+          "start": "2026-12-19T05:00Z",
+          "end": "2027-02-27T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "3",
+          "name": "Round of 16",
+          "abbreviation": "Round of 16",
+          "start": "2027-02-27T05:00Z",
+          "end": "2027-03-20T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "4",
+          "name": "Quarterfinals",
+          "abbreviation": "Quarterfinals",
+          "start": "2027-03-20T04:00Z",
+          "end": "2027-04-17T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "5",
+          "name": "Semifinals",
+          "abbreviation": "Semifinals",
+          "start": "2027-04-17T04:00Z",
+          "end": "2027-05-08T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        },
+        {
+          "id": "6",
+          "name": "Final",
+          "abbreviation": "Final",
+          "start": "2027-05-08T04:00Z",
+          "end": "2027-07-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 0
+        }
+      ],
+      "teams": {
+        "count": 36,
+        "sample": [
+          {
+            "id": "105",
+            "name": "Atalanta",
+            "short": "Atalanta",
+            "is_national": false,
+            "location": "Atalanta"
+          },
+          {
+            "id": "126",
+            "name": "SC Freiburg",
+            "short": "Freiburg",
+            "is_national": false,
+            "location": "SC Freiburg"
+          },
+          {
+            "id": "139",
+            "name": "Ajax Amsterdam",
+            "short": "Ajax",
+            "is_national": false,
+            "location": "Ajax Amsterdam"
+          }
+        ]
+      },
+      "team_ids": [
+        "105",
+        "126",
+        "139",
+        "152",
+        "174",
+        "262",
+        "331",
+        "443",
+        "489",
+        "572",
+        "620",
+        "909",
+        "936",
+        "997",
+        "2290",
+        "2528",
+        "2922",
+        "2994",
+        "3024",
+        "3101",
+        "3611",
+        "7672",
+        "7853",
+        "7922",
+        "8089",
+        "8169",
+        "10834",
+        "17856",
+        "19246",
+        "20025",
+        "20028",
+        "20301",
+        "20703",
+        "20710",
+        "21943",
+        "22281"
+      ],
+      "events_total": 108,
+      "status": "source_present"
+    },
+    {
+      "phase": "D",
+      "slug": "leagues-cup",
+      "espn": "concacaf.leagues.cup",
+      "expected_gender": "men",
+      "country": null,
+      "league": {
+        "id": "19425",
+        "name": "Leagues Cup",
+        "abbreviation": "Leagues Cup",
+        "gender": "MALE",
+        "is_tournament": true,
+        "slug_echo": "concacaf.leagues.cup"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026 Leagues Cup",
+        "start": "2026-01-01T05:00Z",
+        "end": "2026-12-31T04:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "League Phase",
+          "abbreviation": "League Phase",
+          "start": "2026-01-01T05:00Z",
+          "end": "2026-08-17T03:59Z",
+          "has_groups": true,
+          "has_standings": true,
+          "events": 54
+        },
+        {
+          "id": "2",
+          "name": "Quarterfinals",
+          "abbreviation": "Quarterfinals",
+          "start": "2026-08-17T04:00Z",
+          "end": "2026-09-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 4
+        },
+        {
+          "id": "3",
+          "name": "Semifinals",
+          "abbreviation": "Semifinals",
+          "start": "2026-09-01T04:00Z",
+          "end": "2026-09-05T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 2
+        },
+        {
+          "id": "4",
+          "name": "3rd-Place Match",
+          "abbreviation": "3rd-Place Match",
+          "start": "2026-09-05T04:00Z",
+          "end": "2026-09-07T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 1
+        },
+        {
+          "id": "5",
+          "name": "Final",
+          "abbreviation": "Final",
+          "start": "2026-09-05T04:00Z",
+          "end": "2026-09-07T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 1
+        }
+      ],
+      "teams": {
+        "count": 36,
+        "sample": [
+          {
+            "id": "182",
+            "name": "Chicago Fire FC",
+            "short": "Chicago",
+            "is_national": false,
+            "location": "Chicago Fire FC"
+          },
+          {
+            "id": "183",
+            "name": "Columbus Crew",
+            "short": "Columbus",
+            "is_national": false,
+            "location": "Columbus Crew"
+          },
+          {
+            "id": "185",
+            "name": "FC Dallas",
+            "short": "Dallas",
+            "is_national": false,
+            "location": "FC Dallas"
+          }
+        ]
+      },
+      "team_ids": [
+        "182",
+        "183",
+        "185",
+        "216",
+        "218",
+        "219",
+        "220",
+        "222",
+        "223",
+        "225",
+        "226",
+        "227",
+        "228",
+        "229",
+        "231",
+        "232",
+        "233",
+        "234",
+        "4771",
+        "9723",
+        "9726",
+        "9727",
+        "10125",
+        "10739",
+        "12011",
+        "15720",
+        "17362",
+        "17606",
+        "17851",
+        "18267",
+        "18966",
+        "18986",
+        "20232",
+        "20906",
+        "21300",
+        "22529"
+      ],
+      "events_total": 62,
+      "status": "source_present"
+    },
+    {
+      "phase": "D",
+      "slug": "us-open-cup",
+      "espn": "usa.open",
+      "expected_gender": "men",
+      "country": "USA",
+      "league": {
+        "id": "5337",
+        "name": "U.S. Open Cup",
+        "abbreviation": "U.S. Open Cup",
+        "gender": "MALE",
+        "is_tournament": true,
+        "slug_echo": "usa.open"
+      },
+      "season": {
+        "year": 2026,
+        "label": "2026 U.S. Open Cup",
+        "start": "2026-01-01T05:00Z",
+        "end": "2027-01-01T04:59Z"
+      },
+      "types": [
+        {
+          "id": "1",
+          "name": "First Round",
+          "abbreviation": "First Round",
+          "start": "2026-01-01T05:00Z",
+          "end": "2026-03-26T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 32
+        },
+        {
+          "id": "2",
+          "name": "Second Round",
+          "abbreviation": "Second Round",
+          "start": "2026-03-26T04:00Z",
+          "end": "2026-04-05T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 16
+        },
+        {
+          "id": "3",
+          "name": "Round of 32",
+          "abbreviation": "Round of 32",
+          "start": "2026-04-05T04:00Z",
+          "end": "2026-04-19T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 16
+        },
+        {
+          "id": "4",
+          "name": "Round of 16",
+          "abbreviation": "Round of 16",
+          "start": "2026-04-19T04:00Z",
+          "end": "2026-05-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 8
+        },
+        {
+          "id": "5",
+          "name": "Quarterfinals",
+          "abbreviation": "Quarterfinals",
+          "start": "2026-05-01T04:00Z",
+          "end": "2026-06-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 4
+        },
+        {
+          "id": "6",
+          "name": "Semifinals",
+          "abbreviation": "Semifinals",
+          "start": "2026-06-01T04:00Z",
+          "end": "2026-10-01T03:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 2
+        },
+        {
+          "id": "7",
+          "name": "Final",
+          "abbreviation": "Final",
+          "start": "2026-10-01T04:00Z",
+          "end": "2027-01-01T04:59Z",
+          "has_groups": false,
+          "has_standings": false,
+          "events": 1
+        }
+      ],
+      "teams": {
+        "count": 80,
+        "sample": [
+          {
+            "id": "182",
+            "name": "Chicago Fire FC",
+            "short": "Chicago",
+            "is_national": false,
+            "location": "Chicago Fire FC"
+          },
+          {
+            "id": "183",
+            "name": "Columbus Crew",
+            "short": "Columbus",
+            "is_national": false,
+            "location": "Columbus Crew"
+          },
+          {
+            "id": "184",
+            "name": "Colorado Rapids",
+            "short": "Colorado",
+            "is_national": false,
+            "location": "Colorado Rapids"
+          }
+        ]
+      },
+      "team_ids": [
+        "182",
+        "183",
+        "184",
+        "186",
+        "189",
+        "190",
+        "191",
+        "193",
+        "6077",
+        "9729",
+        "12011",
+        "17360",
+        "17362",
+        "17545",
+        "17606",
+        "17826",
+        "17827",
+        "17828",
+        "17830",
+        "17832",
+        "17850",
+        "18264",
+        "18265",
+        "18268",
+        "18418",
+        "18446",
+        "18455",
+        "18683",
+        "18691",
+        "18696",
+        "18699",
+        "18716",
+        "18721",
+        "19179",
+        "19181",
+        "19407",
+        "19408",
+        "19410",
+        "19411",
+        "19964",
+        "19985",
+        "19987",
+        "19995",
+        "19999",
+        "20000",
+        "20684",
+        "20906",
+        "21300",
+        "21416",
+        "21471",
+        "21812",
+        "21821",
+        "21822",
+        "21857",
+        "22130",
+        "22164",
+        "22212",
+        "22213",
+        "22219",
+        "22226",
+        "22233",
+        "22524",
+        "22525",
+        "22526",
+        "22528",
+        "22544",
+        "22546",
+        "22547",
+        "22548",
+        "22550",
+        "131660",
+        "131661",
+        "131662",
+        "131663",
+        "131664",
+        "131665",
+        "131666",
+        "131667",
+        "131668",
+        "131669"
+      ],
+      "events_total": 79,
+      "status": "source_present"
+    }
+  ]
+}

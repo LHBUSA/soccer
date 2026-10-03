@@ -1056,7 +1056,7 @@ export async function warmDna(store, env) {
 
 // Newsroom WATCH module: recent official highlights (verified channels only), optionally per desk.
 export async function videos(store, q = {}) {
-  const desk = ['mls', 'premier-league', 'la-liga', 'serie-a', 'ligue-1', 'champions-league', 'europa-league', 'bundesliga', 'international', 'fifa'].includes(q.desk) ? q.desk : null;
+  const desk = ['mls', 'premier-league', 'la-liga', 'serie-a', 'ligue-1', 'champions-league', 'europa-league', 'bundesliga', 'international', 'fifa', 'nwsl', 'wsl', 'uwcl', 'liga-f', 'premiere-ligue'].includes(q.desk) ? q.desk : null;
   const limit = Math.max(1, Math.min(8, Number(q.limit) || 4));
   const rows = await videosFeed(store, { desk, limit });
   return E(rows, { source: 'youtube_official', semantics: 'Official videos from verified publisher channels, embedded from YouTube (privacy-enhanced player, loaded on click). Not hosted by PropBetEdge.', coverage: rows.length ? COVERAGE.OK : COVERAGE.UNAVAILABLE, coverage_notes: rows.length ? [] : ['No recent official video for this desk.'] });

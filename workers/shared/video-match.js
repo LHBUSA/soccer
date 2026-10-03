@@ -22,7 +22,11 @@
 // THRESHOLD 75, and any conflicting-opponent or wrong-competition penalty rejects outright. A single-team
 // title can reach at most 20+20+15+10 = 65 (never attaches); both teams alone (40) or both teams + keyword
 // (50) do not attach; a match video needs both teams plus competition/date context (40+20+20 = 80).
-export const MATCHER_VERSION = 'soccer-video-match/1.2.0';
+// Target-aware gender (1.3.0): women's football is a competition context, not a blanket rejection. Every alias index
+// entry carries its team's gender and only teams of the story's gender are matched (Arsenal Women never counts for
+// Arsenal). A men's story rejects a title that names women's football; a women's story needs a women's football
+// marker in the title, or a channel that is itself a women's channel -- a club channel covering both sides proves nothing.
+export const MATCHER_VERSION = 'soccer-video-match/1.3.0';
 export const THRESHOLD = 75;
 
 export const fold = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ß/g, 'ss').replace(/ø/g, 'o').replace(/æ/g, 'ae')
@@ -43,24 +47,27 @@ const core = n => fold(n).replace(/^(\d+ )?(fc|sc|sv|vfb|vfl|tsg|fsv|afc|cf|ac|a
 // Alias index over OUR teams: full name, short name, core name, known exonyms, and a single distinctive
 // token when it is unique across all teams (>= 5 letters, not generic).
 export function buildAliasIndex(teams) {
-  const tokenCount = new Map();
-  for (const t of teams) for (const tok of new Set(core(t.name).split(' '))) tokenCount.set(tok, (tokenCount.get(tok) || 0) + 1);
+  const tokenCount = new Map(); const g = t => t.gender || 'men';
+  // a distinctive token is unique within its gender (the women's side shares the club's name)
+  for (const t of teams) for (const tok of new Set(core(t.name).split(' '))) tokenCount.set(`${g(t)}:${tok}`, (tokenCount.get(`${g(t)}:${tok}`) || 0) + 1);
   const idx = [];
   for (const t of teams) {
     const set = new Set([fold(t.name), fold(t.short_name), core(t.name), core(t.short_name)].filter(x => x && x.length >= 3));
     for (const [k, v] of Object.entries(EXONYMS)) if (core(t.name) === k || fold(t.name) === k || core(t.short_name) === k) v.forEach(x => set.add(fold(x)));
-    for (const tok of core(t.name).split(' ')) if (tok.length >= 5 && !GENERIC.has(tok) && tokenCount.get(tok) === 1) set.add(tok);
-    idx.push({ id: t.id, name: t.name, aliases: [...set].sort((a, b) => b.length - a.length) });
+    for (const tok of core(t.name).split(' ')) if (tok.length >= 5 && !GENERIC.has(tok) && tokenCount.get(`${g(t)}:${tok}`) === 1) set.add(tok);
+    // "Arsenal Women": the side is also titled by its club name (the women's marker elsewhere in the title is required)
+    if (g(t) === 'women') for (const a of [...set]) { const b = a.replace(/ (women|women s|womens|w|ladies|femenino|frauen|feminines?|femminile)$/, ''); if (b !== a && b.length >= 3) set.add(b); }
+    idx.push({ id: t.id, name: t.name, gender: g(t), aliases: [...set].sort((a, b) => b.length - a.length) });
   }
   return idx;
 }
 const has = (text, phrase) => new RegExp(`(^| )${phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}( |$)`).test(text);
 // Longest match wins: every alias occurrence is a span; spans are accepted longest first and a shorter
 // alias inside an accepted span does not count for another club ("sporting" inside "sporting kansas city").
-export function teamsInTitle(title, index) {
+export function teamsInTitle(title, index, gender = null) {
   const t = ` ${fold(title)} `;
   const hits = [];
-  for (const e of index) for (const a of e.aliases) {
+  for (const e of index) if (!gender || (e.gender || 'men') === gender) for (const a of e.aliases) {
     let from = 0;
     for (;;) { const i = t.indexOf(` ${a} `, from); if (i < 0) break; hits.push({ id: e.id, start: i + 1, end: i + 1 + a.length }); from = i + 1; }
   }
@@ -69,9 +76,20 @@ export function teamsInTitle(title, index) {
   for (const h of hits) { if (taken.some(s => h.start < s.end && s.start < h.end)) continue; taken.push(h); ids.add(h.id); }
   return [...ids];
 }
-const COMP_WORDS = { 'mls': /\b(mls|major league soccer)\b/, 'premier-league': /\bpremier league\b/, 'la-liga': /\b(la liga|laliga)\b/, 'serie-a': /\bserie a\b/, 'ligue-1': /\bligue 1\b/, bundesliga: /\bbundesliga\b/, 'uefa-champions-league': /\b(champions league|ucl)\b/, 'uefa-europa-league': /\b(europa league|uel)\b/, 'uefa-nations-league': /\b(nations league|unl)\b/, 'fifa-world-cup': /\b(fifa )?world cup\b/ };
+// Titles are folded first: "Women's" reads "women s". Men's patterns never fire inside a women's competition name.
+const W = '(?:women s|womens|women)';
+const COMP_WORDS = {
+  'mls': /\b(mls|major league soccer)\b/, 'premier-league': /\bpremier league\b/, 'la-liga': /\b(la liga|laliga)\b/, 'serie-a': /\bserie a\b(?! (femminile|women))/, 'ligue-1': /\bligue 1\b/,
+  bundesliga: /(?<!frauen )\bbundesliga\b/, 'uefa-champions-league': new RegExp(`(?<!${W} )\\b(champions league|ucl)\\b`), 'uefa-europa-league': /\b(europa league|uel)\b/, 'uefa-nations-league': new RegExp(`(?<!${W} )\\b(nations league|unl)\\b`),
+  'fifa-world-cup': new RegExp(`(?<!${W} )\\b(fifa )?world cup\\b`),
+  nwsl: /\bnwsl\b/, 'womens-super-league': new RegExp(`\\b(wsl|${W} super league)\\b`), 'uefa-womens-champions-league': new RegExp(`\\b(uwcl|${W} champions league)\\b`), 'liga-f': /\bliga f\b/,
+  'frauen-bundesliga': /\bfrauen bundesliga\b/, 'premiere-ligue': /\b(premiere ligue|d1 arkema)\b/, 'serie-a-women': /\bserie a (femminile|women)\b/, 'fifa-womens-world-cup': new RegExp(`\\b(fifa )?${W} world cup\\b`),
+};
+export const WOMEN_COMPETITIONS = new Set(['nwsl', 'womens-super-league', 'uefa-womens-champions-league', 'liga-f', 'frauen-bundesliga', 'premiere-ligue', 'serie-a-women', 'fifa-womens-world-cup']);
+const WOMEN_MARK = /\b(women|womens|woman|ladies|frauen|femenino|feminin|feminine|feminines|femminile|nwsl|wsl|uwcl|liga f)\b/;
 // National-team football outside our competitions (qualifiers, friendlies, finals tournaments) is another competition too.
-const OTHER_COMP = /\b(conference league|fa cup|carabao|efl cup|dfb pokal|pokal|leagues cup|us open cup|concacaf|copa|friendly|friendlies|preseason|women|u19|u21|u23|youth|academy|nwsl|mls next|legends|qualifier|qualifiers|qualifying|euro 20\d\d|euro qualifiers?)\b/;
+// Women's football is NOT here any more (1.3.0): it is a gender context handled in scoreVideo.
+const OTHER_COMP = /\b(conference league|fa cup|carabao|efl cup|dfb pokal|pokal|leagues cup|us open cup|concacaf|copa|friendly|friendlies|preseason|u19|u21|u23|youth|academy|mls next|legends|qualifier|qualifiers|qualifying|euro 20\d\d|euro qualifiers?)\b/;
 export const HIGHLIGHT_TYPES = new Set(['highlights', 'match_recap', 'goals']);
 export const PREVIEW_TYPES = new Set(['preview', 'press_conference', 'interview', 'analysis']);
 
@@ -99,7 +117,8 @@ export function scoreVideo(video, channel, ctx, index) {
   if (!allowedChannel(channel)) return { score: 0, reasons: [{ points: 0, why: 'channel not on the verified allowlist' }], status: 'rejected' };
   const title = video.title || ''; const t = fold(title);
   if (!ctx.match) return { score: 0, reasons: [{ points: 0, why: 'no match context: this story type does not take a match video' }], status: 'rejected' };
-  const found = teamsInTitle(title, index);
+  const gender = ctx.gender || (WOMEN_COMPETITIONS.has(ctx.competition_slug) ? 'women' : 'men');
+  const found = teamsInTitle(title, index, gender);
   const { home_id: H, away_id: A } = ctx.match;
   const both = found.includes(H) && found.includes(A);
   if (both) add(40, 'both teams named');
@@ -121,6 +140,10 @@ export function scoreVideo(video, channel, ctx, index) {
   else if (inScope) reasons.push({ points: 0, why: 'governing body channel serves several competitions; title does not name this one (no credit)' });
   const wrongComp = Object.entries(COMP_WORDS).some(([slug, re]) => slug !== ctx.competition_slug && re.test(t)) || OTHER_COMP.test(t);
   if (wrongComp) add(-40, 'another competition named');
+  const womenNamed = WOMEN_MARK.test(t);
+  let genderOk = true;
+  if (gender === 'men' && womenNamed) { genderOk = false; add(-40, "women's football named; this story is men's"); }
+  if (gender === 'women' && !womenNamed && channel.gender !== 'women') { genderOk = false; reasons.push({ points: 0, why: "women's story: no women's football marker in the title and not a women's channel" }); }
   const pub = Date.parse(video.published_at || ''); const ko = Date.parse(ctx.match.kickoff);
   if (Number.isFinite(pub) && Number.isFinite(ko)) {
     const h = (pub - ko) / 3600e3;
@@ -138,14 +161,15 @@ export function scoreVideo(video, channel, ctx, index) {
   } else if (HIGHLIGHT_TYPES.has(video.video_type)) add(10, `${video.video_type} video`);
   const typeOk = ctx.preview ? PREVIEW_TYPES.has(video.video_type) : true;
   const playerOk = !ctx.player?.name || playerNamed || scoredHighlights;
-  const status = score >= THRESHOLD && !others.length && !wrongComp && playerOk && typeOk ? 'linked' : 'rejected';
+  const status = score >= THRESHOLD && !others.length && !wrongComp && genderOk && playerOk && typeOk ? 'linked' : 'rejected';
   return { score, reasons, status };
 }
 
 // Context for an article from its frozen packet (no live state): recap -> its match; player form -> the
 // latest appearance's match + the player; team trend -> the run's latest match; table race -> none.
 export function articleContext(article, packet) {
-  const comp = { competition_slug: packet.competition?.slug, competition_id: packet.competition?.id };
+  const slug = packet.competition?.slug;
+  const comp = { competition_slug: slug, competition_id: packet.competition?.id, gender: packet.competition?.gender || (WOMEN_COMPETITIONS.has(slug) ? 'women' : 'men') };
   if (packet.event?.kind === 'match_recap' && packet.match) {
     return { ...comp, match: { id: packet.match.id, home_id: packet.teams.home.id, away_id: packet.teams.away.id, kickoff: packet.match.kickoff_utc, score: { home: packet.match.score.home, away: packet.match.score.away } }, player: null };
   }
