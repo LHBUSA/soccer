@@ -14,6 +14,7 @@ import { keyPlayers } from '../components/keyplayers.js';
 import { officialVideo, mountOfficialVideos } from '../components/video.js';
 import { orderVisuals, renderVisual } from '../components/visuals.js';
 import { renderPreferredSource } from '../components/preferred-source.js';
+import { articleMarketEvent, articleMarketHtml, mountArticleMarketSlot } from '../data/article-market.js';
 
 const SITE = 'https://soccer.propbetedge.ai';
 const TYPE = { match_recap: 'Match report', player_form: 'Player form', team_trend: 'Team trend', competition_intelligence: 'Table watch', match_preview: 'Preview' };
@@ -79,6 +80,12 @@ export function heroMedia(a) {
   }
   const team = a.entities?.find(e => e.type === 'SportsTeam');
   return `<figure class="art-hero-media k-brand a-${esc(c?.accent || 'x')}">${bg}${team ? teamMark(team, 'xl') : ''}<span class="ah-tag">${c ? competitionMark(c.slug, 'md') : ''}<b>${esc(c?.long || '')}</b></span>${score}</figure>`;
+}
+
+// MARKET (article-market/1): one module with a lifecycle after the first editorial section (inline at every width),
+// only on an article first published after the module's activation and linked to one match. Empty slot = nothing.
+export function articleMarketSlot(a, mk) {
+  return articleMarketEvent(a) ? `<div class="art-market" data-art-market>${articleMarketHtml(mk?.now)}</div>` : '';
 }
 
 // WATCH: a matcher-linked official video (docs/VIDEO.md), after the first editorial section so the reader
@@ -159,7 +166,7 @@ function related(a) {
   })}</div></section>`;
 }
 
-export function renderArticle(env) {
+export function renderArticle(env, mk = null) {
   const a = env.data; const c = compByDesk(a.desk);
   const parts = storyParts(a);
   const url = `${SITE}/news/${a.desk}/${a.slug}`;
@@ -179,7 +186,7 @@ export function renderArticle(env) {
       <div class="art-main">
         ${inThisStory(a.entities || [])}
         ${heroMedia(a)}
-        ${body(parts.sections, watchInArticle(a), a.entities || [], orderVisuals(a.body))}
+        ${body(parts.sections, articleMarketSlot(a, mk) + watchInArticle(a), a.entities || [], orderVisuals(a.body))}
         ${when(match, () => `<section class="art-mod" data-art-match="${esc(match.href.split('/').pop())}"><p class="nrail-h">MATCH INTELLIGENCE</p><div class="am-slot"><p class="muted">Loading match intelligence…</p></div></section>`)}
         ${when(people.length, () => `<section class="art-mod"><p class="nrail-h">PLAYER DNA</p><div class="kp-grid">${join(people.slice(0, 4), p => `<a class="kp-card" href="/players/${esc(p.slug)}" data-link data-player-slug="${esc(p.slug)}"${match ? ` data-match-id="${esc(match.href.split('/').pop())}"` : ''}>${portrait(p, 'md')}<span class="kp-id"><b>${esc(p.name)}</b><small>Open Player DNA</small></span></a>`)}</div></section>`)}
         ${renderPreferredSource({ surface: 'article' })}
@@ -192,8 +199,9 @@ export function renderArticle(env) {
 }
 
 // After render: share controls, the match module, the hero score, the rail.
-export async function mountArticle(root, env) {
+export async function mountArticle(root, env, mk = null) {
   mountOfficialVideos(root);
+  mountArticleMarketSlot(root, env.data, mk || {});
   const bar = root.querySelector('[data-share-url]');
   bar?.querySelector('[data-native-share]')?.addEventListener('click', async e => {
     const btn = e.currentTarget; const st = bar.querySelector('[data-share-status]');

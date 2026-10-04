@@ -9,6 +9,8 @@ import { newsCard, mountNewsImages } from '../components/newscard.js';
 import { officialVideo, mountOfficialVideos } from '../components/video.js';
 import { latestNews, selectHomepageLead } from '../lib/news.js';
 import { renderArticle, mountArticle } from './article.js';
+import { articleMarketWithin } from '../data/article-market.js';
+import { KALSHI_FIRST_PAINT_MS } from '../data/kalshi.js';
 
 const INDEX = 'index, follow, max-image-preview:large';
 const tab = (href, inner, on) => `<a href="${esc(href)}" data-link class="nr2-tab${on ? ' on' : ''}"${on ? ' aria-current="page"' : ''}>${inner}</a>`;
@@ -106,11 +108,15 @@ const typeLabel = s => String(s || '').replace('competition_intelligence', 'tabl
 
 export const article = {
   title: d => `${d?.env?.data?.headline || 'Article'} | PropBetEdge Soccer`,
+  // The article market read (article-market/1) starts as soon as the article names its match and shares the
+  // first-paint budget (KALSHI_FIRST_PAINT_MS from the start of the load); a late answer is handled in mount().
   async load([desk, slug]) {
+    const deadline = Date.now() + KALSHI_FIRST_PAINT_MS;
     const env = await api(`news/${slug}`);
     if (env.data.desk !== desk) { const e = new Error('not found'); e.status = 404; throw e; }
-    return { env };
+    const mk = await articleMarketWithin(env.data, deadline);
+    return { env, mk };
   },
-  render(d) { return renderArticle(d.env); },
-  mount(root, d) { mountArticle(root, d.env); },
+  render(d) { return renderArticle(d.env, d.mk); },
+  mount(root, d) { mountArticle(root, d.env, d.mk); },
 };

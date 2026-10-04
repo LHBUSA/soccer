@@ -22,6 +22,7 @@ import { accountButtonLabel, handleVerifiedReturn, openAccount } from './compone
 import { proAccess } from './lib/pro.js';
 import './styles/pbe-membership.css';
 import './vendor/kalshi/kalshi-market-ui.css';
+import './vendor/kalshi/article-market-ui.css';
 import './styles/kalshi-soccer.css';
 import { wireKalshi } from './vendor/kalshi/kalshi-market-ui.js';
 import { CLUB_COMPS, FEATURED_COMPS, INTERNATIONAL_COMPS, WOMEN_COMPS } from './lib/competitions.js';
