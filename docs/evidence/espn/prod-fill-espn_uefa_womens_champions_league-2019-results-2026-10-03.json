@@ -1,0 +1,82 @@
+{
+  "lane": "espn_uefa_womens_champions_league@2019:results",
+  "base": "https://soccer-ingest.sales-fd3.workers.dev",
+  "runs": [
+    {
+      "lane": "espn_uefa_womens_champions_league@2019:results",
+      "run": 1,
+      "http": 200,
+      "ms": 83202,
+      "requests": 111,
+      "fixtures_new": 55,
+      "repeated_pairings": 0,
+      "detailed": 7,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 32,
+        "before": 8,
+        "founded": 24,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_uefa_womens_champions_league@2019:results",
+      "run": 2,
+      "http": 200,
+      "ms": 81419,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 32,
+        "before": 32,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_uefa_womens_champions_league@2019:results",
+      "run": 3,
+      "http": 200,
+      "ms": 24563,
+      "requests": 33,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 11,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 32,
+        "before": 32,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_uefa_womens_champions_league@2019:results",
+      "run": 4,
+      "http": 200,
+      "ms": 1080,
+      "requests": 0,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 0,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 32,
+        "before": 32,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    }
+  ]
+}

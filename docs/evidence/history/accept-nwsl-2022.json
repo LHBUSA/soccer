@@ -1,0 +1,69 @@
+{
+ "at": "2026-10-04T00:17:12.014Z",
+ "competition": "nwsl",
+ "season": "2022",
+ "state_before": "held",
+ "acceptance": {
+  "canonical_matches": 137,
+  "finished": 137,
+  "teams": 12,
+  "league_matches": 132,
+  "matches_per_club": {
+   "min": 22,
+   "max": 22
+  },
+  "repeated_pairings": 0,
+  "repeat_pairings_allowed": true,
+  "era": null,
+  "unresolved_identity_queue": 0,
+  "discovery": {
+   "checked": true,
+   "lane": "espn_nwsl@2022:results",
+   "indexed": 137,
+   "fetched": 137,
+   "missing_events": 0,
+   "repeated_pairing_events": 0,
+   "without_status": 0,
+   "finished_without_score": 0
+  },
+  "crosswalked": 137,
+  "espn_source_results": 137,
+  "score_disagreements": 0,
+  "postponed_beside_replay": 0
+ },
+ "matches": 137,
+ "finished": 137,
+ "stages": [
+  "Playoffs:playoff",
+  "Regular Season:league"
+ ],
+ "teams": 12,
+ "format": {
+  "teams": 12,
+  "league_matches": 132,
+  "games_per_team": {
+   "22": 12
+  }
+ },
+ "providers": [
+  "espn"
+ ],
+ "coverage": {
+  "venue": 1,
+  "lineups": 0,
+  "stats": 0,
+  "events": 0
+ },
+ "coverage_tier": "MATCH",
+ "limitations": [
+  "lineups for 0% of finished matches",
+  "team statistics for 0% of finished matches",
+  "event record for 0% of finished matches"
+ ],
+ "notes": [
+  "no registered era: uniform league games per club decides"
+ ],
+ "checks_failed": [],
+ "pass": true,
+ "promoted": true
+}

@@ -1,0 +1,82 @@
+{
+  "lane": "espn_uefa_womens_champions_league@2021:results",
+  "base": "https://soccer-ingest.sales-fd3.workers.dev",
+  "runs": [
+    {
+      "lane": "espn_uefa_womens_champions_league@2021:results",
+      "run": 1,
+      "http": 200,
+      "ms": 83543,
+      "requests": 111,
+      "fixtures_new": 61,
+      "repeated_pairings": 0,
+      "detailed": 13,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 16,
+        "before": 14,
+        "founded": 2,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_uefa_womens_champions_league@2021:results",
+      "run": 2,
+      "http": 200,
+      "ms": 83737,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 16,
+        "before": 16,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_uefa_womens_champions_league@2021:results",
+      "run": 3,
+      "http": 200,
+      "ms": 25177,
+      "requests": 33,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 11,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 16,
+        "before": 16,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_uefa_womens_champions_league@2021:results",
+      "run": 4,
+      "http": 200,
+      "ms": 906,
+      "requests": 0,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 0,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 16,
+        "before": 16,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    }
+  ]
+}

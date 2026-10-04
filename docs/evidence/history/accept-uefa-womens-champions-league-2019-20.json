@@ -1,0 +1,58 @@
+{
+ "at": "2026-10-03T23:59:03.227Z",
+ "competition": "uefa-womens-champions-league",
+ "season": "2019/20",
+ "state_before": "held",
+ "acceptance": {
+  "canonical_matches": 55,
+  "finished": 55,
+  "teams": 32,
+  "league_matches": 0,
+  "matches_per_club": null,
+  "repeated_pairings": 0,
+  "repeat_pairings_allowed": true,
+  "era": null,
+  "unresolved_identity_queue": 0,
+  "discovery": {
+   "checked": true,
+   "lane": "espn_uefa_womens_champions_league@2019:results",
+   "indexed": 55,
+   "fetched": 55,
+   "missing_events": 0,
+   "repeated_pairing_events": 0,
+   "without_status": 0,
+   "finished_without_score": 0
+  },
+  "crosswalked": 55,
+  "espn_source_results": 55,
+  "score_disagreements": 0,
+  "postponed_beside_replay": 0
+ },
+ "matches": 55,
+ "finished": 55,
+ "stages": [
+  "Knockout rounds:playoff",
+  "League phase:league"
+ ],
+ "teams": 32,
+ "format": null,
+ "providers": [
+  "espn"
+ ],
+ "coverage": {
+  "venue": 1,
+  "lineups": 0,
+  "stats": 0,
+  "events": 0
+ },
+ "coverage_tier": "MATCH",
+ "limitations": [
+  "lineups for 0% of finished matches",
+  "team statistics for 0% of finished matches",
+  "event record for 0% of finished matches"
+ ],
+ "notes": [],
+ "checks_failed": [],
+ "pass": true,
+ "promoted": true
+}

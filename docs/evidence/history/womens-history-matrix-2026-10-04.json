@@ -1,0 +1,640 @@
+{
+  "generated_at": "2026-10-04T00:45:14.120Z",
+  "rows": [
+    {
+      "competition": "nwsl",
+      "earliest": 2013,
+      "latest": 2026,
+      "discovered": 14,
+      "published": 8,
+      "matches": 1239,
+      "tiers": "MATCH:7 ?:1",
+      "held": "2013 (too_few_matches+past_match_without_final_score+games_per_team_uneven); 2014 (too_few_matches+past_match_without_final_score+games_per_team_uneven); 2015 (too_few_matches+past_match_without_final_score+games_per_team_uneven); 2016 (games_per_team_uneven); 2017 (games_per_team_uneven); 2020 (not ingested)"
+    },
+    {
+      "competition": "womens-super-league",
+      "earliest": 2011,
+      "latest": 2026,
+      "discovered": 12,
+      "published": 11,
+      "matches": 1252,
+      "tiers": "RESULTS:3 MATCH:7 ?:1",
+      "held": "2019/20 (games_per_team_uneven+home_away_unbalanced+structure_matches_per_club+structure_finished_count)"
+    },
+    {
+      "competition": "uefa-womens-champions-league",
+      "earliest": 2019,
+      "latest": 2026,
+      "discovered": 8,
+      "published": 7,
+      "matches": 428,
+      "tiers": "MATCH:6 ?:1",
+      "held": "2020/21 (past_match_without_final_score)"
+    },
+    {
+      "competition": "liga-f",
+      "earliest": 2022,
+      "latest": 2026,
+      "discovered": 5,
+      "published": 5,
+      "matches": 1200,
+      "tiers": "MATCH:4 ?:1",
+      "held": ""
+    },
+    {
+      "competition": "premiere-ligue",
+      "earliest": 2022,
+      "latest": 2026,
+      "discovered": 5,
+      "published": 5,
+      "matches": 670,
+      "tiers": "MATCH:4 ?:1",
+      "held": ""
+    },
+    {
+      "competition": "fifa-womens-world-cup",
+      "earliest": 2003,
+      "latest": 2023,
+      "discovered": 6,
+      "published": 0,
+      "matches": 0,
+      "tiers": "",
+      "held": "2003 (not ingested); 2007 (not ingested); 2011 (not ingested); 2015 (not ingested); 2019 (not ingested); 2023 (not ingested)"
+    }
+  ],
+  "seasons": [
+    {
+      "competition": "nwsl",
+      "provider_year": 2013,
+      "label": "2013",
+      "state": "held",
+      "public_matches": 0,
+      "accept_file": "docs/evidence/history/accept-nwsl-2013.json",
+      "pass": false,
+      "failed": [
+        "too_few_matches",
+        "past_match_without_final_score",
+        "games_per_team_uneven"
+      ],
+      "tier": "RESULTS"
+    },
+    {
+      "competition": "nwsl",
+      "provider_year": 2014,
+      "label": "2014",
+      "state": "held",
+      "public_matches": 0,
+      "accept_file": "docs/evidence/history/accept-nwsl-2014.json",
+      "pass": false,
+      "failed": [
+        "too_few_matches",
+        "past_match_without_final_score",
+        "games_per_team_uneven"
+      ],
+      "tier": "RESULTS"
+    },
+    {
+      "competition": "nwsl",
+      "provider_year": 2015,
+      "label": "2015",
+      "state": "held",
+      "public_matches": 0,
+      "accept_file": "docs/evidence/history/accept-nwsl-2015.json",
+      "pass": false,
+      "failed": [
+        "too_few_matches",
+        "past_match_without_final_score",
+        "games_per_team_uneven"
+      ],
+      "tier": "RESULTS"
+    },
+    {
+      "competition": "nwsl",
+      "provider_year": 2016,
+      "label": "2016",
+      "state": "held",
+      "public_matches": 0,
+      "accept_file": "docs/evidence/history/accept-nwsl-2016.json",
+      "pass": false,
+      "failed": [
+        "games_per_team_uneven"
+      ],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "nwsl",
+      "provider_year": 2017,
+      "label": "2017",
+      "state": "held",
+      "public_matches": 0,
+      "accept_file": "docs/evidence/history/accept-nwsl-2017.json",
+      "pass": false,
+      "failed": [
+        "games_per_team_uneven"
+      ],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "nwsl",
+      "provider_year": 2018,
+      "label": "2018",
+      "state": "published",
+      "public_matches": 111,
+      "accept_file": "docs/evidence/history/accept-nwsl-2018.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "nwsl",
+      "provider_year": 2019,
+      "label": "2019",
+      "state": "published",
+      "public_matches": 111,
+      "accept_file": "docs/evidence/history/accept-nwsl-2019.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "nwsl",
+      "provider_year": 2020,
+      "label": "2020",
+      "state": "DISCOVERED",
+      "public_matches": 0,
+      "accept_file": null,
+      "pass": null,
+      "failed": [],
+      "tier": null
+    },
+    {
+      "competition": "nwsl",
+      "provider_year": 2021,
+      "label": "2021",
+      "state": "published",
+      "public_matches": 125,
+      "accept_file": "docs/evidence/history/accept-nwsl-2021.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "nwsl",
+      "provider_year": 2022,
+      "label": "2022",
+      "state": "published",
+      "public_matches": 137,
+      "accept_file": "docs/evidence/history/accept-nwsl-2022.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "nwsl",
+      "provider_year": 2023,
+      "label": "2023",
+      "state": "published",
+      "public_matches": 137,
+      "accept_file": "docs/evidence/history/accept-nwsl-2023.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "nwsl",
+      "provider_year": 2024,
+      "label": "2024",
+      "state": "published",
+      "public_matches": 189,
+      "accept_file": "docs/evidence/history/accept-nwsl-2024.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "nwsl",
+      "provider_year": 2025,
+      "label": "2025",
+      "state": "published",
+      "public_matches": 189,
+      "accept_file": "docs/evidence/history/accept-nwsl-2025.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "nwsl",
+      "provider_year": 2026,
+      "label": "2026",
+      "state": "published",
+      "public_matches": 240,
+      "accept_file": null,
+      "pass": null,
+      "failed": [],
+      "tier": null
+    },
+    {
+      "competition": "womens-super-league",
+      "provider_year": 2011,
+      "label": "2011",
+      "state": "published",
+      "public_matches": 56,
+      "accept_file": "docs/evidence/history/accept-womens-super-league-2011.json",
+      "pass": true,
+      "failed": [],
+      "tier": "RESULTS"
+    },
+    {
+      "competition": "womens-super-league",
+      "provider_year": 2012,
+      "label": "2012",
+      "state": "published",
+      "public_matches": 56,
+      "accept_file": "docs/evidence/history/accept-womens-super-league-2012.json",
+      "pass": true,
+      "failed": [],
+      "tier": "RESULTS"
+    },
+    {
+      "competition": "womens-super-league",
+      "provider_year": 2013,
+      "label": "2013",
+      "state": "published",
+      "public_matches": 56,
+      "accept_file": "docs/evidence/history/accept-womens-super-league-2013.json",
+      "pass": true,
+      "failed": [],
+      "tier": "RESULTS"
+    },
+    {
+      "competition": "womens-super-league",
+      "provider_year": 2018,
+      "label": "2018/19",
+      "state": "published",
+      "public_matches": 110,
+      "accept_file": "docs/evidence/history/accept-womens-super-league-2018-19.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "womens-super-league",
+      "provider_year": 2019,
+      "label": "2019/20",
+      "state": "held",
+      "public_matches": 0,
+      "accept_file": "docs/evidence/history/accept-womens-super-league-2019-20.json",
+      "pass": false,
+      "failed": [
+        "games_per_team_uneven",
+        "home_away_unbalanced",
+        "structure_matches_per_club",
+        "structure_finished_count"
+      ],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "womens-super-league",
+      "provider_year": 2020,
+      "label": "2020/21",
+      "state": "published",
+      "public_matches": 132,
+      "accept_file": "docs/evidence/history/accept-womens-super-league-2020-21.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "womens-super-league",
+      "provider_year": 2021,
+      "label": "2021/22",
+      "state": "published",
+      "public_matches": 132,
+      "accept_file": "docs/evidence/history/accept-womens-super-league-2021-22.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "womens-super-league",
+      "provider_year": 2022,
+      "label": "2022/23",
+      "state": "published",
+      "public_matches": 132,
+      "accept_file": "docs/evidence/history/accept-womens-super-league-2022-23.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "womens-super-league",
+      "provider_year": 2023,
+      "label": "2023/24",
+      "state": "published",
+      "public_matches": 132,
+      "accept_file": "docs/evidence/history/accept-womens-super-league-2023-24.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "womens-super-league",
+      "provider_year": 2024,
+      "label": "2024/25",
+      "state": "published",
+      "public_matches": 132,
+      "accept_file": "docs/evidence/history/accept-womens-super-league-2024-25.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "womens-super-league",
+      "provider_year": 2025,
+      "label": "2025/26",
+      "state": "published",
+      "public_matches": 132,
+      "accept_file": "docs/evidence/history/accept-womens-super-league-2025-26.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "womens-super-league",
+      "provider_year": 2026,
+      "label": "2026/27",
+      "state": "published",
+      "public_matches": 182,
+      "accept_file": null,
+      "pass": null,
+      "failed": [],
+      "tier": null
+    },
+    {
+      "competition": "uefa-womens-champions-league",
+      "provider_year": 2019,
+      "label": "2019/20",
+      "state": "published",
+      "public_matches": 55,
+      "accept_file": "docs/evidence/history/accept-uefa-womens-champions-league-2019-20.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "uefa-womens-champions-league",
+      "provider_year": 2020,
+      "label": "2020/21",
+      "state": "held",
+      "public_matches": 0,
+      "accept_file": "docs/evidence/history/accept-uefa-womens-champions-league-2020-21.json",
+      "pass": false,
+      "failed": [
+        "past_match_without_final_score"
+      ],
+      "tier": "RESULTS"
+    },
+    {
+      "competition": "uefa-womens-champions-league",
+      "provider_year": 2021,
+      "label": "2021/22",
+      "state": "published",
+      "public_matches": 61,
+      "accept_file": "docs/evidence/history/accept-uefa-womens-champions-league-2021-22.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "uefa-womens-champions-league",
+      "provider_year": 2022,
+      "label": "2022/23",
+      "state": "published",
+      "public_matches": 61,
+      "accept_file": "docs/evidence/history/accept-uefa-womens-champions-league-2022-23.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "uefa-womens-champions-league",
+      "provider_year": 2023,
+      "label": "2023/24",
+      "state": "published",
+      "public_matches": 61,
+      "accept_file": "docs/evidence/history/accept-uefa-womens-champions-league-2023-24.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "uefa-womens-champions-league",
+      "provider_year": 2024,
+      "label": "2024/25",
+      "state": "published",
+      "public_matches": 61,
+      "accept_file": "docs/evidence/history/accept-uefa-womens-champions-league-2024-25.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "uefa-womens-champions-league",
+      "provider_year": 2025,
+      "label": "2025/26",
+      "state": "published",
+      "public_matches": 75,
+      "accept_file": "docs/evidence/history/accept-uefa-womens-champions-league-2025-26.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "uefa-womens-champions-league",
+      "provider_year": 2026,
+      "label": "2026/27",
+      "state": "published",
+      "public_matches": 54,
+      "accept_file": null,
+      "pass": null,
+      "failed": [],
+      "tier": null
+    },
+    {
+      "competition": "liga-f",
+      "provider_year": 2022,
+      "label": "2022/23",
+      "state": "published",
+      "public_matches": 240,
+      "accept_file": "docs/evidence/history/accept-liga-f-2022-23.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "liga-f",
+      "provider_year": 2023,
+      "label": "2023/24",
+      "state": "published",
+      "public_matches": 240,
+      "accept_file": "docs/evidence/history/accept-liga-f-2023-24.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "liga-f",
+      "provider_year": 2024,
+      "label": "2024/25",
+      "state": "published",
+      "public_matches": 240,
+      "accept_file": "docs/evidence/history/accept-liga-f-2024-25.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "liga-f",
+      "provider_year": 2025,
+      "label": "2025/26",
+      "state": "published",
+      "public_matches": 240,
+      "accept_file": "docs/evidence/history/accept-liga-f-2025-26.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "liga-f",
+      "provider_year": 2026,
+      "label": "2026/27",
+      "state": "published",
+      "public_matches": 240,
+      "accept_file": null,
+      "pass": null,
+      "failed": [],
+      "tier": null
+    },
+    {
+      "competition": "premiere-ligue",
+      "provider_year": 2022,
+      "label": "2022/23",
+      "state": "published",
+      "public_matches": 132,
+      "accept_file": "docs/evidence/history/accept-premiere-ligue-2022-23.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "premiere-ligue",
+      "provider_year": 2023,
+      "label": "2023/24",
+      "state": "published",
+      "public_matches": 136,
+      "accept_file": "docs/evidence/history/accept-premiere-ligue-2023-24.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "premiere-ligue",
+      "provider_year": 2024,
+      "label": "2024/25",
+      "state": "published",
+      "public_matches": 135,
+      "accept_file": "docs/evidence/history/accept-premiere-ligue-2024-25.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "premiere-ligue",
+      "provider_year": 2025,
+      "label": "2025/26",
+      "state": "published",
+      "public_matches": 135,
+      "accept_file": "docs/evidence/history/accept-premiere-ligue-2025-26.json",
+      "pass": true,
+      "failed": [],
+      "tier": "MATCH"
+    },
+    {
+      "competition": "premiere-ligue",
+      "provider_year": 2026,
+      "label": "2026/27",
+      "state": "published",
+      "public_matches": 132,
+      "accept_file": null,
+      "pass": null,
+      "failed": [],
+      "tier": null
+    },
+    {
+      "competition": "fifa-womens-world-cup",
+      "provider_year": 2003,
+      "label": "2003",
+      "state": "DISCOVERED",
+      "public_matches": 0,
+      "accept_file": null,
+      "pass": null,
+      "failed": [],
+      "tier": null
+    },
+    {
+      "competition": "fifa-womens-world-cup",
+      "provider_year": 2007,
+      "label": "2007",
+      "state": "DISCOVERED",
+      "public_matches": 0,
+      "accept_file": null,
+      "pass": null,
+      "failed": [],
+      "tier": null
+    },
+    {
+      "competition": "fifa-womens-world-cup",
+      "provider_year": 2011,
+      "label": "2011",
+      "state": "DISCOVERED",
+      "public_matches": 0,
+      "accept_file": null,
+      "pass": null,
+      "failed": [],
+      "tier": null
+    },
+    {
+      "competition": "fifa-womens-world-cup",
+      "provider_year": 2015,
+      "label": "2015",
+      "state": "DISCOVERED",
+      "public_matches": 0,
+      "accept_file": null,
+      "pass": null,
+      "failed": [],
+      "tier": null
+    },
+    {
+      "competition": "fifa-womens-world-cup",
+      "provider_year": 2019,
+      "label": "2019",
+      "state": "DISCOVERED",
+      "public_matches": 0,
+      "accept_file": null,
+      "pass": null,
+      "failed": [],
+      "tier": null
+    },
+    {
+      "competition": "fifa-womens-world-cup",
+      "provider_year": 2023,
+      "label": "2023",
+      "state": "DISCOVERED",
+      "public_matches": 0,
+      "accept_file": null,
+      "pass": null,
+      "failed": [],
+      "tier": null
+    }
+  ]
+}

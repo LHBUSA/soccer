@@ -63,6 +63,29 @@ Women's-specific Pass A notes: NWSL and the World Cup are **calendar** seasons (
 2011–2013 and split from 2018/19; UWCL and the World Cup need explicit per-edition stage roles (never the generic league
 classifier); team identity reuses the current canonical women's teams by stable ESPN id (never the men's club).
 
+### Women's history in production (Pass A, 2026-10-03/04)
+
+From `docs/evidence/history/womens-history-matrix-2026-10-04.json` (production publication state + per-season acceptance
+files `docs/evidence/history/accept-<slug>-<label>.json`; queue logs `queue-<slug>.jsonl`). Published = acceptance PASS
++ promoted; the current season is published by its live lane. Depth tier: MATCH = results + venue (Pass A); lineups,
+events and coordinates come with Pass B/C (not yet run).
+
+| Competition | Earliest sourced | Latest | Seasons discovered | Seasons published | Matches (public) | Lineups | Event depth | Spatial depth | Held gaps |
+|---|---|---|---|---|---|---|---|---|---|
+| NWSL | 2013 | 2026 | 14 | 8 (2018, 2019, 2021-2026) | 1,239 | current season only | current season only | 2026 from 05-31 | 2013-2015 ESPN results incomplete (25+ events without status/score, uneven games); 2016 + 2017 one cancelled match each (19/23 games for two clubs: reviewed manifest needed); 2020 cancelled season (not ingested) |
+| Women's Super League | 2011 | 2026/27 | 12 | 11 (2011-2013, 2018/19, 2020/21-2026/27) | 1,252 | current season only | current season only | 2026/27 | 2019/20 curtailed (uneven games / finished count); 2014-2017/18 not in the ESPN catalog |
+| UEFA Women's Champions League | 2019/20 | 2026/27 | 8 | 7 | 428 | current season only | current season only | 2026/27 | 2020/21: 1 match without a readable final score (source) |
+| Liga F | 2022/23 | 2026/27 | 5 | 5 | 1,200 | current season only | current season only | none (source has no locations) | — |
+| Première Ligue | 2022/23 | 2026/27 | 5 | 5 | 670 | current season only | current season only | none (source has no locations) | — |
+| FIFA Women's World Cup | 2003 | 2023 | 6 | 0 | 0 | — | — | — | not ingested: needs its registry entry + national-team canary first |
+| Frauen-Bundesliga / Serie A Women | — | — | 0 | 0 | 0 | — | — | — | no ESPN Core league |
+
+Growth (production, baseline 2026-10-03 22:06Z -> 2026-10-04 00:45Z): +4,673 matches, +38 seasons, +63 teams (all women's;
+women's teams 68 -> 131), +0 players (Pass A writes no lineups), +19,344 source capture rows, R2 soccer-source
++35,489 objects / +0.47 GB (5.78 -> 6.25 GB).
+Guards: no live model reads a women's competition (tests/womens-history-guards.test.js; model specs + Algo V2.1 frozen
+dataset unchanged since 446d545); 31 promoted seasons, each smoke-checked, 0 news events created.
+
 ## Data-quality flags for Pass A (must be resolved before a season is canonical)
 
 - **Over-listed seasons** (more events than a round robin): Premier League 2001/02–2007/08 (403–495 vs 380), Bundesliga

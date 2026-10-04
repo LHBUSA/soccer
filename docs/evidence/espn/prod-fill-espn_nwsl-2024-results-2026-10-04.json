@@ -1,0 +1,152 @@
+{
+  "lane": "espn_nwsl@2024:results",
+  "base": "https://soccer-ingest.sales-fd3.workers.dev",
+  "runs": [
+    {
+      "lane": "espn_nwsl@2024:results",
+      "run": 1,
+      "http": 200,
+      "ms": 85029,
+      "requests": 120,
+      "fixtures_new": 111,
+      "repeated_pairings": null,
+      "detailed": 0,
+      "exhausted": "discovery",
+      "error": null,
+      "athletes": {}
+    },
+    {
+      "lane": "espn_nwsl@2024:results",
+      "run": 2,
+      "http": 200,
+      "ms": 88354,
+      "requests": 111,
+      "fixtures_new": 78,
+      "repeated_pairings": 0,
+      "detailed": 11,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 14,
+        "before": 14,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_nwsl@2024:results",
+      "run": 3,
+      "http": 200,
+      "ms": 83440,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 14,
+        "before": 14,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_nwsl@2024:results",
+      "run": 4,
+      "http": 200,
+      "ms": 83807,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 14,
+        "before": 14,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_nwsl@2024:results",
+      "run": 5,
+      "http": 200,
+      "ms": 81816,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 14,
+        "before": 14,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_nwsl@2024:results",
+      "run": 6,
+      "http": 200,
+      "ms": 85433,
+      "requests": 111,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 37,
+      "exhausted": "details",
+      "error": null,
+      "teams": {
+        "espn": 14,
+        "before": 14,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_nwsl@2024:results",
+      "run": 7,
+      "http": 200,
+      "ms": 67928,
+      "requests": 90,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 30,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 14,
+        "before": 14,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    },
+    {
+      "lane": "espn_nwsl@2024:results",
+      "run": 8,
+      "http": 200,
+      "ms": 772,
+      "requests": 0,
+      "fixtures_new": 0,
+      "repeated_pairings": 0,
+      "detailed": 0,
+      "exhausted": null,
+      "error": null,
+      "teams": {
+        "espn": 14,
+        "before": 14,
+        "founded": 0,
+        "queued_or_refused": 0
+      },
+      "athletes": {}
+    }
+  ]
+}
