@@ -286,8 +286,12 @@ button { font: inherit; }
 
 /* ---------- tables ---------- */
 .tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); border-radius: var(--radius-s); background: #fff; box-shadow: var(--shadow); }
-.ltable { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 14px; }
+.ltable { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 14px; color: var(--ink); }
 .ltable th, .ltable td { background: #fff; }
+/* Light-surface foreground contract: the table is always white, so it sets its OWN dark ink. Without this, a table
+   inside a dark parent (e.g. .band.dark { color: #fff }) inherited white text onto white cells (and links, via
+   a { color: inherit }). Secondary values keep --muted; emphasis (.pts) stays stronger. */
+.ltable td, .ltable tbody th, .ltable .tm, .ltable a { color: var(--ink); }
 .ltable thead th { font: 800 11px/1 var(--body); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-align: right; padding: 12px 9px; background: var(--canvas-alt); white-space: nowrap; }
 .ltable td { text-align: right; padding: 10px 9px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 13.5px; white-space: nowrap; }
 .ltable tbody th { border-top: 1px solid var(--line); font-weight: 600; }
