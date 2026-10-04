@@ -1,0 +1,4619 @@
+{
+  "version": "media-provider/1.0.0",
+  "policy_version": "2026-09-28.2",
+  "owner_policy": "owner-identification/2026-09-28",
+  "started_at": "2026-10-04T18:05:15.755Z",
+  "dry": false,
+  "crests": {
+    "by_competition": {
+      "mls": {
+        "teams": 30,
+        "live_or_candidate": 30,
+        "identity_unresolved": 0,
+        "asset_unavailable": 0
+      },
+      "premier-league": {
+        "teams": 20,
+        "live_or_candidate": 20,
+        "identity_unresolved": 0,
+        "asset_unavailable": 0
+      },
+      "bundesliga": {
+        "teams": 18,
+        "live_or_candidate": 18,
+        "identity_unresolved": 0,
+        "asset_unavailable": 0
+      },
+      "uefa-champions-league": {
+        "teams": 36,
+        "live_or_candidate": 36,
+        "identity_unresolved": 0,
+        "asset_unavailable": 0
+      },
+      "uefa-nations-league": {
+        "teams": 54,
+        "live_or_candidate": 54,
+        "identity_unresolved": 0,
+        "asset_unavailable": 0
+      },
+      "fifa-world-cup": {
+        "teams": 48,
+        "live_or_candidate": 48,
+        "identity_unresolved": 0,
+        "asset_unavailable": 0
+      },
+      "la-liga": {
+        "teams": 20,
+        "live_or_candidate": 20,
+        "identity_unresolved": 0,
+        "asset_unavailable": 0
+      },
+      "liga-f": {
+        "teams": 16,
+        "live_or_candidate": 16,
+        "identity_unresolved": 0,
+        "asset_unavailable": 0
+      },
+      "ligue-1": {
+        "teams": 18,
+        "live_or_candidate": 18,
+        "identity_unresolved": 0,
+        "asset_unavailable": 0
+      },
+      "nwsl": {
+        "teams": 16,
+        "live_or_candidate": 16,
+        "identity_unresolved": 0,
+        "asset_unavailable": 0
+      },
+      "premiere-ligue": {
+        "teams": 12,
+        "live_or_candidate": 6,
+        "identity_unresolved": 0,
+        "asset_unavailable": 6
+      },
+      "serie-a": {
+        "teams": 20,
+        "live_or_candidate": 20,
+        "identity_unresolved": 0,
+        "asset_unavailable": 0
+      },
+      "uefa-europa-league": {
+        "teams": 36,
+        "live_or_candidate": 36,
+        "identity_unresolved": 0,
+        "asset_unavailable": 0
+      },
+      "uefa-womens-champions-league": {
+        "teams": 18,
+        "live_or_candidate": 18,
+        "identity_unresolved": 0,
+        "asset_unavailable": 0
+      },
+      "womens-super-league": {
+        "teams": 14,
+        "live_or_candidate": 14,
+        "identity_unresolved": 0,
+        "asset_unavailable": 0
+      }
+    },
+    "teams": [
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Seattle Sounders FC",
+        "slug": "seattle-sounders-fc",
+        "canonical_id": "0554d69a-e723-5dfa-b31d-d28d9774e31d",
+        "espn_team_id": "9726",
+        "source": "ESPN team artwork (exact ESPN team id 9726, listed in usa.1 as \"Seattle Sounders FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/9726.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "LAFC",
+        "slug": "lafc",
+        "canonical_id": "06925853-d70b-5e7b-8128-19ed9adae061",
+        "espn_team_id": "18966",
+        "source": "ESPN team artwork (exact ESPN team id 18966, listed in usa.1 as \"LAFC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/18966.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Austin FC",
+        "slug": "austin-fc",
+        "canonical_id": "1823dcb9-2f81-5105-97e5-e9f0cbda7e3c",
+        "espn_team_id": "20906",
+        "source": "ESPN team artwork (exact ESPN team id 20906, listed in usa.1 as \"Austin FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/20906.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Minnesota United FC",
+        "slug": "minnesota-united-fc",
+        "canonical_id": "1b04a97d-3c94-58a7-929a-1346c67ad899",
+        "espn_team_id": "17362",
+        "source": "ESPN team artwork (exact ESPN team id 17362, listed in usa.1 as \"Minnesota United FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/17362.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Chicago Fire FC",
+        "slug": "chicago-fire-fc",
+        "canonical_id": "292c1786-ad90-5638-9c7d-5eb872e293ac",
+        "espn_team_id": "182",
+        "source": "ESPN team artwork (exact ESPN team id 182, listed in usa.1 as \"Chicago Fire FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/182.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "San Diego FC",
+        "slug": "san-diego-fc",
+        "canonical_id": "3d3675b6-12df-59fd-8714-1ab0337f2627",
+        "espn_team_id": "22529",
+        "source": "ESPN team artwork (exact ESPN team id 22529, listed in usa.1 as \"San Diego FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/22529.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Houston Dynamo FC",
+        "slug": "houston-dynamo-fc",
+        "canonical_id": "499477b6-a3d4-5caf-91e1-30e382767b13",
+        "espn_team_id": "6077",
+        "source": "ESPN team artwork (exact ESPN team id 6077, listed in usa.1 as \"Houston Dynamo FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/6077.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Red Bull New York",
+        "slug": "red-bull-new-york",
+        "canonical_id": "5f7c1140-c6ab-575b-92b6-885c6d27e878",
+        "espn_team_id": "190",
+        "source": "ESPN team artwork (exact ESPN team id 190, listed in usa.1 as \"Red Bull New York\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/190.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "LA Galaxy",
+        "slug": "la-galaxy",
+        "canonical_id": "97b593e3-45ac-53a1-ad30-fbe008da4339",
+        "espn_team_id": "187",
+        "source": "ESPN team artwork (exact ESPN team id 187, listed in usa.1 as \"LA Galaxy\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/187.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Real Salt Lake",
+        "slug": "real-salt-lake",
+        "canonical_id": "9dfe9c77-0ca3-5d3b-940d-0d4d05e463f2",
+        "espn_team_id": "4771",
+        "source": "ESPN team artwork (exact ESPN team id 4771, listed in usa.1 as \"Real Salt Lake\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/4771.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "FC Dallas",
+        "slug": "fc-dallas",
+        "canonical_id": "9f046c6e-7822-58d3-8ef1-68395bca1a94",
+        "espn_team_id": "185",
+        "source": "ESPN team artwork (exact ESPN team id 185, listed in usa.1 as \"FC Dallas\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/185.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Portland Timbers",
+        "slug": "portland-timbers",
+        "canonical_id": "a5f8eebc-0ed7-5468-9606-703f76b21fff",
+        "espn_team_id": "9723",
+        "source": "ESPN team artwork (exact ESPN team id 9723, listed in usa.1 as \"Portland Timbers\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/9723.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "San Jose Earthquakes",
+        "slug": "san-jose-earthquakes",
+        "canonical_id": "a6983312-f338-5d70-990a-9eeb3008ef8e",
+        "espn_team_id": "191",
+        "source": "ESPN team artwork (exact ESPN team id 191, listed in usa.1 as \"San Jose Earthquakes\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/191.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Colorado Rapids",
+        "slug": "colorado-rapids",
+        "canonical_id": "cb5d4eb3-8a76-57fa-a3cd-a008311a0313",
+        "espn_team_id": "184",
+        "source": "ESPN team artwork (exact ESPN team id 184, listed in usa.1 as \"Colorado Rapids\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/184.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "St. Louis CITY SC",
+        "slug": "st-louis-city-sc",
+        "canonical_id": "d6a76c3e-88b3-5127-80a1-6dfd6439fe31",
+        "espn_team_id": "21812",
+        "source": "ESPN team artwork (exact ESPN team id 21812, listed in usa.1 as \"St. Louis CITY SC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21812.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Vancouver Whitecaps",
+        "slug": "vancouver-whitecaps",
+        "canonical_id": "d7db905f-742a-5256-9ad4-4e2f6deb3617",
+        "espn_team_id": "9727",
+        "source": "ESPN team artwork (exact ESPN team id 9727, listed in usa.1 as \"Vancouver Whitecaps\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/9727.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Sporting Kansas City",
+        "slug": "sporting-kansas-city",
+        "canonical_id": "e2c42777-a99e-5b8a-a17b-0546d789669d",
+        "espn_team_id": "186",
+        "source": "ESPN team artwork (exact ESPN team id 186, listed in usa.1 as \"Sporting Kansas City\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/186.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "CF Montréal",
+        "slug": "cf-montreal",
+        "canonical_id": "f384bb8b-0c40-585c-8ea7-43f11ba49a05",
+        "espn_team_id": "9720",
+        "source": "ESPN team artwork (exact ESPN team id 9720, listed in usa.1 as \"CF Montréal\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/9720.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Orlando City SC",
+        "slug": "orlando-city-sc",
+        "canonical_id": "afb4a9bd-aa39-53df-a3c1-81a2b7018a28",
+        "espn_team_id": "12011",
+        "source": "ESPN team artwork (exact ESPN team id 12011, listed in usa.1 as \"Orlando City SC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/12011.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Inter Miami CF",
+        "slug": "inter-miami-cf",
+        "canonical_id": "e7ab1df1-d63c-5694-9757-ffa7ce360899",
+        "espn_team_id": "20232",
+        "source": "ESPN team artwork (exact ESPN team id 20232, listed in usa.1 as \"Inter Miami CF\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/20232.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Nashville SC",
+        "slug": "nashville-sc",
+        "canonical_id": "80f1ce21-52a4-5dfb-bb0b-196dfd002bcb",
+        "espn_team_id": "18986",
+        "source": "ESPN team artwork (exact ESPN team id 18986, listed in usa.1 as \"Nashville SC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/18986.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Philadelphia Union",
+        "slug": "philadelphia-union",
+        "canonical_id": "94a30b61-36f9-5c8f-ba86-7ba6150d12be",
+        "espn_team_id": "10739",
+        "source": "ESPN team artwork (exact ESPN team id 10739, listed in usa.1 as \"Philadelphia Union\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/10739.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "D.C. United",
+        "slug": "d-c-united",
+        "canonical_id": "f0229140-8a6d-5fc7-ace0-8bc05b357549",
+        "espn_team_id": "193",
+        "source": "ESPN team artwork (exact ESPN team id 193, listed in usa.1 as \"D.C. United\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/193.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Atlanta United FC",
+        "slug": "atlanta-united-fc",
+        "canonical_id": "73b6b4dd-8d46-543f-a415-b5b058dd9636",
+        "espn_team_id": "18418",
+        "source": "ESPN team artwork (exact ESPN team id 18418, listed in usa.1 as \"Atlanta United FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/18418.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "FC Cincinnati",
+        "slug": "fc-cincinnati",
+        "canonical_id": "e1fcd0c1-4810-5dcb-b408-ac537095108c",
+        "espn_team_id": "18267",
+        "source": "ESPN team artwork (exact ESPN team id 18267, listed in usa.1 as \"FC Cincinnati\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/18267.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Charlotte FC",
+        "slug": "charlotte-fc",
+        "canonical_id": "54c67398-f6dc-505a-a446-9c1dbf5e6424",
+        "espn_team_id": "21300",
+        "source": "ESPN team artwork (exact ESPN team id 21300, listed in usa.1 as \"Charlotte FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21300.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "New York City FC",
+        "slug": "new-york-city-fc",
+        "canonical_id": "5647e9f7-d309-5f10-b266-f5bdc27c143b",
+        "espn_team_id": "17606",
+        "source": "ESPN team artwork (exact ESPN team id 17606, listed in usa.1 as \"New York City FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/17606.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Toronto FC",
+        "slug": "toronto-fc",
+        "canonical_id": "7bee7d37-0089-5902-8c97-9c3256b6fce7",
+        "espn_team_id": "7318",
+        "source": "ESPN team artwork (exact ESPN team id 7318, listed in usa.1 as \"Toronto FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/7318.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "New England Revolution",
+        "slug": "new-england-revolution",
+        "canonical_id": "a7a496a8-05b3-5a14-a990-9ede2c1386f6",
+        "espn_team_id": "189",
+        "source": "ESPN team artwork (exact ESPN team id 189, listed in usa.1 as \"New England Revolution\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/189.png",
+        "status": "live"
+      },
+      {
+        "competition": "mls",
+        "competitions": [
+          "mls"
+        ],
+        "team": "Columbus Crew",
+        "slug": "columbus-crew",
+        "canonical_id": "d07fe503-086c-5a1f-916b-0be0f567c766",
+        "espn_team_id": "183",
+        "source": "ESPN team artwork (exact ESPN team id 183, listed in usa.1 as \"Columbus Crew\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/183.png",
+        "status": "live"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Brighton & Hove Albion",
+        "slug": "brighton-hove-albion",
+        "canonical_id": "1400baef-5f7b-5c1b-a23d-09c5cca0b905",
+        "espn_team_id": "331",
+        "source": "ESPN team artwork (exact ESPN team id 331, listed in eng.1 as \"Brighton & Hove Albion\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/331.png",
+        "status": "live"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league",
+          "uefa-champions-league"
+        ],
+        "team": "Liverpool",
+        "slug": "liverpool",
+        "canonical_id": "338c117f-5477-5701-8ca4-fc1e2a35547c",
+        "espn_team_id": "364",
+        "source": "ESPN team artwork (exact ESPN team id 364, listed in eng.1 as \"Liverpool\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/364.png",
+        "status": "live"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league",
+          "uefa-europa-league"
+        ],
+        "team": "Crystal Palace",
+        "slug": "crystal-palace",
+        "canonical_id": "356baccf-2fde-5932-8239-979727ccba98",
+        "espn_team_id": "384",
+        "source": "ESPN team artwork (exact ESPN team id 384, listed in eng.1 as \"Crystal Palace\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/384.png",
+        "status": "live"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league",
+          "uefa-champions-league"
+        ],
+        "team": "Manchester City",
+        "slug": "manchester-city",
+        "canonical_id": "3bae7b11-9a30-5e3a-8f88-0151e490ab95",
+        "espn_team_id": "382",
+        "source": "ESPN team artwork (exact ESPN team id 382, listed in eng.1 as \"Manchester City\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/382.png",
+        "status": "live"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Tottenham Hotspur",
+        "slug": "tottenham-hotspur",
+        "canonical_id": "45399083-97c9-53e2-8eb8-4cf57e467450",
+        "espn_team_id": "367",
+        "source": "ESPN team artwork (exact ESPN team id 367, listed in eng.1 as \"Tottenham Hotspur\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/367.png",
+        "status": "live"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league",
+          "uefa-champions-league"
+        ],
+        "team": "Aston Villa",
+        "slug": "aston-villa",
+        "canonical_id": "47866b47-12b4-5243-b672-74a5715cd72a",
+        "espn_team_id": "362",
+        "source": "ESPN team artwork (exact ESPN team id 362, listed in eng.1 as \"Aston Villa\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/362.png",
+        "status": "live"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Everton",
+        "slug": "everton",
+        "canonical_id": "483fcba8-a8f1-5e83-a885-89af5f8c78f8",
+        "espn_team_id": "368",
+        "source": "ESPN team artwork (exact ESPN team id 368, listed in eng.1 as \"Everton\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/368.png",
+        "status": "live"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Leeds United",
+        "slug": "leeds-united",
+        "canonical_id": "747cff94-7740-5399-826a-7c1c15e9d81f",
+        "espn_team_id": "357",
+        "source": "ESPN team artwork (exact ESPN team id 357, listed in eng.1 as \"Leeds United\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/357.png",
+        "status": "live"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Coventry City",
+        "slug": "coventry-city",
+        "canonical_id": "8a66ef14-fa1c-5b04-8fbd-3e22f7bb0bb0",
+        "espn_team_id": "388",
+        "source": "ESPN team artwork (exact ESPN team id 388, listed in eng.1 as \"Coventry City\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/388.png",
+        "status": "live"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Fulham",
+        "slug": "fulham",
+        "canonical_id": "8d019e3c-aea1-5322-8c3b-6f8997cc43ec",
+        "espn_team_id": "370",
+        "source": "ESPN team artwork (exact ESPN team id 370, listed in eng.1 as \"Fulham\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/370.png",
+        "status": "live"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Newcastle United",
+        "slug": "newcastle-united",
+        "canonical_id": "8e867ba0-2519-5188-bbba-a1f254dfb417",
+        "espn_team_id": "361",
+        "source": "ESPN team artwork (exact ESPN team id 361, listed in eng.1 as \"Newcastle United\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/361.png",
+        "status": "live"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Ipswich Town",
+        "slug": "ipswich-town",
+        "canonical_id": "96748728-637f-52c6-9f38-c58741ce498c",
+        "espn_team_id": "373",
+        "source": "ESPN team artwork (exact ESPN team id 373, listed in eng.1 as \"Ipswich Town\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/373.png",
+        "status": "live"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Brentford",
+        "slug": "brentford",
+        "canonical_id": "9dc04d86-20b3-5501-9551-9eeff0e155dc",
+        "espn_team_id": "337",
+        "source": "ESPN team artwork (exact ESPN team id 337, listed in eng.1 as \"Brentford\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/337.png",
+        "status": "live"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league",
+          "uefa-europa-league"
+        ],
+        "team": "Sunderland",
+        "slug": "sunderland",
+        "canonical_id": "bc2c300a-e720-5419-bbec-24792cb3cb64",
+        "espn_team_id": "366",
+        "source": "ESPN team artwork (exact ESPN team id 366, listed in eng.1 as \"Sunderland\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/366.png",
+        "status": "live"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league",
+          "uefa-champions-league"
+        ],
+        "team": "Arsenal",
+        "slug": "arsenal",
+        "canonical_id": "be541ba0-e56b-559c-9dbe-f6275f643f84",
+        "espn_team_id": "359",
+        "source": "ESPN team artwork (exact ESPN team id 359, listed in eng.1 as \"Arsenal\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/359.png",
+        "status": "live"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Nottingham Forest",
+        "slug": "nottingham-forest",
+        "canonical_id": "d148c320-f1e8-55b0-ba51-28920f032bc8",
+        "espn_team_id": "393",
+        "source": "ESPN team artwork (exact ESPN team id 393, listed in eng.1 as \"Nottingham Forest\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/393.png",
+        "status": "live"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league",
+          "uefa-europa-league"
+        ],
+        "team": "AFC Bournemouth",
+        "slug": "afc-bournemouth",
+        "canonical_id": "d1e89c71-71e2-58f9-b996-59475d74629b",
+        "espn_team_id": "349",
+        "source": "ESPN team artwork (exact ESPN team id 349, listed in eng.1 as \"AFC Bournemouth\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/349.png",
+        "status": "live"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Chelsea",
+        "slug": "chelsea",
+        "canonical_id": "d75924d3-73ff-5b8f-93b3-e01ba9b5653d",
+        "espn_team_id": "363",
+        "source": "ESPN team artwork (exact ESPN team id 363, listed in eng.1 as \"Chelsea\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/363.png",
+        "status": "live"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league",
+          "uefa-champions-league"
+        ],
+        "team": "Manchester United",
+        "slug": "manchester-united",
+        "canonical_id": "e148d6e7-876e-5683-9c12-41479c614885",
+        "espn_team_id": "360",
+        "source": "ESPN team artwork (exact ESPN team id 360, listed in eng.1 as \"Manchester United\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/360.png",
+        "status": "live"
+      },
+      {
+        "competition": "premier-league",
+        "competitions": [
+          "premier-league"
+        ],
+        "team": "Hull City",
+        "slug": "hull-city",
+        "canonical_id": "f35b3b09-109b-5ecc-8ed7-90dc999aa0bb",
+        "espn_team_id": "306",
+        "source": "ESPN team artwork (exact ESPN team id 306, listed in eng.1 as \"Hull City\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/306.png",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga",
+          "uefa-champions-league"
+        ],
+        "team": "RB Leipzig",
+        "slug": "rb-leipzig",
+        "canonical_id": "08e2b4f3-a5fe-58b3-a7a4-7d410e3f7b78",
+        "espn_team_id": "11420",
+        "source": "ESPN team artwork (exact ESPN team id 11420, listed in ger.1 as \"RB Leipzig\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/11420.png",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "Freiburg",
+        "slug": "freiburg",
+        "canonical_id": "21f0f02a-d5e7-50a2-a789-95fc8161893f",
+        "espn_team_id": "126",
+        "source": "ESPN team artwork (exact ESPN team id 126, listed in ger.1 as \"SC Freiburg\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/126.png",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga",
+          "uefa-champions-league"
+        ],
+        "team": "Borussia Dortmund",
+        "slug": "borussia-dortmund",
+        "canonical_id": "640424d4-438b-5524-8909-0422f7e8ce97",
+        "espn_team_id": "124",
+        "source": "wikimedia_commons (free-licensed, already governed)",
+        "identity": "governed",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga",
+          "uefa-europa-league"
+        ],
+        "team": "Hoffenheim",
+        "slug": "hoffenheim",
+        "canonical_id": "6c4c8c4a-fc58-5a85-9b62-a1e98bbf8fb9",
+        "espn_team_id": "7911",
+        "source": "ESPN team artwork (exact ESPN team id 7911, listed in ger.1 as \"TSG Hoffenheim\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/7911.png",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "1. FC Union Berlin",
+        "slug": "1-fc-union-berlin",
+        "canonical_id": "6cc66022-daed-5556-84ac-f3c81cb0a736",
+        "espn_team_id": "598",
+        "source": "ESPN team artwork (exact ESPN team id 598, listed in ger.1 as \"1. FC Union Berlin\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/598.png",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "Mainz 05",
+        "slug": "mainz-05",
+        "canonical_id": "6f8a1b01-df4d-597f-918a-42c9176472c3",
+        "espn_team_id": "2950",
+        "source": "wikimedia_commons (free-licensed, already governed)",
+        "identity": "governed",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "Borussia M'gladbach",
+        "slug": "borussia-m-gladbach",
+        "canonical_id": "775d711e-7530-5d32-89e1-40900407af76",
+        "espn_team_id": "268",
+        "source": "wikimedia_commons (free-licensed, already governed)",
+        "identity": "governed",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga",
+          "uefa-europa-league"
+        ],
+        "team": "Bayer Leverkusen",
+        "slug": "bayer-leverkusen",
+        "canonical_id": "81ea321f-975b-54aa-9897-4e65eb40803d",
+        "espn_team_id": "131",
+        "source": "ESPN team artwork (exact ESPN team id 131, listed in ger.1 as \"Bayer Leverkusen\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/131.png",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "Schalke 04",
+        "slug": "schalke-04",
+        "canonical_id": "9094b067-50ee-5b54-a7e5-927beaed2466",
+        "espn_team_id": "133",
+        "source": "ESPN team artwork (exact ESPN team id 133, listed in ger.1 as \"Schalke 04\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/133.png",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "Köln",
+        "slug": "koln",
+        "canonical_id": "97866b04-920a-5c36-bedb-e123f8db3c8c",
+        "espn_team_id": "122",
+        "source": "ESPN team artwork (exact ESPN team id 122, listed in ger.1 as \"FC Cologne\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/122.png",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga",
+          "uefa-champions-league"
+        ],
+        "team": "Bayern München",
+        "slug": "bayern-munchen",
+        "canonical_id": "9c2ce181-7bf4-55cf-b770-949389bb8797",
+        "espn_team_id": "132",
+        "source": "wikimedia_commons (free-licensed, already governed)",
+        "identity": "governed",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "SV 07 Elversberg",
+        "slug": "sv-07-elversberg",
+        "canonical_id": "b0840b33-9543-5340-a7e5-a812e2f97a16",
+        "espn_team_id": "10388",
+        "source": "ESPN team artwork (exact ESPN team id 10388, listed in ger.1 as \"SV Elversberg\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/10388.png",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "SC Paderborn 07",
+        "slug": "sc-paderborn-07",
+        "canonical_id": "b4ba53cb-45fb-5370-9e1c-147974073eec",
+        "espn_team_id": "3307",
+        "source": "ESPN team artwork (exact ESPN team id 3307, listed in ger.1 as \"SC Paderborn 07\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/3307.png",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "Augsburg",
+        "slug": "augsburg",
+        "canonical_id": "b5fe9bde-f06f-5c28-bdf3-594fe981c071",
+        "espn_team_id": "3841",
+        "source": "ESPN team artwork (exact ESPN team id 3841, listed in ger.1 as \"FC Augsburg\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/3841.png",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "Eintracht Frankfurt",
+        "slug": "eintracht-frankfurt",
+        "canonical_id": "bd55982f-e37d-553b-a5c6-15bca4ee41aa",
+        "espn_team_id": "125",
+        "source": "ESPN team artwork (exact ESPN team id 125, listed in ger.1 as \"Eintracht Frankfurt\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/125.png",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga",
+          "uefa-champions-league"
+        ],
+        "team": "Stuttgart",
+        "slug": "stuttgart",
+        "canonical_id": "be36e76a-6483-5d73-b14c-d60a7036a7c3",
+        "espn_team_id": "134",
+        "source": "ESPN team artwork (exact ESPN team id 134, listed in ger.1 as \"VfB Stuttgart\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/134.png",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "Hamburger SV",
+        "slug": "hamburger-sv",
+        "canonical_id": "c4975e20-1bb8-565f-ad0b-22316762e1a0",
+        "espn_team_id": "127",
+        "source": "wikimedia_commons (free-licensed, already governed)",
+        "identity": "governed",
+        "status": "live"
+      },
+      {
+        "competition": "bundesliga",
+        "competitions": [
+          "bundesliga"
+        ],
+        "team": "Werder Bremen",
+        "slug": "werder-bremen",
+        "canonical_id": "e8cd28c3-8517-5be6-a5e8-007cb5e11c93",
+        "espn_team_id": "137",
+        "source": "wikimedia_commons (free-licensed, already governed)",
+        "identity": "governed",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league",
+          "la-liga"
+        ],
+        "team": "Real Betis",
+        "slug": "real-betis",
+        "canonical_id": "01ce91a9-cbff-512b-ada4-6d52a57e31b0",
+        "espn_team_id": "244",
+        "source": "ESPN team artwork (exact ESPN team id 244, listed in uefa.champions as \"Real Betis\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/244.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Feyenoord Rotterdam",
+        "slug": "feyenoord-rotterdam",
+        "canonical_id": "33f03666-e09c-5f1c-a808-15a85928d33a",
+        "espn_team_id": "142",
+        "source": "ESPN team artwork (exact ESPN team id 142, listed in uefa.champions as \"Feyenoord Rotterdam\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/142.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league",
+          "serie-a"
+        ],
+        "team": "Como",
+        "slug": "como",
+        "canonical_id": "daa6b39c-b52b-539c-9493-46b048624d4f",
+        "espn_team_id": "2572",
+        "source": "ESPN team artwork (exact ESPN team id 2572, listed in uefa.champions as \"Como\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/2572.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "FC Porto",
+        "slug": "fc-porto",
+        "canonical_id": "eca52be5-5b17-597d-85ed-841c58622de0",
+        "espn_team_id": "437",
+        "source": "ESPN team artwork (exact ESPN team id 437, listed in uefa.champions as \"FC Porto\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/437.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Shakhtar Donetsk",
+        "slug": "shakhtar-donetsk",
+        "canonical_id": "459824c0-9295-51dc-bdc1-6825abbe206a",
+        "espn_team_id": "493",
+        "source": "ESPN team artwork (exact ESPN team id 493, listed in uefa.champions as \"Shakhtar Donetsk\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/493.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league",
+          "ligue-1"
+        ],
+        "team": "Lens",
+        "slug": "lens",
+        "canonical_id": "cb1a2ada-1626-5e66-bee6-b6356b089b29",
+        "espn_team_id": "175",
+        "source": "ESPN team artwork (exact ESPN team id 175, listed in uefa.champions as \"Lens\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/175.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "PSV Eindhoven",
+        "slug": "psv-eindhoven",
+        "canonical_id": "efe960bd-b58b-5add-9cd8-32c8838fa22c",
+        "espn_team_id": "148",
+        "source": "ESPN team artwork (exact ESPN team id 148, listed in uefa.champions as \"PSV Eindhoven\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/148.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Sabah FK",
+        "slug": "sabah-fk",
+        "canonical_id": "2774398e-a0dc-5438-b8d3-2798f71e5e1a",
+        "espn_team_id": "21922",
+        "source": "ESPN team artwork (exact ESPN team id 21922, listed in uefa.champions as \"Sabah FK\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21922.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league",
+          "serie-a"
+        ],
+        "team": "Napoli",
+        "slug": "napoli",
+        "canonical_id": "7aa9f196-3ecb-5b76-baf7-6cab5cb3d906",
+        "espn_team_id": "114",
+        "source": "wikimedia_commons (free-licensed, already governed)",
+        "identity": "governed",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league",
+          "la-liga"
+        ],
+        "team": "Barcelona",
+        "slug": "barcelona",
+        "canonical_id": "db302030-0990-55c4-81ee-140bf1222310",
+        "espn_team_id": "83",
+        "source": "ESPN team artwork (exact ESPN team id 83, listed in uefa.champions as \"Barcelona\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/83.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Slavia Prague",
+        "slug": "slavia-prague",
+        "canonical_id": "eb5a0d8e-9fe0-5ded-aa7f-877bcaa698ea",
+        "espn_team_id": "494",
+        "source": "ESPN team artwork (exact ESPN team id 494, listed in uefa.champions as \"Slavia Prague\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/494.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "AEK Athens",
+        "slug": "aek-athens",
+        "canonical_id": "2a5a3ee7-d4b5-5998-90ca-90acf4e7a701",
+        "espn_team_id": "887",
+        "source": "ESPN team artwork (exact ESPN team id 887, listed in uefa.champions as \"AEK Athens\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/887.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Galatasaray",
+        "slug": "galatasaray",
+        "canonical_id": "2ad5fe5f-393f-533d-ac95-9d8086f49fce",
+        "espn_team_id": "432",
+        "source": "ESPN team artwork (exact ESPN team id 432, listed in uefa.champions as \"Galatasaray\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/432.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league",
+          "serie-a"
+        ],
+        "team": "AS Roma",
+        "slug": "as-roma",
+        "canonical_id": "45ddf007-64aa-5c34-8057-ad96a2782853",
+        "espn_team_id": "104",
+        "source": "ESPN team artwork (exact ESPN team id 104, listed in uefa.champions as \"AS Roma\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/104.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league",
+          "la-liga"
+        ],
+        "team": "Real Madrid",
+        "slug": "real-madrid",
+        "canonical_id": "9bd7f49b-04cf-50f6-aafa-acb09078da4c",
+        "espn_team_id": "86",
+        "source": "ESPN team artwork (exact ESPN team id 86, listed in uefa.champions as \"Real Madrid\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "LASK Linz",
+        "slug": "lask-linz",
+        "canonical_id": "a8bda3c7-dd69-52f4-818d-d8e944919269",
+        "espn_team_id": "4411",
+        "source": "ESPN team artwork (exact ESPN team id 4411, listed in uefa.champions as \"LASK Linz\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/4411.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league",
+          "la-liga"
+        ],
+        "team": "Villarreal",
+        "slug": "villarreal",
+        "canonical_id": "992ba18d-a16f-5bd8-866a-de09d49e7929",
+        "espn_team_id": "102",
+        "source": "ESPN team artwork (exact ESPN team id 102, listed in uefa.champions as \"Villarreal\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/102.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league",
+          "la-liga"
+        ],
+        "team": "Atlético Madrid",
+        "slug": "atletico-madrid",
+        "canonical_id": "abc6792d-4c7e-50fa-ab91-7e003aafb1a8",
+        "espn_team_id": "1068",
+        "source": "ESPN team artwork (exact ESPN team id 1068, listed in uefa.champions as \"Atlético Madrid\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/1068.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league",
+          "serie-a"
+        ],
+        "team": "Internazionale",
+        "slug": "internazionale",
+        "canonical_id": "3ca625de-1643-52cc-b8be-2844f801ae3c",
+        "espn_team_id": "110",
+        "source": "wikimedia_commons (free-licensed, already governed)",
+        "identity": "governed",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Bodo/Glimt",
+        "slug": "bodo-glimt",
+        "canonical_id": "394d0950-81c7-5f34-9ac7-bc0d8dcc8463",
+        "espn_team_id": "2980",
+        "source": "ESPN team artwork (exact ESPN team id 2980, listed in uefa.champions as \"Bodo/Glimt\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/2980.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league",
+          "ligue-1"
+        ],
+        "team": "Lille",
+        "slug": "lille",
+        "canonical_id": "b71e1287-3899-5ea3-99c6-45d05e45d2a9",
+        "espn_team_id": "166",
+        "source": "ESPN team artwork (exact ESPN team id 166, listed in uefa.champions as \"Lille\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/166.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Sporting CP",
+        "slug": "sporting-cp",
+        "canonical_id": "7d877650-bbef-50f6-a940-c5e7a0fbb858",
+        "espn_team_id": "2250",
+        "source": "ESPN team artwork (exact ESPN team id 2250, listed in uefa.champions as \"Sporting CP\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/2250.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league",
+          "ligue-1"
+        ],
+        "team": "Paris Saint-Germain",
+        "slug": "paris-saint-germain",
+        "canonical_id": "eb2ab03b-bbd0-5857-bd70-aa375ad3dccc",
+        "espn_team_id": "160",
+        "source": "ESPN team artwork (exact ESPN team id 160, listed in uefa.champions as \"Paris Saint-Germain\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/160.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Club Brugge",
+        "slug": "club-brugge",
+        "canonical_id": "4fccb2bb-1bd1-5f87-a39b-6b91b51b54d7",
+        "espn_team_id": "570",
+        "source": "ESPN team artwork (exact ESPN team id 570, listed in uefa.champions as \"Club Brugge\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/570.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Fenerbahce",
+        "slug": "fenerbahce",
+        "canonical_id": "97d25822-3d08-54db-a91b-32965926f7a5",
+        "espn_team_id": "436",
+        "source": "ESPN team artwork (exact ESPN team id 436, listed in uefa.champions as \"Fenerbahce\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/436.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Slovan Bratislava",
+        "slug": "slovan-bratislava",
+        "canonical_id": "5fdce980-fe2d-5c2e-98dd-9f3494c47ce2",
+        "espn_team_id": "521",
+        "source": "ESPN team artwork (exact ESPN team id 521, listed in uefa.champions as \"Slovan Bratislava\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/521.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-champions-league",
+        "competitions": [
+          "uefa-champions-league"
+        ],
+        "team": "Viking FK",
+        "slug": "viking-fk",
+        "canonical_id": "909c8134-7ec0-533f-b139-2a2fbd463ec7",
+        "espn_team_id": "510",
+        "source": "ESPN team artwork (exact ESPN team id 510, listed in uefa.champions as \"Viking FK\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/510.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league",
+          "fifa-world-cup"
+        ],
+        "team": "Austria",
+        "slug": "austria",
+        "canonical_id": "032c0545-7a43-572d-bd04-6a7384e2b787",
+        "espn_team_id": "474",
+        "source": "ESPN team artwork (exact ESPN team id 474, listed in uefa.nations as \"Austria\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/aut.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Kosovo",
+        "slug": "kosovo",
+        "canonical_id": "265aaf26-3216-5162-85b6-b635b8e8a28d",
+        "espn_team_id": "18272",
+        "source": "ESPN team artwork (exact ESPN team id 18272, listed in uefa.nations as \"Kosovo\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/kosovo.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Republic of Ireland",
+        "slug": "republic-of-ireland",
+        "canonical_id": "68ec36ed-0520-518f-bba6-4772b96749bb",
+        "espn_team_id": "476",
+        "source": "ESPN team artwork (exact ESPN team id 476, listed in uefa.nations as \"Republic of Ireland\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/irl.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Israel",
+        "slug": "israel",
+        "canonical_id": "6937a830-5113-57dc-8aa6-65b3acc8f6b8",
+        "espn_team_id": "461",
+        "source": "ESPN team artwork (exact ESPN team id 461, listed in uefa.nations as \"Israel\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/isr.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league",
+          "fifa-world-cup"
+        ],
+        "team": "Netherlands",
+        "slug": "netherlands",
+        "canonical_id": "1087c4f3-78c9-51c9-ba00-8795dba79d7d",
+        "espn_team_id": "449",
+        "source": "ESPN team artwork (exact ESPN team id 449, listed in uefa.nations as \"Netherlands\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/ned.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league",
+          "fifa-world-cup"
+        ],
+        "team": "Germany",
+        "slug": "germany",
+        "canonical_id": "3f3811e0-b100-5f26-b1eb-bc587174f046",
+        "espn_team_id": "481",
+        "source": "ESPN team artwork (exact ESPN team id 481, listed in uefa.nations as \"Germany\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/ger.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Greece",
+        "slug": "greece",
+        "canonical_id": "4d5990b2-441b-54ac-acee-adec75d8f1e6",
+        "espn_team_id": "455",
+        "source": "ESPN team artwork (exact ESPN team id 455, listed in uefa.nations as \"Greece\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/gre.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Serbia",
+        "slug": "serbia",
+        "canonical_id": "9ae4eb27-1696-51a1-80a2-b84502f53a1d",
+        "espn_team_id": "6757",
+        "source": "ESPN team artwork (exact ESPN team id 6757, listed in uefa.nations as \"Serbia\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/sba.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Kazakhstan",
+        "slug": "kazakhstan",
+        "canonical_id": "12701a93-3edd-55bc-b1b8-0407622521c2",
+        "espn_team_id": "2619",
+        "source": "ESPN team artwork (exact ESPN team id 2619, listed in uefa.nations as \"Kazakhstan\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/kaz.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Slovakia",
+        "slug": "slovakia",
+        "canonical_id": "7d2960e1-eb9f-5e0f-b12c-fb6acf09d9e1",
+        "espn_team_id": "468",
+        "source": "ESPN team artwork (exact ESPN team id 468, listed in uefa.nations as \"Slovakia\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/svk.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Faroe Islands",
+        "slug": "faroe-islands",
+        "canonical_id": "b21d599a-7f07-5638-be8d-917612fde9a1",
+        "espn_team_id": "447",
+        "source": "ESPN team artwork (exact ESPN team id 447, listed in uefa.nations as \"Faroe Islands\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/fro.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Moldova",
+        "slug": "moldova",
+        "canonical_id": "dbee155d-c825-5246-8678-fb56c9d0fdb7",
+        "espn_team_id": "483",
+        "source": "ESPN team artwork (exact ESPN team id 483, listed in uefa.nations as \"Moldova\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/mda.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Lithuania",
+        "slug": "lithuania",
+        "canonical_id": "1c8a0ccc-f77a-5f2c-9dba-e68b1a703124",
+        "espn_team_id": "460",
+        "source": "ESPN team artwork (exact ESPN team id 460, listed in uefa.nations as \"Lithuania\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/ltu.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Azerbaijan",
+        "slug": "azerbaijan",
+        "canonical_id": "1fd65c50-f71f-502a-8f98-a2f52ba896a5",
+        "espn_team_id": "581",
+        "source": "ESPN team artwork (exact ESPN team id 581, listed in uefa.nations as \"Azerbaijan\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/aze.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Liechtenstein",
+        "slug": "liechtenstein",
+        "canonical_id": "f27514de-80b7-59a8-94fd-89954e3eff5a",
+        "espn_team_id": "589",
+        "source": "ESPN team artwork (exact ESPN team id 589, listed in uefa.nations as \"Liechtenstein\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/lie.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Denmark",
+        "slug": "denmark",
+        "canonical_id": "20cbab3b-6e01-5f0b-a468-ec64865244a3",
+        "espn_team_id": "479",
+        "source": "ESPN team artwork (exact ESPN team id 479, listed in uefa.nations as \"Denmark\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/den.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league",
+          "fifa-world-cup"
+        ],
+        "team": "Norway",
+        "slug": "norway",
+        "canonical_id": "2aed88f7-24e0-5d7f-bd37-9803248e0647",
+        "espn_team_id": "464",
+        "source": "ESPN team artwork (exact ESPN team id 464, listed in uefa.nations as \"Norway\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/nor.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league",
+          "fifa-world-cup"
+        ],
+        "team": "Portugal",
+        "slug": "portugal",
+        "canonical_id": "575c430a-ae6b-5bc5-a65c-67d1ba490e90",
+        "espn_team_id": "482",
+        "source": "ESPN team artwork (exact ESPN team id 482, listed in uefa.nations as \"Portugal\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/por.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Wales",
+        "slug": "wales",
+        "canonical_id": "91323cb1-3b62-5a01-95f6-386388f45383",
+        "espn_team_id": "578",
+        "source": "ESPN team artwork (exact ESPN team id 578, listed in uefa.nations as \"Wales\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/wal.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Romania",
+        "slug": "romania",
+        "canonical_id": "43e485e1-c8e2-555d-8e69-552fbecf72aa",
+        "espn_team_id": "473",
+        "source": "ESPN team artwork (exact ESPN team id 473, listed in uefa.nations as \"Romania\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/rom.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Poland",
+        "slug": "poland",
+        "canonical_id": "8014fb27-2c26-5d77-afa7-f2015b9873f1",
+        "espn_team_id": "471",
+        "source": "ESPN team artwork (exact ESPN team id 471, listed in uefa.nations as \"Poland\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/pol.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league",
+          "fifa-world-cup"
+        ],
+        "team": "Bosnia-Herzegovina",
+        "slug": "bosnia-herzegovina",
+        "canonical_id": "94cd4851-9809-568f-94bd-6b2e38e9c321",
+        "espn_team_id": "452",
+        "source": "ESPN team artwork (exact ESPN team id 452, listed in uefa.nations as \"Bosnia-Herzegovina\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/bih.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league",
+          "fifa-world-cup"
+        ],
+        "team": "Sweden",
+        "slug": "sweden",
+        "canonical_id": "ffdec3db-df13-563d-9a28-8c1ab6b6e609",
+        "espn_team_id": "466",
+        "source": "ESPN team artwork (exact ESPN team id 466, listed in uefa.nations as \"Sweden\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/swe.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Hungary",
+        "slug": "hungary",
+        "canonical_id": "4ab5ffd5-8490-595d-8446-8d13be1a44f4",
+        "espn_team_id": "480",
+        "source": "ESPN team artwork (exact ESPN team id 480, listed in uefa.nations as \"Hungary\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/hun.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Ukraine",
+        "slug": "ukraine",
+        "canonical_id": "c563da46-153d-507e-93d5-13e38aaec4b2",
+        "espn_team_id": "457",
+        "source": "ESPN team artwork (exact ESPN team id 457, listed in uefa.nations as \"Ukraine\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/ukr.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Northern Ireland",
+        "slug": "northern-ireland",
+        "canonical_id": "e716c17b-5b1b-574e-ac28-6762a054fe79",
+        "espn_team_id": "586",
+        "source": "ESPN team artwork (exact ESPN team id 586, listed in uefa.nations as \"Northern Ireland\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/nir.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Georgia",
+        "slug": "georgia",
+        "canonical_id": "f9e3c595-3777-5a7a-ae3a-c6afda229e22",
+        "espn_team_id": "584",
+        "source": "ESPN team artwork (exact ESPN team id 584, listed in uefa.nations as \"Georgia\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/geo.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league",
+          "fifa-world-cup"
+        ],
+        "team": "Scotland",
+        "slug": "scotland",
+        "canonical_id": "4cd12482-0dea-58b5-9be9-999208619150",
+        "espn_team_id": "580",
+        "source": "ESPN team artwork (exact ESPN team id 580, listed in uefa.nations as \"Scotland\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/sco.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "North Macedonia",
+        "slug": "north-macedonia",
+        "canonical_id": "75a7d362-9f70-50e4-8d17-d40a849a47dd",
+        "espn_team_id": "463",
+        "source": "ESPN team artwork (exact ESPN team id 463, listed in uefa.nations as \"North Macedonia\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/mkd.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Slovenia",
+        "slug": "slovenia",
+        "canonical_id": "dda28208-bd2e-592c-880d-042af2bab176",
+        "espn_team_id": "472",
+        "source": "ESPN team artwork (exact ESPN team id 472, listed in uefa.nations as \"Slovenia\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/svn.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league",
+          "fifa-world-cup"
+        ],
+        "team": "Switzerland",
+        "slug": "switzerland",
+        "canonical_id": "e0d81432-d4e2-5459-be33-84a53351b73d",
+        "espn_team_id": "475",
+        "source": "ESPN team artwork (exact ESPN team id 475, listed in uefa.nations as \"Switzerland\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/sui.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Bulgaria",
+        "slug": "bulgaria",
+        "canonical_id": "743f32db-8d9f-5ca8-8240-34bef3d3db6e",
+        "espn_team_id": "462",
+        "source": "ESPN team artwork (exact ESPN team id 462, listed in uefa.nations as \"Bulgaria\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/bul.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Luxembourg",
+        "slug": "luxembourg",
+        "canonical_id": "7f1c8eb0-f450-5af6-8f23-6dcfd458dd70",
+        "espn_team_id": "582",
+        "source": "ESPN team artwork (exact ESPN team id 582, listed in uefa.nations as \"Luxembourg\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/lux.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Iceland",
+        "slug": "iceland",
+        "canonical_id": "b5cd362b-4101-5b2b-a5d3-ebab2a95a40d",
+        "espn_team_id": "470",
+        "source": "ESPN team artwork (exact ESPN team id 470, listed in uefa.nations as \"Iceland\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/isl.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Estonia",
+        "slug": "estonia",
+        "canonical_id": "dc92b06d-6c03-51df-92a7-87080278ba77",
+        "espn_team_id": "444",
+        "source": "ESPN team artwork (exact ESPN team id 444, listed in uefa.nations as \"Estonia\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/est.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Montenegro",
+        "slug": "montenegro",
+        "canonical_id": "7abe5da5-2e54-5fd9-9e52-1089b29dfdf9",
+        "espn_team_id": "6775",
+        "source": "ESPN team artwork (exact ESPN team id 6775, listed in uefa.nations as \"Montenegro\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/mtg.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Cyprus",
+        "slug": "cyprus",
+        "canonical_id": "9224e0aa-d9ca-5709-a23a-67b232d281dc",
+        "espn_team_id": "445",
+        "source": "ESPN team artwork (exact ESPN team id 445, listed in uefa.nations as \"Cyprus\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/cyp.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Armenia",
+        "slug": "armenia",
+        "canonical_id": "96cde52d-8fec-57c1-85fe-b57672a55fc1",
+        "espn_team_id": "579",
+        "source": "ESPN team artwork (exact ESPN team id 579, listed in uefa.nations as \"Armenia\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/fifa.armenia.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Latvia",
+        "slug": "latvia",
+        "canonical_id": "fbd6c5c0-3611-5579-802b-894aa309e8fe",
+        "espn_team_id": "456",
+        "source": "ESPN team artwork (exact ESPN team id 456, listed in uefa.nations as \"Latvia\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/lva.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "San Marino",
+        "slug": "san-marino",
+        "canonical_id": "8404470a-b442-5f6a-804a-bea3c687698e",
+        "espn_team_id": "588",
+        "source": "ESPN team artwork (exact ESPN team id 588, listed in uefa.nations as \"San Marino\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/smr.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Albania",
+        "slug": "albania",
+        "canonical_id": "9e5dd405-da41-5ce5-b32b-56f500951ea7",
+        "espn_team_id": "585",
+        "source": "ESPN team artwork (exact ESPN team id 585, listed in uefa.nations as \"Albania\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/alb.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Finland",
+        "slug": "finland",
+        "canonical_id": "a36fb76e-ea15-5956-a752-98a4041e2c95",
+        "espn_team_id": "458",
+        "source": "ESPN team artwork (exact ESPN team id 458, listed in uefa.nations as \"Finland\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/fin.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Belarus",
+        "slug": "belarus",
+        "canonical_id": "de627920-a6d4-52a4-8400-162b35e47a07",
+        "espn_team_id": "583",
+        "source": "ESPN team artwork (exact ESPN team id 583, listed in uefa.nations as \"Belarus\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/blr.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league",
+          "fifa-world-cup"
+        ],
+        "team": "Türkiye",
+        "slug": "turkiye",
+        "canonical_id": "8d67e18d-7b6a-5747-9d82-0a546907f3c8",
+        "espn_team_id": "465",
+        "source": "ESPN team artwork (exact ESPN team id 465, listed in uefa.nations as \"Türkiye\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/tur.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league",
+          "fifa-world-cup"
+        ],
+        "team": "Belgium",
+        "slug": "belgium",
+        "canonical_id": "daeb6e0a-f758-53e9-a84e-540d8b8357e9",
+        "espn_team_id": "459",
+        "source": "ESPN team artwork (exact ESPN team id 459, listed in uefa.nations as \"Belgium\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/bel.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league",
+          "fifa-world-cup"
+        ],
+        "team": "France",
+        "slug": "france",
+        "canonical_id": "f5f982b5-bcd2-5c44-85da-1213a57539a6",
+        "espn_team_id": "478",
+        "source": "ESPN team artwork (exact ESPN team id 478, listed in uefa.nations as \"France\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/fra.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Italy",
+        "slug": "italy",
+        "canonical_id": "fb7828a7-0ab5-57f9-bf59-7bd71254ad11",
+        "espn_team_id": "162",
+        "source": "ESPN team artwork (exact ESPN team id 162, listed in uefa.nations as \"Italy\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/ita.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league",
+          "fifa-world-cup"
+        ],
+        "team": "Croatia",
+        "slug": "croatia",
+        "canonical_id": "a59313b6-24d1-5f9b-84ca-745aa7c0f1ea",
+        "espn_team_id": "477",
+        "source": "ESPN team artwork (exact ESPN team id 477, listed in uefa.nations as \"Croatia\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/cro.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league",
+          "fifa-world-cup"
+        ],
+        "team": "Czechia",
+        "slug": "czechia",
+        "canonical_id": "a781bc6a-f1a9-54e0-85e0-377a6bff274c",
+        "espn_team_id": "450",
+        "source": "ESPN team artwork (exact ESPN team id 450, listed in uefa.nations as \"Czechia\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/cze.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league",
+          "fifa-world-cup"
+        ],
+        "team": "Spain",
+        "slug": "spain",
+        "canonical_id": "b05117ae-5c75-5256-ab79-f3334765c11a",
+        "espn_team_id": "164",
+        "source": "ESPN team artwork (exact ESPN team id 164, listed in uefa.nations as \"Spain\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/esp.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league",
+          "fifa-world-cup"
+        ],
+        "team": "England",
+        "slug": "england",
+        "canonical_id": "d797c98c-55f9-5834-96db-b8f6c49357fa",
+        "espn_team_id": "448",
+        "source": "ESPN team artwork (exact ESPN team id 448, listed in uefa.nations as \"England\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/eng.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Malta",
+        "slug": "malta",
+        "canonical_id": "cc5ff403-418a-5842-8d91-5c79948bba0c",
+        "espn_team_id": "453",
+        "source": "ESPN team artwork (exact ESPN team id 453, listed in uefa.nations as \"Malta\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/mlt.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Gibraltar",
+        "slug": "gibraltar",
+        "canonical_id": "dc5506fa-8eb0-57d1-b5e9-e08918ff9e63",
+        "espn_team_id": "16721",
+        "source": "ESPN team artwork (exact ESPN team id 16721, listed in uefa.nations as \"Gibraltar\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/gib.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-nations-league",
+        "competitions": [
+          "uefa-nations-league"
+        ],
+        "team": "Andorra",
+        "slug": "andorra",
+        "canonical_id": "f6db69e7-f1d4-5717-a37e-979653d845f0",
+        "espn_team_id": "587",
+        "source": "ESPN team artwork (exact ESPN team id 587, listed in uefa.nations as \"Andorra\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/and.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Jordan",
+        "slug": "jordan",
+        "canonical_id": "14aaa896-1bc2-55bb-9646-30d0b42ccb20",
+        "espn_team_id": "2917",
+        "source": "ESPN team artwork (exact ESPN team id 2917, listed in fifa.world as \"Jordan\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/jor.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Japan",
+        "slug": "japan",
+        "canonical_id": "0386cc6f-8833-588f-8103-48cbb799cb84",
+        "espn_team_id": "627",
+        "source": "ESPN team artwork (exact ESPN team id 627, listed in fifa.world as \"Japan\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/jpn.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Morocco",
+        "slug": "morocco",
+        "canonical_id": "dbc91799-27b5-560e-a0ae-91a24d59f18c",
+        "espn_team_id": "2869",
+        "source": "ESPN team artwork (exact ESPN team id 2869, listed in fifa.world as \"Morocco\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/mar.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Algeria",
+        "slug": "algeria",
+        "canonical_id": "27d15a33-0bdf-5e92-bd66-a3c46005c4e4",
+        "espn_team_id": "624",
+        "source": "ESPN team artwork (exact ESPN team id 624, listed in fifa.world as \"Algeria\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/alg.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Argentina",
+        "slug": "argentina",
+        "canonical_id": "c24fa45c-35ed-526b-b69e-b7018ca636fe",
+        "espn_team_id": "202",
+        "source": "ESPN team artwork (exact ESPN team id 202, listed in fifa.world as \"Argentina\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/arg.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Uruguay",
+        "slug": "uruguay",
+        "canonical_id": "1a0a725b-1e8d-5273-97a2-fb8a382532b2",
+        "espn_team_id": "212",
+        "source": "ESPN team artwork (exact ESPN team id 212, listed in fifa.world as \"Uruguay\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/uru.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Cape Verde",
+        "slug": "cape-verde",
+        "canonical_id": "d53cc5df-e2b8-5c77-a335-9297ae52461c",
+        "espn_team_id": "2597",
+        "source": "ESPN team artwork (exact ESPN team id 2597, listed in fifa.world as \"Cape Verde\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/cpv.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Curaçao",
+        "slug": "curacao",
+        "canonical_id": "231b3052-4f7d-5b9e-89a2-96fe1022f25c",
+        "espn_team_id": "11678",
+        "source": "ESPN team artwork (exact ESPN team id 11678, listed in fifa.world as \"Curaçao\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/11678.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Ivory Coast",
+        "slug": "ivory-coast",
+        "canonical_id": "9e7c3c16-a988-5ffb-b26d-dda1c910205c",
+        "espn_team_id": "4789",
+        "source": "ESPN team artwork (exact ESPN team id 4789, listed in fifa.world as \"Ivory Coast\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/civ.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Saudi Arabia",
+        "slug": "saudi-arabia",
+        "canonical_id": "2ad3960f-c92b-55b1-9f86-3450fa49e451",
+        "espn_team_id": "655",
+        "source": "ESPN team artwork (exact ESPN team id 655, listed in fifa.world as \"Saudi Arabia\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/ksa.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Senegal",
+        "slug": "senegal",
+        "canonical_id": "3dae71cf-7286-5c90-9bec-cbe968f66778",
+        "espn_team_id": "654",
+        "source": "ESPN team artwork (exact ESPN team id 654, listed in fifa.world as \"Senegal\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/sen.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Iraq",
+        "slug": "iraq",
+        "canonical_id": "4b38a122-c186-5047-b67a-b57fce482e53",
+        "espn_team_id": "4375",
+        "source": "ESPN team artwork (exact ESPN team id 4375, listed in fifa.world as \"Iraq\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/irq.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Paraguay",
+        "slug": "paraguay",
+        "canonical_id": "b377c929-039a-5b8a-bc06-10a38483fbae",
+        "espn_team_id": "210",
+        "source": "ESPN team artwork (exact ESPN team id 210, listed in fifa.world as \"Paraguay\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/par.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Panama",
+        "slug": "panama",
+        "canonical_id": "42d02dfc-91e7-519b-b698-570d83e9fdf4",
+        "espn_team_id": "2659",
+        "source": "ESPN team artwork (exact ESPN team id 2659, listed in fifa.world as \"Panama\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/pan.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Brazil",
+        "slug": "brazil",
+        "canonical_id": "9d47e0cb-ad2d-5f89-9253-ea0b55529197",
+        "espn_team_id": "205",
+        "source": "ESPN team artwork (exact ESPN team id 205, listed in fifa.world as \"Brazil\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/bra.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Mexico",
+        "slug": "mexico",
+        "canonical_id": "4da39f6e-80b0-52a3-886b-7c76cc576536",
+        "espn_team_id": "203",
+        "source": "ESPN team artwork (exact ESPN team id 203, listed in fifa.world as \"Mexico\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/mex.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "South Africa",
+        "slug": "south-africa",
+        "canonical_id": "71a4d99a-439d-5427-aefb-11e69a031d66",
+        "espn_team_id": "467",
+        "source": "ESPN team artwork (exact ESPN team id 467, listed in fifa.world as \"South Africa\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/rsa.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Ecuador",
+        "slug": "ecuador",
+        "canonical_id": "bb4464cf-9b17-5f92-900a-d17c1bec9a6b",
+        "espn_team_id": "209",
+        "source": "ESPN team artwork (exact ESPN team id 209, listed in fifa.world as \"Ecuador\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/ecu.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "South Korea",
+        "slug": "south-korea",
+        "canonical_id": "e74b5396-a4f1-5358-a9c9-f798f9cafdff",
+        "espn_team_id": "451",
+        "source": "ESPN team artwork (exact ESPN team id 451, listed in fifa.world as \"South Korea\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/kors.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Uzbekistan",
+        "slug": "uzbekistan",
+        "canonical_id": "c29537c7-2274-52b0-896a-69b76705fd2a",
+        "espn_team_id": "2570",
+        "source": "ESPN team artwork (exact ESPN team id 2570, listed in fifa.world as \"Uzbekistan\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/uzb.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Congo DR",
+        "slug": "congo-dr",
+        "canonical_id": "f0ac7982-3807-55de-8e94-7b80ef0c26c3",
+        "espn_team_id": "2850",
+        "source": "ESPN team artwork (exact ESPN team id 2850, listed in fifa.world as \"Congo DR\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/rdc.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "New Zealand",
+        "slug": "new-zealand",
+        "canonical_id": "585d4dcc-ed37-557f-9d28-af20134587cb",
+        "espn_team_id": "2666",
+        "source": "ESPN team artwork (exact ESPN team id 2666, listed in fifa.world as \"New Zealand\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/nzl.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Egypt",
+        "slug": "egypt",
+        "canonical_id": "97ae96be-fbd6-5a39-a6e1-d328b51da7b0",
+        "espn_team_id": "2620",
+        "source": "ESPN team artwork (exact ESPN team id 2620, listed in fifa.world as \"Egypt\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/egy.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Haiti",
+        "slug": "haiti",
+        "canonical_id": "5e74e348-9f4c-5e48-b4b7-20bb503eae35",
+        "espn_team_id": "2654",
+        "source": "ESPN team artwork (exact ESPN team id 2654, listed in fifa.world as \"Haiti\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/hai.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Canada",
+        "slug": "canada",
+        "canonical_id": "c979dc2b-d4d2-5111-a4cf-b650400ec7c9",
+        "espn_team_id": "206",
+        "source": "ESPN team artwork (exact ESPN team id 206, listed in fifa.world as \"Canada\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/can.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Ghana",
+        "slug": "ghana",
+        "canonical_id": "7a5b2cd5-597f-508f-9918-464e0ce2bd1c",
+        "espn_team_id": "4469",
+        "source": "ESPN team artwork (exact ESPN team id 4469, listed in fifa.world as \"Ghana\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/gha.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "United States",
+        "slug": "united-states",
+        "canonical_id": "804a0d38-b23d-56d4-9e8c-3f44e50a6fa9",
+        "espn_team_id": "660",
+        "source": "ESPN team artwork (exact ESPN team id 660, listed in fifa.world as \"United States\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/usa.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Australia",
+        "slug": "australia",
+        "canonical_id": "f8553894-0bcf-5416-b842-fbeb78340ce7",
+        "espn_team_id": "628",
+        "source": "ESPN team artwork (exact ESPN team id 628, listed in fifa.world as \"Australia\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/aus.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Qatar",
+        "slug": "qatar",
+        "canonical_id": "f5a26a4e-202e-581c-a819-81b2cdb7c3c7",
+        "espn_team_id": "4398",
+        "source": "ESPN team artwork (exact ESPN team id 4398, listed in fifa.world as \"Qatar\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/qat.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Iran",
+        "slug": "iran",
+        "canonical_id": "aad07c8d-707f-5ef2-ba6f-2e00448cab3e",
+        "espn_team_id": "469",
+        "source": "ESPN team artwork (exact ESPN team id 469, listed in fifa.world as \"Iran\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/irn.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Colombia",
+        "slug": "colombia",
+        "canonical_id": "c3814513-b7fb-50c9-8ba9-159b8e34e61a",
+        "espn_team_id": "208",
+        "source": "ESPN team artwork (exact ESPN team id 208, listed in fifa.world as \"Colombia\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/col.png",
+        "status": "live"
+      },
+      {
+        "competition": "fifa-world-cup",
+        "competitions": [
+          "fifa-world-cup"
+        ],
+        "team": "Tunisia",
+        "slug": "tunisia",
+        "canonical_id": "e0a0792e-fbee-559b-9789-43b659ef9305",
+        "espn_team_id": "659",
+        "source": "ESPN team artwork (exact ESPN team id 659, listed in fifa.world as \"Tunisia\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/countries/500/tun.png",
+        "status": "live"
+      },
+      {
+        "competition": "la-liga",
+        "competitions": [
+          "la-liga"
+        ],
+        "team": "Espanyol",
+        "slug": "espanyol",
+        "canonical_id": "037537fb-6557-5918-81ef-af4cbfb320bd",
+        "espn_team_id": "88",
+        "source": "ESPN team artwork (exact ESPN team id 88, listed in esp.1 as \"Espanyol\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/88.png",
+        "status": "live"
+      },
+      {
+        "competition": "la-liga",
+        "competitions": [
+          "la-liga",
+          "uefa-europa-league"
+        ],
+        "team": "Real Sociedad",
+        "slug": "real-sociedad",
+        "canonical_id": "211208b3-5589-5460-b3d1-c325556846eb",
+        "espn_team_id": "89",
+        "source": "ESPN team artwork (exact ESPN team id 89, listed in esp.1 as \"Real Sociedad\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/89.png",
+        "status": "live"
+      },
+      {
+        "competition": "la-liga",
+        "competitions": [
+          "la-liga"
+        ],
+        "team": "Osasuna",
+        "slug": "osasuna",
+        "canonical_id": "2299cc60-536b-5cd6-9f82-f94131c387a6",
+        "espn_team_id": "97",
+        "source": "ESPN team artwork (exact ESPN team id 97, listed in esp.1 as \"Osasuna\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/97.png",
+        "status": "live"
+      },
+      {
+        "competition": "la-liga",
+        "competitions": [
+          "la-liga"
+        ],
+        "team": "Rayo Vallecano",
+        "slug": "rayo-vallecano",
+        "canonical_id": "295337a6-75e1-5db4-99ca-607698aa37c7",
+        "espn_team_id": "101",
+        "source": "ESPN team artwork (exact ESPN team id 101, listed in esp.1 as \"Rayo Vallecano\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/101.png",
+        "status": "live"
+      },
+      {
+        "competition": "la-liga",
+        "competitions": [
+          "la-liga"
+        ],
+        "team": "Valencia",
+        "slug": "valencia",
+        "canonical_id": "2c4959d2-82b3-59a5-ac6d-e7a1f7b7be54",
+        "espn_team_id": "94",
+        "source": "ESPN team artwork (exact ESPN team id 94, listed in esp.1 as \"Valencia\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/94.png",
+        "status": "live"
+      },
+      {
+        "competition": "la-liga",
+        "competitions": [
+          "la-liga"
+        ],
+        "team": "Athletic Club",
+        "slug": "athletic-club",
+        "canonical_id": "5543c61d-2b7d-5e9f-a6a3-f2f417370e41",
+        "espn_team_id": "93",
+        "source": "ESPN team artwork (exact ESPN team id 93, listed in esp.1 as \"Athletic Club\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/93.png",
+        "status": "live"
+      },
+      {
+        "competition": "la-liga",
+        "competitions": [
+          "la-liga",
+          "uefa-europa-league"
+        ],
+        "team": "Celta Vigo",
+        "slug": "celta-vigo",
+        "canonical_id": "7e81b9b5-0429-5e48-8b1b-eb7dd3c4bc3b",
+        "espn_team_id": "85",
+        "source": "ESPN team artwork (exact ESPN team id 85, listed in esp.1 as \"Celta Vigo\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/85.png",
+        "status": "live"
+      },
+      {
+        "competition": "la-liga",
+        "competitions": [
+          "la-liga"
+        ],
+        "team": "Elche",
+        "slug": "elche",
+        "canonical_id": "8196aed5-5bdb-5012-9153-658bf34d436c",
+        "espn_team_id": "3751",
+        "source": "ESPN team artwork (exact ESPN team id 3751, listed in esp.1 as \"Elche\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/3751.png",
+        "status": "live"
+      },
+      {
+        "competition": "la-liga",
+        "competitions": [
+          "la-liga"
+        ],
+        "team": "Levante",
+        "slug": "levante",
+        "canonical_id": "9c13cc67-a9cc-5ee6-ae17-59e2ef4713f0",
+        "espn_team_id": "1538",
+        "source": "ESPN team artwork (exact ESPN team id 1538, listed in esp.1 as \"Levante\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/1538.png",
+        "status": "live"
+      },
+      {
+        "competition": "la-liga",
+        "competitions": [
+          "la-liga"
+        ],
+        "team": "Racing Santander",
+        "slug": "racing-santander",
+        "canonical_id": "a08b09f7-bf9b-5488-85f0-e37196d1c4d1",
+        "espn_team_id": "87",
+        "source": "ESPN team artwork (exact ESPN team id 87, listed in esp.1 as \"Racing Santander\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/87.png",
+        "status": "live"
+      },
+      {
+        "competition": "la-liga",
+        "competitions": [
+          "la-liga"
+        ],
+        "team": "Málaga",
+        "slug": "malaga",
+        "canonical_id": "aeed0876-86b4-5601-9989-10f9751b1957",
+        "espn_team_id": "99",
+        "source": "ESPN team artwork (exact ESPN team id 99, listed in esp.1 as \"Málaga\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/99.png",
+        "status": "live"
+      },
+      {
+        "competition": "la-liga",
+        "competitions": [
+          "la-liga"
+        ],
+        "team": "Deportivo",
+        "slug": "deportivo",
+        "canonical_id": "bd87887d-ed07-5fe7-b83d-66a8426039ce",
+        "espn_team_id": "90",
+        "source": "ESPN team artwork (exact ESPN team id 90, listed in esp.1 as \"Deportivo\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/90.png",
+        "status": "live"
+      },
+      {
+        "competition": "la-liga",
+        "competitions": [
+          "la-liga"
+        ],
+        "team": "Sevilla",
+        "slug": "sevilla",
+        "canonical_id": "c988feae-a511-5980-a880-7ce688f3d956",
+        "espn_team_id": "243",
+        "source": "ESPN team artwork (exact ESPN team id 243, listed in esp.1 as \"Sevilla\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/243.png",
+        "status": "live"
+      },
+      {
+        "competition": "la-liga",
+        "competitions": [
+          "la-liga"
+        ],
+        "team": "Alavés",
+        "slug": "alaves",
+        "canonical_id": "d6d6e2b8-b261-576f-a91b-ba7d3e9865f4",
+        "espn_team_id": "96",
+        "source": "ESPN team artwork (exact ESPN team id 96, listed in esp.1 as \"Alavés\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/96.png",
+        "status": "live"
+      },
+      {
+        "competition": "la-liga",
+        "competitions": [
+          "la-liga"
+        ],
+        "team": "Getafe",
+        "slug": "getafe",
+        "canonical_id": "daabe6ab-b7c7-5c5d-b650-4e088eae830b",
+        "espn_team_id": "2922",
+        "source": "ESPN team artwork (exact ESPN team id 2922, listed in esp.1 as \"Getafe\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/2922.png",
+        "status": "live"
+      },
+      {
+        "competition": "liga-f",
+        "competitions": [
+          "liga-f"
+        ],
+        "team": "Real Sociedad Women",
+        "slug": "real-sociedad-women",
+        "canonical_id": "0430a1d6-d20a-557a-9263-7e028ab3c246",
+        "espn_team_id": "21428",
+        "source": "ESPN team artwork (exact ESPN team id 21428, listed in esp.w.1 as \"Real Sociedad\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21428.png",
+        "status": "live"
+      },
+      {
+        "competition": "liga-f",
+        "competitions": [
+          "liga-f",
+          "uefa-womens-champions-league"
+        ],
+        "team": "Real Madrid Women",
+        "slug": "real-madrid-women",
+        "canonical_id": "31d2699c-edd5-555e-b255-5b3137fde136",
+        "espn_team_id": "21128",
+        "source": "ESPN team artwork (exact ESPN team id 21128, listed in esp.w.1 as \"Real Madrid\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21128.png",
+        "status": "live"
+      },
+      {
+        "competition": "liga-f",
+        "competitions": [
+          "liga-f",
+          "uefa-womens-champions-league"
+        ],
+        "team": "Barcelona Women",
+        "slug": "barcelona-women",
+        "canonical_id": "3617b76c-e866-515b-969b-f7e5bbf58be6",
+        "espn_team_id": "20091",
+        "source": "ESPN team artwork (exact ESPN team id 20091, listed in esp.w.1 as \"Barcelona\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/20091.png",
+        "status": "live"
+      },
+      {
+        "competition": "liga-f",
+        "competitions": [
+          "liga-f"
+        ],
+        "team": "Granada",
+        "slug": "granada",
+        "canonical_id": "369a25f4-6c68-5289-be1a-e9846be1d34f",
+        "espn_team_id": "21140",
+        "source": "ESPN team artwork (exact ESPN team id 21140, listed in esp.w.1 as \"Granada\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21140.png",
+        "status": "live"
+      },
+      {
+        "competition": "liga-f",
+        "competitions": [
+          "liga-f"
+        ],
+        "team": "Dux Logroño",
+        "slug": "dux-logrono",
+        "canonical_id": "7b867fcb-cee2-5654-a8cf-642073e74a2d",
+        "espn_team_id": "21175",
+        "source": "ESPN team artwork (exact ESPN team id 21175, listed in esp.w.1 as \"Dux Logroño\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21175.png",
+        "status": "live"
+      },
+      {
+        "competition": "liga-f",
+        "competitions": [
+          "liga-f"
+        ],
+        "team": "Madrid CFF",
+        "slug": "madrid-cff",
+        "canonical_id": "8d5381a8-78cf-5dca-af5d-ad51dc99a4a1",
+        "espn_team_id": "21425",
+        "source": "ESPN team artwork (exact ESPN team id 21425, listed in esp.w.1 as \"Madrid CFF\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21425.png",
+        "status": "live"
+      },
+      {
+        "competition": "liga-f",
+        "competitions": [
+          "liga-f"
+        ],
+        "team": "FC Badalona",
+        "slug": "fc-badalona",
+        "canonical_id": "95114ce1-7fdf-5a37-b9e1-5482806c1aba",
+        "espn_team_id": "21149",
+        "source": "ESPN team artwork (exact ESPN team id 21149, listed in esp.w.1 as \"FC Badalona\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21149.png",
+        "status": "live"
+      },
+      {
+        "competition": "liga-f",
+        "competitions": [
+          "liga-f"
+        ],
+        "team": "Athletic Club Women",
+        "slug": "athletic-club-women",
+        "canonical_id": "98edf7e7-9e8a-5d73-9df2-db12e65f7379",
+        "espn_team_id": "21372",
+        "source": "ESPN team artwork (exact ESPN team id 21372, listed in esp.w.1 as \"Athletic Club\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21372.png",
+        "status": "live"
+      },
+      {
+        "competition": "liga-f",
+        "competitions": [
+          "liga-f"
+        ],
+        "team": "Atlético Madrid Women",
+        "slug": "atletico-madrid-women",
+        "canonical_id": "a8b692b0-a6b4-56cd-befc-0c623c2bd6f8",
+        "espn_team_id": "20093",
+        "source": "ESPN team artwork (exact ESPN team id 20093, listed in esp.w.1 as \"Atlético Madrid\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/20093.png",
+        "status": "live"
+      },
+      {
+        "competition": "liga-f",
+        "competitions": [
+          "liga-f"
+        ],
+        "team": "Valencia Women",
+        "slug": "valencia-women",
+        "canonical_id": "b7eca2c2-6fd0-5eef-b9a1-dd080ccf75a5",
+        "espn_team_id": "21374",
+        "source": "ESPN team artwork (exact ESPN team id 21374, listed in esp.w.1 as \"Valencia\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21374.png",
+        "status": "live"
+      },
+      {
+        "competition": "liga-f",
+        "competitions": [
+          "liga-f"
+        ],
+        "team": "Sevilla Women",
+        "slug": "sevilla-women",
+        "canonical_id": "c8cd9569-a94a-57dc-8532-7cd8664544f3",
+        "espn_team_id": "21424",
+        "source": "ESPN team artwork (exact ESPN team id 21424, listed in esp.w.1 as \"Sevilla\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21424.png",
+        "status": "live"
+      },
+      {
+        "competition": "liga-f",
+        "competitions": [
+          "liga-f"
+        ],
+        "team": "Deportivo Women",
+        "slug": "deportivo-women",
+        "canonical_id": "cf1e9790-9ffc-54a1-ad16-59648ad98957",
+        "espn_team_id": "21145",
+        "source": "ESPN team artwork (exact ESPN team id 21145, listed in esp.w.1 as \"Deportivo\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21145.png",
+        "status": "live"
+      },
+      {
+        "competition": "liga-f",
+        "competitions": [
+          "liga-f"
+        ],
+        "team": "CD Tenerife",
+        "slug": "cd-tenerife",
+        "canonical_id": "d25d5922-0572-554d-8f50-3dd157763330",
+        "espn_team_id": "131393",
+        "source": "ESPN team artwork (exact ESPN team id 131393, listed in esp.w.1 as \"CD Tenerife\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/131393.png",
+        "status": "live"
+      },
+      {
+        "competition": "liga-f",
+        "competitions": [
+          "liga-f"
+        ],
+        "team": "Eibar",
+        "slug": "eibar",
+        "canonical_id": "ed915826-545e-55cf-b90e-b18de07fbd2a",
+        "espn_team_id": "21376",
+        "source": "ESPN team artwork (exact ESPN team id 21376, listed in esp.w.1 as \"Eibar\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21376.png",
+        "status": "live"
+      },
+      {
+        "competition": "liga-f",
+        "competitions": [
+          "liga-f"
+        ],
+        "team": "Alavés Women",
+        "slug": "alaves-women",
+        "canonical_id": "f3f3a19d-91fe-5591-9641-4e5ee4688eaf",
+        "espn_team_id": "21378",
+        "source": "ESPN team artwork (exact ESPN team id 21378, listed in esp.w.1 as \"Alavés\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21378.png",
+        "status": "live"
+      },
+      {
+        "competition": "liga-f",
+        "competitions": [
+          "liga-f"
+        ],
+        "team": "Espanyol Women",
+        "slug": "espanyol-women",
+        "canonical_id": "f58d932a-85d0-5c1c-809d-42929d2745c4",
+        "espn_team_id": "21154",
+        "source": "ESPN team artwork (exact ESPN team id 21154, listed in esp.w.1 as \"Espanyol\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21154.png",
+        "status": "live"
+      },
+      {
+        "competition": "ligue-1",
+        "competitions": [
+          "ligue-1"
+        ],
+        "team": "Nice",
+        "slug": "nice",
+        "canonical_id": "0920de00-bd56-546c-8253-9a0025493a20",
+        "espn_team_id": "2502",
+        "source": "ESPN team artwork (exact ESPN team id 2502, listed in fra.1 as \"Nice\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/2502.png",
+        "status": "live"
+      },
+      {
+        "competition": "ligue-1",
+        "competitions": [
+          "ligue-1"
+        ],
+        "team": "Brest",
+        "slug": "brest",
+        "canonical_id": "32e0773f-3525-56a2-82e1-bbd1586eddfe",
+        "espn_team_id": "6997",
+        "source": "ESPN team artwork (exact ESPN team id 6997, listed in fra.1 as \"Brest\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/6997.png",
+        "status": "live"
+      },
+      {
+        "competition": "ligue-1",
+        "competitions": [
+          "ligue-1"
+        ],
+        "team": "Paris FC",
+        "slug": "paris-fc",
+        "canonical_id": "3962947f-3c57-5a85-9ddd-d1a3c07077cb",
+        "espn_team_id": "6851",
+        "source": "ESPN team artwork (exact ESPN team id 6851, listed in fra.1 as \"Paris FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/6851.png",
+        "status": "live"
+      },
+      {
+        "competition": "ligue-1",
+        "competitions": [
+          "ligue-1",
+          "uefa-europa-league"
+        ],
+        "team": "Stade Rennais",
+        "slug": "stade-rennais",
+        "canonical_id": "5069fccd-8c37-5c97-9e76-097d94590dba",
+        "espn_team_id": "169",
+        "source": "ESPN team artwork (exact ESPN team id 169, listed in fra.1 as \"Stade Rennais\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/169.png",
+        "status": "live"
+      },
+      {
+        "competition": "ligue-1",
+        "competitions": [
+          "ligue-1"
+        ],
+        "team": "Troyes",
+        "slug": "troyes",
+        "canonical_id": "5e138428-709d-5b93-82f7-f3008c0c5be1",
+        "espn_team_id": "170",
+        "source": "ESPN team artwork (exact ESPN team id 170, listed in fra.1 as \"Troyes\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/170.png",
+        "status": "live"
+      },
+      {
+        "competition": "ligue-1",
+        "competitions": [
+          "ligue-1"
+        ],
+        "team": "AJ Auxerre",
+        "slug": "aj-auxerre",
+        "canonical_id": "7aa55da0-5237-5b79-8b71-a06cbeed2e43",
+        "espn_team_id": "172",
+        "source": "ESPN team artwork (exact ESPN team id 172, listed in fra.1 as \"AJ Auxerre\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/172.png",
+        "status": "live"
+      },
+      {
+        "competition": "ligue-1",
+        "competitions": [
+          "ligue-1"
+        ],
+        "team": "Angers",
+        "slug": "angers",
+        "canonical_id": "8da5380d-f57d-55eb-ad8c-a42555c10f06",
+        "espn_team_id": "7868",
+        "source": "ESPN team artwork (exact ESPN team id 7868, listed in fra.1 as \"Angers\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/7868.png",
+        "status": "live"
+      },
+      {
+        "competition": "ligue-1",
+        "competitions": [
+          "ligue-1",
+          "uefa-europa-league"
+        ],
+        "team": "Marseille",
+        "slug": "marseille",
+        "canonical_id": "9db7294d-bab1-56fd-b792-97bdcc721c84",
+        "espn_team_id": "176",
+        "source": "ESPN team artwork (exact ESPN team id 176, listed in fra.1 as \"Marseille\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/176.png",
+        "status": "live"
+      },
+      {
+        "competition": "ligue-1",
+        "competitions": [
+          "ligue-1"
+        ],
+        "team": "Strasbourg",
+        "slug": "strasbourg",
+        "canonical_id": "a54b09d7-bd12-57a8-9597-d8cd1f48ae44",
+        "espn_team_id": "180",
+        "source": "ESPN team artwork (exact ESPN team id 180, listed in fra.1 as \"Strasbourg\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/180.png",
+        "status": "live"
+      },
+      {
+        "competition": "ligue-1",
+        "competitions": [
+          "ligue-1"
+        ],
+        "team": "AS Monaco",
+        "slug": "as-monaco",
+        "canonical_id": "ae93bab1-3f77-5bf3-bc4e-35ca7619ae34",
+        "espn_team_id": "174",
+        "source": "ESPN team artwork (exact ESPN team id 174, listed in fra.1 as \"AS Monaco\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/174.png",
+        "status": "live"
+      },
+      {
+        "competition": "ligue-1",
+        "competitions": [
+          "ligue-1"
+        ],
+        "team": "Le Havre AC",
+        "slug": "le-havre-ac",
+        "canonical_id": "bb885641-488b-5143-8ad0-791ff01b3c65",
+        "espn_team_id": "3236",
+        "source": "ESPN team artwork (exact ESPN team id 3236, listed in fra.1 as \"Le Havre AC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/3236.png",
+        "status": "live"
+      },
+      {
+        "competition": "ligue-1",
+        "competitions": [
+          "ligue-1",
+          "uefa-europa-league"
+        ],
+        "team": "Lyon",
+        "slug": "lyon",
+        "canonical_id": "deeb8a4c-7040-5904-95c0-5585b2fe8b5f",
+        "espn_team_id": "167",
+        "source": "ESPN team artwork (exact ESPN team id 167, listed in fra.1 as \"Lyon\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/167.png",
+        "status": "live"
+      },
+      {
+        "competition": "ligue-1",
+        "competitions": [
+          "ligue-1"
+        ],
+        "team": "Toulouse",
+        "slug": "toulouse",
+        "canonical_id": "e59a09bd-1367-5b16-9f2a-b980b239b0c2",
+        "espn_team_id": "179",
+        "source": "ESPN team artwork (exact ESPN team id 179, listed in fra.1 as \"Toulouse\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/179.png",
+        "status": "live"
+      },
+      {
+        "competition": "ligue-1",
+        "competitions": [
+          "ligue-1"
+        ],
+        "team": "Le Mans",
+        "slug": "le-mans",
+        "canonical_id": "f3fc2798-2481-5c3c-a8b1-9b8377c80857",
+        "espn_team_id": "2697",
+        "source": "ESPN team artwork (exact ESPN team id 2697, listed in fra.1 as \"Le Mans\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/2697.png",
+        "status": "live"
+      },
+      {
+        "competition": "ligue-1",
+        "competitions": [
+          "ligue-1"
+        ],
+        "team": "Lorient",
+        "slug": "lorient",
+        "canonical_id": "fe00c8a3-73a4-522e-96f5-046588c801a0",
+        "espn_team_id": "273",
+        "source": "ESPN team artwork (exact ESPN team id 273, listed in fra.1 as \"Lorient\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/273.png",
+        "status": "live"
+      },
+      {
+        "competition": "nwsl",
+        "competitions": [
+          "nwsl"
+        ],
+        "team": "Gotham FC",
+        "slug": "gotham-fc",
+        "canonical_id": "14ff187e-8fe5-5949-b2d0-8533d3f99b1f",
+        "espn_team_id": "15364",
+        "source": "ESPN team artwork (exact ESPN team id 15364, listed in usa.nwsl as \"Gotham FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/15364.png",
+        "status": "live"
+      },
+      {
+        "competition": "nwsl",
+        "competitions": [
+          "nwsl"
+        ],
+        "team": "Racing Louisville FC",
+        "slug": "racing-louisville-fc",
+        "canonical_id": "1b6440a4-303d-5580-9fb6-a12e0d901e0e",
+        "espn_team_id": "20905",
+        "source": "ESPN team artwork (exact ESPN team id 20905, listed in usa.nwsl as \"Racing Louisville FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/20905.png",
+        "status": "live"
+      },
+      {
+        "competition": "nwsl",
+        "competitions": [
+          "nwsl"
+        ],
+        "team": "Orlando Pride",
+        "slug": "orlando-pride",
+        "canonical_id": "1e1e5b50-7730-57f8-9306-6ad9fb7b6869",
+        "espn_team_id": "18206",
+        "source": "ESPN team artwork (exact ESPN team id 18206, listed in usa.nwsl as \"Orlando Pride\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/18206.png",
+        "status": "live"
+      },
+      {
+        "competition": "nwsl",
+        "competitions": [
+          "nwsl"
+        ],
+        "team": "Angel City FC",
+        "slug": "angel-city-fc",
+        "canonical_id": "28021c9f-4feb-5a0b-a726-2d97c4f33db6",
+        "espn_team_id": "21422",
+        "source": "ESPN team artwork (exact ESPN team id 21422, listed in usa.nwsl as \"Angel City FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21422.png",
+        "status": "live"
+      },
+      {
+        "competition": "nwsl",
+        "competitions": [
+          "nwsl"
+        ],
+        "team": "Bay FC",
+        "slug": "bay-fc",
+        "canonical_id": "46215be8-b7a1-5a7d-9f48-5fd1b8fb5310",
+        "espn_team_id": "22187",
+        "source": "ESPN team artwork (exact ESPN team id 22187, listed in usa.nwsl as \"Bay FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/22187.png",
+        "status": "live"
+      },
+      {
+        "competition": "nwsl",
+        "competitions": [
+          "nwsl"
+        ],
+        "team": "Seattle Reign FC",
+        "slug": "seattle-reign-fc",
+        "canonical_id": "4b516615-db88-5775-b8ab-3d792ab9b2f9",
+        "espn_team_id": "15363",
+        "source": "ESPN team artwork (exact ESPN team id 15363, listed in usa.nwsl as \"Seattle Reign FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/15363.png",
+        "status": "live"
+      },
+      {
+        "competition": "nwsl",
+        "competitions": [
+          "nwsl"
+        ],
+        "team": "Chicago Stars FC",
+        "slug": "chicago-stars-fc",
+        "canonical_id": "996ac30f-8ac4-5e3a-96d1-9c9ac9854972",
+        "espn_team_id": "15360",
+        "source": "ESPN team artwork (exact ESPN team id 15360, listed in usa.nwsl as \"Chicago Stars FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/15360.png",
+        "status": "live"
+      },
+      {
+        "competition": "nwsl",
+        "competitions": [
+          "nwsl"
+        ],
+        "team": "Boston Legacy FC",
+        "slug": "boston-legacy-fc",
+        "canonical_id": "a4b3528f-bc14-5ee2-b393-a66f23c4904f",
+        "espn_team_id": "131562",
+        "source": "ESPN team artwork (exact ESPN team id 131562, listed in usa.nwsl as \"Boston Legacy FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/131562.png",
+        "status": "live"
+      },
+      {
+        "competition": "nwsl",
+        "competitions": [
+          "nwsl"
+        ],
+        "team": "Denver Summit FC",
+        "slug": "denver-summit-fc",
+        "canonical_id": "a68f2f1a-714e-56d6-9925-f5b115e62f07",
+        "espn_team_id": "131563",
+        "source": "ESPN team artwork (exact ESPN team id 131563, listed in usa.nwsl as \"Denver Summit FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/131563.png",
+        "status": "live"
+      },
+      {
+        "competition": "nwsl",
+        "competitions": [
+          "nwsl"
+        ],
+        "team": "Portland Thorns FC",
+        "slug": "portland-thorns-fc",
+        "canonical_id": "aabbcacc-6444-5915-b95a-4a9f2dc596ef",
+        "espn_team_id": "15362",
+        "source": "ESPN team artwork (exact ESPN team id 15362, listed in usa.nwsl as \"Portland Thorns FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/15362.png",
+        "status": "live"
+      },
+      {
+        "competition": "nwsl",
+        "competitions": [
+          "nwsl"
+        ],
+        "team": "San Diego Wave FC",
+        "slug": "san-diego-wave-fc",
+        "canonical_id": "b1c0eafa-277e-5a69-a5c7-69ad0ae7bc66",
+        "espn_team_id": "21423",
+        "source": "ESPN team artwork (exact ESPN team id 21423, listed in usa.nwsl as \"San Diego Wave FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21423.png",
+        "status": "live"
+      },
+      {
+        "competition": "nwsl",
+        "competitions": [
+          "nwsl"
+        ],
+        "team": "Houston Dash",
+        "slug": "houston-dash",
+        "canonical_id": "c283398c-1105-55a6-b3a3-d4b408f6b108",
+        "espn_team_id": "17346",
+        "source": "ESPN team artwork (exact ESPN team id 17346, listed in usa.nwsl as \"Houston Dash\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/17346.png",
+        "status": "live"
+      },
+      {
+        "competition": "nwsl",
+        "competitions": [
+          "nwsl"
+        ],
+        "team": "Utah Royals",
+        "slug": "utah-royals",
+        "canonical_id": "c9ebbca0-e3c1-51aa-861c-81e87168c126",
+        "espn_team_id": "19141",
+        "source": "ESPN team artwork (exact ESPN team id 19141, listed in usa.nwsl as \"Utah Royals\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/19141.png",
+        "status": "live"
+      },
+      {
+        "competition": "nwsl",
+        "competitions": [
+          "nwsl"
+        ],
+        "team": "North Carolina Courage",
+        "slug": "north-carolina-courage",
+        "canonical_id": "d3dd43ed-e89a-5f48-bf83-3db49f5166a6",
+        "espn_team_id": "15366",
+        "source": "ESPN team artwork (exact ESPN team id 15366, listed in usa.nwsl as \"North Carolina Courage\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/15366.png",
+        "status": "live"
+      },
+      {
+        "competition": "nwsl",
+        "competitions": [
+          "nwsl"
+        ],
+        "team": "Kansas City Current",
+        "slug": "kansas-city-current",
+        "canonical_id": "eba4beb3-942e-5b38-82d2-1547e9782e26",
+        "espn_team_id": "20907",
+        "source": "ESPN team artwork (exact ESPN team id 20907, listed in usa.nwsl as \"Kansas City Current\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/20907.png",
+        "status": "live"
+      },
+      {
+        "competition": "nwsl",
+        "competitions": [
+          "nwsl"
+        ],
+        "team": "Washington Spirit",
+        "slug": "washington-spirit",
+        "canonical_id": "fd17f295-e017-5e18-98a9-cc98ff2a7dc2",
+        "espn_team_id": "15365",
+        "source": "ESPN team artwork (exact ESPN team id 15365, listed in usa.nwsl as \"Washington Spirit\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/15365.png",
+        "status": "live"
+      },
+      {
+        "competition": "premiere-ligue",
+        "competitions": [
+          "premiere-ligue"
+        ],
+        "team": "Marseille Women",
+        "slug": "marseille-women",
+        "canonical_id": "14e0bcd8-abbf-593e-b2e8-eb5c3b73bd59",
+        "espn_team_id": "131298",
+        "status": "asset_unavailable",
+        "reason": "current_crest_not_found"
+      },
+      {
+        "competition": "premiere-ligue",
+        "competitions": [
+          "premiere-ligue",
+          "uefa-womens-champions-league"
+        ],
+        "team": "OL Lyonnes",
+        "slug": "ol-lyonnes",
+        "canonical_id": "43ddedb1-ee19-5903-80f8-54d840706886",
+        "espn_team_id": "19256",
+        "source": "ESPN team artwork (exact ESPN team id 19256, listed in fra.w.1 as \"OL Lyonnes\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/19256.png",
+        "status": "live"
+      },
+      {
+        "competition": "premiere-ligue",
+        "competitions": [
+          "premiere-ligue"
+        ],
+        "team": "FC Fleury 91",
+        "slug": "fc-fleury-91",
+        "canonical_id": "47aacd20-d420-580f-8c82-bd21aabb7d29",
+        "espn_team_id": "21637",
+        "source": "ESPN team artwork (exact ESPN team id 21637, listed in fra.w.1 as \"FC Fleury 91\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21637.png",
+        "status": "live"
+      },
+      {
+        "competition": "premiere-ligue",
+        "competitions": [
+          "premiere-ligue"
+        ],
+        "team": "Strasbourg Women",
+        "slug": "strasbourg-women",
+        "canonical_id": "6b4ecbb2-77dc-5323-8ad8-8e3f80c24161",
+        "espn_team_id": "22329",
+        "status": "asset_unavailable",
+        "reason": "current_crest_not_found"
+      },
+      {
+        "competition": "premiere-ligue",
+        "competitions": [
+          "premiere-ligue",
+          "uefa-womens-champions-league"
+        ],
+        "team": "Paris Saint-Germain Women",
+        "slug": "paris-saint-germain-women",
+        "canonical_id": "94d2460a-c857-539f-a1d4-40a82416495a",
+        "espn_team_id": "19258",
+        "source": "ESPN team artwork (exact ESPN team id 19258, listed in fra.w.1 as \"Paris Saint-Germain\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/19258.png",
+        "status": "live"
+      },
+      {
+        "competition": "premiere-ligue",
+        "competitions": [
+          "premiere-ligue"
+        ],
+        "team": "Toulouse Women",
+        "slug": "toulouse-women",
+        "canonical_id": "9a5ddcb5-66a6-5173-9f42-384a067355de",
+        "espn_team_id": "131876",
+        "status": "asset_unavailable",
+        "reason": "current_crest_not_found"
+      },
+      {
+        "competition": "premiere-ligue",
+        "competitions": [
+          "premiere-ligue"
+        ],
+        "team": "Le Havre AC Women",
+        "slug": "le-havre-ac-women",
+        "canonical_id": "a037c071-84a2-5007-a6f0-1fc2afbda185",
+        "espn_team_id": "21635",
+        "source": "ESPN team artwork (exact ESPN team id 21635, listed in fra.w.1 as \"Le Havre AC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21635.png",
+        "status": "live"
+      },
+      {
+        "competition": "premiere-ligue",
+        "competitions": [
+          "premiere-ligue"
+        ],
+        "team": "Saint-Malo",
+        "slug": "saint-malo",
+        "canonical_id": "aa87c640-8c0e-5a98-8a94-bb9bcfcb41b0",
+        "espn_team_id": "131875",
+        "status": "asset_unavailable",
+        "reason": "current_crest_not_found"
+      },
+      {
+        "competition": "premiere-ligue",
+        "competitions": [
+          "premiere-ligue",
+          "uefa-womens-champions-league"
+        ],
+        "team": "Paris FC Women",
+        "slug": "paris-fc-women",
+        "canonical_id": "be2f97e4-2b71-54fa-bd9a-2a9404520abc",
+        "espn_team_id": "21640",
+        "source": "ESPN team artwork (exact ESPN team id 21640, listed in fra.w.1 as \"Paris FC\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21640.png",
+        "status": "live"
+      },
+      {
+        "competition": "premiere-ligue",
+        "competitions": [
+          "premiere-ligue"
+        ],
+        "team": "Nantes",
+        "slug": "nantes",
+        "canonical_id": "bff381a4-4e2c-5eb0-adbe-cd6f8cf8b13c",
+        "espn_team_id": "22328",
+        "status": "asset_unavailable",
+        "reason": "current_crest_not_found"
+      },
+      {
+        "competition": "premiere-ligue",
+        "competitions": [
+          "premiere-ligue"
+        ],
+        "team": "Lens Women",
+        "slug": "lens-women",
+        "canonical_id": "d3c96b22-43e6-5b0f-91ed-19b03ae079b9",
+        "espn_team_id": "131297",
+        "status": "asset_unavailable",
+        "reason": "current_crest_not_found"
+      },
+      {
+        "competition": "premiere-ligue",
+        "competitions": [
+          "premiere-ligue"
+        ],
+        "team": "Montpellier",
+        "slug": "montpellier",
+        "canonical_id": "d3f81c05-b8ce-5beb-9581-b60adb7e4354",
+        "espn_team_id": "21638",
+        "source": "ESPN team artwork (exact ESPN team id 21638, listed in fra.w.1 as \"Montpellier\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21638.png",
+        "status": "live"
+      },
+      {
+        "competition": "serie-a",
+        "competitions": [
+          "serie-a"
+        ],
+        "team": "Bologna",
+        "slug": "bologna",
+        "canonical_id": "02291dfd-4967-592e-804e-c2b862a4b904",
+        "espn_team_id": "107",
+        "source": "ESPN team artwork (exact ESPN team id 107, listed in ita.1 as \"Bologna\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/107.png",
+        "status": "live"
+      },
+      {
+        "competition": "serie-a",
+        "competitions": [
+          "serie-a",
+          "uefa-europa-league"
+        ],
+        "team": "Juventus",
+        "slug": "juventus",
+        "canonical_id": "1efca2b7-f13e-5907-9dd3-882451808218",
+        "espn_team_id": "111",
+        "source": "ESPN team artwork (exact ESPN team id 111, listed in ita.1 as \"Juventus\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/111.png",
+        "status": "live"
+      },
+      {
+        "competition": "serie-a",
+        "competitions": [
+          "serie-a"
+        ],
+        "team": "Venezia",
+        "slug": "venezia",
+        "canonical_id": "23fcc2d0-e898-51d6-8e6b-059269de5616",
+        "espn_team_id": "17530",
+        "source": "ESPN team artwork (exact ESPN team id 17530, listed in ita.1 as \"Venezia\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/17530.png",
+        "status": "live"
+      },
+      {
+        "competition": "serie-a",
+        "competitions": [
+          "serie-a",
+          "uefa-europa-league"
+        ],
+        "team": "AC Milan",
+        "slug": "ac-milan",
+        "canonical_id": "326dcef5-64d7-568e-82f5-406cafeaa11d",
+        "espn_team_id": "103",
+        "source": "ESPN team artwork (exact ESPN team id 103, listed in ita.1 as \"AC Milan\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/103.png",
+        "status": "live"
+      },
+      {
+        "competition": "serie-a",
+        "competitions": [
+          "serie-a"
+        ],
+        "team": "Frosinone",
+        "slug": "frosinone",
+        "canonical_id": "41de9716-d0ec-55cc-ac8f-6b713c4b4bba",
+        "espn_team_id": "4057",
+        "source": "ESPN team artwork (exact ESPN team id 4057, listed in ita.1 as \"Frosinone\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/4057.png",
+        "status": "live"
+      },
+      {
+        "competition": "serie-a",
+        "competitions": [
+          "serie-a"
+        ],
+        "team": "Monza",
+        "slug": "monza",
+        "canonical_id": "53e6211e-853f-5533-bd81-0c70941bb7e1",
+        "espn_team_id": "4007",
+        "source": "ESPN team artwork (exact ESPN team id 4007, listed in ita.1 as \"Monza\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/4007.png",
+        "status": "live"
+      },
+      {
+        "competition": "serie-a",
+        "competitions": [
+          "serie-a"
+        ],
+        "team": "Lazio",
+        "slug": "lazio",
+        "canonical_id": "71949ccc-8e50-59fd-be64-72ea90676aed",
+        "espn_team_id": "112",
+        "source": "ESPN team artwork (exact ESPN team id 112, listed in ita.1 as \"Lazio\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/112.png",
+        "status": "live"
+      },
+      {
+        "competition": "serie-a",
+        "competitions": [
+          "serie-a"
+        ],
+        "team": "Lecce",
+        "slug": "lecce",
+        "canonical_id": "7afaf9c9-f3bb-5209-828e-619024402039",
+        "espn_team_id": "113",
+        "source": "ESPN team artwork (exact ESPN team id 113, listed in ita.1 as \"Lecce\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/113.png",
+        "status": "live"
+      },
+      {
+        "competition": "serie-a",
+        "competitions": [
+          "serie-a"
+        ],
+        "team": "Sassuolo",
+        "slug": "sassuolo",
+        "canonical_id": "83498a4e-2e64-5d5c-8d5f-135cd0e15f8d",
+        "espn_team_id": "3997",
+        "source": "ESPN team artwork (exact ESPN team id 3997, listed in ita.1 as \"Sassuolo\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/3997.png",
+        "status": "live"
+      },
+      {
+        "competition": "serie-a",
+        "competitions": [
+          "serie-a"
+        ],
+        "team": "Fiorentina",
+        "slug": "fiorentina",
+        "canonical_id": "848dd88e-6357-5925-8c27-7fdfaf74ba6c",
+        "espn_team_id": "109",
+        "source": "ESPN team artwork (exact ESPN team id 109, listed in ita.1 as \"Fiorentina\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/109.png",
+        "status": "live"
+      },
+      {
+        "competition": "serie-a",
+        "competitions": [
+          "serie-a"
+        ],
+        "team": "Udinese",
+        "slug": "udinese",
+        "canonical_id": "934e318f-6684-5641-a647-3daac8a19062",
+        "espn_team_id": "118",
+        "source": "ESPN team artwork (exact ESPN team id 118, listed in ita.1 as \"Udinese\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/118.png",
+        "status": "live"
+      },
+      {
+        "competition": "serie-a",
+        "competitions": [
+          "serie-a"
+        ],
+        "team": "Genoa",
+        "slug": "genoa",
+        "canonical_id": "b158f521-020e-57d7-8107-96cca9d2430f",
+        "espn_team_id": "3263",
+        "source": "ESPN team artwork (exact ESPN team id 3263, listed in ita.1 as \"Genoa\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/3263.png",
+        "status": "live"
+      },
+      {
+        "competition": "serie-a",
+        "competitions": [
+          "serie-a"
+        ],
+        "team": "Parma",
+        "slug": "parma",
+        "canonical_id": "b1c064b7-2cd8-55b6-a53c-38346373b946",
+        "espn_team_id": "115",
+        "source": "ESPN team artwork (exact ESPN team id 115, listed in ita.1 as \"Parma\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/115.png",
+        "status": "live"
+      },
+      {
+        "competition": "serie-a",
+        "competitions": [
+          "serie-a"
+        ],
+        "team": "Atalanta",
+        "slug": "atalanta",
+        "canonical_id": "b468a631-ad4d-5ab4-a6b5-7faa5222eb40",
+        "espn_team_id": "105",
+        "source": "ESPN team artwork (exact ESPN team id 105, listed in ita.1 as \"Atalanta\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/105.png",
+        "status": "live"
+      },
+      {
+        "competition": "serie-a",
+        "competitions": [
+          "serie-a"
+        ],
+        "team": "Cagliari",
+        "slug": "cagliari",
+        "canonical_id": "b52c36a9-96da-5062-914b-5540116bd058",
+        "espn_team_id": "2925",
+        "source": "ESPN team artwork (exact ESPN team id 2925, listed in ita.1 as \"Cagliari\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/2925.png",
+        "status": "live"
+      },
+      {
+        "competition": "serie-a",
+        "competitions": [
+          "serie-a"
+        ],
+        "team": "Torino",
+        "slug": "torino",
+        "canonical_id": "d1465e97-d56d-5a4f-852a-e0c8080adc30",
+        "espn_team_id": "239",
+        "source": "ESPN team artwork (exact ESPN team id 239, listed in ita.1 as \"Torino\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/239.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "Celtic",
+        "slug": "celtic",
+        "canonical_id": "03f4af48-1f93-56d7-b352-4907695fae76",
+        "espn_team_id": "256",
+        "source": "ESPN team artwork (exact ESPN team id 256, listed in uefa.europa as \"Celtic\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/256.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "Besiktas",
+        "slug": "besiktas",
+        "canonical_id": "2e29ba00-ba52-5d7b-a335-497e1870861f",
+        "espn_team_id": "1895",
+        "source": "ESPN team artwork (exact ESPN team id 1895, listed in uefa.europa as \"Besiktas\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/1895.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "Ferencvaros",
+        "slug": "ferencvaros",
+        "canonical_id": "f85f2eec-ec60-519c-ae28-41fcd741484b",
+        "espn_team_id": "622",
+        "source": "ESPN team artwork (exact ESPN team id 622, listed in uefa.europa as \"Ferencvaros\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/622.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "AZ Alkmaar",
+        "slug": "az-alkmaar",
+        "canonical_id": "067209fd-bbe5-59ba-a4f3-376589cd9360",
+        "espn_team_id": "140",
+        "source": "ESPN team artwork (exact ESPN team id 140, listed in uefa.europa as \"AZ Alkmaar\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/140.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "Hapoel Be'er",
+        "slug": "hapoel-be-er",
+        "canonical_id": "959cf9d0-39ea-5748-ad03-0456b601f326",
+        "espn_team_id": "13083",
+        "source": "ESPN team artwork (exact ESPN team id 13083, listed in uefa.europa as \"Hapoel Be'er\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/13083.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "Dinamo Zagreb",
+        "slug": "dinamo-zagreb",
+        "canonical_id": "c3fd6991-7614-53bc-a33c-1c3b6ec898ac",
+        "espn_team_id": "597",
+        "source": "ESPN team artwork (exact ESPN team id 597, listed in uefa.europa as \"Dinamo Zagreb\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/597.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "SK Sturm Graz",
+        "slug": "sk-sturm-graz",
+        "canonical_id": "ebce249f-706c-5021-95eb-0a29d12a7e1f",
+        "espn_team_id": "3746",
+        "source": "ESPN team artwork (exact ESPN team id 3746, listed in uefa.europa as \"SK Sturm Graz\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/3746.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "Lillestrom",
+        "slug": "lillestrom",
+        "canonical_id": "06c5b131-59e8-5941-a194-264fe610dbc8",
+        "espn_team_id": "987",
+        "source": "ESPN team artwork (exact ESPN team id 987, listed in uefa.europa as \"Lillestrom\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/987.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "Viktoria Plzen",
+        "slug": "viktoria-plzen",
+        "canonical_id": "6401d6d0-3a00-5297-b04d-323512571ba8",
+        "espn_team_id": "11706",
+        "source": "ESPN team artwork (exact ESPN team id 11706, listed in uefa.europa as \"Viktoria Plzen\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/11706.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "Torreense",
+        "slug": "torreense",
+        "canonical_id": "c6488343-1d05-500b-9bf1-576cda1acecd",
+        "espn_team_id": "21615",
+        "source": "ESPN team artwork (exact ESPN team id 21615, listed in uefa.europa as \"Torreense\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21615.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "Levski Sofia",
+        "slug": "levski-sofia",
+        "canonical_id": "16324132-bcd2-5795-9df6-8239debd3a12",
+        "espn_team_id": "490",
+        "source": "ESPN team artwork (exact ESPN team id 490, listed in uefa.europa as \"Levski Sofia\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/490.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "RB Salzburg",
+        "slug": "rb-salzburg",
+        "canonical_id": "3771563a-3f9d-5778-909e-4fe06ca74b6b",
+        "espn_team_id": "2790",
+        "source": "ESPN team artwork (exact ESPN team id 2790, listed in uefa.europa as \"RB Salzburg\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/2790.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "Jagiellonia Bialystok",
+        "slug": "jagiellonia-bialystok",
+        "canonical_id": "4c50064c-19d9-56de-9257-334896515b79",
+        "espn_team_id": "11505",
+        "source": "ESPN team artwork (exact ESPN team id 11505, listed in uefa.europa as \"Jagiellonia Bialystok\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/11505.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "Lech Poznan",
+        "slug": "lech-poznan",
+        "canonical_id": "17b3ecbc-510b-59d8-9963-eb5bbed3612b",
+        "espn_team_id": "2990",
+        "source": "ESPN team artwork (exact ESPN team id 2990, listed in uefa.europa as \"Lech Poznan\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/2990.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "Ararat-Armenia",
+        "slug": "ararat-armenia",
+        "canonical_id": "18c0bd8a-ba88-502a-ae48-b4789c5c310d",
+        "espn_team_id": "20024",
+        "source": "ESPN team artwork (exact ESPN team id 20024, listed in uefa.europa as \"Ararat-Armenia\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/20024.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "Sparta Prague",
+        "slug": "sparta-prague",
+        "canonical_id": "23a08523-a4d4-5a6c-92ea-1a0b9b2b7b02",
+        "espn_team_id": "433",
+        "source": "ESPN team artwork (exact ESPN team id 433, listed in uefa.europa as \"Sparta Prague\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/433.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "NK Celje",
+        "slug": "nk-celje",
+        "canonical_id": "2e9598d9-c7c5-5bc7-aca6-a7ae7e88876b",
+        "espn_team_id": "3362",
+        "source": "ESPN team artwork (exact ESPN team id 3362, listed in uefa.europa as \"NK Celje\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/3362.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "NEC Nijmegen",
+        "slug": "nec-nijmegen",
+        "canonical_id": "3114ba21-8924-525f-b15c-816631bcc0cd",
+        "espn_team_id": "147",
+        "source": "ESPN team artwork (exact ESPN team id 147, listed in uefa.europa as \"NEC Nijmegen\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/147.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "Omonia Nicosia",
+        "slug": "omonia-nicosia",
+        "canonical_id": "9d5d5aab-0fc9-5d4c-9bfe-47411b3ccee5",
+        "espn_team_id": "617",
+        "source": "ESPN team artwork (exact ESPN team id 617, listed in uefa.europa as \"Omonia Nicosia\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/617.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "Union St.-Gilloise",
+        "slug": "union-st-gilloise",
+        "canonical_id": "53aa1327-989a-5a43-8e29-3b26121ebaa6",
+        "espn_team_id": "5807",
+        "source": "ESPN team artwork (exact ESPN team id 5807, listed in uefa.europa as \"Union St.-Gilloise\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/5807.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "Olympiacos",
+        "slug": "olympiacos",
+        "canonical_id": "32865880-e889-509a-a82d-52ddd79f4bf4",
+        "espn_team_id": "435",
+        "source": "ESPN team artwork (exact ESPN team id 435, listed in uefa.europa as \"Olympiacos\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/435.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "Benfica",
+        "slug": "benfica",
+        "canonical_id": "65764652-66cc-592b-aaea-6dea2a72fb29",
+        "espn_team_id": "1929",
+        "source": "ESPN team artwork (exact ESPN team id 1929, listed in uefa.europa as \"Benfica\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/1929.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "Anderlecht",
+        "slug": "anderlecht",
+        "canonical_id": "e0f86d06-4235-52bb-b38c-b9ef86fb32d9",
+        "espn_team_id": "441",
+        "source": "ESPN team artwork (exact ESPN team id 441, listed in uefa.europa as \"Anderlecht\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/441.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-europa-league",
+        "competitions": [
+          "uefa-europa-league"
+        ],
+        "team": "OFI Crete",
+        "slug": "ofi-crete",
+        "canonical_id": "7f2dff28-45e6-5ada-b60f-028ecf10c849",
+        "espn_team_id": "1010",
+        "source": "ESPN team artwork (exact ESPN team id 1010, listed in uefa.europa as \"OFI Crete\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/1010.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-womens-champions-league",
+        "competitions": [
+          "uefa-womens-champions-league",
+          "womens-super-league"
+        ],
+        "team": "Chelsea Women",
+        "slug": "chelsea-women",
+        "canonical_id": "24255e23-9230-5e99-acf1-65ca62bc285f",
+        "espn_team_id": "19970",
+        "source": "ESPN team artwork (exact ESPN team id 19970, listed in uefa.wchampions as \"Chelsea\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/19970.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-womens-champions-league",
+        "competitions": [
+          "uefa-womens-champions-league"
+        ],
+        "team": "Austria Vienna",
+        "slug": "austria-vienna",
+        "canonical_id": "80077276-98c3-5372-aff1-0766ffa16006",
+        "espn_team_id": "131643",
+        "source": "ESPN team artwork (exact ESPN team id 131643, listed in uefa.wchampions as \"Austria Vienna\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/131643.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-womens-champions-league",
+        "competitions": [
+          "uefa-womens-champions-league"
+        ],
+        "team": "Roma",
+        "slug": "roma",
+        "canonical_id": "edcd9fac-803a-5c9f-a7aa-50c39a45fc54",
+        "espn_team_id": "21685",
+        "source": "ESPN team artwork (exact ESPN team id 21685, listed in uefa.wchampions as \"Roma\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21685.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-womens-champions-league",
+        "competitions": [
+          "uefa-womens-champions-league"
+        ],
+        "team": "OH Leuven",
+        "slug": "oh-leuven",
+        "canonical_id": "271c25ef-78ab-530c-a5d9-9058d19184c2",
+        "espn_team_id": "131423",
+        "source": "ESPN team artwork (exact ESPN team id 131423, listed in uefa.wchampions as \"OH Leuven\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/131423.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-womens-champions-league",
+        "competitions": [
+          "uefa-womens-champions-league"
+        ],
+        "team": "HB Køge",
+        "slug": "hb-koge",
+        "canonical_id": "f3959b3b-c143-5057-bc1f-73ea4e118b13",
+        "espn_team_id": "21127",
+        "source": "ESPN team artwork (exact ESPN team id 21127, listed in uefa.wchampions as \"HB Køge\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21127.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-womens-champions-league",
+        "competitions": [
+          "uefa-womens-champions-league"
+        ],
+        "team": "Internazionale Women",
+        "slug": "internazionale-women",
+        "canonical_id": "6fccfb15-9bf4-5a7e-8c08-f0b8ec64aeee",
+        "espn_team_id": "131635",
+        "source": "ESPN team artwork (exact ESPN team id 131635, listed in uefa.wchampions as \"Internazionale\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/131635.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-womens-champions-league",
+        "competitions": [
+          "uefa-womens-champions-league",
+          "womens-super-league"
+        ],
+        "team": "Arsenal Women",
+        "slug": "arsenal-women",
+        "canonical_id": "91d268b7-9933-51a0-8f7a-fde6a4283b88",
+        "espn_team_id": "19973",
+        "source": "ESPN team artwork (exact ESPN team id 19973, listed in uefa.wchampions as \"Arsenal\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/19973.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-womens-champions-league",
+        "competitions": [
+          "uefa-womens-champions-league"
+        ],
+        "team": "Servette",
+        "slug": "servette",
+        "canonical_id": "dda0912d-c7fd-510f-b0a6-12a73b3aafac",
+        "espn_team_id": "20835",
+        "source": "ESPN team artwork (exact ESPN team id 20835, listed in uefa.wchampions as \"Servette\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/20835.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-womens-champions-league",
+        "competitions": [
+          "uefa-womens-champions-league"
+        ],
+        "team": "BK Häcken",
+        "slug": "bk-hacken",
+        "canonical_id": "54ca806b-1243-5523-bf2d-98eba1b482e9",
+        "espn_team_id": "21124",
+        "source": "ESPN team artwork (exact ESPN team id 21124, listed in uefa.wchampions as \"BK Häcken\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21124.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-womens-champions-league",
+        "competitions": [
+          "uefa-womens-champions-league"
+        ],
+        "team": "Juventus Women",
+        "slug": "juventus-women",
+        "canonical_id": "6309e640-d185-5137-9f8d-2835235ddaf4",
+        "espn_team_id": "20092",
+        "source": "ESPN team artwork (exact ESPN team id 20092, listed in uefa.wchampions as \"Juventus\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/20092.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-womens-champions-league",
+        "competitions": [
+          "uefa-womens-champions-league",
+          "womens-super-league"
+        ],
+        "team": "Manchester City Women",
+        "slug": "manchester-city-women",
+        "canonical_id": "fe0259d2-ad28-55b1-85a7-1eb256257a73",
+        "espn_team_id": "19257",
+        "source": "ESPN team artwork (exact ESPN team id 19257, listed in uefa.wchampions as \"Manchester City\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/19257.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-womens-champions-league",
+        "competitions": [
+          "uefa-womens-champions-league"
+        ],
+        "team": "Benfica Women",
+        "slug": "benfica-women",
+        "canonical_id": "6f7dc1a7-4ad1-5300-9230-cb66d72763b3",
+        "espn_team_id": "20830",
+        "source": "ESPN team artwork (exact ESPN team id 20830, listed in uefa.wchampions as \"Benfica\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/20830.png",
+        "status": "live"
+      },
+      {
+        "competition": "uefa-womens-champions-league",
+        "competitions": [
+          "uefa-womens-champions-league"
+        ],
+        "team": "Bayern Munich",
+        "slug": "bayern-munich",
+        "canonical_id": "b1517dc7-553c-5845-94a0-f7eda96ea6a6",
+        "espn_team_id": "20103",
+        "source": "ESPN team artwork (exact ESPN team id 20103, listed in uefa.wchampions as \"Bayern Munich\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/20103.png",
+        "status": "live"
+      },
+      {
+        "competition": "womens-super-league",
+        "competitions": [
+          "womens-super-league"
+        ],
+        "team": "Tottenham Hotspur Women",
+        "slug": "tottenham-hotspur-women",
+        "canonical_id": "098aed26-bfc6-59e9-bb2d-c4417e2cd640",
+        "espn_team_id": "20062",
+        "source": "ESPN team artwork (exact ESPN team id 20062, listed in eng.w.1 as \"Tottenham Hotspur\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/20062.png",
+        "status": "live"
+      },
+      {
+        "competition": "womens-super-league",
+        "competitions": [
+          "womens-super-league"
+        ],
+        "team": "Everton Women",
+        "slug": "everton-women",
+        "canonical_id": "12e1ece4-b62d-5647-821e-8b73ef044061",
+        "espn_team_id": "19972",
+        "source": "ESPN team artwork (exact ESPN team id 19972, listed in eng.w.1 as \"Everton\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/19972.png",
+        "status": "live"
+      },
+      {
+        "competition": "womens-super-league",
+        "competitions": [
+          "womens-super-league"
+        ],
+        "team": "West Ham United Women",
+        "slug": "west-ham-united-women",
+        "canonical_id": "6b777289-216d-51ef-8dfb-325dff6df79a",
+        "espn_team_id": "19975",
+        "source": "ESPN team artwork (exact ESPN team id 19975, listed in eng.w.1 as \"West Ham United\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/19975.png",
+        "status": "live"
+      },
+      {
+        "competition": "womens-super-league",
+        "competitions": [
+          "womens-super-league"
+        ],
+        "team": "Crystal Palace Women",
+        "slug": "crystal-palace-women",
+        "canonical_id": "93d8d7ab-4ac5-5690-ab42-d1a7610b2ba2",
+        "espn_team_id": "21037",
+        "source": "ESPN team artwork (exact ESPN team id 21037, listed in eng.w.1 as \"Crystal Palace\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21037.png",
+        "status": "live"
+      },
+      {
+        "competition": "womens-super-league",
+        "competitions": [
+          "womens-super-league"
+        ],
+        "team": "Brighton & Hove Albion Women",
+        "slug": "brighton-hove-albion-women",
+        "canonical_id": "993dda83-b407-525e-9f7c-2a126f21934b",
+        "espn_team_id": "19976",
+        "source": "ESPN team artwork (exact ESPN team id 19976, listed in eng.w.1 as \"Brighton & Hove Albion\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/19976.png",
+        "status": "live"
+      },
+      {
+        "competition": "womens-super-league",
+        "competitions": [
+          "womens-super-league"
+        ],
+        "team": "Manchester United Women",
+        "slug": "manchester-united-women",
+        "canonical_id": "a5c4ef27-c472-5038-b7d7-384cf8757356",
+        "espn_team_id": "20061",
+        "source": "ESPN team artwork (exact ESPN team id 20061, listed in eng.w.1 as \"Manchester United\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/20061.png",
+        "status": "live"
+      },
+      {
+        "competition": "womens-super-league",
+        "competitions": [
+          "womens-super-league"
+        ],
+        "team": "Birmingham City Women",
+        "slug": "birmingham-city-women",
+        "canonical_id": "b41888db-2d6c-51f5-9f9a-0cd991235793",
+        "espn_team_id": "19968",
+        "source": "ESPN team artwork (exact ESPN team id 19968, listed in eng.w.1 as \"Birmingham City\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/19968.png",
+        "status": "live"
+      },
+      {
+        "competition": "womens-super-league",
+        "competitions": [
+          "womens-super-league"
+        ],
+        "team": "London City Lionesses",
+        "slug": "london-city-lionesses",
+        "canonical_id": "c6719505-8e14-58ce-a4eb-2668968db168",
+        "espn_team_id": "21053",
+        "source": "ESPN team artwork (exact ESPN team id 21053, listed in eng.w.1 as \"London City Lionesses\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21053.png",
+        "status": "live"
+      },
+      {
+        "competition": "womens-super-league",
+        "competitions": [
+          "womens-super-league"
+        ],
+        "team": "Aston Villa Women",
+        "slug": "aston-villa-women",
+        "canonical_id": "d4ef9f2c-ef96-57f6-835d-83219a2447f9",
+        "espn_team_id": "20707",
+        "source": "ESPN team artwork (exact ESPN team id 20707, listed in eng.w.1 as \"Aston Villa\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/20707.png",
+        "status": "live"
+      },
+      {
+        "competition": "womens-super-league",
+        "competitions": [
+          "womens-super-league"
+        ],
+        "team": "Liverpool Women",
+        "slug": "liverpool-women",
+        "canonical_id": "e7da17cf-1ad9-5c73-b0d5-217d77c55835",
+        "espn_team_id": "19971",
+        "source": "ESPN team artwork (exact ESPN team id 19971, listed in eng.w.1 as \"Liverpool\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/19971.png",
+        "status": "live"
+      },
+      {
+        "competition": "womens-super-league",
+        "competitions": [
+          "womens-super-league"
+        ],
+        "team": "Charlton Athletic Women",
+        "slug": "charlton-athletic-women",
+        "canonical_id": "f3eaf584-edef-5b75-a972-437e3a250a45",
+        "espn_team_id": "21035",
+        "source": "ESPN team artwork (exact ESPN team id 21035, listed in eng.w.1 as \"Charlton Athletic\")",
+        "identity": "exact_espn_team_id",
+        "url": "https://a.espncdn.com/i/teamlogos/soccer/500/21035.png",
+        "status": "live"
+      }
+    ]
+  },
+  "portraits": {
+    "reasons": {}
+  },
+  "cached": 164,
+  "reused": 141,
+  "cache_failed": 0,
+  "demoted_on_contradiction": [],
+  "sync": {
+    "inserted": 164,
+    "updated": 141,
+    "unchanged": 0
+  },
+  "finished_at": "2026-10-04T18:07:08.745Z"
+}

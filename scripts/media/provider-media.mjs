@@ -9,7 +9,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { storeFromEnv } from '../../workers/shared/postgrest.js';
 import { syncRows, chunkArr } from '../../workers/soccer-ingest/src/store.js';
-import { ESPN_LEAGUE, espnCrestCandidate, espnHeadshotCandidate, providerMediaRow, PROVIDER_MEDIA_VERSION } from '../../workers/soccer-ingest/src/media-provider.js';
+import { espnCrestCandidate, espnHeadshotCandidate, providerMediaRow, PROVIDER_MEDIA_VERSION } from '../../workers/soccer-ingest/src/media-provider.js';
 
 const argv = process.argv.slice(2);
 const DRY = argv.includes('--dry'); const CRESTS_ONLY = argv.includes('--crests-only');
@@ -31,7 +31,13 @@ const report = { version: PROVIDER_MEDIA_VERSION, policy_version: policy.policy_
 
 // ---- active teams per competition (latest season), in customer priority order
 const comps = await store.select('soccer_competitions', { columns: ['id', 'slug'] });
-const order = ['mls', 'premier-league', 'bundesliga', 'uefa-champions-league', 'uefa-nations-league'];
+// Every competition with exactly ONE ESPN league id in our crosswalk (soccer_competition_external_ids) - the same
+// identity rule as scripts/media/competition-logos.mjs. Launch competitions keep crest priority; the rest follow.
+const compEspn = await store.select('soccer_competition_external_ids', { columns: ['competition_id', 'external_id'], eq: { provider: 'espn' } });
+const ESPN_LEAGUE = {};
+for (const c of comps) { const e = compEspn.filter(x => x.competition_id === c.id); if (e.length === 1) ESPN_LEAGUE[c.slug] = e[0].external_id; }
+const FIRST = ['mls', 'premier-league', 'bundesliga', 'uefa-champions-league', 'uefa-nations-league'];
+const order = [...FIRST.filter(s => ESPN_LEAGUE[s]), ...Object.keys(ESPN_LEAGUE).filter(s => !FIRST.includes(s)).sort()];
 const teamComp = new Map(); // team -> first (highest-priority) competition
 const memberships = new Map(); // team -> every active competition
 for (const slug of order) {
@@ -49,7 +55,7 @@ log('active teams', teamComp.size, 'with espn id', espnOfTeam.size, 'free-licens
 
 // ---- ESPN league listings (one call per league)
 const listing = {};
-for (const [slug, lg] of Object.entries(ESPN_LEAGUE)) listing[slug] = (await json(`https://site.api.espn.com/apis/site/v2/sports/soccer/${lg}/teams`)).sports[0].leagues[0].teams.map(x => x.team);
+for (const slug of order) listing[slug] = (await json(`https://site.api.espn.com/apis/site/v2/sports/soccer/${ESPN_LEAGUE[slug]}/teams`)).sports[0].leagues[0].teams.map(x => x.team);
 
 const rows = []; const disc = [];
 const ledger = (entity_type, entity_id, media_type, outcome, reason, extra = {}) => disc.push({ entity_type, entity_id, media_type, outcome, method: extra.method || 'espn_exact_provider_id', reason, external_id: extra.external_id || null, source_url: extra.source_url || null, evidence: extra.evidence || {}, checked_at: new Date().toISOString() });
