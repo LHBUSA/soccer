@@ -17,6 +17,7 @@ import { ROUTER_VERSION } from './ai-router.js';
 import { uuidv5 } from '../../shared/ids.js';
 import { chunkArr } from '../../soccer-ingest/src/store.js';
 import { freezeMarketPackets } from './market-freeze.js';
+import { missingPhaseConfig } from './profiles.js';
 
 // NEWS ENABLEMENT has ONE source of truth: data/registry/competitions.json `news` (enabled + the story
 // types each competition supports). Not coupled to a provider lane flag: a competition can be canonical
@@ -27,9 +28,15 @@ export const storiesFor = slug => NEWS_REGISTRY.find(c => c.slug === slug)?.stor
 
 // previewMatch (admin POST /v1/run?preview_match=<uuid>): the run builds ONLY that fixture's preview (previews.js
 // FORCED_PREVIEW_MAX_MS), in the competition whose season holds it; every other detector is skipped.
-export async function runNews(store, { now = Date.now(), env = {}, windowDays = 4, maxPerCompetition = 12, dry = false, competitions = NEWS_COMPETITIONS, cfg = {}, previewMatch = null, marketFreeze = true } = {}) {
+export async function runNews(store, { now = Date.now(), env = {}, windowDays = 4, maxPerCompetition = 12, dry = false, competitions = NEWS_COMPETITIONS, cfg = {}, previewMatch = null, marketFreeze = true, review = false } = {}) {
+  // review (admin, owner blind review): the desk runs exactly as for a new story, but NOTHING is written and the
+  // story key's existing article does not exclude the candidate. Only with previewMatch (one story, bounded cost).
+  if (review && !previewMatch) throw new Error('review needs previewMatch');
   const summary = { engine: ENGINE_VERSION, gates: GATE_V2, at: new Date(now).toISOString(), news_enabled: env.NEWS_ENABLED ?? null, desk: { required: deskRequired(env), available: deskAvailable(env), version: DESK_VERSION }, routing: { version: ROUTER_VERSION, lanes: {}, reasons: {} }, competitions: {}, ...(previewMatch ? { preview_match: previewMatch } : {}) };
   for (const slug of competitions) {
+    // Fail closed: a competition whose league-phase boundary var is missing is skipped (no hidden code default).
+    const missingCfg = missingPhaseConfig(slug, cfg);
+    if (missingCfg) { summary.competitions[slug] = { skipped: `config_missing:${missingCfg}`, candidates: 0, new: 0, duplicates: 0, published: 0, held: 0 }; continue; }
     const S = await loadSeason(store, slug);
     if (previewMatch && !S?.matches.some(m => m.id === previewMatch)) continue;
     const out = summary.competitions[slug] = { candidates: 0, new: 0, duplicates: 0, published: 0, held: 0, holds: {}, by_class: {}, stories: [] };
@@ -53,7 +60,7 @@ export async function runNews(store, { now = Date.now(), env = {}, windowDays = 
     // A WITHDRAWN story is terminal for the automatic detector: its event already exists, so it is never re-keyed or
     // re-issued here (owner spec 2026-09-29). A correction is an explicit lifecycle action with its own provenance.
     for (const part of chunkArr(ids.filter(i => !existing.has(i)), 100)) for (const r of await store.select('soccer_news_events', { columns: ['id'], in: { id: part } })) existing.add(r.id);
-    const fresh = cands.filter((c, i) => !existing.has(ids[i])).sort((a, b) => b.materiality.score - a.materiality.score).slice(0, maxPerCompetition);
+    const fresh = cands.filter((c, i) => review || !existing.has(ids[i])).sort((a, b) => b.materiality.score - a.materiality.score).slice(0, maxPerCompetition);
     out.duplicates = cands.length - cands.filter((c, i) => !existing.has(ids[i])).length;
     // what the existing stories ARE: a candidate whose story was already HELD is not a "duplicate" of published news.
     // Health reports held material separately (by reason) so gate holds are never mistaken for a quiet newsroom.
@@ -71,14 +78,14 @@ export async function runNews(store, { now = Date.now(), env = {}, windowDays = 
       const draft = withVisualMenu(compose(packet), vis);
       // Paid only for a genuinely NEW canonical story. A dry run makes zero model calls and zero writes (the router
       // routes `dry_run` DETERMINISTIC; nothing below `if (dry) continue` runs).
-      const trigger = dry ? 'dry_run' : 'new_story';
+      const trigger = dry ? 'dry_run' : review ? 'canary' : 'new_story';
       const r = await editorialStage(draft, packet, env, { trigger, articleId: uuidv5(`article:${packet.hash}`) });
       const { article, status, holdReasons, gates, editorial } = r;
       if (r.routing) { summary.routing.lanes[r.routing.lane] = (summary.routing.lanes[r.routing.lane] || 0) + 1; summary.routing.reasons[r.routing.reason] = (summary.routing.reasons[r.routing.reason] || 0) + 1; }
       out[status] += 1;
       for (const f of holdReasons) out.holds[f] = (out.holds[f] || 0) + 1;
-      out.stories.push({ status, story_class: packet.event.kind, headline: article.headline, slug: article.slug, failed: holdReasons });
-      if (dry) continue;
+      out.stories.push({ status, story_class: packet.event.kind, headline: article.headline, slug: article.slug, failed: holdReasons, ...(review ? { review: { packet_hash: packet.hash, packet_version: packet.version, profile: packet.event.profile, dek: article.dek, sections: article.sections, composer: article.composer, editorial: r.editorial } } : {}) });
+      if (dry || review) continue;
       const eventId = packet.event.event_id;
       await store.insert('soccer_news_events', [{
         id: eventId, story_class: packet.event.kind, desk: article.desk, match_id: packet.match?.id || packet.fixture?.id || null,
@@ -95,7 +102,7 @@ export async function runNews(store, { now = Date.now(), env = {}, windowDays = 
   }
   // Writer-side freeze of FINAL article market packets into article evidence (market-freeze.js). Never on a dry run;
   // never fails the news run.
-  if (!dry && marketFreeze) summary.market_freeze = await freezeMarketPackets(store, env, { now }).catch(e => ({ error: String(e?.message || e).slice(0, 160) }));
+  if (!dry && !review && marketFreeze) summary.market_freeze = await freezeMarketPackets(store, env, { now }).catch(e => ({ error: String(e?.message || e).slice(0, 160) }));
   return summary;
 }
 
