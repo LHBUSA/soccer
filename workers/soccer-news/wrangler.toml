@@ -27,6 +27,12 @@ SOCCER_LEDGER_ROUTING = "on"
 binding = "SOCCER_STATE"
 id = "3e665f75414849578249f5aed979b868"
 
+# Article market packets (market-freeze.js): read propsports-markets /v1/article-market through a Service Binding
+# (a workers.dev -> workers.dev fetch fails with CF 1042). Not a billable resource.
+[[services]]
+binding = "MARKETS"
+service = "propsports-markets"
+
 [limits]
 cpu_ms = 60000
 

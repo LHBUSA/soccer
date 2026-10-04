@@ -206,3 +206,17 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
   `scripts/history/queue.json`.
 - Known gap: Nations League 2024/25 (published) has 134 past matches with status unknown (an earlier history run never
   detailed them); acceptance fails it on that check. V2.1 would hold on them if switched on.
+
+## Article market — writer freeze + forced preview (2026-10-04, code on main, soccer-news NOT deployed)
+
+- `workers/soccer-news/src/market-freeze.js` (soccer-article-market-freeze/1): each newsroom run (never dry) reads
+  propsports-markets `/v1/article-market/soccer/:match?published_at=<original>` through the new `MARKETS` Service
+  Binding for published articles first published at/after 2026-10-04T14:31:40Z with a SportsEvent link (30-day lookback,
+  25 reads/run). Only `freeze = EMBED_THIS_PACKET` + `packet_state FINAL` + same event + a re-verified sha256 is stored:
+  one append-only `soccer_article_evidence` row (packet_version soccer-article-market-freeze/1, keyed by the article's
+  news_event_id; wrapper {article_id, slug, canonical_event_id, published_at, market_packet_sha256, packet}). No
+  migration. Article rows are never touched. Not yet: the page rendering from the stored copy.
+- `POST /v1/run?preview_match=<match uuid>` (NEWS_ADMIN_TOKEN): builds ONLY that fixture's preview up to 7 days out
+  (same materiality bar, packet, gates, ONE paid desk attempt, same story key so the natural 24 h preview is a
+  duplicate). `&dry=1` = zero model calls, zero writes. Does not overwrite `news:last_run`.
+- Deploy is gated with the rest of the undeployed newsroom on main (live soccer-news fc7b1337 = 6fec521).

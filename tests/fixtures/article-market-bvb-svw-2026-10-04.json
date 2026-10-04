@@ -1,0 +1,292 @@
+{
+ "captured_from": "GET propsports-markets /v1/article-market/soccer/48fdbe3e-8dae-5710-a416-8f58b4d1d474?published_at=2026-10-04T15:00:00.000Z (2026-10-04)",
+ "eligible": true,
+ "mode": "LIVE_MARKET_WATCH",
+ "freeze": "DO_NOT_FREEZE_YET",
+ "packet": {
+  "schema": "post_event_market_result/1",
+  "sport": "soccer",
+  "canonical_event_id": "48fdbe3e-8dae-5710-a416-8f58b4d1d474",
+  "article": {
+   "published_at": "2026-10-04T15:00:00.000Z",
+   "checkpoint": "last observation at or before publication",
+   "causality": "Movement after publication is timing only; it is never attributed to the article or its news."
+  },
+  "event": {
+   "label": "Borussia Dortmund v Werder Bremen",
+   "start_at": "2026-10-09T18:30:00.000Z",
+   "kalshi_lifecycle": "ACTIVE",
+   "canonical_state": "pre"
+  },
+  "packet_state": "PROVISIONAL",
+  "state_reasons": [
+   "kalshi_not_settled",
+   "canonical_event_not_final",
+   "pbe_result_pending"
+  ],
+  "event_result": null,
+  "pbe": {
+   "source": "algo-vs-market/1",
+   "algo_id": "soccer:soccer-algo-v1",
+   "algo_label": "PBE Soccer Algo V1",
+   "proposition": "match_result_90min",
+   "decision": {
+    "state": "PICK",
+    "basis": "frozen algorithm pick at lock (pbe-decision-record/1 pending owner approval)"
+   },
+   "decision_record_ref": null,
+   "comparison_ref": "soccer:soccer-algo-v1|1d9f2889-7153-4f88-be36-fb2d9212b68d|kalshi",
+   "selection_role": "home",
+   "selection_label": "home",
+   "probability": 0.692881040099019,
+   "lock_at": "2026-10-02T18:40:18+00:00",
+   "frozen_at": "2026-10-03T15:58:21.103597+00:00",
+   "kalshi_contest": "NO_HISTORICAL_MARKET_SNAPSHOT",
+   "h2h_outcome": null,
+   "grade": null
+  },
+  "pbe_status": "PENDING_GRADE",
+  "venues": [
+   {
+    "venue": "kalshi",
+    "venue_label": "Kalshi",
+    "semantic_class": "CANONICAL_LINK",
+    "proposition": "match_result_90min",
+    "market_url": "https://kalshi.com/markets/kxbundesligagame/bundesliga-game/kxbundesligagame-26oct09bvbsvw",
+    "venue_event_id": "KXBUNDESLIGAGAME-26OCT09BVBSVW",
+    "shape": "three_way",
+    "lifecycle": "ACTIVE",
+    "field": false,
+    "outcomes": [
+     {
+      "role": "home",
+      "label": "Borussia Dortmund",
+      "contract": "Dortmund wins",
+      "market_id": "KXBUNDESLIGAGAME-26OCT09BVBSVW-BVB",
+      "rules_sha256": null,
+      "first_observed": {
+       "t": "2026-10-03T13:18:56.900Z",
+       "mid_bp": 7000,
+       "before_first_trade": false
+      },
+      "at_pbe_lock": {
+       "missing": "NO_OBSERVATION_AT_PBE_FORECAST"
+      },
+      "at_publication": {
+       "t": "2026-10-04T14:59:30.207Z",
+       "mid_bp": 7000,
+       "ref": {
+        "source": "r2_observation_archive",
+        "object_key": "obs/kalshi/multi/2026/10/04/tick/2026-10-04T14-59-30-207Z.ndjson.gz",
+        "object_sha256": "bd195625389624bd93bb77144142d8e968c28b86a57389d4fc79d574ce577482",
+        "lane": "soccer-bundesliga"
+       }
+      },
+      "pre_event": {
+       "t": "2026-10-04T15:44:30.122Z",
+       "mid_bp": 7000
+      },
+      "last_tradable": {
+       "t": "2026-10-04T15:44:30.122Z",
+       "mid_bp": 7000,
+       "last_trade_bp": 7100
+      },
+      "close": null,
+      "settlement": null,
+      "sparkline": [
+       {
+        "t": "2026-10-03T13:18:56.9+00:00",
+        "mid_bp": 7000
+       },
+       {
+        "t": "2026-10-03T20:48:56.873+00:00",
+        "mid_bp": 6950
+       },
+       {
+        "t": "2026-10-03T21:04:09.112+00:00",
+        "mid_bp": 7000
+       },
+       {
+        "t": "2026-10-03T21:19:09.078+00:00",
+        "mid_bp": 7000
+       },
+       {
+        "t": "2026-10-04T02:34:09.079+00:00",
+        "mid_bp": 6950
+       },
+       {
+        "t": "2026-10-04T04:19:09.075+00:00",
+        "mid_bp": 7000
+       },
+       {
+        "t": "2026-10-04T05:19:09.073+00:00",
+        "mid_bp": 7000
+       },
+       {
+        "t": "2026-10-04T15:44:30.122Z",
+        "mid_bp": 7000
+       }
+      ],
+      "history": "partial",
+      "move": {
+       "first_to_pre_event_bp": 0,
+       "pbe_lock_to_pre_event_bp": null,
+       "publication_to_pre_event_bp": 0,
+       "publication_to_last_tradable_bp": 0
+      }
+     },
+     {
+      "role": "draw",
+      "label": "Draw",
+      "contract": "Tie is the result",
+      "market_id": "KXBUNDESLIGAGAME-26OCT09BVBSVW-TIE",
+      "rules_sha256": null,
+      "first_observed": {
+       "t": "2026-10-03T13:18:56.900Z",
+       "mid_bp": 1650,
+       "before_first_trade": false
+      },
+      "at_pbe_lock": {
+       "missing": "NO_OBSERVATION_AT_PBE_FORECAST"
+      },
+      "at_publication": {
+       "t": "2026-10-04T14:59:30.207Z",
+       "mid_bp": 1650,
+       "ref": {
+        "source": "r2_observation_archive",
+        "object_key": "obs/kalshi/multi/2026/10/04/tick/2026-10-04T14-59-30-207Z.ndjson.gz",
+        "object_sha256": "bd195625389624bd93bb77144142d8e968c28b86a57389d4fc79d574ce577482",
+        "lane": "soccer-bundesliga"
+       }
+      },
+      "pre_event": {
+       "t": "2026-10-04T15:44:30.122Z",
+       "mid_bp": 1650
+      },
+      "last_tradable": {
+       "t": "2026-10-04T15:44:30.122Z",
+       "mid_bp": 1650,
+       "last_trade_bp": 1700
+      },
+      "close": null,
+      "settlement": null,
+      "sparkline": [
+       {
+        "t": "2026-10-03T13:18:56.9+00:00",
+        "mid_bp": 1650
+       },
+       {
+        "t": "2026-10-04T08:13:09.078+00:00",
+        "mid_bp": 1600
+       },
+       {
+        "t": "2026-10-04T12:59:30.403+00:00",
+        "mid_bp": 1650
+       },
+       {
+        "t": "2026-10-04T15:44:30.122Z",
+        "mid_bp": 1650
+       }
+      ],
+      "history": "partial",
+      "move": {
+       "first_to_pre_event_bp": 0,
+       "pbe_lock_to_pre_event_bp": null,
+       "publication_to_pre_event_bp": 0,
+       "publication_to_last_tradable_bp": 0
+      }
+     },
+     {
+      "role": "away",
+      "label": "Werder Bremen",
+      "contract": "Bremen wins",
+      "market_id": "KXBUNDESLIGAGAME-26OCT09BVBSVW-SVW",
+      "rules_sha256": null,
+      "first_observed": {
+       "t": "2026-10-03T13:18:56.900Z",
+       "mid_bp": 1300,
+       "before_first_trade": false
+      },
+      "at_pbe_lock": {
+       "missing": "NO_OBSERVATION_AT_PBE_FORECAST"
+      },
+      "at_publication": {
+       "t": "2026-10-04T14:59:30.207Z",
+       "mid_bp": 1350,
+       "ref": {
+        "source": "r2_observation_archive",
+        "object_key": "obs/kalshi/multi/2026/10/04/tick/2026-10-04T14-59-30-207Z.ndjson.gz",
+        "object_sha256": "bd195625389624bd93bb77144142d8e968c28b86a57389d4fc79d574ce577482",
+        "lane": "soccer-bundesliga"
+       }
+      },
+      "pre_event": {
+       "t": "2026-10-04T15:44:30.122Z",
+       "mid_bp": 1350
+      },
+      "last_tradable": {
+       "t": "2026-10-04T15:44:30.122Z",
+       "mid_bp": 1350,
+       "last_trade_bp": 1400
+      },
+      "close": null,
+      "settlement": null,
+      "sparkline": [
+       {
+        "t": "2026-10-03T13:18:56.9+00:00",
+        "mid_bp": 1300
+       },
+       {
+        "t": "2026-10-03T18:48:56.875+00:00",
+        "mid_bp": 1350
+       },
+       {
+        "t": "2026-10-03T21:04:09.112+00:00",
+        "mid_bp": 1300
+       },
+       {
+        "t": "2026-10-03T21:34:09.08+00:00",
+        "mid_bp": 1350
+       },
+       {
+        "t": "2026-10-03T21:49:09.083+00:00",
+        "mid_bp": 1350
+       },
+       {
+        "t": "2026-10-04T15:44:30.122Z",
+        "mid_bp": 1350
+       }
+      ],
+      "history": "partial",
+      "move": {
+       "first_to_pre_event_bp": 50,
+       "pbe_lock_to_pre_event_bp": null,
+       "publication_to_pre_event_bp": 0,
+       "publication_to_last_tradable_bp": 0
+      }
+     }
+    ],
+    "more_outcomes": 0,
+    "comparable_to_pbe": false,
+    "comparability": "NO_HISTORICAL_MARKET_SNAPSHOT",
+    "settled": false,
+    "venue_winner_roles": null,
+    "favorite": {
+     "first_observed": "home",
+     "at_pbe_lock": null,
+     "pre_event": "home",
+     "flip": false
+    },
+    "pbe_vs_venue": null,
+    "settlement_vs_result": null
+   }
+  ],
+  "rules": {
+   "venues": "Each venue is its own column; venues are never averaged, pooled or turned into one \"market\" number.",
+   "observations": "Observed prices only (our read time). A missing checkpoint is labelled missing, never reconstructed.",
+   "comparison": "PBE vs a venue only when the venue contract is semantically comparable to the PBE proposition. Related markets show their own path only.",
+   "settlement": "Settlement is the venue's, per its contract rules; it is shown beside the canonical event result, never replaced by it."
+  },
+  "sha256": "226acb937df77a0b1e19e5f14b91ab05a9871be77e98771d274398580c241b3b"
+ }
+}

@@ -16,6 +16,7 @@ import { runDesk, deskRequired, deskAvailable, DESK_VERSION } from './desk.js';
 import { ROUTER_VERSION } from './ai-router.js';
 import { uuidv5 } from '../../shared/ids.js';
 import { chunkArr } from '../../soccer-ingest/src/store.js';
+import { freezeMarketPackets } from './market-freeze.js';
 
 // NEWS ENABLEMENT has ONE source of truth: data/registry/competitions.json `news` (enabled + the story
 // types each competition supports). Not coupled to a provider lane flag: a competition can be canonical
@@ -24,20 +25,25 @@ export const NEWS_REGISTRY = registryData.competitions.filter(c => c.news?.enabl
 export const NEWS_COMPETITIONS = NEWS_REGISTRY.map(c => c.slug);
 export const storiesFor = slug => NEWS_REGISTRY.find(c => c.slug === slug)?.stories || RECAP_STORIES;
 
-export async function runNews(store, { now = Date.now(), env = {}, windowDays = 4, maxPerCompetition = 12, dry = false, competitions = NEWS_COMPETITIONS, cfg = {} } = {}) {
-  const summary = { engine: ENGINE_VERSION, gates: GATE_V2, at: new Date(now).toISOString(), news_enabled: env.NEWS_ENABLED ?? null, desk: { required: deskRequired(env), available: deskAvailable(env), version: DESK_VERSION }, routing: { version: ROUTER_VERSION, lanes: {}, reasons: {} }, competitions: {} };
+// previewMatch (admin POST /v1/run?preview_match=<uuid>): the run builds ONLY that fixture's preview (previews.js
+// FORCED_PREVIEW_MAX_MS), in the competition whose season holds it; every other detector is skipped.
+export async function runNews(store, { now = Date.now(), env = {}, windowDays = 4, maxPerCompetition = 12, dry = false, competitions = NEWS_COMPETITIONS, cfg = {}, previewMatch = null, marketFreeze = true } = {}) {
+  const summary = { engine: ENGINE_VERSION, gates: GATE_V2, at: new Date(now).toISOString(), news_enabled: env.NEWS_ENABLED ?? null, desk: { required: deskRequired(env), available: deskAvailable(env), version: DESK_VERSION }, routing: { version: ROUTER_VERSION, lanes: {}, reasons: {} }, competitions: {}, ...(previewMatch ? { preview_match: previewMatch } : {}) };
   for (const slug of competitions) {
-    const out = summary.competitions[slug] = { candidates: 0, new: 0, duplicates: 0, published: 0, held: 0, holds: {}, by_class: {}, stories: [] };
     const S = await loadSeason(store, slug);
+    if (previewMatch && !S?.matches.some(m => m.id === previewMatch)) continue;
+    const out = summary.competitions[slug] = { candidates: 0, new: 0, duplicates: 0, published: 0, held: 0, holds: {}, by_class: {}, stories: [] };
     if (!S) { out.skipped = 'no season'; continue; }
     out.season = S.season.label;
     out.last_match_update = S.matches.reduce((x, m) => (m.updated_at && (!x || String(m.updated_at) > x) ? String(m.updated_at) : x), null);
     const stories = storiesFor(slug); const diag = {};
-    const cands = [
-      ...await detect(store, S, { now, windowDays, cfg, stories, diag }),
-      ...await detectPreviews(store, S, { now, cfg, stories, diag }),
-      ...await detectGroupWatch(store, S, { now, windowDays, cfg, stories }),
-    ];
+    const cands = previewMatch
+      ? (await detectPreviews(store, S, { now, cfg, stories, diag, force: previewMatch })).filter(c => c.key === `match_preview:${previewMatch}`)
+      : [
+        ...await detect(store, S, { now, windowDays, cfg, stories, diag }),
+        ...await detectPreviews(store, S, { now, cfg, stories, diag }),
+        ...await detectGroupWatch(store, S, { now, windowDays, cfg, stories }),
+      ];
     Object.assign(out, { diagnostics: diag });
     out.candidates = cands.length;
     for (const c of cands) out.by_class[c.preview_kind === 'matchday' ? 'matchday_brief' : c.brief || c.story_class] = (out.by_class[c.preview_kind === 'matchday' ? 'matchday_brief' : c.brief || c.story_class] || 0) + 1;
@@ -87,6 +93,9 @@ export async function runNews(store, { now = Date.now(), env = {}, windowDays = 
       }]);
     }
   }
+  // Writer-side freeze of FINAL article market packets into article evidence (market-freeze.js). Never on a dry run;
+  // never fails the news run.
+  if (!dry && marketFreeze) summary.market_freeze = await freezeMarketPackets(store, env, { now }).catch(e => ({ error: String(e?.message || e).slice(0, 160) }));
   return summary;
 }
 

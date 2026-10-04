@@ -32,7 +32,7 @@ async function run(env, opts = {}) {
   const t0 = Date.now();
   const summary = await runNews(store, { env, cfg: { ucl_league_phase_end: env.UCL_LEAGUE_PHASE_END }, ...opts });
   summary.elapsed_ms = Date.now() - t0;
-  if (env.SOCCER_STATE && !opts.dry) await env.SOCCER_STATE.put('news:last_run', JSON.stringify(summary));
+  if (env.SOCCER_STATE && !opts.dry && !opts.previewMatch) await env.SOCCER_STATE.put('news:last_run', JSON.stringify(summary)); // a forced single-preview run is not the newsroom's run
   return summary;
 }
 
@@ -60,7 +60,11 @@ export default {
     if (url.pathname === '/v1/run' && req.method === 'POST') {
       if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);
       const days = Math.max(1, Math.min(14, Number(url.searchParams.get('window_days')) || 4));
-      try { return json(await run(env, { windowDays: days, dry: url.searchParams.get('dry') === '1' })); } catch (e) { return json({ error: String(e.message || e) }, 500); }
+      // ?preview_match=<match uuid>: build ONLY that fixture's preview (up to 7 days out, same materiality bar, packet,
+      // gates and ONE paid desk attempt as any new story). ?dry=1 still makes zero model calls and zero writes.
+      const pm = url.searchParams.get('preview_match');
+      if (pm && !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(pm)) return json({ error: 'preview_match must be a match uuid' }, 400);
+      try { return json(await run(env, { windowDays: days, dry: url.searchParams.get('dry') === '1', ...(pm ? { previewMatch: pm } : {}) })); } catch (e) { return json({ error: String(e.message || e) }, 500); }
     }
     // Re-edit existing stories through the desk: ?slug=<slug> (repeatable) | ?scope=held_desk|template
     if (url.pathname === '/v1/admin/reedit' && req.method === 'POST') {
