@@ -38,11 +38,4 @@ test('recent publication: publishing', () => {
   assert.equal(publicationDiagnostic({ tick: { at: at(3), outcome: 'ran' }, last: prodRun, newestPublishedAt: at(90), now: NOW }).state, 'publishing');
 });
 
-test('plural sentence opener whose singular is written lowercase is ordinary English, an invented name still holds', () => {
-  const home = B.teams.home.name; const away = B.teams.away.name;
-  const art = h => ({ headline: `${home} beat ${away}`, dek: 'The group stage is tight.', sections: [{ heading: 'Standings', paragraphs: [h] }] });
-  const names = a => validateEditorial(a, B).find(r => r.gate === 'new_player_or_team');
-  assert.equal(names(art(`Groups ${home} and ${away} both lead the group.`)).pass, true);
-  const bad = names(art(`${home} face ${away} in Reykjavik with Gudmundsson fit.`));
-  assert.equal(bad.pass, false); assert.ok(bad.detail.includes('Gudmundsson') || bad.detail.includes('Reykjavik'));
-});
+// RC2: the desk 2.2.0 plural-opener test is excluded with the desk change itself (RC2 keeps production desk 2.1.1).

@@ -243,7 +243,7 @@ test('cost: automatic desk pays for ONE attempt, 6000 output tokens, and records
   assert.equal(r.status, 'held'); assert.equal(bodies.length, 1, 'no automatic second paid attempt');
   assert.equal(bodies[0].max_output_tokens, 6000);
   const log = JSON.parse([...kv.values()][0]);
-  assert.equal(log.length, 1); assert.equal(log[0].worker, 'soccer-news'); assert.equal(log[0].trigger, 'cron_new_story'); assert.equal(log[0].attempt, 1); assert.equal(log[0].status, 'completed'); assert.equal(log[0].desk_version, 'soccer-desk/2.2.0');
+  assert.equal(log.length, 1); assert.equal(log[0].worker, 'soccer-news'); assert.equal(log[0].trigger, 'cron_new_story'); assert.equal(log[0].attempt, 1); assert.equal(log[0].status, 'completed'); assert.equal(log[0].desk_version, 'soccer-desk/2.1.1');
   // a provider error is not retried either
   let n = 0; await runDesk(draft, B, { ...KEY, SOCCER_STATE }, { fetcher: async () => { n++; throw new Error('network down'); } });
   assert.equal(n, 1);

@@ -16,7 +16,6 @@ import { runDesk, deskRequired, deskAvailable, DESK_VERSION } from './desk.js';
 import { ROUTER_VERSION } from './ai-router.js';
 import { uuidv5 } from '../../shared/ids.js';
 import { chunkArr } from '../../soccer-ingest/src/store.js';
-import { freezeMarketPackets } from './market-freeze.js';
 import { missingPhaseConfig } from './profiles.js';
 
 // NEWS ENABLEMENT has ONE source of truth: data/registry/competitions.json `news` (enabled + the story
@@ -26,13 +25,12 @@ export const NEWS_REGISTRY = registryData.competitions.filter(c => c.news?.enabl
 export const NEWS_COMPETITIONS = NEWS_REGISTRY.map(c => c.slug);
 export const storiesFor = slug => NEWS_REGISTRY.find(c => c.slug === slug)?.stories || RECAP_STORIES;
 
-// previewMatch (admin POST /v1/run?preview_match=<uuid>): the run builds ONLY that fixture's preview (previews.js
-// FORCED_PREVIEW_MAX_MS), in the competition whose season holds it; every other detector is skipped.
-export async function runNews(store, { now = Date.now(), env = {}, windowDays = 4, maxPerCompetition = 12, dry = false, competitions = NEWS_COMPETITIONS, cfg = {}, previewMatch = null, marketFreeze = true, review = false } = {}) {
-  // review (admin, owner blind review): the desk runs exactly as for a new story, but NOTHING is written and the
-  // story key's existing article does not exclude the candidate. Only with previewMatch (one story, bounded cost).
+export async function runNews(store, { now = Date.now(), env = {}, windowDays = 4, maxPerCompetition = 12, dry = false, competitions = NEWS_COMPETITIONS, cfg = {}, previewMatch = null, review = false } = {}) {
+  // previewMatch (admin): build ONLY that fixture's preview (previews.js FORCED_PREVIEW_MAX_MS) in the competition whose
+  // season holds it. review (admin, owner review): the desk runs as for a new story, but NOTHING is written and an
+  // existing story key does not exclude the candidate. Review needs previewMatch (one story, bounded cost).
   if (review && !previewMatch) throw new Error('review needs previewMatch');
-  const summary = { engine: ENGINE_VERSION, gates: GATE_V2, at: new Date(now).toISOString(), news_enabled: env.NEWS_ENABLED ?? null, desk: { required: deskRequired(env), available: deskAvailable(env), version: DESK_VERSION }, routing: { version: ROUTER_VERSION, lanes: {}, reasons: {} }, competitions: {}, ...(previewMatch ? { preview_match: previewMatch } : {}) };
+  const summary = { engine: ENGINE_VERSION, gates: GATE_V2, at: new Date(now).toISOString(), news_enabled: env.NEWS_ENABLED ?? null, desk: { required: deskRequired(env), available: deskAvailable(env), version: DESK_VERSION }, routing: { version: ROUTER_VERSION, lanes: {}, reasons: {} }, competitions: {} };
   for (const slug of competitions) {
     // Fail closed: a competition whose league-phase boundary var is missing is skipped (no hidden code default).
     const missingCfg = missingPhaseConfig(slug, cfg);
@@ -100,9 +98,6 @@ export async function runNews(store, { now = Date.now(), env = {}, windowDays = 
       }]);
     }
   }
-  // Writer-side freeze of FINAL article market packets into article evidence (market-freeze.js). Never on a dry run;
-  // never fails the news run.
-  if (!dry && !review && marketFreeze) summary.market_freeze = await freezeMarketPackets(store, env, { now }).catch(e => ({ error: String(e?.message || e).slice(0, 160) }));
   return summary;
 }
 

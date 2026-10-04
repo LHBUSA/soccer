@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-04",
+  "rc2": { "tag": "soccer-news-rc2", "commit": "4778363", "dark_version": "e09e53f9-52a2-4bac-95ff-d491d432d0b6", "bundle_index_js_sha256": "44bbb87a7cc12d4f6103615f6be17f3f271e17f56f4b87bdb90c36d325058c09" },
+  "reconciled_main_bundle_index_js_sha256": "b9df60b5871de0d04903fe6dd3f9cc6fbace87f17e950d80e68dd31c55276f67",
+  "reconciled_main_with_production_registry_bundle_sha256": "44bbb87a7cc12d4f6103615f6be17f3f271e17f56f4b87bdb90c36d325058c09",
+  "result": "byte-identical to RC2 when data/registry/competitions.json is held constant; the only bundle difference on main is that shared data file (ingest lane fields, registry_version, blocker text)",
+  "news_registry_projection_identical": true,
+  "news_enabled": ["bundesliga", "premier-league", "uefa-champions-league", "uefa-nations-league", "mls"],
+  "runtime_modules_from_rc2": ["workers/soccer-news/src/compose2.js", "workers/soccer-news/src/desk.js", "workers/soccer-news/src/index.js", "workers/soccer-news/src/pipeline.js", "workers/soccer-news/src/previews.js", "workers/soccer-news/src/profiles.js", "workers/soccer-news/wrangler.toml"],
+  "already_equal_on_main": ["workers/soccer-news/src/engine.js", "workers/soccer-api/src/dna.js", "workers/soccer-news/src/news-health.js"],
+  "removed": ["workers/soccer-news/src/preview-depth.js (61d35cd Packet V4)", "workers/soccer-news/src/market-freeze.js (dc89c9e writer freeze; MARKETS binding + NEWS_MARKET_FREEZE gone with wrangler.toml)"],
+  "recoverable_from": "tag soccer-news-rc1 (239be6b) / main history at 6296b82",
+  "tests": { "removed_with_their_modules": ["tests/news-market.test.js", "tests/news-preview-depth.test.js", "tests/news-rc-baseline.test.js (RC1)"], "from_rc2": ["tests/news-rc2-baseline.test.js", "tests/news-health.test.js (desk 2.2 plural-opener case excluded)", "tests/news-desk.test.js (desk_version soccer-desk/2.1.1)"], "adjusted": ["tests/womens-history-guards.test.js: no women's newsroom profile in the baseline -> in-window control writes nothing"] }
+}

@@ -1,6 +1,6 @@
-// soccer-news baseline release candidate (2026-10-04): explicit league-phase config (fail closed), conservative
-// domestic-league claim bans, the article-market freeze behind NEWS_MARKET_FREEZE, the owner blind-review mode (desk
-// runs, nothing written, dedupe ignored), and the enablement freeze (exactly the five live competitions).
+// soccer-news RC2 = reliability/safety baseline (2026-10-04): production 6fec521 + published-season reads, newsroom health
+// truth, explicit league-phase config (fail closed), conservative domestic claim bans and the admin review mode.
+// EXCLUDED and asserted absent: Packet V4 previews (61d35cd), desk 2.2.0, the article-market writer freeze, new-lane mappings.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -16,7 +16,7 @@ test('enablement freeze: exactly the five live competitions publish; the nine ne
   assert.deepEqual([...NEWS_COMPETITIONS].sort(), ['bundesliga', 'mls', 'premier-league', 'uefa-champions-league', 'uefa-nations-league']);
   const reg = JSON.parse(readFileSync(new URL('../data/registry/competitions.json', import.meta.url)));
   for (const s of ['la-liga', 'serie-a', 'ligue-1', 'uefa-europa-league', 'nwsl', 'womens-super-league', 'uefa-womens-champions-league', 'liga-f', 'premiere-ligue', 'fifa-world-cup']) {
-    assert.equal(reg.competitions.find(c => c.slug === s).news.enabled, false, `${s} stays off`);
+    assert.ok(!reg.competitions.find(c => c.slug === s)?.news?.enabled, `${s} stays off (absent or disabled)`);
   }
 });
 
@@ -35,9 +35,7 @@ test('league-phase boundaries are explicit Worker vars; a missing var skips the 
   // Rules unchanged by this release: same profile selection on both sides of each boundary.
   assert.equal(profileFor('uefa-champions-league', '2026-10-21T19:00:00Z', cfg).key, 'ucl_league_phase');
   assert.equal(profileFor('uefa-champions-league', '2027-02-17T20:00:00Z', cfg).key, 'knockout');
-  assert.equal(profileFor('uefa-europa-league', '2027-01-28T20:00:00Z', cfg).key, 'ucl_league_phase');
-  assert.equal(profileFor('uefa-womens-champions-league', '2026-12-17T20:00:00Z', cfg).key, 'ucl_league_phase');
-  assert.equal(profileFor('uefa-womens-champions-league', '2027-03-17T20:00:00Z', cfg).key, 'knockout');
+  assert.equal(profileFor('uefa-europa-league', '2027-01-28T20:00:00Z', cfg), null, 'RC2 adds no new-lane profile mapping');
   // The runner skips UCL with no config without reading the database (store would throw).
   const throwing = { select: () => { throw new Error('must not read'); } };
   const r = await runNews(throwing, { now: NOW, competitions: ['uefa-champions-league'], env: { NEWS_DESK: 'off' }, cfg: {}, marketFreeze: false });
@@ -65,10 +63,17 @@ test('domestic claims: top four stays a table position, European places and Bund
   assert.deepEqual(PROFILES.domestic_league_relegation_playoff.zones, PROFILES.domestic_european_league.zones);
 });
 
-test('article-market freeze is off unless NEWS_MARKET_FREEZE=on (separate owner decision)', () => {
-  assert.match(toml, /^NEWS_MARKET_FREEZE = "off"$/m);
-  const index = readFileSync(new URL('../workers/soccer-news/src/index.js', import.meta.url), 'utf8');
-  assert.match(index, /marketFreeze: env\.NEWS_MARKET_FREEZE === 'on'/);
+test('RC2 exclusions: no Packet V4 preview depth, production desk 2.1.1, no market freeze, no new-lane desks', async () => {
+  const exists = f => { try { readFileSync(new URL(f, import.meta.url)); return true; } catch { return false; } };
+  assert.ok(!exists('../workers/soccer-news/src/preview-depth.js'), 'no preview-depth.js');
+  assert.ok(!exists('../workers/soccer-news/src/market-freeze.js'), 'no market-freeze.js');
+  assert.doesNotMatch(toml, /MARKETS|NEWS_MARKET_FREEZE|propsports-markets/);
+  const { DESK_VERSION } = await import('../workers/soccer-news/src/desk.js');
+  assert.equal(DESK_VERSION, 'soccer-desk/2.1.1');
+  const previews = readFileSync(new URL('../workers/soccer-news/src/previews.js', import.meta.url), 'utf8');
+  assert.doesNotMatch(previews, /preview-depth|PACKET_V4|loadPreviewDepth/);
+  const compose = readFileSync(new URL('../workers/soccer-news/src/compose2.js', import.meta.url), 'utf8');
+  for (const s of ['la-liga', 'serie-a', 'ligue-1', 'nwsl', 'womens-super-league', 'liga-f', 'premiere-ligue']) assert.ok(!compose.includes(`'${s}'`), `no desk mapping for ${s}`);
 });
 
 // ---- blind-review mode on a small Premier League season (same shape as news-desk-expansion)

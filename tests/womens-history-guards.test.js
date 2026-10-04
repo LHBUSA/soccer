@@ -43,7 +43,7 @@ const U = n => `00000000-0000-5000-8000-${String(n).padStart(12, '0')}`;
 const NOW = Date.parse('2026-10-03T20:00:00Z');
 
 for (const [slug, labels] of [['nwsl', ['2016', '2021', '2026']], ['womens-super-league', ['2017/18', '2021/22', '2026/27']]]) {
-  test(`newsroom: ${slug} history written today creates no story; a match inside the window still does`, async () => {
+  test(`newsroom: ${slug} history written today creates no story (and, with no newsroom profile in the baseline, neither does an in-window match)`, async () => {
     const store = await openPglite(); await applyMigrations(store);
     try {
       await store.insert('soccer_competitions', [{ id: U(1), slug, name: slug, comp_type: 'league', gender: 'women' }]);
@@ -63,7 +63,10 @@ for (const [slug, labels] of [['nwsl', ['2016', '2021', '2026']], ['womens-super
       await store.insert('soccer_matches', [m(300, 22, '2026-10-02T14:00:00Z', 12, 13, 6, 0)]);
       await runNews(store, { now: NOW, competitions: [slug], env: { NEWS_DESK: 'off' } });
       const ev = await store.select('soccer_news_events', { columns: ['match_id'] });
-      assert.ok(ev.length >= 1 && ev.every(e => e.match_id === U(300)), JSON.stringify(ev));
+      // Newsroom baseline (RC2, 2026-10-04): women's lanes carry NO newsroom profile until each is enabled through its own
+      // canary, so even an in-window match writes nothing. Restore the 'still detects' control (ev.length >= 1, all U(300))
+      // in the same change that gives this competition its profile and turns its lane on.
+      assert.equal(ev.length, 0, JSON.stringify(ev));
     } finally { await store.close(); }
   });
 }

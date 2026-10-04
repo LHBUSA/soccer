@@ -31,11 +31,10 @@ async function run(env, opts = {}) {
   const store = storeFromEnv(env);
   if (!store) throw new Error('store not configured');
   const t0 = Date.now();
-  // League-phase boundaries come only from Worker vars (a missing var skips that competition); the article-market
-  // writer freeze runs only with NEWS_MARKET_FREEZE=on (owner decision, off by default).
-  const summary = await runNews(store, { env, cfg: leaguePhaseCfg(env), marketFreeze: env.NEWS_MARKET_FREEZE === 'on', ...opts });
+  // League-phase boundaries come only from Worker vars (a missing or invalid var skips that competition).
+  const summary = await runNews(store, { env, cfg: leaguePhaseCfg(env), ...opts });
   summary.elapsed_ms = Date.now() - t0;
-  if (env.SOCCER_STATE && !opts.dry && !opts.review && !opts.previewMatch) await env.SOCCER_STATE.put('news:last_run', JSON.stringify(summary)); // a forced single-preview run is not the newsroom's run
+  if (env.SOCCER_STATE && !opts.dry && !opts.review && !opts.previewMatch) await env.SOCCER_STATE.put('news:last_run', JSON.stringify(summary)); // a forced / review run is not the newsroom's run
   return summary;
 }
 
@@ -63,12 +62,11 @@ export default {
     if (url.pathname === '/v1/run' && req.method === 'POST') {
       if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);
       const days = Math.max(1, Math.min(14, Number(url.searchParams.get('window_days')) || 4));
-      // ?preview_match=<match uuid>: build ONLY that fixture's preview (up to 7 days out, same materiality bar, packet,
-      // gates and ONE paid desk attempt as any new story). ?dry=1 still makes zero model calls and zero writes.
+      // ?preview_match=<match uuid>: build ONLY that fixture's preview (up to 7 days out; same materiality bar, packet and
+      // gates). ?review=1 (with preview_match): owner review - the desk writes it, NOTHING is stored, dedupe ignored;
+      // ?as_of=<iso> replays detection at that instant (review only). ?dry=1 = zero model calls, zero writes.
       const pm = url.searchParams.get('preview_match');
       if (pm && !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(pm)) return json({ error: 'preview_match must be a match uuid' }, 400);
-      // ?review=1 (with preview_match): owner blind review - the desk writes the story, nothing is stored. ?as_of=<iso>
-      // replays detection at that instant (review only), so a fixture already previewed in production can be compared.
       const review = url.searchParams.get('review') === '1';
       if (review && !pm) return json({ error: 'review needs preview_match' }, 400);
       const asOfRaw = review ? url.searchParams.get('as_of') : null; const asOf = asOfRaw ? Date.parse(asOfRaw) : null;
