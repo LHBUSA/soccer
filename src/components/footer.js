@@ -1,28 +1,27 @@
-// PropBetEdge NETWORK FOOTER (Soccer). Sport network from the shared membership contract
-// (9 sports, Soccer current), Soccer Intelligence + Soccer Pro links, the network, and the account
+// PropBetEdge NETWORK FOOTER (Soccer). Sport network + PropBetEdge Predictions from the family registry
+// src/lib/network.js (10 sports, Soccer current), Soccer Intelligence + Soccer Pro links, the network, and the account
 // card. The card shows the All Access offer only to readers the contract says may buy it; the
 // manage link only where the contract says there is billing to manage (filled after the server answers).
-import { NETWORK } from '../lib/pbe-membership.js';
+import { SPORTS, PRODUCTS, NETWORK_LINKS, CURRENT_SPORT } from '../lib/network.js';
 import { esc, join } from '../lib/html.js';
 import { OFFER } from '../lib/pro.js';
 import { renderPreferredSource } from './preferred-source.js';
 
 export const DISCORD_URL = 'https://discord.gg/kb5zCTHbME';
 export const X_URL = 'https://x.com/PROPBETEDGE';
-const ORDER = ['nfl', 'mlb', 'nba', 'wnba', 'nhl', 'ufc', 'tennis', 'soccer', 'golf'];
 
 const INTELLIGENCE = [['/', 'Today'], ['/matches', 'Matches'], ['/pbecast', 'PBEcast'], ['/picks', 'Official Picks'], ['/track-record', 'Algo Track Record'], ['/players', 'Player DNA'], ['/competitions', 'Team Intelligence'], ['/tables', 'Tables'], ['/competitions', 'Competitions'], ['/news', 'News'], ['/sources', 'Sources & Method']];
 const PRO = [['/pro#matchup', 'Matchup Lab'], ['/pro#fatigue', 'Fatigue Intelligence'], ['/pro#rotation', 'Rotation / XI Stability'], ['/pro#model-lab', 'Model Lab'], ['/pro#match-center', 'Pro Match Center'], ['/pro#track-record', 'Track Record']];
-const NET = [[OFFER.url, 'All Access'], ['https://propbetedge.ai/', 'Sports News'], ['https://learn.propbetedge.ai/', 'Learn'], ['https://propsports.proptechusa.ai', 'PropSports API'], ['https://proptechusa.ai', 'PropTechUSA.ai'], [DISCORD_URL, 'Discord'], [X_URL, 'X @PROPBETEDGE']];
+const NET = [[OFFER.url, 'All Access'], [NETWORK_LINKS.hub, 'Sports News'], [NETWORK_LINKS.learn, 'Learn'], ['https://propsports.proptechusa.ai', 'PropSports API'], ['https://proptechusa.ai', 'PropTechUSA.ai'], [DISCORD_URL, 'Discord'], [X_URL, 'X @PROPBETEDGE']];
 
 const col = (title, links, ext = false) => `<nav class="fcol" aria-label="${esc(title)}"><p class="fh">${esc(title.toUpperCase())}</p>${join(links, ([h, l]) => `<a href="${esc(h)}"${ext || /^https?:/.test(h) ? ' rel="noopener"' : ' data-link'}>${esc(l)}</a>`)}</nav>`;
 
 export function networkFooter() {
-  const sports = ORDER.map(k => NETWORK.find(s => s.key === k)).filter(Boolean);
   return `<footer class="foot netfoot"><div class="wrap">
-    <nav class="fsports" aria-label="PropBetEdge sport network"><p class="fh">SPORT NETWORK</p><div class="fsport-row">${join(sports, s => s.key === 'soccer'
+    <nav class="fsports" aria-label="PropBetEdge sport network"><p class="fh">SPORT NETWORK</p><div class="fsport-row">${join(SPORTS, s => s.key === CURRENT_SPORT
       ? `<span class="fsport on" aria-current="page">${esc(s.label.toUpperCase())}<small>CURRENT</small></span>`
-      : `<a class="fsport" href="${esc(s.url)}/" rel="noopener">${esc(s.label.toUpperCase())}</a>`)}</div></nav>
+      : `<a class="fsport" href="${esc(s.url)}" rel="noopener">${esc(s.label.toUpperCase())}</a>`)}</div></nav>
+    <nav class="fsports" aria-label="PropBetEdge intelligence"><p class="fh">INTELLIGENCE</p><div class="fsport-row">${join(PRODUCTS, p => `<a class="fsport" href="${esc(p.url)}" rel="noopener">${esc(p.label.toUpperCase())}</a>`)}</div></nav>
     <div class="fgrid">
       ${col('Soccer Intelligence', INTELLIGENCE)}
       ${col('Soccer Pro', PRO)}
