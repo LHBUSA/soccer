@@ -5,7 +5,8 @@ import { num, todayUtc } from '../lib/format.js';
 import { competitionMark, empty, errorState, link, matchGrid, sectionHead, sourcePanel } from '../components/ui.js';
 import { groupTables, mountGroupTables, mountTableViews, tableView, tableViews } from '../components/table.js';
 import { coverageCards } from './home.js';
-import { FEATURED, FEATURED_COMPS, compMeta } from '../lib/competitions.js';
+import { FEATURED, FEATURED_COMPS, compMeta, resolveComp } from '../lib/competitions.js';
+import { STATE_FILTERS, groupByState, liveByCompetition, uniqueMatches } from '../lib/match-order.js';
 import { boardWithin } from '../data/kalshi.js';
 
 // ---- /competitions
@@ -26,30 +27,54 @@ export const competitions = {
 };
 
 // ---- /matches
+// Live-first: whatever the view, every LIVE match is shown first under LIVE NOW (src/lib/match-order.js), then
+// UPCOMING, then FINAL. All filter state lives in the URL (view, competition, state), so Back from Match
+// Intelligence restores the same list.
 const VIEWS = { recent: 'Recent results', upcoming: 'Upcoming', today: 'Today' };
+const STATE_LABEL = { live: 'Live', upcoming: 'Upcoming', final: 'Final' };
+export const matchesHref = (view, comp, state) => `/matches?view=${view}${comp ? `&competition=${comp}` : ''}${state ? `&state=${state}` : ''}`;
 export const matches = {
   title: () => 'Matches — Results, Fixtures & Match Intelligence | PropBetEdge',
   async load(_p, q) {
     const view = VIEWS[q.get('view')] ? q.get('view') : 'recent';
-    const comp = FEATURED.includes(q.get('competition')) ? q.get('competition') : '';
+    const asked = resolveComp(q.get('competition'))?.slug;
+    const comp = FEATURED.includes(asked) ? asked : '';
+    const state = view === 'today' && STATE_FILTERS.includes(q.get('state')) ? q.get('state') : '';
     const today = todayUtc();
     const params = view === 'today' ? { date: today } : view === 'upcoming' ? { status: 'scheduled', from: today, order: 'asc' } : { status: 'finished', to: today };
+    // Every live match in the covered competitions rides beside the view: it leads every view, feeds the live
+    // counts on the competition filter and the "live elsewhere" link. Bounded; a failure only drops that layer.
     // The market board (live lines for not-finished matches, the market close line on recent results) loads beside
     // the fixtures; bounded, never fails the page.
-    const [list, comps] = await Promise.allSettled([api('matches', { ...params, competition: comp || undefined, season: q.get('season'), team: q.get('team'), limit: 40 }), api('competitions'), boardWithin()]);
-    return { view, comp, list, comps };
+    const [list, comps, live] = await Promise.allSettled([api('matches', { ...params, competition: comp || undefined, season: q.get('season'), team: q.get('team'), limit: view === 'today' ? 100 : 40 }), api('competitions'), api('matches', { status: 'live', limit: 100 }), boardWithin()]);
+    // A team-scoped list (?team=) stays scoped: other teams' live matches are not merged into it.
+    return { view, comp, state, team: q.get('team') || '', list, comps, live };
   },
   render(d) {
     const stored = d.comps.status === 'fulfilled' ? d.comps.value.data.map(c => c.slug) : [];
-    const comps = FEATURED_COMPS.filter(c => stored.includes(c.slug));
-    const q = (view, comp) => `/matches?view=${view}${comp ? `&competition=${comp}` : ''}`;
-    return `<section class="hero compact"><div class="wrap"><p class="kicker gold">MATCHES</p><h1 class="display">From result to event map</h1>
-      <nav class="tabs" aria-label="Match views">${join(Object.entries(VIEWS), ([k, v]) => link(q(k, d.comp), esc(v), `tab${k === d.view ? ' on' : ''}`))}</nav>
-      <nav class="tabs sub" aria-label="Competition filter">${link(q(d.view, ''), 'All', `tab${!d.comp ? ' on' : ''}`)}${join(comps, c => link(q(d.view, c.slug), `${competitionMark(c.slug, 'xs')}${esc(c.name)}`, `tab${c.slug === d.comp ? ' on' : ''}`))}</nav>
-      </div></section>
-      <section class="canvas"><div class="wrap">
-      ${d.list.status === 'rejected' ? errorState(d.list.reason) : matchGrid(d.list.value.data) || empty(`No ${VIEWS[d.view].toLowerCase()} matches`, d.view === 'today' ? 'Nothing is scheduled today in the covered competitions.' : 'The canonical graph has no matches for this view yet.')}
-      ${d.list.status === 'fulfilled' ? sourcePanel(d.list.value.meta) : ''}</div></section>`;
+    const liveAll = d.live?.status === 'fulfilled' && !d.team ? d.live.value.data || [] : [];
+    const liveBy = liveByCompetition(liveAll);
+    // Live competitions first (most live matches first), then the product rail order. Nothing newly added is hidden.
+    const rail = FEATURED_COMPS.filter(c => stored.includes(c.slug) || liveBy[c.slug]);
+    const comps = [...rail].sort((a, b) => (liveBy[b.slug] || 0) - (liveBy[a.slug] || 0) || rail.indexOf(a) - rail.indexOf(b));
+    const tabs = `<nav class="tabs" aria-label="Match views">${join(Object.entries(VIEWS), ([k, v]) => link(matchesHref(k, d.comp), esc(v), `tab${k === d.view ? ' on' : ''}`))}</nav>`;
+    const compBar = `<nav class="tabs sub cfilter" aria-label="Competition filter">${link(matchesHref(d.view, '', d.state), 'All', `tab${!d.comp ? ' on' : ''}`)}${join(comps, c => link(matchesHref(d.view, c.slug, d.state), `${competitionMark(c.slug, 'xs', { tone: c.slug === d.comp ? 'light' : 'dark' })}<span>${esc(c.name)}</span>${liveBy[c.slug] ? `<span class="cf-live" title="${liveBy[c.slug]} live"><i class="livedot" aria-hidden="true"></i>${liveBy[c.slug]}<span class="sr-only"> live</span></span>` : ''}`, `tab${c.slug === d.comp ? ' on' : ''}`))}</nav>`;
+    const hero = body => `<section class="hero compact"><div class="wrap"><p class="kicker gold">MATCHES</p><h1 class="display">From result to event map</h1>${tabs}${compBar}</div></section>
+      <section class="canvas"><div class="wrap">${body}</div></section>`;
+    if (d.list.status === 'rejected') return hero(errorState(d.list.reason));
+    const inComp = m => !d.comp || resolveComp(m.competition)?.slug === d.comp;
+    const groups = groupByState(uniqueMatches(liveAll.filter(inComp), d.list.value.data || []));
+    const counts = Object.fromEntries(groups.map(g => [g.key, g.matches.length]));
+    const shown = d.state ? groups.filter(g => g.key === d.state) : groups;
+    const stateBar = d.view === 'today' && groups.length > 1
+      ? `<nav class="statebar" aria-label="Match state">${link(matchesHref(d.view, d.comp), `All <b>${groups.reduce((n, g) => n + g.matches.length, 0)}</b>`, `sb${!d.state ? ' on' : ''}`)}${join(STATE_FILTERS.filter(k => counts[k]), k => link(matchesHref(d.view, d.comp, k), `${k === 'live' ? '<i class="livedot" aria-hidden="true"></i>' : ''}${STATE_LABEL[k]} <b>${counts[k]}</b>`, `sb sb-${k}${d.state === k ? ' on' : ''}`))}</nav>` : '';
+    const elsewhere = d.comp ? liveAll.filter(m => !inComp(m)).length : 0;
+    const elsewhereLink = elsewhere ? `<p class="live-elsewhere">${link(matchesHref(d.view, '', d.state), `<i class="livedot" aria-hidden="true"></i>${elsewhere} more live in other competitions <span aria-hidden="true">→</span>`)}</p>` : '';
+    // Headings only where they tell the reader something: LIVE NOW always, the others when groups are mixed.
+    const section = g => `<section class="mgroup mg-${g.key}" data-mgroup="${g.key}" aria-label="${esc(g.label)}">${g.key === 'live' || shown.length > 1 ? `<h2 class="mg-head">${g.key === 'live' ? '<i class="livedot" aria-hidden="true"></i>' : ''}${esc(g.label)} <span class="mg-n">· ${g.matches.length}</span></h2>` : ''}${matchGrid(g.matches)}</section>`;
+    const list = shown.length ? join(shown, section)
+      : empty(`No ${d.state ? STATE_LABEL[d.state].toLowerCase() : VIEWS[d.view].toLowerCase()} matches`, d.view === 'today' ? 'Nothing is scheduled today in the covered competitions.' : 'The canonical graph has no matches for this view yet.');
+    return hero(`${stateBar}${elsewhereLink}${list}${sourcePanel(d.list.value.meta)}`);
   },
 };
 

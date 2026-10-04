@@ -139,6 +139,8 @@ export function navigate(href) {
   const url = new URL(href, location.origin);
   if (url.origin !== location.origin) { location.href = href; return; }
   closeDrawer();
+  // Remember where the reader was, so Back (e.g. Match Intelligence -> the filtered /matches list) lands there again.
+  history.replaceState({ ...(history.state || {}), y: Math.round(window.scrollY) }, '');
   history.pushState({}, '', url.pathname + url.search);
   document.body.classList.remove('menu-open');
   for (const b of document.querySelectorAll('.navtoggle, [data-more]')) b.setAttribute('aria-expanded', 'false');
@@ -182,5 +184,6 @@ proAccess().then(a => {
   if (a.pro) document.querySelector('.nav-aa')?.classList.add('is-member');
   applyFooterMembership(document, a.membership);
 });
-window.addEventListener('popstate', () => { closeDrawer(); render(); });
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; // content renders async; we restore after it
+window.addEventListener('popstate', () => { closeDrawer(); const y = history.state?.y; render().then(() => { if (y) window.scrollTo(0, y); }); });
 render();

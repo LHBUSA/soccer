@@ -1,0 +1,447 @@
+{
+  "at": "2026-10-04T17:48:28.537Z",
+  "site": "https://soccer.propbetedge.ai",
+  "totals": {
+    "competitions": 16,
+    "in_api": 15,
+    "enabled": 15,
+    "approved_logo": 13,
+    "mono_fallback": 3,
+    "broken_files": 0,
+    "shared_logo_files": 0,
+    "api_not_registered": 0
+  },
+  "rows": [
+    {
+      "slug": "mls",
+      "registered": true,
+      "enabled": true,
+      "in_api": true,
+      "api_name": "MLS",
+      "matches": 8299,
+      "identity": "mls",
+      "api_name_resolves": true,
+      "espn_id": "usa.1",
+      "branding": "approved_logo",
+      "mono": "MLS",
+      "fallback_reason": null,
+      "dark": "same_file",
+      "attribution": "MLS logo. Image: ESPN",
+      "files": {
+        "light": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 41834
+        },
+        "dark": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 41834
+        }
+      },
+      "files_ok": true
+    },
+    {
+      "slug": "premier-league",
+      "registered": true,
+      "enabled": true,
+      "in_api": true,
+      "api_name": "Premier League",
+      "matches": 9500,
+      "identity": "premier-league",
+      "api_name_resolves": true,
+      "espn_id": "eng.1",
+      "branding": "approved_logo",
+      "mono": "PL",
+      "fallback_reason": null,
+      "dark": "provider_dark_variant",
+      "attribution": "Premier League logo. Image: ESPN",
+      "files": {
+        "light": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 23552
+        },
+        "dark": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 56180
+        }
+      },
+      "files_ok": true
+    },
+    {
+      "slug": "la-liga",
+      "registered": true,
+      "enabled": true,
+      "in_api": true,
+      "api_name": "LaLiga",
+      "matches": 380,
+      "identity": "la-liga",
+      "api_name_resolves": true,
+      "espn_id": "esp.1",
+      "branding": "approved_logo",
+      "mono": "LL",
+      "fallback_reason": null,
+      "dark": "same_file",
+      "attribution": "LaLiga logo. Image: ESPN",
+      "files": {
+        "light": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 15957
+        },
+        "dark": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 15957
+        }
+      },
+      "files_ok": true
+    },
+    {
+      "slug": "serie-a",
+      "registered": true,
+      "enabled": true,
+      "in_api": true,
+      "api_name": "Serie A",
+      "matches": 380,
+      "identity": "serie-a",
+      "api_name_resolves": true,
+      "espn_id": "ita.1",
+      "branding": "approved_logo",
+      "mono": "SA",
+      "fallback_reason": null,
+      "dark": "same_file",
+      "attribution": "Serie A logo. Image: ESPN",
+      "files": {
+        "light": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 35750
+        },
+        "dark": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 35750
+        }
+      },
+      "files_ok": true
+    },
+    {
+      "slug": "ligue-1",
+      "registered": true,
+      "enabled": true,
+      "in_api": true,
+      "api_name": "Ligue 1",
+      "matches": 306,
+      "identity": "ligue-1",
+      "api_name_resolves": true,
+      "espn_id": "fra.1",
+      "branding": "approved_logo",
+      "mono": "L1",
+      "fallback_reason": null,
+      "dark": "provider_dark_variant",
+      "attribution": "Ligue 1 logo. Image: ESPN",
+      "files": {
+        "light": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 31987
+        },
+        "dark": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 19973
+        }
+      },
+      "files_ok": true
+    },
+    {
+      "slug": "bundesliga",
+      "registered": true,
+      "enabled": true,
+      "in_api": true,
+      "api_name": "Bundesliga",
+      "matches": 7040,
+      "identity": "bundesliga",
+      "api_name_resolves": true,
+      "espn_id": "ger.1",
+      "branding": "approved_logo",
+      "mono": "BL",
+      "fallback_reason": null,
+      "dark": "provider_dark_variant",
+      "attribution": "Bundesliga logo. Image: ESPN",
+      "files": {
+        "light": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 22393
+        },
+        "dark": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 18991
+        }
+      },
+      "files_ok": true
+    },
+    {
+      "slug": "uefa-champions-league",
+      "registered": true,
+      "enabled": true,
+      "in_api": true,
+      "api_name": "UEFA Champions League",
+      "matches": 144,
+      "identity": "uefa-champions-league",
+      "api_name_resolves": true,
+      "espn_id": "uefa.champions",
+      "branding": "approved_logo",
+      "mono": "UCL",
+      "fallback_reason": null,
+      "dark": "provider_dark_variant",
+      "attribution": "UEFA Champions League logo. Image: ESPN",
+      "files": {
+        "light": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 30406
+        },
+        "dark": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 27077
+        }
+      },
+      "files_ok": true
+    },
+    {
+      "slug": "uefa-europa-league",
+      "registered": true,
+      "enabled": true,
+      "in_api": true,
+      "api_name": "UEFA Europa League",
+      "matches": 144,
+      "identity": "uefa-europa-league",
+      "api_name_resolves": true,
+      "espn_id": "uefa.europa",
+      "branding": "approved_logo",
+      "mono": "UEL",
+      "fallback_reason": null,
+      "dark": "provider_dark_variant",
+      "attribution": "UEFA Europa League logo. Image: ESPN",
+      "files": {
+        "light": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 62535
+        },
+        "dark": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 37383
+        }
+      },
+      "files_ok": true
+    },
+    {
+      "slug": "uefa-nations-league",
+      "registered": true,
+      "enabled": true,
+      "in_api": true,
+      "api_name": "UEFA Nations League",
+      "matches": 344,
+      "identity": "uefa-nations-league",
+      "api_name_resolves": true,
+      "espn_id": "uefa.nations",
+      "branding": "approved_logo",
+      "mono": "UNL",
+      "fallback_reason": null,
+      "dark": "light_plate",
+      "attribution": "UEFA Nations League logo. Image: ESPN",
+      "files": {
+        "light": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 170542
+        },
+        "dark": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 170542
+        }
+      },
+      "files_ok": true
+    },
+    {
+      "slug": "fifa-world-cup",
+      "registered": true,
+      "enabled": true,
+      "in_api": true,
+      "api_name": "FIFA World Cup",
+      "matches": 104,
+      "identity": "fifa-world-cup",
+      "api_name_resolves": true,
+      "espn_id": "fifa.world",
+      "branding": "approved_logo",
+      "mono": "FIFA",
+      "fallback_reason": null,
+      "dark": "provider_dark_variant",
+      "attribution": "FIFA World Cup logo. Image: ESPN",
+      "files": {
+        "light": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 89773
+        },
+        "dark": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 89390
+        }
+      },
+      "files_ok": true
+    },
+    {
+      "slug": "uefa-european-championship",
+      "registered": true,
+      "enabled": false,
+      "in_api": false,
+      "api_name": null,
+      "matches": null,
+      "identity": "uefa-european-championship",
+      "api_name_resolves": null,
+      "espn_id": "uefa.euro",
+      "branding": "mono_fallback",
+      "mono": "EURO",
+      "fallback_reason": "not_in_logo_run",
+      "dark": null,
+      "attribution": null,
+      "files": {},
+      "files_ok": null
+    },
+    {
+      "slug": "nwsl",
+      "registered": true,
+      "enabled": true,
+      "in_api": true,
+      "api_name": "NWSL",
+      "matches": 1239,
+      "identity": "nwsl",
+      "api_name_resolves": true,
+      "espn_id": "usa.nwsl",
+      "branding": "approved_logo",
+      "mono": "NWSL",
+      "fallback_reason": null,
+      "dark": "same_file",
+      "attribution": "NWSL logo. Image: ESPN",
+      "files": {
+        "light": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 74390
+        },
+        "dark": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 74390
+        }
+      },
+      "files_ok": true
+    },
+    {
+      "slug": "womens-super-league",
+      "registered": true,
+      "enabled": true,
+      "in_api": true,
+      "api_name": "Women's Super League",
+      "matches": 1252,
+      "identity": "womens-super-league",
+      "api_name_resolves": true,
+      "espn_id": "eng.w.1",
+      "branding": "approved_logo",
+      "mono": "WSL",
+      "fallback_reason": null,
+      "dark": "provider_dark_variant",
+      "attribution": "Women's Super League logo. Image: ESPN",
+      "files": {
+        "light": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 58476
+        },
+        "dark": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 57561
+        }
+      },
+      "files_ok": true
+    },
+    {
+      "slug": "uefa-womens-champions-league",
+      "registered": true,
+      "enabled": true,
+      "in_api": true,
+      "api_name": "UEFA Women's Champions League",
+      "matches": 428,
+      "identity": "uefa-womens-champions-league",
+      "api_name_resolves": true,
+      "espn_id": "uefa.wchampions",
+      "branding": "approved_logo",
+      "mono": "UWCL",
+      "fallback_reason": null,
+      "dark": "light_plate",
+      "attribution": "UEFA Women's Champions League logo. Image: ESPN",
+      "files": {
+        "light": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 34053
+        },
+        "dark": {
+          "status": 200,
+          "type": "image/png",
+          "bytes": 34053
+        }
+      },
+      "files_ok": true
+    },
+    {
+      "slug": "liga-f",
+      "registered": true,
+      "enabled": true,
+      "in_api": true,
+      "api_name": "Liga F",
+      "matches": 1200,
+      "identity": "liga-f",
+      "api_name_resolves": true,
+      "espn_id": "esp.w.1",
+      "branding": "mono_fallback",
+      "mono": "LF",
+      "fallback_reason": "current_logo_not_found",
+      "dark": null,
+      "attribution": null,
+      "files": {},
+      "files_ok": null
+    },
+    {
+      "slug": "premiere-ligue",
+      "registered": true,
+      "enabled": true,
+      "in_api": true,
+      "api_name": "Première Ligue",
+      "matches": 670,
+      "identity": "premiere-ligue",
+      "api_name_resolves": true,
+      "espn_id": "fra.w.1",
+      "branding": "mono_fallback",
+      "mono": "D1F",
+      "fallback_reason": "current_logo_not_found",
+      "dark": null,
+      "attribution": null,
+      "files": {},
+      "files_ok": null
+    }
+  ]
+}

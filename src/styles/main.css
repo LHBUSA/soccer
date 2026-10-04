@@ -123,6 +123,8 @@ button { font: inherit; }
 .clogo.xs { width: 22px; height: 22px; }
 .clogo.lg { width: 52px; height: 52px; }
 .clogo.xl { width: 76px; height: 76px; }
+/* A provider logo with no own dark variant, on a dark surface: a light plate, never a recoloured mark. */
+.clogo.plate { background: #fff; border-radius: 5px; padding: 2px; box-sizing: border-box; }
 .tab .clogo { margin-left: -4px; }
 .tmark { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; width: 32px; height: 32px; border-radius: 50%; font: 800 11.5px/1 var(--display); letter-spacing: .04em; color: var(--ink-2); background: var(--canvas-alt); border: 1.5px solid var(--line-2); overflow: hidden; }
 .tmark.xs { width: 24px; height: 24px; font-size: 9.5px; border-width: 1px; }
@@ -253,6 +255,29 @@ button { font: inherit; }
 
 /* ---------- match cards V2 ---------- */
 .mgrid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+/* /matches live-first groups (src/lib/match-order.js): LIVE NOW always leads, with its count. */
+.mgroup + .mgroup { margin-top: 26px; }
+.mg-head { display: flex; align-items: center; gap: 8px; margin: 0 0 12px; font: 800 14px/1 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); }
+.mg-head .mg-n { color: var(--muted); font-weight: 700; }
+.mg-live { margin: -6px -10px 0; padding: 14px 10px 16px; border-radius: calc(var(--radius) + 4px); background: color-mix(in srgb, var(--live) 6%, var(--canvas)); border: 1px solid color-mix(in srgb, var(--live) 22%, var(--line)); }
+.mg-live .mg-head { color: var(--live); font-size: 16px; }
+.mg-live .mg-head .mg-n { color: var(--live); }
+.mg-head .livedot, .live-elsewhere .livedot, .statebar .livedot { background: var(--live); }
+.statebar { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 4px; margin: 0 0 18px; border: 1px solid var(--line); border-radius: 999px; background: var(--canvas-alt); }
+.statebar .sb { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 14px; border-radius: 999px; font: 800 12px/1 var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); text-decoration: none; }
+.statebar .sb b { font: 700 12px/1 var(--mono); color: var(--muted); }
+.statebar .sb.on { background: var(--ink); color: #fff; }
+.statebar .sb.on b { color: #c6d2e6; }
+.statebar .sb-live:not(.on) { color: var(--live); }
+.statebar .sb.on .livedot { background: #fff; }
+.live-elsewhere { margin: 0 0 16px; }
+.live-elsewhere a { display: inline-flex; align-items: center; gap: 8px; font: 700 13px/1.3 var(--body); color: var(--live); text-decoration: none; }
+/* Compact competition filter: one scrollable line (live competitions lead it), never a wall of chips. */
+.tabs.cfilter { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; padding-bottom: 6px; mask-image: linear-gradient(90deg, #000 calc(100% - 32px), transparent); -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 32px), transparent); }
+.tabs.cfilter .tab { flex: 0 0 auto; min-height: 36px; padding: 6px 11px; font-size: 12px; letter-spacing: .08em; gap: 7px; white-space: nowrap; }
+.tabs.cfilter .tab:last-child { margin-right: 28px; }
+.cf-live { display: inline-flex; align-items: center; gap: 4px; padding: 2px 6px; border-radius: 999px; background: var(--live); color: #fff; font: 800 11px/1 var(--mono); letter-spacing: 0; }
+@media (max-width: 600px) { .mg-live { margin: -6px -6px 0; padding: 12px 6px 14px; } .statebar { display: flex; } .statebar .sb { flex: 1 1 auto; justify-content: center; padding: 0 8px; } }
 .mcard { position: relative; background: var(--canvas); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 12px; display: flex; flex-direction: column; gap: 10px; min-width: 0; box-shadow: var(--shadow); }
 .mcard.st-live { border-color: color-mix(in srgb, var(--live) 45%, var(--line)); box-shadow: 0 0 0 1px color-mix(in srgb, var(--live) 25%, transparent), var(--shadow); }
 .mc-top { display: flex; align-items: center; gap: 8px; min-height: 24px; }

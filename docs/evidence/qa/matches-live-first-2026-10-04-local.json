@@ -1,0 +1,306 @@
+{
+  "at": "2026-10-04T17:47:42.935Z",
+  "site": "http://localhost:5291",
+  "live_in_api": 5,
+  "pass": 52,
+  "total": 52,
+  "results": [
+    {
+      "name": "/matches?view=today @390: LIVE NOW is the first section",
+      "ok": true,
+      "sections": [
+        "live",
+        "upcoming",
+        "final"
+      ],
+      "head": "LIVE NOW · 5"
+    },
+    {
+      "name": "/matches?view=today @390: every live card precedes every non-live card",
+      "ok": true,
+      "states": "live,live,live,live,live,scheduled,scheduled,scheduled,scheduled,scheduled,scheduled,scheduled,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished"
+    },
+    {
+      "name": "/matches?view=today @390: live section is the first match block on the page",
+      "ok": true,
+      "liveSectionTop": 441,
+      "firstCardTop": 482
+    },
+    {
+      "name": "/matches?view=today @390: no duplicate match cards",
+      "ok": true,
+      "cards": 23
+    },
+    {
+      "name": "/matches?view=today @390: no broken images",
+      "ok": true,
+      "broken": []
+    },
+    {
+      "name": "/matches?view=today @390: no horizontal page scroll",
+      "ok": true
+    },
+    {
+      "name": "/matches?view=today @390: no console errors",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "name": "/matches?view=today @390: every competition chip = its own approved logo or its mono",
+      "ok": true,
+      "chips": 16,
+      "bad": []
+    },
+    {
+      "name": "/matches?view=today @390: no enabled competition hidden from the filter",
+      "ok": true,
+      "missing": []
+    },
+    {
+      "name": "/matches @390: LIVE NOW is the first section",
+      "ok": true,
+      "sections": [
+        "live",
+        "final"
+      ],
+      "head": "LIVE NOW · 5"
+    },
+    {
+      "name": "/matches @390: every live card precedes every non-live card",
+      "ok": true,
+      "states": "live,live,live,live,live,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished"
+    },
+    {
+      "name": "/matches @390: live section is the first match block on the page",
+      "ok": true,
+      "liveSectionTop": 377,
+      "firstCardTop": 418
+    },
+    {
+      "name": "/matches @390: no duplicate match cards",
+      "ok": true,
+      "cards": 45
+    },
+    {
+      "name": "/matches @390: no broken images",
+      "ok": true,
+      "broken": []
+    },
+    {
+      "name": "/matches @390: no horizontal page scroll",
+      "ok": true
+    },
+    {
+      "name": "/matches @390: no console errors",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "name": "/matches?view=today @768: LIVE NOW is the first section",
+      "ok": true,
+      "sections": [
+        "live",
+        "upcoming",
+        "final"
+      ],
+      "head": "LIVE NOW · 5"
+    },
+    {
+      "name": "/matches?view=today @768: every live card precedes every non-live card",
+      "ok": true,
+      "states": "live,live,live,live,live,scheduled,scheduled,scheduled,scheduled,scheduled,scheduled,scheduled,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished"
+    },
+    {
+      "name": "/matches?view=today @768: live section is the first match block on the page",
+      "ok": true,
+      "liveSectionTop": 462,
+      "firstCardTop": 505
+    },
+    {
+      "name": "/matches?view=today @768: no duplicate match cards",
+      "ok": true,
+      "cards": 23
+    },
+    {
+      "name": "/matches?view=today @768: no broken images",
+      "ok": true,
+      "broken": []
+    },
+    {
+      "name": "/matches?view=today @768: no horizontal page scroll",
+      "ok": true
+    },
+    {
+      "name": "/matches?view=today @768: no console errors",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "name": "/matches?view=today @768: every competition chip = its own approved logo or its mono",
+      "ok": true,
+      "chips": 16,
+      "bad": []
+    },
+    {
+      "name": "/matches?view=today @768: no enabled competition hidden from the filter",
+      "ok": true,
+      "missing": []
+    },
+    {
+      "name": "/matches @768: LIVE NOW is the first section",
+      "ok": true,
+      "sections": [
+        "live",
+        "final"
+      ],
+      "head": "LIVE NOW · 5"
+    },
+    {
+      "name": "/matches @768: every live card precedes every non-live card",
+      "ok": true,
+      "states": "live,live,live,live,live,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished"
+    },
+    {
+      "name": "/matches @768: live section is the first match block on the page",
+      "ok": true,
+      "liveSectionTop": 398,
+      "firstCardTop": 441
+    },
+    {
+      "name": "/matches @768: no duplicate match cards",
+      "ok": true,
+      "cards": 45
+    },
+    {
+      "name": "/matches @768: no broken images",
+      "ok": true,
+      "broken": []
+    },
+    {
+      "name": "/matches @768: no horizontal page scroll",
+      "ok": true
+    },
+    {
+      "name": "/matches @768: no console errors",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "name": "/matches?view=today @1440: LIVE NOW is the first section",
+      "ok": true,
+      "sections": [
+        "live",
+        "upcoming",
+        "final"
+      ],
+      "head": "LIVE NOW · 5"
+    },
+    {
+      "name": "/matches?view=today @1440: every live card precedes every non-live card",
+      "ok": true,
+      "states": "live,live,live,live,live,scheduled,scheduled,scheduled,scheduled,scheduled,scheduled,scheduled,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished"
+    },
+    {
+      "name": "/matches?view=today @1440: live section is the first match block on the page",
+      "ok": true,
+      "liveSectionTop": 477,
+      "firstCardTop": 520
+    },
+    {
+      "name": "/matches?view=today @1440: no duplicate match cards",
+      "ok": true,
+      "cards": 23
+    },
+    {
+      "name": "/matches?view=today @1440: no broken images",
+      "ok": true,
+      "broken": []
+    },
+    {
+      "name": "/matches?view=today @1440: no horizontal page scroll",
+      "ok": true
+    },
+    {
+      "name": "/matches?view=today @1440: no console errors",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "name": "/matches?view=today @1440: every competition chip = its own approved logo or its mono",
+      "ok": true,
+      "chips": 16,
+      "bad": []
+    },
+    {
+      "name": "/matches?view=today @1440: no enabled competition hidden from the filter",
+      "ok": true,
+      "missing": []
+    },
+    {
+      "name": "/matches @1440: LIVE NOW is the first section",
+      "ok": true,
+      "sections": [
+        "live",
+        "final"
+      ],
+      "head": "LIVE NOW · 5"
+    },
+    {
+      "name": "/matches @1440: every live card precedes every non-live card",
+      "ok": true,
+      "states": "live,live,live,live,live,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished,finished"
+    },
+    {
+      "name": "/matches @1440: live section is the first match block on the page",
+      "ok": true,
+      "liveSectionTop": 413,
+      "firstCardTop": 456
+    },
+    {
+      "name": "/matches @1440: no duplicate match cards",
+      "ok": true,
+      "cards": 45
+    },
+    {
+      "name": "/matches @1440: no broken images",
+      "ok": true,
+      "broken": []
+    },
+    {
+      "name": "/matches @1440: no horizontal page scroll",
+      "ok": true
+    },
+    {
+      "name": "/matches @1440: no console errors",
+      "ok": true,
+      "errors": []
+    },
+    {
+      "name": "competition filter (liga-f) keeps its live matches under LIVE NOW",
+      "ok": true,
+      "sections": [
+        "live",
+        "final"
+      ],
+      "live": 2
+    },
+    {
+      "name": "competition filter links back to live matches elsewhere",
+      "ok": true,
+      "others": 3
+    },
+    {
+      "name": "state filter LIVE shows only live matches",
+      "ok": true,
+      "states": "live,live,live,live,live"
+    },
+    {
+      "name": "Match Intelligence -> Back restores the filtered list and scroll",
+      "ok": true,
+      "y0": 300,
+      "url": "/matches?view=today&competition=liga-f",
+      "y": 300,
+      "on": "/matches?view=today&competition=liga-f"
+    }
+  ]
+}

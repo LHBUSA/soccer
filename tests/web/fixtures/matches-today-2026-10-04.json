@@ -1,0 +1,587 @@
+{
+ "captured_at": "2026-10-04T17:15:00Z",
+ "source": "https://soccer.propbetedge.ai/api/soccer/matches?date=2026-10-04&limit=40 (production, as served; screenshot regression case)",
+ "data": [
+  {
+   "id": "bd0282a2-aeb4-53c0-b740-10cd86d0dcf1",
+   "status": "finished",
+   "kickoff_at": "2026-10-04T00:45:00+00:00",
+   "competition": {
+    "slug": "nwsl",
+    "name": "NWSL"
+   },
+   "home": {
+    "id": "aabbcacc-6444-5915-b95a-4a9f2dc596ef",
+    "slug": "portland-thorns-fc",
+    "name": "Portland Thorns FC",
+    "short_name": "Portland"
+   },
+   "away": {
+    "id": "a4b3528f-bc14-5ee2-b393-a66f23c4904f",
+    "slug": "boston-legacy-fc",
+    "name": "Boston Legacy FC",
+    "short_name": "Boston"
+   },
+   "score": {
+    "home": 2,
+    "away": 4,
+    "home_ht": null,
+    "away_ht": null
+   }
+  },
+  {
+   "id": "34633331-e656-5cd9-8e9d-1b9c52b43a87",
+   "status": "finished",
+   "kickoff_at": "2026-10-04T10:00:00+00:00",
+   "competition": {
+    "slug": "liga-f",
+    "name": "Liga F"
+   },
+   "home": {
+    "id": "369a25f4-6c68-5289-be1a-e9846be1d34f",
+    "slug": "granada",
+    "name": "Granada",
+    "short_name": "Granada"
+   },
+   "away": {
+    "id": "ed915826-545e-55cf-b90e-b18de07fbd2a",
+    "slug": "eibar",
+    "name": "Eibar",
+    "short_name": "Eibar"
+   },
+   "score": {
+    "home": 0,
+    "away": 0,
+    "home_ht": null,
+    "away_ht": null
+   }
+  },
+  {
+   "id": "ebc1d3e4-381a-5138-9cd2-eb2fe7a3669d",
+   "status": "finished",
+   "kickoff_at": "2026-10-04T10:00:00+00:00",
+   "competition": {
+    "slug": "liga-f",
+    "name": "Liga F"
+   },
+   "home": {
+    "id": "d25d5922-0572-554d-8f50-3dd157763330",
+    "slug": "cd-tenerife",
+    "name": "CD Tenerife",
+    "short_name": "Tenerife"
+   },
+   "away": {
+    "id": "7b867fcb-cee2-5654-a8cf-642073e74a2d",
+    "slug": "dux-logrono",
+    "name": "Dux Logroño",
+    "short_name": " Dux Logroño"
+   },
+   "score": {
+    "home": 2,
+    "away": 1,
+    "home_ht": null,
+    "away_ht": null
+   }
+  },
+  {
+   "id": "00bd0fc4-89e2-54ee-a330-3a8b53f5a054",
+   "status": "finished",
+   "kickoff_at": "2026-10-04T13:00:00+00:00",
+   "competition": {
+    "slug": "womens-super-league",
+    "name": "Women's Super League"
+   },
+   "home": {
+    "id": "6b777289-216d-51ef-8dfb-325dff6df79a",
+    "slug": "west-ham-united-women",
+    "name": "West Ham United Women",
+    "short_name": "West Ham "
+   },
+   "away": {
+    "id": "24255e23-9230-5e99-acf1-65ca62bc285f",
+    "slug": "chelsea-women",
+    "name": "Chelsea Women",
+    "short_name": "Chelsea "
+   },
+   "score": {
+    "home": 0,
+    "away": 3,
+    "home_ht": null,
+    "away_ht": null
+   }
+  },
+  {
+   "id": "b115dd20-fb17-558e-b54d-96cb0d2053da",
+   "status": "finished",
+   "kickoff_at": "2026-10-04T13:00:00+00:00",
+   "competition": {
+    "slug": "womens-super-league",
+    "name": "Women's Super League"
+   },
+   "home": {
+    "id": "12e1ece4-b62d-5647-821e-8b73ef044061",
+    "slug": "everton-women",
+    "name": "Everton Women",
+    "short_name": "Everton "
+   },
+   "away": {
+    "id": "b41888db-2d6c-51f5-9f9a-0cd991235793",
+    "slug": "birmingham-city-women",
+    "name": "Birmingham City Women",
+    "short_name": "Birmingham"
+   },
+   "score": {
+    "home": 2,
+    "away": 1,
+    "home_ht": null,
+    "away_ht": null
+   }
+  },
+  {
+   "id": "002eb339-e756-5d54-876b-f1b8e3df66d1",
+   "status": "finished",
+   "kickoff_at": "2026-10-04T13:00:00+00:00",
+   "competition": {
+    "slug": "premiere-ligue",
+    "name": "Première Ligue"
+   },
+   "home": {
+    "id": "47aacd20-d420-580f-8c82-bd21aabb7d29",
+    "slug": "fc-fleury-91",
+    "name": "FC Fleury 91",
+    "short_name": "Fleury"
+   },
+   "away": {
+    "id": "94d2460a-c857-539f-a1d4-40a82416495a",
+    "slug": "paris-saint-germain-women",
+    "name": "Paris Saint-Germain Women",
+    "short_name": "PSG"
+   },
+   "score": {
+    "home": 1,
+    "away": 3,
+    "home_ht": null,
+    "away_ht": null
+   }
+  },
+  {
+   "id": "03f48827-4992-5c16-a389-19fbe64b857a",
+   "status": "finished",
+   "kickoff_at": "2026-10-04T13:00:00+00:00",
+   "competition": {
+    "slug": "womens-super-league",
+    "name": "Women's Super League"
+   },
+   "home": {
+    "id": "993dda83-b407-525e-9f7c-2a126f21934b",
+    "slug": "brighton-hove-albion-women",
+    "name": "Brighton & Hove Albion Women",
+    "short_name": "Brighton"
+   },
+   "away": {
+    "id": "f3eaf584-edef-5b75-a972-437e3a250a45",
+    "slug": "charlton-athletic-women",
+    "name": "Charlton Athletic Women",
+    "short_name": "Charlton"
+   },
+   "score": {
+    "home": 5,
+    "away": 1,
+    "home_ht": null,
+    "away_ht": null
+   }
+  },
+  {
+   "id": "39b8a0b0-f29d-5fbc-b07d-382b390382ae",
+   "status": "finished",
+   "kickoff_at": "2026-10-04T13:00:00+00:00",
+   "competition": {
+    "slug": "womens-super-league",
+    "name": "Women's Super League"
+   },
+   "home": {
+    "id": "d4ef9f2c-ef96-57f6-835d-83219a2447f9",
+    "slug": "aston-villa-women",
+    "name": "Aston Villa Women",
+    "short_name": "Aston Villa"
+   },
+   "away": {
+    "id": "93d8d7ab-4ac5-5690-ab42-d1a7610b2ba2",
+    "slug": "crystal-palace-women",
+    "name": "Crystal Palace Women",
+    "short_name": "C Palace"
+   },
+   "score": {
+    "home": 1,
+    "away": 1,
+    "home_ht": null,
+    "away_ht": null
+   }
+  },
+  {
+   "id": "010bfdcb-a201-5c1c-988e-cf6e44aad8c0",
+   "status": "finished",
+   "kickoff_at": "2026-10-04T13:00:00+00:00",
+   "competition": {
+    "slug": "uefa-nations-league",
+    "name": "UEFA Nations League"
+   },
+   "home": {
+    "id": "1fd65c50-f71f-502a-8f98-a2f52ba896a5",
+    "slug": "azerbaijan",
+    "name": "Azerbaijan",
+    "short_name": "Azerbaijan"
+   },
+   "away": {
+    "id": "1c8a0ccc-f77a-5f2c-9dba-e68b1a703124",
+    "slug": "lithuania",
+    "name": "Lithuania",
+    "short_name": "Lithuania"
+   },
+   "score": {
+    "home": 1,
+    "away": 0,
+    "home_ht": null,
+    "away_ht": null
+   }
+  },
+  {
+   "id": "dbf8d373-3e21-5917-a85f-dfe73e2b1141",
+   "status": "finished",
+   "kickoff_at": "2026-10-04T13:00:00+00:00",
+   "competition": {
+    "slug": "womens-super-league",
+    "name": "Women's Super League"
+   },
+   "home": {
+    "id": "098aed26-bfc6-59e9-bb2d-c4417e2cd640",
+    "slug": "tottenham-hotspur-women",
+    "name": "Tottenham Hotspur Women",
+    "short_name": "Spurs"
+   },
+   "away": {
+    "id": "c6719505-8e14-58ce-a4eb-2668968db168",
+    "slug": "london-city-lionesses",
+    "name": "London City Lionesses",
+    "short_name": "London City"
+   },
+   "score": {
+    "home": 1,
+    "away": 6,
+    "home_ht": null,
+    "away_ht": null
+   }
+  },
+  {
+   "id": "cfd3cb8a-5335-543c-a9f9-cb6bf2c02727",
+   "status": "live",
+   "kickoff_at": "2026-10-04T15:30:00+00:00",
+   "competition": {
+    "slug": "womens-super-league",
+    "name": "Women's Super League"
+   },
+   "home": {
+    "id": "fe0259d2-ad28-55b1-85a7-1eb256257a73",
+    "slug": "manchester-city-women",
+    "name": "Manchester City Women",
+    "short_name": "Man City"
+   },
+   "away": {
+    "id": "91d268b7-9933-51a0-8f7a-fde6a4283b88",
+    "slug": "arsenal-women",
+    "name": "Arsenal Women",
+    "short_name": "Arsenal"
+   },
+   "score": {
+    "home": 4,
+    "away": 2,
+    "home_ht": null,
+    "away_ht": null
+   }
+  },
+  {
+   "id": "0e43b178-51c8-50f2-ba0e-52a05aa93a1b",
+   "status": "live",
+   "kickoff_at": "2026-10-04T16:00:00+00:00",
+   "competition": {
+    "slug": "uefa-nations-league",
+    "name": "UEFA Nations League"
+   },
+   "home": {
+    "id": "cc5ff403-418a-5842-8d91-5c79948bba0c",
+    "slug": "malta",
+    "name": "Malta",
+    "short_name": "Malta"
+   },
+   "away": {
+    "id": "f6db69e7-f1d4-5717-a37e-979653d845f0",
+    "slug": "andorra",
+    "name": "Andorra",
+    "short_name": "Andorra"
+   },
+   "score": {
+    "home": 1,
+    "away": 0,
+    "home_ht": null,
+    "away_ht": null
+   }
+  },
+  {
+   "id": "d2c0b067-8277-551e-a4f5-ba7bc955ac51",
+   "status": "live",
+   "kickoff_at": "2026-10-04T16:00:00+00:00",
+   "competition": {
+    "slug": "uefa-nations-league",
+    "name": "UEFA Nations League"
+   },
+   "home": {
+    "id": "265aaf26-3216-5162-85b6-b635b8e8a28d",
+    "slug": "kosovo",
+    "name": "Kosovo",
+    "short_name": "Kosovo"
+   },
+   "away": {
+    "id": "032c0545-7a43-572d-bd04-6a7384e2b787",
+    "slug": "austria",
+    "name": "Austria",
+    "short_name": "Austria"
+   },
+   "score": {
+    "home": 0,
+    "away": 0,
+    "home_ht": null,
+    "away_ht": null
+   }
+  },
+  {
+   "id": "a6744f1e-972b-5173-8a1a-8d076f886142",
+   "status": "live",
+   "kickoff_at": "2026-10-04T17:00:00+00:00",
+   "competition": {
+    "slug": "nwsl",
+    "name": "NWSL"
+   },
+   "home": {
+    "id": "14ff187e-8fe5-5949-b2d0-8533d3f99b1f",
+    "slug": "gotham-fc",
+    "name": "Gotham FC",
+    "short_name": "Gotham"
+   },
+   "away": {
+    "id": "28021c9f-4feb-5a0b-a726-2d97c4f33db6",
+    "slug": "angel-city-fc",
+    "name": "Angel City FC",
+    "short_name": "Angel City"
+   },
+   "score": {
+    "home": 0,
+    "away": 0,
+    "home_ht": null,
+    "away_ht": null
+   }
+  },
+  {
+   "id": "5b1637e6-ae98-51ba-bfc6-f226a7ee75be",
+   "status": "live",
+   "kickoff_at": "2026-10-04T17:00:00+00:00",
+   "competition": {
+    "slug": "liga-f",
+    "name": "Liga F"
+   },
+   "home": {
+    "id": "3617b76c-e866-515b-969b-f7e5bbf58be6",
+    "slug": "barcelona-women",
+    "name": "Barcelona Women",
+    "short_name": "Barcelona"
+   },
+   "away": {
+    "id": "31d2699c-edd5-555e-b255-5b3137fde136",
+    "slug": "real-madrid-women",
+    "name": "Real Madrid Women",
+    "short_name": "Real Madrid"
+   },
+   "score": {
+    "home": 1,
+    "away": 0,
+    "home_ht": null,
+    "away_ht": null
+   }
+  },
+  {
+   "id": "5ee60e65-1a08-54c5-bab2-efc939da6a53",
+   "status": "scheduled",
+   "kickoff_at": "2026-10-04T17:30:00+00:00",
+   "competition": {
+    "slug": "liga-f",
+    "name": "Liga F"
+   },
+   "home": {
+    "id": "b7eca2c2-6fd0-5eef-b9a1-dd080ccf75a5",
+    "slug": "valencia-women",
+    "name": "Valencia Women",
+    "short_name": "Valencia"
+   },
+   "away": {
+    "id": "0430a1d6-d20a-557a-9263-7e028ab3c246",
+    "slug": "real-sociedad-women",
+    "name": "Real Sociedad Women",
+    "short_name": "Real Sociedad"
+   },
+   "score": null
+  },
+  {
+   "id": "d73a6c9e-c1c3-5380-b441-84395c004339",
+   "status": "scheduled",
+   "kickoff_at": "2026-10-04T18:45:00+00:00",
+   "competition": {
+    "slug": "uefa-nations-league",
+    "name": "UEFA Nations League"
+   },
+   "home": {
+    "id": "1087c4f3-78c9-51c9-ba00-8795dba79d7d",
+    "slug": "netherlands",
+    "name": "Netherlands",
+    "short_name": "Netherlands"
+   },
+   "away": {
+    "id": "9ae4eb27-1696-51a1-80a2-b84502f53a1d",
+    "slug": "serbia",
+    "name": "Serbia",
+    "short_name": "Serbia"
+   },
+   "score": null
+  },
+  {
+   "id": "978364ff-e007-573a-85d9-758cb99848e6",
+   "status": "scheduled",
+   "kickoff_at": "2026-10-04T18:45:00+00:00",
+   "competition": {
+    "slug": "uefa-nations-league",
+    "name": "UEFA Nations League"
+   },
+   "home": {
+    "id": "4d5990b2-441b-54ac-acee-adec75d8f1e6",
+    "slug": "greece",
+    "name": "Greece",
+    "short_name": "Greece"
+   },
+   "away": {
+    "id": "3f3811e0-b100-5f26-b1eb-bc587174f046",
+    "slug": "germany",
+    "name": "Germany",
+    "short_name": "Germany"
+   },
+   "score": null
+  },
+  {
+   "id": "8f6ea9cf-5fbb-537e-8cd4-68ddbfb78988",
+   "status": "scheduled",
+   "kickoff_at": "2026-10-04T18:45:00+00:00",
+   "competition": {
+    "slug": "uefa-nations-league",
+    "name": "UEFA Nations League"
+   },
+   "home": {
+    "id": "68ec36ed-0520-518f-bba6-4772b96749bb",
+    "slug": "republic-of-ireland",
+    "name": "Republic of Ireland",
+    "short_name": "Rep Ireland"
+   },
+   "away": {
+    "id": "6937a830-5113-57dc-8aa6-65b3acc8f6b8",
+    "slug": "israel",
+    "name": "Israel",
+    "short_name": "Israel"
+   },
+   "score": null
+  },
+  {
+   "id": "546e59de-d4c7-5431-856c-dd6560a3b70a",
+   "status": "scheduled",
+   "kickoff_at": "2026-10-04T18:45:00+00:00",
+   "competition": {
+    "slug": "uefa-nations-league",
+    "name": "UEFA Nations League"
+   },
+   "home": {
+    "id": "91323cb1-3b62-5a01-95f6-386388f45383",
+    "slug": "wales",
+    "name": "Wales",
+    "short_name": "Wales"
+   },
+   "away": {
+    "id": "20cbab3b-6e01-5f0b-a468-ec64865244a3",
+    "slug": "denmark",
+    "name": "Denmark",
+    "short_name": "Denmark"
+   },
+   "score": null
+  },
+  {
+   "id": "0c5f70ba-c581-5912-b1f6-1a2e632ed76d",
+   "status": "scheduled",
+   "kickoff_at": "2026-10-04T18:45:00+00:00",
+   "competition": {
+    "slug": "uefa-nations-league",
+    "name": "UEFA Nations League"
+   },
+   "home": {
+    "id": "575c430a-ae6b-5bc5-a65c-67d1ba490e90",
+    "slug": "portugal",
+    "name": "Portugal",
+    "short_name": "Portugal"
+   },
+   "away": {
+    "id": "2aed88f7-24e0-5d7f-bd37-9803248e0647",
+    "slug": "norway",
+    "name": "Norway",
+    "short_name": "Norway"
+   },
+   "score": null
+  },
+  {
+   "id": "329f51fe-d0e6-5d18-a27b-caff73cb356a",
+   "status": "scheduled",
+   "kickoff_at": "2026-10-04T20:00:00+00:00",
+   "competition": {
+    "slug": "nwsl",
+    "name": "NWSL"
+   },
+   "home": {
+    "id": "996ac30f-8ac4-5e3a-96d1-9c9ac9854972",
+    "slug": "chicago-stars-fc",
+    "name": "Chicago Stars FC",
+    "short_name": "Chicago"
+   },
+   "away": {
+    "id": "a68f2f1a-714e-56d6-9925-f5b115e62f07",
+    "slug": "denver-summit-fc",
+    "name": "Denver Summit FC",
+    "short_name": "Denver"
+   },
+   "score": null
+  },
+  {
+   "id": "976f77c8-3370-5ab9-8f89-2d95c531c3f7",
+   "status": "scheduled",
+   "kickoff_at": "2026-10-04T23:00:00+00:00",
+   "competition": {
+    "slug": "nwsl",
+    "name": "NWSL"
+   },
+   "home": {
+    "id": "c283398c-1105-55a6-b3a3-d4b408f6b108",
+    "slug": "houston-dash",
+    "name": "Houston Dash",
+    "short_name": "Houston"
+   },
+   "away": {
+    "id": "fd17f295-e017-5e18-98a9-cc98ff2a7dc2",
+    "slug": "washington-spirit",
+    "name": "Washington Spirit",
+    "short_name": "Washington"
+   },
+   "score": null
+  }
+ ]
+}

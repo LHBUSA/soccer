@@ -8,16 +8,40 @@ export const COMPETITION_MEDIA = {
     "attribution": "UEFA Champions League logo. Image: ESPN",
     "basis": "owner_approved_identification"
   },
+  "uefa-europa-league": {
+    "url": "/api/soccer/media/6cfc1e2185c75b3a7d811246fba0699066db19f96444a1834b5a0b9efc1063e6",
+    "url_dark": "/api/soccer/media/777cbf4306bc8809ca7f855bb3376df7dc9ef442970c9378b07b34ef316a4bbe",
+    "attribution": "UEFA Europa League logo. Image: ESPN",
+    "basis": "owner_approved_identification"
+  },
   "premier-league": {
     "url": "/api/soccer/media/42e2fdced44ff542fa734409667c733841a7bcb903b526c85d12aac78aff2464",
     "url_dark": "/api/soccer/media/3fbb077c9331046d0dc96c0bbcc12e3795bdbd9b43a6bbe3a18ab6b6aedc47bf",
     "attribution": "Premier League logo. Image: ESPN",
     "basis": "owner_approved_identification"
   },
+  "la-liga": {
+    "url": "/api/soccer/media/4af38ab01c0313ff54bcfdaf24658100e4302134052a40529500e9551e92b1aa",
+    "url_dark": "/api/soccer/media/4af38ab01c0313ff54bcfdaf24658100e4302134052a40529500e9551e92b1aa",
+    "attribution": "LaLiga logo. Image: ESPN",
+    "basis": "owner_approved_identification"
+  },
   "bundesliga": {
     "url": "/api/soccer/media/463b74682c9030631d8fc19a1535875496009a8f296775323127e2a2365094d0",
     "url_dark": "/api/soccer/media/a34af0a55df761a807dc43d1afff86ffa3d3a7fabf4d952c1364562973c5cff3",
     "attribution": "Bundesliga logo. Image: ESPN",
+    "basis": "owner_approved_identification"
+  },
+  "fifa-world-cup": {
+    "url": "/api/soccer/media/d123db87c3f46d11f2a4cd44d9fb84be88a5a0c5426e7b1ae007faa99ee48458",
+    "url_dark": "/api/soccer/media/8fb380180c689b83baa1b4d38a12390e15424e57c5539c2449a6f3a351d5103b",
+    "attribution": "FIFA World Cup logo. Image: ESPN",
+    "basis": "owner_approved_identification"
+  },
+  "nwsl": {
+    "url": "/api/soccer/media/640099eeeceecbf70f1cb280839544559a3d71128c224519b98847f60f902f44",
+    "url_dark": "/api/soccer/media/640099eeeceecbf70f1cb280839544559a3d71128c224519b98847f60f902f44",
+    "attribution": "NWSL logo. Image: ESPN",
     "basis": "owner_approved_identification"
   },
   "uefa-nations-league": {
@@ -30,6 +54,30 @@ export const COMPETITION_MEDIA = {
     "url": "/api/soccer/media/9e4b7c06391ad3742294dc761e7b951d0bf8603fd2b360370e1299832f602a9e",
     "url_dark": "/api/soccer/media/9e4b7c06391ad3742294dc761e7b951d0bf8603fd2b360370e1299832f602a9e",
     "attribution": "MLS logo. Image: ESPN",
+    "basis": "owner_approved_identification"
+  },
+  "womens-super-league": {
+    "url": "/api/soccer/media/4988d7df85bbe6abdf0cce673e6affcc89f389e8e8f37cd7f8cb25dcbd58fa1d",
+    "url_dark": "/api/soccer/media/a96c40054c8445ed6337c7991ee962584754f39c9a768897110a6e9c96ecbb9c",
+    "attribution": "Women's Super League logo. Image: ESPN",
+    "basis": "owner_approved_identification"
+  },
+  "ligue-1": {
+    "url": "/api/soccer/media/cb99d097992cffe78b57407a9d9d3db0df06f452f47c7f10c0e30ca0a8aeb9b1",
+    "url_dark": "/api/soccer/media/677e10ad9d013e8b3827e27250161a835736ed9a04f71aee130a909bb5bb197c",
+    "attribution": "Ligue 1 logo. Image: ESPN",
+    "basis": "owner_approved_identification"
+  },
+  "serie-a": {
+    "url": "/api/soccer/media/a96fb3d84f078adbd03d221f0163e6183624fbe531902970ed7251b149c7d0b9",
+    "url_dark": "/api/soccer/media/a96fb3d84f078adbd03d221f0163e6183624fbe531902970ed7251b149c7d0b9",
+    "attribution": "Serie A logo. Image: ESPN",
+    "basis": "owner_approved_identification"
+  },
+  "uefa-womens-champions-league": {
+    "url": "/api/soccer/media/0fab36b91557f3fea25012bbda81866e141c5e1da975b59bce91336f548dc40b",
+    "url_dark": "/api/soccer/media/0fab36b91557f3fea25012bbda81866e141c5e1da975b59bce91336f548dc40b",
+    "attribution": "UEFA Women's Champions League logo. Image: ESPN",
     "basis": "owner_approved_identification"
   }
 };

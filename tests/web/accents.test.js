@@ -34,7 +34,7 @@ test('FIFA World Cup: first-class tile and a readable mark', () => {
   const html = coverageCards({ data: [{ slug: 'fifa-world-cup', name: 'FIFA World Cup', latest_season: '2026', matches: 104, seasons: 1 }] }, null);
   assert.match(html, /class="comptile a-fifa"/);
   assert.match(html, /FIFA World Cup/); assert.match(html, /<b>104<\/b>matches/); assert.match(html, /OPEN COMPETITION HUB/);
-  // No approved FIFA logo: the owned typographic mono, never an empty or broken image.
-  assert.match(competitionMark('fifa-world-cup', 'lg', { tone: 'dark' }), /class="cmono a-fifa lg"[^>]*>FIFA</);
+  // FIFA now has an approved logo (competition-logos 2026-10-04); a broken file still falls back to the FIFA mono.
+  assert.match(competitionMark('fifa-world-cup', 'lg', { tone: 'dark' }), /class="clogo t-dark lg"[^>]*>.*data-fallback-comp="FIFA" data-fallback-class="cmono a-fifa lg"/s);
   assert.match(css, /\.cmono\.lg\s*\{[^}]*display:\s*inline-flex/, 'the legend .lg dot rule cannot collapse the mono');
 });

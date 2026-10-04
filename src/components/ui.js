@@ -4,7 +4,7 @@
 import { esc, join, when } from '../lib/html.js';
 import { competitionMark, crest, initials, mountMediaFallbacks, portrait } from './media.js';
 import { ago, coverageOf, dateShort, dateTime, scoreline, sourceName, time } from '../lib/format.js';
-import { compMeta } from '../lib/competitions.js';
+import { resolveComp } from '../lib/competitions.js';
 import { kalshiLineFor } from '../data/kalshi.js';
 
 export const link = (href, inner, cls = '') => `<a href="${esc(href)}" data-link${cls ? ` class="${cls}"` : ''}>${inner}</a>`;
@@ -134,7 +134,7 @@ export function matchCard(m, { showComp = true } = {}) {
   const row = (t, s, win) => `<div class="mc-row${win ? ' win' : ''}">${teamMark(t)}<span class="mc-name">${teamLink(t)}</span><span class="mc-goals">${sc ? esc(String(s)) : ''}</span></div>`;
   return `<article class="mcard st-${esc(m.status || 'unknown')}">
     <div class="mc-top">
-      ${when(showComp && m.competition, () => `${link(`/competitions/${m.competition.slug}`, `${competitionMark(m.competition.slug, 'xs')}<span>${esc(compMeta(m.competition.slug)?.name || m.competition.name)}</span>`, 'mc-comp')}`)}
+      ${when(showComp && m.competition, () => `${link(`/competitions/${resolveComp(m.competition)?.slug || m.competition.slug}`, `${competitionMark(resolveComp(m.competition)?.slug || m.competition.slug, 'xs')}<span>${esc(resolveComp(m.competition)?.name || m.competition.name)}</span>`, 'mc-comp')}`)}
       ${statusPill(m.status)}
     </div>
     <div class="mc-body">

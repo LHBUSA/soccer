@@ -6,7 +6,7 @@
 //
 // Images are decorative next to a visible name (alt=""); the attribution rides on title.
 import { esc } from '../lib/html.js';
-import { compMeta } from '../lib/competitions.js';
+import { resolveComp } from '../lib/competitions.js';
 import { COMPETITION_MEDIA } from '../lib/competition-media.js';
 
 export const SILHOUETTE = '/brand/player-silhouette-128.webp';
@@ -51,16 +51,22 @@ export function portrait(p, size = 'sm', { alt = '' } = {}) {
 }
 
 // Competition identity: the approved cached logo (src/lib/competition-media.js) or the typographic mono.
+// `slug` may be any label the canonical registry knows (resolveComp: slug, name, ESPN id, alias); an unknown
+// label gets a neutral mono, never another competition's logo.
 // tone: 'light' = the provider's default logo for light surfaces; 'dark' = the provider's own dark-surface
-// variant (no recolouring by us). size: xs | '' | lg | xl.
+// variant (no recolouring by us). A single-variant logo flagged darkPlate in the registry (the navy UWCL / UNL
+// marks would vanish on the shell) sits on a light plate on dark surfaces. size: xs | '' | lg | xl.
 export function competitionMark(slug, size = '', { tone = 'light' } = {}) {
-  const c = compMeta(slug);
+  const c = resolveComp(slug);
+  const key = c?.slug || slug;
   const cls = `cmono a-${c?.accent || 'x'}${size ? ` ${size}` : ''}`;
-  const mono = c?.mono || initials(String(slug || '').replace(/-/g, ' '));
-  const logo = COMPETITION_MEDIA[slug];
+  const mono = c?.mono || initials(String(key || '').replace(/-/g, ' '));
+  const logo = c ? COMPETITION_MEDIA[c.slug] : null;
   if (!logo?.url) return `<span class="${esc(cls)}" aria-hidden="true">${esc(mono)}</span>`;
-  const src = tone === 'dark' && logo.url_dark ? logo.url_dark : logo.url;
-  return `<span class="clogo t-${tone}${size ? ` ${size}` : ''}" title="${esc(logo.attribution)}. Used to identify the competition."><img src="${esc(src)}" alt="" loading="lazy" decoding="async" width="64" height="64" data-fallback-comp="${esc(mono)}" data-fallback-class="${esc(cls)}"></span>`;
+  const ownDark = !!logo.url_dark && logo.url_dark !== logo.url;
+  const src = tone === 'dark' && ownDark ? logo.url_dark : logo.url;
+  const plate = tone === 'dark' && !ownDark && c.darkPlate ? ' plate' : '';
+  return `<span class="clogo t-${tone}${plate}${size ? ` ${size}` : ''}" title="${esc(logo.attribution)}. Used to identify the competition."><img src="${esc(src)}" alt="" loading="lazy" decoding="async" width="64" height="64" data-fallback-comp="${esc(mono)}" data-fallback-class="${esc(cls)}"></span>`;
 }
 
 // A broken approved file never shows as a broken image.
