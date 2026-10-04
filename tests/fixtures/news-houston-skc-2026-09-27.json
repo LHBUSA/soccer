@@ -1,0 +1,927 @@
+{
+ "note": "Real frozen evidence packet (production soccer_article_evidence, hash ba61f59c70d998194ddc0f561f4212cbbda774c939d5c79cc5ecc37d52bbc9b8) for Houston Dynamo FC 0-2 Sporting Kansas City 2026-09-27, plus the RC1 desk candidate the owner preferred in the 2026-10-04 blind review (held by the lead_quality false positive).",
+ "packet": {
+  "hash": "ba61f59c70d998194ddc0f561f4212cbbda774c939d5c79cc5ecc37d52bbc9b8",
+  "depth": {
+   "phases": {
+    "buckets": {
+     "0-15": {
+      "away": {
+       "goals": 0,
+       "shots": 0,
+       "shots_on_target": 0
+      },
+      "home": {
+       "goals": 0,
+       "shots": 1,
+       "shots_on_target": 0
+      }
+     },
+     "16-30": {
+      "away": {
+       "goals": 1,
+       "shots": 1,
+       "shots_on_target": 1
+      },
+      "home": {
+       "goals": 0,
+       "shots": 2,
+       "shots_on_target": 0
+      }
+     },
+     "46-60": {
+      "away": {
+       "goals": 0,
+       "shots": 5,
+       "shots_on_target": 1
+      },
+      "home": {
+       "goals": 0,
+       "shots": 1,
+       "shots_on_target": 0
+      }
+     },
+     "61-75": {
+      "away": {
+       "goals": 0,
+       "shots": 1,
+       "shots_on_target": 0
+      },
+      "home": {
+       "goals": 0,
+       "shots": 11,
+       "shots_on_target": 2
+      }
+     },
+     "31-45+": {
+      "away": {
+       "goals": 1,
+       "shots": 1,
+       "shots_on_target": 1
+      },
+      "home": {
+       "goals": 0,
+       "shots": 4,
+       "shots_on_target": 2
+      }
+     },
+     "76-90+": {
+      "away": {
+       "goals": 0,
+       "shots": 2,
+       "shots_on_target": 1
+      },
+      "home": {
+       "goals": 0,
+       "shots": 2,
+       "shots_on_target": 0
+      }
+     }
+    },
+    "first_half": {
+     "away": {
+      "goals": 2,
+      "shots": 2,
+      "shots_on_target": 2
+     },
+     "home": {
+      "goals": 0,
+      "shots": 7,
+      "shots_on_target": 2
+     }
+    },
+    "second_half": {
+     "away": {
+      "goals": 0,
+      "shots": 8,
+      "shots_on_target": 2
+     },
+     "home": {
+      "goals": 0,
+      "shots": 14,
+      "shots_on_target": 2
+     }
+    },
+    "shot_events_source": "espn"
+   },
+   "version": "soccer-depth/1.0.0",
+   "discipline": [
+    {
+     "card": "yellow",
+     "team": "away",
+     "minute": 1,
+     "player": {
+      "id": "bdd8bad3-9e58-5eb9-9623-660bd85eaee2",
+      "name": "Justin Reynolds",
+      "slug": "justin-reynolds"
+     }
+    },
+    {
+     "card": "yellow",
+     "team": "away",
+     "minute": 46,
+     "player": {
+      "id": "b3595c1a-01c3-588f-bcbd-b5336c0bd4a9",
+      "name": "Taylor Calheira",
+      "slug": "taylor-calheira"
+     }
+    },
+    {
+     "card": "red",
+     "team": "home",
+     "minute": 46,
+     "player": {
+      "id": "90588bc4-158e-56a5-8bde-b9e81ca6a022",
+      "name": "Héctor Herrera",
+      "slug": "hector-herrera"
+     }
+    },
+    {
+     "card": "yellow",
+     "team": "away",
+     "minute": 46,
+     "player": {
+      "id": "837c33c5-6b9a-5279-bab8-3aa39cb3a755",
+      "name": "André Luiz",
+      "slug": "andre-luiz"
+     }
+    },
+    {
+     "card": "yellow",
+     "team": "home",
+     "minute": 54,
+     "player": {
+      "id": "c8052421-c8a5-5c9c-90f3-644253dd7d4a",
+      "name": "Antônio Carlos",
+      "slug": "antonio-carlos"
+     }
+    },
+    {
+     "card": "yellow",
+     "team": "away",
+     "minute": 68,
+     "player": {
+      "id": "db8e1705-d287-5f68-b9e9-e3e21522ea4f",
+      "name": "Stephen Afrifa",
+      "slug": "stephen-afrifa"
+     }
+    }
+   ],
+   "table_move": {
+    "away": {
+     "played_after": 25,
+     "points_after": 20,
+     "position_after": 30,
+     "position_before": 30,
+     "position_change": 0,
+     "goal_difference_after": -32
+    },
+    "home": {
+     "played_after": 27,
+     "points_after": 44,
+     "position_after": 6,
+     "position_before": 6,
+     "position_change": 0,
+     "goal_difference_after": 2
+    },
+    "teams_in_table": 30
+   },
+   "player_lines": [
+    {
+     "team": "away",
+     "goals": 1,
+     "shots": 2,
+     "player": {
+      "id": "37fe6779-a227-5b17-a2d4-0983caa3a21e",
+      "name": "Calvin Harris",
+      "slug": "calvin-harris"
+     },
+     "assists": 0,
+     "shots_on_target": 2,
+     "shots_inside_box": 1
+    },
+    {
+     "team": "away",
+     "goals": 1,
+     "shots": 3,
+     "player": {
+      "id": "837c33c5-6b9a-5279-bab8-3aa39cb3a755",
+      "name": "André Luiz",
+      "slug": "andre-luiz"
+     },
+     "assists": 0,
+     "shots_on_target": 1,
+     "shots_inside_box": 2
+    },
+    {
+     "team": "home",
+     "goals": 0,
+     "shots": 6,
+     "player": {
+      "id": "6e88656d-2c44-5010-b331-f57bc53dfd2a",
+      "name": "Guilherme Augusto",
+      "slug": "guilherme-augusto"
+     },
+     "assists": 0,
+     "shots_on_target": 1,
+     "shots_inside_box": 2
+    },
+    {
+     "team": "home",
+     "goals": 0,
+     "shots": 2,
+     "player": {
+      "id": "963db632-4229-56ba-8d1a-b3f15f8b56ab",
+      "name": "Agustín Bouzat",
+      "slug": "agustin-bouzat"
+     },
+     "assists": 0,
+     "shots_on_target": 1,
+     "shots_inside_box": 2
+    },
+    {
+     "team": "home",
+     "goals": 0,
+     "shots": 2,
+     "player": {
+      "id": "c8052421-c8a5-5c9c-90f3-644253dd7d4a",
+      "name": "Antônio Carlos",
+      "slug": "antonio-carlos"
+     },
+     "assists": 0,
+     "shots_on_target": 1,
+     "shots_inside_box": 2
+    },
+    {
+     "team": "home",
+     "goals": 0,
+     "shots": 2,
+     "player": {
+      "id": "90588bc4-158e-56a5-8bde-b9e81ca6a022",
+      "name": "Héctor Herrera",
+      "slug": "hector-herrera"
+     },
+     "assists": 0,
+     "shots_on_target": 1,
+     "shots_inside_box": 2
+    },
+    {
+     "team": "away",
+     "goals": 0,
+     "shots": 2,
+     "player": {
+      "id": "2470243e-210f-580d-909a-f22a88592183",
+      "name": "Lasse Berg Johnsen",
+      "slug": "lasse-berg-johnsen"
+     },
+     "assists": 0,
+     "shots_on_target": 1,
+     "shots_inside_box": 1
+    },
+    {
+     "team": "home",
+     "goals": 0,
+     "shots": 2,
+     "player": {
+      "id": "232f6493-b81c-5ee4-8b23-88a0b56a6ac6",
+      "name": "Ibrahim Aliyu",
+      "slug": "ibrahim-aliyu"
+     },
+     "assists": 0,
+     "shots_on_target": 0,
+     "shots_inside_box": 2
+    },
+    {
+     "team": "home",
+     "goals": 0,
+     "shots": 2,
+     "player": {
+      "id": "d321a4a7-402e-5f55-9d32-8208853a31c0",
+      "name": "Lucas Halter",
+      "slug": "lucas-halter"
+     },
+     "assists": 0,
+     "shots_on_target": 0,
+     "shots_inside_box": 2
+    },
+    {
+     "team": "home",
+     "goals": 0,
+     "shots": 2,
+     "player": {
+      "id": "d64d9a59-4416-5838-9f43-bc3dbf295970",
+      "name": "Mateusz Bogusz",
+      "slug": "mateusz-bogusz"
+     },
+     "assists": 0,
+     "shots_on_target": 0,
+     "shots_inside_box": 1
+    }
+   ],
+   "shot_profile": {
+    "away": {
+     "goals": 2,
+     "shots": 10,
+     "located_shots": 10,
+     "on_target_pct": 40,
+     "goals_per_shot": 0.2,
+     "shots_on_target": 4,
+     "located_inside_box": 7,
+     "located_outside_box": 3,
+     "avg_located_distance_m": 16.5,
+     "first_half_shot_events": 2,
+     "second_half_shot_events": 8,
+     "goals_per_shot_on_target": 0.5,
+     "share_of_total_shots_pct": 32
+    },
+    "home": {
+     "goals": 0,
+     "shots": 21,
+     "located_shots": 21,
+     "on_target_pct": 19,
+     "goals_per_shot": 0,
+     "shots_on_target": 4,
+     "located_inside_box": 15,
+     "located_outside_box": 6,
+     "avg_located_distance_m": 17.4,
+     "first_half_shot_events": 7,
+     "second_half_shot_events": 14,
+     "goals_per_shot_on_target": 0,
+     "share_of_total_shots_pct": 68
+    },
+    "basis": "source",
+    "box_rule": "penalty area from event coordinates (x >= 88.5 m, |y - 34| <= 20.16 m)",
+    "total_shots": 31,
+    "located_total": 31
+   },
+   "goal_sequence": {
+    "goals_total": 2,
+    "opening_goal": {
+     "team": "away",
+     "minute": "27'",
+     "scorer": "André Luiz"
+    },
+    "goals_after_60": {
+     "away": 0,
+     "home": 0
+    },
+    "goals_after_70": {
+     "away": 0,
+     "home": 0
+    },
+    "halftime_score": null,
+    "second_half_goals": {
+     "away": 0,
+     "home": 0
+    },
+    "first_second_half_goal": null,
+    "goal_intervals_minutes": [
+     18
+    ]
+   },
+   "substitutions": [
+    {
+     "team": "home",
+     "minute": 56,
+     "player_in": {
+      "id": "94290713-4f65-51af-a997-590c21e3ec32",
+      "name": "Felipe Andrade",
+      "slug": "felipe-andrade"
+     },
+     "player_out": {
+      "id": "ec0c379a-ab2a-5e3d-bfb2-09417d61d26e",
+      "name": "Franco Negri",
+      "slug": "franco-negri"
+     }
+    },
+    {
+     "team": "away",
+     "minute": 63,
+     "player_in": {
+      "id": "745b0fb3-366d-5238-ae61-32825fc331cc",
+      "name": "Ruben Ramos",
+      "slug": "ruben-ramos"
+     },
+     "player_out": {
+      "id": "837c33c5-6b9a-5279-bab8-3aa39cb3a755",
+      "name": "André Luiz",
+      "slug": "andre-luiz"
+     }
+    },
+    {
+     "team": "home",
+     "minute": 71,
+     "player_in": {
+      "id": "624ea383-c2e0-5b49-ad70-b1df61527828",
+      "name": "Matthew Arana",
+      "slug": "matthew-arana"
+     },
+     "player_out": {
+      "id": "963db632-4229-56ba-8d1a-b3f15f8b56ab",
+      "name": "Agustín Bouzat",
+      "slug": "agustin-bouzat"
+     }
+    },
+    {
+     "team": "home",
+     "minute": 71,
+     "player_in": {
+      "id": "c91f6538-5649-52f8-8be7-53585fd306e5",
+      "name": "Marcelo Saracchi",
+      "slug": "marcelo-saracchi"
+     },
+     "player_out": {
+      "id": "9b7cb619-b6df-5545-9a4d-b78c8d7c882f",
+      "name": "Lawrence Ennali",
+      "slug": "lawrence-ennali"
+     }
+    },
+    {
+     "team": "home",
+     "minute": 71,
+     "player_in": {
+      "id": "eadcefd5-8733-5e42-9d04-294f0d7c84f3",
+      "name": "Lyle Foster",
+      "slug": "lyle-foster"
+     },
+     "player_out": {
+      "id": "232f6493-b81c-5ee4-8b23-88a0b56a6ac6",
+      "name": "Ibrahim Aliyu",
+      "slug": "ibrahim-aliyu"
+     }
+    },
+    {
+     "team": "away",
+     "minute": 72,
+     "player_in": {
+      "id": "e23a9ce0-fb7a-5234-8459-d05b3a543a38",
+      "name": "Jacob Bartlett",
+      "slug": "jacob-bartlett"
+     },
+     "player_out": {
+      "id": "bdd8bad3-9e58-5eb9-9623-660bd85eaee2",
+      "name": "Justin Reynolds",
+      "slug": "justin-reynolds"
+     }
+    },
+    {
+     "team": "away",
+     "minute": 72,
+     "player_in": {
+      "id": "ed787df6-c395-5806-b6a6-4ad9cdcaaf88",
+      "name": "Owen Wolff",
+      "slug": "owen-wolff"
+     },
+     "player_out": {
+      "id": "37fe6779-a227-5b17-a2d4-0983caa3a21e",
+      "name": "Calvin Harris",
+      "slug": "calvin-harris"
+     }
+    },
+    {
+     "team": "away",
+     "minute": 80,
+     "player_in": {
+      "id": "91f44b2d-55e4-501f-b870-8abac80bff75",
+      "name": "Zorhan Bassong",
+      "slug": "zorhan-bassong"
+     },
+     "player_out": {
+      "id": "db8e1705-d287-5f68-b9e9-e3e21522ea4f",
+      "name": "Stephen Afrifa",
+      "slug": "stephen-afrifa"
+     }
+    },
+    {
+     "team": "away",
+     "minute": 80,
+     "player_in": {
+      "id": "c8ae37ca-d9e6-576e-9a93-280d11ef0d22",
+      "name": "Seymour Reid",
+      "slug": "seymour-reid"
+     },
+     "player_out": {
+      "id": "b3595c1a-01c3-588f-bcbd-b5336c0bd4a9",
+      "name": "Taylor Calheira",
+      "slug": "taylor-calheira"
+     }
+    },
+    {
+     "team": "home",
+     "minute": 82,
+     "player_in": {
+      "id": "6d392522-91e3-5397-92e8-12c0847a5ec2",
+      "name": "Duncan McGuire",
+      "slug": "duncan-mcguire"
+     },
+     "player_out": {
+      "id": "d64d9a59-4416-5838-9f43-bc3dbf295970",
+      "name": "Mateusz Bogusz",
+      "slug": "mateusz-bogusz"
+     }
+    }
+   ],
+   "recent_league_results": {
+    "away": [
+     {
+      "date": "2026-09-20",
+      "score": "3-4",
+      "venue": "home",
+      "result": "L",
+      "opponent": {
+       "name": "Philadelphia Union",
+       "slug": "philadelphia-union"
+      }
+     },
+     {
+      "date": "2026-09-13",
+      "score": "3-1",
+      "venue": "home",
+      "result": "W",
+      "opponent": {
+       "name": "LAFC",
+       "slug": "lafc"
+      }
+     },
+     {
+      "date": "2026-09-06",
+      "score": "3-4",
+      "venue": "away",
+      "result": "L",
+      "opponent": {
+       "name": "FC Dallas",
+       "slug": "fc-dallas"
+      }
+     },
+     {
+      "date": "2026-08-30",
+      "score": "0-3",
+      "venue": "home",
+      "result": "L",
+      "opponent": {
+       "name": "Vancouver Whitecaps",
+       "slug": "vancouver-whitecaps"
+      }
+     },
+     {
+      "date": "2026-08-23",
+      "score": "1-2",
+      "venue": "away",
+      "result": "L",
+      "opponent": {
+       "name": "Atlanta United FC",
+       "slug": "atlanta-united-fc"
+      }
+     }
+    ],
+    "home": [
+     {
+      "date": "2026-09-20",
+      "score": "2-2",
+      "venue": "home",
+      "result": "D",
+      "opponent": {
+       "name": "FC Cincinnati",
+       "slug": "fc-cincinnati"
+      }
+     },
+     {
+      "date": "2026-09-13",
+      "score": "0-1",
+      "venue": "away",
+      "result": "L",
+      "opponent": {
+       "name": "San Jose Earthquakes",
+       "slug": "san-jose-earthquakes"
+      }
+     },
+     {
+      "date": "2026-09-10",
+      "score": "2-1",
+      "venue": "home",
+      "result": "W",
+      "opponent": {
+       "name": "Real Salt Lake",
+       "slug": "real-salt-lake"
+      }
+     },
+     {
+      "date": "2026-09-05",
+      "score": "0-0",
+      "venue": "away",
+      "result": "D",
+      "opponent": {
+       "name": "Charlotte FC",
+       "slug": "charlotte-fc"
+      }
+     },
+     {
+      "date": "2026-08-30",
+      "score": "0-0",
+      "venue": "home",
+      "result": "D",
+      "opponent": {
+       "name": "San Jose Earthquakes",
+       "slug": "san-jose-earthquakes"
+      }
+     }
+    ]
+   }
+  },
+  "event": {
+   "key": "match_recap:8f80d473-5519-5725-85ac-e60cbf545285",
+   "kind": "match_recap",
+   "as_of": "2026-09-27T00:30:00.000Z",
+   "profile": "mls",
+   "event_id": "128502aa-dd7a-544d-bbd5-8dbf05d84224"
+  },
+  "goals": [
+   {
+    "team": "away",
+    "minute": 27,
+    "scorer": {
+     "id": "837c33c5-6b9a-5279-bab8-3aa39cb3a755",
+     "name": "André Luiz",
+     "slug": "andre-luiz"
+    },
+    "penalty": false,
+    "own_goal": false,
+    "running_score": "0-1",
+    "display_minute": "27'"
+   },
+   {
+    "team": "away",
+    "minute": 45,
+    "scorer": {
+     "id": "37fe6779-a227-5b17-a2d4-0983caa3a21e",
+     "name": "Calvin Harris",
+     "slug": "calvin-harris"
+    },
+    "penalty": false,
+    "own_goal": false,
+    "running_score": "0-2",
+    "display_minute": "45'"
+   }
+  ],
+  "match": {
+   "id": "8f80d473-5519-5725-85ac-e60cbf545285",
+   "score": {
+    "away": 2,
+    "home": 0,
+    "final": "0-2",
+    "away_ht": null,
+    "home_ht": null
+   },
+   "venue": "Shell Energy Stadium",
+   "margin": 2,
+   "status": "finished",
+   "winner": "away",
+   "kickoff_utc": "2026-09-27T00:30:00.000Z",
+   "league_stage": true
+  },
+  "stats": {
+   "away": {
+    "saves": 4,
+    "shots": 10,
+    "corners": 3,
+    "fouls_committed": 11,
+    "shots_on_target": 4
+   },
+   "home": {
+    "saves": 2,
+    "shots": 21,
+    "corners": 8,
+    "fouls_committed": 3,
+    "shots_on_target": 4
+   },
+   "basis": "source",
+   "provider": "espn"
+  },
+  "teams": {
+   "away": {
+    "id": "e2c42777-a99e-5b8a-a17b-0546d789669d",
+    "name": "Sporting Kansas City",
+    "slug": "sporting-kansas-city",
+    "form_before": [
+     "L",
+     "W",
+     "L",
+     "L",
+     "L"
+    ],
+    "table_after": {
+     "won": 6,
+     "lost": 17,
+     "drawn": 2,
+     "played": 25,
+     "points": 20,
+     "position": 30,
+     "goals_for": 30,
+     "goal_difference": -32
+    },
+    "table_before": {
+     "won": 5,
+     "lost": 17,
+     "drawn": 2,
+     "played": 24,
+     "points": 17,
+     "position": 30,
+     "goals_for": 28,
+     "goal_difference": -34
+    },
+    "form_before_count": 5
+   },
+   "home": {
+    "id": "499477b6-a3d4-5caf-91e1-30e382767b13",
+    "name": "Houston Dynamo FC",
+    "slug": "houston-dynamo-fc",
+    "form_before": [
+     "D",
+     "L",
+     "W",
+     "D",
+     "D"
+    ],
+    "table_after": {
+     "won": 13,
+     "lost": 9,
+     "drawn": 5,
+     "played": 27,
+     "points": 44,
+     "position": 6,
+     "goals_for": 34,
+     "goal_difference": 2
+    },
+    "table_before": {
+     "won": 13,
+     "lost": 8,
+     "drawn": 5,
+     "played": 26,
+     "points": 44,
+     "position": 6,
+     "goals_for": 34,
+     "goal_difference": 4
+    },
+    "form_before_count": 5
+   }
+  },
+  "angles": [
+   {
+    "key": "upset",
+    "detail": {
+     "loser_position_before": 6,
+     "winner_position_before": 30
+    },
+    "weight": 1
+   }
+  ],
+  "engine": "soccer-news-engine/2.0.0",
+  "version": "soccer-packet/3.0.0",
+  "provenance": {
+   "attributions": [
+    "Structured facts: ESPN (secondary source)."
+   ]
+  },
+  "competition": {
+   "id": "d370dec9-4da9-5433-b2bc-e32958287728",
+   "name": "MLS",
+   "slug": "mls",
+   "season": "2026"
+  },
+  "materiality": {
+   "score": 1,
+   "angles": [
+    {
+     "key": "upset",
+     "detail": {
+      "loser_position_before": 6,
+      "winner_position_before": 30
+     },
+     "weight": 1
+    }
+   ],
+   "profile": "mls",
+   "material": true,
+   "profiles_version": "soccer-news-profiles/1.0.0"
+  },
+  "unavailable": [
+   "quotes (none sourced)",
+   "injuries (no legitimate source ingested)",
+   "odds (not part of this product)",
+   "xG (PBE xG not validated)"
+  ],
+  "derived_from": {
+   "method": "as-of-safe rebuild: original packet + depth from the match's own events and results before kickoff",
+   "version": "soccer-packet/2.0.0",
+   "rebuilt_at": "2026-09-29T01:03:17.910Z",
+   "packet_hash": "4daff81610255199cb896e5cf17872d245d6a8e3e091754d4f017423a0d2dd33"
+  },
+  "shots_located": {
+   "away": 10,
+   "home": 21,
+   "source": "espn",
+   "avg_distance_m": {
+    "away": 16.5,
+    "home": 17.4
+   }
+  },
+  "teams_in_table": 30
+ },
+ "candidate": {
+  "headline": "André Luiz and Calvin Harris lift Sporting Kansas City past Houston Dynamo FC 2-0",
+  "dek": "The team at the bottom of the 30-club MLS table scored with both of its first-half shots, then played out a goalless second half after Héctor Herrera’s red card.",
+  "sections": [
+   {
+    "key": "s1",
+    "heading": "Two shots turn the table gap upside down",
+    "paragraphs": [
+     "Sporting Kansas City arrived at Shell Energy Stadium in 30th place and left with a victory over a Houston Dynamo FC side sitting sixth. The upset took shape through a stark first-half contrast: Houston Dynamo FC attempted seven shots, but Sporting Kansas City scored from each of its two efforts.",
+     "André Luiz supplied the opening goal in the 27th minute. Houston Dynamo FC had recorded three shots by the end of the opening half-hour without putting one on target, while André Luiz converted Sporting Kansas City’s first attempt of the match. Calvin Harris then struck in the 45th minute, sending the visitors into the interval with a two-goal lead. Both Sporting Kansas City shots before the break were on target; Houston Dynamo FC put two of seven on target without scoring."
+    ]
+   },
+   {
+    "key": "s2",
+    "heading": "Herrera’s red card changes the second-half picture",
+    "paragraphs": [
+     "Héctor Herrera was shown a red card in the 46th minute, leaving Houston Dynamo FC to play the second half with 10 players. The dismissal did not reduce the home side’s shooting volume: it produced 14 attempts after the break, including 11 between the 61st and 75th minutes. Only two of those second-half shots tested the goalkeeper, however, and neither changed the score.",
+     "Houston Dynamo FC introduced Felipe Andrade for Franco Negri in the 56th minute, then made three changes in the 71st as Matthew Arana, Marcelo Saracchi and Lyle Foster replaced Agustín Bouzat, Lawrence Ennali and Ibrahim Aliyu. Sporting Kansas City removed André Luiz for Ruben Ramos in the 63rd minute and later replaced Harris with Owen Wolff in the 72nd. The visitors also recorded eight second-half attempts, two of them on target, but all the scoring remained confined to the first half."
+    ]
+   },
+   {
+    "key": "s3",
+    "heading": "Harris and André Luiz make limited openings count",
+    "paragraphs": [
+     "The two scorers produced different shooting lines. André Luiz took three attempts overall, two from inside the penalty area, and scored with his only shot on target. Harris attempted two shots and put both on target, with one coming from inside the box. Together, their finishing gave Sporting Kansas City the return that Houston Dynamo FC could not find from a much larger collection of attempts.",
+     "Guilherme Augusto was Houston Dynamo FC’s most frequent shooter with six attempts, but only one was on target and two came from inside the area. Bouzat, Antônio Carlos and Herrera also registered one shot on target apiece. Ibrahim Aliyu, Lucas Halter and Mateusz Bogusz each attempted two shots without hitting the target, illustrating how the home side’s activity repeatedly ended away from the goalkeeper."
+    ]
+   },
+   {
+    "key": "s4",
+    "heading": "Houston’s 21 attempts yield the same four on target",
+    "paragraphs": [
+     "Houston Dynamo FC finished with 21 shots to Sporting Kansas City’s 10 and held a 68 per cent share of all attempts. The teams nevertheless finished level with four shots on target each. Sporting Kansas City turned two of those four accurate efforts into goals, while its goalkeeper saved all four that came the other way; Houston Dynamo FC’s goalkeeper made two saves.",
+     "The location data adds another layer to that contrast. Houston Dynamo FC took 15 shots from inside the penalty area and six from outside, compared with seven inside and three outside for Sporting Kansas City. The visitors’ average located shot distance was 16.5 metres, slightly closer than Houston Dynamo FC’s 17.4 metres. Houston Dynamo FC also led eight to three in corners, but neither the territorial restarts nor the larger shot count produced a goal."
+    ]
+   },
+   {
+    "key": "s5",
+    "heading": "Sporting Kansas City gain points without leaving 30th",
+    "paragraphs": [
+     "The victory moved Sporting Kansas City from 17 points to 20 after 25 matches, although the club remained 30th in the overall MLS standings. Its goal difference improved from minus 34 to minus 32. The result followed four defeats in the previous five league matches, with a 3-1 win over LAFC the lone victory in that earlier sequence.",
+     "Houston Dynamo FC stayed sixth on 44 points after 27 matches, while its goal difference moved from plus four to plus two. Its five preceding league results contained three draws, one win and one defeat, most recently a 2-2 draw with FC Cincinnati. The positions therefore did not change, but the bottom side collected the points from a contest against a team 24 places above it at kickoff."
+    ]
+   }
+  ],
+  "disclosure": [
+   "Every figure in this story comes from its frozen evidence packet (soccer-packet/3.0.0, profile mls, hash ba61f59c70d9). Team statistics are source facts, not PropBetEdge metrics. Not reported: quotes (none sourced); injuries (no legitimate source ingested); odds (not part of this product); xG (PBE xG not validated).",
+   "Structured facts: ESPN (secondary source)."
+  ],
+  "entities": [
+   {
+    "type": "SportsTeam",
+    "id": "499477b6-a3d4-5caf-91e1-30e382767b13",
+    "name": "Houston Dynamo FC",
+    "slug": "houston-dynamo-fc",
+    "href": "/teams/houston-dynamo-fc"
+   },
+   {
+    "type": "SportsTeam",
+    "id": "e2c42777-a99e-5b8a-a17b-0546d789669d",
+    "name": "Sporting Kansas City",
+    "slug": "sporting-kansas-city",
+    "href": "/teams/sporting-kansas-city",
+    "primary": true,
+    "subject_reason": "match_winner",
+    "subject_version": "news-subject/1.0.0"
+   },
+   {
+    "type": "SportsEvent",
+    "id": "8f80d473-5519-5725-85ac-e60cbf545285",
+    "name": "Houston Dynamo FC v Sporting Kansas City",
+    "href": "/matches/8f80d473-5519-5725-85ac-e60cbf545285"
+   },
+   {
+    "type": "SportsOrganization",
+    "name": "MLS",
+    "slug": "mls",
+    "href": "/competitions/mls"
+   },
+   {
+    "type": "Person",
+    "id": "837c33c5-6b9a-5279-bab8-3aa39cb3a755",
+    "name": "André Luiz",
+    "slug": "andre-luiz",
+    "href": "/players/andre-luiz"
+   },
+   {
+    "type": "Person",
+    "id": "37fe6779-a227-5b17-a2d4-0983caa3a21e",
+    "name": "Calvin Harris",
+    "slug": "calvin-harris",
+    "href": "/players/calvin-harris"
+   }
+  ],
+  "desk": "mls",
+  "story_class": "match_recap"
+ }
+}

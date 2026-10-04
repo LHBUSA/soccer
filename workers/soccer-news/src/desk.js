@@ -12,7 +12,7 @@ import { stripIdentifiers } from './gates.js';
 import { PROFILES, unsupportedGroupClaims } from './profiles.js';
 
 export const DESK_VERSION = 'soccer-desk/2.1.1'; // 2.0.0: depth contract (packet v3), evidence-family + repetition gates
-export const QUALITY_VERSION = 'soccer-quality/2.1.0'; // 2.1.0: evidence-aware depth floor
+export const QUALITY_VERSION = 'soccer-quality/2.1.1'; // 2.1.1: lead_quality accepts half timing + the packet's own upset angle; 2.1.0: evidence-aware depth floor
 export const DESK_MODEL = 'gpt-5.6-sol'; // OpenAI Responses API; override with NEWS_DESK_MODEL
 export const DESK_API = 'https://api.openai.com/v1/responses';
 export const deskRequired = env => env?.NEWS_DESK !== 'off'; // default: required for every new story
@@ -340,6 +340,25 @@ const numRe = n => `(?:${String(n).replace('.', '\\.')}${NUMW[n] ? `|${NUMW[n]}`
 const esc = s => String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const lastName = n => String(n || '').trim().split(/\s+/).pop();
 
+// lead_quality angles (soccer-quality 2.1.1). A position is accepted only as the exact ordinal the packet stores
+// ("30th" / "thirtieth", "6th" / "sixth"); never a bare number, so an arbitrary figure cannot pass for an angle.
+const ORD_WORDS = ['', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 'eighteenth', 'nineteenth', 'twentieth'];
+const ordWord = n => (n <= 20 ? ORD_WORDS[n] : n % 10 === 0 ? null : `${['', '', 'twenty', 'thirty'][Math.floor(n / 10)] || ''}-${ORD_WORDS[n % 10]}`);
+const ordDigits = n => `${n}${n % 100 >= 11 && n % 100 <= 13 ? 'th' : ['th', 'st', 'nd', 'rd'][n % 10] || 'th'}`;
+export const leadHasPosition = (lead, n) => Number.isInteger(n) && n > 0 && [ordDigits(n), ordWord(n) || (n === 30 ? 'thirtieth' : null)].filter(Boolean)
+  .some(o => new RegExp(`(^|[^\\p{L}\\d])${o}(?![\\p{L}\\d])`, 'iu').test(lead));
+// "first half", "first-half", "second half", "second-half" are timing angles, like "half-time" and an ordinal minute.
+export const LEAD_TIMING = /\bhalf-?time\b|\binterval\b|\b\d{1,3}(st|nd|rd|th) minute\b|\b(first|second)[- ]half\b/i;
+// The packet's own upset angle counts only when the lead states BOTH stored table positions and names the beaten team
+// (the winner is required separately). Nothing else about the table qualifies.
+export function leadStatesPacketAngle(lead, packet) {
+  const up = (packet?.angles || []).find(a => a.key === 'upset' && a.detail);
+  if (!up || !packet?.match?.winner || packet.match.winner === 'draw') return false;
+  const loser = packet.teams?.[packet.match.winner === 'home' ? 'away' : 'home'];
+  const loserNamed = [loser?.name, loser?.short_name].filter(x => x && x.length >= 3).some(x => lead.includes(x));
+  return loserNamed && leadHasPosition(lead, up.detail.winner_position_before) && leadHasPosition(lead, up.detail.loser_position_before);
+}
+
 export function evidenceFamilies(article, packet) {
   const t = article.sections.flatMap(s => [s.heading, ...s.paragraphs]).join('\n');
   const lower = t.toLowerCase();
@@ -448,7 +467,7 @@ export function qualityGates(article, packet) {
     if (packet.match.winner !== 'draw') {
       const W = packet.teams[packet.match.winner];
       const winnerNamed = [W.name, W.short_name, lastName(W.name)].filter(x => x && x.length >= 3).some(x => lead.includes(x));
-      const angle = (packet.depth?.player_lines || packet.decisive || []).some(r => r.player?.name && lead.includes(lastName(r.player.name))) || /half-?time|interval|\b\d{1,3}(st|nd|rd|th) minute\b/i.test(lead);
+      const angle = (packet.depth?.player_lines || packet.decisive || []).some(r => r.player?.name && lead.includes(lastName(r.player.name))) || LEAD_TIMING.test(lead) || leadStatesPacketAngle(lead, packet);
       gate('lead_quality', winnerNamed && angle && !/^[^.]+ (beat|defeated|drew with) [^.]+ \d+[-–]\d+ on \d{1,2} \w+\.?$/.test(sentences(lead)[0] || ''), { winner_named: winnerNamed, angle });
     }
     const hw = new Set(article.headline.toLowerCase().match(/[\p{L}\d]+/gu) || []); const dw = article.dek.toLowerCase().match(/[\p{L}\d]+/gu) || [];
