@@ -38,7 +38,7 @@ export function networkFooter() {
         </div>
       </aside>
     </div>
-    <nav class="ftrust" aria-label="PropBetEdge trust and company"><a href="https://propbetedge.ai/terms">Terms</a><a href="https://propbetedge.ai/support">Support</a><a href="https://propbetedge.ai/media">Media</a></nav>
+    <nav class="ftrust" aria-label="PropBetEdge editorial, legal and company"><a href="https://propbetedge.ai/about">About PropBetEdge</a><a href="https://propbetedge.ai/terms">Terms</a><a href="https://propbetedge.ai/legal">Legal</a><a href="https://propbetedge.ai/support">Support</a><a href="https://propbetedge.ai/media">Media</a><a href="https://propbetedge.ai/authors">Editorial Team</a><a href="https://propbetedge.ai/authors/justin-erickson">Justin Erickson</a><a href="https://propbetedge.ai/authors/propbetedge-editorial-team">PropBetEdge Editorial Team</a><a href="https://propbetedge.ai/authors/ty-whitney">Ty Whitney</a><a href="https://propbetedge.ai/authors/erik-schwartz">Erik Schwartz</a><a href="https://propbetedge.ai/editorial-standards">Editorial Standards</a></nav>
     ${renderPreferredSource({ surface: 'footer' })}
     <p class="muted small fsrc"><!-- source-brand:allow (CC BY + ODbL licence credits) -->DATA · PropSports. Event data: Pappalardo et al. (2019), Wyscout public dataset, CC BY 4.0 · Fixtures/results: OpenLigaDB, ODbL. Event maps show event locations, not player tracking. Workload intelligence is not a medical or fitness assessment.</p>
   </div></footer>`;
