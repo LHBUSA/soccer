@@ -11,7 +11,7 @@ import { route, reachesTransport, ELIGIBLE_TRIGGERS } from './ai-router.js';
 import { stripIdentifiers } from './gates.js';
 import { PROFILES, unsupportedGroupClaims } from './profiles.js';
 
-export const DESK_VERSION = 'soccer-desk/2.1.1'; // 2.0.0: depth contract (packet v3), evidence-family + repetition gates
+export const DESK_VERSION = 'soccer-desk/2.2.0'; // 2.2.0: no derived numbers/places rule + plural-opener names fix; 2.0.0: depth contract (packet v3), evidence-family + repetition gates
 export const QUALITY_VERSION = 'soccer-quality/2.1.0'; // 2.1.0: evidence-aware depth floor
 export const DESK_MODEL = 'gpt-5.6-sol'; // OpenAI Responses API; override with NEWS_DESK_MODEL
 export const DESK_API = 'https://api.openai.com/v1/responses';
@@ -81,6 +81,7 @@ lead into a rout, while a 23-3 edge in shots showed how little room Union had to
 
 Hard rules (a violation means the story is not published):
 - Use ONLY facts in the packet. Every number, name, date and score you write must be in the packet.
+- Never derive a number the packet does not state: no sums, differences, totals across matches, counts of days or games you work out yourself (write "across the three matches", not "six goals across the sequence" unless the packet gives six). Never name a city, stadium or place the packet does not name.
 - Never invent: quotes, injuries, suspensions, transfers, rumours, odds or betting, xG or expected goals, possession unless the packet carries it, tactics or formations not in the packet, player or manager intent, emotions or mental state, records or "historic"/"first time"/"all-time" claims.
 - Refer to players and teams only by names that appear in the packet (you may use the short team name given in the packet).
 - Write out no URLs. Do not mention PropBetEdge's pipeline, packets, hashes or gates; source notes are published separately.
@@ -116,6 +117,10 @@ export function storyBrief(p) {
   const k = p?.event?.kind;
   const brief = s => `STORY TYPE: ${s}\n\n`;
   if (k === 'match_preview' && p.preview_kind === 'matchday') return brief(`MATCHDAY BRIEF for fixtures that have NOT been played. Tell readers what is at stake across the day using only the packet: kick-off times (UTC), venues, current table or verified group positions, teams on runs and players on scoring runs. ${NO_FORECAST} Write 3 to 4 sections with specific headings, 250-500 words.`);
+  if (k === 'match_preview' && p.depth) {
+    const d = p.depth; const [lo, hi] = d.evidence_depth?.word_range || [250, 550]; const [smin, smax] = d.evidence_depth?.sections || [3, 4];
+    return brief(`MATCH PREVIEW (packet v4) of a fixture that has NOT been played. PRIMARY ANGLE: ${d.primary_angle || 'none'} (a deterministic evidence label from depth.angles; build the story around it, then the next angles if they add something). Use only the packet: kick-off, venue, verified group or table position, depth.home / depth.away (campaign record, recent results with their competitions and dates, scoring by period, shots from source statistics, located-shot profile labelled PBE derived, scorers, contributors, sourced formations and starting-XI continuity, cards, home/away split, rest days), depth.h2h (always "${d.h2h?.wording || 'in the PropBetEdge record'}", never "all-time" or "ever"), depth.next and depth.group_consequences (points only; never claim a tie-breaker). FACTS, NOT TACTICS: you may state a sourced formation or a shot location count; never say how a team will play, press, attack, defend or intend anything. A recent contributor is "in form" or "a recent contributor", never "a player to watch" or a prediction. ${NO_FORECAST} Headline: specific to the primary angle with facts from the packet (specificity over hype); no final score. Write ${smin} to ${smax} sections with story-specific headings, ${lo}-${hi} useful words; write less when the evidence runs out. Never pad.`);
+  }
   if (k === 'match_preview') return brief(`MATCH PREVIEW of a fixture that has NOT been played. Use only the packet: kick-off (date, UTC time), venue, current table or verified group position, the recent results listed, sourced scoring runs and earlier meetings this season. ${NO_FORECAST} There is no final score: do not put one in the headline or dek. Write 3 to 4 sections with specific headings, 250-550 words.`);
   if (k === 'competition_intelligence' && p.brief === 'group_watch') return brief('GROUP WATCH. Where the verified group tables stand after this week’s results, using only the packet: group positions, points, matches played, the gaps at the top and the results listed. Groups not in the packet are not verified: do not mention them. National teams are nations, never clubs. 3 to 4 sections, 250-550 words.');
   if (k === 'competition_intelligence') return brief('TABLE WATCH. The state of the league table after this week’s results, using only the packet. 3 to 4 sections, 250-550 words.');
@@ -273,7 +278,8 @@ export function validateEditorial(article, packet) {
   // same word is written lowercase somewhere in the article or packet, or is a common football descriptor.
   // A real first name ("Thomas Müller") is never written lowercase, so invented people are still caught.
   const lowerWords = new Set((`${t}\n${P}`.match(/(?<![\p{L}])[\p{Ll}][\p{L}'’-]*/gu) || []));
-  const commonWord = w => lowerWords.has(w.toLowerCase()) || DESCRIPTORS.has(w);
+  // ...including a plural opener whose singular is written lowercase ("Groups A and B" beside "group")
+  const commonWord = w => lowerWords.has(w.toLowerCase()) || DESCRIPTORS.has(w) || (/s$/.test(w) && lowerWords.has(w.slice(0, -1).toLowerCase()));
   for (const s of sentences(t)) {
     const toks = [...s.matchAll(/\b[A-ZÀ-Ý][\p{L}'’.-]+/gu)];
     toks.forEach((m, i) => {

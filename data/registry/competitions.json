@@ -1,5 +1,5 @@
 {
-  "registry_version": "2026-09-29.1",
+  "registry_version": "2026-10-03.13",
   "note": "Reviewed canonical metadata for competitions and the provider ids proven to denote them. Provider ids here are crosswalks, not identity.",
   "competitions": [
     {
@@ -123,13 +123,15 @@
       "espn": {
         "league": "esp.1",
         "id": "740",
-        "enabled": false,
-        "may_found": true
+        "enabled": true,
+        "may_found": true,
+        "enable_note": "Enabled 2026-10-03 after local canary PASS (docs/evidence/world/canary-la-liga-2026-10-03.json): 380/380 fixtures, 69/69 finished detailed (lineups+formations both sides, team stats, plays; 93,772 located events espn_pct_v1), 0 enrichment gaps; identity 20/20 clubs gender men (5 reused from the Champions League by stable ESPN id, 15 founded, 0 queued, 0 name-only merges); overall table 20 rows; PBEcast replay + pregame payloads proven. 23 athletes without DOB queued (never invented)."
       },
       "news": {
         "enabled": false,
-        "blocker": "No canonical competition row, season or matches in production: ESPN lane disabled (registry espn.enabled=false); needs lane canary + identity certification."
-      }
+        "blocker": "Lane live; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
+      },
+      "expected_teams": 20
     },
     {
       "slug": "serie-a",
@@ -157,13 +159,15 @@
       "espn": {
         "league": "ita.1",
         "id": "730",
-        "enabled": false,
-        "may_found": true
+        "enabled": true,
+        "may_found": true,
+        "enable_note": "Enabled 2026-10-03 after local canary PASS (docs/evidence/world/canary-serie-a-2026-10-03.json): 380/380 fixtures, 50/50 finished detailed (lineups both sides 50, team stats 50, plays 50; 67835 located events), 0 enrichment gaps; identity 20/20 teams gender men (4 reused from production by stable ESPN id, 16 founded, 0 queued, 0 name-only merges); table overall; PBEcast replay + pregame payloads proven. 13 athletes without DOB queued (never invented)."
       },
       "news": {
         "enabled": false,
-        "blocker": "No canonical competition row, season or matches in production: ESPN lane disabled; needs lane canary + identity certification."
-      }
+        "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
+      },
+      "expected_teams": 20
     },
     {
       "slug": "ligue-1",
@@ -191,13 +195,15 @@
       "espn": {
         "league": "fra.1",
         "id": "710",
-        "enabled": false,
-        "may_found": true
+        "enabled": true,
+        "may_found": true,
+        "enable_note": "Enabled 2026-10-03 after local canary PASS (docs/evidence/world/canary-ligue-1-2026-10-03.json): 306/306 fixtures, 45/45 finished detailed (lineups both sides 45, team stats 45, plays 45; 63170 located events), 0 enrichment gaps; identity 18/18 teams gender men (3 reused from production by stable ESPN id, 15 founded, 0 queued, 0 name-only merges); table overall; PBEcast replay + pregame payloads proven. 17 athletes without DOB queued (never invented)."
       },
       "news": {
         "enabled": false,
-        "blocker": "No canonical competition row, season or matches in production: ESPN lane disabled; needs lane canary + identity certification."
-      }
+        "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
+      },
+      "expected_teams": 18
     },
     {
       "slug": "fifa-world-cup",
@@ -206,7 +212,7 @@
       "gender": "men",
       "country_code": null,
       "tier": null,
-      "desk": "international",
+      "desk": "fifa",
       "external_ids": [
         {
           "provider": "wyscout",
@@ -225,12 +231,28 @@
       "espn": {
         "league": "fifa.world",
         "id": "606",
-        "enabled": false,
-        "may_found": true
+        "enabled": true,
+        "enable_note": "Enabled 2026-10-01 (UTC) after local canary v2 PASS (docs/evidence/v4/espn-world-cup-canary-v2.json): 104/104 fixtures (72 group + 32 knockout, 7 ESPN season types), 104/104 finished detailed with no abort (2,509 requests), 0 enrichment gaps; national-team identity 48/48 national (16 reused from Nations League by stable ESPN id, 32 founded, 0 clubs, 0 duplicate ESPN ids, 0 name-only merges, 0 guessed flags; Curacao national by competition contract, ESPN isNational=false recorded); groups 12/12 verified against canonical results and fixtures (48 members, no overall table); knockout stages per ESPN type with bracket progression proven (32 edges); 4 shootouts + 5 extra-time results stored from ESPN status + shootoutScore. Partial components: none in the canary; any athlete page ESPN serves as non-JSON is archived and queued (athlete_record_unavailable), never invented.",
+        "may_found": true,
+        "stage_by_type": true,
+        "stage_per_type": true,
+        "team_type": "national",
+        "team_type_basis": "Competition contract: the FIFA World Cup admits national teams only. ESPN Core's 2026 record for team 11678 (Curacao) says isNational=false (probed 2026-09-30) while every other entrant says true; a team founded by this lane is national, and an ESPN id already mapped to a club is refused (identity queue).",
+        "league_stage_name": "Group stage",
+        "type_roles": {
+          "Group Stage": "league"
+        },
+        "type_roles_basis": "ESPN Core 2026-09-30: fifa.world 2026 season types 1 'Group Stage' (72 events), 2 'Round of 32' (16), 3 'Round of 16' (8), 4 'Quarterfinals' (4), 5 'Semifinals' (2), 6 '3rd-Place Match' (1), 7 'Final' (1). The generic classifier excluded 'Group Stage', so the first rehearsal indexed only the 32 knockout events. Knockout types each become their own canonical stage named by ESPN (stage_per_type).",
+        "playoff_stage_name": "Knockout rounds",
+        "standings": {
+          "group_type": "group",
+          "season_type": 1
+        },
+        "canary_basis": "ESPN Core discovery 2026-09-27: 2026 group stage = type 1 (72 events, groups and standings supported); types 2-7 are named knockout rounds. The group count is sourced at ingest, not assumed. Lane remains disabled pending local canary and national-team identity reconciliation."
       },
       "news": {
         "enabled": false,
-        "blocker": "No canonical competition row in production (the Wyscout 2018 World Cup and ESPN fifa.world are crosswalks in the registry only; nothing ingested). No current season: the 2026 tournament ended in July 2026; next is 2030. Needs ESPN fifa.world lane canary + national-team identity certification for historical seasons."
+        "blocker": "Canonical World Cup rows exist from 2026-10-01; the International desk maps fifa-world-cup. Automatic publication stays OFF: the 2026 tournament is complete and no historical recap/backfill policy exists (no newsroom spam). Enabling needs a separate, deliberate policy."
       }
     },
     {
@@ -324,6 +346,14 @@
         "may_found": true,
         "stage_by_type": true,
         "playoff_stage_name": "Knockouts and play-offs",
+        "type_roles": {
+          "League A": "league",
+          "League B": "league",
+          "League C": "league",
+          "League D": "league",
+          "Group Stage": "league"
+        },
+        "type_roles_basis": "History lanes only (espn_uefa_nations_league@<year>): ESPN Core names the league phase 'League A'..'League D' (2018, one type per league) and 'Group Stage' (2020, 2022, 2024); 2026 uses 'League Phase' (generic). Probed 2026-09-30.",
         "standings": {
           "group_type": "group",
           "season_type": 1,
@@ -360,13 +390,20 @@
       "gender": "men",
       "country_code": null,
       "tier": null,
-      "desk": "international",
+      "desk": "europa-league",
       "season_format": "split",
       "espn": {
         "league": "uefa.europa",
         "id": "776",
-        "enabled": false,
-        "may_found": true
+        "enabled": true,
+        "may_found": true,
+        "stage_by_type": true,
+        "standings": {
+          "group_type": "league_phase",
+          "season_type": 1
+        },
+        "structure_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): uefa.europa 2026 types 1 'League Phase' (144 events, standings), 2 'Knockout Round Playoffs', 3 'Round of 16', 4 'Quarterfinals', 5 'Semifinals', 6 'Final'; 36 teams. Same format as the Champions League lane.",
+        "enable_note": "Enabled 2026-10-03 after local canary PASS (docs/evidence/world/canary-uefa-europa-league-2026-10-03.json): 144/144 fixtures, 18/18 finished detailed (lineups both sides 18, team stats 18, plays 18; 24771 located events), 0 enrichment gaps; identity 36/36 teams gender men (5 reused from production by stable ESPN id, 31 founded, 0 queued, 0 name-only merges); table league-phase; PBEcast replay + pregame payloads proven. 14 athletes without DOB queued (never invented)."
       },
       "external_ids": [
         {
@@ -378,8 +415,9 @@
       ],
       "news": {
         "enabled": false,
-        "blocker": "No canonical competition row, season or matches in production: ESPN lane disabled; needs lane canary + identity certification."
-      }
+        "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
+      },
+      "expected_teams": 36
     },
     {
       "slug": "mls",
@@ -421,6 +459,206 @@
           "table_watch"
         ],
         "note": "ESPN lane certified; mls profile (overall standings; conference tables only when verified)."
+      }
+    },
+    {
+      "slug": "nwsl",
+      "name": "NWSL",
+      "comp_type": "league",
+      "gender": "women",
+      "country_code": "USA",
+      "tier": 1,
+      "desk": "nwsl",
+      "season_format": "calendar",
+      "espn": {
+        "league": "usa.nwsl",
+        "id": "8301",
+        "enabled": true,
+        "may_found": true,
+        "stage_by_type": true,
+        "discovery_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): usa.nwsl id 8301 'NWSL', gender FEMALE; 2026 types 1 'Regular Season' (240 events, standings), 2-4 'Playoffs - Quarterfinals/Semifinals/Championship'; 16 teams. Women's teams have their own ESPN team ids (0 ids shared with any men's competition probed).",
+        "enable_note": "Enabled 2026-10-03 after local canary PASS (docs/evidence/world/canary-nwsl-r2-2026-10-03.json): 240/240 fixtures, 210/210 finished detailed (lineups both sides 210, team stats 210, plays 210; 143570 located events), 0 enrichment gaps; identity 16/16 teams gender women (0 reused from production by stable ESPN id, 16 founded, 0 queued, 0 name-only merges); table overall; PBEcast replay + pregame payloads proven. 5 athletes without DOB queued (never invented). Owner approved go-live 2026-10-03 on the second run (docs/evidence/world/nwsl-r2-diagnosis-2026-10-03.json): run 1 stopped on an ESPN 503. Spatial: 118 matches located (espn_pct_v1, 2026-05-31 on); 92 early-season matches have only ESPN 0-1 unit coordinates, kept source-only and never plotted or transformed (neutral no-map note).",
+        "type_roles": {
+          "Regular": "league",
+          "Semifinals": "playoff",
+          "Finals": "playoff",
+          "Regular Season": "league",
+          "Final": "playoff",
+          "First Round": "playoff",
+          "Playoffs -Quarterfinals": "playoff",
+          "Playoffs - Semifinals": "playoff",
+          "Playoffs - Championship": "playoff",
+          "Playoffs - Quarterfinals": "playoff"
+        },
+        "type_roles_basis": "Explicit roles for every ESPN type name usa.nwsl lists in its whole catalog (docs/evidence/history/womens-history-discovery-2026-10-03.json). The generic classifier excludes \"Regular\" (NWSL 2013-2018) and \"2022-23 French Division 1 Féminine\" (Premiere Ligue 2022/23), which held those seasons empty."
+      },
+      "external_ids": [
+        {
+          "provider": "espn",
+          "external_id": "usa.nwsl",
+          "method": "founding",
+          "evidence": "ESPN Core league detail (docs/evidence/world/espn-world-discovery-2026-10-03.json): usa.nwsl id 8301, gender FEMALE"
+        }
+      ],
+      "expected_teams": 16,
+      "news": {
+        "enabled": false,
+        "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
+      }
+    },
+    {
+      "slug": "womens-super-league",
+      "name": "Women's Super League",
+      "comp_type": "league",
+      "gender": "women",
+      "country_code": "ENG",
+      "tier": 1,
+      "desk": "wsl",
+      "season_format": "split",
+      "espn": {
+        "league": "eng.w.1",
+        "id": "8097",
+        "enabled": true,
+        "may_found": true,
+        "discovery_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): eng.w.1 id 8097 'English Women's Super League', gender FEMALE; 2026 one type (182 events, standings); 14 teams. Women's teams have their own ESPN team ids (0 ids shared with any men's competition probed).",
+        "enable_note": "Enabled 2026-10-03 after local canary PASS (docs/evidence/world/canary-womens-super-league-2026-10-03.json): 182/182 fixtures, 29/29 finished detailed (lineups both sides 29, team stats 29, plays 29; 40295 located events), 0 enrichment gaps; identity 14/14 teams gender women (0 reused from production by stable ESPN id, 14 founded, 0 queued, 0 name-only merges); table overall; PBEcast replay + pregame payloads proven. 10 athletes without DOB queued (never invented)."
+      },
+      "external_ids": [
+        {
+          "provider": "espn",
+          "external_id": "eng.w.1",
+          "method": "founding",
+          "evidence": "ESPN Core league detail (docs/evidence/world/espn-world-discovery-2026-10-03.json): eng.w.1 id 8097, gender FEMALE"
+        }
+      ],
+      "expected_teams": 14,
+      "news": {
+        "enabled": false,
+        "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
+      },
+      "calendar_season_years": [
+        2011,
+        2012,
+        2013
+      ],
+      "calendar_season_years_basis": "ESPN Core eng.w.1 catalog (docs/evidence/history/womens-history-discovery-2026-10-03.json): types named \"2011 FA Women's Super League\" .. \"2013 ...\" (summer seasons, 8 teams); 2014-2017/18 absent from the catalog; split seasons from 2018 (\"2018-10\" sic, 2019-20 ..)."
+    },
+    {
+      "slug": "uefa-womens-champions-league",
+      "name": "UEFA Women's Champions League",
+      "comp_type": "club_tournament",
+      "gender": "women",
+      "country_code": null,
+      "tier": null,
+      "desk": "uwcl",
+      "season_format": "split",
+      "espn": {
+        "league": "uefa.wchampions",
+        "id": "19483",
+        "enabled": true,
+        "may_found": true,
+        "stage_by_type": true,
+        "standings": {
+          "group_type": "league_phase",
+          "season_type": 1
+        },
+        "discovery_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): uefa.wchampions id 19483, gender FEMALE; 2026 types 1 'League Phase' (54 events, standings), 2 'Knockout Round Playoffs', 3 'Quarterfinals', 4 'Semifinals', 5 'Final'; 18 teams. Women's teams have their own ESPN team ids (0 ids shared with any men's competition probed).",
+        "enable_note": "Enabled 2026-10-03 after local canary PASS (docs/evidence/world/canary-uefa-womens-champions-league-2026-10-03.json): 54/54 fixtures, 18/18 finished detailed (lineups both sides 18, team stats 18, plays 18; 24760 located events), 0 enrichment gaps; identity 18/18 teams gender women (0 reused from production by stable ESPN id, 18 founded, 0 queued, 0 name-only merges); table league-phase; PBEcast replay + pregame payloads proven. 26 athletes without DOB queued (never invented).",
+        "type_roles": {
+          "Round of 32": "playoff",
+          "Round of 16": "playoff",
+          "Quarterfinals": "playoff",
+          "Semifinals": "playoff",
+          "Final": "playoff",
+          "Group Stage": "league",
+          "League Phase": "league",
+          "Knockout Round Playoffs": "playoff"
+        },
+        "type_roles_basis": "Explicit per-edition roles for every ESPN type name in uefa.wchampions 2019-2026 (docs/evidence/history/womens-history-discovery-2026-10-03.json): 2019/20-2020/21 knockout-only (Round of 32 .. Final), 2021/22-2024/25 Group Stage + knockouts, 2025/26+ League Phase + knockouts. Never the generic classifier (it drops Group Stage)."
+      },
+      "external_ids": [
+        {
+          "provider": "espn",
+          "external_id": "uefa.wchampions",
+          "method": "founding",
+          "evidence": "ESPN Core league detail (docs/evidence/world/espn-world-discovery-2026-10-03.json): uefa.wchampions id 19483, gender FEMALE"
+        }
+      ],
+      "expected_teams": 18,
+      "news": {
+        "enabled": false,
+        "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
+      }
+    },
+    {
+      "slug": "liga-f",
+      "name": "Liga F",
+      "comp_type": "league",
+      "gender": "women",
+      "country_code": "ESP",
+      "tier": 1,
+      "desk": "liga-f",
+      "season_format": "split",
+      "espn": {
+        "league": "esp.w.1",
+        "id": "20956",
+        "enabled": true,
+        "may_found": true,
+        "discovery_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): esp.w.1 id 20956 'Spanish Liga F', gender FEMALE; 2026 one type (240 events, standings); 16 teams. Women's teams have their own ESPN team ids (0 ids shared with any men's competition probed).",
+        "enable_note": "Enabled 2026-10-03 after local canary PASS (docs/evidence/world/canary-liga-f-2026-10-03.json): 240/240 fixtures, 43/43 finished detailed (lineups both sides 43, team stats 43, plays 43; 0 located events), 0 enrichment gaps; identity 16/16 teams gender women (0 reused from production by stable ESPN id, 16 founded, 0 queued, 0 name-only merges); table overall; PBEcast replay + pregame payloads proven. 21 athletes without DOB queued (never invented). Acceptance: MATCH_DATA_PASS + SPATIAL_DATA_UNAVAILABLE (ESPN gives Liga F events no pitch locations; owner 2026-10-03 approved launch without shot maps; the product never draws an empty map or invents locations)."
+      },
+      "external_ids": [
+        {
+          "provider": "espn",
+          "external_id": "esp.w.1",
+          "method": "founding",
+          "evidence": "ESPN Core league detail (docs/evidence/world/espn-world-discovery-2026-10-03.json): esp.w.1 id 20956, gender FEMALE"
+        }
+      ],
+      "expected_teams": 16,
+      "news": {
+        "enabled": false,
+        "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
+      }
+    },
+    {
+      "slug": "premiere-ligue",
+      "name": "Première Ligue",
+      "comp_type": "league",
+      "gender": "women",
+      "country_code": "FRA",
+      "tier": 1,
+      "desk": "premiere-ligue",
+      "season_format": "split",
+      "espn": {
+        "league": "fra.w.1",
+        "id": "20955",
+        "enabled": true,
+        "may_found": true,
+        "stage_by_type": true,
+        "discovery_basis": "ESPN Core 2026-10-03 (docs/evidence/world/espn-world-discovery-2026-10-03.json): fra.w.1 id 20955 'French Première Ligue', gender FEMALE; 2026 types 1 'Regular Season' (132 events, standings), 2-4 'Playoffs - Semifinals/3rd-Place/Final'; 12 teams. Women's teams have their own ESPN team ids (0 ids shared with any men's competition probed).",
+        "enable_note": "Enabled 2026-10-03 after local canary PASS (docs/evidence/world/canary-premiere-ligue-2026-10-03.json): 132/132 fixtures, 18/18 finished detailed (lineups both sides 18, team stats 18, plays 18; 0 located events), 0 enrichment gaps; identity 12/12 teams gender women (0 reused from production by stable ESPN id, 12 founded, 0 queued, 0 name-only merges); table overall; PBEcast replay + pregame payloads proven. 34 athletes without DOB queued (never invented). Acceptance: MATCH_DATA_PASS + SPATIAL_DATA_UNAVAILABLE (ESPN gives Premiere Ligue events no pitch locations; owner 2026-10-03 approved launch without shot maps).",
+        "type_roles": {
+          "2022-23 French Division 1 Féminine": "league",
+          "Regular Season": "league",
+          "Playoffs - Semifinals": "playoff",
+          "Playoffs - 3rd-Place": "playoff",
+          "Playoffs - Final": "playoff"
+        },
+        "type_roles_basis": "Explicit roles for every ESPN type name fra.w.1 lists in its whole catalog (docs/evidence/history/womens-history-discovery-2026-10-03.json). The generic classifier excludes \"Regular\" (NWSL 2013-2018) and \"2022-23 French Division 1 Féminine\" (Premiere Ligue 2022/23), which held those seasons empty."
+      },
+      "external_ids": [
+        {
+          "provider": "espn",
+          "external_id": "fra.w.1",
+          "method": "founding",
+          "evidence": "ESPN Core league detail (docs/evidence/world/espn-world-discovery-2026-10-03.json): fra.w.1 id 20955, gender FEMALE"
+        }
+      ],
+      "expected_teams": 12,
+      "news": {
+        "enabled": false,
+        "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
       }
     }
   ]

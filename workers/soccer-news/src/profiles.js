@@ -23,13 +23,17 @@
 //   nations_league_knockout   Quarter-finals, promotion/relegation play-offs and finals: knockout
 //                             rules plus national-team language.
 
-export const PROFILES_VERSION = 'soccer-news-profiles/1.1.0';
+export const PROFILES_VERSION = 'soccer-news-profiles/1.2.0';
 
 // National-team competitions: never domestic-league race language, never "club".
 const NATIONAL_BANNED = [
   ['nl_domestic_race_language', /\b(title race|title rivals?|top[ -]four|relegation zone|drop zone|bottom three|survival (fight|battle|race)|top of the (table|league)|league table|league leaders?)\b/i],
   ['nl_club_language', /\bclubs?\b/i],
 ];
+
+// European qualification is NOT stored for any domestic league (allocation moves with UEFA coefficients and cup
+// winners), so "top four" stays a table position and never becomes a Champions League / European places claim.
+const EUROPEAN_PLACES_BANNED = ['european_places_claim', /\b((champions|europa|conference) league (places?|spots?|qualification|football)|european (places?|spots?|qualification|football)|qualif\w* for (europe|the champions league|the europa league))\b/i];
 
 const COMMON_MATCH_ANGLES = {
   comeback_from_ht: 1.0,   // winner trailed at half-time (needs a stored half-time score)
@@ -44,7 +48,16 @@ export const PROFILES = {
     angles: { leader_change: 1.2, title_race_swing: 1.0, top4_entry_exit: 0.8, relegation_zone_move: 0.8, upset: 1.0, winning_streak: 1.0, unbeaten_run_ended: 1.0, ...COMMON_MATCH_ANGLES },
     zones: { top: 4, bottom: 3 },
     upset_gap: 8,
-    banned: [],
+    banned: [EUROPEAN_PLACES_BANNED],
+  },
+  // Bundesliga: 18th and 17th go down, 16th plays a relegation play-off. That rule is not stored, so "bottom three"
+  // stays a table position and every relegation claim holds (same table angles as the domestic profile otherwise).
+  domestic_league_relegation_playoff: {
+    table: true, tiebreak: 'standard',
+    angles: { leader_change: 1.2, title_race_swing: 1.0, top4_entry_exit: 0.8, relegation_zone_move: 0.8, upset: 1.0, winning_streak: 1.0, unbeaten_run_ended: 1.0, ...COMMON_MATCH_ANGLES },
+    zones: { top: 4, bottom: 3 },
+    upset_gap: 8,
+    banned: [EUROPEAN_PLACES_BANNED, ['relegation_claim_unsupported', /\b(relegat\w*|drop zone|go(es|ing)? down)\b/i]],
   },
   mls: {
     table: true, tiebreak: 'mls',
@@ -56,6 +69,18 @@ export const PROFILES = {
       ['mls_european_places', /\b(europe\w*|champions league|europa|top[ -]four|continental places?)\b/i],
       ['mls_conference_claim', /\b(eastern|western) conference\b/i], // conferences are not stored
       ['mls_playoff_claim', /\bplayoff (spot|place|line|position)s?\b/i],
+    ],
+  },
+  // Women's domestic leagues (NWSL, WSL, Liga F, Première Ligue): a computed overall table only. Their qualification,
+  // play-off and relegation rules are not stored, so no zone angles and no zone language (same discipline as MLS).
+  womens_league: {
+    table: true, tiebreak: 'standard',
+    angles: { overall_leader_change: 1.2, upset: 1.0, winning_streak: 1.0, unbeaten_run_ended: 1.0, ...COMMON_MATCH_ANGLES },
+    zones: null,
+    upset_gap: 8,
+    banned: [
+      ['womens_zone_claim', /\b(relegat\w*|drop zone|bottom (two|three)|top[ -](three|four)|champions league (places?|spots?)|european places?|continental places?)\b/i],
+      ['womens_playoff_claim', /\bplay-?off (spot|place|line|position)s?\b/i],
     ],
   },
   ucl_league_phase: {
@@ -122,12 +147,35 @@ export function unsupportedGroupClaims(profile, text, packet) {
 // matchday 8 (late January); after that every UCL match is a knockout tie.
 export const COMPETITION_PROFILES = {
   'premier-league': () => 'domestic_european_league',
-  bundesliga: () => 'domestic_european_league',
+  'la-liga': () => 'domestic_european_league',
+  'serie-a': () => 'domestic_european_league',
+  'ligue-1': () => 'domestic_european_league',
+  bundesliga: () => 'domestic_league_relegation_playoff',
   mls: () => 'mls',
   'uefa-champions-league': (kickoffIso, cfg = {}) => (Date.parse(kickoffIso) < Date.parse(cfg.ucl_league_phase_end || '2027-02-01T00:00:00Z') ? 'ucl_league_phase' : 'knockout'),
+  'uefa-europa-league': (kickoffIso, cfg = {}) => (Date.parse(kickoffIso) < Date.parse(cfg.uel_league_phase_end || '2027-02-01T00:00:00Z') ? 'ucl_league_phase' : 'knockout'),
+  nwsl: () => 'womens_league',
+  'womens-super-league': () => 'womens_league',
+  'liga-f': () => 'womens_league',
+  'premiere-ligue': () => 'womens_league',
+  // League phase = ESPN season type 1, ending 2026-12-18 (docs/evidence/world/espn-world-discovery-2026-10-03.json).
+  'uefa-womens-champions-league': (kickoffIso, cfg = {}) => (Date.parse(kickoffIso) < Date.parse(cfg.uwcl_league_phase_end || '2026-12-19T00:00:00Z') ? 'ucl_league_phase' : 'knockout'),
   // League phase = ESPN season type 1, ending 2026-11-19T04:59Z (docs/evidence/espn/uefa-nations-discovery-2026-09-29.json).
   'uefa-nations-league': (kickoffIso, cfg = {}) => (Date.parse(kickoffIso) < Date.parse(cfg.unl_league_phase_end || '2026-11-19T05:00:00Z') ? 'nations_league' : 'nations_league_knockout'),
+  // World Cup publishing is currently disabled in the registry. This profile makes the
+  // engine format-safe for a deliberate FIFA backfill/current-tournament enablement.
+  'fifa-world-cup': (kickoffIso, cfg = {}) => (Date.parse(kickoffIso) < Date.parse(cfg.fifa_group_phase_end || '2026-06-28T00:00:00Z') ? 'nations_league' : 'nations_league_knockout'),
 };
+
+// League-phase boundaries are production configuration (Worker vars), never a silent code default: the runner skips
+// a competition whose boundary var is missing (pipeline.js). The defaults inside COMPETITION_PROFILES serve tests only.
+export const LEAGUE_PHASE_CONFIG = {
+  'uefa-champions-league': { cfg: 'ucl_league_phase_end', env: 'UCL_LEAGUE_PHASE_END' },
+  'uefa-europa-league': { cfg: 'uel_league_phase_end', env: 'UEL_LEAGUE_PHASE_END' },
+  'uefa-womens-champions-league': { cfg: 'uwcl_league_phase_end', env: 'UWCL_LEAGUE_PHASE_END' },
+};
+export const leaguePhaseCfg = env => Object.fromEntries(Object.values(LEAGUE_PHASE_CONFIG).filter(x => Number.isFinite(Date.parse(env?.[x.env] || ''))).map(x => [x.cfg, env[x.env]]));
+export const missingPhaseConfig = (slug, cfg) => { const x = LEAGUE_PHASE_CONFIG[slug]; return x && !Number.isFinite(Date.parse(cfg?.[x.cfg] || '')) ? x.env : null; };
 
 export function profileFor(slug, kickoffIso, cfg) {
   const f = COMPETITION_PROFILES[slug];
