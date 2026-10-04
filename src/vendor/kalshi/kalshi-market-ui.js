@@ -52,10 +52,12 @@ function link(k, inner, cls, placement, ticker) {
 }
 
 // Headline number: Mid-market when the book allows one, otherwise the honest bid / ask pair.
+// A missing side (one-sided book at the $0 / $1 boundary) reads "—"; it is never filled from last trade.
 function headline(o) {
   if (o.mid_bp !== null && o.mid_bp !== undefined) return { value: centsLabel(o.mid_bp, { fixed: true }), label: 'Mid-market', bp: o.mid_bp }
-  return { value: `${centsLabel(o.best_yes_bid_bp)} / ${centsLabel(o.best_yes_ask_bp)}`, label: 'YES bid / ask', bp: null }
+  return { value: `${side(o.best_yes_bid_bp)} / ${side(o.best_yes_ask_bp)}`, label: 'YES bid / ask', bp: null }
 }
+const side = (bp) => centsLabel(bp) ?? '—'
 
 /* ── change flashes: compare with the last value this placement rendered ── */
 const lastShown = new Map() // `${placement}|${ticker}` -> bp
@@ -120,8 +122,8 @@ function panel(k, o, { placement, movement, color }) {
     ${link(k, `<span class="kx__px mono${dir}">${esc(h.value)}</span><span class="kx__pxl">${esc(h.label)}</span>`, 'kx__price', placement, o.market_ticker)}
     <div class="kx__move">${deltaChip(mv)}${spark || sinceNote(mv)}</div>
     <dl class="kx__book mono">
-      <div><dt>Bid</dt><dd>${esc(centsLabel(o.best_yes_bid_bp))}</dd></div>
-      <div><dt>Ask</dt><dd>${esc(centsLabel(o.best_yes_ask_bp))}</dd></div>
+      <div><dt>Bid</dt><dd>${esc(side(o.best_yes_bid_bp))}</dd></div>
+      <div><dt>Ask</dt><dd>${esc(side(o.best_yes_ask_bp))}</dd></div>
       ${o.last_price_bp !== null && o.last_price_bp !== undefined ? `<div><dt>Last</dt><dd>${esc(centsLabel(o.last_price_bp))}</dd></div>` : ''}
     </dl>
     ${activity.length ? `<p class="kx__act mono">${esc(activity.join(' · '))}</p>` : ''}
@@ -160,7 +162,8 @@ function attrs(entry, k, placement) {
 function usable(entry) {
   const k = entry?.kalshi
   if (!k || !k.market_url || !Array.isArray(k.outcomes) || k.outcomes.length < 2) return null
-  if (k.state === 'open' && !k.outcomes.every(o => o.displayable)) return null
+  // renderable (a real side exists) is the card gate; an older API without it falls back to displayable
+  if (k.state === 'open' && !k.outcomes.every(o => o.renderable ?? o.displayable)) return null
   if (k.state !== 'open' && k.state !== 'settled') return null
   return k
 }
@@ -190,6 +193,7 @@ export function kalshiCard(entry, { placement, colors = {}, compact = false } = 
       ${freshnessBadge(k)}
     </header>
     ${body === null ? fieldList(k, k.outcomes, { placement, movement }) : `<div class="kx__grid" style="--kx-cols:${k.outcomes.length}">${body}</div>`}
+    ${k.state === 'open' && body !== null && !k.outcomes.every(o => o.mid_bp !== null && o.mid_bp !== undefined) ? `<p class="kx__note kx__note--nomid" data-kx-nomid>Mid-market unavailable at this observation · ${k.outcomes.some(o => o.one_sided || ((o.best_yes_bid_bp == null) !== (o.best_yes_ask_bp == null))) ? 'one-sided book' : 'spread wider than 10¢'}</p>` : ''}
     ${k.state === 'open' && !compact ? '<p class="kx__note">Live prediction-market pricing — no sportsbook line required. Traded contract prices on Kalshi, not sportsbook odds and not a PropBetEdge model. Each YES contract pays $1 if that outcome happens. Mid-market is the midpoint of the best YES bid and ask, shown only when the spread is 10¢ or less. Movement uses our stored observations only.</p>' : ''}
     <footer class="kx__ft"><span>Kalshi · Prediction market data</span>${link(k, 'View market on Kalshi ↗', 'kx__cta', placement, null)}</footer>
   </section>`

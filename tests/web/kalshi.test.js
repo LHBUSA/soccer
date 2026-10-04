@@ -257,7 +257,7 @@ const settled = () => asSoccer(HIST_ID);
 
 test('vendored shared client is pinned byte-for-byte to propbetedge-workers e1d4284 (SHA-256)', () => {
   const pins = {
-    'kalshi-market-ui.js': 'c4989c79ed3824c92363780d08d966ab752a5e65347af1693a8b22afc6fd7e29',
+    'kalshi-market-ui.js': '639f834c27bffed519d37eea4066d3b31e5699f7215d6ea5c07e23c2591ccc48',
     'kalshi-market-ui.css': 'df81df5650cc66d0bcea37c2808eaf783522ad9f921449e954f590d4ad9a2c60',
     'kalshi-market-client.js': 'bbab54f78382f336a149b18f332bc54abe0b9c471ada3dd8ef0d67e5e5706301',
     'README.md': 'a80e4ac5d8733bde8afc0c13c281242babff8b1acd083974741f677b7af5a480',
