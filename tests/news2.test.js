@@ -31,7 +31,8 @@ test('profiles: MLS has no relegation/European language, UCL no table or top-fou
   assert.ok(hit('mls', 'moved into the relegation zone') && hit('mls', 'chasing a European place') && hit('mls', 'top four'));
   assert.ok(hit('ucl_league_phase', 'moved into the top four') && hit('ucl_league_phase', 'top of the table') && hit('ucl_league_phase', 'qualify for the round of 16'));
   assert.ok(hit('knockout', 'through to the quarter-finals on aggregate'));
-  assert.ok(!PROFILES.domestic_european_league.banned.length);
+  // RC2: the only domestic-league ban is the unsupported European-places claim; "top four" stays a table position.
+  assert.deepEqual(PROFILES.domestic_european_league.banned.map(([n]) => n), ['european_places_claim']);
 });
 
 const T = id => ({ id, slug: id, name: `Team ${id}`, short_name: id });
@@ -98,6 +99,9 @@ test('pipeline: detects, freezes, publishes gated stories once (idempotent), evi
   const games = [olm(1, 1, 10, 20, '2026-09-19T13:30:00', 6, 0), olm(2, 1, 30, 40, '2026-09-19T13:30:00', 1, 1), olm(3, 1, 50, 60, '2026-09-19T15:30:00', 2, 1), olm(4, 1, 70, 80, '2026-09-19T15:30:00', 0, 1), olm(5, 1, 90, 11, '2026-09-20T13:30:00', 1, 0), olm(6, 1, 12, 13, '2026-09-20T15:30:00', 2, 2)];
   const up = upstream(games);
   await runOpenLigaCurrent({ store, storage: up.storage, registry: REG, state: emptyLaneState('x'), now: Date.parse('2026-09-27T00:00:00Z'), fetcher: up.fetcher, force: true });
+  // RC2: this tree's ingest predates the season publication gate (migration 1400); production ingest publishes the current
+  // season, so the test publishes it the same way before the newsroom (which reads soccer_public_*) runs.
+  for (const x of await store.select('soccer_seasons', { columns: ['id'] })) await store.update('soccer_seasons', { publication_state: 'published', published_at: '2026-01-01T00:00:00Z' }, { eq: { id: x.id } });
   const now = Date.parse('2026-09-21T12:00:00Z');
   const r1 = await runNews(store, { now, competitions: ['bundesliga'], env: { NEWS_DESK: 'off' } });
   const b = r1.competitions.bundesliga;
@@ -138,7 +142,7 @@ test('UCL readiness: league-phase recap with a verified table publishes on the c
   const store = await openPglite(); await applyMigrations(store);
   const id = n => `00000000-0000-5000-8000-0000000f${String(n).padStart(4, '0')}`;
   await store.insert('soccer_competitions', [{ id: id(1), slug: 'uefa-champions-league', name: 'UEFA Champions League', comp_type: 'cup' }]);
-  await store.insert('soccer_seasons', [{ id: id(2), competition_id: id(1), label: '2026/27' }]);
+  await store.insert('soccer_seasons', [{ id: id(2), competition_id: id(1), label: '2026/27', publication_state: 'published', published_at: '2026-01-01T00:00:00Z' }]);
   await store.insert('soccer_stages', [{ id: id(3), season_id: id(2), name: 'League phase', stage_type: 'league', stage_order: 1 }]);
   const teams = ['Alpha FC', 'Beta SC', 'Gamma AC', 'Delta CF'].map((n, i) => ({ id: id(10 + i), slug: n.toLowerCase().replace(/ /g, '-'), name: n, team_type: 'club', founding_provider: 'espn', founding_external_id: String(100 + i) }));
   await store.insert('soccer_teams', teams);
@@ -149,7 +153,7 @@ test('UCL readiness: league-phase recap with a verified table publishes on the c
   await store.insert('soccer_season_groups', [{ id: id(30), season_id: id(2), group_key: 'league-phase', name: 'League phase', group_type: 'league_phase', provider: 'espn', external_id: '1' }]);
   const srow = (t, rank, p, w, d, l, gf, ga, pts, note) => ({ group_id: id(30), team_id: teams[t].id, provider: 'espn', rank, played: p, won: w, drawn: d, lost: l, goals_for: gf, goals_against: ga, goal_difference: gf - ga, points: pts, note, observed_at: '2026-10-02T00:00:00Z' });
   await store.insert('soccer_source_standings', [srow(0, 1, 1, 1, 0, 0, 6, 0, 3, 'Qualifies for round of 16'), srow(2, 2, 1, 0, 1, 0, 1, 1, 1, 'Qualifies for round of 16'), srow(3, 3, 1, 0, 1, 0, 1, 1, 1, 'Knockout phase playoffs - seeded'), srow(1, 4, 1, 0, 0, 1, 0, 6, 0, 'Eliminated')]);
-  const out = await runNews(store, { now: Date.parse('2026-10-02T12:00:00Z'), competitions: ['uefa-champions-league'], env: { NEWS_DESK: 'off' } });
+  const out = await runNews(store, { now: Date.parse('2026-10-02T12:00:00Z'), competitions: ['uefa-champions-league'], env: { NEWS_DESK: 'off' }, cfg: { ucl_league_phase_end: '2027-02-01T00:00:00Z' } }); // explicit boundary (RC2: no hidden default)
   const u = out.competitions['uefa-champions-league'];
   const recap = u.stories.find(s => s.story_class === 'match_recap');
   assert.ok(recap && recap.status === 'published', JSON.stringify(u));

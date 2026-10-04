@@ -15,6 +15,10 @@ import { chunkArr } from '../../soccer-ingest/src/store.js';
 
 export const PREVIEW_VERSION = 'soccer-packet-preview/1.0.0';
 export const PREVIEW_WINDOW = { minMs: 3600e3, maxMs: 24 * 3600e3 }; // eligible 24 h .. 1 h before kick-off
+// Operator-forced preview (POST /v1/run?preview_match=<match uuid>, admin only): that ONE scheduled fixture may be
+// previewed up to 7 days out instead of 24 h. Everything else is unchanged: the same materiality bar (score >= 1.0),
+// packet, fact gates, desk and quality gates, and the same story key (a later natural preview is a duplicate).
+export const FORCED_PREVIEW_MAX_MS = 7 * 24 * 3600e3;
 export const MATCHDAY_MIN_FIXTURES = 3;
 export const MAX_PREVIEWS_PER_RUN = 3;
 
@@ -60,9 +64,13 @@ async function playersInForm(store, S, teamIds) {
 }
 
 // ---------- DETECTION ----------
-export async function detectPreviews(store, S, { now = Date.now(), cfg = {}, stories = [], diag = {} } = {}) {
+export async function detectPreviews(store, S, { now = Date.now(), cfg = {}, stories = [], diag = {}, force = null } = {}) {
   const out = [];
-  const upcoming = S.matches.filter(m => m.status === 'scheduled' && Date.parse(m.kickoff_at) - now >= PREVIEW_WINDOW.minMs && Date.parse(m.kickoff_at) - now <= PREVIEW_WINDOW.maxMs).sort(byKick);
+  const lead = m => Date.parse(m.kickoff_at) - now;
+  const upcoming = force
+    ? S.matches.filter(m => m.id === force && m.status === 'scheduled' && lead(m) >= PREVIEW_WINDOW.minMs && lead(m) <= FORCED_PREVIEW_MAX_MS)
+    : S.matches.filter(m => m.status === 'scheduled' && lead(m) >= PREVIEW_WINDOW.minMs && lead(m) <= PREVIEW_WINDOW.maxMs).sort(byKick);
+  if (force) stories = stories.filter(s => s === 'match_preview'); // a forced run is that one fixture preview only
   diag.preview_window_fixtures = upcoming.length; // kick-off 1-24 h from now
   if (!upcoming.length || !(stories.includes('match_preview') || stories.includes('matchday_brief'))) return out;
   const profileNow = profileFor(S.comp.slug, new Date(now).toISOString(), cfg);

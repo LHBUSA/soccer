@@ -30,10 +30,10 @@ const row = (t, id) => { const i = t.findIndex(r => r.team_id === id); return i 
 export async function loadSeason(store, slug) {
   const [comp] = await store.select('soccer_competitions', { columns: ['id', 'slug', 'name'], eq: { slug }, limit: 1 });
   if (!comp) return null;
-  const seasons = (await store.select('soccer_seasons', { columns: ['id', 'label'], eq: { competition_id: comp.id } })).sort((a, b) => (a.label < b.label ? 1 : -1));
+  const seasons = (await store.select('soccer_public_seasons', { columns: ['id', 'label'], eq: { competition_id: comp.id } })).sort((a, b) => (a.label < b.label ? 1 : -1));
   const season = seasons[0]; if (!season) return null;
   const leagueStages = new Set((await store.select('soccer_stages', { columns: ['id'], eq: { season_id: season.id, stage_type: 'league' } })).map(s => s.id));
-  const matches = await store.select('soccer_matches', { columns: ['id', 'kickoff_at', 'matchday', 'stage_id', 'status', 'home_team_id', 'away_team_id', 'home_score', 'away_score', 'home_score_ht', 'away_score_ht', 'venue_id', 'result_provider', 'updated_at'], eq: { season_id: season.id }, order: 'id.asc' });
+  const matches = await store.select('soccer_public_matches', { columns: ['id', 'kickoff_at', 'matchday', 'stage_id', 'status', 'home_team_id', 'away_team_id', 'home_score', 'away_score', 'home_score_ht', 'away_score_ht', 'venue_id', 'result_provider', 'updated_at'], eq: { season_id: season.id }, order: 'id.asc' });
   for (const m of matches) m.kickoff_at = new Date(m.kickoff_at).toISOString(); // PGlite returns Date, PostgREST strings
   const teamIds = [...new Set(matches.flatMap(m => [m.home_team_id, m.away_team_id]))];
   const teams = new Map();

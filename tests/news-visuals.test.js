@@ -103,7 +103,7 @@ test('renderer: every type renders deterministically; own goal, penalty and part
 test('shot points: shots only (a card with coordinates is not a shot), one source family, match frame', async () => {
   const store = await openPglite(); await applyMigrations(store);
   await store.insert('soccer_competitions', [{ id: id(90), slug: 'bundesliga', name: 'Bundesliga', comp_type: 'league' }]);
-  await store.insert('soccer_seasons', [{ id: id(91), competition_id: id(90), label: '2026/27' }]);
+  await store.insert('soccer_seasons', [{ id: id(91), competition_id: id(90), label: '2026/27', publication_state: 'published', published_at: '2026-01-01T00:00:00Z' }]);
   await store.insert('soccer_teams', [H, A].map((t, i) => ({ ...t, team_type: 'club', founding_provider: 'espn', founding_external_id: String(700 + i) })));
   await store.insert('soccer_players', [olise].map(x => ({ id: x.id, slug: x.slug, display_name: x.name, status: 'active', founding_provider: 'espn', founding_external_id: '9' })));
   await store.insert('soccer_matches', [{ id: id(1), competition_id: id(90), season_id: id(91), kickoff_at: '2026-09-18T18:30:00Z', home_team_id: H.id, away_team_id: A.id, status: 'finished', home_score: 1, away_score: 0, result_provider: 'espn' }]);

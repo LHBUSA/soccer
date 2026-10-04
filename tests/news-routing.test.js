@@ -182,6 +182,8 @@ async function seasonStore() {
   const games = [olm(1, 1, 10, 20, '2026-09-19T13:30:00', 6, 0), olm(2, 1, 30, 40, '2026-09-19T13:30:00', 1, 1), olm(3, 1, 50, 60, '2026-09-19T15:30:00', 2, 1), olm(4, 1, 70, 80, '2026-09-19T15:30:00', 0, 1), olm(5, 1, 90, 11, '2026-09-20T13:30:00', 1, 0), olm(6, 1, 12, 13, '2026-09-20T15:30:00', 2, 2)];
   const up = upstream(games);
   await runOpenLigaCurrent({ store, storage: up.storage, registry: REG, state: emptyLaneState('x'), now: Date.parse('2026-09-27T00:00:00Z'), fetcher: up.fetcher, force: true });
+  // RC2: this tree's ingest predates the season publication gate; production ingest publishes the current season.
+  for (const x of await store.select('soccer_seasons', { columns: ['id'] })) await store.update('soccer_seasons', { publication_state: 'published', published_at: '2026-01-01T00:00:00Z' }, { eq: { id: x.id } });
   return store;
 }
 const counts = async store => Object.fromEntries(await Promise.all(['soccer_news_events', 'soccer_articles', 'soccer_article_evidence', 'soccer_news_openai_usage'].map(async t => [t, (await store.query(`select count(*)::int as n from public.${t}`)).rows[0].n])));

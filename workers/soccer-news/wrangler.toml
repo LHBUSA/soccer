@@ -18,7 +18,12 @@ NEWS_LLM = "off"
 # Desk output cap (reasoning + story). Evidence 2026-09-29 canary on the richest packet (Bayern 7-0 recap): 2,252 output
 # tokens incl. 1,234 reasoning -> 4000 per the owner cost brief (5000 only if a legitimate story is shown to exceed it).
 NEWS_DESK_MAX_OUTPUT_TOKENS = "4000"
+# League-phase boundaries (profiles.js LEAGUE_PHASE_CONFIG): explicit production config; a missing var skips that
+# competition (no hidden code default). UCL/UEL league phase ends after matchday 8 (late January 2027); UWCL = ESPN
+# season type 1 end 2026-12-18 (docs/evidence/world/espn-world-discovery-2026-10-03.json).
 UCL_LEAGUE_PHASE_END = "2027-02-01T00:00:00Z"
+UEL_LEAGUE_PHASE_END = "2027-02-01T00:00:00Z"
+UWCL_LEAGUE_PHASE_END = "2026-12-19T00:00:00Z"
 # Migration 20260929001300 (routing columns on soccer_news_openai_usage) APPLIED 2026-09-29 (sha 4e7ef213): the ledger
 # rows carry the V4 routing fields. Off = routing fields in KV only.
 SOCCER_LEDGER_ROUTING = "on"

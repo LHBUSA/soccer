@@ -32,7 +32,7 @@ async function selectIn(store, table, col, vals, opts) {
 // All canonical data of one competition season before asOf (shared by team + player DNA).
 export async function loadSeasonData(store, seasonId, asOf) {
   const cutoff = new Date(asOf).toISOString();
-  const matches = (await store.select('soccer_matches', { columns: ['id', 'kickoff_at', 'home_team_id', 'away_team_id', 'home_score', 'away_score', 'status'], eq: { season_id: seasonId, status: 'finished' }, lte: { kickoff_at: cutoff }, order: 'kickoff_at.asc' }))
+  const matches = (await store.select('soccer_public_matches', { columns: ['id', 'kickoff_at', 'home_team_id', 'away_team_id', 'home_score', 'away_score', 'status'], eq: { season_id: seasonId, status: 'finished' }, lte: { kickoff_at: cutoff }, order: 'kickoff_at.asc' }))
     .filter(m => m.home_score !== null && m.away_score !== null && Date.parse(m.kickoff_at) < Date.parse(cutoff));
   const ids = matches.map(m => m.id);
   const cols = ['match_id', 'sequence', 'team_id', 'player_id', 'event_type', 'subtype', 'outcome', 'is_goal', 'is_own_goal', 'card', 'source_family'];
