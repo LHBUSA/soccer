@@ -31,7 +31,8 @@ Read from `wrangler deployments status`, production `/health` and git, 2026-10-0
 | Phase | State |
 |---|---|
 | 1 runner refactor (`runCompetition`, same 5, sequential, in process) | CODE COMPLETE (main `8292d10`, parity proof) · PRODUCTION LIVE soccer-news `2eaf6b80` 2026-10-05 11:27Z (rollback `c0ec2b50`) · OBSERVATION PENDING (gate = several real cron cycles with unchanged newsroom semantics, owner 2026-10-05) |
-| 2 per-competition state + health (KV) | code on branch `soccer-news-phase2` only; deploy waits for the phase 1 observation gate |
+| 2 per-competition state + health (KV) | PRODUCTION LIVE `179e4499` (main ab54f62), ACCEPTED by owner 2026-10-05 |
+| 3 runner isolation (loopback WorkerEntrypoint `ctx.exports.NewsRunner`, no route / token / Queue) | PRODUCTION LIVE `3151b3e6` (main 641b279) 2026-10-05 14:18Z, rollback `179e4499`; first cron 14:37Z clean; per-invocation CPU/subrequest budgets NOT proven |
 | 3-6 | design below |
 
 Phase 1 parity proof: `tests/news-runner-parity.test.js` against `tests/fixtures/news/legacy-pipeline.js` (the RC2.1

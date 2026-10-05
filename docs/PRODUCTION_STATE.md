@@ -21,7 +21,7 @@ evidence are the source of truth; nothing here comes only from chat memory.
 |---|---|---|
 | soccer-api | `a9970370` (2026-09-29, main 7d48824: serves frozen article visuals only while intact; + news-subject rule, newsroom health) | `2fd0e5e9` (then `2f8a5b0d`) |
 | soccer-ingest | unchanged by the 2026-09-29 newsroom / PBEcast release (see docs/deployments.jsonl) | — |
-| soccer-news | `179e4499` (2026-10-05 13:12Z, main ab54f62 = phase 2 per-competition state `news:comp:<slug>:state` + /health `competitions`; first production tick state_writes ok=5 failed=0; ACCEPTED by owner) on top of `2eaf6b80` (2026-10-05 11:27Z, main 8292d10 = RC2.1 + phase 1 competition runner, behaviour-identical; 3 clean cron cycles) on top of `c0ec2b50` (2026-10-04 20:28Z, RC2.1 = main 2e24eb9: published-season reads, newsroom health truth, explicit league-phase vars fail closed, domestic claim bans, admin review mode, soccer-quality/2.1.1 + soccer-desk/2.1.1; 5 publishing competitions) | `fc7b1337` |
+| soccer-news | `3151b3e6` (2026-10-05 14:18Z, main 641b279 = phase 3 competition runner isolation: cron dispatches each enabled competition through the loopback WorkerEntrypoint ctx.exports.NewsRunner, flag enable_ctx_exports; first cron 14:37:50Z ran, 5/5 runners ran, state_writes 5/0; rollback `179e4499`) on top of `179e4499` (2026-10-05 13:12Z, main ab54f62 = phase 2 per-competition state `news:comp:<slug>:state` + /health `competitions`; first production tick state_writes ok=5 failed=0; ACCEPTED by owner) on top of `2eaf6b80` (2026-10-05 11:27Z, main 8292d10 = RC2.1 + phase 1 competition runner, behaviour-identical; 3 clean cron cycles) on top of `c0ec2b50` (2026-10-04 20:28Z, RC2.1 = main 2e24eb9: published-season reads, newsroom health truth, explicit league-phase vars fail closed, domestic claim bans, admin review mode, soccer-quality/2.1.1 + soccer-desk/2.1.1; 5 publishing competitions) | `fc7b1337` |
 
 Rollback: `cd workers/<worker> && npx wrangler versions deploy <rollback>@100% --yes`. Web rollback: Vercel instant rollback to the previous production deployment.
 
@@ -236,4 +236,10 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
   to this repo): versions `48d45671` (13:33Z) and `a19b22fb` (13:41Z) were deployed with plain wrangler and no message,
   then `179e4499` was redeployed at 13:44Z / 13:46Z. The 13:37Z cron tick (while `48d45671` was live) left no
   `news:last_tick`. Neither version's source is on main.
+- 2026-10-05 phase 3 LIVE `3151b3e6` (main 641b279, ledger 6db85dc), rollback `179e4499`. Proof: gate 611/611; frozen
+  production replay isolated == RC2.1; dark `906b1c18` real-loopback dry run byte-identical to live in-process; injected
+  dry fault in UCL (dark + production `/v1/run?isolated=1&dry=1&fault=uefa-champions-league`): UCL failed alone, the
+  other four identical; runner unreachable over HTTP (404); first scheduled tick 14:37:50Z: ran, 5 runners ran,
+  state_writes ok 5, every competition `dispatch: isolated`, newsroom fingerprints unchanged (75/75/81).
+  NOT proven: separate CPU / subrequest budgets per runner invocation (not documented, not measured).
 
