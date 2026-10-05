@@ -116,6 +116,10 @@ test('a quiet competition that is not due is skipped; its previous entry is carr
   assert.equal(pl.scheduled.carried_from, first.at); assert.equal(pl.candidates, first.competitions['premier-league'].candidates);
   assert.equal(parseState(kv.m.get(stateKey('premier-league'))).state.last_run_at, first.at, 'state is the REAL last run, not rewritten');
   assert.deepEqual(Object.keys(second.competitions), NEWS_COMPETITIONS, 'every enabled competition still described');
+  const ranNow = NEWS_COMPETITIONS.filter(x => second.competitions[x].scheduled.ran);
+  assert.ok(ranNow.length < NEWS_COMPETITIONS.length, 'something was skipped');
+  assert.equal(second.state_writes.ok, ranNow.length, 'state_writes counts only the runners that actually ran');
+  assert.deepEqual(Object.keys(second.dispatch.runners), ranNow, 'only due competitions were dispatched');
   const third = await tickWith(store, kv, now + 30 * M);
   assert.equal(third.competitions['premier-league'].scheduled.carried_from, first.at, 'carried twice: still names the real run');
   const tick = { at: iso(now), outcome: 'ran', news_enabled: true };

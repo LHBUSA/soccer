@@ -2,7 +2,7 @@
  "note": "read-only preview of the phase 4 plan on production; nothing deployed or written",
  "plan": {
   "version": "soccer-news-schedule/1.0.0",
-  "at": "2026-10-05T15:24:18.726Z",
+  "at": "2026-10-05T19:46:35.273Z",
   "mode": "activity",
   "competitions": {
    "bundesliga": {
@@ -11,8 +11,8 @@
     "cadence_min": 360,
     "due": false,
     "reason": "not_due:quiet",
-    "last_run_at": "2026-10-05T15:07:38.000Z",
-    "next_due_at": "2026-10-05T21:07:38.000Z"
+    "last_run_at": "2026-10-05T19:37:38.000Z",
+    "next_due_at": "2026-10-06T01:37:38.000Z"
    },
    "premier-league": {
     "slug": "premier-league",
@@ -20,8 +20,8 @@
     "cadence_min": 360,
     "due": false,
     "reason": "not_due:quiet",
-    "last_run_at": "2026-10-05T15:07:38.000Z",
-    "next_due_at": "2026-10-05T21:07:38.000Z"
+    "last_run_at": "2026-10-05T19:37:38.000Z",
+    "next_due_at": "2026-10-06T01:37:38.000Z"
    },
    "uefa-champions-league": {
     "slug": "uefa-champions-league",
@@ -29,17 +29,17 @@
     "cadence_min": 360,
     "due": false,
     "reason": "not_due:quiet",
-    "last_run_at": "2026-10-05T15:07:38.000Z",
-    "next_due_at": "2026-10-05T21:07:38.000Z"
+    "last_run_at": "2026-10-05T19:37:38.000Z",
+    "next_due_at": "2026-10-06T01:37:38.000Z"
    },
    "uefa-nations-league": {
     "slug": "uefa-nations-league",
-    "activity": "matchday",
+    "activity": "live",
     "cadence_min": 30,
     "due": true,
-    "reason": "every_tick:matchday",
-    "last_run_at": "2026-10-05T15:07:38.000Z",
-    "next_due_at": "2026-10-05T15:37:38.000Z"
+    "reason": "every_tick:live",
+    "last_run_at": "2026-10-05T19:37:38.000Z",
+    "next_due_at": "2026-10-05T20:07:38.000Z"
    },
    "mls": {
     "slug": "mls",
@@ -47,8 +47,8 @@
     "cadence_min": 360,
     "due": false,
     "reason": "not_due:quiet",
-    "last_run_at": "2026-10-05T15:07:38.000Z",
-    "next_due_at": "2026-10-05T21:07:38.000Z"
+    "last_run_at": "2026-10-05T19:37:38.000Z",
+    "next_due_at": "2026-10-06T01:37:38.000Z"
    }
   }
  }

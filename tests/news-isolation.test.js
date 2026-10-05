@@ -287,7 +287,10 @@ test('/v1/run: dry / review / forced preview keep their in-process semantics; ?i
   const store = replayStore(unpackReads(natural.reads, fx.blobs));
   const calls = [];
   const ctx = { exports: { NewsRunner: { run: (slug, o) => { calls.push([slug, o]); return loopback(env, () => store)(slug, o); } } } };
-  const res = await post('?isolated=1&dry=1&fault=uefa-champions-league', ctx);
+  // the admin route uses the wall clock: pin it to the fixture's capture instant so the replayed reads match (the test
+  // otherwise depends on the time of day it runs; it failed after the 2026-10-05 16:00Z Nations League kick-off)
+  const realNow = Date.now; Date.now = () => natural.opts.now;
+  let res; try { res = await post('?isolated=1&dry=1&fault=uefa-champions-league', ctx); } finally { Date.now = realNow; }
   const body = await res.json();
   assert.equal(res.status, 200);
   assert.ok(calls.every(([, o]) => o.dry === true), 'every runner dispatched dry');
