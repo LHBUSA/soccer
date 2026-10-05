@@ -1,6 +1,6 @@
 # Competition desks: hubs + autonomous newsroom lanes (design, 2026-10-04)
 
-Status (reconciled 2026-10-05 from production, not from the 10-04 prose): **phases 1-3 PRODUCTION LIVE (phase 3 `03666f90` ACCEPTED 2026-10-05); phase 4 CODE COMPLETE, NOT DEPLOYED; phases 5-6 not live.** Principle:
+Status (reconciled 2026-10-05 from production, not from the 10-04 prose): **phases 1-4 PRODUCTION LIVE + ACCEPTED (phase 4 `25bb40ac`, 2026-10-05); phases 5-6 not live.** Principle:
 
 > ONE Soccer platform, ONE shared hardened newsroom codebase, ONE logically independent intelligence/news engine per
 > competition. No forked Workers, no per-league copies of code.
@@ -32,7 +32,7 @@ Read from `wrangler deployments status`, production `/health` and git, 2026-10-0
 | 1 runner refactor (`runCompetition`, same 5, sequential, in process) | CODE COMPLETE (main `8292d10`, parity proof) · PRODUCTION LIVE soccer-news `2eaf6b80` 2026-10-05 11:27Z (rollback `c0ec2b50`) · OBSERVATION PENDING (gate = several real cron cycles with unchanged newsroom semantics, owner 2026-10-05) |
 | 2 per-competition state + health (KV) | PRODUCTION LIVE `179e4499` (main ab54f62), ACCEPTED by owner 2026-10-05 |
 | 3 runner isolation (loopback WorkerEntrypoint `ctx.exports.NewsRunner`, no route / token / Queue) | PRODUCTION LIVE + ACCEPTED `03666f90` (main 09ef93f, isolation 1.1.0, soccer-news/1.6.0): sequential real dispatch in registry order + cooperative runner time budget (soft 150 s, hard soft+125 s, tick 840 s), parallel only for dry canaries; final proof = real scheduled tick 2026-10-05 15:37:38Z (5 runners ran sequentially, 0 failed, state_writes 5/0, newsroom fingerprints unchanged). `3151b3e6` (14:18Z, parallel dispatch) superseded: it raced the global OpenAI ceiling. Safe rollback `179e4499`. Per-invocation CPU/subrequest budgets NOT proven |
-| 4 activity-aware scheduling | PRODUCTION LIVE `25bb40ac` (main 4f62bf8) 2026-10-05 19:52Z, rollback `03666f90`; ACCEPTANCE PENDING (first real scheduled tick) |
+| 4 activity-aware scheduling | PRODUCTION LIVE + ACCEPTED `25bb40ac` (main 4f62bf8) 2026-10-05 19:52Z, rollback `03666f90`; first real tick 20:07:38Z: UNL live -> ran, 4 quiet -> skipped (carried, states untouched), state_writes 1/0, fingerprints unchanged |
 | 3-6 | design below |
 
 Phase 1 parity proof: `tests/news-runner-parity.test.js` against `tests/fixtures/news/legacy-pipeline.js` (the RC2.1
