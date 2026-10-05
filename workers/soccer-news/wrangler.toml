@@ -4,9 +4,11 @@
 # Editorial desk (REQUIRED; new stories HOLD without it): OPENAI_API_KEY (secret), model gpt-5.6-sol, override var NEWS_DESK_MODEL.
 # Legacy optional pass, only with NEWS_DESK=off (not used): NEWS_LLM=on (var), ANTHROPIC_API_KEY (secret).
 name = "soccer-news"
-main = "src/index.js"
+# worker.js = index.js handler + the internal NewsRunner WorkerEntrypoint (phase 3 isolated competition runners, reached
+# only through the same-Worker loopback binding ctx.exports.NewsRunner; enable_ctx_exports).
+main = "src/worker.js"
 compatibility_date = "2026-09-01"
-compatibility_flags = ["nodejs_compat"]
+compatibility_flags = ["nodejs_compat", "enable_ctx_exports"]
 workers_dev = true
 
 [triggers]

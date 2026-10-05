@@ -14,6 +14,7 @@ import { publicationDiagnostic, competitionDiagnostic } from './news-health.js';
 import { leaguePhaseCfg, profileFor } from './profiles.js';
 import { competitionState, stateKey, parseState, STATE_VERSION, REGISTRY_VERSION } from './runner-state.js';
 import registryData from '../../../data/registry/competitions.json' with { type: 'json' };
+import { runIsolated, ISOLATION_VERSION } from './isolation.js';
 
 // The only production schedule. The temporary backlog-migration cron (*/10) is retired: there is no automatic OpenAI
 // backlog processing. Re-edits are manual only (POST /v1/admin/reedit, scripts/news/reedit-backlog.mjs).
@@ -33,10 +34,10 @@ function authorized(req, env) {
 // Observational only. A KV write failure is counted and logged, never retried into the run and never thrown: the
 // runner already finished (its publication/holds stand exactly as without state), and health reports the stale or
 // missing state as a failure of that competition. Dry, review and forced-preview runs write no state.
-export function stateRecorder(kv, { now, cfg }) {
+export function stateRecorder(kv, { now, cfg, dispatch = 'in_process' }) {
   const writes = { ok: 0, failed: 0, errors: [] };
   const hook = async ({ slug, result = null, error = null, elapsedMs }) => {
-    const st = competitionState({ slug, result, error, facts: result?.facts || null, now, elapsedMs, cron: NEWS_CRON, cfg, stories: storiesFor(slug) });
+    const st = competitionState({ slug, result, error, facts: result?.facts || null, now, elapsedMs, cron: NEWS_CRON, cfg, stories: storiesFor(slug), dispatch });
     try { await kv.put(stateKey(slug), JSON.stringify(st)); writes.ok += 1; } catch (e) { writes.failed += 1; writes.errors.push(`${slug}: ${String(e?.message || e).slice(0, 120)}`); console.error('competition state write failed', slug, String(e?.message || e).slice(0, 160)); }
   };
   return { hook, writes };
@@ -58,6 +59,23 @@ export async function run(env, { store: injected = null, ...opts } = {}) {
   return summary;
 }
 
+// The loopback runner binding (worker.js NewsRunner via ctx.exports; compatibility flag enable_ctx_exports).
+export const loopbackDispatch = ctx => (ctx?.exports?.NewsRunner ? (slug, opts) => ctx.exports.NewsRunner.run(slug, opts) : null);
+
+// The cron tick (phase 3): every enabled competition is its own runner invocation (isolation.js). A runner failure is
+// that competition's failure (state `failed`, entry in news:last_run); the tick completes and is `ran`. A missing loopback
+// binding fails the tick loudly (no silent in-process fallback). `dispatch` is a test seam only.
+export async function runTick(env, ctx, { now, dispatch = null } = {}) {
+  const t0 = Date.now();
+  const cfg = leaguePhaseCfg(env);
+  const rec = env.SOCCER_STATE ? stateRecorder(env.SOCCER_STATE, { now, cfg, dispatch: 'isolated' }) : null;
+  const summary = await runIsolated(env, { now, dispatch: dispatch || loopbackDispatch(ctx), onCompetition: rec?.hook });
+  summary.elapsed_ms = Date.now() - t0;
+  if (rec) summary.state_writes = { version: STATE_VERSION, ok: rec.writes.ok, failed: rec.writes.failed, ...(rec.writes.errors.length ? { errors: rec.writes.errors } : {}) };
+  if (env.SOCCER_STATE) await env.SOCCER_STATE.put('news:last_run', JSON.stringify(summary));
+  return summary;
+}
+
 // Per-competition health view (additive; the aggregate state and status code are unchanged). Newest published story per
 // competition from the newsroom's own rows (articles -> news events -> competition id); a read failure is reported.
 export async function competitionsHealth(env, { tick, store, now = Date.now() }) {
@@ -74,12 +92,13 @@ export async function competitionsHealth(env, { tick, store, now = Date.now() })
     }
   } catch (e) { newestError = String(e?.message || e).slice(0, 160); newestByComp = {}; }
   // which competition failed the latest tick (its state carries the tick's timestamp and outcome failed)
-  const failedThisTick = tick ? Object.values(states).find(s => s && s.last_run_outcome === 'failed' && s.last_run_at === tick.at)?.slug || null : null;
+  const failedState = tick ? Object.values(states).find(s => s && s.last_run_outcome === 'failed' && s.last_run_at === tick.at) || null : null;
+  const failedThisTick = failedState?.slug || null; const failedDispatch = failedState?.dispatch || null;
   const competitions = {};
   for (const [slug, raw, readError] of raws) {
     const st = states[slug];
     const newest = st?.competition_id ? newestByComp[st.competition_id] || null : null;
-    competitions[slug] = { ...competitionDiagnostic({ slug, raw, readError, tick, newestPublishedAt: newest, now, failedThisTick }), detail: st };
+    competitions[slug] = { ...competitionDiagnostic({ slug, raw, readError, tick, newestPublishedAt: newest, now, failedThisTick, failedDispatch }), detail: st };
   }
   const off = registryData.competitions.filter(c => !c.news?.enabled).map(c => ({ slug: c.slug, mode: 'off', publishing_profile: profileFor(c.slug, new Date(now).toISOString(), {}) ? 'mapped' : 'none', blocker: c.news?.blocker || null }));
   const vals = Object.values(competitions);
@@ -95,7 +114,7 @@ export function reeditTrigger(url) {
 }
 
 export default {
-  async fetch(req, env) {
+  async fetch(req, env, ctx) {
     const url = new URL(req.url);
     if (url.pathname === '/health') {
       const last = env.SOCCER_STATE ? await env.SOCCER_STATE.get('news:last_run', 'json') : null;
@@ -119,6 +138,17 @@ export default {
       if (pm && !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(pm)) return json({ error: 'preview_match must be a match uuid' }, 400);
       const review = url.searchParams.get('review') === '1';
       if (review && !pm) return json({ error: 'review needs preview_match' }, 400);
+      // ?isolated=1 (phase 3 dark canary): the cron's isolated dispatch through the loopback runner, DRY ONLY (zero model
+      // calls, zero writes, no state, no news:last_run). ?fault=<slug> makes that one runner throw, proving the others finish.
+      if (url.searchParams.get('isolated') === '1') {
+        if (url.searchParams.get('dry') !== '1' || pm || review) return json({ error: 'isolated is a dry canary: needs dry=1 and no preview_match / review' }, 400);
+        const fault = url.searchParams.get('fault');
+        if (fault && !NEWS_COMPETITIONS.includes(fault)) return json({ error: 'fault must be an enabled newsroom competition' }, 400);
+        const dispatch = loopbackDispatch(ctx);
+        if (!dispatch) return json({ error: 'loopback runner binding unavailable (ctx.exports.NewsRunner)' }, 500);
+        const t0 = Date.now();
+        try { const s = await runIsolated(env, { now: Date.now(), dispatch, dry: true, windowDays: Math.round(days), ...(fault ? { faultSlug: fault } : {}) }); s.elapsed_ms = Date.now() - t0; return json(s); } catch (e) { return json({ error: String(e.message || e) }, 500); }
+      }
       const asOfRaw = review ? url.searchParams.get('as_of') : null; const asOf = asOfRaw ? Date.parse(asOfRaw) : null;
       if (asOfRaw && !Number.isFinite(asOf)) return json({ error: 'as_of must be an ISO timestamp' }, 400);
       try { return json(await run(env, { windowDays: days, dry: url.searchParams.get('dry') === '1', ...(pm ? { previewMatch: pm } : {}), ...(review ? { review: true } : {}), ...(Number.isFinite(asOf) ? { now: asOf } : {}) })); } catch (e) { return json({ error: String(e.message || e) }, 500); }
@@ -160,6 +190,8 @@ export default {
     // "NEWS_ENABLED off" from "run failing". The summary of a SUCCESSFUL run is news:last_run.
     const tick = outcome => env.SOCCER_STATE?.put('news:last_tick', JSON.stringify({ at: new Date(event.scheduledTime).toISOString(), news_enabled: env.NEWS_ENABLED === 'on', outcome }));
     if (env.NEWS_ENABLED !== 'on') { ctx.waitUntil(tick('disabled') || Promise.resolve()); return; } // launch switch (wrangler.toml var)
-    ctx.waitUntil(run(env, { now: event.scheduledTime }).then(() => tick('ran')).catch(e => { console.error('soccer-news run failed', e?.message); return tick('failed'); }));
+    // Phase 3: isolated runners. `ran` = the orchestrator completed (a failed competition is in its own state / health);
+    // `failed` = the orchestrator itself failed (e.g. no loopback binding, KV down for news:last_run).
+    ctx.waitUntil(runTick(env, ctx, { now: event.scheduledTime }).then(() => tick('ran')).catch(e => { console.error('soccer-news tick failed', e?.message); return tick('failed'); }));
   },
 };

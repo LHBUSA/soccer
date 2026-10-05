@@ -42,8 +42,11 @@ export function publicationDiagnostic({ tick, last, newestPublishedAt, now = Dat
 //                                    live, due, or finished < 36 h, re-derived NOW from the stored fixture timeline),
 //                                    6 h while quiet (failure)
 //   run_failing                      its runner threw on its latest run (failure)
-//   blocked_by_runner_failure        the latest tick failed in ANOTHER competition before this one ran (no isolation
-//                                    until phase 3; failure, names the blocking competition)
+//   blocked_by_runner_failure        LEGACY (phase 2 in-process ticks only): the tick failed in ANOTHER competition before
+//                                    this one ran. Phase 3 isolated ticks never emit it: every runner records its own
+//                                    outcome and the tick does not fail on a runner failure.
+//   orchestrator_failed              the latest tick itself failed (not a runner) before this competition's state was
+//                                    refreshed (failure)
 //   config_missing / no_season       skipped fail-closed (failure: an enabled competition that cannot run)
 //   publishing                       its newest published story is <= 4 h old
 //   healthy_material_held_by_gates   ran; material detected but held (this run or existing)
@@ -51,7 +54,7 @@ export function publicationDiagnostic({ tick, last, newestPublishedAt, now = Dat
 // A quiet competition is never stale because it had no candidate; only a missing RUN makes it stale.
 export const QUIET_STALE_MS = 6 * 3600e3;
 
-export function competitionDiagnostic({ slug, raw, readError = null, tick, newestPublishedAt = null, now = Date.now(), failedThisTick = null }) {
+export function competitionDiagnostic({ slug, raw, readError = null, tick, newestPublishedAt = null, now = Date.now(), failedThisTick = null, failedDispatch = null }) {
   const age = at => now - Date.parse(at);
   const res = (ok, state, message, extra = {}) => ({ slug, ok, state, message, ...extra });
   if (tick?.news_enabled === false || tick?.outcome === 'disabled') return res(true, 'disabled', 'newsroom disabled (NEWS_ENABLED off)');
@@ -62,11 +65,15 @@ export function competitionDiagnostic({ slug, raw, readError = null, tick, newes
   if (p.malformed) return res(false, 'state_malformed', `runner state unreadable: ${p.malformed}`);
   const s = p.state;
   const activityNow = activityAt(s.fixtures ? { ...s.fixtures, live_kickoffs: s.fixtures.live_kickoffs || [] } : null, now);
-  const base = { activity: s.activity, activity_now: activityNow, last_run_at: s.last_run_at, last_run_age_min: Math.round(age(s.last_run_at) / 6e4), last_run_outcome: s.last_run_outcome, newest_published_at: newestPublishedAt };
+  const base = { dispatch: s.dispatch || 'in_process', activity: s.activity, activity_now: activityNow, last_run_at: s.last_run_at, last_run_age_min: Math.round(age(s.last_run_at) / 6e4), last_run_outcome: s.last_run_outcome, newest_published_at: newestPublishedAt };
   const limit = activityNow === 'quiet' ? QUIET_STALE_MS : TICK_STALE_MS;
   if (age(s.last_run_at) > limit) return res(false, 'runner_stale', `no run for ${Math.round(age(s.last_run_at) / 6e4)} min while ${activityNow} (limit ${limit / 6e4} min)`, base);
   if (s.last_run_outcome === 'failed') return res(false, 'run_failing', `runner failed: ${s.error || 'unknown error'}`, base);
-  if (tick.outcome === 'failed' && Date.parse(s.last_run_at) < Date.parse(tick.at)) return res(false, 'blocked_by_runner_failure', `the ${tick.at} tick failed${failedThisTick ? ` in ${failedThisTick}` : ''} before this competition ran`, { ...base, blocked_by: failedThisTick });
+  if (tick.outcome === 'failed' && Date.parse(s.last_run_at) < Date.parse(tick.at)) {
+    // in-process (phase 2) tick aborted by another runner = blocked; anything else = the orchestrator itself failed
+    if (failedThisTick && failedDispatch !== 'isolated') return res(false, 'blocked_by_runner_failure', `the ${tick.at} tick failed in ${failedThisTick} before this competition ran`, { ...base, blocked_by: failedThisTick });
+    return res(false, 'orchestrator_failed', `the ${tick.at} newsroom tick failed before this competition's state was refreshed`, base);
+  }
   if (s.last_run_outcome === 'skipped_config') return res(false, 'config_missing', `skipped fail-closed: ${s.skipped}`, base);
   if (s.last_run_outcome === 'no_season') return res(false, 'no_season', 'no published season to run', base);
   if (newestPublishedAt && age(newestPublishedAt) <= PUBLICATION_QUIET_MS) return res(true, 'publishing', 'publishing', base);

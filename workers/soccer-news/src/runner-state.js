@@ -12,7 +12,7 @@ import { ROUTER_VERSION } from './ai-router.js';
 import { profileFor } from './profiles.js';
 import registryData from '../../../data/registry/competitions.json' with { type: 'json' };
 
-export const STATE_VERSION = 'soccer-news-comp-state/1.0.0';
+export const STATE_VERSION = 'soccer-news-comp-state/1.1.0'; // 1.1.0: + dispatch (isolated | in_process)
 export const REGISTRY_VERSION = registryData.registry_version || null;
 export const stateKey = slug => `news:comp:${slug}:state`;
 
@@ -74,14 +74,14 @@ const routedCalls = routing => Object.entries(routing?.lanes || {}).filter(([lan
 
 // One competition's state after its runner. result = runCompetition's return; error = the runner's exception (the tick
 // still fails exactly as before: phase 2 adds no isolation).
-export function competitionState({ slug, result = null, error = null, facts = null, now, elapsedMs = null, cron, cfg = {}, stories = [], mode = 'live' }) {
+export function competitionState({ slug, result = null, error = null, facts = null, now, elapsedMs = null, cron, cfg = {}, stories = [], mode = 'live', dispatch = 'in_process' }) {
   const out = result?.out || null;
   const outcome = error ? 'failed' : !out ? 'not_applicable' : out.skipped?.startsWith('config_missing') ? 'skipped_config' : out.skipped === 'no season' ? 'no_season' : 'ran';
   const newRecaps = (out?.stories || []).filter(s => s.story_class === 'match_recap').length;
   const profile = profileFor(slug, new Date(now).toISOString(), cfg);
   const d = out?.diagnostics || {};
   return {
-    slug, state_version: STATE_VERSION, mode,
+    slug, state_version: STATE_VERSION, mode, dispatch,
     activity: activityAt(facts, now, { newRecaps }),
     last_run_at: new Date(now).toISOString(), last_run_outcome: outcome, elapsed_ms: elapsedMs,
     ...(error ? { error: String(error?.message || error).slice(0, 200) } : {}),
