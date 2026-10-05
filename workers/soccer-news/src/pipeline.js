@@ -25,79 +25,102 @@ export const NEWS_REGISTRY = registryData.competitions.filter(c => c.news?.enabl
 export const NEWS_COMPETITIONS = NEWS_REGISTRY.map(c => c.slug);
 export const storiesFor = slug => NEWS_REGISTRY.find(c => c.slug === slug)?.stories || RECAP_STORIES;
 
-export async function runNews(store, { now = Date.now(), env = {}, windowDays = 4, maxPerCompetition = 12, dry = false, competitions = NEWS_COMPETITIONS, cfg = {}, previewMatch = null, review = false } = {}) {
+// COMPETITION RUNNER (docs/COMPETITION_DESKS.md section 6): ONE competition's detect -> frozen packet -> draft -> desk
+// -> gates -> publish | HOLD. This is the per-competition body runNews ran inside its loop up to RC2.1 (2e24eb9),
+// moved unchanged: same detectors, story keys (event id = uuidv5("news_event:" + key)), dedupe, per-run cap, packets,
+// gates and writes (tests/news-runner-parity.test.js proves it against the frozen RC2.1 pipeline).
+// Returns { slug, out, routing }: `out` is the competition's summary entry (null = a forced preview run whose fixture is
+// not in this competition's season: no entry, as before); `routing` counts this runner's desk routes.
+export async function runCompetition(store, slug, { now = Date.now(), env = {}, windowDays = 4, maxPerCompetition = 12, dry = false, cfg = {}, previewMatch = null, review = false } = {}) {
+  const routing = { lanes: {}, reasons: {} };
+  // Fail closed: a competition whose league-phase boundary var is missing is skipped (no hidden code default).
+  const missingCfg = missingPhaseConfig(slug, cfg);
+  if (missingCfg) return { slug, out: { skipped: `config_missing:${missingCfg}`, candidates: 0, new: 0, duplicates: 0, published: 0, held: 0 }, routing };
+  const S = await loadSeason(store, slug);
+  if (previewMatch && !S?.matches.some(m => m.id === previewMatch)) return { slug, out: null, routing };
+  const out = { candidates: 0, new: 0, duplicates: 0, published: 0, held: 0, holds: {}, by_class: {}, stories: [] };
+  if (!S) { out.skipped = 'no season'; return { slug, out, routing }; }
+  out.season = S.season.label;
+  out.last_match_update = S.matches.reduce((x, m) => (m.updated_at && (!x || String(m.updated_at) > x) ? String(m.updated_at) : x), null);
+  const stories = storiesFor(slug); const diag = {};
+  const cands = previewMatch
+    ? (await detectPreviews(store, S, { now, cfg, stories, diag, force: previewMatch })).filter(c => c.key === `match_preview:${previewMatch}`)
+    : [
+      ...await detect(store, S, { now, windowDays, cfg, stories, diag }),
+      ...await detectPreviews(store, S, { now, cfg, stories, diag }),
+      ...await detectGroupWatch(store, S, { now, windowDays, cfg, stories }),
+    ];
+  Object.assign(out, { diagnostics: diag });
+  out.candidates = cands.length;
+  for (const c of cands) out.by_class[c.preview_kind === 'matchday' ? 'matchday_brief' : c.brief || c.story_class] = (out.by_class[c.preview_kind === 'matchday' ? 'matchday_brief' : c.brief || c.story_class] || 0) + 1;
+  let ids = cands.map(c => uuidv5(`news_event:${c.key}`));
+  const existing = new Set();
+  for (const part of chunkArr(ids, 100)) for (const r of await store.select('soccer_news_events', { columns: ['id'], in: { id: part } })) existing.add(r.id);
+  // A WITHDRAWN story is terminal for the automatic detector: its event already exists, so it is never re-keyed or
+  // re-issued here (owner spec 2026-09-29). A correction is an explicit lifecycle action with its own provenance.
+  for (const part of chunkArr(ids.filter(i => !existing.has(i)), 100)) for (const r of await store.select('soccer_news_events', { columns: ['id'], in: { id: part } })) existing.add(r.id);
+  const fresh = cands.filter((c, i) => review || !existing.has(ids[i])).sort((a, b) => b.materiality.score - a.materiality.score).slice(0, maxPerCompetition);
+  out.duplicates = cands.length - cands.filter((c, i) => !existing.has(ids[i])).length;
+  // what the existing stories ARE: a candidate whose story was already HELD is not a "duplicate" of published news.
+  // Health reports held material separately (by reason) so gate holds are never mistaken for a quiet newsroom.
+  out.existing = { published: 0, held: 0, other: 0, held_reasons: {} };
+  const dupIds = ids.filter(i => existing.has(i));
+  for (const part of chunkArr(dupIds, 100)) for (const a of await store.select('soccer_articles', { columns: ['news_event_id', 'status', 'hold_reasons'], in: { news_event_id: part } })) {
+    if (a.status === 'published') out.existing.published += 1;
+    else if (a.status === 'held') { out.existing.held += 1; for (const r of a.hold_reasons || []) out.existing.held_reasons[r] = (out.existing.held_reasons[r] || 0) + 1; }
+    else out.existing.other += 1;
+  }
+  out.new = fresh.length;
+  for (const cand of fresh) {
+    const packet = await buildPacket(store, S, cand);
+    const vis = await articleVisuals(store, packet, now);
+    const draft = withVisualMenu(compose(packet), vis);
+    // Paid only for a genuinely NEW canonical story. A dry run makes zero model calls and zero writes (the router
+    // routes `dry_run` DETERMINISTIC; nothing below `if (dry) continue` runs).
+    const trigger = dry ? 'dry_run' : review ? 'canary' : 'new_story';
+    const r = await editorialStage(draft, packet, env, { trigger, articleId: uuidv5(`article:${packet.hash}`) });
+    const { article, status, holdReasons, gates, editorial } = r;
+    if (r.routing) { routing.lanes[r.routing.lane] = (routing.lanes[r.routing.lane] || 0) + 1; routing.reasons[r.routing.reason] = (routing.reasons[r.routing.reason] || 0) + 1; }
+    out[status] += 1;
+    for (const f of holdReasons) out.holds[f] = (out.holds[f] || 0) + 1;
+    out.stories.push({ status, story_class: packet.event.kind, headline: article.headline, slug: article.slug, failed: holdReasons, ...(review ? { review: { packet_hash: packet.hash, packet_version: packet.version, profile: packet.event.profile, dek: article.dek, sections: article.sections, composer: article.composer, editorial: r.editorial } } : {}) });
+    if (dry || review) continue;
+    const eventId = packet.event.event_id;
+    await store.insert('soccer_news_events', [{
+      id: eventId, story_class: packet.event.kind, desk: article.desk, match_id: packet.match?.id || packet.fixture?.id || null,
+      team_ids: article.entities.filter(e => e.type === 'SportsTeam').map(e => e.id), player_ids: article.entities.filter(e => e.type === 'Person').map(e => e.id),
+      competition_id: S.comp.id, materiality: Math.min(99, cand.materiality.score), as_of: new Date(cand.as_of).toISOString(), status,
+    }]);
+    await store.insert('soccer_article_evidence', [{ packet_hash: packet.hash, news_event_id: eventId, packet_version: packet.version, packet, capture_ids: [] }]);
+    await store.insert('soccer_articles', [{
+      id: uuidv5(`article:${packet.hash}`), slug: article.slug, news_event_id: eventId, packet_hash: packet.hash, story_class: packet.event.kind, desk: article.desk,
+      headline: article.headline, dek: article.dek, body: articleBody(article, editorial, vis), entities: article.entities, composer: article.composer, gate_version: editorial?.version ? `${gates.version}+${editorial.version}` : gates.version,
+      gate_results: { draft: gates.results, desk: editorial?.results || null }, status, hold_reasons: holdReasons, hero_media: null, published_at: status === 'published' ? new Date(now).toISOString() : null,
+    }]);
+  }
+  return { slug, out, routing };
+}
+
+// The run summary every orchestrated tick reports (news:last_run, /health), and how one runner's result folds into it.
+export function newRunSummary(env, now) {
+  return { engine: ENGINE_VERSION, gates: GATE_V2, at: new Date(now).toISOString(), news_enabled: env.NEWS_ENABLED ?? null, desk: { required: deskRequired(env), available: deskAvailable(env), version: DESK_VERSION }, routing: { version: ROUTER_VERSION, lanes: {}, reasons: {} }, competitions: {} };
+}
+export function mergeRun(summary, { slug, out, routing }) {
+  if (out) summary.competitions[slug] = out;
+  for (const k of ['lanes', 'reasons']) for (const [x, n] of Object.entries(routing?.[k] || {})) summary.routing[k][x] = (summary.routing[k][x] || 0) + n;
+  return summary;
+}
+
+// ORCHESTRATOR (phase 1: the same competitions, sequentially, in process, in registry order). One runner's exception
+// still fails the whole tick exactly as before; per-competition isolation is a later, separately released phase.
+export async function runNews(store, opts = {}) {
+  const { now = Date.now(), env = {}, competitions = NEWS_COMPETITIONS, previewMatch = null, review = false } = opts;
   // previewMatch (admin): build ONLY that fixture's preview (previews.js FORCED_PREVIEW_MAX_MS) in the competition whose
   // season holds it. review (admin, owner review): the desk runs as for a new story, but NOTHING is written and an
   // existing story key does not exclude the candidate. Review needs previewMatch (one story, bounded cost).
   if (review && !previewMatch) throw new Error('review needs previewMatch');
-  const summary = { engine: ENGINE_VERSION, gates: GATE_V2, at: new Date(now).toISOString(), news_enabled: env.NEWS_ENABLED ?? null, desk: { required: deskRequired(env), available: deskAvailable(env), version: DESK_VERSION }, routing: { version: ROUTER_VERSION, lanes: {}, reasons: {} }, competitions: {} };
-  for (const slug of competitions) {
-    // Fail closed: a competition whose league-phase boundary var is missing is skipped (no hidden code default).
-    const missingCfg = missingPhaseConfig(slug, cfg);
-    if (missingCfg) { summary.competitions[slug] = { skipped: `config_missing:${missingCfg}`, candidates: 0, new: 0, duplicates: 0, published: 0, held: 0 }; continue; }
-    const S = await loadSeason(store, slug);
-    if (previewMatch && !S?.matches.some(m => m.id === previewMatch)) continue;
-    const out = summary.competitions[slug] = { candidates: 0, new: 0, duplicates: 0, published: 0, held: 0, holds: {}, by_class: {}, stories: [] };
-    if (!S) { out.skipped = 'no season'; continue; }
-    out.season = S.season.label;
-    out.last_match_update = S.matches.reduce((x, m) => (m.updated_at && (!x || String(m.updated_at) > x) ? String(m.updated_at) : x), null);
-    const stories = storiesFor(slug); const diag = {};
-    const cands = previewMatch
-      ? (await detectPreviews(store, S, { now, cfg, stories, diag, force: previewMatch })).filter(c => c.key === `match_preview:${previewMatch}`)
-      : [
-        ...await detect(store, S, { now, windowDays, cfg, stories, diag }),
-        ...await detectPreviews(store, S, { now, cfg, stories, diag }),
-        ...await detectGroupWatch(store, S, { now, windowDays, cfg, stories }),
-      ];
-    Object.assign(out, { diagnostics: diag });
-    out.candidates = cands.length;
-    for (const c of cands) out.by_class[c.preview_kind === 'matchday' ? 'matchday_brief' : c.brief || c.story_class] = (out.by_class[c.preview_kind === 'matchday' ? 'matchday_brief' : c.brief || c.story_class] || 0) + 1;
-    let ids = cands.map(c => uuidv5(`news_event:${c.key}`));
-    const existing = new Set();
-    for (const part of chunkArr(ids, 100)) for (const r of await store.select('soccer_news_events', { columns: ['id'], in: { id: part } })) existing.add(r.id);
-    // A WITHDRAWN story is terminal for the automatic detector: its event already exists, so it is never re-keyed or
-    // re-issued here (owner spec 2026-09-29). A correction is an explicit lifecycle action with its own provenance.
-    for (const part of chunkArr(ids.filter(i => !existing.has(i)), 100)) for (const r of await store.select('soccer_news_events', { columns: ['id'], in: { id: part } })) existing.add(r.id);
-    const fresh = cands.filter((c, i) => review || !existing.has(ids[i])).sort((a, b) => b.materiality.score - a.materiality.score).slice(0, maxPerCompetition);
-    out.duplicates = cands.length - cands.filter((c, i) => !existing.has(ids[i])).length;
-    // what the existing stories ARE: a candidate whose story was already HELD is not a "duplicate" of published news.
-    // Health reports held material separately (by reason) so gate holds are never mistaken for a quiet newsroom.
-    out.existing = { published: 0, held: 0, other: 0, held_reasons: {} };
-    const dupIds = ids.filter(i => existing.has(i));
-    for (const part of chunkArr(dupIds, 100)) for (const a of await store.select('soccer_articles', { columns: ['news_event_id', 'status', 'hold_reasons'], in: { news_event_id: part } })) {
-      if (a.status === 'published') out.existing.published += 1;
-      else if (a.status === 'held') { out.existing.held += 1; for (const r of a.hold_reasons || []) out.existing.held_reasons[r] = (out.existing.held_reasons[r] || 0) + 1; }
-      else out.existing.other += 1;
-    }
-    out.new = fresh.length;
-    for (const cand of fresh) {
-      const packet = await buildPacket(store, S, cand);
-      const vis = await articleVisuals(store, packet, now);
-      const draft = withVisualMenu(compose(packet), vis);
-      // Paid only for a genuinely NEW canonical story. A dry run makes zero model calls and zero writes (the router
-      // routes `dry_run` DETERMINISTIC; nothing below `if (dry) continue` runs).
-      const trigger = dry ? 'dry_run' : review ? 'canary' : 'new_story';
-      const r = await editorialStage(draft, packet, env, { trigger, articleId: uuidv5(`article:${packet.hash}`) });
-      const { article, status, holdReasons, gates, editorial } = r;
-      if (r.routing) { summary.routing.lanes[r.routing.lane] = (summary.routing.lanes[r.routing.lane] || 0) + 1; summary.routing.reasons[r.routing.reason] = (summary.routing.reasons[r.routing.reason] || 0) + 1; }
-      out[status] += 1;
-      for (const f of holdReasons) out.holds[f] = (out.holds[f] || 0) + 1;
-      out.stories.push({ status, story_class: packet.event.kind, headline: article.headline, slug: article.slug, failed: holdReasons, ...(review ? { review: { packet_hash: packet.hash, packet_version: packet.version, profile: packet.event.profile, dek: article.dek, sections: article.sections, composer: article.composer, editorial: r.editorial } } : {}) });
-      if (dry || review) continue;
-      const eventId = packet.event.event_id;
-      await store.insert('soccer_news_events', [{
-        id: eventId, story_class: packet.event.kind, desk: article.desk, match_id: packet.match?.id || packet.fixture?.id || null,
-        team_ids: article.entities.filter(e => e.type === 'SportsTeam').map(e => e.id), player_ids: article.entities.filter(e => e.type === 'Person').map(e => e.id),
-        competition_id: S.comp.id, materiality: Math.min(99, cand.materiality.score), as_of: new Date(cand.as_of).toISOString(), status,
-      }]);
-      await store.insert('soccer_article_evidence', [{ packet_hash: packet.hash, news_event_id: eventId, packet_version: packet.version, packet, capture_ids: [] }]);
-      await store.insert('soccer_articles', [{
-        id: uuidv5(`article:${packet.hash}`), slug: article.slug, news_event_id: eventId, packet_hash: packet.hash, story_class: packet.event.kind, desk: article.desk,
-        headline: article.headline, dek: article.dek, body: articleBody(article, editorial, vis), entities: article.entities, composer: article.composer, gate_version: editorial?.version ? `${gates.version}+${editorial.version}` : gates.version,
-        gate_results: { draft: gates.results, desk: editorial?.results || null }, status, hold_reasons: holdReasons, hero_media: null, published_at: status === 'published' ? new Date(now).toISOString() : null,
-      }]);
-    }
-  }
+  const summary = newRunSummary(env, now);
+  for (const slug of competitions) mergeRun(summary, await runCompetition(store, slug, { ...opts, now, env }));
   return summary;
 }
 

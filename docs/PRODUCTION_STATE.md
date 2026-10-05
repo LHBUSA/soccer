@@ -21,7 +21,7 @@ evidence are the source of truth; nothing here comes only from chat memory.
 |---|---|---|
 | soccer-api | `a9970370` (2026-09-29, main 7d48824: serves frozen article visuals only while intact; + news-subject rule, newsroom health) | `2fd0e5e9` (then `2f8a5b0d`) |
 | soccer-ingest | unchanged by the 2026-09-29 newsroom / PBEcast release (see docs/deployments.jsonl) | — |
-| soccer-news | `ebc8ca19` (main 7d48824: soccer-visuals/1.0.0 code-built article visuals + desk emphasis; 1.4.0 previews, matchday briefs, group watch, readiness-based recaps, registry enablement) | `8e03520d` (then `204dd215`, `abc1fe23`) |
+| soccer-news | `c0ec2b50` (2026-10-04 20:28Z, RC2.1 = main 2e24eb9: published-season reads, newsroom health truth, explicit league-phase vars fail closed, domestic claim bans, admin review mode, soccer-quality/2.1.1 + soccer-desk/2.1.1; 5 publishing competitions) | `fc7b1337` |
 
 Rollback: `cd workers/<worker> && npx wrangler versions deploy <rollback>@100% --yes`. Web rollback: Vercel instant rollback to the previous production deployment.
 
@@ -207,7 +207,7 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
 - Known gap: Nations League 2024/25 (published) has 134 past matches with status unknown (an earlier history run never
   detailed them); acceptance fails it on that check. V2.1 would hold on them if switched on.
 
-## Article market — writer freeze + forced preview (2026-10-04, code on main, soccer-news NOT deployed)
+## Article market — writer freeze + forced preview (2026-10-04) — REMOVED FROM MAIN in 10fd267 (RC2 reconcile); recoverable from tag soccer-news-rc1; never deployed
 
 - `workers/soccer-news/src/market-freeze.js` (soccer-article-market-freeze/1): each newsroom run (never dry) reads
   propsports-markets `/v1/article-market/soccer/:match?published_at=<original>` through the new `MARKETS` Service
@@ -220,3 +220,14 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
   (same materiality bar, packet, gates, ONE paid desk attempt, same story key so the natural 24 h preview is a
   duplicate). `&dry=1` = zero model calls, zero writes. Does not overwrite `news:last_run`.
 - Deploy is gated with the rest of the undeployed newsroom on main (live soccer-news fc7b1337 = 6fec521).
+
+## soccer-news RC2.1 (LIVE 2026-10-04 20:28Z) and the competition-runner program
+
+- `c0ec2b50` = main `2e24eb9` (ledger `9a501ec`), rollback `fc7b1337`. UCL gate = fail-closed canary (no qualifying
+  material -> no story, no write, no model call), accepted by the owner. Packet V4 / market freeze / desk 2.2-2.3
+  are NOT in production and not on main.
+- Runner program (docs/COMPETITION_DESKS.md): ONE Worker, ONE codebase, one logically independent runner per
+  competition. Phase 1 = `runCompetition(store, slug, ctx)` + orchestrator, behaviour-identical (parity:
+  tests/news-runner-parity.test.js). Enabled newsroom competitions stay exactly MLS, Premier League, Bundesliga,
+  Champions League, Nations League; the nine product lanes and FIFA stay OFF.
+

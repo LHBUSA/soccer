@@ -1,11 +1,44 @@
 # Competition desks: hubs + autonomous newsroom lanes (design, 2026-10-04)
 
-Status: **DESIGN ONLY.** Nothing in this document is enabled or deployed. Principle:
+Status (reconciled 2026-10-05 from production, not from the 10-04 prose): **phase 1 (runner refactor) in release;
+phases 2-6 not live.** Principle:
 
 > ONE Soccer platform, ONE shared hardened newsroom codebase, ONE logically independent intelligence/news engine per
 > competition. No forked Workers, no per-league copies of code.
 
-Everything below is grounded in the code at main `eb33bf9` and production as read on 2026-10-04 ~18:10Z.
+## 0. Reconciliation 2026-10-05 (what changed since this design was written)
+
+Read from `wrangler deployments status`, production `/health` and git, 2026-10-05 ~10:40Z:
+
+- **Production soccer-news is `c0ec2b50` = RC2.1 (main `2e24eb9`, promoted 2026-10-04 20:28Z), rollback `fc7b1337`.**
+  The "held soccer-news deploy" below is RESOLVED: main was reconciled to the RC2 baseline (`10fd267`), Packet V4
+  `preview-depth.js`, desk 2.2.0 and `market-freeze.js` are NOT on main (recoverable from tag `soccer-news-rc1`).
+  Commits after `9a501ec` up to `909c7db` are footer-only (`src/components/footer.js`).
+- **Profiles exist for the five live competitions only.** `COMPETITION_PROFILES` maps mls, premier-league,
+  bundesliga (`domestic_league_relegation_playoff` since RC2), uefa-champions-league, uefa-nations-league.
+  There is **no `womens_league` profile** and no mapping for LaLiga, Serie A, Ligue 1, UEL, NWSL, WSL, UWCL, Liga F,
+  Première Ligue or FIFA (the section 4 claim below described excluded RC1 work). `profileFor` returns null for them:
+  each new lane needs its own profile + rules record + gate tests before any canary.
+- `UEL_LEAGUE_PHASE_END` / `UWCL_LEAGUE_PHASE_END` ARE Worker vars now, and a missing boundary var fails closed (the
+  competition is skipped, `config_missing:<VAR>`).
+- The registry `news.blocker` strings for the nine lanes still cite the held deploy; the real remaining blockers are
+  profile + rules + the per-competition canary (section "Turning on the nine lanes"). FIFA stays off on policy.
+- PL / Bundesliga / UCL 0 candidates on 2026-10-05 = international break (last finished 09-20 / 09-20 / 09-10, next
+  10-10 / 10-09 / 10-13), i.e. quiet, not stale; today's health cannot say so per competition (phase 2).
+
+### Phase progress
+
+| Phase | State |
+|---|---|
+| 1 runner refactor (`runCompetition`, same 5, sequential, in process) | code + parity proof on main; release record in `docs/PRODUCTION_STATE.md` |
+| 2 per-competition state + health (KV) | not started on main (waits for phase 1 production observation) |
+| 3-6 | design below |
+
+Phase 1 parity proof: `tests/news-runner-parity.test.js` against `tests/fixtures/news/legacy-pipeline.js` (the RC2.1
+pipeline verbatim) + a frozen production replay (`tests/fixtures/news/runner-parity-prod.json.gz`, captured read-only by
+`scripts/news/runner-parity-capture.mjs`): identical read sequence, summaries, story keys, packets, statuses and writes.
+
+The original design (2026-10-04, main `eb33bf9`, production then `fc7b1337`) follows unchanged.
 
 ## 1-3. Product vs newsroom: the exact mismatch
 
@@ -162,7 +195,7 @@ Proposed (all in code + KV, no new resource):
 Nothing below touches `soccer_articles`, `soccer_news_events` or `soccer_article_evidence` rows; story keys are
 unchanged, so every existing article is a duplicate to the new runners, never a rewrite.
 
-0. **Owner decision on the held newsroom deploy** (the 7 commits since 6fec521). The runner refactor should ship
+0. **DONE 2026-10-04: RC2.1 promoted (c0ec2b50).** ~~Owner decision on the held newsroom deploy~~ (the 7 commits since 6fec521). The runner refactor should ship
    AFTER that deploy is accepted, never bundled with it, so each release has one reason to roll back.
 1. **Refactor, behaviour-identical** (one PR-sized commit): extract `runCompetition`; orchestrator runs the same 5
    competitions **sequentially in-process** first. Parity test: for a frozen PGlite fixture, old `runNews` and new
