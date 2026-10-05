@@ -21,7 +21,7 @@ evidence are the source of truth; nothing here comes only from chat memory.
 |---|---|---|
 | soccer-api | `a9970370` (2026-09-29, main 7d48824: serves frozen article visuals only while intact; + news-subject rule, newsroom health) | `2fd0e5e9` (then `2f8a5b0d`) |
 | soccer-ingest | unchanged by the 2026-09-29 newsroom / PBEcast release (see docs/deployments.jsonl) | — |
-| soccer-news | `c0ec2b50` (2026-10-04 20:28Z, RC2.1 = main 2e24eb9: published-season reads, newsroom health truth, explicit league-phase vars fail closed, domestic claim bans, admin review mode, soccer-quality/2.1.1 + soccer-desk/2.1.1; 5 publishing competitions) | `fc7b1337` |
+| soccer-news | `2eaf6b80` (2026-10-05 11:27Z, main 8292d10 = RC2.1 + phase 1 competition runner, behaviour-identical; OBSERVATION PENDING) on top of `c0ec2b50` (2026-10-04 20:28Z, RC2.1 = main 2e24eb9: published-season reads, newsroom health truth, explicit league-phase vars fail closed, domestic claim bans, admin review mode, soccer-quality/2.1.1 + soccer-desk/2.1.1; 5 publishing competitions) | `fc7b1337` |
 
 Rollback: `cd workers/<worker> && npx wrangler versions deploy <rollback>@100% --yes`. Web rollback: Vercel instant rollback to the previous production deployment.
 
@@ -228,6 +228,8 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
   are NOT in production and not on main.
 - Runner program (docs/COMPETITION_DESKS.md): ONE Worker, ONE codebase, one logically independent runner per
   competition. Phase 1 = `runCompetition(store, slug, ctx)` + orchestrator, behaviour-identical (parity:
-  tests/news-runner-parity.test.js). Enabled newsroom competitions stay exactly MLS, Premier League, Bundesliga,
+  tests/news-runner-parity.test.js). Phase 1: CODE COMPLETE (8292d10), PRODUCTION LIVE `2eaf6b80` 2026-10-05 11:27Z
+  (rollback `c0ec2b50`), OBSERVATION PENDING. Pre-release dark `b9831fdb` and post-release production dry runs were
+  byte-identical to live `c0ec2b50`'s dry run (14 candidates, 0 new, all duplicates). Enabled newsroom competitions stay exactly MLS, Premier League, Bundesliga,
   Champions League, Nations League; the nine product lanes and FIFA stay OFF.
 

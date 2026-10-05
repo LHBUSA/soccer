@@ -1,7 +1,7 @@
 # Competition desks: hubs + autonomous newsroom lanes (design, 2026-10-04)
 
-Status (reconciled 2026-10-05 from production, not from the 10-04 prose): **phase 1 (runner refactor) in release;
-phases 2-6 not live.** Principle:
+Status (reconciled 2026-10-05 from production, not from the 10-04 prose): **phase 1 (runner refactor) CODE COMPLETE +
+PRODUCTION LIVE (`2eaf6b80`, 2026-10-05 11:27Z), OBSERVATION PENDING; phases 2-6 not live.** Principle:
 
 > ONE Soccer platform, ONE shared hardened newsroom codebase, ONE logically independent intelligence/news engine per
 > competition. No forked Workers, no per-league copies of code.
@@ -30,8 +30,8 @@ Read from `wrangler deployments status`, production `/health` and git, 2026-10-0
 
 | Phase | State |
 |---|---|
-| 1 runner refactor (`runCompetition`, same 5, sequential, in process) | code + parity proof on main; release record in `docs/PRODUCTION_STATE.md` |
-| 2 per-competition state + health (KV) | not started on main (waits for phase 1 production observation) |
+| 1 runner refactor (`runCompetition`, same 5, sequential, in process) | CODE COMPLETE (main `8292d10`, parity proof) · PRODUCTION LIVE soccer-news `2eaf6b80` 2026-10-05 11:27Z (rollback `c0ec2b50`) · OBSERVATION PENDING (gate = several real cron cycles with unchanged newsroom semantics, owner 2026-10-05) |
+| 2 per-competition state + health (KV) | code on branch `soccer-news-phase2` only; deploy waits for the phase 1 observation gate |
 | 3-6 | design below |
 
 Phase 1 parity proof: `tests/news-runner-parity.test.js` against `tests/fixtures/news/legacy-pipeline.js` (the RC2.1
