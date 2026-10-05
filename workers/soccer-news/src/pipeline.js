@@ -17,6 +17,7 @@ import { ROUTER_VERSION } from './ai-router.js';
 import { uuidv5 } from '../../shared/ids.js';
 import { chunkArr } from '../../soccer-ingest/src/store.js';
 import { missingPhaseConfig } from './profiles.js';
+import { seasonFacts } from './runner-state.js';
 
 // NEWS ENABLEMENT has ONE source of truth: data/registry/competitions.json `news` (enabled + the story
 // types each competition supports). Not coupled to a provider lane flag: a competition can be canonical
@@ -29,17 +30,18 @@ export const storiesFor = slug => NEWS_REGISTRY.find(c => c.slug === slug)?.stor
 // -> gates -> publish | HOLD. This is the per-competition body runNews ran inside its loop up to RC2.1 (2e24eb9),
 // moved unchanged: same detectors, story keys (event id = uuidv5("news_event:" + key)), dedupe, per-run cap, packets,
 // gates and writes (tests/news-runner-parity.test.js proves it against the frozen RC2.1 pipeline).
-// Returns { slug, out, routing }: `out` is the competition's summary entry (null = a forced preview run whose fixture is
-// not in this competition's season: no entry, as before); `routing` counts this runner's desk routes.
+// Returns { slug, out, routing, facts }: `out` is the competition's summary entry (null = a forced preview run whose fixture
+// is not in this competition's season: no entry, as before); `routing` counts this runner's desk routes; `facts` =
+// runner-state.js seasonFacts of the season it loaded (pure, no extra read; observational state only, phase 2).
 export async function runCompetition(store, slug, { now = Date.now(), env = {}, windowDays = 4, maxPerCompetition = 12, dry = false, cfg = {}, previewMatch = null, review = false } = {}) {
   const routing = { lanes: {}, reasons: {} };
   // Fail closed: a competition whose league-phase boundary var is missing is skipped (no hidden code default).
   const missingCfg = missingPhaseConfig(slug, cfg);
-  if (missingCfg) return { slug, out: { skipped: `config_missing:${missingCfg}`, candidates: 0, new: 0, duplicates: 0, published: 0, held: 0 }, routing };
+  if (missingCfg) return { slug, out: { skipped: `config_missing:${missingCfg}`, candidates: 0, new: 0, duplicates: 0, published: 0, held: 0 }, routing, facts: null };
   const S = await loadSeason(store, slug);
-  if (previewMatch && !S?.matches.some(m => m.id === previewMatch)) return { slug, out: null, routing };
+  if (previewMatch && !S?.matches.some(m => m.id === previewMatch)) return { slug, out: null, routing, facts: null };
   const out = { candidates: 0, new: 0, duplicates: 0, published: 0, held: 0, holds: {}, by_class: {}, stories: [] };
-  if (!S) { out.skipped = 'no season'; return { slug, out, routing }; }
+  if (!S) { out.skipped = 'no season'; return { slug, out, routing, facts: null }; }
   out.season = S.season.label;
   out.last_match_update = S.matches.reduce((x, m) => (m.updated_at && (!x || String(m.updated_at) > x) ? String(m.updated_at) : x), null);
   const stories = storiesFor(slug); const diag = {};
@@ -98,7 +100,7 @@ export async function runCompetition(store, slug, { now = Date.now(), env = {}, 
       gate_results: { draft: gates.results, desk: editorial?.results || null }, status, hold_reasons: holdReasons, hero_media: null, published_at: status === 'published' ? new Date(now).toISOString() : null,
     }]);
   }
-  return { slug, out, routing };
+  return { slug, out, routing, facts: seasonFacts(S, now) };
 }
 
 // The run summary every orchestrated tick reports (news:last_run, /health), and how one runner's result folds into it.
@@ -111,16 +113,29 @@ export function mergeRun(summary, { slug, out, routing }) {
   return summary;
 }
 
-// ORCHESTRATOR (phase 1: the same competitions, sequentially, in process, in registry order). One runner's exception
-// still fails the whole tick exactly as before; per-competition isolation is a later, separately released phase.
+// Observation hook (phase 2 per-competition state): called after each runner with { slug, result, elapsedMs } or, when
+// the runner threw, { slug, error, elapsedMs } before the error propagates. A hook failure is logged and swallowed: it can
+// never change, retry, publish or hold anything, and it never turns a good tick into a failed one.
+async function observe(hook, x) {
+  if (!hook) return;
+  try { await hook(x); } catch (e) { console.error('competition state hook failed', x.slug, String(e?.message || e).slice(0, 160)); }
+}
+
+// ORCHESTRATOR (the same competitions, sequentially, in process, in registry order). One runner's exception still fails
+// the whole tick exactly as before; per-competition isolation is a later, separately released phase.
 export async function runNews(store, opts = {}) {
-  const { now = Date.now(), env = {}, competitions = NEWS_COMPETITIONS, previewMatch = null, review = false } = opts;
+  const { now = Date.now(), env = {}, competitions = NEWS_COMPETITIONS, previewMatch = null, review = false, onCompetition = null } = opts;
   // previewMatch (admin): build ONLY that fixture's preview (previews.js FORCED_PREVIEW_MAX_MS) in the competition whose
   // season holds it. review (admin, owner review): the desk runs as for a new story, but NOTHING is written and an
   // existing story key does not exclude the candidate. Review needs previewMatch (one story, bounded cost).
   if (review && !previewMatch) throw new Error('review needs previewMatch');
   const summary = newRunSummary(env, now);
-  for (const slug of competitions) mergeRun(summary, await runCompetition(store, slug, { ...opts, now, env }));
+  for (const slug of competitions) {
+    const t0 = Date.now(); let r;
+    try { r = await runCompetition(store, slug, { ...opts, now, env }); } catch (error) { await observe(onCompetition, { slug, error, elapsedMs: Date.now() - t0 }); throw error; }
+    mergeRun(summary, r);
+    await observe(onCompetition, { slug, result: r, elapsedMs: Date.now() - t0 });
+  }
   return summary;
 }
 

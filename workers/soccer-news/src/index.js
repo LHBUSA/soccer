@@ -5,13 +5,15 @@
 // Secrets: SOCCER_MODEL_SUPABASE_URL, SOCCER_MODEL_SUPABASE_SERVICE_ROLE_KEY, NEWS_ADMIN_TOKEN.
 // Optional (off by default): NEWS_LLM=on + ANTHROPIC_API_KEY for the editorial pass.
 import { storeFromEnv } from '../../shared/postgrest.js';
-import { runNews, reeditArticle } from './pipeline.js';
+import { runNews, reeditArticle, NEWS_COMPETITIONS, storiesFor } from './pipeline.js';
 import { deskAvailable, deskRequired, DESK_VERSION, QUALITY_VERSION } from './desk.js';
 import { PACKET_V3, DEPTH_VERSION } from './depth.js';
 import { callsForDay, costReport, readCallLog, WORKER_VERSION } from './openai-cost.js';
 import { ROUTER_VERSION, aiConfig } from './ai-router.js';
-import { publicationDiagnostic } from './news-health.js';
-import { leaguePhaseCfg } from './profiles.js';
+import { publicationDiagnostic, competitionDiagnostic } from './news-health.js';
+import { leaguePhaseCfg, profileFor } from './profiles.js';
+import { competitionState, stateKey, parseState, STATE_VERSION, REGISTRY_VERSION } from './runner-state.js';
+import registryData from '../../../data/registry/competitions.json' with { type: 'json' };
 
 // The only production schedule. The temporary backlog-migration cron (*/10) is retired: there is no automatic OpenAI
 // backlog processing. Re-edits are manual only (POST /v1/admin/reedit, scripts/news/reedit-backlog.mjs).
@@ -27,15 +29,61 @@ function authorized(req, env) {
   return diff === 0;
 }
 
-async function run(env, opts = {}) {
-  const store = storeFromEnv(env);
+// Per-competition state (phase 2): after each runner of a real newsroom run, `news:comp:<slug>:state` (runner-state.js).
+// Observational only. A KV write failure is counted and logged, never retried into the run and never thrown: the
+// runner already finished (its publication/holds stand exactly as without state), and health reports the stale or
+// missing state as a failure of that competition. Dry, review and forced-preview runs write no state.
+export function stateRecorder(kv, { now, cfg }) {
+  const writes = { ok: 0, failed: 0, errors: [] };
+  const hook = async ({ slug, result = null, error = null, elapsedMs }) => {
+    const st = competitionState({ slug, result, error, facts: result?.facts || null, now, elapsedMs, cron: NEWS_CRON, cfg, stories: storiesFor(slug) });
+    try { await kv.put(stateKey(slug), JSON.stringify(st)); writes.ok += 1; } catch (e) { writes.failed += 1; writes.errors.push(`${slug}: ${String(e?.message || e).slice(0, 120)}`); console.error('competition state write failed', slug, String(e?.message || e).slice(0, 160)); }
+  };
+  return { hook, writes };
+}
+
+// `store` is a test seam only (PGlite); the Worker always builds it from env.
+export async function run(env, { store: injected = null, ...opts } = {}) {
+  const store = injected || storeFromEnv(env);
   if (!store) throw new Error('store not configured');
   const t0 = Date.now();
-  // League-phase boundaries come only from Worker vars (a missing or invalid var skips that competition).
-  const summary = await runNews(store, { env, cfg: leaguePhaseCfg(env), ...opts });
+  const cfg = leaguePhaseCfg(env); // league-phase boundaries come only from Worker vars (a missing var skips that competition)
+  const real = !opts.dry && !opts.review && !opts.previewMatch; // a forced / review / dry run is not the newsroom's run
+  const now = opts.now ?? Date.now();
+  const rec = env.SOCCER_STATE && real ? stateRecorder(env.SOCCER_STATE, { now, cfg }) : null;
+  const summary = await runNews(store, { env, cfg, ...opts, now, ...(rec ? { onCompetition: rec.hook } : {}) });
   summary.elapsed_ms = Date.now() - t0;
-  if (env.SOCCER_STATE && !opts.dry && !opts.review && !opts.previewMatch) await env.SOCCER_STATE.put('news:last_run', JSON.stringify(summary)); // a forced / review run is not the newsroom's run
+  if (rec) summary.state_writes = { version: STATE_VERSION, ok: rec.writes.ok, failed: rec.writes.failed, ...(rec.writes.errors.length ? { errors: rec.writes.errors } : {}) };
+  if (env.SOCCER_STATE && real) await env.SOCCER_STATE.put('news:last_run', JSON.stringify(summary));
   return summary;
+}
+
+// Per-competition health view (additive; the aggregate state and status code are unchanged). Newest published story per
+// competition from the newsroom's own rows (articles -> news events -> competition id); a read failure is reported.
+export async function competitionsHealth(env, { tick, store, now = Date.now() }) {
+  const raws = await Promise.all(NEWS_COMPETITIONS.map(async slug => { try { return [slug, env.SOCCER_STATE ? await env.SOCCER_STATE.get(stateKey(slug)) : null, null]; } catch (e) { return [slug, null, String(e?.message || e).slice(0, 120)]; } }));
+  const states = Object.fromEntries(raws.map(([slug, raw]) => [slug, parseState(raw).state || null]));
+  let newestByComp = {}; let newestError = null;
+  try {
+    if (store) {
+      const pub = await store.select('soccer_articles', { columns: ['news_event_id', 'published_at'], eq: { status: 'published' }, order: 'published_at.desc', limit: 500 });
+      const ids = [...new Set(pub.map(a => a.news_event_id))];
+      const evComp = new Map();
+      for (let i = 0; i < ids.length; i += 100) for (const e of await store.select('soccer_news_events', { columns: ['id', 'competition_id'], in: { id: ids.slice(i, i + 100) } })) evComp.set(e.id, e.competition_id);
+      for (const a of pub) { const c = evComp.get(a.news_event_id); if (c && !newestByComp[c]) newestByComp[c] = a.published_at; }
+    }
+  } catch (e) { newestError = String(e?.message || e).slice(0, 160); newestByComp = {}; }
+  // which competition failed the latest tick (its state carries the tick's timestamp and outcome failed)
+  const failedThisTick = tick ? Object.values(states).find(s => s && s.last_run_outcome === 'failed' && s.last_run_at === tick.at)?.slug || null : null;
+  const competitions = {};
+  for (const [slug, raw, readError] of raws) {
+    const st = states[slug];
+    const newest = st?.competition_id ? newestByComp[st.competition_id] || null : null;
+    competitions[slug] = { ...competitionDiagnostic({ slug, raw, readError, tick, newestPublishedAt: newest, now, failedThisTick }), detail: st };
+  }
+  const off = registryData.competitions.filter(c => !c.news?.enabled).map(c => ({ slug: c.slug, mode: 'off', publishing_profile: profileFor(c.slug, new Date(now).toISOString(), {}) ? 'mapped' : 'none', blocker: c.news?.blocker || null }));
+  const vals = Object.values(competitions);
+  return { version: STATE_VERSION, registry_version: REGISTRY_VERSION, ok: vals.every(c => c.ok), failing: vals.filter(c => !c.ok).map(c => c.slug), ...(newestError ? { newest_published_error: newestError } : {}), competitions, off };
 }
 
 // Admin re-edit trigger (ai-router.js allow-list): canary > dry_run > scope sweep (backfill) > named-slug admin re-edit.
@@ -57,7 +105,9 @@ export default {
       try { const store = storeFromEnv(env); const [a] = store ? await store.select('soccer_articles', { columns: ['published_at'], eq: { status: 'published' }, order: 'published_at.desc', limit: 1 }) : []; newest = a?.published_at || null; } catch (e) { newestError = String(e.message || e).slice(0, 160); }
       const publication = { ...publicationDiagnostic({ tick, last, newestPublishedAt: newest }), ...(newestError ? { newest_published_error: newestError } : {}) };
       const fresh = publication.ok;
-      return json({ ok: !!fresh, state: publication.state, message: publication.message, publication, version: WORKER_VERSION, news_enabled: env.NEWS_ENABLED === 'on', last_tick: tick, desk: { version: DESK_VERSION, quality: QUALITY_VERSION, packet: PACKET_V3, depth: DEPTH_VERSION, required: deskRequired(env), available: deskAvailable(env) }, ai: (() => { const c = aiConfig(env); return { router: ROUTER_VERSION, enabled: c.enabled, standard_model: c.standardModel, standard_max_output: c.standardMaxOutput, flagship_enabled: c.flagshipEnabled, flagship_classes: [...c.flagshipClasses] }; })(), last_run: last }, fresh ? 200 : 503);
+      let competitions;
+      try { competitions = await competitionsHealth(env, { tick, store: storeFromEnv(env) }); } catch (e) { competitions = { ok: false, error: String(e?.message || e).slice(0, 160) }; }
+      return json({ ok: !!fresh, state: publication.state, message: publication.message, publication, version: WORKER_VERSION, news_enabled: env.NEWS_ENABLED === 'on', last_tick: tick, desk: { version: DESK_VERSION, quality: QUALITY_VERSION, packet: PACKET_V3, depth: DEPTH_VERSION, required: deskRequired(env), available: deskAvailable(env) }, ai: (() => { const c = aiConfig(env); return { router: ROUTER_VERSION, enabled: c.enabled, standard_model: c.standardModel, standard_max_output: c.standardMaxOutput, flagship_enabled: c.flagshipEnabled, flagship_classes: [...c.flagshipClasses] }; })(), last_run: last, competitions }, fresh ? 200 : 503);
     }
     if (url.pathname === '/v1/run' && req.method === 'POST') {
       if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);

@@ -156,6 +156,35 @@ per-competition `stale` flag (a `live` competition with fixtures but no runner i
 Phase 2 (owner-approved migration, optional): nullable `competition_slug` on `soccer_news_openai_usage` so spend per
 competition is durable, not just in KV. Same rollback-only proof flow as migration 1300.
 
+### Phase 2 as implemented (branch `soccer-news-phase2`; NOT deployed)
+
+- `workers/soccer-news/src/runner-state.js` (soccer-news-comp-state/1.0.0): after each runner of a REAL run (cron or
+  non-dry `/v1/run`; never dry / review / forced preview) `news:comp:<slug>:state` = slug, mode, activity, last_run_at,
+  last_run_outcome (`ran | failed | skipped_config | no_season`), elapsed_ms, error, next_due_at (next 7,37 tick; every
+  competition still runs every tick), season, competition_id, candidates/new/duplicates/published/held, hold_reasons,
+  by_class, existing {published, held, other, held_reasons}, new_recaps, desk_calls (non-deterministic routes this run),
+  fixtures {live_matches, live_status_stuck, live_kickoffs, fixtures_next_24h, next_fixture_at, upcoming_kickoffs
+  (<= 7 days, max 12), last_finished_at, last_match_update}, recaps {finished_in_window, ready, awaiting_enrichment,
+  too_soon}, enabled_story_classes, profile, versions {engine, gates, desk, quality, packet, router, state},
+  registry_version. Spend per competition is NOT tracked (phase 5).
+- Activity from canonical rows the runner already loaded (zero extra reads): `live` (status live, kick-off <= 6 h ago;
+  older = `live_status_stuck`, never live) > `final_ready` (a NEW ready recap this run) > `matchday` (kick-off <= 12 h)
+  > `pre_match` (<= 26 h) > `post_match` (last result <= 36 h) > `quiet`. Awaiting enrichment is counted, never final_ready.
+- `/health` adds `competitions` (aggregate state + status code unchanged): per enabled competition
+  `news-health.js competitionDiagnostic` = disabled | cron_not_firing | state_missing | state_malformed |
+  state_unreadable | runner_stale (no run within 2 h while active, 6 h while quiet; activity re-derived NOW from the
+  stored fixture timeline) | run_failing | blocked_by_runner_failure (no isolation until phase 3) | config_missing |
+  no_season | publishing | healthy_material_held_by_gates | healthy_no_publishable_material; newest published per
+  competition from articles -> news events -> competition id. `off` lists the 11 OFF competitions with
+  `publishing_profile: none` (no profile is invented).
+- Failure semantics: the state hook runs after the runner finished; a hook / KV failure is logged and counted
+  (`news:last_run.state_writes`), never thrown, never retried into the run; health then reports that competition's
+  state as missing/stale. A runner exception still fails the tick (phase 1 semantics); its state records `failed`.
+- Proof: tests/news-comp-state.test.js (frozen production replay with the recorder == RC2.1 reads/summary/writes;
+  activity, enrichment, live, failure, staleness, persistence-failure, config, /health compatibility);
+  dark preview on production data `scripts/news/comp-state-preview.mjs` ->
+  docs/evidence/news/comp-state-preview-2026-10-05.json.
+
 ## 8. Scheduling model (canonical fixture state; no provider polling)
 
 One canonical read per tick: `soccer_public_matches` for enabled competitions with kickoff in [now - 8 h, now + 26 h],

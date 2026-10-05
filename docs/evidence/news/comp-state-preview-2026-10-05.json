@@ -1,0 +1,549 @@
+{
+ "at": "2026-10-05T11:44:49.197Z",
+ "note": "DRY preview of phase 2 state/health on production data; nothing deployed or written",
+ "reads": 92,
+ "competitions": [
+  "bundesliga",
+  "premier-league",
+  "uefa-champions-league",
+  "uefa-nations-league",
+  "mls"
+ ],
+ "health": {
+  "version": "soccer-news-comp-state/1.0.0",
+  "registry_version": "2026-10-03.13",
+  "ok": true,
+  "failing": [],
+  "competitions": {
+   "bundesliga": {
+    "slug": "bundesliga",
+    "ok": true,
+    "state": "healthy_no_publishable_material",
+    "message": "healthy / quiet (no fixtures due, none live, none recent)",
+    "activity": "quiet",
+    "activity_now": "quiet",
+    "last_run_at": "2026-10-05T11:44:49.197Z",
+    "last_run_age_min": 0,
+    "last_run_outcome": "ran",
+    "newest_published_at": "2026-09-27T21:52:16.69+00:00",
+    "detail": {
+     "slug": "bundesliga",
+     "state_version": "soccer-news-comp-state/1.0.0",
+     "mode": "live",
+     "activity": "quiet",
+     "last_run_at": "2026-10-05T11:44:49.197Z",
+     "last_run_outcome": "ran",
+     "elapsed_ms": 575,
+     "next_due_at": "2026-10-05T12:07:00.000Z",
+     "cadence": "every_tick",
+     "season": "2026/27",
+     "competition_id": "b66f80c5-850a-5288-aa54-b63df47d131b",
+     "candidates": 0,
+     "new": 0,
+     "duplicates": 0,
+     "published": 0,
+     "held": 0,
+     "hold_reasons": {},
+     "by_class": {},
+     "existing": {
+      "published": 0,
+      "held": 0,
+      "other": 0,
+      "held_reasons": {}
+     },
+     "new_recaps": 0,
+     "desk_calls": 0,
+     "fixtures": {
+      "live_matches": 0,
+      "live_status_stuck": 0,
+      "live_kickoffs": [],
+      "fixtures_next_24h": 0,
+      "next_fixture_at": "2026-10-09T18:30:00.000Z",
+      "upcoming_kickoffs": [
+       "2026-10-09T18:30:00.000Z",
+       "2026-10-10T13:30:00.000Z",
+       "2026-10-10T13:30:00.000Z",
+       "2026-10-10T13:30:00.000Z",
+       "2026-10-10T13:30:00.000Z",
+       "2026-10-10T13:30:00.000Z",
+       "2026-10-10T16:30:00.000Z",
+       "2026-10-11T13:30:00.000Z",
+       "2026-10-11T15:30:00.000Z"
+      ],
+      "last_finished_at": "2026-09-20T17:30:00.000Z",
+      "last_match_update": "2026-09-27T16:23:02.25843+00:00"
+     },
+     "recaps": {
+      "finished_in_window": 0,
+      "ready": 0,
+      "awaiting_enrichment": 0,
+      "too_soon": 0
+     },
+     "enabled_story_classes": [
+      "match_recap",
+      "match_preview",
+      "matchday_brief",
+      "player_form",
+      "team_trend",
+      "table_watch"
+     ],
+     "profile": "domestic_league_relegation_playoff",
+     "versions": {
+      "engine": "soccer-news-engine/2.0.0",
+      "gates": "soccer-gates/2.0.0",
+      "desk": "soccer-desk/2.1.1",
+      "quality": "soccer-quality/2.1.1",
+      "packet": "soccer-packet/3.0.0",
+      "router": "soccer-ai-router/1.0.0",
+      "state": "soccer-news-comp-state/1.0.0"
+     },
+     "registry_version": "2026-10-03.13"
+    }
+   },
+   "premier-league": {
+    "slug": "premier-league",
+    "ok": true,
+    "state": "healthy_no_publishable_material",
+    "message": "healthy / quiet (no fixtures due, none live, none recent)",
+    "activity": "quiet",
+    "activity_now": "quiet",
+    "last_run_at": "2026-10-05T11:44:49.197Z",
+    "last_run_age_min": 0,
+    "last_run_outcome": "ran",
+    "newest_published_at": "2026-09-27T21:52:16.69+00:00",
+    "detail": {
+     "slug": "premier-league",
+     "state_version": "soccer-news-comp-state/1.0.0",
+     "mode": "live",
+     "activity": "quiet",
+     "last_run_at": "2026-10-05T11:44:49.197Z",
+     "last_run_outcome": "ran",
+     "elapsed_ms": 688,
+     "next_due_at": "2026-10-05T12:07:00.000Z",
+     "cadence": "every_tick",
+     "season": "2026/27",
+     "competition_id": "54822e53-a91c-5d6f-8786-02f9d7212b8b",
+     "candidates": 0,
+     "new": 0,
+     "duplicates": 0,
+     "published": 0,
+     "held": 0,
+     "hold_reasons": {},
+     "by_class": {},
+     "existing": {
+      "published": 0,
+      "held": 0,
+      "other": 0,
+      "held_reasons": {}
+     },
+     "new_recaps": 0,
+     "desk_calls": 0,
+     "fixtures": {
+      "live_matches": 0,
+      "live_status_stuck": 0,
+      "live_kickoffs": [],
+      "fixtures_next_24h": 0,
+      "next_fixture_at": "2026-10-10T11:30:00.000Z",
+      "upcoming_kickoffs": [
+       "2026-10-10T11:30:00.000Z",
+       "2026-10-10T14:00:00.000Z",
+       "2026-10-10T14:00:00.000Z",
+       "2026-10-10T14:00:00.000Z",
+       "2026-10-10T14:00:00.000Z",
+       "2026-10-10T16:30:00.000Z",
+       "2026-10-11T13:00:00.000Z",
+       "2026-10-11T13:00:00.000Z",
+       "2026-10-11T15:30:00.000Z"
+      ],
+      "last_finished_at": "2026-09-20T15:30:00.000Z",
+      "last_match_update": "2026-09-27T17:36:23.524+00:00"
+     },
+     "recaps": {
+      "finished_in_window": 0,
+      "ready": 0,
+      "awaiting_enrichment": 0,
+      "too_soon": 0
+     },
+     "enabled_story_classes": [
+      "match_recap",
+      "match_preview",
+      "matchday_brief",
+      "player_form",
+      "team_trend",
+      "table_watch"
+     ],
+     "profile": "domestic_european_league",
+     "versions": {
+      "engine": "soccer-news-engine/2.0.0",
+      "gates": "soccer-gates/2.0.0",
+      "desk": "soccer-desk/2.1.1",
+      "quality": "soccer-quality/2.1.1",
+      "packet": "soccer-packet/3.0.0",
+      "router": "soccer-ai-router/1.0.0",
+      "state": "soccer-news-comp-state/1.0.0"
+     },
+     "registry_version": "2026-10-03.13"
+    }
+   },
+   "uefa-champions-league": {
+    "slug": "uefa-champions-league",
+    "ok": true,
+    "state": "healthy_no_publishable_material",
+    "message": "healthy / quiet (no fixtures due, none live, none recent)",
+    "activity": "quiet",
+    "activity_now": "quiet",
+    "last_run_at": "2026-10-05T11:44:49.197Z",
+    "last_run_age_min": 0,
+    "last_run_outcome": "ran",
+    "newest_published_at": null,
+    "detail": {
+     "slug": "uefa-champions-league",
+     "state_version": "soccer-news-comp-state/1.0.0",
+     "mode": "live",
+     "activity": "quiet",
+     "last_run_at": "2026-10-05T11:44:49.197Z",
+     "last_run_outcome": "ran",
+     "elapsed_ms": 335,
+     "next_due_at": "2026-10-05T12:07:00.000Z",
+     "cadence": "every_tick",
+     "season": "2026/27",
+     "competition_id": "4c592bbf-7911-5cf2-9ee8-c31872b4689f",
+     "candidates": 0,
+     "new": 0,
+     "duplicates": 0,
+     "published": 0,
+     "held": 0,
+     "hold_reasons": {},
+     "by_class": {},
+     "existing": {
+      "published": 0,
+      "held": 0,
+      "other": 0,
+      "held_reasons": {}
+     },
+     "new_recaps": 0,
+     "desk_calls": 0,
+     "fixtures": {
+      "live_matches": 0,
+      "live_status_stuck": 0,
+      "live_kickoffs": [],
+      "fixtures_next_24h": 0,
+      "next_fixture_at": "2026-10-13T16:45:00.000Z",
+      "upcoming_kickoffs": [],
+      "last_finished_at": "2026-09-10T19:00:00.000Z",
+      "last_match_update": "2026-09-27T17:59:43.506+00:00"
+     },
+     "recaps": {
+      "finished_in_window": 0,
+      "ready": 0,
+      "awaiting_enrichment": 0,
+      "too_soon": 0
+     },
+     "enabled_story_classes": [
+      "match_recap",
+      "match_preview",
+      "matchday_brief",
+      "player_form",
+      "table_watch"
+     ],
+     "profile": "ucl_league_phase",
+     "versions": {
+      "engine": "soccer-news-engine/2.0.0",
+      "gates": "soccer-gates/2.0.0",
+      "desk": "soccer-desk/2.1.1",
+      "quality": "soccer-quality/2.1.1",
+      "packet": "soccer-packet/3.0.0",
+      "router": "soccer-ai-router/1.0.0",
+      "state": "soccer-news-comp-state/1.0.0"
+     },
+     "registry_version": "2026-10-03.13"
+    }
+   },
+   "uefa-nations-league": {
+    "slug": "uefa-nations-league",
+    "ok": true,
+    "state": "healthy_material_held_by_gates",
+    "message": "healthy / material detected but held by publication gates",
+    "activity": "matchday",
+    "activity_now": "matchday",
+    "last_run_at": "2026-10-05T11:44:49.197Z",
+    "last_run_age_min": 0,
+    "last_run_outcome": "ran",
+    "newest_published_at": "2026-10-03T19:07:57+00:00",
+    "detail": {
+     "slug": "uefa-nations-league",
+     "state_version": "soccer-news-comp-state/1.0.0",
+     "mode": "live",
+     "activity": "matchday",
+     "last_run_at": "2026-10-05T11:44:49.197Z",
+     "last_run_outcome": "ran",
+     "elapsed_ms": 5452,
+     "next_due_at": "2026-10-05T12:07:00.000Z",
+     "cadence": "every_tick",
+     "season": "2026/27",
+     "competition_id": "d1f49cf0-a292-58fc-b3cd-d3b8e1dc7fad",
+     "candidates": 12,
+     "new": 0,
+     "duplicates": 12,
+     "published": 0,
+     "held": 0,
+     "hold_reasons": {},
+     "by_class": {
+      "match_recap": 3,
+      "player_form": 6,
+      "match_preview": 2,
+      "matchday_brief": 1
+     },
+     "existing": {
+      "published": 2,
+      "held": 10,
+      "other": 0,
+      "held_reasons": {
+       "editorial:new_number_not_in_packet": 8,
+       "editorial:new_player_or_team": 2,
+       "editorial:thin_output": 1,
+       "editorial:unsupported_record": 2
+      }
+     },
+     "new_recaps": 0,
+     "desk_calls": 0,
+     "fixtures": {
+      "live_matches": 0,
+      "live_status_stuck": 0,
+      "live_kickoffs": [],
+      "fixtures_next_24h": 8,
+      "next_fixture_at": "2026-10-05T16:00:00.000Z",
+      "upcoming_kickoffs": [
+       "2026-10-05T16:00:00.000Z",
+       "2026-10-05T18:45:00.000Z",
+       "2026-10-05T18:45:00.000Z",
+       "2026-10-05T18:45:00.000Z",
+       "2026-10-05T18:45:00.000Z",
+       "2026-10-05T18:45:00.000Z",
+       "2026-10-05T18:45:00.000Z",
+       "2026-10-05T18:45:00.000Z",
+       "2026-10-06T14:00:00.000Z",
+       "2026-10-06T18:45:00.000Z",
+       "2026-10-06T18:45:00.000Z",
+       "2026-10-06T18:45:00.000Z"
+      ],
+      "last_finished_at": "2026-10-04T18:45:00.000Z",
+      "last_match_update": "2026-10-04T22:01:38.125+00:00"
+     },
+     "recaps": {
+      "finished_in_window": 34,
+      "ready": 34,
+      "awaiting_enrichment": 0,
+      "too_soon": 0
+     },
+     "enabled_story_classes": [
+      "match_recap",
+      "match_preview",
+      "matchday_brief",
+      "player_form",
+      "table_watch"
+     ],
+     "profile": "nations_league",
+     "versions": {
+      "engine": "soccer-news-engine/2.0.0",
+      "gates": "soccer-gates/2.0.0",
+      "desk": "soccer-desk/2.1.1",
+      "quality": "soccer-quality/2.1.1",
+      "packet": "soccer-packet/3.0.0",
+      "router": "soccer-ai-router/1.0.0",
+      "state": "soccer-news-comp-state/1.0.0"
+     },
+     "registry_version": "2026-10-03.13"
+    }
+   },
+   "mls": {
+    "slug": "mls",
+    "ok": true,
+    "state": "healthy_material_held_by_gates",
+    "message": "healthy / material detected but held by publication gates",
+    "activity": "quiet",
+    "activity_now": "quiet",
+    "last_run_at": "2026-10-05T11:44:49.197Z",
+    "last_run_age_min": 0,
+    "last_run_outcome": "ran",
+    "newest_published_at": "2026-10-02T03:37:31+00:00",
+    "detail": {
+     "slug": "mls",
+     "state_version": "soccer-news-comp-state/1.0.0",
+     "mode": "live",
+     "activity": "quiet",
+     "last_run_at": "2026-10-05T11:44:49.197Z",
+     "last_run_outcome": "ran",
+     "elapsed_ms": 9851,
+     "next_due_at": "2026-10-05T12:07:00.000Z",
+     "cadence": "every_tick",
+     "season": "2026",
+     "competition_id": "d370dec9-4da9-5433-b2bc-e32958287728",
+     "candidates": 2,
+     "new": 0,
+     "duplicates": 2,
+     "published": 0,
+     "held": 0,
+     "hold_reasons": {},
+     "by_class": {
+      "team_trend": 1,
+      "player_form": 1
+     },
+     "existing": {
+      "published": 1,
+      "held": 1,
+      "other": 0,
+      "held_reasons": {
+       "editorial:new_number_not_in_packet": 1
+      }
+     },
+     "new_recaps": 0,
+     "desk_calls": 0,
+     "fixtures": {
+      "live_matches": 0,
+      "live_status_stuck": 0,
+      "live_kickoffs": [],
+      "fixtures_next_24h": 0,
+      "next_fixture_at": "2026-10-07T00:30:00.000Z",
+      "upcoming_kickoffs": [
+       "2026-10-07T00:30:00.000Z",
+       "2026-10-10T17:00:00.000Z",
+       "2026-10-10T18:30:00.000Z",
+       "2026-10-10T23:30:00.000Z",
+       "2026-10-10T23:30:00.000Z",
+       "2026-10-10T23:30:00.000Z",
+       "2026-10-10T23:30:00.000Z",
+       "2026-10-10T23:30:00.000Z",
+       "2026-10-10T23:30:00.000Z",
+       "2026-10-10T23:30:00.000Z",
+       "2026-10-11T00:30:00.000Z",
+       "2026-10-11T00:30:00.000Z"
+      ],
+      "last_finished_at": "2026-10-02T01:30:00.000Z",
+      "last_match_update": "2026-10-02T03:33:33.757+00:00"
+     },
+     "recaps": {
+      "finished_in_window": 1,
+      "ready": 1,
+      "awaiting_enrichment": 0,
+      "too_soon": 0
+     },
+     "enabled_story_classes": [
+      "match_recap",
+      "match_preview",
+      "matchday_brief",
+      "player_form",
+      "team_trend",
+      "table_watch"
+     ],
+     "profile": "mls",
+     "versions": {
+      "engine": "soccer-news-engine/2.0.0",
+      "gates": "soccer-gates/2.0.0",
+      "desk": "soccer-desk/2.1.1",
+      "quality": "soccer-quality/2.1.1",
+      "packet": "soccer-packet/3.0.0",
+      "router": "soccer-ai-router/1.0.0",
+      "state": "soccer-news-comp-state/1.0.0"
+     },
+     "registry_version": "2026-10-03.13"
+    }
+   }
+  },
+  "off": [
+   {
+    "slug": "la-liga",
+    "mode": "off",
+    "publishing_profile": "none",
+    "blocker": "Lane live; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
+   },
+   {
+    "slug": "serie-a",
+    "mode": "off",
+    "publishing_profile": "none",
+    "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
+   },
+   {
+    "slug": "ligue-1",
+    "mode": "off",
+    "publishing_profile": "none",
+    "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
+   },
+   {
+    "slug": "fifa-world-cup",
+    "mode": "off",
+    "publishing_profile": "none",
+    "blocker": "Canonical World Cup rows exist from 2026-10-01; the International desk maps fifa-world-cup. Automatic publication stays OFF: the 2026 tournament is complete and no historical recap/backfill policy exists (no newsroom spam). Enabling needs a separate, deliberate policy."
+   },
+   {
+    "slug": "uefa-european-championship",
+    "mode": "off",
+    "publishing_profile": "none",
+    "blocker": "No canonical competition row in production; ESPN lane disabled. No current tournament (next EURO 2028)."
+   },
+   {
+    "slug": "uefa-europa-league",
+    "mode": "off",
+    "publishing_profile": "none",
+    "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
+   },
+   {
+    "slug": "nwsl",
+    "mode": "off",
+    "publishing_profile": "none",
+    "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
+   },
+   {
+    "slug": "womens-super-league",
+    "mode": "off",
+    "publishing_profile": "none",
+    "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
+   },
+   {
+    "slug": "uefa-womens-champions-league",
+    "mode": "off",
+    "publishing_profile": "none",
+    "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
+   },
+   {
+    "slug": "liga-f",
+    "mode": "off",
+    "publishing_profile": "none",
+    "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
+   },
+   {
+    "slug": "premiere-ligue",
+    "mode": "off",
+    "publishing_profile": "none",
+    "blocker": "Lane enabled; newsroom enablement waits for the held soccer-news deploy (owner blind-review picks) and a desk canary for this competition."
+   }
+  ]
+ },
+ "run": {
+  "bundesliga": {
+   "candidates": 0,
+   "new": 0,
+   "duplicates": 0
+  },
+  "premier-league": {
+   "candidates": 0,
+   "new": 0,
+   "duplicates": 0
+  },
+  "uefa-champions-league": {
+   "candidates": 0,
+   "new": 0,
+   "duplicates": 0
+  },
+  "uefa-nations-league": {
+   "candidates": 12,
+   "new": 0,
+   "duplicates": 12
+  },
+  "mls": {
+   "candidates": 2,
+   "new": 0,
+   "duplicates": 2
+  }
+ }
+}
