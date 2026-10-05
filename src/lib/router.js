@@ -13,6 +13,7 @@ export const ROUTES = [
   [/^\/tables\/?$/, 'tables'],
   [/^\/pro\/?$/, 'pro'],
   [/^\/pro\/matches\/([0-9a-f-]{36})\/?$/, 'proMatch'],
+  [/^\/all-access\/?$/, 'allAccess'],
   [/^\/news\/?$/, 'news'],
   [/^\/news\/(mls|premier-league|la-liga|serie-a|ligue-1|champions-league|europa-league|bundesliga|international|fifa|nwsl|wsl|uwcl|liga-f|premiere-ligue)\/?$/, 'newsDesk'],
   [/^\/news\/(mls|premier-league|la-liga|serie-a|ligue-1|champions-league|europa-league|bundesliga|international|fifa|nwsl|wsl|uwcl|liga-f|premiere-ligue)\/([a-z0-9-]{3,200})\/?$/, 'article'],

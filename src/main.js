@@ -16,9 +16,12 @@ import { player, team } from './pages/people.js';
 import * as players from './pages/players.js';
 import { hub as pbecastHub, cast as pbecast } from './pages/pbecast.js';
 import { pro, proMatch } from './pages/pro.js';
+import { allAccess } from './pages/all-access.js';
+import './styles/account.css';
 import { picks as algoPicks, trackRecord } from './pages/algo.js';
 import { networkFooter, applyFooterMembership } from './components/footer.js';
-import { accountButtonLabel, handleVerifiedReturn, openAccount } from './components/account.js';
+import { handleVerifiedReturn, openAccount } from './components/account.js';
+import { LOCAL_ALL_ACCESS_PATH, accountView, headerLabel } from './lib/account-surface.js';
 import { proAccess } from './lib/pro.js';
 import './styles/pbe-membership.css';
 import './vendor/kalshi/kalshi-market-ui.css';
@@ -33,7 +36,7 @@ import { mountScoreTicker } from './components/score-ticker.js';
 initAnalytics();
 mountPreferredSource();
 
-const PAGES = { home, competition, match, competitions, matches, news, newsDesk, article, sources, tables, team, player, players, pbecastHub, pbecast, pro, proMatch, algoPicks, trackRecord };
+const PAGES = { home, competition, match, competitions, matches, news, newsDesk, article, sources, tables, team, player, players, pbecastHub, pbecast, pro, proMatch, allAccess, algoPicks, trackRecord };
 // Primary navigation (Soccer Pro V1). Every existing public URL keeps working; INTELLIGENCE groups them.
 const NAV = [['/', 'TODAY', 'home'], ['/matches', 'MATCHES', 'matches,match'], ['/pbecast', 'PBECAST', 'pbecastHub,pbecast'], ['/picks', 'PICKS', 'algoPicks,trackRecord']];
 const INTEL = [['/track-record', 'ALGO TRACK RECORD'],['/players', 'PLAYER DNA'], ['/competitions', 'TEAM INTELLIGENCE'], ['/tables', 'TABLES'], ['/competitions', 'COMPETITIONS'], ['/pro#matchup', 'MATCHUP LAB'], ['/pro#fatigue', 'FATIGUE'], ['/pro#model-lab', 'MODEL LAB']];
@@ -68,7 +71,7 @@ function shell() {
         <div id="intel-panel" class="navpanel" hidden>${INTEL.map(([h, l]) => `<a href="${h}" data-link>${l}</a>`).join('')}</div></div>
       <a href="/news" data-link data-pages="news,newsDesk,article">NEWS</a>
       <span class="navsep" aria-hidden="true"></span>
-      <a class="nav-aa" href="/pro" data-link data-pages="pro,proMatch">ALL ACCESS</a>
+      <a class="nav-aa" href="${LOCAL_ALL_ACCESS_PATH}" data-link data-pages="allAccess">ALL ACCESS</a>
       <button type="button" class="nav-acct" data-account-open>SIGN IN</button></nav>
   </div>
   </header>
@@ -180,7 +183,9 @@ document.addEventListener('keydown', e => {
 // then the footer card (no purchase CTA for All Access / owner; manage only where the contract says).
 handleVerifiedReturn();
 proAccess().then(a => {
-  for (const b of document.querySelectorAll('.nav-acct')) b.textContent = accountButtonLabel(a.membership);
+  // The header reads the server verdict: ◆ PLATINUM / VERIFIED OWNER for members, ACCESS CHECK while
+  // unverified, never FREE. The ALL ACCESS nav item stays navigation to the local page.
+  for (const b of document.querySelectorAll('.nav-acct')) { b.textContent = headerLabel(a); b.dataset.view = accountView(a); }
   if (a.pro) document.querySelector('.nav-aa')?.classList.add('is-member');
   applyFooterMembership(document, a.membership);
 });

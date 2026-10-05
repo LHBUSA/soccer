@@ -2,9 +2,12 @@
 // which forwards only the pbe_session cookie to soccer-api, which asks the network auth authority.
 // Premium routes answer 403 without values for a free reader; nothing premium is hidden in the page.
 import { ALL_ACCESS_OFFER, ALL_ACCESS_URL } from './pbe-membership.js';
+import { OFFER_LINE } from './account-surface.js';
 
 export const AUTH_ORIGIN = 'https://auth.propbetedge.ai';
-export const OFFER = { ...ALL_ACCESS_OFFER, url: ALL_ACCESS_URL, tagline: 'Every current and future PropBetEdge Pro sport' };
+// OFFER.url is the network reference page (propbetedge.ai/pro); purchase actions use account-surface.js
+// ALL_ACCESS_CHECKOUT_URL (the canonical Stripe link) and informational links use LOCAL_ALL_ACCESS_PATH.
+export const OFFER = { ...ALL_ACCESS_OFFER, url: ALL_ACCESS_URL, tagline: OFFER_LINE };
 const FREE = { state: 'free', label: 'FREE', email: null, show_purchase_cta: true, show_manage: false };
 
 let accessMemo = null;
@@ -14,7 +17,8 @@ export function resetAccess() { accessMemo = null; }
 export function proAccess() {
   if (!accessMemo) accessMemo = (async () => {
     try {
-      const r = await fetch('/api/soccer/pro/access', { headers: { accept: 'application/json' }, credentials: 'same-origin', cache: 'no-store', signal: AbortSignal.timeout(10000) });
+      const r = await fetch('/api/soccer/pro/access', { headers: { accept: 'application/json' }, credentials: 'same-origin', cache: 'no-store', signal: AbortSignal.timeout(8000) });
+      // A non-200 or an unreadable body is an outage (access check), never a free reader.
       const b = await r.json();
       return r.ok && b?.data ? { pro: b.data.pro === true, membership: b.data.membership || FREE, check: b.data.check } : { pro: false, membership: FREE, check: 'unavailable' };
     } catch { return { pro: false, membership: FREE, check: 'unavailable' }; }

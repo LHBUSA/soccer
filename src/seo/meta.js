@@ -29,7 +29,14 @@ const STATIC = {
   tables: { title: 'Tables — League Standings | PropBetEdge Soccer', description: 'League tables computed by PropBetEdge from canonical finished league-stage results, with the method shown alongside every table.', h1: 'Tables' },
   pbecastHub: { title: 'PBEcast — Live Soccer Match Tracker & Replays | PropBetEdge Soccer', description: 'Live soccer scores with the provider clock, then replays of every sourced shot, goal, card and substitution on the canonical pitch, across MLS, Premier League, Champions League and Bundesliga.', h1: 'PBEcast' },
   players: { title: 'Player DNA Directory — Soccer Player Stats & Profiles | PropBetEdge Soccer', description: 'Every player named in sourced lineups this season across MLS, Premier League, Champions League and Bundesliga: appearances, minutes, goals, assists and per-competition rate leaders, with Player DNA for each.', h1: 'Player DNA directory' },
-  pro: { title: 'Soccer Pro — Match Center, Matchup Lab & Fatigue Intelligence | PropBetEdge', description: 'Soccer Pro with PropBetEdge All Access ($29/month, every current and future Pro sport): Pro Match Center, Fatigue Intelligence, Rotation / XI Stability and a descriptive Matchup Lab built from canonical soccer data. Workload intelligence, not medical advice.', h1: 'Soccer Pro' },
+  pro: { title: 'Soccer Pro — Match Center, Matchup Lab & Fatigue Intelligence | PropBetEdge', description: 'Soccer Pro with PropBetEdge All Access ($29/month, 10 sports + PropBetEdge Predictions): Pro Match Center, Fatigue Intelligence, Rotation / XI Stability and a descriptive Matchup Lab built from canonical soccer data. Workload intelligence, not medical advice.', h1: 'Soccer Pro' },
+  // Native PropBetEdge All Access page on Soccer (owner decision 2026-10-05): indexable, self-canonical.
+  allAccess: {
+    title: 'PropBetEdge All Access on Soccer — 10 Sports + Predictions, $29/month | PropBetEdge',
+    description: 'Soccer intelligence is one desk in the PropBetEdge network. All Access unlocks the Pro Match Center, Fatigue Intelligence, Rotation / XI Stability and the Matchup Analyzer, plus MLB, NFL, NBA, WNBA, NHL, UFC, Tennis, Golf and F1 Intelligence and PropBetEdge Predictions, for $29/month.',
+    h1: 'PropBetEdge All Access',
+    links: [['/pro', 'Soccer Pro'], ['/matches', 'Matches'], ['https://predictions.propbetedge.ai/', 'PropBetEdge Predictions'], ['/sources', 'Sources & Method']],
+  },
   proMatch: { title: 'Pro Match Center | PropBetEdge Soccer', description: 'Soccer Pro Match Center: fatigue, rotation and matchup intelligence for PropBetEdge All Access members.', h1: 'Pro Match Center', robots: 'noindex, follow' },
   // Soccer Algo V1: live since owner G7 sign-off 2026-09-29 (docs/evidence/algo/ACCEPTANCE.md): indexed, in nav and sitemap.
   algoPicks: { title: 'Soccer PBE Picks | PropBetEdge Soccer', description: 'Soccer PBE Picks: Official Picks from every live PropBetEdge soccer model, each with its own frozen model and thresholds, picks locked 60 minutes before kickoff and graded from the final score, plus each model Game Best for every forecast match.', h1: 'Official Picks' },
@@ -121,7 +128,7 @@ export function staticMeta(page, pathname) {
     { '@context': 'https://schema.org', '@type': 'WebSite', name: 'PropBetEdge Soccer Intelligence', alternateName: 'PropBetEdge Soccer', url: `${SITE}/`, publisher: ORG },
     { '@context': 'https://schema.org', ...ORG },
   ] : [breadcrumb([['Soccer', `${SITE}/`], [s.h1, canonicalFor(pathname)]])];
-  return base(pathname, { title: s.title, description: s.description, robots: s.robots || INDEX, jsonld, ssr: { h1: s.h1, p: s.description, links: [['/competitions', 'Competitions'], ['/matches', 'Matches'], ['/tables', 'Tables'], ['/sources', 'Sources']] } });
+  return base(pathname, { title: s.title, description: s.description, robots: s.robots || INDEX, jsonld, ssr: { h1: s.h1, p: s.description, links: s.links || [['/competitions', 'Competitions'], ['/matches', 'Matches'], ['/tables', 'Tables'], ['/sources', 'Sources']] } });
 }
 
 export function competitionMeta(pathname, compEnv, tableEnv) {

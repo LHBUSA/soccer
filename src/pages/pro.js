@@ -9,14 +9,20 @@ import { competitionMark, errorState, sectionHead, sourcePanel, teamMark } from 
 import { openAccount } from '../components/account.js';
 import { offerCard } from '../components/offer.js';
 import { mountAnalyzer } from '../components/analyzer.js';
+import { LOCAL_ALL_ACCESS_PATH, OFFER_LINE, accountView, designation } from '../lib/account-surface.js';
 
 const pct = v => (v === null || v === undefined ? '—' : `${Math.round(v * 100)}%`);
 
+// Membership strip: member designation (◆ PLATINUM / VERIFIED OWNER), ACCESS CHECK while unverified,
+// SIGNED IN for a known non-member, ALL ACCESS for an anonymous reader. Never FREE.
 function stateStrip(a) {
-  const m = a.membership || {};
-  if (a.pro) return `<p class="pro-state on"><span class="pro-pill">${esc(m.label || 'ALL ACCESS ACTIVE')}</span>${m.email ? `<span>${esc(m.email)}</span>` : ''}${m.show_manage && m.manage_url ? `<a href="${esc(m.manage_url)}" rel="noopener">Manage subscription ↗</a>` : ''}</p>`;
-  return `<p class="pro-state"><span class="pro-pill free">${a.check === 'unavailable' ? 'ACCOUNT CHECK UNAVAILABLE' : 'FREE'}</span>${m.email ? `<span>${esc(m.email)}</span>` : `<button type="button" class="pro-signin" data-account-open>SIGN IN</button>`}</p>`;
+  const m = a.membership || {}; const view = accountView(a);
+  if (view === 'all_access' || view === 'owner') return `<p class="pro-state on"><span class="pro-pill">${esc(designation(view).badge)}</span>${m.email ? `<span>${esc(m.email)}</span>` : ''}${m.show_manage && m.manage_url ? `<a href="${esc(m.manage_url)}" rel="noopener">Manage membership ↗</a>` : ''}<a href="${LOCAL_ALL_ACCESS_PATH}" data-link>Your network →</a></p>`;
+  const pill = view === 'check' ? 'ACCESS CHECK' : view === 'signed_in' ? 'SIGNED IN' : 'ALL ACCESS';
+  return `<p class="pro-state"><span class="pro-pill free">${pill}</span>${m.email ? `<span>${esc(m.email)}</span>` : `<button type="button" class="pro-signin" data-account-open>SIGN IN</button>`}</p>`;
 }
+// The offer only where the verdict allows a sale: never for members, never during an access check.
+const offerFor = a => (accountView(a) === 'check' ? '' : offerCard(a.membership));
 
 // A locked module: what it evaluates and outputs, plus a shell with NO numbers in it.
 function lockedShell(mod) {
@@ -64,7 +70,7 @@ export const pro = {
       <div class="pro-top">
         <section class="pro-mod" id="match-center"><header><p class="kicker gold">PRO MATCH CENTER</p><h2>Upcoming matches, both sides' load</h2></header>
           ${a.pro ? boardView(d.board) : lockedShell({ name: 'Pro Match Center', outputs: ['TEAM FATIGUE INDEX', 'REST DIFFERENTIAL', 'PBE MATCHUP RATING'] })}</section>
-        ${offerCard(a.membership)}
+        ${offerFor(a)}
       </div>
       ${moduleSection(mods.fatigue, a, '<p class="muted">Open any match in the Match Center for both teams\' TEAM FATIGUE INDEX, XI LOAD and the components behind them.</p>')}
       ${moduleSection(mods.rotation, a, '<p class="muted">XI STABILITY, ROTATION PRESSURE and REST DIFFERENTIAL are in every Match Center page.</p>')}
@@ -75,7 +81,7 @@ export const pro = {
         <p>Soccer Pro publishes no predictions yet, so there is no track record to show. When a model is promoted, every prediction is frozen before kick-off and graded here.</p></section>
       <section class="pro-mod" id="included"><header><p class="kicker gold">FREE VS ALL ACCESS</p><h2>What is included</h2></header>
         <div class="pro-mod-grid"><div><p class="pro-h">FREE</p><ul class="pro-list">${join(c.free_includes, x => `<li>${esc(x)}</li>`)}</ul></div>
-        <div><p class="pro-h">ALL ACCESS</p><ul class="pro-list"><li>Pro Match Center</li><li>Fatigue Intelligence values</li><li>Rotation / XI Stability values</li><li>Matchup Lab values</li><li>Validated predictive models (after promotion)</li><li>Every current and future PropBetEdge Pro sport</li></ul></div></div></section>
+        <div><p class="pro-h">ALL ACCESS</p><ul class="pro-list"><li>Pro Match Center</li><li>Fatigue Intelligence values</li><li>Rotation / XI Stability values</li><li>Matchup Lab values</li><li>Validated predictive models (after promotion)</li><li>${esc(OFFER_LINE)}</li></ul></div></div></section>
       <p class="caveat">Coverage: ${num(c.coverage.finished_matches)} finished matches and ${num(c.coverage.sourced_lineups)} sourced lineups across ${num(c.coverage.competitions.length)} competitions. Workload intelligence is not a medical or fitness assessment.</p>
       ${sourcePanel(d.catalog.meta, { title: 'METHOD' })}
     </div></section>`;
@@ -107,7 +113,7 @@ export const proMatch = {
   render(d) {
     if (d.res.status === 403) return `<section class="hero compact pro-hero"><div class="wrap"><p class="kicker gold">PRO MATCH CENTER</p><h1 class="display">All Access required</h1>
       <p class="lede">Fatigue, rotation and matchup intelligence for this match are calculated. They are sent only to PropBetEdge All Access members.</p>${stateStrip(d.access)}</div></section>
-      <section class="canvas"><div class="wrap pro-top">${lockedShell({ name: 'Pro Match Center', outputs: ['TEAM FATIGUE INDEX', 'XI LOAD', 'ROTATION PRESSURE', 'REST DIFFERENTIAL', 'PBE MATCHUP RATING'] })}${offerCard(d.access.membership)}</div>
+      <section class="canvas"><div class="wrap pro-top">${lockedShell({ name: 'Pro Match Center', outputs: ['TEAM FATIGUE INDEX', 'XI LOAD', 'ROTATION PRESSURE', 'REST DIFFERENTIAL', 'PBE MATCHUP RATING'] })}${offerFor(d.access)}</div>
       <div class="wrap"><p><a href="/matches/${esc(d.id)}" data-link class="sec-link">Free match intelligence for this match →</a></p></div></section>`;
     if (d.res.status !== 200) return `<section class="canvas"><div class="wrap">${errorState({ status: d.res.status, message: d.res.body?.error || 'Unavailable' })}</div></section>`;
     const x = d.res.body.data; const lab = x.matchup_lab;

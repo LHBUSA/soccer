@@ -1487,16 +1487,7 @@ body.dr-open { overflow: hidden; }
 .facct .aa-learn { color: #d6dfee; }
 
 /* account dialog */
-dialog.acct { border: 0; border-radius: 16px; padding: 0; width: min(440px, calc(100vw - 32px)); max-height: calc(100vh - 32px); overflow: auto; }
-dialog.acct::backdrop { background: rgba(4,10,20,.6); }
-.acct-body { position: relative; padding: 22px; }
-.acct-x { position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; border: 0; background: none; font-size: 26px; cursor: pointer; }
-.acct-h { margin: 4px 0 6px; font: 800 22px/1.2 var(--display); }
-.acct-form { display: grid; gap: 8px; margin: 12px 0; }
-.acct-form input { min-height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; font-size: 16px; }
-.acct-form button, .acct-out { min-height: 44px; border: 0; border-radius: 999px; background: var(--ink); color: #fff; font: 800 13px/1 var(--display); letter-spacing: .12em; cursor: pointer; }
-.acct-out { margin-top: 14px; width: 100%; background: none; color: var(--ink); border: 1px solid var(--line); }
-.acct-ok { color: #0d6b5a; font-weight: 700; }
+/* The premium account sheet lives in src/styles/account.css (network account standard: no inner scroll). */
 
 /* /pro */
 .pro-hero .lede { max-width: 760px; }

@@ -21,7 +21,13 @@ test('Predictions is a separate product, never a sport', () => {
 test('network links match family.json', () => {
   assert.deepEqual(NETWORK_LINKS, Object.fromEntries(FAMILY.network.map(n => [n.key, n.url])));
   const f = networkFooter();
-  for (const n of FAMILY.network) assert.ok(f.includes(`href="${n.url}"`), n.key);
+  /* Owner decision 2026-10-05: the footer's informational All Access link opens the native /all-access page on
+     this site (the registry URL stays the network reference in NETWORK_LINKS, pinned above). Every other network
+     destination is linked exactly as the registry says. */
+  for (const n of FAMILY.network) {
+    if (n.key === 'all_access') assert.ok(f.includes('href="/all-access"'), 'all_access -> local /all-access page');
+    else assert.ok(f.includes(`href="${n.url}"`), n.key);
+  }
 });
 
 test('rendered footer: every other sport linked canonically, one F1 + one Predictions anchor, no retired hosts', () => {
