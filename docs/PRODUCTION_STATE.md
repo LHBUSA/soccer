@@ -21,7 +21,7 @@ evidence are the source of truth; nothing here comes only from chat memory.
 |---|---|---|
 | soccer-api | `a9970370` (2026-09-29, main 7d48824: serves frozen article visuals only while intact; + news-subject rule, newsroom health) | `2fd0e5e9` (then `2f8a5b0d`) |
 | soccer-ingest | unchanged by the 2026-09-29 newsroom / PBEcast release (see docs/deployments.jsonl) | — |
-| soccer-news | `2eaf6b80` (2026-10-05 11:27Z, main 8292d10 = RC2.1 + phase 1 competition runner, behaviour-identical; OBSERVATION PENDING) on top of `c0ec2b50` (2026-10-04 20:28Z, RC2.1 = main 2e24eb9: published-season reads, newsroom health truth, explicit league-phase vars fail closed, domestic claim bans, admin review mode, soccer-quality/2.1.1 + soccer-desk/2.1.1; 5 publishing competitions) | `fc7b1337` |
+| soccer-news | `179e4499` (2026-10-05 13:12Z, main ab54f62 = phase 2 per-competition state `news:comp:<slug>:state` + /health `competitions`; first production tick state_writes ok=5 failed=0; ACCEPTED by owner) on top of `2eaf6b80` (2026-10-05 11:27Z, main 8292d10 = RC2.1 + phase 1 competition runner, behaviour-identical; 3 clean cron cycles) on top of `c0ec2b50` (2026-10-04 20:28Z, RC2.1 = main 2e24eb9: published-season reads, newsroom health truth, explicit league-phase vars fail closed, domestic claim bans, admin review mode, soccer-quality/2.1.1 + soccer-desk/2.1.1; 5 publishing competitions) | `fc7b1337` |
 
 Rollback: `cd workers/<worker> && npx wrangler versions deploy <rollback>@100% --yes`. Web rollback: Vercel instant rollback to the previous production deployment.
 
@@ -232,4 +232,8 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
   (rollback `c0ec2b50`), OBSERVATION PENDING. Pre-release dark `b9831fdb` and post-release production dry runs were
   byte-identical to live `c0ec2b50`'s dry run (14 candidates, 0 new, all duplicates). Enabled newsroom competitions stay exactly MLS, Premier League, Bundesliga,
   Champions League, Nations League; the nine product lanes and FIFA stay OFF.
+- 2026-10-05 phase 2 LIVE `179e4499` (main ab54f62), rollback `2eaf6b80`. NOTE (not from the release script, origin unknown
+  to this repo): versions `48d45671` (13:33Z) and `a19b22fb` (13:41Z) were deployed with plain wrangler and no message,
+  then `179e4499` was redeployed at 13:44Z / 13:46Z. The 13:37Z cron tick (while `48d45671` was live) left no
+  `news:last_tick`. Neither version's source is on main.
 
