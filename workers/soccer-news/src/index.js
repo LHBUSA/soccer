@@ -138,7 +138,7 @@ export default {
       if (pm && !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(pm)) return json({ error: 'preview_match must be a match uuid' }, 400);
       const review = url.searchParams.get('review') === '1';
       if (review && !pm) return json({ error: 'review needs preview_match' }, 400);
-      // ?isolated=1 (phase 3 dark canary): the cron's isolated dispatch through the loopback runner, DRY ONLY (zero model
+      // ?isolated=1 (phase 3 canary): isolated dispatch through the loopback runner, DRY ONLY (zero model
       // calls, zero writes, no state, no news:last_run). ?fault=<slug> makes that one runner throw, proving the others finish.
       if (url.searchParams.get('isolated') === '1') {
         if (url.searchParams.get('dry') !== '1' || pm || review) return json({ error: 'isolated is a dry canary: needs dry=1 and no preview_match / review' }, 400);
@@ -147,7 +147,9 @@ export default {
         const dispatch = loopbackDispatch(ctx);
         if (!dispatch) return json({ error: 'loopback runner binding unavailable (ctx.exports.NewsRunner)' }, 500);
         const t0 = Date.now();
-        try { const s = await runIsolated(env, { now: Date.now(), dispatch, dry: true, windowDays: Math.round(days), ...(fault ? { faultSlug: fault } : {}) }); s.elapsed_ms = Date.now() - t0; return json(s); } catch (e) { return json({ error: String(e.message || e) }, 500); }
+        // ?concurrency=sequential runs the real tick's sequential, time-budgeted path (still dry); default parallel (dry only)
+        const concurrency = url.searchParams.get('concurrency') === 'sequential' ? 'sequential' : 'parallel';
+        try { const s = await runIsolated(env, { now: Date.now(), dispatch, dry: true, concurrency, windowDays: Math.round(days), ...(fault ? { faultSlug: fault } : {}) }); s.elapsed_ms = Date.now() - t0; return json(s); } catch (e) { return json({ error: String(e.message || e) }, 500); }
       }
       const asOfRaw = review ? url.searchParams.get('as_of') : null; const asOf = asOfRaw ? Date.parse(asOfRaw) : null;
       if (asOfRaw && !Number.isFinite(asOf)) return json({ error: 'as_of must be an ISO timestamp' }, 400);

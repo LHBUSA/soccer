@@ -33,7 +33,10 @@ export const storiesFor = slug => NEWS_REGISTRY.find(c => c.slug === slug)?.stor
 // Returns { slug, out, routing, facts }: `out` is the competition's summary entry (null = a forced preview run whose fixture
 // is not in this competition's season: no entry, as before); `routing` counts this runner's desk routes; `facts` =
 // runner-state.js seasonFacts of the season it loaded (pure, no extra read; observational state only, phase 2).
-export async function runCompetition(store, slug, { now = Date.now(), env = {}, windowDays = 4, maxPerCompetition = 12, dry = false, cfg = {}, previewMatch = null, review = false } = {}) {
+// softDeadlineAt (phase 3 isolated real ticks only; epoch ms, wall clock): no NEW paid desk stage starts at or after it.
+// The remaining new candidates are DEFERRED: nothing is written for them, so the next tick detects them again with the
+// same story keys. Unset (default, every in-process / admin / dry path) = no limit, behaviour exactly as before.
+export async function runCompetition(store, slug, { now = Date.now(), env = {}, windowDays = 4, maxPerCompetition = 12, dry = false, cfg = {}, previewMatch = null, review = false, softDeadlineAt = null, clock = Date.now } = {}) {
   const routing = { lanes: {}, reasons: {} };
   // Fail closed: a competition whose league-phase boundary var is missing is skipped (no hidden code default).
   const missingCfg = missingPhaseConfig(slug, cfg);
@@ -77,6 +80,10 @@ export async function runCompetition(store, slug, { now = Date.now(), env = {}, 
     const packet = await buildPacket(store, S, cand);
     const vis = await articleVisuals(store, packet, now);
     const draft = withVisualMenu(compose(packet), vis);
+    if (softDeadlineAt != null && !dry && !review && clock() >= softDeadlineAt) {
+      out.deferred = fresh.length - fresh.indexOf(cand); out.deferred_reason = 'runner_time_budget';
+      break;
+    }
     // Paid only for a genuinely NEW canonical story. A dry run makes zero model calls and zero writes (the router
     // routes `dry_run` DETERMINISTIC; nothing below `if (dry) continue` runs).
     const trigger = dry ? 'dry_run' : review ? 'canary' : 'new_story';

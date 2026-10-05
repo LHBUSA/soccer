@@ -176,7 +176,10 @@ const PINNED = {
   'workers/soccer-news/src/previews.js': '8ed51f5c6995fb2a08d9cbef85cc410d67f9471e', 'workers/soccer-news/src/profiles.js': '879cf90e294f2d838037c202183450cdde53f364',
   'workers/soccer-news/src/visuals.js': '70c39517325da15ef868cc90104c89cf81cd7749', 'data/registry/competitions.json': 'b8e151bf14ac7a32b5b3314314a54776a45d0c4a',
 };
-const blobId = path => { const b = Buffer.from(readFileSync(new URL(`../${path}`, import.meta.url), 'utf8').replace(/\r\n/g, '\n'), 'utf8'); return createHash('sha1').update(`blob ${b.length}\0`).update(b).digest('hex'); };
+// openai-cost.js is pinned EXCEPT its WORKER_VERSION telemetry label (soccer-news/1.6.0 = phase 3, 2026-10-05): the
+// breaker, pricing and ledger code stay byte-identical to RC2.1.
+const RC21_WORKER_VERSION_LINE = "export const WORKER_VERSION = 'soccer-news/1.5.0';";
+const blobId = path => { const b = Buffer.from(readFileSync(new URL(`../${path}`, import.meta.url), 'utf8').replace(/\r\n/g, '\n').replace(/^export const WORKER_VERSION = .*$/m, RC21_WORKER_VERSION_LINE), 'utf8'); return createHash('sha1').update(`blob ${b.length}\0`).update(b).digest('hex'); };
 test('decision path is byte-identical to production RC2.1 (detectors, packets, profiles, gates, desk, router, registry)', () => {
   for (const [p, want] of Object.entries(PINNED)) assert.equal(blobId(p), want, `${p} unchanged since 2e24eb9`);
 });

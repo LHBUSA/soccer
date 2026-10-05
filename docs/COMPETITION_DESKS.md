@@ -32,7 +32,7 @@ Read from `wrangler deployments status`, production `/health` and git, 2026-10-0
 |---|---|
 | 1 runner refactor (`runCompetition`, same 5, sequential, in process) | CODE COMPLETE (main `8292d10`, parity proof) · PRODUCTION LIVE soccer-news `2eaf6b80` 2026-10-05 11:27Z (rollback `c0ec2b50`) · OBSERVATION PENDING (gate = several real cron cycles with unchanged newsroom semantics, owner 2026-10-05) |
 | 2 per-competition state + health (KV) | PRODUCTION LIVE `179e4499` (main ab54f62), ACCEPTED by owner 2026-10-05 |
-| 3 runner isolation (loopback WorkerEntrypoint `ctx.exports.NewsRunner`, no route / token / Queue) | PRODUCTION LIVE `3151b3e6` (main 641b279) 2026-10-05 14:18Z, rollback `179e4499`; first cron 14:37Z clean; per-invocation CPU/subrequest budgets NOT proven |
+| 3 runner isolation (loopback WorkerEntrypoint `ctx.exports.NewsRunner`, no route / token / Queue) | `3151b3e6` (main 641b279) live 2026-10-05 14:18Z with a concurrency regression (parallel real dispatch vs the global OpenAI ceiling); PATCH isolation 1.1.0 = sequential real dispatch + cooperative runner time budget (soft 150 s, hard soft+125 s, tick 840 s), parallel only for dry canaries; NOT final until the patched release passes; per-invocation CPU/subrequest budgets NOT proven |
 | 3-6 | design below |
 
 Phase 1 parity proof: `tests/news-runner-parity.test.js` against `tests/fixtures/news/legacy-pipeline.js` (the RC2.1

@@ -232,11 +232,16 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
   (rollback `c0ec2b50`), OBSERVATION PENDING. Pre-release dark `b9831fdb` and post-release production dry runs were
   byte-identical to live `c0ec2b50`'s dry run (14 candidates, 0 new, all duplicates). Enabled newsroom competitions stay exactly MLS, Premier League, Bundesliga,
   Champions League, Nations League; the nine product lanes and FIFA stay OFF.
-- 2026-10-05 phase 2 LIVE `179e4499` (main ab54f62), rollback `2eaf6b80`. NOTE (not from the release script, origin unknown
-  to this repo): versions `48d45671` (13:33Z) and `a19b22fb` (13:41Z) were deployed with plain wrangler and no message,
-  then `179e4499` was redeployed at 13:44Z / 13:46Z. The 13:37Z cron tick (while `48d45671` was live) left no
-  `news:last_tick`. Neither version's source is on main.
-- 2026-10-05 phase 3 LIVE `3151b3e6` (main 641b279, ledger 6db85dc), rollback `179e4499`. Proof: gate 611/611; frozen
+- 2026-10-05 phase 2 LIVE `179e4499` (main ab54f62), rollback `2eaf6b80`. Phase 2 acceptance canaries (deliberate,
+  operator-driven by the owner's session, plain wrangler, not from the release script, source not on main):
+  `48d45671` (13:33Z) = temporary `* * * * *` cron for the phase 2 acceptance; `a19b22fb` (13:41Z) = temporary one-shot
+  phase 2 acceptance route with the normal `7,37` cron restored; then the audited `179e4499` was redeployed 13:44Z /
+  13:46Z. The 13:37Z cron tick (while `48d45671` was live) left no `news:last_tick`.
+- 2026-10-05 phase 3 initial release `3151b3e6` (main 641b279, ledger 6db85dc), rollback `179e4499`. REGRESSION found in
+  review (no paid call happened: only duplicates): it dispatched the five runners CONCURRENTLY, so the read-before-call
+  OpenAI ceiling (openai-cost.js overCeiling) and the read-modify-write KV call log could race across competitions.
+  Patched in isolation 1.1.0 (soccer-news/1.6.0): real ticks dispatch sequentially in registry order with a cooperative
+  per-runner time budget; parallel only for dry canaries. Proof: gate 611/611; frozen
   production replay isolated == RC2.1; dark `906b1c18` real-loopback dry run byte-identical to live in-process; injected
   dry fault in UCL (dark + production `/v1/run?isolated=1&dry=1&fault=uefa-champions-league`): UCL failed alone, the
   other four identical; runner unreachable over HTTP (404); first scheduled tick 14:37:50Z: ran, 5 runners ran,

@@ -19,7 +19,7 @@ import { nominalStandardCost, aiConfig } from './ai-router.js';
 // Account pricing constant, the same one UFC, Tennis and WNBA record against.
 export const USD_PER_MTOK = { input: 1.25, output: 10 };
 export const OPENAI_COST_VERSION = 'soccer-openai-cost/1.2.0';
-export const WORKER_VERSION = 'soccer-news/1.5.0';
+export const WORKER_VERSION = 'soccer-news/1.6.0'; // 1.6.0 = phase 3 isolated competition runners (2026-10-05)
 export const LEDGER_TABLE = 'soccer_news_openai_usage';
 // The desk's internal trigger names (shared with the WNBA desk) -> the owner's ledger enum. A repair (attempt 2)
 // is recorded under its PARENT trigger with attempt = 2.

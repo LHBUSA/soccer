@@ -92,7 +92,7 @@ export function competitionState({ slug, result = null, error = null, facts = nu
     published: out ? out.published : null, held: out ? out.held : null,
     hold_reasons: out?.holds || {}, by_class: out?.by_class || {},
     existing: out?.existing ? { published: out.existing.published, held: out.existing.held, other: out.existing.other, held_reasons: out.existing.held_reasons } : null,
-    new_recaps: newRecaps,
+    new_recaps: newRecaps, deferred: out?.deferred || 0,
     desk_calls: routedCalls(result?.routing),
     fixtures: facts ? {
       live_matches: facts.live_matches, live_status_stuck: facts.live_status_stuck, live_kickoffs: facts.live_kickoffs,

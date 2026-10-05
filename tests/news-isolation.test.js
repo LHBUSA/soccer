@@ -15,7 +15,7 @@ import { gunzipSync } from 'node:zlib';
 import { applyMigrations, openPglite } from '../workers/soccer-ingest/src/store-pglite.js';
 import * as old from './fixtures/news/legacy-pipeline.js';
 import { NEWS_COMPETITIONS } from '../workers/soccer-news/src/pipeline.js';
-import { runIsolated, runnerRpc, runnerOptions, RUNNER_DEADLINE_MS } from '../workers/soccer-news/src/isolation.js';
+import { runIsolated, runnerRpc, runnerOptions } from '../workers/soccer-news/src/isolation.js';
 import worker, { runTick, competitionsHealth, stateRecorder, NEWS_CRON } from '../workers/soccer-news/src/index.js';
 import { competitionDiagnostic } from '../workers/soccer-news/src/news-health.js';
 import { parseState, stateKey, competitionState, seasonFacts } from '../workers/soccer-news/src/runner-state.js';
@@ -99,14 +99,118 @@ test('every position fails alone without affecting the others', async () => {
   }
 });
 
-test('a hung runner times out as its own failure; the others finish', async () => {
-  const env = { ...VARS, ...natural.env };
-  const store = replayStore(unpackReads(natural.reads, fx.blobs));
-  const lb = loopback(env, () => store);
-  const s = await runIsolated(env, { now: natural.opts.now, dry: true, deadlineMs: 200, dispatch: (slug, o) => (slug === 'mls' ? new Promise(() => {}) : lb(slug, o)) });
-  assert.equal(s.dispatch.runners.mls.outcome, 'failed'); assert.match(s.dispatch.runners.mls.error, /runner_timeout/);
-  for (const x of NEWS_COMPETITIONS.filter(x => x !== 'mls')) assert.equal(s.dispatch.runners[x].outcome, 'ran');
-  assert.equal(RUNNER_DEADLINE_MS, 600000);
+// ------------------------------------------------------------------ 2b. sequential real ticks + time budget (1.1.0)
+const SMALL = { tickMs: 4000, softMs: 150, inflightMs: 150, reserveMs: 60, dryMs: 1000 };
+const realEnv = () => ({ ...VARS, ...natural.env });
+
+test('real isolated dispatch is SEQUENTIAL in registry order (each runner starts after the previous one ended)', async () => {
+  const env = realEnv(); const store = replayStore(unpackReads(natural.reads, fx.blobs)); const lb = loopback(env, () => store);
+  const events = []; let active = 0; let maxActive = 0;
+  const s = await runIsolated(env, { now: natural.opts.now, dispatch: async (slug, o) => { active += 1; maxActive = Math.max(maxActive, active); events.push(['start', slug, o]); try { await new Promise(r => setTimeout(r, 5)); return await lb(slug, o); } finally { active -= 1; events.push(['end', slug]); } } });
+  assert.equal(s.dispatch.concurrency, 'sequential'); assert.equal(maxActive, 1, 'never two runners at once');
+  assert.deepEqual(events.filter(e => e[0] === 'start').map(e => e[1]), NEWS_COMPETITIONS);
+  for (let i = 0; i < events.length; i += 2) { assert.equal(events[i][0], 'start'); assert.equal(events[i + 1][0], 'end'); assert.equal(events[i][1], events[i + 1][1]); }
+  for (const [, , o] of events.filter(e => e[0] === 'start')) { assert.ok(Number.isFinite(o.softDeadlineAt), 'every real runner gets a soft deadline'); assert.equal(o.dry, undefined); }
+});
+
+test('parallel dispatch is refused for real runs and allowed for dry canaries', async () => {
+  const env = realEnv();
+  await assert.rejects(runIsolated(env, { now: 1, dispatch: async () => ({}), concurrency: 'parallel' }), /parallel dispatch is allowed only for dry runs/);
+  const store = replayStore(unpackReads(natural.reads, fx.blobs)); let active = 0; let maxActive = 0; const lb = loopback(env, () => store);
+  const s = await runIsolated(env, { now: natural.opts.now, dry: true, dispatch: async (slug, o) => { active += 1; maxActive = Math.max(maxActive, active); try { await new Promise(r => setTimeout(r, 20)); return await lb(slug, o); } finally { active -= 1; } } });
+  assert.equal(s.dispatch.concurrency, 'parallel'); assert.ok(maxActive > 1, 'dry canary runs runners concurrently');
+});
+
+test('budget checks and KV call-log writes never overlap across competitions on a real multi-league news day', async () => {
+  // 2026-09-21 production picture with every candidate NEW: Bundesliga 9, Premier League 5, MLS 4 -> paid desk calls in 3 competitions
+  const day = fx.runs.find(x => x.variant === 'new_desk_req' && x.at.startsWith('2026-09-21'));
+  const kv = memKV(); const env = { ...VARS, NEWS_ENABLED: 'on', OPENAI_API_KEY: 'k', SOCCER_STATE: kv };
+  const store = replayStore(unpackReads(day.reads, fx.blobs));
+  const realFetch = globalThis.fetch; let inCall = 0; let maxIn = 0; const callsBySlug = [];
+  // a budget window per paid call = the breaker's KV spend read .. that call's KV call-log write (no ledger in tests)
+  let openWindows = 0; let maxWindows = 0;
+  const origGet = kv.get.bind(kv); const origPut = kv.put.bind(kv);
+  kv.get = async (k, t) => { if (k.startsWith('openai:') && t === 'json' && !kv._inRecord) { openWindows += 1; maxWindows = Math.max(maxWindows, openWindows); } return origGet(k, t); };
+  kv.put = async (k, v) => { const r = await origPut(k, v); if (k.startsWith('openai:')) openWindows -= 1; return r; };
+  globalThis.fetch = async (_u, init) => {
+    inCall += 1; maxIn = Math.max(maxIn, inCall);
+    try {
+      await new Promise(r => setTimeout(r, 3));
+      const input = JSON.parse(init.body).input; const m = input.match(/"competition":\{[^}]*"slug":"([a-z-]+)"/); callsBySlug.push(m ? m[1] : '?');
+      return { ok: true, json: async () => ({ id: 'r', status: 'completed', model: 'gpt-5.6-sol', usage: { input_tokens: 10, output_tokens: 10 }, output: [{ type: 'message', content: [{ type: 'output_text', text: JSON.stringify({ headline: 'H', dek: 'D', sections: [{ heading: 'x', paragraphs: ['y'] }], emphasis: [] }) }] }] }) };
+    } finally { inCall -= 1; }
+  };
+  try {
+    const s = await runIsolated(env, { now: day.opts.now, dispatch: loopback(env, () => store) });
+    assert.equal(s.dispatch.failed, 0);
+    const comps = [...new Set(callsBySlug)];
+    assert.ok(comps.length >= 3, `paid calls in several competitions (${comps.join(',')})`);
+    assert.equal(maxIn, 1, 'never two paid desk calls at once');
+    // calls are grouped by competition in registry order: no interleaving between competitions
+    const order = callsBySlug.filter((x, i) => i === 0 || callsBySlug[i - 1] !== x);
+    assert.deepEqual(order, NEWS_COMPETITIONS.filter(c => comps.includes(c)), 'competition budget windows strictly one after another');
+    const log = JSON.parse(kv.m.get([...kv.m.keys()].find(k => k.startsWith('openai:'))));
+    assert.equal(log.length, callsBySlug.length, 'KV call log lost no entry (no read-modify-write race)');
+  } finally { globalThis.fetch = realFetch; }
+});
+
+test('cooperative soft deadline: no paid desk stage after it; the rest is deferred with nothing written', async () => {
+  const { runCompetition } = await import('../workers/soccer-news/src/pipeline.js');
+  const { leaguePhaseCfg } = await import('../workers/soccer-news/src/profiles.js');
+  const day = fx.runs.find(x => x.variant === 'new_desk_off' && x.at.startsWith('2026-09-21'));
+  const env = { ...VARS, ...day.env }; const cfg = leaguePhaseCfg(env);
+  const full = await runCompetition(replayStore(unpackReads(day.reads, fx.blobs)), 'bundesliga', { now: day.opts.now, env, cfg });
+  const a = replayStore(unpackReads(day.reads, fx.blobs));
+  let checks = 0; // the clock passes the soft deadline after two stories
+  const r = await runCompetition(a, 'bundesliga', { now: day.opts.now, env, cfg, softDeadlineAt: 2, clock: () => (++checks > 2 ? 5 : 0) });
+  assert.equal(full.out.published, 9);
+  assert.equal(r.out.published, 2); assert.equal(r.out.deferred, 7); assert.equal(r.out.deferred_reason, 'runner_time_budget');
+  assert.equal(r.out.new, full.out.new, 'detection unchanged');
+  const ev = st => st.writes.filter(x => x.table === 'soccer_news_events').flatMap(x => x.rows.map(y => y.id));
+  const fullStore = replayStore(unpackReads(day.reads, fx.blobs));
+  await runCompetition(fullStore, 'bundesliga', { now: day.opts.now, env, cfg });
+  assert.deepEqual(ev(a), ev(fullStore).slice(0, 2), 'the two processed stories are written exactly as without a deadline; nothing else');
+  // dry runs and runs without a deadline never defer
+  const d = await runCompetition(replayStore(unpackReads(day.reads, fx.blobs)), 'bundesliga', { now: day.opts.now, env, cfg, dry: true, softDeadlineAt: 0, clock: () => 99 });
+  assert.equal(d.out.deferred, undefined);
+});
+
+test('a hung runner times out as its own failure; every later runner still executes; worst-case aggregate stays inside the tick budget', async () => {
+  const env = realEnv(); const store = replayStore(unpackReads(natural.reads, fx.blobs)); const lb = loopback(env, () => store);
+  const started = [];
+  const s = await runIsolated(env, { now: natural.opts.now, budget: SMALL, dispatch: (slug, o) => { started.push(slug); return slug === MIDDLE ? new Promise(() => {}) : lb(slug, o); } });
+  assert.deepEqual(started, NEWS_COMPETITIONS, 'every later runner was dispatched');
+  assert.equal(s.dispatch.runners[MIDDLE].outcome, 'failed'); assert.match(s.dispatch.runners[MIDDLE].error, /runner_timeout/);
+  for (const x of NEWS_COMPETITIONS.filter(x => x !== MIDDLE)) assert.equal(s.dispatch.runners[x].outcome, 'ran', x);
+  // all five hang: each one times out at its own hard deadline; total <= tick budget
+  const t1 = Date.now();
+  const all = await runIsolated(env, { now: natural.opts.now, budget: SMALL, dispatch: () => new Promise(() => {}) });
+  const took = Date.now() - t1;
+  assert.ok(took <= SMALL.tickMs + 200, `worst case ${took} ms <= tick budget ${SMALL.tickMs} ms`);
+  assert.deepEqual(Object.values(all.dispatch.runners).map(r => r.outcome), NEWS_COMPETITIONS.map(() => 'failed'));
+  const runs = Object.values(all.dispatch.runners);
+  for (const r of runs) assert.equal(Date.parse(r.hard_deadline_at) - Date.parse(r.soft_deadline_at), SMALL.inflightMs, 'soft = hard - in-flight desk window');
+  for (let i = 1; i < runs.length; i++) assert.ok(Date.parse(runs[i].soft_deadline_at) >= Date.parse(runs[i - 1].hard_deadline_at), 'a timed-out runner can no longer start a paid call when the next runner starts');
+});
+
+test('a tight tick budget still reserves time for every later runner (no runner starved by earlier hangs)', async () => {
+  const TIGHT = { tickMs: 1000, softMs: 300, inflightMs: 200, reserveMs: 60, dryMs: 1000 };
+  const started = [];
+  const t1 = Date.now();
+  const s = await runIsolated(realEnv(), { now: natural.opts.now, budget: TIGHT, dispatch: slug => { started.push(slug); return new Promise(() => {}); } });
+  assert.deepEqual(started, NEWS_COMPETITIONS, 'every runner was still dispatched');
+  for (const r of Object.values(s.dispatch.runners)) assert.match(r.error, /runner_timeout/, 'each hung runner timed out on its own; none starved (tick_budget_exhausted)');
+  assert.ok(Date.now() - t1 <= TIGHT.tickMs + 200, 'inside the tick budget');
+});
+
+test('production budget constants: worst case for five sequential runners fits the 15 min cron wall limit', async () => {
+  const { BUDGET, TICK_BUDGET_MS, RUNNER_SOFT_MS, DESK_INFLIGHT_MS } = await import('../workers/soccer-news/src/isolation.js');
+  assert.equal(TICK_BUDGET_MS, 840e3); assert.equal(RUNNER_SOFT_MS, 150e3); assert.equal(DESK_INFLIGHT_MS, 125e3);
+  const desk = readFileSync(new URL('../workers/soccer-news/src/desk.js', import.meta.url), 'utf8');
+  assert.match(desk, /AbortSignal\.timeout\(120000\)/, 'the in-flight window covers the desk timeout');
+  let now = 0; const n = NEWS_COMPETITIONS.length; const tickEnd = BUDGET.tickMs; const hards = [];
+  for (let i = 0; i < n; i++) { const hard = Math.min(now + BUDGET.softMs + BUDGET.inflightMs, tickEnd - (n - i - 1) * BUDGET.reserveMs); hards.push(hard); now = hard; }
+  assert.ok(hards.at(-1) <= 840e3, `every runner uses its full window: last hard deadline at ${hards.at(-1) / 1000} s of the 900 s limit`);
 });
 
 test('missing loopback binding: the tick fails LOUDLY (no silent in-process fallback); health says orchestrator_failed, never blocked', async () => {
