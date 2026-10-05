@@ -86,7 +86,80 @@ function listPage(d, desk) {
 }
 
 const settle = p => p.then(v => v, () => null);
-const mountList = root => { mountNewsImages(root); mountOfficialVideos(root); mountMediaFallbacks(root); };
+
+function mountNewsTabs(root) {
+  const nav = root.querySelector('.nr2-tabs');
+  if (!nav) return;
+
+  // Always make the current desk fully visible on first paint. This fixes the
+  // right-edge cut-off on the last desks (notably Nations League) without
+  // changing the page width or hiding any competition.
+  const active = nav.querySelector('.nr2-tab.on');
+  requestAnimationFrame(() => {
+    if (!nav.isConnected || !active) return;
+    const max = Math.max(0, nav.scrollWidth - nav.clientWidth);
+    const target = active.offsetLeft - Math.max(0, (nav.clientWidth - active.offsetWidth) / 2);
+    nav.scrollLeft = Math.max(0, Math.min(max, target));
+  });
+
+  // If the row still overflows, gently pan it so every desk is discoverable.
+  // Manual interaction always wins, and reduced-motion users get no autoplay.
+  const reduce = globalThis.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+  if (reduce) return;
+
+  let raf = 0;
+  let dir = 1;
+  let paused = false;
+  let resumeAt = performance.now() + 1800;
+  let last = performance.now();
+  const speed = 18; // px/sec: intentionally slow, editorial rather than marquee-like.
+
+  const pause = () => { paused = true; };
+  const resume = () => { paused = false; resumeAt = performance.now() + 1400; };
+
+  nav.addEventListener('pointerdown', pause, { passive: true });
+  nav.addEventListener('pointerup', resume, { passive: true });
+  nav.addEventListener('pointercancel', resume, { passive: true });
+  nav.addEventListener('mouseenter', pause);
+  nav.addEventListener('mouseleave', resume);
+  nav.addEventListener('focusin', pause);
+  nav.addEventListener('focusout', resume);
+  nav.addEventListener('touchstart', pause, { passive: true });
+  nav.addEventListener('touchend', resume, { passive: true });
+
+  const tick = now => {
+    if (!nav.isConnected) return;
+    const max = Math.max(0, nav.scrollWidth - nav.clientWidth);
+    if (max <= 1) return;
+
+    if (!paused && now >= resumeAt) {
+      const dt = Math.min(50, now - last) / 1000;
+      let next = nav.scrollLeft + dir * speed * dt;
+      if (next >= max) {
+        next = max; dir = -1; resumeAt = now + 1600;
+      } else if (next <= 0) {
+        next = 0; dir = 1; resumeAt = now + 1600;
+      }
+      nav.scrollLeft = next;
+    }
+    last = now;
+    raf = requestAnimationFrame(tick);
+  };
+
+  // Start by moving away from whichever edge contains the active desk.
+  requestAnimationFrame(() => {
+    const max = Math.max(0, nav.scrollWidth - nav.clientWidth);
+    if (max > 1 && nav.scrollLeft > max * .66) dir = -1;
+    raf = requestAnimationFrame(tick);
+  });
+}
+
+const mountList = root => {
+  mountNewsImages(root);
+  mountOfficialVideos(root);
+  mountMediaFallbacks(root);
+  mountNewsTabs(root);
+};
 
 export const news = {
   title: () => 'Soccer News — Evidence-Backed Reporting | PropBetEdge',
