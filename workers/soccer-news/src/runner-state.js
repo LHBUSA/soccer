@@ -74,7 +74,12 @@ const routedCalls = routing => Object.entries(routing?.lanes || {}).filter(([lan
 
 // One competition's state after its runner. result = runCompetition's return; error = the runner's exception (the tick
 // still fails exactly as before: phase 2 adds no isolation).
-export function competitionState({ slug, result = null, error = null, facts = null, now, elapsedMs = null, cron, cfg = {}, stories = [], mode = 'live', dispatch = 'in_process' }) {
+export function competitionState(args) {
+  const st = buildState(args);
+  if (args.schedule?.cadence_min && pendingWork(st)) st.next_due_at = nextTickAt(args.cron, args.now); // pending work: next tick
+  return st;
+}
+function buildState({ slug, result = null, error = null, facts = null, now, elapsedMs = null, cron, cfg = {}, stories = [], mode = 'live', dispatch = 'in_process', schedule = null }) {
   const out = result?.out || null;
   const outcome = error ? 'failed' : !out ? 'not_applicable' : out.skipped?.startsWith('config_missing') ? 'skipped_config' : out.skipped === 'no season' ? 'no_season' : 'ran';
   const newRecaps = (out?.stories || []).filter(s => s.story_class === 'match_recap').length;
@@ -86,7 +91,10 @@ export function competitionState({ slug, result = null, error = null, facts = nu
     last_run_at: new Date(now).toISOString(), last_run_outcome: outcome, elapsed_ms: elapsedMs,
     ...(error ? { error: String(error?.message || error).slice(0, 200) } : {}),
     ...(out?.skipped ? { skipped: out.skipped } : {}),
-    next_due_at: nextTickAt(cron, now), cadence: 'every_tick',
+    // phase 4: the schedule decision that dispatched this run; next due = the first tick once the cadence has elapsed
+    // (every tick while live / final_ready / matchday or while work is pending; the scheduler re-decides each tick).
+    next_due_at: schedule?.cadence_min ? nextTickAt(cron, now + schedule.cadence_min * 60e3 - 6 * 60e3) : nextTickAt(cron, now),
+    cadence: schedule?.cadence_min ? { activity: schedule.activity, minutes: schedule.cadence_min, reason: schedule.reason } : 'every_tick',
     season: facts?.season ?? out?.season ?? null, competition_id: facts?.competition_id ?? null,
     candidates: out ? out.candidates : null, new: out ? out.new : null, duplicates: out ? out.duplicates : null,
     published: out ? out.published : null, held: out ? out.held : null,
@@ -105,6 +113,17 @@ export function competitionState({ slug, result = null, error = null, facts = nu
     versions: { engine: ENGINE_VERSION, gates: GATE_V2, desk: DESK_VERSION, quality: QUALITY_VERSION, packet: PACKET_V3, router: ROUTER_VERSION, state: STATE_VERSION },
     registry_version: REGISTRY_VERSION,
   };
+}
+
+// Work the competition's own last run says is still pending (every tick until cleared; phase 4 schedule.js).
+export function pendingWork(state) {
+  if (!state) return null;
+  if (state.last_run_outcome === 'failed') return 'last_run_failed';
+  if ((state.deferred || 0) > 0) return 'stories_deferred';
+  if ((state.recaps?.awaiting_enrichment || 0) > 0) return 'recap_awaiting_enrichment';
+  if ((state.recaps?.too_soon || 0) > 0) return 'recap_too_soon';
+  if ((state.new_recaps || 0) > 0) return 'new_recaps_last_run';
+  return null;
 }
 
 // Parse a stored state; anything that is not a state of this contract is reported as malformed, never trusted.

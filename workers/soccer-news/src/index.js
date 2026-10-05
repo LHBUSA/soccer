@@ -15,6 +15,7 @@ import { leaguePhaseCfg, profileFor } from './profiles.js';
 import { competitionState, stateKey, parseState, STATE_VERSION, REGISTRY_VERSION } from './runner-state.js';
 import registryData from '../../../data/registry/competitions.json' with { type: 'json' };
 import { runIsolated, ISOLATION_VERSION } from './isolation.js';
+import { planTick } from './schedule.js';
 
 // The only production schedule. The temporary backlog-migration cron (*/10) is retired: there is no automatic OpenAI
 // backlog processing. Re-edits are manual only (POST /v1/admin/reedit, scripts/news/reedit-backlog.mjs).
@@ -34,10 +35,10 @@ function authorized(req, env) {
 // Observational only. A KV write failure is counted and logged, never retried into the run and never thrown: the
 // runner already finished (its publication/holds stand exactly as without state), and health reports the stale or
 // missing state as a failure of that competition. Dry, review and forced-preview runs write no state.
-export function stateRecorder(kv, { now, cfg, dispatch = 'in_process' }) {
+export function stateRecorder(kv, { now, cfg, dispatch = 'in_process', schedule = null }) {
   const writes = { ok: 0, failed: 0, errors: [] };
   const hook = async ({ slug, result = null, error = null, elapsedMs }) => {
-    const st = competitionState({ slug, result, error, facts: result?.facts || null, now, elapsedMs, cron: NEWS_CRON, cfg, stories: storiesFor(slug), dispatch });
+    const st = competitionState({ slug, result, error, facts: result?.facts || null, now, elapsedMs, cron: NEWS_CRON, cfg, stories: storiesFor(slug), dispatch, schedule: schedule?.[slug] || null });
     try { await kv.put(stateKey(slug), JSON.stringify(st)); writes.ok += 1; } catch (e) { writes.failed += 1; writes.errors.push(`${slug}: ${String(e?.message || e).slice(0, 120)}`); console.error('competition state write failed', slug, String(e?.message || e).slice(0, 160)); }
   };
   return { hook, writes };
@@ -65,11 +66,26 @@ export const loopbackDispatch = ctx => (ctx?.exports?.NewsRunner ? (slug, opts) 
 // The cron tick (phase 3): every enabled competition is its own runner invocation (isolation.js). A runner failure is
 // that competition's failure (state `failed`, entry in news:last_run); the tick completes and is `ran`. A missing loopback
 // binding fails the tick loudly (no silent in-process fallback). `dispatch` is a test seam only.
-export async function runTick(env, ctx, { now, dispatch = null } = {}) {
+// Phase 4: only the competitions the activity plan says are due are dispatched (schedule.js; fail open = all). A
+// competition not due this tick keeps its previous news:last_run entry, marked { scheduled: { ran: false, ... } }, so the
+// tick summary and the aggregate health still describe every enabled competition. `store` is a test seam only.
+export async function runTick(env, ctx, { now, dispatch = null, store } = {}) {
   const t0 = Date.now();
   const cfg = leaguePhaseCfg(env);
-  const rec = env.SOCCER_STATE ? stateRecorder(env.SOCCER_STATE, { now, cfg, dispatch: 'isolated' }) : null;
-  const summary = await runIsolated(env, { now, dispatch: dispatch || loopbackDispatch(ctx), onCompetition: rec?.hook });
+  const plan = await planTick({ kv: env.SOCCER_STATE || null, store: store === undefined ? storeFromEnv(env) : store, now, competitions: NEWS_COMPETITIONS });
+  const due = NEWS_COMPETITIONS.filter(s => plan.competitions[s].due);
+  let prev = null; try { prev = env.SOCCER_STATE ? await env.SOCCER_STATE.get('news:last_run', 'json') : null; } catch { prev = null; }
+  const rec = env.SOCCER_STATE ? stateRecorder(env.SOCCER_STATE, { now, cfg, dispatch: 'isolated', schedule: plan.competitions }) : null;
+  const ran = await runIsolated(env, { now, dispatch: dispatch || loopbackDispatch(ctx), onCompetition: rec?.hook, competitions: due });
+  const competitions = {};
+  for (const slug of NEWS_COMPETITIONS) {
+    const d = plan.competitions[slug];
+    if (ran.competitions[slug]) { competitions[slug] = { ...ran.competitions[slug], scheduled: { ran: true, reason: d.reason, activity: d.activity ?? null } }; continue; }
+    const p = prev?.competitions?.[slug] || null;
+    const carriedFrom = p?.scheduled?.carried_from || (p ? prev.at : null);
+    competitions[slug] = { ...(p || {}), scheduled: { ran: false, reason: d.reason, activity: d.activity ?? null, next_due_at: d.next_due_at || null, carried_from: carriedFrom } };
+  }
+  const summary = { ...ran, competitions, schedule: plan };
   summary.elapsed_ms = Date.now() - t0;
   if (rec) summary.state_writes = { version: STATE_VERSION, ok: rec.writes.ok, failed: rec.writes.failed, ...(rec.writes.errors.length ? { errors: rec.writes.errors } : {}) };
   if (env.SOCCER_STATE) await env.SOCCER_STATE.put('news:last_run', JSON.stringify(summary));
@@ -149,7 +165,14 @@ export default {
         const t0 = Date.now();
         // ?concurrency=sequential runs the real tick's sequential, time-budgeted path (still dry); default parallel (dry only)
         const concurrency = url.searchParams.get('concurrency') === 'sequential' ? 'sequential' : 'parallel';
-        try { const s = await runIsolated(env, { now: Date.now(), dispatch, dry: true, concurrency, windowDays: Math.round(days), ...(fault ? { faultSlug: fault } : {}) }); s.elapsed_ms = Date.now() - t0; return json(s); } catch (e) { return json({ error: String(e.message || e) }, 500); }
+        // ?schedule=1 (phase 4): dry-run only the competitions the activity plan says are due now (the plan is returned)
+        try {
+          const now = Date.now();
+          const plan = url.searchParams.get('schedule') === '1' ? await planTick({ kv: env.SOCCER_STATE || null, store: storeFromEnv(env), now, competitions: NEWS_COMPETITIONS }) : null;
+          const s = await runIsolated(env, { now, dispatch, dry: true, concurrency, windowDays: Math.round(days), ...(fault ? { faultSlug: fault } : {}), ...(plan ? { competitions: NEWS_COMPETITIONS.filter(c => plan.competitions[c].due) } : {}) });
+          if (plan) s.schedule = plan;
+          s.elapsed_ms = Date.now() - t0; return json(s);
+        } catch (e) { return json({ error: String(e.message || e) }, 500); }
       }
       const asOfRaw = review ? url.searchParams.get('as_of') : null; const asOf = asOfRaw ? Date.parse(asOfRaw) : null;
       if (asOfRaw && !Number.isFinite(asOf)) return json({ error: 'as_of must be an ISO timestamp' }, 400);

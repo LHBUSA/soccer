@@ -6,7 +6,8 @@
 //   healthy_material_held_by_gates    pipeline healthy, newest story > 4 h old, material exists but the gates held it
 //   healthy_no_publishable_material   pipeline healthy, newest story > 4 h old, nothing new and nothing held
 // A quiet newsroom is correct when there is no material; it is never "fixed" by publishing filler.
-import { activityAt, parseState } from './runner-state.js';
+import { activityAt, parseState, pendingWork } from './runner-state.js';
+import { CADENCE_MS } from './schedule.js';
 
 export const TICK_STALE_MS = 2 * 3600e3;
 export const PUBLICATION_QUIET_MS = 4 * 3600e3;
@@ -66,7 +67,10 @@ export function competitionDiagnostic({ slug, raw, readError = null, tick, newes
   const s = p.state;
   const activityNow = activityAt(s.fixtures ? { ...s.fixtures, live_kickoffs: s.fixtures.live_kickoffs || [] } : null, now);
   const base = { dispatch: s.dispatch || 'in_process', activity: s.activity, activity_now: activityNow, last_run_at: s.last_run_at, last_run_age_min: Math.round(age(s.last_run_at) / 6e4), last_run_outcome: s.last_run_outcome, newest_published_at: newestPublishedAt };
-  const limit = activityNow === 'quiet' ? QUIET_STALE_MS : TICK_STALE_MS;
+  // phase 4: a competition is stale when it has missed its own cadence by > 90 min (never less than 2 h). Pending work
+  // (failed run, deferred stories, recaps awaiting enrichment) and live / due fixtures keep the 2 h limit; quiet = 7.5 h.
+  const limitFor = act => Math.max(TICK_STALE_MS, (CADENCE_MS[act] ?? CADENCE_MS.quiet) + 90 * 6e4);
+  const limit = pendingWork(s) ? TICK_STALE_MS : Math.min(limitFor(activityNow), s.cadence?.activity ? limitFor(s.cadence.activity) : Infinity);
   if (age(s.last_run_at) > limit) return res(false, 'runner_stale', `no run for ${Math.round(age(s.last_run_at) / 6e4)} min while ${activityNow} (limit ${limit / 6e4} min)`, base);
   if (s.last_run_outcome === 'failed') return res(false, 'run_failing', `runner failed: ${s.error || 'unknown error'}`, base);
   if (tick.outcome === 'failed' && Date.parse(s.last_run_at) < Date.parse(tick.at)) {

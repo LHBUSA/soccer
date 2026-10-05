@@ -70,8 +70,11 @@ test('real production picture 2026-10-05 10:30Z: PL / Bundesliga / UCL quiet in 
   const later = await competitionsHealth({ SOCCER_STATE: kv }, { tick: { ...tick, at: new Date(r.opts.now + 5 * H).toISOString() }, store: null, now: r.opts.now + 5 * H });
   assert.equal(later.competitions['premier-league'].ok, true, 'quiet + no run for 5 h is not stale');
   assert.equal(later.competitions['uefa-nations-league'].state, 'runner_stale', 'UNL had fixtures: stale after 2 h');
-  const much = await competitionsHealth({ SOCCER_STATE: kv }, { tick: { ...tick, at: new Date(r.opts.now + 7 * H).toISOString() }, store: null, now: r.opts.now + 7 * H });
-  assert.equal(much.competitions['premier-league'].state, 'runner_stale', 'quiet but no run for 7 h: stale');
+  // phase 4: quiet runs every 6 h, so quiet is stale only after cadence + 90 min = 7.5 h
+  const seven = await competitionsHealth({ SOCCER_STATE: kv }, { tick: { ...tick, at: new Date(r.opts.now + 7 * H).toISOString() }, store: null, now: r.opts.now + 7 * H });
+  assert.equal(seven.competitions['premier-league'].ok, true, 'quiet + 7 h: inside its 6 h cadence + 90 min');
+  const much = await competitionsHealth({ SOCCER_STATE: kv }, { tick: { ...tick, at: new Date(r.opts.now + 8 * H).toISOString() }, store: null, now: r.opts.now + 8 * H });
+  assert.equal(much.competitions['premier-league'].state, 'runner_stale', 'quiet but no run for 8 h: stale');
 });
 
 test('real production picture 2026-09-21: post-match Premier League / Bundesliga after the 09-20 round', async () => {

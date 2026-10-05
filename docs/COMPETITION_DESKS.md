@@ -203,6 +203,25 @@ plus each competition's enrichment ledger for finished matches. State per compet
 The cadence never changes WHAT a detector may write (same windows, materiality, dedupe keys), only how often it looks.
 A Champions League night wakes UCL; an NWSL matchday wakes NWSL; a quiet Ligue 1 week costs one cheap read per 6 h.
 
+### Phase 4 as implemented (branch `soccer-news-phase4`; NOT deployed)
+
+- `workers/soccer-news/src/schedule.js` (soccer-news-schedule/1.0.0). One canonical read per tick
+  (`soccer_competitions` ids + `soccer_public_matches` kick-off in [now - 36 h, now + 26 h]) + the phase 2 states.
+  Activity: live (status live, kick-off <= 6 h ago) > final_ready (ANY non-postponed/cancelled match kicked off in the
+  last 8 h) > matchday (<= 12 h) > pre_match (<= 26 h) > post_match (finished <= 36 h) > quiet.
+- Cadence: live / final_ready / matchday every tick; pre_match 60 min; post_match 120 min; quiet 360 min (5 min tick
+  tolerance). Due every tick regardless of activity while work is pending: last run failed, stories deferred by the
+  runner time budget, recap awaiting enrichment / too soon, new recaps last run. Missing / malformed state = due.
+- FAIL OPEN: activity read failure (or no store) = every competition due (`activity_read_failed_run_all`); state read
+  failure = that competition due.
+- Not-due competitions keep their previous `news:last_run` entry marked `scheduled: { ran: false, reason,
+  carried_from }`; their state is untouched (last_run_at stays the real last run). Due ones: `scheduled.ran: true`.
+- Health: stale = no run within max(2 h, own cadence + 90 min) (quiet 7.5 h); pending work = 2 h.
+- `/v1/run?isolated=1&dry=1&schedule=1` = dry run of only the due competitions + the plan.
+- Proof: tests/news-schedule.test.js (activity, cadence, pending, fail open, same-tick recap end to end, carried
+  entries, 48-tick simulation, unchanged runner output), read-only production plan
+  docs/evidence/news/schedule-preview-2026-10-05.json (UNL matchday due; PL / BL / UCL / MLS quiet, next 21:07Z).
+
 ## 9. Budget isolation model
 
 Today: `SOCCER_OPENAI_DAILY_MAX_USD` (default $5) is ONE global, fail-closed ceiling checked per desk call, and

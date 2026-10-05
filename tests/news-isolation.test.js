@@ -83,7 +83,8 @@ test(`injected failure in the middle runner (${MIDDLE}): earlier healthy, it is 
   }
   // later competitions produced their real results (same as the healthy baseline)
   const healthy = await runIsolated({ ...VARS, ...natural.env }, { now: natural.opts.now, dry: true, dispatch: loopback({ ...VARS, ...natural.env }, () => replayStore(unpackReads(natural.reads, fx.blobs))) });
-  for (const s of NEWS_COMPETITIONS.filter(x => x !== MIDDLE)) assert.equal(JSON.stringify(last.competitions[s]), JSON.stringify(healthy.competitions[s]), `${s} unaffected by the failure`);
+  const noSched = c => { const { scheduled, ...rest } = c; return rest; }; // phase 4 annotation (here: no store -> fail open, all run)
+  for (const s of NEWS_COMPETITIONS.filter(x => x !== MIDDLE)) { assert.equal(JSON.stringify(noSched(last.competitions[s])), JSON.stringify(healthy.competitions[s]), `${s} unaffected by the failure`); assert.equal(last.competitions[s].scheduled.reason, 'activity_read_failed_run_all'); }
   const h = await competitionsHealth({ SOCCER_STATE: kv }, { tick, store: null, now: natural.opts.now + 60e3 });
   assert.equal(h.competitions[MIDDLE].state, 'run_failing'); assert.equal(h.competitions[MIDDLE].ok, false);
   for (const s of NEWS_COMPETITIONS.filter(x => x !== MIDDLE)) { assert.equal(h.competitions[s].ok, true, `${s}: ${h.competitions[s].state}`); assert.notEqual(h.competitions[s].state, 'blocked_by_runner_failure'); }
