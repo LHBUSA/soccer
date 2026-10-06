@@ -1,4 +1,4 @@
-// PropBetEdge NETWORK FOOTER (Soccer). Sport network + PropBetEdge Predictions from the family registry
+// PropBetEdge NETWORK FOOTER (Soccer). Sport network + All Access premium products from the family registry
 // src/lib/network.js (10 sports, Soccer current), Soccer Intelligence + Soccer Pro links, the network, and the account
 // card. The card shows the All Access offer only to readers the contract says may buy it; the
 // manage link only where the contract says there is billing to manage (filled after the server answers).
@@ -22,7 +22,7 @@ export function networkFooter() {
     <nav class="fsports" aria-label="PropBetEdge sport network"><p class="fh">SPORT NETWORK</p><div class="fsport-row">${join(SPORTS, s => s.key === CURRENT_SPORT
       ? `<span class="fsport on" aria-current="page">${esc(s.label.toUpperCase())}<small>CURRENT</small></span>`
       : `<a class="fsport" href="${esc(s.url)}" rel="noopener">${esc(s.label.toUpperCase())}</a>`)}</div></nav>
-    <nav class="fsports" aria-label="PropBetEdge intelligence"><p class="fh">INTELLIGENCE</p><div class="fsport-row">${join(PRODUCTS, p => `<a class="fsport" href="${esc(p.url)}" rel="noopener">${esc(p.label.toUpperCase())}</a>`)}</div></nav>
+    <nav class="fsports" aria-label="PropBetEdge All Access"><p class="fh">ALL ACCESS</p><div class="fsport-row"><a class="fsport" href="https://propbetedge.ai/pro">ALL ACCESS</a>${join(PRODUCTS, p => `<a class="fsport" href="${esc(p.url)}">${esc(p.label.toUpperCase())}</a>`)}</div></nav>
     <div class="fgrid">
       ${col('Soccer Intelligence', INTELLIGENCE)}
       ${col('Soccer Pro', PRO)}
