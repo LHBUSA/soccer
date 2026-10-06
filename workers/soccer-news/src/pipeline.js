@@ -18,6 +18,8 @@ import { uuidv5 } from '../../shared/ids.js';
 import { chunkArr } from '../../soccer-ingest/src/store.js';
 import { missingPhaseConfig } from './profiles.js';
 import { seasonFacts } from './runner-state.js';
+import { allowanceGate, recordStory, tierOf } from './budget.js';
+import { reachesTransport } from './ai-router.js';
 
 // NEWS ENABLEMENT has ONE source of truth: data/registry/competitions.json `news` (enabled + the story
 // types each competition supports). Not coupled to a provider lane flag: a competition can be canonical
@@ -36,7 +38,11 @@ export const storiesFor = slug => NEWS_REGISTRY.find(c => c.slug === slug)?.stor
 // softDeadlineAt (phase 3 isolated real ticks only; epoch ms, wall clock): no NEW paid desk stage starts at or after it.
 // The remaining new candidates are DEFERRED: nothing is written for them, so the next tick detects them again with the
 // same story keys. Unset (default, every in-process / admin / dry path) = no limit, behaviour exactly as before.
-export async function runCompetition(store, slug, { now = Date.now(), env = {}, windowDays = 4, maxPerCompetition = 12, dry = false, cfg = {}, previewMatch = null, review = false, softDeadlineAt = null, clock = Date.now } = {}) {
+// budget (phase 5, real runs only): { competitions } = the enabled competitions sharing the global ceiling. Before a
+// story's paid desk stage the competition allowance gate (budget.js) may HOLD it (budget_competition_*); after it, the
+// story's cost is recorded in the competition's day doc. Unset (dry, review, every phase 1-4 caller) = unchanged.
+export async function runCompetition(store, slug, { now = Date.now(), env = {}, windowDays = 4, maxPerCompetition = 12, dry = false, cfg = {}, previewMatch = null, review = false, softDeadlineAt = null, clock = Date.now, budget = null } = {}) {
+  const budgeted = !!budget && !dry && !review; let accountingBroken = false;
   const routing = { lanes: {}, reasons: {} };
   // Fail closed: a competition whose league-phase boundary var is missing is skipped (no hidden code default).
   const missingCfg = missingPhaseConfig(slug, cfg);
@@ -87,7 +93,14 @@ export async function runCompetition(store, slug, { now = Date.now(), env = {}, 
     // Paid only for a genuinely NEW canonical story. A dry run makes zero model calls and zero writes (the router
     // routes `dry_run` DETERMINISTIC; nothing below `if (dry) continue` runs).
     const trigger = dry ? 'dry_run' : review ? 'canary' : 'new_story';
-    const r = await editorialStage(draft, packet, env, { trigger, articleId: uuidv5(`article:${packet.hash}`) });
+    // phase 5: the competition allowance gate sits between the draft gates and the paid desk stage (editorialStage
+    // itself is unchanged). It defers to the global breaker, so with the 5A policy it never changes an outcome.
+    let r = null;
+    if (budgeted && runGates2(draft, packet).pass && deskRequired(env)) {
+      const a = await allowanceGate({ env, slug, packet, competitions: budget.competitions, clock, accountingBroken, policies: budget.policies || null });
+      if (!a.ok) r = { article: draft, status: 'held', holdReasons: [a.reason], gates: runGates2(draft, packet), editorial: { version: DESK_VERSION, held: [a.reason], budget: a }, routing: null, budgetHold: true };
+    }
+    if (!r) r = await editorialStage(draft, packet, env, { trigger, articleId: uuidv5(`article:${packet.hash}`) });
     const { article, status, holdReasons, gates, editorial } = r;
     if (r.routing) { routing.lanes[r.routing.lane] = (routing.lanes[r.routing.lane] || 0) + 1; routing.reasons[r.routing.reason] = (routing.reasons[r.routing.reason] || 0) + 1; }
     out[status] += 1;
@@ -106,6 +119,10 @@ export async function runCompetition(store, slug, { now = Date.now(), env = {}, 
       headline: article.headline, dek: article.dek, body: articleBody(article, editorial, vis), entities: article.entities, composer: article.composer, gate_version: editorial?.version ? `${gates.version}+${editorial.version}` : gates.version,
       gate_results: { draft: gates.results, desk: editorial?.results || null }, status, hold_reasons: holdReasons, hero_media: null, published_at: status === 'published' ? new Date(now).toISOString() : null,
     }]);
+    // phase 5 accounting: every story that reached (or was held at) the paid stage, by event id (idempotent)
+    if (budgeted && (r.budgetHold || (r.routing && reachesTransport(r.routing)))) {
+      try { await recordStory(env, { slug, eventId, status, holdReasons, storyClass: packet.event.kind, tier: tierOf(packet), now: clock() }); } catch (e) { accountingBroken = true; out.budget_accounting_errors = (out.budget_accounting_errors || 0) + 1; console.error('budget accounting failed', slug, String(e?.message || e).slice(0, 160)); }
+    }
   }
   return { slug, out, routing, facts: seasonFacts(S, now) };
 }

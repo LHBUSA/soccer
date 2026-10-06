@@ -239,6 +239,31 @@ Proposed (all in code + KV, no new resource):
   spills into another competition's floor.
 - Spend accounting per competition: KV day log keyed by slug (phase 1), ledger column (phase 2).
 
+### Phase 5A as implemented (branch `soccer-news-phase5`; behaviour-identical policy)
+
+- `workers/soccer-news/src/budget.js` (soccer-news-budget/1.0.0). The GLOBAL breaker (`SOCCER_OPENAI_DAILY_MAX_USD`,
+  `overCeiling` inside `runDesk`) is unchanged and always first: the competition gate DEFERS whenever global spend is
+  exhausted or unreadable, so it can never let through a call the breaker would stop, and the existing hold reasons stay.
+- Gate position: in the runner (`runCompetition`, real runs only), after the draft gates pass and only for a story the
+  router would send to a paid model; `editorialStage` / `runDesk` / `openai-cost` / `ai-router` are byte-unchanged.
+- Policy: floor_pct per competition, shared pool = min(pool_pct, 100 - sum of floors), tier reservations (pool order:
+  recap > preview / matchday > form / trend / table), optional registry `news.allowance.max_stories_day`.
+  **5A = floor 0 %, pool 100 %, reservations 0, no story cap, no registry allowance** -> identical to the global breaker.
+- Holds: `budget_competition_allowance`, `budget_competition_story_cap`, `budget_competition_accounting_unavailable`
+  (fail closed for that competition). A budget-held story is written as HELD exactly like today's global-budget holds
+  (event + frozen evidence packet + held article): it is never published. Automatic retry of budget holds would need a
+  dedupe exception (held events are terminal for the detector) - NOT built; owner decision for 5B (today: admin re-edit).
+- Accounting (KV, no migration): `news:budget:<UTC day>:<slug>` = { stories: { <news_event_id>: { status, hold_reasons,
+  story_class, tier, calls, usd, at } }, totals }. Keyed by event id (a retried runner overwrites, never double-charges);
+  each story's cost read back from the breaker's own source (usage ledger by news_event_id, else the KV call log).
+  Estimates are labelled `nominal_standard_rate_estimate`. Spend no competition owns (admin re-edit, canary) is
+  `unattributed` and counts against the shared pool.
+- /health: each competition gains spend_today_usd, allowance_today_usd, floor_today_usd, desk_calls_today,
+  shared_pool_today_usd, stories_today, budget_holds_today, budget_state; `competitions.budget.global` = ceiling, spend
+  today, remaining, attributed, unattributed, shared pool used.
+- Evidence: tests/news-budget.test.js; read-only production preview docs/evidence/news/budget-preview-2026-10-05.json
+  (14 days: 77 calls, $1.20 nominal; max day $0.53 vs $5 ceiling; UNL 48 calls, 39 of 77 calls were canaries).
+
 ## 10. Migration / deploy sequence (preserves every article and frozen packet)
 
 Nothing below touches `soccer_articles`, `soccer_news_events` or `soccer_article_evidence` rows; story keys are

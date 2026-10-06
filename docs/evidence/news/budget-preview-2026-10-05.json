@@ -1,0 +1,210 @@
+{
+ "at": "2026-10-06T01:59:58.646Z",
+ "note": "read-only; nothing deployed or written",
+ "basis": "nominal_standard_rate_estimate",
+ "policy_5a": {
+  "floor_pct": 0,
+  "pool_pct": 100,
+  "reserve_pct": {
+   "recap": 0,
+   "preview": 0
+  },
+  "max_stories_day": null
+ },
+ "view_now": {
+  "version": "soccer-news-budget/1.0.0",
+  "basis": "nominal_standard_rate_estimate",
+  "day": "2026-10-06",
+  "policy": {
+   "floor_pct": 0,
+   "pool_pct": 100,
+   "reserve_pct": {
+    "recap": 0,
+    "preview": 0
+   },
+   "max_stories_day": null
+  },
+  "global": {
+   "ceiling_usd": 5,
+   "spend_today_usd": 0,
+   "remaining_usd": 5,
+   "attributed_to_competitions_usd": 0,
+   "unattributed_usd": 0,
+   "shared_pool_used_usd": 0
+  },
+  "competitions": {
+   "bundesliga": {
+    "spend_today_usd": 0,
+    "desk_calls_today": 0,
+    "stories_today": 0,
+    "budget_holds_today": 0,
+    "allowance_today_usd": 5,
+    "floor_today_usd": 0,
+    "shared_pool_today_usd": 0,
+    "budget_state": "pool"
+   },
+   "premier-league": {
+    "spend_today_usd": 0,
+    "desk_calls_today": 0,
+    "stories_today": 0,
+    "budget_holds_today": 0,
+    "allowance_today_usd": 5,
+    "floor_today_usd": 0,
+    "shared_pool_today_usd": 0,
+    "budget_state": "pool"
+   },
+   "uefa-champions-league": {
+    "spend_today_usd": 0,
+    "desk_calls_today": 0,
+    "stories_today": 0,
+    "budget_holds_today": 0,
+    "allowance_today_usd": 5,
+    "floor_today_usd": 0,
+    "shared_pool_today_usd": 0,
+    "budget_state": "pool"
+   },
+   "uefa-nations-league": {
+    "spend_today_usd": 0,
+    "desk_calls_today": 0,
+    "stories_today": 0,
+    "budget_holds_today": 0,
+    "allowance_today_usd": 5,
+    "floor_today_usd": 0,
+    "shared_pool_today_usd": 0,
+    "budget_state": "pool"
+   },
+   "mls": {
+    "spend_today_usd": 0,
+    "desk_calls_today": 0,
+    "stories_today": 0,
+    "budget_holds_today": 0,
+    "allowance_today_usd": 5,
+    "floor_today_usd": 0,
+    "shared_pool_today_usd": 0,
+    "budget_state": "pool"
+   }
+  }
+ },
+ "distribution": {
+  "days": 14,
+  "since": "2026-09-22T00:00:00Z",
+  "calls": 77,
+  "total_usd": 1.199921,
+  "by_competition": {
+   "bundesliga": {
+    "calls": 10,
+    "usd": 0.264403,
+    "by_trigger": {
+     "canary": 10
+    }
+   },
+   "unattributed": {
+    "calls": 1,
+    "usd": 0.029259,
+    "by_trigger": {
+     "cron_new_story": 1
+    }
+   },
+   "mls": {
+    "calls": 8,
+    "usd": 0.17321,
+    "by_trigger": {
+     "canary": 5,
+     "cron_new_story": 3
+    }
+   },
+   "uefa-nations-league": {
+    "calls": 48,
+    "usd": 0.626857,
+    "by_trigger": {
+     "cron_new_story": 34,
+     "canary": 14
+    }
+   },
+   "premier-league": {
+    "calls": 10,
+    "usd": 0.106192,
+    "by_trigger": {
+     "canary": 10
+    }
+   }
+  },
+  "max_day_usd": 0.531211,
+  "by_day": {
+   "2026-09-29": {
+    "bundesliga": {
+     "calls": 1,
+     "usd": 0.031184
+    },
+    "unattributed": {
+     "calls": 1,
+     "usd": 0.029259
+    },
+    "mls": {
+     "calls": 1,
+     "usd": 0.026831
+    }
+   },
+   "2026-09-30": {
+    "uefa-nations-league": {
+     "calls": 3,
+     "usd": 0.031412
+    }
+   },
+   "2026-10-01": {
+    "mls": {
+     "calls": 1,
+     "usd": 0.016656
+    },
+    "uefa-nations-league": {
+     "calls": 5,
+     "usd": 0.05166
+    }
+   },
+   "2026-10-02": {
+    "mls": {
+     "calls": 2,
+     "usd": 0.025363
+    },
+    "uefa-nations-league": {
+     "calls": 5,
+     "usd": 0.072664
+    }
+   },
+   "2026-10-03": {
+    "uefa-nations-league": {
+     "calls": 21,
+     "usd": 0.294599
+    },
+    "mls": {
+     "calls": 1,
+     "usd": 0.007761
+    }
+   },
+   "2026-10-04": {
+    "premier-league": {
+     "calls": 10,
+     "usd": 0.106192
+    },
+    "bundesliga": {
+     "calls": 9,
+     "usd": 0.233219
+    },
+    "mls": {
+     "calls": 3,
+     "usd": 0.096599
+    },
+    "uefa-nations-league": {
+     "calls": 7,
+     "usd": 0.095201
+    }
+   },
+   "2026-10-05": {
+    "uefa-nations-league": {
+     "calls": 7,
+     "usd": 0.081321
+    }
+   }
+  }
+ }
+}

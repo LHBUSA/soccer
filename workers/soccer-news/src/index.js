@@ -16,6 +16,7 @@ import { competitionState, stateKey, parseState, STATE_VERSION, REGISTRY_VERSION
 import registryData from '../../../data/registry/competitions.json' with { type: 'json' };
 import { runIsolated, ISOLATION_VERSION } from './isolation.js';
 import { planTick } from './schedule.js';
+import { budgetView } from './budget.js';
 
 // The only production schedule. The temporary backlog-migration cron (*/10) is retired: there is no automatic OpenAI
 // backlog processing. Re-edits are manual only (POST /v1/admin/reedit, scripts/news/reedit-backlog.mjs).
@@ -53,7 +54,7 @@ export async function run(env, { store: injected = null, ...opts } = {}) {
   const real = !opts.dry && !opts.review && !opts.previewMatch; // a forced / review / dry run is not the newsroom's run
   const now = opts.now ?? Date.now();
   const rec = env.SOCCER_STATE && real ? stateRecorder(env.SOCCER_STATE, { now, cfg }) : null;
-  const summary = await runNews(store, { env, cfg, ...opts, now, ...(rec ? { onCompetition: rec.hook } : {}) });
+  const summary = await runNews(store, { env, cfg, ...opts, now, ...(rec ? { onCompetition: rec.hook } : {}), ...(real ? { budget: { competitions: NEWS_COMPETITIONS } } : {}) });
   summary.elapsed_ms = Date.now() - t0;
   if (rec) summary.state_writes = { version: STATE_VERSION, ok: rec.writes.ok, failed: rec.writes.failed, ...(rec.writes.errors.length ? { errors: rec.writes.errors } : {}) };
   if (env.SOCCER_STATE && real) await env.SOCCER_STATE.put('news:last_run', JSON.stringify(summary));
@@ -116,9 +117,13 @@ export async function competitionsHealth(env, { tick, store, now = Date.now() })
     const newest = st?.competition_id ? newestByComp[st.competition_id] || null : null;
     competitions[slug] = { ...competitionDiagnostic({ slug, raw, readError, tick, newestPublishedAt: newest, now, failedThisTick, failedDispatch }), detail: st };
   }
+  // phase 5: per-competition budget (estimates, labelled) merged into each competition; global view alongside
+  let budget = null;
+  try { budget = await budgetView(env, { competitions: NEWS_COMPETITIONS, now }); } catch (e) { budget = { error: String(e?.message || e).slice(0, 160) }; }
+  for (const slug of NEWS_COMPETITIONS) if (budget?.competitions?.[slug]) Object.assign(competitions[slug], budget.competitions[slug]);
   const off = registryData.competitions.filter(c => !c.news?.enabled).map(c => ({ slug: c.slug, mode: 'off', publishing_profile: profileFor(c.slug, new Date(now).toISOString(), {}) ? 'mapped' : 'none', blocker: c.news?.blocker || null }));
   const vals = Object.values(competitions);
-  return { version: STATE_VERSION, registry_version: REGISTRY_VERSION, ok: vals.every(c => c.ok), failing: vals.filter(c => !c.ok).map(c => c.slug), ...(newestError ? { newest_published_error: newestError } : {}), competitions, off };
+  return { version: STATE_VERSION, registry_version: REGISTRY_VERSION, ok: vals.every(c => c.ok), failing: vals.filter(c => !c.ok).map(c => c.slug), ...(newestError ? { newest_published_error: newestError } : {}), competitions, budget: budget ? { version: budget.version, basis: budget.basis, day: budget.day, policy: budget.policy, global: budget.global, ...(budget.accounting_error ? { accounting_error: budget.accounting_error } : {}), ...(budget.error ? { error: budget.error } : {}) } : null, off };
 }
 
 // Admin re-edit trigger (ai-router.js allow-list): canary > dry_run > scope sweep (backfill) > named-slug admin re-edit.

@@ -52,7 +52,7 @@ export async function runnerRpc(env, slug, rawOpts, { store = null, clock = Date
   if (o.fault) throw new Error(`injected runner fault (${slug}, dry canary)`);
   const st = store || storeFromEnv(env);
   if (!st) throw new Error('store not configured');
-  const r = await runCompetition(st, slug, { now: o.now, env, cfg: leaguePhaseCfg(env), dry: o.dry, clock, ...(o.windowDays ? { windowDays: o.windowDays } : {}), ...(o.softDeadlineAt !== undefined ? { softDeadlineAt: o.softDeadlineAt } : {}) });
+  const r = await runCompetition(st, slug, { now: o.now, env, cfg: leaguePhaseCfg(env), dry: o.dry, clock, ...(o.dry ? {} : { budget: { competitions: NEWS_COMPETITIONS } }), ...(o.windowDays ? { windowDays: o.windowDays } : {}), ...(o.softDeadlineAt !== undefined ? { softDeadlineAt: o.softDeadlineAt } : {}) });
   return { slug: r.slug, out: r.out, routing: r.routing, facts: r.facts };
 }
 
