@@ -256,4 +256,13 @@ Canonical UUIDv5 ids; provider ids are crosswalks. Never merged by name. Crosswa
   unchanged across the tick (79 articles 47/29/3, 79 events, 85 evidence; fingerprints identical to 19:49Z);
   11 OFF competitions unchanged. Fail-open (schedule read failure -> run all) and pending-work-forces-next-tick are
   proven by tests (tests/news-schedule.test.js, mutation-checked), not observable on a healthy tick.
+- 2026-10-06 phase 5A LIVE `770e2e5a` (main 5bc79e9, ledger 5252d42), rollback `25bb40ac`. Pre-release: gate 649/649;
+  dark `bee33a47` sequential dry run byte-identical to live phase 4; /health budget fields on production KV (policy floor
+  0 / pool 100 %). First real tick 02:07:55Z: ran; UNL `final_ready` due -> dispatched alone (14 candidates, 14
+  duplicates, 0 new, 0 failed), 4 skipped (quiet / pre_match); state_writes 1/0; budget: global ceiling $5, spend $0,
+  every competition budget_state `pool`, allowance $5, 0 budget holds; newsroom tables unchanged (82 articles
+  48/31/3, 82 events, 88 evidence; fingerprints identical to 02:01Z). NOT YET PROVEN IN PRODUCTION: per-competition
+  accounting of a real paid desk call and its reconciliation (no paid story since the release: no `news:budget:*` doc
+  exists yet). Acceptance of 5A waits for the first real paid story (next fixtures: MLS 10-07 00:30Z, Bundesliga
+  10-09 18:30Z, UNL league phase ongoing).
 

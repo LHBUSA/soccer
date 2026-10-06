@@ -33,6 +33,8 @@ Read from `wrangler deployments status`, production `/health` and git, 2026-10-0
 | 2 per-competition state + health (KV) | PRODUCTION LIVE `179e4499` (main ab54f62), ACCEPTED by owner 2026-10-05 |
 | 3 runner isolation (loopback WorkerEntrypoint `ctx.exports.NewsRunner`, no route / token / Queue) | PRODUCTION LIVE + ACCEPTED `03666f90` (main 09ef93f, isolation 1.1.0, soccer-news/1.6.0): sequential real dispatch in registry order + cooperative runner time budget (soft 150 s, hard soft+125 s, tick 840 s), parallel only for dry canaries; final proof = real scheduled tick 2026-10-05 15:37:38Z (5 runners ran sequentially, 0 failed, state_writes 5/0, newsroom fingerprints unchanged). `3151b3e6` (14:18Z, parallel dispatch) superseded: it raced the global OpenAI ceiling. Safe rollback `179e4499`. Per-invocation CPU/subrequest budgets NOT proven |
 | 4 activity-aware scheduling | PRODUCTION LIVE + ACCEPTED `25bb40ac` (main 4f62bf8) 2026-10-05 19:52Z, rollback `03666f90`; first real tick 20:07:38Z: UNL live -> ran, 4 quiet -> skipped (carried, states untouched), state_writes 1/0, fingerprints unchanged |
+| 5A budget control plane (floor 0 / pool 100 %, behaviour-identical) | PRODUCTION LIVE `770e2e5a` (main 5bc79e9) 2026-10-06 02:06Z, rollback `25bb40ac`; first tick clean; ACCEPTANCE PENDING the first real paid story (accounting + reconciliation in production) |
+| 5B tighten floors / pool / caps | NOT STARTED: proposal after 5A acceptance, from observed spend |
 | 3-6 | design below |
 
 Phase 1 parity proof: `tests/news-runner-parity.test.js` against `tests/fixtures/news/legacy-pipeline.js` (the RC2.1
