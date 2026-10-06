@@ -17,9 +17,11 @@ export const SPORTS = Object.freeze([
   { key: 'f1', label: 'F1', url: 'https://f1.propbetedge.ai/' },
 ]);
 
-/* Non-sport PropBetEdge products: never merged into SPORTS, never counted as a sport. */
+/* Non-sport All Access products: never merged into SPORTS, never counted as a sport. */
 export const PRODUCTS = Object.freeze([
-  { key: 'predictions', kind: 'product', label: 'PropBetEdge Predictions', url: 'https://predictions.propbetedge.ai/' },
+  { key: 'members', kind: 'product', label: 'Command Center', url: 'https://members.propbetedge.ai/' },
+  { key: 'compare', kind: 'product', label: 'Compare', url: 'https://compare.propbetedge.ai/' },
+  { key: 'predictions', kind: 'product', label: 'Predictions', url: 'https://predictions.propbetedge.ai/' },
 ]);
 
 export const NETWORK_LINKS = Object.freeze({
