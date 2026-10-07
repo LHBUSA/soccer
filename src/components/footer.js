@@ -8,12 +8,11 @@ import { OFFER } from '../lib/pro.js';
 import { ALL_ACCESS_CHECKOUT_URL, LOCAL_ALL_ACCESS_PATH, OFFER_LINE, designation } from '../lib/account-surface.js';
 import { renderPreferredSource } from './preferred-source.js';
 
-export const DISCORD_URL = 'https://discord.gg/kb5zCTHbME';
 export const X_URL = 'https://x.com/PROPBETEDGE';
 
 const INTELLIGENCE = [['/', 'Today'], ['/matches', 'Matches'], ['/pbecast', 'PBEcast'], ['/picks', 'Official Picks'], ['/track-record', 'Algo Track Record'], ['/players', 'Player DNA'], ['/competitions', 'Team Intelligence'], ['/tables', 'Tables'], ['/competitions', 'Competitions'], ['/news', 'News'], ['/sources', 'Sources & Method']];
 const PRO = [['/pro#matchup', 'Matchup Lab'], ['/pro#fatigue', 'Fatigue Intelligence'], ['/pro#rotation', 'Rotation / XI Stability'], ['/pro#model-lab', 'Model Lab'], ['/pro#match-center', 'Pro Match Center'], ['/pro#track-record', 'Track Record']];
-const NET = [[LOCAL_ALL_ACCESS_PATH, 'All Access'], [NETWORK_LINKS.hub, 'Sports News'], [NETWORK_LINKS.learn, 'Learn'], ['https://propsports.proptechusa.ai', 'PropSports API'], ['https://proptechusa.ai', 'PropTechUSA.ai'], [DISCORD_URL, 'Discord'], [X_URL, 'X @PROPBETEDGE']];
+const NET = [[LOCAL_ALL_ACCESS_PATH, 'All Access'], [NETWORK_LINKS.hub, 'Sports News'], [NETWORK_LINKS.learn, 'Learn'], ['https://propsports.proptechusa.ai', 'PropSports API'], ['https://proptechusa.ai', 'PropTechUSA.ai'], [X_URL, 'X @PROPBETEDGE']];
 
 const col = (title, links) => `<nav class="fcol" aria-label="${esc(title)}"><p class="fh">${esc(title.toUpperCase())}</p>${join(links, ([h, l]) => `<a href="${esc(h)}"${/^https?:/.test(h) ? ' rel="noopener"' : ' data-link'}>${esc(l)}</a>`)}</nav>`;
 
