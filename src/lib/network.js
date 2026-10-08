@@ -26,6 +26,5 @@ export const PRODUCTS = Object.freeze([
 
 export const NETWORK_LINKS = Object.freeze({
   hub: 'https://propbetedge.ai/',
-  all_access: 'https://propbetedge.ai/pro',
   learn: 'https://learn.propbetedge.ai/',
 });
