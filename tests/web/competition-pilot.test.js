@@ -20,7 +20,8 @@ test('MLS, Premier League and Bundesliga hubs present live matches first with de
   for (const slug of ['mls','premier-league','bundesliga']) {
     const h = render(mk(slug));
     assert.match(h, /LIVE NOW/);
-    assert.ok(h.indexOf('LIVE NOW') < h.indexOf('STANDINGS') || h.indexOf('LIVE NOW') < h.indexOf('TABLE'));
+    assert.ok(h.indexOf('<p class="kicker">LIVE NOW</p>') > -1, 'live heading rendered');
+    assert.ok(h.indexOf('<p class="kicker">LIVE NOW</p>') < h.indexOf('<div class="two">'), 'live section precedes standings layout');
     assert.match(h, new RegExp('/players\\?competition=' + slug));
     assert.match(h, new RegExp('/news/' + slug));
     assert.match(h, /data-related-news/);
