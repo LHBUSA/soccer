@@ -21,6 +21,8 @@ export const title = d => {
 };
 
 const TABS = [['overview', 'OVERVIEW'], ['table', 'TABLE'], ['results', 'RESULTS'], ['upcoming', 'UPCOMING'], ['teams', 'TEAMS']];
+// Release-gated pilot: leave other league and international hub layouts unchanged.
+const PILOT_LEAGUES = new Set(['mls', 'premier-league', 'bundesliga']);
 const settled = async p => { try { return { status: 'fulfilled', value: await p }; } catch (reason) { return { status: 'rejected', reason }; } };
 
 export async function load([slug], query) {
@@ -82,7 +84,11 @@ export function render(d) {
   const overviewTable = verifiedConfs.length
     ? join(verifiedConfs, x => `${sectionHead('STANDINGS', `${x.label} · ${d.season}`)}${tableView(x.env, { limit: 5 })}`)
     : `${sectionHead('TABLE', tableEnv?.data?.rows?.length ? (isLeaguePhase ? `League phase · ${d.season}` : d.slug === 'mls' ? `Top of the overall standings · ${d.season}` : `Top of the table · ${d.season}`) : 'Table')}${tableBlock(tableEnv?.data?.rows?.length ? 6 : null)}`;
-  const overview = `<div class="two">
+  const pilot = PILOT_LEAGUES.has(d.slug);
+  const liveRows = d.isCurrent && d.live?.status === 'fulfilled' ? d.live.value?.data || [] : [];
+  const overview = `${when(pilot && liveRows.length, () => `${sectionHead('LIVE NOW', 'In play')}${matchGrid(liveRows, { showComp: false })}`)}
+    ${when(pilot, () => `<p class="caveat">Explore <a href="/pbecast" data-link class="sec-link">Soccer PBEcast</a> · <a href="/players?competition=${esc(d.slug)}" data-link class="sec-link">League Player DNA</a> · <a href="/news/${esc(f?.desk || d.slug)}" data-link class="sec-link">League newsroom</a></p>`)}
+  <div class="two">
     <div>${overviewTable}
       ${when(tableEnv?.data?.rows?.length > 6 || verifiedConfs.length, () => `<p><a href="?tab=table" class="sec-link" data-goto-tab="table">Full table →</a></p>`)}
     </div>
@@ -92,6 +98,7 @@ export function render(d) {
       ${d.recent.status === 'fulfilled' ? matchGrid(d.recent.value?.data?.slice(0, 4), { showComp: false }) || '<p class="muted">No finished matches in this season.</p>' : ''}
     </div>
   </div>
+  ${when(pilot, () => '<div data-related-news></div>')}
   ${sectionHead('DATA COVERAGE', 'What the graph holds for this competition')}
   ${covRow ? `<div class="depthgrid light">
     <div class="depth-item"><b>${num(covRow.matches)}</b><span>canonical matches</span></div>
@@ -189,5 +196,8 @@ export function mount(root, d, { navigate }) {
   mountTabs(root);
   mountTableViews(root);
   mountGroupTables(root);
-  if (d.grouped) { const desk = compMeta(d.slug)?.desk; if (desk) mountRelatedNews(root, { desk }, { kicker: 'NEWS', title: 'From the International desk' }); }
+  const desk = compMeta(d.slug)?.desk;
+  if (desk && (d.grouped || PILOT_LEAGUES.has(d.slug))) {
+    mountRelatedNews(root, { desk }, { kicker: 'NEWS', title: d.grouped ? 'From the International desk' : `From the ${compMeta(d.slug).name} desk` });
+  }
 }
