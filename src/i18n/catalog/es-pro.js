@@ -1,0 +1,77 @@
+// Spanish copy for premium (Pro) API text, keyed by the API's structured codes (see src/i18n/pro-copy.js).
+// Meaning is preserved exactly: descriptive comparisons only; no win probability, prediction or sportsbook claim
+// is added. Numbers are inserted by the caller exactly as the API serialized them.
+const RESULTS_STAGE = 'Resultados canónicos en las fases de liga/grupo de la misma competición-temporada; puntos de resultado 3/1/0.';
+const LAST_TEN = 'Últimos diez marcadores almacenados en las fases de liga/grupo de la misma competición-temporada.';
+const SEASON = 'Resultados de las fases de liga/grupo de la competición-temporada actual.';
+
+export default {
+  analyzer: {
+    components: {
+      form5: { label: 'Forma reciente · últimos 5', basis: RESULTS_STAGE },
+      form10: { label: 'Forma reciente · últimos 10', basis: RESULTS_STAGE },
+      scoring: { label: 'Goles a favor recientes', basis: LAST_TEN },
+      conceding: { label: 'Goles en contra recientes', basis: LAST_TEN },
+      gd: { label: 'Diferencia de goles reciente', basis: LAST_TEN },
+      season_scoring: { label: 'Goles a favor en la temporada', basis: SEASON },
+      season_conceding: { label: 'Goles en contra en la temporada', basis: SEASON },
+      venue: { label: 'Local / visitante', basis: 'El equipo local en casa y el visitante fuera; mismas fases de liga/grupo de la competición-temporada.' },
+      shots: { label: 'Creación de tiros' },
+      suppression: { label: 'Contención de tiros' },
+      shot_diff: { label: 'Diferencia de tiros' },
+      sot_diff: { label: 'Diferencia de tiros a puerta' },
+      rest: { label: 'Días desde el último partido', basis: 'Días naturales a la fecha de referencia; todas las competiciones. Comparación de descanso, no de estado físico.' },
+      load7: { label: 'Carga reciente de calendario', basis: 'Partidos canónicos jugados en siete días, todas las competiciones; menos partidos = menor carga de calendario.' },
+      xi: { label: 'Continuidad del once', basis: 'Onces iniciales consecutivos con fuente; fracción que se mantiene. No es un pronóstico de alineación.' },
+    },
+    metrics: { shots: 'tiros', shots_on_target: 'tiros a puerta' },
+    shotBasis: (metric, sig) => `${metric[0].toUpperCase()}${metric.slice(1)} emparejados equipo/rival; proveedor y base compatibles: ${sig || 'ninguno'}.`,
+    units: { 'pts/m': 'pts/p', 'goals/m': 'goles/p', 'shots/m': 'tiros/p', days: 'días', matches: 'partidos', fraction: 'fracción' },
+    explanation: ({ home, away, unit, hs, as, basis }) => `Local: ${home} ${unit}; visitante: ${away} ${unit}. Muestras: ${hs} / ${as}. ${basis}`,
+    omittedReason: 'Cobertura emparejada ausente, incompatible o insuficiente.',
+    normalization: 'clamp((local - visitante) / escala, -1, 1), invertido cuando menos es mejor',
+    coverageLabels: ['DATOS INSUFICIENTES · VALORACIÓN RETENIDA', 'RESULTADOS + ESTADÍSTICAS COMPATIBLES', 'SOLO RESULTADOS / CALENDARIO'],
+    coverageBasis: 'Cobertura de observaciones almacenadas, nunca confianza predictiva. Los resultados de selecciones nunca entran en las muestras de comparación de ligas de clubes.',
+    historyBasis: 'Goles canónicos de fase de liga/grupo ponderados por partido en temporadas almacenadas; las métricas de eventos/estadísticas no se comparan entre épocas.',
+    ratingLabel: 'VALORACIÓN DE ENFRENTAMIENTO PBE: puntuación descriptiva por componentes. No es una probabilidad de victoria ni una predicción.',
+    formula: 'Resultados 50%, estadísticas de tiro compatibles 30%, calendario/once 20%; pesos iguales dentro de cada grupo disponible, grupos renormalizados cuando faltan. Local = round(50 + 50 × ventaja ponderada), visitante = round(50 - 50 × ventaja ponderada). Las escalas son normalizaciones de presentación, no pesos predictivos ajustados. La valoración requiere al menos tres partidos con resultado por equipo.',
+  },
+  index: {
+    congestion_14: { label: 'Partidos en los últimos 14 días', detail: [n => `${n} en 14 días (5 = carga máxima)`] },
+    short_rest: { label: 'Partidos con poco descanso (< 4 días) en 21 días', detail: [n => `${n} partido(s) con poco descanso`] },
+    rest: { label: 'Descanso antes del próximo partido (o desde el último)', detail: [n => `${n} día(s)`, () => 'sin partido reciente'] },
+    travel_sequence: { label: 'Proporción de partidos fuera en los últimos cinco', detail: [() => 'ninguno'] },
+    competition_switching: { label: 'Cambios de competición en los últimos cinco', detail: [n => `${n} cambio(s)`] },
+    xi_minutes_share_14: { label: 'Proporción de minutos disponibles jugados por el último once (14 días)', detail: [(p, cap) => `${p}% de ${cap} minutos de equipo por jugador`] },
+    international_return: { label: 'Jugadores del último once que regresan de la selección', detail: [n => `${n} jugador(es)`] },
+    schedule: { label: 'Índice de fatiga del equipo (calendario)', detail: [n => `${n}/100`] },
+    concentration: { label: 'Minutos concentrados en los 11 principales', detail: [p => `${p}% de los minutos`, () => 'sin alineaciones con fuente'] },
+    continuity: { label: 'Continuidad del once inicial', detail: [p => `${p}% de titulares mantenidos`, () => 'menos de dos onces con fuente'] },
+  },
+  // Renderer copy with values (src/components/analyzer.js). Keys mirror the English UI_EN there.
+  ui: {
+    level: 'NIVELADO',
+    edgeMeta: ({ edge, sh, sa, ch, th, ca, ta }) => `VENTAJA ${edge} / 1 · MUESTRA ${sh} / ${sa} · COBERTURA ${ch}/${th} local, ${ca}/${ta} visitante`,
+    axis: edge => `Ventaja normalizada del local ${edge} en una escala de menos uno a uno`,
+    scaleWeight: ({ norm, scale, weight }) => `${norm}. Escala: ${scale}. Peso: ${weight}% de los componentes disponibles.`,
+    groups: { results: 'RESULTADOS Y FORMA', style: 'ESTILO / DATOS DE TIRO', schedule: 'CALENDARIO Y ONCE' },
+    note: ({ comp, season, asOf }) => `Comparaciones descriptivas previas al partido · ${comp} ${season} · a fecha de ${asOf}. Sin probabilidad de victoria ni predicción.`,
+    previewNote: ({ comp, season, asOf }) => `Comparaciones canónicas descriptivas · ${comp} ${season} · a fecha de ${asOf}. Sin predicción ni probabilidad de victoria.`,
+    componentScore: 'Puntuación por componentes / 100',
+    baseline: ({ seasons, window, matches }) => `${seasons} temporadas almacenadas en la ventana de las últimas ${window} temporadas disponibles · ${matches} partidos de referencia`,
+    scoring: ({ cur, base, change }) => [`Goles a favor: `, cur, ` actual / ${base} referencia · cambio ${change}`],
+    conceding: ({ cur, base, change }) => [`Goles en contra: `, cur, ` actual / ${base} referencia · cambio ${change}`],
+    currentMatches: n => `${n} partidos actuales.`,
+    noBaseline: 'No hay una referencia de temporada anterior compatible almacenada.',
+    h2h: ({ n, home, hg, away, ag }) => `${n} enfrentamientos almacenados · ${home} ${hg} goles / ${away} ${ag} goles`,
+    noH2h: 'Menos de dos enfrentamientos canónicos almacenados. Sin resumen de enfrentamientos directos.',
+    coverageRows: ['Partidos con resultado', 'Onces con fuente (ventana de carga de 21 días)', 'Partidos con estadísticas de tiro emparejadas', 'Partidos con registro de eventos', 'Competiciones-temporadas almacenadas', 'Proporción de minutos nominales de los 11 principales'],
+    omitted: n => `${n} componentes no disponibles omitidos`,
+    minimum: n => `Muestra mínima: ${n}`,
+    sample: (h, a) => `MUESTRA ${h} / ${a}`,
+    edge: e => `VENTAJA ${e}`,
+    tooFew: 'Hay muy pocos datos canónicos compatibles para una comparación. No se rellena ningún valor.',
+    previewCoverage: l => `COBERTURA DE DATOS · ${l}. Es cobertura de muestra, no confianza predictiva.`,
+    limited: 'LIMITADA',
+  },
+};

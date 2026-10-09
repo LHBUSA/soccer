@@ -10,6 +10,7 @@ import { openAccount } from '../components/account.js';
 import { offerCard } from '../components/offer.js';
 import { mountAnalyzer } from '../components/analyzer.js';
 import { LOCAL_ALL_ACCESS_PATH, OFFER_LINE, accountView, designation } from '../lib/account-surface.js';
+import { proCopy } from '../i18n/pro-copy.js';
 
 const pct = v => (v === null || v === undefined ? '—' : `${Math.round(v * 100)}%`);
 
@@ -92,8 +93,9 @@ export const pro = {
 // ---- Pro Match Center ------------------------------------------------------------------------
 function indexCard(title, idx) {
   if (!idx) return '';
+  const t = proCopy(); // component labels/details by API code, in the page locale
   return `<div class="pi-card"><p class="pi-h">${esc(title)}</p><p class="pi-score"><b>${num(idx.score)}</b><small>/100</small></p>
-    <ul class="pi-comp">${join(idx.components, c => `<li><span>${esc(c.label)}</span><span class="muted">${esc(c.detail || '')}</span><b>+${num(c.contribution, { dp: 1 })}</b></li>`)}</ul></div>`;
+    <ul class="pi-comp">${join(idx.components, c => `<li><span>${esc(t.indexLabel(c))}</span><span class="muted">${esc(t.indexDetail(c) || '')}</span><b>+${num(c.contribution, { dp: 1 })}</b></li>`)}</ul></div>`;
 }
 function sideBlock(name, s) {
   return `<div class="pmc-side"><h3>${esc(name)}</h3>

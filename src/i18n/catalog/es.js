@@ -6,6 +6,9 @@
 // Product names that stay in English by design: PropBetEdge, PBEcast, All Access, Soccer Pro, Kalshi,
 // PropSports, Player/Team DNA keep their brand where used as a product name in prose ("ADN del jugador" in UI).
 
+import { ANALYZER_EN } from '../pro-copy.js';
+import PRO from './es-pro.js';
+
 const exact = {
   // ---- SEO: page titles, descriptions and first-response headings (src/seo/meta.js + page title()) ------------
   'Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge': 'Inteligencia de fútbol, datos de partidos en vivo y ADN del jugador | PropBetEdge',
@@ -161,6 +164,31 @@ const exact = {
   'F1 Intelligence': 'F1 Intelligence',
   'Tennis': 'Tenis',
   'Golf': 'Golf',
+
+  // ---- member states, Pro Match Center chrome and Pro API descriptions (soccer-api pro/routes.js) -------------
+  'VERIFIED OWNER': 'PROPIETARIO VERIFICADO',
+  'PLATINUM MEMBER': 'MIEMBRO PLATINUM',
+  'PLATINUM ACCESS ACTIVE': 'ACCESO PLATINUM ACTIVO',
+  'OWNER ACCESS ACTIVE': 'ACCESO DE PROPIETARIO ACTIVO',
+  'verified by PropBetEdge': 'verificado por PropBetEdge',
+  'Your Soccer desk': 'Tu sección de Fútbol',
+  'is unlocked.': 'está desbloqueada.',
+  'Every Soccer Pro surface is unlocked on this verified owner account. No subscription required.':
+    'Todas las secciones de Soccer Pro están desbloqueadas en esta cuenta de propietario verificada. No requiere suscripción.',
+  'Your PropBetEdge All Access membership unlocks the full network — 10 sports plus PropBetEdge Predictions. Soccer is one of them.':
+    'Tu membresía PropBetEdge All Access desbloquea toda la red: 10 deportes más PropBetEdge Predictions. Fútbol es uno de ellos.',
+  'All Access · every PropBetEdge sport': 'All Access · todos los deportes PropBetEdge',
+  'Match Center unavailable right now.': 'El Centro de partidos no está disponible en este momento.',
+  'PBE MATCHUP ANALYZER': 'ANALIZADOR DE ENFRENTAMIENTOS PBE',
+  'Analyzer method': 'MÉTODO DEL ANALIZADOR',
+  'Load context': 'CONTEXTO DE CARGA',
+  'Loading matchup analyzer': 'Cargando el analizador de enfrentamientos',
+  'Workload intelligence from schedules, sourced lineups and derived minutes. It is not a medical, fitness or injury assessment and never says a player is tired, injured or at risk.':
+    'Inteligencia de carga de trabajo a partir de calendarios, alineaciones con fuente y minutos derivados. No es una evaluación médica, física ni de lesiones y nunca afirma que un jugador esté cansado, lesionado o en riesgo.',
+  'Selected deterministic canonical matchup facts. No composite rating, probability, prediction or private model output.':
+    'Datos canónicos y deterministas seleccionados del enfrentamiento. Sin valoración compuesta, probabilidad, predicción ni resultados de modelos privados.',
+  'No sourced lineups in the window: squad and XI components are unavailable.': 'No hay alineaciones con fuente en la ventana: los componentes de plantilla y del once no están disponibles.',
+  [ANALYZER_EN.ratingLabel + ' ' + ANALYZER_EN.formula]: PRO.analyzer.ratingLabel + ' ' + PRO.analyzer.formula,
 
   // ---- network privacy-consent banner (public/pbe-consent-v1.js): faithful translation, same choices ----------
   'Your privacy choices': 'Tus opciones de privacidad',
@@ -759,7 +787,7 @@ const exact = {
   'All Access required': 'Se requiere All Access',
   'Fatigue, rotation and matchup intelligence for this match are calculated. They are sent only to PropBetEdge All Access members.':
     'La inteligencia de fatiga, rotación y enfrentamiento de este partido está calculada. Solo se envía a los miembros de PropBetEdge All Access.',
-  'Team fatigue index': 'ÍNDICE DE FATIGA DEL EQUIPO',
+  'Team fatigue index': 'Índice de fatiga del equipo',
   'XI load': 'CARGA DEL ONCE',
   'Rotation pressure': 'PRESIÓN DE ROTACIÓN',
   'Rest differential': 'DIFERENCIA DE DESCANSO',
@@ -1250,6 +1278,13 @@ const n = (v, one, many) => (v === '1' ? one : many);
 
 // [RegExp, (…captures, tr) => string]. First match wins; `tr` translates a fragment recursively.
 const patterns = [
+  // Pro semantics carrying values (soccer-api pro/routes.js).
+  [/^Workload intelligence from schedules, sourced lineups and derived minutes\. It is not a medical, fitness or injury assessment and never says a player is tired, injured or at risk\. Matchup Lab is descriptive: the PBE MATCHUP RATING leans from named components and is not a win probability\. Everything is computed as of (\S+) \(no information after kickoff\)\.$/,
+    a => `Inteligencia de carga de trabajo a partir de calendarios, alineaciones con fuente y minutos derivados. No es una evaluación médica, física ni de lesiones y nunca afirma que un jugador esté cansado, lesionado o en riesgo. El laboratorio de enfrentamientos es descriptivo: la VALORACIÓN DE ENFRENTAMIENTO PBE se inclina según componentes nombrados y no es una probabilidad de victoria. Todo se calcula a fecha de ${a} (sin información posterior al inicio).`],
+  [/^Upcoming matches \(7 days\) with each side's TEAM FATIGUE INDEX\. (.+)$/, (a, tr) => `Próximos partidos (7 días) con el ÍNDICE DE FATIGA DEL EQUIPO de cada lado. ${tr(a)}`],
+  [/^(\d+)d rest$/, a => `${a} d de descanso`],
+  [/^(-?[\d.]+) v (-?[\d.]+) days$/, (a, b) => `${a} vs ${b} días`],
+  [/^◆ (.+)$/, (a, tr) => `◆ ${tr(a)}`],
   // ---- SEO title templates (names captured verbatim) -----------------------------------------------------
   [/^(.+) vs (.+) Live Match Intelligence \| PropBetEdge$/, (a, b) => `${a} vs ${b}: inteligencia del partido en vivo | PropBetEdge`],
   [/^(.+) vs (.+) Match Intelligence \| PropBetEdge$/, (a, b) => `${a} vs ${b}: inteligencia del partido | PropBetEdge`],

@@ -4,6 +4,30 @@
   "installCommand": "npm ci",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/sitemap.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "futbol.propbetedge.ai"
+        }
+      ],
+      "destination": "https://soccer.propbetedge.ai/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/sitemap-:kind.xml",
+      "has": [
+        {
+          "type": "host",
+          "value": "futbol.propbetedge.ai"
+        }
+      ],
+      "destination": "https://soccer.propbetedge.ai/sitemap-:kind.xml",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/soccer/pro/access",
@@ -256,6 +280,21 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "futbol.propbetedge.ai"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
         }
       ]
     }

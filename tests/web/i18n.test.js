@@ -183,3 +183,14 @@ test('sitemaps: Spanish twins with reciprocal alternates for every localized kin
   assert.ok(xml.includes(`<loc>${SITE}/es/picks</loc>`));
   assert.deepEqual(alternateLinks('/tables').map(a => a.url), [`${SITE}/tables`, `${SITE}/es/tables`, `${SITE}/tables`]);
 });
+
+test('futbol host: sitemaps 308 to the canonical host, every response noindex, /api and robots.txt keep working', () => {
+  const v = JSON.parse(readFileSync('vercel.json', 'utf8'));
+  const onFutbol = r => (r.has || []).some(h => h.type === 'host' && h.value === 'futbol.propbetedge.ai');
+  const red = (v.redirects || []).filter(onFutbol);
+  assert.deepEqual(red.map(r => [r.source, r.destination, r.permanent]), [['/sitemap.xml', `${SITE}/sitemap.xml`, true], ['/sitemap-:kind.xml', `${SITE}/sitemap-:kind.xml`, true]]);
+  assert.ok(!red.some(r => /api|robots/.test(r.source)), 'API and robots.txt are never redirected');
+  assert.ok((v.redirects || []).every(onFutbol), 'no redirect applies to the canonical host');
+  const h = v.headers.filter(onFutbol);
+  assert.equal(h.length, 1); assert.equal(h[0].source, '/(.*)'); assert.deepEqual(h[0].headers, [{ key: 'X-Robots-Tag', value: 'noindex' }]);
+});
