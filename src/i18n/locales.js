@@ -46,8 +46,9 @@ export function readLangCookie(cookieHeader = '') {
   return m && LOCALES[m[1]]?.ready ? m[1] : null;
 }
 
-/** hreflang alternates for an unprefixed `path`: every ready locale plus x-default (English). */
-export const alternateLinks = (path, site = 'https://soccer.propbetedge.ai') => [
-  ...READY_LOCALES.map(code => ({ hreflang: LOCALES[code].hreflang, url: `${site}${localizePath(path, code)}` })),
+/** hreflang alternates for an unprefixed `path`: every ready locale (or only `codes`, e.g. the languages a translated
+ * article truly exists in) plus x-default (English). */
+export const alternateLinks = (path, site = 'https://soccer.propbetedge.ai', codes = READY_LOCALES) => [
+  ...READY_LOCALES.filter(code => codes.includes(code)).map(code => ({ hreflang: LOCALES[code].hreflang, url: `${site}${localizePath(path, code)}` })),
   { hreflang: 'x-default', url: `${site}${localizePath(path, DEFAULT_LOCALE)}` },
 ];

@@ -43,7 +43,9 @@ export default async function middleware(request) {
 
   let meta; let status = 200;
   try {
-    const results = plan.calls ? await Promise.all(plan.calls.map(c => upstreamJson(c))) : [];
+    // An article on a localized path asks for its verified translation (the API answers English when none is current).
+    const calls = (plan.calls || []).map(c => (plan.page === 'article' && locale !== DEFAULT_LOCALE ? `${c}?locale=${locale}` : c));
+    const results = calls.length ? await Promise.all(calls.map(c => upstreamJson(c))) : [];
     meta = localizeMeta(buildMeta(pathname, plan.page, results), { locale, path: pathname, page: plan.page, results });
     status = meta.status;
   } catch {

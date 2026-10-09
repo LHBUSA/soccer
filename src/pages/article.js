@@ -14,9 +14,13 @@ import { keyPlayers } from '../components/keyplayers.js';
 import { officialVideo, mountOfficialVideos } from '../components/video.js';
 import { orderVisuals, renderVisual } from '../components/visuals.js';
 import { renderPreferredSource } from '../components/preferred-source.js';
+import { newsLocale, currentLocale } from '../i18n/current.js';
 import { articleMarketEvent, articleMarketHtml, mountArticleMarketSlot } from '../data/article-market.js';
 
 const SITE = 'https://soccer.propbetedge.ai';
+// Shown under the byline of a verified newsroom translation (soccer-article-i18n), in the translation's own language.
+const TRANSLATED = { es: 'Traducción verificada del original en inglés.', pt: 'Tradução verificada do original em inglês.', fr: 'Traduction vérifiée de l’original en anglais.' };
+const READ_EN = { es: 'Leer en inglés', pt: 'Ler em inglês', fr: 'Lire en anglais' };
 const TYPE = { match_recap: 'Match report', player_form: 'Player form', team_trend: 'Team trend', competition_intelligence: 'Table watch', match_preview: 'Preview' };
 
 export function readingMinutes(sections) {
@@ -124,7 +128,7 @@ export function linkStoryText(text, entities = [], seen = new Set()) {
   return html;
 }
 
-export function body(sections, watch = '', entities = [], visuals = []) {
+export function body(sections, watch = '', entities = [], visuals = [], lang = null) {
   // Link only canonical entities already attached to the story, once each, so prose gains useful
   // internal navigation without turning every repeated name into SEO-style link spam.
   const seen = new Set();
@@ -132,7 +136,8 @@ export function body(sections, watch = '', entities = [], visuals = []) {
   // Data visuals (frozen specs, ordered by orderVisuals): the lead visual after the first section, the next
   // after the second, the rest in THE NUMBERS block after the story. The WATCH module follows the first section.
   const after = [[watch, renderVisual(visuals[0])].filter(Boolean).join(''), visuals[1] ? renderVisual(visuals[1]) : ''];
-  const blocks = html.map((h, i) => `<div class="art-body${i ? ' cont' : ''}">${h}</div>${after[i] || ''}`);
+  // A verified translation (lang) is announced in its language; the DOM localizer never re-translates story text.
+  const blocks = html.map((h, i) => `<div class="art-body${i ? ' cont' : ''}"${lang ? ` lang="${esc(lang)}"` : ''}>${h}</div>${after[i] || ''}`);
   if (!html.length) blocks.push(after.join(''));
   const rest = visuals.slice(2).map(renderVisual).filter(Boolean);
   const numbers = rest.length ? `<section class="art-numbers" aria-label="The numbers behind the story"><p class="nrail-h">THE NUMBERS BEHIND THE STORY</p>${rest.join('')}</section>` : '';
@@ -143,8 +148,10 @@ export function body(sections, watch = '', entities = [], visuals = []) {
 
 function sourceMethod(a, parts, meta) {
   const sources = parts.disclosure.filter(p => /^(Fixtures|Structured|Event data|Results|DATA · PropSports)/.test(p));
-  const notes = parts.disclosure.filter(p => !sources.includes(p) && !/evidence packet|hash/i.test(p));
-  const unavailable = (parts.disclosure.join(' ').match(/Not reported: ([^.]+)\./) || [])[1];
+  // A verified translation carries its own method notes (workers/shared/article-i18n.js methodNotes, same selection).
+  const tr = a.body?.method_i18n;
+  const notes = tr ? tr.notes : parts.disclosure.filter(p => !sources.includes(p) && !/evidence packet|hash/i.test(p));
+  const unavailable = tr ? tr.uncovered : (parts.disclosure.join(' ').match(/Not reported: ([^.]+)\./) || [])[1];
   return `<details class="src-method"><summary><span>SOURCE &amp; METHOD</span><small>How this story was built</small></summary>
     <div class="sm-body">
       <dl>
@@ -169,7 +176,11 @@ function related(a) {
 export function renderArticle(env, mk = null) {
   const a = env.data; const c = compByDesk(a.desk);
   const parts = storyParts(a);
-  const url = `${SITE}/news/${a.desk}/${a.slug}`;
+  const loc = a.translation ? a.locale : null; // a verified translation is being shown
+  const url = `${SITE}${loc ? `/${loc}` : ''}/news/${a.desk}/${a.slug}`;
+  // Headline/dek: in the translation's language, or the English original (announced as English on a localized page).
+  const page = currentLocale();
+  const story = loc ? ` lang="${esc(loc)}" data-i18n-skip` : page !== 'en' ? ' lang="en" data-i18n-skip' : '';
   const updated = a.updated_at && a.published_at && Date.parse(a.updated_at) - Date.parse(a.published_at) > 5 * 60e3;
   const match = (a.entities || []).find(e => e.type === 'SportsEvent');
   const people = (a.entities || []).filter(e => e.type === 'Person' && e.slug);
@@ -177,16 +188,17 @@ export function renderArticle(env, mk = null) {
     <section class="art-top"><div class="wrap art-col">
       <nav class="art-crumbs" aria-label="Breadcrumb">${link('/news', 'News')}<span aria-hidden="true">›</span>${link(`/news/${a.desk}`, esc(c?.name || a.desk))}</nav>
       <p class="art-meta">${c ? competitionMark(c.slug, 'xs') : ''}<span class="am-comp">${esc(c?.long || '')}</span><span class="am-type">${esc((TYPE[a.story_class] || storyLabel(a.story_class)).toUpperCase())}</span><time class="am-date" datetime="${esc(a.published_at)}">${esc(dateLong(a.published_at))}</time></p>
-      <h1 class="art-title">${esc(a.headline)}</h1>
-      ${when(a.dek, () => `<p class="art-dek">${esc(a.dek)}</p>`)}
+      <h1 class="art-title"${story}>${esc(a.headline)}</h1>
+      ${when(a.dek, () => `<p class="art-dek"${story}>${esc(a.dek)}</p>`)}
       <p class="art-byline">By <b>PropBetEdge Soccer Desk</b><span>·</span><time datetime="${esc(a.published_at)}">${esc(ago(a.published_at))}</time><span>·</span><span>${readingMinutes(parts.sections)} min read</span>${updated ? `<span>·</span><span>Updated <time datetime="${esc(a.updated_at)}">${esc(dateLong(a.updated_at))}</time></span>` : ''}</p>
+      ${when(a.translation, () => `<p class="art-trans" data-i18n-skip lang="${esc(a.locale)}">${esc(TRANSLATED[a.locale] || '')} <a href="/news/${esc(a.desk)}/${esc(a.slug)}" data-lang-switch="en" hreflang="en" lang="en" translate="no">${esc(READ_EN[a.locale] || 'Read in English')}</a></p>`)}
       ${shareBar(url, a.headline)}
     </div></section>
     <section class="canvas art-canvas"><div class="wrap art-grid">
       <div class="art-main">
         ${inThisStory(a.entities || [])}
         ${heroMedia(a)}
-        ${body(parts.sections, articleMarketSlot(a, mk) + watchInArticle(a), a.entities || [], orderVisuals(a.body))}
+        ${body(parts.sections, articleMarketSlot(a, mk) + watchInArticle(a), a.entities || [], orderVisuals(a.body), loc)}
         ${when(match, () => `<section class="art-mod" data-art-match="${esc(match.href.split('/').pop())}"><p class="nrail-h">MATCH INTELLIGENCE</p><div class="am-slot"><p class="muted">Loading match intelligence…</p></div></section>`)}
         ${when(people.length, () => `<section class="art-mod"><p class="nrail-h">PLAYER DNA</p><div class="kp-grid">${join(people.slice(0, 4), p => `<a class="kp-card" href="/players/${esc(p.slug)}" data-link data-player-slug="${esc(p.slug)}"${match ? ` data-match-id="${esc(match.href.split('/').pop())}"` : ''}>${portrait(p, 'md')}<span class="kp-id"><b>${esc(p.name)}</b><small>Open Player DNA</small></span></a>`)}</div></section>`)}
         ${renderPreferredSource({ surface: 'article' })}
@@ -235,7 +247,7 @@ export async function mountArticle(root, env, mk = null) {
   const rail = root.querySelector('[data-art-rail]');
   if (rail) {
     try {
-      const list = (await api('news', { limit: 8 })).data.filter(x => x.slug !== env.data.slug).slice(0, 5);
+      const list = (await api('news', newsLocale({ limit: 8 }))).data.filter(x => x.slug !== env.data.slug).slice(0, 5);
       rail.innerHTML = `<div class="rail-card"><p class="nrail-h">LATEST FROM THE DESK</p>${join(list, x => { const c = compByDesk(x.desk); return `<a class="rail-item" href="/news/${esc(x.desk)}/${esc(x.slug)}" data-link><span class="rc-top">${c ? competitionMark(c.slug, 'xs') : ''}<span>${esc(TYPE[x.story_class] || storyLabel(x.story_class))}</span></span><b>${esc(x.headline)}</b><small>${esc(ago(x.published_at))}</small></a>`; })}${link('/news', 'ALL NEWS →', 'nrail-all')}</div>`;
     } catch { rail.remove(); }
   }

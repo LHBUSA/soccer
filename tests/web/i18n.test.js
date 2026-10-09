@@ -168,15 +168,29 @@ test('language redirects: cookie choice and futbol host; never cached; crawlers 
   assert.equal(r.headers.get('cache-control'), 'private, no-store'); assert.equal(r.headers.get('vary'), 'Cookie');
 });
 
-test('sitemaps: Spanish twins with reciprocal alternates for every localized kind; news stays English-only', async () => {
-  for (const k of ['static', 'competitions', 'matches', 'teams', 'players']) assert.ok(KINDS.includes(`es-${k}`), k);
-  assert.ok(!KINDS.includes('es-news'));
-  // Owner rule 2026-10-09: a Spanish article page whose body is still English is reachable, keeps the English
-  // canonical, and appears in NO Spanish sitemap and NO hreflang set until the article is genuinely translated.
-  for (const k of KINDS.filter(k => k.startsWith('es-'))) {
-    const rows = k === 'es-static' ? await entriesFor(k) : [];
-    for (const r of rows) { assert.doesNotMatch(r.loc, /\/es\/news\//, r.loc); for (const a of r.alternates) assert.doesNotMatch(a.url, /\/news\/[^/]+\/[^/]+$/, a.url); }
-  }
+test('sitemaps: Spanish twins with reciprocal alternates for every localized kind; news only where a verified translation exists', async () => {
+  for (const k of ['static', 'competitions', 'matches', 'teams', 'players', 'news']) assert.ok(KINDS.includes(`es-${k}`), k);
+  assert.ok(!KINDS.some(k => /^(pt|fr)-/.test(k)), 'no sitemap for a locale that is not ready');
+  // Owner rules 2026-10-09: an article whose body is still English keeps the English canonical and appears in NO Spanish
+  // sitemap and NO hreflang set; a VERIFIED translation (API `translations`) gets its Spanish URL and reciprocal alternates.
+  for (const r of await entriesFor('es-static')) { assert.doesNotMatch(r.loc, /\/es\/news\//, r.loc); for (const a of r.alternates) assert.doesNotMatch(a.url, /\/news\/[^/]+\/[^/]+$/, a.url); }
+  const feed = { data: [
+    { key: 'international/kane-run-1', desk: 'international', updated_at: '2026-10-06T21:08:31Z', translations: { es: '2026-10-09T18:00:00Z' } },
+    { key: 'bundesliga/untranslated-2', desk: 'bundesliga', updated_at: '2026-10-08T18:37:31Z', translations: {} },
+    { key: 'mls/legacy-3', desk: 'mls', updated_at: '2026-10-07T10:00:00Z' },
+  ] };
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = async () => new Response(JSON.stringify(feed), { status: 200 });
+  try {
+    const es = await entriesFor('es-news');
+    assert.deepEqual(es.map(e => e.loc), [`${SITE}/es/news/international/kane-run-1`], 'only the verified translation');
+    assert.deepEqual(es[0].alternates.map(a => [a.hreflang, a.url]), [['en', `${SITE}/news/international/kane-run-1`], ['es', `${SITE}/es/news/international/kane-run-1`], ['x-default', `${SITE}/news/international/kane-run-1`]]);
+    assert.equal(es[0].lastmod, '2026-10-09T18:00:00.000Z');
+    const en = await entriesFor('news');
+    const kane = en.find(e => e.loc.endsWith('kane-run-1'));
+    assert.deepEqual(kane.alternates.map(a => a.hreflang), ['en', 'es', 'x-default'], 'reciprocal on the English entry');
+    assert.ok(en.filter(e => /untranslated-2|legacy-3/.test(e.loc)).every(e => !e.alternates), 'English-only stories claim no alternates');
+  } finally { globalThis.fetch = realFetch; }
   const xml = urlset(await entriesFor('es-static'));
   assert.match(xml, /xmlns:xhtml="http:\/\/www\.w3\.org\/1999\/xhtml"/);
   assert.ok(xml.includes(`<loc>${SITE}/es/</loc><xhtml:link rel="alternate" hreflang="en" href="${SITE}/"/>`));
@@ -193,4 +207,31 @@ test('futbol host: sitemaps 308 to the canonical host, every response noindex, /
   assert.ok((v.redirects || []).every(onFutbol), 'no redirect applies to the canonical host');
   const h = v.headers.filter(onFutbol);
   assert.equal(h.length, 1); assert.equal(h[0].source, '/(.*)'); assert.deepEqual(h[0].headers, [{ key: 'X-Robots-Tag', value: 'noindex' }]);
+});
+
+test('article SEO: verified translation is self-canonical with reciprocal alternates; English-only stays English', async () => {
+  const { buildMeta } = await import('../../src/seo/meta.js');
+  const { localizeMeta } = await import('../../src/seo/meta-i18n.js');
+  const path = '/news/international/kane-run-1';
+  const art = over => ({ data: { slug: 'kane-run-1', desk: 'international', story_class: 'player_form', headline: 'Harry Kane scores in four straight games', dek: 'Six goals.', entities: [], published_at: '2026-10-06T21:07:26Z', updated_at: '2026-10-06T21:08:31Z', ...over } });
+  const meta = (results, locale) => localizeMeta(buildMeta(path, 'article', results), { locale, path, page: 'article', results });
+  const hl = m => (m.alternates || []).map(a => [a.hreflang, a.url]);
+  const pair = [['en', `${SITE}${path}`], ['es', `${SITE}/es${path}`], ['x-default', `${SITE}${path}`]];
+  // 1. the Spanish page of a verified translation
+  const es = meta([art({ headline: 'Harry Kane marca en cuatro partidos seguidos', dek: 'Seis goles.', locale: 'es', translations: { es: true }, translation: { locale: 'es', version: 1 } })], 'es');
+  assert.equal(es.canonical, `${SITE}/es${path}`); assert.deepEqual(hl(es), pair); assert.equal(es.htmlLang, 'es');
+  assert.match(es.title, /^Harry Kane marca en cuatro partidos seguidos/);
+  const na = es.jsonld.find(j => j['@type'] === 'NewsArticle');
+  assert.equal(na.url, `${SITE}/es${path}`); assert.equal(na.inLanguage, 'es'); assert.deepEqual(na.translationOfWork, { '@id': `${SITE}${path}` });
+  // 2. the English page of the same story: English canonical, the same reciprocal set, workTranslation
+  const en = meta([art({ locale: 'en', translations: { es: true } })], 'en');
+  assert.equal(en.canonical, `${SITE}${path}`); assert.deepEqual(hl(en), pair);
+  assert.deepEqual(en.jsonld.find(j => j['@type'] === 'NewsArticle').workTranslation, [{ '@id': `${SITE}/es${path}` }]);
+  // 3. an English-only story on /es/: English canonical, no alternates, no translation claims
+  const only = meta([art({ locale: 'en', translations: {} })], 'es');
+  assert.equal(only.canonical, `${SITE}${path}`); assert.deepEqual(hl(only), []);
+  assert.ok(!only.jsonld.some(j => j.workTranslation || j.translationOfWork));
+  assert.deepEqual(hl(meta([art({ locale: 'en', translations: {} })], 'en')), []);
+  // a non-public locale in `translations` is never claimed
+  assert.deepEqual(hl(meta([art({ locale: 'en', translations: { pt: true } })], 'en')), []);
 });

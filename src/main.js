@@ -33,7 +33,7 @@ import { mountMediaFallbacks } from './components/ui.js';
 import { installPlayerDrawer, close as closeDrawer } from './components/drawer.js';
 import { mountScoreTicker } from './components/score-ticker.js';
 import { currentLocale } from './i18n/current.js';
-import { localizePath, splitLocale } from './i18n/locales.js';
+import { LOCALES, localizePath, splitLocale } from './i18n/locales.js';
 import { observeLocale } from './i18n/dom.js';
 import { translateText } from './i18n/translate.js';
 import { langMenu, mountLangMenu, syncLangLinks, syncAlternates } from './components/lang.js';
@@ -99,6 +99,8 @@ const main = document.getElementById('main');
 mountScoreTicker(document.getElementById('score-ticker'));
 let seq = 0;
 
+// An article's languages: the one shown (a verified translation, else English) and every language it exists in.
+const articleLanguages = d => { const a = d?.env?.data; return { shown: a?.translation ? a.locale : 'en', codes: ['en', ...Object.keys(a?.translations || {}).filter(l => LOCALES[l]?.ready && l !== 'en')] }; };
 let firstLoad = true; // the server already wrote title/canonical/robots for the first response
 function setMeta(page, data, params = []) {
   const mod = PAGES[page];
@@ -109,12 +111,13 @@ function setMeta(page, data, params = []) {
     robots.content = page === 'notfound' ? 'noindex, follow' : (typeof mod?.robots === 'function' ? mod.robots(data) : mod?.robots) || 'index, follow, max-image-preview:large';
     const canon = document.querySelector('link[rel="canonical"]');
     const own = typeof mod?.canonical === 'function' && data ? mod.canonical(data) : null; // e.g. a PBEcast page canonicalises to its match page
-    // Localized pages are self-canonical (/es/...), except article pages: the story body is English only until a
-    // verified translation ships, so the English URL stays canonical and no alternates are claimed.
+    // Localized pages are self-canonical (/es/...). Article pages: only a VERIFIED translation is self-canonical; an
+    // article shown in English keeps the English canonical; alternates list only the languages the story truly exists in.
     const here = splitLocale(location.pathname).path;
     const path = own || (here === '/' ? '/' : here.replace(/\/+$/, ''));
-    if (canon && page !== 'notfound') canon.href = `https://soccer.propbetedge.ai${page === 'article' ? path : localizePath(path, LOCALE)}`;
-    syncAlternates(page === 'notfound' || page === 'article' || robots.content.startsWith('noindex') ? null : path);
+    const art = page === 'article' ? articleLanguages(data) : null;
+    if (canon && page !== 'notfound') canon.href = `https://soccer.propbetedge.ai${art ? localizePath(path, art.shown) : localizePath(path, LOCALE)}`;
+    syncAlternates(page === 'notfound' || robots.content.startsWith('noindex') || (art && art.codes.length < 2) ? null : path, art ? art.codes : undefined);
   }
   syncLangLinks();
   document.querySelectorAll('.nav a[data-pages], .nav [data-menu-toggle], .botnav a').forEach(a => a.classList.toggle('on', a.dataset.pages.split(',').includes(page)));

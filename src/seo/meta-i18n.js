@@ -1,8 +1,9 @@
 // Localized SEO for the first HTML response (middleware.js). meta.js builds the English metadata for the
 // unprefixed path; this module turns it into the metadata for `locale` and adds hreflang alternates.
 //   - Every page that has a translated interface gets reciprocal alternates (en, es, x-default) in BOTH languages.
-//   - Article pages: the story body is English until a separately verified translation ships, so /es/news/...
-//     keeps the English canonical and claims no alternates (no duplicate-content signal, no false hreflang).
+//   - Article pages: only a VERIFIED newsroom translation (soccer-article-i18n; the API sets `translation`) is
+//     self-canonical with reciprocal alternates among the languages the story truly exists in (`translations`). An
+//     article shown in English keeps the English canonical, and claims alternates only for real translations.
 //   - Names, scores and numbers are never translated; only the words around them.
 import { LOCALES, alternateLinks, localizePath } from '../i18n/locales.js';
 import { translateText } from '../i18n/translate.js';
@@ -12,8 +13,24 @@ const clip = (s, n = 165) => (s.length <= n ? s : `${s.slice(0, n - 1).replace(/
 const dayEs = iso => (iso ? new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }) : null);
 const FORM = { W: 'G', D: 'E', L: 'P' };
 const ROLE_ES = { goalkeeper: 'portero', defender: 'defensa', midfielder: 'centrocampista', forward: 'delantero' };
-// Pages without a translated equivalent (no alternates, English canonical kept).
+// Pages without a translated equivalent (no alternates, English canonical kept). Articles are decided per story below.
 const NO_ALTERNATES = new Set(['article', 'notfound']);
+const articleLangs = results => {
+  const a = results?.[0]?.data;
+  if (!a || results[0].notFound) return null;
+  return { shown: a.translation ? a.locale : 'en', codes: ['en', ...Object.keys(a.translations || {}).filter(l => LOCALES[l]?.ready && l !== 'en')] };
+};
+// NewsArticle JSON-LD of a translated story: its own URL and language, linked to the English work (and vice versa).
+function articleJsonld(jsonld, art, path) {
+  return (jsonld || []).map(j => {
+    if (j['@type'] !== 'NewsArticle') return j;
+    const own = `${SITE}${localizePath(path, art.shown)}`;
+    const en = `${SITE}${localizePath(path, 'en')}`;
+    const others = art.codes.filter(c => c !== art.shown);
+    return { ...j, url: own, mainEntityOfPage: { '@type': 'WebPage', '@id': own }, inLanguage: LOCALES[art.shown].hreflang,
+      ...(art.shown !== 'en' ? { translationOfWork: { '@id': en } } : others.length ? { workTranslation: others.map(c => ({ '@id': `${SITE}${localizePath(path, c)}` })) } : {}) };
+  });
+}
 
 function descriptionEs(page, results, meta) {
   const d = results?.[0]?.data;
@@ -75,9 +92,18 @@ function localizeJsonld(jsonld, locale) {
 export function localizeMeta(meta, { locale, path, page, results = [] }) {
   const L = LOCALES[locale] || LOCALES.en;
   const indexable = meta.status === 200 && !String(meta.robots).startsWith('noindex');
-  const alternates = indexable && !NO_ALTERNATES.has(page) && meta.canonical ? alternateLinks(new URL(meta.canonical).pathname) : [];
-  const base = { ...meta, htmlLang: L.htmlLang, ogLocale: L.og, ogAlternates: alternates.length ? Object.values(LOCALES).filter(l => l.ready && l.code !== locale).map(l => l.og) : [], alternates };
+  const art = page === 'article' && indexable ? articleLangs(results) : null;
+  const alternates = art ? (art.codes.length > 1 && meta.canonical ? alternateLinks(new URL(meta.canonical).pathname, SITE, art.codes) : [])
+    : indexable && !NO_ALTERNATES.has(page) && meta.canonical ? alternateLinks(new URL(meta.canonical).pathname) : [];
+  const langs = art ? art.codes : Object.values(LOCALES).filter(l => l.ready).map(l => l.code);
+  const base = { ...meta, htmlLang: L.htmlLang, ogLocale: L.og, ogAlternates: alternates.length ? langs.filter(c => c !== (art ? art.shown : locale)).map(c => LOCALES[c].og) : [], alternates,
+    ...(art && art.codes.length > 1 ? { jsonld: articleJsonld(meta.jsonld, art, new URL(meta.canonical).pathname) } : {}) };
   if (locale === 'en') return base;
+  if (art && art.shown === locale) {
+    // A verified translation: the API already returned the story in `locale`; self-canonical, chrome translated.
+    const tr = s => (s ? translateText(s, locale) : s);
+    return { ...base, title: tr(meta.title), canonical: `${SITE}${localizePath(new URL(meta.canonical).pathname, locale)}`, imageAlt: meta.imageAlt, jsonld: localizeJsonld(base.jsonld, locale), path };
+  }
   const tr = s => (s ? translateText(s, locale) : s);
   const description = descriptionEs(page, results, meta) || tr(meta.description);
   // Self-canonical in the reader's language, except where no translated equivalent exists (articles).

@@ -41,10 +41,10 @@ export function syncLangLinks() {
 }
 
 /** hreflang alternates for `path` (unprefixed), or none when the page has no translated equivalent. */
-export function syncAlternates(path) {
+export function syncAlternates(path, codes = undefined) {
   for (const l of document.querySelectorAll('link[rel="alternate"][hreflang]')) l.remove();
   if (!path) return;
-  for (const href of alternateLinks(path)) {
+  for (const href of alternateLinks(path, undefined, codes)) {
     const l = document.createElement('link'); l.rel = 'alternate'; l.hreflang = href.hreflang; l.href = href.url;
     document.head.appendChild(l);
   }

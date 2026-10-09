@@ -1193,6 +1193,8 @@ body.dr-open { overflow: hidden; }
 .art-dek { font: italic 500 clamp(18px, 1.9vw, 22px)/1.5 var(--serif); color: #dfe7f3; margin: 0 0 18px; max-width: 680px; }
 .art-byline { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; margin: 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.1); font: 600 11px/1.6 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted-dark); }
 .art-byline b { color: #fff; }
+.art-trans { margin: 10px 0 0; font: 500 13px/1.5 var(--body); color: var(--muted-dark); }
+.art-trans a { color: var(--gold); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; display: inline-block; min-height: 24px; padding: 2px 0; }
 .share-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 14px 0 0; }
 .share-h { font: 800 10px/1 var(--mono); letter-spacing: .18em; color: var(--muted-dark); margin-right: 4px; }
 .share-btn { display: inline-flex; align-items: center; min-height: 34px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.04); color: #e8eef8; font: 600 12.5px/1 var(--body); text-decoration: none; cursor: pointer; }

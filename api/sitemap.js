@@ -2,7 +2,9 @@
 //   /sitemap.xml            -> index
 //   /sitemap-<kind>.xml     -> static | competitions | matches | teams | players
 //   /sitemap-es-<kind>.xml  -> the same pages in Spanish (/es/...), each with en/es/x-default alternates.
-//                              News is English-only (articles keep the English canonical) and has no es file.
+//   /sitemap-es-news.xml    -> ONLY articles with a current verified Spanish translation (API `translations`), each
+//                              with reciprocal alternates among the languages it truly exists in. English news entries
+//                              carry the same alternates. Untranslated stories never appear as Spanish URLs.
 // No guessed URLs, no aliases, lastmod only when the canonical row has updated_at.
 import { SITE, upstreamJson } from '../server/upstream.js';
 import { READY_LOCALES, alternateLinks } from '../src/i18n/locales.js';
@@ -10,7 +12,7 @@ import { READY_LOCALES, alternateLinks } from '../src/i18n/locales.js';
 export const config = { runtime: 'edge' };
 export const BASE_KINDS = ['static', 'competitions', 'matches', 'teams', 'players', 'news'];
 export const LOCALIZED_KINDS = ['static', 'competitions', 'matches', 'teams', 'players'];
-export const KINDS = [...BASE_KINDS, ...READY_LOCALES.filter(l => l !== 'en').flatMap(l => LOCALIZED_KINDS.map(k => `${l}-${k}`))];
+export const KINDS = [...BASE_KINDS, ...READY_LOCALES.filter(l => l !== 'en').flatMap(l => [...LOCALIZED_KINDS, 'news'].map(k => `${l}-${k}`))];
 export const STATIC_PATHS = ['/', '/competitions', '/matches', '/tables', '/pbecast', '/players', '/sources', '/picks', '/track-record', '/all-access'];
 const PREFIX = { competitions: '/competitions/', matches: '/matches/', teams: '/teams/', players: '/players/' };
 
@@ -34,7 +36,17 @@ export function sitemapIndex(items) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items.map(i => `<sitemap><loc>${esc(i.loc)}</loc>${i.lastmod ? `<lastmod>${i.lastmod}</lastmod>` : ''}</sitemap>`).join('\n')}\n</sitemapindex>\n`;
 }
 
+// Translated articles of one locale (verified + current per the API), with reciprocal alternates.
+const articleLangs = r => ['en', ...Object.keys(r.translations || {}).filter(l => READY_LOCALES.includes(l) && l !== 'en')];
+export async function newsEntriesFor(locale) {
+  const env = await upstreamJson('sitemap/news', { timeoutMs: 20000 });
+  return (env.data || []).filter(r => /^[a-z-]+[/][a-z0-9-]+$/.test(r.key || '') && articleLangs(r).includes(locale))
+    .map(r => { const alternates = alternateLinks(`/news/${r.key}`, SITE, articleLangs(r)); return { loc: alternates.find(a => a.hreflang === locale).url, lastmod: lastmod(r.translations[locale] > r.updated_at ? r.translations[locale] : r.updated_at), alternates }; });
+}
+
 export async function entriesFor(kind) {
+  const n = /^([a-z]{2})-news$/.exec(kind);
+  if (n) return newsEntriesFor(n[1]);
   const m = /^([a-z]{2})-([a-z]+)$/.exec(kind);
   if (m) return localizedEntries(await entriesFor(m[2]), m[1]);
   if (kind === 'static') return STATIC_PATHS.map(p => ({ loc: `${SITE}${p}` }));
@@ -45,7 +57,7 @@ export async function entriesFor(kind) {
     if (!rows.length) return [];
     const desks = [...new Set(rows.map(r => r.desk))];
     const newest = d => lastmod(rows.filter(r => !d || r.desk === d).map(r => r.updated_at).sort().pop());
-    return [{ loc: `${SITE}/news`, lastmod: newest(null) }, ...desks.map(d => ({ loc: `${SITE}/news/${d}`, lastmod: newest(d) })), ...rows.map(r => ({ loc: `${SITE}/news/${r.key}`, lastmod: lastmod(r.updated_at) }))];
+    return [{ loc: `${SITE}/news`, lastmod: newest(null) }, ...desks.map(d => ({ loc: `${SITE}/news/${d}`, lastmod: newest(d) })), ...rows.map(r => ({ loc: `${SITE}/news/${r.key}`, lastmod: lastmod(r.updated_at), ...(articleLangs(r).length > 1 ? { alternates: alternateLinks(`/news/${r.key}`, SITE, articleLangs(r)) } : {}) }))];
   }
   const seen = new Set();
   return (env.data || []).filter(r => r.key && /^[a-z0-9-]+$/.test(r.key) && !seen.has(r.key) && seen.add(r.key))

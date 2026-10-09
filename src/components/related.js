@@ -2,6 +2,7 @@
 // Filled after render (the entity page never waits on it); nothing is shown when no
 // story exists, so no dead-end "no news" boxes.
 import { api } from '../lib/api.js';
+import { newsLocale } from '../i18n/current.js';
 import { esc, join } from '../lib/html.js';
 import { dateShort } from '../lib/format.js';
 import { compByDesk } from '../lib/competitions.js';
@@ -11,7 +12,7 @@ export async function mountRelatedNews(root, params, { title = 'In the news', ki
   const slot = root.querySelector('[data-related-news]');
   if (!slot) return;
   try {
-    const env = await api('news', { ...params, limit: 6 });
+    const env = await api('news', newsLocale({ ...params, limit: 6 }));
     const items = env.data || [];
     if (!items.length || !slot.isConnected) return;
     slot.innerHTML = `${sectionHead(kicker, title)}<ul class="related">${join(items, a => {

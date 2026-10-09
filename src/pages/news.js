@@ -10,6 +10,7 @@ import { officialVideo, mountOfficialVideos } from '../components/video.js';
 import { latestNews, selectHomepageLead } from '../lib/news.js';
 import { renderArticle, mountArticle } from './article.js';
 import { articleMarketWithin } from '../data/article-market.js';
+import { newsLocale } from '../i18n/current.js';
 import { KALSHI_FIRST_PAINT_MS } from '../data/kalshi.js';
 
 const INDEX = 'index, follow, max-image-preview:large';
@@ -164,7 +165,7 @@ const mountList = root => {
 export const news = {
   title: () => 'Soccer News — Evidence-Backed Reporting | PropBetEdge',
   robots: d => (d?.env?.data?.length ? INDEX : 'noindex, follow'),
-  async load() { const [env, vids] = await Promise.all([api('news', { limit: 40 }), settle(api('videos', { limit: 4 }))]); return { env, videos: vids?.data || [] }; },
+  async load() { const [env, vids] = await Promise.all([api('news', newsLocale({ limit: 40 })), settle(api('videos', { limit: 4 }))]); return { env, videos: vids?.data || [] }; },
   render(d) { return listPage(d, null); },
   mount: mountList,
 };
@@ -172,7 +173,7 @@ export const news = {
 export const newsDesk = {
   title: d => `${compByDesk(d?.desk)?.name || ''} Soccer News | PropBetEdge`,
   robots: d => (d?.env?.data?.length ? INDEX : 'noindex, follow'),
-  async load([desk]) { const [env, vids] = await Promise.all([api('news', { desk, limit: 40 }), settle(api('videos', { desk, limit: 4 }))]); return { desk, env, videos: vids?.data || [] }; },
+  async load([desk]) { const [env, vids] = await Promise.all([api('news', newsLocale({ desk, limit: 40 })), settle(api('videos', { desk, limit: 4 }))]); return { desk, env, videos: vids?.data || [] }; },
   render(d) { return listPage(d, d.desk); },
   mount: mountList,
 };
@@ -185,7 +186,7 @@ export const article = {
   // first-paint budget (KALSHI_FIRST_PAINT_MS from the start of the load); a late answer is handled in mount().
   async load([desk, slug]) {
     const deadline = Date.now() + KALSHI_FIRST_PAINT_MS;
-    const env = await api(`news/${slug}`);
+    const env = await api(`news/${slug}`, newsLocale());
     if (env.data.desk !== desk) { const e = new Error('not found'); e.status = 404; throw e; }
     const mk = await articleMarketWithin(env.data, deadline);
     return { env, mk };

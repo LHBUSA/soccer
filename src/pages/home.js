@@ -8,6 +8,7 @@ import { latestNews, selectHomepageLead, storyLabel } from '../lib/news.js';
 import { liveView } from '../lib/cast.js';
 import { competitionMark, empty, errorState, link, pctPill, portrait, sectionHead, sourcePanel, statusPill, teamMark } from '../components/ui.js';
 import { keyPlayerRows, todayLine } from '../components/keyplayers.js';
+import { newsLocale } from '../i18n/current.js';
 
 export { FEATURED };
 export const title = () => 'Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge';
@@ -41,7 +42,7 @@ export function mount(root, d, { isCurrent = () => true } = {}) {
   // Independent modules commit individually, never re-render the hero or already visible data.
   loadModule('leagues', api('competitions'), env => coverageCards(env, null));
   loadModule('depth', api('coverage'), dataDepth);
-  loadModule('news', api('news', { limit: 30 }), env => env.data.length ? `${sectionHead('NEWSROOM', 'Top story and the latest from the desks', link('/news', 'All news →', 'sec-link'))}${newsDesk(env)}` : empty('No published stories'));
+  loadModule('news', api('news', newsLocale({ limit: 30 })), env => env.data.length ? `${sectionHead('NEWSROOM', 'Top story and the latest from the desks', link('/news', 'All news →', 'sec-link'))}${newsDesk(env)}` : empty('No published stories'));
   loadModule('leaders-a', api('players', { competition: 'premier-league', sort: 'goal_contributions_per90', limit: 4 }), env => leaderBlock(env, 'premier-league'));
   loadModule('leaders-b', api('players', { competition: 'mls', sort: 'goal_contributions_per90', limit: 4 }), env => leaderBlock(env, 'mls'));
   if (d.feat) loadModule('featured', api(`matches/${d.feat.m.id}`), env => featured({ ...d, detail: { status: 'fulfilled', value: env } }));
