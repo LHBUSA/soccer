@@ -19,6 +19,18 @@ import { noTransform } from './transport.js';
 
 const LANES = [{ lane: 'openligadb_bl1_current', priority: true }];
 
+// Public preview helpers return {status, body} for direct callers, while public
+// ROUTES must return the API envelope itself (with .meta) to the shared router.
+export async function publicPreviewEnvelope(store, id) {
+  const result = await publicAnalyzerPreview(store, id);
+  if (result.status !== 200) {
+    const error = new Error(result.body?.error || 'preview unavailable');
+    error.status = result.status;
+    throw error;
+  }
+  return result.body;
+}
+
 const ROUTES = [
   [/^\/v1\/health$/, async (s, _m, _q, env) => R.health(s, { lanes: await Promise.all(LANES.map(async l => ({ ...l, ...((env.SOCCER_STATE && await env.SOCCER_STATE.get(`lane:${l.lane}`, 'json')) || {}) }))) }), 0, []],
   [/^\/v1\/competitions$/, s => R.competitions(s), 600, []],
@@ -28,7 +40,7 @@ const ROUTES = [
   [/^\/v1\/sitemap\/news$/, s => R.sitemap(s, 'news'), 300, []],
   [/^\/v1\/competitions\/([a-z0-9-]+)$/, (s, m, q) => R.competition(s, m[1], q), 600, ['season']],
   [/^\/v1\/matches$/, (s, _m, q) => R.matches(s, q), 120, ['competition', 'season', 'status', 'date', 'from', 'to', 'order', 'team', 'stage', 'limit']],
-  [/^\/v1\/matches\/([0-9a-f-]{36})\/analyzer-preview$/, (s, m) => publicAnalyzerPreview(s, m[1]), 30, []],
+  [/^\/v1\/matches\/([0-9a-f-]{36})\/analyzer-preview$/, (s, m) => publicPreviewEnvelope(s, m[1]), 30, []],
   [/^\/v1\/matches\/([0-9a-f-]{36})$/, (s, m) => R.match(s, m[1]), 15, []],
   [/^\/v1\/matches\/([0-9a-f-]{36})\/cast$/, (s, m, _q, env) => C.cast(s, m[1], env), 10, []],
   [/^\/v1\/live$/, (s, _m, _q, env) => C.live(s, env), 10, []],

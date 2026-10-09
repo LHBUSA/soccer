@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { analyzer, historicalBaseline } from '../workers/soccer-api/src/pro/analyzer.js';
 import { teamProfile } from '../workers/soccer-api/src/pro/matchup.js';
 import { proAnalyzer, publicAnalyzerPreview } from '../workers/soccer-api/src/pro/routes.js';
+import { publicPreviewEnvelope } from '../workers/soccer-api/src/index.js';
 const games=(gf,ga,sig='espn:source')=>Array.from({length:5},()=>({gf,ga,stat_signature:sig,stats:{shots:12,shots_on_target:5},opp_stats:{shots:8,shots_on_target:3},event_family:'espn'}));
 test('analyzer arithmetic: named components reconcile to bounded descriptive rating',()=>{
  const x=analyzer({homeGames:games(2,0),awayGames:games(1,2),competition:'bundesliga',season:'2026/27'});
@@ -43,4 +44,10 @@ test('public analyzer preview returns only selected rows and keeps the composite
  const id='00000000-0000-5000-8000-000000000901', home='00000000-0000-5000-8000-000000000902', away='00000000-0000-5000-8000-000000000903', comp='00000000-0000-5000-8000-000000000904', season='00000000-0000-5000-8000-000000000905';
  const s={select:async(table,q)=> table==='soccer_matches'&&q.eq?.id===id?[{id,season_id:season,competition_id:comp,kickoff_at:'2026-10-01T12:00:00Z',home_team_id:home,away_team_id:away}]:table==='soccer_seasons'?[{label:'2026/27'}]:table==='soccer_competitions'?[{id:comp,slug:'bundesliga'}]:[]};
  const x=await publicAnalyzerPreview(s,id); assert.equal(x.status,200); assert.deepEqual(x.body.data.components,[]); assert.equal(x.body.data.rating,undefined); assert.equal(x.body.data.formula,undefined); assert.match(x.body.data.coverage.label,/WEAK DATA/);
+ // Regression: the public Worker ROUTES caller must get a bare envelope with meta.
+ // Returning {status,body} instead makes the router dereference undefined .meta -> 502.
+ const routed=await publicPreviewEnvelope(s,id);
+ assert.ok(routed.meta);assert.deepEqual(routed.data.components,[]);
+ assert.equal(routed.data.rating,undefined);assert.equal(routed.data.formula,undefined);
+ await assert.rejects(()=>publicPreviewEnvelope({select:async()=>[]},id),e=>e.status===404&&e.message==='match not found');
 });
