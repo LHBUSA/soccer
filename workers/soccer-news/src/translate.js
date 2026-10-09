@@ -375,7 +375,9 @@ export async function sweepTranslations(env, store, locale) {
 }
 
 /** Newest published English articles without a current translation (and not already held at this revision). */
-export async function translationCandidates(store, locale, { limit = 2, slugs = null } = {}) {
+// `slugs` + retry=true (admin): translate those even if current; retry=false (pilot list): same one-try-per-revision rule.
+export async function translationCandidates(store, locale, { limit = 2, slugs = null, retry = true } = {}) {
+  const named = !!slugs?.length && retry;
   const arts = slugs?.length
     ? await store.select('soccer_articles', { columns: ARTICLE_COLUMNS, in: { slug: slugs }, eq: { status: 'published' } })
     : await store.select('soccer_articles', { columns: ['id', 'slug', 'updated_at', 'packet_hash'], eq: { status: 'published' }, order: 'published_at.desc', limit: 60 });
@@ -384,28 +386,37 @@ export async function translationCandidates(store, locale, { limit = 2, slugs = 
   for (const x of arts) {
     if (out.length >= limit) break;
     const mine = rows.filter(r => r.article_id === x.id);
-    if (!slugs?.length && mine.some(r => r.status === 'published' && sameInstant(r.source_updated_at, x.updated_at))) continue;
+    if (!named && mine.some(r => r.status === 'published' && sameInstant(r.source_updated_at, x.updated_at))) continue;
     const full = x.body ? x : (await store.select('soccer_articles', { columns: ARTICLE_COLUMNS, eq: { id: x.id }, limit: 1 }))[0];
     const rev = sourceRevision(full);
     if (mine.some(r => r.status === 'published' && r.source_revision === rev)) continue;
-    if (!slugs?.length && mine.some(r => r.status === 'held' && r.source_revision === rev)) continue; // one automatic try per revision
+    if (!named && mine.some(r => r.status === 'held' && r.source_revision === rev)) continue; // one automatic try per revision
     out.push(full);
   }
   return out;
 }
 
-/** The cron step: lifecycle for every locale with rows, then automatic translation where SOCCER_TRANSLATE_<L>=auto. */
+/**
+ * The cron step: lifecycle for every locale with rows, then translation by mode (SOCCER_TRANSLATE_<L>):
+ *   off (default)  lifecycle only;
+ *   pilot          ONLY the published articles named in SOCCER_TRANSLATE_<L>_PILOT (comma-separated slugs), each once
+ *                  per English revision - the owner's bounded pilot, auditable in wrangler.toml;
+ *   auto           the newest published articles without a current translation.
+ * Every mode honours the per-locale allowance, the $5/day ceiling and SOCCER_AI=off; a non-public locale never runs.
+ */
 export async function translationTick(env, { now = Date.now() } = {}) {
   const store = storeFromEnv(env);
   const report = { at: new Date(now).toISOString(), version: TRANSLATE_VERSION, locales: {} };
   for (const locale of Object.keys(ARTICLE_LOCALES)) {
     const r = report.locales[locale] = { mode: String(env[`SOCCER_TRANSLATE_${locale.toUpperCase()}`] || 'off') };
     try { r.sweep = await sweepTranslations(env, store, locale); } catch (e) { r.sweep_error = String(e?.message || e).slice(0, 160); }
-    if (r.mode !== 'auto' || !ARTICLE_LOCALES[locale].enabled) continue;
+    if (!['auto', 'pilot'].includes(r.mode) || !ARTICLE_LOCALES[locale].enabled) continue;
     const per = Math.max(0, Math.min(5, Number(env.SOCCER_TRANSLATE_PER_TICK) || 2));
+    const pilot = r.mode === 'pilot' ? String(env[`SOCCER_TRANSLATE_${locale.toUpperCase()}_PILOT`] || '').split(',').map(x => x.trim()).filter(x => /^[a-z0-9-]+$/.test(x)).slice(0, 25) : null;
+    if (pilot && !pilot.length) { r.error = 'pilot mode without a pilot list'; continue; }
     r.results = [];
     try {
-      for (const a of await translationCandidates(store, locale, { limit: per })) {
+      for (const a of await translationCandidates(store, locale, pilot ? { limit: per, slugs: pilot, retry: false } : { limit: per })) {
         const x = await translateArticle(env, store, a, locale, { trigger: 'cron_translation', now });
         r.results.push({ slug: x.slug, outcome: x.outcome, reason: x.reason, hold_reasons: x.hold_reasons, version: x.version });
         if (x.outcome === 'skipped' && /budget|allowance|ceiling/.test(x.reason || '')) break;

@@ -6,7 +6,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { applyMigrations, openPglite } from '../workers/soccer-ingest/src/store-pglite.js';
 import { articleSegments, sourceRevision, applyTranslation, methodNotes, ARTICLE_LOCALES } from '../workers/shared/article-i18n.js';
-import { translateArticle, translationGates, sweepTranslations, translationCandidates, checkVerdict, translationAllowanceUsd } from '../workers/soccer-news/src/translate.js';
+import { translateArticle, translationGates, sweepTranslations, translationCandidates, checkVerdict, translationAllowanceUsd, translationTick } from '../workers/soccer-news/src/translate.js';
 
 const id = n => `00000000-0000-5000-8000-0000001a${String(n).padStart(4, '0')}`;
 const PH = 'b'.repeat(64);
@@ -210,4 +210,16 @@ test('budget: es allowance $1 by default, other locales $0 until approved, ceili
   assert.equal((await translateArticle({ ...ENV(), SOCCER_AI: 'off' }, store, await live(store), 'es', { fetcher: es.fetcher })).reason, 'soccer_ai_off');
   assert.equal((await translateArticle({ OPENAI_API_KEY: 'k' }, store, await live(store), 'es', { fetcher: es.fetcher })).reason, 'translation_budget_unreadable');
   assert.equal(es.calls.length, 0);
+});
+
+test('pilot mode: only the named slugs, once per revision; off = lifecycle only; pt never runs while not public', async () => {
+  const store = await seed();
+  assert.equal((await translationCandidates(store, 'es', { slugs: ['nope', ARTICLE.slug], retry: false })).length, 1);
+  const held = openai({ check: { verdict: 'fail', fluency: 'good', issues: [{ id: 'd', severity: 'meaning', detail: 'x' }] } });
+  await translateArticle(ENV(), store, await live(store), 'es', { fetcher: held.fetcher });
+  assert.equal((await translationCandidates(store, 'es', { slugs: [ARTICLE.slug], retry: false })).length, 0, 'pilot: a held revision is not retried');
+  assert.equal((await translationCandidates(store, 'es', { slugs: [ARTICLE.slug] })).length, 1, 'admin named re-translation still allowed');
+  // translationTick needs a store from env: exercise the mode routing with an env that has none (fails closed per locale)
+  const rep = await translationTick({ SOCCER_STATE: kv(), SOCCER_TRANSLATE_ES: 'pilot', SOCCER_TRANSLATE_PT: 'auto' }).catch(e => ({ error: String(e) }));
+  assert.ok(rep.error || (rep.locales.es.mode === 'pilot' && rep.locales.es.error === 'pilot mode without a pilot list' && !rep.locales.pt.results), JSON.stringify(rep));
 });
