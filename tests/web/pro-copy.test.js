@@ -74,9 +74,16 @@ test('changed or unknown API wording falls back to the API English (no stale tra
   assert.notEqual(t.explanation(p), p.explanation);
 });
 
-test('English is untouched: proCopy("en") returns API text verbatim', () => {
+test('English is untouched: proCopy("en") returns API text verbatim, except the provider signature (DATA · PropSports)', () => {
   const x = full(); const t = proCopy('en');
-  for (const c of x.components) { assert.equal(t.label(c), c.label); assert.equal(t.basis(c), c.basis); assert.equal(t.explanation(c), c.explanation); assert.equal(t.unit(c.unit), c.unit); }
+  for (const c of x.components) {
+    assert.equal(t.label(c), c.label); assert.equal(t.unit(c.unit), c.unit);
+    if (c.group === 'style') {
+      assert.match(c.basis, /espn:source/, 'API keeps its provenance signature');
+      assert.match(t.basis(c), /^Paired team\/opponent (shots|shots on target) from one compatible stat basis \(DATA · PropSports\)\.$/);
+      assert.equal(t.explanation(c), c.explanation.replace(c.basis, t.basis(c)));
+    } else { assert.equal(t.basis(c), c.basis); assert.equal(t.explanation(c), c.explanation); }
+  }
   assert.equal(t.formula(x.formula), x.formula);
   assert.equal(t.ui, null);
 });
@@ -107,7 +114,7 @@ test('rendered analyzer: English HTML unchanged by the copy layer; Spanish HTML 
   const match = { home: { name: 'Bayern München' }, away: { name: 'Borussia Dortmund' } };
   setCurrentLocale('en');
   const en = analyzerView(x, match);
-  for (const c of x.components) { assert.ok(en.includes(c.explanation.replace(/&/g, '&amp;')), 'English explanation verbatim'); }
+  for (const c of x.components) { assert.ok(en.includes(proCopy('en').explanation(c).replace(/&/g, '&amp;')), 'English explanation (customer basis)'); }
   assert.ok(en.includes('EDGE ') && en.includes('RESULTS &amp; FORM') === false && en.includes('RESULTS & FORM'));
   setCurrentLocale('es');
   try {
@@ -119,4 +126,37 @@ test('rendered analyzer: English HTML unchanged by the copy layer; Spanish HTML 
     const pv = analyzerPreviewHtml({ competition: 'bundesliga', season: '2026/27', as_of: x.as_of, coverage: x.coverage, components: x.components.slice(0, 3).map(({ key, ...c }) => c) }, match);
     assert.ok(!pv.includes('Samples:') && pv.includes('Muestras:'));
   } finally { setCurrentLocale('en'); }
+});
+
+// Owner directive 2026-10-09 (final polish): customer analyzer displays carry product league names and DATA · PropSports,
+// never an API slug or provider signature; the API payload itself is unchanged.
+const LEAK = /espn|:source|:derived|premier-league|uefa-|la-liga|serie-a/i;
+const SLUGS = ['premier-league', 'la-liga', 'serie-a', 'bundesliga', 'mls', 'uefa-champions-league', 'fifa-world-cup', 'uefa-european-championship', 'uefa-womens-champions-league', 'womens-super-league'];
+
+test('competition slug -> product name, localized only where Spanish has an established form', () => {
+  const en = proCopy('en'); const es = proCopy('es');
+  assert.deepEqual(SLUGS.map(s => en.competition(s)), ['Premier League', 'LaLiga', 'Serie A', 'Bundesliga', 'MLS', 'Champions League', 'FIFA World Cup', 'European Championship', "Women's Champions League", 'WSL']);
+  assert.deepEqual(SLUGS.map(s => es.competition(s)), ['Premier League', 'LaLiga', 'Serie A', 'Bundesliga', 'MLS', 'Champions League', 'Copa Mundial de la FIFA', 'Eurocopa', 'Champions League Femenina', 'WSL']);
+  assert.equal(en.competition('some-new-cup'), 'Some New Cup', 'unknown slug is humanized, never printed raw');
+});
+
+test('rendered preview + full analyzer: league name and DATA · PropSports in both languages, no slug or signature, same numbers', () => {
+  const x = { ...full(), competition: 'premier-league', home_id: 'h', away_id: 'a' };
+  const match = { home: { name: 'Arsenal' }, away: { name: 'Chelsea' } };
+  const shots = x.components.filter(c => c.group === 'style');
+  const preview = { competition: 'premier-league', season: '2026/27', as_of: x.as_of, coverage: x.coverage, components: shots.slice(0, 3).map(({ key, ...c }) => c) };
+  const out = {};
+  for (const loc of ['en', 'es']) {
+    setCurrentLocale(loc);
+    try { out[loc] = { pv: analyzerPreviewHtml(preview, match), full: analyzerView(x, match) }; } finally { setCurrentLocale('en'); }
+    for (const html of Object.values(out[loc])) {
+      assert.doesNotMatch(html, LEAK, `${loc}: internal identifier leaked`);
+      assert.ok(html.includes('Premier League'), `${loc}: league name`);
+      assert.ok(html.includes('DATA · PropSports'), `${loc}: attribution`);
+    }
+  }
+  const nums = h => (h.replace(/<[^>]+>/g, ' ').match(/-?\d+(?:\.\d+)?/g) || []).join('|');
+  assert.equal(nums(out.es.pv), nums(out.en.pv), 'preview numbers identical across languages');
+  assert.equal(x.components.length, 15, 'premium analyzer keeps all 15 components');
+  assert.match(x.components.find(c => c.key === 'shots').basis, /espn:source/, 'API provenance untouched');
 });

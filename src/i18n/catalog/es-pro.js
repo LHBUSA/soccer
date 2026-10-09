@@ -25,7 +25,8 @@ export default {
       xi: { label: 'Continuidad del once', basis: 'Onces iniciales consecutivos con fuente; fracción que se mantiene. No es un pronóstico de alineación.' },
     },
     metrics: { shots: 'tiros', shots_on_target: 'tiros a puerta' },
-    shotBasis: (metric, sig) => `${metric[0].toUpperCase()}${metric.slice(1)} emparejados equipo/rival; proveedor y base compatibles: ${sig || 'ninguno'}.`,
+    // `has` = the API named a compatible stat basis; its provider signature is never displayed (DATA · PropSports).
+    shotBasis: (metric, has) => has ? `${metric[0].toUpperCase()}${metric.slice(1)} emparejados equipo/rival de una única base estadística compatible (DATA · PropSports).` : `${metric[0].toUpperCase()}${metric.slice(1)} emparejados equipo/rival; sin base estadística compatible.`,
     units: { 'pts/m': 'pts/p', 'goals/m': 'goles/p', 'shots/m': 'tiros/p', days: 'días', matches: 'partidos', fraction: 'fracción' },
     explanation: ({ home, away, unit, hs, as, basis }) => `Local: ${home} ${unit}; visitante: ${away} ${unit}. Muestras: ${hs} / ${as}. ${basis}`,
     omittedReason: 'Cobertura emparejada ausente, incompatible o insuficiente.',
@@ -35,6 +36,13 @@ export default {
     historyBasis: 'Goles canónicos de fase de liga/grupo ponderados por partido en temporadas almacenadas; las métricas de eventos/estadísticas no se comparan entre épocas.',
     ratingLabel: 'VALORACIÓN DE ENFRENTAMIENTO PBE: puntuación descriptiva por componentes. No es una probabilidad de victoria ni una predicción.',
     formula: 'Resultados 50%, estadísticas de tiro compatibles 30%, calendario/once 20%; pesos iguales dentro de cada grupo disponible, grupos renormalizados cuando faltan. Local = round(50 + 50 × ventaja ponderada), visitante = round(50 - 50 × ventaja ponderada). Las escalas son normalizaciones de presentación, no pesos predictivos ajustados. La valoración requiere al menos tres partidos con resultado por equipo.',
+  },
+  // Competition product names (src/lib/competitions.js `name`). Official brand names stay as they are used in
+  // Spanish-language coverage; only names with an established Spanish form are localized.
+  competitions: {
+    'FIFA World Cup': 'Copa Mundial de la FIFA',
+    'European Championship': 'Eurocopa',
+    "Women's Champions League": 'Champions League Femenina',
   },
   index: {
     congestion_14: { label: 'Partidos en los últimos 14 días', detail: [n => `${n} en 14 días (5 = carga máxima)`] },

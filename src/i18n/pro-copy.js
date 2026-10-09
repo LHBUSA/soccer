@@ -9,6 +9,7 @@
 // Adding a language: add its table to TABLES (same keys). Adding an analyzer component: add its `en` and the
 // translations here; the sync test lists anything missing.
 import { currentLocale } from './current.js';
+import { resolveComp } from '../lib/competitions.js';
 import es from './catalog/es-pro.js';
 
 export const TABLES = { es };
@@ -61,6 +62,18 @@ export const INDEX_EN = {
 
 const fmt = v => String(v); // numbers exactly as the API serialized them
 
+// Customer source boundary (network standard DATA · PropSports). The API keeps the stat provenance signature
+// (`<family>:<basis>`, e.g. the collection lane + 'source') for evidence; displays never print it. Display only:
+// the API payload, provenance and calculations are unchanged.
+const SIGNATURE = /\b[a-z][a-z0-9_]*:(?:source|derived)\b/g;
+const LANE = /\bESPN\b/g;
+export const customerCopy = s => typeof s === 'string' ? s.replace(SIGNATURE, 'PropSports').replace(LANE, 'PropSports') : s;
+const SHOT_EN = {
+  metrics: { shots: 'shots', shots_on_target: 'shots on target' },
+  shotBasis: (metric, has) => has ?`Paired team/opponent ${metric} from one compatible stat basis (DATA · PropSports).` : `Paired team/opponent ${metric}; no compatible stat basis.`,
+};
+const humanSlug = s => String(s || '').split('-').filter(Boolean).map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
+
 /** Copy accessor for the page locale. Every method returns the API's English when no verified translation applies. */
 export function proCopy(locale = currentLocale()) {
   const T = TABLES[locale] || null;
@@ -72,21 +85,22 @@ export function proCopy(locale = currentLocale()) {
     // ---- analyzer ----
     label(c) { const k = keyOf(c); return A && k && same(c.label, ANALYZER_EN.components[k]?.label) ? A.components[k].label : c.label; },
     basis(c) {
-      if (!A) return c.basis;
       const k = keyOf(c); const en = ANALYZER_EN.components[k];
-      if (en?.basis && same(c.basis, en.basis)) return A.components[k].basis;
       const m = ANALYZER_EN.shotBasis.exec(c.basis || '');
-      if (m && en && en.basis === null) return A.shotBasis(A.metrics[m[1]], m[2] === 'none' ? null : m[2]);
-      return c.basis;
+      if (m && en && en.basis === null) { const S = A || SHOT_EN; return S.shotBasis(S.metrics[m[1]], m[2] !== 'none'); }
+      if (!A) return customerCopy(c.basis);
+      if (en?.basis && same(c.basis, en.basis)) return A.components[k].basis;
+      return customerCopy(c.basis);
     },
     unit(u) { return A?.units[u] ?? u; },
     explanation(c) {
       // soccer-api: `Home: ${home} ${unit}; away: ${away} ${unit}. Samples: ${hs} / ${as}. ${basis}`
-      if (!A || !c.sample) return c.explanation;
-      const en = `Home: ${fmt(c.home)} ${c.unit}; away: ${fmt(c.away)} ${c.unit}. Samples: ${fmt(c.sample.home)} / ${fmt(c.sample.away)}. ${c.basis}`;
-      if (c.explanation !== en) return c.explanation;
+      if (!c.sample) return customerCopy(c.explanation);
+      const head = `Home: ${fmt(c.home)} ${c.unit}; away: ${fmt(c.away)} ${c.unit}. Samples: ${fmt(c.sample.home)} / ${fmt(c.sample.away)}. `;
+      if (c.explanation !== head + c.basis) return customerCopy(c.explanation);
       const basis = t.basis(c);
-      if (basis === c.basis) return c.explanation; // never mix languages inside one sentence
+      if (!A) return head + basis; // English: the API sentence with the customer basis
+      if (basis === customerCopy(c.basis)) return customerCopy(c.explanation); // never mix languages inside one sentence
       return A.explanation({ home: fmt(c.home), away: fmt(c.away), unit: t.unit(c.unit), hs: fmt(c.sample.home), as: fmt(c.sample.away), basis });
     },
     omittedReason(r) { return A && same(r, ANALYZER_EN.omittedReason) ? A.omittedReason : r; },
@@ -96,6 +110,8 @@ export function proCopy(locale = currentLocale()) {
     historyBasis(b) { return A && same(b, ANALYZER_EN.historyBasis) ? A.historyBasis : b; },
     ratingLabel(l) { return A && same(l, ANALYZER_EN.ratingLabel) ? A.ratingLabel : l; },
     formula(f) { return A && same(f, ANALYZER_EN.formula) ? A.formula : f; },
+    // ---- competition: the product name for the API slug, localized; never the raw slug ----
+    competition(slug) { const c = resolveComp(slug); if (!c) return humanSlug(slug); return T?.competitions?.[c.name] || c.name; },
     // ---- fatigue / XI load / rotation components ----
     indexLabel(c) { const en = INDEX_EN[c.key]; return T?.index && en && same(c.label, en.label) ? T.index[c.key].label : c.label; },
     indexDetail(c) {
