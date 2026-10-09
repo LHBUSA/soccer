@@ -38,10 +38,10 @@ const exact = {
   'Player DNA directory': 'Directorio del ADN del jugador',
   'Soccer Pro — Match Center, Matchup Lab & Fatigue Intelligence | PropBetEdge': 'Soccer Pro — Centro de partidos, laboratorio de enfrentamientos e inteligencia de fatiga | PropBetEdge',
   'Soccer Pro with PropBetEdge All Access ($29/month, 10 sports + PropBetEdge Predictions): Pro Match Center, Fatigue Intelligence, Rotation / XI Stability and a descriptive Matchup Lab built from canonical soccer data. Workload intelligence, not medical advice.':
-    'Soccer Pro con PropBetEdge All Access ($29/mes, 10 deportes + PropBetEdge Predictions): Centro de partidos Pro, inteligencia de fatiga, rotación / estabilidad del once y un laboratorio de enfrentamientos descriptivo construido con datos canónicos de fútbol. Inteligencia de carga de trabajo, no consejo médico.',
-  'PropBetEdge All Access on Soccer — 10 Sports + Predictions, $29/month | PropBetEdge': 'PropBetEdge All Access en Fútbol — 10 deportes + Predicciones, $29/mes | PropBetEdge',
+    'Soccer Pro con PropBetEdge All Access (US$29/mes, 10 deportes + PropBetEdge Predictions): Centro de partidos Pro, inteligencia de fatiga, rotación / estabilidad del once y un laboratorio de enfrentamientos descriptivo construido con datos canónicos de fútbol. Inteligencia de carga de trabajo, no consejo médico.',
+  'PropBetEdge All Access on Soccer — 10 Sports + Predictions, $29/month | PropBetEdge': 'PropBetEdge All Access en Fútbol — 10 deportes + Predicciones, US$29/mes | PropBetEdge',
   'Soccer intelligence is one desk in the PropBetEdge network. All Access unlocks the Pro Match Center, Fatigue Intelligence, Rotation / XI Stability and the Matchup Analyzer, plus MLB, NFL, NBA, WNBA, NHL, UFC, Tennis, Golf and F1 Intelligence and PropBetEdge Predictions, for $29/month.':
-    'La inteligencia de fútbol es una sección de la red PropBetEdge. All Access desbloquea el Centro de partidos Pro, la inteligencia de fatiga, la rotación / estabilidad del once y el Analizador de enfrentamientos, además de MLB, NFL, NBA, WNBA, NHL, UFC, Tenis, Golf y F1 Intelligence y PropBetEdge Predictions, por $29/mes.',
+    'La inteligencia de fútbol es una sección de la red PropBetEdge. All Access desbloquea el Centro de partidos Pro, la inteligencia de fatiga, la rotación / estabilidad del once y el Analizador de enfrentamientos, además de MLB, NFL, NBA, WNBA, NHL, UFC, Tenis, Golf y F1 Intelligence y PropBetEdge Predictions, por US$29/mes.',
   'Pro Match Center | PropBetEdge Soccer': 'Centro de partidos Pro | PropBetEdge Fútbol',
   'Pro Match Center | PropBetEdge': 'Centro de partidos Pro | PropBetEdge',
   'Soccer Pro Match Center: fatigue, rotation and matchup intelligence for PropBetEdge All Access members.': 'Centro de partidos de Soccer Pro: inteligencia de fatiga, rotación y enfrentamientos para miembros de PropBetEdge All Access.',
@@ -123,7 +123,7 @@ const exact = {
   '10 sports + Predictions. One membership.': '10 deportes + Predicciones. Una sola membresía.',
   '10 sports + Predictions.': '10 deportes + Predicciones.',
   '10 sports + Predictions': '10 deportes + Predicciones',
-  '$29/month': '$29/mes',
+  '$29/month': 'US$29/mes', // amount unchanged; US$ so it never reads as pesos (Issue #15 / #67 B5)
   '/month': '/mes',
   '25% off while active with': '25% de descuento mientras esté activo con',
   '25% off while active with code THEEDGE25': '25% de descuento mientras esté activo con el código THEEDGE25',
