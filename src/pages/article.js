@@ -157,7 +157,7 @@ function sourceMethod(a, parts, meta) {
   return `<details class="src-method"><summary><span>SOURCE &amp; METHOD</span><small>How this story was built</small></summary>
     <div class="sm-body">
       <dl>
-        <div><dt>Sources</dt><dd>${sources.length ? esc(sources.join(' ')) : 'DATA · PropSports'}</dd></div>
+        <div><dt>Sources</dt><dd>${sources.length ? sources.map(x => `<span>${esc(x)}</span>`).join(' ') : 'DATA · PropSports'}</dd></div>
         ${unavailable ? `<div><dt>Not covered</dt><dd>${esc(unavailable)}</dd></div>` : ''}
         <div><dt>Last verified</dt><dd>${esc(dateTime(a.updated_at || a.published_at))}</dd></div>
         <div><dt>Method</dt><dd>Every figure comes from a frozen fact record assembled before writing and checked by publication gates. ${link('/sources', 'Sources and method →')}</dd></div>
