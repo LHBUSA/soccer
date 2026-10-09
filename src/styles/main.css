@@ -1454,6 +1454,8 @@ body.dr-open { overflow: hidden; }
   body #pbe-privacy-choice:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
   body #pbe-consent { bottom: calc(56px + env(safe-area-inset-bottom) + 10px); max-height: calc(100vh - 56px - 80px - env(safe-area-inset-bottom)); overflow-y: auto; }
   body:has(#pbe-privacy-choice) { padding-bottom: calc(56px + 64px + env(safe-area-inset-bottom)); }
+  /* The open MORE menu fills the space above the bar: the pill steps aside so it never covers a menu link. */
+  .menu-open #pbe-privacy-choice { display: none; }
   /* MORE opens the same drop-down under the sticky header (a fixed panel would be trapped by the
      header's backdrop-filter containing block); it scrolls within the space above the bottom bar. */
   .menu-open .nav { max-height: calc(100vh - 61px - 56px - env(safe-area-inset-bottom)); overflow-y: auto; }

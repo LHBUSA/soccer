@@ -76,6 +76,14 @@ try {
       // the footer's last line can scroll clear of the pill
       const foot = await page.evaluate(() => { const f = [...document.querySelectorAll('footer *')].filter(e => e.children.length === 0 && e.textContent.trim()).pop(); return f ? f.getBoundingClientRect().bottom : null; });
       if (pill && foot !== null) check(foot <= pill.top + 1, `${tag}: footer last line (${foot}) hidden behind pill (${pill.top})`);
+      // the open MORE menu: no link is covered by the pill (every link is the tap target at its centre)
+      if (nav && await page.$('[data-more]')) {
+        await page.evaluate(() => window.scrollTo(0, 0));
+        await page.click('[data-more]'); await new Promise(r => setTimeout(r, 350));
+        const covered = await page.evaluate(() => [...document.querySelectorAll('#nav a, #lang-panel a')].filter(a => a.offsetParent !== null).map(a => { a.scrollIntoView({ block: 'nearest' }); const r = a.getBoundingClientRect(); const h = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return h && (h === a || a.contains(h)) ? null : `${a.textContent.trim()} <- ${h?.id || h?.tagName}`; }).filter(Boolean));
+        check(!covered.length, `${tag}: open menu links covered: ${covered.slice(0, 3).join(', ')}`);
+        await page.click('[data-more]'); await new Promise(r => setTimeout(r, 250));
+      }
       // 3. analyzer: names and attribution, no slug / signature
       const pv = await page.$eval('.analyzer-preview', e => e.innerText).catch(() => null);
       check(!!pv, `${tag}: analyzer preview not rendered`);
