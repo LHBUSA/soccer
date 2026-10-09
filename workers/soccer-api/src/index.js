@@ -17,6 +17,15 @@ import { handlePro, PRO_HEADERS, publicAnalyzerPreview } from './pro/routes.js';
 import { readLiveSnapshotInputs, snapshotRefreshReason } from '../../shared/live-snapshot.js';
 import { noTransform } from './transport.js';
 
+// Generic routes return the envelope itself; Pro-style handlers return { status, body }. Unwrap the latter so the
+// dispatcher can decorate meta, and turn a non-200 into the status error its catch maps (404/400). Issue #14: the
+// analyzer preview was wired in raw, every request threw "Cannot set properties of undefined (setting 'timing_ms')"
+// after all reads had succeeded, and every match answered 502.
+export const routeBody = r => {
+  if (r?.status === 200 && r.body?.meta) return r.body;
+  throw Object.assign(new Error(r?.body?.error || 'upstream error'), { status: r?.status === 404 || r?.status === 400 ? r.status : 502 });
+};
+
 const LANES = [{ lane: 'openligadb_bl1_current', priority: true }];
 
 const ROUTES = [
@@ -28,7 +37,7 @@ const ROUTES = [
   [/^\/v1\/sitemap\/news$/, s => R.sitemap(s, 'news'), 300, []],
   [/^\/v1\/competitions\/([a-z0-9-]+)$/, (s, m, q) => R.competition(s, m[1], q), 600, ['season']],
   [/^\/v1\/matches$/, (s, _m, q) => R.matches(s, q), 120, ['competition', 'season', 'status', 'date', 'from', 'to', 'order', 'team', 'stage', 'limit']],
-  [/^\/v1\/matches\/([0-9a-f-]{36})\/analyzer-preview$/, (s, m) => publicAnalyzerPreview(s, m[1]), 30, []],
+  [/^\/v1\/matches\/([0-9a-f-]{36})\/analyzer-preview$/, (s, m) => publicAnalyzerPreview(s, m[1]).then(routeBody), 30, []],
   [/^\/v1\/matches\/([0-9a-f-]{36})$/, (s, m) => R.match(s, m[1]), 15, []],
   [/^\/v1\/matches\/([0-9a-f-]{36})\/cast$/, (s, m, _q, env) => C.cast(s, m[1], env), 10, []],
   [/^\/v1\/live$/, (s, _m, _q, env) => C.live(s, env), 10, []],
