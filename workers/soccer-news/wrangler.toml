@@ -29,13 +29,15 @@ UWCL_LEAGUE_PHASE_END = "2026-12-19T00:00:00Z"
 # Migration 20260929001300 (routing columns on soccer_news_openai_usage) APPLIED 2026-09-29 (sha 4e7ef213): the ledger
 # rows carry the V4 routing fields. Off = routing fields in KV only.
 SOCCER_LEDGER_ROUTING = "on"
-# Newsroom translation (translate.js; owner approval 2026-10-09, Issue #15 stage 1). Spanish PILOT: only these 10
-# published articles (5 competitions, 6 story types), each translated once per English revision, 3 per tick, inside the
-# $1/day Spanish allowance (SOCCER_TRANSLATE_ES_DAILY_MAX_USD default 1) and the $5/day newsroom ceiling. Switch to
-# "auto" only after the pilot is verified in production. pt/fr are not public and have no allowance.
-SOCCER_TRANSLATE_ES = "pilot"
-SOCCER_TRANSLATE_PER_TICK = "3"
-SOCCER_TRANSLATE_ES_PILOT = "harry-kane-scoring-run-2026-10-06-96b1f1,borussia-dortmund-werder-bremen-preview-2026-10-09-2ffe56,bundesliga-matchday-2026-10-10-d96a9c,seattle-sounders-fc-8-league-matches-unbeaten-2026-10-02-adae3a,uefa-nations-league-groups-2026-09-29-f65a7a,mls-table-2026-09-27-c0405b,manchester-city-sunderland-2026-09-20-da838b,bayern-munchen-1-fc-union-berlin-2026-09-18-3ce080,austin-fc-san-diego-fc-2026-09-27-ac300b,erling-haaland-scoring-run-2026-09-20-be6e54"
+# Newsroom translation (translate.js; owner approval 2026-10-09, Issue #15 stage 1). Spanish pilot 2026-10-09 15:53-18:37Z:
+# 10 named articles (5 competitions, 6 story types) -> 9-10 published after gates + independent check (record in
+# docs/evidence/news/translation-pilot-2026-10-09.md). Owner approval: once proven, enable automatic translation of NEW
+# articles without another approval cycle -> "auto", bounded to stories first published at/after AUTO_SINCE (never the
+# backlog), 2 per tick, inside the $1/day Spanish allowance (SOCCER_TRANSLATE_ES_DAILY_MAX_USD default 1) and the
+# $5/day newsroom ceiling. pt/fr are not public and have no allowance.
+SOCCER_TRANSLATE_ES = "auto"
+SOCCER_TRANSLATE_ES_AUTO_SINCE = "2026-10-09T19:00:00Z"
+SOCCER_TRANSLATE_PER_TICK = "2"
 
 [[kv_namespaces]]
 binding = "SOCCER_STATE"
