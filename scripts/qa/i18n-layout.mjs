@@ -14,16 +14,25 @@ const WIDTHS = [1520, 1440, 1381, 1380, 1100, 1024, 768, 430, 390, 360, 320];
 const PAGES = ['/', '/matches', '/competitions/premier-league', '/picks', '/all-access', '/pbecast'];
 const LOCALES = ['', '/es'];
 
-const browser = await puppeteer.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: 'new', userDataDir: 'C:/Users/goodl/.cache/i18n-qa-chrome', args: ['--no-first-run', '--disable-extensions'] });
+const browser = await puppeteer.launch({ executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: 'new', args: ['--no-first-run', '--disable-extensions'] });
 const fails = [];
 let checks = 0;
 try {
-  const page = await browser.newPage();
-  // Protected preview deployments: --share <url> visits a Vercel share link first (sets the bypass cookie).
-  if (argv.includes('--share')) await page.goto(argv[argv.indexOf('--share') + 1], { waitUntil: 'networkidle2' });
+  // DETERMINISTIC LANGUAGE STATE: no persistent profile. Every locale pass (and the operability steps) runs in its own
+  // fresh, isolated browser context, so a language cookie left by an earlier (or killed) run can never leak into a
+  // check. Each check also asserts the cookie/URL state it expects and reports both on a mismatch.
   const errors = [];
-  page.on('pageerror', e => errors.push(String(e.message || e)));
+  let ctx = null; let page = null;
+  const fresh = async () => {
+    if (ctx) await ctx.close();
+    ctx = await browser.createBrowserContext();
+    page = await ctx.newPage();
+    page.on('pageerror', e => errors.push(String(e.message || e)));
+    // Protected preview deployments: --share <url> visits a Vercel share link first (sets the bypass cookie).
+    if (argv.includes('--share')) await page.goto(argv[argv.indexOf('--share') + 1], { waitUntil: 'networkidle2' });
+  };
   for (const loc of LOCALES) {
+    await fresh();
     for (const p of PAGES) {
       for (const w of WIDTHS) {
         errors.length = 0;
@@ -42,6 +51,8 @@ try {
           const rows = mids.length ? (Math.max(...mids) - Math.min(...mids) > 12 ? 2 : 1) : 0;
           return {
             lang: document.documentElement.lang,
+            path: location.pathname,
+            cookie: (document.cookie.match(/(?:^|;\s*)pbe_lang=([a-z]{2})/) || [])[1] || null,
             overflow: document.documentElement.scrollWidth - window.innerWidth,
             headerH: top ? Math.round(top.getBoundingClientRect().height) : 0,
             navRows: rows,
@@ -53,7 +64,10 @@ try {
         checks++;
         const want = loc ? 'es' : 'en';
         const tag = `${want} ${p} @${w}`;
-        if (r.lang !== want) fails.push(`${tag}: html lang=${r.lang}`);
+        if (r.lang !== want) fails.push(`${tag}: html lang=${r.lang} (path ${r.path}, pbe_lang cookie ${r.cookie})`);
+        // A fresh context carries no language choice: no cookie, and the URL is the one requested (no redirect).
+        if (r.cookie !== null) fails.push(`${tag}: unexpected pbe_lang=${r.cookie} in a fresh context`);
+        if ((loc ? r.path.startsWith('/es') : !r.path.startsWith('/es')) === false) fails.push(`${tag}: landed on ${r.path}`);
         if (r.overflow > 1) fails.push(`${tag}: page overflows by ${r.overflow}px`);
         if (r.langLinks !== 2) fails.push(`${tag}: ${r.langLinks} language links`);
         if (w >= 1381 && !r.langBtnVisible) fails.push(`${tag}: globe not visible on desktop`);
@@ -68,6 +82,7 @@ try {
     }
   }
   // Operability: open the selector on desktop, choose Español, land on /es/ with the cookie set.
+  await fresh();
   await page.setViewport({ width: 1440, height: 900 });
   await page.goto(`${BASE}/matches?view=upcoming`, { waitUntil: 'networkidle2' });
   await page.click('.lang-btn');
@@ -102,7 +117,10 @@ try {
     await page.screenshot({ path: `${SHOTS}/es-mobile-menu-390.png` });
   }
   // Back to English through the selector: the cookie flips and the path drops the prefix.
-  await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2' }), page.click('#lang-panel a[data-lang-switch="en"]')]);
+  // A switch that never navigates is a FAILURE with its state (what received the tap), never a crash or a skip.
+  const target = await page.evaluate(() => { const a = document.querySelector('#lang-panel a[data-lang-switch="en"]'); const r = a.getBoundingClientRect(); const h = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return h === a || a.contains(h) ? null : (h?.id || h?.tagName || 'nothing'); });
+  if (target) fails.push(`mobile: the English switch is covered by ${target}`);
+  await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 30000 }).catch(e => fails.push(`selector: switch to en did not navigate (${e.message})`)), page.click('#lang-panel a[data-lang-switch="en"]')]);
   const back = await page.evaluate(() => ({ path: location.pathname, lang: document.documentElement.lang, cookie: document.cookie }));
   checks++;
   if (back.path !== '/' || back.lang !== 'en' || !/pbe_lang=en/.test(back.cookie)) fails.push(`selector: switch to en -> ${JSON.stringify(back)}`);
