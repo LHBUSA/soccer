@@ -1087,8 +1087,9 @@ body.dr-open { overflow: hidden; }
 .nc2-age { font: 600 11.5px/1 var(--mono); color: var(--muted); }
 .ngrid2 { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
 @media (max-width: 400px) { .ngrid2 { grid-template-columns: 1fr; } .nmedia.s-thumb { width: 72px; height: 72px; } }
-.dnadisc-grid { display: grid; gap: 18px; }
-@media (min-width: 900px) { .dnadisc-grid { grid-template-columns: 1fr 1fr; } }
+/* minmax(0, 1fr): a 1fr track never shrinks below its widest nowrap row (2px page overflow at 320px). */
+.dnadisc-grid { display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) { .dnadisc-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
 .dd-rank { flex: 0 0 22px; font: 700 15px/1 var(--mono); color: var(--muted); text-align: center; }
 .dd-id { flex: 1 1 auto; }
 .dd-val { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; flex: none; }

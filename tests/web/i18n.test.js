@@ -171,6 +171,12 @@ test('language redirects: cookie choice and futbol host; never cached; crawlers 
 test('sitemaps: Spanish twins with reciprocal alternates for every localized kind; news stays English-only', async () => {
   for (const k of ['static', 'competitions', 'matches', 'teams', 'players']) assert.ok(KINDS.includes(`es-${k}`), k);
   assert.ok(!KINDS.includes('es-news'));
+  // Owner rule 2026-10-09: a Spanish article page whose body is still English is reachable, keeps the English
+  // canonical, and appears in NO Spanish sitemap and NO hreflang set until the article is genuinely translated.
+  for (const k of KINDS.filter(k => k.startsWith('es-'))) {
+    const rows = k === 'es-static' ? await entriesFor(k) : [];
+    for (const r of rows) { assert.doesNotMatch(r.loc, /\/es\/news\//, r.loc); for (const a of r.alternates) assert.doesNotMatch(a.url, /\/news\/[^/]+\/[^/]+$/, a.url); }
+  }
   const xml = urlset(await entriesFor('es-static'));
   assert.match(xml, /xmlns:xhtml="http:\/\/www\.w3\.org\/1999\/xhtml"/);
   assert.ok(xml.includes(`<loc>${SITE}/es/</loc><xhtml:link rel="alternate" hreflang="en" href="${SITE}/"/>`));
