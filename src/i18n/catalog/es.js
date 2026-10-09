@@ -162,6 +162,15 @@ const exact = {
   'Tennis': 'Tenis',
   'Golf': 'Golf',
 
+  // ---- network privacy-consent banner (public/pbe-consent-v1.js): faithful translation, same choices ----------
+  'Your privacy choices': 'Tus opciones de privacidad',
+  'Privacy choices': 'Opciones de privacidad',
+  'Necessary cookies keep sign-in, security and paid access working. With your permission, we also use analytics to understand how PropBetEdge is used. You can decline analytics without losing site access.':
+    'Las cookies necesarias mantienen funcionando el inicio de sesión, la seguridad y el acceso de pago. Con tu permiso, también usamos analítica para entender cómo se usa PropBetEdge. Puedes rechazar la analítica sin perder el acceso al sitio.',
+  'Privacy Policy': 'Política de privacidad',
+  'Decline analytics': 'Rechazar analítica',
+  'Accept analytics': 'Aceptar analítica',
+
   // ---- account sheet ------------------------------------------------------------------------
   'PropBetEdge Soccer account': 'Cuenta de PropBetEdge Fútbol',
   'Close account': 'Cerrar cuenta',

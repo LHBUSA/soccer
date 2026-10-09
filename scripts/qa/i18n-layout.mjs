@@ -82,9 +82,14 @@ try {
     await page.bringToFront();
     await page.screenshot({ path: `${SHOTS}/es-selector-open-1440.png`, clip: { x: 760, y: 0, width: 680, height: 260 } });
   }
-  // Mobile: the MORE menu shows the two-option language row.
+  // Mobile: the MORE menu shows the two-option language row. A first visit answers the privacy banner first (it sits
+  // over the bottom bar until the visitor chooses, in every language).
   await page.setViewport({ width: 390, height: 844 });
   await page.goto(`${BASE}/es/`, { waitUntil: 'networkidle2' });
+  const consent = await page.$eval('[data-pbe-deny]', el => el.textContent).catch(() => null);
+  checks++;
+  if (consent !== null && consent !== 'Rechazar analítica') fails.push(`consent banner not localized: ${consent}`);
+  await page.click('[data-pbe-deny]').catch(() => {});
   await page.click('[data-more]');
   await new Promise(r => setTimeout(r, 300));
   const mob = await page.evaluate(() => [...document.querySelectorAll('#lang-panel a')].map(a => ({ t: a.textContent, vis: a.offsetParent !== null, w: Math.round(a.getBoundingClientRect().width) })));
