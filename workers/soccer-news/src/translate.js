@@ -24,7 +24,8 @@ import { DESK_API, sanitizeDeskError } from './desk.js';
 
 // 1.1.0 (pilot tick 1, 2026-10-09): number words translated (never left in English), ordinals localized, national-team
 // exonyms (house list); the checker is told the naming policy so canonical club/player names are not 'untranslated'.
-export const TRANSLATE_VERSION = 'soccer-translate/1.1.0';
+// 1.1.1 (pilot tick 2): 'canonical' is a house term (PropBetEdge's verified record), never 'official'.
+export const TRANSLATE_VERSION = 'soccer-translate/1.1.1';
 export const CHECK_VERSION = 'soccer-translation-check/1.1.0';
 export const TRANSLATION_GATES_VERSION = 'soccer-translation-gates/1.1.0';
 export const TRANSLATE_MODEL = 'gpt-5.6-sol';
@@ -62,15 +63,19 @@ Vocabulary: match report = crónica; preview = previa; matchday = jornada; table
 hat-trick = triplete; brace = doblete; clean sheet = portería a cero; own goal = gol en propia puerta; penalty = penalti;
 stoppage time = tiempo de añadido; half-time = descanso; second half = segunda parte; header = cabezazo;
 assist = asistencia; shots on target = tiros a puerta; corners = saques de esquina; kick-off = inicio / saque inicial;
-league phase = fase liga; group = grupo; form = racha / forma; scoring run = racha goleadora; substitute = suplente.`,
+league phase = fase liga; group = grupo; form = racha / forma; scoring run = racha goleadora; substitute = suplente.
+House terms: canonical (results, record, data) = canónico/canónicos - our verified record, NEVER "oficial"; sourced = con fuente;
+frozen at publication = congelado en la publicación.`,
   pt: `Brazilian Portuguese (pt-BR) as written by Brazilian football media.
 Vocabulary: match report = crônica / relato da partida; preview = prévia; matchday = rodada; table = classificação;
 hat-trick = hat-trick; clean sheet = sem sofrer gols; own goal = gol contra; penalty = pênalti; stoppage time = acréscimos;
-half-time = intervalo; header = cabeçada; assist = assistência; shots on target = finalizações no alvo; corners = escanteios.`,
+half-time = intervalo; header = cabeçada; assist = assistência; shots on target = finalizações no alvo; corners = escanteios.
+House terms: canonical = canônico (our verified record, NEVER "oficial"); sourced = com fonte.`,
   fr: `French as written by French-language football media.
 Vocabulary: match report = compte rendu; preview = avant-match; matchday = journée; table = classement; hat-trick = triplé;
 brace = doublé; clean sheet = cage inviolée; own goal = but contre son camp; penalty = penalty / pénalty; stoppage time =
-temps additionnel; half-time = mi-temps; header = tête; assist = passe décisive; shots on target = tirs cadrés; corners = corners.`,
+temps additionnel; half-time = mi-temps; header = tête; assist = passe décisive; shots on target = tirs cadrés; corners = corners.
+House terms: canonical = canonique (our verified record, NEVER "officiel"); sourced = sourcé.`,
 };
 const LANG = { es: 'Spanish', pt: 'Brazilian Portuguese (pt-BR)', fr: 'French' };
 const ORDINAL_HINT = { Spanish: '16.º, 1.º or "el puesto 16"', 'Brazilian Portuguese (pt-BR)': '16º, 1º', French: '16e, 1er' };
