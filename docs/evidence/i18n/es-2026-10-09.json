@@ -1,12 +1,12 @@
 {
- "base": "http://127.0.0.1:5181",
+ "base": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app",
  "locale": "es",
- "at": "2026-10-09T10:05:32.442Z",
+ "at": "2026-10-09T10:34:41.768Z",
  "pages": {
   "home": {
-   "url": "http://127.0.0.1:5181/es/",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "Inteligencia de fútbol, datos de partidos en vivo y ADN del jugador | PropBetEdge",
    "errors": [],
    "strings": [
     {
@@ -642,7 +642,7 @@
      "k": "text"
     },
     {
-     "s": "hace 15 h",
+     "s": "hace 16 h",
      "k": "text"
     },
     {
@@ -910,7 +910,7 @@
      "k": "text"
     },
     {
-     "s": "vie, 9 oct 2026 · 09:49 UTC (hace 16 min)",
+     "s": "vie, 9 oct 2026 · 09:49 UTC (hace 45 min)",
      "k": "text"
     },
     {
@@ -1370,7 +1370,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -1794,7 +1794,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -1807,9 +1807,9 @@
    ]
   },
   "competitions": {
-   "url": "http://127.0.0.1:5181/es/competitions",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/competitions",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "Competiciones — Inteligencia de fútbol | PropBetEdge Fútbol",
    "errors": [],
    "strings": [
     {
@@ -2765,7 +2765,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -3095,7 +3095,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -3104,9 +3104,9 @@
    ]
   },
   "competition": {
-   "url": "http://127.0.0.1:5181/es/competitions/premier-league",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/competitions/premier-league",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "Premier League: tabla, resultados e inteligencia de partidos | PropBetEdge",
    "errors": [],
    "strings": [
     {
@@ -3890,7 +3890,7 @@
      "k": "text"
     },
     {
-     "s": "STATS",
+     "s": "ESTADÍSTICAS",
      "k": "text"
     },
     {
@@ -4462,7 +4462,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -4953,7 +4953,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -4963,9 +4963,9 @@
    ]
   },
   "competition-ucl": {
-   "url": "http://127.0.0.1:5181/es/competitions/uefa-champions-league",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/competitions/uefa-champions-league",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "UEFA Champions League: tabla, resultados e inteligencia de partidos | PropBetEdge",
    "errors": [],
    "strings": [
     {
@@ -5693,7 +5693,7 @@
      "k": "text"
     },
     {
-     "s": "STATS",
+     "s": "ESTADÍSTICAS",
      "k": "text"
     },
     {
@@ -6281,7 +6281,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -6799,7 +6799,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -6812,9 +6812,9 @@
    ]
   },
   "competition-mls-table": {
-   "url": "http://127.0.0.1:5181/es/competitions/mls?tab=table",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/competitions/mls?tab=table",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "MLS: tabla, resultados e inteligencia de partidos | PropBetEdge",
    "errors": [],
    "strings": [
     {
@@ -7334,6 +7334,650 @@
      "k": "text"
     },
     {
+     "s": "LIGA · USA",
+     "k": "text"
+    },
+    {
+     "s": "Major League Soccer",
+     "k": "text"
+    },
+    {
+     "s": "temporada",
+     "k": "text"
+    },
+    {
+     "s": "equipos",
+     "k": "text"
+    },
+    {
+     "s": "jugados",
+     "k": "text"
+    },
+    {
+     "s": "por jugar",
+     "k": "text"
+    },
+    {
+     "s": "TEMPORADA",
+     "k": "text"
+    },
+    {
+     "s": "2026 · 510 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2025 · 540 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2024 · 522 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2023 · 521 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2022 · 489 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2021 · 472 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2019 · 421 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2018 · 408 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2017 · 391 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2016 · 357 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2015 · 357 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2014 · 338 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2013 · 338 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2012 · 338 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2011 · 319 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2010 · 251 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2009 · 236 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2008 · 221 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2007 · 206 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2006 · 203 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2005 · 203 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2004 · 161 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2003 · 161 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2002 · 157 partidos",
+     "k": "text"
+    },
+    {
+     "s": "2001 · 179 partidos",
+     "k": "text"
+    },
+    {
+     "s": "RESUMEN",
+     "k": "text"
+    },
+    {
+     "s": "TABLA",
+     "k": "text"
+    },
+    {
+     "s": "RESULTADOS",
+     "k": "text"
+    },
+    {
+     "s": "PRÓXIMOS",
+     "k": "text"
+    },
+    {
+     "s": "EQUIPOS",
+     "k": "text"
+    },
+    {
+     "s": "Top of the overall standings · 2026",
+     "k": "text"
+    },
+    {
+     "s": "Clasificación 2026",
+     "k": "text"
+    },
+    {
+     "s": "Pos",
+     "k": "text"
+    },
+    {
+     "s": "Club",
+     "k": "text"
+    },
+    {
+     "s": "PJ",
+     "k": "text"
+    },
+    {
+     "s": "G",
+     "k": "text"
+    },
+    {
+     "s": "E",
+     "k": "text"
+    },
+    {
+     "s": "P",
+     "k": "text"
+    },
+    {
+     "s": "GF",
+     "k": "text"
+    },
+    {
+     "s": "GC",
+     "k": "text"
+    },
+    {
+     "s": "DG",
+     "k": "text"
+    },
+    {
+     "s": "PTS",
+     "k": "text"
+    },
+    {
+     "s": "Forma",
+     "k": "text"
+    },
+    {
+     "s": "Nashville",
+     "k": "text"
+    },
+    {
+     "s": "St. Louis",
+     "k": "text"
+    },
+    {
+     "s": "Dallas",
+     "k": "text"
+    },
+    {
+     "s": "New England",
+     "k": "text"
+    },
+    {
+     "s": "Miami",
+     "k": "text"
+    },
+    {
+     "s": "Tabla completa →",
+     "k": "text"
+    },
+    {
+     "s": "Próximos partidos",
+     "k": "text"
+    },
+    {
+     "s": "Toronto FC",
+     "k": "text"
+    },
+    {
+     "s": "10 oct · 17:00 UTC",
+     "k": "text"
+    },
+    {
+     "s": "PARTIDO",
+     "k": "text"
+    },
+    {
+     "s": "INTELIGENCIA DE PARTIDOS",
+     "k": "text"
+    },
+    {
+     "s": "Chicago Fire FC",
+     "k": "text"
+    },
+    {
+     "s": "New York City FC",
+     "k": "text"
+    },
+    {
+     "s": "10 oct · 18:30 UTC",
+     "k": "text"
+    },
+    {
+     "s": "Red Bull New York",
+     "k": "text"
+    },
+    {
+     "s": "San Diego FC",
+     "k": "text"
+    },
+    {
+     "s": "10 oct · 23:30 UTC",
+     "k": "text"
+    },
+    {
+     "s": "Philadelphia Union",
+     "k": "text"
+    },
+    {
+     "s": "Real Salt Lake",
+     "k": "text"
+    },
+    {
+     "s": "Últimos resultados",
+     "k": "text"
+    },
+    {
+     "s": "Vancouver Whitecaps",
+     "k": "text"
+    },
+    {
+     "s": "7 oct",
+     "k": "text"
+    },
+    {
+     "s": "ALINEACIONES",
+     "k": "text"
+    },
+    {
+     "s": "ESTADÍSTICAS",
+     "k": "text"
+    },
+    {
+     "s": "MAPA DE EVENTOS",
+     "k": "text"
+    },
+    {
+     "s": "Seattle Sounders FC",
+     "k": "text"
+    },
+    {
+     "s": "Sporting Kansas City",
+     "k": "text"
+    },
+    {
+     "s": "2 oct",
+     "k": "text"
+    },
+    {
+     "s": "St. Louis CITY SC",
+     "k": "text"
+    },
+    {
+     "s": "30 sept",
+     "k": "text"
+    },
+    {
+     "s": "Columbus Crew",
+     "k": "text"
+    },
+    {
+     "s": "Inter Miami CF",
+     "k": "text"
+    },
+    {
+     "s": "27 sept",
+     "k": "text"
+    },
+    {
+     "s": "RESULT ONLY",
+     "k": "text"
+    },
+    {
+     "s": "COBERTURA DE DATOS",
+     "k": "text"
+    },
+    {
+     "s": "Lo que el grafo contiene de esta competición",
+     "k": "text"
+    },
+    {
+     "s": "partidos canónicos",
+     "k": "text"
+    },
+    {
+     "s": "terminados",
+     "k": "text"
+    },
+    {
+     "s": "con alineaciones con fuente",
+     "k": "text"
+    },
+    {
+     "s": "con mapa de eventos",
+     "k": "text"
+    },
+    {
+     "s": "FUENTE DE LA COMPETICIÓN",
+     "k": "text"
+    },
+    {
+     "s": "COMPLETA",
+     "k": "text"
+    },
+    {
+     "s": "Fuente",
+     "k": "text"
+    },
+    {
+     "s": "PropSports",
+     "k": "text"
+    },
+    {
+     "s": "Actualizado",
+     "k": "text"
+    },
+    {
+     "s": "dom, 27 sept 2026 · 20:25 UTC (27 sept)",
+     "k": "text"
+    },
+    {
+     "s": "Qué significa.",
+     "k": "text"
+    },
+    {
+     "s": "La competición, las temporadas almacenadas y, para la temporada solicitada (por defecto la más reciente): los equipos que aparecen en sus partidos canónicos, sus fases con el número de partidos, el estado de la temporada (completada solo cuando ningún partido almacenado está programado o en vivo) y, en las fases eliminatorias, los cruces demostrados solo con resultados canónicos.",
+     "k": "text"
+    },
+    {
+     "s": "Conferencia Este",
+     "k": "text"
+    },
+    {
+     "s": "Conferencia Oeste",
+     "k": "text"
+    },
+    {
+     "s": "General",
+     "k": "text"
+    },
+    {
+     "s": "Tabla no disponible",
+     "k": "text"
+    },
+    {
+     "s": "La clasificación publicada no coincide con los resultados canónicos para 1 equipo(s); la tabla se retiene hasta que coincidan.",
+     "k": "text"
+    },
+    {
+     "s": "La clasificación publicada no coincide con los resultados canónicos para 3 equipo(s); la tabla se retiene hasta que coincidan.",
+     "k": "text"
+    },
+    {
+     "s": "San Jose",
+     "k": "text"
+    },
+    {
+     "s": "Houston",
+     "k": "text"
+    },
+    {
+     "s": "Charlotte",
+     "k": "text"
+    },
+    {
+     "s": "LAFC",
+     "k": "text"
+    },
+    {
+     "s": "Philadelphia",
+     "k": "text"
+    },
+    {
+     "s": "Seattle",
+     "k": "text"
+    },
+    {
+     "s": "Colorado",
+     "k": "text"
+    },
+    {
+     "s": "LA Galaxy",
+     "k": "text"
+    },
+    {
+     "s": "Orlando",
+     "k": "text"
+    },
+    {
+     "s": "Red Bull NY",
+     "k": "text"
+    },
+    {
+     "s": "Cincinnati",
+     "k": "text"
+    },
+    {
+     "s": "Portland",
+     "k": "text"
+    },
+    {
+     "s": "Salt Lake",
+     "k": "text"
+    },
+    {
+     "s": "San Diego",
+     "k": "text"
+    },
+    {
+     "s": "Austin",
+     "k": "text"
+    },
+    {
+     "s": "D.C. United",
+     "k": "text"
+    },
+    {
+     "s": "Columbus",
+     "k": "text"
+    },
+    {
+     "s": "Minnesota",
+     "k": "text"
+    },
+    {
+     "s": "Atlanta",
+     "k": "text"
+    },
+    {
+     "s": "Kansas City",
+     "k": "text"
+    },
+    {
+     "s": "Tabla calculada por PropBetEdge a partir de resultados canónicos terminados de la fase de liga (sin playoffs). Orden: puntos, victorias, diferencia de goles, goles a favor (sin enfrentamientos directos ni sanciones). Forma = últimos cinco resultados contabilizados, del más reciente al más antiguo. MLS: tabla general de ambas conferencias; las tablas por conferencia están disponibles. Partidos contabilizados: 404.",
+     "k": "text"
+    },
+    {
+     "s": "CÓMO SE VERIFICAN LAS TABLAS DE CONFERENCIA",
+     "k": "text"
+    },
+    {
+     "s": "NO DISPONIBLE",
+     "k": "text"
+    },
+    {
+     "s": "mié, 7 oct 2026 · 02:38 UTC (7 oct)",
+     "k": "text"
+    },
+    {
+     "s": "Conferencia Este: la pertenencia a la conferencia, la posición (los criterios de desempate oficiales de la competición aplicados por el proveedor) y las notas de zona provienen de la clasificación publicada observada; cada cifra de jugados/ganados/empatados/perdidos/goles/puntos se verifica contra la tabla que PropBetEdge calcula con sus propios resultados canónicos antes de mostrar nada. La verificación falló, por lo que no se muestra ninguna tabla.",
+     "k": "text"
+    },
+    {
+     "s": "Clasificación: DATA · PropSports",
+     "k": "text"
+    },
+    {
+     "s": "HOW THE OVERALL TABLE IS COMPUTED",
+     "k": "text"
+    },
+    {
+     "s": "Tabla calculada por PropBetEdge a partir de resultados canónicos terminados de la fase de liga (sin playoffs). Orden: puntos, victorias, diferencia de goles, goles a favor (sin enfrentamientos directos ni sanciones). Forma = últimos cinco resultados contabilizados, del más reciente al más antiguo. MLS: tabla general de ambas conferencias; las tablas por conferencia están disponibles.",
+     "k": "text"
+    },
+    {
+     "s": "Resultados recientes",
+     "k": "text"
+    },
+    {
+     "s": "Colorado Rapids",
+     "k": "text"
+    },
+    {
+     "s": "San Jose Earthquakes",
+     "k": "text"
+    },
+    {
+     "s": "Portland Timbers",
+     "k": "text"
+    },
+    {
+     "s": "New England Revolution",
+     "k": "text"
+    },
+    {
+     "s": "FC Dallas",
+     "k": "text"
+    },
+    {
+     "s": "Houston Dynamo FC",
+     "k": "text"
+    },
+    {
+     "s": "Minnesota United FC",
+     "k": "text"
+    },
+    {
+     "s": "Austin FC",
+     "k": "text"
+    },
+    {
+     "s": "Nashville SC",
+     "k": "text"
+    },
+    {
+     "s": "Atlanta United FC",
+     "k": "text"
+    },
+    {
+     "s": "26 sept",
+     "k": "text"
+    },
+    {
+     "s": "Charlotte FC",
+     "k": "text"
+    },
+    {
+     "s": "Orlando City SC",
+     "k": "text"
+    },
+    {
+     "s": "FC Cincinnati",
+     "k": "text"
+    },
+    {
+     "s": "24 sept",
+     "k": "text"
+    },
+    {
+     "s": "20 sept",
+     "k": "text"
+    },
+    {
+     "s": "19 sept",
+     "k": "text"
+    },
+    {
+     "s": "Calendario",
+     "k": "text"
+    },
+    {
+     "s": "11 oct · 00:30 UTC",
+     "k": "text"
+    },
+    {
+     "s": "11 oct · 01:30 UTC",
+     "k": "text"
+    },
+    {
+     "s": "11 oct · 02:30 UTC",
+     "k": "text"
+    },
+    {
+     "s": "11 oct · 23:00 UTC",
+     "k": "text"
+    },
+    {
+     "s": "14 oct · 23:30 UTC",
+     "k": "text"
+    },
+    {
+     "s": "15 oct · 00:30 UTC",
+     "k": "text"
+    },
+    {
+     "s": "15 oct · 01:30 UTC",
+     "k": "text"
+    },
+    {
+     "s": "15 oct · 02:30 UTC",
+     "k": "text"
+    },
+    {
+     "s": "Clubes 2026",
+     "k": "text"
+    },
+    {
+     "s": "Equipos que aparecen en partidos canónicos de 2026. Iniciales salvo que exista un escudo aprobado con procedencia.",
+     "k": "text"
+    },
+    {
      "s": "PRO",
      "k": "text"
     },
@@ -7662,7 +8306,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -7938,8 +8582,280 @@
      "k": "title"
     },
     {
-     "s": "Cargando competición",
+     "s": "Secciones de MLS",
      "k": "aria-label"
+    },
+    {
+     "s": "Clasificación 2026 (desplazamiento horizontal)",
+     "k": "aria-label"
+    },
+    {
+     "s": "Jugados",
+     "k": "title"
+    },
+    {
+     "s": "Ganados",
+     "k": "title"
+    },
+    {
+     "s": "Empatados",
+     "k": "title"
+    },
+    {
+     "s": "Perdidos",
+     "k": "title"
+    },
+    {
+     "s": "Goles a favor",
+     "k": "title"
+    },
+    {
+     "s": "Goles en contra",
+     "k": "title"
+    },
+    {
+     "s": "Diferencia de goles",
+     "k": "title"
+    },
+    {
+     "s": "Puntos",
+     "k": "title"
+    },
+    {
+     "s": "Escudo de Nashville SC. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Victoria, Victoria, Empate, Derrota, Empate",
+     "k": "aria-label"
+    },
+    {
+     "s": "Victoria",
+     "k": "title"
+    },
+    {
+     "s": "Empate",
+     "k": "title"
+    },
+    {
+     "s": "Derrota",
+     "k": "title"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Derrota, Empate, Victoria, Derrota, Victoria",
+     "k": "aria-label"
+    },
+    {
+     "s": "Escudo de St. Louis CITY SC. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Victoria, Victoria, Victoria, Empate, Victoria",
+     "k": "aria-label"
+    },
+    {
+     "s": "Escudo de FC Dallas. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Victoria, Empate, Victoria, Victoria, Victoria",
+     "k": "aria-label"
+    },
+    {
+     "s": "Escudo de New England Revolution. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Derrota, Victoria, Victoria, Victoria, Derrota",
+     "k": "aria-label"
+    },
+    {
+     "s": "Escudo de Inter Miami CF. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Derrota, Empate, Empate, Empate, Empate",
+     "k": "aria-label"
+    },
+    {
+     "s": "Escudo de Red Bull New York. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Escudo de San Diego FC. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Escudo de Philadelphia Union. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Escudo de Real Salt Lake. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Escudo de Seattle Sounders FC. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Escudo de Sporting Kansas City. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Escudo de Columbus Crew. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Cobertura: COMPLETA",
+     "k": "title"
+    },
+    {
+     "s": "Vista de la tabla",
+     "k": "aria-label"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Victoria, Victoria, Derrota, Derrota, Empate",
+     "k": "aria-label"
+    },
+    {
+     "s": "Escudo de San Jose Earthquakes. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Victoria, Empate, Victoria, Victoria, Empate",
+     "k": "aria-label"
+    },
+    {
+     "s": "Escudo de Houston Dynamo FC. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Derrota, Empate, Derrota, Victoria, Empate",
+     "k": "aria-label"
+    },
+    {
+     "s": "Escudo de Charlotte FC. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Derrota, Victoria, Empate, Victoria, Empate",
+     "k": "aria-label"
+    },
+    {
+     "s": "Escudo de LAFC. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Victoria, Victoria, Victoria, Victoria, Victoria",
+     "k": "aria-label"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Victoria, Victoria, Victoria, Empate, Empate",
+     "k": "aria-label"
+    },
+    {
+     "s": "Escudo de Colorado Rapids. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Derrota, Empate, Victoria, Empate, Derrota",
+     "k": "aria-label"
+    },
+    {
+     "s": "Escudo de LA Galaxy. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Victoria, Victoria, Empate, Derrota, Victoria",
+     "k": "aria-label"
+    },
+    {
+     "s": "Escudo de Orlando City SC. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Derrota, Derrota, Victoria, Victoria, Victoria",
+     "k": "aria-label"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Derrota, Victoria, Victoria, Derrota, Empate",
+     "k": "aria-label"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Empate, Derrota, Victoria, Derrota, Empate",
+     "k": "aria-label"
+    },
+    {
+     "s": "Escudo de FC Cincinnati. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Derrota, Empate, Empate, Derrota, Derrota",
+     "k": "aria-label"
+    },
+    {
+     "s": "Escudo de Portland Timbers. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Derrota, Derrota, Derrota, Empate, Victoria",
+     "k": "aria-label"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Victoria, Derrota, Derrota, Derrota, Derrota",
+     "k": "aria-label"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Empate, Empate, Derrota, Derrota, Derrota",
+     "k": "aria-label"
+    },
+    {
+     "s": "Escudo de Austin FC. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Empate, Empate, Victoria, Empate, Empate",
+     "k": "aria-label"
+    },
+    {
+     "s": "Escudo de D.C. United. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Empate, Derrota, Empate, Victoria, Empate",
+     "k": "aria-label"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Victoria, Victoria, Derrota, Derrota, Victoria",
+     "k": "aria-label"
+    },
+    {
+     "s": "Escudo de Minnesota United FC. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Derrota, Derrota, Derrota, Derrota, Derrota",
+     "k": "aria-label"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Derrota, Derrota, Derrota, Victoria, Empate",
+     "k": "aria-label"
+    },
+    {
+     "s": "Escudo de Atlanta United FC. Imagen: ESPN. Se usa para identificar al club.",
+     "k": "title"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Empate, Victoria, Empate, Derrota, Empate",
+     "k": "aria-label"
+    },
+    {
+     "s": "Últimos 5, del más reciente al más antiguo: Derrota, Victoria, Derrota, Victoria, Derrota",
+     "k": "aria-label"
+    },
+    {
+     "s": "Cobertura: NO DISPONIBLE",
+     "k": "title"
     },
     {
      "s": "Principal (móvil)",
@@ -7982,6 +8898,16 @@
     "PICKS",
     "SERIE A",
     "ALL ACCESS",
+    "Top of the overall standings · 2026",
+    "RESULT ONLY",
+    "Tabla no disponible",
+    "La clasificación publicada no coincide con los resultados canónicos para 1 equipo(s); la tabla se retiene hasta que coincidan.",
+    "La clasificación publicada no coincide con los resultados canónicos para 3 equipo(s); la tabla se retiene hasta que coincidan.",
+    "Tabla calculada por PropBetEdge a partir de resultados canónicos terminados de la fase de liga (sin playoffs). Orden: puntos, victorias, diferencia de goles, goles a favor (sin enfrentamientos directos ni sanciones). Forma = últimos cinco resultados contabilizados, del más reciente al más antiguo. MLS: tabla general de ambas conferencias; las tablas por conferencia están disponibles. Partidos contabilizados: 404.",
+    "NO DISPONIBLE",
+    "Conferencia Este: la pertenencia a la conferencia, la posición (los criterios de desempate oficiales de la competición aplicados por el proveedor) y las notas de zona provienen de la clasificación publicada observada; cada cifra de jugados/ganados/empatados/perdidos/goles/puntos se verifica contra la tabla que PropBetEdge calcula con sus propios resultados canónicos antes de mostrar nada. La verificación falló, por lo que no se muestra ninguna tabla.",
+    "HOW THE OVERALL TABLE IS COMPUTED",
+    "Tabla calculada por PropBetEdge a partir de resultados canónicos terminados de la fase de liga (sin playoffs). Orden: puntos, victorias, diferencia de goles, goles a favor (sin enfrentamientos directos ni sanciones). Forma = últimos cinco resultados contabilizados, del más reciente al más antiguo. MLS: tabla general de ambas conferencias; las tablas por conferencia están disponibles.",
     "Picks oficiales",
     "PROPBETEDGE ALL ACCESS",
     "10 deportes + Predicciones. Una sola membresía.",
@@ -7991,18 +8917,20 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
+    "Goles a favor",
+    "Cobertura: NO DISPONIBLE",
     "PropBetEdge All Access",
     "Añade PropBetEdge como fuente preferida en la Búsqueda de Google (abre Google)"
    ]
   },
   "matches": {
-   "url": "http://127.0.0.1:5181/es/matches",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/matches",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "Partidos — Resultados, calendario e inteligencia de partidos | PropBetEdge Fútbol",
    "errors": [],
    "strings": [
     {
@@ -8606,7 +9534,7 @@
      "k": "text"
     },
     {
-     "s": "STATS",
+     "s": "ESTADÍSTICAS",
      "k": "text"
     },
     {
@@ -9234,7 +10162,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -9822,7 +10750,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -9832,9 +10760,9 @@
    ]
   },
   "matches-upcoming": {
-   "url": "http://127.0.0.1:5181/es/matches?view=upcoming",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/matches?view=upcoming",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "Partidos — Resultados, calendario e inteligencia de partidos | PropBetEdge Fútbol",
    "errors": [],
    "strings": [
     {
@@ -10790,7 +11718,7 @@
      "k": "text"
     },
     {
-     "s": "Fixtures/results: OpenLigaDB (openligadb.de), ODbL 1.0",
+     "s": "Calendario/resultados: OpenLigaDB (openligadb.de), ODbL 1.0",
      "k": "text"
     },
     {
@@ -11118,7 +12046,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -11649,7 +12577,6 @@
     "Serie A",
     "AS Monaco",
     "Partidos canónicos (máx. 100 por página); intel indica qué capas de Inteligencia del partido existen. stage = la fase canónica (clave, nombre, tipo); score.after / score.pens / score.winner aparecen solo en partidos decididos en la prórroga o en penales.",
-    "Fixtures/results: OpenLigaDB (openligadb.de), ODbL 1.0",
     "Picks oficiales",
     "PROPBETEDGE ALL ACCESS",
     "10 deportes + Predicciones. Una sola membresía.",
@@ -11659,7 +12586,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -11671,9 +12598,9 @@
    ]
   },
   "match": {
-   "url": "http://127.0.0.1:5181/es/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "Fulham vs Manchester United: inteligencia del partido | PropBetEdge",
    "errors": [],
    "strings": [
     {
@@ -13153,7 +14080,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -13925,7 +14852,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -13966,9 +14893,9 @@
    ]
   },
   "pbecast": {
-   "url": "http://127.0.0.1:5181/es/pbecast/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/pbecast/10545ede-6c4e-5806-8c0f-a34b85e8f442",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "Fulham vs Manchester United — PBEcast | PropBetEdge",
    "errors": [],
    "strings": [
     {
@@ -14960,7 +15887,7 @@
      "k": "text"
     },
     {
-     "s": "jugador de Own goal · Man United",
+     "s": "Gol en propia puerta · jugador de Man United",
      "k": "text"
     },
     {
@@ -15652,7 +16579,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -16135,7 +17062,6 @@
     "a 8.4 m de la portería · dentro del área",
     "Pie izquierdo · a puerta · De córner",
     "a 25.3 m de la portería",
-    "jugador de Own goal · Man United",
     "Pie izquierdo · a puerta",
     "a 16.7 m de la portería · dentro del área",
     "a 18.3 m de la portería · dentro del área",
@@ -16178,7 +17104,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -16201,9 +17127,9 @@
    ]
   },
   "pro-match": {
-   "url": "http://127.0.0.1:5181/es/pro/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/pro/matches/10545ede-6c4e-5806-8c0f-a34b85e8f442",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "Centro de partidos Pro | PropBetEdge Fútbol",
    "errors": [],
    "strings": [
     {
@@ -17127,7 +18053,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -17464,7 +18390,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -17474,9 +18400,9 @@
    ]
   },
   "team": {
-   "url": "http://127.0.0.1:5181/es/teams/fulham",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/teams/fulham",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "Fulham: resultados, ADN del equipo e inteligencia de fútbol | PropBetEdge",
    "errors": [],
    "strings": [
     {
@@ -18020,7 +18946,7 @@
      "k": "text"
     },
     {
-     "s": "Crest:",
+     "s": "Escudo:",
      "k": "text"
     },
     {
@@ -18100,7 +19026,7 @@
      "k": "text"
     },
     {
-     "s": "STATS",
+     "s": "ESTADÍSTICAS",
      "k": "text"
     },
     {
@@ -18224,7 +19150,7 @@
      "k": "text"
     },
     {
-     "s": "GOALS PER MATCH · green: scored · gold: conceded",
+     "s": "GOLES POR PARTIDO · verde: a favor · dorado: en contra",
      "k": "text"
     },
     {
@@ -18960,7 +19886,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -19550,7 +20476,7 @@
     "ALL ACCESS",
     "19 temporadas almacenadas · 2001/02–2026/27. La cobertura son partidos almacenados, no una afirmación de historial completo del club.",
     "Goles a favor",
-    "GOALS PER MATCH · green: scored · gold: conceded",
+    "GOLES POR PARTIDO · verde: a favor · dorado: en contra",
     "G/E/P y goles de todas las fases a partir de marcadores terminados. Puntos solo donde las reglas de liga/grupo se aplican a toda la muestra. Un guion significa no disponible. Posición final solo en temporadas de tabla única verificadas y completas; las posiciones de grupo se refieren al grupo. No se infieren títulos.",
     "Cada competición-temporada almacenada con agregados de marcadores canónicos. Los marcadores faltantes siguen faltando. No se infieren títulos. La posición de grupo nunca es una clasificación general.",
     "5 partidos antes del 2026-10-09. Los percentiles se calculan frente a los 20 equipos de la misma competición-temporada (p100 = mejor). Últimos resultados:",
@@ -19572,7 +20498,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -19605,9 +20531,9 @@
    ]
   },
   "match-upcoming": {
-   "url": "http://127.0.0.1:5181/es/matches/25bccfdc-4c2a-528a-a6cd-d90b59322aa5",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/matches/25bccfdc-4c2a-528a-a6cd-d90b59322aa5",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "Athletic Club vs Rayo Vallecano: inteligencia del partido | PropBetEdge",
    "errors": [],
    "strings": [
     {
@@ -20611,7 +21537,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -20959,7 +21885,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -20968,9 +21894,9 @@
    ]
   },
   "pbecast-hub": {
-   "url": "http://127.0.0.1:5181/es/pbecast",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/pbecast",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "PBEcast — Seguimiento de partidos en vivo y repeticiones | PropBetEdge Fútbol",
    "errors": [],
    "strings": [
     {
@@ -21686,7 +22612,7 @@
      "k": "text"
     },
     {
-     "s": "Fixtures/results: OpenLigaDB (openligadb.de), ODbL 1.0",
+     "s": "Calendario/resultados: OpenLigaDB (openligadb.de), ODbL 1.0",
      "k": "text"
     },
     {
@@ -22018,7 +22944,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -22420,7 +23346,6 @@
     "ALL ACCESS",
     "Marcadores en vivo con el reloj del propio proveedor y luego una repetición de cada tiro, gol, tarjeta y cambio con fuente en el campo canónico. Ubicaciones de eventos, no seguimiento de jugadores.",
     "Últimos cuatro días",
-    "Fixtures/results: OpenLigaDB (openligadb.de), ODbL 1.0",
     "Picks oficiales",
     "PROPBETEDGE ALL ACCESS",
     "10 deportes + Predicciones. Una sola membresía.",
@@ -22430,7 +23355,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -22439,9 +23364,9 @@
    ]
   },
   "players": {
-   "url": "http://127.0.0.1:5181/es/players",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/players",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "Directorio del ADN del jugador — Estadísticas y perfiles de futbolistas | PropBetEdge Fútbol",
    "errors": [],
    "strings": [
     {
@@ -23769,7 +24694,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -24302,7 +25227,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -24319,9 +25244,9 @@
    ]
   },
   "player": {
-   "url": "http://127.0.0.1:5181/es/players/shea-charles",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/players/shea-charles",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "Shea Charles: estadísticas, ADN del jugador e inteligencia de partidos | PropBetEdge",
    "errors": [],
    "strings": [
     {
@@ -25097,7 +26022,7 @@
      "k": "text"
     },
     {
-     "s": "TIRO · STARTED · 1",
+     "s": "TITULAR · 1 TIRO",
      "k": "text"
     },
     {
@@ -25217,7 +26142,7 @@
      "k": "text"
     },
     {
-     "s": "Event data: Pappalardo et al. (2019), Wyscout public soccer-logs dataset, CC BY 4.0",
+     "s": "Datos de eventos: Pappalardo et al. (2019), Wyscout public soccer-logs dataset, CC BY 4.0",
      "k": "text"
     },
     {
@@ -25549,7 +26474,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -25841,35 +26766,35 @@
      "k": "aria-label"
     },
     {
-     "s": "25' Unidentified player (Team) — fuera",
+     "s": "25' Jugador no identificado (Equipo) — fuera",
      "k": "aria-label"
     },
     {
-     "s": "47' Unidentified player (Team) — bloqueado",
+     "s": "47' Jugador no identificado (Equipo) — bloqueado",
      "k": "aria-label"
     },
     {
-     "s": "76' Unidentified player (Team) — a puerta",
+     "s": "76' Jugador no identificado (Equipo) — a puerta",
      "k": "aria-label"
     },
     {
-     "s": "86' Unidentified player (Team) — fuera",
+     "s": "86' Jugador no identificado (Equipo) — fuera",
      "k": "aria-label"
     },
     {
-     "s": "91' Unidentified player (Team) — gol",
+     "s": "91' Jugador no identificado (Equipo) — gol",
      "k": "aria-label"
     },
     {
-     "s": "75' Unidentified player (Team) — bloqueado",
+     "s": "75' Jugador no identificado (Equipo) — bloqueado",
      "k": "aria-label"
     },
     {
-     "s": "87' Unidentified player (Team) — fuera",
+     "s": "87' Jugador no identificado (Equipo) — fuera",
      "k": "aria-label"
     },
     {
-     "s": "91' Unidentified player (Team) — fuera",
+     "s": "91' Jugador no identificado (Equipo) — fuera",
      "k": "aria-label"
     },
     {
@@ -25877,31 +26802,31 @@
      "k": "aria-label"
     },
     {
-     "s": "25' Unidentified player (Team)",
+     "s": "25' Jugador no identificado (Equipo)",
      "k": "aria-label"
     },
     {
-     "s": "47' Unidentified player (Team)",
+     "s": "47' Jugador no identificado (Equipo)",
      "k": "aria-label"
     },
     {
-     "s": "76' Unidentified player (Team)",
+     "s": "76' Jugador no identificado (Equipo)",
      "k": "aria-label"
     },
     {
-     "s": "86' Unidentified player (Team)",
+     "s": "86' Jugador no identificado (Equipo)",
      "k": "aria-label"
     },
     {
-     "s": "91' Unidentified player (Team)",
+     "s": "91' Jugador no identificado (Equipo)",
      "k": "aria-label"
     },
     {
-     "s": "75' Unidentified player (Team)",
+     "s": "75' Jugador no identificado (Equipo)",
      "k": "aria-label"
     },
     {
-     "s": "87' Unidentified player (Team)",
+     "s": "87' Jugador no identificado (Equipo)",
      "k": "aria-label"
     },
     {
@@ -25959,7 +26884,7 @@
     "Los conteos provienen del registro de eventos (conteos derivados PBE), solo en temporadas que lo tienen. Los minutos son nominales (90/120, cortados en el cambio o la expulsión). Un guion significa que el valor no está registrado, no que sea cero.",
     "El ADN del jugador es descriptivo: conteos y tasas seguros en el tiempo a partir de datos con fuente, no un pronóstico. Los modelos predictivos no se publican hasta que superen referencias declaradas fuera de muestra.",
     "seasons = totales por temporada de pbe-counts derivados del registro de eventos (solo temporadas con registro de eventos); los minutos son nominales (90/120, cortados en el cambio/expulsión). observed = lo que los datos de la fuente muestran de este jugador: partidos/titularidades de alineaciones con fuente (partido jugado = titular o entró), goles y tiros de la familia de eventos más completa por partido, located_events = eventos con ubicación en el campo. Observado, no estadísticas completas de carrera.",
-    "Event data: Pappalardo et al. (2019), Wyscout public soccer-logs dataset, CC BY 4.0",
+    "Datos de eventos: Pappalardo et al. (2019), Wyscout public soccer-logs dataset, CC BY 4.0",
     "Picks oficiales",
     "PROPBETEDGE ALL ACCESS",
     "10 deportes + Predicciones. Una sola membresía.",
@@ -25969,35 +26894,35 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Mapa de eventos: 8 tiros ubicados. Team ataca a la derecha, ataca a la izquierda.",
-    "25' Unidentified player (Team) — fuera",
-    "47' Unidentified player (Team) — bloqueado",
-    "76' Unidentified player (Team) — a puerta",
-    "86' Unidentified player (Team) — fuera",
-    "91' Unidentified player (Team) — gol",
-    "75' Unidentified player (Team) — bloqueado",
-    "87' Unidentified player (Team) — fuera",
-    "91' Unidentified player (Team) — fuera",
+    "25' Jugador no identificado (Equipo) — fuera",
+    "47' Jugador no identificado (Equipo) — bloqueado",
+    "76' Jugador no identificado (Equipo) — a puerta",
+    "86' Jugador no identificado (Equipo) — fuera",
+    "91' Jugador no identificado (Equipo) — gol",
+    "75' Jugador no identificado (Equipo) — bloqueado",
+    "87' Jugador no identificado (Equipo) — fuera",
+    "91' Jugador no identificado (Equipo) — fuera",
     "Mapa de eventos (vertical): 8 tiros ubicados. Team ataca hacia arriba, ataca hacia abajo.",
-    "25' Unidentified player (Team)",
-    "47' Unidentified player (Team)",
-    "76' Unidentified player (Team)",
-    "86' Unidentified player (Team)",
-    "91' Unidentified player (Team)",
-    "75' Unidentified player (Team)",
-    "87' Unidentified player (Team)",
+    "25' Jugador no identificado (Equipo)",
+    "47' Jugador no identificado (Equipo)",
+    "76' Jugador no identificado (Equipo)",
+    "86' Jugador no identificado (Equipo)",
+    "91' Jugador no identificado (Equipo)",
+    "75' Jugador no identificado (Equipo)",
+    "87' Jugador no identificado (Equipo)",
     "PropBetEdge All Access",
     "Añade PropBetEdge como fuente preferida en la Búsqueda de Google (abre Google)"
    ]
   },
   "tables": {
-   "url": "http://127.0.0.1:5181/es/tables",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/tables",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "Tablas — Clasificaciones de liga | PropBetEdge Fútbol",
    "errors": [],
    "strings": [
     {
@@ -27113,7 +28038,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -27717,7 +28642,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -27728,9 +28653,9 @@
    ]
   },
   "pro": {
-   "url": "http://127.0.0.1:5181/es/pro",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/pro",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "Soccer Pro — Centro de partidos, laboratorio de enfrentamientos e inteligencia de fatiga | PropBetEdge",
    "errors": [],
    "strings": [
     {
@@ -28454,7 +29379,7 @@
      "k": "text"
     },
     {
-     "s": "PBE MATCHUP ANALYZER (descriptive, not a prediction)",
+     "s": "ANALIZADOR DE ENFRENTAMIENTOS PBE (descriptivo, no es una predicción)",
      "k": "text"
     },
     {
@@ -28598,7 +29523,7 @@
      "k": "text"
     },
     {
-     "s": "Cobertura: 30,258 finished matches and 3,466 sourced lineups across 15 competitions. Workload intelligence is not a medical or fitness assessment.",
+     "s": "Cobertura: 30,258 partidos terminados y 3,466 alineaciones con fuente en 15 competiciones. La inteligencia de carga de trabajo no es una evaluación médica ni física.",
      "k": "text"
     },
     {
@@ -28898,7 +29823,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -29247,11 +30172,11 @@
     "días desde el último partido",
     "partidos en 7 / 14 / 21 días",
     "minutos por jugador en 7 / 14 / 21 días, titularidades, titularidades consecutivas, partidos de 75+ y 90+ minutos",
-    "PBE MATCHUP ANALYZER (descriptive, not a prediction)",
+    "ANALIZADOR DE ENFRENTAMIENTOS PBE (descriptivo, no es una predicción)",
     "Un modelo Dixon-Coles de la Bundesliga funciona como sombra de investigación PRIVADA (predicciones prospectivas congeladas antes del inicio). No se publican probabilidades hasta que supere criterios formales de promoción prospectiva; las demás competiciones no se modelan hasta validarse por separado.",
     "Soccer Pro aún no publica predicciones, así que no hay historial que mostrar. Cuando un modelo sea promovido, cada predicción se congelará antes del inicio y se evaluará aquí.",
     "GRATIS VS ALL ACCESS",
-    "Cobertura: 30,258 finished matches and 3,466 sourced lineups across 15 competitions. Workload intelligence is not a medical or fitness assessment.",
+    "Cobertura: 30,258 partidos terminados y 3,466 alineaciones con fuente en 15 competiciones. La inteligencia de carga de trabajo no es una evaluación médica ni física.",
     "Qué evalúa Soccer Pro y cómo. No contiene valores premium.",
     "Picks oficiales",
     "10 deportes + Predicciones. Una sola membresía.",
@@ -29260,7 +30185,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -29273,9 +30198,9 @@
    ]
   },
   "all-access": {
-   "url": "http://127.0.0.1:5181/es/all-access",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/all-access",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "PropBetEdge All Access en Fútbol — 10 deportes + Predicciones, $29/mes | PropBetEdge",
    "errors": [],
    "strings": [
     {
@@ -30339,7 +31264,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -30684,7 +31609,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -30694,9 +31619,9 @@
    ]
   },
   "news": {
-   "url": "http://127.0.0.1:5181/es/news",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/news",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "Noticias de fútbol — Periodismo respaldado por evidencias | PropBetEdge Fútbol",
    "errors": [],
    "strings": [
     {
@@ -31292,7 +32217,7 @@
      "k": "text"
     },
     {
-     "s": "hace 15 h",
+     "s": "hace 16 h",
      "k": "text"
     },
     {
@@ -31356,7 +32281,7 @@
      "k": "text"
     },
     {
-     "s": "hace 25 min",
+     "s": "hace 54 min",
      "k": "text"
     },
     {
@@ -31376,7 +32301,7 @@
      "k": "text"
     },
     {
-     "s": "hace 66 min",
+     "s": "hace 2 h",
      "k": "text"
     },
     {
@@ -31388,7 +32313,7 @@
      "k": "text"
     },
     {
-     "s": "hace 42 h",
+     "s": "hace 43 h",
      "k": "text"
     },
     {
@@ -31760,7 +32685,7 @@
      "k": "text"
     },
     {
-     "s": "jue, 8 oct 2026 · 18:37 UTC (hace 15 h)",
+     "s": "jue, 8 oct 2026 · 18:37 UTC (hace 16 h)",
      "k": "text"
     },
     {
@@ -32100,7 +33025,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -32695,7 +33620,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -32711,9 +33636,9 @@
    ]
   },
   "news-desk": {
-   "url": "http://127.0.0.1:5181/es/news/bundesliga",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/news/bundesliga",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "Noticias de Bundesliga — Periodismo respaldado por evidencias | PropBetEdge Fútbol",
    "errors": [],
    "strings": [
     {
@@ -33309,7 +34234,7 @@
      "k": "text"
     },
     {
-     "s": "hace 15 h",
+     "s": "hace 16 h",
      "k": "text"
     },
     {
@@ -33437,7 +34362,7 @@
      "k": "text"
     },
     {
-     "s": "jue, 8 oct 2026 · 18:37 UTC (hace 15 h)",
+     "s": "jue, 8 oct 2026 · 18:37 UTC (hace 16 h)",
      "k": "text"
     },
     {
@@ -33777,7 +34702,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -34156,7 +35081,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -34167,9 +35092,9 @@
    ]
   },
   "article": {
-   "url": "http://127.0.0.1:5181/es/news/bundesliga/borussia-dortmund-werder-bremen-preview-2026-10-09-2ffe56",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/news/bundesliga/borussia-dortmund-werder-bremen-preview-2026-10-09-2ffe56",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "Bundesliga leaders Borussia Dortmund host in-form Werder Bremen | PropBetEdge Soccer",
    "errors": [],
    "strings": [
     {
@@ -34721,7 +35646,7 @@
      "k": "text"
     },
     {
-     "s": "hace 15 h",
+     "s": "hace 16 h",
      "k": "text"
     },
     {
@@ -34793,7 +35718,7 @@
      "k": "text"
     },
     {
-     "s": "RELATED MARKET · RULES NOT VERIFIED",
+     "s": "MERCADO RELACIONADO · REGLAS NO VERIFICADAS",
      "k": "text"
     },
     {
@@ -34829,7 +35754,7 @@
      "k": "text"
     },
     {
-     "s": "on Borussia Dortmund",
+     "s": "a favor de Borussia Dortmund",
      "k": "text"
     },
     {
@@ -35425,7 +36350,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -35792,9 +36717,9 @@
     "Bundesliga leaders Borussia Dortmund host in-form Werder Bremen",
     "Dortmund take a four-match winning start into Friday’s fixture, while eighth-placed Werder arrive unbeaten in three after beating Augsburg.",
     "Escudo: Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "RELATED MARKET · RULES NOT VERIFIED",
+    "MERCADO RELACIONADO · REGLAS NO VERIFICADAS",
     "No observado en la publicación",
-    "on Borussia Dortmund",
+    "a favor de Borussia Dortmund",
     "El movimiento posterior a la publicación es solo temporal; no significa que esta noticia haya movido el mercado.",
     "Goles a favor (recientes)",
     "Añadir PropBetEdge",
@@ -35820,7 +36745,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -35829,9 +36754,9 @@
    ]
   },
   "sources": {
-   "url": "http://127.0.0.1:5181/es/sources",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/sources",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "Fuentes y método — PropBetEdge Inteligencia de Fútbol",
    "errors": [],
    "strings": [
     {
@@ -36451,7 +37376,7 @@
      "k": "text"
     },
     {
-     "s": "Kalshi soccer match contracts settle on the result after 90 minutes plus stoppage time, with no extra time or penalties.",
+     "s": "Los contratos de partidos de fútbol de Kalshi se liquidan con el resultado tras 90 minutos más el tiempo añadido, sin prórroga ni penales.",
      "k": "text"
     },
     {
@@ -36463,7 +37388,7 @@
      "k": "text"
     },
     {
-     "s": ": the first price we observed (our first record, not an opening price), the last price we observed before kick-off, Kalshi's final trade and Kalshi's settlement. A finished match is not a settled market: until Kalshi settles it the page says “awaiting settlement”. Settlement is Kalshi's, not our result.",
+     "s": ": el primer precio que observamos (nuestro primer registro, no un precio de apertura), el último precio que observamos antes del inicio, la última operación de Kalshi y la liquidación de Kalshi. Un partido terminado no es un mercado liquidado: hasta que Kalshi lo liquide, la página indica “pendiente de liquidación”. La liquidación es de Kalshi, no nuestro resultado.",
      "k": "text"
     },
     {
@@ -36799,7 +37724,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -37127,8 +38052,8 @@
     "Cada precio enlaza a ese mercado en Kalshi.",
     "El precio medio (Mid-market) es el punto medio entre la mejor oferta de compra YES y la mejor oferta de venta YES, y se muestra solo cuando el diferencial es de 10¢ o menos. No es una probabilidad. La oferta de compra, la de venta y la última operación se etiquetan por separado.",
     "El movimiento se dibuja solo a partir de precios que observamos y almacenamos; nada se interpola.",
-    "Kalshi soccer match contracts settle on the result after 90 minutes plus stoppage time, with no extra time or penalties.",
-    ": the first price we observed (our first record, not an opening price), the last price we observed before kick-off, Kalshi's final trade and Kalshi's settlement. A finished match is not a settled market: until Kalshi settles it the page says “awaiting settlement”. Settlement is Kalshi's, not our result.",
+    "Los contratos de partidos de fútbol de Kalshi se liquidan con el resultado tras 90 minutos más el tiempo añadido, sin prórroga ni penales.",
+    ": el primer precio que observamos (nuestro primer registro, no un precio de apertura), el último precio que observamos antes del inicio, la última operación de Kalshi y la liquidación de Kalshi. Un partido terminado no es un mercado liquidado: hasta que Kalshi lo liquide, la página indica “pendiente de liquidación”. La liquidación es de Kalshi, no nuestro resultado.",
     "Picks oficiales",
     "PROPBETEDGE ALL ACCESS",
     "10 deportes + Predicciones. Una sola membresía.",
@@ -37138,7 +38063,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -37147,9 +38072,9 @@
    ]
   },
   "picks": {
-   "url": "http://127.0.0.1:5181/es/picks",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/picks",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "Soccer PBE Picks | PropBetEdge Fútbol",
    "errors": [],
    "strings": [
     {
@@ -38113,7 +39038,7 @@
      "k": "text"
     },
     {
-     "s": "· policy soccer-algo-pick-policy/1.1 · Bundesliga (league matches)",
+     "s": "· política soccer-algo-pick-policy/1.1 · Bundesliga (partidos de liga)",
      "k": "text"
     },
     {
@@ -38153,7 +39078,7 @@
      "k": "text"
     },
     {
-     "s": "· policy soccer-algo-v2-pick-policy/1.0 · UEFA Nations League (group / league-phase matches)",
+     "s": "· política soccer-algo-v2-pick-policy/1.0 · UEFA Nations League (partidos de grupo / fase liga)",
      "k": "text"
     },
     {
@@ -38537,7 +39462,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -38885,12 +39810,12 @@
     "PICK OFICIAL #2",
     "PICK OFICIAL #3",
     "A CONTINUACIÓN",
-    "· policy soccer-algo-pick-policy/1.1 · Bundesliga (league matches)",
+    "· política soccer-algo-pick-policy/1.1 · Bundesliga (partidos de liga)",
     "Resultado del partido: un pick oficial necesita una probabilidad del modelo de al menos",
     "Marca el local: un pick oficial necesita una probabilidad del modelo de al menos",
     "Como máximo un pick oficial por partido. Los picks se escriben en un registro de solo anexado cuando el partido entra en la ventana de 7 días y se bloquean 60 minutos antes del inicio; nada se edita después de emitirse.",
     "No se capturan precios de casas de apuestas, así que no se indica ROI, unidades ni valor de línea de cierre. Nunca se asumen cuotas por defecto.",
-    "· policy soccer-algo-v2-pick-policy/1.0 · UEFA Nations League (group / league-phase matches)",
+    "· política soccer-algo-v2-pick-policy/1.0 · UEFA Nations League (partidos de grupo / fase liga)",
     "Marca el visitante: un pick oficial necesita una probabilidad del modelo de al menos",
     "Los PICKS OFICIALES son las selecciones que cumplen la política congelada de cada modelo, escritas en el registro de solo anexado de ese modelo antes del cierre (inicio − 60 min) y nunca editadas. Los historiales de V1 y V2 se mantienen separados.",
     "Modelo congelado de la Bundesliga. MEJOR DEL PARTIDO es la selección más fuerte del modelo para cada partido pronosticado y es un pronóstico del modelo salvo que califique como pick oficial.",
@@ -38904,7 +39829,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -38916,9 +39841,9 @@
    ]
   },
   "track-record": {
-   "url": "http://127.0.0.1:5181/es/track-record",
+   "url": "https://soccer-dhbm6qg24-justins-projects-ad4f4bb7.vercel.app/es/track-record",
    "lang": "es",
-   "title": "Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge",
+   "title": "Historial de Soccer PBE Picks | PropBetEdge Fútbol",
    "errors": [],
    "strings": [
     {
@@ -39514,7 +40439,7 @@
      "k": "text"
     },
     {
-     "s": "Tasa de acierto = aciertos / (aciertos + fallos). Los picks nulos y pendientes no se incluyen. No existe ningún precio de casa de apuestas almacenado para ningún pick oficial, así que no se reportan ROI, unidades ni CLV. Nunca se asumen cuotas por defecto.",
+     "s": "Tasa de acierto = aciertos / (aciertos + fallos). Los picks nulos y pendientes no se incluyen. No existe ningún precio de casa de apuestas almacenado para ningún pick oficial, así que no se reportan ROI, unidades ni CLV. Nunca se asumen cuotas de casas de apuestas por defecto.",
      "k": "text"
     },
     {
@@ -40034,7 +40959,7 @@
      "k": "title"
     },
     {
-     "s": "Kalshi prediction market · Mid-market (not sportsbook odds)",
+     "s": "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
      "k": "title"
     },
     {
@@ -40369,7 +41294,7 @@
     "de picks",
     "Cada pick oficial que este modelo emitió tras su lanzamiento, directamente de su registro de solo anexado. Aciertos, fallos, nulos y picks pendientes. No se elimina nada, no se cuenta nada anterior al lanzamiento y ningún modelo comparte historial con otro.",
     "PICKS OFICIALES",
-    "Tasa de acierto = aciertos / (aciertos + fallos). Los picks nulos y pendientes no se incluyen. No existe ningún precio de casa de apuestas almacenado para ningún pick oficial, así que no se reportan ROI, unidades ni CLV. Nunca se asumen cuotas por defecto.",
+    "Tasa de acierto = aciertos / (aciertos + fallos). Los picks nulos y pendientes no se incluyen. No existe ningún precio de casa de apuestas almacenado para ningún pick oficial, así que no se reportan ROI, unidades ni CLV. Nunca se asumen cuotas de casas de apuestas por defecto.",
     "Picks evaluados",
     "Pick PBE frente al mercado de predicción al cierre",
     "Cada pick oficial",
@@ -40389,7 +41314,7 @@
     "Logotipo de Serie A. Imagen: ESPN. Se usa para identificar la competición.",
     "Lispir ( Lispir ), dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "Autor desconocido Autor desconocido, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
-    "Kalshi prediction market · Mid-market (not sportsbook odds)",
+    "Mercado de predicción Kalshi · Mid-market (no son cuotas de casas de apuestas)",
     "Hamburger SV, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "FC Bayern Munich, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
     "1. FSV Mainz 05, dominio público, vía Wikimedia Commons. Se usa para identificar al club.",
@@ -40400,5 +41325,5 @@
    ]
   }
  },
- "residue_total": 920
+ "residue_total": 929
 }

@@ -19,6 +19,8 @@ const fails = [];
 let checks = 0;
 try {
   const page = await browser.newPage();
+  // Protected preview deployments: --share <url> visits a Vercel share link first (sets the bypass cookie).
+  if (argv.includes('--share')) await page.goto(argv[argv.indexOf('--share') + 1], { waitUntil: 'networkidle2' });
   const errors = [];
   page.on('pageerror', e => errors.push(String(e.message || e)));
   for (const loc of LOCALES) {
