@@ -79,7 +79,7 @@ test('/all-access per state: purchase only where allowed, exact Stripe link, nev
 test('/all-access network: 10 sports + Predictions from the registry, Soccer here, Predictions never a sport', () => {
   assert.deepEqual(NETWORK_SPORTS.map(s => s.key), FAMILY.sports.map(s => s.key));
   assert.equal(NETWORK_SPORTS.length, 10);
-  assert.equal(OFFER_LINE, '10 sports + PropBetEdge Predictions');
+  assert.equal(OFFER_LINE, '10 sports + Predictions');
   const html = allAccess.render({ access: V.anonymous });
   for (const s of NETWORK_SPORTS) assert.ok(html.includes(s.name), s.key);
   assert.match(html, /F1 Intelligence/);
