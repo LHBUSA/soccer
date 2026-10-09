@@ -1,11 +1,16 @@
 // Sitemaps from canonical API data only (Edge).
 //   /sitemap.xml            -> index
 //   /sitemap-<kind>.xml     -> static | competitions | matches | teams | players
+//   /sitemap-es-<kind>.xml  -> the same pages in Spanish (/es/...), each with en/es/x-default alternates.
+//                              News is English-only (articles keep the English canonical) and has no es file.
 // No guessed URLs, no aliases, lastmod only when the canonical row has updated_at.
 import { SITE, upstreamJson } from '../server/upstream.js';
+import { READY_LOCALES, alternateLinks } from '../src/i18n/locales.js';
 
 export const config = { runtime: 'edge' };
-export const KINDS = ['static', 'competitions', 'matches', 'teams', 'players', 'news'];
+export const BASE_KINDS = ['static', 'competitions', 'matches', 'teams', 'players', 'news'];
+export const LOCALIZED_KINDS = ['static', 'competitions', 'matches', 'teams', 'players'];
+export const KINDS = [...BASE_KINDS, ...READY_LOCALES.filter(l => l !== 'en').flatMap(l => LOCALIZED_KINDS.map(k => `${l}-${k}`))];
 export const STATIC_PATHS = ['/', '/competitions', '/matches', '/tables', '/pbecast', '/players', '/sources', '/picks', '/track-record', '/all-access'];
 const PREFIX = { competitions: '/competitions/', matches: '/matches/', teams: '/teams/', players: '/players/' };
 
@@ -13,13 +18,25 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;'
 const lastmod = iso => { const t = Date.parse(iso || ''); return Number.isFinite(t) ? new Date(t).toISOString() : null; };
 
 export function urlset(entries) {
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.map(e => `<url><loc>${esc(e.loc)}</loc>${e.lastmod ? `<lastmod>${e.lastmod}</lastmod>` : ''}</url>`).join('\n')}\n</urlset>\n`;
+  const alt = entries.some(e => e.alternates);
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"${alt ? ' xmlns:xhtml="http://www.w3.org/1999/xhtml"' : ''}>\n${entries.map(e => `<url><loc>${esc(e.loc)}</loc>${e.lastmod ? `<lastmod>${e.lastmod}</lastmod>` : ''}${(e.alternates || []).map(a => `<xhtml:link rel="alternate" hreflang="${esc(a.hreflang)}" href="${esc(a.url)}"/>`).join('')}</url>`).join('\n')}\n</urlset>\n`;
+}
+
+/** The Spanish (or other ready locale) twin of an English sitemap: same pages, prefixed, with alternates. */
+export function localizedEntries(entries, locale) {
+  return entries.map(e => {
+    const path = e.loc.slice(SITE.length) || '/';
+    const alternates = alternateLinks(path, SITE);
+    return { loc: alternates.find(a => a.hreflang === locale).url, lastmod: e.lastmod, alternates };
+  });
 }
 export function sitemapIndex(items) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items.map(i => `<sitemap><loc>${esc(i.loc)}</loc>${i.lastmod ? `<lastmod>${i.lastmod}</lastmod>` : ''}</sitemap>`).join('\n')}\n</sitemapindex>\n`;
 }
 
 export async function entriesFor(kind) {
+  const m = /^([a-z]{2})-([a-z]+)$/.exec(kind);
+  if (m) return localizedEntries(await entriesFor(m[2]), m[1]);
   if (kind === 'static') return STATIC_PATHS.map(p => ({ loc: `${SITE}${p}` }));
   const env = await upstreamJson(`sitemap/${kind}`, { timeoutMs: 20000 });
   if (kind === 'news') {

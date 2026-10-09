@@ -1,0 +1,19 @@
+/* Language selector (src/components/lang.js): a compact globe + code in the desktop nav; inside the
+   mobile/tablet menu (<= 1380px) it is a two-option row, never a drop-down. */
+.navmenu.lang { flex: none; }
+.lang-btn { gap: 6px; padding: 9px 10px; min-height: 40px; }
+.lang-btn svg { flex: none; }
+.lang-btn span { font: 800 12.5px/1 var(--display); letter-spacing: .1em; }
+.lang-panel { left: auto; right: 0; min-width: 190px; }
+.navpanel.lang-panel a { display: flex; align-items: center; gap: 12px; padding: 11px 12px; letter-spacing: .04em; text-transform: none; }
+.navpanel.lang-panel a b { min-width: 24px; font: 800 12px/1 var(--display); letter-spacing: .1em; color: #8fa1bd; }
+.navpanel.lang-panel a span { font: 600 15px/1 var(--body); }
+.navpanel.lang-panel a.on { background: var(--shell-3); color: var(--gold-2); box-shadow: inset 3px 0 0 var(--gold); }
+.navpanel.lang-panel a.on b { color: var(--gold-2); }
+
+@media (max-width: 1380px) {
+  .navmenu.lang { order: 50; }
+  .navpanel.lang-panel, .navpanel.lang-panel[hidden] { flex-direction: row; gap: 8px; margin: 6px 0 2px; }
+  .navpanel.lang-panel a { flex: 1 1 0; justify-content: center; padding: 13px 10px; border: 1px solid var(--shell-line); border-radius: 999px; }
+  .navpanel.lang-panel a.on { box-shadow: inset 0 0 0 1px var(--gold); border-color: var(--gold); }
+}

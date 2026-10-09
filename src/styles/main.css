@@ -1445,7 +1445,7 @@ body.dr-open { overflow: hidden; }
   .botnav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: grid; grid-template-columns: repeat(5, 1fr); background: rgba(10,22,40,.97); border-top: 1px solid var(--shell-line); padding-bottom: env(safe-area-inset-bottom); }
   .botnav a, .botnav button { min-height: 54px; display: flex; align-items: center; justify-content: center; color: #c6d2e6; text-decoration: none; background: none; border: 0; font: 800 11.5px/1 var(--display); letter-spacing: .1em; cursor: pointer; }
   .botnav a.on { color: var(--gold); box-shadow: inset 0 2px 0 var(--gold); }
-  .botnav a[href="/pro"] { color: var(--gold); }
+  .botnav a[href="/pro"], .botnav a[href="/es/pro"] { color: var(--gold); }
   body { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
   /* MORE opens the same drop-down under the sticky header (a fixed panel would be trapped by the
      header's backdrop-filter containing block); it scrolls within the space above the bottom bar. */

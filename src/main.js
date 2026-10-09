@@ -32,7 +32,15 @@ import { CLUB_COMPS, FEATURED_COMPS, INTERNATIONAL_COMPS, WOMEN_COMPS } from './
 import { mountMediaFallbacks } from './components/ui.js';
 import { installPlayerDrawer, close as closeDrawer } from './components/drawer.js';
 import { mountScoreTicker } from './components/score-ticker.js';
+import { currentLocale } from './i18n/current.js';
+import { localizePath, splitLocale } from './i18n/locales.js';
+import { observeLocale } from './i18n/dom.js';
+import { translateText } from './i18n/translate.js';
+import { langMenu, mountLangMenu, syncLangLinks, syncAlternates } from './components/lang.js';
+import './styles/lang.css';
 
+const LOCALE = currentLocale();
+document.documentElement.lang = LOCALE === 'en' ? 'en' : LOCALE;
 initAnalytics();
 mountPreferredSource();
 
@@ -49,7 +57,7 @@ const brandMark = () => '<a class="pbe-mark" href="https://propbetedge.ai/" aria
 // Competitions live in the LEAGUES menu of the main nav (club, then international), one header row instead of a
 // separate rail: the page's intelligence starts higher. New competitions only need an entry in competitions.js.
 const leagueLink = c => `<a href="/competitions/${c.slug}" data-link data-comp="${c.slug}" class="lg-link a-${c.accent}">${competitionMark(c.slug, 'xs', { tone: 'dark' })}<span>${c.name.toUpperCase()}</span></a>`;
-const MENUS = ['intel-panel', 'leagues-panel'];
+const MENUS = ['intel-panel', 'leagues-panel', 'lang-panel'];
 // One open menu at a time; `id = null` closes all.
 function setMenuOpen(id) {
   for (const m of MENUS) {
@@ -71,6 +79,7 @@ function shell() {
         <div id="intel-panel" class="navpanel" hidden>${INTEL.map(([h, l]) => `<a href="${h}" data-link>${l}</a>`).join('')}</div></div>
       <a href="/news" data-link data-pages="news,newsDesk,article">NEWS</a>
       <span class="navsep" aria-hidden="true"></span>
+      ${langMenu(LOCALE)}
       <a class="nav-aa" href="${LOCAL_ALL_ACCESS_PATH}" data-link data-pages="allAccess">ALL ACCESS</a>
       <button type="button" class="nav-acct" data-account-open>SIGN IN</button></nav>
   </div>
@@ -83,6 +92,9 @@ function shell() {
 
 const app = document.getElementById('app');
 app.innerHTML = shell();
+// Non-English pages: translate every rendered UI string now and on every later render (src/i18n/dom.js).
+observeLocale(document.body, LOCALE);
+mountLangMenu();
 const main = document.getElementById('main');
 mountScoreTicker(document.getElementById('score-ticker'));
 let seq = 0;
@@ -91,14 +103,20 @@ let firstLoad = true; // the server already wrote title/canonical/robots for the
 function setMeta(page, data, params = []) {
   const mod = PAGES[page];
   if (!firstLoad) {
-    document.title = (mod?.title && data ? mod.title(data) : null) || 'Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge';
+    document.title = translateText((mod?.title && data ? mod.title(data) : null) || 'Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge', LOCALE);
     let robots = document.querySelector('meta[name="robots"]');
     if (!robots) { robots = document.createElement('meta'); robots.name = 'robots'; document.head.appendChild(robots); }
     robots.content = page === 'notfound' ? 'noindex, follow' : (typeof mod?.robots === 'function' ? mod.robots(data) : mod?.robots) || 'index, follow, max-image-preview:large';
     const canon = document.querySelector('link[rel="canonical"]');
     const own = typeof mod?.canonical === 'function' && data ? mod.canonical(data) : null; // e.g. a PBEcast page canonicalises to its match page
-    if (canon && page !== 'notfound') canon.href = `https://soccer.propbetedge.ai${own || (location.pathname === '/' ? '/' : location.pathname.replace(/\/+$/, ''))}`;
+    // Localized pages are self-canonical (/es/...), except article pages: the story body is English only until a
+    // verified translation ships, so the English URL stays canonical and no alternates are claimed.
+    const here = splitLocale(location.pathname).path;
+    const path = own || (here === '/' ? '/' : here.replace(/\/+$/, ''));
+    if (canon && page !== 'notfound') canon.href = `https://soccer.propbetedge.ai${page === 'article' ? path : localizePath(path, LOCALE)}`;
+    syncAlternates(page === 'notfound' || page === 'article' || robots.content.startsWith('noindex') ? null : path);
   }
+  syncLangLinks();
   document.querySelectorAll('.nav a[data-pages], .nav [data-menu-toggle], .botnav a').forEach(a => a.classList.toggle('on', a.dataset.pages.split(',').includes(page)));
   setMenuOpen(null);
   const comp = page === 'competition' ? params[0] : null;
@@ -107,7 +125,7 @@ function setMeta(page, data, params = []) {
 
 export async function render(url = new URL(location.href)) {
   const my = ++seq;
-  const { page, params } = resolve(url.pathname);
+  const { page, params } = resolve(splitLocale(url.pathname).path);
   if (page === 'notfound') { setMeta('notfound'); firstLoad = false; main.removeAttribute('aria-busy'); main.classList.remove('route-pending'); main.innerHTML = notFoundPage(); return; }
   const mod = PAGES[page];
   const wasEmpty = !main.innerHTML;
@@ -139,7 +157,7 @@ export async function render(url = new URL(location.href)) {
 }
 
 export function navigate(href) {
-  const url = new URL(href, location.origin);
+  const url = new URL(localizePath(href, LOCALE), location.origin);
   if (url.origin !== location.origin) { location.href = href; return; }
   closeDrawer();
   // Remember where the reader was, so Back (e.g. Match Intelligence -> the filtered /matches list) lands there again.
@@ -156,7 +174,7 @@ installPlayerDrawer(); // before the router: plain clicks on player chips open t
 const prefetch = e => {
   const a = e.target.closest('a[data-link]'); if (!a || navigator.connection?.saveData) return;
   const u = new URL(a.href, location.origin); if (u.origin !== location.origin) return;
-  const { page, params } = resolve(u.pathname);
+  const { page, params } = resolve(splitLocale(u.pathname).path);
   const path = page === 'competition' ? `competitions/${params[0]}` : page === 'team' ? `teams/${params[0]}` : page === 'competitions' ? 'competitions' : page === 'pbecastHub' || page === 'home' ? 'live' : null;
   if (path) api(path).catch(() => {});
 };

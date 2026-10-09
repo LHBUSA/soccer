@@ -16,6 +16,7 @@ import { byDeadline, kalshi, KALSHI_FIRST_PAINT_MS, tickerMarket } from '../data
 import { esc } from '../lib/html.js';
 import { liveView } from '../lib/cast.js';
 import { competitionMark, crest } from './media.js';
+import { currentLocale, intlTag } from '../i18n/current.js';
 
 const POLL_LIVE = 60000; const POLL_SLATE = 300000; const POLL_IDLE = 900000;
 const MAX_ITEMS = 24;
@@ -45,8 +46,9 @@ export function patchChipMarket(chip, parts) {
 export const tickerTime = (iso, now = new Date()) => {
   const d = new Date(iso);
   const sameDay = d.toDateString() === now.toDateString();
-  const t = d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-  return sameDay ? t : `${d.toLocaleDateString([], { weekday: 'short' })} ${t}`;
+  const loc = currentLocale() === 'en' ? [] : intlTag();
+  const t = d.toLocaleTimeString(loc, { hour: 'numeric', minute: '2-digit' });
+  return sameDay ? t : `${d.toLocaleDateString(loc, { weekday: 'short' })} ${t}`;
 };
 
 // Order and window: live, then kick-offs in the next 36 h, then finals of the last 4 days.

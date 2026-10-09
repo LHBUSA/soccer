@@ -10,8 +10,10 @@ import { todayLine } from './keyplayers.js';
 import { link, loading, portrait, teamMark } from './ui.js';
 import { mountMediaFallbacks, portraitOf } from './media.js';
 import { mountDnaSwitch, playerDnaView } from './dna.js';
+import { splitLocale } from '../i18n/locales.js';
 
-const TRIGGER = '.pchip a[href^="/players/"], a.pcard[href^="/players/"], a[data-player-slug][href^="/players/"]';
+// Links may carry a locale prefix (/es/players/...): match the path segment, then resolve it below.
+const TRIGGER = '.pchip a[href*="/players/"], a.pcard[href*="/players/"], a[data-player-slug][href*="/players/"]';
 let el = null; let opener = null; let seq = 0;
 
 function shell() {
@@ -89,7 +91,7 @@ export function installPlayerDrawer() {
     const a = e.target.closest(TRIGGER);
     if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
     if (a.closest('.drawer')) return; // links inside the drawer navigate normally
-    const m = a.getAttribute('href').match(/^\/players\/([a-z0-9-]+)\/?$/);
+    const m = splitLocale(a.getAttribute('href')).path.match(/^\/players\/([a-z0-9-]+)\/?$/);
     if (!m) return;
     e.preventDefault(); e.stopImmediatePropagation();
     open(m[1], a);

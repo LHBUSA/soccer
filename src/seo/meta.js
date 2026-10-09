@@ -278,7 +278,10 @@ export function headTags(meta) {
     `<meta name="description" content="${esc(meta.description)}">`,
     `<meta name="robots" content="${esc(meta.robots)}">`,
     meta.canonical ? `<link rel="canonical" href="${esc(meta.canonical)}">` : '',
+    ...(meta.alternates || []).map(l => `<link rel="alternate" hreflang="${esc(l.hreflang)}" href="${esc(l.url)}">`),
     `<meta property="og:site_name" content="PropBetEdge Soccer Intelligence">`,
+    meta.ogLocale ? `<meta property="og:locale" content="${esc(meta.ogLocale)}">` : '',
+    ...(meta.ogAlternates || []).map(o => `<meta property="og:locale:alternate" content="${esc(o)}">`),
     `<meta property="og:type" content="${esc(meta.ogType || 'website')}">`,
     `<meta property="og:title" content="${esc(meta.title)}">`,
     `<meta property="og:description" content="${esc(meta.description)}">`,
@@ -304,6 +307,7 @@ export function ssrBody(meta) {
 
 export function injectMeta(html, meta) {
   return html
+    .replace(/<html(?:\s+lang="[^"]*")?>/i, `<html lang="${esc(meta.htmlLang || 'en')}">`)
     .replace(/<title>[\s\S]*?<\/title>/i, '')
     .replace(/<meta\s+name="description"[^>]*>/i, '')
     .replace(/<meta\s+name="robots"[^>]*>/i, '')

@@ -1,4 +1,6 @@
 // Formatting. The one rule: a missing value is shown as missing ("—"), never as 0.
+// Dates follow the page locale (src/i18n); numbers keep one format in every language so data reads identically.
+import { intlTag } from '../i18n/current.js';
 export const DASH = '—';
 
 export function num(v, { dp = 0, suffix = '' } = {}) {
@@ -15,15 +17,15 @@ export function pct(part, total) {
 const tz = 'UTC';
 export function dateLong(iso) {
   if (!iso) return DASH;
-  return new Date(iso).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', timeZone: tz });
+  return new Date(iso).toLocaleDateString(intlTag(), { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', timeZone: tz });
 }
 export function dateShort(iso) {
   if (!iso) return DASH;
-  return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: tz });
+  return new Date(iso).toLocaleDateString(intlTag(), { day: 'numeric', month: 'short', timeZone: tz });
 }
 export function time(iso) {
   if (!iso) return '';
-  return `${new Date(iso).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: tz })} UTC`;
+  return `${new Date(iso).toLocaleTimeString(intlTag(), { hour: '2-digit', minute: '2-digit', timeZone: tz })} UTC`;
 }
 export function dateTime(iso) {
   if (!iso) return DASH;

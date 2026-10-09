@@ -8,6 +8,8 @@
 // server/upstream.js, which the client bundle never imports.
 import { upstreamJson } from './server/upstream.js';
 import { buildMeta, injectMeta, metaPlan, NOINDEX, SITE } from './src/seo/meta.js';
+import { localizeMeta } from './src/seo/meta-i18n.js';
+import { DEFAULT_LOCALE, LOCALE_HOSTS, localizePath, readLangCookie, splitLocale } from './src/i18n/locales.js';
 
 export const config = {
   matcher: ['/((?!api/|assets/|og/|favicon|robots\\.txt|sitemap).*)'],
@@ -17,16 +19,32 @@ export const config = {
 // (11) was routed as a page and answered 404 HTML on every load. Page slugs never contain a dot.
 export const isFilePath = pathname => /\.[a-z0-9]{2,12}$/i.test(pathname);
 
+// Language entry points. A language host (futbol.propbetedge.ai) sends every page to the same path in its
+// language on the canonical host. A reader who chose a language (pbe_lang cookie, set only by the selector)
+// is sent from an unprefixed page to the same page in that language. Crawlers carry no cookie, so they always
+// see the URL they asked for. Redirects are never cached (no-store + Vary: Cookie).
+export function languageRedirect(url, cookieHeader = '') {
+  const hostLocale = LOCALE_HOSTS[url.hostname];
+  if (hostLocale) return { status: 308, location: `${SITE}${localizePath(url.pathname, hostLocale)}${url.search}` };
+  const { locale } = splitLocale(url.pathname);
+  const want = readLangCookie(cookieHeader);
+  if (locale === DEFAULT_LOCALE && want && want !== DEFAULT_LOCALE) return { status: 307, location: `${localizePath(url.pathname, want)}${url.search}` };
+  return null;
+}
+
 export default async function middleware(request) {
   const url = new URL(request.url);
   if (isFilePath(url.pathname)) return;
-  const pathname = url.pathname.replace(/\/+$/, '') || '/';
+  const redirect = languageRedirect(url, request.headers.get('cookie') || '');
+  if (redirect) return new Response(null, { status: redirect.status, headers: { location: redirect.location, 'cache-control': 'private, no-store', vary: 'Cookie' } });
+  const { locale, path } = splitLocale(url.pathname);
+  const pathname = path.replace(/\/+$/, '') || '/';
   const plan = metaPlan(pathname);
 
   let meta; let status = 200;
   try {
     const results = plan.calls ? await Promise.all(plan.calls.map(c => upstreamJson(c))) : [];
-    meta = buildMeta(pathname, plan.page, results);
+    meta = localizeMeta(buildMeta(pathname, plan.page, results), { locale, path: pathname, page: plan.page, results });
     status = meta.status;
   } catch {
     meta = { ...buildMeta(pathname, 'notfound'), title: 'PropBetEdge Soccer Intelligence', description: 'Soccer intelligence from the PropBetEdge canonical graph.', status: 503 };
