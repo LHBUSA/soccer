@@ -25,9 +25,10 @@ import { DESK_API, sanitizeDeskError } from './desk.js';
 // 1.1.0 (pilot tick 1, 2026-10-09): number words translated (never left in English), ordinals localized, national-team
 // exonyms (house list); the checker is told the naming policy so canonical club/player names are not 'untranslated'.
 // 1.1.1 (pilot tick 2): 'canonical' is a house term (PropBetEdge's verified record), never 'official'.
-export const TRANSLATE_VERSION = 'soccer-translate/1.1.1';
+// 1.1.2: names gate no longer reads a nation inside a longer club name ("New England"), see nationMentioned.
+export const TRANSLATE_VERSION = 'soccer-translate/1.1.2';
 export const CHECK_VERSION = 'soccer-translation-check/1.1.0';
-export const TRANSLATION_GATES_VERSION = 'soccer-translation-gates/1.1.0';
+export const TRANSLATION_GATES_VERSION = 'soccer-translation-gates/1.1.2';
 export const TRANSLATE_MODEL = 'gpt-5.6-sol';
 // Conservative per-call estimates used only to refuse a call that could cross an allowance (actual cost is recorded).
 export const EST_TRANSLATE_USD = 0.09;
@@ -174,6 +175,19 @@ const QUOTED = /[“"«][^”"»]{2,}[”"»]/g;
 const URLS = /https?:\/\/\S+/g;
 const BRANDS = ['PropBetEdge', 'PropSports', 'DATA · PropSports'];
 
+// A listed nation is MENTIONED when it stands alone, not when it is part of a longer proper name: "New England
+// Revolution" and "Real Madrid"-style club names start with another capitalised word ("New England"), while "the
+// England captain" or "against England" are the nation. (gates 1.1.2: tick-3 false positive on "trip to New England")
+const NAME_STARTERS = /^(The|A|An|In|On|At|For|With|Against|After|Before|And|But|Both|While|When|Then|As|By|From|To|Of|Over|Under|Beat|Beats)$/;
+export function nationMentioned(text, nation) {
+  const re = new RegExp(`(?<![\\p{L}])${nation.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\p{L}])`, 'gu');
+  for (const m of String(text).matchAll(re)) {
+    const prev = /(\p{Lu}[\p{L}'’-]*)\s+$/u.exec(text.slice(0, m.index));
+    if (!prev || NAME_STARTERS.test(prev[1])) return true;
+  }
+  return false;
+}
+
 /** Names the translation must carry verbatim: canonical entities of the story and of its frozen visuals. */
 export function protectedNames(a) {
   const names = new Set();
@@ -195,7 +209,7 @@ export function translationGates(a, segments, translated, locale) {
     const tr = got.get(id); if (!tr) continue;
     if (!sameMultiset(digitRuns(en), digitRuns(tr))) fail('numbers', `${id}: ${digitRuns(en).join(' ')} != ${digitRuns(tr).join(' ')}`);
     // canonical entities, plus every listed nation the English names (opponents are often not story entities)
-    const nations = Object.keys(NATION_EXONYMS[locale] || {}).filter(k => new RegExp(`(^|[^\\p{L}])${k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}($|[^\\p{L}])`, 'u').test(en));
+    const nations = Object.keys(NATION_EXONYMS[locale] || {}).filter(k => nationMentioned(en, k));
     for (const n of new Set([...names, ...nations])) {
       if (!en.includes(n)) continue;
       const x = exonym(n, locale);

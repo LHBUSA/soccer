@@ -233,3 +233,15 @@ test('house exonyms: translated article carries story_name for nations; clubs an
   assert.deepEqual(es.entities.map(e => [e.name, e.story_name]), [['Harry Kane', undefined], ['England', 'Inglaterra']]);
   assert.equal(exonym('England', 'es'), 'Inglaterra'); assert.equal(exonym('Bayern Munich', 'es'), null); assert.equal(exonym('England', 'pt'), null);
 });
+
+test('names gate: a nation inside a longer club name is not the nation (tick-3 false positive)', async () => {
+  const { nationMentioned } = await import('../workers/soccer-news/src/translate.js');
+  assert.equal(nationMentioned('Seattle sit 13th before trip to New England', 'England'), false);
+  assert.equal(nationMentioned('away to New England Revolution on October 10.', 'England'), false);
+  assert.equal(nationMentioned('Kane scored for England against Spain.', 'England'), true);
+  assert.equal(nationMentioned('England beat Croatia 7-0.', 'England'), true, 'sentence start');
+  assert.equal(nationMentioned('The England captain scored twice.', 'England'), true);
+  assert.equal(nationMentioned('Northern Ireland drew', 'Ireland'), false, 'Northern Ireland is its own entry');
+  assert.equal(nationMentioned('Northern Ireland drew', 'Northern Ireland'), true);
+  assert.equal(nationMentioned('Englandia', 'England'), false);
+});
