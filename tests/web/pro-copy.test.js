@@ -160,3 +160,19 @@ test('rendered preview + full analyzer: league name and DATA · PropSports in bo
   assert.equal(x.components.length, 15, 'premium analyzer keeps all 15 components');
   assert.match(x.components.find(c => c.key === 'shots').basis, /espn:source/, 'API provenance untouched');
 });
+
+test('analyzer as-of reads as a locale date + UTC time, never the raw ISO instant', () => {
+  const x = { ...full(), as_of: '2026-10-09T14:12:18.947Z', home_id: 'h', away_id: 'a' };
+  const match = { home: { name: 'Arsenal' }, away: { name: 'Chelsea' } };
+  const preview = { competition: 'premier-league', season: '2026/27', as_of: x.as_of, coverage: x.coverage, components: [] };
+  for (const loc of ['en', 'es']) {
+    setCurrentLocale(loc);
+    try {
+      for (const html of [analyzerView(x, match), analyzerPreviewHtml(preview, match)]) {
+        assert.ok(!html.includes('2026-10-09T') && !html.includes('.947Z'), `${loc}: raw ISO leaked`);
+        assert.match(html, /14:12 UTC/, `${loc}: UTC time shown`);
+        assert.match(html, loc === 'es' ? /9 oct 2026/ : /9 Oct 2026|Oct 9, 2026/, `${loc}: date shown`);
+      }
+    } finally { setCurrentLocale('en'); }
+  }
+});
