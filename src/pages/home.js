@@ -167,13 +167,13 @@ export function render(d) {
   const comps = val(d.comps); const cov = val(d.cov); const news = val(d.news);
   const disc = [leaderBlock(val(d.leadersA), 'premier-league'), leaderBlock(val(d.leadersB), 'mls')].filter(Boolean);
   return `
-  <section class="hero home">
+  <section class="hero home home-v4">
     <div class="wrap hero-grid">
-      <div>
-        <p class="kicker gold">PROPBETEDGE · SOCCER INTELLIGENCE</p>
-        <h1 class="display">Soccer intelligence.<br><span>The match is only the start.</span></h1>
-        <p class="lede">Live match intelligence, Player DNA, event maps, team profiles and original data-backed soccer news across club and international football.</p>
-        <p class="hero-cta"><span class="cta-primary">${link('/pbecast', '▶ PBECAST', 'btn gold btn-hero')}</span><span class="cta-secondary">${link('/matches', 'MATCHES', 'btn ghost')}${link('/players', 'PLAYER DNA', 'btn ghost')}${link('/news', 'NEWS', 'btn ghost')}</span></p>
+      <div class="home-hero-content">
+        <p class="kicker gold home-hero-kicker"><span class="hero-signal" aria-hidden="true"></span> LIVE MATCHES <span class="hero-ksep" aria-hidden="true">/</span> OFFICIAL PICKS <span class="hero-ksep" aria-hidden="true">/</span> PLAYER DNA</p>
+        <h1 class="display home-hero-title"><span class="hero-title-white">SOCCER INTELLIGENCE.</span><span class="hero-title-gold">BEYOND THE SCORE.</span></h1>
+        <p class="lede home-hero-lede">From live PBEcast and official model picks to player intelligence and original match reporting. All the game, in one place.</p>
+        <div class="hero-cta home-hero-actions"><span class="cta-primary">${link('/pbecast', 'OPEN PBECAST →', 'btn gold btn-hero')}</span><span class="cta-secondary">${link('/picks', 'OFFICIAL PICKS →', 'btn ghost')}${link('/competitions', 'EXPLORE LEAGUES ↗', 'hero-more')}</span></div>
       </div>
     </div>
   </section>
