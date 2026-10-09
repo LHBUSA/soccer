@@ -26,9 +26,10 @@ import { DESK_API, sanitizeDeskError } from './desk.js';
 // exonyms (house list); the checker is told the naming policy so canonical club/player names are not 'untranslated'.
 // 1.1.1 (pilot tick 2): 'canonical' is a house term (PropBetEdge's verified record), never 'official'.
 // 1.1.2: names gate no longer reads a nation inside a longer club name ("New England"), see nationMentioned.
-export const TRANSLATE_VERSION = 'soccer-translate/1.1.2';
+// 1.1.3 (pilot tick 4): an English article before a club nickname is translated ('the Whitecaps' -> 'los Whitecaps').
+export const TRANSLATE_VERSION = 'soccer-translate/1.1.3';
 export const CHECK_VERSION = 'soccer-translation-check/1.1.0';
-export const TRANSLATION_GATES_VERSION = 'soccer-translation-gates/1.1.2';
+export const TRANSLATION_GATES_VERSION = 'soccer-translation-gates/1.1.3';
 export const TRANSLATE_MODEL = 'gpt-5.6-sol';
 // Conservative per-call estimates used only to refuse a call that could cross an allowance (actual cost is recorded).
 export const EST_TRANSLATE_USD = 0.09;
@@ -42,7 +43,8 @@ the same things: no added facts, no omitted facts, no new adjectives that judge 
 Hard rules (an automatic checker rejects any violation):
 - Player, club and competition names stay EXACTLY as written in English (same spelling, accents, capitalisation), e.g.
   "Bayern Munich", "Harry Kane", "Premier League", "UEFA Nations League". Do not translate or abbreviate them.
-  Possessives become prepositions ("Kane's goals" -> natural ${lang} with "Kane" unchanged).
+  Possessives become prepositions ("Kane's goals" -> natural ${lang} with "Kane" unchanged). The English article
+  before a club or nickname is NOT part of the name: translate it ("the Whitecaps" -> the ${lang} article + Whitecaps).
 - NATIONAL TEAMS are written with the exact ${lang} names given in the NATIONAL TEAMS list of the request, and only those.
 - Every number written in digits stays in digits with the same value: scores ("2-1"), goals, minutes, points,
   positions, dates, kick-off times ("15:30 UTC"), percentages, decimals (keep the decimal point, e.g. 1.8).
@@ -169,6 +171,7 @@ const ADDED = {
   tactics: [/\b(formation|press(ing)?|back (three|four|five)|false nine|low block)\b/i, { es: /\b(formaci[óo]n|presi[óo]n alta|defensa de (tres|cuatro|cinco)|falso nueve|bloque bajo)\b/i, pt: /\b(forma[çc][ãa]o|marca[çc][ãa]o alta|linha de (tr[êe]s|quatro|cinco)|falso nove|bloco baixo)\b/i, fr: /\b(syst[èe]me|pressing|d[ée]fense [àa] (trois|quatre|cinq)|faux neuf|bloc bas)\b/i }],
 };
 const EN_NUMBER_WORDS = /\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|twenty|twice|thrice|first|second|third|fourth|fifth)\b/gi;
+const EN_ARTICLE = /(?:^|[^\p{L}])The\s+\p{Lu}/u; // 'The Whitecaps' left in English (protected names are removed first)
 const EN_ORDINAL = /\b\d+(st|nd|rd|th)\b/i;
 const LEFTOVER = /\b(the|and|with|of|was|were|after|their|his|has|have|from|which|while|against|into)\b/gi;
 const QUOTED = /[“"«][^”"»]{2,}[”"»]/g;
@@ -225,6 +228,7 @@ export function translationGates(a, segments, translated, locale) {
     if (count(bare, LEFTOVER) >= 3) fail('untranslated', `${id}: ${count(bare, LEFTOVER)} English function words`);
     const words = bare.match(EN_NUMBER_WORDS); if (words) fail('untranslated', `${id}: English number words ${[...new Set(words)].join(', ')}`);
     const ord = tr.match(EN_ORDINAL); if (ord) fail('untranslated', `${id}: English ordinal ${ord[0]}`);
+    const art = bare.match(EN_ARTICLE); if (art) fail('untranslated', `${id}: English article "${art[0].trim()}"`);
     if (en.length >= 40) { const r = tr.length / en.length; if (r < 0.6 || r > 2.0) fail('length', `${id}: length ratio ${r.toFixed(2)}`); }
     if (tr === en && /[a-z]{4,}/i.test(en) && en.length >= 20) fail('untranslated', `${id}: identical to English`);
   }

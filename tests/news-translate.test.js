@@ -98,6 +98,8 @@ test('gates: a faithful translation passes; each kind of factual drift holds', (
   assert.deepEqual(why({ 's0.p0': ES['s0.p0'].replace('Harry Kane', 'Harry Kane, cuatro') }), ['translation_length'].filter(() => false), 'a Spanish number word is fine');
   assert.ok(why({ 's0.p1': ES['s0.p1'].replace('dos veces', 'two veces') }).includes('translation_untranslated'), 'English number word left');
   assert.ok(why({ 's1.p0': `${ES['s1.p0']} Quedó 16th.` }).includes('translation_untranslated'), 'English ordinal left');
+  assert.ok(why({ 's1.p0': `${ES['s1.p0']} The Whitecaps empataron.` }).includes('translation_untranslated'), 'English article before a nickname');
+  assert.ok(!why({ 's1.p0': `${ES['s1.p0']} Los Whitecaps empataron.` }).includes('translation_untranslated'));
   assert.deepEqual(why({ 's0.p1': ES['s0.p1'].replaceAll('octubre', 'noviembre') }), ['translation_dates'], 'month changed');
   assert.deepEqual(why({ 's0.p1': ES['s0.p1'].replace('martes', 'miércoles') }), ['translation_dates'], 'weekday changed');
   assert.deepEqual(why({ d: `${ES.d} Es el gran favorito.` }), ['translation_added_claim'], 'favourite added');
