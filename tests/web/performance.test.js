@@ -7,7 +7,7 @@ test('homepage critical load never waits for news, coverage, leaders or featured
   const before = globalThis.fetch;
   const calls = [];
   globalThis.fetch = async url => { calls.push(url); assert.equal(url, '/api/soccer/live'); return Response.json({ data: { live: [], recent: [] }, meta: {} }); };
-  try { assert.match(home.initial(), /Soccer intelligence/); const d = await home.load(); assert.equal(d.live.status, 'fulfilled'); assert.deepEqual(calls, ['/api/soccer/live']); } finally { globalThis.fetch = before; }
+  try { assert.match(home.initial(), /SOCCER INTELLIGENCE/); const d = await home.load(); assert.equal(d.live.status, 'fulfilled'); assert.deepEqual(calls, ['/api/soccer/live']); } finally { globalThis.fetch = before; }
 });
 test('API coalesces concurrent fresh requests and evicts failures for retry', async () => {
   const before = globalThis.fetch; let n = 0; let release;
