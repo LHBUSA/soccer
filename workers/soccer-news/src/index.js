@@ -17,6 +17,8 @@ import registryData from '../../../data/registry/competitions.json' with { type:
 import { runIsolated, ISOLATION_VERSION } from './isolation.js';
 import { planTick } from './schedule.js';
 import { budgetView } from './budget.js';
+import { translateArticle, translationCandidates, translationTick, translationAllowanceUsd, translationSpentToday, TRANSLATE_VERSION, TRANSLATION_GATES_VERSION } from './translate.js';
+import { ARTICLE_LOCALES } from '../../shared/article-i18n.js';
 
 // The only production schedule. The temporary backlog-migration cron (*/10) is retired: there is no automatic OpenAI
 // backlog processing. Re-edits are manual only (POST /v1/admin/reedit, scripts/news/reedit-backlog.mjs).
@@ -201,6 +203,36 @@ export default {
       for (const s of slugs.slice(0, limit)) { try { out.push(await reeditArticle(store, s, env, { dry: canary || url.searchParams.get('dry') === '1', holdOnFail: url.searchParams.get('hold_on_fail') === '1', attempts: url.searchParams.get('repair') === '1' ? 2 : 1, trigger: reeditTrigger(url) })); } catch (e) { out.push({ slug: s, error: String(e.message).slice(0, 200) }); } }
       return json({ desk: DESK_VERSION, available: deskAvailable(env), total_candidates: slugs.length, processed: out.length, results: out });
     }
+    // Newsroom translation (translate.js). POST /v1/admin/translate?locale=es&slug=<slug>[&slug=...][&dry=1]: translate,
+    // gate, independently check and publish-or-hold the named published articles (admin pilot; the per-locale allowance
+    // and the $5/day ceiling apply). dry=1 = segments + revision only, zero model calls, zero writes.
+    if (url.pathname === '/v1/admin/translate' && req.method === 'POST') {
+      if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);
+      const locale = url.searchParams.get('locale') || '';
+      if (!ARTICLE_LOCALES[locale]) return json({ error: 'locale must be one of ' + Object.keys(ARTICLE_LOCALES).join(', ') }, 400);
+      const slugs = url.searchParams.getAll('slug').filter(x => /^[a-z0-9-]+$/.test(x)).slice(0, 12);
+      if (!slugs.length) return json({ error: 'name the articles: slug=<slug> (repeatable, max 12)' }, 400);
+      const store = storeFromEnv(env); const dry = url.searchParams.get('dry') === '1';
+      const out = [];
+      for (const a of await translationCandidates(store, locale, { slugs, limit: slugs.length })) {
+        try { out.push(await translateArticle(env, store, a, locale, { trigger: 'admin_translation', dry })); } catch (e) { out.push({ slug: a.slug, outcome: 'error', reason: String(e.message).slice(0, 200) }); }
+      }
+      const missing = slugs.filter(x => !out.some(o => o.slug === x));
+      return json({ version: TRANSLATE_VERSION, gates: TRANSLATION_GATES_VERSION, locale, dry, results: out, not_candidates: missing });
+    }
+    // GET /v1/admin/translations?locale=es: every version with status, gates and today's translation spend.
+    if (url.pathname === '/v1/admin/translations') {
+      if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);
+      const locale = url.searchParams.get('locale') || 'es';
+      if (!ARTICLE_LOCALES[locale]) return json({ error: 'unknown locale' }, 400);
+      const store = storeFromEnv(env);
+      const rows = await store.select('soccer_article_translations', { columns: ['id', 'article_id', 'locale', 'version', 'status', 'hold_reasons', 'status_reason', 'headline', 'source_revision', 'gate_results', 'created_at', 'published_at', 'retired_at', 'revalidated_at'], eq: { locale }, order: 'created_at.desc', limit: 200 });
+      const arts = rows.length ? await store.select('soccer_articles', { columns: ['id', 'slug', 'desk', 'story_class', 'status'], in: { id: [...new Set(rows.map(r => r.article_id))] } }) : [];
+      const by = new Map(arts.map(a => [a.id, a]));
+      let spent = null; try { spent = await translationSpentToday(env, locale); } catch (e) { spent = `unreadable: ${String(e.message).slice(0, 80)}`; }
+      const last = await env.SOCCER_STATE?.get('translate:last_tick', 'json').catch(() => null);
+      return json({ locale, public: ARTICLE_LOCALES[locale].enabled, mode: env[`SOCCER_TRANSLATE_${locale.toUpperCase()}`] || 'off', allowance_usd: translationAllowanceUsd(env, locale), spent_today_usd: spent, last_tick: last, versions: rows.map(r => ({ ...r, slug: by.get(r.article_id)?.slug, desk: by.get(r.article_id)?.desk, story_class: by.get(r.article_id)?.story_class, english_status: by.get(r.article_id)?.status })) });
+    }
     if (url.pathname === '/v1/admin/openai-cost') {
       if (!authorized(req, env)) return json({ error: 'unauthorized' }, 401);
       const day = /^\d{4}-\d{2}-\d{2}$/.test(url.searchParams.get('date') || '') ? url.searchParams.get('date') : new Date().toISOString().slice(0, 10);
@@ -222,6 +254,10 @@ export default {
     if (env.NEWS_ENABLED !== 'on') { ctx.waitUntil(tick('disabled') || Promise.resolve()); return; } // launch switch (wrangler.toml var)
     // Phase 3: isolated runners. `ran` = the orchestrator completed (a failed competition is in its own state / health);
     // `failed` = the orchestrator itself failed (e.g. no loopback binding, KV down for news:last_run).
-    ctx.waitUntil(runTick(env, ctx, { now: event.scheduledTime }).then(() => tick('ran')).catch(e => { console.error('soccer-news tick failed', e?.message); return tick('failed'); }));
+    // Translation runs AFTER the English newsroom (which has first claim on the shared $5/day ceiling): the model-free
+    // lifecycle sweep always, automatic translation only where SOCCER_TRANSLATE_<LOCALE>=auto. Its failure never
+    // affects the English tick's outcome.
+    ctx.waitUntil(runTick(env, ctx, { now: event.scheduledTime }).then(() => tick('ran')).catch(e => { console.error('soccer-news tick failed', e?.message); return tick('failed'); })
+      .then(() => translationTick(env, { now: event.scheduledTime }).catch(e => console.error('translation tick failed', String(e?.message || e).slice(0, 160)))));
   },
 };

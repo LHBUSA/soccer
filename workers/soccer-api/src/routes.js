@@ -7,6 +7,8 @@ import { articleVideos, videosFeed } from './video.js';
 import { computeTable, TIEBREAKS } from '../../soccer-news/src/packet.js';
 import { selectSubject, subjectMedia } from '../../shared/news-subject.js';
 import { visualIntact } from '../../soccer-news/src/visuals.js';
+import { PUBLIC_LOCALES, localizeArticle, localizeCards, liveTranslations, currentCheap } from './translations.js';
+const servedQ = q => (PUBLIC_LOCALES.includes(q?.locale) ? q.locale : null);
 import { costReport } from '../../soccer-news/src/openai-cost.js';
 import { COORDINATE_SYSTEMS, toMatchFrame } from '../../shared/coords.js';
 // Only verified coordinate systems count as located (espn_unit_unverified keeps source values, never a canonical point).
@@ -745,7 +747,9 @@ export async function news(store, q) {
     if (!events.length) return E([], { source: 'pbe', semantics: 'Published articles about this entity.', coverage: COVERAGE.UNAVAILABLE, coverage_notes: ['No published story names this entity yet.'] });
     opts.in = { news_event_id: events };
   }
-  const rows = await store.select('soccer_articles', { ...opts, columns: [...opts.columns, 'entities'] });
+  const rows = await store.select('soccer_articles', { ...opts, columns: [...opts.columns, 'entities', 'id', 'packet_hash'] });
+  // Newsroom translations: verified headline/dek in the requested public locale; `translations` on every card.
+  await localizeCards(store, rows, servedQ(q));
   // Card image: the first person the story names who has an approved portrait, else the first
   // team with an approved crest; otherwise none (the page draws its branded fallback).
   const personIds = [...new Set(rows.flatMap(r => (r.entities || []).filter(e => e.type === 'Person' && e.id).map(e => e.id)))];
@@ -760,14 +764,17 @@ export async function news(store, q) {
     r.image = media ? { kind: media.kind, url: media.url, alt: media.alt, attribution: media.attribution } : null;
     r.subject = subject.entity ? { type: subject.entity.type, name: subject.entity.name, slug: subject.entity.slug || null, reason: subject.reason } : null;
     r.teams = ents.filter(e => e.type === 'SportsTeam').slice(0, 2).map(e => ({ slug: e.slug, name: e.name }));
-    delete r.entities;
+    delete r.entities; delete r.id; delete r.packet_hash;
   }
   return E(rows, { source: 'pbe', semantics: 'Published PropBetEdge articles only; every article is backed by a frozen evidence packet and passed all publication gates.', coverage: rows.length ? COVERAGE.OK : COVERAGE.UNAVAILABLE, coverage_notes: rows.length ? [] : ['No published stories.'], source_updated_at: maxTs(rows.map(r => r.updated_at)) });
 }
 
-export async function article(store, slug) {
-  const [a] = await store.select('soccer_articles', { columns: ['id', 'slug', 'desk', 'story_class', 'headline', 'dek', 'body', 'entities', 'published_at', 'updated_at', 'packet_hash', 'composer', 'gate_version'], eq: { slug, status: 'published' }, limit: 1 });
+export async function article(store, slug, q = {}) {
+  let [a] = await store.select('soccer_articles', { columns: ['id', 'slug', 'desk', 'story_class', 'headline', 'dek', 'body', 'entities', 'published_at', 'updated_at', 'packet_hash', 'composer', 'gate_version'], eq: { slug, status: 'published' }, limit: 1 });
   if (!a) throw new NotFound(`article ${slug}`);
+  // Verified translation (soccer-article-i18n): laid over the full English record BEFORE any visual filtering, served only
+  // while its source revision equals this English text; `translations` lists the locales that truly exist.
+  a = (await localizeArticle(store, a, servedQ(q))).article;
   // Official video linked to THIS story by the matcher (docs/VIDEO.md); none when no confident match.
   a.media = { videos: await articleVideos(store, a.id).catch(() => []) };
   // Data visuals are historical records frozen at publication (soccer-visuals): served exactly as stored, and
@@ -791,7 +798,7 @@ export async function article(store, slug) {
   a.subject = subject.entity ? { type: subject.entity.type, name: subject.entity.name, slug: subject.entity.slug || null, reason: subject.reason } : null;
   // Related coverage: published stories sharing entities (players > match > teams), recency bonus.
   const ids = new Set(ents.map(e => e.id).filter(Boolean));
-  const others = (await store.select('soccer_articles', { columns: ['slug', 'desk', 'story_class', 'headline', 'dek', 'published_at', 'entities'], eq: { status: 'published' }, order: 'published_at.desc', limit: 200 })).filter(o => o.slug !== a.slug);
+  const others = (await store.select('soccer_articles', { columns: ['id', 'slug', 'desk', 'story_class', 'headline', 'dek', 'published_at', 'updated_at', 'packet_hash', 'entities'], eq: { status: 'published' }, order: 'published_at.desc', limit: 200 })).filter(o => o.slug !== a.slug);
   const W = { Person: 60, SportsEvent: 40, SportsTeam: 26 };
   const scored = others.map(o => {
     let s = 0; for (const e of o.entities || []) if (e.id && ids.has(e.id)) s += W[e.type] || 0;
@@ -800,7 +807,9 @@ export async function article(store, slug) {
     s += days <= 1 ? 12 : days <= 3 ? 9 : days <= 7 ? 6 : 0;
     return { o, s };
   }).filter(x => x.s >= 26).sort((x, y) => y.s - x.s || Date.parse(y.o.published_at) - Date.parse(x.o.published_at)).slice(0, 4);
-  a.related = scored.map(({ o }) => ({ slug: o.slug, desk: o.desk, story_class: o.story_class, headline: o.headline, dek: o.dek, published_at: o.published_at }));
+  const rel = scored.map(({ o }) => o);
+  if (a.locale && a.locale !== 'en') await localizeCards(store, rel, a.locale);
+  a.related = rel.map(o => ({ slug: o.slug, desk: o.desk, story_class: o.story_class, headline: o.headline, dek: o.dek, published_at: o.published_at, ...(o.locale ? { locale: o.locale } : {}) }));
   return E(a, { source: 'pbe', semantics: 'Published article; packet_hash identifies the frozen evidence packet behind every figure.', source_updated_at: a.updated_at });
 }
 
@@ -841,11 +850,13 @@ export async function sitemap(store, kind) {
     teams: ['soccer_teams', ['slug', 'updated_at'], { eq: { status: 'active' } }, 'slug.asc'],
     players: ['soccer_players', ['slug', 'updated_at'], { eq: { status: 'active' } }, 'slug.asc'],
     matches: ['soccer_public_matches', ['id', 'status', 'updated_at'], { in: { status: ['finished', 'scheduled'] } }, 'id.asc'],
-    news: ['soccer_articles', ['desk', 'slug', 'published_at', 'updated_at'], { eq: { status: 'published' } }, 'published_at.desc'],
+    news: ['soccer_articles', ['id', 'desk', 'slug', 'published_at', 'updated_at', 'packet_hash'], { eq: { status: 'published' } }, 'published_at.desc'],
   }[kind];
   if (kind === 'news') {
     const rows = await store.select(K[0], { columns: K[1], ...K[2], order: K[3], limit: 1000 });
-    const out = rows.map(r => ({ key: `${r.desk}/${r.slug}`, desk: r.desk, updated_at: r.updated_at || r.published_at, published_at: r.published_at }));
+    // `translations`: public locales with a CURRENT verified translation (the only localized news URLs a sitemap may list).
+    const live = await liveTranslations(store, rows.map(r => r.id));
+    const out = rows.map(r => { const tr = (live.get(r.id) || []).filter(t => currentCheap(r, t)); return { key: `${r.desk}/${r.slug}`, desk: r.desk, updated_at: r.updated_at || r.published_at, published_at: r.published_at, translations: Object.fromEntries(tr.map(t => [t.locale, t.published_at])) }; });
     return E(out, { source: 'pbe', semantics: 'Published article URL keys (desk/slug) for the news sitemap; only published, gate-passed articles.', source_updated_at: maxTs(out.map(r => r.updated_at)) });
   }
   if (!K) throw new NotFound(`sitemap ${kind}`);
