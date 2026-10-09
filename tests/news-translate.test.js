@@ -5,7 +5,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { applyMigrations, openPglite } from '../workers/soccer-ingest/src/store-pglite.js';
-import { articleSegments, sourceRevision, applyTranslation, methodNotes, ARTICLE_LOCALES } from '../workers/shared/article-i18n.js';
+import { articleSegments, sourceRevision, applyTranslation, methodNotes, ARTICLE_LOCALES, exonym } from '../workers/shared/article-i18n.js';
 import { translateArticle, translationGates, sweepTranslations, translationCandidates, checkVerdict, translationAllowanceUsd, translationTick } from '../workers/soccer-news/src/translate.js';
 
 const id = n => `00000000-0000-5000-8000-0000001a${String(n).padStart(4, '0')}`;
@@ -29,13 +29,13 @@ const ARTICLE = {
 
 // A fluent, faithful Spanish rendering of every segment (what a correct translator returns).
 const ES = {
-  h: 'Harry Kane marca en cuatro partidos seguidos de la Nations League con England',
-  d: 'Seis goles desde el 26 de septiembre convierten a Kane en el finalizador más regular del grupo de England.',
+  h: 'Harry Kane marca en cuatro partidos seguidos de la Nations League con Inglaterra',
+  d: 'Seis goles desde el 26 de septiembre convierten a Kane en el finalizador más regular del grupo de Inglaterra.',
   's0.h': 'Seis goles en cuatro titularidades',
-  's0.p0': 'Harry Kane ha marcado en 4 apariciones consecutivas en la UEFA Nations League con England, con 6 goles en total.',
-  's0.p1': 'Marcó dos veces ante Croatia el 3 de octubre y otras dos ante Czechia el martes 6 de octubre.',
+  's0.p0': 'Harry Kane ha marcado en 4 apariciones consecutivas en la UEFA Nations League con Inglaterra, con 6 goles en total.',
+  's0.p1': 'Marcó dos veces ante Croacia el 3 de octubre y otras dos ante Chequia el martes 6 de octubre.',
   's1.h': 'Partido a partido',
-  's1.p0': 'La racha comenzó con 1 gol en la derrota por 2-3 ante Spain y siguió en la victoria por 2-0 sobre Czechia.',
+  's1.p0': 'La racha comenzó con 1 gol en la derrota por 2-3 ante España y siguió en la victoria por 2-0 sobre Chequia.',
   'v.scoring_run.title': 'Harry Kane: partido a partido',
   'v.scoring_run.subtitle': '4 apariciones consecutivas con gol',
   'v.scoring_run.source': 'Apariciones según alineaciones con fuente; goles según el registro de eventos del partido.',
@@ -93,12 +93,16 @@ test('gates: a faithful translation passes; each kind of factual drift holds', (
   const why = over => translationGates(ARTICLE, segs, tr(over), 'es').reasons;
   assert.deepEqual(why({ 's1.p0': ES['s1.p0'].replace('2-3', '3-2').replace('2-0', '2-1') }), ['translation_numbers'], 'score changed');
   assert.deepEqual(why({ 's0.p0': ES['s0.p0'].replace('Harry Kane', 'Kane') }), ['translation_names'], 'name not preserved');
-  assert.deepEqual(why({ 's0.p0': ES['s0.p0'].replace('England', 'Inglaterra') }), ['translation_names'], 'national team renamed');
+  assert.deepEqual(why({ 's0.p0': ES['s0.p0'].replace('Inglaterra', 'England') }), ['translation_names'], 'national team left in English (house exonym required)');
+  assert.deepEqual(why({ 's0.p1': ES['s0.p1'].replace('Croacia', 'Croatia') }), ['translation_names']);
+  assert.deepEqual(why({ 's0.p0': ES['s0.p0'].replace('Harry Kane', 'Harry Kane, cuatro') }), ['translation_length'].filter(() => false), 'a Spanish number word is fine');
+  assert.ok(why({ 's0.p1': ES['s0.p1'].replace('dos veces', 'two veces') }).includes('translation_untranslated'), 'English number word left');
+  assert.ok(why({ 's1.p0': `${ES['s1.p0']} Quedó 16th.` }).includes('translation_untranslated'), 'English ordinal left');
   assert.deepEqual(why({ 's0.p1': ES['s0.p1'].replaceAll('octubre', 'noviembre') }), ['translation_dates'], 'month changed');
   assert.deepEqual(why({ 's0.p1': ES['s0.p1'].replace('martes', 'miércoles') }), ['translation_dates'], 'weekday changed');
   assert.deepEqual(why({ d: `${ES.d} Es el gran favorito.` }), ['translation_added_claim'], 'favourite added');
   assert.deepEqual(why({ 's1.p0': `${ES['s1.p0']} Sin lesiones.` }), ['translation_added_claim']);
-  assert.deepEqual(why({ 's0.p0': 'Harry Kane has scored in 4 consecutive appearances for England, with the 6 goals of the run and their group.' }), ['translation_untranslated', 'translation_length'].filter(r => translationGates(ARTICLE, segs, tr({ 's0.p0': 'Harry Kane has scored in 4 consecutive appearances for England, with the 6 goals of the run and their group.' }), 'es').reasons.includes(r)));
+  assert.ok(why({ 's0.p0': 'Harry Kane has scored in 4 consecutive appearances for England, with the 6 goals of the run and their group.' }).includes('translation_untranslated'), 'English function words left');
   assert.ok(why({ 's0.p0': 'Harry Kane has scored in 4 consecutive UEFA Nations League appearances for England, with 6 goals in total.' }).includes('translation_untranslated'), 'English left as is');
   assert.deepEqual(why({ 's1.h': '«Partido a partido»' }), ['translation_quotes'], 'quotation invented');
   assert.ok(why({ 'v.scoring_run.title': '' }).includes('translation_coverage'));
@@ -222,4 +226,10 @@ test('pilot mode: only the named slugs, once per revision; off = lifecycle only;
   // translationTick needs a store from env: exercise the mode routing with an env that has none (fails closed per locale)
   const rep = await translationTick({ SOCCER_STATE: kv(), SOCCER_TRANSLATE_ES: 'pilot', SOCCER_TRANSLATE_PT: 'auto' }).catch(e => ({ error: String(e) }));
   assert.ok(rep.error || (rep.locales.es.mode === 'pilot' && rep.locales.es.error === 'pilot mode without a pilot list' && !rep.locales.pt.results), JSON.stringify(rep));
+});
+
+test('house exonyms: translated article carries story_name for nations; clubs and players keep their names', () => {
+  const es = applyTranslation(ARTICLE, ES, 'es');
+  assert.deepEqual(es.entities.map(e => [e.name, e.story_name]), [['Harry Kane', undefined], ['England', 'Inglaterra']]);
+  assert.equal(exonym('England', 'es'), 'Inglaterra'); assert.equal(exonym('Bayern Munich', 'es'), null); assert.equal(exonym('England', 'pt'), null);
 });

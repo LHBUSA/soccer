@@ -21,6 +21,29 @@ export const ARTICLE_LOCALES = Object.freeze({
 });
 export const servedLocale = l => !!ARTICLE_LOCALES[l]?.enabled;
 
+// NATIONAL-TEAM EXONYMS (house style for translated prose). Clubs, players and competitions keep their canonical names
+// in every language; national teams are written as native readers know them (England -> Inglaterra). Fixed list, never
+// model-invented; the translation gates require exactly these forms. Entity links follow via `story_name`.
+export const NATION_EXONYMS = Object.freeze({
+  es: Object.freeze({
+    Albania: 'Albania', Andorra: 'Andorra', Armenia: 'Armenia', Austria: 'Austria', Azerbaijan: 'Azerbaiyán', Belarus: 'Bielorrusia',
+    Belgium: 'Bélgica', 'Bosnia and Herzegovina': 'Bosnia y Herzegovina', 'Bosnia-Herzegovina': 'Bosnia y Herzegovina', Bulgaria: 'Bulgaria',
+    Croatia: 'Croacia', Cyprus: 'Chipre', Czechia: 'Chequia', 'Czech Republic': 'República Checa', Denmark: 'Dinamarca', England: 'Inglaterra',
+    Estonia: 'Estonia', 'Faroe Islands': 'Islas Feroe', Finland: 'Finlandia', France: 'Francia', Georgia: 'Georgia', Germany: 'Alemania',
+    Gibraltar: 'Gibraltar', Greece: 'Grecia', Hungary: 'Hungría', Iceland: 'Islandia', Israel: 'Israel', Italy: 'Italia', Kazakhstan: 'Kazajistán',
+    Kosovo: 'Kosovo', Latvia: 'Letonia', Liechtenstein: 'Liechtenstein', Lithuania: 'Lituania', Luxembourg: 'Luxemburgo', Malta: 'Malta',
+    Moldova: 'Moldavia', Montenegro: 'Montenegro', Netherlands: 'Países Bajos', 'North Macedonia': 'Macedonia del Norte', 'Northern Ireland': 'Irlanda del Norte',
+    Norway: 'Noruega', Poland: 'Polonia', Portugal: 'Portugal', 'Republic of Ireland': 'República de Irlanda', Ireland: 'Irlanda', Romania: 'Rumanía',
+    Russia: 'Rusia', 'San Marino': 'San Marino', Scotland: 'Escocia', Serbia: 'Serbia', Slovakia: 'Eslovaquia', Slovenia: 'Eslovenia', Spain: 'España',
+    Sweden: 'Suecia', Switzerland: 'Suiza', Turkey: 'Turquía', 'Türkiye': 'Turquía', Ukraine: 'Ucrania', Wales: 'Gales',
+    Argentina: 'Argentina', Brazil: 'Brasil', Uruguay: 'Uruguay', Colombia: 'Colombia', Chile: 'Chile', Peru: 'Perú', Ecuador: 'Ecuador', Paraguay: 'Paraguay',
+    Bolivia: 'Bolivia', Venezuela: 'Venezuela', Mexico: 'México', 'United States': 'Estados Unidos', USA: 'Estados Unidos', Canada: 'Canadá',
+    'Costa Rica': 'Costa Rica', Panama: 'Panamá', Honduras: 'Honduras', Jamaica: 'Jamaica', Morocco: 'Marruecos', Senegal: 'Senegal', Nigeria: 'Nigeria',
+    Egypt: 'Egipto', Japan: 'Japón', 'South Korea': 'Corea del Sur', 'Korea Republic': 'Corea del Sur', Australia: 'Australia', 'Saudi Arabia': 'Arabia Saudí', Iran: 'Irán', Qatar: 'Catar',
+  }),
+});
+export const exonym = (name, locale) => NATION_EXONYMS[locale]?.[name] ?? null;
+
 // Customer disclosure (mirrors src/pages/article.js storyParts/sourceMethod): a collection-lane credit renders as
 // DATA · PropSports; source-credit lines stay verbatim (brand / licence credits); the evidence-packet paragraph is not
 // shown except its "Not reported: ..." clause.
@@ -72,8 +95,10 @@ export function applyTranslation(a, segments, locale) {
   const method = (a.body?.sections || []).filter(s => s.key === 'method'); // English, kept only for the source-credit lines
   const visuals = (a.body?.visuals || []).map(v => (v?.id ? { ...v, ...(clean(v.title) ? { title: T(`v.${v.id}.title`) } : {}), ...(clean(v.subtitle) ? { subtitle: T(`v.${v.id}.subtitle`) } : {}), ...(clean(v.source) ? { source: T(`v.${v.id}.source`) } : {}) } : v));
   const m = methodNotes(a.body);
+  const named = e => (e?.name && exonym(e.name, locale) && exonym(e.name, locale) !== e.name ? { ...e, story_name: exonym(e.name, locale) } : e);
   return {
     ...a,
+    entities: (a.entities || []).map(named),
     headline: T('h'), dek: clean(a.dek) ? T('d') : a.dek,
     body: { ...a.body, sections: [...sections, ...method], visuals, method_i18n: { notes: m.notes.map((_, k) => T(`m.note${k}`)), uncovered: m.uncovered ? T('m.uncovered') : null } },
     locale,

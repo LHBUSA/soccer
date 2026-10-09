@@ -60,7 +60,7 @@ export function inThisStory(entities) {
   const chip = (href, fig, name, meta, attrs = '') => `<li><a class="ent-chip" href="${esc(href)}" data-link${attrs}>${fig}<span class="ent-t"><b>${esc(name)}</b>${meta ? `<small>${esc(meta)}</small>` : ''}</span></a></li>`;
   return `<aside class="in-story" aria-label="In this story"><p class="in-story-h">IN THIS STORY</p><ul class="ent-chips">
     ${join(people, e => chip(e.href, portrait(e, 'sm'), e.name, 'Player DNA', ` data-player-slug="${esc(e.slug)}"`))}
-    ${join(teams, e => chip(e.href, teamMark(e, 'xs'), e.name, 'Team'))}
+    ${join(teams, e => chip(e.href, teamMark(e, 'xs'), storyName(e), 'Team'))}
     ${when(match, () => chip(`/pbecast/${match.href.split('/').pop()}`, '<span class="ent-ico" aria-hidden="true">▶</span>', 'PBEcast replay', match.name))}
     ${when(match, () => chip(match.href, '<span class="ent-ico" aria-hidden="true">◎</span>', 'Match Intelligence', match.name))}
     ${when(comp, () => chip(comp.href, competitionMark(comp.slug, 'xs'), comp.name, 'Competition'))}
@@ -100,10 +100,12 @@ export function watchInArticle(a) {
   return `<section class="art-watch" aria-label="Watch"><p class="nrail-h">WATCH · ${v.video_type === 'highlights' ? 'OFFICIAL HIGHLIGHTS' : 'OFFICIAL VIDEO'}</p>${officialVideo(v, { feature: true })}</section>`;
 }
 
+// A verified translation names national teams in its language (story_name, workers/shared/article-i18n.js exonyms).
+const storyName = e => e?.story_name || e?.name;
 function storyLinkables(entities = []) {
   return entities
     .filter(e => e?.href && e?.name && ['Person', 'SportsTeam', 'SportsOrganization'].includes(e.type))
-    .sort((a, b) => b.name.length - a.name.length);
+    .sort((a, b) => storyName(b).length - storyName(a).length);
 }
 
 export function linkStoryText(text, entities = [], seen = new Set()) {
@@ -115,15 +117,15 @@ export function linkStoryText(text, entities = [], seen = new Set()) {
     for (const e of candidates) {
       const key = e.href;
       if (seen.has(key)) continue;
-      const at = src.indexOf(e.name, cursor);
+      const at = src.indexOf(storyName(e), cursor);
       if (at < 0) continue;
-      if (!best || at < best.at || (at === best.at && e.name.length > best.e.name.length)) best = { at, e };
+      if (!best || at < best.at || (at === best.at && storyName(e).length > storyName(best.e).length)) best = { at, e };
     }
     if (!best) { html += esc(src.slice(cursor)); break; }
     html += esc(src.slice(cursor, best.at));
-    html += `<a class="story-link" href="${esc(best.e.href)}" data-link>${esc(best.e.name)}</a>`;
+    html += `<a class="story-link" href="${esc(best.e.href)}" data-link>${esc(storyName(best.e))}</a>`;
     seen.add(best.e.href);
-    cursor = best.at + best.e.name.length;
+    cursor = best.at + storyName(best.e).length;
   }
   return html;
 }

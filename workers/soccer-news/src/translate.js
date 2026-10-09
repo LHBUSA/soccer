@@ -17,14 +17,16 @@
 // (SOCCER_TRANSLATE_<LOCALE>_DAILY_MAX_USD; es default $1, every other locale $0 until separately approved). The
 // allowance is checked BEFORE each call with a conservative estimate, and fails closed when the ledger is unreadable.
 import { storeFromEnv } from '../../shared/postgrest.js';
-import { ARTICLE_LOCALES, articleSegments, sourceRevision } from '../../shared/article-i18n.js';
+import { ARTICLE_LOCALES, articleSegments, sourceRevision, exonym, NATION_EXONYMS } from '../../shared/article-i18n.js';
 import { overCeiling, spentUsd, dailyMaxUsd, spentToday, readCallLog, LEDGER_TABLE, WORKER_VERSION } from './openai-cost.js';
 import { aiConfig, ROUTER_VERSION, nominalStandardCost } from './ai-router.js';
 import { DESK_API, sanitizeDeskError } from './desk.js';
 
-export const TRANSLATE_VERSION = 'soccer-translate/1.0.0';
-export const CHECK_VERSION = 'soccer-translation-check/1.0.0';
-export const TRANSLATION_GATES_VERSION = 'soccer-translation-gates/1.0.0';
+// 1.1.0 (pilot tick 1, 2026-10-09): number words translated (never left in English), ordinals localized, national-team
+// exonyms (house list); the checker is told the naming policy so canonical club/player names are not 'untranslated'.
+export const TRANSLATE_VERSION = 'soccer-translate/1.1.0';
+export const CHECK_VERSION = 'soccer-translation-check/1.1.0';
+export const TRANSLATION_GATES_VERSION = 'soccer-translation-gates/1.1.0';
 export const TRANSLATE_MODEL = 'gpt-5.6-sol';
 // Conservative per-call estimates used only to refuse a call that could cross an allowance (actual cost is recorded).
 export const EST_TRANSLATE_USD = 0.09;
@@ -36,12 +38,15 @@ The English text has already passed fact-checking against a frozen evidence reco
 the same things: no added facts, no omitted facts, no new adjectives that judge players or teams, no opinions.
 
 Hard rules (an automatic checker rejects any violation):
-- Player, club, national-team and competition names stay EXACTLY as written in English (same spelling, accents,
-  capitalisation), e.g. "England", "Bayern Munich", "Premier League", "UEFA Nations League". Do not translate or
-  abbreviate them. Possessives become prepositions ("Kane's goals" -> natural ${lang} with "Kane" unchanged).
-- Every number stays a number with the same digits: scores ("2-1"), goals, minutes ("71st minute" -> the same 71),
-  points, positions, dates, kick-off times ("15:30 UTC"), percentages, decimals (keep the decimal point as in English,
-  e.g. 1.8). Never turn a digit into a word or a word into a digit; a number written as a word in English stays a word.
+- Player, club and competition names stay EXACTLY as written in English (same spelling, accents, capitalisation), e.g.
+  "Bayern Munich", "Harry Kane", "Premier League", "UEFA Nations League". Do not translate or abbreviate them.
+  Possessives become prepositions ("Kane's goals" -> natural ${lang} with "Kane" unchanged).
+- NATIONAL TEAMS are written with the exact ${lang} names given in the NATIONAL TEAMS list of the request, and only those.
+- Every number written in digits stays in digits with the same value: scores ("2-1"), goals, minutes, points,
+  positions, dates, kick-off times ("15:30 UTC"), percentages, decimals (keep the decimal point, e.g. 1.8).
+- A number written as an English WORD ("four", "two", "twice", "third") is translated as the equivalent ${lang} word,
+  never left in English and never turned into digits.
+- Ordinals written with digits ("16th", "1st") use the ${lang} ordinal form with the same digits (${ORDINAL_HINT[lang] || ''}).
 - Month and weekday names are translated; their day and year digits stay.
 - Keep "PropBetEdge", "PropSports" and "DATA · PropSports" verbatim. Keep every URL verbatim.
 - Quotations: keep the same number of quoted passages, translate their meaning faithfully, use the language's quotation marks.
@@ -68,10 +73,14 @@ brace = doublé; clean sheet = cage inviolée; own goal = but contre son camp; p
 temps additionnel; half-time = mi-temps; header = tête; assist = passe décisive; shots on target = tirs cadrés; corners = corners.`,
 };
 const LANG = { es: 'Spanish', pt: 'Brazilian Portuguese (pt-BR)', fr: 'French' };
+const ORDINAL_HINT = { Spanish: '16.º, 1.º or "el puesto 16"', 'Brazilian Portuguese (pt-BR)': '16º, 1º', French: '16e, 1er' };
 export const translatorInstructions = locale => `${COMMON_RULES(LANG[locale])}\n\n${GLOSSARY[locale]}`;
 
 export const checkerInstructions = locale => `You are an independent bilingual fact-checking editor (English and ${LANG[locale]}).
 You did NOT write the translation. You receive pairs of English source segments and their ${LANG[locale]} translation.
+House naming policy (do NOT report these): player, club and competition names are intentionally kept exactly as in the
+English (e.g. "Bayern Munich", "Premier League"); national teams use the names in the NATIONAL TEAMS list provided;
+brands "PropBetEdge", "PropSports", "DATA · PropSports" stay as written.
 For EVERY pair decide whether the translation states exactly the same facts and meaning. Report an issue for any:
 - fact: a different or missing player, team, score, number, date, minute, competition, position, statistic or attribution;
 - meaning: a sentence whose meaning, certainty or attribution changed (including a quotation whose meaning changed);
@@ -153,6 +162,8 @@ const ADDED = {
   mentality: [/\b(hungr\w*|desire|mentality|confiden\w*|frustrat\w*|nervous|belief|pressure)\b/i, { es: /\b(mentalidad|hambre|confianza|frustra\w*|nervios\w*|presi[óo]n)\b/i, pt: /\b(mentalidade|fome|confian[çc]a|frustra\w*|nervos\w*|press[ãa]o)\b/i, fr: /\b(mentalit[ée]|faim|confiance|frustr\w*|nerveu\w*|pression)\b/i }],
   tactics: [/\b(formation|press(ing)?|back (three|four|five)|false nine|low block)\b/i, { es: /\b(formaci[óo]n|presi[óo]n alta|defensa de (tres|cuatro|cinco)|falso nueve|bloque bajo)\b/i, pt: /\b(forma[çc][ãa]o|marca[çc][ãa]o alta|linha de (tr[êe]s|quatro|cinco)|falso nove|bloco baixo)\b/i, fr: /\b(syst[èe]me|pressing|d[ée]fense [àa] (trois|quatre|cinq)|faux neuf|bloc bas)\b/i }],
 };
+const EN_NUMBER_WORDS = /\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|twenty|twice|thrice|first|second|third|fourth|fifth)\b/gi;
+const EN_ORDINAL = /\b\d+(st|nd|rd|th)\b/i;
 const LEFTOVER = /\b(the|and|with|of|was|were|after|their|his|has|have|from|which|while|against|into)\b/gi;
 const QUOTED = /[“"«][^”"»]{2,}[”"»]/g;
 const URLS = /https?:\/\/\S+/g;
@@ -178,7 +189,13 @@ export function translationGates(a, segments, translated, locale) {
   for (const { id, text: en } of segments) {
     const tr = got.get(id); if (!tr) continue;
     if (!sameMultiset(digitRuns(en), digitRuns(tr))) fail('numbers', `${id}: ${digitRuns(en).join(' ')} != ${digitRuns(tr).join(' ')}`);
-    for (const n of names) if (en.includes(n) && !tr.includes(n)) fail('names', `${id}: "${n}" not preserved`);
+    // canonical entities, plus every listed nation the English names (opponents are often not story entities)
+    const nations = Object.keys(NATION_EXONYMS[locale] || {}).filter(k => new RegExp(`(^|[^\\p{L}])${k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}($|[^\\p{L}])`, 'u').test(en));
+    for (const n of new Set([...names, ...nations])) {
+      if (!en.includes(n)) continue;
+      const x = exonym(n, locale);
+      if (!tr.includes(x || n)) fail('names', `${id}: "${x || n}" expected for "${n}"`);
+    }
     EN_MONTHS.forEach((_, i) => { if (monthIn(en, i) && !new RegExp(`\\b(${MONTHS[locale][i]})\\b`, 'i').test(tr)) fail('dates', `${id}: month ${i + 1}`); });
     EN_DAYS.forEach((re, i) => { if (re.test(en) && !new RegExp(`\\b${DAYS[locale][i]}`, 'i').test(tr)) fail('dates', `${id}: weekday ${i + 1}`); });
     if (count(en, QUOTED) !== count(tr, QUOTED)) fail('quotes', `${id}: ${count(en, QUOTED)} quoted passages -> ${count(tr, QUOTED)}`);
@@ -187,6 +204,8 @@ export function translationGates(a, segments, translated, locale) {
     for (const [cat, [enRe, tr2]] of Object.entries(ADDED)) if (tr2[locale].test(tr) && !enRe.test(en)) fail('added_claim', `${id}: ${cat} (${(tr.match(tr2[locale]) || [])[0]})`);
     let bare = tr; for (const n of names) bare = bare.split(n).join(' '); for (const b of BRANDS) bare = bare.split(b).join(' ');
     if (count(bare, LEFTOVER) >= 3) fail('untranslated', `${id}: ${count(bare, LEFTOVER)} English function words`);
+    const words = bare.match(EN_NUMBER_WORDS); if (words) fail('untranslated', `${id}: English number words ${[...new Set(words)].join(', ')}`);
+    const ord = tr.match(EN_ORDINAL); if (ord) fail('untranslated', `${id}: English ordinal ${ord[0]}`);
     if (en.length >= 40) { const r = tr.length / en.length; if (r < 0.6 || r > 2.0) fail('length', `${id}: length ratio ${r.toFixed(2)}`); }
     if (tr === en && /[a-z]{4,}/i.test(en) && en.length >= 20) fail('untranslated', `${id}: identical to English`);
   }
@@ -293,7 +312,8 @@ export async function translateArticle(env, store, a, locale, { trigger = 'admin
   if (!budget.ok) return { slug: a.slug, locale, outcome: 'skipped', reason: budget.reason };
 
   // 1. translator
-  const input = `Translate these segments of one article. Segment ids: h = headline, d = dek (standfirst), sN.h = section heading, sN.pM = paragraph, v.*.title/subtitle/source = data-visual captions, m.* = method notes.\n${JSON.stringify({ segments: segments.map(s => ({ id: s.id, text: s.text })) })}`;
+  const nations = protectedNames(a).filter(n => exonym(n, locale)).map(n => `${n} = ${exonym(n, locale)}`);
+  const input = `${nations.length ? `NATIONAL TEAMS (write exactly these ${LANG[locale]} names): ${nations.join('; ')}\n\n` : ''}Translate these segments of one article. Segment ids: h = headline, d = dek (standfirst), sN.h = section heading, sN.pM = paragraph, v.*.title/subtitle/source = data-visual captions, m.* = method notes.\n${JSON.stringify({ segments: segments.map(s => ({ id: s.id, text: s.text })) })}`;
   const maxOut = Math.max(2000, Math.min(16000, Math.round(segments.reduce((n, s) => n + s.text.length, 0) / 2.2) + 2500));
   let translated; let t0 = Date.now(); const started = new Date().toISOString();
   try {
@@ -314,9 +334,10 @@ export async function translateArticle(env, store, a, locale, { trigger = 'admin
     else {
       const map = new Map(translated.map(s => [s.id, s.text]));
       const pairs = segments.map(s => ({ id: s.id, en: s.text, [locale]: map.get(s.id) }));
+      const nationList = protectedNames(a).filter(n => exonym(n, locale)).map(n => `${n} = ${exonym(n, locale)}`);
       t0 = Date.now(); const started2 = new Date().toISOString();
       try {
-        const r = await callModel(env, { instructions: checkerInstructions(locale), input: JSON.stringify({ pairs }), schema: CHECK_SCHEMA, name: 'soccer_translation_check', model, effort: env.SOCCER_TRANSLATE_CHECK_EFFORT || 'low', maxOutputTokens: 4000, fetcher });
+        const r = await callModel(env, { instructions: checkerInstructions(locale), input: `${nationList.length ? `NATIONAL TEAMS: ${nationList.join('; ')}\n` : ''}${JSON.stringify({ pairs })}`, schema: CHECK_SCHEMA, name: 'soccer_translation_check', model, effort: env.SOCCER_TRANSLATE_CHECK_EFFORT || 'low', maxOutputTokens: 4000, fetcher });
         await record(env, { started: started2, meta: r.meta, a, locale, trigger, task: 'translation_check', latency: Date.now() - t0 });
         check = checkVerdict(r.out);
       } catch (e) {
@@ -381,7 +402,7 @@ export async function translationCandidates(store, locale, { limit = 2, slugs = 
   const arts = slugs?.length
     ? await store.select('soccer_articles', { columns: ARTICLE_COLUMNS, in: { slug: slugs }, eq: { status: 'published' } })
     : await store.select('soccer_articles', { columns: ['id', 'slug', 'updated_at', 'packet_hash'], eq: { status: 'published' }, order: 'published_at.desc', limit: 60 });
-  const rows = arts.length ? await store.select('soccer_article_translations', { columns: ['article_id', 'status', 'source_revision', 'source_updated_at'], eq: { locale }, in: { article_id: arts.map(x => x.id) } }) : [];
+  const rows = arts.length ? await store.select('soccer_article_translations', { columns: ['article_id', 'status', 'source_revision', 'source_updated_at', 'translator'], eq: { locale }, in: { article_id: arts.map(x => x.id) } }) : [];
   const out = [];
   for (const x of arts) {
     if (out.length >= limit) break;
@@ -390,7 +411,8 @@ export async function translationCandidates(store, locale, { limit = 2, slugs = 
     const full = x.body ? x : (await store.select('soccer_articles', { columns: ARTICLE_COLUMNS, eq: { id: x.id }, limit: 1 }))[0];
     const rev = sourceRevision(full);
     if (mine.some(r => r.status === 'published' && r.source_revision === rev)) continue;
-    if (!named && mine.some(r => r.status === 'held' && r.source_revision === rev)) continue; // one automatic try per revision
+    // one automatic try per revision AND translator version (an improved translator may retry a held revision once)
+    if (!named && mine.some(r => r.status === 'held' && r.source_revision === rev && String(r.translator || '').startsWith(TRANSLATE_VERSION))) continue;
     out.push(full);
   }
   return out;
