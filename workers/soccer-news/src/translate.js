@@ -416,11 +416,12 @@ export async function sweepTranslations(env, store, locale) {
 
 /** Newest published English articles without a current translation (and not already held at this revision). */
 // `slugs` + retry=true (admin): translate those even if current; retry=false (pilot list): same one-try-per-revision rule.
-export async function translationCandidates(store, locale, { limit = 2, slugs = null, retry = true } = {}) {
+// `since` (auto mode): only stories FIRST PUBLISHED at/after this instant - new articles, never the backlog.
+export async function translationCandidates(store, locale, { limit = 2, slugs = null, retry = true, since = null } = {}) {
   const named = !!slugs?.length && retry;
   const arts = slugs?.length
     ? await store.select('soccer_articles', { columns: ARTICLE_COLUMNS, in: { slug: slugs }, eq: { status: 'published' } })
-    : await store.select('soccer_articles', { columns: ['id', 'slug', 'updated_at', 'packet_hash'], eq: { status: 'published' }, order: 'published_at.desc', limit: 60 });
+    : await store.select('soccer_articles', { columns: ['id', 'slug', 'updated_at', 'packet_hash'], eq: { status: 'published' }, ...(since ? { gte: { published_at: since } } : {}), order: 'published_at.desc', limit: 60 });
   const rows = arts.length ? await store.select('soccer_article_translations', { columns: ['article_id', 'status', 'source_revision', 'source_updated_at', 'translator'], eq: { locale }, in: { article_id: arts.map(x => x.id) } }) : [];
   const out = [];
   for (const x of arts) {
@@ -455,9 +456,13 @@ export async function translationTick(env, { now = Date.now() } = {}) {
     const per = Math.max(0, Math.min(5, Number(env.SOCCER_TRANSLATE_PER_TICK) || 2));
     const pilot = r.mode === 'pilot' ? String(env[`SOCCER_TRANSLATE_${locale.toUpperCase()}_PILOT`] || '').split(',').map(x => x.trim()).filter(x => /^[a-z0-9-]+$/.test(x)).slice(0, 25) : null;
     if (pilot && !pilot.length) { r.error = 'pilot mode without a pilot list'; continue; }
+    // auto = NEW articles only: published at/after SOCCER_TRANSLATE_<L>_AUTO_SINCE (required; no boundary -> nothing runs)
+    const since = r.mode === 'auto' ? String(env[`SOCCER_TRANSLATE_${locale.toUpperCase()}_AUTO_SINCE`] || '') : null;
+    if (r.mode === 'auto' && !Number.isFinite(Date.parse(since))) { r.error = 'auto mode without a valid AUTO_SINCE boundary'; continue; }
+    if (since) r.since = since;
     r.results = [];
     try {
-      for (const a of await translationCandidates(store, locale, pilot ? { limit: per, slugs: pilot, retry: false } : { limit: per })) {
+      for (const a of await translationCandidates(store, locale, pilot ? { limit: per, slugs: pilot, retry: false } : { limit: per, since })) {
         const x = await translateArticle(env, store, a, locale, { trigger: 'cron_translation', now });
         r.results.push({ slug: x.slug, outcome: x.outcome, reason: x.reason, hold_reasons: x.hold_reasons, version: x.version });
         if (x.outcome === 'skipped' && /budget|allowance|ceiling/.test(x.reason || '')) break;

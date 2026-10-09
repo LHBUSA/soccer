@@ -245,3 +245,11 @@ test('names gate: a nation inside a longer club name is not the nation (tick-3 f
   assert.equal(nationMentioned('Northern Ireland drew', 'Northern Ireland'), true);
   assert.equal(nationMentioned('Englandia', 'England'), false);
 });
+
+test('auto mode translates NEW articles only (published at/after AUTO_SINCE); no boundary -> nothing runs', async () => {
+  const store = await seed();
+  assert.equal((await translationCandidates(store, 'es', { limit: 5, since: '2026-10-07T00:00:00Z' })).length, 0, 'backlog story (published 10-06) excluded');
+  assert.equal((await translationCandidates(store, 'es', { limit: 5, since: '2026-10-06T00:00:00Z' })).length, 1);
+  const rep = await translationTick({ SOCCER_STATE: kv(), SOCCER_TRANSLATE_ES: 'auto' }).catch(e => ({ error: String(e) }));
+  assert.ok(rep.error || rep.locales.es.error === 'auto mode without a valid AUTO_SINCE boundary', JSON.stringify(rep));
+});
