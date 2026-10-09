@@ -77,8 +77,8 @@ export const pro = {
       ${moduleSection(mods.matchup, a, '<p class="muted">The PBE MATCHUP RATING and its seven components are in every Match Center page. It is descriptive, never a win probability.</p>')}
       <section class="pro-mod" id="model-lab"><header><p class="kicker gold">MODEL LAB</p><h2>${esc(c.model_lab.label)}</h2></header>
         <p>${esc(c.model_lab.detail)}</p><p class="pro-h">AFTER FORMAL PROMOTION ONLY</p><ul class="pro-list">${join(c.model_lab.will_include_after_promotion, x => `<li>${esc(x)}</li>`)}</ul></section>
-      <section class="pro-mod" id="track-record"><header><p class="kicker gold">TRACK RECORD</p><h2>Nothing published, nothing to hide</h2></header>
-        <p>Soccer Pro publishes no predictions yet, so there is no track record to show. When a model is promoted, every prediction is frozen before kick-off and graded here.</p></section>
+      <section class="pro-mod" id="track-record"><header><p class="kicker gold">TRACK RECORD</p><h2>Official Soccer Algo record</h2></header>
+        <p>Soccer Algo V1 (Bundesliga) and V2.1 (Nations League) already publish independent, prospective official picks. Their public records are separate from the premium Match Center and from any future Model Lab capability. <a href="/track-record" data-link class="sec-link">VIEW OFFICIAL RECORD →</a> <a href="/picks" data-link class="sec-link">VIEW OFFICIAL PICKS →</a></p></section>
       <section class="pro-mod" id="included"><header><p class="kicker gold">FREE VS ALL ACCESS</p><h2>What is included</h2></header>
         <div class="pro-mod-grid"><div><p class="pro-h">FREE</p><ul class="pro-list">${join(c.free_includes, x => `<li>${esc(x)}</li>`)}</ul></div>
         <div><p class="pro-h">ALL ACCESS</p><ul class="pro-list"><li>Pro Match Center</li><li>Fatigue Intelligence values</li><li>Rotation / XI Stability values</li><li>Matchup Lab values</li><li>Validated predictive models (after promotion)</li><li>${esc(OFFER_LINE)}</li></ul></div></div></section>

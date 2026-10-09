@@ -79,7 +79,7 @@ test('/all-access per state: purchase only where allowed, exact Stripe link, nev
 test('/all-access network: 10 sports + Predictions from the registry, Soccer here, Predictions never a sport', () => {
   assert.deepEqual(NETWORK_SPORTS.map(s => s.key), FAMILY.sports.map(s => s.key));
   assert.equal(NETWORK_SPORTS.length, 10);
-  assert.equal(OFFER_LINE, '10 sports + PropBetEdge Predictions');
+  assert.equal(OFFER_LINE, '10 sports + Predictions'); // canonical family registry label
   const html = allAccess.render({ access: V.anonymous });
   for (const s of NETWORK_SPORTS) assert.ok(html.includes(s.name), s.key);
   assert.match(html, /F1 Intelligence/);
@@ -107,11 +107,11 @@ test('offer card: GET ALL ACCESS keeps the Stripe link; WHAT\'S INCLUDED opens /
   assert.equal(offerCard(m('owner')), '');
 });
 
-test('footer: GET ALL ACCESS on Stripe, informational All Access links on /all-access, nothing to propbetedge.ai/pro', () => {
+test('footer: Stripe checkout, local information, plus explicit canonical network destination', () => {
   const html = networkFooter();
   assert.ok(hrefs(html).includes(STRIPE));
   assert.ok(hrefs(html).filter(h => h === '/all-access').length >= 2, 'WHAT\'S INCLUDED + network All Access');
-  assert.ok(!hrefs(html).includes(ALL_ACCESS_URL));
+  assert.ok(hrefs(html).includes(ALL_ACCESS_URL), 'network product destination stays externally linked');
 });
 
 test('/all-access is a real local page: route, indexable self-canonical meta, sitemap, no redirect constructs', () => {
