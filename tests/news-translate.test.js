@@ -255,3 +255,33 @@ test('auto mode translates NEW articles only (published at/after AUTO_SINCE); no
   const rep = await translationTick({ SOCCER_STATE: kv(), SOCCER_TRANSLATE_ES: 'auto' }).catch(e => ({ error: String(e) }));
   assert.ok(rep.error || rep.locales.es.error === 'auto mode without a valid AUTO_SINCE boundary', JSON.stringify(rep));
 });
+
+// LHBUSA/soccer#16: a Spanish page never lists an English fallback story as if it were Spanish. The rail reads
+// /v1/news?locale=es&translated=1 (verified translations only); a translated article relates only translated stories.
+test('translated-only reads: news?translated=1 and Spanish related coverage list verified translations only', async () => {
+  const store = await seed(); const env = ENV();
+  // an English-only sibling story sharing the same player (relevance 60+): related on the English page only
+  const SIB = { id: id(3), slug: 'harry-kane-scoring-run-2026-10-03-8a380a', desk: 'international', story_class: 'player_form', headline: 'Harry Kane’s Croatia double extends Nations League scoring run', dek: null, body: { sections: [] }, entities: [KANE, ENG] };
+  await store.insert('soccer_news_events', [{ id: id(4), story_class: 'player_form', desk: 'international', materiality: 0.6, as_of: '2026-10-03T21:00:00Z' }]);
+  await store.insert('soccer_articles', [{ ...SIB, news_event_id: id(4), packet_hash: PH, composer: 'soccer-desk/2.1.1', gate_version: 'soccer-quality/2.1.1', gate_results: {}, status: 'published', published_at: '2026-10-03T18:07:57Z', updated_at: '2026-10-03T18:08:00Z' }]);
+  const R = await import('../workers/soccer-api/src/routes.js');
+  // before any translation: a translated-only read is empty (never an English fallback), plain reads unchanged
+  assert.deepEqual((await R.news(store, { locale: 'es', translated: '1' })).data, []);
+  assert.equal((await R.news(store, { locale: 'es' })).data.length, 2);
+  await translateArticle(env, store, await live(store), 'es', { fetcher: openai().fetcher });
+  const only = (await R.news(store, { locale: 'es', translated: '1', limit: 8 })).data;
+  assert.deepEqual(only.map(c => [c.slug, c.locale, c.headline]), [[ARTICLE.slug, 'es', ES.h]]);
+  // the flag needs a public non-English locale; otherwise it is ignored
+  assert.equal((await R.news(store, { translated: '1' })).data.length, 2);
+  assert.equal((await R.news(store, { locale: 'pt', translated: '1' })).data.length, 2);
+  // related coverage: the English sibling relates to the English page, never to the Spanish one
+  const sib = (await R.article(store, SIB.slug, {})).data;
+  assert.deepEqual(sib.related.map(r => r.slug), [ARTICLE.slug]);
+  const esA = (await R.article(store, ARTICLE.slug, { locale: 'es' })).data;
+  assert.equal(esA.locale, 'es');
+  assert.deepEqual(esA.related, [], 'the only related story is English-only: nothing, not an unlabelled English card');
+  assert.deepEqual((await R.article(store, ARTICLE.slug, {})).data.related.map(r => r.slug), [SIB.slug]);
+  // stale translation (English corrected): dropped from the translated-only read
+  await store.update('soccer_articles', { headline: 'Harry Kane scores in four straight Nations League games', updated_at: '2026-10-07T10:00:00Z' }, { eq: { id: id(1) } });
+  assert.deepEqual((await R.news(store, { locale: 'es', translated: '1' })).data, []);
+});

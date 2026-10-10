@@ -7,6 +7,7 @@ import { ago, dateLong } from '../lib/format.js';
 import { compByDesk } from '../lib/competitions.js';
 import { storyLabel } from '../lib/news.js';
 import { competitionMark } from './media.js';
+import { storyLangAttrs, storyLangTag } from '../i18n/news-lang.js';
 
 // Category tone (subtle): match report, player form, team trend, table watch.
 const TONE = { match_recap: 'report', player_form: 'form', team_trend: 'trend', competition_intelligence: 'table', match_preview: 'report' };
@@ -40,7 +41,8 @@ export function newsImage(a, variant = 'standard', { eager = false } = {}) {
 
 const href = a => `/news/${esc(a.desk)}/${esc(a.slug)}`;
 const kicker = (a, { comp = true } = {}) => { const f = compByDesk(a.desk); const c = categoryOf(a); return `<span class="nk">${comp && f ? `${competitionMark(f.slug, 'xs')}<span class="nk-comp">${esc(f.name)}</span><span class="nk-dot" aria-hidden="true">·</span>` : ''}<span class="nk-cat t-${c.tone}">${esc(c.label)}</span></span>`; };
-const time = a => `<time datetime="${esc(a.published_at)}" title="${esc(dateLong(a.published_at))}">${esc(ago(a.published_at))}</time>`;
+// An English original on a localized page: announced as English and tagged "En inglés" (src/i18n/news-lang.js).
+const time = a => `<time datetime="${esc(a.published_at)}" title="${esc(dateLong(a.published_at))}">${esc(ago(a.published_at))}</time>${storyLangTag(a)}`;
 
 export function newsCard(a, variant = 'standard', opts = {}) {
   if (!a) return '';
@@ -49,18 +51,18 @@ export function newsCard(a, variant = 'standard', opts = {}) {
   if (variant === 'featured') {
     return `<article class="nwc v-featured t-${c.tone}"><a class="nwc-link" href="${href(a)}" data-link>
       ${newsImage(a, 'featured', { eager: true })}
-      <span class="nwc-body">${kicker(a)}<h2 class="nwc-head">${esc(a.headline)}</h2>${when(dek, () => `<p class="nwc-dek">${esc(dek)}</p>`)}
+      <span class="nwc-body">${kicker(a)}<h2 class="nwc-head"${storyLangAttrs(a)}>${esc(a.headline)}</h2>${when(dek, () => `<p class="nwc-dek"${storyLangAttrs(a)}>${esc(dek)}</p>`)}
         <span class="nwc-foot">${time(a)}<span class="nwc-cta">Read story →</span></span></span></a></article>`;
   }
   if (variant === 'rail') {
     return `<article class="nwc v-rail t-${c.tone}"><a class="nwc-link" href="${href(a)}" data-link>${newsImage(a, 'rail')}
-      <span class="nwc-body">${kicker(a)}<h3 class="nwc-head">${esc(a.headline)}</h3><span class="nwc-foot">${time(a)}</span></span></a></article>`;
+      <span class="nwc-body">${kicker(a)}<h3 class="nwc-head"${storyLangAttrs(a)}>${esc(a.headline)}</h3><span class="nwc-foot">${time(a)}</span></span></a></article>`;
   }
   if (variant === 'compact') {
-    return `<article class="nwc v-compact t-${c.tone}"><a class="nwc-link" href="${href(a)}" data-link><span class="nwc-body">${kicker(a, opts)}<h3 class="nwc-head">${esc(a.headline)}</h3><span class="nwc-foot">${time(a)}</span></span></a></article>`;
+    return `<article class="nwc v-compact t-${c.tone}"><a class="nwc-link" href="${href(a)}" data-link><span class="nwc-body">${kicker(a, opts)}<h3 class="nwc-head"${storyLangAttrs(a)}>${esc(a.headline)}</h3><span class="nwc-foot">${time(a)}</span></span></a></article>`;
   }
   return `<article class="nwc v-standard t-${c.tone}"><a class="nwc-link" href="${href(a)}" data-link>${newsImage(a, 'standard')}
-    <span class="nwc-body">${kicker(a, opts)}<h3 class="nwc-head">${esc(a.headline)}</h3>${when(dek, () => `<p class="nwc-dek">${esc(dek)}</p>`)}<span class="nwc-foot">${time(a)}</span></span></a></article>`;
+    <span class="nwc-body">${kicker(a, opts)}<h3 class="nwc-head"${storyLangAttrs(a)}>${esc(a.headline)}</h3>${when(dek, () => `<p class="nwc-dek"${storyLangAttrs(a)}>${esc(dek)}</p>`)}<span class="nwc-foot">${time(a)}</span></span></a></article>`;
 }
 
 // A broken approved photo falls back to the competition graphic (never a broken image).

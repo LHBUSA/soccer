@@ -17,3 +17,6 @@
   .navpanel.lang-panel a { flex: 1 1 0; justify-content: center; padding: 13px 10px; border: 1px solid var(--shell-line); border-radius: 999px; }
   .navpanel.lang-panel a.on { box-shadow: inset 0 0 0 1px var(--gold); border-color: var(--gold); }
 }
+
+/* "En inglés": an English original listed on a localized page (src/i18n/news-lang.js, LHBUSA/soccer#16). */
+.lang-tag { display: inline-block; margin-left: 8px; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--line, rgba(0,0,0,.14)); font: 700 10px/1.2 var(--mono, ui-monospace, monospace); letter-spacing: .06em; text-transform: uppercase; color: var(--muted, #6b6b6b); white-space: nowrap; vertical-align: middle; }

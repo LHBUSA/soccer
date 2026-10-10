@@ -16,6 +16,7 @@ import { orderVisuals, renderVisual } from '../components/visuals.js';
 import { renderPreferredSource } from '../components/preferred-source.js';
 import { newsLocale, currentLocale } from '../i18n/current.js';
 import { articleMarketEvent, articleMarketHtml, mountArticleMarketSlot } from '../data/article-market.js';
+import { inPageLanguage, storyLangAttrs, storyLangTag } from '../i18n/news-lang.js';
 
 const SITE = 'https://soccer.propbetedge.ai';
 // Shown under the byline of a verified newsroom translation (soccer-article-i18n), in the translation's own language.
@@ -167,12 +168,25 @@ function sourceMethod(a, parts, meta) {
     </div></details>`;
 }
 
-function related(a) {
-  if (!a.related?.length) return '';
-  return `<section class="art-related"><p class="nrail-h">RELATED COVERAGE</p><div class="rel-grid">${join(a.related, r => {
-    const c = compByDesk(r.desk);
-    return `<a class="rel-card" href="/news/${esc(r.desk)}/${esc(r.slug)}" data-link><span class="rc-top">${c ? competitionMark(c.slug, 'xs') : ''}<span>${esc(TYPE[r.story_class] || storyLabel(r.story_class))}</span></span><b>${esc(r.headline)}</b><small>${esc(ago(r.published_at))}</small></a>`;
-  })}</div></section>`;
+// One sidebar card (RELATED COVERAGE and the LATEST FROM THE DESK rail share it). On a localized page both lists hold
+// only stories verified in the page language (API related/translated=1, re-checked here); the language attributes
+// and tag are a guard, never a licence to show English (LHBUSA/soccer#16).
+const sideCard = (x, cls) => {
+  const c = compByDesk(x.desk);
+  return `<a class="${cls}" href="/news/${esc(x.desk)}/${esc(x.slug)}" data-link><span class="rc-top">${c ? competitionMark(c.slug, 'xs') : ''}<span>${esc(TYPE[x.story_class] || storyLabel(x.story_class))}</span>${storyLangTag(x)}</span><b${storyLangAttrs(x)}>${esc(x.headline)}</b><small>${esc(ago(x.published_at))}</small></a>`;
+};
+
+export function related(a) {
+  const items = inPageLanguage(a.related);
+  if (!items.length) return '';
+  return `<section class="art-related"><p class="nrail-h">RELATED COVERAGE</p><div class="rel-grid">${join(items, r => sideCard(r, 'rel-card'))}</div></section>`;
+}
+
+/** The article rail: the latest stories in the page language (never the article itself). Empty -> no rail. */
+export function railHtml(items, slug) {
+  const list = inPageLanguage(items).filter(x => x.slug !== slug).slice(0, 5);
+  if (!list.length) return '';
+  return `<div class="rail-card"><p class="nrail-h">LATEST FROM THE DESK</p>${join(list, x => sideCard(x, 'rail-item'))}${link('/news', 'ALL NEWS →', 'nrail-all')}</div>`;
 }
 
 export function renderArticle(env, mk = null) {
@@ -249,8 +263,13 @@ export async function mountArticle(root, env, mk = null) {
   const rail = root.querySelector('[data-art-rail]');
   if (rail) {
     try {
-      const list = (await api('news', newsLocale({ limit: 8 }))).data.filter(x => x.slug !== env.data.slug).slice(0, 5);
-      rail.innerHTML = `<div class="rail-card"><p class="nrail-h">LATEST FROM THE DESK</p>${join(list, x => { const c = compByDesk(x.desk); return `<a class="rail-item" href="/news/${esc(x.desk)}/${esc(x.slug)}" data-link><span class="rc-top">${c ? competitionMark(c.slug, 'xs') : ''}<span>${esc(TYPE[x.story_class] || storyLabel(x.story_class))}</span></span><b>${esc(x.headline)}</b><small>${esc(ago(x.published_at))}</small></a>`; })}${link('/news', 'ALL NEWS →', 'nrail-all')}</div>`;
+      // Localized page: verified translations only, newest first (translated=1), one request, no English fallback.
+      // An API without that filter answers 400: then the plain localized read, still filtered to the page language.
+      const read = p => api('news', newsLocale(p)).then(r => r.data);
+      const items = currentLocale() === 'en' ? await read({ limit: 8 }) : await read({ limit: 8, translated: '1' }).catch(() => read({ limit: 24 }));
+      const html = railHtml(items, env.data.slug);
+      if (!html || !rail.isConnected) { rail.remove(); return; }
+      rail.innerHTML = html;
     } catch { rail.remove(); }
   }
 }

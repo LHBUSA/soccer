@@ -9,6 +9,7 @@ import { liveView } from '../lib/cast.js';
 import { competitionMark, empty, errorState, link, pctPill, portrait, sectionHead, sourcePanel, statusPill, teamMark } from '../components/ui.js';
 import { keyPlayerRows, todayLine } from '../components/keyplayers.js';
 import { newsLocale } from '../i18n/current.js';
+import { storyLangAttrs, storyLangTag } from '../i18n/news-lang.js';
 
 export { FEATURED };
 export const title = () => 'Soccer Intelligence, Live Match Data & Player DNA | PropBetEdge';
@@ -71,9 +72,9 @@ export function newsLead(a) {
     ${newsMedia(a, 'lead')}
     <span class="nl-body">
       <span class="nl-kicker">${f ? competitionMark(f.slug, 'xs') : ''}<span>${esc(f?.name || a.desk)}</span><span class="nl-cat">${esc(storyLabel(a.story_class).toUpperCase())}</span></span>
-      <b class="nl-head">${esc(a.headline)}</b>
-      ${when(a.dek, () => `<span class="nl-dek">${esc(a.dek)}</span>`)}
-      <span class="nl-foot"><span class="nl-age">${esc(ago(a.published_at))}</span><span class="nl-cta">READ THE STORY →</span></span>
+      <b class="nl-head"${storyLangAttrs(a)}>${esc(a.headline)}</b>
+      ${when(a.dek, () => `<span class="nl-dek"${storyLangAttrs(a)}>${esc(a.dek)}</span>`)}
+      <span class="nl-foot"><span class="nl-age">${esc(ago(a.published_at))}${storyLangTag(a)}</span><span class="nl-cta">READ THE STORY →</span></span>
     </span>
   </a>`;
 }
@@ -83,7 +84,7 @@ export function newsCard(a) {
   return `<a class="ncard2" href="/news/${esc(a.desk)}/${esc(a.slug)}" data-link>
     ${newsMedia(a, 'thumb')}
     <span class="nc2-body"><span class="nc2-top">${f ? competitionMark(f.slug, 'xs') : ''}<span>${esc(storyLabel(a.story_class))}</span></span>
-      <b class="nc2-head">${esc(a.headline)}</b><span class="nc2-age">${esc(ago(a.published_at))}</span></span>
+      <b class="nc2-head"${storyLangAttrs(a)}>${esc(a.headline)}</b><span class="nc2-age">${esc(ago(a.published_at))}${storyLangTag(a)}</span></span>
   </a>`;
 }
 

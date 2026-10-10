@@ -747,9 +747,19 @@ export async function news(store, q) {
     if (!events.length) return E([], { source: 'pbe', semantics: 'Published articles about this entity.', coverage: COVERAGE.UNAVAILABLE, coverage_notes: ['No published story names this entity yet.'] });
     opts.in = { news_event_id: events };
   }
-  const rows = await store.select('soccer_articles', { ...opts, columns: [...opts.columns, 'entities', 'id', 'packet_hash'] });
+  // translated=1 (with a public locale): ONLY stories with a verified translation in that locale (article rail on a
+  // localized page; LHBUSA/soccer#16). Candidates come from the published translations, newest first; the currency
+  // check below drops a translation whose English source has moved on. Never an English fallback card.
+  const onlyLocale = q.translated === '1' && servedQ(q) && servedQ(q) !== 'en' ? servedQ(q) : null;
+  if (onlyLocale) {
+    const tr = await store.select('soccer_article_translations', { columns: ['article_id'], eq: { status: 'published', locale: onlyLocale }, order: 'published_at.desc', limit: Math.min(120, opts.limit * 4) });
+    if (!tr.length) return E([], { source: 'pbe', semantics: 'Published articles with a verified translation in the requested locale.', coverage: COVERAGE.UNAVAILABLE, coverage_notes: ['No verified translation yet.'] });
+    opts.in = { ...(opts.in || {}), id: [...new Set(tr.map(t => t.article_id))] };
+  }
+  let rows = await store.select('soccer_articles', { ...opts, columns: [...opts.columns, 'entities', 'id', 'packet_hash'] });
   // Newsroom translations: verified headline/dek in the requested public locale; `translations` on every card.
   await localizeCards(store, rows, servedQ(q));
+  if (onlyLocale) rows = rows.filter(r => r.locale === onlyLocale);
   // Card image: the first person the story names who has an approved portrait, else the first
   // team with an approved crest; otherwise none (the page draws its branded fallback).
   const personIds = [...new Set(rows.flatMap(r => (r.entities || []).filter(e => e.type === 'Person' && e.id).map(e => e.id)))];
@@ -806,9 +816,12 @@ export async function article(store, slug, q = {}) {
     const days = Math.abs((Date.parse(a.published_at) - Date.parse(o.published_at)) / 864e5);
     s += days <= 1 ? 12 : days <= 3 ? 9 : days <= 7 ? 6 : 0;
     return { o, s };
-  }).filter(x => x.s >= 26).sort((x, y) => y.s - x.s || Date.parse(y.o.published_at) - Date.parse(x.o.published_at)).slice(0, 4);
-  const rel = scored.map(({ o }) => o);
-  if (a.locale && a.locale !== 'en') await localizeCards(store, rel, a.locale);
+  }).filter(x => x.s >= 26).sort((x, y) => y.s - x.s || Date.parse(y.o.published_at) - Date.parse(x.o.published_at));
+  // A translated page relates only stories verified in its language (same relevance order; never an English
+  // fallback under a translated page, LHBUSA/soccer#16). English pages: the top 4 as before.
+  let rel = scored.map(({ o }) => o);
+  if (a.locale && a.locale !== 'en') rel = (await localizeCards(store, rel.slice(0, 60), a.locale)).filter(o => o.locale === a.locale);
+  rel = rel.slice(0, 4);
   a.related = rel.map(o => ({ slug: o.slug, desk: o.desk, story_class: o.story_class, headline: o.headline, dek: o.dek, published_at: o.published_at, ...(o.locale ? { locale: o.locale } : {}) }));
   return E(a, { source: 'pbe', semantics: 'Published article; packet_hash identifies the frozen evidence packet behind every figure.', source_updated_at: a.updated_at });
 }

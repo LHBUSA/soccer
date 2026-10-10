@@ -63,12 +63,12 @@ test('vercel: exact same-origin rewrite for the article-market route only', () =
   assert.equal(r.destination, 'https://propsports-markets.sales-fd3.workers.dev/v1/article-market/soccer/:id');
 });
 
-test('vendored article-market client pinned byte-for-byte to propbetedge-workers 3f7345e (SHA-256)', () => {
+test('vendored article-market client pinned byte-for-byte to propbetedge-workers 1eaeb50 (SHA-256; es locale + contract headers + narrow tables, soccer#16)', () => {
   const pins = {
     'article-market-ui.js': createHash('sha256').update(readFileSync(join('src/vendor/kalshi', 'article-market-ui.js'), 'utf8').replace(/\r\n/g, '\n')).digest('hex'),
   };
   assert.equal(pins['article-market-ui.js'], ARTICLE_UI_SHA);
   assert.equal(createHash('sha256').update(readFileSync(join('src/vendor/kalshi', 'article-market-ui.css'), 'utf8').replace(/\r\n/g, '\n')).digest('hex'), ARTICLE_CSS_SHA);
 });
-const ARTICLE_UI_SHA = '2149e2854142657a554ef119533680c77657f0d2b1ea8406fe4de711e4fbe635';
-const ARTICLE_CSS_SHA = '582c879d9a634caa467f31896c928bf854fc16579a1565091bb5b0093ee0505c';
+const ARTICLE_UI_SHA = 'f2f8548a2cf1a407c16e1d5413d6ffe3a2d4cc88af43bef0316f3b957467fc54';
+const ARTICLE_CSS_SHA = 'a171cda8889f6cb9da5fc5344aa50c8aaaa425ea3ce01812456bb462a4d34d7d';

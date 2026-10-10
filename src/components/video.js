@@ -6,6 +6,15 @@
 // The footage is YouTube-hosted; the card says so and names the publisher.
 import { esc, when } from '../lib/html.js';
 import { ago } from '../lib/format.js';
+import { currentLocale } from '../i18n/current.js';
+import { foreignStory, storyLangAttrs, storyLangTag } from '../i18n/news-lang.js';
+
+// The linked story (videos are not localized: its headline is the English original). On a localized page the
+// sentence is written in the page language around the English headline, which is marked as English (LHBUSA/soccer#16).
+const READ_STORY = { es: 'Leer la noticia' };
+const storyLink = st => (foreignStory(st) && READ_STORY[currentLocale()]
+  ? `<span data-i18n-skip>${READ_STORY[currentLocale()]}:</span> <span${storyLangAttrs(st)}>${esc(st.headline)}</span> ${storyLangTag(st)} →`
+  : `Read the story: ${esc(st.headline)} →`);
 
 export const BLOCKED_CODES = new Set([100, 101, 150]);
 const TYPE_LABEL = { highlights: 'Highlights', match_recap: 'Match recap', goals: 'Goals', interview: 'Interview', press_conference: 'Press conference', preview: 'Preview', analysis: 'Analysis', other: 'Official video' };
@@ -33,7 +42,7 @@ export function officialVideo(v, { feature = false, eager = false } = {}) {
       <p class="ovid-meta"><b>${esc(videoLabel(v))}</b>${v.published_at ? ` · <time datetime="${esc(v.published_at)}">${esc(ago(v.published_at))}</time>` : ''} · ${esc(v.channel_name)}</p>
       <h3 class="ovid-title">${esc(v.title)}</h3>
       <p class="ovid-src">Official video · embedded from YouTube · not hosted by PropBetEdge · <a href="${esc(v.url)}" target="_blank" rel="noopener">Watch on YouTube ↗</a></p>
-      ${when(v.story, () => `<p class="ovid-story"><a href="/news/${esc(v.story.desk)}/${esc(v.story.slug)}" data-link>Read the story: ${esc(v.story.headline)} →</a></p>`)}
+      ${when(v.story, () => `<p class="ovid-story"><a href="/news/${esc(v.story.desk)}/${esc(v.story.slug)}" data-link>${storyLink(v.story)}</a></p>`)}
     </div>
   </article>`;
 }

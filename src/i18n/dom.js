@@ -5,12 +5,13 @@
 //
 // Never translated (left byte-for-byte as sourced):
 //   - article bodies (.art-body): newsroom translation is a separately verified editorial release;
-//   - Kalshi / article-market modules: market names, prices and settlement rules stay exactly as published;
+//   - Kalshi / article-market modules: market names, prices and settlement rules stay exactly as published; the
+//     article-market module (.am) renders its own copy natively in the page locale (shared component opts.locale);
 //   - anything marked translate="no" or data-i18n-skip.
 import { translateHtml, translateText } from './translate.js';
 import { isLocalizable, localizePath } from './locales.js';
 
-export const SKIP = '.art-body, [data-kx-impression], .kx, .kx-strip, .kx-line, .avm, script, style, noscript, code, pre, textarea, [translate="no"], [data-i18n-skip]';
+export const SKIP = '.art-body, [data-kx-impression], .kx, .kx-strip, .kx-line, .avm, .am, [data-art-market], script, style, noscript, code, pre, textarea, [translate="no"], [data-i18n-skip]';
 const ATTRS = ['aria-label', 'title', 'placeholder', 'alt'];
 const written = new WeakMap(); // node -> value we wrote (so our own writes are not re-processed)
 

@@ -563,6 +563,13 @@ const exact = {
   'From live PBEcast and official model picks to player intelligence and original match reporting. All the game, in one place.':
     'Del PBEcast en vivo y los picks oficiales del modelo a la inteligencia de jugadores y la cobertura original de partidos. Todo el juego, en un solo lugar.',
   'Open PBEcast →': 'ABRIR PBECAST →',
+  // whole buttons/notes the segment and OPEN patterns used to leave half-English (soccer#16 audit, i18n-coverage residue)
+  'OPEN THE FULL MATCHUP ANALYZER · ALL ACCESS →': 'ABRIR EL ANALIZADOR COMPLETO DEL PARTIDO · ALL ACCESS →',
+  'WATCH THE LIVE PBECAST →': 'VER EL PBECAST EN VIVO →',
+  'WATCH THE LIVE PBECAST': 'VER EL PBECAST EN VIVO',
+  'Throw-in Set Piece': 'Balón parado tras saque de banda',
+  'Free Kick': 'Tiro libre',
+  'Settles on the result after 90 minutes plus stoppage time (no extra time or penalties).': 'Se liquida con el resultado tras 90 minutos más el tiempo añadido (sin prórroga ni penaltis).',
   'Official Picks →': 'PICKS OFICIALES →',
   'Explore leagues ↗': 'EXPLORAR LIGAS ↗',
   'Featured intelligence': 'INTELIGENCIA DESTACADA',
@@ -1361,7 +1368,6 @@ const patterns = [
   [/^Last (\d+)$/, a => `Últimos ${a}`],
   [/^Last (\d+) min$/, a => `Últimos ${a} min`],
   [/^on (\d+(?:\+\d+)?)'$/, a => `entra ${a}'`],
-  [/^on (.+)$/, a => `a favor de ${a}`],
   [/^Page (\d+) of (\d+)$/, (a, b) => `Página ${a} de ${b}`],
   [/^SEASON (\S+)$/, a => `TEMPORADA ${a}`],
   [/^Season (\S+)$/, a => `Temporada ${a}`],
@@ -1478,7 +1484,9 @@ const patterns = [
   [/^No stored sportsbook price exists for any Official Pick, so ROI, units and CLV are not reported\. No default (?:sportsbook )?odds are ever assumed\.$/, () => 'No existe ningún precio de casa de apuestas almacenado para ningún pick oficial, así que no se reportan ROI, unidades ni CLV. Nunca se asumen cuotas de casas de apuestas por defecto.'],
   [/^ROI, units and CLV are not reported in V1\.$/, () => 'ROI, unidades y CLV no se reportan en V1.'],
   // network
-  [/^OPEN (.+) →$/, a => `ABRIR ${a} →`],
+  // the object translated, or a bare name ("OPEN MLB →"): never "ABRIR <English words> →"
+  [/^OPEN (.+) →$/, (a, tr) => (tr(a) !== a ? `ABRIR ${tr(a)} →` : /\b(THE|A|AN|OF|AND|TO|FOR|WITH|FULL|ALL|NEW|MORE|EVERY|YOUR)\b/.test(a) ? null : `ABRIR ${a} →`)],
+  [/^(\d+) matches in play$/, a => `${a} partidos en juego`], [/^1 match in play$/, () => '1 partido en juego'],
   [/^(\d{4}-\d\d-\d\d) at (.+)$/, (d, a) => `${d} en ${a}`],
   [/^(\d{4}-\d\d-\d\d) v (.+)$/, (d, a) => `${d} vs ${a}`],
   // analyzer chrome with values
