@@ -45,7 +45,10 @@ export function initAnalytics({ win = window, doc = document } = {}) {
             pbe_surface: GA_SURFACE,
             source_host: PROD_HOST,
             target_host: host,
-            link_url: `${url.origin}${url.pathname}`
+            link_url: `${url.origin}${url.pathname}`,
+            // Global #67: the page language and the via/lang the link carries (never personal data).
+            page_locale: doc.documentElement?.lang || 'en',
+            via: url.searchParams.get('via') || ''
           });
         }
       } catch { /* ignore non-http hrefs */ }

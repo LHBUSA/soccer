@@ -5,7 +5,7 @@
 import { SPORTS, PRODUCTS, NETWORK_LINKS, CURRENT_SPORT } from '../lib/network.js';
 import { esc, join } from '../lib/html.js';
 import { OFFER } from '../lib/pro.js';
-import { ALL_ACCESS_CHECKOUT_URL, LOCAL_ALL_ACCESS_PATH, OFFER_LINE, designation } from '../lib/account-surface.js';
+import { LOCAL_ALL_ACCESS_PATH, OFFER_LINE, checkoutFor, designation } from '../lib/account-surface.js';
 import { renderPreferredSource } from './preferred-source.js';
 
 export const X_URL = 'https://x.com/PROPBETEDGE';
@@ -32,7 +32,7 @@ export function networkFooter() {
         <p class="aa-price"><b>${esc(OFFER.price)}</b></p>
         <p class="aa-promo">25% off while active with <b>${esc(OFFER.promoCode)}</b></p>
         <div class="facct-actions" data-foot-actions>
-          <a class="aa-cta" href="${esc(ALL_ACCESS_CHECKOUT_URL)}" rel="noopener" data-pbe-placement="soccer_footer_all_access">GET ALL ACCESS</a>
+          <a class="aa-cta" href="${esc(checkoutFor())}" rel="noopener" data-pbe-placement="soccer_footer_all_access">GET ALL ACCESS</a>
           <a class="aa-learn" href="${LOCAL_ALL_ACCESS_PATH}" data-link>WHAT'S INCLUDED</a>
           <button type="button" class="aa-learn" data-account-open>SIGN IN / ACCOUNT</button>
         </div>

@@ -9,6 +9,7 @@
 //   - anything marked translate="no" or data-i18n-skip.
 import { translateHtml, translateText } from './translate.js';
 import { isLocalizable, localizePath } from './locales.js';
+import { attributeHref } from './attribution.js';
 
 export const SKIP = '.art-body, [data-kx-impression], .kx, .kx-strip, .kx-line, .avm, script, style, noscript, code, pre, textarea, [translate="no"], [data-i18n-skip]';
 const ATTRS = ['aria-label', 'title', 'placeholder', 'alt'];
@@ -40,6 +41,8 @@ function element(el, locale) {
   if (el.tagName === 'A') {
     const h = el.getAttribute('href');
     if (h && isLocalizable(h) && !el.hasAttribute('data-lang-switch')) { const l = localizePath(h, locale); if (l !== h) el.setAttribute('href', l); }
+    // Global #67: All Access checkout / network /pro links keep the locale + attribution tag (covers vendored panels).
+    else if (h) { const t = attributeHref(h, locale); if (t !== h) el.setAttribute('href', t); }
   }
 }
 
