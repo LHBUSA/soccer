@@ -7,7 +7,7 @@ export const DEFAULT_LOCALE = 'en';
 export const LOCALES = {
   en: { code: 'en', ready: true, native: 'English', short: 'EN', htmlLang: 'en', intl: 'en-GB', og: 'en_US', hreflang: 'en', langLabel: 'Language' },
   es: { code: 'es', ready: true, native: 'Español', short: 'ES', htmlLang: 'es', intl: 'es-ES', og: 'es_ES', hreflang: 'es', langLabel: 'Idioma' },
-  pt: { code: 'pt', ready: false, native: 'Português', short: 'PT', htmlLang: 'pt-BR', intl: 'pt-BR', og: 'pt_BR', hreflang: 'pt', langLabel: 'Idioma' },
+  pt: { code: 'pt', ready: false, native: 'Português', short: 'PT', htmlLang: 'pt-BR', intl: 'pt-BR', og: 'pt_BR', hreflang: 'pt-BR', langLabel: 'Idioma' },
   fr: { code: 'fr', ready: false, native: 'Français', short: 'FR', htmlLang: 'fr', intl: 'fr-FR', og: 'fr_FR', hreflang: 'fr', langLabel: 'Langue' },
 };
 

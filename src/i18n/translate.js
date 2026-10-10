@@ -6,7 +6,10 @@
 //   - leading/trailing whitespace is preserved (text nodes in templates carry spacing).
 import es from './catalog/es.js';
 
+// Shipped catalogs = READY locales only (every catalog is in every reader's bundle). A built-ready locale (pt, soccer#15)
+// is registered by its tests / QA build via registerCatalog until launch adds its import here.
 export const CATALOGS = { es };
+export function registerCatalog(locale, catalog) { CATALOGS[locale] = catalog; cache.delete(locale); }
 
 const cache = new Map();
 function compiled(locale) {

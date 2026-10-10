@@ -158,7 +158,9 @@ const srv = (s, t, end = '') => {
 const venueTag = (v, t) => (v.label ? srv(v.label, t) : t.venueClass[v.semantic_class] ? esc(t.venueClass[v.semantic_class]) : null)
 const venueTagText = (v, t) => (v.label ? (t.known[v.label] ?? v.label) : t.venueClass[v.semantic_class] || null)
 // A venue's generic side ("Yes" / "No" / "Draw") in the reader's language; a real name passes through untouched.
-const sideLabel = (label, t) => (label != null && Object.hasOwn(t.outcome, label) ? t.outcome[label] : label)
+const sideLabel = (label, t) => (label != null && Object.prototype.hasOwnProperty.call(t.outcome, label) ? t.outcome[label] : label)
+// A live venue missing from the packet still gets its proper name (never the raw key).
+const VENUE_NAME = { kalshi: 'Kalshi', polymarket: 'Polymarket' }
 const cell = (c, t) => (!c ? '<span class="am__na">—</span>' : c.missing ? `<span class="am__na">${esc(t.missing[c.missing] || t.notObserved)}</span>` : `<b>${esc(cents(c.mid_bp))}</b>`)
 
 // Focus outcome: the PBE selection, else the event winner, else the first outcome.
@@ -171,7 +173,8 @@ const GENERIC = new Set(['Yes', 'No'])
 // the bare role). Never invented: no such label -> null.
 const roleName = (packet, role) => packet.venues.map((v) => outcomeOf(v, role)?.label).find((l) => l && l !== role && !GENERIC.has(l)) || null
 // The PBE selection's name: the frozen label, else the venue's own outcome label for that role (never a bare role).
-const selectionName = (packet) => {
+const selectionName = (packet, t = EN) => sideLabel(selectionLabel(packet), t)
+const selectionLabel = (packet) => {
   const role = packet.pbe?.selection_role, own = packet.pbe?.selection_label
   if (own && own !== role) return own // some ledgers store the bare role ('away') as the label: not a name
   return packet.venues.map((v) => outcomeOf(v, role)?.label).find((l) => l && l !== role) || own || role
@@ -195,7 +198,7 @@ function contractLine(packet, v, t) {
 const focusBlock = (label, t) => `<p class="am__focus"><span class="am__fcl">${esc(t.focusContract)}</span><b class="am__fcv">${esc(label)}</b></p>`
 // Column header: venue link, the contract's outcome when the venue lists one contract per outcome, the venue tag.
 // English hover title = the venue's own contract question, verbatim.
-const venueHead = (v, t, line = null) => `<a href="${esc(v.market_url)}" target="_blank" rel="sponsored noopener">${esc(v.venue_label)}</a>${line ? `<span class="am__ct"${t.lang === 'en' && v.title ? ` title="${esc(v.title)}"` : ''}>${esc(line)}</span>` : ''}${venueTag(v, t) ? `<small>${venueTag(v, t)}</small>` : ''}`
+const venueHead = (v, t, line = null) => `${v.market_url ? `<a href="${esc(v.market_url)}" target="_blank" rel="sponsored noopener">${esc(v.venue_label)}</a>` : `<b>${esc(v.venue_label)}</b>`}${line ? `<span class="am__ct"${t.lang === 'en' && v.title ? ` title="${esc(v.title)}"` : ''}>${esc(line)}</span>` : ''}${venueTag(v, t) ? `<small>${venueTag(v, t)}</small>` : ''}`
 // Header lines for a row of venue columns; two columns that would still read the same get the venue's market id.
 function headLines(packet, venues, t) {
   const lines = venues.map((v) => contractLine(packet, v, t))
@@ -247,7 +250,7 @@ function resultTable(packet, t) {
   const vs = packet.venues.filter((v) => !v.field && outcomeOf(v, role))
   if (!vs.length) return ''
   const own = outcomeOf(vs[0], role)?.label
-  const label = own && !GENERIC.has(own) ? own : roleName(packet, role) || sideLabel(own, t) || role
+  const label = sideLabel(own && !GENERIC.has(own) ? own : roleName(packet, role) || own, t) || role
   const rows = [
     [t.firstObserved, (o) => cell(o.first_observed, t)],
     packet.article ? [t.atPublication, (o) => cell(o.at_publication, t)] : null,
@@ -314,7 +317,7 @@ function pbeBlock(packet, ctx, t) {
     return `<li><span>${esc(t.atLock(v.venue_label))}</span><span><b>${esc(cents(c.venue_at_pbe_lock_bp))}</b> · PBE ${esc(pts(c.divergence_pts))}${esc(moved)}</span></li>`
   }).join('')
   const grade = p.grade === 'W' ? t.grade.W : p.grade === 'L' ? t.grade.L : p.grade === 'VOID' ? t.grade.VOID : t.grade.pending
-  return `<div class="am__pbe">${pbeMark}<div class="am__pbeb"><h4>${esc(t.pbeVsMarket)}</h4><p class="am__pbeh">${t.pbeOn(Math.round(p.probability * 1000) / 10, selectionName(packet))} · ${esc(t.locked(time(p.lock_at)))} · <span class="am__g am__g--${esc(String(p.grade || 'pending').toLowerCase())}">${esc(grade)}</span></p><ul>${lines}</ul></div></div>`
+  return `<div class="am__pbe">${pbeMark}<div class="am__pbeb"><h4>${esc(t.pbeVsMarket)}</h4><p class="am__pbeh">${t.pbeOn(Math.round(p.probability * 1000) / 10, selectionName(packet, t))} · ${esc(t.locked(time(p.lock_at)))} · <span class="am__g am__g--${esc(String(p.grade || 'pending').toLowerCase())}">${esc(grade)}</span></p><ul>${lines}</ul></div></div>`
 }
 
 function liveTable(payload, ctx, t) {
@@ -322,17 +325,26 @@ function liveTable(payload, ctx, t) {
   const vs = live.venues.filter((v) => v.outcomes.some((o) => o.current))
   if (!vs.length) return ''
   const pv = new Map(packet.venues.map((v) => [`${v.venue}|${v.venue_market_id ?? ''}`, v]))
-  const roles = vs[0].outcomes.map((o) => o.role)
-  const heads = vs.map((v) => { const pvv = pv.get(`${v.venue}|${v.venue_market_id ?? ''}`) || {}; return { ...pvv, outcomes: pvv.outcomes || v.outcomes, venue_market_id: pvv.venue_market_id ?? v.venue_market_id, venue_label: pvv.venue_label || v.venue } })
+  // Rows = the event's outcome roles. When any column is a one-outcome binary contract, rows are the union of the
+  // ROLES (its YES side sits in that outcome's row); the role-less NO sides of different contracts are never put
+  // in one shared row, whichever venue happens to come first.
+  const perOutcome = vs.some((v) => contractRole(v))
+  const roles = perOutcome ? [...new Set(vs.flatMap((v) => v.outcomes.map((o) => o.role)).filter((r) => r != null))] : vs[0].outcomes.map((o) => o.role)
+  const heads = vs.map((v) => { const pvv = pv.get(`${v.venue}|${v.venue_market_id ?? ''}`) || {}; return { ...pvv, outcomes: pvv.outcomes || v.outcomes, venue_market_id: pvv.venue_market_id ?? v.venue_market_id, venue_label: pvv.venue_label || VENUE_NAME[v.venue] || v.venue } })
   const lines = headLines(packet, heads, t)
   const head = heads.map((h, i) => `<th scope="col">${venueHead(h, t, lines[i])}</th>`).join('')
-  const priceRows = roles.map((r) => `<tr><th scope="row">${esc(sideLabel(vs[0].outcomes.find((o) => o.role === r)?.label, t) || r)}</th>${vs.map((v) => { const o = v.outcomes.find((x) => x.role === r); return `<td>${o?.current ? `<b data-am-px>${esc(cents(o.current.mid_bp))}</b>` : '<span class="am__na">—</span>'}</td>` }).join('')}</tr>`).join('')
+  const rowName = (r) => {
+    const own = vs[0].outcomes.find((o) => o.role === r)?.label
+    if (!perOutcome) return sideLabel(own, t) || r
+    return (own && !GENERIC.has(own) ? sideLabel(own, t) : null) || sideLabel(roleName(packet, r), t) || (r === 'draw' ? t.draw : t.roleWin[r]) || r
+  }
+  const priceRows = roles.map((r) => `<tr><th scope="row">${esc(rowName(r))}</th>${vs.map((v) => { const o = v.outcomes.find((x) => x.role === r); return `<td>${o?.current ? `<b data-am-px>${esc(cents(o.current.mid_bp))}</b>` : '<span class="am__na">—</span>'}</td>` }).join('')}</tr>`).join('')
   const focus = focusRole(packet) || roles[0]
   const pubRow = packet.article ? `<tr class="am__sub"><th scope="row">${esc(t.sincePublication)}</th>${vs.map((v) => { const o = v.outcomes.find((x) => x.role === focus); return `<td>${o?.since_publication_bp != null ? esc(signed(o.since_publication_bp)) : `<span class="am__na">${esc(t.notObservedAtPublication)}</span>`}</td>` }).join('')}</tr>` : ''
   const firstRow = `<tr class="am__sub"><th scope="row">${esc(t.sinceFirst)}</th>${vs.map((v) => { const o = v.outcomes.find((x) => x.role === focus); return `<td>${o?.since_first_bp != null ? esc(signed(o.since_first_bp)) : '<span class="am__na">—</span>'}</td>` }).join('')}</tr>`
   const fresh = `<tr class="am__sub"><th scope="row">${esc(t.checked)}</th>${vs.map((v) => { const o = v.outcomes.find((x) => x.role === focus) || v.outcomes[0]; return `<td data-am-age="${esc(o.checked_at || '')}">${o.freshness === 'LIVE' ? `<span class="am__live">${esc(t.live)}</span>` : esc(t.updated(o.age_s))}</td>` }).join('')}</tr>`
   const pbeNow = packet.pbe ? vs.map((v) => (v.pbe_now ? `<li><span>${esc(t.now(pv.get(`${v.venue}|${v.venue_market_id ?? ''}`)?.venue_label || v.venue))}</span><span>PBE ${esc(pts(v.pbe_now.divergence_now_pts))}</span></li>` : '')).join('') : ''
-  const pbe = !packet.pbe ? contextBlock(packet, ctx, t) : packet.pbe ? `<div class="am__pbe">${pbeMark}<div class="am__pbeb"><p class="am__pbeh">${t.pbeOn(Math.round(packet.pbe.probability * 1000) / 10, selectionName(packet))}</p>${pbeNow ? `<ul>${pbeNow}</ul>` : ''}</div></div>` : ''
+  const pbe = !packet.pbe ? contextBlock(packet, ctx, t) : packet.pbe ? `<div class="am__pbe">${pbeMark}<div class="am__pbeb"><p class="am__pbeh">${t.pbeOn(Math.round(packet.pbe.probability * 1000) / 10, selectionName(packet, t))}</p>${pbeNow ? `<ul>${pbeNow}</ul>` : ''}</div></div>` : ''
   return `<div class="am__tw"><table class="am__t">${cols(vs.length)}<thead><tr><th></th>${head}</tr></thead><tbody>${priceRows}${pubRow}${firstRow}${fresh}</tbody></table></div>${pbe}`
 }
 

@@ -11,7 +11,7 @@ import { foreignStory, storyLangAttrs, storyLangTag } from '../i18n/news-lang.js
 
 // The linked story (videos are not localized: its headline is the English original). On a localized page the
 // sentence is written in the page language around the English headline, which is marked as English (LHBUSA/soccer#16).
-const READ_STORY = { es: 'Leer la noticia' };
+const READ_STORY = { es: 'Leer la noticia', pt: 'Ler a notícia' };
 const storyLink = st => (foreignStory(st) && READ_STORY[currentLocale()]
   ? `<span data-i18n-skip>${READ_STORY[currentLocale()]}:</span> <span${storyLangAttrs(st)}>${esc(st.headline)}</span> ${storyLangTag(st)} →`
   : `Read the story: ${esc(st.headline)} →`);

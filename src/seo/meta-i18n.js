@@ -75,6 +75,56 @@ function descriptionEs(page, results, meta) {
   return null;
 }
 
+// Brazilian Portuguese (pt-BR): the same facts as descriptionEs, written natively. Built ready while pt.ready is false.
+const dayPt = iso => (iso ? new Date(iso).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }) : null);
+const FORM_PT = { W: 'V', D: 'E', L: 'D' };
+const ROLE_PT = { goalkeeper: 'goleiro', defender: 'defensor', midfielder: 'meio-campista', forward: 'atacante' };
+function descriptionPt(page, results) {
+  const d = results?.[0]?.data;
+  if (page === 'match' || page === 'pbecast') {
+    const m = d; if (!m) return null;
+    const home = m.home?.name; const away = m.away?.name;
+    const sc = m.score && m.score.home !== null && m.score.home !== undefined ? `${m.score.home}–${m.score.away}` : null;
+    const shots = (m.shots || []).length;
+    const intel = [shots ? `mapa de eventos (${shots} ${shots === 1 ? 'finalização' : 'finalizações'})` : null,
+      m.stats?.basis === 'source' ? 'estatísticas da fonte' : m.stats?.basis === 'derived' ? 'contagens derivadas PBE' : null,
+      m.lineups ? 'escalações' : null, (m.timeline || []).length ? 'linha do tempo' : null].filter(Boolean);
+    const head = m.status === 'finished' && sc ? `${home} ${sc} ${away}` : `${home} x ${away}`;
+    const status = m.status === 'scheduled' ? ' Agendado.' : m.status === 'postponed' ? ' Adiado.' : m.status === 'finished' && sc ? ' Encerrado.' : '';
+    const when = dayPt(m.kickoff_at);
+    return `${head}${m.competition ? ` · ${m.competition.name}${m.season ? ` ${m.season}` : ''}` : ''}${when ? ` · ${when}` : ''}.${status}${intel.length ? ` Inteligência da partida: ${intel.join(', ')}.` : ''}`.replace(/\s+/g, ' ').trim();
+  }
+  if (page === 'team') {
+    const t = d; if (!t) return null;
+    const comps = [...new Set([...(t.recent || []), ...(t.upcoming || [])].map(x => x.competition?.name).filter(Boolean))];
+    const form = (t.form || []).map(f => FORM_PT[f] || f).join('-');
+    return `${t.name}${comps.length ? ` (${comps.join(', ')})` : ''}: resultados recentes${form ? ` (últimos cinco: ${form})` : ''}, próximas partidas e inteligência de partidas do grafo canônico de futebol da PropBetEdge.`;
+  }
+  if (page === 'player') {
+    const p = d; if (!p) return null;
+    const seasons = (p.seasons || []).map(s => s.season).filter(Boolean);
+    const bits = [ROLE_PT[p.role], p.birth_date ? `nascido em ${dayPt(`${String(p.birth_date).slice(0, 10)}T12:00:00Z`)}` : null].filter(Boolean);
+    return `${p.name}${bits.length ? ` — ${bits.join(', ')}` : ''}. Inteligência do jogador do grafo canônico de futebol da PropBetEdge${seasons.length ? `: estatísticas derivadas de eventos de ${seasons.join(', ')}` : ''}.`;
+  }
+  if (page === 'competition') {
+    const c = d; if (!c) return null;
+    const seasons = c.seasons || [];
+    const total = seasons.reduce((n, s) => n + (s.matches || 0), 0).toLocaleString('en-US');
+    const tbl = results?.[1] && !results[1].notFound ? results[1].data : null;
+    const latest = seasons[0]?.label;
+    if (tbl?.view === 'groups') {
+      const v = tbl.verified_groups || 0;
+      return `${c.name}${latest ? ` ${latest}` : ''}: ${v ? `${v} ${v === 1 ? 'tabela de grupo verificada' : 'tabelas de grupo verificadas'}, ` : ''}resultados e jogos de ${(c.current?.teams || []).length || 'todas as'} seleções — ${total} partidas canônicas no grafo de futebol da PropBetEdge.`;
+    }
+    const hasTable = (tbl?.rows || []).length > 0;
+    return `${c.name}${latest ? ` ${latest}` : ''}: ${hasTable ? 'tabela, resultados e jogos' : 'resultados e jogos'} — ${seasons.length} ${seasons.length === 1 ? 'temporada armazenada' : 'temporadas armazenadas'}, ${total} partidas canônicas no grafo de futebol da PropBetEdge.`;
+  }
+  return null;
+}
+// Locale-native descriptions; a locale without one uses the catalog translation of the English description.
+const DESCRIBE = { es: descriptionEs, pt: descriptionPt };
+const describe = (locale, page, results, meta) => DESCRIBE[locale]?.(page, results, meta) || null;
+
 function localizeJsonld(jsonld, locale) {
   return (jsonld || []).map(j => {
     if (j['@type'] !== 'BreadcrumbList') return j;
@@ -105,9 +155,9 @@ export function localizeMeta(meta, { locale, path, page, results = [] }) {
     return { ...base, title: tr(meta.title), canonical: `${SITE}${localizePath(new URL(meta.canonical).pathname, locale)}`, imageAlt: meta.imageAlt, jsonld: localizeJsonld(base.jsonld, locale), path };
   }
   const tr = s => (s ? translateText(s, locale) : s);
-  const description = descriptionEs(page, results, meta) || tr(meta.description);
+  const description = describe(locale, page, results, meta) || tr(meta.description);
   // Self-canonical in the reader's language, except where no translated equivalent exists (articles).
   const canonical = meta.canonical && !NO_ALTERNATES.has(page) ? `${SITE}${localizePath(new URL(meta.canonical).pathname, locale)}` : meta.canonical;
-  const ssr = meta.ssr ? { h1: page === 'article' ? meta.ssr.h1 : tr(meta.ssr.h1), p: page === 'article' ? meta.ssr.p : (descriptionEs(page, results, meta) || tr(meta.ssr.p)), links: (meta.ssr.links || []).map(([h, l]) => [localizePath(h, locale), tr(l)]) } : meta.ssr;
+  const ssr = meta.ssr ? { h1: page === 'article' ? meta.ssr.h1 : tr(meta.ssr.h1), p: page === 'article' ? meta.ssr.p : (describe(locale, page, results, meta) || tr(meta.ssr.p)), links: (meta.ssr.links || []).map(([h, l]) => [localizePath(h, locale), tr(l)]) } : meta.ssr;
   return { ...base, title: tr(meta.title), description: clip(description), canonical, imageAlt: tr(meta.imageAlt), jsonld: localizeJsonld(meta.jsonld, locale), ssr, path };
 }

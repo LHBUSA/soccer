@@ -12,7 +12,7 @@ import { currentLocale } from './current.js';
 import { resolveComp } from '../lib/competitions.js';
 import es from './catalog/es-pro.js';
 
-export const TABLES = { es };
+export const TABLES = { es }; // built-ready locales (pt) are added by tests / QA builds until launch
 
 // English source of truth (mirrors soccer-api). Keys are the API's own component codes.
 export const ANALYZER_EN = {
