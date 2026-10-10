@@ -12,6 +12,8 @@
 // the all_access state only; the backend state, the Stripe product and the vendored contract are unchanged.
 import { ALL_ACCESS_OFFER, ALL_ACCESS_URL } from './pbe-membership.js';
 import { SPORTS, PRODUCTS, CURRENT_SPORT } from './network.js';
+import { currentLocale } from '../i18n/current.js';
+import { attributeCheckout } from '../i18n/attribution.js';
 
 export const LOCAL_ALL_ACCESS_PATH = '/all-access';
 export const NETWORK_ALL_ACCESS_URL = ALL_ACCESS_URL;
@@ -21,8 +23,10 @@ export const PROMO_CODE = ALL_ACCESS_OFFER.promoCode;
 export const PROMO_LINE = ALL_ACCESS_OFFER.promoLine;
 export const PLATINUM_TRUTH = 'PropBetEdge All Access · 10 sports + Predictions';
 
-/** The signed-in reader's verified email rides on the Stripe link (owner-approved); the URL itself never changes. */
-export const checkoutFor = email => (email ? `${ALL_ACCESS_CHECKOUT_URL}?prefilled_email=${encodeURIComponent(email)}` : ALL_ACCESS_CHECKOUT_URL);
+/** The signed-in reader's verified email rides on the Stripe link (owner-approved); the URL itself never changes.
+ *  On a Spanish page the same link also carries locale=es + client_reference_id=pbe-es-pro-soccer (Global #67 M1,
+ *  src/i18n/attribution.js); English is unchanged. */
+export const checkoutFor = (email, locale = currentLocale()) => attributeCheckout(email ? `${ALL_ACCESS_CHECKOUT_URL}?prefilled_email=${encodeURIComponent(email)}` : ALL_ACCESS_CHECKOUT_URL, locale);
 
 // The network, from the vendored family registry (network.js is parity-tested against family.json).
 export const sportName = s => (s.key === 'f1' ? 'F1 Intelligence' : s.label);
