@@ -11,6 +11,7 @@ import * as R from './routes.js';
 import * as C from './cast.js';
 import * as A from './algo.js';
 import * as A2 from './algo-v2.js';
+import { lineupReadiness } from './lineups.js';
 import { teamHistory } from './history.js';
 import { cachedCoverage } from './coverage-cache.js';
 import { handlePro, PRO_HEADERS, publicAnalyzerPreview } from './pro/routes.js';
@@ -39,6 +40,7 @@ const ROUTES = [
   [/^\/v1\/matches$/, (s, _m, q) => R.matches(s, q), 120, ['competition', 'season', 'status', 'date', 'from', 'to', 'order', 'team', 'stage', 'limit']],
   [/^\/v1\/matches\/([0-9a-f-]{36})\/analyzer-preview$/, (s, m) => publicAnalyzerPreview(s, m[1]).then(routeBody), 30, []],
   [/^\/v1\/matches\/([0-9a-f-]{36})$/, (s, m) => R.match(s, m[1]), 15, []],
+  [/^\/v1\/matches\/([0-9a-f-]{36})\/lineup-readiness$/, (s, m) => lineupReadiness(s, m[1]), 60, []],
   [/^\/v1\/matches\/([0-9a-f-]{36})\/cast$/, (s, m, _q, env) => C.cast(s, m[1], env), 10, []],
   [/^\/v1\/live$/, (s, _m, _q, env) => C.live(s, env), 10, []],
   [/^\/v1\/players$/, (s, _m, q, env) => C.players(s, q, env), 600, ['competition', 'season', 'sort', 'role', 'q', 'team', 'limit', 'offset']],
@@ -52,6 +54,7 @@ const ROUTES = [
   [/^\/v1\/videos$/, (s, _m, q) => R.videos(s, q), 300, ['desk', 'limit']],
   [/^\/v1\/news\/([a-z0-9-]+)$/, (s, m, q) => R.article(s, m[1], q), 600, ['locale']],
   [/^\/v1\/algo\/picks$/, s => A.picks(s), 120, []],
+  [/^\/v1\/algo\/forecasts$/, (s, _m, q) => A.forecasts(s, q), 120, A.FORECASTS_QUERY],
   [/^\/v1\/algo\/record$/, (s, _m, q) => A.record(s, q), 300, A.RECORD_QUERY],
   [/^\/v1\/algo\/research$/, () => A.researchSummary(), 3600, []],
   [/^\/v1\/algo\/v2\/picks$/, s => A2.picksV2(s), 120, []],

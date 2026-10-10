@@ -7,12 +7,14 @@ import spec from '../../soccer-ingest/src/algo-v1.json' with { type: 'json' };
 import research from './algo-research.json' with { type: 'json' };
 import { envelope, COVERAGE } from './envelope.js';
 import { API_VERSION, teamsById } from './routes.js';
+import { readinessFor, competitionSlugs } from './lineups.js';
 
 const V = spec.algo_version;
 const E = (data, o) => envelope(data, { version: API_VERSION, source: 'pbe', ...o });
 export const ALGO_MARKETS = Object.keys(spec.pick_policy.markets);
 const LOCK_MS = spec.lead_time.lock_minutes_before_kickoff * 60e3;
 const WINDOW_MS = spec.lead_time.issue_window_days * 864e5;
+const isoOrNull = v => (v === null || v === undefined ? null : new Date(v).toISOString());
 const r4 = x => (x === null || x === undefined ? null : Math.round(x * 1e4) / 1e4);
 
 const SEL_WORD = { draw: 'Draw', over: 'Over 2.5 goals', under: 'Under 2.5 goals' };
@@ -79,7 +81,7 @@ export async function picks(store, now = Date.now()) {
   const numbers = await modelRecordNumbers(store, V);
   const openRows = renumber(await store.select('soccer_algo_picks', { columns: PICK_COLS, eq: { algo_version: V, status: 'pending' }, order: 'kickoff_at.asc' }), numbers);
   const recentRows = renumber(await store.select('soccer_algo_picks', { columns: PICK_COLS, eq: { algo_version: V }, neq: { status: 'pending' }, order: 'record_no.desc', limit: 10 }), numbers);
-  const forecasts = await store.select('soccer_algo_forecasts', { columns: ['id', 'match_id', 'issued_at', 'kickoff_at', 'lambda_home', 'lambda_away', 'probabilities', 'game_best', 'input_hash'], eq: { algo_version: V }, gte: { kickoff_at: nowIso }, order: 'kickoff_at.asc', limit: 40 });
+  const forecasts = await store.select('soccer_algo_forecasts', { columns: ['id', 'match_id', 'issued_at', 'kickoff_at', 'lambda_home', 'lambda_away', 'probabilities', 'game_best', 'input_hash', 'input_as_of', 'algo_version', 'model_hash', 'spec_hash'], eq: { algo_version: V }, gte: { kickoff_at: nowIso }, order: 'kickoff_at.asc', limit: 40 });
   const [comp] = await store.select('soccer_competitions', { columns: ['id'], eq: { slug: spec.competition_scope.competition_slug }, limit: 1 });
   const upcoming = comp ? await store.select('soccer_public_matches', { columns: ['id', 'kickoff_at', 'home_team_id', 'away_team_id', 'status', 'stage_id'], eq: { competition_id: comp.id, status: 'scheduled' }, gte: { kickoff_at: nowIso }, order: 'kickoff_at.asc', limit: 30 }) : [];
   const stageIds = [...new Set(upcoming.map(m => m.stage_id).filter(Boolean))];
@@ -98,6 +100,8 @@ export async function picks(store, now = Date.now()) {
     const official = pickByMatch.get(f.match_id);
     return {
       match_id: f.match_id, kickoff_at: f.kickoff_at, home: teamOut(h), away: teamOut(a), forecast_issued_at: f.issued_at, input_hash: f.input_hash,
+      // additive (soccer#17): the model's input clock and identity, so a forecast is never mistaken for a fresh one
+      input_as_of: isoOrNull(f.input_as_of), algo_version: f.algo_version, model_hash: f.model_hash, spec_hash: f.spec_hash,
       expected_goals_model: { home: r4(f.lambda_home), away: r4(f.lambda_away) },
       probabilities: { home_win: r4(f.probabilities['1x2'].home), draw: r4(f.probabilities['1x2'].draw), away_win: r4(f.probabilities['1x2'].away), home_to_score: r4(f.probabilities.home_to_score), away_to_score: r4(f.probabilities.away_to_score), over_2_5: r4(f.probabilities.over_2_5), btts: r4(f.probabilities.btts) },
       game_best: { market: g.market, market_name: MARKET_NAME[g.market], selection: g.selection, label: selectionLabel(g.market, g.selection, h?.name || 'Home', a?.name || 'Away'), probability: r4(g.probability), threshold: g.threshold, qualifies: g.qualifies },
@@ -159,4 +163,58 @@ export async function record(store, q = {}) {
 /** HISTORICAL VALIDATION: model research on past seasons (committed evidence), labelled and separate. */
 export function researchSummary() {
   return E(research, { semantics: 'HISTORICAL VALIDATION of the frozen model and pick policy on past Bundesliga seasons (SELECT 2006/07-2018/19, holdout 2019/20-2025/26 evaluated once). Research, not a track record.', coverage: COVERAGE.OK });
+}
+
+// ---------------- FROZEN FORECASTS (Market Disagreement Radar V1, soccer#17) ----------------
+// Every frozen Soccer Algo V1 forecast for matches kicking off in [from, to], exactly as stored (never recomputed), with
+// the Official Pick for that match kept SEPARATE (exactly the stored selection; null when the policy issued none) and the
+// lineup readiness as independent context. Read-only.
+export const FORECASTS_QUERY = ['from', 'to'];
+const FORECAST_MAX_WINDOW_MS = 21 * 864e5;
+const FORECAST_LIMIT = 60;
+const FC_COLS = ['id', 'match_id', 'competition_id', 'algo_version', 'model_hash', 'spec_hash', 'input_hash', 'issued_at', 'input_as_of', 'kickoff_at', 'probabilities'];
+const bad = msg => Object.assign(new Error(msg), { status: 400 });
+const parseIsoParam = (v, name) => { const t = Date.parse(v); if (!/^\d{4}-\d{2}-\d{2}/.test(String(v)) || !Number.isFinite(t)) throw bad(`${name} must be an ISO timestamp`); return t; };
+
+export async function forecasts(store, q = {}, now = Date.now()) {
+  const from = q.from ? parseIsoParam(q.from, 'from') : now - 2 * 864e5;
+  const to = q.to ? parseIsoParam(q.to, 'to') : now + 8 * 864e5;
+  if (to <= from) throw bad('to must be after from');
+  if (to - from > FORECAST_MAX_WINDOW_MS) throw bad('window must be 21 days or less');
+  const fromIso = new Date(from).toISOString(); const toIso = new Date(to).toISOString();
+  const rows = await store.select('soccer_algo_forecasts', { columns: FC_COLS, eq: { algo_version: V }, gte: { kickoff_at: fromIso }, lte: { kickoff_at: toIso }, order: 'kickoff_at.asc', limit: FORECAST_LIMIT });
+  const matchIds = [...new Set(rows.map(r => r.match_id))];
+  const ms = matchIds.length ? await store.select('soccer_public_matches', { columns: ['id', 'competition_id', 'kickoff_at', 'home_team_id', 'away_team_id', 'status'], in: { id: matchIds } }) : [];
+  const byMatch = new Map(ms.map(m => [m.id, m]));
+  const shown = rows.filter(r => byMatch.has(r.match_id)); // a forecast for an unpublished season is not served
+  const [teams, comps] = await Promise.all([teamsById(store, ms.flatMap(m => [m.home_team_id, m.away_team_id])), competitionSlugs(store, ms.map(m => m.competition_id))]);
+  const pickRows = matchIds.length ? await store.select('soccer_algo_picks', { columns: PICK_COLS, eq: { algo_version: V }, in: { match_id: matchIds }, order: 'record_no.asc' }) : [];
+  const numbers = pickRows.length ? await modelRecordNumbers(store, V) : new Map();
+  const pickByMatch = new Map(renumber(pickRows, numbers).map(p => [p.match_id, p]));
+  const lineups = await readinessFor(store, shown.map(r => byMatch.get(r.match_id)), { now, slugByCompetition: new Map([...comps].map(([k, c]) => [k, c.slug])) });
+  const team = t => (t ? { id: t.id, ...teamOut(t) } : null);
+  const data = shown.map(f => {
+    const m = byMatch.get(f.match_id); const h = teams.get(m.home_team_id); const a = teams.get(m.away_team_id);
+    const p = pickByMatch.get(f.match_id); const x = f.probabilities['1x2'];
+    const c = comps.get(m.competition_id);
+    return {
+      match_id: f.match_id, kickoff_at: isoOrNull(m.kickoff_at), status: m.status,
+      competition: c ? { slug: c.slug, name: c.name } : null, home: team(h), away: team(a),
+      forecast: {
+        forecast_id: f.id, algo_version: f.algo_version, model_hash: f.model_hash, spec_hash: f.spec_hash, input_hash: f.input_hash,
+        issued_at: isoOrNull(f.issued_at), input_as_of: isoOrNull(f.input_as_of), kickoff_at: isoOrNull(f.kickoff_at),
+        probabilities: { home_win: r4(x.home), draw: r4(x.draw), away_win: r4(x.away) },
+      },
+      official_pick: p ? {
+        record_no: p.record_no, market: p.market, selection: p.selection,
+        selection_label: selectionLabel(p.market, p.selection, h?.name || 'Home', a?.name || 'Away'),
+        model_probability: r4(p.model_probability), status: p.status, issued_at: isoOrNull(p.issued_at), lock_at: isoOrNull(p.lock_at),
+      } : null,
+      lineups: lineups.get(f.match_id),
+    };
+  });
+  return E(data, {
+    semantics: 'Frozen Soccer Algo V1 forecasts (never recomputed) for matches kicking off in the window, oldest kickoff first (max 60). forecast.issued_at is when the forecast was frozen; forecast.input_as_of is the newest input result it used. official_pick is the Official Pick ledger entry for the match, kept separate and exactly as stored (null = the policy issued no Official Pick). lineups is independent context and never a model input.',
+    coverage: COVERAGE.OK, coverage_notes: [`window ${fromIso} .. ${toIso}`],
+  });
 }
