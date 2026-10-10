@@ -98,9 +98,9 @@ test('catalog hygiene: no duplicate msgids, every translation non-empty, pattern
   for (const [re] of es.patterns) assert.ok(re.source.startsWith('^') && re.source.endsWith('$') || re.source.startsWith('^'), `unanchored pattern ${re}`);
 });
 
-test('protected content is excluded from the DOM pass: article bodies, Kalshi markets, translate="no"', () => {
+test('protected content is excluded from the DOM pass: article bodies, Kalshi markets, article-market module (.am), translate="no"', () => {
   const dom = readFileSync('src/i18n/dom.js', 'utf8');
-  for (const sel of ['.art-body', '[data-kx-impression]', '.kx', '.avm', '[translate="no"]']) assert.ok(dom.includes(sel), sel);
+  for (const sel of ['.art-body', '[data-kx-impression]', '.kx', '.avm', '.am', '[translate="no"]']) assert.ok(dom.includes(sel), sel);
 });
 
 const MATCH = { data: { id: '5b0c8f3e-1111-5222-8333-444455556666', status: 'finished', kickoff_at: '2026-09-20T15:30:00Z', season: '2026/27',

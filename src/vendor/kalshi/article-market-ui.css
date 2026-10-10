@@ -110,3 +110,28 @@
 .am--field p.am__focus { display: block; font-size: 14px; font-weight: 600; color: var(--am-dim); }
 .am--field .am__focus a { color: var(--am-accent); font-weight: 800; text-decoration: none; }
 .am--field .am__focus a:hover, .am--field .am__focus a:focus-visible { text-decoration: underline; }
+
+/* Non-official PBE context (pbeContext): validation / tracking intelligence, never the official record. */
+.am__pbe--ctx .am__pbeb > h4 { color: var(--am-accent); }
+.am p.am__ctxs { margin: 3px 0 0; font-family: inherit; font-size: 12px; line-height: 1.4; color: var(--am-faint); overflow-wrap: normal; }
+.am__pbe h4.am__ctxh { margin: 12px 0 2px; }
+.am__pbe ul.am__ctxl { margin-top: 6px; }
+.am__ctxl li span:last-child { color: var(--am-ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+.am p.am__ctxf { margin: 10px 0 0; font-family: inherit; font-size: 11px; line-height: 1.4; color: var(--am-faint); overflow-wrap: normal; }
+.am a.am__ctxcta { display: inline-block; margin-top: 10px; padding: 7px 12px; border-radius: 8px; border: 1px solid rgba(212,175,55,.38);
+  background: rgba(212,175,55,.10); color: var(--pbe-gold, #d4af37); font: 700 11px/1.2 var(--am-mono); letter-spacing: .08em; text-transform: uppercase; text-decoration: none; }
+.am a.am__ctxcta:hover, .am a.am__ctxcta:focus-visible { background: rgba(212,175,55,.18); }
+
+/* Distinct contracts (soccer#16): a venue with several markets for the event names WHICH contract each column is.
+   Sentence case, wraps inside its own column; the exact venue market title rides along for screen readers
+   (position: relative keeps that visually hidden span inside the table's scroll wrapper: no page overflow). */
+.am__t thead small.am__ct { position: relative; margin-top: 3px; font-family: inherit; font-size: 11.5px; font-weight: 650; line-height: 1.25; letter-spacing: 0; text-transform: none; color: var(--am-ink); overflow-wrap: anywhere; }
+/* Three or more venue columns: a narrower label column; on phones the table keeps a legible minimum width and
+   scrolls inside its own wrapper (never the page). */
+.am__t--wide col.am__c0 { width: 30%; }
+@media (max-width: 480px) {
+  .am__t--wide { min-width: 440px; }
+  .am__t--wide col.am__c0 { width: 25%; }
+  .am__t--wide thead a { font-size: 13px; }
+  .am__t--wide td b { font-size: 14px; }
+}

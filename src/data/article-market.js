@@ -10,6 +10,7 @@
 // - Nothing eligible / nothing observed / a failed read -> nothing rendered (never a placeholder).
 import { articleMarketModule, mountArticleMarket } from '../vendor/kalshi/article-market-ui.js';
 import { byDeadline, KALSHI_FIRST_PAINT_MS, MARKETS_BASE } from './kalshi.js';
+import { currentLocale } from '../i18n/current.js';
 
 export const ARTICLE_MARKET_ACTIVATED_AT = '2026-10-04T14:31:40Z';
 export const ARTICLE_MARKET_REFRESH_MS = 30_000;
@@ -40,7 +41,9 @@ export function articleMarketWithin(a, deadline = Date.now() + KALSHI_FIRST_PAIN
   return byDeadline(p, deadline).then(now => ({ now: now === undefined ? null : now, pending: now === undefined ? p : null }));
 }
 
-export const articleMarketHtml = payload => (payload ? articleMarketModule(payload, { placement: 'soccer-article' }) : '');
+// The module renders its own presentation natively in the page language (shared client `locale`, soccer#16); the
+// browser localizer never touches it (.am is a protected boundary in src/i18n/dom.js). Evidence stays as sourced.
+export const articleMarketHtml = (payload, locale = currentLocale()) => (payload ? articleMarketModule(payload, { placement: 'soccer-article', locale }) : '');
 
 /**
  * Mount on the rendered article. First paint already holds the module when the read beat the budget; a late answer
@@ -50,7 +53,7 @@ export function mountArticleMarketSlot(root, a, { now = null, pending = null } =
   const slot = root.querySelector('[data-art-market]');
   const id = articleMarketEvent(a);
   if (!slot || !id) return () => {};
-  const start = initial => mountArticleMarket(slot, { base: MARKETS_BASE, sport: 'soccer', eventId: id, publishedAt: a.published_at, initial, refreshMs: ARTICLE_MARKET_REFRESH_MS });
+  const start = initial => mountArticleMarket(slot, { base: MARKETS_BASE, sport: 'soccer', eventId: id, publishedAt: a.published_at, initial, refreshMs: ARTICLE_MARKET_REFRESH_MS, locale: currentLocale });
   if (now) return start(now);
   if (!pending) return () => {};
   let stop = () => {};

@@ -14,7 +14,7 @@ import { keyPlayers } from '../components/keyplayers.js';
 import { officialVideo, mountOfficialVideos } from '../components/video.js';
 import { orderVisuals, renderVisual } from '../components/visuals.js';
 import { renderPreferredSource } from '../components/preferred-source.js';
-import { newsLocale, currentLocale } from '../i18n/current.js';
+import { newsLocale, currentLocale, servedInLocale } from '../i18n/current.js';
 import { articleMarketEvent, articleMarketHtml, mountArticleMarketSlot } from '../data/article-market.js';
 
 const SITE = 'https://soccer.propbetedge.ai';
@@ -167,9 +167,12 @@ function sourceMethod(a, parts, meta) {
     </div></details>`;
 }
 
-function related(a) {
-  if (!a.related?.length) return '';
-  return `<section class="art-related"><p class="nrail-h">RELATED COVERAGE</p><div class="rel-grid">${join(a.related, r => {
+// Related coverage on a localized page: only stories with a verified current translation in that language
+// (servedInLocale); English-only stories are left out rather than shown untranslated. None -> no section.
+export function related(a, locale = currentLocale()) {
+  const list = (a.related || []).filter(r => servedInLocale(r, locale));
+  if (!list.length) return '';
+  return `<section class="art-related"><p class="nrail-h">RELATED COVERAGE</p><div class="rel-grid">${join(list, r => {
     const c = compByDesk(r.desk);
     return `<a class="rel-card" href="/news/${esc(r.desk)}/${esc(r.slug)}" data-link><span class="rc-top">${c ? competitionMark(c.slug, 'xs') : ''}<span>${esc(TYPE[r.story_class] || storyLabel(r.story_class))}</span></span><b>${esc(r.headline)}</b><small>${esc(ago(r.published_at))}</small></a>`;
   })}</div></section>`;
@@ -249,9 +252,23 @@ export async function mountArticle(root, env, mk = null) {
   const rail = root.querySelector('[data-art-rail]');
   if (rail) {
     try {
-      const list = (await api('news', newsLocale({ limit: 8 }))).data.filter(x => x.slug !== env.data.slug).slice(0, 5);
+      const page = currentLocale();
+      const list = railStories((await api('news', newsLocale({ limit: page === 'en' ? 8 : RAIL_NATIVE_LIMIT }))).data, env.data, page);
+      if (!list.length) { rail.remove(); return; } // nothing native to list: no rail (never an empty or English box)
       rail.innerHTML = `<div class="rail-card"><p class="nrail-h">LATEST FROM THE DESK</p>${join(list, x => { const c = compByDesk(x.desk); return `<a class="rail-item" href="/news/${esc(x.desk)}/${esc(x.slug)}" data-link><span class="rc-top">${c ? competitionMark(c.slug, 'xs') : ''}<span>${esc(TYPE[x.story_class] || storyLabel(x.story_class))}</span></span><b>${esc(x.headline)}</b><small>${esc(ago(x.published_at))}</small></a>`; })}${link('/news', 'ALL NEWS →', 'nrail-all')}</div>`;
     } catch { rail.remove(); }
   }
+}
+
+// The rail's stories. English: the latest five, as before. A localized page reads the same 40-story window the
+// localized news index reads (shared SPA + edge cache key, no extra request when the reader came from /es/news),
+// keeps only verified current translations, and puts the article's own desk first, then recency.
+export const RAIL_NATIVE_LIMIT = 40;
+export function railStories(cards, article, locale = currentLocale()) {
+  const others = (cards || []).filter(x => x.slug !== article?.slug);
+  if (locale === 'en') return others.slice(0, 5);
+  const native = others.filter(x => servedInLocale(x, locale));
+  const t = x => Date.parse(x.published_at) || 0;
+  return native.sort((x, y) => (y.desk === article?.desk) - (x.desk === article?.desk) || t(y) - t(x)).slice(0, 5);
 }
 
